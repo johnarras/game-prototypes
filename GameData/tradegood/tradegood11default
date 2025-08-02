@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Honey",
+  "Desc": "The primary sweetener of the ancient world, also used in medicine.",
+  "Icon": "Honey",
+  "Art": "Honey",
+  "CategoryName": "Food",
+  "Density": 1420.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 3000,
+  "PricePerWeight": 600,
+  "YearlyProduction": 80000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

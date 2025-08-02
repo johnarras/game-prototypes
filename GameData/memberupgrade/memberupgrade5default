@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Stamina Bonus",
+  "Desc": "More Health Per Level",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 15
+}

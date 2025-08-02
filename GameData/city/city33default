@@ -1,0 +1,50 @@
+{
+  "Id": "city33default",
+  "ParentId": "default",
+  "IdKey": 33,
+  "Name": "Thebes",
+  "Desc": "A powerful city in Boeotia and a frequent rival of Athens, known for its legendary Sacred Band and strength in cavalry.",
+  "Icon": "Thebes",
+  "Art": "Thebes",
+  "AncientName": "Thebae",
+  "MapPixelX": 1043,
+  "MapPixelY": 1176,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 68
+    },
+    {
+      "TradeGoodId": 110
+    },
+    {
+      "TradeGoodId": 2
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

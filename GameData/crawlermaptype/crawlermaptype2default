@@ -1,0 +1,57 @@
+{
+  "Id": "crawlermaptype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "City",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "GenTypes": [
+    {
+      "Name": "Town",
+      "MinWidth": 10,
+      "MaxWidth": 10,
+      "MinHeight": 10,
+      "MaxHeight": 10,
+      "MinFloors": 1,
+      "MaxFloors": 1,
+      "Weight": 1.0,
+      "MinCorridorDensity": 1.2,
+      "MaxCorridorDensity": 1.5,
+      "MinBuildingDensity": 1.0,
+      "MaxBuildingDensity": 2.0,
+      "WeightedZones": [
+        {
+          "Weight": 1.0,
+          "ZoneTypeId": 14
+        }
+      ]
+    },
+    {
+      "Name": "City",
+      "MinWidth": 12,
+      "MaxWidth": 16,
+      "MinHeight": 12,
+      "MaxHeight": 16,
+      "MinFloors": 1,
+      "MaxFloors": 1,
+      "Weight": 1.0,
+      "MinCorridorDensity": 1.2,
+      "MaxCorridorDensity": 1.5,
+      "MinBuildingDensity": 1.0,
+      "MaxBuildingDensity": 2.0,
+      "WeightedZones": [
+        {
+          "Name": "",
+          "Weight": 1.0,
+          "ZoneTypeId": 14
+        }
+      ]
+    }
+  ],
+  "NpcChance": 1.0,
+  "MinNpcQuantity": 1,
+  "MaxNpcQuantity": 3,
+  "MinNpcSeparation": 1,
+  "MinDistanceToEntrance": 2
+}

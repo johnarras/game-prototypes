@@ -1,0 +1,11 @@
+{
+  "Id": "crawlerquesttype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "KillMonsters",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Weight": 1.0,
+  "MonsterGroupSizeScale": 2.0
+}

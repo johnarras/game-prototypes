@@ -1,0 +1,20 @@
+{
+  "Id": "road75default",
+  "ParentId": "default",
+  "IdKey": 75,
+  "Name": "Boeotian Path",
+  "Desc": "A route connecting the plains of Boeotia with the strategic trade hub of Corinth on the isthmus.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 33,
+  "EndCityId": 12,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 90.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

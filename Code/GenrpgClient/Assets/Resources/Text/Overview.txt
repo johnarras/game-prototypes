@@ -1,0 +1,136 @@
+======== Overview
+
+The Mighty Wizard's Tale is a game inspired by "blobber" dungeon crawlers
+like The Bard's Tale, Might and Magic and Wizardry from decades ago. 
+These games have a party of characters that move around the world
+in first person mode on a grid.
+
+I recently played some of the games and wanted to have different 
+combat mechanics and I also wanted to try to add Roguelike/
+Roguelite mechanics with permadeath if the party wipes,
+while keeping upgrade points across runs, while creating
+a new procedural world each time.
+
+Combat is in the style of The Bard's Tale where players enter
+a square and groups of monsters pop into existence at
+different ranges and the party chooses their actions and then
+combat for all units resolves in sequence.
+
+Stat scaling is in the style of Might and Magic 4-5 where stats
+provide bonuses (like strength increases melee damage), but the
+bonuses are not linear and slow down.
+
+======== Hotkeys
+
+Press 1-8 to view characters 1-8.
+
+Use WASDQE to move:
+
+Q = Turn Left
+W = Forward
+E = Turn Right
+A = Strafe Left
+S = Backward
+D = Strafe Right
+
+Other Hotkeys:
+
+M = Show Current Map
+H = Show Help/Info Screen
+R = Emergency Recall to Town (Lose Gold)
+O = Options/Main Menu
+C = Cast Spell
+L = Show Quest Log
+
+
+======== Role listall
+
+The game has Classes that have various attributes and abiltiies, along with
+Races that are all Roles. A player picks a Race and a Class at the start, 
+and with upgrades players can add extra Classes (that require more
+exp and gold to level up).
+
+The classes have a bunch of skills, and scale at different speeds in
+different aspects of the game.
+
+======== RoleScalingType listall
+
+The core scaling mechanic in this game is taken from these older games
+with mechanics like: "Warriors get an extra attack every 4 levels."
+In those games, spells generally had fixed damage/healing values,
+or they scaled with the level of the caster. We apply this to
+all abilties, so a Mage casting Fireball might get 4.3 "hits"
+based on their level and class, which gives them 4 + a chance
+for a 5th attack. Skills are learned when the player's scaling
+tier reaches the tier fo the spell.
+
+======== CrawlerSpell listall
+
+Because spells scale with the character's level, they should never become
+obsolete, so your spellbooks should be smaller, but filled with
+better spells. Role scaling will mean the same spell will
+hit differently depending on what character is using it.
+
+Single target attacks chain from one unit to the next if initial
+hits kill the first units. Larger groups will require spells that
+hit all units in a group or on the battlefield.
+
+======== ElementType listall
+
+There are several element types in the game, and monsters can be 
+resistant to, or vulnerable to certain elements.
+
+Monsters that are resistant to elements take less damage and
+are harder to crit, while monsters that are vulnerable to
+a certain element will take more damage from it, and have
+a larger chance to be crit.
+
+
+======== StatType listall
+
+Stats determine how hard skills hit, and how well you defend against them.
+
+======== UnitType listall
+
+There are many monsters in the game with varied skills and attributes. 
+They get access to skills as they level up.
+
+======== CrawlerSpell listall
+
+These are all of the abilities that you can learn depending on your class.
+
+======== PartyUpgrade listall
+
+As you explore the world and level up, you will gain upgrade points that
+let you upgrade various attributes of your party.
+
+You gain upgrade points the first time any party member reaches the
+highest level during the entire game or during this run.
+
+The party also receives upgrade points when they fully explore a
+dungeon. If the party fully explores a dungeon at a certain level,
+players get upgrade point credit for having explored all dungeons
+of a lower level, so you don't have to fully explore all dungeons.
+
+======== MemberUpgrade listall
+
+Each party member also gets upgrade points to spend to allow them
+to specialize to become better at whatever parts of their
+classes they want to emphasize.
+
+
+======== Inventory
+
+You may carry as much inventory as you want, but if the party has more than
+5 items per party member (can be upgraded), the players will
+take longer to move, thus making time pass faster.
+
+
+======== Time
+
+Moving, fighting and performing other activities take time.
+When the party leaves the guild hall, the game advances
+to the next day.
+
+Each day, monsters get a bit stronger, so use your time
+judiciously.

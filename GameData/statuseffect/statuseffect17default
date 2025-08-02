@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Dead",
+  "Desc": "Cannot do anything until cured/rezzed.",
+  "Icon": "Dead",
+  "Art": "",
+  "Abbrev": "Dd",
+  "CombatActionId": 7,
+  "Amount": 100,
+  "SaveTime": "2025-06-07T14:15:17.474Z"
+}

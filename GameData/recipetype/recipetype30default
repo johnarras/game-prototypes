@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype30default",
+  "ParentId": "default",
+  "IdKey": 30,
+  "Name": "Ranged",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 30,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 150,
+  "ExplicitReagents": []
+}

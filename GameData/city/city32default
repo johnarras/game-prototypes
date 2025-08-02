@@ -1,0 +1,43 @@
+{
+  "Id": "city32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Sparta",
+  "Desc": "A famously militaristic Greek city-state in the Peloponnese, valued more for its disciplined soldiers than for its material trade goods.",
+  "Icon": "Sparta",
+  "Art": "Sparta",
+  "AncientName": "Sparta",
+  "MapPixelX": 1022,
+  "MapPixelY": 1205,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 70
+    },
+    {
+      "TradeGoodId": 50
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "stattype34default",
+  "ParentId": "default",
+  "IdKey": 34,
+  "Name": "ManaRegen",
+  "Desc": "Mana Regen",
+  "GenScalePct": 100
+}

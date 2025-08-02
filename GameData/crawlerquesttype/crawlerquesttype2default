@@ -1,0 +1,11 @@
+{
+  "Id": "crawlerquesttype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "LootItems",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Weight": 1.0,
+  "MonsterGroupSizeScale": 1.0
+}

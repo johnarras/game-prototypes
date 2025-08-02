@@ -1,0 +1,20 @@
+{
+  "Id": "road26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Via Egnatia (South Branch)",
+  "Desc": "A secondary route linking the classical heartland of Athens to the main Via Egnatia and the road to the East.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 2,
+  "EndCityId": 9,
+  "Maintenance": 3.0,
+  "Difficulty": 4.0,
+  "Danger": 4.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 2.0,
+  "Length": 1080.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

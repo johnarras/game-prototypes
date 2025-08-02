@@ -1,0 +1,12 @@
+{
+  "Id": "crawlerupgrade8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "SummonQuality",
+  "Desc": "Increases the Damage and Health of Summons by this Percent",
+  "Icon": "",
+  "Art": "",
+  "MaxTier": 4,
+  "BonusPerTier": 10.0,
+  "BasePointCost": 5
+}

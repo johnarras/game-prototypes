@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting27default",
+  "IdKey": 27,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "tab",
+  "KeyCommand": "TargetNext"
+}

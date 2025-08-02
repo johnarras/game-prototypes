@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "Dungeon",
+  "Desc": "",
+  "Icon": "Dungeon",
+  "Art": "Dungeon",
+  "Radius": 5,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

@@ -1,0 +1,48 @@
+{
+  "Id": "unittype46default",
+  "ParentId": "default",
+  "IdKey": 46,
+  "Name": "Black Dragon",
+  "PluralName": "Black Dragons",
+  "Icon": "BlackDragon",
+  "Art": "BlackDragon",
+  "TribeTypeId": 16,
+  "MinLevel": 20,
+  "SpawnQuantityScale": 0.1,
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 4
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

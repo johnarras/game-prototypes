@@ -1,0 +1,53 @@
+{
+  "Id": "city35default",
+  "ParentId": "default",
+  "IdKey": 35,
+  "Name": "Miletus",
+  "Desc": "An ancient Ionian Greek city, a birthplace of philosophy and science, and a major producer of fine woolen textiles.",
+  "Icon": "Miletus",
+  "Art": "Miletus",
+  "AncientName": "Miletus",
+  "MapPixelX": 1132,
+  "MapPixelY": 1194,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 27
+    },
+    {
+      "TradeGoodId": 78
+    },
+    {
+      "TradeGoodId": 4
+    },
+    {
+      "TradeGoodId": 106
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,38 @@
+{
+  "Id": "unittype35default",
+  "ParentId": "default",
+  "IdKey": 35,
+  "Name": "Wraith",
+  "PluralName": "Wraiths",
+  "Icon": "Wraith",
+  "Art": "Wraith",
+  "TribeTypeId": 3,
+  "MinLevel": 10,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 24,
+      "Quantity": 1,
+      "EntityId": 7
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 6
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

@@ -1,0 +1,153 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlerupgrade1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "ClassCount",
+      "Desc": "Allows more classes per character.",
+      "MaxTier": 1,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 100
+    },
+    {
+      "Id": "crawlerupgrade2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "ActionCount",
+      "Desc": "Allows more actions per combat round.",
+      "MaxTier": 1,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 100
+    },
+    {
+      "Id": "crawlerupgrade3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "StatPercent",
+      "Desc": "Increases stats by a percent.",
+      "MaxTier": 5,
+      "BonusPerTier": 10.0,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "RoleScaling",
+      "Desc": "Scales role attributes such as melee or healing faster.",
+      "MaxTier": 5,
+      "BonusPerTier": 0.05,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "StatBonusIncrease",
+      "Desc": "Increases the bonus players receive from their stats.",
+      "MaxTier": 5,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "VendorQuality",
+      "Desc": "Increases the quality and quantity of vendor items.",
+      "MaxTier": 5,
+      "BonusPerTier": 0.1,
+      "BasePointCost": 1
+    },
+    {
+      "Id": "crawlerupgrade7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "LootQuality",
+      "Desc": "Increases quality and quantity of loot.",
+      "MaxTier": 5,
+      "BonusPerTier": 0.1,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "SummonQuality",
+      "Desc": "Increases the Damage and Health of Summons by this Percent",
+      "Icon": "",
+      "Art": "",
+      "MaxTier": 4,
+      "BonusPerTier": 10.0,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "PartySize",
+      "Desc": "Allows for a larger party size.",
+      "MaxTier": 2,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 10
+    },
+    {
+      "Id": "crawlerupgrade10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "ExpPercent",
+      "Desc": "Increases the Exp party members gain.",
+      "MaxTier": 10,
+      "BonusPerTier": 50.0,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "crawlerupgrade11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "InventorySize",
+      "NameId": "",
+      "Desc": "Max Size of the party's inventory.",
+      "Icon": "",
+      "Art": "",
+      "MaxTier": 5,
+      "BonusPerTier": 10.0,
+      "BasePointCost": 2
+    },
+    {
+      "Id": "crawlerupgrade12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "GoldPercent",
+      "NameId": "",
+      "Desc": "Increases the Gold party members gain.",
+      "Icon": "",
+      "Art": "",
+      "MaxTier": 10,
+      "BonusPerTier": 50.0,
+      "BasePointCost": 5
+    },
+    {
+      "Id": "partyupgrade13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "MemberTalentPoints",
+      "NameId": "",
+      "Desc": "Increases the number of member talent points players receive.",
+      "Icon": "",
+      "Art": "",
+      "MaxTier": 10,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 4,
+      "SaveTime": "2025-06-07T00:16:50.417Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "PartyUpgradeSettings",
+    "SaveTime": "2025-06-07T00:16:50.417Z"
+  },
+  "SaveTime": "2025-06-07T00:16:50.417Z"
+}

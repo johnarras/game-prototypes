@@ -1,0 +1,20 @@
+{
+  "Id": "road32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Carian Coast Trail",
+  "Desc": "A minor coastal trail through the rugged region of Caria.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 35,
+  "EndCityId": 36,
+  "Maintenance": 2.0,
+  "Difficulty": 3.0,
+  "Danger": 4.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 120.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

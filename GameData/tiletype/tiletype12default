@@ -1,0 +1,55 @@
+{
+  "Id": "tiletype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Stonemason",
+  "Desc": "Improves Stone",
+  "Icon": "StonemasonTile",
+  "Art": "StonemasonTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 8,
+      "MinQuantity": 5,
+      "MaxQuantity": 10,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [
+    {
+      "EntityTypeId": 201,
+      "Quantity": 1,
+      "EntityId": 8
+    }
+  ],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 5
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 3
+    }
+  ]
+}

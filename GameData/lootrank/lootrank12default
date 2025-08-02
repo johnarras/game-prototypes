@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Ruby",
+  "Armor": 30,
+  "Damage": 15,
+  "CostPct": 3000
+}

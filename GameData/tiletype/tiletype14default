@@ -1,0 +1,55 @@
+{
+  "Id": "tiletype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Barracks",
+  "Desc": "Adds Troops To Attack",
+  "Icon": "BarracksTile",
+  "Art": "BarracksTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 13,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [
+    {
+      "EntityTypeId": 202,
+      "Quantity": 20,
+      "EntityId": 13
+    }
+  ],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 1
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 5
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 4
+    }
+  ]
+}

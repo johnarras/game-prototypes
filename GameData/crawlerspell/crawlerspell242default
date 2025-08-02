@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell242default",
+  "ParentId": "default",
+  "IdKey": 242,
+  "Name": "Plaguestorm",
+  "Desc": "Hit all enemies with poisonous nature damage",
+  "PowerCost": 12.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 4,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 33,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 4,
+      "ElementTypeId": 8
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

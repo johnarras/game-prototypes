@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "PartySize",
+  "Desc": "Allows for a larger party size.",
+  "MaxTier": 2,
+  "BonusPerTier": 1.0,
+  "BasePointCost": 10
+}

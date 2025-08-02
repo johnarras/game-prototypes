@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "Heal Wounds",
+  "Desc": "Heal the wounds of an ally.",
+  "PowerCost": 3.0,
+  "PowerPerLevel": 0.5,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 2,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 34,
+      "MinQuantity": 1,
+      "MaxQuantity": 9,
+      "ElementTypeId": 7
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

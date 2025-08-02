@@ -1,0 +1,38 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "dungeonart1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Basic Dungeon",
+      "Desc": "Basic Art Assets",
+      "Icon": "Basic",
+      "Art": "Basic"
+    },
+    {
+      "Id": "dungeonart2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "City",
+      "Desc": "City Art Assets",
+      "Icon": "City",
+      "Art": "City"
+    },
+    {
+      "Id": "dungeonart3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Natural",
+      "Desc": "Natural Art Assets",
+      "Icon": "Natural",
+      "Art": "Natural"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "DungeonArtSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

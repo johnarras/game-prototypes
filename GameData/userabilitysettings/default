@@ -1,0 +1,8 @@
+{
+  "Id": "default",
+  "BaseUpgradeCost": 3,
+  "LinearUpgradeCost": 5,
+  "QuadraticUpgradeCost": 2,
+  "Name": "UserAbilitySettings",
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

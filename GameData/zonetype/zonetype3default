@@ -1,0 +1,754 @@
+{
+  "Id": "zonetype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Hills",
+  "Desc": "",
+  "Icon": "Hills",
+  "Art": "Hills",
+  "MinLevel": 5,
+  "GenChance": 5.0,
+  "GrassDensity": 0.8,
+  "GrassFreq": 1.0,
+  "TreeDensity": 1.25,
+  "BushDensity": 1.0,
+  "BushFreq": 1.0,
+  "RockDensity": 1.0,
+  "DetailAmp": 1.1,
+  "DetailFreq": 0.8,
+  "RoadDetailScale": 0.3,
+  "RoadDipScale": 1.0,
+  "RoadDirtScale": 1.0,
+  "ZoneListGenScale": 1.0,
+  "Textures": [
+    {
+      "TextureTypeId": 14
+    },
+    {
+      "TextureTypeId": 2,
+      "TextureChannelId": 1
+    },
+    {
+      "TextureTypeId": 4,
+      "TextureChannelId": 2
+    },
+    {
+      "TextureTypeId": 3,
+      "TextureChannelId": 3
+    },
+    {
+      "TextureTypeId": 80,
+      "TextureChannelId": 1
+    }
+  ],
+  "ZoneNames": [
+    {
+      "Weight": 1000.0,
+      "Name": "Butte",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Canyon",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Canyons",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Cliff",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Cliffs",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Crag",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Crags",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Fell",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Foothills",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Highland",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Highlands",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hills",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hollow",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Knoll",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Mountain",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Mountains",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Palisades",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Peak",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Peaks",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Plateau",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Precipice",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Summit",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Upland",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Uplands",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Valley",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Valleys",
+      "Desc": ""
+    }
+  ],
+  "ZoneAdjectives": [
+    {
+      "Weight": 1000.0,
+      "Name": "Alpine",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Craggy",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Gentle",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Graded",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Sheer",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Steep",
+      "Desc": ""
+    }
+  ],
+  "BridgeTypes": [
+    {
+      "BridgeTypeId": 2,
+      "Chance": 100
+    },
+    {
+      "BridgeTypeId": 3,
+      "Chance": 100
+    },
+    {
+      "BridgeTypeId": 1,
+      "Chance": 100
+    }
+  ],
+  "FenceTypes": [
+    {
+      "FenceTypeId": 1,
+      "Weight": 1.0
+    }
+  ],
+  "RockTypes": [
+    {
+      "RockTypeId": 1,
+      "Weight": 1.0,
+      "BaseColor": {
+        "R": 1.0,
+        "G": 1.0,
+        "B": 1.0,
+        "A": 1.0
+      }
+    }
+  ],
+  "TreeTypes": [
+    {
+      "TreeTypeId": 1,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 2,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 5,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 7,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 8,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 12,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 24,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 23,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 28,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 29,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 63,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 22,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 80,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 81,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 82,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 83,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 84,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 85,
+      "PopulationScale": 1.0
+    }
+  ],
+  "CreatureNamePrefixes": [
+    {
+      "Weight": 1000.0,
+      "Name": "Bluff",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Boulder",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Butte",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Cliff",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Crag",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Fell",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Foothills",
+      "Desc": ""
+    },
+    {
+      "Weight": 2000.0,
+      "Name": "Highland",
+      "Desc": ""
+    },
+    {
+      "Weight": 2000.0,
+      "Name": "Highlands",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hillock",
+      "Desc": ""
+    },
+    {
+      "Weight": 5000.0,
+      "Name": "Hills",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Knoll",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Landslide",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Moor",
+      "Desc": ""
+    },
+    {
+      "Weight": 5000.0,
+      "Name": "Mountain",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Palisades",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Peak",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Plateau",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Precipice",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Rock",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Slope",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Stone",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Summit",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Upland",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Uplands",
+      "Desc": ""
+    }
+  ],
+  "CreatureDoubleNamePrefixes": [
+    {
+      "Weight": 1000.0,
+      "Name": "Cliff",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Crag",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Fell",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hill",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Peak",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Rock",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Stone",
+      "Desc": ""
+    }
+  ],
+  "Overrides": [],
+  "ZoneUnitSpawns": [
+    {
+      "UnitTypeId": 1,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 2,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 3,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 4,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 7,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 8,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 9,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 10,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 11,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 12,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 13,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 14,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 15,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 16,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 17,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 18,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 19,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 20,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 21,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 22,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 24,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 25,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 26,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 27,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 29,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 30,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 43,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 44,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 45,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 46,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 47,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 48,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 51,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 52,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 53,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 54,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 55,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 57,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 58,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 59,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 60,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 61,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 64,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 65,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 66,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 67,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 68,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 69,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 72,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 73,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 74,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 75,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 76,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 77,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 78,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 80,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 81,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 82,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 83,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 84,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 85,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 86,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 87,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 88,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 89,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 90,
+      "Weight": 10.0
+    }
+  ],
+  "UnitKeyWords": [],
+  "PlantChoices": "33 10 15 16 26 28 30 31 32 9",
+  "FenceChance": 0.1,
+  "WeatherTypeId": 3,
+  "MusicTypeId": 5,
+  "AmbientMusicTypeId": 9,
+  "TraveralTimeScale": 5.0,
+  "ZoneCategoryId": 1,
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

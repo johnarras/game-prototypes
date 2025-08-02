@@ -1,0 +1,11 @@
+{
+  "Id": "usercointype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Warriors",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconWarriors",
+  "Art": "WarriorsArt",
+  "BaseStorage": 20
+}

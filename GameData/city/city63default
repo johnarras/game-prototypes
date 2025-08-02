@@ -1,0 +1,53 @@
+{
+  "Id": "city63default",
+  "ParentId": "default",
+  "IdKey": 63,
+  "Name": "York",
+  "Desc": "A rugged legionary fortress and administrative capital on the northern frontier of Roman Britain, guarding against the untamed tribes beyond.",
+  "Icon": "York",
+  "Art": "York",
+  "AncientName": "Eburacum",
+  "MapPixelX": 487,
+  "MapPixelY": 821,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 95
+    },
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 27
+    },
+    {
+      "TradeGoodId": 44
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

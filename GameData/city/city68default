@@ -1,0 +1,54 @@
+{
+  "Id": "city68default",
+  "ParentId": "default",
+  "IdKey": 68,
+  "Name": "Artaxata",
+  "Desc": "The grand capital of ancient Armenia, strategically located on the Araxes River at a crossroads between the Roman, Parthian, and Caucasian worlds.",
+  "Icon": "Artaxata",
+  "Art": "Artaxata",
+  "AncientName": "Artaxata",
+  "MapPixelX": 1527,
+  "MapPixelY": 1144,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 87
+    },
+    {
+      "TradeGoodId": 9
+    },
+    {
+      "TradeGoodId": 88
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

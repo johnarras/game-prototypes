@@ -1,0 +1,19 @@
+{
+  "Id": "itemtype50default",
+  "ParentId": "default",
+  "IdKey": 50,
+  "Name": "Recipe",
+  "Desc": "",
+  "Icon": "Scroll",
+  "Art": "",
+  "Flags": 12,
+  "Effects": [],
+  "LevelRanges": [],
+  "QualityNames": [],
+  "IconCounts": [
+    {
+      "Count": 11
+    }
+  ],
+  "Names": []
+}

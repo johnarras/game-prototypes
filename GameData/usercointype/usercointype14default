@@ -1,0 +1,11 @@
+{
+  "Id": "usercointype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Mana",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconMana",
+  "Art": "ManaArt",
+  "BaseStorage": 50
+}

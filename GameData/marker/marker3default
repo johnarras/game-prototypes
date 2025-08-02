@@ -1,0 +1,11 @@
+{
+  "Id": "marker3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Blue",
+  "Desc": "",
+  "Icon": "BlueMarker",
+  "Art": "BlueMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 3
+}

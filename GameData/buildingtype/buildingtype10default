@@ -1,0 +1,11 @@
+{
+  "Id": "buildingtype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "House",
+  "Icon": "House",
+  "Art": "House",
+  "Radius": 5,
+  "IsCrawlerBuilding": true,
+  "VariationCount": 4
+}

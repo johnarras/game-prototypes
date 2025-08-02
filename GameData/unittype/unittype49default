@@ -1,0 +1,33 @@
+{
+  "Id": "unittype49default",
+  "ParentId": "default",
+  "IdKey": 49,
+  "Name": "Iron Golem",
+  "PluralName": "Iron Golems",
+  "Icon": "IronGolem",
+  "Art": "IronGolem",
+  "TribeTypeId": 17,
+  "MinLevel": 15,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 16
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

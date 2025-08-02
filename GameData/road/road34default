@@ -1,0 +1,20 @@
+{
+  "Id": "road34default",
+  "ParentId": "default",
+  "IdKey": 34,
+  "Name": "Persian Royal Road (Taurus Section)",
+  "Desc": "The great Royal Road crossing the high plains of central Anatolia before descending through the formidable Taurus Mountains.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 37,
+  "EndCityId": 38,
+  "Maintenance": 4.0,
+  "Difficulty": 4.0,
+  "Danger": 3.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 2.0,
+  "Length": 950.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

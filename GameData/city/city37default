@@ -1,0 +1,57 @@
+{
+  "Id": "city37default",
+  "ParentId": "default",
+  "IdKey": 37,
+  "Name": "Sardis",
+  "Desc": "The wealthy capital of the ancient Kingdom of Lydia, where coinage was first invented, situated on a key crossroads of Anatolian trade.",
+  "Icon": "Sardis",
+  "Art": "Sardis",
+  "AncientName": "Sardis",
+  "MapPixelX": 1149,
+  "MapPixelY": 1172,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 48
+    },
+    {
+      "TradeGoodId": 74
+    },
+    {
+      "TradeGoodId": 32
+    },
+    {
+      "TradeGoodId": 78
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

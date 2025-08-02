@@ -1,0 +1,41 @@
+{
+  "Id": "unittype87default",
+  "ParentId": "default",
+  "IdKey": 87,
+  "Name": "Kobold",
+  "PluralName": "Kobolds",
+  "Icon": "Kobold",
+  "Art": "Kobold",
+  "TribeTypeId": 1,
+  "MinLevel": 10,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [
+    {
+      "UnitKeywordId": 14
+    },
+    {
+      "UnitKeywordId": 16
+    },
+    {
+      "UnitKeywordId": 15
+    },
+    {
+      "UnitKeywordId": 17
+    }
+  ],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

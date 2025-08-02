@@ -1,0 +1,8 @@
+{
+  "Id": "usercointype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Iron",
+  "Icon": "IconIron",
+  "Art": "IronArt"
+}

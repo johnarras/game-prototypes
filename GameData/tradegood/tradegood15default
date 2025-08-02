@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Peaches",
+  "Desc": "A desirable fruit that spread from Persia and Central Asia.",
+  "Icon": "Peaches",
+  "Art": "Peaches",
+  "CategoryName": "Food",
+  "Density": 600.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 3500,
+  "PricePerWeight": 350,
+  "YearlyProduction": 5000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

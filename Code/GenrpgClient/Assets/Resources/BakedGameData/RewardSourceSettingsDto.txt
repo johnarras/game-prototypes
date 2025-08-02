@@ -1,0 +1,95 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "rewardsourcetype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Kill"
+    },
+    {
+      "Id": "rewardsourcetype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Quest"
+    },
+    {
+      "Id": "rewardsourcetype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Purchase"
+    },
+    {
+      "Id": "rewardsourcetype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Activity"
+    },
+    {
+      "Id": "rewardsourcetype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Tile"
+    },
+    {
+      "Id": "rewardsourcetype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "PassTile"
+    },
+    {
+      "Id": "rewardsourcetype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "LandTile"
+    },
+    {
+      "Id": "rewardsourcetype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "DrawCard"
+    },
+    {
+      "Id": "rewardsourcetype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Defend"
+    },
+    {
+      "Id": "rewardsourcetype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Adventure"
+    },
+    {
+      "Id": "rewardsourcetype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Bonus"
+    },
+    {
+      "Id": "rewardsourcetype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "PVP"
+    },
+    {
+      "Id": "rewardsourcetype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Levelup"
+    },
+    {
+      "Id": "rewardsourcetype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Levelup"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "RewardSourceSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

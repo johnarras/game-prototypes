@@ -1,0 +1,92 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "targettype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Enemy",
+      "Desc": "Attack one enemy in a group with a chaining attack.",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Ally",
+      "Desc": "",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "OneEnemyGroup",
+      "Desc": "All Enemies in a group",
+      "StatBonusScale": 0.6
+    },
+    {
+      "Id": "targettype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "AllEnemies",
+      "Desc": "All enemies individually",
+      "StatBonusScale": 0.35
+    },
+    {
+      "Id": "targettype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "AllAllies",
+      "Desc": "All allies individually",
+      "StatBonusScale": 0.35
+    },
+    {
+      "Id": "targettype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "World",
+      "Desc": "World",
+      "Icon": "",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Item",
+      "Desc": "Some Item",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Special",
+      "Desc": "Movement",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Self",
+      "Desc": "Cast on self only",
+      "StatBonusScale": 1.0
+    },
+    {
+      "Id": "targettype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "EnemyInEachGroup",
+      "Desc": "Attack each group with a single target chaining attack.",
+      "StatBonusScale": 1.0
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TargetTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

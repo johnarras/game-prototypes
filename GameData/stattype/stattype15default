@@ -1,0 +1,12 @@
+{
+  "Id": "stattype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Stamina",
+  "Desc": "Adds to your health.",
+  "Art": "GreenCauldron",
+  "ColorName": "Green",
+  "ColorCode": "#00FF00",
+  "GenScalePct": 150,
+  "IsCrawlerStat": true
+}

@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "RewardChance",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 10,
+  "QuantityPerRank": 1
+}

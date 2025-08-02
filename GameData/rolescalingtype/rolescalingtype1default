@@ -1,0 +1,9 @@
+{
+  "Id": "rolescalingtype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Melee",
+  "Desc": "Increases melee attacks per level.",
+  "ScalingStatTypeId": 11,
+  "ScalingEquipSlotId": 15
+}

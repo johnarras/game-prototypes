@@ -1,0 +1,17 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "screenoverride1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "CharacterCreate"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "ScreenOverrideSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

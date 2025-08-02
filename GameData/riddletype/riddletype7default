@@ -1,0 +1,10 @@
+{
+  "Id": "riddletype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Buttons",
+  "Art": "WallButton",
+  "Weight": 1000.0,
+  "IsObject": true,
+  "SaveTime": "2025-07-25T23:24:19.224Z"
+}

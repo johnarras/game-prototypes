@@ -1,0 +1,19 @@
+{
+  "Id": "road46default",
+  "ParentId": "default",
+  "IdKey": 46,
+  "Name": "Euphrates Desert Trail",
+  "Desc": "A dangerous desert track following the Euphrates River, connecting the two great caravan cities of the Syrian frontier.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 14,
+  "EndCityId": 43,
+  "Maintenance": 1.0,
+  "Difficulty": 5.0,
+  "Danger": 6.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 3.0,
+  "Length": 220.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

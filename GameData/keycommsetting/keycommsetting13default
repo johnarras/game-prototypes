@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting13default",
+  "IdKey": 13,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "a",
+  "KeyCommand": "TurnLeft"
+}

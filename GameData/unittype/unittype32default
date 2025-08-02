@@ -1,0 +1,33 @@
+{
+  "Id": "unittype32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Zombie",
+  "PluralName": "Zombies",
+  "Icon": "Zombie",
+  "Art": "Zombie",
+  "TribeTypeId": 3,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 24,
+      "Quantity": 1,
+      "EntityId": 7
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 6
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

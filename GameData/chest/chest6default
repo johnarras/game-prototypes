@@ -1,0 +1,13 @@
+{
+  "Id": "chest6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Legendary Chest",
+  "Desc": "",
+  "Icon": "LegendaryChest",
+  "Art": "LegendaryChest",
+  "UnlockMinutes": 2880,
+  "Tier": 5,
+  "TieredLootMult": 14,
+  "Loot": []
+}

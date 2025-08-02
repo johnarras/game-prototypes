@@ -1,0 +1,11 @@
+{
+  "Id": "unitkeyword1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Humanoid",
+  "PluralName": "Humanoids",
+  "Icon": "Humanoid",
+  "Art": "Humanoid",
+  "Effects": [],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

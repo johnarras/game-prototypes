@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Shadow",
+  "Desc": "The power of darkness and evil.",
+  "Icon": "Shadow",
+  "Art": "Shadow",
+  "CasterActionName": "Drain",
+  "ObserverActionName": "Drains",
+  "CastAnim": "Shadow",
+  "VulnElementTypeId": 7,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 7,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 6
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

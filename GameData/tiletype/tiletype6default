@@ -1,0 +1,33 @@
+{
+  "Id": "tiletype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Plains",
+  "Desc": "Food and Herbs",
+  "Icon": "PlainsTile",
+  "Art": "PlainsTile",
+  "Weight": 1.0,
+  "MinLevel": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 11,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 12,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [],
+  "UpgradeReagents": []
+}

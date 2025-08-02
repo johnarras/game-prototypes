@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "WarbandDamage",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 10,
+  "QuantityPerRank": 1
+}

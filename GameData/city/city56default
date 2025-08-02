@@ -1,0 +1,58 @@
+{
+  "Id": "city56default",
+  "ParentId": "default",
+  "IdKey": 56,
+  "Name": "Taxila",
+  "Desc": "A bustling crossroads of cultures and learning in ancient India, where Greek, Persian, and Indian influences converged around a great university.",
+  "Icon": "Taxila",
+  "Art": "Taxila",
+  "AncientName": "Takshashila",
+  "MapPixelX": 2167,
+  "MapPixelY": 1280,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 100
+    },
+    {
+      "TradeGoodId": 101
+    },
+    {
+      "TradeGoodId": 22
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 12,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 15,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 16,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

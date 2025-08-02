@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood79default",
+  "ParentId": "default",
+  "IdKey": 79,
+  "Name": "Black Pepper",
+  "Desc": "A valuable spice from India, highly sought after in Roman cuisine and medicine.",
+  "Icon": "BlackPepper",
+  "Art": "BlackPepper",
+  "CategoryName": "Spices",
+  "Density": 550.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 45000,
+  "PricePerWeight": 45000,
+  "YearlyProduction": 1500,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

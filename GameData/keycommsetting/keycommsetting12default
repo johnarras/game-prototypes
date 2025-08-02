@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting12default",
+  "IdKey": 12,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "w",
+  "KeyCommand": "Forward"
+}

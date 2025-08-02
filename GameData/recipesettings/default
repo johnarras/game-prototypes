@@ -1,0 +1,12 @@
+{
+  "Id": "default",
+  "LootLevelIncrement": 25,
+  "PointsPerLevel": 5,
+  "PointsPerCraft": 1,
+  "ExtraCraftLevelsAllowed": 5,
+  "LevelsPerExtraEffect": 4,
+  "MaxExtraEffects": 5,
+  "ReagentQuantityPerPercent": 0.025,
+  "Name": "RecipeSettings",
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

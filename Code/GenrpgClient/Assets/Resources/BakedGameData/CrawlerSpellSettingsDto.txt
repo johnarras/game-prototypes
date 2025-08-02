@@ -1,0 +1,3837 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlerspell1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Attack",
+      "Desc": "Melee attack one or more enemies.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 10,
+      "CombatActionId": 1,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 1,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 38,
+          "EntityId": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "Flags": 1,
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Defend",
+      "Desc": "Take half damage this turn if you get hit.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 2,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [],
+      "Flags": 1,
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Shoot",
+      "Desc": "Attack one or more enemies that are out of melee range.",
+      "StatBonusScaling": 1.0,
+      "MinRange": 20,
+      "MaxRange": 100,
+      "CombatActionId": 3,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 2,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 39,
+          "EntityId": 2,
+          "ElementTypeId": 1
+        }
+      ],
+      "Flags": 1,
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Whirlwind",
+      "Desc": "Hit one or more enemies in all groups within melee range.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 10,
+      "ReplacesCrawlerSpellId": 1,
+      "CombatActionId": 1,
+      "TargetTypeId": 10,
+      "RoleScalingTypeId": 1,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 38,
+          "EntityId": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Volley",
+      "Desc": "Hit one or more enemies in all groups with ranged damage.",
+      "StatBonusScaling": 1.0,
+      "MinRange": 20,
+      "MaxRange": 100,
+      "ReplacesCrawlerSpellId": 3,
+      "CombatActionId": 3,
+      "TargetTypeId": 10,
+      "RoleScalingTypeId": 2,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 39,
+          "EntityId": 2,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Hide",
+      "Desc": "Meld into the shadows to allow next single target ability to crit.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 5,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 3,
+      "Effects": [],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Charge",
+      "Desc": "Passive buff to move the party forward more when advancing.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 1,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell20default",
+      "ParentId": "default",
+      "IdKey": 20,
+      "Name": "Heal Wounds",
+      "Desc": "Heal the wounds of an ally.",
+      "PowerCost": 3.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 2,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 34,
+          "MinQuantity": 1,
+          "MaxQuantity": 9,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell21default",
+      "ParentId": "default",
+      "IdKey": 21,
+      "Name": "Heal Party",
+      "Desc": "Heal the wounds of all allies.",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 5,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 34,
+          "MinQuantity": 1,
+          "MaxQuantity": 3,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell22default",
+      "ParentId": "default",
+      "IdKey": 22,
+      "Name": "Cure",
+      "Desc": "Cure a single ally",
+      "PowerCost": 5.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 2,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "MinQuantity": -1,
+          "MaxQuantity": -1,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell23default",
+      "ParentId": "default",
+      "IdKey": 23,
+      "Name": "Cure Party",
+      "Desc": "Cure all party members",
+      "PowerCost": 15.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 5,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "MinQuantity": -1,
+          "MaxQuantity": -1,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "Town Portal",
+      "Desc": "Teleport to a town on the overworld map.",
+      "PowerCost": 25.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell31default",
+      "ParentId": "default",
+      "IdKey": 31,
+      "Name": "Phase Wall",
+      "Desc": "Pass through a wall in front of you if the square behind it exists.",
+      "PowerCost": 50.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 2,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell32default",
+      "ParentId": "default",
+      "IdKey": 32,
+      "Name": "Identify Item",
+      "Desc": "Find out the stats an item has.",
+      "PowerCost": 10.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 4,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell33default",
+      "ParentId": "default",
+      "IdKey": 33,
+      "Name": "Blink",
+      "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
+      "PowerCost": 10.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 5,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell34default",
+      "ParentId": "default",
+      "IdKey": 34,
+      "Name": "Teleport",
+      "Desc": "Move to a different location in the current map.",
+      "PowerCost": 25.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 8,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 6,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell35default",
+      "ParentId": "default",
+      "IdKey": 35,
+      "Name": "Set Beacon",
+      "Desc": "Set a teleport location (per player)",
+      "PowerCost": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 9,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell36default",
+      "ParentId": "default",
+      "IdKey": 36,
+      "Name": "Return to Beacon",
+      "Desc": "Return to the player's teleport location.",
+      "PowerCost": 20.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 10,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell37default",
+      "ParentId": "default",
+      "IdKey": 37,
+      "Name": "Identify Monster",
+      "Desc": "Get some information about a monster.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 3,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell38default",
+      "ParentId": "default",
+      "IdKey": 38,
+      "Name": "Pick Lock",
+      "Desc": "Open a locked door or chest.",
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell39default",
+      "ParentId": "default",
+      "IdKey": 39,
+      "Name": "Cleanse Area",
+      "Desc": "Disarm any traps nearby.",
+      "PowerCost": 50.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell60default",
+      "ParentId": "default",
+      "IdKey": 60,
+      "Name": "Silence",
+      "Desc": "Prevent a group from casting spells.",
+      "PowerCost": 15.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 6,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "Entangle",
+      "Desc": "Prevent a group from use melee attacks.",
+      "PowerCost": 15.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 11,
+          "MinQuantity": 2,
+          "MaxQuantity": 3,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell62default",
+      "ParentId": "default",
+      "IdKey": 62,
+      "Name": "Weaken",
+      "Desc": "Reduce the melee damage of a group of foes.",
+      "PowerCost": 5.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 17,
+          "MinQuantity": 100,
+          "MaxQuantity": 100,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell63default",
+      "ParentId": "default",
+      "IdKey": 63,
+      "Name": "Mesmerize",
+      "Desc": "Make  group of enemies unable to act.",
+      "PowerCost": 10.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 6,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell64default",
+      "ParentId": "default",
+      "IdKey": 64,
+      "Name": "Charm",
+      "Desc": "Convince a monster to join your side.",
+      "PowerCost": 25.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell80default",
+      "ParentId": "default",
+      "IdKey": 80,
+      "Name": "Sense Area",
+      "Desc": "Determine if any traps or interesting things are nearby.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 37,
+          "EntityId": 8,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell81default",
+      "ParentId": "default",
+      "IdKey": 81,
+      "Name": "Light",
+      "Desc": "Create a light to let you see.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 1,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell82default",
+      "ParentId": "default",
+      "IdKey": 82,
+      "Name": "Magic Compass",
+      "Desc": "Gives you a compass.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell83default",
+      "ParentId": "default",
+      "IdKey": 83,
+      "Name": "Levitate",
+      "Desc": "Lets you float over many traps.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell84default",
+      "ParentId": "default",
+      "IdKey": 84,
+      "Name": "Second Sight",
+      "Desc": "Alerts you to traps nearby.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 2,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell85default",
+      "ParentId": "default",
+      "IdKey": 85,
+      "Name": "Mapping",
+      "Desc": "Lets you map the area you're in.",
+      "PowerCost": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 5,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell86default",
+      "ParentId": "default",
+      "IdKey": 86,
+      "Name": "Batchspell",
+      "Desc": "Casts all party buffs.",
+      "PowerCost": 10.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 6,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 1,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        },
+        {
+          "EntityTypeId": 101,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        },
+        {
+          "EntityTypeId": 101,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        },
+        {
+          "EntityTypeId": 101,
+          "EntityId": 2,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        },
+        {
+          "EntityTypeId": 101,
+          "EntityId": 5,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell100default",
+      "ParentId": "default",
+      "IdKey": 100,
+      "Name": "Call Beast",
+      "Desc": "Summon a beast.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 55,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell101default",
+      "ParentId": "default",
+      "IdKey": 101,
+      "Name": "Conjure Golem",
+      "Desc": "Summon a golem.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 48,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell102default",
+      "ParentId": "default",
+      "IdKey": 102,
+      "Name": "Summon Elemental",
+      "Desc": "Summon an elemental.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 52,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell103default",
+      "ParentId": "default",
+      "IdKey": 103,
+      "Name": "Summon Monk",
+      "Desc": "Summon a monk",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 14,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell104default",
+      "ParentId": "default",
+      "IdKey": 104,
+      "Name": "Summon Scrapper",
+      "Desc": "Summon a scrapper",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 13,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell105default",
+      "ParentId": "default",
+      "IdKey": 105,
+      "Name": "Signal Thief",
+      "Desc": "Signal a thief to follow you.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 39,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell106default",
+      "ParentId": "default",
+      "IdKey": 106,
+      "Name": "Summon Skeleton",
+      "Desc": "Summon a skeleton.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 31,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell107default",
+      "ParentId": "default",
+      "IdKey": 107,
+      "Name": "Summon Vampire",
+      "Desc": "Summon a Vampire",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 5,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 70,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell200default",
+      "ParentId": "default",
+      "IdKey": 200,
+      "Name": "Holy Beam",
+      "Desc": "Hit one or more enemies with holy damage.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 9,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell201default",
+      "ParentId": "default",
+      "IdKey": 201,
+      "Name": "Holy Nova",
+      "Desc": "Hit all enemies in a group with holy damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell202default",
+      "ParentId": "default",
+      "IdKey": 202,
+      "Name": "Holy Storm",
+      "Desc": "Hit all enemies with holy damage.",
+      "PowerCost": 12.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell210default",
+      "ParentId": "default",
+      "IdKey": 210,
+      "Name": "Fireball",
+      "Desc": "Hit one or more enemies in a group with fire damage.",
+      "PowerCost": 5.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell211default",
+      "ParentId": "default",
+      "IdKey": 211,
+      "Name": "Flamestrike",
+      "Desc": "Hit all enemies in a group with fire damage.",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell212default",
+      "ParentId": "default",
+      "IdKey": 212,
+      "Name": "Firestorm",
+      "Desc": "Hit all enemies with fire damage.",
+      "PowerCost": 15.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell220default",
+      "ParentId": "default",
+      "IdKey": 220,
+      "Name": "Frostbolt",
+      "Desc": "Hit one or more enemies in a group with cold damage.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell221default",
+      "ParentId": "default",
+      "IdKey": 221,
+      "Name": "Cone of Cold",
+      "Desc": "Hit all enemies in a group with cold damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell222default",
+      "ParentId": "default",
+      "IdKey": 222,
+      "Name": "Blizzard",
+      "Desc": "Hit all enemies with cold damage.",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell230default",
+      "ParentId": "default",
+      "IdKey": 230,
+      "Name": "Lightning Bolt",
+      "Desc": "Hit one or more enemies with electric damage.",
+      "PowerCost": 6.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell231default",
+      "ParentId": "default",
+      "IdKey": 231,
+      "Name": "Chain Lightning",
+      "Desc": "Hit all enemies in a group with electric damage.",
+      "PowerCost": 12.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell232default",
+      "ParentId": "default",
+      "IdKey": 232,
+      "Name": "Lightning Storm",
+      "Desc": "Hit all enemies with electric damage.",
+      "PowerCost": 18.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell240default",
+      "ParentId": "default",
+      "IdKey": 240,
+      "Name": "Poison Arrow",
+      "Desc": "Hit one or more enemies with nature damage.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell241default",
+      "ParentId": "default",
+      "IdKey": 241,
+      "Name": "Poison Spray",
+      "Desc": "Hit all enemies in a group with nature damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell242default",
+      "ParentId": "default",
+      "IdKey": 242,
+      "Name": "Plaguestorm",
+      "Desc": "Hit all enemies with poisonous nature damage",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell250default",
+      "ParentId": "default",
+      "IdKey": 250,
+      "Name": "Arcane Missiles",
+      "Desc": "Hit one or more enemies with arcane damage.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell251default",
+      "ParentId": "default",
+      "IdKey": 251,
+      "Name": "Arcane Explosion",
+      "Desc": "Hit all enemies in a group with arcane damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell252default",
+      "ParentId": "default",
+      "IdKey": 252,
+      "Name": "Magestorm",
+      "Desc": "Hit all enemies with arcane damage.",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell260default",
+      "ParentId": "default",
+      "IdKey": 260,
+      "Name": "Darkbolt",
+      "Desc": "Hit one or more enemies with shadow damage.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell261default",
+      "ParentId": "default",
+      "IdKey": 261,
+      "Name": "Shadow Burst",
+      "Desc": "Hit all enemies in a group with shadow damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell262default",
+      "ParentId": "default",
+      "IdKey": 262,
+      "Name": "Nightstorm",
+      "Desc": "Hit all enemies with shadow damage.",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell270default",
+      "ParentId": "default",
+      "IdKey": 270,
+      "Name": "Shards",
+      "Desc": "Hit one or more enemies with earthen shards.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell271default",
+      "ParentId": "default",
+      "IdKey": 271,
+      "Name": "Groundburst",
+      "Desc": "Hit all enemies in a group with earth damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell272default",
+      "ParentId": "default",
+      "IdKey": 272,
+      "Name": "Earthquake",
+      "Desc": "Hit all enemies with earth damage.",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell280default",
+      "ParentId": "default",
+      "IdKey": 280,
+      "Name": "Acid Bolt",
+      "Desc": "Hit one or more enemies with acid.",
+      "PowerCost": 4.0,
+      "PowerPerLevel": 0.5,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 12,
+          "ElementTypeId": 10
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell281default",
+      "ParentId": "default",
+      "IdKey": 281,
+      "Name": "Acid Spray",
+      "Desc": "Hit all enemies in a group with acid damage.",
+      "PowerCost": 8.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 6,
+          "ElementTypeId": 10
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell282default",
+      "ParentId": "default",
+      "IdKey": 282,
+      "Name": "Acidic Wave",
+      "Desc": "Hit all enemies with acid damage.",
+      "PowerCost": 12.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 4,
+          "ElementTypeId": 10
+        }
+      ],
+      "SaveTime": "2025-07-11T23:57:52.755Z"
+    },
+    {
+      "Id": "crawlerspell10031default",
+      "ParentId": "default",
+      "IdKey": 10031,
+      "Name": "Enhance Armor",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "EntityId": 31,
+          "MinQuantity": 1,
+          "MaxQuantity": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell10032default",
+      "ParentId": "default",
+      "IdKey": 10032,
+      "Name": "Enhance Resist",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "EntityId": 32,
+          "MinQuantity": 1,
+          "MaxQuantity": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell10063default",
+      "ParentId": "default",
+      "IdKey": 10063,
+      "Name": "Enhance Speed",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "EntityId": 63,
+          "MinQuantity": 1,
+          "MaxQuantity": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell10070default",
+      "ParentId": "default",
+      "IdKey": 10070,
+      "Name": "Enhance Hit",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "EntityId": 70,
+          "MinQuantity": 1,
+          "MaxQuantity": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20000default",
+      "ParentId": "default",
+      "IdKey": 20000,
+      "Name": "Monster Call None",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-13T22:24:49.109Z"
+    },
+    {
+      "Id": "crawlerspell20001default",
+      "ParentId": "default",
+      "IdKey": 20001,
+      "Name": "Monster Call Human",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 1,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20002default",
+      "ParentId": "default",
+      "IdKey": 20002,
+      "Name": "Monster Call Elf",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 2,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20003default",
+      "ParentId": "default",
+      "IdKey": 20003,
+      "Name": "Monster Call Dwarf",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20004default",
+      "ParentId": "default",
+      "IdKey": 20004,
+      "Name": "Monster Call Mongrel",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20005default",
+      "ParentId": "default",
+      "IdKey": 20005,
+      "Name": "Monster Call Gnome",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 5,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20006default",
+      "ParentId": "default",
+      "IdKey": 20006,
+      "Name": "Monster Call Halfling",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 6,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20007default",
+      "ParentId": "default",
+      "IdKey": 20007,
+      "Name": "Monster Call Goblin",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20008default",
+      "ParentId": "default",
+      "IdKey": 20008,
+      "Name": "Monster Call Hobgoblin",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 8,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20009default",
+      "ParentId": "default",
+      "IdKey": 20009,
+      "Name": "Monster Call Warrior",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 9,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20010default",
+      "ParentId": "default",
+      "IdKey": 20010,
+      "Name": "Monster Call Fighter",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20011default",
+      "ParentId": "default",
+      "IdKey": 20011,
+      "Name": "Monster Call Bladesman",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 11,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20012default",
+      "ParentId": "default",
+      "IdKey": 20012,
+      "Name": "Monster Call Swordsman",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 12,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20013default",
+      "ParentId": "default",
+      "IdKey": 20013,
+      "Name": "Monster Call Scrapper",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 13,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20014default",
+      "ParentId": "default",
+      "IdKey": 20014,
+      "Name": "Monster Call Monk",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 14,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20015default",
+      "ParentId": "default",
+      "IdKey": 20015,
+      "Name": "Monster Call Barbarian",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 15,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20016default",
+      "ParentId": "default",
+      "IdKey": 20016,
+      "Name": "Monster Call Mage",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 16,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20017default",
+      "ParentId": "default",
+      "IdKey": 20017,
+      "Name": "Monster Call Magician",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 17,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20018default",
+      "ParentId": "default",
+      "IdKey": 20018,
+      "Name": "Monster Call Conjurer",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 18,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20019default",
+      "ParentId": "default",
+      "IdKey": 20019,
+      "Name": "Monster Call Sorcerer",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 19,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20020default",
+      "ParentId": "default",
+      "IdKey": 20020,
+      "Name": "Monster Call Wizard",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 20,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20021default",
+      "ParentId": "default",
+      "IdKey": 20021,
+      "Name": "Monster Call Faerie",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 21,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20022default",
+      "ParentId": "default",
+      "IdKey": 20022,
+      "Name": "Monster Call Cleric",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 22,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20023default",
+      "ParentId": "default",
+      "IdKey": 20023,
+      "Name": "Monster Call Medusa",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 23,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20024default",
+      "ParentId": "default",
+      "IdKey": 20024,
+      "Name": "Monster Call Dog",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 24,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20025default",
+      "ParentId": "default",
+      "IdKey": 20025,
+      "Name": "Monster Call Hound",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 25,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20026default",
+      "ParentId": "default",
+      "IdKey": 20026,
+      "Name": "Monster Call Wolf",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 26,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20027default",
+      "ParentId": "default",
+      "IdKey": 20027,
+      "Name": "Monster Call Coyote",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 27,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20028default",
+      "ParentId": "default",
+      "IdKey": 20028,
+      "Name": "Monster Call Cat",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 28,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20029default",
+      "ParentId": "default",
+      "IdKey": 20029,
+      "Name": "Monster Call Tiger",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 29,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20030default",
+      "ParentId": "default",
+      "IdKey": 20030,
+      "Name": "Monster Call Lion",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 30,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20031default",
+      "ParentId": "default",
+      "IdKey": 20031,
+      "Name": "Monster Call Skeleton",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 31,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20032default",
+      "ParentId": "default",
+      "IdKey": 20032,
+      "Name": "Monster Call Zombie",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 32,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20033default",
+      "ParentId": "default",
+      "IdKey": 20033,
+      "Name": "Monster Call Ghoul",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 33,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20034default",
+      "ParentId": "default",
+      "IdKey": 20034,
+      "Name": "Monster Call Wight",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 34,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20035default",
+      "ParentId": "default",
+      "IdKey": 20035,
+      "Name": "Monster Call Wraith",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 35,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20036default",
+      "ParentId": "default",
+      "IdKey": 20036,
+      "Name": "Monster Call Ghost",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 36,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20037default",
+      "ParentId": "default",
+      "IdKey": 20037,
+      "Name": "Monster Call Spectre",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 37,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20038default",
+      "ParentId": "default",
+      "IdKey": 20038,
+      "Name": "Monster Call Lich",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 38,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20039default",
+      "ParentId": "default",
+      "IdKey": 20039,
+      "Name": "Monster Call Thief",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 39,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20040default",
+      "ParentId": "default",
+      "IdKey": 20040,
+      "Name": "Monster Call Rogue",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 40,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20041default",
+      "ParentId": "default",
+      "IdKey": 20041,
+      "Name": "Monster Call Assassin",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 41,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20042default",
+      "ParentId": "default",
+      "IdKey": 20042,
+      "Name": "Monster Call Demon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 42,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20043default",
+      "ParentId": "default",
+      "IdKey": 20043,
+      "Name": "Monster Call Blue Dragon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 43,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20044default",
+      "ParentId": "default",
+      "IdKey": 20044,
+      "Name": "Monster Call Red Dragon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 44,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20045default",
+      "ParentId": "default",
+      "IdKey": 20045,
+      "Name": "Monster Call White Dragon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 45,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20046default",
+      "ParentId": "default",
+      "IdKey": 20046,
+      "Name": "Monster Call Black Dragon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 46,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20047default",
+      "ParentId": "default",
+      "IdKey": 20047,
+      "Name": "Monster Call Green Dragon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 47,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20048default",
+      "ParentId": "default",
+      "IdKey": 20048,
+      "Name": "Monster Call Stone Golem",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 48,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20049default",
+      "ParentId": "default",
+      "IdKey": 20049,
+      "Name": "Monster Call Iron Golem",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 49,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20050default",
+      "ParentId": "default",
+      "IdKey": 20050,
+      "Name": "Monster Call Flesh Golem",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 50,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20051default",
+      "ParentId": "default",
+      "IdKey": 20051,
+      "Name": "Monster Call Air Elemental",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 51,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20052default",
+      "ParentId": "default",
+      "IdKey": 20052,
+      "Name": "Monster Call Earth Elemental",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 52,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20053default",
+      "ParentId": "default",
+      "IdKey": 20053,
+      "Name": "Monster Call Fire Elemental",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 53,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20054default",
+      "ParentId": "default",
+      "IdKey": 20054,
+      "Name": "Monster Call Water Elemental",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 54,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20055default",
+      "ParentId": "default",
+      "IdKey": 20055,
+      "Name": "Monster Call Bear",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 55,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20056default",
+      "ParentId": "default",
+      "IdKey": 20056,
+      "Name": "Monster Call Slime",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 56,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20057default",
+      "ParentId": "default",
+      "IdKey": 20057,
+      "Name": "Monster Call Spider",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 57,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20058default",
+      "ParentId": "default",
+      "IdKey": 20058,
+      "Name": "Monster Call Scorpion",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 58,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20059default",
+      "ParentId": "default",
+      "IdKey": 20059,
+      "Name": "Monster Call Chimera",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 59,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20060default",
+      "ParentId": "default",
+      "IdKey": 20060,
+      "Name": "Monster Call Orc",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 60,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20061default",
+      "ParentId": "default",
+      "IdKey": 20061,
+      "Name": "Monster Call Ogre",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 61,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20062default",
+      "ParentId": "default",
+      "IdKey": 20062,
+      "Name": "Monster Call Rat",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 62,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20063default",
+      "ParentId": "default",
+      "IdKey": 20063,
+      "Name": "Monster Call Bat",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 63,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20064default",
+      "ParentId": "default",
+      "IdKey": 20064,
+      "Name": "Monster Call Salamander",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 64,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20065default",
+      "ParentId": "default",
+      "IdKey": 20065,
+      "Name": "Monster Call Wyvern",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 65,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20066default",
+      "ParentId": "default",
+      "IdKey": 20066,
+      "Name": "Monster Call Frog",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 66,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20067default",
+      "ParentId": "default",
+      "IdKey": 20067,
+      "Name": "Monster Call Lizardman",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 67,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20068default",
+      "ParentId": "default",
+      "IdKey": 20068,
+      "Name": "Monster Call Werewolf",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 68,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20069default",
+      "ParentId": "default",
+      "IdKey": 20069,
+      "Name": "Monster Call Troll",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 69,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20070default",
+      "ParentId": "default",
+      "IdKey": 20070,
+      "Name": "Monster Call Vampire",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 70,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20071default",
+      "ParentId": "default",
+      "IdKey": 20071,
+      "Name": "Monster Call Mummy",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 71,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20072default",
+      "ParentId": "default",
+      "IdKey": 20072,
+      "Name": "Monster Call Harpy",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 72,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20073default",
+      "ParentId": "default",
+      "IdKey": 20073,
+      "Name": "Monster Call Griffon",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 73,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20074default",
+      "ParentId": "default",
+      "IdKey": 20074,
+      "Name": "Monster Call Manticore",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 74,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20075default",
+      "ParentId": "default",
+      "IdKey": 20075,
+      "Name": "Monster Call Snake",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 75,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20076default",
+      "ParentId": "default",
+      "IdKey": 20076,
+      "Name": "Monster Call Steed",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 76,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20077default",
+      "ParentId": "default",
+      "IdKey": 20077,
+      "Name": "Monster Call Basilisk",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 77,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20078default",
+      "ParentId": "default",
+      "IdKey": 20078,
+      "Name": "Monster Call Giant",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 78,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20079default",
+      "ParentId": "default",
+      "IdKey": 20079,
+      "Name": "Monster Call Guard",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 79,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20080default",
+      "ParentId": "default",
+      "IdKey": 20080,
+      "Name": "Monster Call Gnoll",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 80,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20081default",
+      "ParentId": "default",
+      "IdKey": 20081,
+      "Name": "Monster Call Frog",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 81,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20082default",
+      "ParentId": "default",
+      "IdKey": 20082,
+      "Name": "Monster Call Buck",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 82,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20083default",
+      "ParentId": "default",
+      "IdKey": 20083,
+      "Name": "Monster Call Crab",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 83,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20084default",
+      "ParentId": "default",
+      "IdKey": 20084,
+      "Name": "Monster Call Crocodile",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 84,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20085default",
+      "ParentId": "default",
+      "IdKey": 20085,
+      "Name": "Monster Call Snail",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 85,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20086default",
+      "ParentId": "default",
+      "IdKey": 20086,
+      "Name": "Monster Call Treant",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 86,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20087default",
+      "ParentId": "default",
+      "IdKey": 20087,
+      "Name": "Monster Call Kobold",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 87,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20088default",
+      "ParentId": "default",
+      "IdKey": 20088,
+      "Name": "Monster Call Cyclops",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 88,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20089default",
+      "ParentId": "default",
+      "IdKey": 20089,
+      "Name": "Monster Call Hydra",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 89,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "crawlerspell20090default",
+      "ParentId": "default",
+      "IdKey": 20090,
+      "Name": "Monster Call Bull",
+      "PowerCost": 100.0,
+      "PowerPerLevel": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 90,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "StatBuffPowerCost": 10.0,
+    "StatBuffPowerPerLevel": 1.0,
+    "Name": "CrawlerSpellSettings",
+    "SaveTime": "2025-06-26T21:14:28.532Z"
+  },
+  "SaveTime": "2025-06-26T21:14:28.532Z"
+}

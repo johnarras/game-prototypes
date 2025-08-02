@@ -1,0 +1,25 @@
+﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Units.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Genrpg.Shared.Units.Loaders
+{
+    public interface IUnitDataLoader : ISetupDictionaryItem<Type>, IInitializable
+    {
+        Task<ITopLevelUnitData> LoadFullData(Unit unit);
+        Task<ITopLevelUnitData> LoadTopLevelData(Unit unit);
+        Task<IChildUnitData> LoadChildByIdkey(Unit unit, long childIdkey);
+        Task<IChildUnitData> LoadChildById(Unit unit, string childId);
+
+        IUnitData Create(Unit unit);
+        bool IsUserData();
+    }
+
+}

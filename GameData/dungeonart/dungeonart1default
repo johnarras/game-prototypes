@@ -1,0 +1,9 @@
+{
+  "Id": "dungeonart1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Basic Dungeon",
+  "Desc": "Basic Art Assets",
+  "Icon": "Basic",
+  "Art": "Basic"
+}

@@ -1,0 +1,14 @@
+{
+  "Id": "statuseffect15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Possessed",
+  "Desc": "Attacks allies.",
+  "Icon": "Possessed",
+  "Art": "",
+  "Abbrev": "Ps",
+  "ElementTypeId": 6,
+  "Amount": 100,
+  "RemoveAtEndOfCombat": true,
+  "SaveTime": "2025-06-07T13:51:14.392Z"
+}

@@ -1,0 +1,20 @@
+{
+  "Id": "animal19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "Asian Elephant",
+  "Desc": "A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.",
+  "Icon": "AsianElephant",
+  "Art": "AsianElephant",
+  "Endurance": 2,
+  "Speed": 2.0,
+  "CarryingCapacity": 400,
+  "PullingCapacity": 1200,
+  "RoughTerrain": 3,
+  "HotClimate": 4,
+  "ColdClimate": 1,
+  "WetClimate": 4,
+  "FoodPerDay": 150,
+  "WaterPerDay": 150,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

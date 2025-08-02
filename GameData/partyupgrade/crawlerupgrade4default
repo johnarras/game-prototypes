@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "RoleScaling",
+  "Desc": "Scales role attributes such as melee or healing faster.",
+  "MaxTier": 5,
+  "BonusPerTier": 0.05,
+  "BasePointCost": 5
+}

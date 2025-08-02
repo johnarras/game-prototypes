@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood50default",
+  "ParentId": "default",
+  "IdKey": 50,
+  "Name": "Fine Pottery",
+  "Desc": "High-quality, decorated tableware like Greek red-figure or Roman Samian ware.",
+  "Icon": "FinePottery",
+  "Art": "FinePottery",
+  "CategoryName": "Ceramics",
+  "Density": 800.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 15000,
+  "PricePerWeight": 1500,
+  "YearlyProduction": 40000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

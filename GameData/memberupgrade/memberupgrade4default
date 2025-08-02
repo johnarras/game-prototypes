@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Agility Bonus",
+  "Desc": "More Ranged Damage Per Hit",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 14
+}

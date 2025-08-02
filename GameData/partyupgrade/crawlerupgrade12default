@@ -1,0 +1,13 @@
+{
+  "Id": "crawlerupgrade12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "GoldPercent",
+  "NameId": "",
+  "Desc": "Increases the Gold party members gain.",
+  "Icon": "",
+  "Art": "",
+  "MaxTier": 10,
+  "BonusPerTier": 50.0,
+  "BasePointCost": 5
+}

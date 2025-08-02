@@ -1,0 +1,14 @@
+{
+  "Id": "statuseffect6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Nearsighted",
+  "Desc": "Ranged attacks do XXXX percent less damage.",
+  "Icon": "Nearsighted",
+  "Art": "",
+  "Abbrev": "Ns",
+  "ElementTypeId": 4,
+  "CombatActionId": 3,
+  "Amount": 50,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

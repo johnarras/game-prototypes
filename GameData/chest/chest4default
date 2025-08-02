@@ -1,0 +1,13 @@
+{
+  "Id": "chest4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Rare Chest",
+  "Desc": "",
+  "Icon": "RareChest",
+  "Art": "RareChest",
+  "UnlockMinutes": 720,
+  "Tier": 3,
+  "TieredLootMult": 3,
+  "Loot": []
+}

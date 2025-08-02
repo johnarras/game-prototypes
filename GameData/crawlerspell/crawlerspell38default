@@ -1,0 +1,23 @@
+{
+  "Id": "crawlerspell38default",
+  "ParentId": "default",
+  "IdKey": 38,
+  "Name": "Pick Lock",
+  "Desc": "Open a locked door or chest.",
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 4,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "ElementTypeId": 1
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

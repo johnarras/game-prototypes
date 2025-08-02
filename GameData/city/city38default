@@ -1,0 +1,54 @@
+{
+  "Id": "city38default",
+  "ParentId": "default",
+  "IdKey": 38,
+  "Name": "Tarsus",
+  "Desc": "The capital of Roman Cilicia, a center of learning and the primary producer of cilicium, a durable cloth made from goat hair.",
+  "Icon": "Tarsus",
+  "Art": "Tarsus",
+  "AncientName": "Tarsus",
+  "MapPixelX": 1306,
+  "MapPixelY": 1208,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 28
+    },
+    {
+      "TradeGoodId": 25
+    },
+    {
+      "TradeGoodId": 1
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

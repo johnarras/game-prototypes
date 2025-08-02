@@ -1,0 +1,10 @@
+{
+  "Id": "default",
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "CollectionThemeSettings",
+    "SaveTime": "2025-06-12T22:12:33.137Z"
+  },
+  "SaveTime": "2025-06-12T22:12:33.137Z"
+}

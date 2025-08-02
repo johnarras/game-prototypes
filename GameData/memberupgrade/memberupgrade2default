@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Intellect Bonus",
+  "Desc": "More Spell Damage Per Hit",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 12
+}

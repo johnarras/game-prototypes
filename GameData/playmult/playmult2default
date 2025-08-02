@@ -1,0 +1,12 @@
+{
+  "Id": "playmult2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Mult": 2,
+  "MinLevel": 2,
+  "MinEnergy": 9
+}

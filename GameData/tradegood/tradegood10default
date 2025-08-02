@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Garum",
+  "Desc": "A highly prized fermented fish sauce, used as a powerful condiment.",
+  "Icon": "Garum",
+  "Art": "Garum",
+  "CategoryName": "Food",
+  "Density": 1100.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 4000,
+  "PricePerWeight": 800,
+  "YearlyProduction": 20000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

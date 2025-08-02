@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood121default",
+  "ParentId": "default",
+  "IdKey": 121,
+  "Name": "Dates",
+  "Desc": "An energy-rich and easily transportable food source popular in the Mediterranean.",
+  "Icon": "Dates",
+  "Art": "Dates",
+  "CategoryName": "Food",
+  "Density": 700.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 1800,
+  "PricePerWeight": 180,
+  "YearlyProduction": 100000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

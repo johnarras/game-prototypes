@@ -1,0 +1,9 @@
+{
+  "Parent": {
+    "Id": "default",
+    "StartStat": 13,
+    "BaseBuffStatValue": 10,
+    "Name": "CrawlerStatSettings",
+    "SaveTime": "2025-06-22T20:05:59.53Z"
+  }
+}

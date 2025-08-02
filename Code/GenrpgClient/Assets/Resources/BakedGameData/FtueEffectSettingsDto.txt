@@ -1,0 +1,17 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "ftueeffect1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "GiveReward"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "FtueEffectSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

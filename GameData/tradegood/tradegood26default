@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Fine Linen",
+  "Desc": "Linen of the highest quality, almost translucent, primarily from Egypt.",
+  "Icon": "FineLinen",
+  "Art": "FineLinen",
+  "CategoryName": "Textiles",
+  "Density": 380.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 10000,
+  "PricePerWeight": 2000,
+  "YearlyProduction": 20000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

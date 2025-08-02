@@ -1,0 +1,23 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "ftuepopuptype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "NoTintWindow"
+    },
+    {
+      "Id": "ftuepopuptype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "NoWindow"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "FtuePopupTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

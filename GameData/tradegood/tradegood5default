@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Wine",
+  "Desc": "A standard alcoholic beverage and vital part of social and religious life.",
+  "Icon": "Wine",
+  "Art": "Wine",
+  "CategoryName": "Wine",
+  "Density": 1000.0,
+  "UnitWeight": 25,
+  "PricePerUnit": 2000,
+  "PricePerWeight": 80,
+  "YearlyProduction": 1500000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

@@ -1,0 +1,82 @@
+header tiletype,Idkey,Name,Icon,Art,Desc,Weight,MinLevel,Flags
+header reward,EntityTypeId,EntityId,MinQuantity,MaxQuantity,MinLevel,Weight,GroupId,
+header effect,EntityTypeId,EntityId,Quantity,,,,,
+header reagents,Wood,Stone,Herbs,Iron,Food,Leather,Sum,
+tiletype,1,TownHall,TownHallTile,TownHallTile,Main base,0,1,1
+reagents,4,4,1,2,3,4,18,
+,,,,,,,,
+,,,,,,,,
+tiletype,2,Forest,ForestTile,ForestTile,Wood and Leather,1,1,0
+reward,usercointype,wood,1,2,1,1,1,
+reward,usercointype,leather,1,2,1,1,1,
+,,,,,,,,
+tiletype,3,Hills,HillsTile,HillsTile,Iron and Leather,1,1,0
+reward,usercointype,iron,1,2,1,1,1,
+reward,usercointype,food,1,2,1,1,1,
+,,,,,,,,
+tiletype,4,Mountain,MountainTile,MountainTile,Iron and Stone,1,1,0
+reward,usercointype,stone,1,2,1,1,1,
+reward,usercointype,iron,1,2,1,1,1,
+,,,,,,,,
+tiletype,5,Swamp,SwampTile,SwampTile,Wood and Food,1,1,0
+reward,usercointype,wood,1,2,1,1,1,
+reward,usercointype,herbs,1,2,1,1,1,
+,,,,,,,,
+tiletype,6,Plains,PlainsTile,PlainsTile,Food and Herbs,1,1,0
+reward,usercointype,food,1,2,1,1,1,
+reward,usercointype,leather,1,2,1,1,1,
+,,,,,,,,
+tiletype,7,Desert,DesertTile,DesertTile,Stone and Herbs,1,1,0
+reward,usercointype,stone,1,2,1,1,1,
+reward,usercointype,herbs,1,2,1,1,1,
+,,,,,,,,
+tiletype,8,Tanner,TannerTile,TannerTile,Improves Leather,0,1,1
+effect,usercoinrewardmult,leather,1,,,,,
+reagents,3,2,3,1,4,5,18,
+,,,,,,,,
+tiletype,9,Farm,FarmTile,FarmTile,Improves Food,0,1,1
+effect,usercoinrewardmult,food,1,,,,,
+reward,usercointype,food,5,10,1,1,1,
+reagents,3,2,3,2,5,3,18,
+,,,,,,,,
+tiletype,10,Lumbermill,LumbermillTile,LumbermillTile,Improves Wood,0,1,1
+effect,usercoinrewardmult,wood,1,,,,,
+reward,usercointype,wood,5,10,1,1,1,
+reagents,5,2,3,2,3,3,18,
+,,,,,,,,
+tiletype,11,Alchemist,AlchemistTile,AlchemistTile,Improves Herbs,0,1,1
+effect,usercoinrewardmult,herbs,1,,,,,
+reward,usercointype,herbs,5,10,1,1,1,
+reagents,4,5,2,2,3,2,18,
+,,,,,,,,
+tiletype,12,Stonemason,StonemasonTile,StonemasonTile,Improves Stone,0,1,1
+effect,usercoinrewardmult,stone,1,,,,,
+reward,usercointype,stone,5,10,1,1,1,
+reagents,3,5,2,3,2,3,18,
+,,,,,,,,
+tiletype,13,Smithy,SmithyTile,SmithyTile,Improves Iron,0,1,1
+effect,usercoinrewardmult,iron,1,,,,,
+reward,usercointype,iron,5,10,1,1,1,
+reagents,3,4,2,5,2,2,18,
+,,,,,,,,
+tiletype,14,Barracks,BarracksTile,BarracksTile,Adds Troops To Attack,0,1,1
+effect,usercoinmaxstorage,warriors,20,,,,,
+reward,usercointype,warriors,1,1,1,1,1,
+reagents,2,2,1,4,5,4,18,
+,,,,,,,,
+tiletype,15,GuardTower,GuardTowerTile,GuardTowerTile,Adds defenses to board,0,1,1
+reagents,3,4,1,3,5,2,18,
+,,,,,,,,
+,,,,,,,,
+tiletype,16,Treasury,TreasuryTile,TreasuryTile,Lets you unlock chests.,0,1,1
+reagents,2,5,1,5,1,4,18,
+,,,,,,,,
+,,,,,,,,
+tiletype,17,Adventure,AdventureTile,AdventureTile,Gives bonus round of rewards,0,1,1
+reagents,4,3,2,4,1,4,18,
+,,,,,,,,
+,,,,,,,,
+tiletype,18,Mage Tower,MageTowerTile,MageTowerTile,Improves defenses,0,1,1
+effect,usercoinmaxstorage,mana,25,,,,,
+reward,usercointype,mana,1,1,1,1,1,
+reagents,2,3,4,3,3,3,18,

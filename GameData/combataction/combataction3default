@@ -1,0 +1,8 @@
+{
+  "Id": "combataction3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Shoot",
+  "WeaponDamageScale": 1.0,
+  "StatBonusDamageScale": 1.0
+}

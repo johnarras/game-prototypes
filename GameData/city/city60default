@@ -1,0 +1,45 @@
+{
+  "Id": "city60default",
+  "ParentId": "default",
+  "IdKey": 60,
+  "Name": "Hegra",
+  "Desc": "The southern sister-city to Petra, a Nabataean caravan city known for its spectacular rock-cut tombs, controlling the Incense Route.",
+  "Icon": "Hegra",
+  "Art": "Hegra",
+  "AncientName": "Hegra (Mada'in Salih)",
+  "MapPixelX": 1375,
+  "MapPixelY": 1439,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 82
+    },
+    {
+      "TradeGoodId": 83
+    },
+    {
+      "TradeGoodId": 121
+    },
+    {
+      "TradeGoodId": 19
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

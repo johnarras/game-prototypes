@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood115default",
+  "ParentId": "default",
+  "IdKey": 115,
+  "Name": "Rubies",
+  "Desc": "A red stone of immense value.",
+  "Icon": "Rubies",
+  "Art": "Rubies",
+  "CategoryName": "Gemstone",
+  "Density": 1200.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 2000000,
+  "PricePerWeight": 2000000,
+  "YearlyProduction": 80,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

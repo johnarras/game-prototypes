@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood77default",
+  "ParentId": "default",
+  "IdKey": 77,
+  "Name": "Tyrian Purple Dye",
+  "Desc": "An incredibly expensive purple-red dye from murex snails, reserved for royalty.",
+  "Icon": "TyrianPurpleDye",
+  "Art": "TyrianPurpleDye",
+  "CategoryName": "Dye",
+  "Density": 1400.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 2000000,
+  "PricePerWeight": 2000000,
+  "YearlyProduction": 5,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

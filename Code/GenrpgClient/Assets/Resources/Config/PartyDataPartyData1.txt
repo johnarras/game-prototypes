@@ -1,0 +1,445 @@
+﻿{
+  "Id": "PartyData1",
+  "MainMessage": "Yes, it's pretty print JSON. You're welcome.",
+  "Flags": 1,
+  "SaveInventory": [],
+  "QuestItems": {
+    "Bits": [
+      0
+    ]
+  },
+  "Gold": 1000,
+  "Seed": 23412,
+  "WorldId": 303658,
+  "CurrPos": {
+    "MapId": 2,
+    "X": -1,
+    "Z": -1,
+    "Rot": 270
+  },
+  "RecallPos": {},
+  "NextId": 133,
+  "Maps": [],
+  "CurrentMap": {
+    "Visited": {
+      "Bits": [
+        0
+      ]
+    },
+    "Cleansed": {
+      "Bits": [
+        0
+      ]
+    }
+  },
+  "CompletedMaps": {
+    "Bits": [
+      0
+    ]
+  },
+  "RiddlesCompleted": {
+    "Bits": [
+      0
+    ]
+  },
+  "HourOfDay": 8.0,
+  "UpgradeStatuses": [],
+  "Upgrades": {
+    "Data": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "SaveSlotId": 1,
+  "CombatTextScrollDelay": 0.2,
+  "Buffs": {
+    "Data": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "CompletedQuests": {
+    "Bits": [
+      0
+    ]
+  },
+  "Quests": [],
+  "Members": [
+    {
+      "Stats": {},
+      "PartySlot": 1,
+      "SaveEquipment": [
+        {
+          "Id": "I122",
+          "Name": "Brass Sword of the Skull",
+          "Dat": "21 3 1 0 15 180 45 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I123",
+          "Name": "Brass Watchful Knife",
+          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 14 13 15 13 15 13 14 0 0 27 19",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 14,
+          "Name": "Monk",
+          "RoleId": 10
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Dwarf",
+      "ExtraKeywords": [],
+      "SexTypeId": 2,
+      "Id": "P2",
+      "Name": "Holy Smasher",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:03:01.9588106Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 102,
+          "Level": 1
+        },
+        {
+          "RoleId": 10,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 2,
+      "SaveEquipment": [
+        {
+          "Id": "I124",
+          "Name": "Brass Blade of Ferocity",
+          "Dat": "24 3 1 0 15 120 30 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I125",
+          "Name": "Copper Axe of the Redeemer",
+          "Dat": "31 2 1 0 17 37 9 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 17 13 13 13 15 13 13 0 0 20 10",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 13,
+          "Name": "Scrapper",
+          "RoleId": 9
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Scrapper",
+      "ExtraKeywords": [],
+      "SexTypeId": 1,
+      "Id": "P5",
+      "Name": "Crusher",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:03:16.579188Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 103,
+          "Level": 1
+        },
+        {
+          "RoleId": 9,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 3,
+      "SaveEquipment": [
+        {
+          "Id": "I126",
+          "Name": "Singing Knife",
+          "Dat": "24 1 1 0 15 75 18 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I127",
+          "Name": "Iron Knife of the Tallsealed",
+          "Dat": "31 5 1 0 17 100 25 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 13 13 13 15 13 17 13 0 0 16 10",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 39,
+          "Name": "Thief",
+          "RoleId": 7
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Halfling",
+      "ExtraKeywords": [],
+      "SexTypeId": 2,
+      "Id": "P10",
+      "Name": "Lil Sneaky",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:03:38.5167392Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 105,
+          "Level": 1
+        },
+        {
+          "RoleId": 2,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 4,
+      "SaveEquipment": [
+        {
+          "Id": "I128",
+          "Name": "Dusky Dagger",
+          "Dat": "24 1 1 0 15 75 18 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I129",
+          "Name": "Copper Giant Throwing Knife",
+          "Dat": "31 2 1 0 17 37 9 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 13 14 13 17 14 13 13 0 0 19 14",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 55,
+          "Name": "Bear",
+          "RoleId": 8
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Elf",
+      "ExtraKeywords": [],
+      "SexTypeId": 1,
+      "Id": "P17",
+      "Name": "Shoota",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:03:52.2195446Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 101,
+          "Level": 1
+        },
+        {
+          "RoleId": 3,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 5,
+      "SaveEquipment": [
+        {
+          "Id": "I130",
+          "Name": "Copper Fantastic Tooth",
+          "Dat": "24 2 1 0 15 90 22 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I131",
+          "Name": "Brass Dull Knife",
+          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 13 17 14 13 13 14 13 0 0 12 22",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 48,
+          "Name": "Stone Golem",
+          "RoleId": 12
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Gnome",
+      "ExtraKeywords": [],
+      "SexTypeId": 2,
+      "Id": "P26",
+      "Name": "Blastem",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:04:14.5557615Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 104,
+          "Level": 1
+        },
+        {
+          "RoleId": 4,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 6,
+      "SaveEquipment": [
+        {
+          "Id": "I132",
+          "Name": "Copper Knife of the Warrior",
+          "Dat": "24 2 1 0 15 90 22 0 0 0 0 0 0 0 0 0 "
+        },
+        {
+          "Id": "I133",
+          "Name": "Brass Axe of the Priest",
+          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+        }
+      ],
+      "PermStats": "0 13 13 16 13 13 14 15 0 0 14 24",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [
+        {
+          "UnitTypeId": 14,
+          "Name": "Monk",
+          "RoleId": 10
+        }
+      ],
+      "UnitTypeId": 1,
+      "PortraitName": "Cleric",
+      "ExtraKeywords": [],
+      "SexTypeId": 1,
+      "Id": "P37",
+      "Name": "Mendmaster",
+      "ClientVersion": "0.0.0",
+      "Level": 1,
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "DataOverrides": {
+        "Items": [],
+        "GameDataCheckTime": "2025-07-12T00:04:28.5928363Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 100,
+          "Level": 1
+        },
+        {
+          "RoleId": 5,
+          "Level": 1
+        }
+      ]
+    }
+  ]
+}

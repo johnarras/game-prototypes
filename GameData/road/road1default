@@ -1,0 +1,20 @@
+{
+  "Id": "road1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Via Appia",
+  "Desc": "The 'Queen of Roads', this vital artery connects Rome to the southern ports of Italy, paved with large stones and lined with tombs.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 1,
+  "EndCityId": 64,
+  "Maintenance": 5.0,
+  "Difficulty": 2.0,
+  "Danger": 2.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 545.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

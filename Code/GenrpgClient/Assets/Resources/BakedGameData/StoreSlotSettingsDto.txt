@@ -1,0 +1,29 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "storeslot1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Gem Store"
+    },
+    {
+      "Id": "storeslot2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Gold Store"
+    },
+    {
+      "Id": "storeslot3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Bundle Store"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "StoreSlotSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

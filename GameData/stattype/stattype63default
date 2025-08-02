@@ -1,0 +1,10 @@
+{
+  "Id": "stattype63default",
+  "ParentId": "default",
+  "IdKey": 63,
+  "Name": "Speed",
+  "Abbrev": "",
+  "Desc": "Lets you attack earlier during combat.",
+  "GenScalePct": 200,
+  "IsCrawlerStat": true
+}

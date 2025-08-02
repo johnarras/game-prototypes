@@ -1,0 +1,7 @@
+{
+  "Id": "entitytype42default",
+  "ParentId": "default",
+  "IdKey": 42,
+  "Name": "PartyUpgrades",
+  "Desc": ""
+}

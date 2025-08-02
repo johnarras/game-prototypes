@@ -1,0 +1,33 @@
+{
+  "Id": "tiletype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Desert",
+  "Desc": "Stone and Herbs",
+  "Icon": "DesertTile",
+  "Art": "DesertTile",
+  "Weight": 1.0,
+  "MinLevel": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 8,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 9,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [],
+  "UpgradeReagents": []
+}

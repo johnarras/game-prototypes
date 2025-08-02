@@ -1,0 +1,57 @@
+{
+  "Id": "city34default",
+  "ParentId": "default",
+  "IdKey": 34,
+  "Name": "Pergamon",
+  "Desc": "A great Hellenistic capital in Anatolia, home to a massive library and the legendary inventor of parchment as a substitute for papyrus.",
+  "Icon": "Pergamon",
+  "Art": "Pergamon",
+  "AncientName": "Pergamum",
+  "MapPixelX": 1130,
+  "MapPixelY": 1158,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 59
+    },
+    {
+      "TradeGoodId": 47
+    },
+    {
+      "TradeGoodId": 31
+    },
+    {
+      "TradeGoodId": 5
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

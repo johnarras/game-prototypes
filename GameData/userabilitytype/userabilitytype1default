@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "MaxStorage",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 60,
+  "QuantityPerRank": 10
+}

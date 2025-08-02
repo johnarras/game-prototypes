@@ -1,0 +1,24 @@
+{
+  "Id": "unitkeyword15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Lieutenant",
+  "PluralName": "Lieutenants",
+  "Icon": "Lieutenant",
+  "Art": "Lieutenant",
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 20,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 20,
+      "EntityId": 20
+    }
+  ],
+  "Weight": 15.0,
+  "Tier": 3,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

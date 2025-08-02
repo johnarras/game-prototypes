@@ -1,0 +1,55 @@
+{
+  "Id": "tiletype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Farm",
+  "Desc": "Improves Food",
+  "Icon": "FarmTile",
+  "Art": "FarmTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 11,
+      "MinQuantity": 5,
+      "MaxQuantity": 10,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [
+    {
+      "EntityTypeId": 201,
+      "Quantity": 1,
+      "EntityId": 11
+    }
+  ],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 5
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 3
+    }
+  ]
+}

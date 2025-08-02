@@ -1,0 +1,7 @@
+{
+  "Id": "keycommsetting29default",
+  "IdKey": 29,
+  "ParentId": "default",
+  "KeyPress": "l",
+  "KeyCommand": "StoreScreen"
+}

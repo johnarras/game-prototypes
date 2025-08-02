@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting18default",
+  "IdKey": 18,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "j",
+  "KeyCommand": "Jump"
+}

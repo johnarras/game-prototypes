@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood101default",
+  "ParentId": "default",
+  "IdKey": 101,
+  "Name": "Turquoise",
+  "Desc": "An opaque, blue-to-green gemstone from Persia, used in protective amulets.",
+  "Icon": "Turquoise",
+  "Art": "Turquoise",
+  "CategoryName": "Gemstone",
+  "Density": 1300.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 175000,
+  "PricePerWeight": 175000,
+  "YearlyProduction": 160,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

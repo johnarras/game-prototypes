@@ -1,0 +1,14 @@
+{
+  "Id": "statuseffect5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Befuddled",
+  "Desc": "Spells do XXXX percent less damage or healing.",
+  "Icon": "Befuddled",
+  "Art": "",
+  "Abbrev": "Bf",
+  "ElementTypeId": 9,
+  "CombatActionId": 4,
+  "Amount": 50,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

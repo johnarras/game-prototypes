@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype60default",
+  "ParentId": "default",
+  "IdKey": 60,
+  "Name": "DirtSandh",
+  "Art": "DirtSandh",
+  "Size": 8.0,
+  "ParentTextureTypeId": 62
+}

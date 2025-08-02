@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood108default",
+  "ParentId": "default",
+  "IdKey": 108,
+  "Name": "Religious Trinkets",
+  "Desc": "Small amulets, icons, or souvenirs for pilgrims and the devout.",
+  "Icon": "ReligiousTrinkets",
+  "Art": "ReligiousTrinkets",
+  "CategoryName": "Artisan Goods",
+  "Density": 800.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 7500,
+  "PricePerWeight": 7500,
+  "YearlyProduction": 10000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

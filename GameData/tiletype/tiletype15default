@@ -1,0 +1,39 @@
+{
+  "Id": "tiletype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "GuardTower",
+  "Desc": "Adds defenses to board",
+  "Icon": "GuardTowerTile",
+  "Art": "GuardTowerTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [],
+  "Effects": [],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 1
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 5
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 2
+    }
+  ]
+}

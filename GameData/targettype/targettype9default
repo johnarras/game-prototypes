@@ -1,0 +1,8 @@
+{
+  "Id": "targettype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Self",
+  "Desc": "Cast on self only",
+  "StatBonusScale": 1.0
+}

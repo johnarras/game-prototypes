@@ -1,0 +1,20 @@
+{
+  "Id": "road10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Gallic Belgica Road",
+  "Desc": "A route through the dense forests of northern Gaul, connecting the Seine basin to the Rhine frontier and the imperial city of Trier.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 24,
+  "EndCityId": 25,
+  "Maintenance": 4.0,
+  "Difficulty": 3.0,
+  "Danger": 3.0,
+  "SummerRain": 4.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 1.0,
+  "Length": 430.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

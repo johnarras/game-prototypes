@@ -1,0 +1,9 @@
+{
+  "Id": "stattype31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "Armor",
+  "Desc": "Reduces physical damage.",
+  "GenScalePct": 200,
+  "IsCrawlerStat": true
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood34default",
+  "ParentId": "default",
+  "IdKey": 34,
+  "Name": "Pine Timber",
+  "Desc": "Common, versatile timber used for general construction and shipbuilding.",
+  "Icon": "PineTimber",
+  "Art": "PineTimber",
+  "CategoryName": "Wood",
+  "Density": 450.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 8000,
+  "PricePerWeight": 80,
+  "YearlyProduction": 300000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

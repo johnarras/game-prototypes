@@ -1,0 +1,9 @@
+{
+  "Id": "npctype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Thief",
+  "CrafterTypeId": 9,
+  "BuildingTypeId": 9,
+  "DefaultVendorItems": []
+}

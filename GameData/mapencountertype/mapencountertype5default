@@ -1,0 +1,9 @@
+{
+  "Id": "mapencountertype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Stats",
+  "Desc": "",
+  "Icon": "Stats",
+  "Weight": 0.2
+}

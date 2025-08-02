@@ -1,0 +1,9 @@
+{
+  "Id": "rolescalingtype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "SpellDam",
+  "Desc": "Increases spell damage tiers per level.",
+  "ScalingStatTypeId": 12,
+  "ScalingEquipSlotId": 15
+}

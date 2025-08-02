@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood86default",
+  "ParentId": "default",
+  "IdKey": 86,
+  "Name": "Bitumen",
+  "Desc": "A natural asphalt from Mesopotamia, used as a sealant for waterproofing.",
+  "Icon": "Bitumen",
+  "Art": "Bitumen",
+  "CategoryName": "Industrial",
+  "Density": 700.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 1500,
+  "PricePerWeight": 150,
+  "YearlyProduction": 20000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

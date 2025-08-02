@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Brass",
+  "Armor": 3,
+  "Damage": 2,
+  "CostPct": 200
+}

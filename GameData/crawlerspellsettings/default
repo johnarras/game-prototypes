@@ -1,0 +1,7 @@
+{
+  "Id": "default",
+  "StatBuffPowerCost": 10.0,
+  "StatBuffPowerPerLevel": 1.0,
+  "Name": "CrawlerSpellSettings",
+  "SaveTime": "2025-06-26T21:14:28.532Z"
+}

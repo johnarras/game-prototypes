@@ -1,0 +1,9 @@
+{
+  "Id": "stattype61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "Crit",
+  "Desc": "Chance to instantly kill a monster.",
+  "GenScalePct": 200,
+  "IsCrawlerStat": true
+}

@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Adamantite",
+  "Armor": 25,
+  "Damage": 12,
+  "CostPct": 2000
+}

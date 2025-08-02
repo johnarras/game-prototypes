@@ -1,0 +1,9 @@
+{
+  "Id": "abtest",
+  "PlayCreditsMult": 25.0,
+  "PlaysPerGem": 0.5,
+  "PlayMultBonusDivisor": 20.0,
+  "FavoriteSuperhero": "AB3 Now",
+  "Name": "BoardGameSettings",
+  "SaveTime": "2025-06-25T20:32:40.926Z"
+}

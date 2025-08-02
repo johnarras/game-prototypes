@@ -1,0 +1,22 @@
+{
+  "Id": "unitkeyword12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Vermin",
+  "PluralName": "Vermins",
+  "Icon": "Vermin",
+  "Art": "Vermin",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

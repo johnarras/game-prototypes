@@ -1,0 +1,20 @@
+{
+  "Id": "road62default",
+  "ParentId": "default",
+  "IdKey": 62,
+  "Name": "Malabar Coastal Trail",
+  "Desc": "A long, winding coastal trail connecting the ports of Gujarat with the spice-rich Malabar Coast, often plagued by monsoons.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 69,
+  "EndCityId": 58,
+  "Maintenance": 2.0,
+  "Difficulty": 3.0,
+  "Danger": 4.0,
+  "SummerRain": 6.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 5.0,
+  "Length": 1250.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

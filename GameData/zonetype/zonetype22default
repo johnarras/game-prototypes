@@ -1,0 +1,124 @@
+{
+  "Id": "zonetype22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Outdoors",
+  "Desc": "",
+  "Icon": "Outdoors",
+  "Art": "Outdoors",
+  "Textures": [
+    {
+      "TextureTypeId": 99,
+      "Name": "Road/Base"
+    }
+  ],
+  "ZoneNames": [
+    {
+      "Weight": 1000.0,
+      "Name": "Tunnels",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Pit",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Caves",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Halls",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Vault",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Tomb",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Catacombs",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Quarters",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Labyrinth",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Pits",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Lair",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Cavern",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Caverns",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Burrows",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Burrow",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Maze",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dungeon",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Tombs",
+      "Desc": ""
+    }
+  ],
+  "ZoneAdjectives": [],
+  "BridgeTypes": [],
+  "FenceTypes": [],
+  "RockTypes": [],
+  "TreeTypes": [],
+  "CreatureNamePrefixes": [],
+  "CreatureDoubleNamePrefixes": [],
+  "Overrides": [],
+  "ZoneUnitSpawns": [],
+  "UnitKeyWords": [],
+  "PlantChoices": "",
+  "WeatherTypeId": 9,
+  "BuildingTypeId": 21,
+  "MusicTypeId": 1,
+  "AmbientMusicTypeId": 1,
+  "TraveralTimeScale": 1.0,
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

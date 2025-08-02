@@ -1,0 +1,12 @@
+{
+  "Id": "typemetadataed11a9a9-f722-4fdf-b88e-e0cb23052d05default",
+  "ParentId": "default",
+  "Name": "",
+  "TypeName": "EquipSlot",
+  "MemberData": [
+    {
+      "MemberName": "StatPercent",
+      "Description": "Pct of BaseStat at level applied in the base level settings data"
+    }
+  ]
+}

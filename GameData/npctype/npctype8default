@@ -1,0 +1,9 @@
+{
+  "Id": "npctype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Enchanter",
+  "CrafterTypeId": 8,
+  "BuildingTypeId": 8,
+  "DefaultVendorItems": []
+}

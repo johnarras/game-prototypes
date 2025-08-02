@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Woven Carpets",
+  "Desc": "High-quality, decorated textiles from Persia and the East, used as floor coverings.",
+  "Icon": "WovenCarpets",
+  "Art": "WovenCarpets",
+  "CategoryName": "Textiles",
+  "Density": 400.0,
+  "UnitWeight": 8,
+  "PricePerUnit": 30000,
+  "PricePerWeight": 3750,
+  "YearlyProduction": 15000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

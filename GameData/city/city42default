@@ -1,0 +1,46 @@
+{
+  "Id": "city42default",
+  "ParentId": "default",
+  "IdKey": 42,
+  "Name": "Byblos",
+  "Desc": "An ancient port city so intertwined with the papyrus trade that the Greek word for book, 'biblos', derives from its name.",
+  "Icon": "Byblos",
+  "Art": "Byblos",
+  "AncientName": "Byblos",
+  "MapPixelX": 1323,
+  "MapPixelY": 1272,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 58
+    },
+    {
+      "TradeGoodId": 33
+    },
+    {
+      "TradeGoodId": 85
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

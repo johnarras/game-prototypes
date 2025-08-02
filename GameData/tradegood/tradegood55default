@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood55default",
+  "ParentId": "default",
+  "IdKey": 55,
+  "Name": "Common Glassware",
+  "Desc": "Utilitarian glass bottles, jars, and cups made possible by glassblowing.",
+  "Icon": "CommonGlassware",
+  "Art": "CommonGlassware",
+  "CategoryName": "Glassware",
+  "Density": 1200.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 4000,
+  "PricePerWeight": 800,
+  "YearlyProduction": 10000000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

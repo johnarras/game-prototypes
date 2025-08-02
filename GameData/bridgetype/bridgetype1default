@@ -1,0 +1,8 @@
+{
+  "Id": "bridgetype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Small Footbridge",
+  "Art": "Bridge",
+  "Length": 10
+}

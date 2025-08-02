@@ -1,0 +1,33 @@
+{
+  "Id": "tiletype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Forest",
+  "Desc": "Wood and Leather",
+  "Icon": "ForestTile",
+  "Art": "ForestTile",
+  "Weight": 1.0,
+  "MinLevel": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 7,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 12,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [],
+  "UpgradeReagents": []
+}

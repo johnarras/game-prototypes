@@ -1,0 +1,8 @@
+{
+  "Id": "texturetype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "SandRoad",
+  "Art": "SandRoad",
+  "Size": 8.0
+}

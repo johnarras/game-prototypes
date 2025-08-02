@@ -1,0 +1,20 @@
+{
+  "Id": "animal2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Draft Dog",
+  "Desc": "A large, strong dog breed, like a mastiff. Used for guarding, hunting, and pulling small carts or carrying light packs. Cheap but requires a meat-based diet.",
+  "Icon": "DraftDog",
+  "Art": "DraftDog",
+  "Endurance": 4,
+  "Speed": 3.0,
+  "CarryingCapacity": 12,
+  "PullingCapacity": 45,
+  "RoughTerrain": 4,
+  "HotClimate": 3,
+  "ColdClimate": 4,
+  "WetClimate": 4,
+  "FoodPerDay": 2,
+  "WaterPerDay": 5,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

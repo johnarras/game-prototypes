@@ -1,0 +1,10 @@
+{
+  "Id": "mapmagictype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Darkness",
+  "Weight": 0.1,
+  "SpreadChance": 0.2,
+  "MapSymbol": "D",
+  "MinLevel": 3
+}

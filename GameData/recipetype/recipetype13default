@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Ring",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 13,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 10,
+  "ExplicitReagents": []
+}

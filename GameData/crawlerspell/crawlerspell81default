@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell81default",
+  "ParentId": "default",
+  "IdKey": 81,
+  "Name": "Light",
+  "Desc": "Create a light to let you see.",
+  "PowerCost": 2.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 6,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 101,
+      "EntityId": 1,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

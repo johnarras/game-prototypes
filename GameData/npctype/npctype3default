@@ -1,0 +1,9 @@
+{
+  "Id": "npctype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Leatherworker",
+  "CrafterTypeId": 3,
+  "BuildingTypeId": 3,
+  "DefaultVendorItems": []
+}

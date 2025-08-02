@@ -1,0 +1,9 @@
+{
+  "Id": "equipslot4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Torso",
+  "Active": true,
+  "IsCrawlerSlot": true,
+  "BaseBonusStatTypeId": 31
+}

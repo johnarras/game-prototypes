@@ -1,0 +1,13 @@
+{
+  "Id": "memberupgrade7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Willpower Bonus",
+  "Desc": "More Mana Per Level",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 17,
+  "SaveTime": "2025-06-07T00:10:33.143Z"
+}

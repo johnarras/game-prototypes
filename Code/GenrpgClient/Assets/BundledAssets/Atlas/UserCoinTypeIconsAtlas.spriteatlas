@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UserCoinTypeIconsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 64745835ac19f414c9c395e958240a58, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 42b881002dcfd2f41895d481aeb02046: 21300000
+    - 9e6c26010f475d04f86ec8f2d2e9ae42: 21300000
+    - a2b0267168a8942458ea857d0abbc479: 21300000
+    - e0a5c1f198d07fb4ebebdf050e8d76c8: 21300000
+    - a2e79f52b13628a4d892176ce554cf98: 21300000
+    - de0838c419810e24d81348b2482d0f08: 21300000
+    - 731912163b230bc468ba55381f717dd7: 21300000
+    - 848e0b96d0088a240bd70b93df0785aa: 21300000
+    - 376f76aa5d5077b4b83b460fd46b797d: 21300000
+    - b23354bc58db62446a80e048b61b52a4: 21300000
+    - e971c25eaf83f384c8fe3866545a3bb4: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 42b881002dcfd2f41895d481aeb02046, type: 3}
+  - {fileID: 21300000, guid: 9e6c26010f475d04f86ec8f2d2e9ae42, type: 3}
+  - {fileID: 21300000, guid: a2b0267168a8942458ea857d0abbc479, type: 3}
+  - {fileID: 21300000, guid: e0a5c1f198d07fb4ebebdf050e8d76c8, type: 3}
+  - {fileID: 21300000, guid: a2e79f52b13628a4d892176ce554cf98, type: 3}
+  - {fileID: 21300000, guid: de0838c419810e24d81348b2482d0f08, type: 3}
+  - {fileID: 21300000, guid: 731912163b230bc468ba55381f717dd7, type: 3}
+  - {fileID: 21300000, guid: 848e0b96d0088a240bd70b93df0785aa, type: 3}
+  - {fileID: 21300000, guid: 376f76aa5d5077b4b83b460fd46b797d, type: 3}
+  - {fileID: 21300000, guid: b23354bc58db62446a80e048b61b52a4, type: 3}
+  - {fileID: 21300000, guid: e971c25eaf83f384c8fe3866545a3bb4, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - IconFood
+  - IconEnergy
+  - IconMana
+  - IconWood
+  - IconCredits
+  - IconWarriors
+  - IconIron
+  - IconHerbs
+  - IconStone
+  - IconHardCurrency
+  - IconLeather
+  m_RenderDataMap: {}
+  m_Tag: UserCoinTypeIconsAtlas
+  m_IsVariant: 0

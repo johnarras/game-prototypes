@@ -1,0 +1,10 @@
+{
+  "Id": "stattype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Mana",
+  "Desc": "Power used to cast spells.",
+  "MaxPool": 1000,
+  "RegenSeconds": 75,
+  "IsCrawlerStat": true
+}

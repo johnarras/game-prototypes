@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood74default",
+  "ParentId": "default",
+  "IdKey": 74,
+  "Name": "Gold Jewelry",
+  "Desc": "Ornate personal adornments made from gold, demonstrating wealth.",
+  "Icon": "GoldJewelry",
+  "Art": "GoldJewelry",
+  "CategoryName": "Metalwork",
+  "Density": 9000.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 100000,
+  "PricePerWeight": 100000,
+  "YearlyProduction": 500,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

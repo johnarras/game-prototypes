@@ -1,0 +1,25 @@
+{
+  "Id": "crawlerspell107default",
+  "ParentId": "default",
+  "IdKey": 107,
+  "Name": "Summon Vampire",
+  "Desc": "Summon a Vampire",
+  "PowerCost": 9.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 5,
+  "RoleScalingTier": 5,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 70,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 8
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

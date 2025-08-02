@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype25default",
+  "ParentId": "default",
+  "IdKey": 25,
+  "Name": "Crackedc",
+  "Art": "Crackedc",
+  "Size": 8.0,
+  "ParentTextureTypeId": 8
+}

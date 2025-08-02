@@ -1,0 +1,9 @@
+{
+  "Id": "productsku45default",
+  "ParentId": "default",
+  "IdKey": 45,
+  "Name": "$44.99 Product",
+  "DollarPrice": 44.99,
+  "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle045",
+  "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle045"
+}

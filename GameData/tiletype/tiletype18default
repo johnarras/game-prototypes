@@ -1,0 +1,55 @@
+{
+  "Id": "tiletype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Mage Tower",
+  "Desc": "Improves defenses",
+  "Icon": "MageTowerTile",
+  "Art": "MageTowerTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 14,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [
+    {
+      "EntityTypeId": 202,
+      "Quantity": 25,
+      "EntityId": 14
+    }
+  ],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 3
+    }
+  ]
+}

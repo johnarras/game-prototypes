@@ -1,0 +1,20 @@
+{
+  "Id": "animal7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Tamed Onager",
+  "Desc": "A wild ass from the deserts of Persia. Faster than a donkey but notoriously difficult to tame and control. A prestigious, if impractical, chariot animal.",
+  "Icon": "TamedOnager",
+  "Art": "TamedOnager",
+  "Endurance": 4,
+  "Speed": 4.0,
+  "CarryingCapacity": 30,
+  "PullingCapacity": 120,
+  "RoughTerrain": 3,
+  "HotClimate": 5,
+  "ColdClimate": 2,
+  "WetClimate": 1,
+  "FoodPerDay": 6,
+  "WaterPerDay": 25,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

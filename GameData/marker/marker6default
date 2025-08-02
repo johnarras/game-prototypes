@@ -1,0 +1,12 @@
+{
+  "Id": "marker6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Cyan",
+  "Desc": "",
+  "Icon": "CyanMarker",
+  "Art": "CyanMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 3,
+  "SaveTime": "2025-06-22T20:05:59.53Z"
+}

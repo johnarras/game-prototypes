@@ -1,0 +1,220 @@
+{
+  "Id": "role11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Elementalist",
+  "Desc": "Spell Dam and Heals",
+  "Abbrev": "El",
+  "RoleCategoryId": 1,
+  "HealthPerLevel": 16,
+  "ManaPerLevel": 20,
+  "MaxArmorScalingTypeId": 3,
+  "CritPercent": 10,
+  "TrainingXpScale": 1.0,
+  "TrainingGoldScale": 1.0,
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 24
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 28
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 32
+    },
+    {
+      "EntityTypeId": 31,
+      "EntityId": 32
+    },
+    {
+      "EntityTypeId": 31,
+      "EntityId": 63
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 30
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 35
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 36
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 37
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 80
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 84
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 86
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 102
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 230
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 231
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 232
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 240
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 241
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 242
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 270
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 271
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 272
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 10032
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 10063
+    }
+  ],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.15
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.45
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.35
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 5,
+      "Amount": 0.25
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 6,
+      "Amount": 0.2
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 12,
+      "Amount": 2.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 2.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

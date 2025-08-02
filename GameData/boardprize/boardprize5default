@@ -1,0 +1,10 @@
+{
+  "Id": "boardprize5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Monsters",
+  "Desc": "",
+  "Icon": "",
+  "Art": "MonsterPrize",
+  "LootTable": []
+}

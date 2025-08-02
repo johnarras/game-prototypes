@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "Thrown",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 31,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 100,
+  "ExplicitReagents": []
+}

@@ -1,0 +1,56 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "rocktype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "RockRock",
+      "Art": "RockRock",
+      "ChanceScale": 1.0,
+      "BaseColor": {
+        "R": 1.0,
+        "G": 1.0,
+        "B": 1.0,
+        "A": 1.0
+      },
+      "MaxIndex": 10
+    },
+    {
+      "Id": "rocktype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "RockSand",
+      "Art": "RockSand",
+      "ChanceScale": 1.0,
+      "BaseColor": {},
+      "MaxIndex": 10
+    },
+    {
+      "Id": "rocktype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "RockRed",
+      "Art": "RockRed",
+      "ChanceScale": 1.0,
+      "BaseColor": {},
+      "MaxIndex": 10
+    },
+    {
+      "Id": "rocktype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "RockSwamp",
+      "Art": "RockSwamp",
+      "ChanceScale": 1.0,
+      "BaseColor": {},
+      "MaxIndex": 10
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "RockTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

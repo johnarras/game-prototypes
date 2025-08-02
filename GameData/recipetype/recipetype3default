@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Chest",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 3,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 30,
+  "ExplicitReagents": []
+}

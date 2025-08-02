@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Whirlwind",
+  "Desc": "Hit one or more enemies in all groups within melee range.",
+  "StatBonusScaling": 1.0,
+  "MaxRange": 10,
+  "ReplacesCrawlerSpellId": 1,
+  "CombatActionId": 1,
+  "TargetTypeId": 10,
+  "RoleScalingTypeId": 1,
+  "RoleScalingTier": 2,
+  "Effects": [
+    {
+      "EntityTypeId": 38,
+      "EntityId": 1,
+      "ElementTypeId": 1
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

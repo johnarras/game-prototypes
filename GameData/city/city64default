@@ -1,0 +1,53 @@
+{
+  "Id": "city64default",
+  "ParentId": "default",
+  "IdKey": 64,
+  "Name": "Brindisi",
+  "Desc": "The primary Roman port of embarkation for Greece and the East, marking the terminus of the great Via Appia.",
+  "Icon": "Brindisi",
+  "Art": "Brindisi",
+  "AncientName": "Brundisium",
+  "MapPixelX": 919,
+  "MapPixelY": 1124,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 17
+    },
+    {
+      "TradeGoodId": 21
+    },
+    {
+      "TradeGoodId": 63
+    },
+    {
+      "TradeGoodId": 5
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "stattype33default",
+  "ParentId": "default",
+  "IdKey": 33,
+  "Name": "HealthRegen",
+  "Desc": "Regenerates health.",
+  "GenScalePct": 100
+}

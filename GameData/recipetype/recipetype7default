@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Pants",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 7,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 30,
+  "ExplicitReagents": []
+}

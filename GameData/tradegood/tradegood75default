@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood75default",
+  "ParentId": "default",
+  "IdKey": 75,
+  "Name": "Gold Rhytons",
+  "Desc": "Horn-shaped drinking vessels made of gold, a symbol of extreme Persian luxury.",
+  "Icon": "GoldRhytons",
+  "Art": "GoldRhytons",
+  "CategoryName": "Metalwork",
+  "Density": 9500.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 150000,
+  "PricePerWeight": 150000,
+  "YearlyProduction": 100,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

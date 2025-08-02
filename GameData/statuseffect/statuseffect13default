@@ -1,0 +1,15 @@
+{
+  "Id": "statuseffect13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Silenced",
+  "Desc": "Cannot cast spells.",
+  "Icon": "Silenced",
+  "Art": "",
+  "Abbrev": "Si",
+  "ElementTypeId": 4,
+  "CombatActionId": 4,
+  "Amount": 100,
+  "RemoveAtEndOfCombat": true,
+  "SaveTime": "2025-06-07T13:51:14.392Z"
+}

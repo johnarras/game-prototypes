@@ -1,0 +1,19 @@
+{
+  "Id": "animal17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Reindeer",
+  "Desc": "A semi-domesticated deer of the far north. A vital resource for northern cultures, used as a pack animal or for pulling sleds over snow and tundra.",
+  "Icon": "Reindeer",
+  "Art": "Reindeer",
+  "Endurance": 4,
+  "Speed": 3.0,
+  "CarryingCapacity": 80,
+  "PullingCapacity": 150,
+  "RoughTerrain": 4,
+  "ColdClimate": 6,
+  "WetClimate": 4,
+  "FoodPerDay": 6,
+  "WaterPerDay": 15,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

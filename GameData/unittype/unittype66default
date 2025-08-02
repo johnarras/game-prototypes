@@ -1,0 +1,22 @@
+{
+  "Id": "unittype66default",
+  "ParentId": "default",
+  "IdKey": 66,
+  "Name": "Frog",
+  "PluralName": "Frogs",
+  "Icon": "Frog",
+  "Art": "Frog",
+  "TribeTypeId": 2,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

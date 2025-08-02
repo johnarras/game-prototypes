@@ -1,0 +1,49 @@
+{
+  "Id": "city65default",
+  "ParentId": "default",
+  "IdKey": 65,
+  "Name": "Tangier",
+  "Desc": "The capital of the Roman province of Mauretania Tingitana and a key port controlling the Strait of Gibraltar.",
+  "Icon": "Tangier",
+  "Art": "Tangier",
+  "AncientName": "Tingis",
+  "MapPixelX": 379,
+  "MapPixelY": 1234,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 78
+    },
+    {
+      "TradeGoodId": 9
+    },
+    {
+      "TradeGoodId": 18
+    },
+    {
+      "TradeGoodId": 61
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

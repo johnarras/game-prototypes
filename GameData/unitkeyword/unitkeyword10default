@@ -1,0 +1,43 @@
+{
+  "Id": "unitkeyword10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Dragon",
+  "PluralName": "Dragons",
+  "Icon": "Dragon",
+  "Art": "Dragon",
+  "MinRange": 30,
+  "Effects": [
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 9
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 10
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

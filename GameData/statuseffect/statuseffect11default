@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Berserk",
+  "Desc": "XXXX percent chance of using a random ability.",
+  "Icon": "Berserk",
+  "Art": "",
+  "Abbrev": "Bs",
+  "ElementTypeId": 2,
+  "Amount": 25,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

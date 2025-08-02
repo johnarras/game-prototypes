@@ -1,0 +1,56 @@
+{
+  "Id": "city49default",
+  "ParentId": "default",
+  "IdKey": 49,
+  "Name": "Luxor",
+  "Desc": "The great capital of New Kingdom Egypt, a vast religious complex centered on the monumental temples of Karnak and Luxor.",
+  "Icon": "Luxor",
+  "Art": "Luxor",
+  "AncientName": "Waset/Thebae",
+  "MapPixelX": 1254,
+  "MapPixelY": 1464,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 58
+    },
+    {
+      "TradeGoodId": 25
+    },
+    {
+      "TradeGoodId": 46
+    },
+    {
+      "TradeGoodId": 37
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 18,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

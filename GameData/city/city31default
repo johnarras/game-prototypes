@@ -1,0 +1,57 @@
+{
+  "Id": "city31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "Aquileia",
+  "Desc": "A major Roman city at the head of the Adriatic Sea, a crossroads for trade in amber, iron, and wine between Italy and the northern provinces.",
+  "Icon": "Aquileia",
+  "Art": "Aquileia",
+  "AncientName": "Aquileia",
+  "MapPixelX": 816,
+  "MapPixelY": 1007,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 84
+    },
+    {
+      "TradeGoodId": 112
+    },
+    {
+      "TradeGoodId": 64
+    },
+    {
+      "TradeGoodId": 5
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

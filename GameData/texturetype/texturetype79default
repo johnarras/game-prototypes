@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype79default",
+  "ParentId": "default",
+  "IdKey": 79,
+  "Name": "Leavesd",
+  "Art": "Leavesd",
+  "Size": 8.0,
+  "ParentTextureTypeId": 80
+}

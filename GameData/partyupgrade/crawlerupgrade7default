@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "LootQuality",
+  "Desc": "Increases quality and quantity of loot.",
+  "MaxTier": 5,
+  "BonusPerTier": 0.1,
+  "BasePointCost": 5
+}

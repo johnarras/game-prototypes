@@ -1,0 +1,57 @@
+{
+  "Id": "city61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "Milan",
+  "Desc": "A major city in northern Italy that grew in importance to become an administrative center and de facto capital of the late Western Roman Empire.",
+  "Icon": "Milan",
+  "Art": "Milan",
+  "AncientName": "Mediolanum",
+  "MapPixelX": 709,
+  "MapPixelY": 1014,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 69
+    },
+    {
+      "TradeGoodId": 64
+    },
+    {
+      "TradeGoodId": 56
+    },
+    {
+      "TradeGoodId": 1
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

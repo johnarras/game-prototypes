@@ -1,0 +1,9 @@
+{
+  "Id": "dungeonart3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Natural",
+  "Desc": "Natural Art Assets",
+  "Icon": "Natural",
+  "Art": "Natural"
+}

@@ -1,0 +1,13 @@
+{
+  "Id": "boardmode3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "PVP",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "DiceCount": 1,
+  "FreeRolls": true,
+  "GiveDefaultTileRewards": true,
+  "PrizeRules": []
+}

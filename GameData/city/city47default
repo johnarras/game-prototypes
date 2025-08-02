@@ -1,0 +1,61 @@
+{
+  "Id": "city47default",
+  "ParentId": "default",
+  "IdKey": 47,
+  "Name": "Ctesiphon",
+  "Desc": "The sprawling winter capital of the Parthian and Sasanian Empires, famed for its colossal vaulted arch, the largest single-span brick arch in the world.",
+  "Icon": "Ctesiphon",
+  "Art": "Ctesiphon",
+  "AncientName": "Tisfun",
+  "MapPixelX": 1526,
+  "MapPixelY": 1295,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 29
+    },
+    {
+      "TradeGoodId": 2
+    },
+    {
+      "TradeGoodId": 47
+    },
+    {
+      "TradeGoodId": 56
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 15,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,53 @@
+{
+  "Id": "city14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Palmyra",
+  "Desc": "A wealthy caravan city rising from the Syrian desert, a vital and often independent link on the Silk Road between the Roman and Persian spheres.",
+  "Icon": "Palmyra",
+  "Art": "Palmyra",
+  "AncientName": "Tadmor",
+  "MapPixelX": 1382,
+  "MapPixelY": 1262,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 82
+    },
+    {
+      "TradeGoodId": 83
+    },
+    {
+      "TradeGoodId": 29
+    },
+    {
+      "TradeGoodId": 122
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

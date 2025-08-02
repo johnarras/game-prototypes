@@ -1,0 +1,49 @@
+{
+  "Id": "city30default",
+  "ParentId": "default",
+  "IdKey": 30,
+  "Name": "Ravenna",
+  "Desc": "A strategic port city surrounded by marshes, which became the last capital of the Western Roman Empire and a bastion of Byzantine art.",
+  "Icon": "Ravenna",
+  "Art": "Ravenna",
+  "AncientName": "Ravenna",
+  "MapPixelX": 789,
+  "MapPixelY": 1038,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 34
+    },
+    {
+      "TradeGoodId": 18
+    },
+    {
+      "TradeGoodId": 109
+    },
+    {
+      "TradeGoodId": 1
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood49default",
+  "ParentId": "default",
+  "IdKey": 49,
+  "Name": "Common Pottery",
+  "Desc": "Everyday earthenware vessels, such as amphorae and cooking pots.",
+  "Icon": "CommonPottery",
+  "Art": "CommonPottery",
+  "CategoryName": "Ceramics",
+  "Density": 900.0,
+  "UnitWeight": 20,
+  "PricePerUnit": 1500,
+  "PricePerWeight": 75,
+  "YearlyProduction": 2000000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

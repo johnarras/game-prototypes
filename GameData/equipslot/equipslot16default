@@ -1,0 +1,10 @@
+{
+  "Id": "equipslot16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "OffHand",
+  "ParentEquipSlotId": 15,
+  "Active": true,
+  "IsCrawlerSlot": true,
+  "BaseBonusStatTypeId": 31
+}

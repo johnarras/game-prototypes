@@ -1,0 +1,49 @@
+{
+  "Id": "city69default",
+  "ParentId": "default",
+  "IdKey": 69,
+  "Name": "Bharuch",
+  "Desc": "A major trade port in Gujarat, India, known to Greco-Roman geographers as a vital center for the lucrative Indian Ocean trade.",
+  "Icon": "Bharuch",
+  "Art": "Bharuch",
+  "AncientName": "Barygaza",
+  "MapPixelX": 2171,
+  "MapPixelY": 1554,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 97
+    },
+    {
+      "TradeGoodId": 98
+    },
+    {
+      "TradeGoodId": 23
+    },
+    {
+      "TradeGoodId": 91
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 12,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

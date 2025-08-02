@@ -1,0 +1,10 @@
+{
+  "Id": "upgradereason2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "PartyLevel",
+  "NameId": "",
+  "Desc": "New Max Party Level",
+  "GamePoints": 1,
+  "RunPoints": 1
+}

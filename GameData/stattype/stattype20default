@@ -1,0 +1,9 @@
+{
+  "Id": "stattype20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "DamagePower",
+  "Desc": "Extra damage to all attacks.",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

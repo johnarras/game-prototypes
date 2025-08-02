@@ -1,0 +1,11 @@
+{
+  "Id": "treetype36default",
+  "ParentId": "default",
+  "IdKey": 36,
+  "Name": "DouglasFirPyramid",
+  "Desc": "",
+  "Icon": "",
+  "Art": "DouglasFirPyramid",
+  "Scale": 1.5,
+  "VariationCount": 2
+}

@@ -1,0 +1,7 @@
+{
+  "Id": "mapencountertype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "OtherFeature",
+  "Icon": "OtherFeature"
+}

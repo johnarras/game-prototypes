@@ -1,0 +1,875 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "settingsname1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "AchievementSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "AISettings"
+    },
+    {
+      "Id": "settingsname3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "BridgeTypeSettings"
+    },
+    {
+      "Id": "settingsname4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "BuildingSettings"
+    },
+    {
+      "Id": "settingsname5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "CharmBonusSettings"
+    },
+    {
+      "Id": "settingsname6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "CharmUseSettings"
+    },
+    {
+      "Id": "settingsname7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "ChatSettings"
+    },
+    {
+      "Id": "settingsname8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "ClassSettings"
+    },
+    {
+      "Id": "settingsname9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "ClutterTypeSettings"
+    },
+    {
+      "Id": "settingsname10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "CombatActionSettings"
+    },
+    {
+      "Id": "settingsname11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "CoreSettings"
+    },
+    {
+      "Id": "settingsname12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "CraftingSettings"
+    },
+    {
+      "Id": "settingsname13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "CrawlerCombatSettings"
+    },
+    {
+      "Id": "settingsname14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "CrawlerLootSettings"
+    },
+    {
+      "Id": "settingsname15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "CrawlerSpellSettings"
+    },
+    {
+      "Id": "settingsname16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "CrawlerTrainingSettings"
+    },
+    {
+      "Id": "settingsname17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "CurrencySettings"
+    },
+    {
+      "Id": "settingsname18default",
+      "ParentId": "default",
+      "IdKey": 18,
+      "Name": "DamageSettings"
+    },
+    {
+      "Id": "settingsname19default",
+      "ParentId": "default",
+      "IdKey": 19,
+      "Name": "DataOverrideSettings"
+    },
+    {
+      "Id": "settingsname20default",
+      "ParentId": "default",
+      "IdKey": 20,
+      "Name": "DerivedStatSettings"
+    },
+    {
+      "Id": "settingsname21default",
+      "ParentId": "default",
+      "IdKey": 21,
+      "Name": "DungeonArtSettings"
+    },
+    {
+      "Id": "settingsname22default",
+      "ParentId": "default",
+      "IdKey": 22,
+      "Name": "EditorMetaDataSettings"
+    },
+    {
+      "Id": "settingsname23default",
+      "ParentId": "default",
+      "IdKey": 23,
+      "Name": "ElementTypeSettings"
+    },
+    {
+      "Id": "settingsname24default",
+      "ParentId": "default",
+      "IdKey": 24,
+      "Name": "EntitySettings"
+    },
+    {
+      "Id": "settingsname25default",
+      "ParentId": "default",
+      "IdKey": 25,
+      "Name": "EquipSlotSettings"
+    },
+    {
+      "Id": "settingsname26default",
+      "ParentId": "default",
+      "IdKey": 26,
+      "Name": "FactionSettings"
+    },
+    {
+      "Id": "settingsname27default",
+      "ParentId": "default",
+      "IdKey": 27,
+      "Name": "FenceTypeSettings"
+    },
+    {
+      "Id": "settingsname28default",
+      "ParentId": "default",
+      "IdKey": 28,
+      "Name": "FtueEffectSettings"
+    },
+    {
+      "Id": "settingsname29default",
+      "ParentId": "default",
+      "IdKey": 29,
+      "Name": "FtuePopupTypeSettings"
+    },
+    {
+      "Id": "settingsname30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "FtueStepSettings"
+    },
+    {
+      "Id": "settingsname31default",
+      "ParentId": "default",
+      "IdKey": 31,
+      "Name": "FtueTriggerSettings"
+    },
+    {
+      "Id": "settingsname32default",
+      "ParentId": "default",
+      "IdKey": 32,
+      "Name": "GroundObjTypeSettings"
+    },
+    {
+      "Id": "settingsname33default",
+      "ParentId": "default",
+      "IdKey": 33,
+      "Name": "InputSettings"
+    },
+    {
+      "Id": "settingsname34default",
+      "ParentId": "default",
+      "IdKey": 34,
+      "Name": "ItemTypeSettings"
+    },
+    {
+      "Id": "settingsname35default",
+      "ParentId": "default",
+      "IdKey": 35,
+      "Name": "KeyCommSettings"
+    },
+    {
+      "Id": "settingsname36default",
+      "ParentId": "default",
+      "IdKey": 36,
+      "Name": "LevelSettings"
+    },
+    {
+      "Id": "settingsname37default",
+      "ParentId": "default",
+      "IdKey": 37,
+      "Name": "LootRankSettings"
+    },
+    {
+      "Id": "settingsname38default",
+      "ParentId": "default",
+      "IdKey": 38,
+      "Name": "MapModEffectTypeSettings"
+    },
+    {
+      "Id": "settingsname39default",
+      "ParentId": "default",
+      "IdKey": 39,
+      "Name": "MonsterCategorySettings"
+    },
+    {
+      "Id": "settingsname40default",
+      "ParentId": "default",
+      "IdKey": 40,
+      "Name": "MonsterTypeSettings"
+    },
+    {
+      "Id": "settingsname41default",
+      "ParentId": "default",
+      "IdKey": 41,
+      "Name": "MusicTypeSettings"
+    },
+    {
+      "Id": "settingsname42default",
+      "ParentId": "default",
+      "IdKey": 42,
+      "Name": "NameSettings"
+    },
+    {
+      "Id": "settingsname43default",
+      "ParentId": "default",
+      "IdKey": 43,
+      "Name": "NPCSettings"
+    },
+    {
+      "Id": "settingsname44default",
+      "ParentId": "default",
+      "IdKey": 44,
+      "Name": "PartyBuffSettings"
+    },
+    {
+      "Id": "settingsname45default",
+      "ParentId": "default",
+      "IdKey": 45,
+      "Name": "PlantTypeSettings"
+    },
+    {
+      "Id": "settingsname46default",
+      "ParentId": "default",
+      "IdKey": 46,
+      "Name": "ProcTypeSettings"
+    },
+    {
+      "Id": "settingsname47default",
+      "ParentId": "default",
+      "IdKey": 47,
+      "Name": "ProductSkuSettings"
+    },
+    {
+      "Id": "settingsname48default",
+      "ParentId": "default",
+      "IdKey": 48,
+      "Name": "QualityTypeSettings"
+    },
+    {
+      "Id": "settingsname49default",
+      "ParentId": "default",
+      "IdKey": 49,
+      "Name": "RecipeSettings"
+    },
+    {
+      "Id": "settingsname50default",
+      "ParentId": "default",
+      "IdKey": 50,
+      "Name": "ReputationSettings"
+    },
+    {
+      "Id": "settingsname51default",
+      "ParentId": "default",
+      "IdKey": 51,
+      "Name": "RockTypeSettings"
+    },
+    {
+      "Id": "settingsname52default",
+      "ParentId": "default",
+      "IdKey": 52,
+      "Name": "ScalingTypeSettings"
+    },
+    {
+      "Id": "settingsname53default",
+      "ParentId": "default",
+      "IdKey": 53,
+      "Name": "ScreenOverrideSettings"
+    },
+    {
+      "Id": "settingsname54default",
+      "ParentId": "default",
+      "IdKey": 54,
+      "Name": "SettingsNameSettings"
+    },
+    {
+      "Id": "settingsname55default",
+      "ParentId": "default",
+      "IdKey": 55,
+      "Name": "SetTypeSettings"
+    },
+    {
+      "Id": "settingsname56default",
+      "ParentId": "default",
+      "IdKey": 56,
+      "Name": "SexTypeSettings"
+    },
+    {
+      "Id": "settingsname57default",
+      "ParentId": "default",
+      "IdKey": 57,
+      "Name": "SkillTypeSettings"
+    },
+    {
+      "Id": "settingsname58default",
+      "ParentId": "default",
+      "IdKey": 58,
+      "Name": "SpawnSettings"
+    },
+    {
+      "Id": "settingsname59default",
+      "ParentId": "default",
+      "IdKey": 59,
+      "Name": "SpecialMagicSettings"
+    },
+    {
+      "Id": "settingsname60default",
+      "ParentId": "default",
+      "IdKey": 60,
+      "Name": "SpellModifierSettings"
+    },
+    {
+      "Id": "settingsname61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "SpellTypeSettings"
+    },
+    {
+      "Id": "settingsname62default",
+      "ParentId": "default",
+      "IdKey": 62,
+      "Name": "StatSettings"
+    },
+    {
+      "Id": "settingsname63default",
+      "ParentId": "default",
+      "IdKey": 63,
+      "Name": "StatusEffectSettings"
+    },
+    {
+      "Id": "settingsname64default",
+      "ParentId": "default",
+      "IdKey": 64,
+      "Name": "StoreFeatureSettings"
+    },
+    {
+      "Id": "settingsname65default",
+      "ParentId": "default",
+      "IdKey": 65,
+      "Name": "StoreOfferSettings"
+    },
+    {
+      "Id": "settingsname66default",
+      "ParentId": "default",
+      "IdKey": 66,
+      "Name": "StoreProductSettings"
+    },
+    {
+      "Id": "settingsname67default",
+      "ParentId": "default",
+      "IdKey": 67,
+      "Name": "StoreSlotSettings"
+    },
+    {
+      "Id": "settingsname68default",
+      "ParentId": "default",
+      "IdKey": 68,
+      "Name": "StoreThemeSettings"
+    },
+    {
+      "Id": "settingsname69default",
+      "ParentId": "default",
+      "IdKey": 69,
+      "Name": "TargetTypeSettings"
+    },
+    {
+      "Id": "settingsname70default",
+      "ParentId": "default",
+      "IdKey": 70,
+      "Name": "TextureChannelSettings"
+    },
+    {
+      "Id": "settingsname71default",
+      "ParentId": "default",
+      "IdKey": 71,
+      "Name": "TextureTypeSettings"
+    },
+    {
+      "Id": "settingsname72default",
+      "ParentId": "default",
+      "IdKey": 72,
+      "Name": "TreeTypeSettings"
+    },
+    {
+      "Id": "settingsname73default",
+      "ParentId": "default",
+      "IdKey": 73,
+      "Name": "TribeSettings"
+    },
+    {
+      "Id": "settingsname74default",
+      "ParentId": "default",
+      "IdKey": 74,
+      "Name": "UnitTypeSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname75default",
+      "ParentId": "default",
+      "IdKey": 75,
+      "Name": "UserCoinSettings"
+    },
+    {
+      "Id": "settingsname76default",
+      "ParentId": "default",
+      "IdKey": 76,
+      "Name": "VendorSettings"
+    },
+    {
+      "Id": "settingsname77default",
+      "ParentId": "default",
+      "IdKey": 77,
+      "Name": "VersionSettings"
+    },
+    {
+      "Id": "settingsname78default",
+      "ParentId": "default",
+      "IdKey": 78,
+      "Name": "WeatherTypeSettings"
+    },
+    {
+      "Id": "settingsname79default",
+      "ParentId": "default",
+      "IdKey": 79,
+      "Name": "ZoneTypeSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname80default",
+      "ParentId": "default",
+      "IdKey": 80,
+      "Name": "BiomeSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname81default",
+      "ParentId": "default",
+      "IdKey": 81,
+      "Name": "UnitKeywordSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname82default",
+      "ParentId": "default",
+      "IdKey": 82,
+      "Name": "RiddleSettings"
+    },
+    {
+      "Id": "settingsname83default",
+      "ParentId": "default",
+      "IdKey": 83,
+      "Name": "BoardModeSettings"
+    },
+    {
+      "Id": "settingsname84default",
+      "ParentId": "default",
+      "IdKey": 84,
+      "Name": "TileSettings"
+    },
+    {
+      "Id": "settingsname85default",
+      "ParentId": "default",
+      "IdKey": 85,
+      "Name": "TileTypeSettings"
+    },
+    {
+      "Id": "settingsname86default",
+      "ParentId": "default",
+      "IdKey": 86,
+      "Name": "ActivationSettings"
+    },
+    {
+      "Id": "settingsname87default",
+      "ParentId": "default",
+      "IdKey": 87,
+      "Name": "BoardGenSettings"
+    },
+    {
+      "Id": "settingsname88default",
+      "ParentId": "default",
+      "IdKey": 88,
+      "Name": "BoardPrizeSettings"
+    },
+    {
+      "Id": "settingsname89default",
+      "ParentId": "default",
+      "IdKey": 89,
+      "Name": "BonusModeSettings"
+    },
+    {
+      "Id": "settingsname90default",
+      "ParentId": "default",
+      "IdKey": 90,
+      "Name": "EnhancementSettings"
+    },
+    {
+      "Id": "settingsname91default",
+      "ParentId": "default",
+      "IdKey": 91,
+      "Name": "RollMultSettings"
+    },
+    {
+      "Id": "settingsname92default",
+      "ParentId": "default",
+      "IdKey": 92,
+      "Name": "UpgradeBoardSettings"
+    },
+    {
+      "Id": "settingsname93default",
+      "ParentId": "default",
+      "IdKey": 93,
+      "Name": "BoardGameSettings"
+    },
+    {
+      "Id": "settingsname94default",
+      "ParentId": "default",
+      "IdKey": 94,
+      "Name": "ActivitySettings"
+    },
+    {
+      "Id": "settingsname95default",
+      "ParentId": "default",
+      "IdKey": 95,
+      "Name": "AbilitySettings"
+    },
+    {
+      "Id": "settingsname96default",
+      "ParentId": "default",
+      "IdKey": 96,
+      "Name": "UserAbilitySettings"
+    },
+    {
+      "Id": "settingsname97default",
+      "ParentId": "default",
+      "IdKey": 97,
+      "Name": "ChestSettings"
+    },
+    {
+      "Id": "settingsname98default",
+      "ParentId": "default",
+      "IdKey": 98,
+      "Name": "RewardSourceSettings"
+    },
+    {
+      "Id": "settingsname99default",
+      "ParentId": "default",
+      "IdKey": 99,
+      "Name": "UserStatSettings"
+    },
+    {
+      "Id": "settingsname100default",
+      "ParentId": "default",
+      "IdKey": 100,
+      "Name": "NewUserSettings"
+    },
+    {
+      "Id": "settingsname101default",
+      "ParentId": "default",
+      "IdKey": 101,
+      "Name": "PlayMultSettings"
+    },
+    {
+      "Id": "settingsname102default",
+      "ParentId": "default",
+      "IdKey": 102,
+      "Name": "ResetSettings"
+    },
+    {
+      "Id": "settingsname103default",
+      "ParentId": "default",
+      "IdKey": 103,
+      "Name": "UserEnergySettings"
+    },
+    {
+      "Id": "settingsname104default",
+      "ParentId": "default",
+      "IdKey": 104,
+      "Name": "RoleSettings"
+    },
+    {
+      "Id": "settingsname105default",
+      "ParentId": "default",
+      "IdKey": 105,
+      "Name": "CrawlerMapSettings"
+    },
+    {
+      "Id": "settingsname106default",
+      "ParentId": "default",
+      "IdKey": 106,
+      "Name": "TimeOfDaySettings"
+    },
+    {
+      "Id": "settingsname107default",
+      "ParentId": "default",
+      "IdKey": 107,
+      "Name": "MarkerSettings"
+    },
+    {
+      "Id": "settingsname108default",
+      "ParentId": "default",
+      "IdKey": 108,
+      "Name": "CrawlerStatSettings"
+    },
+    {
+      "Id": "settingsname109default",
+      "ParentId": "default",
+      "IdKey": 109,
+      "Name": "TempleSettings"
+    },
+    {
+      "Id": "settingsname110default",
+      "ParentId": "default",
+      "IdKey": 110,
+      "Name": "AphorismSettings"
+    },
+    {
+      "Id": "settingsname111default",
+      "ParentId": "default",
+      "IdKey": 111,
+      "Name": "SomeNewSettings"
+    },
+    {
+      "Id": "settingsname112default",
+      "ParentId": "default",
+      "IdKey": 112,
+      "Name": "RoguelikeSettings"
+    },
+    {
+      "Id": "settingsname113default",
+      "ParentId": "default",
+      "IdKey": 113,
+      "Name": "RoguelikeUpgradeSettings"
+    },
+    {
+      "Id": "settingsname114default",
+      "ParentId": "default",
+      "IdKey": 114,
+      "Name": "RoleScalingTypeSettings"
+    },
+    {
+      "Id": "settingsname115default",
+      "ParentId": "default",
+      "IdKey": 115,
+      "Name": "CrawlerMonsterSettings"
+    },
+    {
+      "Id": "settingsname116default",
+      "ParentId": "default",
+      "IdKey": 116,
+      "Name": "StoreItemSettings"
+    },
+    {
+      "Id": "settingsname117default",
+      "ParentId": "default",
+      "IdKey": 117,
+      "Name": "CrawlerSettings"
+    },
+    {
+      "Id": "settingsname118default",
+      "ParentId": "default",
+      "IdKey": 118,
+      "Name": "BuildingArtSettings"
+    },
+    {
+      "Id": "settingsname119default",
+      "ParentId": "default",
+      "IdKey": 119,
+      "Name": "ZoneCategorySettings"
+    },
+    {
+      "Id": "settingsname120default",
+      "ParentId": "default",
+      "IdKey": 120,
+      "Name": "MapEncounterSettings"
+    },
+    {
+      "Id": "settingsname121default",
+      "ParentId": "default",
+      "IdKey": 121,
+      "Name": "MapMagicSettings"
+    },
+    {
+      "Id": "settingsname122default",
+      "ParentId": "default",
+      "IdKey": 122,
+      "Name": "CrawlerUpgradeSettings"
+    },
+    {
+      "Id": "settingsname123default",
+      "ParentId": "default",
+      "IdKey": 123,
+      "Name": "StartCombatSettings"
+    },
+    {
+      "Id": "settingsname124default",
+      "ParentId": "default",
+      "IdKey": 124,
+      "Name": "UpgradeReasonSettings"
+    },
+    {
+      "Id": "settingsname125default",
+      "ParentId": "default",
+      "IdKey": 125,
+      "Name": "MemberUpgradeSettings"
+    },
+    {
+      "Id": "settingsname126default",
+      "ParentId": "default",
+      "IdKey": 126,
+      "Name": "PartyUpgradeSettings"
+    },
+    {
+      "Id": "settingsname127default",
+      "ParentId": "default",
+      "IdKey": 127,
+      "Name": "ScreenNameSettings"
+    },
+    {
+      "Id": "settingsname128default",
+      "ParentId": "default",
+      "IdKey": 128,
+      "Name": "CrawlerQuestSettings"
+    },
+    {
+      "Id": "settingsname129default",
+      "ParentId": "default",
+      "IdKey": 129,
+      "Name": "RiddleTypeSettings",
+      "SaveTime": "2025-06-02T18:31:10.308Z"
+    },
+    {
+      "Id": "settingsname130default",
+      "ParentId": "default",
+      "IdKey": 130,
+      "Name": "SeasonThemeSettings",
+      "SaveTime": "2025-06-12T17:38:11.611Z"
+    },
+    {
+      "Id": "settingsname131default",
+      "ParentId": "default",
+      "IdKey": 131,
+      "Name": "SeasonTierListSettings",
+      "SaveTime": "2025-06-12T17:38:11.611Z"
+    },
+    {
+      "Id": "settingsname132default",
+      "ParentId": "default",
+      "IdKey": 132,
+      "Name": "TimedEventTypeSettings",
+      "SaveTime": "2025-06-12T17:38:11.611Z"
+    },
+    {
+      "Id": "settingsname133default",
+      "ParentId": "default",
+      "IdKey": 133,
+      "Name": "CollectionThemeSettings",
+      "SaveTime": "2025-06-12T22:12:33.137Z"
+    },
+    {
+      "Id": "settingsname134default",
+      "ParentId": "default",
+      "IdKey": 134,
+      "Name": "CollectionTierListSettings",
+      "SaveTime": "2025-06-12T22:12:33.137Z"
+    },
+    {
+      "Id": "settingsname135default",
+      "ParentId": "default",
+      "IdKey": 135,
+      "Name": "TimedEventCurrencySettings",
+      "SaveTime": "2025-06-12T22:35:41.718Z"
+    },
+    {
+      "Id": "settingsname136default",
+      "ParentId": "default",
+      "IdKey": 136,
+      "Name": "AuthSettings",
+      "SaveTime": "2025-07-16T02:05:20.667Z"
+    },
+    {
+      "Id": "settingsname137default",
+      "ParentId": "default",
+      "IdKey": 137,
+      "Name": "CitySettings",
+      "SaveTime": "2025-07-19T20:53:27.953Z"
+    },
+    {
+      "Id": "settingsname138default",
+      "ParentId": "default",
+      "IdKey": 138,
+      "Name": "RoadSettings",
+      "SaveTime": "2025-07-19T20:53:27.953Z"
+    },
+    {
+      "Id": "settingsname139default",
+      "ParentId": "default",
+      "IdKey": 139,
+      "Name": "TradeGoodSettings",
+      "SaveTime": "2025-07-19T20:53:27.953Z"
+    },
+    {
+      "Id": "settingsname140default",
+      "ParentId": "default",
+      "IdKey": 140,
+      "Name": "AnimalSettings",
+      "SaveTime": "2025-07-19T22:46:23.138Z"
+    },
+    {
+      "Id": "settingsname141default",
+      "ParentId": "default",
+      "IdKey": 141,
+      "Name": "TravelSettings",
+      "SaveTime": "2025-07-20T05:46:45.391Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SettingsNameSettings",
+    "SaveTime": "2025-07-16T02:05:20.667Z"
+  },
+  "SaveTime": "2025-07-16T02:05:20.667Z"
+}

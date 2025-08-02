@@ -1,0 +1,202 @@
+{
+  "Id": "role7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Bard",
+  "Desc": "Hybrid Spell",
+  "Abbrev": "Bd",
+  "RoleCategoryId": 1,
+  "HealthPerLevel": 16,
+  "ManaPerLevel": 16,
+  "MaxArmorScalingTypeId": 3,
+  "CritPercent": 5,
+  "TrainingXpScale": 1.0,
+  "TrainingGoldScale": 1.0,
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 24
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 30
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 32
+    },
+    {
+      "EntityTypeId": 31,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 5
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 6
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 30
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 38
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 60
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 64
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 84
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 86
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 105
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 240
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 250
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 251
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 252
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 10031
+    }
+  ],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Amount": 0.25
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.35
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.35
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.3
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 5,
+      "Amount": 0.25
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 6,
+      "Amount": 0.3
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 12,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 15,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 16,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

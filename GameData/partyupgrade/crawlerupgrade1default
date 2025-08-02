@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "ClassCount",
+  "Desc": "Allows more classes per character.",
+  "MaxTier": 1,
+  "BonusPerTier": 1.0,
+  "BasePointCost": 100
+}

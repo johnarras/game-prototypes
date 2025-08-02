@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood33default",
+  "ParentId": "default",
+  "IdKey": 33,
+  "Name": "Cedar Timber",
+  "Desc": "Prized timber from Lebanon, valued for its resistance to rot and pleasant scent.",
+  "Icon": "CedarTimber",
+  "Art": "CedarTimber",
+  "CategoryName": "Wood",
+  "Density": 380.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 12000,
+  "PricePerWeight": 120,
+  "YearlyProduction": 5000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

@@ -1,0 +1,151 @@
+{
+  "Id": "role10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Paladin",
+  "Desc": "Tanky Heals",
+  "Abbrev": "Pa",
+  "RoleCategoryId": 1,
+  "HealthPerLevel": 20,
+  "ManaPerLevel": 18,
+  "MaxArmorScalingTypeId": 4,
+  "CritPercent": 5,
+  "Guardian": true,
+  "TrainingXpScale": 1.0,
+  "TrainingGoldScale": 1.0,
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 25
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 26
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 27
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 31,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 30
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 60
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 103
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 200
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 201
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 10031
+    }
+  ],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Amount": 0.35
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.2
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.3
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.4
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 5,
+      "Amount": 0.35
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 6,
+      "Amount": 0.2
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 11,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 15,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 17,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

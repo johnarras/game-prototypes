@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood94default",
+  "ParentId": "default",
+  "IdKey": 94,
+  "Name": "Sea Sponges",
+  "Desc": "Natural sponges harvested from the Mediterranean, used for bathing and cleaning.",
+  "Icon": "SeaSponges",
+  "Art": "SeaSponges",
+  "CategoryName": "Luxury Goods",
+  "Density": 80.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 12500,
+  "PricePerWeight": 12500,
+  "YearlyProduction": 2000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

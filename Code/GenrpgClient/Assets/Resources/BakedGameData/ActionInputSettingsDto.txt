@@ -1,0 +1,10 @@
+{
+  "Id": "default",
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "InputSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

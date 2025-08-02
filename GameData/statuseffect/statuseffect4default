@@ -1,0 +1,14 @@
+{
+  "Id": "statuseffect4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Slowed",
+  "Desc": "Melee attacks do XXXX percent less damage.",
+  "Icon": "Slowed",
+  "Art": "",
+  "Abbrev": "Sl",
+  "ElementTypeId": 3,
+  "CombatActionId": 1,
+  "Amount": 50,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype28default",
+  "ParentId": "default",
+  "IdKey": 28,
+  "Name": "Staff",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 28,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 190,
+  "ExplicitReagents": []
+}

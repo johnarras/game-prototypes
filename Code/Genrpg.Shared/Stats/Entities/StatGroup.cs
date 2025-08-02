@@ -1,0 +1,150 @@
+using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Stats.Messages;
+using MessagePack;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Xml;
+
+namespace Genrpg.Shared.Stats.Entities
+{
+    public class ReadOnlyStatGroup
+    {
+        private int[,] _stats = null;
+        const int _cacheLineOffset = 1;
+        public ReadOnlyStatGroup(StatGroup sgroup)
+        {
+            _stats = sgroup.GetStats();
+        }
+
+        public int Get(long statTypeId, int statCategory)
+            {
+                return _stats[statCategory, statTypeId - _cacheLineOffset];
+        }
+        public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
+        public int Pct(long statTypeId) { return Get(statTypeId, StatCategories.Pct); }
+        public int Base(long statTypeId) { return Get(statTypeId, StatCategories.Base); }
+        public int Bonus(long statTypeId) { return Get(statTypeId, StatCategories.Bonus); }
+
+        public int Max(long statTypeId)
+        {
+            int baseVal = Base(statTypeId) + Bonus(statTypeId);
+            if (baseVal > 0)
+            {
+                int pctVal = Pct(statTypeId);
+
+                return baseVal * (100 + pctVal) / 100;
+            }
+            return 0;
+        }
+    }
+
+
+    // MessagePackIgnore  
+    public class StatGroup
+    {
+        private int[,] _stats = null;
+
+        public StatGroup()
+        {
+            ResetAll();
+        }
+
+        const int _cacheLineOffset = 1;
+        public void ResetAll()
+        {
+            // Offset = 1 to make the mutable stats all be in one cache line I hope
+            _stats = new int[StatCategories.Size, StatConstants.MaxStatType-_cacheLineOffset];
+        }
+
+        public int[,] GetStats()
+        {
+            return _stats;
+        }
+
+        public int Get(long statTypeId, int statCategory)
+        {
+            return _stats[statCategory,statTypeId-_cacheLineOffset];
+        }
+
+        public void Set(long statTypeId, long statCategory, long val)
+        {
+            _stats[statCategory,statTypeId-_cacheLineOffset] = (int)val;
+        }
+
+        public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
+        public void SetCurr(long statTypeId, long val) { Set(statTypeId, StatCategories.Curr, val); }
+
+        public int Pct(long statTypeId) { return Get(statTypeId, StatCategories.Pct); }
+        public void SetPct(long statTypeId, long val) { Set(statTypeId, StatCategories.Pct, val); }
+
+        public int Base(long statTypeId) { return Get(statTypeId, StatCategories.Base); }
+        public void SetBase(long statTypeId, long val) { Set(statTypeId, StatCategories.Base, val); }
+
+        public int Bonus(long statTypeId) { return Get(statTypeId, StatCategories.Bonus); }
+        public void SetBonus(long statTypeId, long val) { Set(statTypeId, StatCategories.Bonus, val); }
+
+        public int Max(long statTypeId)
+        {
+            int baseVal = Base(statTypeId) + Bonus(statTypeId);
+            if (baseVal > 0)
+            {
+                int pctVal = Pct(statTypeId);
+
+                return baseVal * (100 + pctVal) / 100;
+            }
+            return 0;
+        }
+
+        public float ScaleDown(long statTypeId)
+        {
+            return 1;
+        }
+
+        public List<FullStat> GetSnapshot()
+        {
+            List<FullStat> retval = new List<FullStat>();
+
+            for (int statTypeId = 1; statTypeId < StatConstants.MaxStatType; statTypeId++)
+            {
+                FullStat fullStat = GetFullStat(statTypeId);
+
+                if (fullStat != null)
+                {
+                    retval.Add(fullStat);
+                }
+            }
+            return retval;
+        }
+
+        public void UpdateFromSnapshot(List<FullStat> fullStats)
+        {
+            if (fullStats == null)
+            {
+                return;
+            }
+
+            foreach (FullStat fullStat in fullStats)
+            {
+                SetBase(fullStat.GetStatId(), fullStat.GetMax());
+                SetCurr(fullStat.GetStatId(), fullStat.GetCurr());
+            }
+        }
+
+        public FullStat GetFullStat(long statTypeId)
+        {
+
+            int maxVal = Max(statTypeId);
+
+            if (maxVal > 0)
+            {
+                FullStat smallStat = new FullStat();
+                smallStat.SetData(statTypeId, Curr(statTypeId), Max(statTypeId));
+                return smallStat;
+            }
+            return null;
+        }
+
+    }
+}

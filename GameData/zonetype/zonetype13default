@@ -1,0 +1,31 @@
+{
+  "Id": "zonetype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "PointOfInterest",
+  "Desc": "",
+  "Icon": "PointOfInterest",
+  "Art": "PointOfInterest",
+  "Textures": [
+    {
+      "TextureTypeId": 99,
+      "Name": "Road/Base"
+    }
+  ],
+  "ZoneNames": [],
+  "ZoneAdjectives": [],
+  "BridgeTypes": [],
+  "FenceTypes": [],
+  "RockTypes": [],
+  "TreeTypes": [],
+  "CreatureNamePrefixes": [],
+  "CreatureDoubleNamePrefixes": [],
+  "Overrides": [],
+  "ZoneUnitSpawns": [],
+  "UnitKeyWords": [],
+  "PlantChoices": "",
+  "MusicTypeId": 1,
+  "AmbientMusicTypeId": 1,
+  "TraveralTimeScale": 1.0,
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

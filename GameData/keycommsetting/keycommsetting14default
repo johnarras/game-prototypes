@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting14default",
+  "IdKey": 14,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "s",
+  "KeyCommand": "Backward"
+}

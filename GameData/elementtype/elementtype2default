@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Fire",
+  "Desc": "Burn enemies.",
+  "Icon": "Fire",
+  "Art": "Fire",
+  "CasterActionName": "Burn",
+  "ObserverActionName": "Burns",
+  "CastAnim": "Fire",
+  "VulnElementTypeId": 3,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 2
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

@@ -1,0 +1,32 @@
+{
+  "Id": "unitkeyword3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Warrior",
+  "PluralName": "Warriors",
+  "Icon": "Warrior",
+  "Art": "Warrior",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 4
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 10
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 4
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

@@ -1,0 +1,19 @@
+{
+  "Id": "animal3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Pack Goat",
+  "Desc": "Extremely sure-footed and able to survive on sparse vegetation. Perfect for traversing mountain paths inaccessible to larger animals, but can only carry a small load.",
+  "Icon": "PackGoat",
+  "Art": "PackGoat",
+  "Endurance": 5,
+  "Speed": 2.0,
+  "CarryingCapacity": 18,
+  "RoughTerrain": 6,
+  "HotClimate": 4,
+  "ColdClimate": 4,
+  "WetClimate": 2,
+  "FoodPerDay": 3,
+  "WaterPerDay": 8,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

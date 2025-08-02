@@ -1,0 +1,19 @@
+{
+  "Id": "road61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "Gujarat Coastal Trail",
+  "Desc": "A local coastal road through the hot and humid region of Gujarat, linking major ports.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 69,
+  "EndCityId": 19,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 4.0,
+  "SummerHeat": 6.0,
+  "WinterHeat": 5.0,
+  "Length": 140.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

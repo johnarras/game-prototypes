@@ -1,0 +1,24 @@
+{
+  "Id": "role102default",
+  "ParentId": "default",
+  "IdKey": 102,
+  "Name": "Dwarf",
+  "Desc": "More health",
+  "Abbrev": "Dw",
+  "RoleCategoryId": 2,
+  "HealthPerLevel": 5,
+  "BinaryBonuses": [],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 15,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

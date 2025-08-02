@@ -1,0 +1,20 @@
+{
+  "Id": "road3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Via Flaminia Minor",
+  "Desc": "A branch of the Via Flaminia leading to the strategic Adriatic port of Ravenna.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 1,
+  "EndCityId": 30,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 2.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 2.0,
+  "Length": 400.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

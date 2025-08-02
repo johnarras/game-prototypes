@@ -1,0 +1,9 @@
+{
+  "Id": "riddletype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "WordLength",
+  "Art": "Statue",
+  "Weight": 1.0,
+  "SaveTime": "2025-06-07T20:01:42.426Z"
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting21default",
+  "IdKey": 21,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "esc",
+  "KeyCommand": "MainMenuScreen"
+}

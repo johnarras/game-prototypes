@@ -1,0 +1,14 @@
+{
+  "Parent": {
+    "Id": "default",
+    "Tokens": 50,
+    "Energy": 100,
+    "Money": 1000,
+    "EnergyPerHour": 6,
+    "TotalEnergyStorage": 40,
+    "MarkerId": 1,
+    "MarkerTier": 1,
+    "Name": "NewUserSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  }
+}

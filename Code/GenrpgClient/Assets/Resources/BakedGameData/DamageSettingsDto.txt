@@ -1,0 +1,29 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "damage1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Melee"
+    },
+    {
+      "Id": "damage2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Ranged"
+    },
+    {
+      "Id": "damage3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Spell"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "DamageSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

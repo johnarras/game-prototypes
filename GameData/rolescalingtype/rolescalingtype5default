@@ -1,0 +1,9 @@
+{
+  "Id": "rolescalingtype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Summon",
+  "Desc": "Increases the number of creatures summoned per level.",
+  "ScalingStatTypeId": 15,
+  "ScalingEquipSlotId": 15
+}

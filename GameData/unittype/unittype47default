@@ -1,0 +1,33 @@
+{
+  "Id": "unittype47default",
+  "ParentId": "default",
+  "IdKey": 47,
+  "Name": "Green Dragon",
+  "PluralName": "Green Dragons",
+  "Icon": "GreenDragon",
+  "Art": "GreenDragon",
+  "TribeTypeId": 16,
+  "MinLevel": 20,
+  "SpawnQuantityScale": 0.1,
+  "Effects": [
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 5
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 1
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

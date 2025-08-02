@@ -1,0 +1,20 @@
+{
+  "Id": "road20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "Via de la Plata & Pyrenees Path",
+  "Desc": "The 'Silver Route' heading north through western Hispania and crossing the rugged Pyrenees mountains into Gaul.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 29,
+  "EndCityId": 62,
+  "Maintenance": 3.0,
+  "Difficulty": 4.0,
+  "Danger": 4.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 2.0,
+  "Length": 910.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

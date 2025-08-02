@@ -1,0 +1,795 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "tiletype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "TownHall",
+      "Desc": "Main base",
+      "Icon": "TownHallTile",
+      "Art": "TownHallTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [],
+      "Effects": [],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 4
+        }
+      ]
+    },
+    {
+      "Id": "tiletype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Forest",
+      "Desc": "Wood and Leather",
+      "Icon": "ForestTile",
+      "Art": "ForestTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 12,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Hills",
+      "Desc": "Iron and Leather",
+      "Icon": "HillsTile",
+      "Art": "HillsTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 11,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Mountain",
+      "Desc": "Iron and Stone",
+      "Icon": "MountainTile",
+      "Art": "MountainTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 8,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Swamp",
+      "Desc": "Wood and Food",
+      "Icon": "SwampTile",
+      "Art": "SwampTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 9,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Plains",
+      "Desc": "Food and Herbs",
+      "Icon": "PlainsTile",
+      "Art": "PlainsTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 11,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 12,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Desert",
+      "Desc": "Stone and Herbs",
+      "Icon": "DesertTile",
+      "Art": "DesertTile",
+      "Weight": 1.0,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 8,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        },
+        {
+          "EntityTypeId": 200,
+          "EntityId": 9,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [],
+      "UpgradeReagents": []
+    },
+    {
+      "Id": "tiletype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Tanner",
+      "Desc": "Improves Leather",
+      "Icon": "TannerTile",
+      "Art": "TannerTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 12
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 5
+        }
+      ]
+    },
+    {
+      "Id": "tiletype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Farm",
+      "Desc": "Improves Food",
+      "Icon": "FarmTile",
+      "Art": "FarmTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 11,
+          "MinQuantity": 5,
+          "MaxQuantity": 10,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 11
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 3
+        }
+      ]
+    },
+    {
+      "Id": "tiletype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Lumbermill",
+      "Desc": "Improves Wood",
+      "Icon": "LumbermillTile",
+      "Art": "LumbermillTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 7,
+          "MinQuantity": 5,
+          "MaxQuantity": 10,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 7
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 3
+        }
+      ]
+    },
+    {
+      "Id": "tiletype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Alchemist",
+      "Desc": "Improves Herbs",
+      "Icon": "AlchemistTile",
+      "Art": "AlchemistTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 9,
+          "MinQuantity": 5,
+          "MaxQuantity": 10,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 9
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Id": "tiletype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Stonemason",
+      "Desc": "Improves Stone",
+      "Icon": "StonemasonTile",
+      "Art": "StonemasonTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 8,
+          "MinQuantity": 5,
+          "MaxQuantity": 10,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 8
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 3
+        }
+      ]
+    },
+    {
+      "Id": "tiletype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Smithy",
+      "Desc": "Improves Iron",
+      "Icon": "SmithyTile",
+      "Art": "SmithyTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 10,
+          "MinQuantity": 5,
+          "MaxQuantity": 10,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 201,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Id": "tiletype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Barracks",
+      "Desc": "Adds Troops To Attack",
+      "Icon": "BarracksTile",
+      "Art": "BarracksTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 13,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 202,
+          "Quantity": 20,
+          "EntityId": 13
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 4
+        }
+      ]
+    },
+    {
+      "Id": "tiletype15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "GuardTower",
+      "Desc": "Adds defenses to board",
+      "Icon": "GuardTowerTile",
+      "Art": "GuardTowerTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [],
+      "Effects": [],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "Id": "tiletype16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "Treasury",
+      "Desc": "Lets you unlock chests.",
+      "Icon": "TreasuryTile",
+      "Art": "TreasuryTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [],
+      "Effects": [],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 5
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 4
+        }
+      ]
+    },
+    {
+      "Id": "tiletype17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "Adventure",
+      "Desc": "Gives bonus round of rewards",
+      "Icon": "AdventureTile",
+      "Art": "AdventureTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [],
+      "Effects": [],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 1
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 4
+        }
+      ]
+    },
+    {
+      "Id": "tiletype18default",
+      "ParentId": "default",
+      "IdKey": 18,
+      "Name": "Mage Tower",
+      "Desc": "Improves defenses",
+      "Icon": "MageTowerTile",
+      "Art": "MageTowerTile",
+      "MinLevel": 1,
+      "Flags": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 14,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Weight": 1.0,
+          "GroupId": 1,
+          "MinLevel": 1
+        }
+      ],
+      "Effects": [
+        {
+          "EntityTypeId": 202,
+          "Quantity": 25,
+          "EntityId": 14
+        }
+      ],
+      "UpgradeReagents": [
+        {
+          "UserCoinTypeId": 7,
+          "Quantity": 2
+        },
+        {
+          "UserCoinTypeId": 8,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 9,
+          "Quantity": 4
+        },
+        {
+          "UserCoinTypeId": 10,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 11,
+          "Quantity": 3
+        },
+        {
+          "UserCoinTypeId": 12,
+          "Quantity": 3
+        }
+      ]
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TileTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

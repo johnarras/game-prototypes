@@ -1,0 +1,49 @@
+{
+  "Id": "city40default",
+  "ParentId": "default",
+  "IdKey": 40,
+  "Name": "Jerusalem",
+  "Desc": "A city of immense religious significance to multiple faiths, drawing pilgrims from across the world and exporting local holy goods.",
+  "Icon": "Jerusalem",
+  "Art": "Jerusalem",
+  "AncientName": "Aelia Capitolina",
+  "MapPixelX": 1313,
+  "MapPixelY": 1325,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 4
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 90
+    },
+    {
+      "TradeGoodId": 108
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

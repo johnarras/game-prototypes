@@ -1,0 +1,42 @@
+{
+  "Id": "unitkeyword22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Water",
+  "PluralName": "Waters",
+  "Icon": "Water",
+  "Art": "Water",
+  "Effects": [
+    {
+      "EntityTypeId": 24,
+      "Quantity": 1,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 4
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 221
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

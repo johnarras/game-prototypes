@@ -1,0 +1,53 @@
+{
+  "Id": "city29default",
+  "ParentId": "default",
+  "IdKey": 29,
+  "Name": "Mérida",
+  "Desc": "A grand city founded for veteran legionaries, known for its impressive Roman engineering, including theaters, bridges, and aqueducts.",
+  "Icon": "Merida",
+  "Art": "Merida",
+  "AncientName": "Emerita Augusta",
+  "MapPixelX": 367,
+  "MapPixelY": 1163,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 123
+    },
+    {
+      "TradeGoodId": 46
+    },
+    {
+      "TradeGoodId": 45
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

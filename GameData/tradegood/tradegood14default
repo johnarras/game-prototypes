@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Dried Apricots",
+  "Desc": "A sweet dried fruit, a specialty of caravan cities like Damascus.",
+  "Icon": "DriedApricots",
+  "Art": "DriedApricots",
+  "CategoryName": "Food",
+  "Density": 650.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 2200,
+  "PricePerWeight": 220,
+  "YearlyProduction": 8000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

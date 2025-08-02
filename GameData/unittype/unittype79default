@@ -1,0 +1,28 @@
+{
+  "Id": "unittype79default",
+  "ParentId": "default",
+  "IdKey": 79,
+  "Name": "Guard",
+  "PluralName": "Guards",
+  "Icon": "Guard",
+  "Art": "Guard",
+  "TribeTypeId": 11,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 31,
+      "Quantity": 5,
+      "EntityId": 36
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

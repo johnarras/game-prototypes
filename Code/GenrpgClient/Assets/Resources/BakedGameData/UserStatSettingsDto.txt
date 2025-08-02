@@ -1,0 +1,23 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "userstattype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Credits Mult"
+    },
+    {
+      "Id": "userstattype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Total Upgrade Cost"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "UserStatSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

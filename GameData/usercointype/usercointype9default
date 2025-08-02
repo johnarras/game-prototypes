@@ -1,0 +1,10 @@
+{
+  "Id": "usercointype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Herbs",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconHerbs",
+  "Art": "HerbsArt"
+}

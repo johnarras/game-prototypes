@@ -1,0 +1,13 @@
+{
+  "Id": "memberupgrade13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Utility Scaling",
+  "Desc": "Better Utility Scaling Per Level",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 0.05,
+  "EntityTypeId": 41,
+  "EntityId": 6,
+  "SaveTime": "2025-06-07T00:10:33.143Z"
+}

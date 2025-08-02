@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "RewardQuality",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 20,
+  "QuantityPerRank": 1
+}

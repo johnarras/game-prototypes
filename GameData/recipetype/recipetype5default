@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Gloves",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 5,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 15,
+  "ExplicitReagents": []
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting24default",
+  "IdKey": 24,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "p",
+  "KeyCommand": "CraftingScreen"
+}

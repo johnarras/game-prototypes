@@ -1,0 +1,20 @@
+{
+  "Id": "animal10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Heavy Warhorse",
+  "Desc": "A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge.",
+  "Icon": "HeavyWarhorse",
+  "Art": "HeavyWarhorse",
+  "Endurance": 2,
+  "Speed": 3.0,
+  "CarryingCapacity": 140,
+  "PullingCapacity": 400,
+  "RoughTerrain": 1,
+  "HotClimate": 1,
+  "ColdClimate": 3,
+  "WetClimate": 2,
+  "FoodPerDay": 18,
+  "WaterPerDay": 60,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

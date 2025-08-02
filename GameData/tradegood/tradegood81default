@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood81default",
+  "ParentId": "default",
+  "IdKey": 81,
+  "Name": "Malabathron",
+  "Desc": "The aromatic leaves of a tree from the Malabar coast, used as a spice and perfume.",
+  "Icon": "Malabathron",
+  "Art": "Malabathron",
+  "CategoryName": "Spices",
+  "Density": 400.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 140000,
+  "PricePerWeight": 140000,
+  "YearlyProduction": 240,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MarkerIcons
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 21bd22f8082f38e42a919bc0ece9f89a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 9736df11a5585f84daf88918e56fc42d: 21300000
+    - b91f44639fe44ec418f539ad08fee0e8: 21300000
+    - a37404c518443f549bc39ba9bfd55e41: 21300000
+    - fc6b0046078de1d458ec64881c9cdf77: 21300000
+    - 65e1f8f7f61697c4ba1552535fc737fb: 21300000
+    - ad364b7a37fe05c41a8abfbb8c3859d9: 21300000
+    - a1d06fff199099f4284bc2f6ef2f327a: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9736df11a5585f84daf88918e56fc42d, type: 3}
+  - {fileID: 21300000, guid: b91f44639fe44ec418f539ad08fee0e8, type: 3}
+  - {fileID: 21300000, guid: a37404c518443f549bc39ba9bfd55e41, type: 3}
+  - {fileID: 21300000, guid: fc6b0046078de1d458ec64881c9cdf77, type: 3}
+  - {fileID: 21300000, guid: 65e1f8f7f61697c4ba1552535fc737fb, type: 3}
+  - {fileID: 21300000, guid: ad364b7a37fe05c41a8abfbb8c3859d9, type: 3}
+  - {fileID: 21300000, guid: a1d06fff199099f4284bc2f6ef2f327a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - RedMarker
+  - PurpleMarker
+  - GreenMarker
+  - BlueMarker
+  - OrangeMarker
+  - YellowMarker
+  - CyanMarker
+  m_RenderDataMap: {}
+  m_Tag: MarkerIcons
+  m_IsVariant: 0

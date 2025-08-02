@@ -1,0 +1,33 @@
+{
+  "Id": "unittype53default",
+  "ParentId": "default",
+  "IdKey": 53,
+  "Name": "Fire Elemental",
+  "PluralName": "Fire Elementals",
+  "Icon": "FireElemental",
+  "Art": "FireElemental",
+  "TribeTypeId": 4,
+  "MinLevel": 15,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 24,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

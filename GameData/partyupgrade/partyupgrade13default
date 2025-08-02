@@ -1,0 +1,14 @@
+{
+  "Id": "partyupgrade13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "MemberTalentPoints",
+  "NameId": "",
+  "Desc": "Increases the number of member talent points players receive.",
+  "Icon": "",
+  "Art": "",
+  "MaxTier": 10,
+  "BonusPerTier": 1.0,
+  "BasePointCost": 4,
+  "SaveTime": "2025-06-07T00:16:50.417Z"
+}

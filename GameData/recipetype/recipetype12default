@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Necklace",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 12,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 15,
+  "ExplicitReagents": []
+}

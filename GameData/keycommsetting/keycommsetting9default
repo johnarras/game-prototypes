@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting9default",
+  "IdKey": 9,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "8",
+  "KeyCommand": "Action8"
+}

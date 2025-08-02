@@ -1,0 +1,61 @@
+{
+  "Id": "city66default",
+  "ParentId": "default",
+  "IdKey": 66,
+  "Name": "Seleucia",
+  "Desc": "A great Hellenistic metropolis founded on the Tigris, which for centuries rivaled Babylon and Alexandria in size and commercial importance.",
+  "Icon": "Seleucia",
+  "Art": "Seleucia",
+  "AncientName": "Seleucia",
+  "MapPixelX": 1525,
+  "MapPixelY": 1295,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 86
+    },
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 2
+    },
+    {
+      "TradeGoodId": 47
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

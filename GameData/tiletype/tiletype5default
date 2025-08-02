@@ -1,0 +1,33 @@
+{
+  "Id": "tiletype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Swamp",
+  "Desc": "Wood and Food",
+  "Icon": "SwampTile",
+  "Art": "SwampTile",
+  "Weight": 1.0,
+  "MinLevel": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 7,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 9,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [],
+  "UpgradeReagents": []
+}

@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Luck Bonus",
+  "Desc": "More Chance for Lucky Hits",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 16
+}

@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "City",
+  "Desc": "",
+  "Icon": "City",
+  "Art": "City",
+  "Radius": 5,
+  "VariationCount": 2,
+  "ShowNameplate": true
+}

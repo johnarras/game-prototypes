@@ -1,0 +1,6 @@
+{
+  "Id": "damage2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Ranged"
+}

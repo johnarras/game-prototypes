@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Withered",
+  "Desc": "Stat bonuses are XXXX percent lower.",
+  "Icon": "Withered",
+  "Art": "",
+  "Abbrev": "Wt",
+  "ElementTypeId": 5,
+  "Amount": 25,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

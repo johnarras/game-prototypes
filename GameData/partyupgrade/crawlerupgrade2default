@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "ActionCount",
+  "Desc": "Allows more actions per combat round.",
+  "MaxTier": 1,
+  "BonusPerTier": 1.0,
+  "BasePointCost": 100
+}

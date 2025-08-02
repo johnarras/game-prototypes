@@ -1,0 +1,8 @@
+{
+  "Id": "targettype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "EnemyInEachGroup",
+  "Desc": "Attack each group with a single target chaining attack.",
+  "StatBonusScale": 1.0
+}

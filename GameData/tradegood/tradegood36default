@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood36default",
+  "ParentId": "default",
+  "IdKey": 36,
+  "Name": "Limestone",
+  "Desc": "A common and easily worked stone used for the bulk of construction.",
+  "Icon": "Limestone",
+  "Art": "Limestone",
+  "CategoryName": "Stone",
+  "Density": 1500.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 4000,
+  "PricePerWeight": 40,
+  "YearlyProduction": 500000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

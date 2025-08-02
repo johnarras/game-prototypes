@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerquesttype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "TravelToNpc",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Weight": 0.25
+}

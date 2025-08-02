@@ -1,0 +1,21 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "buildingart1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Default",
+      "Desc": "Default",
+      "Icon": "Default",
+      "Art": "Default",
+      "Weight": 1.0
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "BuildingArtSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

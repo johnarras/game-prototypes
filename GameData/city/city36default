@@ -1,0 +1,53 @@
+{
+  "Id": "city36default",
+  "ParentId": "default",
+  "IdKey": 36,
+  "Name": "Halicarnassus",
+  "Desc": "A coastal Carian city famed as the site of the Mausoleum, one of the Seven Wonders of the Ancient World.",
+  "Icon": "Halicarnassus",
+  "Art": "Halicarnassus",
+  "AncientName": "Halicarnassus",
+  "MapPixelX": 1135,
+  "MapPixelY": 1205,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 13
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 94
+    },
+    {
+      "TradeGoodId": 104
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

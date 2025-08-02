@@ -1,0 +1,43 @@
+{
+  "Id": "unittype44default",
+  "ParentId": "default",
+  "IdKey": 44,
+  "Name": "Red Dragon",
+  "PluralName": "Red Dragons",
+  "Icon": "RedDragon",
+  "Art": "RedDragon",
+  "TribeTypeId": 16,
+  "MinLevel": 20,
+  "SpawnQuantityScale": 0.1,
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 212
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

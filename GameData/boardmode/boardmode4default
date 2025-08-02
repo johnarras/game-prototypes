@@ -1,0 +1,12 @@
+{
+  "Id": "boardmode4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Defend",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "DiceCount": 1,
+  "FreeRolls": true,
+  "PrizeRules": []
+}

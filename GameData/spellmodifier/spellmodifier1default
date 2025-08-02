@@ -1,0 +1,14 @@
+{
+  "Id": "spellmodifier1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Cooldown",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "DisplaySuffix": "sec",
+  "DataMemberName": "Cooldown",
+  "DisplayMult": 1.0,
+  "MaxValue": 300.0,
+  "ValueDelta": 6.0
+}

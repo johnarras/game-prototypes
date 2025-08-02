@@ -1,0 +1,39 @@
+{
+  "Id": "tiletype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Adventure",
+  "Desc": "Gives bonus round of rewards",
+  "Icon": "AdventureTile",
+  "Art": "AdventureTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [],
+  "Effects": [],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 1
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 4
+    }
+  ]
+}

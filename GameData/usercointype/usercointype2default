@@ -1,0 +1,10 @@
+{
+  "Id": "usercointype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Credits",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconCredits",
+  "Art": "CreditsArt"
+}

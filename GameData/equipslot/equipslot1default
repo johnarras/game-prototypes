@@ -1,0 +1,12 @@
+{
+  "Id": "equipslot1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Head",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Active": true,
+  "IsCrawlerSlot": true,
+  "BaseBonusStatTypeId": 31
+}

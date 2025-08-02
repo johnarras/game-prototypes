@@ -1,0 +1,698 @@
+{
+  "Id": "zonetype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "DarkForest",
+  "Desc": "",
+  "Icon": "DarkForest",
+  "Art": "DarkForest",
+  "MinLevel": 10,
+  "GenChance": 4.0,
+  "GrassDensity": 0.75,
+  "GrassFreq": 1.0,
+  "TreeDensity": 1.25,
+  "BushDensity": 1.1,
+  "BushFreq": 1.0,
+  "RockDensity": 1.0,
+  "DetailAmp": 1.1,
+  "DetailFreq": 0.9,
+  "RoadDetailScale": 0.4,
+  "RoadDipScale": 1.0,
+  "RoadDirtScale": 1.3,
+  "ZoneListGenScale": 1.0,
+  "Textures": [
+    {
+      "TextureTypeId": 6
+    },
+    {
+      "TextureTypeId": 2,
+      "TextureChannelId": 1
+    },
+    {
+      "TextureTypeId": 4,
+      "TextureChannelId": 2
+    },
+    {
+      "TextureTypeId": 3,
+      "TextureChannelId": 3
+    }
+  ],
+  "ZoneNames": [
+    {
+      "Weight": 1000.0,
+      "Name": "Copse",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Forest",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Greens",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Grove",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Growth",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Heart",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hollow",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Thicket",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Timberland",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Vale",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Valley",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Wood",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Woodlands",
+      "Desc": ""
+    }
+  ],
+  "ZoneAdjectives": [
+    {
+      "Weight": 1000.0,
+      "Name": "Chilled",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Chilly",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Chittering",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Cold",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Creepy",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Damp",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dank",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dark",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Deep",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dense",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Forbidding",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Gloomy",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Misty",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Quiet",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Still",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Wet",
+      "Desc": ""
+    }
+  ],
+  "BridgeTypes": [
+    {
+      "BridgeTypeId": 2,
+      "Chance": 100
+    },
+    {
+      "BridgeTypeId": 3,
+      "Chance": 100
+    },
+    {
+      "BridgeTypeId": 1,
+      "Chance": 100
+    }
+  ],
+  "FenceTypes": [
+    {
+      "FenceTypeId": 1,
+      "Weight": 1.0
+    }
+  ],
+  "RockTypes": [
+    {
+      "RockTypeId": 1,
+      "Weight": 1.0,
+      "BaseColor": {
+        "R": 1.0,
+        "G": 1.0,
+        "B": 1.0,
+        "A": 1.0
+      }
+    }
+  ],
+  "TreeTypes": [
+    {
+      "TreeTypeId": 2,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 3,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 4,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 9,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 10,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 11,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 13,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 14,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 55,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 66,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 70,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 76,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 77,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 78,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 22,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 23,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 16,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 17,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 19,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 80,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 81,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 82,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 83,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 84,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 85,
+      "PopulationScale": 1.0
+    },
+    {
+      "TreeTypeId": 86,
+      "PopulationScale": 1.0
+    }
+  ],
+  "CreatureNamePrefixes": [
+    {
+      "Weight": 1000.0,
+      "Name": "Dark",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dusk",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Fetid",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Gloom",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Midnight",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Night",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shade",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shadow",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shadowy",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Twilight",
+      "Desc": ""
+    }
+  ],
+  "CreatureDoubleNamePrefixes": [
+    {
+      "Weight": 1000.0,
+      "Name": "Black",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dark",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Dusk",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Forest",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Gloom",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Midnight",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Night",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shade",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shadow",
+      "Desc": ""
+    }
+  ],
+  "Overrides": [],
+  "ZoneUnitSpawns": [
+    {
+      "UnitTypeId": 1,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 2,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 4,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 7,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 8,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 9,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 10,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 11,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 12,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 13,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 14,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 15,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 16,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 17,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 18,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 19,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 20,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 21,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 22,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 24,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 25,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 26,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 27,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 29,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 30,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 43,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 44,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 45,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 46,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 47,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 48,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 51,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 52,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 53,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 54,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 55,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 57,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 58,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 59,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 60,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 61,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 64,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 65,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 66,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 67,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 68,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 69,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 72,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 73,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 74,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 75,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 76,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 77,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 78,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 80,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 81,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 82,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 83,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 84,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 85,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 86,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 87,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 88,
+      "Weight": 1.0
+    },
+    {
+      "UnitTypeId": 89,
+      "Weight": 10.0
+    },
+    {
+      "UnitTypeId": 90,
+      "Weight": 10.0
+    }
+  ],
+  "UnitKeyWords": [],
+  "PlantChoices": "2 5 8 10 20 21 23 24 27 29 30 7 15 25 3 16 18 26 9",
+  "FenceChance": 0.1,
+  "WeatherTypeId": 7,
+  "MusicTypeId": 2,
+  "AmbientMusicTypeId": 7,
+  "TraveralTimeScale": 10.0,
+  "ZoneCategoryId": 1,
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

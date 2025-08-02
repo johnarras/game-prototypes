@@ -1,0 +1,16 @@
+{
+  "Id": "charmbonus15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "EntityTypeId": 31,
+  "EntityId": 50,
+  "CharmUseId": 1,
+  "CheckBitCount": 12,
+  "CheckBitsMatchTarget": 3,
+  "CheckBitStartIndex": 3550,
+  "CheckBitSkip": 7,
+  "QuantityBitsCount": 12,
+  "QuantityMod": 48,
+  "QuantityBitSkip": 26,
+  "QuantityStartBit": 6857
+}

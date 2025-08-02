@@ -1,0 +1,110 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "boardmode1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Primary",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 2,
+      "GiveDefaultTileRewards": true,
+      "PrizeRules": [
+        {
+          "PathIndex": 1,
+          "PassPrizes": [],
+          "LandPrizes": [
+            {
+              "BoardPrizeId": 1,
+              "Weight": 0.6,
+              "Name": "None"
+            },
+            {
+              "BoardPrizeId": 2,
+              "Weight": 0.1
+            },
+            {
+              "BoardPrizeId": 3,
+              "Weight": 0.2
+            },
+            {
+              "BoardPrizeId": 4,
+              "Weight": 0.1
+            }
+          ],
+          "PassPercent": 0.25,
+          "LandPercent": 0.25
+        }
+      ]
+    },
+    {
+      "Id": "boardmode2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Bonus",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 2,
+      "FreeRolls": true,
+      "PrizeRules": []
+    },
+    {
+      "Id": "boardmode3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "PVP",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 1,
+      "FreeRolls": true,
+      "GiveDefaultTileRewards": true,
+      "PrizeRules": []
+    },
+    {
+      "Id": "boardmode4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Defend",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 1,
+      "FreeRolls": true,
+      "PrizeRules": []
+    },
+    {
+      "Id": "boardmode5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Levelup",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 1,
+      "FreeRolls": true,
+      "PrizeRules": []
+    },
+    {
+      "Id": "boardmode7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Levelup",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "DiceCount": 1,
+      "FreeRolls": true,
+      "PrizeRules": []
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "BoardModeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

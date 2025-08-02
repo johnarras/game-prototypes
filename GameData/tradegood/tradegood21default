@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "Fine Wool",
+  "Desc": "Exceptionally soft wool from specific breeds, used for luxury garments.",
+  "Icon": "FineWool",
+  "Art": "FineWool",
+  "CategoryName": "Raw Textiles",
+  "Density": 180.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 2500,
+  "PricePerWeight": 250,
+  "YearlyProduction": 50000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

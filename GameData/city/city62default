@@ -1,0 +1,50 @@
+{
+  "Id": "city62default",
+  "ParentId": "default",
+  "IdKey": 62,
+  "Name": "Bordeaux",
+  "Desc": "A flourishing port city in southwestern Gaul, the center of a major wine-producing region whose goods were shipped across the empire.",
+  "Icon": "Bordeaux",
+  "Art": "Bordeaux",
+  "AncientName": "Burdigala",
+  "MapPixelX": 498,
+  "MapPixelY": 1028,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 17
+    },
+    {
+      "TradeGoodId": 43
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

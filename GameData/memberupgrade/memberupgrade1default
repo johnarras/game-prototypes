@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Strength Bonus",
+  "Desc": "More Melee Damage Per Hit",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 11
+}

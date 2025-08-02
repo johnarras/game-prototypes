@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood114default",
+  "ParentId": "default",
+  "IdKey": 114,
+  "Name": "Bricks",
+  "Desc": "A durable sedimentary rock used for temples and monuments, especially in Egypt.",
+  "Icon": "Bricks",
+  "Art": "Bricks",
+  "CategoryName": "Stone",
+  "Density": 1400.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 5000,
+  "PricePerWeight": 50,
+  "YearlyProduction": 80000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

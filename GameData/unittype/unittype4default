@@ -1,0 +1,29 @@
+{
+  "Id": "unittype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Mongrel",
+  "PluralName": "Mongrels",
+  "Icon": "Mongrel",
+  "Art": "Mongrel",
+  "TribeTypeId": 10,
+  "MinLevel": 5,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [
+    {
+      "UnitKeywordId": 14
+    },
+    {
+      "UnitKeywordId": 17
+    }
+  ],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

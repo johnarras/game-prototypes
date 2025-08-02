@@ -1,0 +1,12 @@
+{
+  "Id": "itemtype304default",
+  "ParentId": "default",
+  "IdKey": 304,
+  "Name": "Wisdom Elxiir",
+  "Icon": "WisdomElixir",
+  "Effects": [],
+  "LevelRanges": [],
+  "QualityNames": [],
+  "IconCounts": [],
+  "Names": []
+}

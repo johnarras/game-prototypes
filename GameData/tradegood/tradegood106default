@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood106default",
+  "ParentId": "default",
+  "IdKey": 106,
+  "Name": "Scholarly Scroll",
+  "Desc": "A scroll containing valuable knowledge on philosophy, science, or literature.",
+  "Icon": "ScholarlyScroll",
+  "Art": "ScholarlyScroll",
+  "CategoryName": "Knowledge",
+  "Density": 300.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 50000,
+  "PricePerWeight": 50000,
+  "YearlyProduction": 400,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

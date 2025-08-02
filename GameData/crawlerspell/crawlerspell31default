@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "Phase Wall",
+  "Desc": "Pass through a wall in front of you if the square behind it exists.",
+  "PowerCost": 50.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 37,
+      "EntityId": 2,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

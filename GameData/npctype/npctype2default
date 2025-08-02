@@ -1,0 +1,9 @@
+{
+  "Id": "npctype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Carpenter",
+  "CrafterTypeId": 2,
+  "BuildingTypeId": 2,
+  "DefaultVendorItems": []
+}

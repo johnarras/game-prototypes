@@ -1,0 +1,19 @@
+{
+  "Id": "road67default",
+  "ParentId": "default",
+  "IdKey": 67,
+  "Name": "Via Balbia",
+  "Desc": "A long coastal road linking Egypt with the province of Cyrenaica, often threatened by desert raiders.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 4,
+  "EndCityId": 50,
+  "Maintenance": 3.0,
+  "Difficulty": 3.0,
+  "Danger": 4.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 3.0,
+  "Length": 1050.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

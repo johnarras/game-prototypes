@@ -1,0 +1,9 @@
+{
+  "Id": "upgradereason1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "CompleteDungeon",
+  "Desc": "Completed a Dungeon",
+  "GamePoints": 1,
+  "RunPoints": 1
+}

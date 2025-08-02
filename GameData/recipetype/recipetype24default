@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype24default",
+  "ParentId": "default",
+  "IdKey": 24,
+  "Name": "Dagger",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 24,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 90,
+  "ExplicitReagents": []
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood90default",
+  "ParentId": "default",
+  "IdKey": 90,
+  "Name": "Balsam Oil",
+  "Desc": "A rare and fragrant medicinal oil from Judea, prized for its healing properties.",
+  "Icon": "BalsamOil",
+  "Art": "BalsamOil",
+  "CategoryName": "Cosmetics",
+  "Density": 930.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 30000,
+  "PricePerWeight": 30000,
+  "YearlyProduction": 250,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

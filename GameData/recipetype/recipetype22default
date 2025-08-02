@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Axe",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 22,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 110,
+  "ExplicitReagents": []
+}

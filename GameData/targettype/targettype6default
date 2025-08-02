@@ -1,0 +1,9 @@
+{
+  "Id": "targettype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "World",
+  "Desc": "World",
+  "Icon": "",
+  "StatBonusScale": 1.0
+}

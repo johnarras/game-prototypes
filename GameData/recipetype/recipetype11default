@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Offhand",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 11,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 20,
+  "ExplicitReagents": []
+}

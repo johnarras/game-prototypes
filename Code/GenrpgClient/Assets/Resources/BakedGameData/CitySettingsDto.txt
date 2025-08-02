@@ -1,0 +1,3783 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "city1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Rome",
+      "Desc": "The sprawling heart of the Empire, a vast metropolis that consumes the tribute of a continent and projects power across the known world.",
+      "Icon": "Rome",
+      "Art": "Rome",
+      "AncientName": "Roma",
+      "MapPixelX": 796,
+      "MapPixelY": 1095,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 112
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 4
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Athens",
+      "Desc": "The cradle of Western philosophy and democracy, famed for its monumental Acropolis, fine pottery, and bustling port of Piraeus.",
+      "Icon": "Athens",
+      "Art": "Athens",
+      "AncientName": "Athenae",
+      "MapPixelX": 1052,
+      "MapPixelY": 1184,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 47
+        },
+        {
+          "TradeGoodId": 38
+        },
+        {
+          "TradeGoodId": 11
+        },
+        {
+          "TradeGoodId": 4
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Carthage",
+      "Desc": "Rome's great rival, a mercantile powerhouse on the African coast, built on maritime trade and control of the seas before its fateful fall.",
+      "Icon": "Carthage",
+      "Art": "Carthage",
+      "AncientName": "Carthago",
+      "MapPixelX": 746,
+      "MapPixelY": 1210,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 77
+        },
+        {
+          "TradeGoodId": 25
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 45
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Alexandria",
+      "Desc": "The intellectual and commercial hub of the Mediterranean, home to the Great Library and the Lighthouse, where Eastern goods meet Western markets.",
+      "Icon": "Alexandria",
+      "Art": "Alexandria",
+      "AncientName": "Alexandria ad Aegyptum",
+      "MapPixelX": 1193,
+      "MapPixelY": 1339,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 58
+        },
+        {
+          "TradeGoodId": 25
+        },
+        {
+          "TradeGoodId": 112
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 79
+        },
+        {
+          "TradeGoodId": 80
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Antioch",
+      "Desc": "A luxurious and cosmopolitan city near the Levant coast, serving as a major western terminus of the Silk Road and a gateway to Persia.",
+      "Icon": "Antioch",
+      "Art": "Antioch",
+      "AncientName": "Antiochia ad Orontem",
+      "MapPixelX": 1334,
+      "MapPixelY": 1225,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 73
+        },
+        {
+          "TradeGoodId": 119
+        },
+        {
+          "TradeGoodId": 82
+        },
+        {
+          "TradeGoodId": 122
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Tyre",
+      "Desc": "An ancient Phoenician island fortress, legendary for its resilient defenders, skilled sailors, and the priceless purple dye harvested from its shores.",
+      "Icon": "Tyre",
+      "Art": "Tyre",
+      "AncientName": "Tyrus",
+      "MapPixelX": 1313,
+      "MapPixelY": 1291,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 77
+        },
+        {
+          "TradeGoodId": 33
+        },
+        {
+          "TradeGoodId": 112
+        },
+        {
+          "TradeGoodId": 26
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Babylon",
+      "Desc": "The ancient, magnificent capital of Mesopotamia, famed for its ziggurats and hanging gardens, situated on the fertile banks of the Euphrates.",
+      "Icon": "Babylon",
+      "Art": "Babylon",
+      "AncientName": "Babylon",
+      "MapPixelX": 1523,
+      "MapPixelY": 1308,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 20
+        },
+        {
+          "TradeGoodId": 121
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 86
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Memphis",
+      "Desc": "The ancient capital of Lower Egypt, a city of immense religious importance and the administrative center for the wealth of the Nile Delta.",
+      "Icon": "Memphis",
+      "Art": "Memphis",
+      "AncientName": "Men-nefer",
+      "MapPixelX": 1223,
+      "MapPixelY": 1369,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 58
+        },
+        {
+          "TradeGoodId": 36
+        },
+        {
+          "TradeGoodId": 39
+        },
+        {
+          "TradeGoodId": 25
+        },
+        {
+          "TradeGoodId": 120
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Istanbul",
+      "Desc": "The city on two continents, holding the strategic key to the Bosphorus strait and controlling all trade between the Black Sea and the Mediterranean.",
+      "Icon": "Istanbul",
+      "Art": "Istanbul",
+      "AncientName": "Byzantion/Constantinopolis",
+      "MapPixelX": 1171,
+      "MapPixelY": 1115,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 61
+        },
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 122
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 17,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Cadiz",
+      "Desc": "A vital Phoenician and later Roman port on the Atlantic, a gateway for the mineral wealth of Hispania and trade from the mysterious northern seas.",
+      "Icon": "Cadiz",
+      "Art": "Cadiz",
+      "AncientName": "Gades",
+      "MapPixelX": 368,
+      "MapPixelY": 1217,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 10
+        },
+        {
+          "TradeGoodId": 43
+        },
+        {
+          "TradeGoodId": 45
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Marseille",
+      "Desc": "An old Greek colony on the coast of Gaul, serving as a key entry point for Roman goods and culture into the Celtic hinterlands.",
+      "Icon": "Marseille",
+      "Art": "Marseille",
+      "AncientName": "Massilia",
+      "MapPixelX": 634,
+      "MapPixelY": 1063,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 18
+        },
+        {
+          "TradeGoodId": 84
+        },
+        {
+          "TradeGoodId": 43
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Corinth",
+      "Desc": "A wealthy Greek city controlling the strategic isthmus between the Peloponnese and mainland Greece, famed for its high-quality pottery and bronze.",
+      "Icon": "Corinth",
+      "Art": "Corinth",
+      "AncientName": "Corinthus",
+      "MapPixelX": 1033,
+      "MapPixelY": 1186,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 68
+        },
+        {
+          "TradeGoodId": 89
+        },
+        {
+          "TradeGoodId": 54
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Ephesus",
+      "Desc": "A bustling metropolis in western Anatolia, home to the great Temple of Artemis and a major center for trade and pilgrimage.",
+      "Icon": "Ephesus",
+      "Art": "Ephesus",
+      "AncientName": "Ephesus",
+      "MapPixelX": 1134,
+      "MapPixelY": 1185,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 104
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 27
+        },
+        {
+          "TradeGoodId": 82
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Palmyra",
+      "Desc": "A wealthy caravan city rising from the Syrian desert, a vital and often independent link on the Silk Road between the Roman and Persian spheres.",
+      "Icon": "Palmyra",
+      "Art": "Palmyra",
+      "AncientName": "Tadmor",
+      "MapPixelX": 1382,
+      "MapPixelY": 1262,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 82
+        },
+        {
+          "TradeGoodId": 83
+        },
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 122
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "Petra",
+      "Desc": "The hidden capital of the Nabataeans, carved from red desert rock, which grew rich by controlling the lucrative incense trade routes from Arabia.",
+      "Icon": "Petra",
+      "Art": "Petra",
+      "AncientName": "Petra",
+      "MapPixelX": 1318,
+      "MapPixelY": 1358,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 82
+        },
+        {
+          "TradeGoodId": 83
+        },
+        {
+          "TradeGoodId": 86
+        },
+        {
+          "TradeGoodId": 42
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "Leptis Magna",
+      "Desc": "A splendid Roman port city on the Libyan coast, which flourished as a major exporter of olive oil and exotic animals for the gladiatorial games.",
+      "Icon": "LeptisMagna",
+      "Art": "LeptisMagna",
+      "AncientName": "Leptis Magna",
+      "MapPixelX": 836,
+      "MapPixelY": 1306,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 51
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "Syracuse",
+      "Desc": "The most powerful Greek city in Sicily, a major naval and commercial power that often challenged Athens and Carthage for dominance.",
+      "Icon": "Syracuse",
+      "Art": "Syracuse",
+      "AncientName": "Syracusae",
+      "MapPixelX": 858,
+      "MapPixelY": 1204,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 11
+        },
+        {
+          "TradeGoodId": 58
+        },
+        {
+          "TradeGoodId": 47
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city18default",
+      "ParentId": "default",
+      "IdKey": 18,
+      "Name": "Meroë",
+      "Desc": "The capital of the Kingdom of Kush, a southern powerhouse known for its distinctive pyramids, iron production, and trade in exotic African goods.",
+      "Icon": "Meroë",
+      "Art": "Meroë",
+      "AncientName": "Meroë",
+      "MapPixelX": 1279,
+      "MapPixelY": 1663,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 41
+        },
+        {
+          "TradeGoodId": 46
+        },
+        {
+          "TradeGoodId": 92
+        },
+        {
+          "TradeGoodId": 35
+        },
+        {
+          "TradeGoodId": 93
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city19default",
+      "ParentId": "default",
+      "IdKey": 19,
+      "Name": "Lothal",
+      "Desc": "One of the most prominent cities of the ancient Indus Valley Civilization, featuring a massive and sophisticated dock for maritime trade.",
+      "Icon": "Lothal",
+      "Art": "Lothal",
+      "AncientName": "Lothal",
+      "MapPixelX": 2154,
+      "MapPixelY": 1536,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 98
+        },
+        {
+          "TradeGoodId": 97
+        },
+        {
+          "TradeGoodId": 92
+        },
+        {
+          "TradeGoodId": 22
+        },
+        {
+          "TradeGoodId": 42
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city20default",
+      "ParentId": "default",
+      "IdKey": 20,
+      "Name": "Ur",
+      "Desc": "A mighty Sumerian city-state in southern Mesopotamia, a cradle of civilization and an early hub for trade with lands across the Persian Gulf.",
+      "Icon": "Ur",
+      "Art": "Ur",
+      "AncientName": "Ur",
+      "MapPixelX": 1561,
+      "MapPixelY": 1344,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 27
+        },
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 42
+        },
+        {
+          "TradeGoodId": 107
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city21default",
+      "ParentId": "default",
+      "IdKey": 21,
+      "Name": "Xi'an",
+      "Desc": "The grand eastern terminus of the Silk Road and capital of powerful Chinese dynasties, a center of immense wealth, culture, and innovation.",
+      "Icon": "Xian",
+      "Art": "Xian",
+      "AncientName": "Chang'an",
+      "MapPixelX": 2990,
+      "MapPixelY": 1269,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 103
+        },
+        {
+          "TradeGoodId": 99
+        },
+        {
+          "TradeGoodId": 71
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city22default",
+      "ParentId": "default",
+      "IdKey": 22,
+      "Name": "London",
+      "Desc": "A bustling Roman port and administrative center on the River Thames, the heart of commerce for the remote province of Britannia.",
+      "Icon": "London",
+      "Art": "London",
+      "AncientName": "Londinium",
+      "MapPixelX": 509,
+      "MapPixelY": 876,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 44
+        },
+        {
+          "TradeGoodId": 43
+        },
+        {
+          "TradeGoodId": 61
+        },
+        {
+          "TradeGoodId": 17
+        },
+        {
+          "TradeGoodId": 27
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city23default",
+      "ParentId": "default",
+      "IdKey": 23,
+      "Name": "Lyon",
+      "Desc": "The capital of the Three Gauls and a major Roman administrative and industrial center, known for its mint and pottery production.",
+      "Icon": "Lyon",
+      "Art": "Lyon",
+      "AncientName": "Lugdunum",
+      "MapPixelX": 622,
+      "MapPixelY": 1007,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 57
+        },
+        {
+          "TradeGoodId": 47
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city24default",
+      "ParentId": "default",
+      "IdKey": 24,
+      "Name": "Paris",
+      "Desc": "A modest settlement of the Parisii tribe on an island in the Seine, which grew into a significant regional center under Roman rule.",
+      "Icon": "Paris",
+      "Art": "Paris",
+      "AncientName": "Lutetia Parisiorum",
+      "MapPixelX": 565,
+      "MapPixelY": 936,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 49
+        },
+        {
+          "TradeGoodId": 12
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city25default",
+      "ParentId": "default",
+      "IdKey": 25,
+      "Name": "Trier",
+      "Desc": "A major Roman city on the Moselle River, which eventually became an imperial capital and one of the largest cities in the empire.",
+      "Icon": "Trier",
+      "Art": "Trier",
+      "AncientName": "Augusta Treverorum",
+      "MapPixelX": 664,
+      "MapPixelY": 916,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 6
+        },
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 27
+        },
+        {
+          "TradeGoodId": 114
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city26default",
+      "ParentId": "default",
+      "IdKey": 26,
+      "Name": "Cologne",
+      "Desc": "A key Roman military outpost and provincial capital on the Rhine frontier, guarding the empire against Germanic tribes.",
+      "Icon": "Cologne",
+      "Art": "Cologne",
+      "AncientName": "Colonia Agrippinensis",
+      "MapPixelX": 671,
+      "MapPixelY": 890,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 56
+        },
+        {
+          "TradeGoodId": 50
+        },
+        {
+          "TradeGoodId": 8
+        },
+        {
+          "TradeGoodId": 1
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city27default",
+      "ParentId": "default",
+      "IdKey": 27,
+      "Name": "Cordoba",
+      "Desc": "A major Roman and later Umayyad capital in Hispania, famed for its high-quality olive oil, leatherwork, and intellectual pursuits.",
+      "Icon": "Cordoba",
+      "Art": "Cordoba",
+      "AncientName": "Corduba",
+      "MapPixelX": 403,
+      "MapPixelY": 1186,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 10
+        },
+        {
+          "TradeGoodId": 62
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city28default",
+      "ParentId": "default",
+      "IdKey": 28,
+      "Name": "Tarragona",
+      "Desc": "The oldest Roman settlement in Hispania, serving as a major port and the administrative capital of a vast province.",
+      "Icon": "Tarragona",
+      "Art": "Tarragona",
+      "AncientName": "Tarraco",
+      "MapPixelX": 541,
+      "MapPixelY": 1113,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 24
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 36
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city29default",
+      "ParentId": "default",
+      "IdKey": 29,
+      "Name": "Mérida",
+      "Desc": "A grand city founded for veteran legionaries, known for its impressive Roman engineering, including theaters, bridges, and aqueducts.",
+      "Icon": "Merida",
+      "Art": "Merida",
+      "AncientName": "Emerita Augusta",
+      "MapPixelX": 367,
+      "MapPixelY": 1163,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 123
+        },
+        {
+          "TradeGoodId": 46
+        },
+        {
+          "TradeGoodId": 45
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "Ravenna",
+      "Desc": "A strategic port city surrounded by marshes, which became the last capital of the Western Roman Empire and a bastion of Byzantine art.",
+      "Icon": "Ravenna",
+      "Art": "Ravenna",
+      "AncientName": "Ravenna",
+      "MapPixelX": 789,
+      "MapPixelY": 1038,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 34
+        },
+        {
+          "TradeGoodId": 18
+        },
+        {
+          "TradeGoodId": 109
+        },
+        {
+          "TradeGoodId": 1
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city31default",
+      "ParentId": "default",
+      "IdKey": 31,
+      "Name": "Aquileia",
+      "Desc": "A major Roman city at the head of the Adriatic Sea, a crossroads for trade in amber, iron, and wine between Italy and the northern provinces.",
+      "Icon": "Aquileia",
+      "Art": "Aquileia",
+      "AncientName": "Aquileia",
+      "MapPixelX": 816,
+      "MapPixelY": 1007,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 84
+        },
+        {
+          "TradeGoodId": 112
+        },
+        {
+          "TradeGoodId": 64
+        },
+        {
+          "TradeGoodId": 5
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city32default",
+      "ParentId": "default",
+      "IdKey": 32,
+      "Name": "Sparta",
+      "Desc": "A famously militaristic Greek city-state in the Peloponnese, valued more for its disciplined soldiers than for its material trade goods.",
+      "Icon": "Sparta",
+      "Art": "Sparta",
+      "AncientName": "Sparta",
+      "MapPixelX": 1022,
+      "MapPixelY": 1205,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 70
+        },
+        {
+          "TradeGoodId": 50
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city33default",
+      "ParentId": "default",
+      "IdKey": 33,
+      "Name": "Thebes",
+      "Desc": "A powerful city in Boeotia and a frequent rival of Athens, known for its legendary Sacred Band and strength in cavalry.",
+      "Icon": "Thebes",
+      "Art": "Thebes",
+      "AncientName": "Thebae",
+      "MapPixelX": 1043,
+      "MapPixelY": 1176,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 68
+        },
+        {
+          "TradeGoodId": 110
+        },
+        {
+          "TradeGoodId": 2
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city34default",
+      "ParentId": "default",
+      "IdKey": 34,
+      "Name": "Pergamon",
+      "Desc": "A great Hellenistic capital in Anatolia, home to a massive library and the legendary inventor of parchment as a substitute for papyrus.",
+      "Icon": "Pergamon",
+      "Art": "Pergamon",
+      "AncientName": "Pergamum",
+      "MapPixelX": 1130,
+      "MapPixelY": 1158,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 59
+        },
+        {
+          "TradeGoodId": 47
+        },
+        {
+          "TradeGoodId": 31
+        },
+        {
+          "TradeGoodId": 5
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city35default",
+      "ParentId": "default",
+      "IdKey": 35,
+      "Name": "Miletus",
+      "Desc": "An ancient Ionian Greek city, a birthplace of philosophy and science, and a major producer of fine woolen textiles.",
+      "Icon": "Miletus",
+      "Art": "Miletus",
+      "AncientName": "Miletus",
+      "MapPixelX": 1132,
+      "MapPixelY": 1194,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 27
+        },
+        {
+          "TradeGoodId": 78
+        },
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 106
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city36default",
+      "ParentId": "default",
+      "IdKey": 36,
+      "Name": "Halicarnassus",
+      "Desc": "A coastal Carian city famed as the site of the Mausoleum, one of the Seven Wonders of the Ancient World.",
+      "Icon": "Halicarnassus",
+      "Art": "Halicarnassus",
+      "AncientName": "Halicarnassus",
+      "MapPixelX": 1135,
+      "MapPixelY": 1205,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 13
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 94
+        },
+        {
+          "TradeGoodId": 104
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city37default",
+      "ParentId": "default",
+      "IdKey": 37,
+      "Name": "Sardis",
+      "Desc": "The wealthy capital of the ancient Kingdom of Lydia, where coinage was first invented, situated on a key crossroads of Anatolian trade.",
+      "Icon": "Sardis",
+      "Art": "Sardis",
+      "AncientName": "Sardis",
+      "MapPixelX": 1149,
+      "MapPixelY": 1172,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 48
+        },
+        {
+          "TradeGoodId": 74
+        },
+        {
+          "TradeGoodId": 32
+        },
+        {
+          "TradeGoodId": 78
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city38default",
+      "ParentId": "default",
+      "IdKey": 38,
+      "Name": "Tarsus",
+      "Desc": "The capital of Roman Cilicia, a center of learning and the primary producer of cilicium, a durable cloth made from goat hair.",
+      "Icon": "Tarsus",
+      "Art": "Tarsus",
+      "AncientName": "Tarsus",
+      "MapPixelX": 1306,
+      "MapPixelY": 1208,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 28
+        },
+        {
+          "TradeGoodId": 25
+        },
+        {
+          "TradeGoodId": 1
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city39default",
+      "ParentId": "default",
+      "IdKey": 39,
+      "Name": "Damascus",
+      "Desc": "One of the world's oldest continuously inhabited cities, a vital oasis and trade hub connecting Mesopotamia with the Mediterranean coast.",
+      "Icon": "Damascus",
+      "Art": "Damascus",
+      "AncientName": "Damascus",
+      "MapPixelX": 1337,
+      "MapPixelY": 1286,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 66
+        },
+        {
+          "TradeGoodId": 76
+        },
+        {
+          "TradeGoodId": 14
+        },
+        {
+          "TradeGoodId": 112
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city40default",
+      "ParentId": "default",
+      "IdKey": 40,
+      "Name": "Jerusalem",
+      "Desc": "A city of immense religious significance to multiple faiths, drawing pilgrims from across the world and exporting local holy goods.",
+      "Icon": "Jerusalem",
+      "Art": "Jerusalem",
+      "AncientName": "Aelia Capitolina",
+      "MapPixelX": 1313,
+      "MapPixelY": 1325,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 90
+        },
+        {
+          "TradeGoodId": 108
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city41default",
+      "ParentId": "default",
+      "IdKey": 41,
+      "Name": "Sidon",
+      "Desc": "A great Phoenician port city, sister and rival to Tyre, renowned for its skilled glassblowers and maritime trade network.",
+      "Icon": "Sidon",
+      "Art": "Sidon",
+      "AncientName": "Sidon",
+      "MapPixelX": 1316,
+      "MapPixelY": 1285,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 112
+        },
+        {
+          "TradeGoodId": 77
+        },
+        {
+          "TradeGoodId": 33
+        },
+        {
+          "TradeGoodId": 9
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city42default",
+      "ParentId": "default",
+      "IdKey": 42,
+      "Name": "Byblos",
+      "Desc": "An ancient port city so intertwined with the papyrus trade that the Greek word for book, 'biblos', derives from its name.",
+      "Icon": "Byblos",
+      "Art": "Byblos",
+      "AncientName": "Byblos",
+      "MapPixelX": 1323,
+      "MapPixelY": 1272,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 58
+        },
+        {
+          "TradeGoodId": 33
+        },
+        {
+          "TradeGoodId": 85
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city43default",
+      "ParentId": "default",
+      "IdKey": 43,
+      "Name": "Dura-Europos",
+      "Desc": "A fortress city on the Euphrates, a multicultural crossroads between the Roman and Parthian empires, perfectly preserved by the desert sands.",
+      "Icon": "DuraEuropos",
+      "Art": "DuraEuropos",
+      "AncientName": "Dura-Europos",
+      "MapPixelX": 1438,
+      "MapPixelY": 1258,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 124
+        },
+        {
+          "TradeGoodId": 89
+        },
+        {
+          "TradeGoodId": 68
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city44default",
+      "ParentId": "default",
+      "IdKey": 44,
+      "Name": "Nineveh",
+      "Desc": "The magnificent capital of the formidable Assyrian Empire, one of the largest cities in the world at its height.",
+      "Icon": "Nineveh",
+      "Art": "Nineveh",
+      "AncientName": "Nineveh",
+      "MapPixelX": 1494,
+      "MapPixelY": 1221,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 53
+        },
+        {
+          "TradeGoodId": 107
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city45default",
+      "ParentId": "default",
+      "IdKey": 45,
+      "Name": "Persepolis",
+      "Desc": "The grand ceremonial capital of the Achaemenid Persian Empire, built to inspire awe and receive the tribute of subject nations.",
+      "Icon": "Persepolis",
+      "Art": "Persepolis",
+      "AncientName": "Parsa",
+      "MapPixelX": 1715,
+      "MapPixelY": 1367,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 40
+        },
+        {
+          "TradeGoodId": 75
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city46default",
+      "ParentId": "default",
+      "IdKey": 46,
+      "Name": "Susa",
+      "Desc": "A major administrative capital of the Persian and later empires, strategically located between the Mesopotamian lowlands and the Iranian plateau.",
+      "Icon": "Susa",
+      "Art": "Susa",
+      "AncientName": "Shushan",
+      "MapPixelX": 1609,
+      "MapPixelY": 1316,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 32
+        },
+        {
+          "TradeGoodId": 77
+        },
+        {
+          "TradeGoodId": 86
+        },
+        {
+          "TradeGoodId": 53
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city47default",
+      "ParentId": "default",
+      "IdKey": 47,
+      "Name": "Ctesiphon",
+      "Desc": "The sprawling winter capital of the Parthian and Sasanian Empires, famed for its colossal vaulted arch, the largest single-span brick arch in the world.",
+      "Icon": "Ctesiphon",
+      "Art": "Ctesiphon",
+      "AncientName": "Tisfun",
+      "MapPixelX": 1526,
+      "MapPixelY": 1295,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 47
+        },
+        {
+          "TradeGoodId": 56
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city48default",
+      "ParentId": "default",
+      "IdKey": 48,
+      "Name": "Hatra",
+      "Desc": "A fortified desert city that grew wealthy as a religious and trade center, known for its unique blend of Greek, Roman, and Parthian art.",
+      "Icon": "Hatra",
+      "Art": "Hatra",
+      "AncientName": "Hatra",
+      "MapPixelX": 1484,
+      "MapPixelY": 1240,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 105
+        },
+        {
+          "TradeGoodId": 74
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city49default",
+      "ParentId": "default",
+      "IdKey": 49,
+      "Name": "Luxor",
+      "Desc": "The great capital of New Kingdom Egypt, a vast religious complex centered on the monumental temples of Karnak and Luxor.",
+      "Icon": "Luxor",
+      "Art": "Luxor",
+      "AncientName": "Waset/Thebae",
+      "MapPixelX": 1254,
+      "MapPixelY": 1464,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 58
+        },
+        {
+          "TradeGoodId": 25
+        },
+        {
+          "TradeGoodId": 46
+        },
+        {
+          "TradeGoodId": 37
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city50default",
+      "ParentId": "default",
+      "IdKey": 50,
+      "Name": "Cyrene",
+      "Desc": "A prosperous Greek colony in Libya, whose wealth was founded on the cultivation and trade of the now-extinct, highly valuable plant Silphium.",
+      "Icon": "Cyrene",
+      "Art": "Cyrene",
+      "AncientName": "Cyrene",
+      "MapPixelX": 1009,
+      "MapPixelY": 1301,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 111
+        },
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 20
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 18,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city51default",
+      "ParentId": "default",
+      "IdKey": 51,
+      "Name": "Volubilis",
+      "Desc": "An important Roman provincial city on the western frontier of Africa, a center for the region's agricultural wealth.",
+      "Icon": "Volubilis",
+      "Art": "Volubilis",
+      "AncientName": "Volubilis",
+      "MapPixelX": 385,
+      "MapPixelY": 1273,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 10
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city52default",
+      "ParentId": "default",
+      "IdKey": 52,
+      "Name": "Cherchell",
+      "Desc": "The capital of the Roman province of Mauretania, a bustling port city with a distinct Greco-Roman character.",
+      "Icon": "Cherchell",
+      "Art": "Cherchell",
+      "AncientName": "Caesarea Mauretaniae",
+      "MapPixelX": 561,
+      "MapPixelY": 1215,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 33
+        },
+        {
+          "TradeGoodId": 38
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city53default",
+      "ParentId": "default",
+      "IdKey": 53,
+      "Name": "Samarkand",
+      "Desc": "A legendary oasis city on the Silk Road, a Sogdian center of trade connecting China, India, and Persia.",
+      "Icon": "Samarkand",
+      "Art": "Samarkand",
+      "AncientName": "Marakanda",
+      "MapPixelX": 2034,
+      "MapPixelY": 1146,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 60
+        },
+        {
+          "TradeGoodId": 15
+        },
+        {
+          "TradeGoodId": 115
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city54default",
+      "ParentId": "default",
+      "IdKey": 54,
+      "Name": "Bukhara",
+      "Desc": "Another major Silk Road city, renowned for its crafts, carpets, and as a center of learning and culture in Central Asia.",
+      "Icon": "Bukhara",
+      "Art": "Bukhara",
+      "AncientName": "Bukhara",
+      "MapPixelX": 1976,
+      "MapPixelY": 1143,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 22
+        },
+        {
+          "TradeGoodId": 72
+        },
+        {
+          "TradeGoodId": 32
+        },
+        {
+          "TradeGoodId": 16
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city55default",
+      "ParentId": "default",
+      "IdKey": 55,
+      "Name": "Merv",
+      "Desc": "A massive oasis city in the Karakum Desert, a vital stop on the Silk Road and one of the largest cities in the world at its peak.",
+      "Icon": "Merv",
+      "Art": "Merv",
+      "AncientName": "Margiana",
+      "MapPixelX": 1917,
+      "MapPixelY": 1191,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 67
+        },
+        {
+          "TradeGoodId": 29
+        },
+        {
+          "TradeGoodId": 52
+        },
+        {
+          "TradeGoodId": 16
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city56default",
+      "ParentId": "default",
+      "IdKey": 56,
+      "Name": "Taxila",
+      "Desc": "A bustling crossroads of cultures and learning in ancient India, where Greek, Persian, and Indian influences converged around a great university.",
+      "Icon": "Taxila",
+      "Art": "Taxila",
+      "AncientName": "Takshashila",
+      "MapPixelX": 2167,
+      "MapPixelY": 1280,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 100
+        },
+        {
+          "TradeGoodId": 101
+        },
+        {
+          "TradeGoodId": 22
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 16,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city57default",
+      "ParentId": "default",
+      "IdKey": 57,
+      "Name": "Pataliputra",
+      "Desc": "The grand capital of the Mauryan Empire in India, a massive and sophisticated city on the banks of the Ganges.",
+      "Icon": "Pataliputra",
+      "Art": "Pataliputra",
+      "AncientName": "Pataliputra",
+      "MapPixelX": 2448,
+      "MapPixelY": 1466,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 30
+        },
+        {
+          "TradeGoodId": 40
+        },
+        {
+          "TradeGoodId": 65
+        },
+        {
+          "TradeGoodId": 3
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city58default",
+      "ParentId": "default",
+      "IdKey": 58,
+      "Name": "Muziris",
+      "Desc": "A legendary port on the Malabar Coast of India, which vanished from history. It was the epicenter of the lucrative spice trade with the Roman Empire.",
+      "Icon": "Muziris",
+      "Art": "Muziris",
+      "AncientName": "Muziris",
+      "MapPixelX": 2244,
+      "MapPixelY": 1817,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 79
+        },
+        {
+          "TradeGoodId": 81
+        },
+        {
+          "TradeGoodId": 96
+        },
+        {
+          "TradeGoodId": 92
+        },
+        {
+          "TradeGoodId": 102
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city59default",
+      "ParentId": "default",
+      "IdKey": 59,
+      "Name": "Berenice",
+      "Desc": "A key Ptolemaic and Roman port on the Red Sea, built to secure the trade route for war elephants and spices from the East.",
+      "Icon": "Berenice",
+      "Art": "Berenice",
+      "AncientName": "Berenice Troglodytica",
+      "MapPixelX": 1319,
+      "MapPixelY": 1503,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 46
+        },
+        {
+          "TradeGoodId": 83
+        },
+        {
+          "TradeGoodId": 122
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city60default",
+      "ParentId": "default",
+      "IdKey": 60,
+      "Name": "Hegra",
+      "Desc": "The southern sister-city to Petra, a Nabataean caravan city known for its spectacular rock-cut tombs, controlling the Incense Route.",
+      "Icon": "Hegra",
+      "Art": "Hegra",
+      "AncientName": "Hegra (Mada'in Salih)",
+      "MapPixelX": 1375,
+      "MapPixelY": 1439,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 82
+        },
+        {
+          "TradeGoodId": 83
+        },
+        {
+          "TradeGoodId": 121
+        },
+        {
+          "TradeGoodId": 19
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "Milan",
+      "Desc": "A major city in northern Italy that grew in importance to become an administrative center and de facto capital of the late Western Roman Empire.",
+      "Icon": "Milan",
+      "Art": "Milan",
+      "AncientName": "Mediolanum",
+      "MapPixelX": 709,
+      "MapPixelY": 1014,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 69
+        },
+        {
+          "TradeGoodId": 64
+        },
+        {
+          "TradeGoodId": 56
+        },
+        {
+          "TradeGoodId": 1
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city62default",
+      "ParentId": "default",
+      "IdKey": 62,
+      "Name": "Bordeaux",
+      "Desc": "A flourishing port city in southwestern Gaul, the center of a major wine-producing region whose goods were shipped across the empire.",
+      "Icon": "Bordeaux",
+      "Art": "Bordeaux",
+      "AncientName": "Burdigala",
+      "MapPixelX": 498,
+      "MapPixelY": 1028,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 5
+        },
+        {
+          "TradeGoodId": 17
+        },
+        {
+          "TradeGoodId": 43
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 9,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city63default",
+      "ParentId": "default",
+      "IdKey": 63,
+      "Name": "York",
+      "Desc": "A rugged legionary fortress and administrative capital on the northern frontier of Roman Britain, guarding against the untamed tribes beyond.",
+      "Icon": "York",
+      "Art": "York",
+      "AncientName": "Eburacum",
+      "MapPixelX": 487,
+      "MapPixelY": 821,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 95
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 27
+        },
+        {
+          "TradeGoodId": 44
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 2,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city64default",
+      "ParentId": "default",
+      "IdKey": 64,
+      "Name": "Brindisi",
+      "Desc": "The primary Roman port of embarkation for Greece and the East, marking the terminus of the great Via Appia.",
+      "Icon": "Brindisi",
+      "Art": "Brindisi",
+      "AncientName": "Brundisium",
+      "MapPixelX": 919,
+      "MapPixelY": 1124,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 17
+        },
+        {
+          "TradeGoodId": 21
+        },
+        {
+          "TradeGoodId": 63
+        },
+        {
+          "TradeGoodId": 5
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city65default",
+      "ParentId": "default",
+      "IdKey": 65,
+      "Name": "Tangier",
+      "Desc": "The capital of the Roman province of Mauretania Tingitana and a key port controlling the Strait of Gibraltar.",
+      "Icon": "Tangier",
+      "Art": "Tangier",
+      "AncientName": "Tingis",
+      "MapPixelX": 379,
+      "MapPixelY": 1234,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 78
+        },
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 18
+        },
+        {
+          "TradeGoodId": 61
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city66default",
+      "ParentId": "default",
+      "IdKey": 66,
+      "Name": "Seleucia",
+      "Desc": "A great Hellenistic metropolis founded on the Tigris, which for centuries rivaled Babylon and Alexandria in size and commercial importance.",
+      "Icon": "Seleucia",
+      "Art": "Seleucia",
+      "AncientName": "Seleucia",
+      "MapPixelX": 1525,
+      "MapPixelY": 1295,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 86
+        },
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 2
+        },
+        {
+          "TradeGoodId": 47
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 14,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 7,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city67default",
+      "ParentId": "default",
+      "IdKey": 67,
+      "Name": "Hamadan",
+      "Desc": "The ancient capital of the Medes, located at a high altitude on a key leg of the Silk Road connecting Mesopotamia to Central Asia.",
+      "Icon": "Hamadan",
+      "Art": "Hamadan",
+      "AncientName": "Ecbatana",
+      "MapPixelX": 1616,
+      "MapPixelY": 1256,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 73
+        },
+        {
+          "TradeGoodId": 32
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 15,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city68default",
+      "ParentId": "default",
+      "IdKey": 68,
+      "Name": "Artaxata",
+      "Desc": "The grand capital of ancient Armenia, strategically located on the Araxes River at a crossroads between the Roman, Parthian, and Caucasian worlds.",
+      "Icon": "Artaxata",
+      "Art": "Artaxata",
+      "AncientName": "Artaxata",
+      "MapPixelX": 1527,
+      "MapPixelY": 1144,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 87
+        },
+        {
+          "TradeGoodId": 9
+        },
+        {
+          "TradeGoodId": 88
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 10,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city69default",
+      "ParentId": "default",
+      "IdKey": 69,
+      "Name": "Bharuch",
+      "Desc": "A major trade port in Gujarat, India, known to Greco-Roman geographers as a vital center for the lucrative Indian Ocean trade.",
+      "Icon": "Bharuch",
+      "Art": "Bharuch",
+      "AncientName": "Barygaza",
+      "MapPixelX": 2171,
+      "MapPixelY": 1554,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 97
+        },
+        {
+          "TradeGoodId": 98
+        },
+        {
+          "TradeGoodId": 23
+        },
+        {
+          "TradeGoodId": 91
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 12,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 13,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 10.0
+        },
+        {
+          "AnimalId": 19,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city70default",
+      "ParentId": "default",
+      "IdKey": 70,
+      "Name": "Plovdiv",
+      "Desc": "A large, prosperous city in the Roman province of Thrace, strategically located on the major military road to the East.",
+      "Icon": "Plovdiv",
+      "Art": "Plovdiv",
+      "AncientName": "Philippopolis",
+      "MapPixelX": 1075,
+      "MapPixelY": 1089,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 33
+        },
+        {
+          "TradeGoodId": 38
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 8,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    },
+    {
+      "Id": "city71default",
+      "ParentId": "default",
+      "IdKey": 71,
+      "Name": "Solin",
+      "Desc": "The bustling capital of the Roman province of Dalmatia, a major port on the Adriatic coast.",
+      "Icon": "Solin",
+      "Art": "Solin",
+      "AncientName": "Salona",
+      "MapPixelX": 886,
+      "MapPixelY": 1058,
+      "TradeGoods": [
+        {
+          "TradeGoodId": 1
+        },
+        {
+          "TradeGoodId": 4
+        },
+        {
+          "TradeGoodId": 36
+        },
+        {
+          "TradeGoodId": 5
+        }
+      ],
+      "Animals": [
+        {
+          "AnimalId": 1,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 4,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 6,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 11,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 3,
+          "PriceScale": 1.0
+        },
+        {
+          "AnimalId": 5,
+          "PriceScale": 10.0
+        }
+      ],
+      "SaveTime": "2025-07-20T06:18:34.544Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CitySettings",
+    "SaveTime": "2025-07-19T20:53:27.953Z"
+  },
+  "SaveTime": "2025-07-19T20:53:27.953Z"
+}

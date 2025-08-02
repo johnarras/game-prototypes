@@ -1,0 +1,11 @@
+{
+  "Id": "buildingtype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Guard Tower",
+  "Icon": "GuardTower",
+  "Art": "GuardTower",
+  "Radius": 4,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

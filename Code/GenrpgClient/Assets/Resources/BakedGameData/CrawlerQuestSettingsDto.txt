@@ -1,0 +1,60 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlerquesttype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "KillMonsters",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Weight": 1.0,
+      "MonsterGroupSizeScale": 2.0
+    },
+    {
+      "Id": "crawlerquesttype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "LootItems",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Weight": 1.0,
+      "MonsterGroupSizeScale": 1.0
+    },
+    {
+      "Id": "crawlerquesttype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "ExploreMap",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Weight": 0.25
+    },
+    {
+      "Id": "crawlerquesttype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "TravelToNpc",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Weight": 0.25
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "MaxDistanceFromQuestGiverToTargetMap": 12.0,
+    "MinQuestsPerNpc": 2,
+    "MaxQuestsPerNpc": 5,
+    "ExtraQuestChance": 0.6,
+    "ItemDropChance": 0.005,
+    "BaseLootMult": 0.25,
+    "ForceUnitInCombatChance": 0.05,
+    "Name": "CrawlerQuestSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

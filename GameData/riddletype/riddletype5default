@@ -1,0 +1,9 @@
+{
+  "Id": "riddletype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Math",
+  "Art": "Statue",
+  "Weight": 1.0,
+  "SaveTime": "2025-06-08T09:13:00.412Z"
+}

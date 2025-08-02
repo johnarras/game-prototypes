@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting25default",
+  "IdKey": 25,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "c",
+  "KeyCommand": "CharacterScreen"
+}

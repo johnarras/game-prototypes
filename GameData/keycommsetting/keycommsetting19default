@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting19default",
+  "IdKey": 19,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "mouse0",
+  "KeyCommand": "Fire0"
+}

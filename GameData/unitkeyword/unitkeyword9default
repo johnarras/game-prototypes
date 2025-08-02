@@ -1,0 +1,27 @@
+{
+  "Id": "unitkeyword9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Thief",
+  "PluralName": "Thieves",
+  "Icon": "Thief",
+  "Art": "Thief",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 14
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 4
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

@@ -1,0 +1,11 @@
+{
+  "Id": "usercointype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Season",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconSeason",
+  "Art": "SeasonArt",
+  "SaveTime": "2025-06-12T22:12:33.137Z"
+}

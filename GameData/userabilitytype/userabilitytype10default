@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "MaxMana",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 100,
+  "QuantityPerRank": 10
+}

@@ -1,0 +1,9 @@
+{
+  "Id": "combataction6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Recast",
+  "Desc": "",
+  "WeaponDamageScale": 1.0,
+  "StatBonusDamageScale": 1.0
+}

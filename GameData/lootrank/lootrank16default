@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "HeartStone",
+  "Armor": 60,
+  "Damage": 30,
+  "CostPct": 10000
+}

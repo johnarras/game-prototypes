@@ -1,0 +1,9 @@
+{
+  "Id": "combataction4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Cast",
+  "WeaponDamageScale": 0.5,
+  "StatBonusDamageScale": 1.5,
+  "QuantityIsBaseAmount": true
+}

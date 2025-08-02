@@ -1,0 +1,7 @@
+{
+  "Id": "sextype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Female",
+  "CostPercent": 100
+}

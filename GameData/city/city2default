@@ -1,0 +1,60 @@
+{
+  "Id": "city2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Athens",
+  "Desc": "The cradle of Western philosophy and democracy, famed for its monumental Acropolis, fine pottery, and bustling port of Piraeus.",
+  "Icon": "Athens",
+  "Art": "Athens",
+  "AncientName": "Athenae",
+  "MapPixelX": 1052,
+  "MapPixelY": 1184,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 50
+    },
+    {
+      "TradeGoodId": 47
+    },
+    {
+      "TradeGoodId": 38
+    },
+    {
+      "TradeGoodId": 11
+    },
+    {
+      "TradeGoodId": 4
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

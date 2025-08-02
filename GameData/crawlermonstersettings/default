@@ -1,0 +1,19 @@
+{
+  "Id": "default",
+  "BaseMinDam": 1,
+  "BaseMaxDam": 2,
+  "MinDamPerLevel": 0.5,
+  "MaxDamPerLevel": 1.0,
+  "ScalingPerLevel": 0.25,
+  "BaseMinHealth": 3,
+  "BaseMaxHealth": 10,
+  "MinHealthPerLevel": 2.0,
+  "MaxHealthPerLevel": 8.0,
+  "ManaPerLevel": 1000,
+  "ExtraHealthScalePerLevel": 0.05,
+  "ExtraDamageScalePerLevel": 0.01,
+  "MapUnitKeywordChance": 0.25,
+  "UnitKeywordChance": 0.5,
+  "Name": "CrawlerMonsterSettings",
+  "SaveTime": "2025-07-17T19:27:24.56Z"
+}

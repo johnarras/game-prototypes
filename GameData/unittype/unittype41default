@@ -1,0 +1,22 @@
+{
+  "Id": "unittype41default",
+  "ParentId": "default",
+  "IdKey": 41,
+  "Name": "Assassin",
+  "PluralName": "Assassins",
+  "Icon": "Assassin",
+  "Art": "Assassin",
+  "TribeTypeId": 14,
+  "MinLevel": 15,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

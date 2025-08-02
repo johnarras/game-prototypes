@@ -1,0 +1,13 @@
+{
+  "Parent": {
+    "Id": "default",
+    "UpdateSeconds": 1.0,
+    "IdleWanderChance": 0.25,
+    "EnemyScanDistance": 15.0,
+    "LeashDistance": 60.0,
+    "BaseUnitSpeed": 5.0,
+    "BringAFriendRadius": 20.0,
+    "Name": "AISettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  }
+}

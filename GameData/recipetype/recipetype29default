@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype29default",
+  "ParentId": "default",
+  "IdKey": 29,
+  "Name": "Polearm",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 29,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 210,
+  "ExplicitReagents": []
+}

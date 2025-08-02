@@ -1,0 +1,16 @@
+{
+  "Id": "crawlerspell2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Defend",
+  "Desc": "Take half damage this turn if you get hit.",
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 2,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 1,
+  "Effects": [],
+  "Flags": 1,
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

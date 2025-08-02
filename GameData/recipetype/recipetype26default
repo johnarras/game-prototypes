@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "2H Axe",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 26,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 220,
+  "ExplicitReagents": []
+}

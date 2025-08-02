@@ -1,0 +1,53 @@
+{
+  "Id": "city20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "Ur",
+  "Desc": "A mighty Sumerian city-state in southern Mesopotamia, a cradle of civilization and an early hub for trade with lands across the Persian Gulf.",
+  "Icon": "Ur",
+  "Art": "Ur",
+  "AncientName": "Ur",
+  "MapPixelX": 1561,
+  "MapPixelY": 1344,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 27
+    },
+    {
+      "TradeGoodId": 2
+    },
+    {
+      "TradeGoodId": 42
+    },
+    {
+      "TradeGoodId": 107
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

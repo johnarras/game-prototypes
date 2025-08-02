@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting17default",
+  "IdKey": 17,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "e",
+  "KeyCommand": "StrafeRight"
+}

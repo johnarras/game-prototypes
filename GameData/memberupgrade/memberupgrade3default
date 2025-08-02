@@ -1,0 +1,12 @@
+{
+  "Id": "memberupgrade3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Devotion Bonus",
+  "Desc": "More Healing Per Hit",
+  "Icon": "",
+  "Art": "",
+  "BonusPerTier": 2.0,
+  "EntityTypeId": 43,
+  "EntityId": 13
+}

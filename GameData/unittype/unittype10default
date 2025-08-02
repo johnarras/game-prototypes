@@ -1,0 +1,28 @@
+{
+  "Id": "unittype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Fighter",
+  "PluralName": "Fighters",
+  "Icon": "Fighter",
+  "Art": "Fighter",
+  "TribeTypeId": 11,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 4
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

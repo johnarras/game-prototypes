@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Melons",
+  "Desc": "Large, sweet fruits grown in the hot climates of Central Asia and Persia.",
+  "Icon": "Melons",
+  "Art": "Melons",
+  "CategoryName": "Food",
+  "Density": 500.0,
+  "UnitWeight": 8,
+  "PricePerUnit": 1200,
+  "PricePerWeight": 150,
+  "YearlyProduction": 25000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

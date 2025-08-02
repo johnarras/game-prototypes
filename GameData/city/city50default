@@ -1,0 +1,50 @@
+{
+  "Id": "city50default",
+  "ParentId": "default",
+  "IdKey": 50,
+  "Name": "Cyrene",
+  "Desc": "A prosperous Greek colony in Libya, whose wealth was founded on the cultivation and trade of the now-extinct, highly valuable plant Silphium.",
+  "Icon": "Cyrene",
+  "Art": "Cyrene",
+  "AncientName": "Cyrene",
+  "MapPixelX": 1009,
+  "MapPixelY": 1301,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 111
+    },
+    {
+      "TradeGoodId": 2
+    },
+    {
+      "TradeGoodId": 20
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 18,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

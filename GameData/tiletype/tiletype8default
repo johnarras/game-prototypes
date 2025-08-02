@@ -1,0 +1,45 @@
+{
+  "Id": "tiletype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Tanner",
+  "Desc": "Improves Leather",
+  "Icon": "TannerTile",
+  "Art": "TannerTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [],
+  "Effects": [
+    {
+      "EntityTypeId": 201,
+      "Quantity": 1,
+      "EntityId": 12
+    }
+  ],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 1
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 5
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "Id": "city48default",
+  "ParentId": "default",
+  "IdKey": 48,
+  "Name": "Hatra",
+  "Desc": "A fortified desert city that grew wealthy as a religious and trade center, known for its unique blend of Greek, Roman, and Parthian art.",
+  "Icon": "Hatra",
+  "Art": "Hatra",
+  "AncientName": "Hatra",
+  "MapPixelX": 1484,
+  "MapPixelY": 1240,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 105
+    },
+    {
+      "TradeGoodId": 74
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

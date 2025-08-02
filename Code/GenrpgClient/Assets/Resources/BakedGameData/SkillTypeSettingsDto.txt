@@ -1,0 +1,171 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "skilltype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Attack",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "TargetTypeId": 1,
+      "ManaCostPercent": 30,
+      "EnergyCostPercent": 20,
+      "ComboCostPercent": 30,
+      "ScalingStatTypeId": 21,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 33
+    },
+    {
+      "Id": "skilltype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Blast",
+      "TargetTypeId": 1,
+      "ManaCostPercent": 5,
+      "EnergyCostPercent": 35,
+      "ComboCostPercent": 30,
+      "ScalingStatTypeId": 22,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 33
+    },
+    {
+      "Id": "skilltype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Heal",
+      "TargetTypeId": 2,
+      "ManaCostPercent": 25,
+      "EnergyCostPercent": 60,
+      "ComboCostPercent": 30,
+      "ScalingStatTypeId": 22,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 34
+    },
+    {
+      "Id": "skilltype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Defense",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "TargetTypeId": 2,
+      "ManaCostPercent": 40,
+      "EnergyCostPercent": 50,
+      "ComboCostPercent": 10,
+      "ScalingStatTypeId": 21,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 35
+    },
+    {
+      "Id": "skilltype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Gathering",
+      "StatScalePercent": 100
+    },
+    {
+      "Id": "skilltype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Crafting",
+      "StatScalePercent": 100
+    },
+    {
+      "Id": "skilltype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "AddStat",
+      "TargetTypeId": 2,
+      "ManaCostPercent": 10,
+      "EnergyCostPercent": 100,
+      "ComboCostPercent": 100,
+      "ScalingStatTypeId": 22,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 31
+    },
+    {
+      "Id": "skilltype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "RemoveStat",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "TargetTypeId": 1,
+      "ManaCostPercent": 15,
+      "EnergyCostPercent": 40,
+      "ComboCostPercent": 20,
+      "ScalingStatTypeId": 22,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 31
+    },
+    {
+      "Id": "skilltype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Summon",
+      "TargetTypeId": 2,
+      "ManaCostPercent": 35,
+      "EnergyCostPercent": 200,
+      "ComboCostPercent": 200,
+      "ScalingStatTypeId": 21,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 4
+    },
+    {
+      "Id": "skilltype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "AddDebuff",
+      "TargetTypeId": 1,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 36
+    },
+    {
+      "Id": "skilltype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "RemoveDebuff",
+      "TargetTypeId": 2,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 36
+    },
+    {
+      "Id": "skilltype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Shoot",
+      "TargetTypeId": 1,
+      "ScalingStatTypeId": 21,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 33
+    },
+    {
+      "Id": "skilltype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "AddBuff",
+      "TargetTypeId": 2,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 36
+    },
+    {
+      "Id": "skilltype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "RemoveBuff",
+      "TargetTypeId": 1,
+      "StatScalePercent": 100,
+      "EffectEntityTypeId": 36
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SkillTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

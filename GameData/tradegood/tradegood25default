@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood25default",
+  "ParentId": "default",
+  "IdKey": 25,
+  "Name": "Linen",
+  "Desc": "A strong, absorbent cloth from flax, valued for its coolness in hot climates.",
+  "Icon": "Linen",
+  "Art": "Linen",
+  "CategoryName": "Textiles",
+  "Density": 400.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 6000,
+  "PricePerWeight": 1200,
+  "YearlyProduction": 150000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

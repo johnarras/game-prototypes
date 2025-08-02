@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Sapphire",
+  "Armor": 35,
+  "Damage": 18,
+  "CostPct": 4000
+}

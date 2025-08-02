@@ -1,0 +1,12 @@
+{
+  "Parent": {
+    "Id": "default",
+    "DistanceBetweenUniqueTiles": 3.5,
+    "RadDelta": 0.30000001192092896,
+    "SlopeMax": 1.0,
+    "MinPointCount": 12,
+    "MaxPointCount": 20,
+    "Name": "BoardGenSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  }
+}

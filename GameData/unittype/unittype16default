@@ -1,0 +1,38 @@
+{
+  "Id": "unittype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Mage",
+  "PluralName": "Mages",
+  "Icon": "Mage",
+  "Art": "Mage",
+  "TribeTypeId": 12,
+  "MinLevel": 5,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 212
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

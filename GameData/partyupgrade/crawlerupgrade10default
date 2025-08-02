@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "ExpPercent",
+  "Desc": "Increases the Exp party members gain.",
+  "MaxTier": 10,
+  "BonusPerTier": 50.0,
+  "BasePointCost": 5
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "npctype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Citizen",
+  "BuildingTypeId": 10,
+  "DefaultVendorItems": []
+}

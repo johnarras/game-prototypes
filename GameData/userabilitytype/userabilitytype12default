@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "HitChance",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 75,
+  "QuantityPerRank": 2
+}

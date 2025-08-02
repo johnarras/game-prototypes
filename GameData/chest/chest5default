@@ -1,0 +1,13 @@
+{
+  "Id": "chest5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Epic Chest",
+  "Desc": "",
+  "Icon": "EpicChest",
+  "Art": "EpicChest",
+  "UnlockMinutes": 1440,
+  "Tier": 4,
+  "TieredLootMult": 7,
+  "Loot": []
+}

@@ -1,0 +1,25 @@
+{
+  "Id": "crawlerspell105default",
+  "ParentId": "default",
+  "IdKey": 105,
+  "Name": "Signal Thief",
+  "Desc": "Signal a thief to follow you.",
+  "PowerCost": 9.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 5,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 39,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 8
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

@@ -1,0 +1,60 @@
+{
+  "Id": "city7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Babylon",
+  "Desc": "The ancient, magnificent capital of Mesopotamia, famed for its ziggurats and hanging gardens, situated on the fertile banks of the Euphrates.",
+  "Icon": "Babylon",
+  "Art": "Babylon",
+  "AncientName": "Babylon",
+  "MapPixelX": 1523,
+  "MapPixelY": 1308,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 2
+    },
+    {
+      "TradeGoodId": 20
+    },
+    {
+      "TradeGoodId": 121
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 86
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

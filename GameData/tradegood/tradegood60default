@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood60default",
+  "ParentId": "default",
+  "IdKey": 60,
+  "Name": "Sogdian Paper",
+  "Desc": "An early form of paper spreading west along the Silk Road, prized for being lightweight.",
+  "Icon": "SogdianPaper",
+  "Art": "SogdianPaper",
+  "CategoryName": "Processed Goods",
+  "Density": 350.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 40000,
+  "PricePerWeight": 40000,
+  "YearlyProduction": 250,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

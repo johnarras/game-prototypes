@@ -1,0 +1,37 @@
+{
+  "Id": "unitkeyword11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Golem",
+  "PluralName": "Golems",
+  "Icon": "Golem",
+  "Art": "Golem",
+  "Effects": [
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 16
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 9
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 7
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

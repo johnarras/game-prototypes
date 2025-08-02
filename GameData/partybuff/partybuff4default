@@ -1,0 +1,7 @@
+{
+  "Id": "partybuff4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Levitate",
+  "Desc": "Allows you to float over traps and move a bit faster."
+}

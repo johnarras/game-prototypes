@@ -1,0 +1,128 @@
+{
+  "Id": "itemtype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Shoulder",
+  "Desc": "",
+  "Icon": "Shoulders",
+  "Art": "Shoulder",
+  "MinVal": 2,
+  "MaxVal": 2,
+  "EquipSlotId": 3,
+  "Effects": [],
+  "LevelRanges": [
+    {
+      "MinLevel": 1,
+      "MaxLevel": 10
+    },
+    {
+      "MinLevel": 11,
+      "MaxLevel": 20
+    },
+    {
+      "MinLevel": 21,
+      "MaxLevel": 30
+    },
+    {
+      "MinLevel": 31,
+      "MaxLevel": 40
+    },
+    {
+      "MinLevel": 41,
+      "MaxLevel": 50
+    },
+    {
+      "MinLevel": 51,
+      "MaxLevel": 60
+    }
+  ],
+  "QualityNames": [
+    {
+      "Name": "Common"
+    },
+    {
+      "QualityTypeId": 1,
+      "Name": "Uncommon"
+    },
+    {
+      "QualityTypeId": 2,
+      "Name": "Rare"
+    },
+    {
+      "QualityTypeId": 3,
+      "Name": "Epic"
+    },
+    {
+      "QualityTypeId": 4,
+      "Name": "Legendary"
+    }
+  ],
+  "IconCounts": [
+    {
+      "Name": "Cloth",
+      "Count": 6
+    },
+    {
+      "Name": "Leather",
+      "Count": 6
+    },
+    {
+      "Name": "Chain",
+      "Count": 1
+    },
+    {
+      "Name": "Plate",
+      "Count": 7
+    },
+    {
+      "Name": "Stone",
+      "Count": 1
+    },
+    {
+      "Name": "Jeweled",
+      "Count": 1
+    }
+  ],
+  "Names": [
+    {
+      "Weight": 1000.0,
+      "Name": "Shoulderguards",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Pauldrons",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Shoulders",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Spaulders",
+      "Desc": ""
+    },
+    {
+      "Weight": 299.0,
+      "Name": "Mantle",
+      "Desc": ""
+    },
+    {
+      "Weight": 200.0,
+      "Name": "Amice",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Pads",
+      "Desc": ""
+    },
+    {
+      "Weight": 200.0,
+      "Name": "Epaulets",
+      "Desc": ""
+    }
+  ]
+}

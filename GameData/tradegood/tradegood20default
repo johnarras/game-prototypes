@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "Raw Wool",
+  "Desc": "Unprocessed fleece from sheep, the foundational material for common textiles.",
+  "Icon": "RawWool",
+  "Art": "RawWool",
+  "CategoryName": "Raw Textiles",
+  "Density": 200.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 1500,
+  "PricePerWeight": 150,
+  "YearlyProduction": 400000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

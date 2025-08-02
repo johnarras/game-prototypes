@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Currencies\**" />
+    <Compile Remove="Managers\**" />
+    <Compile Remove="Networking\Constants\**" />
+    <Compile Remove="Queues\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Currencies\**" />
+    <EmbeddedResource Remove="Managers\**" />
+    <EmbeddedResource Remove="Networking\Constants\**" />
+    <EmbeddedResource Remove="Queues\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Currencies\**" />
+    <None Remove="Managers\**" />
+    <None Remove="Networking\Constants\**" />
+    <None Remove="Queues\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Genrpg.ServerShared\Genrpg.ServerShared.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(TargetDir)Genrpg.Shared.dll $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\Genrpg.Shared.dll&#xD;&#xA;copy $(TargetDir)Genrpg.Shared.pdb $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\Genrpg.Shared.pdb" />
+  </Target>
+
+</Project>

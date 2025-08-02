@@ -1,0 +1,20 @@
+{
+  "Id": "animal15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Bactrian Camel",
+  "Desc": "The two-humped camel of Central Asia. Even stronger than a dromedary and better adapted to cold climates, making it vital for the high-altitude sections of the Silk Road.",
+  "Icon": "BactrianCamel",
+  "Art": "BactrianCamel",
+  "Endurance": 6,
+  "Speed": 2.0,
+  "CarryingCapacity": 220,
+  "PullingCapacity": 500,
+  "RoughTerrain": 4,
+  "HotClimate": 3,
+  "ColdClimate": 6,
+  "WetClimate": 1,
+  "FoodPerDay": 10,
+  "WaterPerDay": 20,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

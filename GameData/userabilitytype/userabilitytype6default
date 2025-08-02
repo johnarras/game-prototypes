@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "UpgradeQuantity",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 4,
+  "QuantityPerRank": 1
+}

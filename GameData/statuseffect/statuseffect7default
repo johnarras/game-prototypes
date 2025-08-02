@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Cursed",
+  "Desc": "Effective level is XXXX percent lower.",
+  "Icon": "Cursed",
+  "Art": "",
+  "Abbrev": "Cs",
+  "ElementTypeId": 6,
+  "Amount": 25,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

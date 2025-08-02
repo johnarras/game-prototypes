@@ -1,0 +1,53 @@
+{
+  "Id": "city24default",
+  "ParentId": "default",
+  "IdKey": 24,
+  "Name": "Paris",
+  "Desc": "A modest settlement of the Parisii tribe on an island in the Seine, which grew into a significant regional center under Roman rule.",
+  "Icon": "Paris",
+  "Art": "Paris",
+  "AncientName": "Lutetia Parisiorum",
+  "MapPixelX": 565,
+  "MapPixelY": 936,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 49
+    },
+    {
+      "TradeGoodId": 12
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Electric",
+  "Desc": "Zap enemies.",
+  "Icon": "Electric",
+  "Art": "Electric",
+  "CasterActionName": "Zap",
+  "ObserverActionName": "Zaps",
+  "CastAnim": "Electric",
+  "VulnElementTypeId": 5,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 5,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 4
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

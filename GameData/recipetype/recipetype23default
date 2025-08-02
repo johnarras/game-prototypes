@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype23default",
+  "ParentId": "default",
+  "IdKey": 23,
+  "Name": "Mace",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 23,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 120,
+  "ExplicitReagents": []
+}

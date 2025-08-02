@@ -1,0 +1,9 @@
+{
+  "Id": "stattype32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Resist",
+  "Desc": "Reduces magical damage.",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

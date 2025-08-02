@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Trinket",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 14,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 10,
+  "ExplicitReagents": []
+}

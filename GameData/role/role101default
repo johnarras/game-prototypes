@@ -1,0 +1,28 @@
+{
+  "Id": "role101default",
+  "ParentId": "default",
+  "IdKey": 101,
+  "Name": "Elf",
+  "Desc": "Slightly more Ranged",
+  "Abbrev": "Elf",
+  "RoleCategoryId": 2,
+  "BinaryBonuses": [],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 12,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 14,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

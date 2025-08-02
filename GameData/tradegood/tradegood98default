@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood98default",
+  "ParentId": "default",
+  "IdKey": 98,
+  "Name": "Carnelian Beads",
+  "Desc": "A reddish-brown semi-precious stone bead, very popular in the ancient world.",
+  "Icon": "CarnelianBeads",
+  "Art": "CarnelianBeads",
+  "CategoryName": "Jewelry",
+  "Density": 1300.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 70000,
+  "PricePerWeight": 70000,
+  "YearlyProduction": 5000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

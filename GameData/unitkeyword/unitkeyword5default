@@ -1,0 +1,32 @@
+{
+  "Id": "unitkeyword5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Mythological",
+  "PluralName": "Mythologicals",
+  "Icon": "Mythological",
+  "Art": "Mythological",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 7
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 9
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 10
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood89default",
+  "ParentId": "default",
+  "IdKey": 89,
+  "Name": "Perfumed Oils",
+  "Desc": "Olive oil infused with flowers and herbs, used as a perfume and cosmetic.",
+  "Icon": "PerfumedOils",
+  "Art": "PerfumedOils",
+  "CategoryName": "Cosmetics",
+  "Density": 900.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 15000,
+  "PricePerWeight": 15000,
+  "YearlyProduction": 6000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

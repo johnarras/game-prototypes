@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting23default",
+  "IdKey": 23,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "n",
+  "KeyCommand": "ZoneScreen"
+}

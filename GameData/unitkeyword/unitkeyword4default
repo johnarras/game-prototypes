@@ -1,0 +1,49 @@
+{
+  "Id": "unitkeyword4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Mage",
+  "PluralName": "Mages",
+  "Icon": "Mage",
+  "Art": "Mage",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 5
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 6
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 220
+    }
+  ],
+  "Weight": 25.0,
+  "Tier": 1,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

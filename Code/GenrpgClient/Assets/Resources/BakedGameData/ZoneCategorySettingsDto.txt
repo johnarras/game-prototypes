@@ -1,0 +1,29 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "zonecategory1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Overland"
+    },
+    {
+      "Id": "zonecategory2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Underground"
+    },
+    {
+      "Id": "zonecategory3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Mythical"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "ZoneCategorySettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

@@ -1,0 +1,53 @@
+{
+  "Id": "city21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "Xi'an",
+  "Desc": "The grand eastern terminus of the Silk Road and capital of powerful Chinese dynasties, a center of immense wealth, culture, and innovation.",
+  "Icon": "Xian",
+  "Art": "Xian",
+  "AncientName": "Chang'an",
+  "MapPixelX": 2990,
+  "MapPixelY": 1269,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 29
+    },
+    {
+      "TradeGoodId": 103
+    },
+    {
+      "TradeGoodId": 99
+    },
+    {
+      "TradeGoodId": 71
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 15,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

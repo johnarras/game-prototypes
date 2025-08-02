@@ -1,0 +1,76 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "riddletype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Basic",
+      "Art": "Statue",
+      "Weight": 1.0,
+      "SaveTime": "2025-06-07T20:01:42.426Z"
+    },
+    {
+      "Id": "riddletype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "PositionWordFind",
+      "Art": "Statue",
+      "Weight": 1.0,
+      "SaveTime": "2025-06-07T20:01:42.426Z"
+    },
+    {
+      "Id": "riddletype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "WordLength",
+      "Art": "Statue",
+      "Weight": 1.0,
+      "SaveTime": "2025-06-07T20:01:42.426Z"
+    },
+    {
+      "Id": "riddletype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "FirstLetter",
+      "Art": "Statue",
+      "Weight": 1.0,
+      "SaveTime": "2025-06-07T20:01:42.426Z"
+    },
+    {
+      "Id": "riddletype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Math",
+      "Art": "Statue",
+      "Weight": 1.0,
+      "SaveTime": "2025-06-08T09:13:00.412Z"
+    },
+    {
+      "Id": "riddletype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Pedestals",
+      "Art": "Pedestal",
+      "Weight": 1.0,
+      "IsToggle": true,
+      "SaveTime": "2025-06-08T09:13:00.412Z"
+    },
+    {
+      "Id": "riddletype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Buttons",
+      "Art": "WallButton",
+      "Weight": 1000.0,
+      "IsObject": true,
+      "SaveTime": "2025-07-25T23:24:19.224Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "RiddleTypeSettings",
+    "SaveTime": "2025-07-25T23:24:19.224Z"
+  },
+  "SaveTime": "2025-07-25T23:24:19.224Z"
+}

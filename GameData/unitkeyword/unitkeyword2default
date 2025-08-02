@@ -1,0 +1,42 @@
+{
+  "Id": "unitkeyword2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Barbaric",
+  "PluralName": "Barbarics",
+  "Icon": "Barbaric",
+  "Art": "Barbaric",
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 10,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 10,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 11
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 9
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 2
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

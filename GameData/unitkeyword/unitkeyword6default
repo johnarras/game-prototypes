@@ -1,0 +1,39 @@
+{
+  "Id": "unitkeyword6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Lord",
+  "PluralName": "Lords",
+  "Icon": "Lord",
+  "Art": "Lord",
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 5
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 13
+    }
+  ],
+  "Weight": 10.0,
+  "Tier": 1,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood99default",
+  "ParentId": "default",
+  "IdKey": 99,
+  "Name": "Jade Carvings",
+  "Desc": "A hard, green gemstone from Central Asia, highly prized in China.",
+  "Icon": "JadeCarvings",
+  "Art": "JadeCarvings",
+  "CategoryName": "Jewelry",
+  "Density": 1500.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 180000,
+  "PricePerWeight": 180000,
+  "YearlyProduction": 100,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

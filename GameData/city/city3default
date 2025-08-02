@@ -1,0 +1,60 @@
+{
+  "Id": "city3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Carthage",
+  "Desc": "Rome's great rival, a mercantile powerhouse on the African coast, built on maritime trade and control of the seas before its fateful fall.",
+  "Icon": "Carthage",
+  "Art": "Carthage",
+  "AncientName": "Carthago",
+  "MapPixelX": 746,
+  "MapPixelY": 1210,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 77
+    },
+    {
+      "TradeGoodId": 25
+    },
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 9
+    },
+    {
+      "TradeGoodId": 45
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 18,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

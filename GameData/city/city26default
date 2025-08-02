@@ -1,0 +1,57 @@
+{
+  "Id": "city26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Cologne",
+  "Desc": "A key Roman military outpost and provincial capital on the Rhine frontier, guarding the empire against Germanic tribes.",
+  "Icon": "Cologne",
+  "Art": "Cologne",
+  "AncientName": "Colonia Agrippinensis",
+  "MapPixelX": 671,
+  "MapPixelY": 890,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 56
+    },
+    {
+      "TradeGoodId": 50
+    },
+    {
+      "TradeGoodId": 8
+    },
+    {
+      "TradeGoodId": 1
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

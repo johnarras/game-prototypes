@@ -1,0 +1,12 @@
+{
+  "Id": "stattype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Luck",
+  "Desc": "Gives a chance to get extra attacks.",
+  "Art": "WhiteCauldron",
+  "ColorName": "White",
+  "ColorCode": "#FFFFFF",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

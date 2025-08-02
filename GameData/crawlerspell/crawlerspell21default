@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "Heal Party",
+  "Desc": "Heal the wounds of all allies.",
+  "PowerCost": 10.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 5,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 34,
+      "MinQuantity": 1,
+      "MaxQuantity": 3,
+      "ElementTypeId": 7
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

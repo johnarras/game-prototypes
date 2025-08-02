@@ -1,0 +1,52 @@
+{
+  "Id": "crawlerspell86default",
+  "ParentId": "default",
+  "IdKey": 86,
+  "Name": "Batchspell",
+  "Desc": "Casts all party buffs.",
+  "PowerCost": 10.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 6,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 5,
+  "Effects": [
+    {
+      "EntityTypeId": 101,
+      "EntityId": 1,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    },
+    {
+      "EntityTypeId": 101,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    },
+    {
+      "EntityTypeId": 101,
+      "EntityId": 4,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    },
+    {
+      "EntityTypeId": 101,
+      "EntityId": 2,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    },
+    {
+      "EntityTypeId": 101,
+      "EntityId": 5,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 2
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

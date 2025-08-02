@@ -1,0 +1,75 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "currencytype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Money",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconCopper",
+      "Art": "updated tuning"
+    },
+    {
+      "Id": "currencytype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Exp",
+      "Icon": "IconStarGold"
+    },
+    {
+      "Id": "currencytype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Ability",
+      "Art": "new text blah"
+    },
+    {
+      "Id": "currencytype101default",
+      "ParentId": "default",
+      "IdKey": 101,
+      "Name": "Alignment Tokens"
+    },
+    {
+      "Id": "currencytype102default",
+      "ParentId": "default",
+      "IdKey": 102,
+      "Name": "Race Tokens",
+      "Art": "aaa"
+    },
+    {
+      "Id": "currencytype103default",
+      "ParentId": "default",
+      "IdKey": 103,
+      "Name": "Religion Tokens",
+      "Icon": "IconCross",
+      "Art": "bbb"
+    },
+    {
+      "Id": "currencytype104default",
+      "ParentId": "default",
+      "IdKey": 104,
+      "Name": "Job Tokens",
+      "Icon": "IconHammer"
+    },
+    {
+      "Id": "currencytype106default",
+      "ParentId": "default",
+      "IdKey": 106,
+      "Name": "Monster Tokens"
+    },
+    {
+      "Id": "currencytype107default",
+      "ParentId": "default",
+      "IdKey": 107,
+      "Name": "Player Tokens"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CurrencySettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

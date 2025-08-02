@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Mithril",
+  "Armor": 20,
+  "Damage": 10,
+  "CostPct": 1500
+}

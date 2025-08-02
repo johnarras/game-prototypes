@@ -1,0 +1,9 @@
+{
+  "Parent": {
+    "Id": "default",
+    "SellToVendorPriceMult": 0.25,
+    "VendorRefreshMinutes": 15.0,
+    "Name": "VendorSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  }
+}

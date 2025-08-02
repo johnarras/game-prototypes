@@ -1,0 +1,8 @@
+{
+  "Id": "targettype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "AllEnemies",
+  "Desc": "All enemies individually",
+  "StatBonusScale": 0.35
+}

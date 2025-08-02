@@ -1,0 +1,11 @@
+{
+  "Id": "marker2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Green",
+  "Desc": "",
+  "Icon": "GreenMarker",
+  "Art": "GreenMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 2
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood39default",
+  "ParentId": "default",
+  "IdKey": 39,
+  "Name": "Granite",
+  "Desc": "An extremely hard and durable stone, used for high-status construction.",
+  "Icon": "Granite",
+  "Art": "Granite",
+  "CategoryName": "Stone",
+  "Density": 2000.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 18000,
+  "PricePerWeight": 180,
+  "YearlyProduction": 10000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

@@ -1,0 +1,49 @@
+{
+  "Id": "city17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Syracuse",
+  "Desc": "The most powerful Greek city in Sicily, a major naval and commercial power that often challenged Athens and Carthage for dominance.",
+  "Icon": "Syracuse",
+  "Art": "Syracuse",
+  "AncientName": "Syracusae",
+  "MapPixelX": 858,
+  "MapPixelY": 1204,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 11
+    },
+    {
+      "TradeGoodId": 58
+    },
+    {
+      "TradeGoodId": 47
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

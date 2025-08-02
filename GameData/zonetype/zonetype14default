@@ -1,0 +1,155 @@
+{
+  "Id": "zonetype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "City",
+  "Desc": "",
+  "Icon": "City",
+  "Art": "City",
+  "Textures": [
+    {
+      "TextureTypeId": 99,
+      "Name": "Road/Base"
+    }
+  ],
+  "ZoneNames": [
+    {
+      "Weight": 1000.0,
+      "Name": "City",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Town",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Village",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Hamlet",
+      "Desc": ""
+    }
+  ],
+  "ZoneAdjectives": [],
+  "BridgeTypes": [],
+  "FenceTypes": [],
+  "RockTypes": [],
+  "TreeTypes": [],
+  "CreatureNamePrefixes": [],
+  "CreatureDoubleNamePrefixes": [],
+  "Overrides": [],
+  "ZoneUnitSpawns": [
+    {
+      "UnitTypeId": 1,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 5,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 6,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 9,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 10,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 11,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 12,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 13,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 14,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 15,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 16,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 17,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 18,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 19,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 20,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 22,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 24,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 25,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 28,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 39,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 40,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 41,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 62,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 76,
+      "Weight": 100.0
+    },
+    {
+      "UnitTypeId": 79,
+      "Weight": 100.0
+    }
+  ],
+  "UnitKeyWords": [],
+  "PlantChoices": "",
+  "WeatherTypeId": 10,
+  "BuildingTypeId": 21,
+  "MusicTypeId": 1,
+  "AmbientMusicTypeId": 1,
+  "TraveralTimeScale": 1.0,
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

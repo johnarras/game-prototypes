@@ -1,0 +1,63 @@
+{
+  "Id": "city4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Alexandria",
+  "Desc": "The intellectual and commercial hub of the Mediterranean, home to the Great Library and the Lighthouse, where Eastern goods meet Western markets.",
+  "Icon": "Alexandria",
+  "Art": "Alexandria",
+  "AncientName": "Alexandria ad Aegyptum",
+  "MapPixelX": 1193,
+  "MapPixelY": 1339,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 58
+    },
+    {
+      "TradeGoodId": 25
+    },
+    {
+      "TradeGoodId": 112
+    },
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 79
+    },
+    {
+      "TradeGoodId": 80
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 18,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 12,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

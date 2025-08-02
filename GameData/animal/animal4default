@@ -1,0 +1,20 @@
+{
+  "Id": "animal4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Donkey",
+  "Desc": "The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person.",
+  "Icon": "Donkey",
+  "Art": "Donkey",
+  "Endurance": 4,
+  "Speed": 2.0,
+  "CarryingCapacity": 60,
+  "PullingCapacity": 250,
+  "RoughTerrain": 5,
+  "HotClimate": 4,
+  "ColdClimate": 2,
+  "WetClimate": 2,
+  "FoodPerDay": 5,
+  "WaterPerDay": 20,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

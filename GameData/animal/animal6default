@@ -1,0 +1,20 @@
+{
+  "Id": "animal6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Mule",
+  "Desc": "A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal.",
+  "Icon": "Mule",
+  "Art": "Mule",
+  "Endurance": 5,
+  "Speed": 2.0,
+  "CarryingCapacity": 90,
+  "PullingCapacity": 450,
+  "RoughTerrain": 5,
+  "HotClimate": 4,
+  "ColdClimate": 3,
+  "WetClimate": 3,
+  "FoodPerDay": 8,
+  "WaterPerDay": 30,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

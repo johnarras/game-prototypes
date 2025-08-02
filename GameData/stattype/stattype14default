@@ -1,0 +1,12 @@
+{
+  "Id": "stattype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Agility",
+  "Desc": "Increases ranged damage.",
+  "Art": "YellowCauldron",
+  "ColorName": "Yellow",
+  "ColorCode": "#FFFF00",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

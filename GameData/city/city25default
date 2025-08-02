@@ -1,0 +1,57 @@
+{
+  "Id": "city25default",
+  "ParentId": "default",
+  "IdKey": 25,
+  "Name": "Trier",
+  "Desc": "A major Roman city on the Moselle River, which eventually became an imperial capital and one of the largest cities in the empire.",
+  "Icon": "Trier",
+  "Art": "Trier",
+  "AncientName": "Augusta Treverorum",
+  "MapPixelX": 664,
+  "MapPixelY": 916,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 6
+    },
+    {
+      "TradeGoodId": 50
+    },
+    {
+      "TradeGoodId": 27
+    },
+    {
+      "TradeGoodId": 114
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

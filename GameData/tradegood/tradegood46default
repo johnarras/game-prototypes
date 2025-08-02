@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood46default",
+  "ParentId": "default",
+  "IdKey": 46,
+  "Name": "Gold Bullion",
+  "Desc": "The ultimate store of wealth and material for luxury items.",
+  "Icon": "GoldBullion",
+  "Art": "GoldBullion",
+  "CategoryName": "Precious Metal",
+  "Density": 9650.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 120000,
+  "PricePerWeight": 120000,
+  "YearlyProduction": 500,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

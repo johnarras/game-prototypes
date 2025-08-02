@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood91default",
+  "ParentId": "default",
+  "IdKey": 91,
+  "Name": "Spikenard",
+  "Desc": "An expensive aromatic ointment from the Himalayas, a luxury perfume.",
+  "Icon": "Spikenard",
+  "Art": "Spikenard",
+  "CategoryName": "Cosmetics",
+  "Density": 900.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 36000,
+  "PricePerWeight": 36000,
+  "YearlyProduction": 500,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

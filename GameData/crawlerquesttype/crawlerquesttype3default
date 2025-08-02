@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerquesttype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "ExploreMap",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "Weight": 0.25
+}

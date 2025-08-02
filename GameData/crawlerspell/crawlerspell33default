@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell33default",
+  "ParentId": "default",
+  "IdKey": 33,
+  "Name": "Blink",
+  "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
+  "PowerCost": 10.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 5,
+  "Effects": [
+    {
+      "EntityTypeId": 37,
+      "EntityId": 5,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

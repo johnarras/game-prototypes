@@ -1,0 +1,23 @@
+{
+  "Id": "crawlerspell20001default",
+  "ParentId": "default",
+  "IdKey": 20001,
+  "Name": "Monster Call Human",
+  "PowerCost": 100.0,
+  "PowerPerLevel": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 5,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 1,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

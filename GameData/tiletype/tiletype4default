@@ -1,0 +1,33 @@
+{
+  "Id": "tiletype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Mountain",
+  "Desc": "Iron and Stone",
+  "Icon": "MountainTile",
+  "Art": "MountainTile",
+  "Weight": 1.0,
+  "MinLevel": 1,
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 8,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 10,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1,
+      "MinLevel": 1
+    }
+  ],
+  "Effects": [],
+  "UpgradeReagents": []
+}

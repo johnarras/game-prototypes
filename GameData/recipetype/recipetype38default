@@ -1,0 +1,13 @@
+{
+  "Id": "recipetype38default",
+  "ParentId": "default",
+  "IdKey": 38,
+  "Name": "Agility Elixir",
+  "EntityId": 305,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "ScalingPct": 100,
+  "CrafterTypeId": 7,
+  "ExplicitReagents": []
+}

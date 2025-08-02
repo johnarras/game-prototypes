@@ -1,0 +1,20 @@
+{
+  "Id": "animal1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Human",
+  "Desc": "The baseline for comparison. Versatile and able to navigate any terrain, but weak compared to animal labor. Cost represents a trained slave or long-term porter.",
+  "Icon": "Human",
+  "Art": "Human",
+  "Endurance": 3,
+  "Speed": 3.0,
+  "CarryingCapacity": 30,
+  "PullingCapacity": 80,
+  "RoughTerrain": 6,
+  "HotClimate": 3,
+  "ColdClimate": 2,
+  "WetClimate": 3,
+  "FoodPerDay": 2,
+  "WaterPerDay": 4,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

@@ -1,0 +1,23 @@
+{
+  "Id": "crawlerspell3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Shoot",
+  "Desc": "Attack one or more enemies that are out of melee range.",
+  "StatBonusScaling": 1.0,
+  "MinRange": 20,
+  "MaxRange": 100,
+  "CombatActionId": 3,
+  "TargetTypeId": 1,
+  "RoleScalingTypeId": 2,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 39,
+      "EntityId": 2,
+      "ElementTypeId": 1
+    }
+  ],
+  "Flags": 1,
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

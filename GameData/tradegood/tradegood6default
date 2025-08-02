@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Regional Wine",
+  "Desc": "High-quality wine from a specific, well-regarded region, prized by connoisseurs.",
+  "Icon": "RegionalWine",
+  "Art": "RegionalWine",
+  "CategoryName": "Wine",
+  "Density": 1000.0,
+  "UnitWeight": 25,
+  "PricePerUnit": 5000,
+  "PricePerWeight": 200,
+  "YearlyProduction": 50000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

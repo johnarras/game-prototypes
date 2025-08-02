@@ -1,0 +1,115 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "npctype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Tailor",
+      "CrafterTypeId": 1,
+      "BuildingTypeId": 1,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Carpenter",
+      "CrafterTypeId": 2,
+      "BuildingTypeId": 2,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Leatherworker",
+      "CrafterTypeId": 3,
+      "BuildingTypeId": 3,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Blacksmith",
+      "CrafterTypeId": 4,
+      "BuildingTypeId": 4,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Stonemason",
+      "CrafterTypeId": 5,
+      "BuildingTypeId": 5,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Jeweler",
+      "CrafterTypeId": 6,
+      "BuildingTypeId": 6,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Alchemist",
+      "CrafterTypeId": 7,
+      "BuildingTypeId": 7,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Enchanter",
+      "CrafterTypeId": 8,
+      "BuildingTypeId": 8,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Thief",
+      "CrafterTypeId": 9,
+      "BuildingTypeId": 9,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Citizen",
+      "BuildingTypeId": 10,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Tower Guard",
+      "BuildingTypeId": 11,
+      "DefaultVendorItems": []
+    },
+    {
+      "Id": "npctype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Guard",
+      "DefaultVendorItems": []
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "NPCSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

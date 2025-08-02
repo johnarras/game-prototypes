@@ -1,0 +1,78 @@
+header road,IdKey,StartCityId,EndCityId,StartCityName,EndCityName,Name,Icon,Art,Maintenance,Difficulty,Danger,Length,SummerHeat,SummerRain,WinterHeat,WinterRain,Desc
+road,1,1,64,Rome,Brindisi,Via Appia,Road,Road,5,2,2,545,4,1,3,4,"The 'Queen of Roads', this vital artery connects Rome to the southern ports of Italy, paved with large stones and lined with tombs."
+road,2,1,61,Rome,Milan,Via Flaminia & Aemilia,Road,Road,5,2,2,580,4,2,2,4,"A major route heading north from Rome, crossing the Apennines and traversing the flat, fertile Po Valley."
+road,3,1,30,Rome,Ravenna,Via Flaminia Minor,Road,Road,4,2,2,400,4,2,2,4,A branch of the Via Flaminia leading to the strategic Adriatic port of Ravenna.
+road,4,1,17,Rome,Syracuse,Via Popilia & Rhegium Ferry Path,Road,Road,4,3,3,710,5,1,3,4,"The land route through southern Italy to the Strait of Messina, the primary path to the crucial province of Sicily."
+road,5,61,31,Milan,Aquileia,Via Postumia,Road,Road,4,2,2,415,4,3,2,4,"A major road across northern Italy, connecting the administrative center of Milan with the great northern port of Aquileia."
+road,6,61,23,Milan,Lyon,Passage of the Alps,Road,Road,3,5,4,550,3,4,0,6,"A treacherous and winding series of passes through the high Alps, connecting Italy to Gaul. Often impassable due to snow in winter."
+road,7,23,11,Lyon,Marseille,Via Agrippa,Road,Road,5,2,2,315,4,2,2,3,"The main artery connecting the capital of Gaul, Lugdunum, to the ancient Mediterranean port of Massilia."
+road,8,23,62,Lyon,Bordeaux,Gallic Aquitania Road,Road,Road,4,2,3,560,4,3,2,4,"A major route across Gaul, linking the Rhone valley to the Atlantic coast and the wine-producing region of Burdigala."
+road,9,23,24,Lyon,Paris,Via Agrippa Lingonum,Road,Road,4,2,2,465,3,3,2,4,The primary Roman road heading north from Lugdunum towards the Seine and the northern Gallic interior.
+road,10,24,25,Paris,Trier,Gallic Belgica Road,Road,Road,4,3,3,430,3,4,1,4,"A route through the dense forests of northern Gaul, connecting the Seine basin to the Rhine frontier and the imperial city of Trier."
+road,11,23,25,Lyon,Trier,Eastern Gallic Network,Road,Road,4,3,3,540,3,4,1,4,A strategic military road linking the capital of Gaul directly with the frontier capital on the Moselle River.
+road,12,25,26,Trier,Cologne,Mosel & Rhine Valley Road,Road,Road,4,2,3,200,3,4,1,4,"A vital road along the rivers, linking two of the most important Roman cities in Germania and supporting the Rhine frontier."
+road,13,24,22,Paris,London,Fretum Gallicum Trail,Road,Road,3,2,3,460,3,4,2,5,"The combined land and sea route connecting Gaul to Britannia, crossing the choppy waters of the English Channel."
+road,14,22,63,London,York,Ermine Street,Road,Road,4,2,3,340,3,4,2,4,"A major Roman road in Britain, running north from the port of Londinium to the legionary fortress of Eburacum."
+road,15,11,28,Marseille,Tarragona,Via Domitia,Road,Road,5,2,2,510,5,1,3,3,"The first Roman road built in Gaul, linking Italy to Hispania along the sunny Mediterranean coast."
+road,16,28,29,Tarragona,Mérida,Central Hispanian Road,Road,Road,4,3,3,890,5,2,3,3,"A long road crossing the high, arid plains of central Hispania, connecting the coast to the grand veteran's colony of Emerita Augusta."
+road,17,29,10,Mérida,Cadiz,Via Augusta (South),Road,Road,5,2,2,390,5,2,3,4,"The southern leg of the great road that followed the Spanish coast, linking the interior to the rich ports of Baetica."
+road,18,29,27,Mérida,Cordoba,Corduba Connector,Road,Road,4,2,2,205,6,2,3,4,"A well-travelled road through southern Hispania, linking the administrative center of Mérida to the olive oil capital of Corduba."
+road,19,27,28,Cordoba,Tarragona,Hispanian Interior Road,Road,Road,4,3,3,815,5,2,3,3,An inland route connecting the rich agricultural lands of Baetica with the major port and capital of Tarraco on the eastern coast.
+road,20,29,62,Mérida,Bordeaux,Via de la Plata & Pyrenees Path,Road,Road,3,4,4,910,4,3,2,4,The 'Silver Route' heading north through western Hispania and crossing the rugged Pyrenees mountains into Gaul.
+road,21,51,65,Volubilis,Tangier,Mauretanian Coastal Road,Road,Road,3,2,3,280,4,2,3,4,The road connecting the inland capital of Volubilis to the strategic port of Tingis on the Strait of Gibraltar.
+road,22,31,71,Aquileia,Solin,Dalmatian Coastal Road,Road,Road,4,3,3,425,4,2,3,5,"A winding coastal road along the rugged Adriatic, connecting Italy to the province of Dalmatia."
+road,23,71,70,Solin,Plovdiv,Via Militaris,Road,Road,4,4,4,700,4,3,2,4,"A leg of the great military road to the East, crossing the difficult terrain of the Balkan interior."
+road,24,70,9,Plovdiv,Istanbul,Via Militaris,Road,Road,5,2,3,240,4,2,2,4,"The final, well-maintained stretch of the military road, descending from the Thracian plains to the strategic city of Byzantium."
+road,25,64,9,Brindisi,Istanbul,Via Egnatia,Road,Road,5,4,4,1120,4,2,2,5,"The great Roman road linking the Adriatic to Byzantium, crossing the mountainous regions of Macedonia and Thrace."
+road,26,2,9,Athens,Istanbul,Via Egnatia (South Branch),Road,Road,3,4,4,1080,5,1,2,4,A secondary route linking the classical heartland of Athens to the main Via Egnatia and the road to the East.
+road,27,9,13,Istanbul,Ephesus,Anatolian Coastal Road,Road,Road,4,3,3,670,4,1,3,4,"A major road connecting the capital on the Bosphorus to the wealthy cities of western Anatolia, including the port of Ephesus."
+road,28,9,68,Istanbul,Artaxata,Northern Anatolian Route,Road,Road,3,5,5,1750,3,3,0,4,"A difficult and dangerous road crossing the high, cold plateau of northern Anatolia towards the mountainous kingdom of Armenia."
+road,29,13,34,Ephesus,Pergamon,Ionian Road,Road,Road,4,2,2,160,4,1,3,4,A short but important road connecting two of the greatest Hellenistic cities in western Anatolia.
+road,30,13,37,Ephesus,Sardis,Lydian Royal Road,Road,Road,4,2,2,100,4,1,3,4,"A stretch of the ancient Persian Royal Road, linking the coast at Ephesus to the old Lydian capital of Sardis."
+road,31,13,35,Ephesus,Miletus,Meander Valley Path,Road,Road,3,2,3,80,4,1,3,4,"A local path following the Meander River valley, connecting Ephesus with the ancient intellectual center of Miletus."
+road,32,35,36,Miletus,Halicarnassus,Carian Coast Trail,Road,Road,2,3,4,120,4,1,3,4,A minor coastal trail through the rugged region of Caria.
+road,33,35,38,Miletus,Tarsus,Lycian-Pamphylian Coastal Path,Road,Road,2,4,5,1050,5,1,3,5,A long and arduous coastal path crossing the rugged mountains and river valleys of southern Anatolia.
+road,34,37,38,Sardis,Tarsus,Persian Royal Road (Taurus Section),Road,Road,4,4,3,950,5,2,2,3,The great Royal Road crossing the high plains of central Anatolia before descending through the formidable Taurus Mountains.
+road,35,38,5,Tarsus,Antioch,Cilician Gates Road,Road,Road,4,3,3,260,5,1,3,4,"A strategic road passing through the 'Cilician Gates', a narrow pass in the Taurus Mountains, linking Anatolia to Syria."
+road,36,38,68,Tarsus,Artaxata,Armenian Highlands Trail,Road,Road,2,6,5,980,3,3,0,4,"An extremely challenging mountain trail connecting Cilicia to the Armenian highlands, used by traders and armies alike."
+road,37,5,39,Antioch,Damascus,Strata Diocletiana,Road,Road,4,2,3,350,6,0,3,3,A major Roman road linking the metropolis of Antioch with the ancient oasis city of Damascus.
+road,38,5,14,Antioch,Palmyra,Syrian Caravan Route,Road,Road,2,4,5,310,6,0,3,2,The primary caravan route leading from the Roman trade hub of Antioch into the Syrian desert towards the oasis of Palmyra.
+road,39,39,15,Damascus,Petra,King's Highway,Road,Road,2,4,5,450,6,0,3,2,"An ancient trade route running through the arid highlands east of the Jordan River, connecting Damascus to the Red Sea via Petra."
+road,40,39,43,Damascus,Dura-Europos,Strata Diocletiana (East),Road,Road,2,4,5,475,6,0,3,2,A desert military road and patrol route connecting Damascus with the Roman fortress on the Euphrates.
+road,41,39,6,Damascus,Tyre,Phoenician Inland Route,Road,Road,3,3,3,140,5,0,3,4,An important route crossing the mountains of Lebanon to connect the inland oasis of Damascus with the ports of Phoenicia.
+road,42,6,41,Tyre,Sidon,Phoenician Coastal Road,Road,Road,4,2,2,40,5,0,3,4,"A short, busy coastal road linking the two great rival Phoenician cities."
+road,43,41,42,Sidon,Byblos,Phoenician Coastal Road,Road,Road,4,2,2,55,5,0,3,4,"The ancient road along the Phoenician coast, linking some of the oldest ports in the world."
+road,44,42,5,Byblos,Antioch,Coastal Levant Road,Road,Road,4,2,3,280,5,0,3,4,"The main coastal highway of the northern Levant, a region dotted with ancient cities and ports."
+road,45,15,60,Petra,Hegra,Incense Route,Road,Road,1,5,4,480,6,0,3,1,"The primary artery of the Incense Route, a desert trail through the canyons and plains of Arabia, traveled by spice caravans."
+road,46,14,43,Palmyra,Dura-Europos,Euphrates Desert Trail,Road,Road,1,5,6,220,6,0,3,2,"A dangerous desert track following the Euphrates River, connecting the two great caravan cities of the Syrian frontier."
+road,47,43,66,Dura-Europos,Seleucia,Middle Euphrates Trail,Road,Road,2,3,4,390,6,0,3,2,"A route following the river south into the heart of Mesopotamia, passing through numerous small towns and agricultural lands."
+road,48,44,48,Nineveh,Hatra,Assyrian Plains Road,Road,Road,2,2,4,120,6,0,2,3,"A dusty track across the semi-arid plains of northern Mesopotamia, linking the ancient Assyrian capital with the desert trade city of Hatra."
+road,49,48,68,Hatra,Artaxata,Zagros Mountain Path,Road,Road,0,6,5,750,4,3,0,4,A perilous and rarely used track heading north from the desert plains into the formidable Zagros and Armenian mountains.
+road,50,44,67,Nineveh,Hamadan,Great Khorasan Road (West),Road,Road,3,4,4,600,5,2,1,3,"The westernmost leg of the Silk Road, crossing the Zagros mountains to link Mesopotamia with the high plateau of Persia."
+road,51,66,7,Seleucia,Babylon,Canal Path,Road,Road,3,2,3,90,6,0,3,2,A short road running through the dense network of canals and irrigated fields between two of Mesopotamia's greatest cities.
+road,52,66,47,Seleucia,Ctesiphon,Tigris River Road,Road,Road,4,2,3,40,6,0,3,2,The busy road connecting the adjacent Hellenistic and Persian capitals on opposite sides of the Tigris River.
+road,53,47,67,Ctesiphon,Hamadan,Great Khorasan Road (Central),Road,Road,4,4,3,550,5,2,1,3,"The central leg of the Silk Road through Persia, climbing from the lowlands of Mesopotamia onto the Iranian plateau."
+road,54,67,55,Hamadan,Merv,Great Khorasan Road (East),Road,Road,3,4,4,1150,5,2,0,2,The long journey across the arid Iranian plateau and desert towards the great oasis city of Merv.
+road,55,55,54,Merv,Bukhara,Silk Road (Transoxiana),Road,Road,2,3,4,410,6,1,2,2,"The 'Land Beyond the River' route, a desert path linking the oases of Merv and Bukhara in the heart of Central Asia."
+road,56,54,53,Bukhara,Samarkand,Silk Road (Sogdian Trail),Road,Road,3,2,4,240,6,1,2,2,"A well-traveled road through the fertile heartland of Sogdiana, connecting two of the most famous cities on the Silk Road."
+road,57,53,21,Samarkand,Xi'an,Silk Road (High Route),Road,Road,1,6,6,3900,4,3,0,2,"An arduous and extremely long network of trails crossing the Pamir Mountains and Taklamakan Desert, the primary route for silk from China."
+road,58,53,56,Samarkand,Taxila,Hindu Kush Pass,Road,Road,1,6,6,1100,3,3,0,3,"A treacherous path leading south from Central Asia, crossing the formidable Hindu Kush mountains into India."
+road,59,56,57,Taxila,Pataliputra,Uttarapatha (Northern Road),Road,Road,3,2,4,1550,6,4,4,1,"The great northern highway of India, a grand trunk road connecting the northwestern frontier with the Gangetic plain."
+road,60,56,69,Taxila,Bharuch,Indus Valley Route,Road,Road,2,3,4,1350,6,4,4,2,"A long route following the Indus River valley south to the coastal ports of Gujarat, a major artery for Indian trade."
+road,61,69,19,Bharuch,Lothal,Gujarat Coastal Trail,Road,Road,3,2,3,140,6,4,5,0,"A local coastal road through the hot and humid region of Gujarat, linking major ports."
+road,62,69,58,Bharuch,Muziris,Malabar Coastal Trail,Road,Road,2,3,4,1250,6,6,5,2,"A long, winding coastal trail connecting the ports of Gujarat with the spice-rich Malabar Coast, often plagued by monsoons."
+road,63,4,8,Alexandria,Memphis,Nile River Path,Road,Road,4,2,2,200,6,0,4,0,"The busy road paralleling the Nile, connecting the main port of Alexandria with the ancient capital of Memphis."
+road,64,8,49,Memphis,Luxor,Nile River Path,Road,Road,3,2,3,670,6,0,4,0,"The long road south through Upper Egypt, following the life-giving river through a narrow strip of fertile land surrounded by desert."
+road,65,49,18,Luxor,Meroë,Nubian Desert Trail,Road,Road,1,6,4,1470,6,0,4,0,"A difficult desert trail that bypasses the great bend of the Nile, a dangerous but necessary shortcut for trade with the Kingdom of Kush."
+road,66,49,59,Luxor,Berenice,Eastern Desert Road,Road,Road,1,4,4,370,6,0,4,0,"A harsh, dry road crossing the Eastern Desert to connect the Nile valley with the Red Sea ports and the trade from the East."
+road,67,4,50,Alexandria,Cyrene,Via Balbia,Road,Road,3,3,4,1050,5,0,3,3,"A long coastal road linking Egypt with the province of Cyrenaica, often threatened by desert raiders."
+road,68,50,16,Cyrene,Leptis Magna,Syrtican Coastal Trail,Road,Road,2,4,5,900,6,0,3,3,"A dangerous and poorly maintained trail along the Gulf of Sirte, a lawless region of burning sands and treacherous coastline."
+road,69,16,3,Leptis Magna,Carthage,Limes Tripolitanus,Road,Road,3,3,4,760,6,2,3,3,"A road following the Roman frontier fortifications (limes) in Tripolitania, linking the major cities of Roman Africa."
+road,70,3,52,Carthage,Cherchell,Coastal Africa Road,Road,Road,4,2,3,700,5,2,3,4,"The main Roman highway along the fertile North African coast, connecting the region's prosperous cities."
+road,71,52,51,Cherchell,Volubilis,Mauretanian Route,Road,Road,3,3,4,550,4,2,3,4,An inland road connecting the coastal capital of Caesarea with the frontier city of Volubilis.
+road,72,46,45,Susa,Persepolis,Persian Royal Road (South),Road,Road,4,4,3,650,6,0,3,2,"The southern stretch of the Royal Road, crossing the rugged Zagros mountains to link the administrative capital of Susa with ceremonial heart of Persepolis."
+road,73,46,66,Susa,Seleucia,Tigris Lowlands Path,Road,Road,3,2,4,380,6,0,3,2,"A path across the flat, hot plains of southern Mesopotamia, linking the Persian city of Susa with the great metropolis of Seleucia."
+road,74,2,33,Athens,Thebes,Attican Road,Road,Road,4,2,2,70,5,1,3,4,A well-traveled road connecting the two most powerful (and often rival) cities of classical mainland Greece.
+road,75,33,12,Thebes,Corinth,Boeotian Path,Road,Road,3,2,3,90,5,1,3,4,A route connecting the plains of Boeotia with the strategic trade hub of Corinth on the isthmus.
+road,76,4,3,Alexandria,Carthage,Great Libyan Desert Route,Road,Road,0,6,6,2340,6,0,3,0,"A theoretical and extremely dangerous direct crossing of the deep Sahara, attempted only by the most desperate or well-prepared caravans."
+road,77,65,10,Tangier,Cadiz,Pillars of Hercules Trail,Road,Road,2,3,4,160,4,2,3,4,"The combined land and sea route crossing the Strait of Gibraltar, the mythical Pillars of Hercules that separate the Mediterranean from the Atlantic."

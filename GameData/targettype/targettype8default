@@ -1,0 +1,8 @@
+{
+  "Id": "targettype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Special",
+  "Desc": "Movement",
+  "StatBonusScale": 1.0
+}

@@ -1,0 +1,41 @@
+{
+  "Id": "boardprize1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Credits",
+  "Art": "CreditsPrize",
+  "LootTable": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 70.0,
+      "Name": ""
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 3,
+      "MaxQuantity": 4,
+      "Weight": 25.0,
+      "Name": ""
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 4,
+      "MaxQuantity": 8,
+      "Weight": 4.0,
+      "Name": ""
+    },
+    {
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 8,
+      "MaxQuantity": 16,
+      "Weight": 1.0,
+      "Name": ""
+    }
+  ]
+}

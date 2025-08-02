@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell60default",
+  "ParentId": "default",
+  "IdKey": 60,
+  "Name": "Silence",
+  "Desc": "Prevent a group from casting spells.",
+  "PowerCost": 15.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 6,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 10,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "ElementTypeId": 6
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

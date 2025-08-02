@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood83default",
+  "ParentId": "default",
+  "IdKey": 83,
+  "Name": "Myrrh",
+  "Desc": "A bitter resin from Arabia and Africa, used in incense, perfumes, and embalming.",
+  "Icon": "Myrrh",
+  "Art": "Myrrh",
+  "CategoryName": "Resins",
+  "Density": 650.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 30000,
+  "PricePerWeight": 30000,
+  "YearlyProduction": 3000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

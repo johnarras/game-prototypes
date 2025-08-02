@@ -1,0 +1,93 @@
+﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Worlds.Entities;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+
+namespace Genrpg.Shared.Crawler.Tavern.Services
+{
+    public interface ITavernService : IInjectable
+    {
+        string GetRumor(PartyData party, CrawlerWorld world);
+    }
+
+    public class TavernService : ITavernService
+    {
+        private IClientRandom _rand = null;
+        private ICrawlerMapService _mapService = null;
+
+        public string GetRumor(PartyData party, CrawlerWorld world)
+        {
+            if (world.QuestItems.Count < 1)
+            {
+                return "Lots of scary monsters out there.";
+            }
+
+            WorldQuestItem questItem = world.QuestItems[_rand.Next(world.QuestItems.Count)];
+
+            if (_rand.NextDouble() < 0.35f)
+            {
+                List<CrawlerMap> cityMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.City).ToList();
+                List<CrawlerMap> outdoorMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Outdoors).ToList();
+
+                List<CrawlerMap> okMaps = new List<CrawlerMap>();
+                if (_rand.NextDouble() < 0.5f)
+                {
+                    okMaps = cityMaps;
+                }
+                else
+                {
+                    okMaps = outdoorMaps;
+                }
+
+                if (okMaps.Count > 0)
+                {
+                    CrawlerMap map = okMaps[_rand.Next(okMaps.Count)];
+                    List<MapCellDetail> allExits = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
+
+                    if (allExits.Count > 0)
+                    {
+                        MapCellDetail detail = allExits[_rand.Next(allExits.Count)];
+
+                        CrawlerMap targetMap = world.GetMap(detail.EntityId);
+
+
+                        return targetMap.Name + "\ncan be found within\n" +  _mapService.GetMapName(party, map.IdKey, detail.X, detail.Z);
+
+                    }
+                }
+            }
+
+
+            if (_rand.NextDouble() < 0.50f)
+            {
+                CrawlerMap map = world.GetMap(questItem.FoundInMapId);
+                if (map == null)
+                {
+                    return questItem.Name + "\nis out there someplace...";
+                }
+         
+                return questItem.Name + "\ncan be found in\n" + map.Name + (!string.IsNullOrEmpty(questItem.GuardName) ? "\nguarded by\n" + questItem.GuardName : "");
+            }
+            else 
+            {
+                CrawlerMap map = world.GetMap(questItem.UnlocksMapId);
+
+                if (map == null)
+                {
+                    return questItem.Name + "\nunlocks a great adventure!";
+                }
+                return "They say that\n" + questItem.Name + "\nis needed to enter\n" + map.Name;
+            }
+        }
+    }
+}

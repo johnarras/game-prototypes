@@ -1,0 +1,13 @@
+{
+  "Id": "crawlerupgrade11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "InventorySize",
+  "NameId": "",
+  "Desc": "Max Size of the party's inventory.",
+  "Icon": "",
+  "Art": "",
+  "MaxTier": 5,
+  "BonusPerTier": 10.0,
+  "BasePointCost": 2
+}

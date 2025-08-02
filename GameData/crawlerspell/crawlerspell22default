@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Cure",
+  "Desc": "Cure a single ally",
+  "PowerCost": 5.0,
+  "PowerPerLevel": 0.5,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 2,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "MinQuantity": -1,
+      "MaxQuantity": -1,
+      "ElementTypeId": 7
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

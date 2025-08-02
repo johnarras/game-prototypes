@@ -1,0 +1,20 @@
+{
+  "Id": "road31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "Meander Valley Path",
+  "Desc": "A local path following the Meander River valley, connecting Ephesus with the ancient intellectual center of Miletus.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 13,
+  "EndCityId": 35,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 80.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

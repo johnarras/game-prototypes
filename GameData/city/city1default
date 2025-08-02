@@ -1,0 +1,65 @@
+{
+  "Id": "city1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Rome",
+  "Desc": "The sprawling heart of the Empire, a vast metropolis that consumes the tribute of a continent and projects power across the known world.",
+  "Icon": "Rome",
+  "Art": "Rome",
+  "AncientName": "Roma",
+  "MapPixelX": 796,
+  "MapPixelY": 1095,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 50
+    },
+    {
+      "TradeGoodId": 112
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 4
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

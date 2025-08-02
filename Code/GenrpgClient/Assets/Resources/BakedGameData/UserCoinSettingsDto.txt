@@ -1,0 +1,146 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "usercointype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "HardCurrency",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconHardCurrency",
+      "Art": "HardCurrencyArt"
+    },
+    {
+      "Id": "usercointype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Credits",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconCredits",
+      "Art": "CreditsArt"
+    },
+    {
+      "Id": "usercointype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Energy",
+      "Icon": "IconEnergy",
+      "Art": "EnergyArt"
+    },
+    {
+      "Id": "usercointype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Season",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconSeason",
+      "Art": "SeasonArt",
+      "SaveTime": "2025-06-12T22:12:33.137Z"
+    },
+    {
+      "Id": "usercointype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Collection",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconCollection",
+      "Art": "CollectionArt",
+      "SaveTime": "2025-06-12T22:12:33.137Z"
+    },
+    {
+      "Id": "usercointype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Upgrades",
+      "Icon": "IconUpgrades",
+      "Art": "UpgradesArt",
+      "SaveTime": "2025-06-12T22:12:33.137Z"
+    },
+    {
+      "Id": "usercointype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Wood",
+      "Icon": "IconWood",
+      "Art": "WoodArt"
+    },
+    {
+      "Id": "usercointype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Stone",
+      "Icon": "IconStone",
+      "Art": "StoneArt"
+    },
+    {
+      "Id": "usercointype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Herbs",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconHerbs",
+      "Art": "HerbsArt"
+    },
+    {
+      "Id": "usercointype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Iron",
+      "Icon": "IconIron",
+      "Art": "IronArt"
+    },
+    {
+      "Id": "usercointype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Food",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconFood",
+      "Art": "FoodArt"
+    },
+    {
+      "Id": "usercointype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Leather",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconLeather",
+      "Art": "LeatherArt"
+    },
+    {
+      "Id": "usercointype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Warriors",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconWarriors",
+      "Art": "WarriorsArt",
+      "BaseStorage": 20
+    },
+    {
+      "Id": "usercointype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Mana",
+      "PluralName": "",
+      "Desc": "",
+      "Icon": "IconMana",
+      "Art": "ManaArt",
+      "BaseStorage": 50
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "UserCoinSettings",
+    "SaveTime": "2025-06-12T22:12:33.137Z"
+  },
+  "SaveTime": "2025-06-12T22:12:33.137Z"
+}

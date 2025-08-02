@@ -1,0 +1,51 @@
+{
+  "Id": "city67default",
+  "ParentId": "default",
+  "IdKey": 67,
+  "Name": "Hamadan",
+  "Desc": "The ancient capital of the Medes, located at a high altitude on a key leg of the Silk Road connecting Mesopotamia to Central Asia.",
+  "Icon": "Hamadan",
+  "Art": "Hamadan",
+  "AncientName": "Ecbatana",
+  "MapPixelX": 1616,
+  "MapPixelY": 1256,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 73
+    },
+    {
+      "TradeGoodId": 32
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 15,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

@@ -1,0 +1,27 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "sextype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Female",
+      "CostPercent": 100
+    },
+    {
+      "Id": "sextype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Male",
+      "CostPercent": 100
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "LevelsPerQuality": 5.0,
+    "ExtraQualityChance": 0.25,
+    "Name": "SexTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

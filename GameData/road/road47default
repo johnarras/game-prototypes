@@ -1,0 +1,19 @@
+{
+  "Id": "road47default",
+  "ParentId": "default",
+  "IdKey": 47,
+  "Name": "Middle Euphrates Trail",
+  "Desc": "A route following the river south into the heart of Mesopotamia, passing through numerous small towns and agricultural lands.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 43,
+  "EndCityId": 66,
+  "Maintenance": 2.0,
+  "Difficulty": 3.0,
+  "Danger": 4.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 3.0,
+  "Length": 390.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

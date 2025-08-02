@@ -1,0 +1,50 @@
+{
+  "Id": "city27default",
+  "ParentId": "default",
+  "IdKey": 27,
+  "Name": "Cordoba",
+  "Desc": "A major Roman and later Umayyad capital in Hispania, famed for its high-quality olive oil, leatherwork, and intellectual pursuits.",
+  "Icon": "Cordoba",
+  "Art": "Cordoba",
+  "AncientName": "Corduba",
+  "MapPixelX": 403,
+  "MapPixelY": 1186,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 4
+    },
+    {
+      "TradeGoodId": 10
+    },
+    {
+      "TradeGoodId": 62
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

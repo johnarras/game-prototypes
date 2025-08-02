@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype93default",
+  "ParentId": "default",
+  "IdKey": 93,
+  "Name": "Rocke",
+  "Art": "Rocke",
+  "Size": 8.0,
+  "ParentTextureTypeId": 3
+}

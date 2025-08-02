@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell80default",
+  "ParentId": "default",
+  "IdKey": 80,
+  "Name": "Sense Area",
+  "Desc": "Determine if any traps or interesting things are nearby.",
+  "PowerCost": 2.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 2,
+  "Effects": [
+    {
+      "EntityTypeId": 37,
+      "EntityId": 8,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

@@ -1,0 +1,20 @@
+{
+  "Id": "animal13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Water Buffalo",
+  "Desc": "A powerful bovine, perfectly adapted for pulling plows and carts through deep mud and water. Slower and less heat-tolerant than an ox on dry land.",
+  "Icon": "WaterBuffalo",
+  "Art": "WaterBuffalo",
+  "Endurance": 3,
+  "Speed": 1.0,
+  "CarryingCapacity": 40,
+  "PullingCapacity": 650,
+  "RoughTerrain": 3,
+  "HotClimate": 4,
+  "ColdClimate": 2,
+  "WetClimate": 6,
+  "FoodPerDay": 25,
+  "WaterPerDay": 70,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

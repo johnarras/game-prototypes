@@ -1,0 +1,8 @@
+{
+  "Id": "targettype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "AllAllies",
+  "Desc": "All allies individually",
+  "StatBonusScale": 0.35
+}

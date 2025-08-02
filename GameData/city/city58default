@@ -1,0 +1,48 @@
+{
+  "Id": "city58default",
+  "ParentId": "default",
+  "IdKey": 58,
+  "Name": "Muziris",
+  "Desc": "A legendary port on the Malabar Coast of India, which vanished from history. It was the epicenter of the lucrative spice trade with the Roman Empire.",
+  "Icon": "Muziris",
+  "Art": "Muziris",
+  "AncientName": "Muziris",
+  "MapPixelX": 2244,
+  "MapPixelY": 1817,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 79
+    },
+    {
+      "TradeGoodId": 81
+    },
+    {
+      "TradeGoodId": 96
+    },
+    {
+      "TradeGoodId": 92
+    },
+    {
+      "TradeGoodId": 102
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 12,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

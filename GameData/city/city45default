@@ -1,0 +1,47 @@
+{
+  "Id": "city45default",
+  "ParentId": "default",
+  "IdKey": 45,
+  "Name": "Persepolis",
+  "Desc": "The grand ceremonial capital of the Achaemenid Persian Empire, built to inspire awe and receive the tribute of subject nations.",
+  "Icon": "Persepolis",
+  "Art": "Persepolis",
+  "AncientName": "Parsa",
+  "MapPixelX": 1715,
+  "MapPixelY": 1367,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 40
+    },
+    {
+      "TradeGoodId": 75
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

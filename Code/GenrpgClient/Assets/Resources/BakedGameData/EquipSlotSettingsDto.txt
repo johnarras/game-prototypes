@@ -1,0 +1,177 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "equipslot1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Head",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Neck",
+      "Active": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Shoulders",
+      "Active": true,
+      "BaseBonusStatTypeId": 30
+    },
+    {
+      "Id": "equipslot4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Torso",
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Back",
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Waist",
+      "Active": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Legs",
+      "Active": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Feet",
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Wrists",
+      "Active": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Hands",
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "LeftFinger",
+      "Active": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "RightFinger",
+      "ParentEquipSlotId": 11,
+      "Active": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Jewelry1",
+      "Active": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Jewelry2",
+      "ParentEquipSlotId": 13,
+      "Active": true,
+      "BaseBonusStatTypeId": 32
+    },
+    {
+      "Id": "equipslot15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "MainHand",
+      "Active": true,
+      "IsCrawlerSlot": true
+    },
+    {
+      "Id": "equipslot16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "OffHand",
+      "ParentEquipSlotId": 15,
+      "Active": true,
+      "IsCrawlerSlot": true,
+      "BaseBonusStatTypeId": 31
+    },
+    {
+      "Id": "equipslot17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "Ranged",
+      "Active": true,
+      "IsCrawlerSlot": true
+    },
+    {
+      "Id": "equipslot18default",
+      "ParentId": "default",
+      "IdKey": 18,
+      "Name": "PoisonVial"
+    },
+    {
+      "Id": "equipslot19default",
+      "ParentId": "default",
+      "IdKey": 19,
+      "Name": "Quiver"
+    },
+    {
+      "Id": "equipslot30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "Max"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "EquipSlotSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "equipslot3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Shoulders",
+  "Active": true,
+  "BaseBonusStatTypeId": 30
+}

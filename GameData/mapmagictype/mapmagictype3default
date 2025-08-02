@@ -1,0 +1,10 @@
+{
+  "Id": "mapmagictype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Drain",
+  "Weight": 0.3,
+  "SpreadChance": 0.15,
+  "MapSymbol": "H",
+  "MinLevel": 9
+}

@@ -1,0 +1,19 @@
+{
+  "Id": "road45default",
+  "ParentId": "default",
+  "IdKey": 45,
+  "Name": "Incense Route",
+  "Desc": "The primary artery of the Incense Route, a desert trail through the canyons and plains of Arabia, traveled by spice caravans.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 15,
+  "EndCityId": 60,
+  "Maintenance": 1.0,
+  "Difficulty": 5.0,
+  "Danger": 4.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 1.0,
+  "WinterHeat": 3.0,
+  "Length": 480.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

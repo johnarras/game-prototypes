@@ -1,0 +1,7 @@
+{
+  "Id": "playmult9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Mult": 500,
+  "MinEnergy": 10000
+}

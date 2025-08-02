@@ -1,0 +1,11 @@
+{
+  "Id": "buildingtype26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Npc",
+  "Desc": "",
+  "Icon": "Npc",
+  "Art": "Npc",
+  "Radius": 5,
+  "VariationCount": 1
+}

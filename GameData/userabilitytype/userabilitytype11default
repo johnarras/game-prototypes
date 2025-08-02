@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "SpellDamage",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 25,
+  "QuantityPerRank": 5
+}

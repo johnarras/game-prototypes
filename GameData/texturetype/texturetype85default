@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype85default",
+  "ParentId": "default",
+  "IdKey": 85,
+  "Name": "RoadRed",
+  "Art": "RoadRed",
+  "Size": 8.0,
+  "ParentTextureTypeId": 17
+}

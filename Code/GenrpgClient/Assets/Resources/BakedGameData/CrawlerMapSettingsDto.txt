@@ -1,0 +1,238 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlermaptype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Dungeon",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "GenTypes": [
+        {
+          "Name": "Dungeon",
+          "MinWidth": 10,
+          "MaxWidth": 15,
+          "MinHeight": 10,
+          "MaxHeight": 15,
+          "MinFloors": 1,
+          "MaxFloors": 4,
+          "SpecialTileChance": 0.05,
+          "Weight": 0.4,
+          "RandomWallsChance": 0.5,
+          "LoopingChance": 0.5,
+          "MinWallChance": 0.5,
+          "MaxWallChance": 0.8,
+          "MinDoorChance": 0.3,
+          "MaxDoorChance": 0.5,
+          "TrapTileChance": 0.02,
+          "EffectTileChance": 0.02,
+          "MinCorridorDensity": 1.1,
+          "MaxCorridorDensity": 2.0,
+          "MinBuildingDensity": 0.3,
+          "MaxBuildingDensity": 0.6,
+          "IsIndoors": true,
+          "NextLevelIsDown": true,
+          "WeightedZones": [
+            {
+              "Name": "None",
+              "Weight": 1.0,
+              "ZoneTypeId": 16
+            },
+            {
+              "Weight": 1.0,
+              "ZoneTypeId": 15
+            },
+            {
+              "Weight": 1.0,
+              "ZoneTypeId": 20
+            }
+          ]
+        },
+        {
+          "Name": "Tower",
+          "MinWidth": 6,
+          "MaxWidth": 10,
+          "MinHeight": 6,
+          "MaxHeight": 10,
+          "MinFloors": 1,
+          "MaxFloors": 4,
+          "SpecialTileChance": 0.05,
+          "Weight": 0.5,
+          "RandomWallsChance": 1.0,
+          "MinWallChance": 0.5,
+          "MaxWallChance": 0.8,
+          "MinDoorChance": 0.3,
+          "MaxDoorChance": 0.5,
+          "TrapTileChance": 0.02,
+          "EffectTileChance": 0.02,
+          "MinCorridorDensity": 1.2,
+          "MaxCorridorDensity": 2.0,
+          "MinBuildingDensity": 0.1,
+          "MaxBuildingDensity": 0.3,
+          "IsIndoors": true,
+          "WeightedZones": [
+            {
+              "Name": "None",
+              "Weight": 1.0,
+              "ZoneTypeId": 17
+            }
+          ]
+        },
+        {
+          "Name": "Outdoors",
+          "MinWidth": 15,
+          "MaxWidth": 20,
+          "MinHeight": 15,
+          "MaxHeight": 20,
+          "MinFloors": 1,
+          "MaxFloors": 1,
+          "SpecialTileChance": 0.05,
+          "Weight": 0.1,
+          "MinWallChance": 0.4,
+          "MaxWallChance": 0.6,
+          "TrapTileChance": 0.04,
+          "EffectTileChance": 0.02,
+          "MinCorridorDensity": 2.0,
+          "MaxCorridorDensity": 4.0,
+          "WeightedZones": [
+            {
+              "Name": "None",
+              "Weight": 1.0,
+              "ZoneTypeId": 18
+            },
+            {
+              "Weight": 1.0,
+              "ZoneTypeId": 19
+            },
+            {
+              "Weight": 1.0,
+              "ZoneTypeId": 21
+            }
+          ]
+        }
+      ],
+      "NpcChance": 0.1,
+      "MinNpcQuantity": 1,
+      "MaxNpcQuantity": 1,
+      "MinNpcSeparation": 3,
+      "MinDistanceToEntrance": 3
+    },
+    {
+      "Id": "crawlermaptype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "City",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "GenTypes": [
+        {
+          "Name": "Town",
+          "MinWidth": 10,
+          "MaxWidth": 10,
+          "MinHeight": 10,
+          "MaxHeight": 10,
+          "MinFloors": 1,
+          "MaxFloors": 1,
+          "Weight": 1.0,
+          "MinCorridorDensity": 1.2,
+          "MaxCorridorDensity": 1.5,
+          "MinBuildingDensity": 1.0,
+          "MaxBuildingDensity": 2.0,
+          "WeightedZones": [
+            {
+              "Weight": 1.0,
+              "ZoneTypeId": 14
+            }
+          ]
+        },
+        {
+          "Name": "City",
+          "MinWidth": 12,
+          "MaxWidth": 16,
+          "MinHeight": 12,
+          "MaxHeight": 16,
+          "MinFloors": 1,
+          "MaxFloors": 1,
+          "Weight": 1.0,
+          "MinCorridorDensity": 1.2,
+          "MaxCorridorDensity": 1.5,
+          "MinBuildingDensity": 1.0,
+          "MaxBuildingDensity": 2.0,
+          "WeightedZones": [
+            {
+              "Name": "",
+              "Weight": 1.0,
+              "ZoneTypeId": 14
+            }
+          ]
+        }
+      ],
+      "NpcChance": 1.0,
+      "MinNpcQuantity": 1,
+      "MaxNpcQuantity": 3,
+      "MinNpcSeparation": 1,
+      "MinDistanceToEntrance": 2
+    },
+    {
+      "Id": "crawlermaptype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Outdoors",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "GenTypes": [
+        {
+          "Name": "None",
+          "MinWidth": 70,
+          "MaxWidth": 90,
+          "MinHeight": 55,
+          "MaxHeight": 65,
+          "MinFloors": 1,
+          "MaxFloors": 1,
+          "Weight": 1.0,
+          "WeightedZones": [
+            {
+              "Name": "Outdoors",
+              "Weight": 1.0,
+              "ZoneTypeId": 22
+            }
+          ]
+        }
+      ],
+      "NpcChance": 1.0,
+      "MinNpcQuantity": 100,
+      "MaxNpcQuantity": 100,
+      "MinNpcSeparation": 8,
+      "MinDistanceToEntrance": 4
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "CorridorDungeonSizeScale": 1.0,
+    "MinZoneUnitSpawns": 16,
+    "MaxZoneUnitSpawns": 22,
+    "RareSpawnCount": 2,
+    "QuestItemEntranceUnlockChance": 0.25,
+    "RiddleUnlockChance": 0.3,
+    "DrainHealthPercent": 0.02,
+    "DrainManaPercent": 0.02,
+    "TrapHitChance": 0.5,
+    "TrapDebuffChance": 0.05,
+    "TrapDebuffLevelScaling": 0.2,
+    "TrapMinDamPerLevel": 1,
+    "TrapMaxDamagePerLevel": 5,
+    "SharedZoneUnitCount": 5,
+    "ExtraTeleportChance": 0.6,
+    "MinTeleportQuantity": 1,
+    "MaxTeleportQuantity": 6,
+    "UnitKeywordChance": 0.25,
+    "MinQuestUnlockDungeonLevel": 5,
+    "Name": "CrawlerMapSettings",
+    "SaveTime": "2025-05-31T14:06:08.758Z"
+  },
+  "SaveTime": "2025-05-31T14:06:08.758Z"
+}

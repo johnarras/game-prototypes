@@ -1,0 +1,15 @@
+{
+  "Id": "statuseffect14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Blind",
+  "Desc": "Cannot use ranged attacks.",
+  "Icon": "Blind",
+  "Art": "",
+  "Abbrev": "Bl",
+  "ElementTypeId": 7,
+  "CombatActionId": 3,
+  "Amount": 100,
+  "RemoveAtEndOfCombat": true,
+  "SaveTime": "2025-06-07T13:51:14.392Z"
+}

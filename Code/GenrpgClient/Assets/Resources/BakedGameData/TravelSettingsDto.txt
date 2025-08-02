@@ -1,0 +1,10 @@
+{
+  "Id": "default",
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "TravelSettings",
+    "SaveTime": "2025-07-20T05:46:45.391Z"
+  },
+  "SaveTime": "2025-07-20T05:46:45.391Z"
+}

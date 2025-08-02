@@ -1,0 +1,10 @@
+{
+  "Id": "buildingart1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Default",
+  "Desc": "Default",
+  "Icon": "Default",
+  "Art": "Default",
+  "Weight": 1.0
+}

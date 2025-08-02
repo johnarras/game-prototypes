@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Regen",
+  "Icon": "Regen",
+  "Art": "Regen",
+  "Radius": 5,
+  "IsCrawlerBuilding": true,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

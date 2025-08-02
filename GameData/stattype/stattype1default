@@ -1,0 +1,9 @@
+{
+  "Id": "stattype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Health",
+  "Desc": "Your health before you die.",
+  "RegenSeconds": 75,
+  "IsCrawlerStat": true
+}

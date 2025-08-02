@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "Entangle",
+  "Desc": "Prevent a group from use melee attacks.",
+  "PowerCost": 15.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 5,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 11,
+      "MinQuantity": 2,
+      "MaxQuantity": 3,
+      "ElementTypeId": 8
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

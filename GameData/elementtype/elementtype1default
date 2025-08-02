@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Physical",
+  "Desc": "Basic element.",
+  "Icon": "Physical",
+  "Art": "Physical",
+  "CasterActionName": "Hit",
+  "ObserverActionName": "Hits",
+  "CastAnim": "Physical",
+  "VulnElementTypeId": 10,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 11,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.005,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 1
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

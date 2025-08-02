@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Oysters",
+  "Desc": "A coastal delicacy, often preserved and shipped inland.",
+  "Icon": "Oysters",
+  "Art": "Oysters",
+  "CategoryName": "Food",
+  "Density": 800.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 500,
+  "PricePerWeight": 100,
+  "YearlyProduction": 90000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

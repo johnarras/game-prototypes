@@ -1,0 +1,35 @@
+{
+  "Id": "unittype88default",
+  "ParentId": "default",
+  "IdKey": 88,
+  "Name": "Cyclops",
+  "PluralName": "Cyclops",
+  "Icon": "Cyclops",
+  "Art": "Cyclops",
+  "TribeTypeId": 7,
+  "MinLevel": 10,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [
+    {
+      "UnitKeywordId": 14
+    },
+    {
+      "UnitKeywordId": 16
+    },
+    {
+      "UnitKeywordId": 15
+    },
+    {
+      "UnitKeywordId": 17
+    }
+  ],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

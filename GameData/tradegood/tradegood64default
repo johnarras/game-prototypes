@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood64default",
+  "ParentId": "default",
+  "IdKey": 64,
+  "Name": "Iron Weapons",
+  "Desc": "Standard-issue military and civilian arms, such as swords and spearheads.",
+  "Icon": "IronWeapons",
+  "Art": "IronWeapons",
+  "CategoryName": "Metalwork",
+  "Density": 2000.0,
+  "UnitWeight": 2,
+  "PricePerUnit": 16000,
+  "PricePerWeight": 8000,
+  "YearlyProduction": 60000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

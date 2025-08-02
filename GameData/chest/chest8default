@@ -1,0 +1,11 @@
+{
+  "Id": "chest8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Random Chest",
+  "Desc": "",
+  "Icon": "RandomChest",
+  "Art": "RandomChest",
+  "UnlockMinutes": -1,
+  "Loot": []
+}

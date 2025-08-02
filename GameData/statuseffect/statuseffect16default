@@ -1,0 +1,15 @@
+{
+  "Id": "statuseffect16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Stunned",
+  "Desc": "Cannot do anything. Lasts until end of combat.",
+  "Icon": "Stun",
+  "Art": "",
+  "Abbrev": "St",
+  "ElementTypeId": 5,
+  "CombatActionId": 7,
+  "Amount": 100,
+  "RemoveAtEndOfCombat": true,
+  "SaveTime": "2025-06-07T14:15:17.474Z"
+}

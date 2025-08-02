@@ -1,0 +1,70 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "partybuff1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Light",
+      "Desc": "Allows you to see in dark places."
+    },
+    {
+      "Id": "partybuff2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Second Sight",
+      "Desc": "Alerts you when bad things are ahead of you."
+    },
+    {
+      "Id": "partybuff3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Magic Compass",
+      "Desc": "Allows you to see your direction and map position."
+    },
+    {
+      "Id": "partybuff4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Levitate",
+      "Desc": "Allows you to float over traps and move a bit faster."
+    },
+    {
+      "Id": "partybuff5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Mapping",
+      "Desc": "Shows you the minimap and lets you see the level map."
+    },
+    {
+      "Id": "partybuff6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "PhysicalDam"
+    },
+    {
+      "Id": "partybuff7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "MagicDam"
+    },
+    {
+      "Id": "partybuff8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Defense"
+    },
+    {
+      "Id": "partybuff9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Tactics"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "PartyBuffSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

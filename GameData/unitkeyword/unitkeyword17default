@@ -1,0 +1,34 @@
+{
+  "Id": "unitkeyword17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Shaman",
+  "PluralName": "Shamans",
+  "Icon": "Shaman",
+  "Art": "Shaman",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 230
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 231
+    }
+  ],
+  "Weight": 20.0,
+  "Tier": 2,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

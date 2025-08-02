@@ -1,0 +1,38 @@
+{
+  "Id": "unittype22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Cleric",
+  "PluralName": "Clerics",
+  "Icon": "Cleric",
+  "Art": "Cleric",
+  "TribeTypeId": 13,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 200
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 201
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 202
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

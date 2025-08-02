@@ -1,0 +1,11 @@
+{
+  "Id": "userabilitytype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "GuardTowers",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "BaseQuantity": 5,
+  "QuantityPerRank": 1
+}

@@ -1,0 +1,49 @@
+{
+  "Id": "city10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Cadiz",
+  "Desc": "A vital Phoenician and later Roman port on the Atlantic, a gateway for the mineral wealth of Hispania and trade from the mysterious northern seas.",
+  "Icon": "Cadiz",
+  "Art": "Cadiz",
+  "AncientName": "Gades",
+  "MapPixelX": 368,
+  "MapPixelY": 1217,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 9
+    },
+    {
+      "TradeGoodId": 10
+    },
+    {
+      "TradeGoodId": 43
+    },
+    {
+      "TradeGoodId": 45
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

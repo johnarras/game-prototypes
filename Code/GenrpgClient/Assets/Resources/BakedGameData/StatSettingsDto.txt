@@ -1,0 +1,335 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "stattype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Health",
+      "Desc": "Your health before you die.",
+      "RegenSeconds": 75,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Mana",
+      "Desc": "Power used to cast spells.",
+      "MaxPool": 1000,
+      "RegenSeconds": 75,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Energy",
+      "Desc": "1->Fast Use/Fill",
+      "MaxPool": 100,
+      "RegenSeconds": 15
+    },
+    {
+      "Id": "stattype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Combo",
+      "Desc": "Start Empty, filll",
+      "MaxPool": 100,
+      "RegenSeconds": -30
+    },
+    {
+      "Id": "stattype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Strength",
+      "Abbrev": "",
+      "Desc": "Increases melee damage.",
+      "Icon": "",
+      "Art": "RedCauldron",
+      "ColorName": "Red",
+      "ColorCode": "#FF0000",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Intellect",
+      "Desc": "Increases attack spell damage.",
+      "Art": "OrangeCauldron",
+      "ColorName": "Orange",
+      "ColorCode": "#FF7F00",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Devotion",
+      "Desc": "Increases healing power.",
+      "Art": "BlueCauldron",
+      "ColorName": "Blue",
+      "ColorCode": "#0000FF",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Agility",
+      "Desc": "Increases ranged damage.",
+      "Art": "YellowCauldron",
+      "ColorName": "Yellow",
+      "ColorCode": "#FFFF00",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "Stamina",
+      "Desc": "Adds to your health.",
+      "Art": "GreenCauldron",
+      "ColorName": "Green",
+      "ColorCode": "#00FF00",
+      "GenScalePct": 150,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "Luck",
+      "Desc": "Gives a chance to get extra attacks.",
+      "Art": "WhiteCauldron",
+      "ColorName": "White",
+      "ColorCode": "#FFFFFF",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "Willpower",
+      "Abbrev": "",
+      "Desc": "More mana and resistances",
+      "Icon": "",
+      "Art": "PurpleCauldron",
+      "ColorName": "Purple",
+      "ColorCode": "#FFFF00",
+      "GenScalePct": 100,
+      "BonusStatTypeId": 32,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype20default",
+      "ParentId": "default",
+      "IdKey": 20,
+      "Name": "DamagePower",
+      "Desc": "Extra damage to all attacks.",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype21default",
+      "ParentId": "default",
+      "IdKey": 21,
+      "Name": "AttackPower",
+      "Desc": "Phys Power",
+      "GenScalePct": 150
+    },
+    {
+      "Id": "stattype22default",
+      "ParentId": "default",
+      "IdKey": 22,
+      "Name": "SpellPower",
+      "Desc": "Magic Power",
+      "GenScalePct": 150
+    },
+    {
+      "Id": "stattype30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "Defense",
+      "Desc": "All Defense"
+    },
+    {
+      "Id": "stattype31default",
+      "ParentId": "default",
+      "IdKey": 31,
+      "Name": "Armor",
+      "Desc": "Reduces physical damage.",
+      "GenScalePct": 200,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype32default",
+      "ParentId": "default",
+      "IdKey": 32,
+      "Name": "Resist",
+      "Desc": "Reduces magical damage.",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype33default",
+      "ParentId": "default",
+      "IdKey": 33,
+      "Name": "HealthRegen",
+      "Desc": "Regenerates health.",
+      "GenScalePct": 100
+    },
+    {
+      "Id": "stattype34default",
+      "ParentId": "default",
+      "IdKey": 34,
+      "Name": "ManaRegen",
+      "Desc": "Mana Regen",
+      "GenScalePct": 100
+    },
+    {
+      "Id": "stattype35default",
+      "ParentId": "default",
+      "IdKey": 35,
+      "Name": "RoleScalingPercent",
+      "Abbrev": "",
+      "Desc": "Percent modifier (divide this by 100) to role scaling for this unit."
+    },
+    {
+      "Id": "stattype36default",
+      "ParentId": "default",
+      "IdKey": 36,
+      "Name": "DetectHidden",
+      "SaveTime": "2025-07-16T02:14:51.723Z"
+    },
+    {
+      "Id": "stattype37default",
+      "ParentId": "default",
+      "IdKey": 37,
+      "Name": "SmartTarget",
+      "SaveTime": "2025-07-16T02:14:51.723Z"
+    },
+    {
+      "Id": "stattype40default",
+      "ParentId": "default",
+      "IdKey": 40,
+      "Name": "PowerMult",
+      "Desc": "All Dam Mult",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype41default",
+      "ParentId": "default",
+      "IdKey": 41,
+      "Name": "AttackMult",
+      "Desc": "Phys Dam Mult",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype42default",
+      "ParentId": "default",
+      "IdKey": 42,
+      "Name": "SpellMult",
+      "Desc": "Spell Dam Mult",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype50default",
+      "ParentId": "default",
+      "IdKey": 50,
+      "Name": "DefenseMult",
+      "Desc": "All Dam Reduced",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype51default",
+      "ParentId": "default",
+      "IdKey": 51,
+      "Name": "AttackDefMult",
+      "Desc": "Phys Dam Reduced",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype52default",
+      "ParentId": "default",
+      "IdKey": 52,
+      "Name": "SpellDefMult",
+      "Desc": "Spell Dam Reduced",
+      "GenScalePct": 10
+    },
+    {
+      "Id": "stattype61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "Crit",
+      "Desc": "Chance to instantly kill a monster.",
+      "GenScalePct": 200,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype62default",
+      "ParentId": "default",
+      "IdKey": 62,
+      "Name": "Haste",
+      "Desc": "Attack faster.",
+      "GenScalePct": 200
+    },
+    {
+      "Id": "stattype63default",
+      "ParentId": "default",
+      "IdKey": 63,
+      "Name": "Speed",
+      "Abbrev": "",
+      "Desc": "Lets you attack earlier during combat.",
+      "GenScalePct": 200,
+      "IsCrawlerStat": true
+    },
+    {
+      "Id": "stattype64default",
+      "ParentId": "default",
+      "IdKey": 64,
+      "Name": "Efficiency",
+      "Desc": "Lower Cost",
+      "GenScalePct": 200
+    },
+    {
+      "Id": "stattype65default",
+      "ParentId": "default",
+      "IdKey": 65,
+      "Name": "Cooldown",
+      "Desc": "Lower Cooldown",
+      "GenScalePct": 200
+    },
+    {
+      "Id": "stattype66default",
+      "ParentId": "default",
+      "IdKey": 66,
+      "Name": "CritDamage",
+      "Desc": "More Crit Damage",
+      "GenScalePct": 300
+    },
+    {
+      "Id": "stattype70default",
+      "ParentId": "default",
+      "IdKey": 70,
+      "Name": "Hit",
+      "Desc": "Chance to Hit",
+      "GenScalePct": 100,
+      "IsCrawlerStat": true,
+      "SaveTime": "2025-07-16T02:19:36.528Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "StatConstantUnitMultiple": 10,
+    "Name": "StatSettings",
+    "SaveTime": "2025-07-16T02:22:20.598Z"
+  },
+  "SaveTime": "2025-07-16T02:22:20.598Z"
+}

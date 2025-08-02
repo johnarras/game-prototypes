@@ -1,0 +1,17 @@
+{
+  "Id": "road76default",
+  "ParentId": "default",
+  "IdKey": 76,
+  "Name": "Great Libyan Desert Route",
+  "Desc": "A theoretical and extremely dangerous direct crossing of the deep Sahara, attempted only by the most desperate or well-prepared caravans.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 4,
+  "EndCityId": 3,
+  "Difficulty": 6.0,
+  "Danger": 6.0,
+  "SummerHeat": 6.0,
+  "WinterHeat": 3.0,
+  "Length": 2340.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

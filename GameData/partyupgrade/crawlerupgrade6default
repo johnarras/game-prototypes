@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "VendorQuality",
+  "Desc": "Increases the quality and quantity of vendor items.",
+  "MaxTier": 5,
+  "BonusPerTier": 0.1,
+  "BasePointCost": 1
+}

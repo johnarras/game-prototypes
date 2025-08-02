@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Guild",
+  "Icon": "Guild",
+  "Art": "Guild",
+  "Radius": 5,
+  "IsCrawlerBuilding": true,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

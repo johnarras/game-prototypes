@@ -1,0 +1,19 @@
+{
+  "Id": "road42default",
+  "ParentId": "default",
+  "IdKey": 42,
+  "Name": "Phoenician Coastal Road",
+  "Desc": "A short, busy coastal road linking the two great rival Phoenician cities.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 6,
+  "EndCityId": 41,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 2.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 40.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

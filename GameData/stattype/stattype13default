@@ -1,0 +1,12 @@
+{
+  "Id": "stattype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Devotion",
+  "Desc": "Increases healing power.",
+  "Art": "BlueCauldron",
+  "ColorName": "Blue",
+  "ColorCode": "#0000FF",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

@@ -1,0 +1,29 @@
+{
+  "Id": "unitkeyword18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Priest",
+  "PluralName": "Priests",
+  "Icon": "Priest",
+  "Art": "Priest",
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 15
+    }
+  ],
+  "Weight": 25.0,
+  "Tier": 1,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

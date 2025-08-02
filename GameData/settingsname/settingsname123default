@@ -1,0 +1,6 @@
+{
+  "Id": "settingsname123default",
+  "ParentId": "default",
+  "IdKey": 123,
+  "Name": "StartCombatSettings"
+}

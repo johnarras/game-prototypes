@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Bracers",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 4,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 10,
+  "ExplicitReagents": []
+}

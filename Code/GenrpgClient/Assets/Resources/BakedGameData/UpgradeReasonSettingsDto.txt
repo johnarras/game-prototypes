@@ -1,0 +1,41 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "upgradereason1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "CompleteDungeon",
+      "Desc": "Completed a Dungeon",
+      "GamePoints": 1,
+      "RunPoints": 1
+    },
+    {
+      "Id": "upgradereason2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "PartyLevel",
+      "NameId": "",
+      "Desc": "New Max Party Level",
+      "GamePoints": 1,
+      "RunPoints": 1
+    },
+    {
+      "Id": "upgradereason3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "CompleteQuest",
+      "NameId": "",
+      "Desc": "Completing a Quest",
+      "Icon": "",
+      "RunPoints": 5,
+      "AlwaysSingleLevel": true
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "UpgradeReasonSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

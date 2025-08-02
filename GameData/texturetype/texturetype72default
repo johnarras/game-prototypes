@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype72default",
+  "ParentId": "default",
+  "IdKey": 72,
+  "Name": "Grassk",
+  "Art": "Grassk",
+  "Size": 8.0,
+  "ParentTextureTypeId": 1
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood68default",
+  "ParentId": "default",
+  "IdKey": 68,
+  "Name": "Bronze Armor",
+  "Desc": "Classic armor of the Greek hoplite and early Romans, heavy but effective.",
+  "Icon": "BronzeArmor",
+  "Art": "BronzeArmor",
+  "CategoryName": "Metalwork",
+  "Density": 2500.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 25000,
+  "PricePerWeight": 2500,
+  "YearlyProduction": 250000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

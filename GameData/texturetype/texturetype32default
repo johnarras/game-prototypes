@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "DirtDarkc",
+  "Art": "DirtDarkc",
+  "Size": 8.0,
+  "ParentTextureTypeId": 38
+}

@@ -1,0 +1,6 @@
+{
+  "Id": "entitytype200default",
+  "ParentId": "default",
+  "IdKey": 200,
+  "Name": "UserCoinType"
+}

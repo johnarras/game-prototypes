@@ -1,0 +1,10 @@
+{
+  "Id": "default",
+  "HourlyRegenPercent": 0.25,
+  "StartStorage": 40,
+  "LevelsPerIncrement": 5,
+  "IncrementQuantity": 5,
+  "StorageCap": 80,
+  "Name": "UserEnergySettings",
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

@@ -1,0 +1,29 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "proctype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "OnCast"
+    },
+    {
+      "Id": "proctype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "OnHit"
+    },
+    {
+      "Id": "proctype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "OnDeath"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "ProcTypeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

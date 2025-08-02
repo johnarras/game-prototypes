@@ -1,0 +1,41 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "ftuetrigger1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "CompleteFtue"
+    },
+    {
+      "Id": "ftuetrigger2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "OpenScreen"
+    },
+    {
+      "Id": "ftuetrigger3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "CloseScreen"
+    },
+    {
+      "Id": "ftuetrigger4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "ReachLevel"
+    },
+    {
+      "Id": "ftuetrigger5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "InfoButton"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "FtueTriggerSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

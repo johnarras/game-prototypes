@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Trainer",
+  "Icon": "Trainer",
+  "Art": "Trainer",
+  "Radius": 5,
+  "IsCrawlerBuilding": true,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

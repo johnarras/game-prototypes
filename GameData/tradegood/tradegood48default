@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood48default",
+  "ParentId": "default",
+  "IdKey": 48,
+  "Name": "Electrum Coins",
+  "Desc": "Coins made from a natural gold-silver alloy, an early form of currency from Lydia.",
+  "Icon": "ElectrumCoins",
+  "Art": "ElectrumCoins",
+  "CategoryName": "Precious Metal",
+  "Density": 6500.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 16000,
+  "PricePerWeight": 16000,
+  "YearlyProduction": 2500,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

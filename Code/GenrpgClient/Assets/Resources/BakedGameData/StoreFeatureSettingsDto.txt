@@ -1,0 +1,23 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "storefeature1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Unlimited Purchase"
+    },
+    {
+      "Id": "storefeature2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Single Purchase"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "StoreFeatureSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

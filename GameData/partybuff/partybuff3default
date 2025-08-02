@@ -1,0 +1,7 @@
+{
+  "Id": "partybuff3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Magic Compass",
+  "Desc": "Allows you to see your direction and map position."
+}

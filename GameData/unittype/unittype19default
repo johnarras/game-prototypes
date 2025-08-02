@@ -1,0 +1,38 @@
+{
+  "Id": "unittype19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "Sorcerer",
+  "PluralName": "Sorcerers",
+  "Icon": "Sorcerer",
+  "Art": "Sorcerer",
+  "TribeTypeId": 12,
+  "MinLevel": 15,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 230
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

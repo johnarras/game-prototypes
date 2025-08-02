@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood100default",
+  "ParentId": "default",
+  "IdKey": 100,
+  "Name": "Lapis Lazuli",
+  "Desc": "A deep blue stone from Afghanistan, used for jewelry and ultramarine pigment.",
+  "Icon": "LapisLazuli",
+  "Art": "LapisLazuli",
+  "CategoryName": "Gemstone",
+  "Density": 1200.0,
+  "UnitWeight": 1,
+  "PricePerUnit": 200000,
+  "PricePerWeight": 200000,
+  "YearlyProduction": 120,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

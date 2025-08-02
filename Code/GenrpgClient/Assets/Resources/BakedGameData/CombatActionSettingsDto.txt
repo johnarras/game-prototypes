@@ -1,0 +1,74 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "combataction1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Attack",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
+    },
+    {
+      "Id": "combataction2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Defend",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
+    },
+    {
+      "Id": "combataction3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Shoot",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
+    },
+    {
+      "Id": "combataction4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Cast",
+      "WeaponDamageScale": 0.5,
+      "StatBonusDamageScale": 1.5,
+      "QuantityIsBaseAmount": true
+    },
+    {
+      "Id": "combataction5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Hide",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
+    },
+    {
+      "Id": "combataction6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Recast",
+      "Desc": "",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
+    },
+    {
+      "Id": "combataction7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Disabled",
+      "Desc": "",
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0,
+      "SaveTime": "2025-06-25T21:08:25.528Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CombatActionSettings",
+    "SaveTime": "2025-06-25T21:08:25.528Z"
+  },
+  "SaveTime": "2025-06-25T21:08:25.528Z"
+}

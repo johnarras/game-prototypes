@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood63default",
+  "ParentId": "default",
+  "IdKey": 63,
+  "Name": "Naval Supplies",
+  "Desc": "Materials for shipbuilding and repair, such as caulking pitch, rope, and sailcloth.",
+  "Icon": "NavalSupplies",
+  "Art": "NavalSupplies",
+  "CategoryName": "Processed Goods",
+  "Density": 700.0,
+  "UnitWeight": 20,
+  "PricePerUnit": 6000,
+  "PricePerWeight": 300,
+  "YearlyProduction": 30000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

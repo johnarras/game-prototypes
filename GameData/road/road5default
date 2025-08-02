@@ -1,0 +1,20 @@
+{
+  "Id": "road5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Via Postumia",
+  "Desc": "A major road across northern Italy, connecting the administrative center of Milan with the great northern port of Aquileia.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 61,
+  "EndCityId": 31,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 2.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 2.0,
+  "Length": 415.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

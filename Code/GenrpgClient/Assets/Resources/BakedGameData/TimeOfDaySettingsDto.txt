@@ -1,0 +1,26 @@
+{
+  "Parent": {
+    "Id": "default",
+    "DailyResetHour": 8.0,
+    "BaseMoveMinutes": 1.0,
+    "CombatRoundMinutes": 1.0,
+    "RestHours": 8.0,
+    "EatHours": 1.0,
+    "DrinkHours": 0.5,
+    "RumorHours": 0.25,
+    "RegenHours": [
+      {
+        "StatTypeId": 1,
+        "RegenHours": 4.0
+      },
+      {
+        "StatTypeId": 2,
+        "RegenHours": 2.0
+      }
+    ],
+    "LevitateSpeedup": 1.5,
+    "MoveSpeedIncreasePerExtraInventoryItem": 0.1,
+    "Name": "TimeOfDaySettings",
+    "SaveTime": "2025-06-11T01:23:06.288Z"
+  }
+}

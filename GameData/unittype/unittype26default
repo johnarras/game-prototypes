@@ -1,0 +1,28 @@
+{
+  "Id": "unittype26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Wolf",
+  "PluralName": "Wolves",
+  "Icon": "Wolf",
+  "Art": "Wolf",
+  "TribeTypeId": 2,
+  "MinLevel": 15,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 31,
+      "Quantity": 5,
+      "EntityId": 36
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

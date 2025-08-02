@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood51default",
+  "ParentId": "default",
+  "IdKey": 51,
+  "Name": "Red Slip Ware",
+  "Desc": "A mass-produced, glossy red pottery from North Africa, widely traded.",
+  "Icon": "RedSlipWare",
+  "Art": "RedSlipWare",
+  "CategoryName": "Ceramics",
+  "Density": 850.0,
+  "UnitWeight": 15,
+  "PricePerUnit": 8000,
+  "PricePerWeight": 533,
+  "YearlyProduction": 150000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

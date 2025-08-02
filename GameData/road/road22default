@@ -1,0 +1,20 @@
+{
+  "Id": "road22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "Dalmatian Coastal Road",
+  "Desc": "A winding coastal road along the rugged Adriatic, connecting Italy to the province of Dalmatia.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 31,
+  "EndCityId": 71,
+  "Maintenance": 4.0,
+  "Difficulty": 3.0,
+  "Danger": 3.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 5.0,
+  "WinterHeat": 3.0,
+  "Length": 425.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

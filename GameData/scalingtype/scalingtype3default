@@ -1,0 +1,22 @@
+{
+  "Id": "scalingtype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Chain Armor",
+  "Desc": "",
+  "Icon": "Chain",
+  "Prefix": "Wood",
+  "Art": "",
+  "CrafterTypeId": 2,
+  "AttPct": 90,
+  "DefPct": 110,
+  "OtherPct": 100,
+  "CostPct": 300,
+  "AddStats": [
+    {
+      "StatTypeId": 31,
+      "Percent": 125
+    }
+  ],
+  "ArmorPct": 300
+}

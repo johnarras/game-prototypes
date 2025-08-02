@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood57default",
+  "ParentId": "default",
+  "IdKey": 57,
+  "Name": "Gallic Glass",
+  "Desc": "High-quality glassware from Gaul, known for its unique styles and colors.",
+  "Icon": "GallicGlass",
+  "Art": "GallicGlass",
+  "CategoryName": "Glassware",
+  "Density": 1100.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 6000,
+  "PricePerWeight": 1200,
+  "YearlyProduction": 25000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

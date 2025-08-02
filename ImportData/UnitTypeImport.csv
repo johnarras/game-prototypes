@@ -1,0 +1,91 @@
+Idkey,Name,PluralName,KeywordNames,TribeName,MinLevel,Stats,StatPercents,SpawnQuantityScale,Vulns,Resists,Summons,Procs,Spells,CommonSpawns,UncommonSpawns,RareSpawns
+1,Human,Humans,,Humanoid,1,,,1,,,,,,city,"underground, overland",
+2,Elf,Elves,"Archer, Mage",Humanoid,1,,,1,,,,,,overland,underground,
+3,Dwarf,Dwarves,Priest,Humanoid,1,,,1,,Ice,,,,"hills, mountains, underground",,
+4,Mongrel,Mongrels,"Archer, Shaman",Barbaric,5,,,1,,,,,,overland,,
+5,Gnome,Gnomes,"Priest, Mage",Humanoid,1,,,1,,,,,,city,,
+6,Halfling,Halflings,"Thief, Archer",Humanoid,1,,,1,,,,,,city,,
+7,Goblin,Goblins,"Archer, Chieftain, Lieutenant, Shaman",Barbaric,5,,,1,,,,,,underground,overland,
+8,Hobgoblin,Hobgoblins,"Archer, Chieftain, Lieutenant, Shaman",Barbaric,1,,,1,,,,,,underground,overland,
+9,Warrior,Warriors,,Warrior,1,,,1,,,,,,city,"underground, overland",
+10,Fighter,Fighters,,Warrior,1,,,1,,,,,whirlwind,city,"underground, overland",
+11,Bladesman,Bladesmen,,Warrior,10,SmartTarget 5,,1,,,,,whirlwind,city,"underground, overland",
+12,Swordsman,Swordsman,,Warrior,10,SmartTarget 5,,1,,,,,whirlwind,city,"underground, overland",
+13,Scrapper,Scrappers,,Warrior,15,SmartTarget 5,,1,,,,,whirlwind,city,"underground, overland",
+14,Monk,Monks,,Warrior,10,,,1,,,,,,city,"underground, overland",
+15,Barbarian,Barbarians,,Warrior,15,SmartTarget 5,,1,,,barbarian,,whirlwind,"city, overland",underground,
+16,Mage,Mages,,Mage,5,,,1,,,fireelemental,,"fireball, flamestrike, firestorm","city, arcane","underground, overland",
+17,Magician,Magicians,,Mage,10,,,1,,,waterelemental,,"frostbolt, cone of cold, blizzard","city, arcane","underground, overland",
+18,Conjurer,Conjurers,,Mage,10,,,1,,,airelemental,,"lightning bolt, Chain lightning, lightning storm","city, arcane","underground, overland",
+19,Sorcerer,Sorcerers,,Mage,15,,,1,,,fireelemental,,"fireball, frostbolt, lightning bolt","city, arcane","underground, overland",
+20,Wizard,Wizards,,Mage,20,,,1,,,earthelemental,nearsighted,"flamestrike, cone of cold, lightning storm","city, arcane","underground, overland",
+21,Faerie,Faeries,,Mythological,20,,,1,,Arcane,,,,"overland, natural, arcane",,
+22,Cleric,Clerics,,Priest,1,,,1,,,monk,,"holy beam, holy nova, holy storm","city, arcane, unholy","underground, overland",
+23,Medusa,Medusae,,Mythological,1,,,1,,"Earth, Nature",,stunned,,"underground, natural",mythical,
+24,Dog,Dogs,,Beast,1,DetectHidden 5,,1,,,,,,"city, overland",,
+25,Hound,Hounds,,Beast,10,DetectHidden 5,,1,,,,,,"city, overland",,
+26,Wolf,Wolves,,Beast,15,DetectHidden 5,,1,,,,,,overland,,
+27,Coyote,Coyotes,,Beast,5,DetectHidden 5,,1,,,,,,overland,,
+28,Cat,Cats,,Beast,1,DetectHidden 5,,1,,,,,,city,,
+29,Tiger,Tigers,,Beast,15,DetectHidden 5,,1,,,,,,overland,,
+30,Lion,Lions,,Beast,20,DetectHidden 5,,1,,,,,,overland,,
+31,Skeleton,Skeletons,,Undead,1,,,1,Light,Shadow,,,,unholy,underground,
+32,Zombie,Zombies,,Undead,1,,,1,Light,Shadow,,,,unholy,underground,
+33,Ghoul,Ghouls,,Undead,5,,,1,Light,Shadow,zombie,"Weak, Cursed",,unholy,underground,
+34,Wight,Wights,,Undead,5,,,1,Light,Shadow,ghoul,"Weak, Cursed",,unholy,underground,
+35,Wraith,Wraiths,,Undead,10,,,1,Light,Shadow,,Weak,,unholy,underground,
+36,Ghost,Ghosts,,Undead,10,,,1,Light,Shadow,wraith,"cursed, diseased, withered",,,unholy,underground
+37,Spectre,Spectres,,Undead,15,,,1,Light,Shadow,ghoul,"cursed, silenced, withered, diseased",,,unholy,underground
+38,Lich,Liches,,Undead,20,,,1,,,spectre,"weak, cursed, befuddled Silenced",,,unholy,underground
+39,Thief,Thieves,,Thief,1,,,1,,,,Poisoned,,city,underground,
+40,Rogue,Rogues,,Thief,1,,,1,,,,Poisoned,,city,underground,
+41,Assassin,Assassins,,Thief,15,,,1,,,,,,city,underground,
+42,Demon,Demons,,Demon,20,,"Health 100, DamagePower 50",0.1,Light,Shadow,,,Defend,unholy,underground,
+43,Blue Dragon,Blue Dragons,,Dragon,20,,"Health 100, DamagePower 50",0.1,,Electric,,,Lightning Storm,arcane,"underground, mythical",overland
+44,Red Dragon,Red Dragons,,Dragon,20,,"Health 100, DamagePower 50",0.1,,Fire,,,Firestorm,lava,"underground, mythical",overland
+45,White Dragon,White Dragons,,Dragon,20,,"Health 100, DamagePower 50",0.1,,Ice,,,Blizzard,snow,"underground, mythical",overland
+46,Black Dragon,Black Dragons,,Dragon,20,,"Health 100, DamagePower 50",0.1,,Electric,,"Diseased, Weak",,swamp,"underground, mythical",overland
+47,Green Dragon,Green Dragons,,Dragon,20,,,0.1,,Earth,,Poisoned,,swamp,"underground, mythical",overland
+48,Stone Golem,Stone Golems,,Golem,15,,,1,,Physical,,Rooted,,tower,underground,overland
+49,Iron Golem,Iron Golems,,Golem,15,,,1,,Physical,,Stunned,,tower,underground,
+50,Flesh Golem,Flesh Golems,,Golem,15,,,1,,Physical,,Cursed,,unholy,underground,
+51,Air Elemental,Air Elementals,,Elemental,15,,,1,Earth,Electric,,,,mountains,"underground, mythical",overland
+52,Earth Elemental,Earth Elementals,,Elemental,15,,,1,Electric,Earth,,,,cave,"underground, mythical",overland
+53,Fire Elemental,Fire Elementals,,Elemental,15,,,1,Ice,Fire,,,,lava,"underground, mythical",overland
+54,Water Elemental,Water Elementals,,Elemental,15,,,1,Fire,Ice,,,,water,"underground, mythical",overland
+55,Bear,Bears,,Beast,1,,,1,,,,,,overland,,
+56,Slime,Slimes,,Vermin,5,,,1,,,,,,underground,,
+57,Spider,Spiders,,Beast,1,,,1,,,,,,"overland, underground",,
+58,Scorpion,Scorpions,,Beast,1,,,1,,,,,,"overland, underground",,
+59,Chimera,Chimera,,Mythological,15,,"Health 100, DamagePower 50",0.1,,,,,,mountains,hills,overland
+60,Orc,Orcs,"Archer, Chieftain, Lieutenant, Shaman",Barbaric,1,,,1,,,,,,underground,overland,
+61,Ogre,Ogres,"Archer, Chieftain, Lieutenant, Shaman",Giant,10,,,1,,,,,,,underground,overland
+62,Rat,Rats,,Vermin,1,,,1,,,,,,"underground, city",,
+63,Bat,Bats,,Beast,1,,,1,,,,,,underground,,
+64,Salamander,Salamanders,,Beast,1,,,1,,Fire,,,,overland,,
+65,Wyvern,Wyverns,,Mythological,20,,"Health 100, DamagePower 50",0.1,,,,"poisoned, weak, clumsy",,"swamp, desert, badlands",,overland
+66,Frog,Frogs,,Beast,1,,,1,,,,,,swamp,overland,
+67,Lizardman,Lizardmen,,Barbaric,5,,,1,,,,,,swamp,"overland, underground",
+68,Werewolf,Werewolves,,Barbaric,10,,,1,,,,,,,overland,
+69,Troll,Trolls,"Archer, Chieftain, Lieutenant, Shaman",Giant,10,,,1,,Fire,,,,"swamp, desert","overland, underground",
+70,Vampire,Vampires,,Undead,20,,"Health 100, DamagePower 50",0.1,Light,Shadow,mummy,"cursed, confused, diseased",,,unholy,underground
+71,Mummy,Mummies,,Undead,10,,,1,Light,Shadow,skeleton,"cursed, confused, diseased",,,unholy,underground
+72,Harpy,Harpies,,Mythological,10,,,1,,,,"weak, clumsy",,"hills, mountains",overland,
+73,Griffon,Griffons,,Mythological,15,,,1,,,,"clumsy, nearsighted",,"hills, mountains",overland,
+74,Manticore,Manticores,,Mythological,15,,,1,,,,"nearsighted, weak, clumsy",,"hills, mountains",overland,
+75,Snake,Snakes,,Beast,1,,,1,,,,poisoned,,"overland, underground",,
+76,Steed,Steeds,,Beast,1,,,1,,,,,,city,overland,
+77,Basilisk,Basilisks,,Mythological,20,,"Health 100, DamagePower 50",0.1,,Earth,,stunned,,swamp,"underground, overland, mythical",
+78,Giant,Giants,,Giant,15,,,1,,,,,,,"overland, underground",
+79,Guard,Guards,,Warrior,1,DetectHidden 5,,1,,,,,,city,,
+80,Gnoll,Gnolls,,Barbaric,5,,,1,,,,,,overland,underground,
+81,Frog,Frogs,,Beast,1,,,1,,,,,,swamp,overland,
+82,Buck,Bucks,,Beast,1,,,1,,,,,,swamp,overland,
+83,Crab,Crabs,,Beast,1,,,1,,,,,,swamp,overland,
+84,Crocodile,Crocodiles,,Beast,1,,,1,,,,,,swamp,overland,
+85,Snail,Snails,,Beast,1,,,1,,,,,,swamp,overland,
+86,Treant,Treants,,Mythological,15,,,1,,,,"nearsighted, weak, clumsy",,"hills, mountains",overland,
+87,Kobold,Kobolds,"Archer, Chieftain, Lieutenant, Shaman",Humanoid,10,,,1,,Fire,,,,"swamp, desert","overland, underground",
+88,Cyclops,Cyclops,"Archer, Chieftain, Lieutenant, Shaman",Giant,10,,,1,,,,,,,underground,overland
+89,Hydra,Hydras,,Mythological,15,,,1,,,,"nearsighted, weak, clumsy",,"hills, mountains",overland,
+90,Bull,Bulls,,Beast,1,,,1,,,,,,swamp,overland,

@@ -1,0 +1,15 @@
+{
+  "Id": "stattype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Willpower",
+  "Abbrev": "",
+  "Desc": "More mana and resistances",
+  "Icon": "",
+  "Art": "PurpleCauldron",
+  "ColorName": "Purple",
+  "ColorCode": "#FFFF00",
+  "GenScalePct": 100,
+  "BonusStatTypeId": 32,
+  "IsCrawlerStat": true
+}

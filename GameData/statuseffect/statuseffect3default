@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Weak",
+  "Desc": "All Abilities do XXXX percent less damage or healing.",
+  "Icon": "Weak",
+  "Art": "",
+  "Abbrev": "Wk",
+  "ElementTypeId": 2,
+  "Amount": 20,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

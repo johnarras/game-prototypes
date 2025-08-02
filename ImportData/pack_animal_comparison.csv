@@ -1,0 +1,13 @@
+Animal,Carrying Capacity (kg),Pulling Capacity (kg),Speed (km/h),Endurance
+Human,35,18.0,5.0,High
+Dromedary Camel,100,0.0,5.0,Very High
+Bactrian Camel,200,0.0,4.2,Very High
+Yak,75,0.0,5.0,High
+Llama,50,0.0,5.0,High
+Mule,91,112.5,5.0,Very High
+Pony,70,0.0,5.0,Medium
+Reindeer,40,0.0,5.0,High
+Horse,140,70.0,5.0,High
+Ox,0,180.0,4.0,High
+Donkey,49,50.0,5.0,High
+Elephant,140,0.0,4.8,Medium

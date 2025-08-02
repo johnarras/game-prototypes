@@ -1,0 +1,39 @@
+{
+  "Id": "tiletype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "TownHall",
+  "Desc": "Main base",
+  "Icon": "TownHallTile",
+  "Art": "TownHallTile",
+  "MinLevel": 1,
+  "Flags": 1,
+  "Rewards": [],
+  "Effects": [],
+  "UpgradeReagents": [
+    {
+      "UserCoinTypeId": 7,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 8,
+      "Quantity": 4
+    },
+    {
+      "UserCoinTypeId": 9,
+      "Quantity": 1
+    },
+    {
+      "UserCoinTypeId": 10,
+      "Quantity": 2
+    },
+    {
+      "UserCoinTypeId": 11,
+      "Quantity": 3
+    },
+    {
+      "UserCoinTypeId": 12,
+      "Quantity": 4
+    }
+  ]
+}

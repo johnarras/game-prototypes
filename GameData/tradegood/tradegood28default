@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood28default",
+  "ParentId": "default",
+  "IdKey": 28,
+  "Name": "Goat-hair Cloth",
+  "Desc": "A coarse, durable, water-resistant fabric used for making tents and sacks.",
+  "Icon": "Goat-hairCloth",
+  "Art": "Goat-hairCloth",
+  "CategoryName": "Textiles",
+  "Density": 380.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 4500,
+  "PricePerWeight": 900,
+  "YearlyProduction": 25000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

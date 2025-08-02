@@ -1,0 +1,38 @@
+{
+  "Id": "unittype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Magician",
+  "PluralName": "Magicians",
+  "Icon": "Magician",
+  "Art": "Magician",
+  "TribeTypeId": 12,
+  "MinLevel": 10,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 222
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

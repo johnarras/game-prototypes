@@ -1,0 +1,57 @@
+{
+  "Id": "city23default",
+  "ParentId": "default",
+  "IdKey": 23,
+  "Name": "Lyon",
+  "Desc": "The capital of the Three Gauls and a major Roman administrative and industrial center, known for its mint and pottery production.",
+  "Icon": "Lyon",
+  "Art": "Lyon",
+  "AncientName": "Lugdunum",
+  "MapPixelX": 622,
+  "MapPixelY": 1007,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 50
+    },
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 57
+    },
+    {
+      "TradeGoodId": 47
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 9,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

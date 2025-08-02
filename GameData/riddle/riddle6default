@@ -1,0 +1,7 @@
+{
+  "Id": "riddle6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Potion",
+  "Desc": "A vial filled with liquid rare,\r\nIt heals or harms, handle with care.\r\nIn battles fierce or times of need,\r\nThis magic drink can do the deed.\r\n"
+}

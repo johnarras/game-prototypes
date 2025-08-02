@@ -1,0 +1,11 @@
+{
+  "Id": "usercointype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Collection",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconCollection",
+  "Art": "CollectionArt",
+  "SaveTime": "2025-06-12T22:12:33.137Z"
+}

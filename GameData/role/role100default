@@ -1,0 +1,23 @@
+{
+  "Id": "role100default",
+  "ParentId": "default",
+  "IdKey": 100,
+  "Name": "Human",
+  "Desc": "Normal people",
+  "Abbrev": "Hu",
+  "RoleCategoryId": 2,
+  "BinaryBonuses": [],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 43,
+      "EntityId": 16,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 17,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

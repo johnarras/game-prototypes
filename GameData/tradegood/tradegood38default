@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood38default",
+  "ParentId": "default",
+  "IdKey": 38,
+  "Name": "Marble",
+  "Desc": "A luxury building material, prized for its beauty in sculpture and architecture.",
+  "Icon": "Marble",
+  "Art": "Marble",
+  "CategoryName": "Stone",
+  "Density": 1800.0,
+  "UnitWeight": 100,
+  "PricePerUnit": 25000,
+  "PricePerWeight": 250,
+  "YearlyProduction": 25000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

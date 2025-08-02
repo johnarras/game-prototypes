@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood35default",
+  "ParentId": "default",
+  "IdKey": 35,
+  "Name": "Ebony",
+  "Desc": "A dense, dark, valuable hardwood from Nubia and India, used for fine furniture.",
+  "Icon": "Ebony",
+  "Art": "Ebony",
+  "CategoryName": "Wood",
+  "Density": 950.0,
+  "UnitWeight": 50,
+  "PricePerUnit": 40000,
+  "PricePerWeight": 800,
+  "YearlyProduction": 400,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood66default",
+  "ParentId": "default",
+  "IdKey": 66,
+  "Name": "Damascus Steel",
+  "Desc": "Ingots of high-carbon steel from the East, famous for creating patterned, durable blades.",
+  "Icon": "DamascusSteel",
+  "Art": "DamascusSteel",
+  "CategoryName": "Metal",
+  "Density": 3800.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 40000,
+  "PricePerWeight": 8000,
+  "YearlyProduction": 2000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

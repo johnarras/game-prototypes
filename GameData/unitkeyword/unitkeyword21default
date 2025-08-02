@@ -1,0 +1,42 @@
+{
+  "Id": "unitkeyword21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "Fire",
+  "PluralName": "Fires",
+  "Icon": "Fire",
+  "Art": "Fire",
+  "Effects": [
+    {
+      "EntityTypeId": 24,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 25,
+      "Quantity": 1,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 11
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 212
+    }
+  ],
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

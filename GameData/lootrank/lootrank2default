@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Copper",
+  "Armor": 2,
+  "Damage": 1,
+  "CostPct": 150
+}

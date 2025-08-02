@@ -1,0 +1,15 @@
+{
+  "Id": "crawlerspell6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Hide",
+  "Desc": "Meld into the shadows to allow next single target ability to crit.",
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 5,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 3,
+  "Effects": [],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

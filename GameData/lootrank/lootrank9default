@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Platinum",
+  "Armor": 16,
+  "Damage": 8,
+  "CostPct": 1250
+}

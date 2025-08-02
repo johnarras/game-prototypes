@@ -1,0 +1,13 @@
+{
+  "Id": "recipetype39default",
+  "ParentId": "default",
+  "IdKey": 39,
+  "Name": "Stamina Elixir",
+  "EntityId": 306,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "ScalingPct": 100,
+  "CrafterTypeId": 7,
+  "ExplicitReagents": []
+}

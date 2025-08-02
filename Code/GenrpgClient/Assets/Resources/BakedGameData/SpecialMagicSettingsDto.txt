@@ -1,0 +1,77 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "specialmagic1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "TownPortal"
+    },
+    {
+      "Id": "specialmagic2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "PassWalll"
+    },
+    {
+      "Id": "specialmagic3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "IdentifyMonster"
+    },
+    {
+      "Id": "specialmagic4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "IdentifyItem"
+    },
+    {
+      "Id": "specialmagic5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Jump"
+    },
+    {
+      "Id": "specialmagic6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Teleport"
+    },
+    {
+      "Id": "specialmagic7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "CleanseLocation"
+    },
+    {
+      "Id": "specialmagic8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "RevealLocation"
+    },
+    {
+      "Id": "specialmagic9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "SetWarpTarget"
+    },
+    {
+      "Id": "specialmagic10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "ReturnWarpTarget"
+    },
+    {
+      "Id": "specialmagic11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "PartyBuff"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SpecialMagicSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

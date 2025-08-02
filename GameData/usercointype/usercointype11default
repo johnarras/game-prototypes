@@ -1,0 +1,10 @@
+{
+  "Id": "usercointype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Food",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconFood",
+  "Art": "FoodArt"
+}

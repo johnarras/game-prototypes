@@ -1,0 +1,25 @@
+{
+  "Id": "unitkeyword14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Archer",
+  "PluralName": "Archers",
+  "Icon": "Archer",
+  "Art": "Archer",
+  "MinRange": 40,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 6
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 3
+    }
+  ],
+  "Weight": 35.0,
+  "Tier": 1,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

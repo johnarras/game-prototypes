@@ -1,0 +1,2923 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "unittype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Human",
+      "PluralName": "Humans",
+      "Icon": "Human",
+      "Art": "Human",
+      "TribeTypeId": 1,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Elf",
+      "PluralName": "Elves",
+      "Icon": "Elf",
+      "Art": "Elf",
+      "TribeTypeId": 1,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 4
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Dwarf",
+      "PluralName": "Dwarves",
+      "Icon": "Dwarf",
+      "Art": "Dwarf",
+      "TribeTypeId": 1,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 3
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 18
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Mongrel",
+      "PluralName": "Mongrels",
+      "Icon": "Mongrel",
+      "Art": "Mongrel",
+      "TribeTypeId": 10,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Gnome",
+      "PluralName": "Gnomes",
+      "Icon": "Gnome",
+      "Art": "Gnome",
+      "TribeTypeId": 1,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 18
+        },
+        {
+          "UnitKeywordId": 4
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Halfling",
+      "PluralName": "Halflings",
+      "Icon": "Halfling",
+      "Art": "Halfling",
+      "TribeTypeId": 1,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 9
+        },
+        {
+          "UnitKeywordId": 14
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Goblin",
+      "PluralName": "Goblins",
+      "Icon": "Goblin",
+      "Art": "Goblin",
+      "TribeTypeId": 10,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Hobgoblin",
+      "PluralName": "Hobgoblins",
+      "Icon": "Hobgoblin",
+      "Art": "Hobgoblin",
+      "TribeTypeId": 10,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Warrior",
+      "PluralName": "Warriors",
+      "Icon": "Warrior",
+      "Art": "Warrior",
+      "TribeTypeId": 11,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Fighter",
+      "PluralName": "Fighters",
+      "Icon": "Fighter",
+      "Art": "Fighter",
+      "TribeTypeId": 11,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "Bladesman",
+      "PluralName": "Bladesmen",
+      "Icon": "Bladesman",
+      "Art": "Bladesman",
+      "TribeTypeId": 11,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 37
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype12default",
+      "ParentId": "default",
+      "IdKey": 12,
+      "Name": "Swordsman",
+      "PluralName": "Swordsman",
+      "Icon": "Swordsman",
+      "Art": "Swordsman",
+      "TribeTypeId": 11,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 37
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype13default",
+      "ParentId": "default",
+      "IdKey": 13,
+      "Name": "Scrapper",
+      "PluralName": "Scrappers",
+      "Icon": "Scrapper",
+      "Art": "Scrapper",
+      "TribeTypeId": 11,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 37
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "Monk",
+      "PluralName": "Monks",
+      "Icon": "Monk",
+      "Art": "Monk",
+      "TribeTypeId": 11,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "Barbarian",
+      "PluralName": "Barbarians",
+      "Icon": "Barbarian",
+      "Art": "Barbarian",
+      "TribeTypeId": 11,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 37
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype16default",
+      "ParentId": "default",
+      "IdKey": 16,
+      "Name": "Mage",
+      "PluralName": "Mages",
+      "Icon": "Mage",
+      "Art": "Mage",
+      "TribeTypeId": 12,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 210
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 211
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 212
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype17default",
+      "ParentId": "default",
+      "IdKey": 17,
+      "Name": "Magician",
+      "PluralName": "Magicians",
+      "Icon": "Magician",
+      "Art": "Magician",
+      "TribeTypeId": 12,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 220
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 221
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 222
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype18default",
+      "ParentId": "default",
+      "IdKey": 18,
+      "Name": "Conjurer",
+      "PluralName": "Conjurers",
+      "Icon": "Conjurer",
+      "Art": "Conjurer",
+      "TribeTypeId": 12,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 230
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 231
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 232
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype19default",
+      "ParentId": "default",
+      "IdKey": 19,
+      "Name": "Sorcerer",
+      "PluralName": "Sorcerers",
+      "Icon": "Sorcerer",
+      "Art": "Sorcerer",
+      "TribeTypeId": 12,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 210
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 220
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 230
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype20default",
+      "ParentId": "default",
+      "IdKey": 20,
+      "Name": "Wizard",
+      "PluralName": "Wizards",
+      "Icon": "Wizard",
+      "Art": "Wizard",
+      "TribeTypeId": 12,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 211
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 221
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 232
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype21default",
+      "ParentId": "default",
+      "IdKey": 21,
+      "Name": "Faerie",
+      "PluralName": "Faeries",
+      "Icon": "Faerie",
+      "Art": "Faerie",
+      "TribeTypeId": 8,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 9
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype22default",
+      "ParentId": "default",
+      "IdKey": 22,
+      "Name": "Cleric",
+      "PluralName": "Clerics",
+      "Icon": "Cleric",
+      "Art": "Cleric",
+      "TribeTypeId": 13,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 200
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 201
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 202
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype23default",
+      "ParentId": "default",
+      "IdKey": 23,
+      "Name": "Medusa",
+      "PluralName": "Medusae",
+      "Icon": "Medusa",
+      "Art": "Medusa",
+      "TribeTypeId": 8,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 5
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 8
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 16
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype24default",
+      "ParentId": "default",
+      "IdKey": 24,
+      "Name": "Dog",
+      "PluralName": "Dogs",
+      "Icon": "Dog",
+      "Art": "Dog",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype25default",
+      "ParentId": "default",
+      "IdKey": 25,
+      "Name": "Hound",
+      "PluralName": "Hounds",
+      "Icon": "Hound",
+      "Art": "Hound",
+      "TribeTypeId": 2,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype26default",
+      "ParentId": "default",
+      "IdKey": 26,
+      "Name": "Wolf",
+      "PluralName": "Wolves",
+      "Icon": "Wolf",
+      "Art": "Wolf",
+      "TribeTypeId": 2,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype27default",
+      "ParentId": "default",
+      "IdKey": 27,
+      "Name": "Coyote",
+      "PluralName": "Coyotes",
+      "Icon": "Coyote",
+      "Art": "Coyote",
+      "TribeTypeId": 2,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype28default",
+      "ParentId": "default",
+      "IdKey": 28,
+      "Name": "Cat",
+      "PluralName": "Cats",
+      "Icon": "Cat",
+      "Art": "Cat",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype29default",
+      "ParentId": "default",
+      "IdKey": 29,
+      "Name": "Tiger",
+      "PluralName": "Tigers",
+      "Icon": "Tiger",
+      "Art": "Tiger",
+      "TribeTypeId": 2,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype30default",
+      "ParentId": "default",
+      "IdKey": 30,
+      "Name": "Lion",
+      "PluralName": "Lions",
+      "Icon": "Lion",
+      "Art": "Lion",
+      "TribeTypeId": 2,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype31default",
+      "ParentId": "default",
+      "IdKey": 31,
+      "Name": "Skeleton",
+      "PluralName": "Skeletons",
+      "Icon": "Skeleton",
+      "Art": "Skeleton",
+      "TribeTypeId": 3,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype32default",
+      "ParentId": "default",
+      "IdKey": 32,
+      "Name": "Zombie",
+      "PluralName": "Zombies",
+      "Icon": "Zombie",
+      "Art": "Zombie",
+      "TribeTypeId": 3,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype33default",
+      "ParentId": "default",
+      "IdKey": 33,
+      "Name": "Ghoul",
+      "PluralName": "Ghouls",
+      "Icon": "Ghoul",
+      "Art": "Ghoul",
+      "TribeTypeId": 3,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype34default",
+      "ParentId": "default",
+      "IdKey": 34,
+      "Name": "Wight",
+      "PluralName": "Wights",
+      "Icon": "Wight",
+      "Art": "Wight",
+      "TribeTypeId": 3,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype35default",
+      "ParentId": "default",
+      "IdKey": 35,
+      "Name": "Wraith",
+      "PluralName": "Wraiths",
+      "Icon": "Wraith",
+      "Art": "Wraith",
+      "TribeTypeId": 3,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype36default",
+      "ParentId": "default",
+      "IdKey": 36,
+      "Name": "Ghost",
+      "PluralName": "Ghosts",
+      "Icon": "Ghost",
+      "Art": "Ghost",
+      "TribeTypeId": 3,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 8
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype37default",
+      "ParentId": "default",
+      "IdKey": 37,
+      "Name": "Spectre",
+      "PluralName": "Spectres",
+      "Icon": "Spectre",
+      "Art": "Spectre",
+      "TribeTypeId": 3,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 13
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 8
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype38default",
+      "ParentId": "default",
+      "IdKey": 38,
+      "Name": "Lich",
+      "PluralName": "Liches",
+      "Icon": "Lich",
+      "Art": "Lich",
+      "TribeTypeId": 3,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 5
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype39default",
+      "ParentId": "default",
+      "IdKey": 39,
+      "Name": "Thief",
+      "PluralName": "Thieves",
+      "Icon": "Thief",
+      "Art": "Thief",
+      "TribeTypeId": 14,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 1
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype40default",
+      "ParentId": "default",
+      "IdKey": 40,
+      "Name": "Rogue",
+      "PluralName": "Rogues",
+      "Icon": "Rogue",
+      "Art": "Rogue",
+      "TribeTypeId": 14,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 1
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype41default",
+      "ParentId": "default",
+      "IdKey": 41,
+      "Name": "Assassin",
+      "PluralName": "Assassins",
+      "Icon": "Assassin",
+      "Art": "Assassin",
+      "TribeTypeId": 14,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype42default",
+      "ParentId": "default",
+      "IdKey": 42,
+      "Name": "Demon",
+      "PluralName": "Demons",
+      "Icon": "Demon",
+      "Art": "Demon",
+      "TribeTypeId": 15,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype43default",
+      "ParentId": "default",
+      "IdKey": 43,
+      "Name": "Blue Dragon",
+      "PluralName": "Blue Dragons",
+      "Icon": "BlueDragon",
+      "Art": "BlueDragon",
+      "TribeTypeId": 16,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 4
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 232
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype44default",
+      "ParentId": "default",
+      "IdKey": 44,
+      "Name": "Red Dragon",
+      "PluralName": "Red Dragons",
+      "Icon": "RedDragon",
+      "Art": "RedDragon",
+      "TribeTypeId": 16,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 212
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype45default",
+      "ParentId": "default",
+      "IdKey": 45,
+      "Name": "White Dragon",
+      "PluralName": "White Dragons",
+      "Icon": "WhiteDragon",
+      "Art": "WhiteDragon",
+      "TribeTypeId": 16,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 100,
+          "Quantity": 1,
+          "EntityId": 222
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype46default",
+      "ParentId": "default",
+      "IdKey": 46,
+      "Name": "Black Dragon",
+      "PluralName": "Black Dragons",
+      "Icon": "BlackDragon",
+      "Art": "BlackDragon",
+      "TribeTypeId": 16,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 4
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype47default",
+      "ParentId": "default",
+      "IdKey": 47,
+      "Name": "Green Dragon",
+      "PluralName": "Green Dragons",
+      "Icon": "GreenDragon",
+      "Art": "GreenDragon",
+      "TribeTypeId": 16,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 5
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 1
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype48default",
+      "ParentId": "default",
+      "IdKey": 48,
+      "Name": "Stone Golem",
+      "PluralName": "Stone Golems",
+      "Icon": "StoneGolem",
+      "Art": "StoneGolem",
+      "TribeTypeId": 17,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 12
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype49default",
+      "ParentId": "default",
+      "IdKey": 49,
+      "Name": "Iron Golem",
+      "PluralName": "Iron Golems",
+      "Icon": "IronGolem",
+      "Art": "IronGolem",
+      "TribeTypeId": 17,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 16
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype50default",
+      "ParentId": "default",
+      "IdKey": 50,
+      "Name": "Flesh Golem",
+      "PluralName": "Flesh Golems",
+      "Icon": "FleshGolem",
+      "Art": "FleshGolem",
+      "TribeTypeId": 17,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype51default",
+      "ParentId": "default",
+      "IdKey": 51,
+      "Name": "Air Elemental",
+      "PluralName": "Air Elementals",
+      "Icon": "AirElemental",
+      "Art": "AirElemental",
+      "TribeTypeId": 4,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 5
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype52default",
+      "ParentId": "default",
+      "IdKey": 52,
+      "Name": "Earth Elemental",
+      "PluralName": "Earth Elementals",
+      "Icon": "EarthElemental",
+      "Art": "EarthElemental",
+      "TribeTypeId": 4,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 4
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 5
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype53default",
+      "ParentId": "default",
+      "IdKey": 53,
+      "Name": "Fire Elemental",
+      "PluralName": "Fire Elementals",
+      "Icon": "FireElemental",
+      "Art": "FireElemental",
+      "TribeTypeId": 4,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype54default",
+      "ParentId": "default",
+      "IdKey": 54,
+      "Name": "Water Elemental",
+      "PluralName": "Water Elementals",
+      "Icon": "WaterElemental",
+      "Art": "WaterElemental",
+      "TribeTypeId": 4,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 3
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype55default",
+      "ParentId": "default",
+      "IdKey": 55,
+      "Name": "Bear",
+      "PluralName": "Bears",
+      "Icon": "Bear",
+      "Art": "Bear",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype56default",
+      "ParentId": "default",
+      "IdKey": 56,
+      "Name": "Slime",
+      "PluralName": "Slimes",
+      "Icon": "Slime",
+      "Art": "Slime",
+      "TribeTypeId": 6,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype57default",
+      "ParentId": "default",
+      "IdKey": 57,
+      "Name": "Spider",
+      "PluralName": "Spiders",
+      "Icon": "Spider",
+      "Art": "Spider",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype58default",
+      "ParentId": "default",
+      "IdKey": 58,
+      "Name": "Scorpion",
+      "PluralName": "Scorpions",
+      "Icon": "Scorpion",
+      "Art": "Scorpion",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype59default",
+      "ParentId": "default",
+      "IdKey": 59,
+      "Name": "Chimera",
+      "PluralName": "Chimera",
+      "Icon": "Chimera",
+      "Art": "Chimera",
+      "TribeTypeId": 8,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype60default",
+      "ParentId": "default",
+      "IdKey": 60,
+      "Name": "Orc",
+      "PluralName": "Orcs",
+      "Icon": "Orc",
+      "Art": "Orc",
+      "TribeTypeId": 10,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "Ogre",
+      "PluralName": "Ogres",
+      "Icon": "Ogre",
+      "Art": "Ogre",
+      "TribeTypeId": 7,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype62default",
+      "ParentId": "default",
+      "IdKey": 62,
+      "Name": "Rat",
+      "PluralName": "Rats",
+      "Icon": "Rat",
+      "Art": "Rat",
+      "TribeTypeId": 6,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype63default",
+      "ParentId": "default",
+      "IdKey": 63,
+      "Name": "Bat",
+      "PluralName": "Bats",
+      "Icon": "Bat",
+      "Art": "Bat",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype64default",
+      "ParentId": "default",
+      "IdKey": 64,
+      "Name": "Salamander",
+      "PluralName": "Salamanders",
+      "Icon": "Salamander",
+      "Art": "Salamander",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype65default",
+      "ParentId": "default",
+      "IdKey": 65,
+      "Name": "Wyvern",
+      "PluralName": "Wyverns",
+      "Icon": "Wyvern",
+      "Art": "Wyvern",
+      "TribeTypeId": 8,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype66default",
+      "ParentId": "default",
+      "IdKey": 66,
+      "Name": "Frog",
+      "PluralName": "Frogs",
+      "Icon": "Frog",
+      "Art": "Frog",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype67default",
+      "ParentId": "default",
+      "IdKey": 67,
+      "Name": "Lizardman",
+      "PluralName": "Lizardmen",
+      "Icon": "Lizardman",
+      "Art": "Lizardman",
+      "TribeTypeId": 10,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype68default",
+      "ParentId": "default",
+      "IdKey": 68,
+      "Name": "Werewolf",
+      "PluralName": "Werewolves",
+      "Icon": "Werewolf",
+      "Art": "Werewolf",
+      "TribeTypeId": 10,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype69default",
+      "ParentId": "default",
+      "IdKey": 69,
+      "Name": "Troll",
+      "PluralName": "Trolls",
+      "Icon": "Troll",
+      "Art": "Troll",
+      "TribeTypeId": 7,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype70default",
+      "ParentId": "default",
+      "IdKey": 70,
+      "Name": "Vampire",
+      "PluralName": "Vampires",
+      "Icon": "Vampire",
+      "Art": "Vampire",
+      "TribeTypeId": 3,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 9
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype71default",
+      "ParentId": "default",
+      "IdKey": 71,
+      "Name": "Mummy",
+      "PluralName": "Mummies",
+      "Icon": "Mummy",
+      "Art": "Mummy",
+      "TribeTypeId": 3,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 24,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 9
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype72default",
+      "ParentId": "default",
+      "IdKey": 72,
+      "Name": "Harpy",
+      "PluralName": "Harpies",
+      "Icon": "Harpy",
+      "Art": "Harpy",
+      "TribeTypeId": 8,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype73default",
+      "ParentId": "default",
+      "IdKey": 73,
+      "Name": "Griffon",
+      "PluralName": "Griffons",
+      "Icon": "Griffon",
+      "Art": "Griffon",
+      "TribeTypeId": 8,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 6
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype74default",
+      "ParentId": "default",
+      "IdKey": 74,
+      "Name": "Manticore",
+      "PluralName": "Manticores",
+      "Icon": "Manticore",
+      "Art": "Manticore",
+      "TribeTypeId": 8,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype75default",
+      "ParentId": "default",
+      "IdKey": 75,
+      "Name": "Snake",
+      "PluralName": "Snakes",
+      "Icon": "Snake",
+      "Art": "Snake",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 1
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype76default",
+      "ParentId": "default",
+      "IdKey": 76,
+      "Name": "Steed",
+      "PluralName": "Steeds",
+      "Icon": "Steed",
+      "Art": "Steed",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype77default",
+      "ParentId": "default",
+      "IdKey": 77,
+      "Name": "Basilisk",
+      "PluralName": "Basilisks",
+      "Icon": "Basilisk",
+      "Art": "Basilisk",
+      "TribeTypeId": 8,
+      "MinLevel": 20,
+      "SpawnQuantityScale": 0.1,
+      "Effects": [
+        {
+          "EntityTypeId": 32,
+          "Quantity": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 32,
+          "Quantity": 50,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 5
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 16
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype78default",
+      "ParentId": "default",
+      "IdKey": 78,
+      "Name": "Giant",
+      "PluralName": "Giants",
+      "Icon": "Giant",
+      "Art": "Giant",
+      "TribeTypeId": 7,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype79default",
+      "ParentId": "default",
+      "IdKey": 79,
+      "Name": "Guard",
+      "PluralName": "Guards",
+      "Icon": "Guard",
+      "Art": "Guard",
+      "TribeTypeId": 11,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 31,
+          "Quantity": 5,
+          "EntityId": 36
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype80default",
+      "ParentId": "default",
+      "IdKey": 80,
+      "Name": "Gnoll",
+      "PluralName": "Gnolls",
+      "Icon": "Gnoll",
+      "Art": "Gnoll",
+      "TribeTypeId": 10,
+      "MinLevel": 5,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype81default",
+      "ParentId": "default",
+      "IdKey": 81,
+      "Name": "Frog",
+      "PluralName": "Frogs",
+      "Icon": "Frog",
+      "Art": "Frog",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype82default",
+      "ParentId": "default",
+      "IdKey": 82,
+      "Name": "Buck",
+      "PluralName": "Bucks",
+      "Icon": "Buck",
+      "Art": "Buck",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype83default",
+      "ParentId": "default",
+      "IdKey": 83,
+      "Name": "Crab",
+      "PluralName": "Crabs",
+      "Icon": "Crab",
+      "Art": "Crab",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype84default",
+      "ParentId": "default",
+      "IdKey": 84,
+      "Name": "Crocodile",
+      "PluralName": "Crocodiles",
+      "Icon": "Crocodile",
+      "Art": "Crocodile",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype85default",
+      "ParentId": "default",
+      "IdKey": 85,
+      "Name": "Snail",
+      "PluralName": "Snails",
+      "Icon": "Snail",
+      "Art": "Snail",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype86default",
+      "ParentId": "default",
+      "IdKey": 86,
+      "Name": "Treant",
+      "PluralName": "Treants",
+      "Icon": "Treant",
+      "Art": "Treant",
+      "TribeTypeId": 8,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype87default",
+      "ParentId": "default",
+      "IdKey": 87,
+      "Name": "Kobold",
+      "PluralName": "Kobolds",
+      "Icon": "Kobold",
+      "Art": "Kobold",
+      "TribeTypeId": 1,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 25,
+          "Quantity": 1,
+          "EntityId": 2
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype88default",
+      "ParentId": "default",
+      "IdKey": 88,
+      "Name": "Cyclops",
+      "PluralName": "Cyclops",
+      "Icon": "Cyclops",
+      "Art": "Cyclops",
+      "TribeTypeId": 7,
+      "MinLevel": 10,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [
+        {
+          "UnitKeywordId": 14
+        },
+        {
+          "UnitKeywordId": 16
+        },
+        {
+          "UnitKeywordId": 15
+        },
+        {
+          "UnitKeywordId": 17
+        }
+      ],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype89default",
+      "ParentId": "default",
+      "IdKey": 89,
+      "Name": "Hydra",
+      "PluralName": "Hydras",
+      "Icon": "Hydra",
+      "Art": "Hydra",
+      "TribeTypeId": 8,
+      "MinLevel": 15,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 36,
+          "Quantity": 1,
+          "EntityId": 10
+        }
+      ],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    },
+    {
+      "Id": "unittype90default",
+      "ParentId": "default",
+      "IdKey": 90,
+      "Name": "Bull",
+      "PluralName": "Bulls",
+      "Icon": "Bull",
+      "Art": "Bull",
+      "TribeTypeId": 2,
+      "MinLevel": 1,
+      "SpawnQuantityScale": 1.0,
+      "Effects": [],
+      "PrefixNames": [],
+      "DoubleNameSuffixes": [],
+      "SuffixNames": [],
+      "AlternateNames": [],
+      "FoodSources": [],
+      "LootItems": [],
+      "InteractLootItems": [],
+      "Keywords": [],
+      "SaveTime": "2025-07-16T02:27:06.424Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "UnitTypeSettings",
+    "SaveTime": "2025-07-16T02:27:06.424Z"
+  },
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

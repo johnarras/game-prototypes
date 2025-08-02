@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell62default",
+  "ParentId": "default",
+  "IdKey": 62,
+  "Name": "Weaken",
+  "Desc": "Reduce the melee damage of a group of foes.",
+  "PowerCost": 5.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 17,
+      "MinQuantity": 100,
+      "MaxQuantity": 100,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "StatBonusIncrease",
+  "Desc": "Increases the bonus players receive from their stats.",
+  "MaxTier": 5,
+  "BonusPerTier": 1.0,
+  "BasePointCost": 5
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "targettype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "OneEnemyGroup",
+  "Desc": "All Enemies in a group",
+  "StatBonusScale": 0.6
+}

@@ -1,0 +1,52 @@
+{
+  "Id": "city8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Memphis",
+  "Desc": "The ancient capital of Lower Egypt, a city of immense religious importance and the administrative center for the wealth of the Nile Delta.",
+  "Icon": "Memphis",
+  "Art": "Memphis",
+  "AncientName": "Men-nefer",
+  "MapPixelX": 1223,
+  "MapPixelY": 1369,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 58
+    },
+    {
+      "TradeGoodId": 36
+    },
+    {
+      "TradeGoodId": 39
+    },
+    {
+      "TradeGoodId": 25
+    },
+    {
+      "TradeGoodId": 120
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 18,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

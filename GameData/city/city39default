@@ -1,0 +1,53 @@
+{
+  "Id": "city39default",
+  "ParentId": "default",
+  "IdKey": 39,
+  "Name": "Damascus",
+  "Desc": "One of the world's oldest continuously inhabited cities, a vital oasis and trade hub connecting Mesopotamia with the Mediterranean coast.",
+  "Icon": "Damascus",
+  "Art": "Damascus",
+  "AncientName": "Damascus",
+  "MapPixelX": 1337,
+  "MapPixelY": 1286,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 66
+    },
+    {
+      "TradeGoodId": 76
+    },
+    {
+      "TradeGoodId": 14
+    },
+    {
+      "TradeGoodId": 112
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

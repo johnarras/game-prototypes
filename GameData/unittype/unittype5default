@@ -1,0 +1,29 @@
+{
+  "Id": "unittype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Gnome",
+  "PluralName": "Gnomes",
+  "Icon": "Gnome",
+  "Art": "Gnome",
+  "TribeTypeId": 1,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [
+    {
+      "UnitKeywordId": 18
+    },
+    {
+      "UnitKeywordId": 4
+    }
+  ],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

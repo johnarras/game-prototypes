@@ -1,0 +1,23 @@
+{
+  "Id": "crawlerspell23default",
+  "ParentId": "default",
+  "IdKey": 23,
+  "Name": "Cure Party",
+  "Desc": "Cure all party members",
+  "PowerCost": 15.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 5,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "MinQuantity": -1,
+      "MaxQuantity": -1,
+      "ElementTypeId": 7
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

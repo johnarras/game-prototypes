@@ -1,0 +1,21 @@
+{
+  "Id": "default",
+  "BaseLootCost": 10,
+  "WeaponMult": 2.0,
+  "TwoHandWeaponMult": 1.5,
+  "ProcMult": 2.0,
+  "EffectMult": 2.0,
+  "MaxLootItems": 4,
+  "ItemChancePerMonster": 0.02,
+  "MinGoldPerLevel": 5.0,
+  "MaxGoldPerLevel": 15.0,
+  "InventoryPerPartyMember": 5,
+  "MinLevelExpMultDefault": 0.2,
+  "MaxLevelExpMultDefault": 0.4,
+  "MinLevelGoldMultDefault": 0.2,
+  "MaxLevelGoldMultDefault": 0.4,
+  "ItemChanceDefault": 0.5,
+  "ExtraLootScalePerMonsterBonus": 0.1,
+  "Name": "CrawlerLootSettings",
+  "SaveTime": "2025-07-11T00:28:40.801Z"
+}

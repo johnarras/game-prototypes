@@ -1,0 +1,28 @@
+{
+  "Id": "unittype39default",
+  "ParentId": "default",
+  "IdKey": 39,
+  "Name": "Thief",
+  "PluralName": "Thieves",
+  "Icon": "Thief",
+  "Art": "Thief",
+  "TribeTypeId": 14,
+  "MinLevel": 1,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "Quantity": 1,
+      "EntityId": 1
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

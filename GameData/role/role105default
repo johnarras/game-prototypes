@@ -1,0 +1,24 @@
+{
+  "Id": "role105default",
+  "ParentId": "default",
+  "IdKey": 105,
+  "Name": "Halfling",
+  "Desc": "More Crit",
+  "Abbrev": "Hf",
+  "RoleCategoryId": 2,
+  "CritPercent": 5,
+  "BinaryBonuses": [],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 43,
+      "EntityId": 14,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 16,
+      "Amount": 1.0
+    }
+  ],
+  "SaveTime": "2025-07-13T22:24:49.109Z"
+}

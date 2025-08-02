@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype25default",
+  "ParentId": "default",
+  "IdKey": 25,
+  "Name": "2H Sword",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 25,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 200,
+  "ExplicitReagents": []
+}

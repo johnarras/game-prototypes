@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Arcane",
+  "Desc": "Pure magic power.",
+  "Icon": "Arcane",
+  "Art": "Arcane",
+  "CasterActionName": "Bewitch",
+  "ObserverActionName": "Bewitches",
+  "CastAnim": "Arcane",
+  "VulnElementTypeId": 8,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 10,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

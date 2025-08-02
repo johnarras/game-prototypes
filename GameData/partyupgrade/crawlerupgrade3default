@@ -1,0 +1,10 @@
+{
+  "Id": "crawlerupgrade3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "StatPercent",
+  "Desc": "Increases stats by a percent.",
+  "MaxTier": 5,
+  "BonusPerTier": 10.0,
+  "BasePointCost": 5
+}

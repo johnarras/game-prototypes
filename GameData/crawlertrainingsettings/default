@@ -1,0 +1,16 @@
+{
+  "Id": "default",
+  "LinearCostPerLevel": 100,
+  "QuadraticCostPerLevel": 10,
+  "StartKillsNeeded": 5.0,
+  "ExtraKillsNeededLinear": 5.0,
+  "ExtraKillsNeededQuadratic": 0.25,
+  "StartMonsterExp": 200.0,
+  "ExtraMonsterExp": 50.0,
+  "MaxScalingExpLevel": 500,
+  "NewClassGoldCostMult": 20,
+  "MaxDistinctClasses": 4,
+  "StatGainOnLevelMult": 2,
+  "Name": "CrawlerTrainingSettings",
+  "SaveTime": "2025-06-29T23:17:22.623Z"
+}

@@ -1,0 +1,25 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "timedeventcurrencytype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Season",
+      "SaveTime": "2025-06-12T22:35:41.718Z"
+    },
+    {
+      "Id": "timedeventcurrencytype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Collection",
+      "SaveTime": "2025-06-12T22:35:41.718Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TimedEventCurrencySettings",
+    "SaveTime": "2025-06-12T22:35:41.718Z"
+  },
+  "SaveTime": "2025-06-12T22:35:41.718Z"
+}

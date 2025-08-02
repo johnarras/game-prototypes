@@ -1,0 +1,29 @@
+{
+  "Id": "unitkeyword16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Chieftain",
+  "PluralName": "Chieftains",
+  "Icon": "Chieftain",
+  "Art": "Chieftain",
+  "Effects": [
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 32,
+      "Quantity": 50,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 4
+    }
+  ],
+  "Weight": 5.0,
+  "Tier": 4,
+  "SaveTime": "2025-07-10T00:43:37.278Z"
+}

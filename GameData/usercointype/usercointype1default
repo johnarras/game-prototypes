@@ -1,0 +1,10 @@
+{
+  "Id": "usercointype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "HardCurrency",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconHardCurrency",
+  "Art": "HardCurrencyArt"
+}

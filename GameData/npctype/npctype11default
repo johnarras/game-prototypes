@@ -1,0 +1,8 @@
+{
+  "Id": "npctype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Tower Guard",
+  "BuildingTypeId": 11,
+  "DefaultVendorItems": []
+}

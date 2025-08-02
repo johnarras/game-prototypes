@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Acid",
+  "Desc": "Corrosive power.",
+  "Icon": "Acid",
+  "Art": "Acid",
+  "CasterActionName": "Corrode",
+  "ObserverActionName": "Corrodes",
+  "CastAnim": "Acid",
+  "VulnElementTypeId": 1,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 8,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 10
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

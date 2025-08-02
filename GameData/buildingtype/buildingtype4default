@@ -1,0 +1,11 @@
+{
+  "Id": "buildingtype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "The Smithy",
+  "Icon": "Smithy",
+  "Art": "Smithy",
+  "Radius": 5,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

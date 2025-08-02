@@ -1,0 +1,53 @@
+{
+  "Id": "city71default",
+  "ParentId": "default",
+  "IdKey": 71,
+  "Name": "Solin",
+  "Desc": "The bustling capital of the Roman province of Dalmatia, a major port on the Adriatic coast.",
+  "Icon": "Solin",
+  "Art": "Solin",
+  "AncientName": "Salona",
+  "MapPixelX": 886,
+  "MapPixelY": 1058,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 1
+    },
+    {
+      "TradeGoodId": 4
+    },
+    {
+      "TradeGoodId": 36
+    },
+    {
+      "TradeGoodId": 5
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

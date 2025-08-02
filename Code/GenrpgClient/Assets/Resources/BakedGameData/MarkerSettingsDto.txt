@@ -1,0 +1,116 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "marker1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Red",
+      "Icon": "RedMarker",
+      "Art": "RedMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 1
+    },
+    {
+      "Id": "marker2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Green",
+      "Desc": "",
+      "Icon": "GreenMarker",
+      "Art": "GreenMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 2
+    },
+    {
+      "Id": "marker3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Blue",
+      "Desc": "",
+      "Icon": "BlueMarker",
+      "Art": "BlueMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 3
+    },
+    {
+      "Id": "marker4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Yellow",
+      "Desc": "",
+      "Icon": "YellowMarker",
+      "Art": "YellowMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 4,
+      "SaveTime": "2025-06-21T05:22:38.565Z"
+    },
+    {
+      "Id": "marker5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Purple",
+      "Desc": "",
+      "Icon": "PurpleMarker",
+      "Art": "PurpleMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 2,
+      "SaveTime": "2025-06-21T05:57:30.658Z"
+    },
+    {
+      "Id": "marker6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Cyan",
+      "Desc": "",
+      "Icon": "CyanMarker",
+      "Art": "CyanMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 3,
+      "SaveTime": "2025-06-22T20:05:59.53Z"
+    },
+    {
+      "Id": "marker7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Orange",
+      "Desc": "",
+      "Icon": "OrangeMarker",
+      "Art": "OrangeMarker",
+      "MaxTier": 2,
+      "QualityTypeId": 2,
+      "SaveTime": "2025-06-22T20:05:59.53Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Tiers": [
+      {
+        "Tier": 1
+      },
+      {
+        "Tier": 2,
+        "MinQuantity": 10
+      },
+      {
+        "Tier": 3,
+        "MinQuantity": 50
+      },
+      {
+        "Tier": 4,
+        "MinQuantity": 250
+      },
+      {
+        "Tier": 5,
+        "MinQuantity": 1000
+      },
+      {
+        "Tier": 6,
+        "MinQuantity": 2500
+      }
+    ],
+    "Name": "MarkerSettings",
+    "SaveTime": "2025-06-22T20:05:59.53Z"
+  },
+  "SaveTime": "2025-06-22T20:05:59.53Z"
+}

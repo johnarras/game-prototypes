@@ -1,0 +1,56 @@
+{
+  "Id": "city11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Marseille",
+  "Desc": "An old Greek colony on the coast of Gaul, serving as a key entry point for Roman goods and culture into the Celtic hinterlands.",
+  "Icon": "Marseille",
+  "Art": "Marseille",
+  "AncientName": "Massilia",
+  "MapPixelX": 634,
+  "MapPixelY": 1063,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 5
+    },
+    {
+      "TradeGoodId": 4
+    },
+    {
+      "TradeGoodId": 18
+    },
+    {
+      "TradeGoodId": 84
+    },
+    {
+      "TradeGoodId": 43
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

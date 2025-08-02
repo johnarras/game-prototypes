@@ -1,0 +1,7 @@
+{
+  "Id": "partybuff1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Light",
+  "Desc": "Allows you to see in dark places."
+}

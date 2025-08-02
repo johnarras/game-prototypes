@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Olive Oil",
+  "Desc": "A cornerstone of Mediterranean life, used for cooking, lighting, and cleansing.",
+  "Icon": "OliveOil",
+  "Art": "OliveOil",
+  "CategoryName": "Food",
+  "Density": 910.0,
+  "UnitWeight": 25,
+  "PricePerUnit": 2500,
+  "PricePerWeight": 100,
+  "YearlyProduction": 1000000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

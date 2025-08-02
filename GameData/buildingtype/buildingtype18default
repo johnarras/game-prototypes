@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Cave",
+  "Desc": "",
+  "Icon": "Cave",
+  "Art": "Cave",
+  "Radius": 5,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

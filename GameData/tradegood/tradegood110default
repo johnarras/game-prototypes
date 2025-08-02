@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood110default",
+  "ParentId": "default",
+  "IdKey": 110,
+  "Name": "Chariots",
+  "Desc": "Light, two-wheeled vehicles used in warfare, racing, and processions.",
+  "Icon": "Chariots",
+  "Art": "Chariots",
+  "CategoryName": "Transport",
+  "Density": 300.0,
+  "UnitWeight": 150,
+  "PricePerUnit": 60000,
+  "PricePerWeight": 400,
+  "YearlyProduction": 2000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

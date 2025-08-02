@@ -1,0 +1,49 @@
+{
+  "Id": "city57default",
+  "ParentId": "default",
+  "IdKey": 57,
+  "Name": "Pataliputra",
+  "Desc": "The grand capital of the Mauryan Empire in India, a massive and sophisticated city on the banks of the Ganges.",
+  "Icon": "Pataliputra",
+  "Art": "Pataliputra",
+  "AncientName": "Pataliputra",
+  "MapPixelX": 2448,
+  "MapPixelY": 1466,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 30
+    },
+    {
+      "TradeGoodId": 40
+    },
+    {
+      "TradeGoodId": 65
+    },
+    {
+      "TradeGoodId": 3
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 12,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 13,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 19,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

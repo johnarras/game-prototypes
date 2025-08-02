@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrawlerCombatAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c046d79a8b5138c47a310e758e80cd97, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - c6d06c023fba7a94e91e937211884743: 21300000
+    - ab691a12b102ecd4a8ffdd7042dcee9c: 21300000
+    - 14ed185259929014b9d12c9efe3aead0: 21300000
+    - c467c1c3b0fd494438049392f382aafc: 21300000
+    - ac863d3684e12694599a858620133531: 21300000
+    - e5afc8c7f71a1c6469f8f482ad647ed7: 21300000
+    - ddaccac77dd3c634ba474e9652eb086e: 21300000
+    - 7847c1fa1fab69e42ac63cc97852fb87: 21300000
+    - fe9949ce04ffefd4a954853e813a6d60: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c6d06c023fba7a94e91e937211884743, type: 3}
+  - {fileID: 21300000, guid: ab691a12b102ecd4a8ffdd7042dcee9c, type: 3}
+  - {fileID: 21300000, guid: 14ed185259929014b9d12c9efe3aead0, type: 3}
+  - {fileID: 21300000, guid: c467c1c3b0fd494438049392f382aafc, type: 3}
+  - {fileID: 21300000, guid: ac863d3684e12694599a858620133531, type: 3}
+  - {fileID: 21300000, guid: e5afc8c7f71a1c6469f8f482ad647ed7, type: 3}
+  - {fileID: 21300000, guid: ddaccac77dd3c634ba474e9652eb086e, type: 3}
+  - {fileID: 21300000, guid: 7847c1fa1fab69e42ac63cc97852fb87, type: 3}
+  - {fileID: 21300000, guid: fe9949ce04ffefd4a954853e813a6d60, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - EarthBolt
+  - IceBolt
+  - ElectricBolt
+  - ArcaneBolt
+  - ShadowBolt
+  - FireBolt
+  - PhysicalBolt
+  - NatureBolt
+  - LightBolt
+  m_RenderDataMap: {}
+  m_Tag: CrawlerCombatAtlas
+  m_IsVariant: 0

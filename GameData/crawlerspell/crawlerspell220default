@@ -1,0 +1,25 @@
+{
+  "Id": "crawlerspell220default",
+  "ParentId": "default",
+  "IdKey": 220,
+  "Name": "Frostbolt",
+  "Desc": "Hit one or more enemies in a group with cold damage.",
+  "PowerCost": 4.0,
+  "PowerPerLevel": 0.5,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 1,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 33,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 12,
+      "ElementTypeId": 3
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

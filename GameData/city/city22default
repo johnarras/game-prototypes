@@ -1,0 +1,60 @@
+{
+  "Id": "city22default",
+  "ParentId": "default",
+  "IdKey": 22,
+  "Name": "London",
+  "Desc": "A bustling Roman port and administrative center on the River Thames, the heart of commerce for the remote province of Britannia.",
+  "Icon": "London",
+  "Art": "London",
+  "AncientName": "Londinium",
+  "MapPixelX": 509,
+  "MapPixelY": 876,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 44
+    },
+    {
+      "TradeGoodId": 43
+    },
+    {
+      "TradeGoodId": 61
+    },
+    {
+      "TradeGoodId": 17
+    },
+    {
+      "TradeGoodId": 27
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 11,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 2,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 5,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

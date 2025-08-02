@@ -1,0 +1,20 @@
+{
+  "Id": "road12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Mosel & Rhine Valley Road",
+  "Desc": "A vital road along the rivers, linking two of the most important Roman cities in Germania and supporting the Rhine frontier.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 25,
+  "EndCityId": 26,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 4.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 1.0,
+  "Length": 200.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

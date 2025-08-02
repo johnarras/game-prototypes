@@ -1,0 +1,19 @@
+{
+  "Id": "road54default",
+  "ParentId": "default",
+  "IdKey": 54,
+  "Name": "Great Khorasan Road (East)",
+  "Desc": "The long journey across the arid Iranian plateau and desert towards the great oasis city of Merv.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 67,
+  "EndCityId": 55,
+  "Maintenance": 3.0,
+  "Difficulty": 4.0,
+  "Danger": 4.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 2.0,
+  "Length": 1150.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

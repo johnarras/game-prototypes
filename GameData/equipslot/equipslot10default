@@ -1,0 +1,9 @@
+{
+  "Id": "equipslot10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Hands",
+  "Active": true,
+  "IsCrawlerSlot": true,
+  "BaseBonusStatTypeId": 31
+}

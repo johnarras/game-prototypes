@@ -1,0 +1,8 @@
+{
+  "Id": "playmult5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "",
+  "Mult": 25,
+  "MinLevel": 8
+}

@@ -1,0 +1,12 @@
+{
+  "Id": "marker7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Orange",
+  "Desc": "",
+  "Icon": "OrangeMarker",
+  "Art": "OrangeMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 2,
+  "SaveTime": "2025-06-22T20:05:59.53Z"
+}

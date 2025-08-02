@@ -1,0 +1,68 @@
+{
+  "Id": "city5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Antioch",
+  "Desc": "A luxurious and cosmopolitan city near the Levant coast, serving as a major western terminus of the Silk Road and a gateway to Persia.",
+  "Icon": "Antioch",
+  "Art": "Antioch",
+  "AncientName": "Antiochia ad Orontem",
+  "MapPixelX": 1334,
+  "MapPixelY": 1225,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 29
+    },
+    {
+      "TradeGoodId": 73
+    },
+    {
+      "TradeGoodId": 119
+    },
+    {
+      "TradeGoodId": 82
+    },
+    {
+      "TradeGoodId": 122
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 10,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 7,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 15,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

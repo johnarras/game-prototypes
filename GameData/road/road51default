@@ -1,0 +1,19 @@
+{
+  "Id": "road51default",
+  "ParentId": "default",
+  "IdKey": 51,
+  "Name": "Canal Path",
+  "Desc": "A short road running through the dense network of canals and irrigated fields between two of Mesopotamia's greatest cities.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 66,
+  "EndCityId": 7,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 3.0,
+  "Length": 90.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

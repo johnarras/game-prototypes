@@ -1,0 +1,7 @@
+{
+  "Id": "partybuff5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Mapping",
+  "Desc": "Shows you the minimap and lets you see the level map."
+}

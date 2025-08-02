@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Identify Item",
+  "Desc": "Find out the stats an item has.",
+  "PowerCost": 10.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 37,
+      "EntityId": 4,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

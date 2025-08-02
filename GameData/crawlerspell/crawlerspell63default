@@ -1,0 +1,24 @@
+{
+  "Id": "crawlerspell63default",
+  "ParentId": "default",
+  "IdKey": 63,
+  "Name": "Mesmerize",
+  "Desc": "Make  group of enemies unable to act.",
+  "PowerCost": 10.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 6,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 4,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "ElementTypeId": 4
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

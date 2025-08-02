@@ -1,0 +1,27 @@
+{
+  "Id": "elementtype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Earth",
+  "Desc": "Blast enemies.",
+  "Icon": "Earth",
+  "Art": "Earth",
+  "CasterActionName": "Crush",
+  "ObserverActionName": "Crushes",
+  "CastAnim": "Earth",
+  "VulnElementTypeId": 4,
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 2,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.02,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 5
+    }
+  ],
+  "SaveTime": "2025-06-16T22:59:58.099Z"
+}

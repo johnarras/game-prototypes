@@ -1,0 +1,32 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "storetheme1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Default",
+      "Art": "Default"
+    },
+    {
+      "Id": "storetheme2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Gem Store",
+      "Art": "Gems"
+    },
+    {
+      "Id": "storetheme3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Green Store",
+      "Art": "Green"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "StoreThemeSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

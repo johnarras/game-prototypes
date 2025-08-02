@@ -1,0 +1,20 @@
+{
+  "Id": "animal11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Ox",
+  "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
+  "Icon": "Ox",
+  "Art": "Ox",
+  "Endurance": 4,
+  "Speed": 1.0,
+  "CarryingCapacity": 30,
+  "PullingCapacity": 500,
+  "RoughTerrain": 2,
+  "HotClimate": 2,
+  "ColdClimate": 4,
+  "WetClimate": 3,
+  "FoodPerDay": 20,
+  "WaterPerDay": 60,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

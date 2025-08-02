@@ -1,0 +1,9 @@
+{
+  "Id": "npctype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Tailor",
+  "CrafterTypeId": 1,
+  "BuildingTypeId": 1,
+  "DefaultVendorItems": []
+}

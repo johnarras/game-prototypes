@@ -1,0 +1,19 @@
+{
+  "Id": "animal16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Yak",
+  "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
+  "Icon": "Yak",
+  "Art": "Yak",
+  "Endurance": 6,
+  "Speed": 2.0,
+  "CarryingCapacity": 110,
+  "PullingCapacity": 300,
+  "RoughTerrain": 5,
+  "ColdClimate": 6,
+  "WetClimate": 3,
+  "FoodPerDay": 10,
+  "WaterPerDay": 35,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

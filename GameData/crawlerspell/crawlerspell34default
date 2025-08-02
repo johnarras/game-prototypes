@@ -1,0 +1,22 @@
+{
+  "Id": "crawlerspell34default",
+  "ParentId": "default",
+  "IdKey": 34,
+  "Name": "Teleport",
+  "Desc": "Move to a different location in the current map.",
+  "PowerCost": 25.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 6,
+  "RoleScalingTier": 8,
+  "Effects": [
+    {
+      "EntityTypeId": 37,
+      "EntityId": 6,
+      "ElementTypeId": 9
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

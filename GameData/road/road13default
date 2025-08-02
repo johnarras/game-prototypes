@@ -1,0 +1,20 @@
+{
+  "Id": "road13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Fretum Gallicum Trail",
+  "Desc": "The combined land and sea route connecting Gaul to Britannia, crossing the choppy waters of the English Channel.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 24,
+  "EndCityId": 22,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 4.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 5.0,
+  "WinterHeat": 2.0,
+  "Length": 460.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

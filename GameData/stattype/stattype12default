@@ -1,0 +1,12 @@
+{
+  "Id": "stattype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Intellect",
+  "Desc": "Increases attack spell damage.",
+  "Art": "OrangeCauldron",
+  "ColorName": "Orange",
+  "ColorCode": "#FF7F00",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

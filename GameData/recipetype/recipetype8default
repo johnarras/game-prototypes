@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Boots",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 8,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 20,
+  "ExplicitReagents": []
+}

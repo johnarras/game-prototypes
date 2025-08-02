@@ -1,0 +1,16 @@
+{
+  "Id": "recipetype32default",
+  "ParentId": "default",
+  "IdKey": 32,
+  "Name": "Wand",
+  "NameId": "",
+  "Desc": "",
+  "Icon": "",
+  "EntityId": 32,
+  "EntityTypeId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 1,
+  "Art": "",
+  "ScalingPct": 100,
+  "ExplicitReagents": []
+}

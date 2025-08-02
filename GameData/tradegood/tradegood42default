@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood42default",
+  "ParentId": "default",
+  "IdKey": 42,
+  "Name": "Copper Ingot",
+  "Desc": "A metal used for tools, plumbing, and as a key component in bronze.",
+  "Icon": "CopperIngot",
+  "Art": "CopperIngot",
+  "CategoryName": "Metal",
+  "Density": 4000.0,
+  "UnitWeight": 20,
+  "PricePerUnit": 5500,
+  "PricePerWeight": 275,
+  "YearlyProduction": 40000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

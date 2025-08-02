@@ -1,0 +1,67 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "achievementtype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Total Damage"
+    },
+    {
+      "Id": "achievementtype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Max Damage",
+      "Category": 1
+    },
+    {
+      "Id": "achievementtype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Total Healing"
+    },
+    {
+      "Id": "achievementtype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Max Healing",
+      "Category": 1
+    },
+    {
+      "Id": "achievementtype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Money Looted"
+    },
+    {
+      "Id": "achievementtype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Items Looted"
+    },
+    {
+      "Id": "achievementtype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Vendor Money"
+    },
+    {
+      "Id": "achievementtype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Items Sold"
+    },
+    {
+      "Id": "achievementtype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Items Bought"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "AchievementSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

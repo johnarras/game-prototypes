@@ -1,0 +1,14 @@
+{
+  "Id": "stattype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Strength",
+  "Abbrev": "",
+  "Desc": "Increases melee damage.",
+  "Icon": "",
+  "Art": "RedCauldron",
+  "ColorName": "Red",
+  "ColorCode": "#FF0000",
+  "GenScalePct": 100,
+  "IsCrawlerStat": true
+}

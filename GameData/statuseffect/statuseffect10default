@@ -1,0 +1,13 @@
+{
+  "Id": "statuseffect10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Clumsy",
+  "Desc": "Abilities have a XXXX percent chance of failing.",
+  "Icon": "Clums",
+  "Art": "",
+  "Abbrev": "Cl",
+  "ElementTypeId": 3,
+  "Amount": 25,
+  "SaveTime": "2025-06-07T13:18:24.119Z"
+}

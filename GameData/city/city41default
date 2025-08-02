@@ -1,0 +1,53 @@
+{
+  "Id": "city41default",
+  "ParentId": "default",
+  "IdKey": 41,
+  "Name": "Sidon",
+  "Desc": "A great Phoenician port city, sister and rival to Tyre, renowned for its skilled glassblowers and maritime trade network.",
+  "Icon": "Sidon",
+  "Art": "Sidon",
+  "AncientName": "Sidon",
+  "MapPixelX": 1316,
+  "MapPixelY": 1285,
+  "TradeGoods": [
+    {
+      "TradeGoodId": 112
+    },
+    {
+      "TradeGoodId": 77
+    },
+    {
+      "TradeGoodId": 33
+    },
+    {
+      "TradeGoodId": 9
+    }
+  ],
+  "Animals": [
+    {
+      "AnimalId": 1,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 4,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 14,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 3,
+      "PriceScale": 1.0
+    },
+    {
+      "AnimalId": 6,
+      "PriceScale": 10.0
+    },
+    {
+      "AnimalId": 8,
+      "PriceScale": 10.0
+    }
+  ],
+  "SaveTime": "2025-07-20T06:18:34.544Z"
+}

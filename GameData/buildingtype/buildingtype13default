@@ -1,0 +1,12 @@
+{
+  "Id": "buildingtype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Equipment",
+  "Icon": "Equipment",
+  "Art": "Equipment",
+  "Radius": 5,
+  "IsCrawlerBuilding": true,
+  "VariationCount": 1,
+  "ShowNameplate": true
+}

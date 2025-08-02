@@ -1,0 +1,33 @@
+{
+  "Id": "unittype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Swordsman",
+  "PluralName": "Swordsman",
+  "Icon": "Swordsman",
+  "Art": "Swordsman",
+  "TribeTypeId": 11,
+  "MinLevel": 10,
+  "SpawnQuantityScale": 1.0,
+  "Effects": [
+    {
+      "EntityTypeId": 31,
+      "Quantity": 5,
+      "EntityId": 37
+    },
+    {
+      "EntityTypeId": 100,
+      "Quantity": 1,
+      "EntityId": 4
+    }
+  ],
+  "PrefixNames": [],
+  "DoubleNameSuffixes": [],
+  "SuffixNames": [],
+  "AlternateNames": [],
+  "FoodSources": [],
+  "LootItems": [],
+  "InteractLootItems": [],
+  "Keywords": [],
+  "SaveTime": "2025-07-16T02:27:06.424Z"
+}

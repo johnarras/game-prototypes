@@ -1,0 +1,1437 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b1b732ff9a44ca7364c90c64b701, type: 3}
+  m_Name: BundleList
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Assets.Bundles.BundleList
+  Bundles:
+  - BundleName: atlascrawlercombat
+    IsLocal: 0
+  - BundleName: atlascrawlerminimap
+    IsLocal: 0
+  - BundleName: atlascrawlerui
+    IsLocal: 0
+  - BundleName: atlascurrencytypeicons
+    IsLocal: 0
+  - BundleName: atlasicons
+    IsLocal: 0
+  - BundleName: atlasmarkericons
+    IsLocal: 0
+  - BundleName: atlasskillicons
+    IsLocal: 0
+  - BundleName: atlasui
+    IsLocal: 0
+  - BundleName: atlasusercointypeicons
+    IsLocal: 0
+  - BundleName: audioarcanehit
+    IsLocal: 0
+  - BundleName: audiobaseaudio
+    IsLocal: 0
+  - BundleName: audiobuttonclick
+    IsLocal: 0
+  - BundleName: audiodooropen
+    IsLocal: 0
+  - BundleName: audioearthhit
+    IsLocal: 0
+  - BundleName: audioelectrichit
+    IsLocal: 0
+  - BundleName: audiofieldmusic
+    IsLocal: 0
+  - BundleName: audiofirehit
+    IsLocal: 0
+  - BundleName: audioforestmusic
+    IsLocal: 0
+  - BundleName: audiohillsmusic
+    IsLocal: 0
+  - BundleName: audioicehit
+    IsLocal: 0
+  - BundleName: audiointromusic
+    IsLocal: 0
+  - BundleName: audiolighthit
+    IsLocal: 0
+  - BundleName: audiomonsterhit
+    IsLocal: 0
+  - BundleName: audiophysicalhit
+    IsLocal: 0
+  - BundleName: audioshadowhit
+    IsLocal: 0
+  - BundleName: audiostartcombat
+    IsLocal: 0
+  - BundleName: audioswampmusic
+    IsLocal: 0
+  - BundleName: audiotreasure
+    IsLocal: 0
+  - BundleName: boardprizeschestprize
+    IsLocal: 0
+  - BundleName: boardprizescreditsprize
+    IsLocal: 0
+  - BundleName: boardprizesenergyprize
+    IsLocal: 0
+  - BundleName: boardprizesgemsprize
+    IsLocal: 0
+  - BundleName: buildingsbasebuilding
+    IsLocal: 0
+  - BundleName: buildingsdefault
+    IsLocal: 0
+  - BundleName: bushesazalea
+    IsLocal: 0
+  - BundleName: bushesazaleapink
+    IsLocal: 0
+  - BundleName: bushesazaleawhite
+    IsLocal: 0
+  - BundleName: bushesbuttercup
+    IsLocal: 0
+  - BundleName: bushescactuscylinder
+    IsLocal: 0
+  - BundleName: bushescactussphere
+    IsLocal: 0
+  - BundleName: bushescattail
+    IsLocal: 0
+  - BundleName: bushesdaisy
+    IsLocal: 0
+  - BundleName: bushesdandelion
+    IsLocal: 0
+  - BundleName: busheselephantgrass
+    IsLocal: 0
+  - BundleName: bushesfern
+    IsLocal: 0
+  - BundleName: bushesfoxglove
+    IsLocal: 0
+  - BundleName: bushesknapweed
+    IsLocal: 0
+  - BundleName: bushesleaffern
+    IsLocal: 0
+  - BundleName: bushespoppy
+    IsLocal: 0
+  - BundleName: bushessnakeweed
+    IsLocal: 0
+  - BundleName: bushessnakeweedyellow
+    IsLocal: 0
+  - BundleName: bushesswordfern
+    IsLocal: 0
+  - BundleName: bushesthistle
+    IsLocal: 0
+  - BundleName: combatarcanecombathit
+    IsLocal: 0
+  - BundleName: combatbasecombathit
+    IsLocal: 0
+  - BundleName: combatcombatbolt
+    IsLocal: 0
+  - BundleName: combatearthcombathit
+    IsLocal: 0
+  - BundleName: combatelectriccombathit
+    IsLocal: 0
+  - BundleName: combatfirecombathit
+    IsLocal: 0
+  - BundleName: combaticecombathit
+    IsLocal: 0
+  - BundleName: combatlightcombathit
+    IsLocal: 0
+  - BundleName: combatnaturecombathit
+    IsLocal: 0
+  - BundleName: combatphysicalcombathit
+    IsLocal: 0
+  - BundleName: combatshadowcombathit
+    IsLocal: 0
+  - BundleName: dungeonsarcane
+    IsLocal: 0
+  - BundleName: dungeonsbasedoor
+    IsLocal: 0
+  - BundleName: dungeonsbasefence
+    IsLocal: 0
+  - BundleName: dungeonsbasemats
+    IsLocal: 0
+  - BundleName: dungeonsbasepillar
+    IsLocal: 0
+  - BundleName: dungeonsbasewall
+    IsLocal: 0
+  - BundleName: dungeonscave
+    IsLocal: 0
+  - BundleName: dungeonscity
+    IsLocal: 0
+  - BundleName: dungeonsdarkgraymats
+    IsLocal: 0
+  - BundleName: dungeonsdungeon
+    IsLocal: 0
+  - BundleName: dungeonsgraymats
+    IsLocal: 0
+  - BundleName: dungeonslava
+    IsLocal: 0
+  - BundleName: dungeonslavamats
+    IsLocal: 0
+  - BundleName: dungeonsnatural
+    IsLocal: 0
+  - BundleName: dungeonsnaturalmats
+    IsLocal: 0
+  - BundleName: dungeonsoutdoors
+    IsLocal: 0
+  - BundleName: dungeonstanmats
+    IsLocal: 0
+  - BundleName: dungeonsterrainfloor
+    IsLocal: 0
+  - BundleName: dungeonstower
+    IsLocal: 0
+  - BundleName: dungeonsunholy
+    IsLocal: 0
+  - BundleName: grassdetailgrass
+    IsLocal: 0
+  - BundleName: magicacidaura
+    IsLocal: 0
+  - BundleName: magicacidblast
+    IsLocal: 0
+  - BundleName: magicacidcast
+    IsLocal: 0
+  - BundleName: magicacidchannel
+    IsLocal: 0
+  - BundleName: magicaciddot
+    IsLocal: 0
+  - BundleName: magicacidenchant
+    IsLocal: 0
+  - BundleName: magicacidexplosion
+    IsLocal: 0
+  - BundleName: magicacidhit
+    IsLocal: 0
+  - BundleName: magicacidpillarblast
+    IsLocal: 0
+  - BundleName: magicacidprojectile
+    IsLocal: 0
+  - BundleName: magicacidshield
+    IsLocal: 0
+  - BundleName: magicairaura
+    IsLocal: 0
+  - BundleName: magicairblast
+    IsLocal: 0
+  - BundleName: magicaircast
+    IsLocal: 0
+  - BundleName: magicairchannel
+    IsLocal: 0
+  - BundleName: magicairdot
+    IsLocal: 0
+  - BundleName: magicairenchant
+    IsLocal: 0
+  - BundleName: magicairexplosion
+    IsLocal: 0
+  - BundleName: magicairhit
+    IsLocal: 0
+  - BundleName: magicairprojectile
+    IsLocal: 0
+  - BundleName: magicairshield
+    IsLocal: 0
+  - BundleName: magicarcaneaura
+    IsLocal: 0
+  - BundleName: magicarcaneblast
+    IsLocal: 0
+  - BundleName: magicarcanecast
+    IsLocal: 0
+  - BundleName: magicarcanechannel
+    IsLocal: 0
+  - BundleName: magicarcanedot
+    IsLocal: 0
+  - BundleName: magicarcaneenchant
+    IsLocal: 0
+  - BundleName: magicarcaneexplosion
+    IsLocal: 0
+  - BundleName: magicarcanehit
+    IsLocal: 0
+  - BundleName: magicarcaneprojectile
+    IsLocal: 0
+  - BundleName: magicarcaneshield
+    IsLocal: 0
+  - BundleName: magicbasemagic
+    IsLocal: 0
+  - BundleName: magicearthaura
+    IsLocal: 0
+  - BundleName: magicearthblast
+    IsLocal: 0
+  - BundleName: magicearthcast
+    IsLocal: 0
+  - BundleName: magicearthchannel
+    IsLocal: 0
+  - BundleName: magicearthdot
+    IsLocal: 0
+  - BundleName: magicearthenchant
+    IsLocal: 0
+  - BundleName: magicearthexplosion
+    IsLocal: 0
+  - BundleName: magicearthhit
+    IsLocal: 0
+  - BundleName: magicearthprojectile
+    IsLocal: 0
+  - BundleName: magicearthshield
+    IsLocal: 0
+  - BundleName: magicelectricaura
+    IsLocal: 0
+  - BundleName: magicelectricblast
+    IsLocal: 0
+  - BundleName: magicelectriccast
+    IsLocal: 0
+  - BundleName: magicelectricchannel
+    IsLocal: 0
+  - BundleName: magicelectricdot
+    IsLocal: 0
+  - BundleName: magicelectricenchant
+    IsLocal: 0
+  - BundleName: magicelectricexplosion
+    IsLocal: 0
+  - BundleName: magicelectrichit
+    IsLocal: 0
+  - BundleName: magicelectricpillarblast
+    IsLocal: 0
+  - BundleName: magicelectricprojectile
+    IsLocal: 0
+  - BundleName: magicelectricshield
+    IsLocal: 0
+  - BundleName: magicfireaura
+    IsLocal: 0
+  - BundleName: magicfireblast
+    IsLocal: 0
+  - BundleName: magicfirecast
+    IsLocal: 0
+  - BundleName: magicfirechannel
+    IsLocal: 0
+  - BundleName: magicfiredot
+    IsLocal: 0
+  - BundleName: magicfireenchant
+    IsLocal: 0
+  - BundleName: magicfireexplosion
+    IsLocal: 0
+  - BundleName: magicfirehit
+    IsLocal: 0
+  - BundleName: magicfirepillarblast
+    IsLocal: 0
+  - BundleName: magicfireprojectile
+    IsLocal: 0
+  - BundleName: magicfireshield
+    IsLocal: 0
+  - BundleName: magicmagicaura
+    IsLocal: 0
+  - BundleName: magicmagicblast
+    IsLocal: 0
+  - BundleName: magicmagiccast
+    IsLocal: 0
+  - BundleName: magicmagicchannel
+    IsLocal: 0
+  - BundleName: magicmagicdot
+    IsLocal: 0
+  - BundleName: magicmagicenchant
+    IsLocal: 0
+  - BundleName: magicmagicexplosion
+    IsLocal: 0
+  - BundleName: magicmagichit
+    IsLocal: 0
+  - BundleName: magicmagicprojectile
+    IsLocal: 0
+  - BundleName: magicmagicshield
+    IsLocal: 0
+  - BundleName: magicnatureaura
+    IsLocal: 0
+  - BundleName: magicnatureblast
+    IsLocal: 0
+  - BundleName: magicnaturecast
+    IsLocal: 0
+  - BundleName: magicnaturechannel
+    IsLocal: 0
+  - BundleName: magicnaturedot
+    IsLocal: 0
+  - BundleName: magicnatureenchant
+    IsLocal: 0
+  - BundleName: magicnatureexplosion
+    IsLocal: 0
+  - BundleName: magicnaturehit
+    IsLocal: 0
+  - BundleName: magicnaturepillarblast
+    IsLocal: 0
+  - BundleName: magicnatureprojectile
+    IsLocal: 0
+  - BundleName: magicnatureshield
+    IsLocal: 0
+  - BundleName: magicshadowaura
+    IsLocal: 0
+  - BundleName: magicshadowblast
+    IsLocal: 0
+  - BundleName: magicshadowcast
+    IsLocal: 0
+  - BundleName: magicshadowchannel
+    IsLocal: 0
+  - BundleName: magicshadowdot
+    IsLocal: 0
+  - BundleName: magicshadowenchant
+    IsLocal: 0
+  - BundleName: magicshadowexplosion
+    IsLocal: 0
+  - BundleName: magicshadowhit
+    IsLocal: 0
+  - BundleName: magicshadowpillarblast
+    IsLocal: 0
+  - BundleName: magicshadowprojectile
+    IsLocal: 0
+  - BundleName: magicshadowshield
+    IsLocal: 0
+  - BundleName: magicwateraura
+    IsLocal: 0
+  - BundleName: magicwaterblast
+    IsLocal: 0
+  - BundleName: magicwatercast
+    IsLocal: 0
+  - BundleName: magicwaterchannel
+    IsLocal: 0
+  - BundleName: magicwaterdot
+    IsLocal: 0
+  - BundleName: magicwaterenchant
+    IsLocal: 0
+  - BundleName: magicwaterexplosion
+    IsLocal: 0
+  - BundleName: magicwaterhit
+    IsLocal: 0
+  - BundleName: magicwaterpillarblast
+    IsLocal: 0
+  - BundleName: magicwaterprojectile
+    IsLocal: 0
+  - BundleName: magicwatershield
+    IsLocal: 0
+  - BundleName: markersbluemarker
+    IsLocal: 0
+  - BundleName: markerscyanmarker
+    IsLocal: 0
+  - BundleName: markersgreenmarker
+    IsLocal: 0
+  - BundleName: markersorangemarker
+    IsLocal: 0
+  - BundleName: markerspurplemarker
+    IsLocal: 0
+  - BundleName: markersredmarker
+    IsLocal: 0
+  - BundleName: markersyellowmarker
+    IsLocal: 0
+  - BundleName: monstersairelemental
+    IsLocal: 0
+  - BundleName: monstersassassin
+    IsLocal: 0
+  - BundleName: monstersbarbarian
+    IsLocal: 0
+  - BundleName: monstersbasilisk
+    IsLocal: 0
+  - BundleName: monstersbat
+    IsLocal: 0
+  - BundleName: monstersbear
+    IsLocal: 0
+  - BundleName: monstersblackdragon
+    IsLocal: 0
+  - BundleName: monstersbladesman
+    IsLocal: 0
+  - BundleName: monstersbluedragon
+    IsLocal: 0
+  - BundleName: monstersbuck
+    IsLocal: 0
+  - BundleName: monsterscat
+    IsLocal: 0
+  - BundleName: monsterschicken
+    IsLocal: 0
+  - BundleName: monsterschimera
+    IsLocal: 0
+  - BundleName: monsterscleric
+    IsLocal: 0
+  - BundleName: monstersconjurer
+    IsLocal: 0
+  - BundleName: monsterscow
+    IsLocal: 0
+  - BundleName: monsterscoyote
+    IsLocal: 0
+  - BundleName: monsterscrab
+    IsLocal: 0
+  - BundleName: monsterscrocodile
+    IsLocal: 0
+  - BundleName: monsterscyclops
+    IsLocal: 0
+  - BundleName: monstersdemon
+    IsLocal: 0
+  - BundleName: monstersdoe
+    IsLocal: 0
+  - BundleName: monstersdog
+    IsLocal: 0
+  - BundleName: monstersdwarf
+    IsLocal: 0
+  - BundleName: monstersearthelemental
+    IsLocal: 0
+  - BundleName: monsterself
+    IsLocal: 0
+  - BundleName: monstersfaerie
+    IsLocal: 0
+  - BundleName: monstersfighter
+    IsLocal: 0
+  - BundleName: monstersfireelemental
+    IsLocal: 0
+  - BundleName: monstersfleshgolem
+    IsLocal: 0
+  - BundleName: monstersfrog
+    IsLocal: 0
+  - BundleName: monstersghost
+    IsLocal: 0
+  - BundleName: monstersghoul
+    IsLocal: 0
+  - BundleName: monstersgiant
+    IsLocal: 0
+  - BundleName: monstersgnoll
+    IsLocal: 0
+  - BundleName: monstersgnome
+    IsLocal: 0
+  - BundleName: monstersgoat
+    IsLocal: 0
+  - BundleName: monstersgoblin
+    IsLocal: 0
+  - BundleName: monstersgolemice
+    IsLocal: 0
+  - BundleName: monstersgolemrock
+    IsLocal: 0
+  - BundleName: monstersgoose
+    IsLocal: 0
+  - BundleName: monstersgreendragon
+    IsLocal: 0
+  - BundleName: monstersgriffon
+    IsLocal: 0
+  - BundleName: monstersguard
+    IsLocal: 0
+  - BundleName: monstershalfling
+    IsLocal: 0
+  - BundleName: monstersharpy
+    IsLocal: 0
+  - BundleName: monstershobgoblin
+    IsLocal: 0
+  - BundleName: monstershound
+    IsLocal: 0
+  - BundleName: monstershuman
+    IsLocal: 0
+  - BundleName: monstershydra
+    IsLocal: 0
+  - BundleName: monstersirongolem
+    IsLocal: 0
+  - BundleName: monsterskobold
+    IsLocal: 0
+  - BundleName: monsterslich
+    IsLocal: 0
+  - BundleName: monsterslion
+    IsLocal: 0
+  - BundleName: monsterslizardman
+    IsLocal: 0
+  - BundleName: monsterslizardwarrior
+    IsLocal: 0
+  - BundleName: monstersmage
+    IsLocal: 0
+  - BundleName: monstersmagician
+    IsLocal: 0
+  - BundleName: monstersmanticore
+    IsLocal: 0
+  - BundleName: monstersmedusa
+    IsLocal: 0
+  - BundleName: monstersmongrel
+    IsLocal: 0
+  - BundleName: monstersmongrelarcher
+    IsLocal: 0
+  - BundleName: monstersmongrelshaman
+    IsLocal: 0
+  - BundleName: monstersmonk
+    IsLocal: 0
+  - BundleName: monstersmummy
+    IsLocal: 0
+  - BundleName: monstersmummylord
+    IsLocal: 0
+  - BundleName: monstersogre
+    IsLocal: 0
+  - BundleName: monstersogrearcher
+    IsLocal: 0
+  - BundleName: monstersogrechieftain
+    IsLocal: 0
+  - BundleName: monstersogrelieutenant
+    IsLocal: 0
+  - BundleName: monstersogreshaman
+    IsLocal: 0
+  - BundleName: monstersorc
+    IsLocal: 0
+  - BundleName: monstersorcarcher
+    IsLocal: 0
+  - BundleName: monstersorcchieftain
+    IsLocal: 0
+  - BundleName: monstersorclieutenant
+    IsLocal: 0
+  - BundleName: monstersorcshaman
+    IsLocal: 0
+  - BundleName: monstersrabbit
+    IsLocal: 0
+  - BundleName: monstersrat
+    IsLocal: 0
+  - BundleName: monstersreddragon
+    IsLocal: 0
+  - BundleName: monstersrogue
+    IsLocal: 0
+  - BundleName: monsterssalamander
+    IsLocal: 0
+  - BundleName: monstersscorpion
+    IsLocal: 0
+  - BundleName: monstersscrapper
+    IsLocal: 0
+  - BundleName: monstersskeleon
+    IsLocal: 0
+  - BundleName: monstersskeleton
+    IsLocal: 0
+  - BundleName: monstersslime
+    IsLocal: 0
+  - BundleName: monsterssnail
+    IsLocal: 0
+  - BundleName: monsterssnake
+    IsLocal: 0
+  - BundleName: monsterssorcerer
+    IsLocal: 0
+  - BundleName: monstersspectre
+    IsLocal: 0
+  - BundleName: monstersspider
+    IsLocal: 0
+  - BundleName: monsterssteed
+    IsLocal: 0
+  - BundleName: monstersstonegolem
+    IsLocal: 0
+  - BundleName: monstersswordsman
+    IsLocal: 0
+  - BundleName: monstersthief
+    IsLocal: 0
+  - BundleName: monsterstiger
+    IsLocal: 0
+  - BundleName: monsterstreant
+    IsLocal: 0
+  - BundleName: monsterstroll
+    IsLocal: 0
+  - BundleName: monsterstrollarcher
+    IsLocal: 0
+  - BundleName: monsterstrollchieftain
+    IsLocal: 0
+  - BundleName: monsterstrolllieutenant
+    IsLocal: 0
+  - BundleName: monsterstrollshaman
+    IsLocal: 0
+  - BundleName: monstersvampire
+    IsLocal: 0
+  - BundleName: monstersvampirelord
+    IsLocal: 0
+  - BundleName: monsterswarrior
+    IsLocal: 0
+  - BundleName: monsterswatcher
+    IsLocal: 0
+  - BundleName: monsterswaterelemental
+    IsLocal: 0
+  - BundleName: monsterswerewolf
+    IsLocal: 0
+  - BundleName: monsterswhitedragon
+    IsLocal: 0
+  - BundleName: monsterswight
+    IsLocal: 0
+  - BundleName: monsterswizard
+    IsLocal: 0
+  - BundleName: monsterswolf
+    IsLocal: 0
+  - BundleName: monsterswraith
+    IsLocal: 0
+  - BundleName: monsterswyvern
+    IsLocal: 0
+  - BundleName: monsterszombie
+    IsLocal: 0
+  - BundleName: prefabskillcollider
+    IsLocal: 0
+  - BundleName: prefabsmapwater
+    IsLocal: 0
+  - BundleName: prefabsminimapwater
+    IsLocal: 0
+  - BundleName: prefabsminimapwaterfull
+    IsLocal: 0
+  - BundleName: prefabspathsphere
+    IsLocal: 0
+  - BundleName: prefabsterrainmaterialplaceholder
+    IsLocal: 0
+  - BundleName: prefabstestsphere
+    IsLocal: 0
+  - BundleName: propsbarrel
+    IsLocal: 0
+  - BundleName: propsbluecauldron
+    IsLocal: 0
+  - BundleName: propsbridge
+    IsLocal: 0
+  - BundleName: propsbridgelarge
+    IsLocal: 0
+  - BundleName: propsbridgemedium
+    IsLocal: 0
+  - BundleName: propsbucket
+    IsLocal: 0
+  - BundleName: propschest
+    IsLocal: 0
+  - BundleName: propscrate
+    IsLocal: 0
+  - BundleName: propsfence
+    IsLocal: 0
+  - BundleName: propsfountain
+    IsLocal: 0
+  - BundleName: propsgreencauldron
+    IsLocal: 0
+  - BundleName: propsherbnode
+    IsLocal: 0
+  - BundleName: propsmapmod
+    IsLocal: 0
+  - BundleName: propsmetalnode
+    IsLocal: 0
+  - BundleName: propsorangecauldron
+    IsLocal: 0
+  - BundleName: propspedestal
+    IsLocal: 0
+  - BundleName: propspottery
+    IsLocal: 0
+  - BundleName: propspurplecauldron
+    IsLocal: 0
+  - BundleName: propsredcauldron
+    IsLocal: 0
+  - BundleName: propsstairsdown
+    IsLocal: 0
+  - BundleName: propsstairsup
+    IsLocal: 0
+  - BundleName: propsstatue
+    IsLocal: 0
+  - BundleName: propsstonenode
+    IsLocal: 0
+  - BundleName: propsteleportin
+    IsLocal: 0
+  - BundleName: propstrap
+    IsLocal: 0
+  - BundleName: propswallbutton
+    IsLocal: 0
+  - BundleName: propswhitecauldron
+    IsLocal: 0
+  - BundleName: propswoodnode
+    IsLocal: 0
+  - BundleName: propsyellowcauldron
+    IsLocal: 0
+  - BundleName: rocksrockred
+    IsLocal: 0
+  - BundleName: rocksrockrock
+    IsLocal: 0
+  - BundleName: rocksrocksand
+    IsLocal: 0
+  - BundleName: rocksrockswamp
+    IsLocal: 0
+  - BundleName: storesdefault
+    IsLocal: 0
+  - BundleName: storesgems
+    IsLocal: 0
+  - BundleName: storesgreen
+    IsLocal: 0
+  - BundleName: terraintexcobblea
+    IsLocal: 0
+  - BundleName: terraintexcracked
+    IsLocal: 0
+  - BundleName: terraintexcrackedb
+    IsLocal: 0
+  - BundleName: terraintexcrackedc
+    IsLocal: 0
+  - BundleName: terraintexcrackedgray
+    IsLocal: 0
+  - BundleName: terraintexcrackedgraysmall
+    IsLocal: 0
+  - BundleName: terraintexdarkrock
+    IsLocal: 0
+  - BundleName: terraintexdirt
+    IsLocal: 0
+  - BundleName: terraintexdirta
+    IsLocal: 0
+  - BundleName: terraintexdirtc
+    IsLocal: 0
+  - BundleName: terraintexdirtd
+    IsLocal: 0
+  - BundleName: terraintexdirtdark
+    IsLocal: 0
+  - BundleName: terraintexdirtdarkc
+    IsLocal: 0
+  - BundleName: terraintexdirtdarkd
+    IsLocal: 0
+  - BundleName: terraintexdirtdarke
+    IsLocal: 0
+  - BundleName: terraintexdirtdarkf
+    IsLocal: 0
+  - BundleName: terraintexdirtdarkh
+    IsLocal: 0
+  - BundleName: terraintexdirtdarki
+    IsLocal: 0
+  - BundleName: terraintexdirte
+    IsLocal: 0
+  - BundleName: terraintexdirtf
+    IsLocal: 0
+  - BundleName: terraintexdirtg
+    IsLocal: 0
+  - BundleName: terraintexdirtgrass
+    IsLocal: 0
+  - BundleName: terraintexdirtgrassb
+    IsLocal: 0
+  - BundleName: terraintexdirtgray
+    IsLocal: 0
+  - BundleName: terraintexdirtgraya
+    IsLocal: 0
+  - BundleName: terraintexdirth
+    IsLocal: 0
+  - BundleName: terraintexdirti
+    IsLocal: 0
+  - BundleName: terraintexdirtj
+    IsLocal: 0
+  - BundleName: terraintexdirtl
+    IsLocal: 0
+  - BundleName: terraintexdirtm
+    IsLocal: 0
+  - BundleName: terraintexdirtred
+    IsLocal: 0
+  - BundleName: terraintexdirtrock
+    IsLocal: 0
+  - BundleName: terraintexdirtsand
+    IsLocal: 0
+  - BundleName: terraintexdirtsandb
+    IsLocal: 0
+  - BundleName: terraintexdirtsandc
+    IsLocal: 0
+  - BundleName: terraintexdirtsandd
+    IsLocal: 0
+  - BundleName: terraintexdirtsande
+    IsLocal: 0
+  - BundleName: terraintexdirtsandf
+    IsLocal: 0
+  - BundleName: terraintexdirtsandg
+    IsLocal: 0
+  - BundleName: terraintexdirtsandh
+    IsLocal: 0
+  - BundleName: terraintexdirtsandi
+    IsLocal: 0
+  - BundleName: terraintexforest
+    IsLocal: 0
+  - BundleName: terraintexgrass
+    IsLocal: 0
+  - BundleName: terraintexgrassb
+    IsLocal: 0
+  - BundleName: terraintexgrassbrown
+    IsLocal: 0
+  - BundleName: terraintexgrassbrownb
+    IsLocal: 0
+  - BundleName: terraintexgrassc
+    IsLocal: 0
+  - BundleName: terraintexgrassd
+    IsLocal: 0
+  - BundleName: terraintexgrasse
+    IsLocal: 0
+  - BundleName: terraintexgrassf
+    IsLocal: 0
+  - BundleName: terraintexgrassg
+    IsLocal: 0
+  - BundleName: terraintexgrassh
+    IsLocal: 0
+  - BundleName: terraintexgrassi
+    IsLocal: 0
+  - BundleName: terraintexgrassk
+    IsLocal: 0
+  - BundleName: terraintexgrassleaf
+    IsLocal: 0
+  - BundleName: terraintexgrassleafb
+    IsLocal: 0
+  - BundleName: terraintexgrassleafc
+    IsLocal: 0
+  - BundleName: terraintexgrassrock
+    IsLocal: 0
+  - BundleName: terraintexhills
+    IsLocal: 0
+  - BundleName: terraintexlava
+    IsLocal: 0
+  - BundleName: terraintexleaves
+    IsLocal: 0
+  - BundleName: terraintexleavesb
+    IsLocal: 0
+  - BundleName: terraintexleavesc
+    IsLocal: 0
+  - BundleName: terraintexleavesd
+    IsLocal: 0
+  - BundleName: terraintexpath
+    IsLocal: 0
+  - BundleName: terraintexpebblesgray
+    IsLocal: 0
+  - BundleName: terraintexpebblesgrayb
+    IsLocal: 0
+  - BundleName: terraintexroad
+    IsLocal: 0
+  - BundleName: terraintexroadc
+    IsLocal: 0
+  - BundleName: terraintexroadf
+    IsLocal: 0
+  - BundleName: terraintexroadg
+    IsLocal: 0
+  - BundleName: terraintexroadred
+    IsLocal: 0
+  - BundleName: terraintexrock
+    IsLocal: 0
+  - BundleName: terraintexrockb
+    IsLocal: 0
+  - BundleName: terraintexrockc
+    IsLocal: 0
+  - BundleName: terraintexrockd
+    IsLocal: 0
+  - BundleName: terraintexrockdarkb
+    IsLocal: 0
+  - BundleName: terraintexrockdarkc
+    IsLocal: 0
+  - BundleName: terraintexrockdarkd
+    IsLocal: 0
+  - BundleName: terraintexrockdarkf
+    IsLocal: 0
+  - BundleName: terraintexrocke
+    IsLocal: 0
+  - BundleName: terraintexrockf
+    IsLocal: 0
+  - BundleName: terraintexrockgrass
+    IsLocal: 0
+  - BundleName: terraintexrockgraya
+    IsLocal: 0
+  - BundleName: terraintexrockgrayb
+    IsLocal: 0
+  - BundleName: terraintexrockgrayred
+    IsLocal: 0
+  - BundleName: terraintexrockred
+    IsLocal: 0
+  - BundleName: terraintexrockripple
+    IsLocal: 0
+  - BundleName: terraintexrocksmall
+    IsLocal: 0
+  - BundleName: terraintexrockstart
+    IsLocal: 0
+  - BundleName: terraintexrocktan
+    IsLocal: 0
+  - BundleName: terraintexsand
+    IsLocal: 0
+  - BundleName: terraintexsandgray
+    IsLocal: 0
+  - BundleName: terraintexsandgrayb
+    IsLocal: 0
+  - BundleName: terraintexsandroad
+    IsLocal: 0
+  - BundleName: terraintexsandrock
+    IsLocal: 0
+  - BundleName: terraintexsandwavy
+    IsLocal: 0
+  - BundleName: terraintexsavannah
+    IsLocal: 0
+  - BundleName: terraintexsavannahdirt
+    IsLocal: 0
+  - BundleName: terraintexsavannahroad
+    IsLocal: 0
+  - BundleName: terraintexsavannahrock
+    IsLocal: 0
+  - BundleName: terraintexsnow
+    IsLocal: 0
+  - BundleName: terraintexswamp
+    IsLocal: 0
+  - BundleName: terraintexswamproad
+    IsLocal: 0
+  - BundleName: terraintexwasteland
+    IsLocal: 0
+  - BundleName: terraintexwastelandcracked
+    IsLocal: 0
+  - BundleName: terraintexwastelandroad
+    IsLocal: 0
+  - BundleName: terraintexwastelandrock
+    IsLocal: 0
+  - BundleName: terraintexwater
+    IsLocal: 0
+  - BundleName: texturelistsairelemental
+    IsLocal: 0
+  - BundleName: texturelistsarcane
+    IsLocal: 0
+  - BundleName: texturelistsassassin
+    IsLocal: 0
+  - BundleName: texturelistsbadlands
+    IsLocal: 0
+  - BundleName: texturelistsbarbarian
+    IsLocal: 0
+  - BundleName: texturelistsbasemonster
+    IsLocal: 0
+  - BundleName: texturelistsbasilisk
+    IsLocal: 0
+  - BundleName: texturelistsbat
+    IsLocal: 0
+  - BundleName: texturelistsbattlefield
+    IsLocal: 0
+  - BundleName: texturelistsbear
+    IsLocal: 0
+  - BundleName: texturelistsbeholder
+    IsLocal: 0
+  - BundleName: texturelistsblackdragon
+    IsLocal: 0
+  - BundleName: texturelistsbladesman
+    IsLocal: 0
+  - BundleName: texturelistsbluedragon
+    IsLocal: 0
+  - BundleName: texturelistsbuck
+    IsLocal: 0
+  - BundleName: texturelistsbull
+    IsLocal: 0
+  - BundleName: texturelistscat
+    IsLocal: 0
+  - BundleName: texturelistscave
+    IsLocal: 0
+  - BundleName: texturelistschimera
+    IsLocal: 0
+  - BundleName: texturelistscity
+    IsLocal: 0
+  - BundleName: texturelistscitybg
+    IsLocal: 0
+  - BundleName: texturelistscleric
+    IsLocal: 0
+  - BundleName: texturelistsconjurer
+    IsLocal: 0
+  - BundleName: texturelistscoyote
+    IsLocal: 0
+  - BundleName: texturelistscrab
+    IsLocal: 0
+  - BundleName: texturelistscrocodile
+    IsLocal: 0
+  - BundleName: texturelistscyclops
+    IsLocal: 0
+  - BundleName: texturelistsdangersense
+    IsLocal: 0
+  - BundleName: texturelistsdarkforest
+    IsLocal: 0
+  - BundleName: texturelistsdefaultimagebg
+    IsLocal: 0
+  - BundleName: texturelistsdefaultworldbg
+    IsLocal: 0
+  - BundleName: texturelistsdemon
+    IsLocal: 0
+  - BundleName: texturelistsdesert
+    IsLocal: 0
+  - BundleName: texturelistsdoe
+    IsLocal: 0
+  - BundleName: texturelistsdog
+    IsLocal: 0
+  - BundleName: texturelistsdungeon
+    IsLocal: 0
+  - BundleName: texturelistsdungeonbg
+    IsLocal: 0
+  - BundleName: texturelistsdwarf
+    IsLocal: 0
+  - BundleName: texturelistsearthelemental
+    IsLocal: 0
+  - BundleName: texturelistself
+    IsLocal: 0
+  - BundleName: texturelistsfaerie
+    IsLocal: 0
+  - BundleName: texturelistsfield
+    IsLocal: 0
+  - BundleName: texturelistsfighter
+    IsLocal: 0
+  - BundleName: texturelistsfireelemental
+    IsLocal: 0
+  - BundleName: texturelistsfleshgolem
+    IsLocal: 0
+  - BundleName: texturelistsforest
+    IsLocal: 0
+  - BundleName: texturelistsfrog
+    IsLocal: 0
+  - BundleName: texturelistsghost
+    IsLocal: 0
+  - BundleName: texturelistsghoul
+    IsLocal: 0
+  - BundleName: texturelistsgiant
+    IsLocal: 0
+  - BundleName: texturelistsgnoll
+    IsLocal: 0
+  - BundleName: texturelistsgnome
+    IsLocal: 0
+  - BundleName: texturelistsgoblin
+    IsLocal: 0
+  - BundleName: texturelistsgreendragon
+    IsLocal: 0
+  - BundleName: texturelistsgriffon
+    IsLocal: 0
+  - BundleName: texturelistsguard
+    IsLocal: 0
+  - BundleName: texturelistshalfling
+    IsLocal: 0
+  - BundleName: texturelistsharpy
+    IsLocal: 0
+  - BundleName: texturelistshills
+    IsLocal: 0
+  - BundleName: texturelistshobgoblin
+    IsLocal: 0
+  - BundleName: texturelistshound
+    IsLocal: 0
+  - BundleName: texturelistshousebuilding
+    IsLocal: 0
+  - BundleName: texturelistshuman
+    IsLocal: 0
+  - BundleName: texturelistshydra
+    IsLocal: 0
+  - BundleName: texturelistsirongolem
+    IsLocal: 0
+  - BundleName: texturelistskobold
+    IsLocal: 0
+  - BundleName: texturelistslava
+    IsLocal: 0
+  - BundleName: texturelistslich
+    IsLocal: 0
+  - BundleName: texturelistslion
+    IsLocal: 0
+  - BundleName: texturelistslizardman
+    IsLocal: 0
+  - BundleName: texturelistsmage
+    IsLocal: 0
+  - BundleName: texturelistsmagiccarpet
+    IsLocal: 0
+  - BundleName: texturelistsmagician
+    IsLocal: 0
+  - BundleName: texturelistsmanticore
+    IsLocal: 0
+  - BundleName: texturelistsmedusa
+    IsLocal: 0
+  - BundleName: texturelistsmongrel
+    IsLocal: 0
+  - BundleName: texturelistsmonk
+    IsLocal: 0
+  - BundleName: texturelistsmountains
+    IsLocal: 0
+  - BundleName: texturelistsmummy
+    IsLocal: 0
+  - BundleName: texturelistsnatural
+    IsLocal: 0
+  - BundleName: texturelistsogre
+    IsLocal: 0
+  - BundleName: texturelistsorc
+    IsLocal: 0
+  - BundleName: texturelistspointofinterest
+    IsLocal: 0
+  - BundleName: texturelistsrat
+    IsLocal: 0
+  - BundleName: texturelistsreddragon
+    IsLocal: 0
+  - BundleName: texturelistsroad
+    IsLocal: 0
+  - BundleName: texturelistsrogue
+    IsLocal: 0
+  - BundleName: texturelistssalamander
+    IsLocal: 0
+  - BundleName: texturelistssavannah
+    IsLocal: 0
+  - BundleName: texturelistsscorpion
+    IsLocal: 0
+  - BundleName: texturelistsscrapper
+    IsLocal: 0
+  - BundleName: texturelistsskeleton
+    IsLocal: 0
+  - BundleName: texturelistsslime
+    IsLocal: 0
+  - BundleName: texturelistssnail
+    IsLocal: 0
+  - BundleName: texturelistssnake
+    IsLocal: 0
+  - BundleName: texturelistssnow
+    IsLocal: 0
+  - BundleName: texturelistssorcerer
+    IsLocal: 0
+  - BundleName: texturelistsspectre
+    IsLocal: 0
+  - BundleName: texturelistsspider
+    IsLocal: 0
+  - BundleName: texturelistssteed
+    IsLocal: 0
+  - BundleName: texturelistsstonegolem
+    IsLocal: 0
+  - BundleName: texturelistsswamp
+    IsLocal: 0
+  - BundleName: texturelistsswordsman
+    IsLocal: 0
+  - BundleName: textureliststavernbuilding
+    IsLocal: 0
+  - BundleName: textureliststemplebuilding
+    IsLocal: 0
+  - BundleName: textureliststhief
+    IsLocal: 0
+  - BundleName: textureliststiger
+    IsLocal: 0
+  - BundleName: textureliststorchlight
+    IsLocal: 0
+  - BundleName: textureliststower
+    IsLocal: 0
+  - BundleName: textureliststraderworldmap
+    IsLocal: 0
+  - BundleName: textureliststrainerbuilding
+    IsLocal: 0
+  - BundleName: textureliststreant
+    IsLocal: 0
+  - BundleName: textureliststreasure
+    IsLocal: 0
+  - BundleName: textureliststroll
+    IsLocal: 0
+  - BundleName: texturelistsunholy
+    IsLocal: 0
+  - BundleName: texturelistsvampire
+    IsLocal: 0
+  - BundleName: texturelistsvendorbuilding
+    IsLocal: 0
+  - BundleName: texturelistswarrior
+    IsLocal: 0
+  - BundleName: texturelistswater
+    IsLocal: 0
+  - BundleName: texturelistswaterelemental
+    IsLocal: 0
+  - BundleName: texturelistswerewolf
+    IsLocal: 0
+  - BundleName: texturelistswhitedragon
+    IsLocal: 0
+  - BundleName: texturelistswight
+    IsLocal: 0
+  - BundleName: texturelistswizard
+    IsLocal: 0
+  - BundleName: texturelistswolf
+    IsLocal: 0
+  - BundleName: texturelistswraith
+    IsLocal: 0
+  - BundleName: texturelistswyvern
+    IsLocal: 0
+  - BundleName: texturelistszombie
+    IsLocal: 0
+  - BundleName: tilesadventuretile
+    IsLocal: 0
+  - BundleName: tilesalchemisttile
+    IsLocal: 0
+  - BundleName: tilesbarrackstile
+    IsLocal: 0
+  - BundleName: tilesdeserttile
+    IsLocal: 0
+  - BundleName: tilesfarmtile
+    IsLocal: 0
+  - BundleName: tilesforesttile
+    IsLocal: 0
+  - BundleName: tilesguardtowertile
+    IsLocal: 0
+  - BundleName: tileshillstile
+    IsLocal: 0
+  - BundleName: tileslumbermilltile
+    IsLocal: 0
+  - BundleName: tilesmagetowertile
+    IsLocal: 0
+  - BundleName: tilesmountaintile
+    IsLocal: 0
+  - BundleName: tilesplainstile
+    IsLocal: 0
+  - BundleName: tilessmithytile
+    IsLocal: 0
+  - BundleName: tilesstonemasontile
+    IsLocal: 0
+  - BundleName: tilesswamptile
+    IsLocal: 0
+  - BundleName: tilestannertile
+    IsLocal: 0
+  - BundleName: tilestownhalltile
+    IsLocal: 0
+  - BundleName: tilestreasurytile
+    IsLocal: 0
+  - BundleName: treesamurcork
+    IsLocal: 0
+  - BundleName: treesamurcorkbare
+    IsLocal: 0
+  - BundleName: treesamurcorkfall
+    IsLocal: 0
+  - BundleName: treesapple
+    IsLocal: 0
+  - BundleName: treesapplebare
+    IsLocal: 0
+  - BundleName: treesapplefall
+    IsLocal: 0
+  - BundleName: treesaspen
+    IsLocal: 0
+  - BundleName: treesaspenbare
+    IsLocal: 0
+  - BundleName: treesaspenfall
+    IsLocal: 0
+  - BundleName: treesbanyanthick
+    IsLocal: 0
+  - BundleName: treesbanyanthin
+    IsLocal: 0
+  - BundleName: treesbaobab
+    IsLocal: 0
+  - BundleName: treesbaobabsmall
+    IsLocal: 0
+  - BundleName: treesbirch
+    IsLocal: 0
+  - BundleName: treesbirchfall
+    IsLocal: 0
+  - BundleName: treesbirchwinter
+    IsLocal: 0
+  - BundleName: treesbroadleaf
+    IsLocal: 0
+  - BundleName: treesbroadleafsmall
+    IsLocal: 0
+  - BundleName: treescactus
+    IsLocal: 0
+  - BundleName: treescedar
+    IsLocal: 0
+  - BundleName: treescedarbare
+    IsLocal: 0
+  - BundleName: treescedaryoung
+    IsLocal: 0
+  - BundleName: treesconifer
+    IsLocal: 0
+  - BundleName: treescypressfull
+    IsLocal: 0
+  - BundleName: treescypressgold
+    IsLocal: 0
+  - BundleName: treescypressthin
+    IsLocal: 0
+  - BundleName: treesdouglasfir
+    IsLocal: 0
+  - BundleName: treesdouglasfirbare
+    IsLocal: 0
+  - BundleName: treesdouglasfirpyramid
+    IsLocal: 0
+  - BundleName: treeselm
+    IsLocal: 0
+  - BundleName: treeselmfall
+    IsLocal: 0
+  - BundleName: treesjapanesemaple
+    IsLocal: 0
+  - BundleName: treesjapanesemaplefall
+    IsLocal: 0
+  - BundleName: treesjapanesemaplefallyoung
+    IsLocal: 0
+  - BundleName: treesjapanesemapleyoung
+    IsLocal: 0
+  - BundleName: treesjuniper
+    IsLocal: 0
+  - BundleName: treesjuniperbare
+    IsLocal: 0
+  - BundleName: treeslondonplane
+    IsLocal: 0
+  - BundleName: treeslondonplanefall
+    IsLocal: 0
+  - BundleName: treeslondonplanewinter
+    IsLocal: 0
+  - BundleName: treesmagnolia
+    IsLocal: 0
+  - BundleName: treesmagnoliabare
+    IsLocal: 0
+  - BundleName: treesmagnoliapink
+    IsLocal: 0
+  - BundleName: treesmagnoliawhite
+    IsLocal: 0
+  - BundleName: treespalm
+    IsLocal: 0
+  - BundleName: treesredmaple
+    IsLocal: 0
+  - BundleName: treesredmaplefall
+    IsLocal: 0
+  - BundleName: treesredmaplefallyoung
+    IsLocal: 0
+  - BundleName: treesredmaplewinter
+    IsLocal: 0
+  - BundleName: treesredmaplewinteryoung
+    IsLocal: 0
+  - BundleName: treesredmapleyoung
+    IsLocal: 0
+  - BundleName: treesriverbirch
+    IsLocal: 0
+  - BundleName: treesriverbirchbare
+    IsLocal: 0
+  - BundleName: treesriverbirchfall
+    IsLocal: 0
+  - BundleName: treesscotspine
+    IsLocal: 0
+  - BundleName: treesscotspinebare
+    IsLocal: 0
+  - BundleName: treesscotspinewinter
+    IsLocal: 0
+  - BundleName: treesspruce
+    IsLocal: 0
+  - BundleName: treessprucebare
+    IsLocal: 0
+  - BundleName: treessprucewinter
+    IsLocal: 0
+  - BundleName: treeswhiteoak
+    IsLocal: 0
+  - BundleName: treeswhiteoakfall
+    IsLocal: 0
+  - BundleName: treeswhiteoakfallyoung
+    IsLocal: 0
+  - BundleName: treeswhiteoakwinter
+    IsLocal: 0
+  - BundleName: treeswhiteoakwinteryoung
+    IsLocal: 0
+  - BundleName: treeswhiteoakyoung
+    IsLocal: 0
+  - BundleName: uiactionbars
+    IsLocal: 0
+  - BundleName: uiblockers
+    IsLocal: 0
+  - BundleName: uicharacters
+    IsLocal: 0
+  - BundleName: uicharms
+    IsLocal: 0
+  - BundleName: uichat
+    IsLocal: 0
+  - BundleName: uicore
+    IsLocal: 0
+  - BundleName: uicrafting
+    IsLocal: 0
+  - BundleName: uicrawler
+    IsLocal: 0
+  - BundleName: uicrawleritems
+    IsLocal: 0
+  - BundleName: uicrawlertilemaps
+    IsLocal: 0
+  - BundleName: uicrawlerunits
+    IsLocal: 0
+  - BundleName: uicurrencies
+    IsLocal: 0
+  - BundleName: uidynamicui
+    IsLocal: 0
+  - BundleName: uientities
+    IsLocal: 0
+  - BundleName: uifloatingtext
+    IsLocal: 0
+  - BundleName: uiftue
+    IsLocal: 0
+  - BundleName: uihud
+    IsLocal: 0
+  - BundleName: uiitems
+    IsLocal: 0
+  - BundleName: uiloading
+    IsLocal: 1
+  - BundleName: uilogin
+    IsLocal: 0
+  - BundleName: uiloot
+    IsLocal: 0
+  - BundleName: uimaps
+    IsLocal: 0
+  - BundleName: uimarkers
+    IsLocal: 0
+  - BundleName: uimobilehud
+    IsLocal: 0
+  - BundleName: uiquests
+    IsLocal: 0
+  - BundleName: uirewards
+    IsLocal: 0
+  - BundleName: uispells
+    IsLocal: 0
+  - BundleName: uistores
+    IsLocal: 0
+  - BundleName: uitexturelists
+    IsLocal: 0
+  - BundleName: uitiles
+    IsLocal: 0
+  - BundleName: uitrade
+    IsLocal: 0
+  - BundleName: uiunits
+    IsLocal: 0
+  - BundleName: uizones
+    IsLocal: 0

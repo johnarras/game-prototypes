@@ -1,0 +1,12 @@
+{
+  "Id": "marker5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Purple",
+  "Desc": "",
+  "Icon": "PurpleMarker",
+  "Art": "PurpleMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 2,
+  "SaveTime": "2025-06-21T05:57:30.658Z"
+}

@@ -1,0 +1,19 @@
+{
+  "Id": "road48default",
+  "ParentId": "default",
+  "IdKey": 48,
+  "Name": "Assyrian Plains Road",
+  "Desc": "A dusty track across the semi-arid plains of northern Mesopotamia, linking the ancient Assyrian capital with the desert trade city of Hatra.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 44,
+  "EndCityId": 48,
+  "Maintenance": 2.0,
+  "Difficulty": 2.0,
+  "Danger": 4.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 2.0,
+  "Length": 120.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

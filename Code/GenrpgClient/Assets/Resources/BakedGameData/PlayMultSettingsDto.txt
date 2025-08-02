@@ -1,0 +1,90 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "playmult1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Mult": 1,
+      "MinLevel": 1,
+      "MinEnergy": 9
+    },
+    {
+      "Id": "playmult2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Mult": 2,
+      "MinLevel": 2,
+      "MinEnergy": 9
+    },
+    {
+      "Id": "playmult3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Mult": 5,
+      "MinLevel": 4
+    },
+    {
+      "Id": "playmult4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "",
+      "Desc": "",
+      "Icon": "",
+      "Art": "",
+      "Mult": 10,
+      "MinLevel": 5
+    },
+    {
+      "Id": "playmult5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "",
+      "Mult": 25,
+      "MinLevel": 8
+    },
+    {
+      "Id": "playmult6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Mult": 50,
+      "MinLevel": 12
+    },
+    {
+      "Id": "playmult7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Mult": 100,
+      "MinEnergy": 1000
+    },
+    {
+      "Id": "playmult8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Mult": 250,
+      "MinEnergy": 5000
+    },
+    {
+      "Id": "playmult9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Mult": 500,
+      "MinEnergy": 10000
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "AvgRollChangePercent": 0.05000000074505806,
+    "Name": "PlayMultSettings",
+    "SaveTime": "2025-05-31T10:32:08.35Z"
+  },
+  "SaveTime": "2025-05-31T10:32:08.35Z"
+}

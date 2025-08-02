@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Currencies\Messages\**" />
+    <Compile Remove="MapMessages\Messages\**" />
+    <Compile Remove="Spells\Loaders\**" />
+    <EmbeddedResource Remove="Currencies\Messages\**" />
+    <EmbeddedResource Remove="MapMessages\Messages\**" />
+    <EmbeddedResource Remove="Spells\Loaders\**" />
+    <None Remove="Currencies\Messages\**" />
+    <None Remove="MapMessages\Messages\**" />
+    <None Remove="Spells\Loaders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="3.0.308" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Chests\Constants\" />
+    <Folder Include="Chests\Services\" />
+    <Folder Include="Inventory\Settings\Slots\" />
+    <Folder Include="TimedEvents\NewFolder\" />
+    <Folder Include="Trader\Caravans\Settings\" />
+    <Folder Include="UserAbilities\Constants\" />
+  </ItemGroup>
+
+</Project>

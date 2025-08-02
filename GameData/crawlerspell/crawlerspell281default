@@ -1,0 +1,25 @@
+{
+  "Id": "crawlerspell281default",
+  "ParentId": "default",
+  "IdKey": 281,
+  "Name": "Acid Spray",
+  "Desc": "Hit all enemies in a group with acid damage.",
+  "PowerCost": 8.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 2,
+  "Effects": [
+    {
+      "EntityTypeId": 33,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 6,
+      "ElementTypeId": 10
+    }
+  ],
+  "SaveTime": "2025-07-11T23:57:52.755Z"
+}

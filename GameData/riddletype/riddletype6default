@@ -1,0 +1,10 @@
+{
+  "Id": "riddletype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Pedestals",
+  "Art": "Pedestal",
+  "Weight": 1.0,
+  "IsToggle": true,
+  "SaveTime": "2025-06-08T09:13:00.412Z"
+}

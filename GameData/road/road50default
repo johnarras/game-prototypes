@@ -1,0 +1,20 @@
+{
+  "Id": "road50default",
+  "ParentId": "default",
+  "IdKey": 50,
+  "Name": "Great Khorasan Road (West)",
+  "Desc": "The westernmost leg of the Silk Road, crossing the Zagros mountains to link Mesopotamia with the high plateau of Persia.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 44,
+  "EndCityId": 67,
+  "Maintenance": 3.0,
+  "Difficulty": 4.0,
+  "Danger": 4.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 1.0,
+  "Length": 600.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

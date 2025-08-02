@@ -1,0 +1,6 @@
+{
+  "Id": "entitytype100default",
+  "ParentId": "default",
+  "IdKey": 100,
+  "Name": "CrawlerSpell"
+}

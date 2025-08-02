@@ -1,0 +1,10 @@
+{
+  "Id": "currencytype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Money",
+  "PluralName": "",
+  "Desc": "",
+  "Icon": "IconCopper",
+  "Art": "updated tuning"
+}

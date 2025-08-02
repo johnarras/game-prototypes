@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood87default",
+  "ParentId": "default",
+  "IdKey": 87,
+  "Name": "Naphtha",
+  "Desc": "A volatile liquid petroleum used as a component in incendiary weapons.",
+  "Icon": "Naphtha",
+  "Art": "Naphtha",
+  "CategoryName": "Industrial",
+  "Density": 750.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 5000,
+  "PricePerWeight": 500,
+  "YearlyProduction": 1000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

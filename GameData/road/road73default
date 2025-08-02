@@ -1,0 +1,19 @@
+{
+  "Id": "road73default",
+  "ParentId": "default",
+  "IdKey": 73,
+  "Name": "Tigris Lowlands Path",
+  "Desc": "A path across the flat, hot plains of southern Mesopotamia, linking the Persian city of Susa with the great metropolis of Seleucia.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 46,
+  "EndCityId": 66,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 4.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 3.0,
+  "Length": 380.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "Hides",
+  "Desc": "Raw, unprocessed animal skins, the base material for leather production.",
+  "Icon": "Hides",
+  "Art": "Hides",
+  "CategoryName": "Leather",
+  "Density": 600.0,
+  "UnitWeight": 10,
+  "PricePerUnit": 2500,
+  "PricePerWeight": 250,
+  "YearlyProduction": 350000,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

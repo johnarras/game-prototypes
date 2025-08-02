@@ -1,0 +1,12 @@
+{
+  "Id": "chest3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Uncommon Chest",
+  "Icon": "UncommonChest",
+  "Art": "UncommonChest",
+  "UnlockMinutes": 480,
+  "Tier": 2,
+  "TieredLootMult": 2,
+  "Loot": []
+}

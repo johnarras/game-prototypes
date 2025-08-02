@@ -1,0 +1,20 @@
+{
+  "Id": "road77default",
+  "ParentId": "default",
+  "IdKey": 77,
+  "Name": "Pillars of Hercules Trail",
+  "Desc": "The combined land and sea route crossing the Strait of Gibraltar, the mythical Pillars of Hercules that separate the Mediterranean from the Atlantic.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 65,
+  "EndCityId": 10,
+  "Maintenance": 2.0,
+  "Difficulty": 3.0,
+  "Danger": 4.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 4.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 160.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

@@ -1,0 +1,281 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "elementtype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Physical",
+      "Desc": "Basic element.",
+      "Icon": "Physical",
+      "Art": "Physical",
+      "CasterActionName": "Hit",
+      "ObserverActionName": "Hits",
+      "CastAnim": "Physical",
+      "VulnElementTypeId": 10,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 11,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.005,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Fire",
+      "Desc": "Burn enemies.",
+      "Icon": "Fire",
+      "Art": "Fire",
+      "CasterActionName": "Burn",
+      "ObserverActionName": "Burns",
+      "CastAnim": "Fire",
+      "VulnElementTypeId": 3,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 3,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 2
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Ice",
+      "Desc": "Freeze enemies.",
+      "Icon": "Ice",
+      "Art": "Ice",
+      "CasterActionName": "Freeze",
+      "ObserverActionName": "Freezes",
+      "CastAnim": "Ice",
+      "VulnElementTypeId": 2,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 3
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Electric",
+      "Desc": "Zap enemies.",
+      "Icon": "Electric",
+      "Art": "Electric",
+      "CasterActionName": "Zap",
+      "ObserverActionName": "Zaps",
+      "CastAnim": "Electric",
+      "VulnElementTypeId": 5,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 5,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 4
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Earth",
+      "Desc": "Blast enemies.",
+      "Icon": "Earth",
+      "Art": "Earth",
+      "CasterActionName": "Crush",
+      "ObserverActionName": "Crushes",
+      "CastAnim": "Earth",
+      "VulnElementTypeId": 4,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 2,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Shadow",
+      "Desc": "The power of darkness and evil.",
+      "Icon": "Shadow",
+      "Art": "Shadow",
+      "CasterActionName": "Drain",
+      "ObserverActionName": "Drains",
+      "CastAnim": "Shadow",
+      "VulnElementTypeId": 7,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 6
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Light",
+      "Desc": "Use holy power againt enemies.",
+      "Icon": "Light",
+      "Art": "Light",
+      "CasterActionName": "Purify",
+      "ObserverActionName": "Purifies",
+      "CastAnim": "Light",
+      "VulnElementTypeId": 6,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 6,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 7
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Nature",
+      "Desc": "The power of nature.",
+      "Icon": "Nature",
+      "Art": "Nature",
+      "CasterActionName": "Sicken",
+      "ObserverActionName": "Sickens",
+      "CastAnim": "Nature",
+      "VulnElementTypeId": 9,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 1,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype9default",
+      "ParentId": "default",
+      "IdKey": 9,
+      "Name": "Arcane",
+      "Desc": "Pure magic power.",
+      "Icon": "Arcane",
+      "Art": "Arcane",
+      "CasterActionName": "Bewitch",
+      "ObserverActionName": "Bewitches",
+      "CastAnim": "Arcane",
+      "VulnElementTypeId": 8,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 9
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    },
+    {
+      "Id": "elementtype10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Acid",
+      "Desc": "Corrosive power.",
+      "Icon": "Acid",
+      "Art": "Acid",
+      "CasterActionName": "Corrode",
+      "ObserverActionName": "Corrodes",
+      "CastAnim": "Acid",
+      "VulnElementTypeId": 1,
+      "Skills": [],
+      "Procs": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 8,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "Chance": 0.02,
+          "MaxCharges": 1,
+          "CurrCharges": 1,
+          "ElementTypeId": 10
+        }
+      ],
+      "SaveTime": "2025-06-16T22:59:58.099Z"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "ElementTypeSettings",
+    "SaveTime": "2025-06-16T21:59:03.198Z"
+  },
+  "SaveTime": "2025-06-16T21:59:03.198Z"
+}

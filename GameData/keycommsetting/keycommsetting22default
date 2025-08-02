@@ -1,0 +1,8 @@
+{
+  "Id": "keycommsetting22default",
+  "IdKey": 22,
+  "Name": "KeyCommSetting",
+  "ParentId": "default",
+  "KeyPress": "m",
+  "KeyCommand": "MapScreen"
+}

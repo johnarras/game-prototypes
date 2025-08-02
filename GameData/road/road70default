@@ -1,0 +1,20 @@
+{
+  "Id": "road70default",
+  "ParentId": "default",
+  "IdKey": 70,
+  "Name": "Coastal Africa Road",
+  "Desc": "The main Roman highway along the fertile North African coast, connecting the region's prosperous cities.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 3,
+  "EndCityId": 52,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 2.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 3.0,
+  "Length": 700.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

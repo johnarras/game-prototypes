@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype53default",
+  "ParentId": "default",
+  "IdKey": 53,
+  "Name": "DirtRock",
+  "Art": "DirtRock",
+  "Size": 8.0,
+  "ParentTextureTypeId": 15
+}

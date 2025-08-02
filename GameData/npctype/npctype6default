@@ -1,0 +1,9 @@
+{
+  "Id": "npctype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Jeweler",
+  "CrafterTypeId": 6,
+  "BuildingTypeId": 6,
+  "DefaultVendorItems": []
+}

@@ -1,0 +1,19 @@
+{
+  "Id": "road38default",
+  "ParentId": "default",
+  "IdKey": 38,
+  "Name": "Syrian Caravan Route",
+  "Desc": "The primary caravan route leading from the Roman trade hub of Antioch into the Syrian desert towards the oasis of Palmyra.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 5,
+  "EndCityId": 14,
+  "Maintenance": 2.0,
+  "Difficulty": 4.0,
+  "Danger": 5.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 3.0,
+  "Length": 310.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

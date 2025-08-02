@@ -1,0 +1,19 @@
+{
+  "Id": "road36default",
+  "ParentId": "default",
+  "IdKey": 36,
+  "Name": "Armenian Highlands Trail",
+  "Desc": "An extremely challenging mountain trail connecting Cilicia to the Armenian highlands, used by traders and armies alike.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 38,
+  "EndCityId": 68,
+  "Maintenance": 2.0,
+  "Difficulty": 6.0,
+  "Danger": 5.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 4.0,
+  "Length": 980.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}

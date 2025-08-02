@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Emerald",
+  "Armor": 40,
+  "Damage": 21,
+  "CostPct": 5000
+}

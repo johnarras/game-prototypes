@@ -1,0 +1,10 @@
+{
+  "Id": "mapmagictype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Spinner",
+  "Weight": 0.2,
+  "SpreadChance": 0.1,
+  "MapSymbol": "S",
+  "MinLevel": 1
+}

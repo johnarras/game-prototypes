@@ -1,0 +1,33 @@
+{
+  "Id": "crawlermaptype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Outdoors",
+  "Desc": "",
+  "Icon": "",
+  "Art": "",
+  "GenTypes": [
+    {
+      "Name": "None",
+      "MinWidth": 70,
+      "MaxWidth": 90,
+      "MinHeight": 55,
+      "MaxHeight": 65,
+      "MinFloors": 1,
+      "MaxFloors": 1,
+      "Weight": 1.0,
+      "WeightedZones": [
+        {
+          "Name": "Outdoors",
+          "Weight": 1.0,
+          "ZoneTypeId": 22
+        }
+      ]
+    }
+  ],
+  "NpcChance": 1.0,
+  "MinNpcQuantity": 100,
+  "MaxNpcQuantity": 100,
+  "MinNpcSeparation": 8,
+  "MinDistanceToEntrance": 4
+}

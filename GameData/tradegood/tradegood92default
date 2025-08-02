@@ -1,0 +1,16 @@
+{
+  "Id": "tradegood92default",
+  "ParentId": "default",
+  "IdKey": 92,
+  "Name": "Ivory",
+  "Desc": "Elephant tusks sourced from India and Africa, carved into luxury objects.",
+  "Icon": "Ivory",
+  "Art": "Ivory",
+  "CategoryName": "Luxury Goods",
+  "Density": 950.0,
+  "UnitWeight": 5,
+  "PricePerUnit": 70000,
+  "PricePerWeight": 14000,
+  "YearlyProduction": 1200,
+  "SaveTime": "2025-07-20T06:16:18.869Z"
+}

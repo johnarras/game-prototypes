@@ -1,0 +1,12 @@
+{
+  "Id": "marker4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Yellow",
+  "Desc": "",
+  "Icon": "YellowMarker",
+  "Art": "YellowMarker",
+  "MaxTier": 2,
+  "QualityTypeId": 4,
+  "SaveTime": "2025-06-21T05:22:38.565Z"
+}

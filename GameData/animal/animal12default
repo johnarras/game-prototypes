@@ -1,0 +1,20 @@
+{
+  "Id": "animal12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Zebu",
+  "Desc": "A type of domestic cattle from India with a distinctive fatty hump. Highly resistant to heat and drought, making it an ideal draft animal for the region.",
+  "Icon": "Zebu",
+  "Art": "Zebu",
+  "Endurance": 4,
+  "Speed": 1.0,
+  "CarryingCapacity": 30,
+  "PullingCapacity": 450,
+  "RoughTerrain": 2,
+  "HotClimate": 6,
+  "ColdClimate": 1,
+  "WetClimate": 3,
+  "FoodPerDay": 18,
+  "WaterPerDay": 50,
+  "SaveTime": "2025-07-20T05:48:01.802Z"
+}

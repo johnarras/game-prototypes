@@ -1,0 +1,20 @@
+{
+  "Id": "road56default",
+  "ParentId": "default",
+  "IdKey": 56,
+  "Name": "Silk Road (Sogdian Trail)",
+  "Desc": "A well-traveled road through the fertile heartland of Sogdiana, connecting two of the most famous cities on the Silk Road.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 54,
+  "EndCityId": 53,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 4.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 6.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 2.0,
+  "Length": 240.0,
+  "SaveTime": "2025-07-20T05:04:12.119Z"
+}
