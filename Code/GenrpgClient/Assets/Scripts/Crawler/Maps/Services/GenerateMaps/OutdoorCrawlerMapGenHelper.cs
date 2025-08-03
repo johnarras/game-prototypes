@@ -15,21 +15,17 @@ using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.ProcGen.Settings.Trees;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Riddles.Services;
+using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Constants;
 using Genrpg.Shared.Zones.Settings;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.XR;
-using Genrpg.Shared.Riddles.Settings;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
@@ -43,7 +39,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         private ICrawlerQuestService _questService = null;
 
         public override long Key => CrawlerMapTypes.Outdoors;
-     
+
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
             IRandom rand = new MyRandom(genData.World.Seed / 4 + genData.World.MaxMapId * 131);
@@ -76,8 +72,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 Count = fullRegionZones,
                 MaxAttemptsPerItem = 20,
-                XMin = cityDistanceFromEdge/4,
-                XMax = outdoorMap.Width - cityDistanceFromEdge/4,
+                XMin = cityDistanceFromEdge / 4,
+                XMax = outdoorMap.Width - cityDistanceFromEdge / 4,
                 YMin = cityDistanceFromEdge,
                 YMax = outdoorMap.Height - cityDistanceFromEdge,
                 MinSeparation = 15,
@@ -351,7 +347,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             // Roads between cities
 
             AddRoadsBetweenCities(outdoorMap, origPoints, terrain, rand);
-           
+
             // Mountains at zone borders. (okZoneIds if  two diff make a small blob...only replacing things in ok biomeIds
 
             int crad = 1;
@@ -444,7 +440,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     Level = cityLevel,
                     FromMapId = outdoorMap.IdKey,
                     FromMapX = (int)(pt.X),
-                    FromMapZ = (int)(pt.Z),    
+                    FromMapZ = (int)(pt.Z),
                     ZoneType = cityZoneType,
                 };
 
@@ -563,13 +559,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<CrawlerMap> dungeonMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Dungeon && x.MapFloor == 1).OrderBy(x => x.Level).ToList();
 
-            List<List<CrawlerMap>> dungeonMapGroups = world.Maps.GroupBy(x => x.BaseCrawlerMapId).Select(y=>y.OrderBy(z=>z.MapFloor).ToList()).ToList(); 
+            List<List<CrawlerMap>> dungeonMapGroups = world.Maps.GroupBy(x => x.BaseCrawlerMapId).Select(y => y.OrderBy(z => z.MapFloor).ToList()).ToList();
 
             for (int d = 0; d < dungeonMaps.Count; d++)
             {
                 CrawlerMap dmap = dungeonMaps[d];
 
-                List<CrawlerMap> otherDungeonMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Dungeon  &&
+                List<CrawlerMap> otherDungeonMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Dungeon &&
                 x.Name == dmap.Name && x.IdKey >= dmap.IdKey && x.IdKey <= dmap.IdKey + 6).OrderBy(x => x.MapFloor).ToList();
 
                 dungeonMapGroups.Add(otherDungeonMaps);
@@ -596,6 +592,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
+            List<int> questItemIndexesUsed = new List<int>();
+
             int gameDungeonUnlockLevel = Math.Max(mapSettings.MinQuestUnlockDungeonLevel,
                 party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true));
 
@@ -611,13 +609,28 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 {
                     string questItemName = _lootGenService.GenerateItemNames(rand, 1, 100).First().SingularName;
 
-                    int lookbackDistance = 2;
+                    int lookbackDistance = 6;
 
                     List<int> okIndexes = new List<int>();
 
                     for (int i = dungeonIndex - 1; i >= 0 && dungeonIndex - i <= lookbackDistance + 1; i--)
                     {
+                        if (dungeonMapGroups[i].Any(x => x.Level >= entranceMap.Level))
+                        {
+                            continue;
+                        }
+
+                        if (questItemIndexesUsed.Contains(i))
+                        {
+                            continue;
+                        }
+
                         okIndexes.Add(i);
+                    }
+
+                    if (okIndexes.Count < 1)
+                    {
+                        continue;
                     }
 
                     int chosenIndex = okIndexes[rand.Next() % okIndexes.Count];
@@ -631,9 +644,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     foreach (CrawlerMap cmap in questItemContainingMaps)
                     {
 
-                        List<MapEntity> startEntities = cmap.GetMapEntities(EntityTypes.QuestItem,byte.MaxValue);
+                        List<MapEntity> startEntities = cmap.GetMapEntities(EntityTypes.QuestItem, byte.MaxValue);
 
-                        if (startEntities.Count > 0)
+                        if (startEntities.Count > 0 && cmap.Level < entranceMap.Level)
                         {
                             okMaps.Add(cmap);
                         }
@@ -646,12 +659,20 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                     CrawlerMap questItemMap = okMaps[rand.Next() % okMaps.Count];
 
-                    List<MapEntity> okMapEntities = questItemMap.GetMapEntities(EntityTypes.QuestItem, byte.MaxValue); 
+                    if (questItemMap.Level >= entranceMap.Level)
+                    {
+                        _logService.Info("Warning: Dungeon level " + entranceMap.Level + " MapId: " + entranceMap.IdKey + " had entrance quest item in "
+                            + " a map of level " + questItemMap.Level + " MapId: " + questItemMap.IdKey);
+                        continue;
+                    }
+
+                    List<MapEntity> okMapEntities = questItemMap.GetMapEntities(EntityTypes.QuestItem, byte.MaxValue);
 
                     MapEntity chosenMapEntity = okMapEntities[rand.Next() % okMapEntities.Count];
 
                     if (questItemMap != null && chosenMapEntity != null)
-                    { 
+                    {
+                        questItemIndexesUsed.Add(chosenIndex);
                         long nextQuestItemId = 1;
                         if (world.QuestItems.Count > 0)
                         {
@@ -668,7 +689,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         world.QuestItems.Add(wqi);
 
                         questItemMap.SetEntity(chosenMapEntity.X, chosenMapEntity.Z, EntityTypes.QuestItem, wqi.IdKey);
-  
+
                         if (questItemMap.ZoneUnits.Count > 0)
                         {
                             questItemMap.ZoneUnits = questItemMap.ZoneUnits.OrderBy(x => HashUtils.NewUUId()).ToList();
@@ -681,6 +702,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                         }
 
+                        _logService.Info("Map " + entranceMap.IdKey + " Lev: " + entranceMap.Level + " has quest item in map level " +
+                            questItemMap.Level + " Dungeon group index " + chosenIndex);
                         entranceMap.MapQuestItemId = nextQuestItemId;
                     }
                 }
@@ -692,7 +715,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             foreach (CrawlerMap map2 in world.Maps)
             {
-                List<MapEntity> unsetQuestItems = map2.GetMapEntities(EntityTypes.QuestItem,byte.MaxValue);
+                List<MapEntity> unsetQuestItems = map2.GetMapEntities(EntityTypes.QuestItem, byte.MaxValue);
                 foreach (MapEntity mapEntity in unsetQuestItems)
                 {
                     map2.SetEntity(mapEntity.X, mapEntity.Z, 0, 0);
@@ -713,7 +736,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     }
                 }
             }
-                
+
             // Now random trees. (1000 + building Id vs building id)
 
             IReadOnlyList<TreeType> treeTypes = _gameData.Get<TreeTypeSettings>(null).GetData();
@@ -747,7 +770,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                             if (treeTypeId > 0)
                             {
-                                outdoorMap.SetEntity(x,z, EntityTypes.Tree, treeTypeId);
+                                outdoorMap.SetEntity(x, z, EntityTypes.Tree, treeTypeId);
                                 outdoorMap.Set(x, z, CellIndex.Dir, _crawlerMapService.GetMapCellHash(outdoorMap.IdKey, x, z, 77) % 4);
                             }
                         }
@@ -811,7 +834,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             List<MapCellDetail> entrances = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
 
             List<MapCellDetail> startNearbyEntrances = entrances.
-                Where(e => MathUtils.PythagoreanDistance( npcDetail.X - e.X, npcDetail.Z - e.Z) < questSettings.MaxDistanceFromQuestGiverToTargetMap).ToList();
+                Where(e => MathUtils.PythagoreanDistance(npcDetail.X - e.X, npcDetail.Z - e.Z) < questSettings.MaxDistanceFromQuestGiverToTargetMap).ToList();
 
             foreach (MapCellDetail entrance in startNearbyEntrances)
             {
@@ -873,7 +896,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 PointXZ start = new PointXZ((int)pairData.Point1.X, (int)pairData.Point1.Z);
                 PointXZ end = new PointXZ((int)pairData.Point2.X, (int)pairData.Point2.Z);
 
-                double totalDistance = MathUtils.PythagoreanDistance( start.X - end.X, start.Z - end.Z);
+                double totalDistance = MathUtils.PythagoreanDistance(start.X - end.X, start.Z - end.Z);
 
                 int intDistance = (int)(totalDistance);
 
@@ -883,7 +906,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 float midPointChance = 0.5f;
                 int mapEdgeSize = 6;
-                while (rand.NextDouble() < midPointChance && midPointQuantity < totalDistance/4)
+                while (rand.NextDouble() < midPointChance && midPointQuantity < totalDistance / 4)
                 {
                     midPointQuantity++;
                 }
@@ -895,8 +918,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 {
                     float percent = MathUtils.FloatRange(0, 1, rand);
 
-                    int fx = (int)(start.X+(end.X-start.X)*percent);
-                    int fz = (int)(start.Z+(end.Z-start.Z)*percent);
+                    int fx = (int)(start.X + (end.X - start.X) * percent);
+                    int fz = (int)(start.Z + (end.Z - start.Z) * percent);
 
                     fx += MathUtils.IntRange(-posDelta, posDelta, rand);
                     fz += MathUtils.IntRange(-posDelta, posDelta, rand);
@@ -904,7 +927,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     fx = MathUtils.Clamp(mapEdgeSize, fx, map.Width - mapEdgeSize);
                     fz = MathUtils.Clamp(mapEdgeSize, fz, map.Height - mapEdgeSize);
 
-                    if (MathUtils.PythagoreanDistance( fx - start.X, fz - start.Z) >= totalDistance)
+                    if (MathUtils.PythagoreanDistance(fx - start.X, fz - start.Z) >= totalDistance)
                     {
                         continue;
                     }
@@ -912,9 +935,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     points.Add(new PointXZ(fx, fz));
                 }
 
-                points = points.OrderBy(p => MathUtils.PythagoreanDistance( p.X - start.X, p.Z - start.Z)).ToList();
+                points = points.OrderBy(p => MathUtils.PythagoreanDistance(p.X - start.X, p.Z - start.Z)).ToList();
 
-                
+
 
                 points.Add(end);
 
@@ -946,7 +969,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     {
                         terrain[cmx, zz] = ZoneTypes.Road;
                     }
-                }            
+                }
             }
         }
     }

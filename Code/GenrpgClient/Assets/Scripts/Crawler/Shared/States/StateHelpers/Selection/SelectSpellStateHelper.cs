@@ -1,7 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -9,7 +7,6 @@ using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
@@ -66,7 +63,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     extra = null;
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(spellText, CharCodes.None, nextState, extraData: extra, forceButton: false,
+                char chosenChar = (s < 26 ? (char)('A' + s) : (s < 36 ? (char)('0' + s - 26) : CharCodes.None));
+
+                if (chosenChar != CharCodes.None)
+                {
+                    spellText = chosenChar + " " + spellText;
+                }
+
+                stateData.Actions.Add(new CrawlerStateAction(spellText, chosenChar, nextState, extraData: extra, forceButton: false,
                     pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, spell.IdKey)));
             }
 

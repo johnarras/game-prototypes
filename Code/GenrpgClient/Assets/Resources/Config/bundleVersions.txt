@@ -2,7 +2,7 @@
   "ClientPlatform": "Win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2025-08-02T21:22:38.3349432Z"
+    "UpdateTime": "2025-08-03T01:33:32.4359921Z"
   },
   "Versions": {
     "atlascrawlercombat": {
@@ -3497,7 +3497,7 @@
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "2b5b4d68f4525b9bef3adbbb8ecd48f4",
+      "Hash": "37bb27d8ab3b9b6a98288e8135a61153",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui"

@@ -1,24 +1,17 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Combat.Entities;
+﻿using Assets.Scripts.Crawler.Constants;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.UI.Constants;
+using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;
+using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Training.Settings;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Utils;
 using System.Linq;
 using System.Threading;
-
-using Genrpg.Shared.Crawler.Training.Services;
 using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Interfaces;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Loot.Settings;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
@@ -37,7 +30,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(_gs.ch);
 
-            stateData.WorldSpriteName = CrawlerClientConstants.TreasureImage;
+            stateData.BGImageOnly = true;
+            stateData.BGSpriteName = CrawlerClientConstants.TreasureImage;
 
             PartyLoot loot = null;
 
