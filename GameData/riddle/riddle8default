@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 8,
   "Name": "Knight",
-  "Desc": "In armor clad from head to toe,\r\nWith shield and sword, they face the foe.\r\nA noble heart and courage bright,\r\nIn battles fought, they are the knight.\r\n"
+  "Desc": "In armor clad from head to toe,\nWith shield and sword, they face the foe.\nA noble heart and courage bright,\nIn battles fought, they are the knight.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

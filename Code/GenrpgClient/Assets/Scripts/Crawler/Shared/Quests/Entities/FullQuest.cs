@@ -11,5 +11,10 @@ namespace Genrpg.Shared.Crawler.Quests.Entities
         public CrawlerQuest Quest { get; set; }
         public PartyQuest Progress { get; set; }
         public ECrawlerStates ReturnState { get; set; }
+
+        public bool IsComplete()
+        {
+            return Quest != null && Progress != null && Progress.CurrQuantity >= Quest.Quantity;
+        }
     }
 }

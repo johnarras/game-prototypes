@@ -1,12 +1,9 @@
 ﻿using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Entities.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class RoleScalingInfoHelper : SimpleInfoHelper<RoleScalingTypeSettings, RoleScalingType>
+    public class RoleScalingInfoHelper : BaseInfoHelper<RoleScalingTypeSettings, RoleScalingType>
     {
         public override long Key => EntityTypes.RoleScaling;
     }

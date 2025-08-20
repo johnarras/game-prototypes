@@ -53,6 +53,7 @@ SpriteAtlas:
     - 42b881002dcfd2f41895d481aeb02046: 21300000
     - 9e6c26010f475d04f86ec8f2d2e9ae42: 21300000
     - a2b0267168a8942458ea857d0abbc479: 21300000
+    - 06ffbe71e03acf14c8b708d3bdeb6f5a: 21300000
     - e0a5c1f198d07fb4ebebdf050e8d76c8: 21300000
     - a2e79f52b13628a4d892176ce554cf98: 21300000
     - de0838c419810e24d81348b2482d0f08: 21300000
@@ -60,12 +61,15 @@ SpriteAtlas:
     - 848e0b96d0088a240bd70b93df0785aa: 21300000
     - 376f76aa5d5077b4b83b460fd46b797d: 21300000
     - b23354bc58db62446a80e048b61b52a4: 21300000
+    - 3bce56cce2efc9d4889414d160eaaddf: 21300000
+    - 7c3450edd2d6da04ea34bec0a9f4cace: 21300000
     - e971c25eaf83f384c8fe3866545a3bb4: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 42b881002dcfd2f41895d481aeb02046, type: 3}
   - {fileID: 21300000, guid: 9e6c26010f475d04f86ec8f2d2e9ae42, type: 3}
   - {fileID: 21300000, guid: a2b0267168a8942458ea857d0abbc479, type: 3}
+  - {fileID: 21300000, guid: 06ffbe71e03acf14c8b708d3bdeb6f5a, type: 3}
   - {fileID: 21300000, guid: e0a5c1f198d07fb4ebebdf050e8d76c8, type: 3}
   - {fileID: 21300000, guid: a2e79f52b13628a4d892176ce554cf98, type: 3}
   - {fileID: 21300000, guid: de0838c419810e24d81348b2482d0f08, type: 3}
@@ -73,19 +77,24 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 848e0b96d0088a240bd70b93df0785aa, type: 3}
   - {fileID: 21300000, guid: 376f76aa5d5077b4b83b460fd46b797d, type: 3}
   - {fileID: 21300000, guid: b23354bc58db62446a80e048b61b52a4, type: 3}
+  - {fileID: 21300000, guid: 3bce56cce2efc9d4889414d160eaaddf, type: 3}
+  - {fileID: 21300000, guid: 7c3450edd2d6da04ea34bec0a9f4cace, type: 3}
   - {fileID: 21300000, guid: e971c25eaf83f384c8fe3866545a3bb4, type: 3}
   m_PackedSpriteNamesToIndex:
-  - IconFood
-  - IconEnergy
-  - IconMana
-  - IconWood
-  - IconCredits
-  - IconWarriors
-  - IconIron
-  - IconHerbs
-  - IconStone
-  - IconHardCurrency
-  - IconLeather
+  - FoodIcon
+  - EnergyIcon
+  - ManaIcon
+  - SandIcon
+  - WoodIcon
+  - GoldIcon
+  - WarriorsIcon
+  - IronIcon
+  - HerbsIcon
+  - StoneIcon
+  - TokensIcon
+  - GrassIcon
+  - CreditsIcon
+  - LeatherIcon
   m_RenderDataMap: {}
   m_Tag: UserCoinTypeIconsAtlas
   m_IsVariant: 0

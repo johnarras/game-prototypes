@@ -3,8 +3,5 @@
   "ParentId": "default",
   "IdKey": 12,
   "Name": "Leather",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconLeather",
-  "Art": "LeatherArt"
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

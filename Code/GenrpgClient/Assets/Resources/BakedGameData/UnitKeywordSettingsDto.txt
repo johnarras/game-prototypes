@@ -9,8 +9,7 @@
       "PluralName": "Humanoids",
       "Icon": "Humanoid",
       "Art": "Humanoid",
-      "Effects": [],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Effects": []
     },
     {
       "Id": "unitkeyword2default",
@@ -51,8 +50,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword3default",
@@ -83,8 +81,7 @@
           "Quantity": 1,
           "EntityId": 4
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword4default",
@@ -132,8 +129,7 @@
         }
       ],
       "Weight": 25.0,
-      "Tier": 1,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 1
     },
     {
       "Id": "unitkeyword5default",
@@ -164,8 +160,7 @@
           "Quantity": 1,
           "EntityId": 10
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword6default",
@@ -203,8 +198,7 @@
         }
       ],
       "Weight": 10.0,
-      "Tier": 1,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 1
     },
     {
       "Id": "unitkeyword7default",
@@ -225,8 +219,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword8default",
@@ -262,8 +255,7 @@
           "Quantity": 1,
           "EntityId": 8
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword9default",
@@ -289,8 +281,7 @@
           "Quantity": 1,
           "EntityId": 4
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword10default",
@@ -332,8 +323,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword11default",
@@ -369,8 +359,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword12default",
@@ -391,8 +380,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword13default",
@@ -423,8 +411,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword14default",
@@ -448,8 +435,7 @@
         }
       ],
       "Weight": 35.0,
-      "Tier": 1,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 1
     },
     {
       "Id": "unitkeyword15default",
@@ -472,8 +458,7 @@
         }
       ],
       "Weight": 15.0,
-      "Tier": 3,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 3
     },
     {
       "Id": "unitkeyword16default",
@@ -501,8 +486,7 @@
         }
       ],
       "Weight": 5.0,
-      "Tier": 4,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 4
     },
     {
       "Id": "unitkeyword17default",
@@ -535,8 +519,7 @@
         }
       ],
       "Weight": 20.0,
-      "Tier": 2,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 2
     },
     {
       "Id": "unitkeyword18default",
@@ -564,8 +547,7 @@
         }
       ],
       "Weight": 25.0,
-      "Tier": 1,
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      "Tier": 1
     },
     {
       "Id": "unitkeyword19default",
@@ -606,8 +588,7 @@
           "Quantity": 1,
           "EntityId": 2
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword20default",
@@ -648,8 +629,7 @@
           "Quantity": 1,
           "EntityId": 231
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword21default",
@@ -690,8 +670,7 @@
           "Quantity": 1,
           "EntityId": 212
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     },
     {
       "Id": "unitkeyword22default",
@@ -732,14 +711,13 @@
           "Quantity": 1,
           "EntityId": 221
         }
-      ],
-      "SaveTime": "2025-07-10T00:43:37.278Z"
+      ]
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "UnitKeywordSettings",
-    "SaveTime": "2025-07-10T00:43:37.278Z"
+    "SaveTime": "2025-08-09T02:55:51.781Z"
   },
-  "SaveTime": "2025-07-10T00:43:37.278Z"
+  "SaveTime": "2025-08-09T02:55:51.781Z"
 }

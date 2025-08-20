@@ -42,8 +42,7 @@
       "Icon": "YellowMarker",
       "Art": "YellowMarker",
       "MaxTier": 2,
-      "QualityTypeId": 4,
-      "SaveTime": "2025-06-21T05:22:38.565Z"
+      "QualityTypeId": 4
     },
     {
       "Id": "marker5default",
@@ -54,8 +53,7 @@
       "Icon": "PurpleMarker",
       "Art": "PurpleMarker",
       "MaxTier": 2,
-      "QualityTypeId": 2,
-      "SaveTime": "2025-06-21T05:57:30.658Z"
+      "QualityTypeId": 2
     },
     {
       "Id": "marker6default",
@@ -66,8 +64,7 @@
       "Icon": "CyanMarker",
       "Art": "CyanMarker",
       "MaxTier": 2,
-      "QualityTypeId": 3,
-      "SaveTime": "2025-06-22T20:05:59.53Z"
+      "QualityTypeId": 3
     },
     {
       "Id": "marker7default",
@@ -78,8 +75,7 @@
       "Icon": "OrangeMarker",
       "Art": "OrangeMarker",
       "MaxTier": 2,
-      "QualityTypeId": 2,
-      "SaveTime": "2025-06-22T20:05:59.53Z"
+      "QualityTypeId": 2
     }
   ],
   "Parent": {

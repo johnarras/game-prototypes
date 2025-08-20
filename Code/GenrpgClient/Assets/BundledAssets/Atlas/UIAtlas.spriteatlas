@@ -195,7 +195,7 @@ SpriteAtlas:
   - Blank
   - BGInfo
   - BGHole
-  - StatusPanelBG
+  - PartyStatusPanelBG
   - BGPurple
   - CompassBG
   - WorldPanelBGStart

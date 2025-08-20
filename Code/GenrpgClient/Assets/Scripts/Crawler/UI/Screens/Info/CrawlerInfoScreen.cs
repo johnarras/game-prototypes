@@ -5,16 +5,12 @@ using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Entities.Settings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Settings.Stats;
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.Screens.Info
@@ -24,7 +20,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
 
         protected IInfoService _infoService;
         protected IEntityService _entityService;
-        private IInputService _inputService; 
+        private IInputService _inputService;
         private ILocalLoadService _localLoadService;
 
         public GButton OverviewButton;
@@ -36,6 +32,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         public GButton StatsButton;
         public GButton MemberUpgradesButton;
         public GButton StatusEffectsButton;
+        public GButton ElementsButton;
 
         public GameObject ListAnchor;
 
@@ -57,6 +54,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
             _uiService.SetButton(StatsButton, GetName(), () => { ShowStatTypeList(); });
             _uiService.SetButton(OverviewButton, GetName(), () => { ShowOverview(); });
             _uiService.SetButton(StatusEffectsButton, GetName(), () => { ShowInfoList(EntityTypes.StatusEffect); });
+            _uiService.SetButton(ElementsButton, GetName(), () => { ShowInfoList(EntityTypes.Element); });
 
             ShowOverview();
             await Task.CompletedTask;
@@ -73,7 +71,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
 
         private void ShowRoleList(long roleCategoryId)
         {
-            List<Role> roles = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x=>x.RoleCategoryId == roleCategoryId).ToList();
+            List<Role> roles = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.RoleCategoryId == roleCategoryId).ToList();
 
             ShowChildList(roles, EntityTypes.Role);
         }
@@ -105,7 +103,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
             _clientEntityService.DestroyAllChildren(ListAnchor);
         }
 
-   
+
 
         public void ShowChildList<T>(List<T> list, long entityTypeId) where T : IIdName
         {
@@ -154,10 +152,10 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
                 _uiService.SetText(text, _overviewPages[p].Header);
 
                 List<string> lines = _overviewPages[p].Lines;
-                _uiService.AddPointerHandlers(text, () => 
+                _uiService.AddPointerHandlers(text, () =>
                 {
-                    InfoPanel.ShowLines(lines); 
-                }, 
+                    InfoPanel.ShowLines(lines);
+                },
                 () => { });
             }
 

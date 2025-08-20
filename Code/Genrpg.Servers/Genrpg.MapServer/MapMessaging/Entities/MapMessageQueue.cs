@@ -1,5 +1,4 @@
 ﻿using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
@@ -10,12 +9,8 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
-using System.Xml.XPath;
 
 namespace Genrpg.MapServer.MapMessaging.Entities
 {

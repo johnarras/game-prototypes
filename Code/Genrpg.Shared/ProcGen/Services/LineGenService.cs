@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
+﻿using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.ProcGen.Settings.LineGen;
@@ -15,6 +14,7 @@ public interface ILineGenService : IInitializable
     List<MyPointF> GetBressenhamLine(MyPoint start, MyPoint end, LineGenParameters lg = null);
     List<MyPointF> GetBressenhamCircle(MyPoint center, LineGenParameters pars);
     List<ConnectedPairData> ConnectPoints(List<ConnectPointData> points, IRandom rand, float extraConnectionPct = 0.0f);
+    List<PointXZ> GridConnect(int sx, int sz, int ex, int ez, bool xFirst);
 }
 
 public class LineGenService : ILineGenService
@@ -623,5 +623,46 @@ public class LineGenService : ILineGenService
 
         return true;
 
+    }
+
+    public List<PointXZ> GridConnect(int sx, int sz, int ex, int ez, bool xFirst)
+    {
+        List<PointXZ> points = new List<PointXZ>();
+
+        points.Add(new PointXZ(sx, sz));
+
+        if (sx == ex && sz == ez)
+        {
+            return points;
+        }
+
+
+        points.Add(new PointXZ(ex, ez));
+
+        int mx = (xFirst ? ex : sx);
+        int mz = (xFirst ? sz : ez);
+
+        points.Add(new PointXZ(mx, mz));
+
+        // Loop along X.
+        if (ex != sx)
+        {
+            int dx = Math.Sign(ex - sx);
+            for (int x = sx; x != ex; x += dx)
+            {
+                points.Add(new PointXZ(x, mz));
+            }
+        }
+
+        if (ez != sz)
+        {
+            int dz = Math.Sign(ez - sz);
+            for (int z = sz; z != ez; z += dz)
+            {
+                points.Add(new PointXZ(mx, z));
+            }
+        }
+
+        return points;
     }
 }

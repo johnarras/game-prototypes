@@ -1,31 +1,29 @@
 ﻿
+using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Inventory.UI;
+using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Crawler.Info.Services;
+using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
+using Genrpg.Shared.Crawler.Roles.Constants;
+using Genrpg.Shared.Crawler.Roles.Services;
+using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
+using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Inventory.Messages;
 using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.Settings.Slots;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Inventory.Settings.Slots;
-using Assets.Scripts.Assets.Textures;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Units.Settings;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Inventory.UI;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Steamworks;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.Screens.Characters
@@ -50,7 +48,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         public OtherIconTarget DropTarget;
 
         protected override bool CalcStatsOnEquipUnequip() { return false; }
-        protected override string GetStatSubdirectory() { return "CrawlerUnits"; }
+        protected override string GetStatSubdirectory() { return "CrawlerParty"; }
         protected override bool ShowZeroStats() { return false; }
 
         protected PartyMember _partyMember;
@@ -232,7 +230,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         protected override void HandleOtherTarget(ItemIconScreen startSc, ItemIcon dragItem, OtherIconTarget otherTarget, GameObject finalObjectHit)
         {
             if (otherTarget == DropTarget)
-            { 
+            {
                 PartyData party = _crawlerService.GetParty();
                 if (party != null && Items != null && party.Inventory.Contains(dragItem.GetDataItem()))
                 {

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Genrpg.Shared.Inventory.PlayerData;
+﻿using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 using System.Threading;
-using Genrpg.Shared.Inventory.Settings;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using UnityEngine;
 
 public class FullItemTooltipInitData : InitTooltipData
 {
@@ -17,19 +16,19 @@ public class FullItemTooltipInitData : InitTooltipData
 
 public class FullItemTooltip : BaseTooltip
 {
-    
+
     public ItemTooltip _mainTooltip;
-    
+
     public List<ItemTooltip> _equipTooltips;
 
-    
+
     public GameObject _equipParent;
 
     protected ItemIconScreen _screen;
     private Item _mainItem;
     private Unit _unit;
 
-    
+
     public int _iconWidth = 32;
 
     protected List<Item> _equips;
@@ -38,7 +37,7 @@ public class FullItemTooltip : BaseTooltip
 
     public override void Init(InitTooltipData baseData, CancellationToken token)
     {
-        base.Init (baseData, token);
+        base.Init(baseData, token);
         FullItemTooltipInitData initData = baseData as FullItemTooltipInitData;
         if (initData == null)
         {
@@ -58,7 +57,7 @@ public class FullItemTooltip : BaseTooltip
             return;
         }
 
-        if (_mainTooltip == null || _equipTooltips== null || _equipTooltips.Count < 2 || _equipTooltips[0] == null || _equipTooltips[1] == null ||
+        if (_mainTooltip == null || _equipTooltips == null || _equipTooltips.Count < 2 || _equipTooltips[0] == null || _equipTooltips[1] == null ||
             _equipParent == null)
         {
             OnExit("Missing Tooltip objects");
@@ -84,13 +83,13 @@ public class FullItemTooltip : BaseTooltip
                     }
                 }
             }
-                
+
         }
 
         InitItemTooltipData mainInitData = new InitItemTooltipData()
         {
             MainItem = _mainItem,
-            mainItemType = itype,
+            MainItemType = itype,
             IsVendorItem = _isVendorItem,
             Message = "",
             CompareToItem = null,
@@ -107,6 +106,7 @@ public class FullItemTooltip : BaseTooltip
                 InitItemTooltipData otherInitData = new InitItemTooltipData()
                 {
                     MainItem = _equips[i],
+                    MainItemType = _gameData.Get<ItemTypeSettings>(_unit).Get(_equips[i].ItemTypeId),
                     IsVendorItem = false,
                     CompareToItem = _mainItem,
                     Message = "Currently Equipped:",

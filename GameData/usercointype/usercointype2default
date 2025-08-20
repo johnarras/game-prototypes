@@ -2,9 +2,8 @@
   "Id": "usercointype2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Credits",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconCredits",
-  "Art": "CreditsArt"
+  "Name": "Gold",
+  "Icon": "GoldIcon",
+  "Art": "GoldArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

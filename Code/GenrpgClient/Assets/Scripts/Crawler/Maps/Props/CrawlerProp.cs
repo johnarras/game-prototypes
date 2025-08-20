@@ -3,7 +3,6 @@ using Assets.Scripts.Crawler.Maps.ClientEvents;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
-using Newtonsoft.Json.Bson;
 using System.Linq;
 using UnityEngine;
 
@@ -40,10 +39,10 @@ namespace Assets.Scripts.Crawler.Maps.Props
         }
 
         public virtual void InitData(int x, int z, CrawlerMap map)
-        { 
+        {
             _x = x;
             _z = z;
-            _detail = map.Details.FirstOrDefault(d=>d.X ==x && d.Z == z);
+            _detail = map.Details.FirstOrDefault(d => d.X == x && d.Z == z);
             _map = map;
             _party = _crawlerService.GetParty();
             _status = _party.GetMapStatus(_map.IdKey, true);
@@ -58,7 +57,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
                 transform.Rotate(0, angleThisFrame, 0);
             }
-            
+
         }
 
         protected void OnRedrawMapCell(RedrawMapCell redrawCell)
@@ -69,7 +68,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
             }
         }
 
-        protected virtual void OnRedrawMapCellInternal (object obj)
+        protected virtual void OnRedrawMapCellInternal(object obj)
         {
 
         }

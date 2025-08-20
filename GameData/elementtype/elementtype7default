@@ -10,6 +10,10 @@
   "ObserverActionName": "Purifies",
   "CastAnim": "Light",
   "VulnElementTypeId": 6,
+  "VulnDamagePercent": 300,
+  "VulnCritPercentMod": 10,
+  "ResistDamagePercent": 33,
+  "ResistCritPercentMod": -50,
   "Skills": [],
   "Procs": [
     {
@@ -23,5 +27,5 @@
       "ElementTypeId": 7
     }
   ],
-  "SaveTime": "2025-06-16T22:59:58.099Z"
+  "SaveTime": "2025-08-06T23:38:47.524Z"
 }

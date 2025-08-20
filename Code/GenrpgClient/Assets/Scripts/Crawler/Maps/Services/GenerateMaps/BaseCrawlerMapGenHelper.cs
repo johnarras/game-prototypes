@@ -1,33 +1,29 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.Maps.Services;
+﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.MapGen.Services;
+using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Assets;
+using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using System.Linq;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Zones.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Units.Settings;
-using System.Net;
-using System.Text;
-using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Zones.Constants;
+using Genrpg.Shared.Zones.Settings;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
@@ -58,6 +54,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         protected ICrawlerMapGenService _mapGenService = null;
         protected IZoneGenService _zoneGenService = null;
         protected INameGenService _nameGenService = null;
+        protected ILineGenService _lineGenService = null;
 
         public abstract long Key { get; }
 
@@ -77,7 +74,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             bool[,] clearCells = new bool[map.Width, map.Height];
             clearCells[map.Width / 2, map.Height / 2] = true;
 
-            List<MyPoint> endPoints = new List<MyPoint> { new MyPoint(map.Width / 2, map.Height / 2) };
+            List<PointXZ> endPoints = new List<PointXZ> { new PointXZ(map.Width / 2, map.Height / 2) };
 
             int corridorCount = (int)(Math.Sqrt((map.Width * map.Height)) * density * 0.3f);
 
@@ -95,62 +92,44 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     break;
                 }
 
-                MyPoint startPoint = endPoints[rand.Next() % endPoints.Count];
+                PointXZ startPoint = endPoints[rand.Next() % endPoints.Count];
+
+                while (endPoints.Count > 5)
+                {
+                    endPoints.RemoveAt(rand.Next() % endPoints.Count);
+                }
 
                 int sx = startPoint.X;
-                int sz = startPoint.Y;  
+                int sz = startPoint.Z;
 
-                int dx = MathUtils.IntRange(maxLength/2, maxLength, rand)*(rand.NextDouble() < 0.5f ? -1 : 1);
-                int dz = MathUtils.IntRange(maxLength/2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dx = MathUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dz = MathUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
 
-                if (sx + dx < edgeSize || sx+dx >= map.Width-edgeSize)
+                int ex = MathUtils.Clamp(edgeSize, sx + dx, map.Width - edgeSize - 1);
+                int ez = MathUtils.Clamp(edgeSize, sz + dz, map.Height - edgeSize - 1);
+
+
+                bool xFirst = true;
+
+                if (rand.NextDouble() > 0.5f)
                 {
-                    dx = -dx;
+                    xFirst = false;
                 }
-                if (sz + dz < edgeSize || sz+dz >= map.Height-edgeSize)
-                {
-                    dz = -dz;
-                }
-                int ex = MathUtils.Clamp(edgeSize, sx + dx, map.Width - edgeSize);
-                int ez = MathUtils.Clamp(edgeSize, sz + dz, map.Height - edgeSize);
 
-                int mx = 0;
-                int mz = 0;
+                List<PointXZ> newPoints = _lineGenService.GridConnect(sx, sz, ex, ez, xFirst);
 
-                if (rand.NextDouble() < 0.5)
+
+                foreach (PointXZ pt in newPoints)
                 {
-                    mx = ex;
-                    mz = sz;
-                    clearCells[mx, mz] = true;
-                    clearCells[ex, ez] = true;
-                    for (int x = sx; x != ex; x += Math.Sign(ex - sx))
+                    clearCells[pt.X, pt.Z] = true;
+
+                    if (rand.NextDouble() < 0.5f)
                     {
-                        clearCells[x, sz] = true;
-                    }
-                    for (int z = sz; z != ez; z += Math.Sign(ez - sz))
-                    {
-                        clearCells[ex, z] = true;
+                        endPoints.Add(pt);
                     }
                 }
-                else
-                {
-                    mx = sx;
-                    mz = ez;
-                    clearCells[mx, mz] = true;
-                    clearCells[ex, ez] = true;
-                    for (int x = sx; x != ex; x += Math.Sign(ex - sx))
-                    {
-                        clearCells[x, ez] = true;
-                    }
-                    for (int z = sz; z != ez; z += Math.Sign(ez - sz))
-                    {
-                        clearCells[sx, z] = true;
-                    }
-                }
-               
 
-                endPoints.Add(new MyPoint(mx, mz));
-                endPoints.Add(new MyPoint(ex, ez));
+                endPoints.Add(new PointXZ(ex, ez));
             }
 
             return clearCells;
@@ -165,8 +144,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<MapCellDetail> entrances = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
 
-            okPoints = okPoints.Where(x => !entrances.Any(e => 
-            MathUtils.PythagoreanDistance( x.X - e.X, x.Z - e.Z) 
+            okPoints = okPoints.Where(x => !entrances.Any(e =>
+            MathUtils.PythagoreanDistance(x.X - e.X, x.Z - e.Z)
             <= genData.MapType.MinDistanceToEntrance)).ToList();
 
             int minDistanceBetweenNpcs = Math.Max(3, genData.MapType.MinNpcSeparation);
@@ -178,7 +157,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             TribeType humanoidTribe = _gameData.Get<TribeSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Name.IndexOf("Human") == 0);
 
             UnitTypeSettings unitSettings = _gameData.Get<UnitTypeSettings>(_gs.ch);
-            
+
             List<UnitType> okUnitTypes = new List<UnitType>();
 
             foreach (ZoneUnitSpawn spawn in cityZoneType.ZoneUnitSpawns)
@@ -197,14 +176,14 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             for (int i = 0; i < npcQuantity && okPoints.Count > 0; i++)
             {
-                PointXZ chosenPoint = okPoints[rand.Next()%okPoints.Count];
+                PointXZ chosenPoint = okPoints[rand.Next() % okPoints.Count];
 
                 okPoints.Remove(chosenPoint);
 
-                okPoints = okPoints.Where(pt => MathUtils.PythagoreanDistance( pt.X-chosenPoint.X, pt.Z-chosenPoint.Z) 
+                okPoints = okPoints.Where(pt => MathUtils.PythagoreanDistance(pt.X - chosenPoint.X, pt.Z - chosenPoint.Z)
                 >= minDistanceBetweenNpcs).ToList();
 
-                UnitType unitType = okUnitTypes[rand.Next()%okUnitTypes.Count];
+                UnitType unitType = okUnitTypes[rand.Next() % okUnitTypes.Count];
 
                 long nextIdkey = CollectionUtils.GetNextIdKey(world.Npcs);
 
@@ -214,9 +193,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     IdKey = nextIdkey,
                     Name = _nameGenService.GenerateUnitName(rand, true),
                     Level = await _worldService.GetMapLevelAtPoint(world, map.IdKey, chosenPoint.X, chosenPoint.Z),
-                    MapId = map.IdKey, 
+                    MapId = map.IdKey,
                     X = chosenPoint.X,
-                    Z = chosenPoint.Z,  
+                    Z = chosenPoint.Z,
                 };
 
                 world.Npcs.Add(npc);

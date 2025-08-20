@@ -16,7 +16,7 @@ namespace Assets.Scripts.Awaitables
         {
             _ = Task.Run(async () =>
                 {
-                    await Awaitable.MainThreadAsync();
+                    await Awaitable.BackgroundThreadAsync();
                     await t;
                 }).ConfigureAwait(false);
         }
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Awaitables
         {
             _ = Task.Run(async () =>
             {
-                await Awaitable.MainThreadAsync();
+                await Awaitable.BackgroundThreadAsync();
                 await t;
             }).ConfigureAwait(false);
         }

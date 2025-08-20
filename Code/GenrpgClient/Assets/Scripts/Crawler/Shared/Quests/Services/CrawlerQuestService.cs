@@ -9,7 +9,6 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
@@ -47,6 +46,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         Awaitable<List<UnitType>> GetKillQuestTargets(PartyData party);
         Awaitable<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentState, bool showNPC);
         Awaitable CheckForCompletedQuests(PartyData party);
+        Awaitable GiveExploreQuestCredit(PartyData party, long mapId);
     }
 
     public class CrawlerQuestService : ICrawlerQuestService
@@ -62,8 +62,8 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         private ILootGenService _lootGenService = null;
         private ICrawlerUpgradeService _upgradeService = null;
 
-        private SetupDictionaryContainer<long,ICrawlerQuestTypeHelper> _questTypeHelpers = new SetupDictionaryContainer<long,ICrawlerQuestTypeHelper> ();
-       
+        private SetupDictionaryContainer<long, ICrawlerQuestTypeHelper> _questTypeHelpers = new SetupDictionaryContainer<long, ICrawlerQuestTypeHelper>();
+
         public async Awaitable AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token)
         {
             CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
@@ -134,7 +134,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             return null;
         }
 
-        public async Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, 
+        public async Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc,
             CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
             ICrawlerQuestTypeHelper helper = GetHelper(questType.IdKey);
@@ -194,9 +194,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             int levelAtParty = await _worldService.GetMapLevelAtParty(party);
 
-            double lootMult = MathUtils.FloatRange(1, 2, _rand);
-
-            LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, lootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
+            LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBit(fullQuest.Quest.IdKey);
@@ -209,6 +207,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 lootGenData.TopMessages.Add("+" + questCompleteResult.TotalUpgradePoints + "Upgrade Points!");
             }
 
+            _dispatcher.Dispatch(new UpdateQuestUI());
             _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
 
         }
@@ -246,7 +245,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 if (quest.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap)
                 {
-                    List<long> okMapIds = world.Maps.Where(x=>x.BaseCrawlerMapId == quest.TargetEntityId).Select(x=>x.IdKey).ToList();
+                    List<long> okMapIds = world.Maps.Where(x => x.BaseCrawlerMapId == quest.TargetEntityId).Select(x => x.IdKey).ToList();
 
                     foreach (long okMapId in okMapIds)
                     {
@@ -261,7 +260,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             if (didCompleteAQuest)
             {
-                _dispatcher.Dispatch(new UpdateQuestUI());  
+                _dispatcher.Dispatch(new UpdateQuestUI());
             }
         }
 
@@ -294,7 +293,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             // Do kill quests first.
 
-            List<CrawlerQuest> killQuests = allQuests.Where(x=>x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters).ToList();    
+            List<CrawlerQuest> killQuests = allQuests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters).ToList();
 
             if (killQuests.Count > 0)
             {
@@ -306,7 +305,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                         continue;
                     }
 
-                    PartyQuest partyQuest = party.Quests.FirstOrDefault(x=>x.CrawlerQuestId == killQuest.IdKey);   
+                    PartyQuest partyQuest = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == killQuest.IdKey);
 
                     if (partyQuest == null || partyQuest.CurrQuantity >= killQuest.Quantity)
                     {
@@ -337,7 +336,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 }
             }
 
-            List<CrawlerQuest> startItemQuests = allQuests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.LootItems).OrderBy(x=>HashUtils.NewUUId()).ToList();
+            List<CrawlerQuest> startItemQuests = allQuests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.LootItems).OrderBy(x => HashUtils.NewUUId()).ToList();
 
             List<CrawlerQuest> finalItemQuests = new List<CrawlerQuest>();
             foreach (CrawlerQuest itemQuest in startItemQuests)
@@ -377,7 +376,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                     lootChance = 0.50f;
                 }
 
-                Dictionary<long,int> quantities = new Dictionary<long,int>();
+                Dictionary<long, int> quantities = new Dictionary<long, int>();
 
                 foreach (CrawlerQuest itemQuest in finalItemQuests)
                 {
@@ -450,7 +449,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             List<UnitType> retval = new List<UnitType>();
 
             foreach (PartyQuest pq in party.Quests)
-            { 
+            {
                 CrawlerQuest quest = currentQuests.FirstOrDefault(x => x.IdKey == pq.CrawlerQuestId);
 
                 if (quest == null)
@@ -476,19 +475,24 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                     if (_rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
                     {
-                        party.FailedKillQuestTimes++;
-                        return new List<UnitType>();
+                        continue;
                     }
 
                     else
                     {
-                        party.FailedKillQuestTimes = 0;
-
                         retval.Add(utype);
                     }
                 }
             }
 
+            if (retval.Count < 1)
+            {
+                party.FailedKillQuestTimes++;
+            }
+            else
+            {
+                party.FailedKillQuestTimes = 0;
+            }
             return retval;
         }
 
@@ -509,6 +513,43 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             }
 
             return "Unknown Quest Type";
+        }
+
+        public async Awaitable GiveExploreQuestCredit(PartyData party, long mapId)
+        {
+            CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
+
+
+            CrawlerMap map = world.GetMap(mapId);
+
+            if (map == null)
+            {
+                return;
+            }
+
+            foreach (CrawlerQuest quest in world.Quests)
+            {
+                if (quest.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap)
+                {
+                    quest.TargetEntityId = quest.CrawlerMapId;
+                }
+            }
+
+            List<CrawlerQuest> quests = world.Quests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap &&
+            x.TargetEntityId == map.BaseCrawlerMapId).ToList();
+
+            foreach (CrawlerQuest quest in quests)
+            {
+                PartyQuest pq = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == quest.IdKey);
+
+                if (pq == null)
+                {
+                    continue;
+                }
+
+                pq.CurrQuantity = quest.Quantity;
+                _dispatcher.Dispatch(new UpdateQuestUI());
+            }
         }
     }
 }

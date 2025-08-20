@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Genrpg.Shared.Utils
 {
@@ -521,7 +519,7 @@ namespace Genrpg.Shared.Utils
         }
 
         const int IdHashMult = 151;
-        public static int GetIdHash(string txt)
+        public static int GetPrefixIdHash(string txt)
         {
             if (string.IsNullOrEmpty(txt))
             {
@@ -532,6 +530,22 @@ namespace Genrpg.Shared.Utils
             for (int i = 0; i < 3 && i < txt.Length; i++)
             {
                 hash = (hash + txt[i]) * mult;
+            }
+            return hash;
+        }
+
+
+        static readonly int[] _primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 };
+        public static int GetSimpleFullStringHash(string txt)
+        {
+            if (string.IsNullOrEmpty(txt))
+            {
+                return 0;
+            }
+            int hash = 0;
+            for (int i = 0; i < 32 && i < txt.Length; i++)
+            {
+                hash += txt[i] * _primes[i % _primes.Length];
             }
             return hash;
         }
@@ -685,7 +699,7 @@ namespace Genrpg.Shared.Utils
             {
                 return word;
             }
-            return word.Replace(" ", "").Replace("\n","").Replace("\r","").ToLower().Trim();
+            return word.Replace(" ", "").Replace("\n", "").Replace("\r", "").ToLower().Trim();
         }
 
         public static string AddPluralSuffix(long checkVal, string pluralSuffix = "s")
@@ -721,6 +735,28 @@ namespace Genrpg.Shared.Utils
                 return obj.ToString();
             }
             return "";
+        }
+
+        public static List<string> CommaSemiColonSplit(string str)
+        {
+
+            List<string> retval = new List<string>();
+            string[] words1 = str.Split(',');
+
+            foreach (string word in words1)
+            {
+                string[] words2 = word.Trim().Split(";");
+                foreach (string word2 in words2)
+                {
+                    if (!string.IsNullOrEmpty(word2))
+                    {
+                        retval.Add(word2);
+                    }
+
+                }
+            }
+
+            return retval;
         }
     }
 }

@@ -712,8 +712,7 @@
       "MusicTypeId": 3,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 2.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype2default",
@@ -1553,8 +1552,7 @@
       "MusicTypeId": 4,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 5.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype3default",
@@ -2307,8 +2305,7 @@
       "MusicTypeId": 5,
       "AmbientMusicTypeId": 9,
       "TraveralTimeScale": 5.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype4default",
@@ -3073,8 +3070,7 @@
       "MusicTypeId": 6,
       "AmbientMusicTypeId": 11,
       "TraveralTimeScale": 10.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype5default",
@@ -3760,8 +3756,7 @@
       "MusicTypeId": 6,
       "AmbientMusicTypeId": 9,
       "TraveralTimeScale": 5.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype6default",
@@ -4481,8 +4476,7 @@
       "MusicTypeId": 5,
       "AmbientMusicTypeId": 9,
       "TraveralTimeScale": 15.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype7default",
@@ -5179,8 +5173,7 @@
       "MusicTypeId": 2,
       "AmbientMusicTypeId": 7,
       "TraveralTimeScale": 10.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype8default",
@@ -5843,8 +5836,7 @@
       "MusicTypeId": 3,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 5.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype9default",
@@ -6492,8 +6484,7 @@
       "MusicTypeId": 3,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 20.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype10default",
@@ -7246,8 +7237,7 @@
       "MusicTypeId": 5,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 30.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype11default",
@@ -7912,8 +7902,7 @@
       "MusicTypeId": 5,
       "AmbientMusicTypeId": 8,
       "TraveralTimeScale": 20.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype12default",
@@ -8205,8 +8194,7 @@
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype13default",
@@ -8236,8 +8224,7 @@
       "PlantChoices": "",
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
-      "TraveralTimeScale": 1.0,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "TraveralTimeScale": 1.0
     },
     {
       "Id": "zonetype14default",
@@ -8391,8 +8378,7 @@
       "BuildingTypeId": 21,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
-      "TraveralTimeScale": 1.0,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "TraveralTimeScale": 1.0
     },
     {
       "Id": "zonetype15default",
@@ -8770,8 +8756,7 @@
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 2,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 2
     },
     {
       "Id": "zonetype16default",
@@ -9185,8 +9170,7 @@
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 2,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 2
     },
     {
       "Id": "zonetype17default",
@@ -9534,8 +9518,7 @@
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 2,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 2
     },
     {
       "Id": "zonetype18default",
@@ -10225,7 +10208,24 @@
           "Weight": 10.0
         }
       ],
-      "UnitKeyWords": [],
+      "UnitKeyWords": [
+        {
+          "UnitKeywordId": 10,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 19,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 20,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 21,
+          "Weight": 100.0
+        }
+      ],
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 9,
@@ -10236,8 +10236,7 @@
       "MusicTypeId": 5,
       "AmbientMusicTypeId": 9,
       "TraveralTimeScale": 20.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype19default",
@@ -10427,15 +10426,31 @@
           "Weight": 10.0
         }
       ],
-      "UnitKeyWords": [],
+      "UnitKeyWords": [
+        {
+          "UnitKeywordId": 5,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 10,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 11,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 22,
+          "Weight": 100.0
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "BuildingTypeId": 25,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 3,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 3
     },
     {
       "Id": "zonetype20default",
@@ -10649,15 +10664,23 @@
           "Weight": 10.0
         }
       ],
-      "UnitKeyWords": [],
+      "UnitKeyWords": [
+        {
+          "UnitKeywordId": 8,
+          "Weight": 100.0
+        },
+        {
+          "UnitKeywordId": 10,
+          "Weight": 100.0
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
       "BuildingTypeId": 24,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 3,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 3
     },
     {
       "Id": "zonetype21default",
@@ -11046,8 +11069,7 @@
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
-      "ZoneCategoryId": 1,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "ZoneCategoryId": 1
     },
     {
       "Id": "zonetype22default",
@@ -11170,14 +11192,13 @@
       "BuildingTypeId": 21,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
-      "TraveralTimeScale": 1.0,
-      "SaveTime": "2025-07-16T02:27:06.424Z"
+      "TraveralTimeScale": 1.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "ZoneTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-08-09T14:59:52.741Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-08-09T14:59:52.741Z"
 }

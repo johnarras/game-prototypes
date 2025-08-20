@@ -19,7 +19,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (!status.MovedPosition)
+            if (!status.MovedPosition || status.MoveIsComplete)
             {
                 return;
             }

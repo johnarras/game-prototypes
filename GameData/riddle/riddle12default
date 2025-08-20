@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 12,
   "Name": "Mage",
-  "Desc": "With arcane arts, they weave their fate,\r\nWith chants and runes, they demonstrate.\r\nTheir power vast, their wisdom old,\r\nIn spells, their magic does unfold.\r\n"
+  "Desc": "With arcane arts, they weave their fate,\nWith chants and runes, they demonstrate.\nTheir power vast, their wisdom old,\nIn spells, their magic does unfold.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

@@ -90,12 +90,6 @@ public class InitClient : BaseBehaviour, IInitClient
     private async Awaitable CleanupGameAsync()
     {
         ShowSplashScreen();
-        _gameTokenSource?.Cancel();
-        _gameTokenSource?.Dispose();
-        _gameTokenSource = new CancellationTokenSource();
-        ClearToken();
-        _globalUpdater = null;
-
         foreach (IInjectable inj in _gs.loc.GetVals())
         {
             if (inj is IClientResetCleanup cleanup)
@@ -103,7 +97,13 @@ public class InitClient : BaseBehaviour, IInitClient
                 await cleanup.OnClientResetCleanup(GetGameToken());
             }
         }
-        base._clientEntityService.DestroyAllChildren(_globalRoot);
+        _clientEntityService.DestroyAllChildren(_globalRoot);
+
+        _gameTokenSource?.Cancel();
+        _gameTokenSource?.Dispose();
+        _gameTokenSource = new CancellationTokenSource();
+        ClearToken();
+        _globalUpdater = null;
     }
 
     private async Awaitable FullResetGameAsync()

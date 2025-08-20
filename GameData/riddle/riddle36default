@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 36,
   "Name": "Gauntlet",
-  "Desc": "A glove of strength, a hero's tool,\r\nWith power vast, it's no mere jewel.\r\nOn hand it fits, both snug and tight,\r\nIn battles fought, it shows its might.\r\n"
+  "Desc": "A glove of strength, a hero's tool,\nWith power vast, it's no mere jewel.\nOn hand it fits, both snug and tight,\nIn battles fought, it shows its might.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

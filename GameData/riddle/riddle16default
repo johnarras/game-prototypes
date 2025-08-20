@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 16,
   "Name": "Paladin",
-  "Desc": "In shining armor, pure and bright,\r\nThey fight for good, defend the right.\r\nWith holy power, they protect,\r\nIn righteous cause, they do reflect.\r\n"
+  "Desc": "In shining armor, pure and bright,\nThey fight for good, defend the right.\nWith holy power, they protect,\nIn righteous cause, they do reflect.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

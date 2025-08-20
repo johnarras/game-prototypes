@@ -6,8 +6,6 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MVC.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,7 +21,6 @@ namespace Assets.Scripts.Assets
         Task<T> LoadAssetAsync<T>(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null) where T : class;
         Task<object> LoadAssetAsync(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null);
         void GetSpriteList(string atlasName, SpriteListDelegate onLoad, CancellationToken token);
-        Task ClearBundleCache(CancellationToken token);
         string GetBundleNameForCategoryAndAsset(string assetCategory, string assetPath);
         ClientAssetCounts GetAssetCounts();
         string StripPathPrefix(string path);

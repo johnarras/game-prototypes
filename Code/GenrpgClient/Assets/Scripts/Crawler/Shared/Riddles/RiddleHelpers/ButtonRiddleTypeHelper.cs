@@ -49,7 +49,7 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
 
             IRandom rand = new MyRandom(loadData.Seed);
 
-            float edgeDelta = 1;
+            float edgeDelta = 2;
             float xpos = MathUtils.FloatRange(-CrawlerMapConstants.XZBlockSize + edgeDelta, CrawlerMapConstants.XZBlockSize - edgeDelta, rand) / 2;
             float ypos = MathUtils.FloatRange(-CrawlerMapConstants.YBlockSize + edgeDelta, CrawlerMapConstants.YBlockSize - edgeDelta, rand) / 2;
 
@@ -130,7 +130,7 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
 
             if (index > 0)
             {
-                return !FlagUtils.IsSet(party.RiddleStatus, (1 << (index - 1)));
+                return !party.HasRiddleBitIndex((index - 1));
             }
             return true;
         }

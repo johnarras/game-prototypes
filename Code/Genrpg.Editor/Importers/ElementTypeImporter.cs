@@ -1,15 +1,8 @@
 ﻿using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
-using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Spells.Procs.Entities;
 using Genrpg.Shared.Spells.Settings.Elements;
-using Microsoft.UI.Xaml.Shapes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers
 {

@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 23,
   "Name": "Rune",
-  "Desc": "Carved in stone or written scroll,\r\nA symbol with a mystic role.\r\nIt holds the power, ancient, grand,\r\nIts meaning known to mage's hand.\r\n"
+  "Desc": "Carved in stone or written scroll,\nA symbol with a mystic role.\nIt holds the power, ancient, grand,\nIts meaning known to mage's hand.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

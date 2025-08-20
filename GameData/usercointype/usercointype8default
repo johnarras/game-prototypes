@@ -3,6 +3,7 @@
   "ParentId": "default",
   "IdKey": 8,
   "Name": "Stone",
-  "Icon": "IconStone",
-  "Art": "StoneArt"
+  "Icon": "StoneIcon",
+  "Art": "StoneArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

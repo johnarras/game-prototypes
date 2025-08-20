@@ -6,6 +6,8 @@ using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using System;
@@ -13,13 +15,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
     public class DungeonMapGenHelper : BaseCrawlerMapGenHelper
     {
         public override long Key => CrawlerMapTypes.Dungeon;
+
+        private ISamplingService _samplingService = null;
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
@@ -32,12 +35,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             CrawlerMapGenType genType = genData.GenType;
 
-            int roomEdgeDist = 3;
-
             if (genData.MaxFloor == 0 || genData.PrevMap == null)
             {
                 genData.MaxFloor = MathUtils.IntRange(genType.MinFloors, genType.MaxFloors, rand);
-                
+
                 if (genData.CurrFloor == 0)
                 {
                     genData.CurrFloor = 1;
@@ -59,7 +60,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 if (!genData.RandomWallsDungeon)
                 {
                     width = (int)(width * mapSettings.CorridorDungeonSizeScale);
-                    height = (int)(height * mapSettings.CorridorDungeonSizeScale);  
+                    height = (int)(height * mapSettings.CorridorDungeonSizeScale);
                 }
 
                 map = _worldService.CreateMap(genData, (int)width, (int)height);
@@ -82,6 +83,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int exitZ = -1;
             int enterX = -1;
             int enterZ = -1;
+
+            int[,] roomIds = new int[map.Width, map.Height];
 
             if (genData.RandomWallsDungeon)
             {
@@ -138,14 +141,14 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     }
                 }
 
-                AddRandomRooms(party, genData, map, rand);
+                AddRandomRooms(party, genData, map, roomIds, rand);
                 ConnectOpenCells(map, genData, rand);
 
                 double roomTimes = map.Width * map.Height / 200.0f;
 
                 double roomremainder = roomTimes - (int)roomTimes;
                 roomTimes = (int)roomTimes;
-                if (rand.NextDouble() < roomremainder) 
+                if (rand.NextDouble() < roomremainder)
                 {
                     roomTimes++;
                 }
@@ -153,7 +156,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int maxRoomSize = 6;
                 for (int r = 0; r < roomTimes; r++)
                 {
-                    int minx = MathUtils.IntRange(0, map.Width - maxRoomSize-1, rand);
+                    int minx = MathUtils.IntRange(0, map.Width - maxRoomSize - 1, rand);
                     int maxx = minx + MathUtils.IntRange(maxRoomSize / 2, maxRoomSize, rand);
 
                     int minz = MathUtils.IntRange(0, map.Height - maxRoomSize - 1, rand);
@@ -169,13 +172,14 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
 
 
-                enterX = rand.Next() % map.Width;
-                enterZ = rand.Next() % map.Height;
+                int exitEdgeDistance = 1;
+                enterX = MathUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                enterZ = MathUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
 
                 do
                 {
-                    exitX = rand.Next() % map.Width;
-                    exitZ = rand.Next() % map.Height;
+                    exitX = MathUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                    exitZ = MathUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
                 }
                 while (enterX == exitX && enterZ == exitZ);
 
@@ -213,45 +217,117 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
             else
             {
-                bool[,] clearCells = AddCorridors(map, genData, rand, MathUtils.FloatRange(genType.MinCorridorDensity,genType.MaxCorridorDensity,rand));
+                // bool[,] clearCells = AddCorridors(map, genData, rand, MathUtils.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
 
                 // Add rooms first.
-                List<PointXZ> possibleRoomCenterPoints = new List<PointXZ>();
-                for (int x = roomEdgeDist; x < map.Width - roomEdgeDist; x++)
+
+                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * MathUtils.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
+
+                int edgeSize = 1;
+                SamplingData sd = new SamplingData()
                 {
-                    for (int y = roomEdgeDist; y < map.Height - roomEdgeDist; y++)
+                    MaxAttemptsPerItem = 20,
+                    Count = roomCount,
+                    MinSeparation = 4,
+                    XMin = edgeSize,
+                    YMin = edgeSize,
+                    XMax = map.Width - 1 - edgeSize,
+                    YMax = map.Height - 1 - edgeSize,
+                };
+
+                List<PointXZ> roomCenters = _samplingService.PlanePoissonSampleInteger(sd);
+
+                List<ConnectPointData> connectPoints = new List<ConnectPointData>();
+
+                for (int p = 0; p < roomCenters.Count; p++)
+                {
+                    PointXZ pt = roomCenters[p];
+                    connectPoints.Add(new ConnectPointData()
                     {
-                        if (clearCells[x, y])
+                        X = pt.X,
+                        Z = pt.Z,
+                        Id = p + 1,
+                        MaxConnections = 4,
+                        MinDistToOther = 1,
+                    });
+                }
+
+                bool[,] clearCells = new bool[map.Width, map.Height];
+
+                for (int i = 0; i < roomCenters.Count; i++)
+                {
+                    int minx = roomCenters[i].X;
+                    int maxx = roomCenters[i].X;
+                    int minz = roomCenters[i].Z;
+                    int maxz = roomCenters[i].Z;
+
+                    int width = MathUtils.IntRange(2, 3, rand) + MathUtils.IntRange(0, 2, rand);
+                    int height = MathUtils.IntRange(2, 3, rand) + MathUtils.IntRange(0, 2, rand);
+                    if (width == 2 && height == 2)
+                    {
+                        if (rand.NextDouble() < 0.5f)
                         {
-                            possibleRoomCenterPoints.Add(new PointXZ() { X = x, Z = y });
+                            width++;
+                        }
+                        else
+                        {
+                            height++;
+                        }
+                    }
+
+                    while (maxx - minx + 1 < width)
+                    {
+                        if (rand.NextDouble() < 0.5f)
+                        {
+                            minx--;
+                        }
+                        else
+                        {
+                            maxx++;
+                        }
+                    }
+
+                    while (maxz - minz + 1 < height)
+                    {
+                        if (rand.NextDouble() < 0.5f)
+                        {
+                            minz--;
+                        }
+                        else
+                        {
+                            maxz++;
+                        }
+                    }
+
+                    minx = MathUtils.Clamp(edgeSize, minx, map.Width - edgeSize - 1);
+                    maxx = MathUtils.Clamp(edgeSize, maxx, map.Width - edgeSize - 1);
+                    minz = MathUtils.Clamp(edgeSize, minz, map.Height - edgeSize - 1);
+                    maxz = MathUtils.Clamp(edgeSize, maxz, map.Height - edgeSize - 1);
+
+                    for (int x = minx; x <= maxx; x++)
+                    {
+                        for (int z = minz; z <= maxz; z++)
+                        {
+                            clearCells[x, z] = true;
+                            map.AddBits(x, z, CellIndex.Walls, 1 << MapWallBits.IsRoomBitOffset);
+                            roomIds[x, z] = i + 1;
                         }
                     }
                 }
 
-                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * 0.3f);
+                List<ConnectedPairData> newPaths = _lineGenService.ConnectPoints(connectPoints, rand, 0.7f);
 
-                List<PointXZ> roomCenters = new List<PointXZ>();
-
-                for (int r = 0; r < roomCount; r++)
+                foreach (ConnectedPairData cpd in newPaths)
                 {
-                    if (possibleRoomCenterPoints.Count < 1)
-                    {
-                        break;
-                    }
-                    PointXZ roomCenter = possibleRoomCenterPoints[rand.Next() % possibleRoomCenterPoints.Count];
-                    possibleRoomCenterPoints.Remove(roomCenter);
-                    roomCenters.Add(roomCenter);
-                    int sx = roomCenter.X - GetRoomDeltaSize(rand, roomEdgeDist);
-                    int ex = roomCenter.X + GetRoomDeltaSize(rand, roomEdgeDist);
-                    int sz = roomCenter.Z - GetRoomDeltaSize(rand, roomEdgeDist);
-                    int ez = roomCenter.Z + GetRoomDeltaSize(rand, roomEdgeDist);
+                    List<PointXZ> newLine = _lineGenService.GridConnect((int)cpd.Point1.X, (int)cpd.Point1.Z,
+                        (int)cpd.Point2.X, (int)cpd.Point2.Z, rand.NextDouble() < 0.5f);
 
-                    for (int x = sx; x < ex; x++)
+
+                    foreach (PointXZ p in newLine)
                     {
-                        for (int z = sz; z < ez; z++)
+                        if (p.X > edgeSize && p.Z > edgeSize && p.X < map.Width - edgeSize && p.Z < map.Height - edgeSize)
                         {
-                            clearCells[x, z] = true;
-                            map.AddBits(x, z, CellIndex.Walls, 1 << MapWallBits.IsRoomBitOffset);
+                            clearCells[p.X, p.Z] = true;
                         }
                     }
                 }
@@ -340,7 +416,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 for (int z = 0; z < map.Height; z++)
                 {
-                    if (map.IsValidEmptyCell(x, z)) 
+                    if (map.IsValidEmptyCell(x, z))
                     {
                         validEmptyCells.Add(new PointXZ(x, z));
                     }
@@ -354,6 +430,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             AddMagicLocations(genData, map, validEmptyCells, rand);
 
             AddTeleportSquares(genData, map, validEmptyCells, rand);
+
+            ModifyZoneTypes(genData, map, roomIds, rand);
+
+            AddRoomDoors(genData, map, roomIds, rand);
 
             return new NewCrawlerMap() { Map = map, EnterX = enterX, EnterZ = enterZ };
         }
@@ -495,7 +575,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
         }
 
-        protected long GetRandomEncounter(IRandom rand)        
+        protected long GetRandomEncounter(IRandom rand)
         {
 
             MapEncounterType encounter = RandomUtils.GetRandomElement(_gameData.Get<MapEncounterSettings>(_gs.ch).GetData(), rand);
@@ -515,7 +595,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             for (int i = 0; i < 3; i++)
             {
-                if (retval >= roomEdgeDist-2)
+                if (retval >= roomEdgeDist - 2)
                 {
                     return retval;
                 }
@@ -675,12 +755,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         private bool CanBeNearTeleportCell(CrawlerMap map, int x, int z)
         {
             int extraRadius = 1;
-            for (int xx = x-extraRadius; xx <= x+extraRadius; xx++)
+            for (int xx = x - extraRadius; xx <= x + extraRadius; xx++)
             {
                 int nx = (xx + map.Width) % map.Width;
-                for (int zz = z-extraRadius; zz <= z+extraRadius; zz++)
+                for (int zz = z - extraRadius; zz <= z + extraRadius; zz++)
                 {
-                    int nz = (zz + map.Height) % map.Height;    
+                    int nz = (zz + map.Height) % map.Height;
 
                     if (!map.IsValidEmptyCell(nx, nz))
                     {
@@ -707,15 +787,15 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            for (int x = 1; x < map.Width-1; x++)
+            for (int x = 1; x < map.Width - 1; x++)
             {
-                for (int z = 1; z < map.Height-1; z++)
+                for (int z = 1; z < map.Height - 1; z++)
                 {
                     bool[] currBlocked = allBlockedDirs[x, z];
 
                     int blockCount = currBlocked.Count(x => x == true);
 
-                    if (!CanBeNearTeleportCell(map,x,z))
+                    if (!CanBeNearTeleportCell(map, x, z))
                     {
                         continue;
                     }
@@ -747,7 +827,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                                         MapDir prevDir = mapDirs[otherDirIndex];
                                         int px = (x + prevDir.DX + map.Width) % map.Width;
                                         int pz = (z + prevDir.DZ + map.Height) % map.Height;
-                                        if (!CanBeNearTeleportCell(map,px,pz))
+                                        if (!CanBeNearTeleportCell(map, px, pz))
                                         {
                                             continue;
                                         }
@@ -769,9 +849,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         }
                     }
 
-                    if (canBeTeleport && !map.Details.Any(d=>d.X == x && d.Z == z))
+                    if (canBeTeleport && !map.Details.Any(d => d.X == x && d.Z == z))
                     {
-                        teleportEntryPoints.Add(new PointXZ(x,z));
+                        teleportEntryPoints.Add(new PointXZ(x, z));
                     }
                 }
             }
@@ -779,15 +859,15 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int entryPointCount = teleportEntryPoints.Count;
             List<PointXZ> teleportExitPoints = new List<PointXZ>();
 
-            for (int x =0; x < map.Width; x++)
+            for (int x = 0; x < map.Width; x++)
             {
                 for (int z = 0; z < map.Height; z++)
                 {
-                    if (map.IsValidEmptyCell(x,z) &&
-                        !teleportEntryPoints.Any(t=>t.X == x && t.Z == z)
+                    if (map.IsValidEmptyCell(x, z) &&
+                        !teleportEntryPoints.Any(t => t.X == x && t.Z == z)
                         )
                     {
-                        teleportExitPoints.Add(new PointXZ((int)x, (int)z));    
+                        teleportExitPoints.Add(new PointXZ((int)x, (int)z));
                     }
                 }
             }
@@ -804,22 +884,22 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
 
             int teleportQuantity = 0;
-            teleportEntryPoints = teleportEntryPoints.OrderBy(x=>HashUtils.NewUUId()).ToList();
+            teleportEntryPoints = teleportEntryPoints.OrderBy(x => HashUtils.NewUUId()).ToList();
 
             List<List<PointXZ>> allCheckLists = new List<List<PointXZ>>() { teleportEntryPoints, teleportExitPoints };
 
-            while (teleportQuantityLeft > 0 && teleportEntryPoints.Count > 0 && teleportExitPoints.Count > 0) 
+            while (teleportQuantityLeft > 0 && teleportEntryPoints.Count > 0 && teleportExitPoints.Count > 0)
             {
                 PointXZ enterPoint = teleportEntryPoints[rand.Next() % teleportEntryPoints.Count];
 
                 teleportEntryPoints.Remove(enterPoint);
 
-                PointXZ currPoint = validEmptyCells.FirstOrDefault(p=>p.X == enterPoint.X && p.Z == enterPoint.Z);
+                PointXZ currPoint = validEmptyCells.FirstOrDefault(p => p.X == enterPoint.X && p.Z == enterPoint.Z);
                 if (currPoint != null)
                 {
                     validEmptyCells.Remove(currPoint);
                 }
-                
+
 
                 List<PointXZ> okPoints = new List<PointXZ>();
 
@@ -931,7 +1011,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             return maps;
         }
 
-        private void AddRandomRooms (PartyData party, CrawlerMapGenData genData, CrawlerMap map, IRandom rand)
+        private void AddRandomRooms(PartyData party, CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
         {
             if (!genData.RandomWallsDungeon)
             {
@@ -943,7 +1023,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             double roomCountFloat = size / 40.0;
 
             int roomCount = (int)roomCountFloat;
-            if (rand.NextDouble() < (roomCountFloat-roomCount))
+            if (rand.NextDouble() < (roomCountFloat - roomCount))
             {
                 roomCount++;
             }
@@ -956,10 +1036,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             double minWidth = map.Width / minDiv;
             double maxWidth = map.Width / maxDiv;
 
-            double minHeight = map.Height/  minDiv; ;
+            double minHeight = map.Height / minDiv; ;
             double maxHeight = map.Height / maxDiv;
 
-            for(int r = 0; r < roomCount; r++)
+            for (int r = 0; r < roomCount; r++)
             {
                 double widthFloat = Math.Min(MathUtils.FloatRange(minWidth, maxWidth, rand), MathUtils.FloatRange(minWidth, maxWidth, rand));
                 double heightFloat = Math.Min(MathUtils.FloatRange(minHeight, maxHeight, rand), MathUtils.FloatRange(minHeight, maxHeight, rand));
@@ -967,14 +1047,14 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int width = (int)widthFloat;
                 int height = (int)heightFloat;
 
-                if (rand.NextDouble() < (widthFloat-width))
+                if (rand.NextDouble() < (widthFloat - width))
                 {
                     width++;
                 }
 
-                if (rand.NextDouble() < (heightFloat-height))
+                if (rand.NextDouble() < (heightFloat - height))
                 {
-                    height++;   
+                    height++;
                 }
 
                 int xstart = MathUtils.IntRange(1, map.Width - width - 2, rand);
@@ -983,16 +1063,21 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int xend = xstart + width;
                 int zend = zstart + height;
 
-                for (int x = xstart-1; x <= xend; x++)
+                for (int x = xstart - 1; x <= xend; x++)
                 {
-                    for (int z = zstart-1; z <= zend; z++)
+                    for (int z = zstart - 1; z <= zend; z++)
                     {
+
+                        if (roomIds[x, z] == 0)
+                        {
+                            roomIds[x, z] = (r + 1);
+                        }
                         int northBits = map.NorthWall(x, z);
                         int eastBits = map.EastWall(x, z);
 
                         int walls = map.Get(x, z, CellIndex.Walls);
 
-                        if (x == xstart-1 || x == xend)
+                        if (x == xstart - 1 || x == xend)
                         {
                             if (rand.NextDouble() < doorChance)
                             {
@@ -1003,7 +1088,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                                 eastBits = WallTypes.Wall;
                             }
                         }
-                        else 
+                        else
                         {
                             eastBits = 0;
                         }
@@ -1026,10 +1111,174 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         int finalBits = northBits << MapWallBits.NWallStart |
                             eastBits << MapWallBits.EWallStart;
 
-                        map.Set(x,z, CellIndex.Walls, finalBits);    
+                        map.Set(x, z, CellIndex.Walls, finalBits);
                     }
                 }
             }
+        }
+
+        private void ModifyZoneTypes(CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
+        {
+
+            List<int> distinctRoomIds = new List<int>();
+            for (int x = 0; x < roomIds.GetLength(0); x++)
+            {
+                for (int z = 0; z < roomIds.GetLength(1); z++)
+                {
+                    if (roomIds[x, z] > 0 && !distinctRoomIds.Contains(roomIds[x, z]))
+                    {
+                        distinctRoomIds.Add(roomIds[x, z]);
+                    }
+                }
+            }
+
+            List<long> zoneTypes = new List<long>();
+
+            foreach (CrawlerMapGenType genType in genData.MapType.GenTypes)
+            {
+                foreach (WeightedZoneType wzt in genType.WeightedZones)
+                {
+                    if (!zoneTypes.Contains(wzt.ZoneTypeId) && wzt.ZoneTypeId != map.ZoneTypeId)
+                    {
+                        zoneTypes.Add(wzt.ZoneTypeId);
+                    }
+                }
+            }
+
+            CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
+
+            foreach (int roomId in distinctRoomIds)
+            {
+                if (zoneTypes.Count < 1)
+                {
+                    break;
+                }
+                if (rand.NextDouble() > genData.MapType.RoomIsDifferentZoneTypeChance)
+                {
+                    continue;
+                }
+
+                long replaceZoneTypeId = zoneTypes[rand.Next() % zoneTypes.Count];
+                zoneTypes.Remove(replaceZoneTypeId);
+
+                for (int x = 0; x < map.Width; x++)
+                {
+                    for (int z = 0; z < map.Height; z++)
+                    {
+                        if (roomIds[x, z] == roomId)
+                        {
+                            if (map.Get(x, z, CellIndex.Terrain) > 0)
+                            {
+                                map.Set(x, z, CellIndex.Terrain, replaceZoneTypeId);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Try to add doors between rooms and non-rooms.
+        private void AddRoomDoors(CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
+        {
+            if (genData.RandomWallsDungeon)
+            {
+                return;
+            }
+
+            bool[,] hasNorthEntrance = new bool[map.Width, map.Height];
+            bool[,] hasEastEntrance = new bool[map.Width, map.Height];
+            bool[,] hasEntrance = new bool[map.Width, map.Height];
+            bool[,] badEntrance = new bool[map.Width, map.Height];
+
+            for (int x = 0; x < map.Width - 1; x++)
+            {
+                for (int z = 0; z < map.Height - 1; z++)
+                {
+                    int currTerrain = map.Get(x, z, CellIndex.Terrain);
+                    if (currTerrain == 0)
+                    {
+                        continue;
+                    }
+                    int currRoomId = roomIds[x, z];
+
+                    if (map.Get(x, z + 1, CellIndex.Terrain) > 0 && roomIds[x, z + 1] != currRoomId &&
+                        _crawlerMapService.GetBlockingBits(map, x, z, x, z + 1, false) == WallTypes.None)
+                    {
+                        hasNorthEntrance[x, z] = true;
+                        hasEntrance[x, z] = true;
+                    }
+                    if (map.Get(x, z, CellIndex.Terrain) > 0 && roomIds[x + 1, z] != currRoomId &&
+                        _crawlerMapService.GetBlockingBits(map, x, z, x + 1, z, false) == WallTypes.None)
+                    {
+                        hasEastEntrance[x, z] = true;
+                        hasEntrance[x, z] = true;
+                    }
+                }
+            }
+
+            for (int x = 1; x < map.Width - 1; x++)
+            {
+                for (int z = 1; z < map.Height - 1; z++)
+                {
+                    if (hasEntrance[x, z])
+                    {
+                        bool isNearbyEntrance = false;
+                        for (int xx = x - 1; xx <= x + 1; xx++)
+                        {
+                            for (int zz = z - 1; zz <= z + 1; zz++)
+                            {
+                                if (xx == x && zz == z)
+                                {
+                                    continue;
+                                }
+                                if (hasEntrance[xx, zz])
+                                {
+                                    isNearbyEntrance = true;
+                                }
+                            }
+                        }
+
+                        if (isNearbyEntrance)
+                        {
+                            for (int xx = x - 1; xx <= x + 1; xx++)
+                            {
+                                for (int zz = z - 1; zz <= z + 1; zz++)
+                                {
+                                    badEntrance[xx, zz] = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int z = 0; z < map.Height; z++)
+                {
+                    if (badEntrance[x, z])
+                    {
+                        continue;
+                    }
+
+                    if (hasNorthEntrance[x, z])
+                    {
+                        map.AddBits(x, z, CellIndex.Walls, (WallTypes.Door << MapWallBits.NWallStart));
+                    }
+                    if (hasEastEntrance[x, z])
+                    {
+                        map.AddBits(x, z, CellIndex.Walls, (WallTypes.Door << MapWallBits.EWallStart));
+                    }
+                }
+            }
+        }
+
+        private void ClearNEEntrances(int x, int z, bool[,] entrances)
+        {
+            entrances[x, z] = false;
+            entrances[x + 1, z] = false;
+            entrances[x, z + 1] = false;
         }
     }
 }

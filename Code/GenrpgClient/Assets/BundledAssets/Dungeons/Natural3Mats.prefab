@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: CeilingMat.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
@@ -88,6 +88,11 @@ PrefabInstance:
       propertyPath: CeilingMat.Array.data[0].Mat
       value: 
       objectReference: {fileID: 2100000, guid: c967f5233d78f00428b7a04f3f933785, type: 2}
+    - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
+        type: 3}
+      propertyPath: CeilingMat.Array.data[0].Weight
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7538957673609420057, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: m_Name

@@ -1,26 +1,22 @@
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Copying;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.UI;
+using Genrpg.Editor.UI.Interfaces;
 using Genrpg.Editor.Utils;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
+using Genrpg.ServerShared.CloudComms.Services;
+using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Threading;
-using Genrpg.Editor.Constants;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
-using Genrpg.Shared.Utils;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Shared.Website.Messages;
-using System.Linq;
-using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.GameSettings.Interfaces;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -319,7 +315,7 @@ namespace Genrpg.Editor
                 EditorGameDataUtils.InitMessages();
                 return;
             }
-            
+
             if (action == "Importer")
             {
                 ImportWindow importer = new ImportWindow();
@@ -381,7 +377,7 @@ namespace Genrpg.Editor
             form.StartClose();
         }
 
-        private async Task RefreshServerDataAsync (string env)
+        private async Task RefreshServerDataAsync(string env)
         {
             _gs = await EditorGameDataUtils.SetupFromConfig(this, env, true);
 
@@ -390,7 +386,7 @@ namespace Genrpg.Editor
 
 
         private void CopyGameDataFromDatabaseToClient(string env)
-        {   
+        {
             SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Client");
             _ = Task.Run(() => CopyGameDataFromDatabaseToClientAsync(env, form, EditorGameState.CTS.Token));
         }
@@ -402,7 +398,7 @@ namespace Genrpg.Editor
             {
                 FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
 
-                Dictionary<Type,IGameSettingsMapper> mapperDict = _gameDataService.GetAllMappers();
+                Dictionary<Type, IGameSettingsMapper> mapperDict = _gameDataService.GetAllMappers();
 
                 List<ITopLevelSettings> clientSettings = new List<ITopLevelSettings>();
                 foreach (IGameSettings gameSettings in dataCopy.Data)
@@ -413,7 +409,7 @@ namespace Genrpg.Editor
                         {
                             if (mapper.SendToClient())
                             {
-                                clientSettings.Add(mapper.MapToDto(topLevelSettings));
+                                clientSettings.Add(mapper.MapToDto(topLevelSettings, true));
                             }
                         }
                     }

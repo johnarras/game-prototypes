@@ -2,9 +2,8 @@
   "Id": "usercointype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "HardCurrency",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconHardCurrency",
-  "Art": "HardCurrencyArt"
+  "Name": "Tokens",
+  "Icon": "TokensIcon",
+  "Art": "TokensArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

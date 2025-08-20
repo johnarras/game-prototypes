@@ -21,7 +21,7 @@ namespace Assets.Scripts.Crawler.Combat
         public CrawlerGroupGrid AllyGrid;
         public CrawlerGroupGrid EnemyGrid;
 
-        public StatusPanel StatusPanel;
+        public PartyStatusPanel StatusPanel;
 
         private GameObject GetGroupObject(string groupId)
         {

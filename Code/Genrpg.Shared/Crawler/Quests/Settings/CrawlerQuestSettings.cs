@@ -1,7 +1,5 @@
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Dungeons.Constants;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
@@ -21,6 +19,9 @@ namespace Genrpg.Shared.Crawler.Quests.Settings
         [Key(5)] public double ItemDropChance { get; set; }
         [Key(6)] public double BaseLootMult { get; set; }
         [Key(7)] public double ForceUnitInCombatChance { get; set; }
+        [Key(8)] public double ExpLootMult { get; set; }
+        [Key(9)] public double GoldLootMult { get; set; }
+        [Key(10)] public double ItemLootMult { get; set; }
     }
 
     [MessagePackObject]

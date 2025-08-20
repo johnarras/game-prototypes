@@ -19,10 +19,15 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
         public override long Key => CrawlerQuestTypes.TravelToNpc;
 
-        public override async Task SetupQuest(PartyData party, CrawlerWorld world, 
+        public override async Task SetupQuest(PartyData party, CrawlerWorld world,
             CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
-            List<CrawlerNpc> allNpcs = world.Npcs.Where(n=>n.MapId != npc.MapId).OrderBy(x=> Math.Abs(x.Level-npc.Level)).ToList();
+            List<CrawlerNpc> allNpcs = world.Npcs.Where(n => n.MapId != npc.MapId).OrderBy(x => Math.Abs(x.Level - npc.Level)).ToList();
+
+            if (allNpcs.Count < 1)
+            {
+                return;
+            }
 
             int maxSearch = Math.Min(allNpcs.Count, 5);
 
@@ -30,7 +35,8 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
             CrawlerQuest quest = new CrawlerQuest()
             {
-                CrawlerMapId = targetMap.Map.BaseCrawlerMapId,
+                CrawlerMapId = otherNPC.MapId,
+                TargetEntityId = otherNPC.IdKey,
                 CrawlerQuestTypeId = CrawlerQuestTypes.TravelToNpc,
                 IdKey = CollectionUtils.GetNextIdKey(world.Quests),
                 Name = "Take a message to " + otherNPC.Name,

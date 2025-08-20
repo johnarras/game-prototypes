@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 29,
   "Name": "Warlock",
-  "Desc": "With pacts they make, their power grand,\r\nThey wield dark magic, rule the land.\r\nWith demons bound to their command,\r\nThey cast their spells with practiced hand.\r\n"
+  "Desc": "With pacts they make, their power grand,\nThey wield dark magic, rule the land.\nWith demons bound to their command,\nThey cast their spells with practiced hand.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

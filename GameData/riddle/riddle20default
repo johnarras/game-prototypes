@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 20,
   "Name": "Treasure",
-  "Desc": "A chest of gold, a gem so rare,\r\nA prize for those who brave the dare.\r\nIn hidden caves or dungeons deep,\r\nA reward for those who secrets keep.\r\n"
+  "Desc": "A chest of gold, a gem so rare,\nA prize for those who brave the dare.\nIn hidden caves or dungeons deep,\nA reward for those who secrets keep.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

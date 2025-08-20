@@ -50,11 +50,14 @@
     "MinQuestsPerNpc": 2,
     "MaxQuestsPerNpc": 5,
     "ExtraQuestChance": 0.6,
-    "ItemDropChance": 0.005,
+    "ItemDropChance": 0.15,
     "BaseLootMult": 0.25,
-    "ForceUnitInCombatChance": 0.05,
+    "ForceUnitInCombatChance": 0.15,
+    "ExpLootMult": 30.0,
+    "GoldLootMult": 20.0,
+    "ItemLootMult": 0.5,
     "Name": "CrawlerQuestSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-08-10T21:19:29.086Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-08-10T21:19:29.086Z"
 }

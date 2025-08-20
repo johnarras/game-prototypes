@@ -13,6 +13,10 @@
       "ObserverActionName": "Hits",
       "CastAnim": "Physical",
       "VulnElementTypeId": 10,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -25,8 +29,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 1
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype2default",
@@ -40,6 +43,10 @@
       "ObserverActionName": "Burns",
       "CastAnim": "Fire",
       "VulnElementTypeId": 3,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -52,8 +59,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 2
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype3default",
@@ -67,6 +73,10 @@
       "ObserverActionName": "Freezes",
       "CastAnim": "Ice",
       "VulnElementTypeId": 2,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -79,8 +89,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 3
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype4default",
@@ -94,6 +103,10 @@
       "ObserverActionName": "Zaps",
       "CastAnim": "Electric",
       "VulnElementTypeId": 5,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -106,8 +119,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 4
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype5default",
@@ -121,6 +133,10 @@
       "ObserverActionName": "Crushes",
       "CastAnim": "Earth",
       "VulnElementTypeId": 4,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -133,8 +149,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 5
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype6default",
@@ -148,6 +163,10 @@
       "ObserverActionName": "Drains",
       "CastAnim": "Shadow",
       "VulnElementTypeId": 7,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -160,8 +179,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 6
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype7default",
@@ -175,6 +193,10 @@
       "ObserverActionName": "Purifies",
       "CastAnim": "Light",
       "VulnElementTypeId": 6,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -187,8 +209,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 7
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype8default",
@@ -202,6 +223,10 @@
       "ObserverActionName": "Sickens",
       "CastAnim": "Nature",
       "VulnElementTypeId": 9,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -214,8 +239,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 8
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype9default",
@@ -229,6 +253,10 @@
       "ObserverActionName": "Bewitches",
       "CastAnim": "Arcane",
       "VulnElementTypeId": 8,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -241,8 +269,7 @@
           "CurrCharges": 1,
           "ElementTypeId": 9
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     },
     {
       "Id": "elementtype10default",
@@ -256,6 +283,10 @@
       "ObserverActionName": "Corrodes",
       "CastAnim": "Acid",
       "VulnElementTypeId": 1,
+      "VulnDamagePercent": 300,
+      "VulnCritPercentMod": 10,
+      "ResistDamagePercent": 33,
+      "ResistCritPercentMod": -50,
       "Skills": [],
       "Procs": [
         {
@@ -268,14 +299,13 @@
           "CurrCharges": 1,
           "ElementTypeId": 10
         }
-      ],
-      "SaveTime": "2025-06-16T22:59:58.099Z"
+      ]
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "ElementTypeSettings",
-    "SaveTime": "2025-06-16T21:59:03.198Z"
+    "SaveTime": "2025-08-06T23:38:47.524Z"
   },
-  "SaveTime": "2025-06-16T21:59:03.198Z"
+  "SaveTime": "2025-08-06T23:38:47.524Z"
 }

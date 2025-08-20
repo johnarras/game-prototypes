@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 26,
   "Name": "Golem",
-  "Desc": "From stone or clay, they come to life,\r\nA guardian strong in times of strife.\r\nWith silent watch and endless might,\r\nThey stand to guard both day and night.\r\n"
+  "Desc": "From stone or clay, they come to life,\nA guardian strong in times of strife.\nWith silent watch and endless might,\nThey stand to guard both day and night.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

@@ -439,7 +439,7 @@ namespace Genrpg.MapServer.Maps
                 retval = null;
                 return false;
             }
-            if (_idDict[StrUtils.GetIdHash(objId) % IdHashSize].TryGetValue(objId, out MapObjectGridItem item))
+            if (_idDict[StrUtils.GetPrefixIdHash(objId) % IdHashSize].TryGetValue(objId, out MapObjectGridItem item))
             {
                 retval = item;
                 return true;
@@ -511,7 +511,7 @@ namespace Genrpg.MapServer.Maps
                 return currentItem;
             }
 
-            if (!_idDict[StrUtils.GetIdHash(objId) % IdHashSize].TryRemove(objId, out MapObjectGridItem gridItem))
+            if (!_idDict[StrUtils.GetPrefixIdHash(objId) % IdHashSize].TryRemove(objId, out MapObjectGridItem gridItem))
             {
                 return null;
             }

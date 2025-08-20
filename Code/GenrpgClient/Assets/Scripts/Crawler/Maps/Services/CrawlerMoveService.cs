@@ -88,14 +88,17 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private IAwaitableService _awaitableService = null;
         private IPartyService _partyService = null;
         private ICrawlerMapService _mapService = null;
+        private IClientAppService _appService = null;
 
         private CancellationToken _token;
+
+        const float _movesPerSecond = 5.0f;
 
         private PartyData _party = null;
         private CrawlerWorld _world = null;
         private bool _updatingMovement = false;
-        const int maxQueuedMoves = 4;
-        Queue<char> _queuedMoves = new Queue<char>();
+        const int maxQueuedMoves = 2;
+        Queue<char> _movementQueue = new Queue<char>();
 
 
         public async Task Initialize(CancellationToken token)
@@ -137,7 +140,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public async Task EnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
         {
-            _queuedMoves.Clear();
+            _movementQueue.Clear();
             _party = party;
             _world = await _worldService.GetWorld(_party.WorldId);
             _partyService.OnEnterMap(_party);
@@ -150,7 +153,6 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public void FinishMove(CrawlerMoveStatus status)
         {
-            _updatingMovement = false;
             if (status.MovedPosition)
             {
                 _lastMoveStatus.MovesSinceLastCombat++;
@@ -161,7 +163,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public void ClearMovement()
         {
-            _queuedMoves.Clear();
+            _movementQueue.Clear();
             _updatingMovement = false;
         }
 
@@ -172,19 +174,17 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public async Task AddMovementKeyInput(char keyChar, CancellationToken token)
         {
-            if (_queuedMoves.Count < maxQueuedMoves)
+            if (_movementQueue.Count < maxQueuedMoves)
             {
                 if (_movementKeyCodes.Any(x => x.Key == keyChar))
                 {
-                    _queuedMoves.Enqueue(keyChar);
+                    _movementQueue.Enqueue(keyChar);
                 }
             }
             else
             {
                 return;
             }
-
-            //_awaitableService.ForgetAwaitable(UpdateMovementInternal(token));
             await Task.CompletedTask;
         }
 
@@ -200,14 +200,14 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             while (true)
             {
-                if (!CanMoveNow() || _queuedMoves.Count < 1 || _updatingMovement)
+                if (!CanMoveNow() || _movementQueue.Count < 1 || _updatingMovement)
                 {
                     await Awaitable.NextFrameAsync(token);
                     continue;
                 }
 
                 _updatingMovement = true;
-                while (_queuedMoves.TryDequeue(out char currCommand))
+                while (_movementQueue.TryDequeue(out char currCommand))
                 {
                     if (!CanMoveNow())
                     {
@@ -244,18 +244,19 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                     if (status.MoveIsComplete)
                     {
-                        _queuedMoves.Clear();
+                        ClearMovement();
                     }
                 }
+                _updatingMovement = false;
             }
         }
 
-        const int moveFrames = 6;
         public async Awaitable Move(CrawlerMoveStatus status, int forward, int right, CancellationToken token)
         {
             float sin = (float)Math.Round(MathF.Sin(-_party.CurrPos.Rot * Mathf.PI / 180f));
             float cos = (float)Math.Round(Mathf.Cos(-_party.CurrPos.Rot * Mathf.PI / 180f));
 
+            int moveFrames = (int)(_appService.TargetFrameRate / _movesPerSecond);
             float nx = cos * forward + sin * right;
             float nz = sin * forward - cos * right;
 
@@ -278,7 +279,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     ez < 0 || ez >= mapRoot.Map.Height)
                 {
                     // Bonk
-                    await ShowHittingWall(token);
+                    await ShowHittingWall(status, token);
                     return;
                 }
             }
@@ -288,7 +289,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             if (WallTypes.IsBlockingType(status.BlockBits))
             {
                 // Bonk
-                await ShowHittingWall(token);
+                await ShowHittingWall(status, token);
                 return;
             }
 
@@ -364,8 +365,10 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _party.CurrPos.Z = ez;
         }
 
-        private async Awaitable ShowHittingWall(CancellationToken token)
+        private async Awaitable ShowHittingWall(CrawlerMoveStatus status, CancellationToken token)
         {
+            status.MoveIsComplete = true;
+            status.MovedPosition = false;
             _dispatcher.Dispatch(new ShowFloatingText("Bonk!", EFloatingTextArt.Error));
             ClearMovement();
             await Awaitable.NextFrameAsync(token);
@@ -378,7 +381,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             float endRot = _party.CurrPos.Rot + delta * 90;
 
             float deltaRot = endRot - startRot;
-
+            int moveFrames = (int)(_appService.TargetFrameRate / _movesPerSecond);
             int frames = moveFrames * 1;
 
             if (fastRotate)

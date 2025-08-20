@@ -163,8 +163,7 @@
           "EntityId": 15,
           "Amount": 2.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role2default",
@@ -319,8 +318,7 @@
           "EntityId": 16,
           "Amount": 3.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role3default",
@@ -467,8 +465,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role4default",
@@ -663,8 +660,7 @@
           "EntityId": 16,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role5default",
@@ -834,8 +830,7 @@
           "EntityId": 17,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role6default",
@@ -1033,8 +1028,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role7default",
@@ -1235,8 +1229,7 @@
           "EntityId": 16,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role8default",
@@ -1466,8 +1459,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role9default",
@@ -1631,8 +1623,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role10default",
@@ -1782,8 +1773,7 @@
           "EntityId": 17,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role11default",
@@ -2002,8 +1992,7 @@
           "EntityId": 13,
           "Amount": 2.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role12default",
@@ -2215,8 +2204,7 @@
           "EntityId": 17,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role100default",
@@ -2238,8 +2226,7 @@
           "EntityId": 17,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role101default",
@@ -2266,8 +2253,7 @@
           "EntityId": 14,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role102default",
@@ -2290,8 +2276,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role103default",
@@ -2318,8 +2303,7 @@
           "EntityId": 15,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role104default",
@@ -2346,8 +2330,7 @@
           "EntityId": 13,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     },
     {
       "Id": "role105default",
@@ -2370,14 +2353,13 @@
           "EntityId": 16,
           "Amount": 1.0
         }
-      ],
-      "SaveTime": "2025-07-13T22:24:49.109Z"
+      ]
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "RoleSettings",
-    "SaveTime": "2025-06-26T21:14:28.532Z"
+    "SaveTime": "2025-08-09T14:59:52.741Z"
   },
-  "SaveTime": "2025-06-26T21:14:28.532Z"
+  "SaveTime": "2025-08-09T14:59:52.741Z"
 }

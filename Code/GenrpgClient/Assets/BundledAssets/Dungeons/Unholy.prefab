@@ -11,8 +11,19 @@ PrefabInstance:
     - target: {fileID: 214490968233204535, guid: 11b55c527a9cd84439697569a19cdd1b,
         type: 3}
       propertyPath: m_Name
-      value: Dungeon
+      value: Unholy
       objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 11b55c527a9cd84439697569a19cdd1b,
+        type: 3}
+      propertyPath: Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 11b55c527a9cd84439697569a19cdd1b,
+        type: 3}
+      propertyPath: Materials.Array.data[0].Materials
+      value: 
+      objectReference: {fileID: 378727158912712656, guid: a201115725af4d744ab9477da7b5bb9f,
+        type: 3}
     - target: {fileID: 6955369627717100474, guid: 11b55c527a9cd84439697569a19cdd1b,
         type: 3}
       propertyPath: m_LocalPosition.x

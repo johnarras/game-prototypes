@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 42,
   "Name": "Wyrm",
-  "Desc": "A serpent long with scales of steel,\r\nIts power grand, its bite can heal.\r\nIn myths and lore, its tale is told,\r\nA creature feared and yet so old.\r\n"
+  "Desc": "A serpent long with scales of steel,\nIts power grand, its bite can heal.\nIn myths and lore, its tale is told,\nA creature feared and yet so old.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

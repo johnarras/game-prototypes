@@ -4,7 +4,6 @@ using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,8 +23,6 @@ namespace Genrpg.Editor.Importers.Crawler
             RiddleSettings settings = gs.data.Get<RiddleSettings>(null);
 
             List<Riddle> riddles = new List<Riddle>();
-
-            gs.LookedAtObjects.Add(settings);
 
             long riddleId = 0;
 
@@ -90,6 +87,8 @@ namespace Genrpg.Editor.Importers.Crawler
             }
 
             settings.SetData(riddles);
+
+            gs.LookedAtObjects.Add(settings);
 
             await Task.CompletedTask;
             return true;

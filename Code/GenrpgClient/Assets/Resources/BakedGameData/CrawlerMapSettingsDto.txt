@@ -7,6 +7,7 @@
       "IdKey": 1,
       "Name": "Dungeon",
       "Desc": "",
+      "AtlasPrefix": "",
       "Icon": "",
       "Art": "",
       "GenTypes": [
@@ -82,10 +83,10 @@
         },
         {
           "Name": "Outdoors",
-          "MinWidth": 15,
-          "MaxWidth": 20,
-          "MinHeight": 15,
-          "MaxHeight": 20,
+          "MinWidth": 18,
+          "MaxWidth": 23,
+          "MinHeight": 18,
+          "MaxHeight": 23,
           "MinFloors": 1,
           "MaxFloors": 1,
           "SpecialTileChance": 0.05,
@@ -94,8 +95,8 @@
           "MaxWallChance": 0.6,
           "TrapTileChance": 0.04,
           "EffectTileChance": 0.02,
-          "MinCorridorDensity": 2.0,
-          "MaxCorridorDensity": 4.0,
+          "MinCorridorDensity": 2.5,
+          "MaxCorridorDensity": 5.0,
           "WeightedZones": [
             {
               "Name": "None",
@@ -117,7 +118,8 @@
       "MinNpcQuantity": 1,
       "MaxNpcQuantity": 1,
       "MinNpcSeparation": 3,
-      "MinDistanceToEntrance": 3
+      "MinDistanceToEntrance": 3,
+      "RoomIsDifferentZoneTypeChance": 0.25
     },
     {
       "Id": "crawlermaptype2default",
@@ -230,9 +232,10 @@
     "MinTeleportQuantity": 1,
     "MaxTeleportQuantity": 6,
     "UnitKeywordChance": 0.25,
-    "MinQuestUnlockDungeonLevel": 5,
+    "MinQuestUnlockDungeonLevel": 8,
+    "MinQuestItemDungeonLevel": 6,
     "Name": "CrawlerMapSettings",
-    "SaveTime": "2025-05-31T14:06:08.758Z"
+    "SaveTime": "2025-08-13T13:14:00.447Z"
   },
-  "SaveTime": "2025-05-31T14:06:08.758Z"
+  "SaveTime": "2025-08-13T13:14:00.447Z"
 }

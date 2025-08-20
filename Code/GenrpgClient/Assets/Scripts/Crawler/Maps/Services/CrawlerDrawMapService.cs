@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
-using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -11,6 +9,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -37,7 +36,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             await Awaitable.MainThreadAsync();
             try
             {
-                if (_crawlerMapRoot == null || _crawlerMapRoot.DungeonAssets == null)
+                if (_crawlerMapRoot == null || _crawlerMapRoot.AssetBlocks.Any(a => !a.Value.IsReady()))
                 {
                     return;
                 }

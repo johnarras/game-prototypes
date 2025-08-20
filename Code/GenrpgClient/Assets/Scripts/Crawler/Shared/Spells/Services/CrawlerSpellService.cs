@@ -447,7 +447,8 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 attackQuantity++;
             }
 
-            long luckBonus = _crawlerStatService.GetStatBonus(party, caster, StatTypes.Luck);
+            long luckBonus = (long)(_crawlerStatService.GetStatBonus(party, caster, StatTypes.Luck) *
+                combatSettings.LuckBonusHitChanceScale);
 
             long luckyAttackCount = 0;
             for (int a = 0; a < attackQuantity; a++)
@@ -710,7 +711,11 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 int framesComplete = 0;
                 while (++framesComplete < delayFrames)
                 {
-                    await Awaitable.NextFrameAsync(token);
+                    await Awaitable.NextFrameAsync();
+                    if (!TokenUtils.IsValid(token))
+                    {
+                        return;
+                    }
                     if (_crawlerService.TriggerSpeedupNow())
                     {
                         break;
@@ -847,21 +852,22 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         double damageScale = 1.0f;
                         long elementBits = (long)(1 << (int)effect.ElementTypeId);
 
+                        ElementType etype = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(effect.ElementTypeId);
                         double finalCritChance = hit.CritChance;
                         if (FlagUtils.IsSet(target.ResistBits, elementBits))
                         {
                             if (!FlagUtils.IsSet(target.VulnBits, elementBits))
                             {
-                                damageScale /= combatSettings.VulnerabilityDamageMult;
-                                finalCritChance += combatSettings.ResistAddCritChance;
+                                damageScale *= etype.ResistDamagePercent / 100.0;
+                                finalCritChance += etype.ResistCritPercentMod;
                                 extraMessageBits |= ExtraMessageBits.Resists;
                             }
                         }
                         else if (FlagUtils.IsSet(target.VulnBits, elementBits))
                         {
-                            damageScale *= combatSettings.VulnerabilityDamageMult;
+                            damageScale *= etype.VulnDamagePercent / 100.0;
                             extraMessageBits |= ExtraMessageBits.Vulnerable;
-                            finalCritChance += combatSettings.VulnAddCritChance;
+                            finalCritChance += etype.VulnCritPercentMod;
                         }
 
                         // Don't allow full crit chance per hit, too strong.

@@ -16,13 +16,14 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
         protected override string QuestVerb => "Fully Explore";
 
-        public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, 
+        public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
                 MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
 
             CrawlerQuest quest = new CrawlerQuest()
             {
                 CrawlerMapId = targetMap.Map.BaseCrawlerMapId,
+                TargetEntityId = targetMap.Map.BaseCrawlerMapId,
                 CrawlerQuestTypeId = CrawlerQuestTypes.ExploreMap,
                 IdKey = CollectionUtils.GetNextIdKey(world.Quests),
                 Name = "Fully Explore a Level in " + targetMap.Map.Name,

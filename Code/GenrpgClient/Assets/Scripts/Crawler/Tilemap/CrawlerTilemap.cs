@@ -10,7 +10,6 @@ using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using System.Collections.Generic;
@@ -77,9 +76,9 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
 
 
-        private ICrawlerWorldService _worldService;
-        private ICrawlerMapService _crawlerMapService;
-        private ICrawlerService _crawlerService;
+        private ICrawlerWorldService _worldService = null;
+        private ICrawlerMapService _crawlerMapService = null;
+        private ICrawlerService _crawlerService = null;
 
         private CrawlerMap _map = null;
         private PartyData _party = null;
@@ -311,13 +310,6 @@ namespace Assets.Scripts.Crawler.Tilemaps
             ShowMapWithCenter(_xCenter, _zCenter, false);
         }
 
-        private void ShowBlank(int x, int z)
-        {
-            for (int l = 0; l < _mapDepth; l++)
-            {
-                _tiles[x, z, l].sprite = _blankSprite;
-            }
-        }
         private void ShowGray(int x, int z)
         {
             for (int l = 0; l < _mapDepth; l++)
@@ -340,7 +332,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
         private void OnShowPartyMinimap(ShowPartyMinimap partyMap)
         {
             _party = partyMap.Party;
-            if (_party == null)
+            if (_party == null || _party.CurrPos == null)
             {
                 return;
             }
@@ -484,7 +476,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     if (
                         // JRAJRA TODO only comment out the next line to test tilemap updates
-                        //false && 
+                        // false &&
                         _mapStatus != null && _mapStatus.MapId == _map.IdKey &&
                         (InitFromExplicitData || _map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors) &&
                         !_party.CompletedMaps.HasBit(_map.IdKey) && !_mapStatus.Visited.HasBit(index))
@@ -549,12 +541,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     long riddleId = _map.GetEntityId(x, z, EntityTypes.Riddle);
                     if (riddleId > 0)
                     {
-                        RiddleType rtype = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(_map.RiddleHints.RiddleTypeId);
-                        if (rtype == null) // || !rtype.IsObject)
-                        {
-                            _tiles[ix, iz, TilemapIndexes.Object].sprite = _riddleSprite;
-                            didSetObject = true;
-                        }
+                        _tiles[ix, iz, TilemapIndexes.Object].sprite = _riddleSprite;
+                        didSetObject = true;
                     }
 
                     if (_map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon && !showGhostImage)

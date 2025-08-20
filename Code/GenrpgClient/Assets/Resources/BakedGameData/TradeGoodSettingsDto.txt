@@ -14,8 +14,7 @@
       "UnitWeight": 50,
       "PricePerUnit": 800,
       "PricePerWeight": 16,
-      "YearlyProduction": 5000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000000
     },
     {
       "Id": "tradegood2default",
@@ -30,8 +29,7 @@
       "UnitWeight": 50,
       "PricePerUnit": 600,
       "PricePerWeight": 12,
-      "YearlyProduction": 3500000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 3500000
     },
     {
       "Id": "tradegood3default",
@@ -46,8 +44,7 @@
       "UnitWeight": 50,
       "PricePerUnit": 1500,
       "PricePerWeight": 30,
-      "YearlyProduction": 50000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 50000
     },
     {
       "Id": "tradegood4default",
@@ -62,8 +59,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 2500,
       "PricePerWeight": 100,
-      "YearlyProduction": 1000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1000000
     },
     {
       "Id": "tradegood5default",
@@ -78,8 +74,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 2000,
       "PricePerWeight": 80,
-      "YearlyProduction": 1500000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1500000
     },
     {
       "Id": "tradegood6default",
@@ -94,8 +89,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 5000,
       "PricePerWeight": 200,
-      "YearlyProduction": 50000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 50000
     },
     {
       "Id": "tradegood7default",
@@ -110,8 +104,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 1800,
       "PricePerWeight": 72,
-      "YearlyProduction": 60000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 60000
     },
     {
       "Id": "tradegood8default",
@@ -126,8 +119,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 1000,
       "PricePerWeight": 40,
-      "YearlyProduction": 800000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800000
     },
     {
       "Id": "tradegood9default",
@@ -142,8 +134,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 1500,
       "PricePerWeight": 75,
-      "YearlyProduction": 250000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 250000
     },
     {
       "Id": "tradegood10default",
@@ -158,8 +149,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 4000,
       "PricePerWeight": 800,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood11default",
@@ -174,8 +164,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 3000,
       "PricePerWeight": 600,
-      "YearlyProduction": 80000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 80000
     },
     {
       "Id": "tradegood12default",
@@ -190,8 +179,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2500,
       "PricePerWeight": 250,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood13default",
@@ -206,8 +194,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 1800,
       "PricePerWeight": 180,
-      "YearlyProduction": 100000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100000
     },
     {
       "Id": "tradegood14default",
@@ -222,8 +209,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2200,
       "PricePerWeight": 220,
-      "YearlyProduction": 8000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 8000
     },
     {
       "Id": "tradegood15default",
@@ -238,8 +224,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 3500,
       "PricePerWeight": 350,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood16default",
@@ -254,8 +239,7 @@
       "UnitWeight": 8,
       "PricePerUnit": 1200,
       "PricePerWeight": 150,
-      "YearlyProduction": 25000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 25000
     },
     {
       "Id": "tradegood17default",
@@ -270,8 +254,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 500,
       "PricePerWeight": 100,
-      "YearlyProduction": 90000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 90000
     },
     {
       "Id": "tradegood18default",
@@ -286,8 +269,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 1200,
       "PricePerWeight": 48,
-      "YearlyProduction": 600000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 600000
     },
     {
       "Id": "tradegood19default",
@@ -302,8 +284,7 @@
       "UnitWeight": 25,
       "PricePerUnit": 1500,
       "PricePerWeight": 60,
-      "YearlyProduction": 100000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100000
     },
     {
       "Id": "tradegood20default",
@@ -318,8 +299,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 1500,
       "PricePerWeight": 150,
-      "YearlyProduction": 400000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 400000
     },
     {
       "Id": "tradegood21default",
@@ -334,8 +314,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2500,
       "PricePerWeight": 250,
-      "YearlyProduction": 50000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 50000
     },
     {
       "Id": "tradegood22default",
@@ -350,8 +329,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2000,
       "PricePerWeight": 200,
-      "YearlyProduction": 50000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 50000
     },
     {
       "Id": "tradegood23default",
@@ -366,8 +344,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 3500,
       "PricePerWeight": 350,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood24default",
@@ -382,8 +359,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 1800,
       "PricePerWeight": 180,
-      "YearlyProduction": 70000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 70000
     },
     {
       "Id": "tradegood25default",
@@ -398,8 +374,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 6000,
       "PricePerWeight": 1200,
-      "YearlyProduction": 150000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 150000
     },
     {
       "Id": "tradegood26default",
@@ -414,8 +389,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 10000,
       "PricePerWeight": 2000,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood27default",
@@ -430,8 +404,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 5000,
       "PricePerWeight": 1000,
-      "YearlyProduction": 800000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800000
     },
     {
       "Id": "tradegood28default",
@@ -446,8 +419,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 4500,
       "PricePerWeight": 900,
-      "YearlyProduction": 25000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 25000
     },
     {
       "Id": "tradegood29default",
@@ -462,8 +434,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 50000,
       "PricePerWeight": 50000,
-      "YearlyProduction": 2000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000
     },
     {
       "Id": "tradegood30default",
@@ -478,8 +449,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 15000,
       "PricePerWeight": 7500,
-      "YearlyProduction": 4000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 4000
     },
     {
       "Id": "tradegood31default",
@@ -494,8 +464,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 45000,
       "PricePerWeight": 9000,
-      "YearlyProduction": 3000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 3000
     },
     {
       "Id": "tradegood32default",
@@ -510,8 +479,7 @@
       "UnitWeight": 8,
       "PricePerUnit": 30000,
       "PricePerWeight": 3750,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood33default",
@@ -526,8 +494,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 12000,
       "PricePerWeight": 120,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood34default",
@@ -542,8 +509,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 8000,
       "PricePerWeight": 80,
-      "YearlyProduction": 300000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 300000
     },
     {
       "Id": "tradegood35default",
@@ -558,8 +524,7 @@
       "UnitWeight": 50,
       "PricePerUnit": 40000,
       "PricePerWeight": 800,
-      "YearlyProduction": 400,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 400
     },
     {
       "Id": "tradegood36default",
@@ -574,8 +539,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 4000,
       "PricePerWeight": 40,
-      "YearlyProduction": 500000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500000
     },
     {
       "Id": "tradegood37default",
@@ -590,8 +554,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 5000,
       "PricePerWeight": 50,
-      "YearlyProduction": 80000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 80000
     },
     {
       "Id": "tradegood38default",
@@ -606,8 +569,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 25000,
       "PricePerWeight": 250,
-      "YearlyProduction": 25000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 25000
     },
     {
       "Id": "tradegood39default",
@@ -622,8 +584,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 18000,
       "PricePerWeight": 180,
-      "YearlyProduction": 10000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000
     },
     {
       "Id": "tradegood40default",
@@ -638,8 +599,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 40000,
       "PricePerWeight": 400,
-      "YearlyProduction": 2000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000
     },
     {
       "Id": "tradegood41default",
@@ -654,8 +614,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 7000,
       "PricePerWeight": 350,
-      "YearlyProduction": 150000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 150000
     },
     {
       "Id": "tradegood42default",
@@ -670,8 +629,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 5500,
       "PricePerWeight": 275,
-      "YearlyProduction": 40000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 40000
     },
     {
       "Id": "tradegood43default",
@@ -686,8 +644,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 9000,
       "PricePerWeight": 450,
-      "YearlyProduction": 10000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000
     },
     {
       "Id": "tradegood44default",
@@ -702,8 +659,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 4500,
       "PricePerWeight": 225,
-      "YearlyProduction": 60000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 60000
     },
     {
       "Id": "tradegood45default",
@@ -718,8 +674,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 10000,
       "PricePerWeight": 10000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood46default",
@@ -734,8 +689,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 120000,
       "PricePerWeight": 120000,
-      "YearlyProduction": 500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500
     },
     {
       "Id": "tradegood47default",
@@ -750,8 +704,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 11000,
       "PricePerWeight": 11000,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood48default",
@@ -766,8 +719,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 16000,
       "PricePerWeight": 16000,
-      "YearlyProduction": 2500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2500
     },
     {
       "Id": "tradegood49default",
@@ -782,8 +734,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 1500,
       "PricePerWeight": 75,
-      "YearlyProduction": 2000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000000
     },
     {
       "Id": "tradegood50default",
@@ -798,8 +749,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 15000,
       "PricePerWeight": 1500,
-      "YearlyProduction": 40000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 40000
     },
     {
       "Id": "tradegood51default",
@@ -814,8 +764,7 @@
       "UnitWeight": 15,
       "PricePerUnit": 8000,
       "PricePerWeight": 533,
-      "YearlyProduction": 150000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 150000
     },
     {
       "Id": "tradegood52default",
@@ -830,8 +779,7 @@
       "UnitWeight": 12,
       "PricePerUnit": 6000,
       "PricePerWeight": 500,
-      "YearlyProduction": 30000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 30000
     },
     {
       "Id": "tradegood53default",
@@ -846,8 +794,7 @@
       "UnitWeight": 50,
       "PricePerUnit": 4000,
       "PricePerWeight": 80,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood54default",
@@ -862,8 +809,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 3000,
       "PricePerWeight": 600,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood55default",
@@ -878,8 +824,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 4000,
       "PricePerWeight": 800,
-      "YearlyProduction": 10000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000000
     },
     {
       "Id": "tradegood56default",
@@ -894,8 +839,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 35000,
       "PricePerWeight": 35000,
-      "YearlyProduction": 1000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1000000
     },
     {
       "Id": "tradegood57default",
@@ -910,8 +854,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 6000,
       "PricePerWeight": 1200,
-      "YearlyProduction": 25000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 25000
     },
     {
       "Id": "tradegood58default",
@@ -926,8 +869,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 16000,
       "PricePerWeight": 16000,
-      "YearlyProduction": 40000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 40000
     },
     {
       "Id": "tradegood59default",
@@ -942,8 +884,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 24000,
       "PricePerWeight": 24000,
-      "YearlyProduction": 12500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 12500
     },
     {
       "Id": "tradegood60default",
@@ -958,8 +899,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 40000,
       "PricePerWeight": 40000,
-      "YearlyProduction": 250,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 250
     },
     {
       "Id": "tradegood61default",
@@ -974,8 +914,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2500,
       "PricePerWeight": 250,
-      "YearlyProduction": 350000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 350000
     },
     {
       "Id": "tradegood62default",
@@ -990,8 +929,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 5000,
       "PricePerWeight": 500,
-      "YearlyProduction": 200000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 200000
     },
     {
       "Id": "tradegood63default",
@@ -1006,8 +944,7 @@
       "UnitWeight": 20,
       "PricePerUnit": 6000,
       "PricePerWeight": 300,
-      "YearlyProduction": 30000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 30000
     },
     {
       "Id": "tradegood64default",
@@ -1022,8 +959,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 16000,
       "PricePerWeight": 8000,
-      "YearlyProduction": 60000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 60000
     },
     {
       "Id": "tradegood65default",
@@ -1038,8 +974,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 40000,
       "PricePerWeight": 20000,
-      "YearlyProduction": 4000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 4000
     },
     {
       "Id": "tradegood66default",
@@ -1054,8 +989,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 40000,
       "PricePerWeight": 8000,
-      "YearlyProduction": 2000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000
     },
     {
       "Id": "tradegood67default",
@@ -1070,8 +1004,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 35000,
       "PricePerWeight": 7000,
-      "YearlyProduction": 3000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 3000
     },
     {
       "Id": "tradegood68default",
@@ -1086,8 +1019,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 25000,
       "PricePerWeight": 2500,
-      "YearlyProduction": 250000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 250000
     },
     {
       "Id": "tradegood69default",
@@ -1102,8 +1034,7 @@
       "UnitWeight": 12,
       "PricePerUnit": 40000,
       "PricePerWeight": 3333,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood70default",
@@ -1118,8 +1049,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 8000,
       "PricePerWeight": 8000,
-      "YearlyProduction": 10000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000
     },
     {
       "Id": "tradegood71default",
@@ -1134,8 +1064,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 7000,
       "PricePerWeight": 7000,
-      "YearlyProduction": 10000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000
     },
     {
       "Id": "tradegood72default",
@@ -1150,8 +1079,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 6000,
       "PricePerWeight": 6000,
-      "YearlyProduction": 12000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 12000
     },
     {
       "Id": "tradegood73default",
@@ -1166,8 +1094,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 30000,
       "PricePerWeight": 15000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood74default",
@@ -1182,8 +1109,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 100000,
       "PricePerWeight": 100000,
-      "YearlyProduction": 500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500
     },
     {
       "Id": "tradegood75default",
@@ -1198,8 +1124,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 150000,
       "PricePerWeight": 150000,
-      "YearlyProduction": 100,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100
     },
     {
       "Id": "tradegood76default",
@@ -1214,8 +1139,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 18000,
       "PricePerWeight": 9000,
-      "YearlyProduction": 2500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2500
     },
     {
       "Id": "tradegood77default",
@@ -1230,8 +1154,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 2000000,
       "PricePerWeight": 2000000,
-      "YearlyProduction": 5,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5
     },
     {
       "Id": "tradegood78default",
@@ -1246,8 +1169,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 1500000,
       "PricePerWeight": 1500000,
-      "YearlyProduction": 20,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20
     },
     {
       "Id": "tradegood79default",
@@ -1262,8 +1184,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 45000,
       "PricePerWeight": 45000,
-      "YearlyProduction": 1500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1500
     },
     {
       "Id": "tradegood80default",
@@ -1278,8 +1199,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 60000,
       "PricePerWeight": 60000,
-      "YearlyProduction": 800,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800
     },
     {
       "Id": "tradegood81default",
@@ -1294,8 +1214,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 140000,
       "PricePerWeight": 140000,
-      "YearlyProduction": 240,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 240
     },
     {
       "Id": "tradegood82default",
@@ -1310,8 +1229,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 35000,
       "PricePerWeight": 35000,
-      "YearlyProduction": 4000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 4000
     },
     {
       "Id": "tradegood83default",
@@ -1326,8 +1244,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 30000,
       "PricePerWeight": 30000,
-      "YearlyProduction": 3000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 3000
     },
     {
       "Id": "tradegood84default",
@@ -1342,8 +1259,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 50000,
       "PricePerWeight": 50000,
-      "YearlyProduction": 500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500
     },
     {
       "Id": "tradegood85default",
@@ -1358,8 +1274,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 2000,
       "PricePerWeight": 400,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood86default",
@@ -1374,8 +1289,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 1500,
       "PricePerWeight": 150,
-      "YearlyProduction": 20000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 20000
     },
     {
       "Id": "tradegood87default",
@@ -1390,8 +1304,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 5000,
       "PricePerWeight": 500,
-      "YearlyProduction": 1000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1000
     },
     {
       "Id": "tradegood88default",
@@ -1406,8 +1319,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 15000,
       "PricePerWeight": 15000,
-      "YearlyProduction": 500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500
     },
     {
       "Id": "tradegood89default",
@@ -1422,8 +1334,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 15000,
       "PricePerWeight": 15000,
-      "YearlyProduction": 6000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 6000
     },
     {
       "Id": "tradegood90default",
@@ -1438,8 +1349,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 30000,
       "PricePerWeight": 30000,
-      "YearlyProduction": 250,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 250
     },
     {
       "Id": "tradegood91default",
@@ -1454,8 +1364,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 36000,
       "PricePerWeight": 36000,
-      "YearlyProduction": 500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 500
     },
     {
       "Id": "tradegood92default",
@@ -1470,8 +1379,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 70000,
       "PricePerWeight": 14000,
-      "YearlyProduction": 1200,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1200
     },
     {
       "Id": "tradegood93default",
@@ -1486,8 +1394,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 60000,
       "PricePerWeight": 60000,
-      "YearlyProduction": 150,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 150
     },
     {
       "Id": "tradegood94default",
@@ -1502,8 +1409,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 12500,
       "PricePerWeight": 12500,
-      "YearlyProduction": 2000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000
     },
     {
       "Id": "tradegood95default",
@@ -1518,8 +1424,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 50000,
       "PricePerWeight": 50000,
-      "YearlyProduction": 400,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 400
     },
     {
       "Id": "tradegood96default",
@@ -1534,8 +1439,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 2000000,
       "PricePerWeight": 2000000,
-      "YearlyProduction": 30,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 30
     },
     {
       "Id": "tradegood97default",
@@ -1550,8 +1454,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 70000,
       "PricePerWeight": 70000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood98default",
@@ -1566,8 +1469,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 70000,
       "PricePerWeight": 70000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood99default",
@@ -1582,8 +1484,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 180000,
       "PricePerWeight": 180000,
-      "YearlyProduction": 100,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100
     },
     {
       "Id": "tradegood100default",
@@ -1598,8 +1499,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 200000,
       "PricePerWeight": 200000,
-      "YearlyProduction": 120,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 120
     },
     {
       "Id": "tradegood101default",
@@ -1614,8 +1514,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 175000,
       "PricePerWeight": 175000,
-      "YearlyProduction": 160,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 160
     },
     {
       "Id": "tradegood102default",
@@ -1630,8 +1529,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 225000,
       "PricePerWeight": 225000,
-      "YearlyProduction": 140,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 140
     },
     {
       "Id": "tradegood103default",
@@ -1646,8 +1544,7 @@
       "UnitWeight": 2,
       "PricePerUnit": 22000,
       "PricePerWeight": 11000,
-      "YearlyProduction": 1000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1000
     },
     {
       "Id": "tradegood104default",
@@ -1662,8 +1559,7 @@
       "UnitWeight": 80,
       "PricePerUnit": 90000,
       "PricePerWeight": 1125,
-      "YearlyProduction": 1000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1000
     },
     {
       "Id": "tradegood105default",
@@ -1678,8 +1574,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 15000,
       "PricePerWeight": 150,
-      "YearlyProduction": 4000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 4000
     },
     {
       "Id": "tradegood106default",
@@ -1694,8 +1589,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 50000,
       "PricePerWeight": 50000,
-      "YearlyProduction": 400,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 400
     },
     {
       "Id": "tradegood107default",
@@ -1710,8 +1604,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 5000,
       "PricePerWeight": 5000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood108default",
@@ -1726,8 +1619,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 7500,
       "PricePerWeight": 7500,
-      "YearlyProduction": 10000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000
     },
     {
       "Id": "tradegood109default",
@@ -1742,8 +1634,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 120000,
       "PricePerWeight": 12000,
-      "YearlyProduction": 800,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800
     },
     {
       "Id": "tradegood110default",
@@ -1758,8 +1649,7 @@
       "UnitWeight": 150,
       "PricePerUnit": 60000,
       "PricePerWeight": 400,
-      "YearlyProduction": 2000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 2000
     },
     {
       "Id": "tradegood111default",
@@ -1774,8 +1664,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 1000000,
       "PricePerWeight": 1000000,
-      "YearlyProduction": 1,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 1
     },
     {
       "Id": "tradegood112default",
@@ -1790,8 +1679,7 @@
       "UnitWeight": 5,
       "PricePerUnit": 4000,
       "PricePerWeight": 800,
-      "YearlyProduction": 10000000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 10000000
     },
     {
       "Id": "tradegood113default",
@@ -1806,8 +1694,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2500,
       "PricePerWeight": 250,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood114default",
@@ -1822,8 +1709,7 @@
       "UnitWeight": 100,
       "PricePerUnit": 5000,
       "PricePerWeight": 50,
-      "YearlyProduction": 80000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 80000
     },
     {
       "Id": "tradegood115default",
@@ -1838,8 +1724,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 2000000,
       "PricePerWeight": 2000000,
-      "YearlyProduction": 80,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 80
     },
     {
       "Id": "tradegood116default",
@@ -1854,8 +1739,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 2500000,
       "PricePerWeight": 2500000,
-      "YearlyProduction": 100,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100
     },
     {
       "Id": "tradegood117default",
@@ -1870,8 +1754,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 3000000,
       "PricePerWeight": 3000000,
-      "YearlyProduction": 90,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 90
     },
     {
       "Id": "tradegood118default",
@@ -1886,8 +1769,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 3500000,
       "PricePerWeight": 3500000,
-      "YearlyProduction": 110,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 110
     },
     {
       "Id": "tradegood119default",
@@ -1902,8 +1784,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 3500,
       "PricePerWeight": 350,
-      "YearlyProduction": 4500,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 4500
     },
     {
       "Id": "tradegood120default",
@@ -1918,8 +1799,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 70000,
       "PricePerWeight": 70000,
-      "YearlyProduction": 5000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 5000
     },
     {
       "Id": "tradegood121default",
@@ -1934,8 +1814,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 1800,
       "PricePerWeight": 180,
-      "YearlyProduction": 100000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 100000
     },
     {
       "Id": "tradegood122default",
@@ -1950,8 +1829,7 @@
       "UnitWeight": 1,
       "PricePerUnit": 60000,
       "PricePerWeight": 60000,
-      "YearlyProduction": 800,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800
     },
     {
       "Id": "tradegood123default",
@@ -1966,8 +1844,7 @@
       "UnitWeight": 10,
       "PricePerUnit": 2500,
       "PricePerWeight": 250,
-      "YearlyProduction": 15000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 15000
     },
     {
       "Id": "tradegood124default",
@@ -1982,14 +1859,13 @@
       "UnitWeight": 5,
       "PricePerUnit": 5000,
       "PricePerWeight": 1000,
-      "YearlyProduction": 800000,
-      "SaveTime": "2025-07-20T06:16:18.869Z"
+      "YearlyProduction": 800000
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "TradeGoodSettings",
-    "SaveTime": "2025-07-19T20:53:27.953Z"
+    "SaveTime": "2025-08-06T23:39:11.503Z"
   },
-  "SaveTime": "2025-07-19T20:53:27.953Z"
+  "SaveTime": "2025-08-06T23:39:11.503Z"
 }

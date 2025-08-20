@@ -1,11 +1,5 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Rendering.Universal;
 namespace Assets.Scripts.Dungeons
 {
     public class DungeonAssets : BaseBehaviour
@@ -32,11 +26,11 @@ namespace Assets.Scripts.Dungeons
             }
             else if (assetIndex == DungeonAssetIndex.Floors)
             {
-               return Floors;
+                return Floors;
             }
             else if (assetIndex == DungeonAssetIndex.Ceilings)
             {
-                return Ceilings;            
+                return Ceilings;
             }
             else if (assetIndex == DungeonAssetIndex.Pillars)
             {
@@ -48,8 +42,5 @@ namespace Assets.Scripts.Dungeons
             }
             return Walls;
         }
-
-
-        public string BGImageName;
     }
 }

@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 7,
   "Name": "Dungeon",
-  "Desc": "Beneath the ground, in darkness deep,\r\nWhere creatures lurk and shadows creep.\r\nAdventurers brave with torches bright,\r\nExplore its depths by flickering light.\r\n"
+  "Desc": "Beneath the ground, in darkness deep,\nWhere creatures lurk and shadows creep.\nAdventurers brave with torches bright,\nExplore its depths by flickering light.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

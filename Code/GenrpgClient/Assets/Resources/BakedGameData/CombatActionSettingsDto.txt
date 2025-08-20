@@ -61,8 +61,7 @@
       "Name": "Disabled",
       "Desc": "",
       "WeaponDamageScale": 1.0,
-      "StatBonusDamageScale": 1.0,
-      "SaveTime": "2025-06-25T21:08:25.528Z"
+      "StatBonusDamageScale": 1.0
     }
   ],
   "Parent": {

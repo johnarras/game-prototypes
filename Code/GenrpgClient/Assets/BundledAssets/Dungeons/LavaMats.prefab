@@ -61,37 +61,42 @@ PrefabInstance:
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: CeilingMat.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: DoorMat.Array.data[0].Mat
       value: 
-      objectReference: {fileID: 2100000, guid: 445e164f944ac294f97ba1874d2f9573, type: 2}
+      objectReference: {fileID: 2100000, guid: 7b3970ad115f7d048a2142ee811a2521, type: 2}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: WallMat.Array.data[0].Mat
       value: 
-      objectReference: {fileID: 2100000, guid: 445e164f944ac294f97ba1874d2f9573, type: 2}
+      objectReference: {fileID: 2100000, guid: 96076232b1ff4474684298f2ac3d7d3c, type: 2}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: FloorMat.Array.data[0].Mat
       value: 
-      objectReference: {fileID: 2100000, guid: 14ad1f221e7212145b7e101832239c9f, type: 2}
+      objectReference: {fileID: 2100000, guid: 65f9142367ee0504d9ab2ac6ec569d4c, type: 2}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: PillarMat.Array.data[0].Mat
       value: 
-      objectReference: {fileID: 2100000, guid: 445e164f944ac294f97ba1874d2f9573, type: 2}
+      objectReference: {fileID: 2100000, guid: b1c468b0c39c03b45ba6a2d6054d06dd, type: 2}
     - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: CeilingMat.Array.data[0].Mat
       value: 
-      objectReference: {fileID: 2100000, guid: c967f5233d78f00428b7a04f3f933785, type: 2}
+      objectReference: {fileID: 2100000, guid: 18d3285c903e2c54f907eb16f9064daa, type: 2}
+    - target: {fileID: 5287119337413958177, guid: 3ac772e19ad9db441ab24177e165dbe7,
+        type: 3}
+      propertyPath: CeilingMat.Array.data[0].Weight
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7538957673609420057, guid: 3ac772e19ad9db441ab24177e165dbe7,
         type: 3}
       propertyPath: m_Name
-      value: Natural3Mats
+      value: LavaMats
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

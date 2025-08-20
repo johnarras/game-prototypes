@@ -8,6 +8,7 @@ using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using MessagePack;
 using Newtonsoft.Json;
@@ -59,8 +60,6 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public MapPosition RecallPos { get; set; } = new MapPosition();
 
         public long NextId { get; set; }
-
-        public long RiddleStatus { get; set; }
 
         public List<CrawlerMapStatus> Maps { get; set; } = new List<CrawlerMapStatus>();
 
@@ -163,6 +162,31 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
             }
             return status;
         }
+        public long GetRiddleStatus()
+        {
+            CrawlerMapStatus currStatus = GetMapStatus(CurrPos.MapId, true);
+
+            return currStatus.RiddleStatus;
+        }
+
+        public void AddRiddleBitIndex(int bitIndex)
+        {
+            CrawlerMapStatus currStatus = GetMapStatus(CurrPos.MapId, true);
+
+            currStatus.RiddleStatus |= (long)(1 << bitIndex);
+        }
+
+        public void RemoveRiddleBitIndex(int bitIndex)
+        {
+            CrawlerMapStatus currStatus = GetMapStatus(CurrPos.MapId, true);
+
+            currStatus.RiddleStatus &= (long)(~(1 << bitIndex));
+        }
+
+        public bool HasRiddleBitIndex(long bitIndex)
+        {
+            return FlagUtils.IsSet(GetRiddleStatus(), (1 << (int)bitIndex));
+        }
     }
 
     [MessagePackObject]
@@ -175,4 +199,5 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
     [MessagePackObject]
     public class PartyDataMapper : NoChildUnitDataMapper<PartyData, PartyDto> { }
+
 }

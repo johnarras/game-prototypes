@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 64,
   "Name": "Vanguard",
-  "Desc": "The front line strong in battle's heat,\r\nWith courage vast, they face defeat.\r\nThey lead the charge, they hold the ground,\r\nIn every fight, they're duty-bound.\r\n"
+  "Desc": "The front line strong in battle's heat,\nWith courage vast, they face defeat.\nThey lead the charge, they hold the ground,\nIn every fight, they're duty-bound.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

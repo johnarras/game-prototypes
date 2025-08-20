@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 51,
   "Name": "Inscription",
-  "Desc": "Carved in stone or parchment thin,\r\nA text of old, a secret's spin.\r\nIt tells of power, of lore untold,\r\nIn ancient scripts, its tales unfold.\r\n"
+  "Desc": "Carved in stone or parchment thin,\nA text of old, a secret's spin.\nIt tells of power, of lore untold,\nIn ancient scripts, its tales unfold.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

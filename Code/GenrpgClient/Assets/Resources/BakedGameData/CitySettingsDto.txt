@@ -63,8 +63,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city2default",
@@ -123,8 +122,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city3default",
@@ -183,8 +181,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city4default",
@@ -246,8 +243,7 @@
           "AnimalId": 12,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city5default",
@@ -314,8 +310,7 @@
           "AnimalId": 15,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city6default",
@@ -367,8 +362,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city7default",
@@ -427,8 +421,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city8default",
@@ -479,8 +472,7 @@
           "AnimalId": 18,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city9default",
@@ -547,8 +539,7 @@
           "AnimalId": 17,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city10default",
@@ -596,8 +587,7 @@
           "AnimalId": 11,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city11default",
@@ -652,8 +642,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city12default",
@@ -705,8 +694,7 @@
           "AnimalId": 11,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city13default",
@@ -762,8 +750,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city14default",
@@ -815,8 +802,7 @@
           "AnimalId": 7,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city15default",
@@ -864,8 +850,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city16default",
@@ -910,8 +895,7 @@
           "AnimalId": 18,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city17default",
@@ -959,8 +943,7 @@
           "AnimalId": 3,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city18default",
@@ -1011,8 +994,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city19default",
@@ -1059,8 +1041,7 @@
           "AnimalId": 4,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city20default",
@@ -1112,8 +1093,7 @@
           "AnimalId": 7,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city21default",
@@ -1165,8 +1145,7 @@
           "AnimalId": 15,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city22default",
@@ -1225,8 +1204,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city23default",
@@ -1282,8 +1260,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city24default",
@@ -1335,8 +1312,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city25default",
@@ -1392,8 +1368,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city26default",
@@ -1449,8 +1424,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city27default",
@@ -1499,8 +1473,7 @@
           "AnimalId": 11,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city28default",
@@ -1552,8 +1525,7 @@
           "AnimalId": 3,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city29default",
@@ -1605,8 +1577,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city30default",
@@ -1654,8 +1625,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city31default",
@@ -1711,8 +1681,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city32default",
@@ -1754,8 +1723,7 @@
           "AnimalId": 11,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city33default",
@@ -1804,8 +1772,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city34default",
@@ -1861,8 +1828,7 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city35default",
@@ -1914,8 +1880,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city36default",
@@ -1967,8 +1932,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city37default",
@@ -2024,8 +1988,7 @@
           "AnimalId": 14,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city38default",
@@ -2078,8 +2041,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city39default",
@@ -2131,8 +2093,7 @@
           "AnimalId": 7,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city40default",
@@ -2180,8 +2141,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city41default",
@@ -2233,8 +2193,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city42default",
@@ -2279,8 +2238,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city43default",
@@ -2325,8 +2283,7 @@
           "AnimalId": 15,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city44default",
@@ -2379,8 +2336,7 @@
           "AnimalId": 10,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city45default",
@@ -2426,8 +2382,7 @@
           "AnimalId": 14,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city46default",
@@ -2483,8 +2438,7 @@
           "AnimalId": 13,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city47default",
@@ -2544,8 +2498,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city48default",
@@ -2587,8 +2540,7 @@
           "AnimalId": 7,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city49default",
@@ -2643,8 +2595,7 @@
           "AnimalId": 18,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city50default",
@@ -2693,8 +2644,7 @@
           "AnimalId": 18,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city51default",
@@ -2739,8 +2689,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city52default",
@@ -2784,8 +2733,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city53default",
@@ -2838,8 +2786,7 @@
           "AnimalId": 4,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city54default",
@@ -2891,8 +2838,7 @@
           "AnimalId": 14,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city55default",
@@ -2944,8 +2890,7 @@
           "AnimalId": 14,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city56default",
@@ -3002,8 +2947,7 @@
           "AnimalId": 16,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city57default",
@@ -3051,8 +2995,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city58default",
@@ -3099,8 +3042,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city59default",
@@ -3141,8 +3083,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city60default",
@@ -3186,8 +3127,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city61default",
@@ -3243,8 +3183,7 @@
           "AnimalId": 10,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city62default",
@@ -3293,8 +3232,7 @@
           "AnimalId": 6,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city63default",
@@ -3346,8 +3284,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city64default",
@@ -3399,8 +3336,7 @@
           "AnimalId": 3,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city65default",
@@ -3448,8 +3384,7 @@
           "AnimalId": 8,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city66default",
@@ -3509,8 +3444,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city67default",
@@ -3560,8 +3494,7 @@
           "AnimalId": 15,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city68default",
@@ -3614,8 +3547,7 @@
           "AnimalId": 11,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city69default",
@@ -3663,8 +3595,7 @@
           "AnimalId": 19,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city70default",
@@ -3717,8 +3648,7 @@
           "AnimalId": 3,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     },
     {
       "Id": "city71default",
@@ -3770,14 +3700,13 @@
           "AnimalId": 5,
           "PriceScale": 10.0
         }
-      ],
-      "SaveTime": "2025-07-20T06:18:34.544Z"
+      ]
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "CitySettings",
-    "SaveTime": "2025-07-19T20:53:27.953Z"
+    "SaveTime": "2025-08-06T23:39:00.128Z"
   },
-  "SaveTime": "2025-07-19T20:53:27.953Z"
+  "SaveTime": "2025-08-06T23:39:00.128Z"
 }

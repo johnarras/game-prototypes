@@ -8,10 +8,7 @@
   "MaxGroupSize": 999,
   "LuckCritChanceAtLevel": 0.05000000074505806,
   "MaxLuckCritRatio": 2.0,
-  "VulnerabilityDamageMult": 3.0,
   "HiddenSingleTargetCritPercent": 100.0,
-  "ResistAddCritChance": -50.0,
-  "VulnAddCritChance": 10.0,
   "GuaranteedHitDefenseRatio": 1.5,
   "RandomEncounterChance": 0.12,
   "MovesBetweenEncounters": 6,
@@ -30,6 +27,7 @@
   "MonsterExtraDamageScalePerDay": 0.02,
   "SpeedCombatSequencingDeltaPercent": 20,
   "ExtraCureStatusEffectsRemovedPerTier": 0.2,
+  "LuckBonusHitChanceScale": 1.5,
   "Name": "CrawlerCombatSettings",
-  "SaveTime": "2025-07-10T00:33:42.785Z"
+  "SaveTime": "2025-08-16T19:36:20.209Z"
 }

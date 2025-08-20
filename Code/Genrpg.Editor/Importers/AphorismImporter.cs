@@ -1,10 +1,8 @@
 ﻿using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
-using Genrpg.Editor.UI;
 using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -38,7 +36,7 @@ namespace Genrpg.Editor.Importers
 
             settings.SetData(newList);
 
-
+            gs.LookedAtObjects.Add(settings);
             await Task.CompletedTask;
             return true;
         }

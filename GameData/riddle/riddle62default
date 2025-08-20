@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 62,
   "Name": "Tome",
-  "Desc": "A book of wisdom, spells, and lore,\r\nIts pages hold the magic's core.\r\nWith ink of old and knowledge deep,\r\nIts secrets in your mind you keep.\r\n"
+  "Desc": "A book of wisdom, spells, and lore,\nIts pages hold the magic's core.\nWith ink of old and knowledge deep,\nIts secrets in your mind you keep.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

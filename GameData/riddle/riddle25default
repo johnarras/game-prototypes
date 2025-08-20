@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 25,
   "Name": "Enchantment",
-  "Desc": "A spell that binds, a charm so sweet,\r\nIt changes hearts, it can't be beat.\r\nWith magic's touch, it alters all,\r\nIts power's great, yet often small.\r\n"
+  "Desc": "A spell that binds, a charm so sweet,\nIt changes hearts, it can't be beat.\nWith magic's touch, it alters all,\nIts power's great, yet often small.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

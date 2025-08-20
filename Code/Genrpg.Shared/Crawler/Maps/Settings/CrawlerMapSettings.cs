@@ -1,19 +1,16 @@
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Dungeons.Constants;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using MessagePack;
 using System.Collections.Generic;
-using System.Transactions;
 
 namespace Genrpg.Shared.Crawler.Maps.Settings
 {
     [MessagePackObject]
-    public class CrawlerMapSettings : ParentConstantListSettings<CrawlerMapType,CrawlerMapTypes>
+    public class CrawlerMapSettings : ParentConstantListSettings<CrawlerMapType, CrawlerMapTypes>
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public double CorridorDungeonSizeScale { get; set; }
@@ -35,6 +32,7 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
         [Key(17)] public int MaxTeleportQuantity { get; set; }
         [Key(18)] public double UnitKeywordChance { get; set; }
         [Key(19)] public int MinQuestUnlockDungeonLevel { get; set; }
+        [Key(20)] public int MinQuestItemDungeonLevel { get; set; }
     }
 
     [MessagePackObject]
@@ -54,12 +52,13 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
         [Key(11)] public int MaxNpcQuantity { get; set; }
         [Key(12)] public int MinNpcSeparation { get; set; }
         [Key(13)] public int MinDistanceToEntrance { get; set; }
-        
+        [Key(14)] public double RoomIsDifferentZoneTypeChance { get; set; }
+
     }
 
     [MessagePackObject]
     public class CrawlerMapGenType : IWeightedItem
-    { 
+    {
         [Key(0)] public string Name { get; set; }
         [Key(1)] public int MinWidth { get; set; } = 15;
         [Key(2)] public int MaxWidth { get; set; } = 25;
@@ -73,9 +72,9 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
         [Key(10)] public double LoopingChance { get; set; }
         [Key(11)] public double MinWallChance { get; set; }
         [Key(12)] public double MaxWallChance { get; set; }
-        [Key(13)] public double MinDoorChance { get; set; } 
+        [Key(13)] public double MinDoorChance { get; set; }
         [Key(14)] public double MaxDoorChance { get; set; }
-        [Key(15)] public double TrapTileChance { get; set; } 
+        [Key(15)] public double TrapTileChance { get; set; }
         [Key(16)] public double EffectTileChance { get; set; }
         [Key(17)] public double MinCorridorDensity { get; set; }
         [Key(18)] public double MaxCorridorDensity { get; set; }

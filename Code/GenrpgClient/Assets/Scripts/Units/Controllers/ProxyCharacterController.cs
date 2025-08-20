@@ -106,7 +106,7 @@ public class ProxyCharacterController : MonsterController
             float ndx = _newPos.FinalX - _lastX;
             float ndz = _newPos.FinalZ - _lastZ;
 
-            float angle = (float)(Math.Atan2(ndx, ndz) * 180.0f/ Math.PI);
+            float angle = (float)(Math.Atan2(ndx, ndz) * 180.0f / Math.PI);
 
             if (wKeyPct != 0)
             {
@@ -142,7 +142,7 @@ public class ProxyCharacterController : MonsterController
 
             float rot = _oldPos.FinalRot + baseLerpPercent * (_newPos.FinalRot - _oldPos.FinalRot);
 
-          
+
             entity.transform.localEulerAngles = new Vector3(0, rot, 0);
         }
 

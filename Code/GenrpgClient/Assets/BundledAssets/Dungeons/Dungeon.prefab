@@ -72,4 +72,22 @@ MonoBehaviour:
   - Weight: 1000
     Materials: {fileID: 8081806579827750272, guid: b6be6af41bfc1f948bef53ff8ae55344,
       type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: 012a82e7bf191af4cb132bf76326e864,
+      type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: e17631b02d759d0489b11fe227bf6103,
+      type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: 81aa221751b4436418f39282db889cbd,
+      type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: b4baff53be9ec4143a5fbb88cb1998ce,
+      type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: e9f8e8758b0b48a46baa353837a21f4d,
+      type: 3}
+  - Weight: 1000
+    Materials: {fileID: 378727158912712656, guid: ce8dec0c691e82441815df1073646cb9,
+      type: 3}
   BGImageName: DungeonBG

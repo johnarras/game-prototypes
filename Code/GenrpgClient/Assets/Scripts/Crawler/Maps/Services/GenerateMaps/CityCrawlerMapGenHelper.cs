@@ -1,26 +1,23 @@
 ﻿
+using Genrpg.Shared.Buildings.Constants;
+using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Utils;
-using System.Collections.Generic;
-using System.Linq;
-using Genrpg.Shared.Zones.Settings;
-using UnityEngine;
-using System.Threading.Tasks;
 using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Zones.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.MapGen.Entities;
-using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Chests.Settings;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Zones.Constants;
+using Genrpg.Shared.Zones.Settings;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
-using Genrpg.Shared.Crawler.Quests.Settings;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
@@ -296,7 +293,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            fillerBuildingPositions = fillerBuildingPositions.Where(x => x.X > mapEdgeDistance && x.Z > mapEdgeDistance && 
+            fillerBuildingPositions = fillerBuildingPositions.Where(x => x.X > mapEdgeDistance && x.Z > mapEdgeDistance &&
             x.X < map.Width - 1 - mapEdgeDistance && x.Z < map.Height - 1 - mapEdgeDistance).ToList();
             foreach (BuildingType btype in requiredBuildings)
             {
@@ -357,7 +354,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             List<long> terrains = new List<long>() { roadZoneTypeId, fillerZoneTypeId };
 
             for (int terrainIndex = 0; terrainIndex < 2; terrainIndex++)
-            {         
+            {
                 for (int x = 1; x < map.Width - 1; x++)
                 {
                     for (int z = 1; z < map.Height - 1; z++)
@@ -379,7 +376,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             await AddMapNpcs(party, world, genData, map, fillerBuildingPositions, rand);
 
-            return new NewCrawlerMap() { Map = map, EnterX = gateX, EnterZ = gateZ };   
+            return new NewCrawlerMap() { Map = map, EnterX = gateX, EnterZ = gateZ };
         }
 
         public override NpcQuestMaps GetQuestMapsForNpc(PartyData party, CrawlerWorld world, CrawlerMap map, MapCellDetail npcDetail, IRandom rand)
@@ -409,7 +406,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     if (outdoorMap != null && outdoorMap.CrawlerMapTypeId == CrawlerMapTypes.Outdoors)
                     {
                         List<MapCellDetail> startNearbyEntrances = map.Details.Where(e => e.EntityTypeId == EntityTypes.Map &&
-                        MathUtils.PythagoreanDistance( cityExitDetails.ToX - e.X, cityExitDetails.Z - e.Z) <
+                        MathUtils.PythagoreanDistance(cityExitDetails.ToX - e.X, cityExitDetails.Z - e.Z) <
                             questSettings.MaxDistanceFromQuestGiverToTargetMap).ToList();
 
                         foreach (MapCellDetail nearbyDetail in startNearbyEntrances)

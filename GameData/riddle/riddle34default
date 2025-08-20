@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 34,
   "Name": "Elemental",
-  "Desc": "Of fire, water, earth, and air,\r\nThey manifest from everywhere.\r\nWith elemental force they bind,\r\nThe magic of the world combined.\r\n"
+  "Desc": "Of fire, water, earth, and air,\nThey manifest from everywhere.\nWith elemental force they bind,\nThe magic of the world combined.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

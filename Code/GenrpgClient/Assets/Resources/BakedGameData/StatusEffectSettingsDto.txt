@@ -11,8 +11,7 @@
       "Art": "",
       "Abbrev": "Ps",
       "ElementTypeId": 8,
-      "Amount": 50,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 50
     },
     {
       "Id": "statuseffect2default",
@@ -24,8 +23,7 @@
       "Art": "",
       "Abbrev": "Ds",
       "ElementTypeId": 8,
-      "Amount": 50,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 50
     },
     {
       "Id": "statuseffect3default",
@@ -37,8 +35,7 @@
       "Art": "",
       "Abbrev": "Wk",
       "ElementTypeId": 2,
-      "Amount": 20,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 20
     },
     {
       "Id": "statuseffect4default",
@@ -51,8 +48,7 @@
       "Abbrev": "Sl",
       "ElementTypeId": 3,
       "CombatActionId": 1,
-      "Amount": 50,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 50
     },
     {
       "Id": "statuseffect5default",
@@ -65,8 +61,7 @@
       "Abbrev": "Bf",
       "ElementTypeId": 9,
       "CombatActionId": 4,
-      "Amount": 50,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 50
     },
     {
       "Id": "statuseffect6default",
@@ -79,8 +74,7 @@
       "Abbrev": "Ns",
       "ElementTypeId": 4,
       "CombatActionId": 3,
-      "Amount": 50,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 50
     },
     {
       "Id": "statuseffect7default",
@@ -92,8 +86,7 @@
       "Art": "",
       "Abbrev": "Cs",
       "ElementTypeId": 6,
-      "Amount": 25,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 25
     },
     {
       "Id": "statuseffect8default",
@@ -105,8 +98,7 @@
       "Art": "",
       "Abbrev": "Wt",
       "ElementTypeId": 5,
-      "Amount": 25,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 25
     },
     {
       "Id": "statuseffect9default",
@@ -118,8 +110,7 @@
       "Art": "",
       "Abbrev": "Cf",
       "ElementTypeId": 4,
-      "Amount": 25,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 25
     },
     {
       "Id": "statuseffect10default",
@@ -131,8 +122,7 @@
       "Art": "",
       "Abbrev": "Cl",
       "ElementTypeId": 3,
-      "Amount": 25,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 25
     },
     {
       "Id": "statuseffect11default",
@@ -144,8 +134,7 @@
       "Art": "",
       "Abbrev": "Bs",
       "ElementTypeId": 2,
-      "Amount": 25,
-      "SaveTime": "2025-06-07T13:18:24.119Z"
+      "Amount": 25
     },
     {
       "Id": "statuseffect12default",
@@ -159,8 +148,7 @@
       "ElementTypeId": 5,
       "CombatActionId": 1,
       "Amount": 100,
-      "RemoveAtEndOfCombat": true,
-      "SaveTime": "2025-06-07T13:51:14.392Z"
+      "RemoveAtEndOfCombat": true
     },
     {
       "Id": "statuseffect13default",
@@ -174,8 +162,7 @@
       "ElementTypeId": 4,
       "CombatActionId": 4,
       "Amount": 100,
-      "RemoveAtEndOfCombat": true,
-      "SaveTime": "2025-06-07T13:51:14.392Z"
+      "RemoveAtEndOfCombat": true
     },
     {
       "Id": "statuseffect14default",
@@ -189,8 +176,7 @@
       "ElementTypeId": 7,
       "CombatActionId": 3,
       "Amount": 100,
-      "RemoveAtEndOfCombat": true,
-      "SaveTime": "2025-06-07T13:51:14.392Z"
+      "RemoveAtEndOfCombat": true
     },
     {
       "Id": "statuseffect15default",
@@ -203,8 +189,7 @@
       "Abbrev": "Ps",
       "ElementTypeId": 6,
       "Amount": 100,
-      "RemoveAtEndOfCombat": true,
-      "SaveTime": "2025-06-07T13:51:14.392Z"
+      "RemoveAtEndOfCombat": true
     },
     {
       "Id": "statuseffect16default",
@@ -218,8 +203,7 @@
       "ElementTypeId": 5,
       "CombatActionId": 7,
       "Amount": 100,
-      "RemoveAtEndOfCombat": true,
-      "SaveTime": "2025-06-07T14:15:17.474Z"
+      "RemoveAtEndOfCombat": true
     },
     {
       "Id": "statuseffect17default",
@@ -231,8 +215,7 @@
       "Art": "",
       "Abbrev": "Dd",
       "CombatActionId": 7,
-      "Amount": 100,
-      "SaveTime": "2025-06-07T14:15:17.474Z"
+      "Amount": 100
     }
   ],
   "Parent": {

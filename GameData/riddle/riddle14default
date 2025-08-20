@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 14,
   "Name": "Tavern",
-  "Desc": "A place of rest, where stories flow,\r\nWhere weary travelers come and go.\r\nWith ale and song, by hearth so warm,\r\nIt offers shelter from the storm.\r\n"
+  "Desc": "A place of rest, where stories flow,\nWhere weary travelers come and go.\nWith ale and song, by hearth so warm,\nIt offers shelter from the storm.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

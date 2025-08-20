@@ -113,7 +113,9 @@ namespace Genrpg.Editor.Importers.Crawler
                 }
             }
 
-            List<UnitType> unitTypes = gs.data.Get<UnitTypeSettings>(null).GetData().ToList();
+            UnitTypeSettings unitTypeSettings = gs.data.Get<UnitTypeSettings>(null);
+
+            List<UnitType> unitTypes = unitTypeSettings.GetData().ToList();
 
 
             IReadOnlyList<UnitKeyword> keywordList = gs.data.Get<UnitKeywordSettings>(null).GetData();
@@ -246,6 +248,9 @@ namespace Genrpg.Editor.Importers.Crawler
             }
 
             spellSettings.SetData(newSpells);
+            gs.LookedAtObjects.Add(spellSettings);
+            gs.LookedAtObjects.Add(roleSettings);
+            gs.LookedAtObjects.Add(unitTypeSettings);
 
             await _importService.CleanOldObjects(newSpells);
             await _importService.CleanOldObjects(unitTypes);

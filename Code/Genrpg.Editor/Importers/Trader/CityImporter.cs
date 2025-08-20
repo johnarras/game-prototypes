@@ -84,7 +84,7 @@ namespace Genrpg.Editor.Importers.Trader
 
                     newList.Add(currentChild);
 
-                    string[] productNames = importRow.PrimaryProducts.Split(';');
+                    List<string> productNames = StrUtils.CommaSemiColonSplit(importRow.PrimaryProducts);
 
                     foreach (string productName in productNames)
                     {
@@ -129,6 +129,7 @@ namespace Genrpg.Editor.Importers.Trader
 
             settings.SetData(newList);
             gs.LookedAtObjects.AddRange(newList);
+            gs.LookedAtObjects.Add(settings);
 
             await Task.CompletedTask;
             return true;

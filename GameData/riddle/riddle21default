@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 21,
   "Name": "Bard",
-  "Desc": "With lute in hand and voice so clear,\r\nThey sing of tales both far and near.\r\nWith songs of joy or sorrow's tone,\r\nThey weave a magic all their own.\r\n"
+  "Desc": "With lute in hand and voice so clear,\nThey sing of tales both far and near.\nWith songs of joy or sorrow's tone,\nThey weave a magic all their own.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

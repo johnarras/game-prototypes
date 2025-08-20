@@ -83,8 +83,8 @@ namespace Genrpg.Editor.Importers.Core
                 {
                     gs.LookedAtObjects = new List<object>();
                 }
-
-                foreach (object lookedAtObject in gs.LookedAtObjects)
+                List<object> lookedAtObjects = new List<object>(gs.LookedAtObjects);
+                foreach (object lookedAtObject in lookedAtObjects)
                 {
                     if (lookedAtObject is ITopLevelSettings topLevel)
                     {

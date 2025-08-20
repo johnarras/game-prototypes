@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
-using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -10,9 +9,7 @@ using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.Zones.Settings;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -25,7 +22,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
         public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
         {
-            if (mapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors))
+            if (mapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors) ||
+                mapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
             {
                 return;
             }
@@ -63,7 +61,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             }
         }
 
-        private void OnLoadTerrainFloor(object obj, object data,  CancellationToken token)
+        private void OnLoadTerrainFloor(object obj, object data, CancellationToken token)
         {
             GameObject go = obj as GameObject;
 
@@ -114,8 +112,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             _clientEntityService.AddToParent(go, renderer.gameObject);
 
             renderer.gameObject.transform.localPosition = new Vector3(-CrawlerMapConstants.XZBlockSize / 2, 0, -CrawlerMapConstants.XZBlockSize / 2);
-            Sprite spr = Sprite.Create(tlist.Textures[0], new Rect(0, 0, tlist.Textures[0].width, tlist.Textures[0].height), Vector2.zero, 
-                tlist.Textures[0].width/CrawlerMapConstants.XZBlockSize);
+            Sprite spr = Sprite.Create(tlist.Textures[0], new Rect(0, 0, tlist.Textures[0].width, tlist.Textures[0].height), Vector2.zero,
+                tlist.Textures[0].width / CrawlerMapConstants.XZBlockSize);
 
             renderer.sprite = spr;
         }

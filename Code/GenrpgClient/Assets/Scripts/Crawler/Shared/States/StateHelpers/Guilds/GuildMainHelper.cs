@@ -1,23 +1,22 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Stats.Constants;
-using System.Threading;
-using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
+﻿using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Buildings.Constants;
+using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
+using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
+using Genrpg.Shared.Crawler.TimeOfDay.Constants;
+using Genrpg.Shared.Crawler.TimeOfDay.Services;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Utils;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
 {
@@ -26,6 +25,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
         private ITimeOfDayService _timeService = null;
         private ICrawlerMapService _mapService = null;
         private IScreenService _screenService = null;
+        private IAssetService _assetService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.GuildMain;
         public override long TriggerBuildingId() { return BuildingTypes.Guild; }
@@ -94,6 +94,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                         _screenService.Open(ScreenNames.CrawlerMainMenu);
                     }
                 }, hideText: true));
+
+
+            while (_assetService.IsDownloading())
+            {
+                await Awaitable.NextFrameAsync(token);
+            }
+
+            _screenService.Close(ScreenNames.Loading);
 
             return stateData;
 

@@ -1,14 +1,10 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Dungeons.Settings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Zones.Settings;
+using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Dungeons.Constants;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Units.Entities;
 
 namespace Genrpg.Shared.Crawler.Maps.Entities
 {
@@ -34,23 +30,24 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
         [Key(5)] public int Width { get; set; }
         [Key(6)] public int Height { get; set; }
         [Key(7)] public int Level { get; set; }
-        [Key(8)] public long MapFloor { get; set; }
-        [Key(9)] public string FromPlaceName { get; set; }
-        [Key(10)] public long MapQuestItemId { get; set; }
-        [Key(11)] public MapEntranceRiddle EntranceRiddle { get; set; }
-        [Key(12)] public MapRiddleHints RiddleHints { get; set; }
-        [Key(13)] public byte[] Data { get; set; }
-        [Key(14)] public long ArtSeed { get; set; }
-        [Key(15)] public long WeatherTypeId { get; set; }
-        [Key(16)] public long ZoneTypeId { get; set; }
-        [Key(17)] public long BuildingTypeId { get; set; }
-        [Key(18)] public long BuildingArtId { get; set; }
-        [Key(19)] public long BaseCrawlerMapId { get; set; }
-        [Key(20)] public List<MapCellDetail> Details { get; set; } = new List<MapCellDetail>();
-        [Key(21)] public List<ZoneUnitSpawn> ZoneUnits { get; set; } = new List<ZoneUnitSpawn>();
-        [Key(22)] public List<CurrentUnitKeyword> UnitKeywords { get; set; } = new List<CurrentUnitKeyword>();
+        [Key(8)] public int LevelDelta { get; set; }
+        [Key(9)] public long MapFloor { get; set; }
+        [Key(10)] public string FromPlaceName { get; set; }
+        [Key(11)] public long MapQuestItemId { get; set; }
+        [Key(12)] public MapEntranceRiddle EntranceRiddle { get; set; }
+        [Key(13)] public MapRiddleHints RiddleHints { get; set; }
+        [Key(14)] public byte[] Data { get; set; }
+        [Key(15)] public long ArtSeed { get; set; }
+        [Key(16)] public long WeatherTypeId { get; set; }
+        [Key(17)] public long ZoneTypeId { get; set; }
+        [Key(18)] public long BuildingTypeId { get; set; }
+        [Key(19)] public long BuildingArtId { get; set; }
+        [Key(20)] public long BaseCrawlerMapId { get; set; }
+        [Key(21)] public List<MapCellDetail> Details { get; set; } = new List<MapCellDetail>();
+        [Key(22)] public List<ZoneUnitSpawn> ZoneUnits { get; set; } = new List<ZoneUnitSpawn>();
+        [Key(23)] public List<CurrentUnitKeyword> UnitKeywords { get; set; } = new List<CurrentUnitKeyword>();
 
-        [Key(23)] public int Flags { get; set; }
+        [Key(24)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
@@ -67,11 +64,11 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
 
         public byte GetEntityId(int x, int z, long entityTypeId)
         {
-            if (entityTypeId < 1 || Get(x,z,CellIndex.EntityType) != entityTypeId)
+            if (entityTypeId < 1 || Get(x, z, CellIndex.EntityType) != entityTypeId)
             {
                 return 0;
             }
-            return Get(x,z,CellIndex.EntityId);
+            return Get(x, z, CellIndex.EntityId);
         }
 
         public void SetEntity(int x, int z, long entityTypeId, long entityId)
@@ -156,9 +153,9 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
 
         public bool IsValidEmptyCell(int x, int z)
         {
-            return Get(x,z,CellIndex.Terrain) > 0 &&
-                Get(x,z,CellIndex.EntityType) == 0 &&
-                !Details.Any(d=>d.X == x && d.Z == z);  
+            return Get(x, z, CellIndex.Terrain) > 0 &&
+                Get(x, z, CellIndex.EntityType) == 0 &&
+                !Details.Any(d => d.X == x && d.Z == z);
         }
 
         public List<MapEntity> GetMapEntities(long entityTypeId, long entityId = 0)
@@ -174,7 +171,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
             {
                 for (int z = 0; z < Height; z++)
                 {
-                    if (Get(x,z,CellIndex.EntityType) == entityTypeId)
+                    if (Get(x, z, CellIndex.EntityType) == entityTypeId)
                     {
                         long currEntityId = Get(x, z, CellIndex.EntityId);
                         if ((entityId == 0 && currEntityId != 0) || (entityId > 0 && (currEntityId == entityId)))
@@ -192,6 +189,29 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
             }
 
             return retval;
+        }
+
+        public int GetMapLevelAtPoint(int x, int z)
+        {
+            if (CrawlerMapTypeId != CrawlerMapTypes.Outdoors ||
+                Regions == null || Regions.Count < 1 || LevelDelta < 1)
+            {
+                return Level;
+            }
+
+            ZoneRegion region = Regions.OrderBy(x => x.Level).First();
+
+            bool smallXStart = region.CenterX < Width / 2;
+            bool smallZStart = region.CenterY < Height / 2;
+
+            float xPercent = (smallXStart ? x : Width - 1 - x) * 1.0f / Width;
+            float zPercent = (smallZStart ? z : Height - 1 - z) * 1.0f / Height;
+
+            float totalPercent = (xPercent + zPercent) / 2;
+
+            totalPercent *= totalPercent;
+
+            return (int)(Level + totalPercent * LevelDelta);
         }
     }
 }

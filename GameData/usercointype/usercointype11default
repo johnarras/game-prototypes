@@ -2,9 +2,8 @@
   "Id": "usercointype11default",
   "ParentId": "default",
   "IdKey": 11,
-  "Name": "Food",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconFood",
-  "Art": "FoodArt"
+  "Name": "Sand",
+  "Icon": "SandIcon",
+  "Art": "SandArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

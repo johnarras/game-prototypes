@@ -4,7 +4,6 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Errors;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Utils;
@@ -69,7 +68,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
             }
             else
             {
-                bool isOn = FlagUtils.IsSet(party.RiddleStatus, 1 << riddleIndex);
+                bool isOn = party.HasRiddleBitIndex(riddleIndex);
 
                 string currState = isOn ? "On" : "Off";
                 string oppState = isOn ? "Off" : "On";
@@ -81,11 +80,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
                     {
                         if (isOn)
                         {
-                            party.RiddleStatus &= ~(1 << riddleIndex);
+                            party.RemoveRiddleBitIndex(riddleIndex);
                         }
                         else
                         {
-                            party.RiddleStatus |= (long)(1 << riddleIndex);
+                            party.AddRiddleBitIndex(riddleIndex);
                         }
                         _dispatcher.Dispatch(new RedrawMapCell() { X = party.CurrPos.X, Z = party.CurrPos.Z });
                     }, moveStatus));
@@ -93,7 +92,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
             }
             AddSpaceAction(stateData);
             stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
-            
+
             await Task.CompletedTask;
             return stateData;
         }

@@ -2,7 +2,7 @@
   "Id": "default",
   "LevelsPerQuality": 5.0,
   "ExtraQualityChance": 0.25,
-  "ArmorChance": 0.93,
+  "ArmorChance": 0.8,
   "Name": "LootRankSettings",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-08-14T01:09:57.92Z"
 }

@@ -33,6 +33,9 @@ namespace Genrpg.Editor.Importers.Crawler
 
             string missingWords = "";
 
+            RoleSettings roleSettings = gs.data.Get<RoleSettings>(null);
+            gs.LookedAtObjects.Add(roleSettings);
+
             Role[] topRow = new Role[MaxRoles];
 
             List<Role> newRoles = new List<Role>();
@@ -169,7 +172,7 @@ namespace Genrpg.Editor.Importers.Crawler
                 }
             }
 
-            gs.data.Get<RoleSettings>(null).SetData(newRoles);
+            roleSettings.SetData(newRoles);
 
             await Task.CompletedTask;
             return true;

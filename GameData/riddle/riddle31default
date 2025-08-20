@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 31,
   "Name": "Artifact",
-  "Desc": "An ancient relic, power grand,\r\nIn hero's grasp, it saves the land.\r\nWith history deep and magic bright,\r\nIt shines with an eternal light.\r\n"
+  "Desc": "An ancient relic, power grand,\nIn hero's grasp, it saves the land.\nWith history deep and magic bright,\nIt shines with an eternal light.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

@@ -18,8 +18,7 @@
       "ColdClimate": 2,
       "WetClimate": 3,
       "FoodPerDay": 2,
-      "WaterPerDay": 4,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 4
     },
     {
       "Id": "animal2default",
@@ -38,8 +37,7 @@
       "ColdClimate": 4,
       "WetClimate": 4,
       "FoodPerDay": 2,
-      "WaterPerDay": 5,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 5
     },
     {
       "Id": "animal3default",
@@ -57,8 +55,7 @@
       "ColdClimate": 4,
       "WetClimate": 2,
       "FoodPerDay": 3,
-      "WaterPerDay": 8,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 8
     },
     {
       "Id": "animal4default",
@@ -77,8 +74,7 @@
       "ColdClimate": 2,
       "WetClimate": 2,
       "FoodPerDay": 5,
-      "WaterPerDay": 20,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 20
     },
     {
       "Id": "animal5default",
@@ -97,8 +93,7 @@
       "ColdClimate": 5,
       "WetClimate": 4,
       "FoodPerDay": 7,
-      "WaterPerDay": 25,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 25
     },
     {
       "Id": "animal6default",
@@ -117,8 +112,7 @@
       "ColdClimate": 3,
       "WetClimate": 3,
       "FoodPerDay": 8,
-      "WaterPerDay": 30,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 30
     },
     {
       "Id": "animal7default",
@@ -137,8 +131,7 @@
       "ColdClimate": 2,
       "WetClimate": 1,
       "FoodPerDay": 6,
-      "WaterPerDay": 25,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 25
     },
     {
       "Id": "animal8default",
@@ -157,8 +150,7 @@
       "ColdClimate": 3,
       "WetClimate": 3,
       "FoodPerDay": 10,
-      "WaterPerDay": 40,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 40
     },
     {
       "Id": "animal9default",
@@ -177,8 +169,7 @@
       "ColdClimate": 3,
       "WetClimate": 3,
       "FoodPerDay": 15,
-      "WaterPerDay": 50,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 50
     },
     {
       "Id": "animal10default",
@@ -197,8 +188,7 @@
       "ColdClimate": 3,
       "WetClimate": 2,
       "FoodPerDay": 18,
-      "WaterPerDay": 60,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 60
     },
     {
       "Id": "animal11default",
@@ -217,8 +207,7 @@
       "ColdClimate": 4,
       "WetClimate": 3,
       "FoodPerDay": 20,
-      "WaterPerDay": 60,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 60
     },
     {
       "Id": "animal12default",
@@ -237,8 +226,7 @@
       "ColdClimate": 1,
       "WetClimate": 3,
       "FoodPerDay": 18,
-      "WaterPerDay": 50,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 50
     },
     {
       "Id": "animal13default",
@@ -257,8 +245,7 @@
       "ColdClimate": 2,
       "WetClimate": 6,
       "FoodPerDay": 25,
-      "WaterPerDay": 70,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 70
     },
     {
       "Id": "animal14default",
@@ -277,8 +264,7 @@
       "ColdClimate": 2,
       "WetClimate": 1,
       "FoodPerDay": 8,
-      "WaterPerDay": 15,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 15
     },
     {
       "Id": "animal15default",
@@ -297,8 +283,7 @@
       "ColdClimate": 6,
       "WetClimate": 1,
       "FoodPerDay": 10,
-      "WaterPerDay": 20,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 20
     },
     {
       "Id": "animal16default",
@@ -316,8 +301,7 @@
       "ColdClimate": 6,
       "WetClimate": 3,
       "FoodPerDay": 10,
-      "WaterPerDay": 35,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 35
     },
     {
       "Id": "animal17default",
@@ -335,8 +319,7 @@
       "ColdClimate": 6,
       "WetClimate": 4,
       "FoodPerDay": 6,
-      "WaterPerDay": 15,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 15
     },
     {
       "Id": "animal18default",
@@ -355,8 +338,7 @@
       "ColdClimate": 2,
       "WetClimate": 2,
       "FoodPerDay": 4,
-      "WaterPerDay": 10,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 10
     },
     {
       "Id": "animal19default",
@@ -375,14 +357,13 @@
       "ColdClimate": 1,
       "WetClimate": 4,
       "FoodPerDay": 150,
-      "WaterPerDay": 150,
-      "SaveTime": "2025-07-20T05:48:01.802Z"
+      "WaterPerDay": 150
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "AnimalSettings",
-    "SaveTime": "2025-07-19T22:46:23.138Z"
+    "SaveTime": "2025-08-06T23:38:54.824Z"
   },
-  "SaveTime": "2025-07-19T22:46:23.138Z"
+  "SaveTime": "2025-08-06T23:38:54.824Z"
 }

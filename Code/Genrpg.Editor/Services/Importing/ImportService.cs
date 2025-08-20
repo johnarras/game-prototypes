@@ -1,5 +1,4 @@
 ﻿using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Importers;
 using Genrpg.Editor.Services.Reflection;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
@@ -155,13 +154,12 @@ namespace Genrpg.Editor.Services.Importing
                 return;
             }
 
-            string[] rows = data.Split(',');
+            List<string> rows = StrUtils.CommaSemiColonSplit(data);
 
-            if (rows.Length < 1)
+            if (rows.Count < 1)
             {
                 return;
             }
-
 
             IReadOnlyList<TChild> children = gs.data.Get<TParent>(null).GetData();
 
@@ -173,7 +171,7 @@ namespace Genrpg.Editor.Services.Importing
                 {
                     continue;
                 }
-                
+
                 string[] words = trimmedRow.Split(' ');
 
                 if (words.Length < 1)
@@ -181,7 +179,7 @@ namespace Genrpg.Editor.Services.Importing
                     continue;
                 }
 
-                for (int  w = 0; w < words.Length; w++)
+                for (int w = 0; w < words.Length; w++)
                 {
                     words[w] = StrUtils.NormalizeWord(words[w]);
                 }
@@ -195,7 +193,7 @@ namespace Genrpg.Editor.Services.Importing
 
                 if (child == null)
                 {
-                    child = children.FirstOrDefault(x=>StrUtils.NormalizeWord(x.Name) == mergedLowerRow);
+                    child = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == mergedLowerRow);
                 }
 
                 if (child == null)

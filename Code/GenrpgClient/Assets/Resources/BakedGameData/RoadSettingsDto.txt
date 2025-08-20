@@ -18,8 +18,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 545.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 545.0
     },
     {
       "Id": "road2default",
@@ -38,8 +37,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 580.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 580.0
     },
     {
       "Id": "road3default",
@@ -58,8 +56,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 400.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 400.0
     },
     {
       "Id": "road4default",
@@ -78,8 +75,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 710.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 710.0
     },
     {
       "Id": "road5default",
@@ -98,8 +94,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 415.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 415.0
     },
     {
       "Id": "road6default",
@@ -117,8 +112,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 3.0,
       "WinterRain": 6.0,
-      "Length": 550.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 550.0
     },
     {
       "Id": "road7default",
@@ -137,8 +131,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 315.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 315.0
     },
     {
       "Id": "road8default",
@@ -157,8 +150,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 560.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 560.0
     },
     {
       "Id": "road9default",
@@ -177,8 +169,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 465.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 465.0
     },
     {
       "Id": "road10default",
@@ -197,8 +188,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 430.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 430.0
     },
     {
       "Id": "road11default",
@@ -217,8 +207,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 540.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 540.0
     },
     {
       "Id": "road12default",
@@ -237,8 +226,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 200.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 200.0
     },
     {
       "Id": "road13default",
@@ -257,8 +245,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Length": 460.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 460.0
     },
     {
       "Id": "road14default",
@@ -277,8 +264,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 340.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 340.0
     },
     {
       "Id": "road15default",
@@ -297,8 +283,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 510.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 510.0
     },
     {
       "Id": "road16default",
@@ -317,8 +302,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 890.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 890.0
     },
     {
       "Id": "road17default",
@@ -337,8 +321,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 390.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 390.0
     },
     {
       "Id": "road18default",
@@ -357,8 +340,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 205.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 205.0
     },
     {
       "Id": "road19default",
@@ -377,8 +359,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 815.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 815.0
     },
     {
       "Id": "road20default",
@@ -397,8 +378,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 910.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 910.0
     },
     {
       "Id": "road21default",
@@ -417,8 +397,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 280.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 280.0
     },
     {
       "Id": "road22default",
@@ -437,8 +416,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Length": 425.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 425.0
     },
     {
       "Id": "road23default",
@@ -457,8 +435,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 700.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 700.0
     },
     {
       "Id": "road24default",
@@ -477,8 +454,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 240.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 240.0
     },
     {
       "Id": "road25default",
@@ -497,8 +473,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Length": 1120.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1120.0
     },
     {
       "Id": "road26default",
@@ -517,8 +492,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 1080.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1080.0
     },
     {
       "Id": "road27default",
@@ -537,8 +511,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 670.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 670.0
     },
     {
       "Id": "road28default",
@@ -556,8 +529,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Length": 1750.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1750.0
     },
     {
       "Id": "road29default",
@@ -576,8 +548,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 160.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 160.0
     },
     {
       "Id": "road30default",
@@ -596,8 +567,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 100.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 100.0
     },
     {
       "Id": "road31default",
@@ -616,8 +586,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 80.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 80.0
     },
     {
       "Id": "road32default",
@@ -636,8 +605,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 120.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 120.0
     },
     {
       "Id": "road33default",
@@ -656,8 +624,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Length": 1050.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1050.0
     },
     {
       "Id": "road34default",
@@ -676,8 +643,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 950.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 950.0
     },
     {
       "Id": "road35default",
@@ -696,8 +662,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 260.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 260.0
     },
     {
       "Id": "road36default",
@@ -715,8 +680,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Length": 980.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 980.0
     },
     {
       "Id": "road37default",
@@ -734,8 +698,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 350.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 350.0
     },
     {
       "Id": "road38default",
@@ -753,8 +716,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 310.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 310.0
     },
     {
       "Id": "road39default",
@@ -772,8 +734,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 450.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 450.0
     },
     {
       "Id": "road40default",
@@ -791,8 +752,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 475.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 475.0
     },
     {
       "Id": "road41default",
@@ -810,8 +770,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 140.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 140.0
     },
     {
       "Id": "road42default",
@@ -829,8 +788,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 40.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 40.0
     },
     {
       "Id": "road43default",
@@ -848,8 +806,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 55.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 55.0
     },
     {
       "Id": "road44default",
@@ -867,8 +824,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 280.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 280.0
     },
     {
       "Id": "road45default",
@@ -886,8 +842,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 3.0,
-      "Length": 480.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 480.0
     },
     {
       "Id": "road46default",
@@ -905,8 +860,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 220.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 220.0
     },
     {
       "Id": "road47default",
@@ -924,8 +878,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 390.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 390.0
     },
     {
       "Id": "road48default",
@@ -943,8 +896,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 120.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 120.0
     },
     {
       "Id": "road49default",
@@ -961,8 +913,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
-      "Length": 750.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 750.0
     },
     {
       "Id": "road50default",
@@ -981,8 +932,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Length": 600.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 600.0
     },
     {
       "Id": "road51default",
@@ -1000,8 +950,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 90.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 90.0
     },
     {
       "Id": "road52default",
@@ -1019,8 +968,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 40.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 40.0
     },
     {
       "Id": "road53default",
@@ -1039,8 +987,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Length": 550.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 550.0
     },
     {
       "Id": "road54default",
@@ -1058,8 +1005,7 @@
       "SummerRain": 2.0,
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
-      "Length": 1150.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1150.0
     },
     {
       "Id": "road55default",
@@ -1078,8 +1024,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Length": 410.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 410.0
     },
     {
       "Id": "road56default",
@@ -1098,8 +1043,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Length": 240.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 240.0
     },
     {
       "Id": "road57default",
@@ -1117,8 +1061,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
-      "Length": 3900.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 3900.0
     },
     {
       "Id": "road58default",
@@ -1136,8 +1079,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
-      "Length": 1100.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1100.0
     },
     {
       "Id": "road59default",
@@ -1156,8 +1098,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 4.0,
-      "Length": 1550.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1550.0
     },
     {
       "Id": "road60default",
@@ -1176,8 +1117,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 4.0,
-      "Length": 1350.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1350.0
     },
     {
       "Id": "road61default",
@@ -1195,8 +1135,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 5.0,
-      "Length": 140.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 140.0
     },
     {
       "Id": "road62default",
@@ -1215,8 +1154,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 5.0,
-      "Length": 1250.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1250.0
     },
     {
       "Id": "road63default",
@@ -1233,8 +1171,7 @@
       "Danger": 2.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 200.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 200.0
     },
     {
       "Id": "road64default",
@@ -1251,8 +1188,7 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 670.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 670.0
     },
     {
       "Id": "road65default",
@@ -1269,8 +1205,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 1470.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1470.0
     },
     {
       "Id": "road66default",
@@ -1287,8 +1222,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 370.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 370.0
     },
     {
       "Id": "road67default",
@@ -1306,8 +1240,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 1050.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 1050.0
     },
     {
       "Id": "road68default",
@@ -1325,8 +1258,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 900.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 900.0
     },
     {
       "Id": "road69default",
@@ -1345,8 +1277,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 760.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 760.0
     },
     {
       "Id": "road70default",
@@ -1365,8 +1296,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 700.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 700.0
     },
     {
       "Id": "road71default",
@@ -1385,8 +1315,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 550.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 550.0
     },
     {
       "Id": "road72default",
@@ -1404,8 +1333,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 650.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 650.0
     },
     {
       "Id": "road73default",
@@ -1423,8 +1351,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 380.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 380.0
     },
     {
       "Id": "road74default",
@@ -1443,8 +1370,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 70.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 70.0
     },
     {
       "Id": "road75default",
@@ -1463,8 +1389,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 90.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 90.0
     },
     {
       "Id": "road76default",
@@ -1480,8 +1405,7 @@
       "Danger": 6.0,
       "SummerHeat": 6.0,
       "WinterHeat": 3.0,
-      "Length": 2340.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 2340.0
     },
     {
       "Id": "road77default",
@@ -1500,14 +1424,13 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 160.0,
-      "SaveTime": "2025-07-20T05:04:12.119Z"
+      "Length": 160.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "RoadSettings",
-    "SaveTime": "2025-07-19T20:53:27.953Z"
+    "SaveTime": "2025-08-06T23:39:05.787Z"
   },
-  "SaveTime": "2025-07-19T20:53:27.953Z"
+  "SaveTime": "2025-08-06T23:39:05.787Z"
 }

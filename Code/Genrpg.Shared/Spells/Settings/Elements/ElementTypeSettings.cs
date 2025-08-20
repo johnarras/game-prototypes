@@ -4,18 +4,11 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Purchasing.Settings;
-using Genrpg.Shared.Spells.Casting;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Procs.Entities;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Stats.Settings.Stats;
 using MessagePack;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Settings.Elements
 {
@@ -42,9 +35,16 @@ namespace Genrpg.Shared.Spells.Settings.Elements
 
         [Key(11)] public long VulnElementTypeId { get; set; }
 
-        [Key(12)] public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
+        [Key(12)] public long VulnDamagePercent { get; set; }
+        [Key(13)] public long VulnCritPercentMod { get; set; }
 
-        [Key(13)] public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
+
+        [Key(14)] public long ResistDamagePercent { get; set; }
+        [Key(15)] public long ResistCritPercentMod { get; set; }
+
+        [Key(16)] public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
+
+        [Key(17)] public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
 
         public string ShowInfo()
         {
@@ -100,7 +100,7 @@ namespace Genrpg.Shared.Spells.Settings.Elements
 
 
     [MessagePackObject]
-    public class ElementTypeSettings : ParentConstantListSettings<ElementType,ElementTypes>
+    public class ElementTypeSettings : ParentConstantListSettings<ElementType, ElementTypes>
     {
         [Key(0)] public override string Id { get; set; }
     }

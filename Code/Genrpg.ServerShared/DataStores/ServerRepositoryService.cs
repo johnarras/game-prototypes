@@ -1,32 +1,30 @@
-﻿using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.ServerShared.Config;
+﻿using Genrpg.ServerShared.Config;
+using Genrpg.ServerShared.DataStores.DbQueues;
+using Genrpg.ServerShared.DataStores.DbQueues.Actions;
+using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.ServerShared.OnlineResources.Interfaces;
+using Genrpg.ServerShared.Secrets.Services;
+using Genrpg.Shared.Analytics.Services;
+using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Setup.Constants;
+using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Genrpg.ServerShared.DataStores.NoSQL;
-using Genrpg.ServerShared.DataStores.Blobs;
 using System.Threading;
-using Genrpg.ServerShared.DataStores.DbQueues;
-using Genrpg.ServerShared.DataStores.DbQueues.Actions;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Setup.Constants;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.ServerShared.Secrets.Services;
-using Genrpg.ServerShared.DataStores.Entities;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.ServerShared.OnlineResources.Interfaces;
-using Genrpg.Shared.Tasks.Services;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores
 {
     public interface IServerRepositoryService : IRepositoryService
     {
-        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId; 
+        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId;
         Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId;
         Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId;
     }
@@ -118,7 +116,7 @@ namespace Genrpg.ServerShared.DataStores
             string typeKey = GetEnvCategoryStoreTypeKey(dbEnv, dataGroup.Category, dataGroup.RepoType);
 
             if (_repos.TryGetValue(typeKey, out IRepository existingRepo))
-            {               
+            {
                 _repoTypeDict[t] = existingRepo;
                 return existingRepo;
             }
@@ -127,7 +125,7 @@ namespace Genrpg.ServerShared.DataStores
         }
 
         public async Task<bool> Delete<T>(T obj) where T : class, IStringId
-         {
+        {
             IRepository repo = FindRepo(obj.GetType());
             return await repo.Delete(obj);
         }
@@ -170,7 +168,7 @@ namespace Genrpg.ServerShared.DataStores
         public void QueueSave<T>(T t) where T : class, IStringId
         {
             SaveAction<T> saveAction = new SaveAction<T>(t, this);
-            _queues[StrUtils.GetIdHash(t.Id) % QueueCount].Enqueue(saveAction);
+            _queues[StrUtils.GetPrefixIdHash(t.Id) % QueueCount].Enqueue(saveAction);
         }
 
         public void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, IStringId
@@ -181,13 +179,13 @@ namespace Genrpg.ServerShared.DataStores
             }
 
             SaveAction<T> saveAction = new SaveAction<T>(list, this);
-            _queues[StrUtils.GetIdHash(queueId) % QueueCount].Enqueue(saveAction);
+            _queues[StrUtils.GetPrefixIdHash(queueId) % QueueCount].Enqueue(saveAction);
         }
 
         public void QueueDelete<T>(T t) where T : class, IStringId
         {
             DeleteAction<T> deleteAction = new DeleteAction<T>(t, this);
-            _queues[StrUtils.GetIdHash(t.Id) % QueueCount].Enqueue(deleteAction);
+            _queues[StrUtils.GetPrefixIdHash(t.Id) % QueueCount].Enqueue(deleteAction);
         }
 
         public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity = 1000, int skip = 0) where T : class, IStringId
@@ -213,7 +211,7 @@ namespace Genrpg.ServerShared.DataStores
         public void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
         {
             UpdateAction<T> updateAction = new UpdateAction<T>(docId, fieldNameUpdates, this);
-            _queues[StrUtils.GetIdHash(docId) % QueueCount].Enqueue(updateAction);
+            _queues[StrUtils.GetPrefixIdHash(docId) % QueueCount].Enqueue(updateAction);
         }
 
 
@@ -227,7 +225,7 @@ namespace Genrpg.ServerShared.DataStores
         public void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
         {
             UpdateAction<T> updateAction = new UpdateAction<T>(docId, action, this);
-            _queues[StrUtils.GetIdHash(docId) % QueueCount].Enqueue(updateAction);
+            _queues[StrUtils.GetPrefixIdHash(docId) % QueueCount].Enqueue(updateAction);
         }
 
         public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId

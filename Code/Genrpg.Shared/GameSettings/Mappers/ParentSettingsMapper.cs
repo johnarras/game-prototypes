@@ -19,7 +19,7 @@ namespace Genrpg.Shared.GameSettings.Mappers
         [IgnoreMember] public virtual Type Key => typeof(TParent);
 
 
-        public virtual ITopLevelSettings MapToDto(ITopLevelSettings settings)
+        public virtual ITopLevelSettings MapToDto(ITopLevelSettings settings, bool simplify)
         {
             if (settings is TParent tparent)
             {
@@ -31,6 +31,15 @@ namespace Genrpg.Shared.GameSettings.Mappers
                     Id = tparent.Id,
                     SaveTime = tparent.SaveTime,
                 };
+
+                if (simplify)
+                {
+                    foreach (TChild child in tparent.GetData())
+                    {
+                        child.SaveTime = DateTime.MinValue;
+                    }
+                }
+
                 return api;
             }
             return settings;

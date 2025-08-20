@@ -1,17 +1,13 @@
 ﻿using Assets.Scripts.BoardGame.Loading;
 using Assets.Scripts.BoardGame.Loading.Constants;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.BoardGame.PlayerData;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.BoardGame.Services

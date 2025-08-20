@@ -1,6 +1,3 @@
-using Genrpg.Shared.BoardGame.Settings;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
@@ -15,13 +12,13 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
 
         [Key(1)] public long GroupSizeIncrement { get; set; }
 
-            // Used for the size of each group
+        // Used for the size of each group
         [Key(2)] public long MaxStartGroupSize { get; set; }
         [Key(3)] public double BaseGroupSizeIncreaseChance { get; set; }
         [Key(4)] public long BaseGroupSizeLevelCap { get; set; }
         [Key(5)] public double GroupSizeIncreaseChancePerLevel { get; set; }
         [Key(6)] public double MaxGroupSizeIncreaseChance { get; set; }
-        [Key(7)] public double MaxGroupSizePerLevel { get; set; }     
+        [Key(7)] public double MaxGroupSizePerLevel { get; set; }
         [Key(8)] public long MaxGroupSize { get; set; }
 
 
@@ -31,6 +28,8 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
         [Key(11)] public double MaxGroupCountIncreaseChance { get; set; }
         [Key(12)] public double MaxGroupCountPerLevel { get; set; }
         [Key(13)] public long MaxGroupCount { get; set; }
+
+        [Key(14)] public double SelectRandomUnitForCombatGroupChance { get; set; }
 
     }
 

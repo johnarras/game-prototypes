@@ -18,7 +18,6 @@ using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading;
 using UnityEngine;
 
@@ -45,8 +44,9 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             if (encounterTypeId == MapEncounters.Treasure)
             {
+
                 LootGenData lootGenData = await _lootGenService.CreateLootGenData(party,
-                    MathUtils.FloatRange(1.0f, 2.0f, _rand), "You Found a Great Treasure!", ECrawlerStates.ExploreWorld, null);
+                    MathUtils.FloatRange(2.0f, 4.0f, _rand), MathUtils.FloatRange(2.0f, 4.0f, _rand), MathUtils.FloatRange(2.0f, 4.0f, _rand), "You Found a Great Treasure!", ECrawlerStates.ExploreWorld, null);
 
                 mapStatus.OneTimeEncounters.Add(new PointXZ() { X = party.CurrPos.X, Z = party.CurrPos.Z });
                 _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);

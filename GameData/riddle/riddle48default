@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 48,
   "Name": "Frostbite",
-  "Desc": "A touch so cold, it burns like fire,\r\nWith winter's breath, it takes you higher.\r\nIt numbs the skin, it chills the bone,\r\nIn icy lands, it's all you've known.\r\n"
+  "Desc": "A touch so cold, it burns like fire,\nWith winter's breath, it takes you higher.\nIt numbs the skin, it chills the bone,\nIn icy lands, it's all you've known.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using Genrpg.Shared.Inventory.PlayerData;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Utils;
-using System.Threading;
+using Genrpg.Shared.Inventory.Constants;
+using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using Genrpg.Shared.Inventory.Settings.Ranks;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 public class InitItemTooltipData : InitTooltipData
 {
     public Item MainItem;
-    public ItemType mainItemType;
+    public ItemType MainItemType;
     public bool IsVendorItem;
     public Item CompareToItem;
     public string Message;
@@ -41,7 +42,7 @@ public class ItemTooltip : BaseTooltip
     public const int StarBaseAmount = 25;
     public const int StarIncrementAmount = 25;
 
-     
+
     public GText Message;
     public GText ItemName;
     public GText BasicInfo;
@@ -95,15 +96,16 @@ public class ItemTooltip : BaseTooltip
         {
             return;
         }
-        if (_data.mainItemType != null)
+        if (_data.MainItemType != null)
         {
-            if (_data.mainItemType.EquipSlotId == EquipSlots.MainHand ||
+            if (_data.MainItemType.EquipSlotId == EquipSlots.MainHand ||
                 _data.MainItem.EquipSlotId == EquipSlots.Ranged)
             {
+                LootRank lootRank = _gameData.Get<LootRankSettings>(null).Get(_data.MainItem.LootRankId);
 
                 ItemTooltipRowData rowData = new ItemTooltipRowData()
                 {
-                    text = "Dam: " + _data.mainItemType.MinVal + "-" + _data.mainItemType.MaxVal,
+                    text = "Dam: " + _data.MainItemType.MinVal + "-" + _data.MainItemType.MaxVal + (lootRank != null && lootRank.Damage > 0 ? " (+" + lootRank.Damage + ")" : ""),
                     isCurrent = false,
                     change = 0,
                     starsToShow = 0
@@ -112,11 +114,11 @@ public class ItemTooltip : BaseTooltip
             }
         }
 
-            if (_data.MainItem.Effects == null || _data.MainItem.Effects.Count < 1)
+        if (_data.MainItem.Effects == null || _data.MainItem.Effects.Count < 1)
         {
-            if (_data.mainItemType != null && _data.mainItemType.Effects != null)
-                {
-                foreach (ItemEffect eff in _data.mainItemType.Effects)
+            if (_data.MainItemType != null && _data.MainItemType.Effects != null)
+            {
+                foreach (ItemEffect eff in _data.MainItemType.Effects)
                 {
                     if (eff.EntityTypeId == EntityTypes.Stat || eff.EntityTypeId == EntityTypes.StatPct)
                     {
@@ -140,7 +142,7 @@ public class ItemTooltip : BaseTooltip
                     }
                 }
             }
-           
+
         }
 
         foreach (ItemEffect eff in _data.MainItem.Effects)
@@ -154,7 +156,7 @@ public class ItemTooltip : BaseTooltip
 
             long change = (_data.CompareToItem != null ? -eff.Quantity : 0);
             ItemEffect otherEffect = otherEffects.FirstOrDefault(x => x.EntityTypeId == eff.EntityTypeId && x.EntityId == eff.EntityId);
-            
+
             if (otherEffect != null)
             {
                 change = otherEffect.Quantity - eff.Quantity;
@@ -199,8 +201,8 @@ public class ItemTooltip : BaseTooltip
             return;
         }
 
-        _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI, 
-            ItemTooltipRow, OnLoadRow, data, _token, "Items" );
+        _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI,
+            ItemTooltipRow, OnLoadRow, data, _token, "Items");
     }
 
     private void OnLoadRow(object obj, object data, CancellationToken token)
@@ -212,8 +214,8 @@ public class ItemTooltip : BaseTooltip
         }
 
         ItemTooltipRow row = go.GetComponent<ItemTooltipRow>();
-        ItemTooltipRowData rowData = data as ItemTooltipRowData;       
-        if(row == null || rowData == null)
+        ItemTooltipRowData rowData = data as ItemTooltipRowData;
+        if (row == null || rowData == null)
         {
             _clientEntityService.Destroy(go);
             return;

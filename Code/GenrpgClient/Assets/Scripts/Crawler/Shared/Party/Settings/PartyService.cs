@@ -129,7 +129,6 @@ namespace Genrpg.Shared.Crawler.Party.Services
             party.CurrentMap = new CurrentMapStatus();
             party.CompletedMaps.Clear();
             party.RiddlesCompleted.Clear();
-            party.RiddleStatus = 0;
             party.QuestItems.Clear();
             party.CurrPos = new MapPosition();
             party.RecallPos = new MapPosition();

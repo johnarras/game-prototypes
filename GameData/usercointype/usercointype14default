@@ -3,9 +3,5 @@
   "ParentId": "default",
   "IdKey": 14,
   "Name": "Mana",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconMana",
-  "Art": "ManaArt",
-  "BaseStorage": 50
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

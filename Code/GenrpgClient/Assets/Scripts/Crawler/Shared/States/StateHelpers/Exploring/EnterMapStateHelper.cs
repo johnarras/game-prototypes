@@ -68,8 +68,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMap.ZoneTypeId);
 
 
-            _logService.Info("NextZoneTypeId: " + nextMap.ZoneTypeId);
-
             stateData.BGImageOnly = true;
             if (zoneType != null && !string.IsNullOrEmpty(zoneType.Icon))
             {
@@ -199,7 +197,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         {
                             for (int i = 0; i < maxBitIndex; i++)
                             {
-                                if (FlagUtils.IsSet(party.RiddleStatus, (1 << i)) !=
+                                if (party.HasRiddleBitIndex(i) !=
                                     (FlagUtils.IsSet(answerVal, (1 << i))))
                                 {
                                     togglesAreCorrect = false;
@@ -263,7 +261,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 {
                                     break;
                                 }
-                                if (!FlagUtils.IsSet(party.RiddleStatus, (1 << i)))
+                                if (!party.HasRiddleBitIndex(i))
                                 {
                                     unclickedButtons++;
                                 }
@@ -272,7 +270,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         if (unclickedButtons == 0)
                         {
 
-                            stateData.Actions.Add(new CrawlerStateAction("The path to the next floor is clear. Do you wish to enter?", 'Y',
+                            stateData.Actions.Add(new CrawlerStateAction("The path is clear, do you wish to go?"));
+                            stateData.Actions.Add(new CrawlerStateAction("Yes go to the next floor.", 'Y',
                                 ECrawlerStates.ExploreWorld, () =>
                                 {
                                     EnterCrawlerMapData enterMapData = new EnterCrawlerMapData()
@@ -289,7 +288,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                     _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token, enterMapData);
                                 }));
 
-                            stateData.Actions.Add(new CrawlerStateAction("No, not quite yet.", 'N', ECrawlerStates.ExploreWorld));
+                            stateData.Actions.Add(new CrawlerStateAction("No, stay on this flor..", 'N', ECrawlerStates.ExploreWorld));
 
 
                         }

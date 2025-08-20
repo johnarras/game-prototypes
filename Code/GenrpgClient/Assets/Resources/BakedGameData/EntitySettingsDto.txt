@@ -5,8 +5,7 @@
       "Id": "entitytype1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "Currency",
-      "SaveTime": "2025-06-13T22:28:54.48Z"
+      "Name": "Currency"
     },
     {
       "Id": "entitytype2default",
@@ -54,15 +53,13 @@
       "Id": "entitytype9default",
       "ParentId": "default",
       "IdKey": 9,
-      "Name": "Quest",
-      "SaveTime": "2025-06-13T22:26:27.119Z"
+      "Name": "Quest"
     },
     {
       "Id": "entitytype10default",
       "ParentId": "default",
       "IdKey": 10,
-      "Name": "Set",
-      "SaveTime": "2025-06-13T22:26:27.119Z"
+      "Name": "Set"
     },
     {
       "Id": "entitytype12default",
@@ -86,15 +83,13 @@
       "Id": "entitytype15default",
       "ParentId": "default",
       "IdKey": 15,
-      "Name": "ZoneUnit",
-      "SaveTime": "2025-06-13T22:28:54.48Z"
+      "Name": "ZoneUnit"
     },
     {
       "Id": "entitytype16default",
       "ParentId": "default",
       "IdKey": 16,
-      "Name": "ProxyCharacter",
-      "SaveTime": "2025-06-13T22:28:41.661Z"
+      "Name": "ProxyCharacter"
     },
     {
       "Id": "entitytype17default",
@@ -182,8 +177,7 @@
       "Id": "entitytype30default",
       "ParentId": "default",
       "IdKey": 30,
-      "Name": "TimedEvent",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "TimedEvent"
     },
     {
       "Id": "entitytype31default",
@@ -307,64 +301,55 @@
       "Id": "entitytype50default",
       "ParentId": "default",
       "IdKey": 50,
-      "Name": "Tree",
-      "SaveTime": "2025-06-11T01:23:06.288Z"
+      "Name": "Tree"
     },
     {
       "Id": "entitytype51default",
       "ParentId": "default",
       "IdKey": 51,
-      "Name": "MapMagic",
-      "SaveTime": "2025-06-11T01:23:06.288Z"
+      "Name": "MapMagic"
     },
     {
       "Id": "entitytype52default",
       "ParentId": "default",
       "IdKey": 52,
-      "Name": "MapEncounter",
-      "SaveTime": "2025-06-11T01:23:06.288Z"
+      "Name": "MapEncounter"
     },
     {
       "Id": "entitytype53default",
       "ParentId": "default",
       "IdKey": 53,
-      "Name": "RiddleType",
-      "SaveTime": "2025-06-11T01:23:06.288Z"
+      "Name": "RiddleType"
     },
     {
       "Id": "entitytype54default",
       "ParentId": "default",
       "IdKey": 54,
-      "Name": "Marker",
-      "SaveTime": "2025-06-20T21:44:46.116Z"
+      "Name": "Marker"
     },
     {
       "Id": "entitytype55default",
       "ParentId": "default",
       "IdKey": 55,
-      "Name": "City",
-      "SaveTime": "2025-07-20T05:04:04.572Z"
+      "Name": "City"
     },
     {
       "Id": "entitytype56default",
       "ParentId": "default",
       "IdKey": 56,
-      "Name": "Animal",
-      "SaveTime": "2025-07-20T05:04:04.572Z"
+      "Name": "Animal"
     },
     {
       "Id": "entitytype57default",
       "ParentId": "default",
       "IdKey": 57,
-      "Name": "TradeGood",
-      "SaveTime": "2025-07-20T05:04:04.572Z"
+      "Name": "TradeGood"
     },
     {
       "Id": "entitytype58default",
       "ParentId": "default",
       "IdKey": 58,
-      "Name": "Road",
-      "SaveTime": "2025-07-20T05:04:04.572Z"
+      "Name": "Road"
     },
     {
       "Id": "entitytype100default",
@@ -396,36 +381,31 @@
       "Id": "entitytype149default",
       "ParentId": "default",
       "IdKey": 149,
-      "Name": "TimedEventCurrency",
-      "SaveTime": "2025-06-12T22:35:41.718Z"
+      "Name": "TimedEventCurrency"
     },
     {
       "Id": "entitytype150default",
       "ParentId": "default",
       "IdKey": 150,
-      "Name": "SeasonTheme",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "SeasonTheme"
     },
     {
       "Id": "entitytype151default",
       "ParentId": "default",
       "IdKey": 151,
-      "Name": "SeasonTierList",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "SeasonTierList"
     },
     {
       "Id": "entitytype152default",
       "ParentId": "default",
       "IdKey": 152,
-      "Name": "CollectionTheme",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "CollectionTheme"
     },
     {
       "Id": "entitytype153default",
       "ParentId": "default",
       "IdKey": 153,
-      "Name": "CollectionTierList",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "CollectionTierList"
     },
     {
       "Id": "entitytype200default",

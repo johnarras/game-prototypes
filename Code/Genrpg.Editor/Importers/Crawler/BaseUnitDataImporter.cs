@@ -90,7 +90,14 @@ namespace Genrpg.Editor.Importers.Crawler
 
             foreach (ZoneType zoneType in zoneTypes)
             {
-                zoneType.ZoneUnitSpawns = new List<ZoneUnitSpawn>();
+                if (GetEntityTypeId() == EntityTypes.Unit)
+                {
+                    zoneType.ZoneUnitSpawns = new List<ZoneUnitSpawn>();
+                }
+                else if (GetEntityTypeId() == EntityTypes.UnitKeyword)
+                {
+                    zoneType.UnitKeyWords = new List<ZoneUnitKeyword>();
+                }
                 gs.LookedAtObjects.Add(zoneType);
             }
 
@@ -98,7 +105,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
             List<TChild> newList = new List<TChild>();
 
-
+            gs.LookedAtObjects.Add(gs.data.Get<ZoneTypeSettings>(null));
 
             for (int l = 1; l < lines.Count; l++)
             {
@@ -269,6 +276,7 @@ namespace Genrpg.Editor.Importers.Crawler
             {
                 gs.LookedAtObjects.Add(utype);
             }
+            gs.LookedAtObjects.Add(settings);
             await Task.CompletedTask;
             return true;
         }
@@ -281,14 +289,14 @@ namespace Genrpg.Editor.Importers.Crawler
                 return;
             }
 
-            string[] words = spawnZoneList.Split(',');
+            List<string> words = StrUtils.CommaSemiColonSplit(spawnZoneList);
 
 
             IReadOnlyList<ZoneType> zoneTypes = gs.data.Get<ZoneTypeSettings>(null).GetData();
 
             IReadOnlyList<ZoneCategory> zoneCategories = gs.data.Get<ZoneCategorySettings>(null).GetData();
 
-            for (int w = 0; w < words.Length; w++)
+            for (int w = 0; w < words.Count; w++)
             {
                 string word = StrUtils.NormalizeWord(words[w]);
 

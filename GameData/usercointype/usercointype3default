@@ -3,6 +3,7 @@
   "ParentId": "default",
   "IdKey": 3,
   "Name": "Energy",
-  "Icon": "IconEnergy",
-  "Art": "EnergyArt"
+  "Icon": "EnergyIcon",
+  "Art": "EnergyArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

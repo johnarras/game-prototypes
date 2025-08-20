@@ -44,15 +44,12 @@ namespace Genrpg.Shared.ProcGen.Settings.LineGen
             WidthSizeChangeAmount = 0;
             WidthSizeChangeChance = 0f;
 
-
-
             WidthPosShiftChance = 0f;
             WidthPosShiftSize = 0;
             InitialNoPosShiftLength = 0;
             LinePathNoiseScale = 0.0f;
             Seed = 0;
             MinOverlap = 1;
-
 
             XMin = -1000;
             YMin = -1000;

@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 6,
   "Name": "Potion",
-  "Desc": "A vial filled with liquid rare,\r\nIt heals or harms, handle with care.\r\nIn battles fierce or times of need,\r\nThis magic drink can do the deed.\r\n"
+  "Desc": "A vial filled with liquid rare,\nIt heals or harms, handle with care.\nIn battles fierce or times of need,\nThis magic drink can do the deed.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

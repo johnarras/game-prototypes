@@ -2,7 +2,7 @@
   "ClientPlatform": "Win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2025-08-03T01:33:32.4359921Z"
+    "UpdateTime": "2025-08-16T19:39:09.5347675Z"
   },
   "Versions": {
     "atlascrawlercombat": {
@@ -42,12 +42,12 @@
     },
     "atlasui": {
       "Name": "atlasui",
-      "Hash": "28c573debfcfcab0a968a91bd7b8e200",
+      "Hash": "2303f889507d43b054224a6d43512b04",
       "ChildDependencies": []
     },
     "atlasusercointypeicons": {
       "Name": "atlasusercointypeicons",
-      "Hash": "0939859eff85b6f1af180f2c6ed6bb53",
+      "Hash": "557e05e82eb7976a67f7e571325e7f17",
       "ChildDependencies": []
     },
     "audioarcanehit": {
@@ -165,19 +165,11 @@
       "Hash": "0e2877312b52f54864d92f48f490e319",
       "ChildDependencies": []
     },
-    "buildingsbasebuilding": {
-      "Name": "buildingsbasebuilding",
-      "Hash": "91283c0c4f1e30af0352ac3d0eb797d9",
-      "ChildDependencies": [
-        "atlasui"
-      ]
-    },
     "buildingsdefault": {
       "Name": "buildingsdefault",
-      "Hash": "0d66896d99955293f81d69dc9dfc749b",
+      "Hash": "e9243b6a64fe38f538a09210248ad8d7",
       "ChildDependencies": [
-        "atlasui",
-        "buildingsbasebuilding"
+        "atlasui"
       ]
     },
     "bushesazalea": {
@@ -332,13 +324,20 @@
     },
     "dungeonsarcane": {
       "Name": "dungeonsarcane",
-      "Hash": "d1b47201fdc65441fc448a47b53bcf96",
+      "Hash": "b8ac8e9d688588c4f38e9e7e2e9edbf0",
       "ChildDependencies": [
+        "dungeonsarcanemats",
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
         "dungeonsnaturalmats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
+    },
+    "dungeonsarcanemats": {
+      "Name": "dungeonsarcanemats",
+      "Hash": "645fd6b04cb110f5ef8d06bb79a1a219",
+      "ChildDependencies": []
     },
     "dungeonsbasedoor": {
       "Name": "dungeonsbasedoor",
@@ -352,7 +351,7 @@
     },
     "dungeonsbasemats": {
       "Name": "dungeonsbasemats",
-      "Hash": "4a7b59eb71d101597cbc96c627a97642",
+      "Hash": "e1317759a1ca83960e8771cd5fec890c",
       "ChildDependencies": []
     },
     "dungeonsbasepillar": {
@@ -367,16 +366,17 @@
     },
     "dungeonscave": {
       "Name": "dungeonscave",
-      "Hash": "6c259f42bd4e7472b208d886b76f979f",
+      "Hash": "59a59b552ed77fcf56ab08a024281710",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonscity": {
       "Name": "dungeonscity",
-      "Hash": "bf65fdc3453d2734a377913595928a25",
+      "Hash": "22d0b954627b6ebd9ee6ea901170db22",
       "ChildDependencies": [
         "dungeonstanmats"
       ]
@@ -388,55 +388,60 @@
     },
     "dungeonsdungeon": {
       "Name": "dungeonsdungeon",
-      "Hash": "07d416390a33171b2769b9ae8b943e2b",
+      "Hash": "a609c447d4a649a3ed26c4107bf49f3f",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonsgraymats": {
       "Name": "dungeonsgraymats",
-      "Hash": "45e9ee9d1f9b27ec1c92bb4044b5e89b",
+      "Hash": "f7393795580374666334397d1a9f9428",
       "ChildDependencies": []
     },
     "dungeonslava": {
       "Name": "dungeonslava",
-      "Hash": "f7c54c142a40d82825504846e6107371",
+      "Hash": "724fe12648d22561d4e525166f362826",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
+        "dungeonslavamats",
         "dungeonsnaturalmats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonslavamats": {
       "Name": "dungeonslavamats",
-      "Hash": "a2fab6a95b63ac713852f2ac1769ffe1",
+      "Hash": "4ed1ab58cdf5cb5aeed2a9157cdb3f0c",
       "ChildDependencies": []
     },
     "dungeonsnatural": {
       "Name": "dungeonsnatural",
-      "Hash": "1bec8347193ec10f885e6cd4d950743e",
+      "Hash": "f246643b6bf69d58e41a9b809d9e27b9",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
         "dungeonsnaturalmats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonsnaturalmats": {
       "Name": "dungeonsnaturalmats",
-      "Hash": "6e80c329dacfd00a9099a0f70923f4ac",
+      "Hash": "7a0dabf8628aff1501abe169bf80a848",
       "ChildDependencies": []
     },
     "dungeonsoutdoors": {
       "Name": "dungeonsoutdoors",
-      "Hash": "a2bae3ff901a1faeff22ab38b0562ab2",
+      "Hash": "675b9c864b1d9beb468a931ba98ec294",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonstanmats": {
@@ -451,21 +456,34 @@
     },
     "dungeonstower": {
       "Name": "dungeonstower",
-      "Hash": "ae8c4a0c931e8197d86143d673f3ae71",
+      "Hash": "1f7c04770a5deba9fe3721a567f12f52",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonswallmats"
       ]
     },
     "dungeonsunholy": {
       "Name": "dungeonsunholy",
-      "Hash": "935a967874bd8c4ce8e2c2e9b43cef17",
+      "Hash": "6d9a9246597484e911dba9734fa8cea8",
       "ChildDependencies": [
         "dungeonsdarkgraymats",
         "dungeonsgraymats",
-        "dungeonstanmats"
+        "dungeonstanmats",
+        "dungeonsunholymats",
+        "dungeonswallmats"
       ]
+    },
+    "dungeonsunholymats": {
+      "Name": "dungeonsunholymats",
+      "Hash": "b24659642a66498efbd9bc82b568d5c2",
+      "ChildDependencies": []
+    },
+    "dungeonswallmats": {
+      "Name": "dungeonswallmats",
+      "Hash": "1194741292557e3f666f6144af93687d",
+      "ChildDependencies": []
     },
     "grassdetailgrass": {
       "Name": "grassdetailgrass",
@@ -1629,12 +1647,12 @@
     },
     "prefabsminimapwater": {
       "Name": "prefabsminimapwater",
-      "Hash": "d0e3d859b67f1d943e029d2e46892f39",
+      "Hash": "24dd4d7e088a1a18853f62ca7161773f",
       "ChildDependencies": []
     },
     "prefabsminimapwaterfull": {
       "Name": "prefabsminimapwaterfull",
-      "Hash": "7ee0b4ba3dc182e616a1a9d290eaf08c",
+      "Hash": "6d90805daa7773807afbdb404393ff6b",
       "ChildDependencies": []
     },
     "prefabspathsphere": {
@@ -1779,7 +1797,7 @@
     },
     "propswallbutton": {
       "Name": "propswallbutton",
-      "Hash": "1b907f890bdaa1bd1e6205f33da3e552",
+      "Hash": "23618a38548457d951e2d0864f40d53d",
       "ChildDependencies": []
     },
     "propswhitecauldron": {
@@ -1819,7 +1837,7 @@
     },
     "storesdefault": {
       "Name": "storesdefault",
-      "Hash": "ea708a8aed4a156959b0ca5aa3d15c56",
+      "Hash": "9d1494519be588dd6049e12078f9cf53",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -1827,7 +1845,7 @@
     },
     "storesgems": {
       "Name": "storesgems",
-      "Hash": "beb1a559894780cd4c583b0917a1738b",
+      "Hash": "64fca9a90d2b23f8ad505e35b22664b7",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -1835,7 +1853,7 @@
     },
     "storesgreen": {
       "Name": "storesgreen",
-      "Hash": "5e6bb979a53734d9407586e1c72a397c",
+      "Hash": "ffa93ad9f76b303f8e0839791c445bb6",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3448,7 +3466,7 @@
     },
     "uiactionbars": {
       "Name": "uiactionbars",
-      "Hash": "da9910be8551937f1c433c8685cafd76",
+      "Hash": "bc42229a6d410201afcbd1b2e6c4d922",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui"
@@ -3461,35 +3479,35 @@
     },
     "uicharacters": {
       "Name": "uicharacters",
-      "Hash": "ca052b6a2acafb51f40c99cceb0ff173",
+      "Hash": "48c79fa84def992ecf94ed74f67d2580",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicharms": {
       "Name": "uicharms",
-      "Hash": "89cd0ad31f47d19d0b146c4dbe18b158",
+      "Hash": "df99bee9e2270c072869ea0b000ede86",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uichat": {
       "Name": "uichat",
-      "Hash": "4d5d394029670f60f3ed82a463d6a611",
+      "Hash": "7b083cffb00f44bbaf17e3b73d968187",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicore": {
       "Name": "uicore",
-      "Hash": "49db7fc4d0c9f54d3a5e8a2bdc75559c",
+      "Hash": "59532cef2cfb2d77c89c242e4b3df638",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrafting": {
       "Name": "uicrafting",
-      "Hash": "742bf78f22ec436efebd0342861ece96",
+      "Hash": "6ea74fdbb333b8ba27a359d360f45851",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3497,35 +3515,95 @@
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "37bb27d8ab3b9b6a98288e8135a61153",
+      "Hash": "ced5ff5e1892324dc24565d0c4879f95",
+      "ChildDependencies": [
+        "atlasskillicons",
+        "atlasui",
+        "uicrawleraction"
+      ]
+    },
+    "uicrawleraction": {
+      "Name": "uicrawleraction",
+      "Hash": "9b4f52e37aff9b413001eb449d33c87f",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui"
       ]
     },
+    "uicrawlerbuffs": {
+      "Name": "uicrawlerbuffs",
+      "Hash": "37d4677acda112a35f2d8ab32b26f23b",
+      "ChildDependencies": [
+        "atlasui"
+      ]
+    },
+    "uicrawlercombat": {
+      "Name": "uicrawlercombat",
+      "Hash": "539d391d3e51ef6cb9ec8fb1372fe2f0",
+      "ChildDependencies": [
+        "atlasui",
+        "uicrawlerinfo"
+      ]
+    },
+    "uicrawlerhud": {
+      "Name": "uicrawlerhud",
+      "Hash": "219cf1f5e876781c17ef8855bc0571c8",
+      "ChildDependencies": [
+        "atlasskillicons",
+        "atlasui",
+        "uicrawleraction",
+        "uicrawlercombat",
+        "uicrawlerinfo",
+        "uicrawlerparty",
+        "uicrawlerquests"
+      ]
+    },
+    "uicrawlerinfo": {
+      "Name": "uicrawlerinfo",
+      "Hash": "53657dfd4fb2cde108f92db20333bb6b",
+      "ChildDependencies": [
+        "atlasui"
+      ]
+    },
     "uicrawleritems": {
       "Name": "uicrawleritems",
-      "Hash": "2dfbcdf345f3ac1ec4f5d5de88a17e93",
+      "Hash": "6a22a89f5cbe15adf057fa9fab3eb495",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
       ]
     },
-    "uicrawlertilemaps": {
-      "Name": "uicrawlertilemaps",
-      "Hash": "bb206f44c5e5f10fe3c350e253058b26",
+    "uicrawlerparty": {
+      "Name": "uicrawlerparty",
+      "Hash": "25a8fcf7f0d1d8f9795fc9926fffb7a4",
       "ChildDependencies": [
         "atlasui"
       ]
     },
-    "uicrawlerunits": {
-      "Name": "uicrawlerunits",
-      "Hash": "973af5c350b22f4371e15b57960c334b",
-      "ChildDependencies": []
+    "uicrawlerquests": {
+      "Name": "uicrawlerquests",
+      "Hash": "5bd65a3dbd57b6f52d0d4749c67eef64",
+      "ChildDependencies": [
+        "atlasui"
+      ]
+    },
+    "uicrawlerscreens": {
+      "Name": "uicrawlerscreens",
+      "Hash": "07c11101e9ff18768a7da1c6aa76ec17",
+      "ChildDependencies": [
+        "atlasui"
+      ]
+    },
+    "uicrawlertilemaps": {
+      "Name": "uicrawlertilemaps",
+      "Hash": "fbba35666e368e7bd46f9628d737a529",
+      "ChildDependencies": [
+        "atlasui"
+      ]
     },
     "uicurrencies": {
       "Name": "uicurrencies",
-      "Hash": "1b0964359953aa87426cc83f2ea9fcbf",
+      "Hash": "7d63fa63e513192967728674267f26ba",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3538,33 +3616,33 @@
     },
     "uientities": {
       "Name": "uientities",
-      "Hash": "6868fc6790df3981175deed61b4261c7",
+      "Hash": "e10f7cd57b00c32ca3a3eb4f12dc4e0f",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uifloatingtext": {
       "Name": "uifloatingtext",
-      "Hash": "22f9bc5306a90ca1dcb73dca40fff2e6",
+      "Hash": "cf794d4c0c7fcfbb4ca693f4312af120",
       "ChildDependencies": []
     },
     "uiftue": {
       "Name": "uiftue",
-      "Hash": "ae640f2121ea2ebac7628c04429b041e",
+      "Hash": "cf2eced332c45aaae195939f30331fa8",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uihud": {
       "Name": "uihud",
-      "Hash": "bb90eb4f56dac467ab0c47dc4d7f9552",
+      "Hash": "9bb6053d4e7416de52e9c1058215c064",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uiitems": {
       "Name": "uiitems",
-      "Hash": "67268c0340031c37a66bae2765588953",
+      "Hash": "f4fa4753eed3e8cd05198381af428734",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3573,12 +3651,12 @@
     "uiloading": {
       "IsLocal": true,
       "Name": "uiloading",
-      "Hash": "b4743348c3202b26273b6a2708c6023d",
+      "Hash": "104499f66da8c1b4ff1e4afc6d1e308b",
       "ChildDependencies": []
     },
     "uilogin": {
       "Name": "uilogin",
-      "Hash": "165a255b33bbd1e926dabf3ca7ebb3b3",
+      "Hash": "f73cbe9db4e0cd43ba7580846f51aa46",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3592,29 +3670,34 @@
     },
     "uimaps": {
       "Name": "uimaps",
-      "Hash": "ded033ca9874026ccd377bd7325f7d09",
+      "Hash": "9428b6d4816c092a508ca4c8021f2b2c",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uimarkers": {
       "Name": "uimarkers",
-      "Hash": "f6e10f0da8a2f6ed0f78164983d6123a",
+      "Hash": "13aa7b804555c8c5ba7bca8c50975134",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uimobilehud": {
       "Name": "uimobilehud",
-      "Hash": "25dc3edeed78f4a87f161e17702fb031",
+      "Hash": "06dc930aeec899fd10e144f987a340b7",
       "ChildDependencies": [
         "atlasui",
         "atlasusercointypeicons"
       ]
     },
+    "uinewcrawlergamescreen": {
+      "Name": "uinewcrawlergamescreen",
+      "Hash": "41081d8c47f649ea877cc0cb19c177de",
+      "ChildDependencies": []
+    },
     "uiquests": {
       "Name": "uiquests",
-      "Hash": "87b5035eb0596bf7370b58bb6b9150c8",
+      "Hash": "1899ef1e5707e6ef5021d749204a26f7",
       "ChildDependencies": [
         "atlasicons",
         "atlasskillicons",
@@ -3623,19 +3706,19 @@
     },
     "uirewards": {
       "Name": "uirewards",
-      "Hash": "4d87ab02a926f00c19d16ccea91c7cde",
+      "Hash": "9837cfb9d158d82eaf08f677cb330474",
       "ChildDependencies": []
     },
     "uispells": {
       "Name": "uispells",
-      "Hash": "08a4f4b5f9e20eb08a63391944d346c6",
+      "Hash": "b4048b4f24179c96946cb5b87b00d441",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uistores": {
       "Name": "uistores",
-      "Hash": "5ade726d705f337ec90947be1e039df0",
+      "Hash": "97fd97696d1e3bfee837c6f1ddadd529",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3649,14 +3732,14 @@
     },
     "uitiles": {
       "Name": "uitiles",
-      "Hash": "d3dfc687a9a053b22aa0b2d99c2040be",
+      "Hash": "9419488f0897e62d900dd7747ce94334",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uitrade": {
       "Name": "uitrade",
-      "Hash": "a131bcfb68f3de980bdfa410924369b7",
+      "Hash": "55c46d1905fe1c447225d66c4c413a24",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3664,14 +3747,14 @@
     },
     "uiunits": {
       "Name": "uiunits",
-      "Hash": "d35e9f0b46288812fffd23b2c7f43430",
+      "Hash": "8948b211783a5ec6bf71247e8f30839a",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uizones": {
       "Name": "uizones",
-      "Hash": "729eed64ef143f311555086ac16e0f07",
+      "Hash": "80e3d83ac2f101f43b8187fc95bf62ef",
       "ChildDependencies": []
     }
   }

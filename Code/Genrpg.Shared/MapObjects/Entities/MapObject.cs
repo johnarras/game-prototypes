@@ -68,7 +68,7 @@ namespace Genrpg.Shared.MapObjects.Entities
         {
             if (_idHash < 0)
             {
-                _idHash = StrUtils.GetIdHash(Id);
+                _idHash = StrUtils.GetPrefixIdHash(Id);
             }
             return _idHash;
         }

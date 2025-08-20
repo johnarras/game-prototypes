@@ -1,7 +1,6 @@
 ﻿using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.Utils;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
@@ -11,13 +10,11 @@ using Genrpg.Shared.GameSettings.PlayerData;
 using Genrpg.Shared.GameSettings.Settings;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Utils;
 using Genrpg.Shared.Settings.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
-using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using System;
 using System.Collections.Generic;
@@ -28,7 +25,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
 {
     public class GameDataService : IGameDataService
     {
-        SetupDictionaryContainer<Type, IGameSettingsLoader> _loaderObjects = new SetupDictionaryContainer<Type, IGameSettingsLoader>();    
+        SetupDictionaryContainer<Type, IGameSettingsLoader> _loaderObjects = new SetupDictionaryContainer<Type, IGameSettingsLoader>();
         SetupDictionaryContainer<Type, IGameSettingsMapper> _mapperObjects = new SetupDictionaryContainer<Type, IGameSettingsMapper>();
 
         protected IRepositoryService _repoService = null;
@@ -41,9 +38,9 @@ namespace Genrpg.ServerShared.GameSettings.Services
             return _loaderObjects.GetDict().Values.OrderBy(x => x.GetType().Name).ToList();
         }
 
-        public Dictionary<Type,IGameSettingsMapper> GetAllMappers()
+        public Dictionary<Type, IGameSettingsMapper> GetAllMappers()
         {
-            return _mapperObjects.GetDict();   
+            return _mapperObjects.GetDict();
         }
 
         public virtual List<string> GetEditorIgnoreFields()
@@ -197,7 +194,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 _repoService.QueueSave(coreChar);
             }
             else if (ch is Character realCh)
-            { 
+            {
                 CharacterUtils.CopyDataFromTo(realCh, realCh.Core);
                 _repoService.QueueSave(realCh.Core);
             }
@@ -221,7 +218,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
                         continue;
                     }
 
-                    retval.Add(mapper.MapToDto(settings));
+                    retval.Add(mapper.MapToDto(settings, false));
                 }
                 else
                 {
@@ -273,7 +270,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
             {
                 foreach (PlayerSettingsOverrideItem item in newOverrides.Items)
                 {
-                    ITopLevelSettings topLevel = allSettings.FirstOrDefault(x => 
+                    ITopLevelSettings topLevel = allSettings.FirstOrDefault(x =>
                     x.Id == item.DocId && x.GetType().Name == item.SettingId);
 
                     if (topLevel != null)
@@ -303,7 +300,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 return false;
             }
 
-            if (filter.AllowedPlayers.Any(x=>x.PlayerId == obj.Id))
+            if (filter.AllowedPlayers.Any(x => x.PlayerId == obj.Id))
             {
                 return true;
             }
@@ -316,7 +313,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
 
             if (filter.TotalModSize > 0 && filter.MaxAcceptableModValue > 0)
             {
-                long idHash = StrUtils.GetIdHash(filter.IdKey + obj.Id);
+                long idHash = StrUtils.GetPrefixIdHash(filter.IdKey + obj.Id);
 
                 if (idHash % filter.TotalModSize >= filter.MaxAcceptableModValue)
                 {
@@ -343,7 +340,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 Version clientVersion = new Version(obj.ClientVersion);
                 if (!string.IsNullOrEmpty(filter.MinClientVersion))
                 {
-                    Version minVersion = new Version(filter.MinClientVersion);  
+                    Version minVersion = new Version(filter.MinClientVersion);
 
                     if (clientVersion < minVersion)
                     {

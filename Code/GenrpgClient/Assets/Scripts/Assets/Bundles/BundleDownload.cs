@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Entities
@@ -17,6 +13,7 @@ namespace Assets.Scripts.Assets.Entities
         public GameObject parent;
         public bool isLocal;
         public int idHash;
+        public CancellationToken Token;
     }
 
 }

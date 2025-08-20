@@ -1,7 +1,6 @@
 ﻿using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Riddles.Settings;
-using Genrpg.Shared.Utils;
 
 namespace Assets.Scripts.Crawler.Maps.Props
 {
@@ -29,15 +28,13 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
         protected void UpdateToggle()
         {
-            if (_riddleType == null || !_riddleType.IsToggle ||            
+            if (_riddleType == null || !_riddleType.IsToggle ||
                 _party == null || _map == null)
             {
                 return;
             }
 
-            
-            
-            bool isOn = FlagUtils.IsSet(_party.RiddleStatus,(1 << _index));
+            bool isOn = _party.HasRiddleBitIndex(_index);
             _clientEntityService.SetActive(OnObject, isOn);
             _clientEntityService.SetActive(OffObject, !isOn);
         }

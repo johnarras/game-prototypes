@@ -205,15 +205,13 @@
       "Id": "stattype36default",
       "ParentId": "default",
       "IdKey": 36,
-      "Name": "DetectHidden",
-      "SaveTime": "2025-07-16T02:14:51.723Z"
+      "Name": "DetectHidden"
     },
     {
       "Id": "stattype37default",
       "ParentId": "default",
       "IdKey": 37,
-      "Name": "SmartTarget",
-      "SaveTime": "2025-07-16T02:14:51.723Z"
+      "Name": "SmartTarget"
     },
     {
       "Id": "stattype40default",
@@ -321,8 +319,7 @@
       "Name": "Hit",
       "Desc": "Chance to Hit",
       "GenScalePct": 100,
-      "IsCrawlerStat": true,
-      "SaveTime": "2025-07-16T02:19:36.528Z"
+      "IsCrawlerStat": true
     }
   ],
   "Parent": {

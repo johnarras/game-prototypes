@@ -1,38 +1,33 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Repository;
+using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Loot.Services;
+using Genrpg.Shared.Crawler.MapGen.Helpers;
+using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
+using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.LoadSave.Constants;
+using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.MapGen.Services;
-using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.LoadSave.Constants;
-using Genrpg.Shared.LoadSave.Services;
-using Assets.Scripts.Repository;
-using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Zones.Constants;
-using Genrpg.Shared.Units.Settings;
 using System.Threading;
-using Genrpg.Shared.Riddles.EntranceRiddleHelpers;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.Services
 {
@@ -100,6 +95,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 Width = width,
                 Height = height,
                 Level = genData.Level,
+                LevelDelta = genData.LevelDelta,
                 IdKey = mapId,
                 MapFloor = genData.CurrFloor,
                 ArtSeed = genData.ArtSeed,
@@ -146,9 +142,9 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         spawnCount--;
                     }
 
-                    List<long> currentUnits = map.ZoneUnits.Select(x=>x.UnitTypeId).ToList();
+                    List<long> currentUnits = map.ZoneUnits.Select(x => x.UnitTypeId).ToList();
 
-                    spawns = spawns.Where(x=>!currentUnits.Contains(x.UnitTypeId)).ToList();    
+                    spawns = spawns.Where(x => !currentUnits.Contains(x.UnitTypeId)).ToList();
 
                     double minWeight = spawns.Min(x => x.Weight);
 
@@ -309,26 +305,20 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             IReadOnlyList<ZoneType> allZoneTypes = _gameData.Get<ZoneTypeSettings>(_gs.ch).GetData();
 
+            long zoneTypeId = map.Get(x, z, CellIndex.Terrain);
+
+            ZoneType ztype = allZoneTypes.FirstOrDefault(zt => zt.IdKey == zoneTypeId);
+
+            if (ztype != null && ztype.ZoneUnitSpawns.Count > 0)
+            {
+                return ztype;
+            }
+
             if (map.ZoneTypeId > 0)
             {
                 return allZoneTypes.FirstOrDefault(zt => zt.IdKey == map.ZoneTypeId);
             }
-
-            int index = map.GetIndex(x,z);
-
-            if (map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors)
-            {
-                return allZoneTypes.FirstOrDefault(zt => zt.IdKey > 0);
-            }
-
-            ZoneType ztype = allZoneTypes.FirstOrDefault(zt=>zt.IdKey == map.Get(x,z, CellIndex.Terrain));
-
-            if (ztype == null || ztype.ZoneUnitSpawns.Count < 1)
-            {
-                return allZoneTypes.FirstOrDefault(zt => zt.IdKey > 0);
-            }
-
-            return ztype;
+            return allZoneTypes.FirstOrDefault(zt => zt.IdKey > 0);
 
         }
 
@@ -340,99 +330,36 @@ namespace Assets.Scripts.Crawler.Maps.Services
         public async Task<int> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
         {
             CrawlerMap map = world.GetMap(mapId);
-            
+
             if (map == null)
             {
                 return 1;
             }
 
-            if (map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors)
-            {
-                return map.Level;
-            }
-
-            List<MapCellDetail> startDetails = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
-
-            List<MapCellDetail> finalDetails = new List<MapCellDetail>();
-
-            foreach (MapCellDetail detail in startDetails)
-            {
-                CrawlerMap cityMap = world.GetMap(detail.EntityId);
-
-                if (cityMap != null && cityMap.CrawlerMapTypeId == CrawlerMapTypes.City)
-                {
-                    finalDetails.Add(detail);
-                }
-            }
-            
-            Dictionary<MapCellDetail, long> cityDistances = new Dictionary<MapCellDetail, long>();
-
-            double px = x;
-            double pz = z;
-
-            foreach (MapCellDetail detail in finalDetails)
-            {
-                double distance = Math.Sqrt((px - detail.X) * (px - detail.X) + (pz - detail.Z) * (pz - detail.Z));
-
-                cityDistances[detail] = (long)distance;  
-            }
-
-            List<long> orderedDistances = cityDistances.Values.OrderBy(x => x).ToList();
-
-            MapCellDetail firstDetail = null;
-            long firstDist = 0;
-            int firstLevel = 0;
-            MapCellDetail secondDetail = null;
-            long secondDist = 0;
-            int secondLevel = 0;
-
-            firstDist = orderedDistances[0];
-            secondDist = orderedDistances[1];
-
-            foreach (MapCellDetail detail in cityDistances.Keys)
-            {
-                if (cityDistances[detail] == firstDist)
-                {
-                    firstDetail = detail; 
-                    CrawlerMap cityMap = world.GetMap(detail.EntityId);
-                    firstLevel = cityMap.Level;
-                }
-                if (cityDistances[detail] == secondDist)
-                {
-                    secondDetail = detail;
-                    CrawlerMap cityMap = world.GetMap(detail.EntityId);
-                    secondLevel = cityMap.Level;
-                }
-            }
-
-            if (firstDist <= 0 && secondDist <= 0)
-            {
-                return firstLevel;
-            }
-
-            double distanceSum = firstDist + secondDist;
-
-            double firstDistPct = firstDist / distanceSum;
-            double secondDistPct = secondDist / distanceSum;
-
             await Task.CompletedTask;
-            return (int)(firstDistPct * firstLevel + secondDistPct * secondLevel);
+            return map.GetMapLevelAtPoint(x, z);
         }
 
         public async Task<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z)
         {
             CrawlerMap map = GetMap(mapId);
 
-            if(map != null && map.ZoneUnits.Count > 0)
+            if (map != null)
             {
-                return map.ZoneUnits.ToList();
-            }
+                if (map.CrawlerMapTypeId != CrawlerMapTypes.City)
+                {
+                    ZoneType zoneType = await GetCurrentZone(party, mapId, x, z);
 
-            ZoneType zoneType = await GetCurrentZone(party, mapId, x, z);
+                    if (zoneType != null && zoneType.IdKey != map.ZoneTypeId && zoneType.ZoneUnitSpawns.Count > 0)
+                    {
+                        return zoneType.ZoneUnitSpawns.ToList();
+                    }
+                }
 
-            if (zoneType != null && zoneType.ZoneUnitSpawns.Count > 0)
-            {
-                return zoneType.ZoneUnitSpawns.ToList();
+                if (map.ZoneUnits.Count > 0)
+                {
+                    return map.ZoneUnits.ToList();
+                }
             }
 
             IReadOnlyList<UnitType> allUnits = _gameData.Get<UnitTypeSettings>(_gs.ch).GetData();

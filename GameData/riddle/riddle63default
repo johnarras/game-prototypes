@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 63,
   "Name": "Undead",
-  "Desc": "Once alive, now death's embrace,\r\nThey walk the earth, a ghastly race.\r\nWith hollow eyes and skin so cold,\r\nTheir stories in the dark unfold.\r\n"
+  "Desc": "Once alive, now death's embrace,\nThey walk the earth, a ghastly race.\nWith hollow eyes and skin so cold,\nTheir stories in the dark unfold.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

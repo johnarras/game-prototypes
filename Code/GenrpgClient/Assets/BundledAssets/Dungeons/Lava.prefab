@@ -11,8 +11,35 @@ PrefabInstance:
     - target: {fileID: 3297320615068631572, guid: 87f12555b53c3e341aa13cb02a6e2067,
         type: 3}
       propertyPath: m_Name
-      value: Natural
+      value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 4052674097885144270, guid: 87f12555b53c3e341aa13cb02a6e2067,
+        type: 3}
+      propertyPath: Ceilings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052674097885144270, guid: 87f12555b53c3e341aa13cb02a6e2067,
+        type: 3}
+      propertyPath: Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052674097885144270, guid: 87f12555b53c3e341aa13cb02a6e2067,
+        type: 3}
+      propertyPath: Ceilings.Array.data[0].Asset
+      value: 
+      objectReference: {fileID: 8452400089187220458, guid: 2c7e2d2f006d72c40b88a2c4dc478db7,
+        type: 3}
+    - target: {fileID: 4052674097885144270, guid: 87f12555b53c3e341aa13cb02a6e2067,
+        type: 3}
+      propertyPath: Ceilings.Array.data[0].Weight
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052674097885144270, guid: 87f12555b53c3e341aa13cb02a6e2067,
+        type: 3}
+      propertyPath: Materials.Array.data[0].Materials
+      value: 
+      objectReference: {fileID: 4100241495865539018, guid: 4cc4714abba8ffa489ba9332615e53dc,
+        type: 3}
     - target: {fileID: 5746036859003386521, guid: 87f12555b53c3e341aa13cb02a6e2067,
         type: 3}
       propertyPath: m_LocalPosition.x

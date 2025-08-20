@@ -29,5 +29,6 @@
   "MinNpcQuantity": 100,
   "MaxNpcQuantity": 100,
   "MinNpcSeparation": 8,
-  "MinDistanceToEntrance": 4
+  "MinDistanceToEntrance": 4,
+  "SaveTime": "2025-08-13T01:25:46.24Z"
 }

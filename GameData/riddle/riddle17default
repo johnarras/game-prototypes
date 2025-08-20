@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 17,
   "Name": "Spellbook",
-  "Desc": "Pages filled with mystic lore,\r\nWithin its texts, great power's store.\r\nA guide to spells both weak and strong,\r\nIts knowledge helps the mage along.\r\n"
+  "Desc": "Pages filled with mystic lore,\nWithin its texts, great power's store.\nA guide to spells both weak and strong,\nIts knowledge helps the mage along.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

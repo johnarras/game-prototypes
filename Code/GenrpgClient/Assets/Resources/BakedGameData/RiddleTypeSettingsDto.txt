@@ -7,8 +7,7 @@
       "IdKey": 1,
       "Name": "Basic",
       "Art": "Statue",
-      "Weight": 1.0,
-      "SaveTime": "2025-06-07T20:01:42.426Z"
+      "Weight": 1.0
     },
     {
       "Id": "riddletype2default",
@@ -16,8 +15,7 @@
       "IdKey": 2,
       "Name": "PositionWordFind",
       "Art": "Statue",
-      "Weight": 1.0,
-      "SaveTime": "2025-06-07T20:01:42.426Z"
+      "Weight": 1.0
     },
     {
       "Id": "riddletype3default",
@@ -25,8 +23,7 @@
       "IdKey": 3,
       "Name": "WordLength",
       "Art": "Statue",
-      "Weight": 1.0,
-      "SaveTime": "2025-06-07T20:01:42.426Z"
+      "Weight": 1.0
     },
     {
       "Id": "riddletype4default",
@@ -34,8 +31,7 @@
       "IdKey": 4,
       "Name": "FirstLetter",
       "Art": "Statue",
-      "Weight": 1.0,
-      "SaveTime": "2025-06-07T20:01:42.426Z"
+      "Weight": 1.0
     },
     {
       "Id": "riddletype5default",
@@ -43,8 +39,7 @@
       "IdKey": 5,
       "Name": "Math",
       "Art": "Statue",
-      "Weight": 1.0,
-      "SaveTime": "2025-06-08T09:13:00.412Z"
+      "Weight": 1.0
     },
     {
       "Id": "riddletype6default",
@@ -53,8 +48,7 @@
       "Name": "Pedestals",
       "Art": "Pedestal",
       "Weight": 1.0,
-      "IsToggle": true,
-      "SaveTime": "2025-06-08T09:13:00.412Z"
+      "IsToggle": true
     },
     {
       "Id": "riddletype7default",
@@ -62,15 +56,14 @@
       "IdKey": 7,
       "Name": "Buttons",
       "Art": "WallButton",
-      "Weight": 1000.0,
-      "IsObject": true,
-      "SaveTime": "2025-07-25T23:24:19.224Z"
+      "Weight": 1.0,
+      "IsObject": true
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "RiddleTypeSettings",
-    "SaveTime": "2025-07-25T23:24:19.224Z"
+    "SaveTime": "2025-08-10T23:50:24.573Z"
   },
-  "SaveTime": "2025-07-25T23:24:19.224Z"
+  "SaveTime": "2025-08-10T23:50:24.573Z"
 }

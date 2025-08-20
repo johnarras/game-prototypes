@@ -5,8 +5,7 @@
       "Id": "settingsname1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "AchievementSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "AchievementSettings"
     },
     {
       "Id": "settingsname2default",
@@ -444,8 +443,7 @@
       "Id": "settingsname74default",
       "ParentId": "default",
       "IdKey": 74,
-      "Name": "UnitTypeSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "UnitTypeSettings"
     },
     {
       "Id": "settingsname75default",
@@ -475,22 +473,19 @@
       "Id": "settingsname79default",
       "ParentId": "default",
       "IdKey": 79,
-      "Name": "ZoneTypeSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "ZoneTypeSettings"
     },
     {
       "Id": "settingsname80default",
       "ParentId": "default",
       "IdKey": 80,
-      "Name": "BiomeSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "BiomeSettings"
     },
     {
       "Id": "settingsname81default",
       "ParentId": "default",
       "IdKey": 81,
-      "Name": "UnitKeywordSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "UnitKeywordSettings"
     },
     {
       "Id": "settingsname82default",
@@ -778,92 +773,79 @@
       "Id": "settingsname129default",
       "ParentId": "default",
       "IdKey": 129,
-      "Name": "RiddleTypeSettings",
-      "SaveTime": "2025-06-02T18:31:10.308Z"
+      "Name": "RiddleTypeSettings"
     },
     {
       "Id": "settingsname130default",
       "ParentId": "default",
       "IdKey": 130,
-      "Name": "SeasonThemeSettings",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "SeasonThemeSettings"
     },
     {
       "Id": "settingsname131default",
       "ParentId": "default",
       "IdKey": 131,
-      "Name": "SeasonTierListSettings",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "SeasonTierListSettings"
     },
     {
       "Id": "settingsname132default",
       "ParentId": "default",
       "IdKey": 132,
-      "Name": "TimedEventTypeSettings",
-      "SaveTime": "2025-06-12T17:38:11.611Z"
+      "Name": "TimedEventTypeSettings"
     },
     {
       "Id": "settingsname133default",
       "ParentId": "default",
       "IdKey": 133,
-      "Name": "CollectionThemeSettings",
-      "SaveTime": "2025-06-12T22:12:33.137Z"
+      "Name": "CollectionThemeSettings"
     },
     {
       "Id": "settingsname134default",
       "ParentId": "default",
       "IdKey": 134,
-      "Name": "CollectionTierListSettings",
-      "SaveTime": "2025-06-12T22:12:33.137Z"
+      "Name": "CollectionTierListSettings"
     },
     {
       "Id": "settingsname135default",
       "ParentId": "default",
       "IdKey": 135,
-      "Name": "TimedEventCurrencySettings",
-      "SaveTime": "2025-06-12T22:35:41.718Z"
+      "Name": "TimedEventCurrencySettings"
     },
     {
       "Id": "settingsname136default",
       "ParentId": "default",
       "IdKey": 136,
-      "Name": "AuthSettings",
-      "SaveTime": "2025-07-16T02:05:20.667Z"
+      "Name": "AuthSettings"
     },
     {
       "Id": "settingsname137default",
       "ParentId": "default",
       "IdKey": 137,
-      "Name": "CitySettings",
-      "SaveTime": "2025-07-19T20:53:27.953Z"
+      "Name": "CitySettings"
     },
     {
       "Id": "settingsname138default",
       "ParentId": "default",
       "IdKey": 138,
-      "Name": "RoadSettings",
-      "SaveTime": "2025-07-19T20:53:27.953Z"
+      "Name": "RoadSettings"
     },
     {
       "Id": "settingsname139default",
       "ParentId": "default",
       "IdKey": 139,
-      "Name": "TradeGoodSettings",
-      "SaveTime": "2025-07-19T20:53:27.953Z"
+      "Name": "TradeGoodSettings"
     },
     {
       "Id": "settingsname140default",
       "ParentId": "default",
       "IdKey": 140,
-      "Name": "AnimalSettings",
-      "SaveTime": "2025-07-19T22:46:23.138Z"
+      "Name": "AnimalSettings"
     },
     {
       "Id": "settingsname141default",
       "ParentId": "default",
       "IdKey": 141,
-      "Name": "TravelSettings",
-      "SaveTime": "2025-07-20T05:46:45.391Z"
+      "Name": "TravelSettings"
     }
   ],
   "Parent": {

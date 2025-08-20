@@ -77,8 +77,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: boardprizesgemsprize
     IsLocal: 0
-  - BundleName: buildingsbasebuilding
-    IsLocal: 0
   - BundleName: buildingsdefault
     IsLocal: 0
   - BundleName: bushesazalea
@@ -143,6 +141,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: dungeonsarcane
     IsLocal: 0
+  - BundleName: dungeonsarcanemats
+    IsLocal: 0
   - BundleName: dungeonsbasedoor
     IsLocal: 0
   - BundleName: dungeonsbasefence
@@ -180,6 +180,10 @@ MonoBehaviour:
   - BundleName: dungeonstower
     IsLocal: 0
   - BundleName: dungeonsunholy
+    IsLocal: 0
+  - BundleName: dungeonsunholymats
+    IsLocal: 0
+  - BundleName: dungeonswallmats
     IsLocal: 0
   - BundleName: grassdetailgrass
     IsLocal: 0
@@ -1385,11 +1389,25 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uicrawler
     IsLocal: 0
+  - BundleName: uicrawleraction
+    IsLocal: 0
+  - BundleName: uicrawlerbuffs
+    IsLocal: 0
+  - BundleName: uicrawlercombat
+    IsLocal: 0
+  - BundleName: uicrawlerhud
+    IsLocal: 0
+  - BundleName: uicrawlerinfo
+    IsLocal: 0
   - BundleName: uicrawleritems
     IsLocal: 0
-  - BundleName: uicrawlertilemaps
+  - BundleName: uicrawlerparty
     IsLocal: 0
-  - BundleName: uicrawlerunits
+  - BundleName: uicrawlerquests
+    IsLocal: 0
+  - BundleName: uicrawlerscreens
+    IsLocal: 0
+  - BundleName: uicrawlertilemaps
     IsLocal: 0
   - BundleName: uicurrencies
     IsLocal: 0
@@ -1416,6 +1434,8 @@ MonoBehaviour:
   - BundleName: uimarkers
     IsLocal: 0
   - BundleName: uimobilehud
+    IsLocal: 0
+  - BundleName: uinewcrawlergamescreen
     IsLocal: 0
   - BundleName: uiquests
     IsLocal: 0

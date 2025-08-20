@@ -2,9 +2,8 @@
   "Id": "usercointype9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "Herbs",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconHerbs",
-  "Art": "HerbsArt"
+  "Name": "Grass",
+  "Icon": "GrassIcon",
+  "Art": "GrassArt",
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

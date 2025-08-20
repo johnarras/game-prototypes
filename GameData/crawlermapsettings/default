@@ -18,7 +18,8 @@
   "MinTeleportQuantity": 1,
   "MaxTeleportQuantity": 6,
   "UnitKeywordChance": 0.25,
-  "MinQuestUnlockDungeonLevel": 5,
+  "MinQuestUnlockDungeonLevel": 8,
+  "MinQuestItemDungeonLevel": 6,
   "Name": "CrawlerMapSettings",
-  "SaveTime": "2025-05-31T14:06:08.758Z"
+  "SaveTime": "2025-08-13T13:14:00.447Z"
 }

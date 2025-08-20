@@ -14,16 +14,21 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
     {
         public MeshRenderer MeshRenderer;
         private ICrawlerMapService _mapService = null;
-        public override void Init()
+        public override void InitData(int x, int z, CrawlerMap map)
         {
+            base.InitData(x, z, map);
             CrawlerMapRoot root = _mapService.GetMapRoot();
 
-            MeshRenderer.material = root.DungeonMaterials.GetMaterials(DungeonAssetIndex.Walls)[0].Mat;
-            float colorScale = 0.7f;
-            MeshRenderer.material.color = new Color(colorScale, colorScale, colorScale, colorScale);
-            base.Init();
-        }
+            DungeonMaterials wallMats = root.GetMaterialsAt(x, z);
 
+            if (wallMats != null)
+            {
+
+                MeshRenderer.sharedMaterial = wallMats.GetMaterials(DungeonAssetIndex.Walls)[0].Mat;
+                float colorScale = 1.1f;
+                MeshRenderer.material.color = new Color(colorScale, colorScale, colorScale, colorScale);
+            }
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -36,7 +41,7 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
 
             if (index > 0)
             {
-                partyData.RiddleStatus |= (long)(1 << (index - 1));
+                partyData.AddRiddleBitIndex(index - 1);
                 _logService.Info("Click Button index: " + index);
             }
 

@@ -85,6 +85,28 @@ namespace Assets.Scripts.Crawler.Quests.UI
                 }
             }
 
+
+            List<CrawlerQuestRow> activeRows = _currentRows.Where(x => x.IsActiveQuest()).ToList();
+
+            if (activeRows.Count < 1)
+            {
+                _currentRows = _currentRows.OrderBy(x => x.GetQuestId()).ToList();
+            }
+            else
+            {
+                List<CrawlerQuestRow> inactiveRows = _currentRows.Except(activeRows).ToList();
+
+                _currentRows = activeRows;
+                _currentRows.AddRange(inactiveRows);
+            }
+
+            for (int i = 0; i < _currentRows.Count; i++)
+            {
+                _currentRows[i].transform.SetSiblingIndex(i);
+
+                _clientEntityService.SetActive(_currentRows[i].gameObject, activeRows.Count == 0 || _currentRows[i].IsActiveQuest());
+            }
+
             List<CrawlerQuestRow> removeRows = new List<CrawlerQuestRow>();
 
             foreach (CrawlerQuestRow row in _currentRows)

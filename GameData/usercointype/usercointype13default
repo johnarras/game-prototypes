@@ -3,9 +3,5 @@
   "ParentId": "default",
   "IdKey": 13,
   "Name": "Warriors",
-  "PluralName": "",
-  "Desc": "",
-  "Icon": "IconWarriors",
-  "Art": "WarriorsArt",
-  "BaseStorage": 20
+  "SaveTime": "2025-08-06T23:41:21.031Z"
 }

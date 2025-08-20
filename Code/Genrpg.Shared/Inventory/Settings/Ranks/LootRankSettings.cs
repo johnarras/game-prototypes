@@ -3,11 +3,7 @@ using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Inventory.Settings.Ranks
 {
@@ -35,15 +31,12 @@ namespace Genrpg.Shared.Inventory.Settings.Ranks
     }
 
     [MessagePackObject]
-    public class LootRankSettings : ParentConstantListSettings<LootRank,LootRanks>
+    public class LootRankSettings : ParentConstantListSettings<LootRank, LootRanks>
     {
         [Key(0)] public override string Id { get; set; }
-
-        [Key(1)] public double LevelsPerQuality { get; set; } = 5.0f;
-
-        [Key(2)] public double ExtraQualityChance { get; set; } = 0.25f;
-
-        [Key(3)] public double ArmorChance { get; set; } = 0.75f;
+        [Key(1)] public double LevelsPerQuality { get; set; }
+        [Key(2)] public double ExtraQualityChance { get; set; }
+        [Key(3)] public double ArmorChance { get; set; }
     }
 
     public class LootRankSettingsDto : ParentSettingsDto<LootRankSettings, LootRank> { }

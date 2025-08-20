@@ -223,24 +223,35 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 while (chosenUnitTypes.Count < groupCount && spawns.Count > 0)
                 {
-                    double chanceSum = spawns.Sum(x => x.Weight);
+                    ZoneUnitSpawn chosenSpawn = null;
 
-                    double chanceChosen = _rand.NextDouble() * chanceSum;
-
-                    foreach (ZoneUnitSpawn sp in spawns)
+                    if (_rand.NextDouble() > startSettings.SelectRandomUnitForCombatGroupChance)
                     {
-                        chanceChosen -= sp.Weight;
-                        if (chanceChosen <= 0)
+                        double chanceSum = spawns.Sum(x => x.Weight);
+
+                        double chanceChosen = _rand.NextDouble() * chanceSum;
+
+                        foreach (ZoneUnitSpawn sp in spawns)
                         {
-                            UnitType newUnitType = allUnitTypes.FirstOrDefault(x => x.IdKey == sp.UnitTypeId);
-                            if (newUnitType != null && newUnitType.MinLevel <= level)
+                            chanceChosen -= sp.Weight;
+                            if (chanceChosen <= 0)
                             {
-                                chosenUnitTypes.Add(newUnitType);
+                                chosenSpawn = sp;
+                                break;
                             }
-                            spawns.Remove(sp);
-                            break;
                         }
                     }
+                    else
+                    {
+                        chosenSpawn = spawns[_rand.Next() % spawns.Count];
+                    }
+
+                    UnitType newUnitType = allUnitTypes.FirstOrDefault(x => x.IdKey == chosenSpawn.UnitTypeId);
+                    if (newUnitType != null && newUnitType.MinLevel <= level)
+                    {
+                        chosenUnitTypes.Add(newUnitType);
+                    }
+                    spawns.Remove(chosenSpawn);
                 }
 
                 List<UnitType> unitTypes = await _questService.GetKillQuestTargets(party);
@@ -249,6 +260,10 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 if (unitTypes.Count > 0 && !chosenUnitTypes.Contains(unitTypes[0]))
                 {
+                    if (chosenUnitTypes.Count > 0)
+                    {
+                        chosenUnitTypes.RemoveAt(0);
+                    }
                     chosenUnitTypes.Insert(0, unitTypes[0]);
                 }
 

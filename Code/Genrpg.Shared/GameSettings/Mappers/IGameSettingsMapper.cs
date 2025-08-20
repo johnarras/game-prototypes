@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.GameSettings.Interfaces;
+﻿using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System;
 
@@ -14,6 +13,6 @@ namespace Genrpg.Shared.GameSettings.Mappers
         Version GetMaxClientVersion();
         Type GetClientType();
         bool SendToClient();
-        ITopLevelSettings MapToDto(ITopLevelSettings settings);      
+        ITopLevelSettings MapToDto(ITopLevelSettings settings, bool simplify);
     }
 }

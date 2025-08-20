@@ -33,7 +33,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
     {
 
         private ISamplingService _samplingService = null;
-        private ILineGenService _lineGenService = null;
         private ILootGenService _lootGenService = null;
         private IRiddleService _riddleService = null;
         private ICrawlerQuestService _questService = null;
@@ -145,6 +144,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 regions.Add(region);
 
             }
+
+            outdoorMap.LevelDelta = level + levelDelta;
 
             if (regions.Count < 1)
             {
@@ -605,7 +606,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 CrawlerMap entranceMap = floors.First();
 
-                if (entranceMap.Level > gameDungeonUnlockLevel && rand.NextDouble() < mapSettings.QuestItemEntranceUnlockChance)
+                if (entranceMap.Level >= gameDungeonUnlockLevel && rand.NextDouble() < mapSettings.QuestItemEntranceUnlockChance)
                 {
                     string questItemName = _lootGenService.GenerateItemNames(rand, 1, 100).First().SingularName;
 
@@ -615,7 +616,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                     for (int i = dungeonIndex - 1; i >= 0 && dungeonIndex - i <= lookbackDistance + 1; i--)
                     {
-                        if (dungeonMapGroups[i].Any(x => x.Level >= entranceMap.Level))
+                        if (dungeonMapGroups[i].Any(x => x.Level >= entranceMap.Level) ||
+                            !dungeonMapGroups[i].Any(x => x.Level >= mapSettings.MinQuestItemDungeonLevel))
                         {
                             continue;
                         }
@@ -646,7 +648,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                         List<MapEntity> startEntities = cmap.GetMapEntities(EntityTypes.QuestItem, byte.MaxValue);
 
-                        if (startEntities.Count > 0 && cmap.Level < entranceMap.Level)
+                        if (startEntities.Count > 0 && cmap.Level < entranceMap.Level &&
+                            cmap.Level >= mapSettings.MinQuestItemDungeonLevel)
                         {
                             okMaps.Add(cmap);
                         }

@@ -1,27 +1,20 @@
 ﻿using Assets.Scripts.Crawler.Maps.GameObjects;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings
-{ 
-    
+{
 
-    public  class CrawlerBuilding : MapBuilding
+
+    public class CrawlerBuilding : MapBuilding
     {
 
         private ICrawlerWorldService _worldService;
@@ -78,8 +71,8 @@ namespace Assets.Scripts.Buildings
                 return;
             }
 
-            double weightSum = mats.Sum(x=>x.Weight);
-            double weightChosen = rand.NextDouble() * weightSum;    
+            double weightSum = mats.Sum(x => x.Weight);
+            double weightChosen = rand.NextDouble() * weightSum;
 
             foreach (WeightedBuildingMaterial mat in mats)
             {

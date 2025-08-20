@@ -26,7 +26,6 @@ namespace Genrpg.Editor.Importers.Core
                 fullList = settings.GetData().ToList();
             }
 
-
             string childTypeName = typeof(TChild).Name.ToLower();
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
@@ -77,7 +76,7 @@ namespace Genrpg.Editor.Importers.Core
 
             settings.SetData(fullList);
             gs.LookedAtObjects.AddRange(newList);
-
+            gs.LookedAtObjects.Add(settings);
             await Task.CompletedTask;
             return true;
         }

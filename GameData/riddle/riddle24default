@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 24,
   "Name": "Familiar",
-  "Desc": "A creature small, a partner true,\r\nIn magic's work, it aids you through.\r\nA loyal friend with senses keen,\r\nBy mage's side, it's often seen.\r\n"
+  "Desc": "A creature small, a partner true,\nIn magic's work, it aids you through.\nA loyal friend with senses keen,\nBy mage's side, it's often seen.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

@@ -1,20 +1,17 @@
-﻿using Genrpg.Shared.GameSettings.Interfaces;
+﻿using Assets.Scripts.Assets;
+using Assets.Scripts.GameSettings.Entities;
+using Assets.Scripts.Repository;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Threading;
-
-using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings.Mappers;
-using UnityEngine;
 using System.IO;
-using Genrpg.Shared.Logging.Interfaces;
-using Assets.Scripts.GameSettings.Entities;
-using Genrpg.Shared.Client.Core;
-using Assets.Scripts.Assets;
-using Assets.Scripts.Repository;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.GameSettings.Services
 {
@@ -51,7 +48,7 @@ namespace Assets.Scripts.GameSettings.Services
             await Task.CompletedTask;
         }
 #if UNITY_EDITOR
-        
+
 #endif
         const string BakedGameDataPathSuffix = "BakedGameData/";
         public async Awaitable LoadCachedSettings(IClientGameState gs)
@@ -73,7 +70,7 @@ namespace Assets.Scripts.GameSettings.Services
                     bakedSettings = (ITopLevelSettings)_serializer.DeserializeWithType(textAsset.text, loader.GetClientType());
                 }
 
-                if (!_configContainer.Config.SelfContainedClient || 
+                if (!_configContainer.Config.SelfContainedClient ||
                     _configContainer.Config.ExportGameData)
                 {
                     List<ITopLevelSettings> settingsChoices = new List<ITopLevelSettings>();
@@ -83,8 +80,9 @@ namespace Assets.Scripts.GameSettings.Services
                     ITopLevelSettings downloadedSettings = obj as ITopLevelSettings;
 
                     if (_configContainer.Config.SelfContainedClient &&
-                        _configContainer.Config.ExportGameData && downloadedSettings == null &&
-                        bakedSettings != null)
+                        _configContainer.Config.ExportGameData && bakedSettings != null &&
+                        (downloadedSettings == null || (downloadedSettings.SaveTime < bakedSettings.SaveTime)))
+
                     {
                         await repo.Save(bakedSettings, true);
                     }
@@ -96,7 +94,6 @@ namespace Assets.Scripts.GameSettings.Services
                     {
                         downloadedSettings = bakedSettings;
                     }
-
 
                     if (downloadedSettings != null)
                     {

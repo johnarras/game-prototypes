@@ -1,8 +1,6 @@
-using MessagePack;
 using Genrpg.Shared.Utils.Data;
-using System;
+using MessagePack;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Parties.PlayerData
 {
@@ -12,7 +10,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         [Key(0)] public long MapId { get; set; }
         [Key(1)] public int CellsVisited { get; set; }
         [Key(2)] public int TotalCells { get; set; }
-        [Key(3)] public SmallIndexBitList Visited { get; set; } = new SmallIndexBitList();
-        [Key(4)] public List<PointXZ> OneTimeEncounters { get; set; } = new List<PointXZ>();
+        [Key(3)] public long RiddleStatus { get; set; }
+        [Key(4)] public SmallIndexBitList Visited { get; set; } = new SmallIndexBitList();
+        [Key(5)] public List<PointXZ> OneTimeEncounters { get; set; } = new List<PointXZ>();
     }
 }

@@ -403,13 +403,11 @@ namespace Assets.Scripts.Crawler.Services
 
             CrawlerWorld world = await _worldService.GetWorld(_party.WorldId);
 
-
             await _screenService.OpenAsync(GetCrawlerScreenId(), null, _token);
 
             if (party.HasFlag(PartyFlags.InGuildHall) || party.GetActiveParty().Count < 1)
             {
                 ChangeState(ECrawlerStates.GuildMain, GetToken());
-
             }
             else
             {
@@ -421,7 +419,6 @@ namespace Assets.Scripts.Crawler.Services
                 await Awaitable.NextFrameAsync(_token);
             }
 
-            _screenService.Close(ScreenNames.Loading);
         }
 
         public bool ContinueGame()
@@ -492,9 +489,12 @@ namespace Assets.Scripts.Crawler.Services
 
         private void UpdateGame(CancellationToken token)
         {
-            if (_moveService.UpdatingMovement() || _stateQueue.Count > 0)
+            if (_stateQueue.Count > 0)
             {
-                return;
+                if (_stateQueue.Any(x => x.Action != null && x.Action.NextState != ECrawlerStates.DoNotChangeState))
+                {
+                    return;
+                }
             }
 
             UpdateInputs(token);
@@ -502,10 +502,6 @@ namespace Assets.Scripts.Crawler.Services
 
         public void UpdateInputs(CancellationToken token)
         {
-            if (_moveService.UpdatingMovement())
-            {
-                return;
-            }
             if (_stateStack.TryPeek(out CrawlerStateData currentData))
             {
 
@@ -521,6 +517,7 @@ namespace Assets.Scripts.Crawler.Services
                             if (action.NextState != ECrawlerStates.None)
                             {
                                 ChangeState(currentData, action, token);
+                                break;
                             }
                         }
                         else if (_equivalentKeys.TryGetValue(action.Key, out char otherKey))
@@ -528,6 +525,7 @@ namespace Assets.Scripts.Crawler.Services
                             if (_inputService.GetKey(otherKey))
                             {
                                 ChangeState(currentData, action, token);
+                                break;
                             }
                         }
 

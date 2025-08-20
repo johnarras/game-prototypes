@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 2,
   "Name": "Wizard",
-  "Desc": "With robes of silk and staff in hand,\r\nThey conjure spells both grand and grand.\r\nWith wisdom vast and magic true,\r\nThey wield the power, old and new.\r\n"
+  "Desc": "With robes of silk and staff in hand,\nThey conjure spells both grand and grand.\nWith wisdom vast and magic true,\nThey wield the power, old and new.\n",
+  "SaveTime": "2025-08-06T23:38:25.82Z"
 }

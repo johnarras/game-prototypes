@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class PartyBuffInfoHelper : SimpleInfoHelper<PartyBuffSettings, PartyBuff>
+    public class PartyBuffInfoHelper : BaseInfoHelper<PartyBuffSettings, PartyBuff>
     {
 
         public override long Key => EntityTypes.PartyBuff;
