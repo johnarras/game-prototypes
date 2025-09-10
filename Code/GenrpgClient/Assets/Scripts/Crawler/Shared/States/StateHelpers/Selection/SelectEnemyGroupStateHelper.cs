@@ -1,7 +1,4 @@
-﻿
-using Assets.Scripts.ClientEvents;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Combat.Entities;
+﻿using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -52,7 +49,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                 char c = (char)('a' + m);
 
                 Action clickRowAction = delegate ()
-                { 
+                {
                     selectAction.Action.Action.FinalTargets = group.Units.ToList();
                     currUnit.Action = selectAction.Action.Action;
                     selectAction.Action.Action.FinalTargetGroups = new List<CombatGroup>() { group };
@@ -61,7 +58,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 
                 CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + " " + _combatService.ShowGroupStatus(group), c,
                     selectAction.Action.NextState, onClickAction: clickRowAction, forceButton: false,
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitTypeId); });
+                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); });
 
                 stateData.Actions.Add(newAction);
 

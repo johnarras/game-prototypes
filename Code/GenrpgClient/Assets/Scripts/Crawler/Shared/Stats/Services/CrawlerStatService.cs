@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Stats.Settings;
@@ -50,6 +51,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         protected IClientRandom _rand = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
+        protected IPartyService _partyService = null;
 
         public void CalcPartyStats(PartyData party, bool resetCurrStats)
         {
@@ -60,6 +62,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                     CalcUnitStats(party, member, resetCurrStats);
                 }
             }
+            _partyService.UpdateItemBuffs(party);
         }
 
         public void CalcUnitStats(PartyData party, CrawlerUnit unit, bool resetCurrStats)
@@ -87,7 +90,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
             }
 
             List<Role> classRoles = allRoles.Where(x => x.RoleCategoryId == RoleCategories.Class).ToList();
-            List<Role> raceRoles = allRoles.Where(x=>x.RoleCategoryId == RoleCategories.Origin).ToList();
+            List<Role> raceRoles = allRoles.Where(x => x.RoleCategoryId == RoleCategories.Origin).ToList();
 
             buffStatTypes = buffStatTypes.Where(x => x < StatConstants.PrimaryStatStart || x > StatConstants.PrimaryStatEnd).ToList();
 
@@ -122,7 +125,6 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                 foreach (long buffStatType in buffStatTypes)
                 {
-
                     _statService.Set(member, buffStatType, StatCategories.Base, statSettings.BaseBuffStatValue + member.Level);
 
                 }
@@ -187,11 +189,11 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                 List<UnitEffect> statEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.Stat).ToList();
 
-                List<UnitEffect> statPctEffects = unitType.Effects.Where(x=>x.EntityTypeId == EntityTypes.StatPct).ToList();    
+                List<UnitEffect> statPctEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.StatPct).ToList();
 
                 foreach (UnitKeyword unitKeyword in monster.ExtraKeywords)
                 {
-                    statEffects.AddRange(unitKeyword.Effects.Where(x=>x.EntityTypeId == EntityTypes.Stat));
+                    statEffects.AddRange(unitKeyword.Effects.Where(x => x.EntityTypeId == EntityTypes.Stat));
                     statPctEffects.AddRange(unitKeyword.Effects.Where(x => x.EntityTypeId == EntityTypes.StatPct));
                 }
 
@@ -209,7 +211,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     if (statType.IdKey >= StatConstants.PrimaryStatStart && statType.IdKey <= StatConstants.PrimaryStatEnd)
                     {
-                        _statService.Set(unit, statType.IdKey, StatCategories.Base, unit.Level + statSettings.StartStat);
+                        _statService.Set(unit, statType.IdKey, StatCategories.Base, (long)(unit.Level * monsterSettings.PrimaryStatsPointsPerLevel) + statSettings.StartStat);
                     }
                     else if (buffStatTypes.Contains(statType.IdKey))
                     {
@@ -231,8 +233,8 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     double qualityPercent = _upgradeService.GetPartyBonus(party, PartyUpgrades.SummonQuality);
 
-                    healthScale = (1 + qualityPercent/100.0f);
-                    damageScale = (1 + qualityPercent/100.0f);
+                    healthScale = (1 + qualityPercent / 100.0f);
+                    damageScale = (1 + qualityPercent / 100.0f);
                 }
                 else
                 {
@@ -257,7 +259,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 for (int t = 0; t < healthCalcTimes; t++)
                 {
 
-                   startHealth += MathUtils.LongRange(minHealth, maxHealth, _rand);
+                    startHealth += MathUtils.LongRange(minHealth, maxHealth, _rand);
                 }
 
                 startHealth /= healthCalcTimes;
@@ -291,7 +293,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
             foreach (Role role in roles)
             {
-                RoleBonusAmount amt = role.AmountBonuses.FirstOrDefault(x=>x.EntityTypeId == EntityTypes.StatBonus && x.EntityId == statTypeId);
+                RoleBonusAmount amt = role.AmountBonuses.FirstOrDefault(x => x.EntityTypeId == EntityTypes.StatBonus && x.EntityId == statTypeId);
 
                 if (amt != null)
                 {

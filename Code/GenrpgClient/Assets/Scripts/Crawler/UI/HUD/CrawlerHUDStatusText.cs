@@ -1,8 +1,10 @@
-﻿using Genrpg.Shared.Crawler.GameEvents;
+﻿using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Utils;
 using System;
 
 namespace Assets.Scripts.Crawler.UI.HUD
@@ -18,6 +20,8 @@ namespace Assets.Scripts.Crawler.UI.HUD
         public GText MapPositionText;
         public GText TimeOfDayText;
         public GText CompleteText;
+        public GText UpgradePointsText;
+        public GText GoldText;
 
 
         private UpdateCrawlerUI _update = null;
@@ -53,6 +57,10 @@ namespace Assets.Scripts.Crawler.UI.HUD
             _uiService.SetText(MapNameText, map.GetName(party.CurrPos.X, party.CurrPos.Z));
             _uiService.SetText(LevelText, "Level: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z));
             _uiService.SetText(CompleteText, party.CompletedMaps.HasBit(map.IdKey) ? "Complete!" : "");
+
+            _uiService.SetText(UpgradePointsText, $"Upgrade Points: {party.UpgradePoints}");
+
+            _uiService.SetText(GoldText, $"Party Gold: {StrUtils.PrintCommaValue(party.Currencies.Get(CrawlerCurrencyTypes.Gold))}");
         }
 
         private void OnUIUpdate(UpdateCrawlerUI update)

@@ -4,6 +4,7 @@
   "IdKey": 5,
   "Name": "Summon",
   "Desc": "Increases the number of creatures summoned per level.",
-  "ScalingStatTypeId": 15,
-  "ScalingEquipSlotId": 15
+  "ScalingStatTypeId": 17,
+  "ScalingEquipSlotId": 15,
+  "SaveTime": "2025-08-29T09:32:34.763Z"
 }

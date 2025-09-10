@@ -1,20 +1,19 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Services;
-
-using System.Threading;
-using Genrpg.Shared.Inventory.Messages;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Inventory.Settings.Slots;
-using Genrpg.Shared.Units.Entities;
-using System.Threading.Tasks;
-using Genrpg.Shared.Client.Assets.Constants;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Inventory.Constants;
+using Genrpg.Shared.Inventory.Messages;
+using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.Services;
+using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using Genrpg.Shared.Inventory.Settings.Slots;
+using Genrpg.Shared.Stats.Settings.Stats;
+using Genrpg.Shared.Units.Entities;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class CharacterScreen : ItemIconScreen
 {
@@ -30,17 +29,19 @@ public class CharacterScreen : ItemIconScreen
     protected virtual bool CalcStatsOnEquipUnequip() { return true; }
     protected virtual string GetStatSubdirectory() { return "Units"; }
     protected virtual bool ShowZeroStats() { return true; }
+    protected virtual long GetStatModifier(long statTypeId) { return 0; }
 
     protected IInventoryService _inventoryService = null;
     protected IClientMapObjectManager _objectManager = null;
     protected ICrawlerUpgradeService _upgradeService = null;
     protected ICrawlerService _crawlerService = null;
+
     class StatDownloadData
     {
         public Unit currUnit = null;
         public long statTypeId = 0;
     }
-    
+
     protected Unit _unit = null;
 
     public override Unit GetUnit() { return _unit; }
@@ -59,7 +60,7 @@ public class CharacterScreen : ItemIconScreen
     }
 
     protected void SetEquipment()
-    { 
+    {
         InitEquipmentIcons();
 
         ShowStats();
@@ -147,14 +148,14 @@ public class CharacterScreen : ItemIconScreen
                     continue;
                 }
 
-                if (prevStat > 0 && prevStat/10 != stat.IdKey /10)
+                if (prevStat > 0 && prevStat / 10 != stat.IdKey / 10)
                 {
                     StatDownloadData sddFill = new StatDownloadData()
                     {
                         currUnit = _unit,
                         statTypeId = -1,
                     };
-                    _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI, 
+                    _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI,
                         StatInfoRowPrefabName, OnDownloadStat, sddFill, _token, GetStatSubdirectory());
                 }
                 StatDownloadData sdd = new StatDownloadData()
@@ -166,16 +167,16 @@ public class CharacterScreen : ItemIconScreen
                     StatInfoRowPrefabName, OnDownloadStat, sdd, _token, GetStatSubdirectory());
             }
         }
-        else 
+        else
         {
             foreach (StatInfoRow row in Stats)
             {
-                row.Init(_unit, -1, 0);
+                row.Init(_unit, -1, GetStatModifier(row.StatTypeId));
             }
         }
     }
 
-    private void OnDownloadStat (object obj, object data, CancellationToken token)
+    private void OnDownloadStat(object obj, object data, CancellationToken token)
     {
         GameObject go = obj as GameObject;
         if (go == null)
@@ -205,7 +206,7 @@ public class CharacterScreen : ItemIconScreen
 
         Stats.Add(statRow);
 
-        statRow.Init(downloadData.currUnit, downloadData.statTypeId, 0);
+        statRow.Init(downloadData.currUnit, downloadData.statTypeId, GetStatModifier(downloadData.statTypeId));
 
     }
 
@@ -244,7 +245,7 @@ public class CharacterScreen : ItemIconScreen
     protected void EquipItem(ItemIcon icon, long newEquipSlotId)
     {
 
-        if (icon == null || icon.GetDataItem()== null)
+        if (icon == null || icon.GetDataItem() == null)
         {
             return;
         }
@@ -331,7 +332,7 @@ public class CharacterScreen : ItemIconScreen
 
         long currEquipSlotId = origItem.EquipSlotId;
         long newEquipSlotId = equip.Item.EquipSlotId;
-        
+
         ItemType itype = _gameData.Get<ItemTypeSettings>(_unit).Get(equip.Item.ItemTypeId);
 
         List<long> equipSlots = itype.GetCompatibleEquipSlots(_gameData, _unit);
@@ -378,7 +379,7 @@ public class CharacterScreen : ItemIconScreen
             newEqIcon.Icon.AddFlags(ItemIconFlags.ShowTooltipNow);
             newEqIcon.Icon.Init(newEqIcon.Icon.GetInitData(), _token);
         }
-     
+
         ShowStats();
     }
 
@@ -425,7 +426,7 @@ public class CharacterScreen : ItemIconScreen
 
         foreach (EquipSlotIcon eqIcon in EquipmentIcons)
         {
-            if (eqIcon != null && 
+            if (eqIcon != null &&
                 eqIcon.Icon != null &&
                 eqIcon.Icon.GetInitData() != null &&
                 eqIcon.Icon.GetDataItem() != null &&

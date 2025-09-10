@@ -7,9 +7,9 @@ using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Spells.Interfaces;
 using System.Linq;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Effects.Interfaces;
 
 namespace Genrpg.Shared.Tiles.Settings
 {

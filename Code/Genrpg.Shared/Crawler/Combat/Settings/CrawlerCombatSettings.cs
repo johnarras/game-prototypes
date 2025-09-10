@@ -48,6 +48,15 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
         [Key(27)] public double ExtraCureStatusEffectsRemovedPerTier { get; set; }
 
         [Key(28)] public double LuckBonusHitChanceScale { get; set; }
+
+        /// After attacking a unit, how much variance is in the unit's resequencing into the queue.
+        /// </summary>
+        [Key(29)] public double SubsequentAttackPriorityLossPercent { get; set; }
+
+        [Key(30)] public double SlowEffectPriorityScale { get; set; }
+
+        [Key(31)] public double HitPartyRandomMemberChance { get; set; }
+
     }
 
 

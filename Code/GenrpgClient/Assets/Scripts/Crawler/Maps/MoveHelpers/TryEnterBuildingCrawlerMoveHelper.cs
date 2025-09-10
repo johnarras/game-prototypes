@@ -48,7 +48,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 status.EX = status.SX;
                 status.EZ = status.SZ;
                 status.MoveIsComplete = true;
-                    
+
                 _moveService.SetFullRot(_party.CurrPos.Rot + 180);
                 _mapService.UpdateCameraPos(token);
                 _crawlerService.ChangeState(nextState.NextState, token, nextState.Detail);

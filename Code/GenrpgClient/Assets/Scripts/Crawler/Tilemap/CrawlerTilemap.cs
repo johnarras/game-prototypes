@@ -51,6 +51,9 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
     public class CrawlerTilemap : BaseBehaviour
     {
+        public const bool RequireMapping = true;
+        public const bool UseFogOfWar = true;
+
 
         public GImage PartyImage;
         public GameObject ImageParent;
@@ -61,8 +64,6 @@ namespace Assets.Scripts.Crawler.Tilemaps
         public bool InitFromExplicitData = false;
 
         public GameObject ContentRoot;
-
-        const int DefaultTileISize = 32;
 
         Sprite _blankSprite = null;
         Sprite _unexploredSprite = null;
@@ -381,7 +382,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 return;
             }
 
-            if (_party.Buffs.Get(PartyBuffs.Mapping) == 0)
+            if (CrawlerTilemap.RequireMapping && _party.Buffs.Get(PartyBuffs.Mapping) == 0)
             {
                 _clientEntityService.SetActive(ContentRoot, false);
             }
@@ -476,7 +477,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     if (
                         // JRAJRA TODO only comment out the next line to test tilemap updates
-                        // false &&
+                        UseFogOfWar &&
                         _mapStatus != null && _mapStatus.MapId == _map.IdKey &&
                         (InitFromExplicitData || _map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors) &&
                         !_party.CompletedMaps.HasBit(_map.IdKey) && !_mapStatus.Visited.HasBit(index))
@@ -611,7 +612,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         _tiles[ix, iz, i].color = (showGhostImage ? _ghostColor : _whiteColor);
                     }
 
-                    int magicBits = _crawlerMapService.GetMagicBits(_map.IdKey, x, z);
+                    int magicBits = _crawlerMapService.GetMagicBits(_map.IdKey, x, z, false);
 
 
                     if (showGhostImage || magicBits == 0)

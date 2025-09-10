@@ -1,6 +1,6 @@
 ﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Effects.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
@@ -35,8 +35,9 @@ public class ItemTooltipRowData
 
 public class ItemTooltip : BaseTooltip
 {
-    protected ISharedItemService _sharedItemService;
-    protected IIconService _iconService;
+    protected ISharedItemService _sharedItemService = null;
+    protected IIconService _iconService = null;
+    protected IEffectService _effectService = null;
     public const string ItemTooltipRow = "ItemTooltipRow";
 
     public const int StarBaseAmount = 25;
@@ -147,7 +148,7 @@ public class ItemTooltip : BaseTooltip
 
         foreach (ItemEffect eff in _data.MainItem.Effects)
         {
-            string mainText = EntityUtils.PrintData(_gameData, _unit, eff);
+            string mainText = _effectService.DisplayEffect(_unit, eff);
 
             if (string.IsNullOrEmpty(mainText))
             {
@@ -181,7 +182,7 @@ public class ItemTooltip : BaseTooltip
                 continue;
             }
 
-            string mainText = EntityUtils.PrintData(_gameData, _unit, eff);
+            string mainText = _effectService.DisplayEffect(_unit, eff);
             long change = eff.Quantity;
             ItemTooltipRowData rowData = new ItemTooltipRowData()
             {

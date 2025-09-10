@@ -10,5 +10,6 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
         public const long Hide = 5;
         public const long Recast = 6;
         public const long Disabled = 7;
+        public const long UseItem = 8;
     }
 }

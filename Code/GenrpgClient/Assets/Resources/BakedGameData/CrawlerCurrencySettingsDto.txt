@@ -1,0 +1,17 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlercurrencytype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Gold"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CrawlerCurrencySettings",
+    "SaveTime": "2025-09-07T18:11:42.348Z"
+  },
+  "SaveTime": "2025-09-07T18:11:42.348Z"
+}

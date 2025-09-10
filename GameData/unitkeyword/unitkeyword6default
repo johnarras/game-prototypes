@@ -8,16 +8,6 @@
   "Art": "Lord",
   "Effects": [
     {
-      "EntityTypeId": 32,
-      "Quantity": 50,
-      "EntityId": 1
-    },
-    {
-      "EntityTypeId": 32,
-      "Quantity": 50,
-      "EntityId": 20
-    },
-    {
       "EntityTypeId": 36,
       "Quantity": 1,
       "EntityId": 3
@@ -35,5 +25,5 @@
   ],
   "Weight": 10.0,
   "Tier": 1,
-  "SaveTime": "2025-08-09T02:55:51.781Z"
+  "SaveTime": "2025-09-07T18:11:42.348Z"
 }

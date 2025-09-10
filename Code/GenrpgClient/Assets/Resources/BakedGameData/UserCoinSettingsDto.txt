@@ -69,9 +69,9 @@
       "Id": "usercointype9default",
       "ParentId": "default",
       "IdKey": 9,
-      "Name": "Grass",
-      "Icon": "GrassIcon",
-      "Art": "GrassArt"
+      "Name": "Herbs",
+      "Icon": "HerbsIcon",
+      "Art": "HerbsArt"
     },
     {
       "Id": "usercointype10default",
@@ -85,33 +85,39 @@
       "Id": "usercointype11default",
       "ParentId": "default",
       "IdKey": 11,
-      "Name": "Sand",
-      "Icon": "SandIcon",
-      "Art": "SandArt"
+      "Name": "Food",
+      "Icon": "FoodIcon",
+      "Art": "FoodArt"
     },
     {
       "Id": "usercointype12default",
       "ParentId": "default",
       "IdKey": 12,
-      "Name": "Leather"
+      "Name": "Leather",
+      "Icon": "LeatherIcon",
+      "Art": "LeatherArt"
     },
     {
       "Id": "usercointype13default",
       "ParentId": "default",
       "IdKey": 13,
-      "Name": "Warriors"
+      "Name": "Warriors",
+      "Icon": "WarriorsIcon",
+      "Art": "WarriorsArt"
     },
     {
       "Id": "usercointype14default",
       "ParentId": "default",
       "IdKey": 14,
-      "Name": "Mana"
+      "Name": "Mana",
+      "Icon": "ManaIcon",
+      "Art": "ManaArt"
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "UserCoinSettings",
-    "SaveTime": "2025-08-06T23:41:21.031Z"
+    "SaveTime": "2025-08-27T00:46:00.707Z"
   },
-  "SaveTime": "2025-08-06T23:41:21.031Z"
+  "SaveTime": "2025-08-27T00:46:00.707Z"
 }

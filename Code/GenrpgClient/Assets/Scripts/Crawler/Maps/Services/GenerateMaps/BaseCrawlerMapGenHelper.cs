@@ -76,10 +76,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<PointXZ> endPoints = new List<PointXZ> { new PointXZ(map.Width / 2, map.Height / 2) };
 
-            int corridorCount = (int)(Math.Sqrt((map.Width * map.Height)) * density * 0.3f);
+            int corridorCount = (int)(Math.Sqrt((map.Width * map.Height)) * density * 0.5f);
 
             int edgeSize = (map.CrawlerMapTypeId == CrawlerMapTypes.City ? 2 : 1);
-            int maxLength = Math.Max(5, (map.Width + map.Height) / 4);
+            int maxLength = Math.Max(5, (map.Width + map.Height) / 2);
 
             if (maxLength > 10)
             {
@@ -92,12 +92,17 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     break;
                 }
 
-                PointXZ startPoint = endPoints[rand.Next() % endPoints.Count];
-
-                while (endPoints.Count > 5)
+                int pointIndex = rand.Next() % endPoints.Count;
+                if (times == 0)
                 {
-                    endPoints.RemoveAt(rand.Next() % endPoints.Count);
+                    pointIndex = 0;
                 }
+                else
+                {
+                    pointIndex = Math.Min(pointIndex, rand.Next() % endPoints.Count);
+                }
+
+                PointXZ startPoint = endPoints[pointIndex];
 
                 int sx = startPoint.X;
                 int sz = startPoint.Z;
@@ -116,16 +121,25 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     xFirst = false;
                 }
 
+
                 List<PointXZ> newPoints = _lineGenService.GridConnect(sx, sz, ex, ez, xFirst);
 
 
                 foreach (PointXZ pt in newPoints)
                 {
                     clearCells[pt.X, pt.Z] = true;
+                }
 
-                    if (rand.NextDouble() < 0.5f)
+
+                int pointsToAdd = (int)Math.Max(1, Math.Ceiling(newPoints.Count * 0.3f));
+
+                for (int i = 0; i < pointsToAdd; i++)
+                {
+                    if (newPoints.Count > 0)
                     {
-                        endPoints.Add(pt);
+                        PointXZ newPoint = newPoints[rand.Next() % newPoints.Count];
+                        endPoints.Add(newPoint);
+                        newPoints.Remove(newPoint);
                     }
                 }
 

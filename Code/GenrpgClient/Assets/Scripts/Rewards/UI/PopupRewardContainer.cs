@@ -2,19 +2,14 @@
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Rewards.Entities;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Genrpg.Shared.Utils;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Rewards.UI
 {
 
-  
+
     public class RewardPosition
     {
         public IReward Reward;
@@ -27,7 +22,7 @@ namespace Assets.Scripts.Rewards.UI
         public float DistancePerSecond;
         public float DisplayTime;
 
-        public void ShowReward (long entityTypeId, long entityId, long quantity)
+        public void ShowReward(long entityTypeId, long entityId, long quantity)
         {
             ShowReward(new Reward() { EntityTypeId = entityTypeId, EntityId = entityId, Quantity = quantity });
         }
@@ -37,12 +32,15 @@ namespace Assets.Scripts.Rewards.UI
             _assetService.LoadAssetInto(gameObject, AssetCategoryNames.UI, "PopupRewardIcon", OnLoadIcon, reward, GetToken(),
                 "Rewards");
 
-            _dispatcher.Dispatch(new ShowDoober()
+            _dispatcher.Dispatch(new ShowDooberEvent()
             {
                 EntityTypeId = reward.EntityTypeId,
                 EntityId = reward.EntityId,
                 Quantity = reward.Quantity,
                 StartPosition = gameObject.transform.position,
+                LerpTime = 1.5f,
+                Accelerate = true,
+                StartOffsetSize = MathUtils.FloatRange(0, 100, _rand)
 
             });
         }
@@ -73,7 +71,7 @@ namespace Assets.Scripts.Rewards.UI
 
             icon.SetData(rew, DisplayTime, DistancePerSecond);
 
-            _dispatcher.Dispatch(new DynamicUIItem(icon.gameObject, icon, transform.position, DynamicUILocation.WorldSpace));
+            _dispatcher.Dispatch(new DynamicUIItem(icon.gameObject, icon, transform.position, DynamicUILocation.WorldSpace, null));
         }
     }
 }

@@ -42,6 +42,8 @@ SpriteAtlas:
     - 14ed185259929014b9d12c9efe3aead0: 21300000
     - c467c1c3b0fd494438049392f382aafc: 21300000
     - ac863d3684e12694599a858620133531: 21300000
+    - 21ab1456a77adfc41ae88576d13969ae: 21300000
+    - ca68f586efb45fd46a4e6fb97fe79cfb: 21300000
     - e5afc8c7f71a1c6469f8f482ad647ed7: 21300000
     - ddaccac77dd3c634ba474e9652eb086e: 21300000
     - 7847c1fa1fab69e42ac63cc97852fb87: 21300000
@@ -53,6 +55,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 14ed185259929014b9d12c9efe3aead0, type: 3}
   - {fileID: 21300000, guid: c467c1c3b0fd494438049392f382aafc, type: 3}
   - {fileID: 21300000, guid: ac863d3684e12694599a858620133531, type: 3}
+  - {fileID: 21300000, guid: 21ab1456a77adfc41ae88576d13969ae, type: 3}
+  - {fileID: 21300000, guid: ca68f586efb45fd46a4e6fb97fe79cfb, type: 3}
   - {fileID: 21300000, guid: e5afc8c7f71a1c6469f8f482ad647ed7, type: 3}
   - {fileID: 21300000, guid: ddaccac77dd3c634ba474e9652eb086e, type: 3}
   - {fileID: 21300000, guid: 7847c1fa1fab69e42ac63cc97852fb87, type: 3}
@@ -63,8 +67,10 @@ SpriteAtlas:
   - ElectricBolt
   - ArcaneBolt
   - ShadowBolt
+  - RangedBolt
+  - AcidBolt
   - FireBolt
-  - PhysicalBolt
+  - MeleeBolt
   - NatureBolt
   - LightBolt
   m_RenderDataMap: {}

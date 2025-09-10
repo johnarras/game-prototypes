@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Spells.Settings;
+using MessagePack;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities
 {

@@ -2,6 +2,10 @@
   "Id": "partybuff2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Second Sight",
-  "Desc": "Alerts you when bad things are ahead of you."
+  "Name": "Danger Sense",
+  "Desc": "Alerts you when bad things are ahead of you.",
+  "AtlasPrefix": "",
+  "ProcChanceScale": 1.0,
+  "EffectScale": 1.0,
+  "SaveTime": "2025-08-29T11:03:51.37Z"
 }

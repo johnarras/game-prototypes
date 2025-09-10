@@ -2,9 +2,10 @@
   "Id": "scalingtype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Chain Armor",
+  "Name": "Wood Armor",
   "Desc": "",
-  "Icon": "Chain",
+  "AtlasPrefix": "",
+  "Icon": "Wood",
   "Prefix": "Wood",
   "Art": "",
   "CrafterTypeId": 2,
@@ -18,5 +19,7 @@
       "Percent": 125
     }
   ],
-  "ArmorPct": 300
+  "ArmorPct": 300,
+  "MainStatTypeId": 13,
+  "SaveTime": "2025-08-23T21:13:38.971Z"
 }

@@ -1,0 +1,14 @@
+{
+  "Id": "crawlerloottype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Spells",
+  "Desc": "Cast spells",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "EntityTypeId": 100,
+  "ItemEnchantWeight": 0.9,
+  "ScalingPerLevel": 0.25,
+  "SaveTime": "2025-09-03T01:01:47.726Z"
+}

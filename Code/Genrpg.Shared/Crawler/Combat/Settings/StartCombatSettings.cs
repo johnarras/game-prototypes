@@ -31,6 +31,8 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
 
         [Key(14)] public double SelectRandomUnitForCombatGroupChance { get; set; }
 
+        [Key(15)] public double RangeIncreaseChancePerGroup { get; set; }
+
     }
 
 

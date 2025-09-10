@@ -2,12 +2,12 @@
   "ClientPlatform": "Win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2025-08-16T19:39:09.5347675Z"
+    "UpdateTime": "2025-09-08T00:02:09.3905122Z"
   },
   "Versions": {
     "atlascrawlercombat": {
       "Name": "atlascrawlercombat",
-      "Hash": "910609d9d317494876774eba87c42838",
+      "Hash": "bbc6404c6e171bcec433944108c09ed1",
       "ChildDependencies": []
     },
     "atlascrawlerminimap": {
@@ -42,7 +42,7 @@
     },
     "atlasui": {
       "Name": "atlasui",
-      "Hash": "2303f889507d43b054224a6d43512b04",
+      "Hash": "ad0c8d5ab0158e9e11b2d7f3dc63d534",
       "ChildDependencies": []
     },
     "atlasusercointypeicons": {
@@ -167,10 +167,8 @@
     },
     "buildingsdefault": {
       "Name": "buildingsdefault",
-      "Hash": "e9243b6a64fe38f538a09210248ad8d7",
-      "ChildDependencies": [
-        "atlasui"
-      ]
+      "Hash": "206dade66e81e3507380c01afb0ff21c",
+      "ChildDependencies": []
     },
     "bushesazalea": {
       "Name": "bushesazalea",
@@ -2406,7 +2404,7 @@
     },
     "texturelistsairelemental": {
       "Name": "texturelistsairelemental",
-      "Hash": "35153e32def867eb88226760fbe42ae8",
+      "Hash": "25115f6cecbd027f56c20c1439e12168",
       "ChildDependencies": []
     },
     "texturelistsarcane": {
@@ -2416,7 +2414,12 @@
     },
     "texturelistsassassin": {
       "Name": "texturelistsassassin",
-      "Hash": "4c0c0972450e94fafc77c90d64576e94",
+      "Hash": "c4d636efd23757bd3b4e220fd70711df",
+      "ChildDependencies": []
+    },
+    "texturelistsautoheal": {
+      "Name": "texturelistsautoheal",
+      "Hash": "4a3158b6700465ba5035f76e69ab1e74",
       "ChildDependencies": []
     },
     "texturelistsbadlands": {
@@ -2426,7 +2429,12 @@
     },
     "texturelistsbarbarian": {
       "Name": "texturelistsbarbarian",
-      "Hash": "40704fe1be247d86d72db712384334b4",
+      "Hash": "20b4b0cd701fc8066555709379795e22",
+      "ChildDependencies": []
+    },
+    "texturelistsbarrier": {
+      "Name": "texturelistsbarrier",
+      "Hash": "691d851f61cc706456b1c171ecee5509",
       "ChildDependencies": []
     },
     "texturelistsbasemonster": {
@@ -2436,12 +2444,12 @@
     },
     "texturelistsbasilisk": {
       "Name": "texturelistsbasilisk",
-      "Hash": "b531ea08f64a18ccd3ec4463059ff80d",
+      "Hash": "bc86a0d3b70a90c23f573371482387da",
       "ChildDependencies": []
     },
     "texturelistsbat": {
       "Name": "texturelistsbat",
-      "Hash": "7aef9641af4a9edfe30dad7f6664577d",
+      "Hash": "1f189800ef10bac80cd143e67e3d853e",
       "ChildDependencies": []
     },
     "texturelistsbattlefield": {
@@ -2451,42 +2459,42 @@
     },
     "texturelistsbear": {
       "Name": "texturelistsbear",
-      "Hash": "6d5a2ab4438a272554ce9f1c420fd163",
+      "Hash": "ecdd6ca339fbe88b7d7ca6b8a49cfdc6",
       "ChildDependencies": []
     },
     "texturelistsbeholder": {
       "Name": "texturelistsbeholder",
-      "Hash": "8713be8edad29e9f223d1a4eba3835e2",
+      "Hash": "e88bedf9d107a761214dd26624a20244",
       "ChildDependencies": []
     },
     "texturelistsblackdragon": {
       "Name": "texturelistsblackdragon",
-      "Hash": "43ee75c737f47bf002f0504063c90465",
+      "Hash": "98f4b8c70bfcfb16b680ebfd934abbd0",
       "ChildDependencies": []
     },
     "texturelistsbladesman": {
       "Name": "texturelistsbladesman",
-      "Hash": "b4393dd412ab6818d35eaa728046d756",
+      "Hash": "43245a3d4767aa637174039f8d7b6b3c",
       "ChildDependencies": []
     },
     "texturelistsbluedragon": {
       "Name": "texturelistsbluedragon",
-      "Hash": "6b53239454a70b5d9b4075807f44f294",
+      "Hash": "af949722c32a121fe66c60e421ad0df7",
       "ChildDependencies": []
     },
     "texturelistsbuck": {
       "Name": "texturelistsbuck",
-      "Hash": "a48bda606623c4c3a6c66c3b23464246",
+      "Hash": "1e24c0c3669b67654f4eb5e3e83eb499",
       "ChildDependencies": []
     },
     "texturelistsbull": {
       "Name": "texturelistsbull",
-      "Hash": "88e032284109eb6e3f966aba8ec1151a",
+      "Hash": "4cd9101473e139ba8683a779250fa00e",
       "ChildDependencies": []
     },
     "texturelistscat": {
       "Name": "texturelistscat",
-      "Hash": "4e20d38c41eb0281a9b1314e480749ed",
+      "Hash": "11af451e9e27404cd67c6ae0baa1ff1b",
       "ChildDependencies": []
     },
     "texturelistscave": {
@@ -2496,7 +2504,7 @@
     },
     "texturelistschimera": {
       "Name": "texturelistschimera",
-      "Hash": "f0ef2a3086ee1d41f41dbd1fdab66d20",
+      "Hash": "f325b2a1e023fcaf2843fd68da78d734",
       "ChildDependencies": []
     },
     "texturelistscity": {
@@ -2511,32 +2519,32 @@
     },
     "texturelistscleric": {
       "Name": "texturelistscleric",
-      "Hash": "085f5fb2bf1c7537af8aeaf81095b619",
+      "Hash": "47500a5dd9628d9a5037621228e58c18",
       "ChildDependencies": []
     },
     "texturelistsconjurer": {
       "Name": "texturelistsconjurer",
-      "Hash": "49d9e0e72878b71b18bee1d4757144bf",
+      "Hash": "cb0ee008ac49e6adfe654ab59041106f",
       "ChildDependencies": []
     },
     "texturelistscoyote": {
       "Name": "texturelistscoyote",
-      "Hash": "e974a3a507e97dac80cc6e1e86a3abb2",
+      "Hash": "01dcf1109d52b9aa31ccb46a5b9739b0",
       "ChildDependencies": []
     },
     "texturelistscrab": {
       "Name": "texturelistscrab",
-      "Hash": "a810836763c85b4583c1f0593014fa9c",
+      "Hash": "7a723c6a5201b9a75dce3c0316148124",
       "ChildDependencies": []
     },
     "texturelistscrocodile": {
       "Name": "texturelistscrocodile",
-      "Hash": "f8f09cd02a841ef1a2e2ba3e0d3bb718",
+      "Hash": "8c5dceeb831bef2f33c7adc605376c8d",
       "ChildDependencies": []
     },
     "texturelistscyclops": {
       "Name": "texturelistscyclops",
-      "Hash": "09172b47fd8c8c5ab85e1b319c4a15ca",
+      "Hash": "bd763ccb11300506cd6117acb151444b",
       "ChildDependencies": []
     },
     "texturelistsdangersense": {
@@ -2561,7 +2569,7 @@
     },
     "texturelistsdemon": {
       "Name": "texturelistsdemon",
-      "Hash": "e8c6f00b23b4b0c3d7030804be31649b",
+      "Hash": "6d7799fb6aad824ff7644db86177db2a",
       "ChildDependencies": []
     },
     "texturelistsdesert": {
@@ -2576,7 +2584,7 @@
     },
     "texturelistsdog": {
       "Name": "texturelistsdog",
-      "Hash": "565a9b87cf0e2e2aa115fa07bd9ed4a7",
+      "Hash": "d4508b301d3f5b5566bbb61811a33535",
       "ChildDependencies": []
     },
     "texturelistsdungeon": {
@@ -2591,22 +2599,22 @@
     },
     "texturelistsdwarf": {
       "Name": "texturelistsdwarf",
-      "Hash": "4d915c3e5d20519df33a2c6c7ed7c704",
+      "Hash": "a9e2e5f90d5b277234b866f7f074f285",
       "ChildDependencies": []
     },
     "texturelistsearthelemental": {
       "Name": "texturelistsearthelemental",
-      "Hash": "d25c4d037e3badfc65452e9f3a0ca66e",
+      "Hash": "bc507b6fcb3f9a631e1acdbbf26f291d",
       "ChildDependencies": []
     },
     "texturelistself": {
       "Name": "texturelistself",
-      "Hash": "93f054c897d8b68f796bb18949115a7a",
+      "Hash": "6154f76df2ce8ec871aae70c678029fe",
       "ChildDependencies": []
     },
     "texturelistsfaerie": {
       "Name": "texturelistsfaerie",
-      "Hash": "7695577edc18b1e12ff21d443c5d87c5",
+      "Hash": "462de3dbf78e753cbeeecad7d77c7714",
       "ChildDependencies": []
     },
     "texturelistsfield": {
@@ -2616,17 +2624,17 @@
     },
     "texturelistsfighter": {
       "Name": "texturelistsfighter",
-      "Hash": "d6c64b30641da0b2d1b598dbab86d1aa",
+      "Hash": "ccd1888cf1317ad0164b9ab3e1aa5e6b",
       "ChildDependencies": []
     },
     "texturelistsfireelemental": {
       "Name": "texturelistsfireelemental",
-      "Hash": "b061e7ea938aeddb4b9aabc30877ba97",
+      "Hash": "89c2059e7c15296a2980a06c512db25c",
       "ChildDependencies": []
     },
     "texturelistsfleshgolem": {
       "Name": "texturelistsfleshgolem",
-      "Hash": "c3419a33cdb4fa81c1824d80cbf180d2",
+      "Hash": "91d7016315cf3936da4b0a858f152314",
       "ChildDependencies": []
     },
     "texturelistsforest": {
@@ -2636,62 +2644,62 @@
     },
     "texturelistsfrog": {
       "Name": "texturelistsfrog",
-      "Hash": "020e6bde19dc77eab09bf9daa119a191",
+      "Hash": "3b1c86398a86fc088029963e2f7dbb9b",
       "ChildDependencies": []
     },
     "texturelistsghost": {
       "Name": "texturelistsghost",
-      "Hash": "edae9f5f9092e8770864b0ef75f34ae6",
+      "Hash": "4dc76924fd133128ce531ec9263c5164",
       "ChildDependencies": []
     },
     "texturelistsghoul": {
       "Name": "texturelistsghoul",
-      "Hash": "2a266d76ca4d9d7314df26983daff080",
+      "Hash": "5b6b6666e83169bba8e652334ecb36ce",
       "ChildDependencies": []
     },
     "texturelistsgiant": {
       "Name": "texturelistsgiant",
-      "Hash": "d859364a0abbb4fd69f745a379d87223",
+      "Hash": "bfd50685f1201664e1726dff5b9af7cb",
       "ChildDependencies": []
     },
     "texturelistsgnoll": {
       "Name": "texturelistsgnoll",
-      "Hash": "86119897d4d685e6eef2f3ed6bde1749",
+      "Hash": "c0f1b8ebac8323b39e8db37ecfd0f127",
       "ChildDependencies": []
     },
     "texturelistsgnome": {
       "Name": "texturelistsgnome",
-      "Hash": "ce098fea18b8277b8119bfb67803ec33",
+      "Hash": "de02792a000f9c8e7c23a2133d0a4d1b",
       "ChildDependencies": []
     },
     "texturelistsgoblin": {
       "Name": "texturelistsgoblin",
-      "Hash": "b2f53162f0d69d6fc3fb6e84c04d5124",
+      "Hash": "72ca75e881e2fa47c22d6ba0dac9b1fa",
       "ChildDependencies": []
     },
     "texturelistsgreendragon": {
       "Name": "texturelistsgreendragon",
-      "Hash": "1274bd0aee2acc1f752b406eeb656ad1",
+      "Hash": "22b4080969c49deba43ba2acdd58e4de",
       "ChildDependencies": []
     },
     "texturelistsgriffon": {
       "Name": "texturelistsgriffon",
-      "Hash": "eab95428eb3498d8bcc68e227670e060",
+      "Hash": "25cef0bdc8b5ebe1fd297a58ae938a9f",
       "ChildDependencies": []
     },
     "texturelistsguard": {
       "Name": "texturelistsguard",
-      "Hash": "10c200c8d18b182b106e3db8f39dd921",
+      "Hash": "0c5e6755543f0f5697b20e9a755b1ea8",
       "ChildDependencies": []
     },
     "texturelistshalfling": {
       "Name": "texturelistshalfling",
-      "Hash": "68525d88f498291d01ff2d7709ad57ad",
+      "Hash": "e13b473249ae8656e087ff1afe3ef927",
       "ChildDependencies": []
     },
     "texturelistsharpy": {
       "Name": "texturelistsharpy",
-      "Hash": "041be092370a0206e550cecfd4b4a2b9",
+      "Hash": "c47aee5ea22b6c4ecb9ceb6400d13cf2",
       "ChildDependencies": []
     },
     "texturelistshills": {
@@ -2701,12 +2709,12 @@
     },
     "texturelistshobgoblin": {
       "Name": "texturelistshobgoblin",
-      "Hash": "e8427be2c496a93d9ad858e44a9ffc3c",
+      "Hash": "ed713b13b51dd465c68f6b546e31cb5e",
       "ChildDependencies": []
     },
     "texturelistshound": {
       "Name": "texturelistshound",
-      "Hash": "632b4ea9fa8909ad7ab2979053178dcd",
+      "Hash": "b3e9dfe1bb49d337140c1aee95b90ab1",
       "ChildDependencies": []
     },
     "texturelistshousebuilding": {
@@ -2716,22 +2724,22 @@
     },
     "texturelistshuman": {
       "Name": "texturelistshuman",
-      "Hash": "f6f1db37c987e24fcf378dba83035096",
+      "Hash": "596f65d49f59d82f861ae91ac8bf5918",
       "ChildDependencies": []
     },
     "texturelistshydra": {
       "Name": "texturelistshydra",
-      "Hash": "f30ac0fd71c3a3feaa73456f38daf25d",
+      "Hash": "3653ce6342d612ca863958ce3d3e1cb4",
       "ChildDependencies": []
     },
     "texturelistsirongolem": {
       "Name": "texturelistsirongolem",
-      "Hash": "2c4ddf0a8ccb8443f17f1f5dd6d7d835",
+      "Hash": "a9ecc7a7a0f2d3a8574acb33075d921b",
       "ChildDependencies": []
     },
     "texturelistskobold": {
       "Name": "texturelistskobold",
-      "Hash": "38ca49f0b892e806f379986c225ff33e",
+      "Hash": "91c3af44d9c8ea30b794646a3d7b03f1",
       "ChildDependencies": []
     },
     "texturelistslava": {
@@ -2741,22 +2749,22 @@
     },
     "texturelistslich": {
       "Name": "texturelistslich",
-      "Hash": "0a9db17923d8dc5e619e1fe127048959",
+      "Hash": "378d387da61e5e2980ea72ceb48e72d1",
       "ChildDependencies": []
     },
     "texturelistslion": {
       "Name": "texturelistslion",
-      "Hash": "ab252f3a9e4c83c90503a12b373312d1",
+      "Hash": "336b25d84a8a09e5b5983b6375e35740",
       "ChildDependencies": []
     },
     "texturelistslizardman": {
       "Name": "texturelistslizardman",
-      "Hash": "6e05e70b1efdaffa44733e69e1d84d9b",
+      "Hash": "e166d7178f53f418b81304b7e4fa78fa",
       "ChildDependencies": []
     },
     "texturelistsmage": {
       "Name": "texturelistsmage",
-      "Hash": "295a8d875bf8f0b82d00af43ca3dfb9b",
+      "Hash": "26bd336c1b631ff60ed1811f4d80c022",
       "ChildDependencies": []
     },
     "texturelistsmagiccarpet": {
@@ -2766,27 +2774,27 @@
     },
     "texturelistsmagician": {
       "Name": "texturelistsmagician",
-      "Hash": "5cd93dae50a4ff16119d71d816c2adca",
+      "Hash": "b1be3017a85395f72dc03a435c760e3f",
       "ChildDependencies": []
     },
     "texturelistsmanticore": {
       "Name": "texturelistsmanticore",
-      "Hash": "88e303c7436ceead6a46f21b23cb2db4",
+      "Hash": "4aa6c2ac6f564f5651baa8d69294c1fd",
       "ChildDependencies": []
     },
     "texturelistsmedusa": {
       "Name": "texturelistsmedusa",
-      "Hash": "9940ece764b05c9e796db921e68f6960",
+      "Hash": "89b60f89ac0d72f72159fdedc087965a",
       "ChildDependencies": []
     },
     "texturelistsmongrel": {
       "Name": "texturelistsmongrel",
-      "Hash": "2df0e15ac65915a49a4eaeb8a7e68c22",
+      "Hash": "88b8f2e9eac4abe14b13df6f010917ac",
       "ChildDependencies": []
     },
     "texturelistsmonk": {
       "Name": "texturelistsmonk",
-      "Hash": "80fbb45464026fa594ef968c18fe9e43",
+      "Hash": "83c0779a6f6706872e754f87f19c43fd",
       "ChildDependencies": []
     },
     "texturelistsmountains": {
@@ -2796,7 +2804,7 @@
     },
     "texturelistsmummy": {
       "Name": "texturelistsmummy",
-      "Hash": "b0ed8db2556c5409e049cbd0c631a513",
+      "Hash": "6a9bf7f2724853e40ec36ae040cf6d27",
       "ChildDependencies": []
     },
     "texturelistsnatural": {
@@ -2806,12 +2814,12 @@
     },
     "texturelistsogre": {
       "Name": "texturelistsogre",
-      "Hash": "82532ae6db6b48167ccab4aa79accb61",
+      "Hash": "66f508765b32a6bfd796327db4981a38",
       "ChildDependencies": []
     },
     "texturelistsorc": {
       "Name": "texturelistsorc",
-      "Hash": "47ccbb4fef315d95900e5649eb6a298b",
+      "Hash": "6b68e046a91584301317703ca0db4b65",
       "ChildDependencies": []
     },
     "texturelistspointofinterest": {
@@ -2821,12 +2829,12 @@
     },
     "texturelistsrat": {
       "Name": "texturelistsrat",
-      "Hash": "3b673304f431365eac627b4d3c1ec0de",
+      "Hash": "966f9ac06322a53210cc7fe87e977d18",
       "ChildDependencies": []
     },
     "texturelistsreddragon": {
       "Name": "texturelistsreddragon",
-      "Hash": "efe5626b44610796fb22980bf648bf0c",
+      "Hash": "6590174f0197b1a2989504a3383ea597",
       "ChildDependencies": []
     },
     "texturelistsroad": {
@@ -2836,12 +2844,12 @@
     },
     "texturelistsrogue": {
       "Name": "texturelistsrogue",
-      "Hash": "eb67ec353b2fa86d3cba22e310b8f449",
+      "Hash": "04074f289cc65374b4f78ca6a9e64fd0",
       "ChildDependencies": []
     },
     "texturelistssalamander": {
       "Name": "texturelistssalamander",
-      "Hash": "05378916a4e05bce087d87f6855b822d",
+      "Hash": "c5fdf3252efd34fad13a6b30c1fbb2cf",
       "ChildDependencies": []
     },
     "texturelistssavannah": {
@@ -2851,32 +2859,32 @@
     },
     "texturelistsscorpion": {
       "Name": "texturelistsscorpion",
-      "Hash": "9821072384484afb872a4341c168f240",
+      "Hash": "df9ff6ee44663eeb634b18cf0325ee41",
       "ChildDependencies": []
     },
     "texturelistsscrapper": {
       "Name": "texturelistsscrapper",
-      "Hash": "d5cff99c02c131ac6012865176b7a1f3",
+      "Hash": "b7ab9c2e4937f14fcb01f26ae8168cd7",
       "ChildDependencies": []
     },
     "texturelistsskeleton": {
       "Name": "texturelistsskeleton",
-      "Hash": "10b8118b5c281b57f966fb08378262cd",
+      "Hash": "0f0a8f1ac05ebce4759aaed17452b950",
       "ChildDependencies": []
     },
     "texturelistsslime": {
       "Name": "texturelistsslime",
-      "Hash": "e916d5a69d9a0cec83136bde7d7a9b0e",
+      "Hash": "d435a3bb75dcfd3dfe650476ae220a95",
       "ChildDependencies": []
     },
     "texturelistssnail": {
       "Name": "texturelistssnail",
-      "Hash": "68d0dd9ba4b9096892127f5713f3b557",
+      "Hash": "d201ad9c66e3d79376ee19d3ea2daadf",
       "ChildDependencies": []
     },
     "texturelistssnake": {
       "Name": "texturelistssnake",
-      "Hash": "3d389bcfd10262d25c9973fbfd005c2a",
+      "Hash": "3bfb99ec5d3df1daae237720e9013302",
       "ChildDependencies": []
     },
     "texturelistssnow": {
@@ -2886,27 +2894,27 @@
     },
     "texturelistssorcerer": {
       "Name": "texturelistssorcerer",
-      "Hash": "7b9daef9e556734f23333b672ee62475",
+      "Hash": "a3ad4353910a9a26a604395f3e72f997",
       "ChildDependencies": []
     },
     "texturelistsspectre": {
       "Name": "texturelistsspectre",
-      "Hash": "28007adcb707f9141c333c1aa141a16f",
+      "Hash": "6e79fb7e103642f839585c2c79947c74",
       "ChildDependencies": []
     },
     "texturelistsspider": {
       "Name": "texturelistsspider",
-      "Hash": "380a03599013bc4ea7fa94d890dcbae3",
+      "Hash": "68be3ec2a64a6999c968f3351aee17e5",
       "ChildDependencies": []
     },
     "texturelistssteed": {
       "Name": "texturelistssteed",
-      "Hash": "4204c8f1faabccf9537fc074a729552e",
+      "Hash": "a68312b0c47c47a48203632f7b8cc85d",
       "ChildDependencies": []
     },
     "texturelistsstonegolem": {
       "Name": "texturelistsstonegolem",
-      "Hash": "82aa0290dd0cdfcd0867230b56591e75",
+      "Hash": "5fffd27112d7f860f1acd31f536ba926",
       "ChildDependencies": []
     },
     "texturelistsswamp": {
@@ -2916,7 +2924,7 @@
     },
     "texturelistsswordsman": {
       "Name": "texturelistsswordsman",
-      "Hash": "faba9b381837213fa3352cafdebc0ea6",
+      "Hash": "a358b0fc65e6cf92df7d9e5dc7745572",
       "ChildDependencies": []
     },
     "textureliststavernbuilding": {
@@ -2931,12 +2939,17 @@
     },
     "textureliststhief": {
       "Name": "textureliststhief",
-      "Hash": "c2a5b4b370a436401170363c407ec6c6",
+      "Hash": "2dab25c630b85da151bab6fc73b5d92e",
+      "ChildDependencies": []
+    },
+    "textureliststhorns": {
+      "Name": "textureliststhorns",
+      "Hash": "54330b23029f68bee9a462f7727d827b",
       "ChildDependencies": []
     },
     "textureliststiger": {
       "Name": "textureliststiger",
-      "Hash": "566fb812dce99fd5e62ff07afdd2a4e5",
+      "Hash": "d3803a55821b6462ff7147a0f9c94fe2",
       "ChildDependencies": []
     },
     "textureliststorchlight": {
@@ -2961,7 +2974,7 @@
     },
     "textureliststreant": {
       "Name": "textureliststreant",
-      "Hash": "2e9ecb3bb91880eaf7dac69cf619261f",
+      "Hash": "2bc02cf248e4d7a7940d856feff36483",
       "ChildDependencies": []
     },
     "textureliststreasure": {
@@ -2971,7 +2984,7 @@
     },
     "textureliststroll": {
       "Name": "textureliststroll",
-      "Hash": "70a550313f1ad187b49b2c5ee69f7336",
+      "Hash": "da7ec27a33bac9912b6335da48ce6c4b",
       "ChildDependencies": []
     },
     "texturelistsunholy": {
@@ -2981,7 +2994,7 @@
     },
     "texturelistsvampire": {
       "Name": "texturelistsvampire",
-      "Hash": "9b9bf9696499b5b38ac2631c70e42c9d",
+      "Hash": "79829b92b53c3797b39a5b00320f0b47",
       "ChildDependencies": []
     },
     "texturelistsvendorbuilding": {
@@ -2991,7 +3004,7 @@
     },
     "texturelistswarrior": {
       "Name": "texturelistswarrior",
-      "Hash": "316cc79cd15c1bb6416c784afd68565d",
+      "Hash": "72f32cdfc276961f62fb25e88eedd2b8",
       "ChildDependencies": []
     },
     "texturelistswater": {
@@ -3001,47 +3014,47 @@
     },
     "texturelistswaterelemental": {
       "Name": "texturelistswaterelemental",
-      "Hash": "2a2c3a4a8e609b005873ca4602e7212b",
+      "Hash": "2d91e0e5b59c80e097f3dbdc62174f71",
       "ChildDependencies": []
     },
     "texturelistswerewolf": {
       "Name": "texturelistswerewolf",
-      "Hash": "beaef9e52ece88c1aae00f14ca91ad62",
+      "Hash": "4e0705fd772b086988115f16079a61f0",
       "ChildDependencies": []
     },
     "texturelistswhitedragon": {
       "Name": "texturelistswhitedragon",
-      "Hash": "7d81a1b91f6553d736228b29fd99d61c",
+      "Hash": "b8ffda398420d65ab2528d874c08009b",
       "ChildDependencies": []
     },
     "texturelistswight": {
       "Name": "texturelistswight",
-      "Hash": "f5f8fc285674799c1ead16dc3cdb87f7",
+      "Hash": "e0ed3fc0b752a2e95ac5b81aad001f0c",
       "ChildDependencies": []
     },
     "texturelistswizard": {
       "Name": "texturelistswizard",
-      "Hash": "b1eae98b48a7384fdb1adb085f4b9b21",
+      "Hash": "706a10ebdde2f36ea8f2162dd2e93118",
       "ChildDependencies": []
     },
     "texturelistswolf": {
       "Name": "texturelistswolf",
-      "Hash": "4abb4914a31edc0a5ba751dab4837cc0",
+      "Hash": "e2a460a1ff73014b3f60c125ba7e63be",
       "ChildDependencies": []
     },
     "texturelistswraith": {
       "Name": "texturelistswraith",
-      "Hash": "33ec3fd2cdd911cc122309825eabe88f",
+      "Hash": "602c55f1ef26fed015a1b2bb9acbf2e9",
       "ChildDependencies": []
     },
     "texturelistswyvern": {
       "Name": "texturelistswyvern",
-      "Hash": "d8d22e57f09033dae356cb61bd9b5d30",
+      "Hash": "1878104bb705bab80806fca00cfd64ee",
       "ChildDependencies": []
     },
     "texturelistszombie": {
       "Name": "texturelistszombie",
-      "Hash": "8f15dd1199b57eb29da1974f1aa49b8d",
+      "Hash": "8c88648bc2be38fbc5598cc1738a6b86",
       "ChildDependencies": []
     },
     "tilesadventuretile": {
@@ -3500,7 +3513,7 @@
     },
     "uicore": {
       "Name": "uicore",
-      "Hash": "59532cef2cfb2d77c89c242e4b3df638",
+      "Hash": "2293fba8753ea69ba1e6185b371b833c",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3515,7 +3528,7 @@
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "ced5ff5e1892324dc24565d0c4879f95",
+      "Hash": "c5d9a0e29f64101e9236ff1d8ace9894",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui",
@@ -3524,7 +3537,7 @@
     },
     "uicrawleraction": {
       "Name": "uicrawleraction",
-      "Hash": "9b4f52e37aff9b413001eb449d33c87f",
+      "Hash": "c2a8e1a5b8ae426f9ca97962fb4c3374",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui"
@@ -3532,27 +3545,23 @@
     },
     "uicrawlerbuffs": {
       "Name": "uicrawlerbuffs",
-      "Hash": "37d4677acda112a35f2d8ab32b26f23b",
+      "Hash": "4f482a32f04b466249d0dd7da6137719",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlercombat": {
       "Name": "uicrawlercombat",
-      "Hash": "539d391d3e51ef6cb9ec8fb1372fe2f0",
-      "ChildDependencies": [
-        "atlasui",
-        "uicrawlerinfo"
-      ]
+      "Hash": "3998d031bf2e31d71fbbb218a1a7ed65",
+      "ChildDependencies": []
     },
     "uicrawlerhud": {
       "Name": "uicrawlerhud",
-      "Hash": "219cf1f5e876781c17ef8855bc0571c8",
+      "Hash": "a019421d40dc681e108bf729be752ec3",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui",
         "uicrawleraction",
-        "uicrawlercombat",
         "uicrawlerinfo",
         "uicrawlerparty",
         "uicrawlerquests"
@@ -3560,7 +3569,7 @@
     },
     "uicrawlerinfo": {
       "Name": "uicrawlerinfo",
-      "Hash": "53657dfd4fb2cde108f92db20333bb6b",
+      "Hash": "1253b2ac9282c30a367358ae755f0f4c",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3575,21 +3584,21 @@
     },
     "uicrawlerparty": {
       "Name": "uicrawlerparty",
-      "Hash": "25a8fcf7f0d1d8f9795fc9926fffb7a4",
+      "Hash": "c737fa54702bd36f1933c9685fbfaaba",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlerquests": {
       "Name": "uicrawlerquests",
-      "Hash": "5bd65a3dbd57b6f52d0d4749c67eef64",
+      "Hash": "e1c212040c138575b0c0d64fc959d06e",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlerscreens": {
       "Name": "uicrawlerscreens",
-      "Hash": "07c11101e9ff18768a7da1c6aa76ec17",
+      "Hash": "cf41e5ae59628337ef6f19329e87fd07",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3642,7 +3651,7 @@
     },
     "uiitems": {
       "Name": "uiitems",
-      "Hash": "f4fa4753eed3e8cd05198381af428734",
+      "Hash": "4d8dabf8d74eeb064dab92a91ff856cd",
       "ChildDependencies": [
         "atlasicons",
         "atlasui"
@@ -3677,7 +3686,7 @@
     },
     "uimarkers": {
       "Name": "uimarkers",
-      "Hash": "13aa7b804555c8c5ba7bca8c50975134",
+      "Hash": "cb2295cddf3a793032902ba67c2d1f53",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3689,11 +3698,6 @@
         "atlasui",
         "atlasusercointypeicons"
       ]
-    },
-    "uinewcrawlergamescreen": {
-      "Name": "uinewcrawlergamescreen",
-      "Hash": "41081d8c47f649ea877cc0cb19c177de",
-      "ChildDependencies": []
     },
     "uiquests": {
       "Name": "uiquests",
@@ -3732,7 +3736,7 @@
     },
     "uitiles": {
       "Name": "uitiles",
-      "Hash": "9419488f0897e62d900dd7747ce94334",
+      "Hash": "3f299639c808b2670212f984e1c5b8ef",
       "ChildDependencies": [
         "atlasui"
       ]

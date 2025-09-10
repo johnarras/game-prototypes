@@ -53,25 +53,14 @@
       "Id": "specialmagic9default",
       "ParentId": "default",
       "IdKey": 9,
-      "Name": "SetWarpTarget"
-    },
-    {
-      "Id": "specialmagic10default",
-      "ParentId": "default",
-      "IdKey": 10,
-      "Name": "ReturnWarpTarget"
-    },
-    {
-      "Id": "specialmagic11default",
-      "ParentId": "default",
-      "IdKey": 11,
-      "Name": "PartyBuff"
+      "Name": "Beacon",
+      "Desc": ""
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "SpecialMagicSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-09-04T22:06:18.52Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-09-04T22:06:18.52Z"
 }

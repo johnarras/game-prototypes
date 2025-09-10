@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Crawler.States.Constants
+﻿namespace Genrpg.Shared.Crawler.States.Constants
 {
     public enum ECrawlerStates
     {
@@ -40,7 +36,7 @@ namespace Genrpg.Shared.Crawler.States.Constants
         ReturnToSafety,
         GainStats,
         TeleportConfirmation,
-        
+
         NpcMain,
         QuestDetail,
         QuestLog,
@@ -55,15 +51,15 @@ namespace Genrpg.Shared.Crawler.States.Constants
         JumpLength,
         PassWall,
 
-        UseItemExplore,
-        UseItemCombat,
-
         SelectAlly,
         SelectAllyTarget,
         SelectEnemyGroup,
         SelectItem,
         SelectSpell,
         OnSelectSpell,
+
+        SelectUsableItem,
+        OnSelectUseItem,
 
         Vendor,
 

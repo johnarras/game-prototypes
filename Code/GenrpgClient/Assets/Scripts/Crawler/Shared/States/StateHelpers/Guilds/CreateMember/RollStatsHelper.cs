@@ -5,7 +5,6 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Stats.Settings;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -46,7 +45,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             foreach (StatType statType in statTypes)
             {
-                int statValue = startStatValue +  MathUtils.IntRange(statSettings.MinRollValue, statSettings.MaxRollValue, _rand);
+                int statValue = startStatValue + MathUtils.IntRange(statSettings.MinRollValue, statSettings.MaxRollValue, _rand);
 
                 string textToShow = "";
 
@@ -73,8 +72,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
             }
 
             stateData.AddText(_textService.HighlightText($"Stat bonuses are applied to the initial stat" +
-                " and per action/tier whenever a skill " + 
-                "using that stat is used. So a +2 strength bonus with" 
+                " and per action/tier whenever a skill " +
+                "using that stat is used. So a +2 strength bonus with"
                 + " 5 melee attacks would apply 2 damage to each attack.", TextColors.ColorGold));
 
             if (statSettings.MinRollValue < statSettings.MaxRollValue)
@@ -83,7 +82,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
             }
             else
             {
-                stateData.AddText("\n\n");
+                stateData.AddBlankLine();
+                stateData.AddBlankLine();
+
             }
 
             stateData.Actions.Add(new CrawlerStateAction("Accept", 'A', ECrawlerStates.ChoosePortrait, extraData: member));

@@ -1,10 +1,9 @@
-﻿using System;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Stats.Entities;
+﻿using Assets.Scripts.Crawler.UI.WorldUI;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
+using Genrpg.Shared.Units.Entities;
+using System;
 using UnityEngine;
-using Assets.Scripts.Crawler.UI.WorldUI;
 
 public class StatInfoRow : RolloverInfoRow
 {
@@ -16,11 +15,13 @@ public class StatInfoRow : RolloverInfoRow
 
     private long _statTypeId;
 
+    public long StatTypeId => _statTypeId;
+
     public void Init(Unit unit, long statTypeId, long modifier = 0)
     {
         if (statTypeId > 0)
         {
-            this._statTypeId = statTypeId;
+            _statTypeId = statTypeId;
         }
         else
         {
@@ -48,7 +49,7 @@ public class StatInfoRow : RolloverInfoRow
         _uiService.SetText(MainText, _infoService.CreateInfoLink(_statType));
 
         long curr = unit.Stats.Max(_statTypeId);
-        
+
         _uiService.SetText(CurrStat, curr.ToString());
 
         float pct = 0.0f;
@@ -59,11 +60,11 @@ public class StatInfoRow : RolloverInfoRow
         }
         else if (_statTypeId >= StatConstants.ScaleDownBegin && _statTypeId <= StatConstants.ScaleDownEnd)
         {
-            pct = 1.0f-unit.Stats.ScaleDown(_statTypeId);
+            pct = 1.0f - unit.Stats.ScaleDown(_statTypeId);
         }
-        else if (_statTypeId >= StatConstants.RatingPercentStart)       
+        else if (_statTypeId >= StatConstants.RatingPercentStart)
         {
-            pct = unit.Stats.Pct(_statTypeId);   
+            pct = unit.Stats.Pct(_statTypeId);
         }
         else // The percent IS the stat (for dam/defense direct mults.
         {
@@ -85,7 +86,7 @@ public class StatInfoRow : RolloverInfoRow
         }
         else if (modifier > 0)
         {
-            _uiService.SetText(Modifier, "+" + modifier);
+            _uiService.SetText(Modifier, "(+" + modifier + ")");
             _uiService.SetColor(Modifier, Color.green);
         }
         else if (modifier < 0) // Just be explicit here

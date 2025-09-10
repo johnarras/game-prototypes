@@ -1,6 +1,7 @@
 ﻿
 
 using Assets.Scripts.CombatFX;
+using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -22,13 +23,13 @@ namespace Assets.Scripts.Crawler.Combat
 
         const string CombatHitPrefabSuffix = "CombatHit";
 
-        private IClientAppService _appService;
         private IAudioService _audioService;
         private ICrawlerService _crawlerService;
 
         public GImage MainImage;
         public GameObject MainImageParent;
         public GImage HitImage;
+        public GameObject DooberTarget;
 
         public int ScaleAmount = 30;
 
@@ -39,7 +40,8 @@ namespace Assets.Scripts.Crawler.Combat
 
         private int _hitImageFrame = 0;
 
-        private bool _showAttack = false;
+        private int _attackFrame = AttackFrameCount;
+        private const int AttackFrameCount = 4;
 
         RectTransform _imageTransform;
 
@@ -64,6 +66,8 @@ namespace Assets.Scripts.Crawler.Combat
 
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
 
+            _dispatcher.AddListener<ShowCombatBolt>(OnShowCombatBolt, GetToken());
+
             _updateService.AddUpdate(this, OnUpdate, UpdateTypes.Regular, GetToken());
 
             _clientEntityService.SetActive(HitImage, false);
@@ -82,11 +86,6 @@ namespace Assets.Scripts.Crawler.Combat
 
         public void OnShowCombatText(ShowCombatText text)
         {
-            if (text.CasterGroupId == _uniqueId || text.CasterUnitId == _uniqueId)
-            {
-                _showAttack = true;
-            }
-
             if (text.TargetGroupId != _uniqueId && text.TargetUnitId != _uniqueId)
             {
                 return;
@@ -98,6 +97,14 @@ namespace Assets.Scripts.Crawler.Combat
             }
         }
 
+        private void OnShowCombatBolt(ShowCombatBolt bolt)
+        {
+
+            if (bolt.CasterId == _uniqueId)
+            {
+                _attackFrame = 0;
+            }
+        }
 
 
         private Vector3 _allyAttackShift = new Vector3(0, 30, 0);
@@ -109,7 +116,6 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 return;
             }
-
             if (!_didInitSizes)
             {
 
@@ -122,10 +128,12 @@ namespace Assets.Scripts.Crawler.Combat
 
             if (MainImageParent != null)
             {
-                if (_showAttack)
+                if (_attackFrame < AttackFrameCount)
                 {
-                    MainImageParent.transform.localPosition += (_factionTypeId == FactionTypes.Player ? _allyAttackShift : _enemyAttackShift);
-                    _showAttack = false;
+                    _attackFrame++;
+
+                    float shiftScale = (_attackFrame) * (AttackFrameCount - _attackFrame) * 4.0f / (AttackFrameCount * AttackFrameCount);
+                    MainImageParent.transform.localPosition = shiftScale * (_factionTypeId == FactionTypes.Player ? _allyAttackShift : _enemyAttackShift);
                 }
                 else
                 {
@@ -144,6 +152,11 @@ namespace Assets.Scripts.Crawler.Combat
                     if (elementType != null)
                     {
                         _audioService.PlaySound(elementType.Art + "Hit");
+
+                        if (ColorUtility.TryParseHtmlString(elementType.Color, out Color color))
+                        {
+                            _targetColor = color;
+                        }
                     }
                     _audioService.PlaySound(CrawlerAudio.MonsterHit);
                     if (_combatHits.ContainsKey(elementType.Art))
@@ -163,11 +176,16 @@ namespace Assets.Scripts.Crawler.Combat
 
             int animationFrames = CrawlerCombatConstants.GetScrollingFrames(_crawlerService.GetParty().ScrollFramesIndex);
 
+            if (animationFrames < 2)
+            {
+                animationFrames = 2;
+            }
+
             int midFrame = animationFrames / 2;
 
             int frameDelta = Math.Abs(midFrame - _currFrame);
 
-            float midPercent = 1.0f - frameDelta * 1.0f / midFrame;
+            float midPercent = MathUtils.Clamp(0, 1.0f - frameDelta * 1.0f / midFrame, 1);
 
             MainImage.color = _startColor * (1 - midPercent) + _targetColor * (midPercent);
 
@@ -180,8 +198,9 @@ namespace Assets.Scripts.Crawler.Combat
                 _currText = null;
 
                 _clientEntityService.SetActive(HitImage, false);
-            }
 
+                MainImage.color = _startColor;
+            }
 
             float hitAlpha = Math.Max(0, midPercent * 2 - 1);
 
@@ -246,7 +265,7 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 return;
             }
-            _targetColor = hit.TargetColor;
+
 
             _clientEntityService.SetActive(HitImage, true);
 

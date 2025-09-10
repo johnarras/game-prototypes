@@ -89,6 +89,21 @@ PrefabInstance:
       propertyPath: m_HorizontalScrollbar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2322750807610681428, guid: 86189d1d584f8544092410f0ae4468d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322750807610681428, guid: 86189d1d584f8544092410f0ae4468d3,
+        type: 3}
+      propertyPath: m_VerticalFit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322750807610681428, guid: 86189d1d584f8544092410f0ae4468d3,
+        type: 3}
+      propertyPath: m_HorizontalFit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3587472382707861395, guid: 86189d1d584f8544092410f0ae4468d3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -117,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 4718293541411675640, guid: 86189d1d584f8544092410f0ae4468d3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -390
       objectReference: {fileID: 0}
     - target: {fileID: 4718293541411675640, guid: 86189d1d584f8544092410f0ae4468d3,
         type: 3}
@@ -293,11 +308,11 @@ MonoBehaviour:
     m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 2
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0

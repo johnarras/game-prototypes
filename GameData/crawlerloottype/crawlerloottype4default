@@ -1,0 +1,14 @@
+{
+  "Id": "crawlerloottype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Status Effects",
+  "Desc": "Can gain immunity from some Status Effects",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "EntityTypeId": 36,
+  "ItemEnchantWeight": 0.01,
+  "ScalingPerLevel": 0.3,
+  "SaveTime": "2025-09-03T01:01:47.726Z"
+}

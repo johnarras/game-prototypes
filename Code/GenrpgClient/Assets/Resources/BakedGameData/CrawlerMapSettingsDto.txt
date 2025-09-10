@@ -20,7 +20,7 @@
           "MinFloors": 1,
           "MaxFloors": 4,
           "SpecialTileChance": 0.05,
-          "Weight": 0.4,
+          "Weight": 30.0,
           "RandomWallsChance": 0.5,
           "LoopingChance": 0.5,
           "MinWallChance": 0.5,
@@ -60,7 +60,7 @@
           "MinFloors": 1,
           "MaxFloors": 4,
           "SpecialTileChance": 0.05,
-          "Weight": 0.5,
+          "Weight": 20.0,
           "RandomWallsChance": 1.0,
           "MinWallChance": 0.5,
           "MaxWallChance": 0.8,
@@ -90,7 +90,7 @@
           "MinFloors": 1,
           "MaxFloors": 1,
           "SpecialTileChance": 0.05,
-          "Weight": 0.1,
+          "Weight": 10.0,
           "MinWallChance": 0.4,
           "MaxWallChance": 0.6,
           "TrapTileChance": 0.04,
@@ -235,7 +235,7 @@
     "MinQuestUnlockDungeonLevel": 8,
     "MinQuestItemDungeonLevel": 6,
     "Name": "CrawlerMapSettings",
-    "SaveTime": "2025-08-13T13:14:00.447Z"
+    "SaveTime": "2025-08-26T15:13:23.578Z"
   },
-  "SaveTime": "2025-08-13T13:14:00.447Z"
+  "SaveTime": "2025-08-26T15:13:23.578Z"
 }

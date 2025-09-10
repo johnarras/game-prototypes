@@ -2,7 +2,6 @@
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -40,10 +39,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             stateData.AddInputField("Name: ", delegate (string text)
             {
-            if (string.IsNullOrEmpty(text))
-            {
-                return;
-            }
+                if (string.IsNullOrEmpty(text))
+                {
+                    return;
+                }
 
                 StringBuilder sb = new StringBuilder();
 
@@ -112,7 +111,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                     }
                     if (okRanged.Count > 0)
                     {
-                        okRanged = okRanged.OrderBy(x=>(x.MinVal+x.MaxVal)).ToList();   
+                        okRanged = okRanged.OrderBy(x => (x.MinVal + x.MaxVal)).ToList();
 
                         ItemGenArgs igd = new ItemGenArgs()
                         {
@@ -136,13 +135,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
                     List<CrawlerSpell> summonSpells = spells.Where(x => x.Effects.Any(y => y.EntityTypeId == EntityTypes.Unit) &&
                     x.RoleScalingTier == 1).ToList();
-                   
+
 
                     if (summonSpells.Count > 0)
                     {
                         CrawlerSpell summonSpell = summonSpells[_rand.Next() % summonSpells.Count];
 
-                        _crawlerSpellService.CastSpell(party, new Spells.Entities.UnitAction() { Caster = member, Spell = summonSpell, FinalTargets = new List<CrawlerUnit>() { member } }, 0, 0, token);
+                        _crawlerSpellService.CastSpell(party, new Spells.Entities.UnitAction() { Caster = member, Spell = summonSpell, FinalTargets = new List<CrawlerUnit>() { member } }, token);
                         _statService.CalcUnitStats(party, member, true);
                     }
 

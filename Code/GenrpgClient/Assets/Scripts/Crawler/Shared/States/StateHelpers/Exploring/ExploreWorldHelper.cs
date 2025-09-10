@@ -100,6 +100,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.Actions.Add(new CrawlerStateAction("Recall", 'R'));
             stateData.Actions.Add(new CrawlerStateAction("Options", 'O'));
             stateData.Actions.Add(new CrawlerStateAction("Party Order", 'P'));
+            stateData.Actions.Add(new CrawlerStateAction("Guild Hall", 'G', ECrawlerStates.GuildMain));
+            stateData.Actions.Add(new CrawlerStateAction("Buffs", 'B'));
+            stateData.Actions.Add(new CrawlerStateAction("Use Item", 'U'));
             if (map != null)
             {
                 if (party.HasFlag(PartyFlags.HasRecall) && map.CrawlerMapTypeId != CrawlerMapTypes.City)

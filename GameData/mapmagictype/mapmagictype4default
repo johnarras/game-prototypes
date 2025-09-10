@@ -6,5 +6,7 @@
   "Weight": 0.4,
   "SpreadChance": 0.15,
   "MapSymbol": "A",
-  "MinLevel": 7
+  "MinLevel": 7,
+  "ItemEnchantWeight": 1.0,
+  "SaveTime": "2025-09-02T15:35:34.207Z"
 }

@@ -5,7 +5,7 @@ using Genrpg.Shared.Interfaces;
 using MessagePack;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Trader.Travels.Settings
+namespace Genrpg.Shared.Trader.Travel.Settings
 {
     [MessagePackObject]
     public class TravelSettings : ParentSettings<TravelPath>

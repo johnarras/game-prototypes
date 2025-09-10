@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell89default",
+  "ParentId": "default",
+  "IdKey": 89,
+  "Name": "Thorns",
+  "Desc": "Retaliate damage toward your attacker.",
+  "PowerCost": 20.0,
+  "PowerPerLevel": 2.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 6,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 101,
+      "EntityId": 8,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 8
+    }
+  ],
+  "ItemEnchantWeight": 0.1,
+  "SaveTime": "2025-09-09T08:58:31.973Z"
+}

@@ -1,22 +1,21 @@
 ﻿
+using Assets.Scripts.Assets;
+using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Quests.ClientEvents;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Assets.Scripts.Assets;
-using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.MapGen.Services;
-using Assets.Scripts.Crawler.Quests.ClientEvents;
 
 namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 {
@@ -30,7 +29,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
         protected IClientEntityService _clientEntityService = null;
         protected ICrawlerWorldService _worldService = null;
         protected ICrawlerMapService _mapService = null;
-        protected ICrawlerMapGenService _mapGenService = null; 
+        protected ICrawlerMapGenService _mapGenService = null;
         protected IDispatcher _dispatcher = null;
         protected IClientRandom _rand = null;
 
@@ -75,7 +74,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
             return mapRoot;
         }
 
-      
+
         /// <summary>
         /// Find blocking bits for a given coordinate.
         /// </summary>
@@ -139,6 +138,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
                     {
                         blockBits |= (buildingId != 0 ? WallTypes.Wall : WallTypes.None);
                     }
+                }
+                else
+                {
+                    blockBits = WallTypes.Building;
                 }
             }
             return blockBits;

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Interfaces
 {
@@ -22,6 +23,7 @@ namespace Assets.Scripts.UI.Interfaces
         long GetSelectedIdFromName(Type iidNameType, IDropdown dropdown);
         void SetImageTexture(IRawImage image, object tex);
         void SetImageSprite(IImage image, object spr);
+        void SetImageColor(IImage image, Color color);
         object GetImageTexture(IRawImage image);
         int GetImageHeight(IRawImage image);
         int GetImageWidth(IRawImage image);

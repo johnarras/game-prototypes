@@ -1,12 +1,15 @@
-header usercointype,Idkey,Name,Icon,Art,Desc,Weight
-usercointype,1,Tokens,TokensIcon,TokensArt,,0
-usercointype,2,Gold,GoldIcon,GoldArt,,0
-usercointype,3,Energy,EnergyIcon,EnergyArt,,0
-usercointype,4,Activity,ActivityIcon,ActivityArt,,0
-usercointype,5,Cosmetics,CosmeticsIcon,CosmeticsArt,,0
-usercointype,6,Upgrades,UpgradesIcon,UpgradesArt,,0
-usercointype,7,Wood,WoodIcon,WoodArt,,1
-usercointype,8,Stone,StoneIcon,StoneArt,,1
-usercointype,9,Grass,GrassIcon,GrassArt,,1
-usercointype,10,Iron,IronIcon,IronArt,,1
-usercointype,11,Sand,SandIcon,SandArt,,1
+header usercointype,Idkey,Name,Icon,Art,Desc
+usercointype,1,Tokens,TokensIcon,TokensArt,
+usercointype,2,Gold,GoldIcon,GoldArt,
+usercointype,3,Energy,EnergyIcon,EnergyArt,
+usercointype,4,Activity,ActivityIcon,ActivityArt,
+usercointype,5,Cosmetics,CosmeticsIcon,CosmeticsArt,
+usercointype,6,Upgrades,UpgradesIcon,UpgradesArt,
+usercointype,7,Wood,WoodIcon,WoodArt,
+usercointype,8,Stone,StoneIcon,StoneArt,
+usercointype,9,Herbs,HerbsIcon,HerbsArt,
+usercointype,10,Iron,IronIcon,IronArt,
+usercointype,11,Food,FoodIcon,FoodArt,
+usercointype,12,Leather,LeatherIcon,LeatherArt,
+usercointype,13,Warriors,WarriorsIcon,WarriorsArt,
+usercointype,14,Mana,ManaIcon,ManaArt,

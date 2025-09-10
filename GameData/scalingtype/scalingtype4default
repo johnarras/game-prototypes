@@ -2,9 +2,10 @@
   "Id": "scalingtype4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Plate Armor",
+  "Name": "Metal Armor",
   "Desc": "",
-  "Icon": "Plate",
+  "AtlasPrefix": "",
+  "Icon": "Metal",
   "Prefix": "Metal",
   "Art": "",
   "CrafterTypeId": 4,
@@ -18,5 +19,7 @@
       "Percent": 125
     }
   ],
-  "ArmorPct": 400
+  "ArmorPct": 400,
+  "MainStatTypeId": 11,
+  "SaveTime": "2025-08-23T21:13:45.952Z"
 }

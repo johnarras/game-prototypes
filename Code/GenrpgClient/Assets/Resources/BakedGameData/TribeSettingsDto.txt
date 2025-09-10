@@ -19,7 +19,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype2default",
@@ -67,7 +68,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype4default",
@@ -87,7 +89,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 6
+      "LootCrafterTypeId": 6,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype5default",
@@ -107,7 +110,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 3
+      "LootCrafterTypeId": 3,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype6default",
@@ -137,7 +141,8 @@
           "Weight": 100.0
         }
       ],
-      "InteractLootItems": []
+      "InteractLootItems": [],
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype8default",
@@ -164,7 +169,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 8
+      "LootCrafterTypeId": 8,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype9default",
@@ -204,7 +210,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype11default",
@@ -224,7 +231,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype12default",
@@ -244,7 +252,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype13default",
@@ -264,7 +273,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype14default",
@@ -284,7 +294,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 1
+      "LootCrafterTypeId": 1,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype15default",
@@ -311,7 +322,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 8
+      "LootCrafterTypeId": 8,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype16default",
@@ -338,7 +350,8 @@
         }
       ],
       "InteractLootItems": [],
-      "LootCrafterTypeId": 8
+      "LootCrafterTypeId": 8,
+      "HasRangedAttacks": true
     },
     {
       "Id": "tribetype17default",
@@ -366,39 +379,12 @@
       ],
       "InteractLootItems": [],
       "LootCrafterTypeId": 8
-    },
-    {
-      "Id": "tribetype18default",
-      "ParentId": "default",
-      "IdKey": 18,
-      "Name": "Elemental",
-      "Desc": "",
-      "Icon": "",
-      "Art": "",
-      "LootItems": [
-        {
-          "EntityTypeId": 5,
-          "EntityId": 28,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "Weight": 100.0
-        },
-        {
-          "EntityTypeId": 5,
-          "EntityId": 1,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "Weight": 100.0
-        }
-      ],
-      "InteractLootItems": [],
-      "LootCrafterTypeId": 8
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "TribeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-09-09T14:20:57.443Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-09-09T14:20:57.443Z"
 }

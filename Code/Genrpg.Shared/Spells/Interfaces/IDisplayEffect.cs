@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Genrpg.Shared.Effects.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

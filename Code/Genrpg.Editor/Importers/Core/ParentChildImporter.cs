@@ -17,14 +17,8 @@ namespace Genrpg.Editor.Importers.Core
         {
             TParent settings = gs.data.Get<TParent>(null);
 
-            List<TChild> fullList = new List<TChild>();
+            List<TChild> fullList = settings.GetData().ToList();
             List<TChild> newList = new List<TChild>();
-
-            // In incemental importer, we have full list already there to set in data.
-            if (IsIncrementalImporter())
-            {
-                fullList = settings.GetData().ToList();
-            }
 
             string childTypeName = typeof(TChild).Name.ToLower();
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
@@ -63,6 +57,7 @@ namespace Genrpg.Editor.Importers.Core
 
                     fullList.Add(currentChild);
                     newList.Add(currentChild);
+                    settings.SetData(fullList);
                 }
                 else
                 {

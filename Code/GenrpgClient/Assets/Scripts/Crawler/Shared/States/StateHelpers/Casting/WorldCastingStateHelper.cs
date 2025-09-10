@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.States.Constants;
+﻿using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using System.Threading;
@@ -28,7 +27,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "World spell had bad data" };
             }
 
-            await _crawlerSpellService.CastSpell(_crawlerService.GetParty(), selectSpellAction.Action.Action, 0, 0, token);
+            await _crawlerSpellService.CastSpell(_crawlerService.GetParty(), selectSpellAction.Action.Action, token);
             selectSpellAction.Action.Action.Caster.Action = null;
 
             stateData = new CrawlerStateData(ECrawlerStates.ExploreWorld, true);

@@ -43,7 +43,7 @@
       "IdKey": 5,
       "Name": "Summon",
       "Desc": "Increases the number of creatures summoned per level.",
-      "ScalingStatTypeId": 15,
+      "ScalingStatTypeId": 17,
       "ScalingEquipSlotId": 15
     },
     {
@@ -55,12 +55,21 @@
       "Desc": "Increases how quickly the player can get utility spells.",
       "ScalingStatTypeId": 16,
       "ScalingEquipSlotId": 15
+    },
+    {
+      "Id": "rolescalingtype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Defense",
+      "Desc": "Gives a chance to lessen or ignore damage.",
+      "ScalingStatTypeId": 15,
+      "ScalingEquipSlotId": 16
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "RoleScalingTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-08-29T09:32:34.763Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-08-29T09:32:34.763Z"
 }

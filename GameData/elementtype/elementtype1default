@@ -2,18 +2,19 @@
   "Id": "elementtype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Physical",
+  "Name": "Melee",
   "Desc": "Basic element.",
-  "Icon": "Physical",
-  "Art": "Physical",
+  "Icon": "Melee",
+  "Art": "Melee",
   "CasterActionName": "Hit",
   "ObserverActionName": "Hits",
-  "CastAnim": "Physical",
+  "CastAnim": "Melee",
   "VulnElementTypeId": 10,
   "VulnDamagePercent": 300,
   "VulnCritPercentMod": 10,
   "ResistDamagePercent": 33,
   "ResistCritPercentMod": -50,
+  "Color": "#FF3B3E",
   "Skills": [],
   "Procs": [
     {
@@ -27,5 +28,5 @@
       "ElementTypeId": 1
     }
   ],
-  "SaveTime": "2025-08-06T23:38:47.524Z"
+  "SaveTime": "2025-09-09T01:42:03.03Z"
 }

@@ -423,7 +423,6 @@ public class LineGenService : ILineGenService
             return new List<ConnectedPairData>();
         }
 
-
         int nextConnectSet = 1;
 
         List<ConnectedPairData> allPairs = new List<ConnectedPairData>();
@@ -454,8 +453,8 @@ public class LineGenService : ILineGenService
             ConnectPointData center1 = pair.Point1;
             ConnectPointData center2 = pair.Point2;
 
-            if (center1.Adjacencies.Count >= center1.MaxConnections ||
-                center2.Adjacencies.Count >= center2.MaxConnections)
+            if ((center1.MaxConnections > 0 && center1.Adjacencies.Count >= center1.MaxConnections) ||
+                (center2.MaxConnections > 0 && center2.Adjacencies.Count >= center2.MaxConnections))
             {
                 continue;
             }

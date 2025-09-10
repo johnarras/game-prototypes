@@ -1,0 +1,11 @@
+{
+  "Id": "crawlerloottype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Riddles",
+  "Desc": "Ignore riddles",
+  "EntityTypeId": 53,
+  "ItemEnchantWeight": 0.01,
+  "ScalingPerLevel": 1.0,
+  "SaveTime": "2025-09-03T01:01:47.726Z"
+}

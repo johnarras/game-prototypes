@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.ClientEvents;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Info.UI;
 using Genrpg.Shared.Crawler.Info.Services;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +26,7 @@ namespace Assets.Scripts.Info.UI
                 _dispatcher.AddListener<ShowInfoPanelEvent>(OnShowTooltip, GetToken());
                 _dispatcher.AddListener<HideInfoPanelEvent>(OnHideTooltip, GetToken());
             }
-           
+
         }
 
 
@@ -109,7 +106,7 @@ namespace Assets.Scripts.Info.UI
             }
             _clientEntityService.SetActive(Parent, true);
         }
-        
+
         private void OnHideTooltip(HideInfoPanelEvent hideEvent)
         {
             _clientEntityService.SetActive(Parent, false);

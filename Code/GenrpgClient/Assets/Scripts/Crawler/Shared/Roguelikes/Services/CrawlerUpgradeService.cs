@@ -1,5 +1,8 @@
 ﻿
+using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -8,12 +11,9 @@ using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.UI.Constants;
 
 namespace Genrpg.Shared.Crawler.Crawlers.Services
 {
@@ -109,7 +109,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             }
 
             party.UpgradePoints -= newCost;
-
+            _dispatcher.Dispatch(new UpdateCrawlerUI());
 
             party.Upgrades.Set(upgradeId, nextTier);
 
@@ -118,7 +118,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             return true;
         }
 
-        public NewUpgradePointsResult GetNewPartyUpgradePoints (PartyData party, int newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite)
+        public NewUpgradePointsResult GetNewPartyUpgradePoints(PartyData party, int newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite)
         {
             NewUpgradePointsResult result = new NewUpgradePointsResult()
             {
@@ -134,14 +134,14 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                 return result;
             }
 
-            UpgradeStatus status = party.UpgradeStatuses.FirstOrDefault(x=>x.UpgradeReasonId == upgradeReasonId);
+            UpgradeStatus status = party.UpgradeStatuses.FirstOrDefault(x => x.UpgradeReasonId == upgradeReasonId);
             if (status == null)
             {
                 status = new UpgradeStatus()
                 {
                     UpgradeReasonId = upgradeReasonId,
                 };
-                party.UpgradeStatuses.Add(status);  
+                party.UpgradeStatuses.Add(status);
             }
 
             if (reason.AlwaysSingleLevel)
@@ -174,7 +174,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                     StrUtils.AddPluralSuffix(result.GameUpgradePoints) + " for increasing");
                 messages.Add(reason.Desc + $" by {result.GameLevelsCompleted} over all runs.");
             }
-            if (result.RunUpgradePoints> 0)
+            if (result.RunUpgradePoints > 0)
             {
                 messages.Add($"You gain {result.RunUpgradePoints} Upgrade Point" +
                     StrUtils.AddPluralSuffix(result.RunUpgradePoints) + " for increasing");
@@ -195,6 +195,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
 
             party.TotalUpgradePoints += result.TotalUpgradePoints;
             party.UpgradePoints += result.TotalUpgradePoints;
+            _dispatcher.Dispatch(new UpdateCrawlerUI());
             return result;
         }
 
@@ -203,7 +204,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             party.UpgradePoints = 0;
             party.Upgrades.Clear();
             party.UpgradePoints = party.TotalUpgradePoints;
-
+            _dispatcher.Dispatch(new UpdateCrawlerUI());
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 

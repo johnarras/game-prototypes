@@ -71,7 +71,7 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
                     ActionPanelRow actionPanelRow = _clientEntityService.FullInstantiate(PanelRow);
                     _clientEntityService.AddToParent(actionPanelRow, Content);
                     actionPanelRow.SetAction(new CrawlerStateWithAction() { State = stateData, Action = stateData.Actions[a] });
-                    _subObjects.Add(actionPanelRow);    
+                    _subObjects.Add(actionPanelRow);
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
                 {
                     grid = _clientEntityService.FullInstantiate(PanelGrid);
                     _clientEntityService.AddToParent(grid, Content);
-                    grid.SetData(stateData.UseSmallerButtons);  
+                    grid.SetData(stateData.UseSmallerButtons);
                     _subObjects.Add(grid);
                 }
 

@@ -1,29 +1,24 @@
 ﻿
 using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.Crawler.Combat;
-using Assets.Scripts.Crawler.UI.StatusUI;
-using Assets.Scripts.UI.CombatTexts;
+using Assets.Scripts.Crawler.UI.Units;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.StatusUI
 {
 
 
-    public class PartyMemberStatusRow : BaseBehaviour
+    public class PartyMemberStatusRow : BaseUnitUI
     {
-        private IStatusEffectService _statusEffectService;
         private ICrawlerService _crawlerService;
         private ITrainingService _trainingService;
 
         public GButton Button;
-        public FastCombatTextUI FastTextUI;
         public GameObject PortraitParent;
         public AnimatedSprite Portrait;
 
@@ -31,9 +26,6 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
         public ProgressBar HealthBar;
         public ProgressBar ManaBar;
-
-        public StatusEffectsUI EffectsUI;
-        public CombatEffectUI CombatUI;
 
         public GText NameText;
 
@@ -115,24 +107,24 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
             if (_partyMember == null)
             {
                 _clientEntityService.SetActive(Root, false);
-                FastTextUI?.SetUnitId(null);
+                FastCombatTextUI?.SetUnitId(null);
                 return;
             }
             else
             {
-                FastTextUI?.SetUnitId(_partyMember.Id);
+                FastCombatTextUI?.SetUnitId(_partyMember.Id);
 
                 _clientEntityService.SetActive(Root, true);
                 _uiService.SetText(NameText, _partyMember.Name);
 
-                CombatUI?.SetData(_partyMember.Id, Portrait.AnimatedImage, PortraitParent, _partyMember.FactionTypeId);
+                CombatEffectUI?.SetData(_partyMember.Id, Portrait.AnimatedImage, PortraitParent, _partyMember.FactionTypeId);
 
                 long currHp = _partyMember.Stats.Curr(StatTypes.Health);
                 long maxHp = _partyMember.Stats.Max(StatTypes.Health);
 
                 HealthBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Health), _partyMember.Stats.Curr(StatTypes.Health));
                 ManaBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Mana), _partyMember.Stats.Curr(StatTypes.Mana));
-                EffectsUI.InitData(_partyMember);
+                StatusEffectsUI?.InitData(_partyMember);
                 SetPortrait(_partyMember.PortraitName);
 
                 TrainingInfo info = _trainingService.GetTrainingInfo(_party, _partyMember);

@@ -1,16 +1,9 @@
-﻿using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Entities;
 using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +31,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
             List<PartyQuest> partyQuests = party.Quests.OrderBy(x => x.CrawlerQuestId).ToList();
 
             stateData.AddText("Your Quests:");
-            stateData.AddText(" \n");
+            stateData.AddBlankLine();
+
 
             foreach (PartyQuest partyQuest in partyQuests)
             {

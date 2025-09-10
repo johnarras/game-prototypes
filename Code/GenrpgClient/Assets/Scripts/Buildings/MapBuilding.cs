@@ -1,11 +1,5 @@
 ﻿using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.MapObjects.Messages;
-using JetBrains.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Buildings
 {
@@ -19,6 +13,7 @@ namespace Assets.Scripts.Buildings
         {
             _btype = btype;
             _spawn = spawn;
+            name = btype.Name + "Building";
             Sign?.Init(_btype, _spawn, overrideName);
         }
     }

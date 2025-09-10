@@ -15,7 +15,7 @@ namespace Assets.Scripts.Crawler.UI.HUD
 
 
         public GImage NoMagicImage;
-        public GImage PeacefulImage;
+        public GImage SilenceImage;
 
 
         public override void Init()
@@ -41,9 +41,9 @@ namespace Assets.Scripts.Crawler.UI.HUD
             _update = null;
 
             PartyData party = _crawlerService.GetParty();
-            int magicBits = _crawlerMapService.GetMagicBits(party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z);
+            int magicBits = _crawlerMapService.GetMagicBits(party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z, true);
 
-            _clientEntityService.SetActive(PeacefulImage, FlagUtils.IsSet(magicBits, MapMagics.Peaceful));
+            _clientEntityService.SetActive(SilenceImage, FlagUtils.IsSet(magicBits, MapMagics.Silence));
             _clientEntityService.SetActive(NoMagicImage, FlagUtils.IsSet(magicBits, MapMagics.NoMagic));
 
         }

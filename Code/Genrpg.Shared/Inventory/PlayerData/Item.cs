@@ -1,12 +1,7 @@
-using MessagePack;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.Effects.Interfaces;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Inventory.PlayerData
 {
@@ -18,7 +13,7 @@ namespace Genrpg.Shared.Inventory.PlayerData
         [Key(2)] public string Name { get; set; }
         [Key(3)] public long ItemTypeId { get; set; }
         [Key(4)] public long Quantity { get; set; }
-        [Key(5)] public List<ItemEffect> Effects { get; set; }
+        [Key(5)] public List<ItemEffect> Effects { get; set; } = new List<ItemEffect>();
         [Key(6)] public long QualityTypeId { get; set; }
         [Key(7)] public long LootRankId { get; set; }
         [Key(8)] public long ScalingTypeId { get; set; }

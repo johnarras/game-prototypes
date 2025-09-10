@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Text;
-
-namespace Genrpg.Shared.Spells.Constants
+﻿namespace Genrpg.Shared.Spells.Constants
 {
     public class ElementTypes
     {
-        public const long Physical = 1;
+        public const long Melee = 1;
         public const long Fire = 2;
         public const long Ice = 3;
         public const long Electric = 4;
@@ -17,5 +12,6 @@ namespace Genrpg.Shared.Spells.Constants
         public const long Nature = 8;
         public const long Arcane = 9;
         public const long Acid = 10;
+        public const long Ranged = 11;
     }
 }

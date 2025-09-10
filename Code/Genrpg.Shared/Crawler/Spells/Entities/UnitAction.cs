@@ -1,11 +1,8 @@
-using MessagePack;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Inventory.PlayerData;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Spells.Entities
 {
@@ -35,5 +32,7 @@ namespace Genrpg.Shared.Crawler.Spells.Entities
         public bool IsComplete { get; set; }
 
         public Item CastingItem { get; set; }
+
+        public FullSpell SpellBeingCast { get; set; }
     }
 }

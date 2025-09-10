@@ -1,17 +1,7 @@
-using MessagePack;
-using Genrpg.Shared.Core.Entities;
-
-using Genrpg.Shared.Spells.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Entities.Settings;
-using Genrpg.Shared.Stats.Settings.Stats;
-using System.Diagnostics;
-using Genrpg.Shared.GameSettings;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace Genrpg.Shared.Entities.Utils
 {
@@ -526,41 +516,6 @@ namespace Genrpg.Shared.Entities.Utils
                 return null;
             }
             return cinfo.Invoke(new object[0]);
-
         }
-        public static string PrintData(IGameData gameData, MapObject obj, IEffect effect)
-        {
-            if (effect.EntityTypeId == EntityTypes.Stat)
-            {
-                StatType statType = gameData.Get<StatSettings>(obj).Get(effect.EntityId);
-                if (statType == null)
-                {
-                    return "";
-                }
-
-                return effect.Quantity + " " + statType.Name;
-            }
-            else if (effect.EntityTypeId == EntityTypes.StatPct)
-            {
-                StatType statType = gameData.Get<StatSettings>(obj).Get(effect.EntityId);
-                if (statType == null)
-                {
-                    return "";
-                }
-
-                return effect.Quantity + "% " + statType.Name;
-            }
-
-            EntityType etype = gameData.Get<EntitySettings>(obj).Get(effect.EntityTypeId);
-            if (etype == null)
-            {
-                return "Etype: " + effect.EntityTypeId;
-            }
-
-            return etype.Name + " K: " + effect.EntityId + " Amt: " + effect.Quantity;
-
-        }
-
     }
-
 }

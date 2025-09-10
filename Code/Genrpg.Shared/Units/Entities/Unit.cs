@@ -8,12 +8,12 @@ using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Casting;
-using Genrpg.Shared.Spells.Interfaces;
 using MessagePack;
 using Newtonsoft.Json;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Effects.Interfaces;
 
 namespace Genrpg.Shared.Units.Entities
 {

@@ -175,7 +175,7 @@ namespace Assets.Scripts.GameObjects
 #endif
         }
 
-        public void DelayDestroy(object obj, float time, CancellationToken token)
+        public void WaitToDestroy(object obj, float time, CancellationToken token)
         {
             _awaitableService.ForgetAwaitable(DelayDestroyInternal(obj, time, token));
         }
@@ -456,6 +456,21 @@ namespace Assets.Scripts.GameObjects
 
             mb.destroyCancellationToken.Register(action);
 
+        }
+
+        public T GetInterface<T>(object obj)
+        {
+            List<MonoBehaviour> behaviours = GetComponents<MonoBehaviour>(obj);
+
+            foreach (MonoBehaviour mb in behaviours)
+            {
+                if (mb is T t)
+                {
+                    return t;
+                }
+            }
+
+            return default(T);
         }
     }
 }

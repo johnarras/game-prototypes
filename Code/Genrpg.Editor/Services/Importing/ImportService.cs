@@ -2,9 +2,9 @@
 using Genrpg.Editor.Services.Reflection;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using System;

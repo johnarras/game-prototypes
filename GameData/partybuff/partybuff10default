@@ -1,0 +1,13 @@
+{
+  "Id": "partybuff10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Lucky Blade",
+  "Desc": "Increases your luck bonus for melee attacks.",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "ProcChanceScale": 1.0,
+  "EffectScale": 1.0,
+  "SaveTime": "2025-09-09T14:15:50.369Z"
+}

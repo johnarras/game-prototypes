@@ -1,14 +1,18 @@
-﻿using Genrpg.Shared.Client.Core;
+﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.Stats.Services;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Utils;
@@ -17,12 +21,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Genrpg.Shared.Crawler.Combat.Settings;
 
 namespace Genrpg.Shared.Crawler.Combat.Services
 {
@@ -126,58 +124,63 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             // Remove dead
             allUnits = allUnits.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
 
-            List<CrawlerUnit> attackSequence = SequenceUnitActions(allUnits);
+            party.Combat.AttackSequence = SequenceUnitActionsByAscendingPriority(allUnits);
 
-            for (int s = 0; s < attackSequence.Count; s++)
+            while (party.Combat != null && party.Combat.AttackSequence.Count > 0)
             {
-                CrawlerUnit unit = attackSequence[s];
+                CrawlerUnit unit = party.Combat.AttackSequence.Last();
 
-                if (unit.Action == null || unit.Action.IsComplete)
+                party.Combat.AttackSequence.Remove(unit);
+
+                if (_combatService.IsDisabled(unit))
                 {
                     continue;
                 }
 
-                await _spellService.CastSpell(party, unit.Action, unit.Level, 0, token);
+                if (unit.Action == null)
+                {
+                    continue;
+                }
+
+                if (unit.Action.IsComplete && unit.Action.SpellBeingCast != null &&
+                    unit.Action.FinalTargets.Count > 0)
+                {
+                    await _spellService.CastSpellOnNextTarget(party, unit.Action, token);
+                    continue;
+                }
+                else
+                {
+                    await _spellService.CastSpell(party, unit.Action, token);
+                }
             }
 
             await _combatService.EndCombatRound(party);
             return true;
         }
 
-       
-        int speedDeltaDenom = 100;
-        private List<CrawlerUnit> SequenceUnitActions(List<CrawlerUnit> allUnits)
-        {
-            int speedDeltaPercent = _gameData.Get<CrawlerCombatSettings>(_gs.ch).SpeedCombatSequencingDeltaPercent;
 
-            // Randomize order
-            allUnits = allUnits.OrderBy(x => HashUtils.NewUUId()).ToList();
+        private List<CrawlerUnit> SequenceUnitActionsByAscendingPriority(List<CrawlerUnit> allUnits)
+        {
+
+            CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
+            int speedDeltaPercent = combatSettings.SpeedCombatSequencingDeltaPercent;
 
             // Descending by speed.
-            allUnits = allUnits.OrderByDescending(x => 
-            MathUtils.IntRange(x.Stats.Max(StatTypes.Speed)*(speedDeltaDenom-speedDeltaPercent)/speedDeltaDenom,
-                x.Stats.Max(StatTypes.Speed)*(speedDeltaDenom+speedDeltaPercent)/speedDeltaDenom,_rand)).ToList();
+            foreach (CrawlerUnit unit in allUnits)
+            {
+                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * MathUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
+            }
 
-            List<CrawlerUnit> normalUnits = new List<CrawlerUnit>();
-            List<CrawlerUnit> slowedUnits = new List<CrawlerUnit>();
+            allUnits = allUnits.OrderBy(x => x.CombatPriority).ToList();
 
             foreach (CrawlerUnit unit in allUnits)
             {
                 if (unit.StatusEffects.HasBit(StatusEffects.Slowed))
                 {
-                    slowedUnits.Add(unit);
-                }
-                else
-                {
-                    normalUnits.Add(unit);
+                    unit.CombatPriority *= combatSettings.SlowEffectPriorityScale;
                 }
             }
-
-            List<CrawlerUnit> retval = new List<CrawlerUnit>();
-            retval.AddRange(normalUnits);
-            retval.AddRange(slowedUnits);
-
-            return retval;
+            return allUnits;
         }
     }
 }

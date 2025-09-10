@@ -2,5 +2,10 @@
   "Id": "partybuff9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "Tactics"
+  "Name": "Sharpshooter",
+  "Desc": "Sometimes add random debuffs when using ranged attacks.",
+  "AtlasPrefix": "",
+  "ProcChanceScale": 2.0,
+  "EffectScale": 3.0,
+  "SaveTime": "2025-09-09T14:15:50.369Z"
 }

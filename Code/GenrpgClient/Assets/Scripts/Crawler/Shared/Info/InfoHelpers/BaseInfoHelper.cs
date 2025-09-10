@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
         public abstract long Key { get; }
 
-        virtual protected bool MakeNamePlural() { return true; }
+        protected virtual bool MakeNamePlural() { return true; }
 
         public virtual List<string> GetInfoLines(long entityId)
         {
@@ -35,7 +35,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
                 if (child is IIndexedGameItem indexedItem && !string.IsNullOrEmpty(indexedItem.Desc))
                 {
-                    lines.Add("Desc: " + indexedItem.Desc);
+                    lines.Add("\nDesc: " + indexedItem.Desc);
                 }
             }
 

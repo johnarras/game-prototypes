@@ -1,29 +1,27 @@
 ﻿using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
+using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
+using Genrpg.Shared.Crawler.States.StateHelpers.Training;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Training.Settings;
+using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Threading;
-using Genrpg.Shared.Stats.Constants;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.Units.Entities;
-using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Crawler.States.StateHelpers.Training;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Crawler.Upgrades.Settings;
-using Unity.Profiling;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.Training.Services
 {
@@ -67,19 +65,20 @@ namespace Genrpg.Shared.Crawler.Training.Services
         protected IClientGameState _gs = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
+        private IPartyService _partyService = null;
 
         public async Task Initialize(CancellationToken token)
         {
             await Task.CompletedTask;
         }
 
-        public long GetBaseTrainingCostForNextLevel(long level)           
+        public long GetBaseTrainingCostForNextLevel(long level)
         {
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
             return (long)(1.0 * trainingSettings.LinearCostPerLevel * (level) +
                      trainingSettings.QuadraticCostPerLevel * (level - 1) * (level - 1));
         }
-       
+
         public long GetLevelTrainingCost(PartyMember member)
         {
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
@@ -128,7 +127,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
 
         public double GetBaseExpForNextLevel(long level)
         {
-            return GetMonsterKillsRequired(level)*GetMonsterKillExp(level);  
+            return GetMonsterKillsRequired(level) * GetMonsterKillExp(level);
         }
 
         public long GetExpForNextLevel(PartyMember member)
@@ -174,7 +173,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 Cost = cost,
                 TotalExp = exp,
                 ExpLeft = Math.Max(0, exp - member.Exp),
-                PartyGold = party.Gold,
+                PartyGold = party.Currencies.Get(CrawlerCurrencyTypes.Gold),
                 NextLevel = member.Level + 1,
             };
 
@@ -194,11 +193,12 @@ namespace Genrpg.Shared.Crawler.Training.Services
 
             IReadOnlyList<Role> allRoles = _gameData.Get<RoleSettings>(_gs.ch).GetData();
 
-            if (info.Cost > party.Gold || info.TotalExp > member.Exp)
+            if (info.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold) || info.TotalExp > member.Exp)
             {
                 return result;
             }
-            party.Gold -= info.Cost;
+
+            _partyService.AddGold(party, -info.Cost);
             member.Exp -= info.TotalExp;
             member.Level++;
 
@@ -303,7 +303,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             if (member.UpgradePoints < 1)
             {
-                _dispatcher.Dispatch(new ShowFloatingText("You don't have any upgrade points!", EFloatingTextArt.Error));  
+                _dispatcher.Dispatch(new ShowFloatingText("You don't have any upgrade points!", EFloatingTextArt.Error));
                 return;
             }
 
@@ -338,7 +338,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             long cost = GetNewClassTrainingCost(member);
 
-            if (party.Gold < cost)
+            if (party.Currencies.Get(CrawlerCurrencyTypes.Gold) < cost)
             {
                 _dispatcher.Dispatch(new ShowFloatingText("Not enough gold!", EFloatingTextArt.Error));
                 return;
@@ -353,15 +353,15 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 return;
             }
 
-            if (member.Roles.Any(x=>x.RoleId == classId))
+            if (member.Roles.Any(x => x.RoleId == classId))
             {
                 _dispatcher.Dispatch(new ShowFloatingText("You're already a member of this class", EFloatingTextArt.Error));
                 return;
             }
 
 
-            party.Gold -= cost;
-            member.Roles.Add(new Units.Entities.UnitRole() { RoleId = role.IdKey, Level=1 });
+            _partyService.AddGold(party, -cost);
+            member.Roles.Add(new Units.Entities.UnitRole() { RoleId = role.IdKey, Level = 1 });
 
             _statService.CalcUnitStats(party, member, true);
         }
@@ -370,15 +370,15 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             TrainingInfo info = GetTrainingInfo(party, member);
 
-            if (info.Cost > party.Gold || member.Exp < info.TotalExp)
+            if (info.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold) || member.Exp < info.TotalExp)
             {
                 return;
             }
 
-            party.Gold -= info.Cost;
+            _partyService.AddGold(party, -info.Cost);
             member.Exp -= info.TotalExp;
             member.Level++;
-            
+
             foreach (UnitRole urole in member.Roles)
             {
                 urole.Level = (int)member.Level;

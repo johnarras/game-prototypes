@@ -150,14 +150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0576db1b74b71488948bb0ab22de2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FastCombatTextUI: {fileID: 8574882873189863756}
+  CombatEffectUI: {fileID: 3192439847477687430}
+  StatusEffectsUI: {fileID: 0}
   IconParent: {fileID: 5077276326904000503}
   Icon: {fileID: 7087634578790678877}
   Name: {fileID: 4504238856723140634}
   Quantity: {fileID: 207674810571812747}
   Dist: {fileID: 4817195625890386477}
-  TextUI: {fileID: 8574882873189863756}
   Button: {fileID: 813008899839494797}
-  EffectUI: {fileID: 3192439847477687430}
 --- !u!1 &7535689161334640260
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +462,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608963335568868975, guid: 5904ccc5e402efa4b8aabec345f584f6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8854152872193024674, guid: 5904ccc5e402efa4b8aabec345f584f6,
         type: 3}

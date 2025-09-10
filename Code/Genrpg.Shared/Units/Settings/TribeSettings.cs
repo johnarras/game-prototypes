@@ -1,12 +1,10 @@
+using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Spawns.Settings;
 using MessagePack;
 using System.Collections.Generic;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Purchasing.Settings;
 
 namespace Genrpg.Shared.Units.Settings
 {
@@ -31,6 +29,8 @@ namespace Genrpg.Shared.Units.Settings
         [Key(8)] public List<SpawnItem> LootItems { get; set; } = new List<SpawnItem>();
         [Key(9)] public List<SpawnItem> InteractLootItems { get; set; } = new List<SpawnItem>();
         [Key(10)] public long LootCrafterTypeId { get; set; }
+
+        [Key(11)] public bool HasRangedAttacks { get; set; }
 
         public class TribeSettingsDto : ParentSettingsDto<TribeSettings, TribeType> { }
 

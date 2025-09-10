@@ -5,7 +5,6 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.UI.Interfaces;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 
@@ -64,6 +63,11 @@ public class CrawlerStateData
             }
         }
         return false;
+    }
+
+    public void AddBlankLine()
+    {
+        Actions.Add(new CrawlerStateAction("\t"));
     }
 
     public void AddText(string text)

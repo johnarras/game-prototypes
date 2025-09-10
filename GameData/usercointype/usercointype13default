@@ -3,5 +3,7 @@
   "ParentId": "default",
   "IdKey": 13,
   "Name": "Warriors",
-  "SaveTime": "2025-08-06T23:41:21.031Z"
+  "Icon": "WarriorsIcon",
+  "Art": "WarriorsArt",
+  "SaveTime": "2025-08-27T00:46:00.707Z"
 }

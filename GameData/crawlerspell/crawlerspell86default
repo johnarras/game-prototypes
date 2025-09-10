@@ -4,7 +4,8 @@
   "IdKey": 86,
   "Name": "Batchspell",
   "Desc": "Casts all party buffs.",
-  "PowerCost": 10.0,
+  "PowerCost": 40.0,
+  "PowerPerLevel": 5.0,
   "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
@@ -48,5 +49,5 @@
       "ElementTypeId": 2
     }
   ],
-  "SaveTime": "2025-08-06T23:38:18.738Z"
+  "SaveTime": "2025-09-09T08:58:31.973Z"
 }

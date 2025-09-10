@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class StatInfoHelper : BaseInfoHelper<StatSettings,StatType>
+    public class StatInfoHelper : BaseInfoHelper<StatSettings, StatType>
     {
 
         public override long Key => EntityTypes.Stat;
@@ -40,7 +40,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
                 lines.Add("");
 
                 lines.Add("If your stat is at least 16");
-                lines.Add("your stat bonus for this stat is (statVal-15)^(2/3)");
+                lines.Add("your stat bonus for this stat is\n(statVal-15)^(2/3)");
             }
 
             if (stype.BonusStatTypeId > 0)

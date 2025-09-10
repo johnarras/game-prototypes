@@ -38,13 +38,14 @@ namespace Genrpg.Shared.Spells.Settings.Elements
         [Key(12)] public long VulnDamagePercent { get; set; }
         [Key(13)] public long VulnCritPercentMod { get; set; }
 
-
         [Key(14)] public long ResistDamagePercent { get; set; }
         [Key(15)] public long ResistCritPercentMod { get; set; }
 
-        [Key(16)] public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
+        [Key(16)] public string Color { get; set; }
 
-        [Key(17)] public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
+        [Key(17)] public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
+
+        [Key(18)] public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
 
         public string ShowInfo()
         {

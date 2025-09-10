@@ -2,9 +2,15 @@
   "Id": "mapmagictype5default",
   "ParentId": "default",
   "IdKey": 5,
-  "Name": "Peaceful",
-  "Weight": 0.1,
-  "SpreadChance": 0.1,
-  "MapSymbol": "P",
-  "MinLevel": 10
+  "Name": "Silence",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "Weight": 0.2,
+  "SpreadChance": 0.2,
+  "MapSymbol": "Q",
+  "MinLevel": 10,
+  "ItemEnchantWeight": 1.0,
+  "SaveTime": "2025-09-03T12:05:26.88Z"
 }

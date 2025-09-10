@@ -1,6 +1,5 @@
 ﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Services;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -16,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
+
     public class SelectAllyStateHelper : BaseCombatStateHelper
     {
         public override ECrawlerStates Key => ECrawlerStates.SelectAlly;
@@ -42,9 +42,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     NextState = ECrawlerStates.WorldCast,
                 };
 
-
                 Role classRole = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(partyMember.Roles).FirstOrDefault(x => x.RoleCategoryId == RoleCategories.Class);
-
 
                 Action ptrEnterAction = null;
 

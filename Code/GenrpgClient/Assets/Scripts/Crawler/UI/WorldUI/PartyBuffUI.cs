@@ -1,17 +1,15 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+﻿using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Genrpg.Shared.Entities.Constants;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {
-    public class PartyBuffUI : BaseBehaviour
+    public class PartyBuffUI : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         protected ICrawlerService _crawlerService = null;
@@ -45,6 +43,16 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                 FrameUpdateInternal(party);
             }
 
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _dispatcher.Dispatch(new ShowInfoPanelEvent() { EntityTypeId = EntityTypes.PartyBuff, EntityId = PartyBuffId });
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _dispatcher.Dispatch(new HideInfoPanelEvent());
         }
     }
 }

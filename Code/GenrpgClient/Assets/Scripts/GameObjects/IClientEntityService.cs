@@ -12,9 +12,10 @@ public interface IClientEntityService : IInjectable
     C GetOrAddComponent<C>(object obj) where C : class;
     void SetActive(object obj, bool value);
     void Destroy(object obj);
-    void DelayDestroy(object obj, float delaySeconds, CancellationToken token);
+    void WaitToDestroy(object obj, float waitSeconds, CancellationToken token);
     object FindChild(object objIn, string name);
     List<T> GetComponents<T>(object obj);
+    T GetInterface<T>(object obj);
     T GetComponent<T>(object obj) where T : class;
     T FindInParents<T>(object obj) where T : class;
     void DestroyAllChildren(object obj);
@@ -23,5 +24,5 @@ public interface IClientEntityService : IInjectable
     void AddToParent(object childObj, object parentObj);
     object GetEntity(object obj);
     void RegisterDestroyCallback(object obj, Action action);
-  
+
 }

@@ -1,22 +1,17 @@
 ﻿
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Units.Settings;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
         private ICrawlerMoveService _moveService;
         private IInfoService _infoService;
-        
+
         public override ECrawlerStates Key => ECrawlerStates.CombatFightRun;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -46,7 +41,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             foreach (CombatGroup group in party.Combat.Enemies)
             {
-                if (group.Units.Count < 1)
+                if (group.Units.Count < 1 || group.UnitType == null)
                 {
                     continue;
                 }
@@ -59,7 +54,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(_combatService.ShowGroupStatus(group),
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitTypeId); }));
+                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
             }
 
             List<Monster> alliedMonsters = new List<Monster>();
@@ -82,12 +77,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(_combatService.ShowGroupStatus(group),
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitTypeId); }));
+                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
 
             }
 
 
-            stateData.AddText(" ");
+            stateData.AddBlankLine();
 
             if (party.Combat.RoundsComplete == 0)
             {

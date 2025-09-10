@@ -1,8 +1,7 @@
-﻿using Genrpg.Shared.Core.Constants;
+﻿using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Entities;
@@ -12,12 +11,10 @@ using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -107,6 +104,19 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                         nextState, extraData: select, pointerEnterAction: () => ShowInfo(new List<string>() { "Select a spell to cast." })));
                     continue;
                 }
+                else if (unitCombatAction.CombatActionId == CombatActions.UseItem)
+                {
+                    nextState = ECrawlerStates.SelectUsableItem;
+                    SelectUsableItemArgs args = new SelectUsableItemArgs()
+                    {
+                        MemberId = notReadyMember.Id,
+                        NextState = ECrawlerStates.CombatPlayer,
+                        ReturnState = ECrawlerStates.CombatPlayer,
+                    };
+                    stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
+                        nextState, extraData: args, pointerEnterAction: () => ShowInfo(new List<string>() { "Select Item to Use." })));
+                    continue;
+                }
                 else if (unitCombatAction.CombatActionId == CombatActions.Recast)
                 {
                     SelectAction selectAction = new SelectAction()
@@ -125,7 +135,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                     };
 
                     stateData.Actions.Add(new CrawlerStateAction("Recast " + unitCombatAction.Spell.Name, 'R', ECrawlerStates.OnSelectSpell,
-                        extraData: selectSpell, forceButton:false, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey)));
+                        extraData: selectSpell, forceButton: false, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey)));
                     continue;
                 }
                 else if (unitCombatAction.Spell == null)
@@ -136,7 +146,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 {
                     nextState = ECrawlerStates.CombatPlayer;
                     stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
-                        nextState, 
+                        nextState,
                         pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey),
                         onClickAction: delegate ()
                         {
@@ -182,7 +192,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                             Spell = unitCombatAction.Spell,
                             Action = selectAction,
                         };
-
 
                         stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
                             nextState, extraData: selectSpell, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell?.IdKey ?? 0)));

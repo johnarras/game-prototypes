@@ -8,10 +8,7 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -62,7 +59,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                             if (weightChosen <= 0)
                             {
-                                ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
+                                await ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
                             }
                         }
                     }
@@ -72,7 +69,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
             await Task.CompletedTask;
         }
-        protected void ShowBuilding(CrawlerBuilding buildingIn, BuildingMats mats, object parent, CrawlerObjectLoadData loadData)
+        protected async Awaitable ShowBuilding(CrawlerBuilding buildingIn, BuildingMats mats, object parent, CrawlerObjectLoadData loadData)
         {
 
             if (loadData == null || loadData.Cell == null || loadData.Data == null || loadData.MapRoot == null)
@@ -82,9 +79,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             CrawlerBuilding crawlerBuilding = _clientEntityService.FullInstantiate(buildingIn);
             _clientEntityService.AddToParent(crawlerBuilding, parent);
 
-            crawlerBuilding.InitData(loadData.Data as BuildingType, loadData.Seed, loadData.MapRoot, loadData.Cell, mats);
+            await crawlerBuilding.InitData(loadData.Data as BuildingType, loadData.Seed, loadData.MapRoot, loadData.Cell, mats);
             crawlerBuilding.transform.eulerAngles = new Vector3(0, loadData.Angle, 0);
             crawlerBuilding.transform.localScale = Vector3.one;
+
+            await Task.CompletedTask;
         }
 
     }

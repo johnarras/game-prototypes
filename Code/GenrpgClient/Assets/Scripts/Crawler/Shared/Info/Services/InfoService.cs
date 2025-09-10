@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Client.Core;
+﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Constants;
 using Genrpg.Shared.Crawler.Info.EffectHelpers;
 using Genrpg.Shared.Crawler.Info.InfoHelpers;
@@ -7,15 +8,12 @@ using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using Assets.Scripts.UI.Constants;
 
 namespace Genrpg.Shared.Crawler.Info.Services
 {
@@ -31,25 +29,25 @@ namespace Genrpg.Shared.Crawler.Info.Services
         List<string> GetInfoLines(long entityTypeId, long entityId);
         string CreateInfoLink(IIdName idname, string nameShown = "");
         string CreateOverviewLink(string typeName);
-        List<string> GetInfoLines(string entityLink); 
+        List<string> GetInfoLines(string entityLink);
         string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect);
         void SetupOverviewPages(string overviewText);
         List<InfoOverviewPage> GetOverviewPages();
         List<string> GetOverviewLines(string entityTypeName);
         string CreateHeaderLine(string headerText, bool makePlural = true);
-           
+
     }
-    
+
     public class InfoService : IInfoService
     {
         private ITextService _textService;
         private IEntityService _entityService;
-        private IClientGameState _gs;       
+        private IClientGameState _gs;
 
-        private SetupDictionaryContainer<long,IInfoHelper> _infoHelperDict = new SetupDictionaryContainer<long, IInfoHelper> ();
-        private SetupDictionaryContainer<long,ISpellEffectHelper> _spellEffectDict = new SetupDictionaryContainer<long, ISpellEffectHelper> ();
+        private SetupDictionaryContainer<long, IInfoHelper> _infoHelperDict = new SetupDictionaryContainer<long, IInfoHelper>();
+        private SetupDictionaryContainer<long, ISpellEffectHelper> _spellEffectDict = new SetupDictionaryContainer<long, ISpellEffectHelper>();
 
-        private Dictionary<string,List<string>> _overviewLines = new Dictionary<string, List<string>> ();
+        private Dictionary<string, List<string>> _overviewLines = new Dictionary<string, List<string>>();
 
         private List<InfoOverviewPage> _overviewPages = new List<InfoOverviewPage>();
 
@@ -58,7 +56,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
         private string listAllText = "listall";
         public List<string> GetInfoLines(long entityTypeId, long entityId)
         {
-            if (_infoHelperDict.TryGetValue (entityTypeId, out IInfoHelper info))
+            if (_infoHelperDict.TryGetValue(entityTypeId, out IInfoHelper info))
             {
                 List<string> lines = info.GetInfoLines(entityId);
 
@@ -85,7 +83,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 return lines;
             }
 
-            return new List<string> ();
+            return new List<string>();
         }
 
         public string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect)
@@ -114,7 +112,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
         }
 
         private string CreateInfoLink(string linkId, string nameShown)
-        { 
+        {
             return InfoConstants.LinkPrefix + linkId + InfoConstants.LinkMiddle + _textService.HighlightText(StrUtils.SplitOnCapitalLetters(nameShown), TextColors.ColorYellow) + InfoConstants.LinkSuffix;
         }
 
@@ -125,13 +123,13 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 return new List<string>();
             }
 
-            string[] words = entityLink.Split (' ');
+            string[] words = entityLink.Split(' ');
 
             if (words.Length < 1 || string.IsNullOrEmpty(words[0]) || string.IsNullOrEmpty(words[1]))
             {
                 return new List<string>();
             }
-          
+
 
             if (Int64.TryParse(words[1], out long entityId))
             {
@@ -144,7 +142,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 }
             }
             else if (words[1].ToLower() == overviewEntityId)
-            { 
+            {
                 if (_overviewLines.TryGetValue(words[0].ToLower(), out List<string> lines))
                 {
                     return lines;
@@ -181,7 +179,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i].IndexOf(pageBreak) == -1 && i != lines.Length-1)
+                if (lines[i].IndexOf(pageBreak) == -1 && i != lines.Length - 1)
                 {
                     currPageLines.Add(lines[i]);
                 }
@@ -196,7 +194,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                     {
                         currPageLines.AddRange(overviewChildText);
                     }
-                    
+
                     foreach (string key in overviewKeys)
                     {
                         List<string> newPageLines = new List<string>();
@@ -233,7 +231,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
                     bool shouldListAll = words.Any(x => x == listAllText);
 
-                    overviewKeys = origWords.Where(x=>x != pageBreak && !StrUtils.NormalizeWord(x).Contains(listAllText)).ToList();    
+                    overviewKeys = origWords.Where(x => x != pageBreak && !StrUtils.NormalizeWord(x).Contains(listAllText)).ToList();
 
                     // Set up overview + children link.
                     if (words.Length >= 3 && words.Any(x => x == listAllText))
@@ -259,7 +257,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                                 children = infoHelper.GetInfoChildren();
                             }
 
-                            children = children.OrderBy(x=>x.Name).ToList();
+                            children = children.OrderBy(x => x.Name).ToList();
 
                             if (children.Count > 0)
                             {
@@ -297,8 +295,8 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 return typeName;
             }
 
-            return "<align=\"center\">" 
-                + "<size=+10px>" 
+            return "<align=\"center\">"
+                + "<size=+10px>"
                 + CreateInfoLink(typeName + " " + overviewEntityId, SanitizeName(typeName, true))
                 + "</size>"
                 + "</align>";
@@ -318,7 +316,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
         public string CreateHeaderLine(string headerText, bool makePlural = true)
         {
-            return "<align=\"center\">"
+            return "\n<align=\"center\">"
                 + "<size=+10px>"
                 + SanitizeName(headerText, makePlural)
                 + "</size>"

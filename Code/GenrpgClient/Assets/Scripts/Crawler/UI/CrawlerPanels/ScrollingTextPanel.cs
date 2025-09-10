@@ -1,13 +1,11 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Core;
 using Assets.Scripts.UI.Crawler.ActionUI;
 using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.CrawlerPanels
@@ -16,7 +14,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
     {
 
         private ICrawlerService _crawlerService = null;
-        private IAwaitableService _awaitableService = null;
 
         public GameObject Content;
         public GameObject Parent;
@@ -26,8 +23,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         public ActionPanelText PanelText;
 
         public NamedSlider ScrollSpeedSlider;
-
-        private ConcurrentQueue<AddActionPanelText> _textToShow = new ConcurrentQueue<AddActionPanelText>();
 
         private List<object> _subObjects = new List<object>();
 
@@ -39,8 +34,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             ScrollSpeedSlider.InitSlider(0, CrawlerCombatConstants.ScrollingFramesValues.Length - 1,
                 _crawlerService.GetParty().ScrollFramesIndex, true, OnChangeSlider);
 
-
-            AddUpdate(OnLateUpdate, UpdateTypes.Late);
 
         }
 
@@ -56,7 +49,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
         public void Clear()
         {
-            _textToShow.Clear();
             _clientEntityService.DestroyAllChildren(Content);
             _subObjects.Clear();
             _clientEntityService.SetActive(Parent, false);
@@ -64,43 +56,19 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
         private void OnAddActionPanelText(AddActionPanelText addText)
         {
-            _textToShow.Enqueue(addText);
-        }
+            PartyData party = _crawlerService.GetParty();
 
-        private bool _showingText = false;
-        private void OnLateUpdate()
-        {
-
-            if (_showingText)
+            if (party.Combat == null)
             {
                 return;
             }
-            if (_textToShow.Count > 0)
-            {
-                _showingText = true;
-                _awaitableService.ForgetAwaitable(OnLateUpdateAsync());
-            }
 
-        }
-
-        private async Awaitable OnLateUpdateAsync()
-        {
-            bool showedText = false;
-            while (_textToShow.TryDequeue(out AddActionPanelText action))
-            {
-                _clientEntityService.SetActive(Parent, true);
-                ActionPanelText newText = _clientEntityService.FullInstantiate(PanelText);
-                _clientEntityService.AddToParent(newText, Content);
-                newText.SetText(action);
-                showedText = true;
-            }
-
-            if (showedText)
-            {
-                await Task.Delay(50);
-                _uiService.ScrollToBottom(ScrollRect);
-            }
-            _showingText = false;
+            _clientEntityService.SetActive(Parent, true);
+            ActionPanelText newText = _clientEntityService.FullInstantiate(PanelText);
+            _clientEntityService.AddToParent(newText, Content);
+            _subObjects.Add(newText);
+            newText.SetText(addText);
+            _uiService.ScrollToBottom(ScrollRect);
         }
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoMagicImage: {fileID: 5873214465563295027}
-  PeacefulImage: {fileID: 7027055819339305391}
+  SilenceImage: {fileID: 7027055819339305391}
 --- !u!1 &1918707471805265131
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4630294218499888959}
   - component: {fileID: 7027055819339305391}
   m_Layer: 0
-  m_Name: Peaceful
+  m_Name: Silence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

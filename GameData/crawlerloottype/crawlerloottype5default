@@ -1,0 +1,14 @@
+{
+  "Id": "crawlerloottype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Elements",
+  "Desc": "Ignore elemental resistances.",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "EntityTypeId": 27,
+  "ItemEnchantWeight": 0.01,
+  "ScalingPerLevel": 1.0,
+  "SaveTime": "2025-09-06T00:38:03.882Z"
+}

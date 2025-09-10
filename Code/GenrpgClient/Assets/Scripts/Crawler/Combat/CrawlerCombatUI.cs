@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -7,8 +7,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Spells.Settings.Elements;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Security;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Combat
@@ -16,7 +14,6 @@ namespace Assets.Scripts.Crawler.Combat
     public class CrawlerCombatUI : BaseBehaviour
     {
         private ICrawlerService _crawlerService;
-        private ICrawlerMapService _crawlerMapService;
 
         public CrawlerGroupGrid AllyGrid;
         public CrawlerGroupGrid EnemyGrid;
@@ -48,9 +45,9 @@ namespace Assets.Scripts.Crawler.Combat
             _dispatcher.AddListener<UpdateCombatGroups>(OnUpdateCombatGroups, GetToken());
             _dispatcher.AddListener<ShowCombatBolt>(OnShowCombatBolt, GetToken());
         }
-        
+
         private void UpdateDataInternal()
-        { 
+        {
             PartyData party = _crawlerService.GetParty();
             if (party.Combat == null)
             {
@@ -61,9 +58,10 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 AllyGrid.UpdateGroups(party.Combat.Allies);
                 EnemyGrid.UpdateGroups(party.Combat.Enemies);
-            }         
+            }
         }
 
+        private static bool _didShowBolt = false;
         private void OnShowCombatBolt(ShowCombatBolt showCombatBolt)
         {
             if (showCombatBolt.CasterId == showCombatBolt.TargetId)
@@ -79,17 +77,29 @@ namespace Assets.Scripts.Crawler.Combat
                 return;
             }
 
+            BaseUnitUI startUnitUI = _clientEntityService.GetComponent<BaseUnitUI>(startObject);
+            BaseUnitUI endUnitUI = _clientEntityService.GetComponent<BaseUnitUI>(endObject);
+
+            if (startUnitUI == null || endUnitUI == null)
+            {
+                return;
+            }
+
+
             ElementType etype = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(showCombatBolt.ElementTypeId);
 
-            if (etype != null)
+            if (etype != null && !_didShowBolt)
             {
-
-                _dispatcher.Dispatch(new ShowDoober()
+                _dispatcher.Dispatch(new ShowDooberEvent()
                 {
-                    StartPosition = startObject.transform.position,
-                    EndPosition = endObject.transform.position,
+                    StartPosition = startUnitUI.GetHitPosition(),
+                    EndPosition = endUnitUI.GetHitPosition(),
                     AtlasName = AtlasNames.CrawlerCombat,
-                    SpriteName = etype.Icon + "Bolt",                  
+                    SpriteName = etype.Icon + "Bolt",
+                    PointAtEnd = true,
+                    LerpTime = showCombatBolt.Seconds,
+                    StartsInUI = true,
+                    SizeScale = showCombatBolt.SizeScale,
                 });
             }
         }

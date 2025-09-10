@@ -1,7 +1,7 @@
 ﻿
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -10,8 +10,6 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,7 +77,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             long trainingCost = _trainingService.GetNewClassTrainingCost(member);
 
 
-            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Gold}");
+            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Currencies.Get(CrawlerCurrencyTypes.Gold)}");
 
             for (int i = 0; i < possibleRoles.Count; i++)
             {
@@ -105,7 +103,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             {
                 if (pm != member)
                 {
-                    stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingClassMember, extraData: new TrainingMemberData() { Member = pm}));
+                    stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingClassMember, extraData: new TrainingMemberData() { Member = pm }));
                 }
             }
 

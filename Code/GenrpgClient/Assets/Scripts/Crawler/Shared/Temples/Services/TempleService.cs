@@ -1,16 +1,15 @@
-﻿using Genrpg.Shared.Client.Core;
+﻿using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Temples.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Temples.Services
 {
@@ -36,6 +35,7 @@ namespace Genrpg.Shared.Crawler.Temples.Services
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
         private IStatService _statService = null;
+        private IPartyService _partyService = null;
 
         public long GetHealingCostForMember(PartyData party, PartyMember member)
         {
@@ -85,13 +85,13 @@ namespace Genrpg.Shared.Crawler.Temples.Services
                 return;
             }
 
-            if (result.Cost > party.Gold)
+            if (result.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold))
             {
                 result.Message = "You need " + result.Cost + " Gold to heal " + member.Name;
                 return;
             }
 
-            party.Gold -= result.Cost;
+            _partyService.AddGold(party, -result.Cost);
 
             List<StatType> mutableStatTypes = _statService.GetMutableStatTypes(member);
 

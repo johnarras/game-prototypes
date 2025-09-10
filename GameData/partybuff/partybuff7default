@@ -2,5 +2,9 @@
   "Id": "partybuff7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "MagicDam"
+  "Name": "Barrier",
+  "Desc": "Sometimes you block incoming damage.",
+  "ProcChanceScale": 1.0,
+  "EffectScale": 2.0,
+  "SaveTime": "2025-09-08T23:56:11.744Z"
 }

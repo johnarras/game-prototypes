@@ -8,6 +8,7 @@ using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Services;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -16,6 +17,7 @@ using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Inventory.Messages;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.Slots;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
@@ -36,6 +38,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         protected ITextSerializer _serializer = null;
         protected ILootGenService _lootService = null;
         protected ITextService _textService = null;
+        protected IPartyService _partyService = null;
 
         public AnimatedSprite Image;
         public GText NameText;
@@ -188,6 +191,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
         protected override void ShowStats()
         {
+            _partyService.UpdateItemBuffs(_crawlerService.GetParty());
             _crawlerStatService.CalcUnitStats(_crawlerService.GetParty(), _unit as CrawlerUnit, false);
             base.ShowStats();
         }
@@ -238,6 +242,16 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
                     Items.RemoveIcon(dragItem.GetDataItem().Id);
                 }
             }
+        }
+
+        protected override long GetStatModifier(long statTypeId)
+        {
+            if (statTypeId < StatConstants.PrimaryStatStart || statTypeId > StatConstants.PrimaryStatEnd)
+            {
+                return 0;
+            }
+
+            return _crawlerStatService.GetStatBonus(_crawlerService.GetParty(), _partyMember, statTypeId);
         }
     }
 }

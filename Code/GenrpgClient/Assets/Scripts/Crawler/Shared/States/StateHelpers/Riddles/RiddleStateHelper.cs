@@ -53,10 +53,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
             for (int l = 0; l < lines.Length; l++)
             {
                 stateData.AddText("\"" + lines[l] + "\"");
-                stateData.AddText(" \n");
+                stateData.AddBlankLine();
+
             }
 
-            stateData.AddText(" \n");
+            stateData.AddBlankLine();
+
 
             RiddleType rtype = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(map.RiddleHints?.RiddleTypeId ?? 0);
 

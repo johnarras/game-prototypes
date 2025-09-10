@@ -66,6 +66,7 @@
         public const long PartyBuff = 101;
         public const long Map = 102;
         public const long Role = 103;
+        public const long CrawlerCurrency = 104;
 
 
         public const long TimedEventCurrency = 149;

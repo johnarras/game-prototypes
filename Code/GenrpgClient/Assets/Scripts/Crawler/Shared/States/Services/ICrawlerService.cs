@@ -1,12 +1,12 @@
 ﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Interfaces;
-using System.Threading.Tasks;
-using System.Threading;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.Crawler.States.StateHelpers;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.LoadSave.Constants;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.States.Services
 {
@@ -24,8 +24,7 @@ namespace Genrpg.Shared.Crawler.States.Services
         CrawlerStateData GetTopLevelState();
         ECrawlerStates GetState();
         void NewGame();
-        bool TriggerSpeedupNow();
-        void ClearSpeedup(); 
+        void ClearSpeedup();
         List<IStateHelper> GetAllStateHelpers();
         void UpdateInputs(CancellationToken token);
         long GetCrawlerScreenId();

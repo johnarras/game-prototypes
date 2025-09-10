@@ -1,24 +1,18 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Spells.Settings.Spells;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Crawler.Buffs.Settings;
-using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Utils;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Spells.Settings
 {
     [MessagePackObject]
-    public class CrawlerSpell : ChildSettings, IIndexedGameItem, IOrderedItem
+    public class CrawlerSpell : ChildSettings, IIndexedGameItem, IOrderedItem, IItemEnchantWeight
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public override string ParentId { get; set; }
@@ -45,7 +39,9 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
 
         [Key(19)] public List<CrawlerSpellEffect> Effects { get; set; } = new List<CrawlerSpellEffect>();
 
-        [Key(20)] public int Flags { get; set; }
+        [Key(20)] public double ItemEnchantWeight { get; set; }
+
+        [Key(21)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }

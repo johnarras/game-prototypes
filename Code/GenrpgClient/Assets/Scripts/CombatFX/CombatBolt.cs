@@ -1,10 +1,4 @@
-﻿using Assets.Scripts.WorldCanvas.GameEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 
 namespace Assets.Scripts.CombatFX
 {

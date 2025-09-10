@@ -80,6 +80,18 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 87
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 88
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 91
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 103
     },
     {
@@ -99,31 +111,36 @@
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.35
+      "Amount": 0.15
     },
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.2
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.3
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.4
+      "Amount": 0.15
     },
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.35
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 6,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 7,
       "Amount": 0.2
     },
     {
@@ -147,5 +164,5 @@
       "Amount": 1.0
     }
   ],
-  "SaveTime": "2025-08-06T23:37:52.117Z"
+  "SaveTime": "2025-09-09T08:59:40.525Z"
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Crawler.Upgrades.Constants
+﻿namespace Genrpg.Shared.Crawler.Upgrades.Constants
 {
     public class PartyUpgrades
     {
@@ -19,5 +15,6 @@ namespace Genrpg.Shared.Crawler.Upgrades.Constants
         public const long InventorySize = 11;
         public const long GoldPercent = 12;
         public const long MemberUpgradePoints = 13;
+        public const long ItemUsesPerCombat = 14;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -19,7 +18,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Spinner))
+            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Spinner, true))
             {
                 int rotateAmount = MathUtils.IntRange(-1, 2, _rand);
                 if (rotateAmount != 0)
@@ -27,11 +26,11 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                     await _moveService.Rot(status, rotateAmount, true, token);
                 }
             }
-            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.NoMagic))
+            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.NoMagic, true))
             {
                 party.Buffs.Clear();
             }
-            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Drain))
+            if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Drain, true))
             {
                 CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
@@ -44,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                     int healthLost = Math.Max(1, (int)(pm.Stats.Max(StatTypes.Health) * mapSettings.DrainHealthPercent));
                     healthLost = Math.Min(healthLost, pm.Stats.Curr(StatTypes.Health));
-                    _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -healthLost, ElementTypes.Physical);
+                    _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -healthLost, ElementTypes.Melee);
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
                     {
                         pm.StatusEffects.SetBit(StatusEffects.Dead);

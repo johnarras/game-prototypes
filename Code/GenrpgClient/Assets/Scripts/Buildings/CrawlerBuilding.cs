@@ -3,6 +3,8 @@ using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Utils;
@@ -17,7 +19,8 @@ namespace Assets.Scripts.Buildings
     public class CrawlerBuilding : MapBuilding
     {
 
-        private ICrawlerWorldService _worldService;
+        private ICrawlerWorldService _worldService = null;
+        private ICrawlerService _crawlerService = null;
 
         public List<MeshRenderer> Walls = new List<MeshRenderer>();
         public List<MeshRenderer> Doors = new List<MeshRenderer>();
@@ -27,29 +30,42 @@ namespace Assets.Scripts.Buildings
 
         private Dictionary<long, Color> _buildingColors = new Dictionary<long, Color>()
         {
-            {BuildingTypes.Guild, new Color(2,1,0) },
-            {BuildingTypes.Equipment, new Color(2,0,0) },
-            {BuildingTypes.Regen, new Color(0,0,2) },
-            {BuildingTypes.Temple, new Color(2,2,2) },
-            { BuildingTypes.Trainer, new Color(0,2,0) },
-            {BuildingTypes.Tavern, new Color(2,0,2) },
-            {BuildingTypes.Npc, new Color(2,2,0) },
+            {BuildingTypes.Guild, new Color(1,0.5f,0) },
+            {BuildingTypes.Equipment, new Color(1,0,0) },
+            {BuildingTypes.Regen, new Color(0,0,1) },
+            {BuildingTypes.Temple, new Color(1,1,1) },
+            {BuildingTypes.Trainer, new Color(0,1,0) },
+            {BuildingTypes.Tavern, new Color(1,0,1) },
+            {BuildingTypes.Npc, new Color(1,1,0) },
         };
 
 
-        public void InitData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
+        public async Awaitable InitData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
         {
             string overrideName = null;
 
-            MapCellDetail detail = mapRoot.Map.Details.FirstOrDefault(x => x.X == mapCell.MapX && x.Z == mapCell.MapZ && x.EntityTypeId == EntityTypes.Map);
+            MapCellDetail detail = mapRoot.Map.Details.FirstOrDefault(x => x.X == mapCell.MapX && x.Z == mapCell.MapZ);
 
             if (detail != null)
             {
-                CrawlerMap otherMap = _worldService.GetMap(detail.EntityId);
-
-                if (otherMap != null)
+                if (detail.EntityTypeId == EntityTypes.Map)
                 {
-                    overrideName = otherMap.Name;
+                    CrawlerMap otherMap = _worldService.GetMap(detail.EntityId);
+
+                    if (otherMap != null)
+                    {
+                        overrideName = otherMap.Name;
+                    }
+                }
+                else if (detail.EntityTypeId == EntityTypes.Npc)
+                {
+                    CrawlerWorld world = await _worldService.GetWorld(_crawlerService.GetParty().WorldId);
+
+                    CrawlerNpc npc = world.Npcs.FirstOrDefault(x => x.IdKey == detail.EntityId);
+                    if (npc != null)
+                    {
+                        overrideName = "A Mysterious Hut";
+                    }
                 }
             }
 
@@ -62,6 +78,14 @@ namespace Assets.Scripts.Buildings
             SetMaterialToSlot(btype, Windows, mats.GetMatsFromSlot(EBuildingMatSlots.Windows), rand);
             SetMaterialToSlot(btype, Shingles, mats.GetMatsFromSlot(EBuildingMatSlots.Shingles), rand);
 
+            if (_buildingColors.ContainsKey(btype.IdKey))
+            {
+                StoreSign sign = _clientEntityService.GetComponent<StoreSign>(gameObject);
+                if (sign != null)
+                {
+                    _uiService.SetImageColor(sign.BGImage, _buildingColors[btype.IdKey]);
+                }
+            }
         }
 
         public void SetMaterialToSlot(BuildingType btype, List<MeshRenderer> meshes, List<WeightedBuildingMaterial> mats, IRandom rand)
@@ -85,7 +109,7 @@ namespace Assets.Scripts.Buildings
                         renderer.material = mat.Mat;
                     }
 
-                    if (_buildingColors.ContainsKey(btype.IdKey))
+                    if (false && _buildingColors.ContainsKey(btype.IdKey))
                     {
                         foreach (MeshRenderer renderer in meshes)
                         {

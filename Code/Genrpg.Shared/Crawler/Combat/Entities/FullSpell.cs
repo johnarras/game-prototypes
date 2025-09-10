@@ -1,8 +1,7 @@
 using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Inventory.PlayerData;
 using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
@@ -14,5 +13,6 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         [Key(2)] public long HitsLeft { get; set; }
         [Key(3)] public List<FullEffect> Effects { get; set; } = new List<FullEffect>();
         [Key(4)] public long LuckyHitQuantity { get; set; }
+        [Key(5)] public Item CastingItem { get; set; }
     }
 }

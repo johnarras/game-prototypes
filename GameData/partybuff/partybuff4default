@@ -3,5 +3,8 @@
   "ParentId": "default",
   "IdKey": 4,
   "Name": "Levitate",
-  "Desc": "Allows you to float over traps and move a bit faster."
+  "Desc": "Allows you to float over traps and move a bit faster.",
+  "ProcChanceScale": 1.0,
+  "EffectScale": 1.0,
+  "SaveTime": "2025-08-29T03:13:29.094Z"
 }

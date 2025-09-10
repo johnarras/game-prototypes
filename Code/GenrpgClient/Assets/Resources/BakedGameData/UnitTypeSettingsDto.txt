@@ -1319,16 +1319,6 @@
       "SpawnQuantityScale": 0.1,
       "Effects": [
         {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
-        {
           "EntityTypeId": 24,
           "Quantity": 1,
           "EntityId": 7
@@ -1366,16 +1356,6 @@
       "SpawnQuantityScale": 0.1,
       "Effects": [
         {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
-        {
           "EntityTypeId": 25,
           "Quantity": 1,
           "EntityId": 4
@@ -1407,16 +1387,6 @@
       "MinLevel": 20,
       "SpawnQuantityScale": 0.1,
       "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
         {
           "EntityTypeId": 25,
           "Quantity": 1,
@@ -1450,16 +1420,6 @@
       "SpawnQuantityScale": 0.1,
       "Effects": [
         {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
-        {
           "EntityTypeId": 25,
           "Quantity": 1,
           "EntityId": 3
@@ -1491,16 +1451,6 @@
       "MinLevel": 20,
       "SpawnQuantityScale": 0.1,
       "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
         {
           "EntityTypeId": 25,
           "Quantity": 1,
@@ -1877,18 +1827,7 @@
       "TribeTypeId": 8,
       "MinLevel": 15,
       "SpawnQuantityScale": 0.1,
-      "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        }
-      ],
+      "Effects": [],
       "PrefixNames": [],
       "DoubleNameSuffixes": [],
       "SuffixNames": [],
@@ -2048,16 +1987,6 @@
       "SpawnQuantityScale": 0.1,
       "Effects": [
         {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
-        {
           "EntityTypeId": 36,
           "Quantity": 1,
           "EntityId": 1
@@ -2197,16 +2126,6 @@
       "MinLevel": 20,
       "SpawnQuantityScale": 0.1,
       "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
         {
           "EntityTypeId": 24,
           "Quantity": 1,
@@ -2827,7 +2746,7 @@
   "Parent": {
     "Id": "default",
     "Name": "UnitTypeSettings",
-    "SaveTime": "2025-08-09T14:59:52.741Z"
+    "SaveTime": "2025-09-09T08:59:40.525Z"
   },
-  "SaveTime": "2025-08-09T14:59:52.741Z"
+  "SaveTime": "2025-09-09T08:59:40.525Z"
 }

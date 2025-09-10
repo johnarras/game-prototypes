@@ -1,16 +1,12 @@
+using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.ProcGen.Settings.Locations;
+using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
 using System;
 using System.Collections.Generic;
-
-
-using Genrpg.Shared.Utils;
 using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
-using Genrpg.Shared.ProcGen.Entities;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
-using Genrpg.Shared.Utils.Data;
 
 public class AddLocationPatches : BaseZoneGenerator
 {
@@ -40,8 +36,8 @@ public class AddLocationPatches : BaseZoneGenerator
                         }
                         Zone zone = null;
 
-                        if (loc.CenterX < edgeSize || loc.CenterX >= _mapProvider.GetMap().GetHwid()-edgeSize ||
-                            loc.CenterZ < edgeSize || loc.CenterZ >= _mapProvider.GetMap().GetHhgt()-edgeSize)
+                        if (loc.CenterX < edgeSize || loc.CenterX >= _mapProvider.GetMap().GetHwid() - edgeSize ||
+                            loc.CenterZ < edgeSize || loc.CenterZ >= _mapProvider.GetMap().GetHhgt() - edgeSize)
                         {
                             continue;
                         }
@@ -61,7 +57,7 @@ public class AddLocationPatches : BaseZoneGenerator
                         {
                             zone = _mapProvider.GetMap().Zones[0];
                         }
-                       
+
                         if (zone != null && zone.IdKey == MapConstants.OceanZoneId)
                         {
                             continue;
@@ -81,7 +77,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 }
             }
         }
-        
+
     }
 
     public void AddOneLocationPatch(Location loc, float flattenFraction)
@@ -90,14 +86,14 @@ public class AddLocationPatches : BaseZoneGenerator
 
         flattenFraction = MathUtils.Clamp(0, flattenFraction, 1);
 
-        if (zone== null)
+        if (zone == null)
         {
             return;
         }
 
         int edgeSize = MapConstants.LocCenterEdgeSize;
 
-        if (loc.CenterX < edgeSize || loc.CenterZ < edgeSize || loc.CenterX > _mapProvider.GetMap().GetHwid()-edgeSize || loc.CenterZ >= _mapProvider.GetMap().GetHhgt() - edgeSize)
+        if (loc.CenterX < edgeSize || loc.CenterZ < edgeSize || loc.CenterX > _mapProvider.GetMap().GetHwid() - edgeSize || loc.CenterZ >= _mapProvider.GetMap().GetHhgt() - edgeSize)
         {
             return;
         }
@@ -142,7 +138,7 @@ public class AddLocationPatches : BaseZoneGenerator
         }
 
         // Get average height of location.
-        for (int x = centerX-fullXSize; x <= centerX+fullXSize; x++)
+        for (int x = centerX - fullXSize; x <= centerX + fullXSize; x++)
         {
             if (x < 0 || x >= _mapProvider.GetMap().GetHwid())
             {
@@ -150,7 +146,7 @@ public class AddLocationPatches : BaseZoneGenerator
             }
 
             int dx = x - centerX;
-            for (int z = centerZ-fullZSize; z <= centerZ+fullZSize; z++)
+            for (int z = centerZ - fullZSize; z <= centerZ + fullZSize; z++)
             {
                 if (z < 0 || z >= _mapProvider.GetMap().GetHhgt())
                 {
@@ -159,7 +155,7 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 int dz = z - centerZ;
 
-                float normDist = MathUtils.Sqrt((1.0f * (dx * dx)) / (fullXSize*fullXSize) + (1.0f * (dz * dz) / (fullZSize*fullZSize)));
+                float normDist = MathUtils.Sqrt((1.0f * (dx * dx)) / (fullXSize * fullXSize) + (1.0f * (dz * dz) / (fullZSize * fullZSize)));
 
                 if (normDist <= 1)
                 {
@@ -192,11 +188,11 @@ public class AddLocationPatches : BaseZoneGenerator
 
         // Slightly perturb the height of the location.
         float dVert = 0;// (fullXSize+fullZSize) / 50.0f;
-        aveHeight += (MathUtils.FloatRange(-dVert, dVert, rand))/MapConstants.MapHeight;
+        aveHeight += (MathUtils.FloatRange(-dVert, dVert, rand)) / MapConstants.MapHeight;
 
-        float heightPerturb = (midSize / 2)/MapConstants.MapHeight;
+        float heightPerturb = (midSize / 2) / MapConstants.MapHeight;
 
-        aveHeight += MathUtils.FloatRange(-heightPerturb,heightPerturb, rand);
+        aveHeight += MathUtils.FloatRange(-heightPerturb, heightPerturb, rand);
 
 
         aveHeight *= MapConstants.MapHeight;
@@ -240,7 +236,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 {
                     currFlattenFraction += (1 - flattenFraction) * roadFixFlattenPct;
                 }
-                else if (roadDistance < roadDistCheck*2.0f)
+                else if (roadDistance < roadDistCheck * 2.0f)
                 {
                     currFlattenFraction += ((roadDistCheck * 2.0f - roadDistCheck) / roadDistCheck) * ((1 - flattenFraction) * roadFixFlattenPct);
                 }
@@ -259,7 +255,7 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 if (outsideCenterDist <= minNormDist)
                 {
-                    _md.flags[x,z] |= MapGenFlags.IsLocation;
+                    _md.flags[x, z] |= MapGenFlags.IsLocation;
                     if (loc.LocationTypeId == LocationTypes.Patch)
                     {
                         _md.flags[x, z] |= MapGenFlags.IsLocationPatch;
@@ -284,18 +280,18 @@ public class AddLocationPatches : BaseZoneGenerator
             int zSearchSize = zsize;
             int minPatchSize = 6;
             int locPlaceId = 0;
-            for (int i = 0; i < placeCount*100; i++)
+            for (int i = 0; i < placeCount * 100; i++)
             {
-                int patchXSize = MathUtils.IntRange(minPatchSize, minPatchSize*3/2, rand);
-                int patchZSize = MathUtils.IntRange(minPatchSize, minPatchSize*3/2, rand);
+                int patchXSize = MathUtils.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
+                int patchZSize = MathUtils.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
                 int xgap = patchXSize * 6 / 2;
                 int zgap = patchZSize * 6 / 2;
 
                 int nx = MathUtils.IntRange(loc.CenterX - xSearchSize, loc.CenterX + xSearchSize, rand);
                 int nz = MathUtils.IntRange(loc.CenterZ - zSearchSize, loc.CenterZ + zSearchSize, rand);
 
-                if (nx < MapConstants.MapEdgeSize || nx >= _mapProvider.GetMap().GetHwid()-MapConstants.MapEdgeSize || 
-                    nz <  MapConstants.MapEdgeSize || nz >= _mapProvider.GetMap().GetHhgt()-MapConstants.MapEdgeSize)
+                if (nx < MapConstants.MapEdgeSize || nx >= _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize ||
+                    nz < MapConstants.MapEdgeSize || nz >= _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize)
                 {
                     continue;
                 }
@@ -321,7 +317,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 bool nearPlace = false;
                 foreach (LocationPlace lplace in places)
                 {
-                    if (Math.Abs(lplace.CenterX-nx) < xgap && Math.Abs(lplace.CenterZ-nz) < zgap)
+                    if (Math.Abs(lplace.CenterX - nx) < xgap && Math.Abs(lplace.CenterZ - nz) < zgap)
                     {
                         nearPlace = true;
                         break;
@@ -330,19 +326,19 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 if (!nearPlace && loc.LocationTypeId != LocationTypes.Patch)
                 {
-                    LocationPlace newPlace = new LocationPlace() 
-                    { 
-                        Id = loc.Id + (++locPlaceId), 
+                    LocationPlace newPlace = new LocationPlace()
+                    {
+                        Id = loc.Id + (++locPlaceId),
                         LocationId = loc.Id,
-                        CenterX = nx, 
-                        CenterZ = nz, 
-                        XSize = patchXSize, 
+                        CenterX = nx,
+                        CenterZ = nz,
+                        XSize = patchXSize,
                         ZSize = patchZSize,
                     };
                     places.Add(newPlace);
 
                     Location patchLoc = new Location()
-                    {                       
+                    {
                         CenterX = nx,
                         CenterZ = nz,
                         XSize = patchXSize,
@@ -391,9 +387,9 @@ public class AddLocationPatches : BaseZoneGenerator
                     X = place.EntranceX,
                     Z = place.EntranceZ,
                     MaxConnections = 3,
-                    MinDistToOther = 0,
+                    MinDistToOther = 1000000,
                 });
-                
+
             }
 
             connectPoints.Add(new ConnectPointData()
@@ -401,7 +397,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 X = loc.CenterX,
                 Z = loc.CenterZ,
                 MaxConnections = 3,
-                MinDistToOther = 0,
+                MinDistToOther = 10000000,
             });
 
             MyRandom connectRand = new MyRandom(_rand.Next());
@@ -426,5 +422,5 @@ public class AddLocationPatches : BaseZoneGenerator
         }
     }
 }
-	
+
 

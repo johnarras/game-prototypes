@@ -13,6 +13,7 @@ using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -21,7 +22,6 @@ using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.LoadSave.Constants;
@@ -59,6 +59,7 @@ namespace Assets.Scripts.Crawler.Services
         private ILoadSaveService _loadSaveService = null;
         private ILocalLoadService _localLoadService = null;
         private ITextSerializer _textSerializer = null;
+        private IPartyService _partyService = null;
 
         public const string SaveFileSuffix = ".sav";
         public const string StartSaveFileName = "Start" + SaveFileSuffix;
@@ -295,19 +296,8 @@ namespace Assets.Scripts.Crawler.Services
                 newItem.Set(CIdx.SellValue, item.SellValue);
                 newItem.Set(CIdx.QualityTypeId, item.QualityTypeId);
 
-                int statIndex = 0;
-                for (int e = 0; e < item.Effects.Count && statIndex < 4; e++)
-                {
-                    ItemEffect eff = item.Effects[e];
-                    if (eff.EntityTypeId == EntityTypes.Stat &&
-                        eff.EntityId > 0 &&
-                        eff.Quantity > 0)
-                    {
-                        newItem.Set(CIdx.Stat0 + statIndex * 2, eff.EntityId);
-                        newItem.Set(CIdx.Val0 + statIndex * 2, eff.Quantity);
-                        statIndex++;
-                    }
-                }
+                newItem.Effects = new List<ItemEffect>(item.Effects);
+
                 newItem.CreateDatString();
                 retval.Add(newItem);
             }
@@ -340,15 +330,7 @@ namespace Assets.Scripts.Crawler.Services
                     Procs = new List<ItemProc>()
                 };
 
-                for (int i = 0; i < 4; i++)
-                {
-                    long statId = saveItem.Get(CIdx.Stat0 + i * 2);
-                    long statVal = saveItem.Get(CIdx.Val0 + i * 2);
-                    if (statId > 0 && statVal > 0)
-                    {
-                        newItem.Effects.Add(new ItemEffect() { EntityTypeId = EntityTypes.Stat, EntityId = statId, Quantity = statVal });
-                    }
-                }
+                newItem.Effects.AddRange(saveItem.Effects);
 
                 retval.Add(newItem);
 
@@ -440,7 +422,9 @@ namespace Assets.Scripts.Crawler.Services
                     return partyData;
                 }
             }
-            PartyData party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next(), Gold = 1000, };
+            PartyData party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next() };
+
+            _partyService.AddGold(party, 1000);
             return party;
         }
 

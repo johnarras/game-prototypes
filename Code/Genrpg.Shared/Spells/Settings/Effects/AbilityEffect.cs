@@ -1,4 +1,4 @@
-using Genrpg.Shared.Spells.Interfaces;
+using Genrpg.Shared.Effects.Interfaces;
 using MessagePack;
 using System;
 using System.Collections.Generic;

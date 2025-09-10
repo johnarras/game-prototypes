@@ -6,65 +6,105 @@
       "ParentId": "default",
       "IdKey": 1,
       "Name": "Light",
-      "Desc": "Allows you to see in dark places."
+      "Desc": "Allows you to see in dark places.",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     },
     {
       "Id": "partybuff2default",
       "ParentId": "default",
       "IdKey": 2,
-      "Name": "Second Sight",
-      "Desc": "Alerts you when bad things are ahead of you."
+      "Name": "Danger Sense",
+      "Desc": "Alerts you when bad things are ahead of you.",
+      "AtlasPrefix": "",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     },
     {
       "Id": "partybuff3default",
       "ParentId": "default",
       "IdKey": 3,
       "Name": "Magic Compass",
-      "Desc": "Allows you to see your direction and map position."
+      "Desc": "Allows you to see your direction and map position.",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     },
     {
       "Id": "partybuff4default",
       "ParentId": "default",
       "IdKey": 4,
       "Name": "Levitate",
-      "Desc": "Allows you to float over traps and move a bit faster."
+      "Desc": "Allows you to float over traps and move a bit faster.",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     },
     {
       "Id": "partybuff5default",
       "ParentId": "default",
       "IdKey": 5,
       "Name": "Mapping",
-      "Desc": "Shows you the minimap and lets you see the level map."
+      "Desc": "Shows you the minimap and lets you see the level map.",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     },
     {
       "Id": "partybuff6default",
       "ParentId": "default",
       "IdKey": 6,
-      "Name": "PhysicalDam"
+      "Name": "Autoheal",
+      "Desc": "Sometimes heals allied units when they are attacked.",
+      "AtlasPrefix": "",
+      "ProcChanceScale": 5.0,
+      "EffectScale": 5.0
     },
     {
       "Id": "partybuff7default",
       "ParentId": "default",
       "IdKey": 7,
-      "Name": "MagicDam"
+      "Name": "Barrier",
+      "Desc": "Sometimes you block incoming damage.",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 2.0
     },
     {
       "Id": "partybuff8default",
       "ParentId": "default",
       "IdKey": 8,
-      "Name": "Defense"
+      "Name": "Thorns",
+      "Desc": "Magical thorns hit enemies that attack you.",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "ProcChanceScale": 10.0,
+      "EffectScale": 0.2
     },
     {
       "Id": "partybuff9default",
       "ParentId": "default",
       "IdKey": 9,
-      "Name": "Tactics"
+      "Name": "Sharpshooter",
+      "Desc": "Sometimes add random debuffs when using ranged attacks.",
+      "AtlasPrefix": "",
+      "ProcChanceScale": 2.0,
+      "EffectScale": 3.0
+    },
+    {
+      "Id": "partybuff10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Lucky Blade",
+      "Desc": "Increases your luck bonus for melee attacks.",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "ProcChanceScale": 1.0,
+      "EffectScale": 1.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "PartyBuffSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-09-09T14:15:50.369Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-09-09T14:15:50.369Z"
 }

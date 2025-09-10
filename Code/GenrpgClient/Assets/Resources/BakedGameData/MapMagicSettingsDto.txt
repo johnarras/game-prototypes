@@ -9,7 +9,8 @@
       "Weight": 0.1,
       "SpreadChance": 0.2,
       "MapSymbol": "D",
-      "MinLevel": 3
+      "MinLevel": 3,
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "mapmagictype2default",
@@ -19,7 +20,8 @@
       "Weight": 0.2,
       "SpreadChance": 0.1,
       "MapSymbol": "S",
-      "MinLevel": 1
+      "MinLevel": 1,
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "mapmagictype3default",
@@ -29,7 +31,8 @@
       "Weight": 0.3,
       "SpreadChance": 0.15,
       "MapSymbol": "H",
-      "MinLevel": 9
+      "MinLevel": 9,
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "mapmagictype4default",
@@ -39,23 +42,29 @@
       "Weight": 0.4,
       "SpreadChance": 0.15,
       "MapSymbol": "A",
-      "MinLevel": 7
+      "MinLevel": 7,
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "mapmagictype5default",
       "ParentId": "default",
       "IdKey": 5,
-      "Name": "Peaceful",
-      "Weight": 0.1,
-      "SpreadChance": 0.1,
-      "MapSymbol": "P",
-      "MinLevel": 10
+      "Name": "Silence",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "Weight": 0.2,
+      "SpreadChance": 0.2,
+      "MapSymbol": "Q",
+      "MinLevel": 10,
+      "ItemEnchantWeight": 1.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "MapMagicSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-09-03T12:05:26.88Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-09-03T12:05:26.88Z"
 }

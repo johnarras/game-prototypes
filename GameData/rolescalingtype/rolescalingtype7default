@@ -1,0 +1,10 @@
+{
+  "Id": "rolescalingtype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Defense",
+  "Desc": "Gives a chance to lessen or ignore damage.",
+  "ScalingStatTypeId": 15,
+  "ScalingEquipSlotId": 16,
+  "SaveTime": "2025-08-29T09:32:34.763Z"
+}

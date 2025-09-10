@@ -1,31 +1,34 @@
-header elementtype,Idkey,Name,Desc,Icon,Art,CasterActionName,ObserverActionName,CastAnim,VulnElementTypeId,VulnDamagePercent,VulnCritPercentMod,ResistDamagePercent,ResistCritPercentMod
-header proc,EntityTypeId,EntityId,MinQuantity,MaxQuantity,Chance,MaxCharges,CurrCharges,CooldownSeconds,ElementTypeId,,,,
-elementtype,1,Physical,Basic element.,Physical,Physical,Hit,Hits,Physical,Acid,300,10,33,-50
-proc,statuseffect,Berserk,1,1,0.005,1,1,0,Physical,,,,
-,,,,,,,,,,,,,
-elementtype,2,Fire,Burn enemies.,Fire,Fire,Burn,Burns,Fire,Ice,300,10,33,-50
-proc,statuseffect,Weak,1,1,0.02,1,1,0,Fire,,,,
-,,,,,,,,,,,,,
-elementtype,3,Ice,Freeze enemies.,Ice,Ice,Freeze,Freezes,Ice,Fire,300,10,33,-50
-proc,statuseffect,Slowed,1,1,0.02,1,1,0,Ice,,,,
-,,,,,,,,,,,,,
-elementtype,4,Electric,Zap enemies.,Electric,Electric,Zap,Zaps,Electric,Earth,300,10,33,-50
-proc,statuseffect,Befuddled,1,1,0.02,1,1,0,Electric,,,,
-,,,,,,,,,,,,,
-elementtype,5,Earth,Blast enemies.,Earth,Earth,Crush,Crushes,Earth,Electric,300,10,33,-50
-proc,statuseffect,Diseased,1,1,0.02,1,1,0,Earth,,,,
-,,,,,,,,,,,,,
-elementtype,6,Shadow,The power of darkness and evil.,Shadow,Shadow,Drain,Drains,Shadow,Light,300,10,33,-50
-proc,statuseffect,Cursed,1,1,0.02,1,1,0,Shadow,,,,
-,,,,,,,,,,,,,
-elementtype,7,Light,Use holy power againt enemies.,Light,Light,Purify,Purifies,Light,Shadow,300,10,33,-50
-proc,statuseffect,Nearsighted,1,1,0.02,1,1,0,Light,,,,
-,,,,,,,,,,,,,
-elementtype,8,Nature,The power of nature.,Nature,Nature,Sicken,Sickens,Nature,Arcane,300,10,33,-50
-proc,statuseffect,Poisoned,1,1,0.02,1,1,0,Nature,,,,
-,,,,,,,,,,,,,
-elementtype,9,Arcane,Pure magic power.,Arcane,Arcane,Bewitch,Bewitches,Arcane,Nature,300,10,33,-50
-proc,statuseffect,Clumsy,1,1,0.02,1,1,0,Arcane,,,,
-,,,,,,,,,,,,,
-elementtype,10,Acid,Corrosive power.,Acid,Acid,Corrode,Corrodes,Acid,Physical,300,10,33,-50
-proc,statuseffect,Withered,1,1,0.02,1,1,0,Acid,,,,
+header elementtype,Idkey,Name,Desc,Icon,Art,Color,CasterActionName,ObserverActionName,CastAnim,VulnElementTypeId,VulnDamagePercent,VulnCritPercentMod,ResistDamagePercent,ResistCritPercentMod
+header proc,EntityTypeId,EntityId,MinQuantity,MaxQuantity,Chance,,MaxCharges,CurrCharges,CooldownSeconds,ElementTypeId,,,,
+elementtype,1,Melee,Basic element.,Melee,Melee,#FF3B3E,Hit,Hits,Melee,Acid,300,10,33,-50
+proc,statuseffect,Berserk,1,1,0.005,,1,1,0,Melee,,,,
+,,,,,,,,,,,,,,
+elementtype,2,Fire,Burn enemies.,Fire,Fire,#FF521F,Burn,Burns,Fire,Ice,300,10,33,-50
+proc,statuseffect,Weak,1,1,0.02,,1,1,0,Fire,,,,
+,,,,,,,,,,,,,,
+elementtype,3,Ice,Freeze enemies.,Ice,Ice,#C8FCFF,Freeze,Freezes,Ice,Fire,300,10,33,-50
+proc,statuseffect,Slowed,1,1,0.02,,1,1,0,Ice,,,,
+,,,,,,,,,,,,,,
+elementtype,4,Electric,Zap enemies.,Electric,Electric,#FFFBD6,Zap,Zaps,Electric,Earth,300,10,33,-50
+proc,statuseffect,Befuddled,1,1,0.02,,1,1,0,Electric,,,,
+,,,,,,,,,,,,,,
+elementtype,5,Earth,Blast enemies.,Earth,Earth,#9F5518,Crush,Crushes,Earth,Electric,300,10,33,-50
+proc,statuseffect,Diseased,1,1,0.02,,1,1,0,Earth,,,,
+,,,,,,,,,,,,,,
+elementtype,6,Shadow,The power of darkness and evil.,Shadow,Shadow,#6702FF,Drain,Drains,Shadow,Light,300,10,33,-50
+proc,statuseffect,Cursed,1,1,0.02,,1,1,0,Shadow,,,,
+,,,,,,,,,,,,,,
+elementtype,7,Light,Use holy power againt enemies.,Light,Light,#FFE6B1,Purify,Purifies,Light,Shadow,300,10,33,-50
+proc,statuseffect,Nearsighted,1,1,0.02,,1,1,0,Light,,,,
+,,,,,,,,,,,,,,
+elementtype,8,Nature,The power of nature.,Nature,Nature,#95FF1F,Sicken,Sickens,Nature,Arcane,300,10,33,-50
+proc,statuseffect,Poisoned,1,1,0.02,,1,1,0,Nature,,,,
+,,,,,,,,,,,,,,
+elementtype,9,Arcane,Pure magic power.,Arcane,Arcane,#F101FF,Bewitch,Bewitches,Arcane,Nature,300,10,33,-50
+proc,statuseffect,Clumsy,1,1,0.02,,1,1,0,Arcane,,,,
+,,,,,,,,,,,,,,
+elementtype,10,Acid,Corrosive power.,Acid,Acid,#5D9D00,Corrode,Corrodes,Acid,Melee,300,10,33,-50
+proc,statuseffect,Withered,1,1,0.02,,1,1,0,Acid,,,,
+,,,,,,,,,,,,,,
+elementtype,11,Ranged,Basic element.,Ranged,Ranged,#51FFCA,Shoot,Shoots,Ranged,Acid,300,10,33,-50
+proc,statuseffect,Confused,1,1,0.005,,1,1,0,Ranged,,,,

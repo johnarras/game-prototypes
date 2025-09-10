@@ -1,14 +1,13 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+﻿using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Riddles.Entities;
 using Genrpg.Shared.Utils;
-using System;
+using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using System.Linq;
 
 namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
@@ -61,6 +60,11 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
             for (int i = 0; i < wrongAnswerCount; i++)
             {
+                if (badAnswerChars.Count < 1)
+                {
+                    return false;
+                }
+
                 char badLetter = badAnswerChars[rand.Next() % badAnswerChars.Count];
 
                 otherAnswers.Add(dict[badLetter][rand.Next() % dict[badLetter].Count]);

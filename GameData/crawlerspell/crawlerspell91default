@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell91default",
+  "ParentId": "default",
+  "IdKey": 91,
+  "Name": "Lucky Blade",
+  "Desc": "Increases luck extra hit bonus for melee attacks.",
+  "PowerCost": 20.0,
+  "PowerPerLevel": 2.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 6,
+  "RoleScalingTypeId": 1,
+  "RoleScalingTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 101,
+      "EntityId": 10,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 1
+    }
+  ],
+  "ItemEnchantWeight": 0.1,
+  "SaveTime": "2025-09-09T08:58:31.973Z"
+}

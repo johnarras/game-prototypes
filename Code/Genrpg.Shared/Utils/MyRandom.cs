@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Utils
     {
         int Next();
         long NextLong();
-        int Next(int maxVal); 
+        int Next(int maxVal);
         int Next(int minValue, int maxValue);
         long NextLong(long minValue, long maxValue);
         double NextDouble();
@@ -23,6 +23,11 @@ namespace Genrpg.Shared.Utils
     public interface IWeightedItem
     {
         double Weight { get; }
+    }
+
+    public interface IItemEnchantWeight
+    {
+        double ItemEnchantWeight { get; }
     }
 
     [MessagePackObject]

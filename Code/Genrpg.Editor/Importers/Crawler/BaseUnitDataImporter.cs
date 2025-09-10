@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Settings.Elements;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
@@ -43,6 +44,8 @@ namespace Genrpg.Editor.Importers.Crawler
         public double Weight { get; set; }
         public int Tier { get; set; }
         public string KeywordNames { get; set; }
+        public long BonusHealthPercent { get; set; }
+        public long BonusDamagePercent { get; set; }
 
     }
 
@@ -159,6 +162,25 @@ namespace Genrpg.Editor.Importers.Crawler
                     }
                 }
 
+                if (importRow.BonusHealthPercent > 0)
+                {
+                    child.Effects.Add(new UnitEffect()
+                    {
+                        EntityTypeId = EntityTypes.StatPct,
+                        EntityId = StatTypes.Health,
+                        Quantity = importRow.BonusHealthPercent,
+                    });
+                }
+
+                if (importRow.BonusDamagePercent > 0)
+                {
+                    child.Effects.Add(new UnitEffect()
+                    {
+                        EntityTypeId = EntityTypes.StatPct,
+                        EntityId = StatTypes.Health,
+                        Quantity = importRow.BonusHealthPercent,
+                    });
+                }
 
                 if (importRow.Summons != null)
                 {

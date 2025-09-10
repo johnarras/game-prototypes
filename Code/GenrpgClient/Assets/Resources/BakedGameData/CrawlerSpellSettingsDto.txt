@@ -54,7 +54,7 @@
         {
           "EntityTypeId": 39,
           "EntityId": 2,
-          "ElementTypeId": 1
+          "ElementTypeId": 11
         }
       ],
       "Flags": 1
@@ -98,7 +98,7 @@
         {
           "EntityTypeId": 39,
           "EntityId": 2,
-          "ElementTypeId": 1
+          "ElementTypeId": 11
         }
       ]
     },
@@ -159,7 +159,8 @@
           "MaxQuantity": 9,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell21default",
@@ -182,7 +183,8 @@
           "MaxQuantity": 3,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell22default",
@@ -205,7 +207,8 @@
           "MaxQuantity": -1,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell23default",
@@ -227,7 +230,8 @@
           "MaxQuantity": -1,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell30default",
@@ -248,7 +252,8 @@
           "EntityId": 1,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell31default",
@@ -269,7 +274,8 @@
           "EntityId": 2,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell32default",
@@ -290,7 +296,8 @@
           "EntityId": 4,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell33default",
@@ -311,7 +318,8 @@
           "EntityId": 5,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell34default",
@@ -332,14 +340,15 @@
           "EntityId": 6,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell35default",
       "ParentId": "default",
       "IdKey": 35,
-      "Name": "Set Beacon",
-      "Desc": "Set a teleport location (per player)",
+      "Name": "Beacon",
+      "Desc": "Set a beacon or return to a location.",
       "PowerCost": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
@@ -353,28 +362,8 @@
           "EntityId": 9,
           "ElementTypeId": 9
         }
-      ]
-    },
-    {
-      "Id": "crawlerspell36default",
-      "ParentId": "default",
-      "IdKey": 36,
-      "Name": "Return to Beacon",
-      "Desc": "Return to the player's teleport location.",
-      "PowerCost": 20.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 37,
-          "EntityId": 10,
-          "ElementTypeId": 9
-        }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell37default",
@@ -440,7 +429,8 @@
           "MaxQuantity": 2,
           "ElementTypeId": 1
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell60default",
@@ -463,7 +453,8 @@
           "MaxQuantity": 2,
           "ElementTypeId": 6
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell61default",
@@ -486,7 +477,8 @@
           "MaxQuantity": 3,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell62default",
@@ -509,7 +501,8 @@
           "MaxQuantity": 100,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell63default",
@@ -532,7 +525,8 @@
           "MaxQuantity": 2,
           "ElementTypeId": 4
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell64default",
@@ -555,7 +549,8 @@
           "MaxQuantity": 2,
           "ElementTypeId": 6
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell80default",
@@ -576,7 +571,8 @@
           "EntityId": 8,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell81default",
@@ -584,7 +580,8 @@
       "IdKey": 81,
       "Name": "Light",
       "Desc": "Create a light to let you see.",
-      "PowerCost": 2.0,
+      "PowerCost": 5.0,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -599,7 +596,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell82default",
@@ -607,7 +605,8 @@
       "IdKey": 82,
       "Name": "Magic Compass",
       "Desc": "Gives you a compass.",
-      "PowerCost": 2.0,
+      "PowerCost": 10.0,
+      "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -622,7 +621,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell83default",
@@ -630,7 +630,8 @@
       "IdKey": 83,
       "Name": "Levitate",
       "Desc": "Lets you float over many traps.",
-      "PowerCost": 2.0,
+      "PowerCost": 10.0,
+      "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -645,15 +646,17 @@
           "MaxQuantity": 1,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell84default",
       "ParentId": "default",
       "IdKey": 84,
-      "Name": "Second Sight",
+      "Name": "Danger Sense",
       "Desc": "Alerts you to traps nearby.",
-      "PowerCost": 2.0,
+      "PowerCost": 10.0,
+      "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -668,7 +671,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell85default",
@@ -676,7 +680,8 @@
       "IdKey": 85,
       "Name": "Mapping",
       "Desc": "Lets you map the area you're in.",
-      "PowerCost": 2.0,
+      "PowerCost": 5.0,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -691,7 +696,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell86default",
@@ -699,7 +705,8 @@
       "IdKey": 86,
       "Name": "Batchspell",
       "Desc": "Casts all party buffs.",
-      "PowerCost": 10.0,
+      "PowerCost": 40.0,
+      "PowerPerLevel": 5.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -743,6 +750,131 @@
           "ElementTypeId": 2
         }
       ]
+    },
+    {
+      "Id": "crawlerspell87default",
+      "ParentId": "default",
+      "IdKey": 87,
+      "Name": "Autoheal",
+      "Desc": "Sometimes heals your party members.",
+      "PowerCost": 10.0,
+      "PowerPerLevel": 4.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 6,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 7
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell88default",
+      "ParentId": "default",
+      "IdKey": 88,
+      "Name": "Barrier",
+      "Desc": "Sometimes you avoid incoming damage.",
+      "PowerCost": 15.0,
+      "PowerPerLevel": 3.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 7,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 7,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 5
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell89default",
+      "ParentId": "default",
+      "IdKey": 89,
+      "Name": "Thorns",
+      "Desc": "Retaliate damage toward your attacker.",
+      "PowerCost": 20.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 8,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell90default",
+      "ParentId": "default",
+      "IdKey": 90,
+      "Name": "Sharpshooter",
+      "Desc": "Increases crit chance with ranged attacks.",
+      "PowerCost": 20.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 2,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 9,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 11
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell91default",
+      "ParentId": "default",
+      "IdKey": 91,
+      "Name": "Lucky Blade",
+      "Desc": "Increases luck extra hit bonus for melee attacks.",
+      "PowerCost": 20.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 1,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 10,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 1
+        }
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell100default",
@@ -766,7 +898,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell101default",
@@ -790,7 +923,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell102default",
@@ -814,7 +948,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell103default",
@@ -838,7 +973,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell104default",
@@ -862,7 +998,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell105default",
@@ -886,7 +1023,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell106default",
@@ -910,7 +1048,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell107default",
@@ -934,7 +1073,8 @@
           "MaxQuantity": 1,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.1
     },
     {
       "Id": "crawlerspell200default",
@@ -958,7 +1098,8 @@
           "MaxQuantity": 9,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell201default",
@@ -982,7 +1123,8 @@
           "MaxQuantity": 2,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell202default",
@@ -1006,7 +1148,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 7
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell210default",
@@ -1030,7 +1173,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell211default",
@@ -1054,7 +1198,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell212default",
@@ -1078,7 +1223,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 2
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell220default",
@@ -1102,7 +1248,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 3
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell221default",
@@ -1126,7 +1273,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 3
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell222default",
@@ -1149,7 +1297,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 3
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell230default",
@@ -1173,7 +1322,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 4
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell231default",
@@ -1197,7 +1347,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 4
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell232default",
@@ -1220,7 +1371,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 4
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell240default",
@@ -1244,7 +1396,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell241default",
@@ -1268,7 +1421,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell242default",
@@ -1291,7 +1445,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 8
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell250default",
@@ -1315,7 +1470,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell251default",
@@ -1339,7 +1495,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell252default",
@@ -1362,7 +1519,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 9
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell260default",
@@ -1386,7 +1544,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 6
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell261default",
@@ -1410,7 +1569,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 6
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell262default",
@@ -1433,7 +1593,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 6
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell270default",
@@ -1457,7 +1618,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 5
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell271default",
@@ -1481,7 +1643,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 5
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell272default",
@@ -1504,7 +1667,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 5
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell280default",
@@ -1528,7 +1692,8 @@
           "MaxQuantity": 12,
           "ElementTypeId": 10
         }
-      ]
+      ],
+      "ItemEnchantWeight": 1.0
     },
     {
       "Id": "crawlerspell281default",
@@ -1552,7 +1717,8 @@
           "MaxQuantity": 6,
           "ElementTypeId": 10
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.2
     },
     {
       "Id": "crawlerspell282default",
@@ -1575,7 +1741,8 @@
           "MaxQuantity": 4,
           "ElementTypeId": 10
         }
-      ]
+      ],
+      "ItemEnchantWeight": 0.01
     },
     {
       "Id": "crawlerspell10031default",
@@ -3668,7 +3835,7 @@
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
     "Name": "CrawlerSpellSettings",
-    "SaveTime": "2025-08-09T14:59:52.741Z"
+    "SaveTime": "2025-09-09T08:59:40.525Z"
   },
-  "SaveTime": "2025-08-09T14:59:52.741Z"
+  "SaveTime": "2025-09-09T08:59:40.525Z"
 }

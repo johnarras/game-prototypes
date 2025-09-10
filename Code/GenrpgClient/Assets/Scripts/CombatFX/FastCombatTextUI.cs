@@ -1,26 +1,37 @@
 ﻿
 
+using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Utils;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.CombatTexts
 {
+
+    public class FastCombatTextArgs
+    {
+        public float AnimateTime { get; set; }
+        public float FrameDx { get; set; } = 0;
+        public float FrameDy { get; set; } = 1;
+        public string Text { get; set; }
+        public Color Color { get; set; } = Color.white;
+    }
+
+
     public class FastCombatTextUI : BaseBehaviour
     {
 
         private IClientAppService _appService;
 
-        public float MaxElapsedSeconds = 1.0f;
+        public float AnimateTime = 1.0f;
         public float TextMoveSpeed = 30.0f;
-        public GameObject Anchor;
-        public FastCombatText DamageTemplate;
-        public FastCombatText HealingTemplate;
-        public FastCombatText InfoTemplate;
 
+        private const string _subDirectory = "CrawlerCombat";
+        private const string _prefabName = "BaseCombatText";
 
         private ConcurrentQueue<ShowCombatText> _textsToShow = new ConcurrentQueue<ShowCombatText>();
 
@@ -44,11 +55,10 @@ namespace Assets.Scripts.UI.CombatTexts
         {
             base.Init();
 
-
             _framesPerSecond = _appService.TargetFrameRate;
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
 
-            _updateService.AddUpdate(this, OnUpdate, UpdateTypes.Regular, GetToken());
+            _updateService.AddUpdate(this, LoadNewTexts, UpdateTypes.Regular, GetToken());
         }
 
         private void OnShowCombatText(ShowCombatText showCombatText)
@@ -77,69 +87,81 @@ namespace Assets.Scripts.UI.CombatTexts
             while (_textsToShow.TryDequeue(out ShowCombatText showCombatText))
             {
 
-                FastCombatText prefab = null;
+                Color textColor = Color.white;
 
                 if (showCombatText.TextType == ECombatTextTypes.Damage)
                 {
-                    prefab = DamageTemplate;
+                    textColor = Color.red;
                 }
                 else if (showCombatText.TextType == ECombatTextTypes.Healing)
                 {
-                    prefab = HealingTemplate;
+                    textColor = Color.green;
                 }
-                else if (showCombatText.TextType == ECombatTextTypes.Info)
+                else if (showCombatText.TextType == ECombatTextTypes.Defense)
                 {
-                    prefab = InfoTemplate;
+                    textColor = new Color(1, 0.75f, 0, 1);
                 }
-                else
+                else if (showCombatText.TextType == ECombatTextTypes.Thorns)
                 {
-                    return;
+                    textColor = new Color(0.66f, 0, 0.8f, 1);
                 }
 
-                prefab = _clientEntityService.FullInstantiate(prefab);
-                _clientEntityService.AddToParent(prefab.gameObject, Anchor);
-                prefab.ElapsedSeconds = 0;
-                prefab.Speed = TextMoveSpeed;
                 float angle = MathUtils.FloatRange(-45, 225, _rand);
-
-
-                prefab.FrameDy = Mathf.Sin(angle * Mathf.PI / 180) * prefab.Speed / _framesPerSecond;
-                prefab.FrameDx = Mathf.Cos(angle * Mathf.PI / 180) * prefab.Speed / _framesPerSecond;
-
+                float frameDy = Mathf.Sin(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
+                float frameDx = Mathf.Cos(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
                 float startFrames = MathUtils.FloatRange(0, 20, _rand);
 
-                prefab.transform.localPosition += new Vector3(prefab.FrameDx * startFrames, prefab.FrameDy * startFrames);
+                Vector3 startPos = transform.position +
+                    new Vector3(frameDx * startFrames, frameDy * startFrames, 0);
 
-                prefab.ShowText(showCombatText.Text);
-                _texts.Add(prefab);
-            }
-        }
-
-        List<FastCombatText> removeList = new List<FastCombatText>();
-        private void OnUpdate()
-        {
-
-            LoadNewTexts();
-
-            removeList.Clear();
-            foreach (FastCombatText text in _texts)
-            {
-                text.ElapsedSeconds += 1.0f / _framesPerSecond;
-                if (text.ElapsedSeconds >= MaxElapsedSeconds)
+                FastCombatTextArgs args = new FastCombatTextArgs()
                 {
-                    removeList.Add(text);
-                    continue;
-                }
+                    AnimateTime = AnimateTime,
+                    Color = textColor,
+                    Text = showCombatText.Text,
+                    FrameDx = frameDx,
+                    FrameDy = frameDy,
+                };
 
-                text.transform.localPosition += new Vector3(text.FrameDx,text.FrameDy, 0);
-             
-            }
-            foreach (FastCombatText ctext in removeList)
-            {
-                _texts.Remove(ctext);
-                _clientEntityService.Destroy(ctext.gameObject);
+
+                ShowDynamicUIItem showUIItem = new ShowDynamicUIItem
+                (DynamicUILocation.ScreenSpace,
+                _prefabName,
+                startPos,
+                OnLoadFrameText,
+                args,
+                GetToken(),
+                _subDirectory);
+
+                _dispatcher.Dispatch(showUIItem);
             }
         }
 
+        private void OnLoadFrameText(object obj, object data, CancellationToken token)
+        {
+            GameObject go = obj as GameObject;
+
+            if (go == null)
+            {
+                return;
+            }
+
+            FastCombatTextArgs args = data as FastCombatTextArgs;
+
+            if (args == null)
+            {
+                _clientEntityService.Destroy(go);
+                return;
+            }
+
+            FastCombatText fastText = _clientEntityService.GetComponent<FastCombatText>(go);
+            if (fastText == null)
+            {
+                _clientEntityService.Destroy(go);
+                return;
+            }
+
+            fastText.Init(args);
+        }
     }
 }

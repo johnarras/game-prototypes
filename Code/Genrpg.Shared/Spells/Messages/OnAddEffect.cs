@@ -1,9 +1,9 @@
 using MessagePack;
-using Genrpg.Shared.Spells.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.Effects.Interfaces;
 
 namespace Genrpg.Shared.Spells.Messages
 {

@@ -53,7 +53,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                     cz = (cz + map.Height) % map.Height;
                 }
 
-                if (party.CurrentMap.Cleansed.HasBit(map.GetIndex(cx,cz)))
+                if (party.CurrentMap.Cleansed.HasBit(map.GetIndex(cx, cz)))
                 {
                     continue;
                 }
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                     }
                 }
 
-                if (_crawlerMapService.GetMagicBits(party.CurrPos.MapId, cx, cz) > 0)
+                if (_crawlerMapService.GetMagicBits(party.CurrPos.MapId, cx, cz, true) > 0)
                 {
                     haveDanger = true;
                     break;

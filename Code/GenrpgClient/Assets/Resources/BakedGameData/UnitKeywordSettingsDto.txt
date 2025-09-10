@@ -21,16 +21,6 @@
       "Art": "Barbaric",
       "Effects": [
         {
-          "EntityTypeId": 32,
-          "Quantity": 10,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 10,
-          "EntityId": 20
-        },
-        {
           "EntityTypeId": 36,
           "Quantity": 1,
           "EntityId": 3
@@ -171,16 +161,6 @@
       "Icon": "Lord",
       "Art": "Lord",
       "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
         {
           "EntityTypeId": 36,
           "Quantity": 1,
@@ -445,18 +425,7 @@
       "PluralName": "Lieutenants",
       "Icon": "Lieutenant",
       "Art": "Lieutenant",
-      "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 20,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 20,
-          "EntityId": 20
-        }
-      ],
+      "Effects": [],
       "Weight": 15.0,
       "Tier": 3
     },
@@ -469,16 +438,6 @@
       "Icon": "Chieftain",
       "Art": "Chieftain",
       "Effects": [
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 1
-        },
-        {
-          "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
-        },
         {
           "EntityTypeId": 100,
           "Quantity": 1,
@@ -717,7 +676,7 @@
   "Parent": {
     "Id": "default",
     "Name": "UnitKeywordSettings",
-    "SaveTime": "2025-08-09T02:55:51.781Z"
+    "SaveTime": "2025-09-07T18:11:42.348Z"
   },
-  "SaveTime": "2025-08-09T02:55:51.781Z"
+  "SaveTime": "2025-09-07T18:11:42.348Z"
 }

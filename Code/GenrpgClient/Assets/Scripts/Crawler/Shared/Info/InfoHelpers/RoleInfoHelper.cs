@@ -36,7 +36,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             if (statBonusAmounts.Count > 0)
             {
-               allLines.Add("Stat Bonus Modifiers: ");
+                allLines.Add("Stat Bonus Modifiers: ");
 
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < statBonusAmounts.Count; i++)
@@ -45,14 +45,13 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
                     {
                         sb.Append(", ");
                     }
-                    sb.Append(_infoService.CreateInfoLink(statSettings.Get(statBonusAmounts[i].EntityId)) + ": " + statBonusAmounts[i].Amount);                    
+                    sb.Append(_infoService.CreateInfoLink(statSettings.Get(statBonusAmounts[i].EntityId)) + ": " + statBonusAmounts[i].Amount);
                 }
 
                 allLines.Add(sb.ToString());
             }
 
             IReadOnlyList<RoleScalingType> scalingTypes = _gameData.Get<RoleScalingTypeSettings>(_gs.ch).GetData();
-
 
             StringBuilder scalingBuilder = new StringBuilder();
             int roleScalingCount = 0;
@@ -123,7 +122,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
             }
             else
             {
-                dataItems = dataItems.OrderBy(x=>x.Name).ToList();   
+                dataItems = dataItems.OrderBy(x => x.Name).ToList();
             }
 
 
@@ -136,7 +135,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
                     sb.Append(_infoService.CreateInfoLink(dataItems[d]));
                     if (dataItems[d] is IOrderedItem ioi)
                     {
-                        sb.Append("(" + ioi.GetOrder() + ")");  
+                        sb.Append("(" + ioi.GetOrder() + ")");
                     }
                     if (d < dataItems.Count - 1)
                     {

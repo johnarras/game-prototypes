@@ -18,5 +18,7 @@
       "Percent": 75
     }
   ],
-  "ArmorPct": 100
+  "ArmorPct": 100,
+  "MainStatTypeId": 12,
+  "SaveTime": "2025-08-23T21:13:38.971Z"
 }

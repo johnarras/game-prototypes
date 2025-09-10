@@ -1477,7 +1477,10 @@ public class UnityAssetService : IAssetService
         {
             LoadAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
         }
-
+        else
+        {
+            _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
+        }
     }
 }
 

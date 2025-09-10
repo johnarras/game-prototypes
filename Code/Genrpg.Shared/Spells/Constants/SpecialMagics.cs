@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Spells.Constants
+﻿namespace Genrpg.Shared.Spells.Constants
 {
     public class SpecialMagics
     {
@@ -14,8 +10,7 @@ namespace Genrpg.Shared.Spells.Constants
         public const long Teleport = 6;
         public const long CleanseLocation = 7;
         public const long RevealLocation = 8;
-        public const long SetWarpTarget = 9;
-        public const long ReturnWarpTarget = 10;
+        public const long Beacon = 9;
 
     }
 }

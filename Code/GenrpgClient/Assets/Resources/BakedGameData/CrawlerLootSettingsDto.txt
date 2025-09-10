@@ -6,7 +6,8 @@
     "TwoHandWeaponMult": 1.5,
     "ProcMult": 2.0,
     "EffectMult": 2.0,
-    "MaxLootItems": 4,
+    "MaxLootItems": 2,
+    "StatPointsPerExtraItem": 2.0,
     "ItemChancePerMonster": 0.02,
     "MinGoldPerLevel": 5.0,
     "MaxGoldPerLevel": 15.0,
@@ -17,7 +18,9 @@
     "MaxLevelGoldMultDefault": 0.4,
     "ItemChanceDefault": 0.5,
     "ExtraLootScalePerMonsterBonus": 0.1,
+    "AllowAllArmorTypes": true,
+    "AllowAllWeaponTypes": true,
     "Name": "CrawlerLootSettings",
-    "SaveTime": "2025-07-11T00:28:40.801Z"
+    "SaveTime": "2025-09-01T14:20:29.432Z"
   }
 }

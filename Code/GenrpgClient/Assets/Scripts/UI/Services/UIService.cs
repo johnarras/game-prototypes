@@ -423,5 +423,13 @@ namespace Assets.Scripts.UI.Services
             }
 
         }
+
+        public void SetImageColor(IImage image, Color color)
+        {
+            if (image is GImage gImage)
+            {
+                gImage.color = color;
+            }
+        }
     }
 }

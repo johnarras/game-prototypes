@@ -118,6 +118,15 @@ Each party member also gets upgrade points to spend to allow them
 to specialize to become better at whatever parts of their
 classes they want to emphasize.
 
+======== Experience
+
+The party gains experience when they kill monsters and complete quests.
+Monster exp is lowered when the party's highest level member is higher
+than the monster level.
+
+Currently, if the party's highest level member is more than 5 points above 
+the monster levels, players lose 15% exp and gold and loot per extra level
+until this penalty reaches only getting 10% exp, gold and items.
 
 ======== Inventory
 
@@ -125,6 +134,59 @@ You may carry as much inventory as you want, but if the party has more than
 5 items per party member (can be upgraded), the players will
 take longer to move, thus making time pass faster.
 
+======== Equipment
+
+The equipment is divided into 4 armor types (and implicitly weapons are
+divided this way, as well) based on the 4 main attack stats:
+
+	- Cloth gives Intellect (for offensive spell casting)
+
+	- Wood gives Devotion (for healing/curing)
+
+	- Leather gives Agility (for ranged combat)
+
+	- Metal gives Strength (for melee combat)
+
+Equipment also has tiers similar to the Might and Magic series with
+more and more impressive material names as the players level up. This
+translates into better stats. However, unlike MM, there are no "bad"
+tiers worse than no prefix/tier at all.
+
+Combats can award up to 2 items. Each monster has a chance to drop an item
+and if the party gets more than 2 items in a combat, the loot will randomly
+be reduced to 2 items, but those items will get better stats and get a chance
+to get some extra special bonuses:
+
+======== ItemBonuses
+
+These bonuses can be awarded when players would receive more than 2 items
+from combat. They only receive 2 items, but those items get better stats
+and potentitally some bonuses. These bonuses include:
+
+
+	The ability to cast spells 
+		- Once between combat starts, can upgrade this with party upgrades
+		- Using items works when rooms have Silence.
+		- The combat power scaling is based on the player's largest
+			combat bonus from the various role scalings. Meaning a
+			fighter with high strength using a Fireball item would
+			get bonus damage to each tick based on their strength bonus.
+			This "attunement" means items can be picked up by anyone
+			and used effectively rather than requiring everyone to
+			get +intellect gear to make the most use of items.
+	
+	Immunity to debuff types 
+		- For the whole party
+	
+	Ignore Monster element resistances
+		- For the whole party
+	Ignore map cell mechanics like spinners or antimagic
+	
+	Ignore riddles and quest item unlocks.
+
+These bonuses are rare, and there are loot tables within loot
+tables to determine what bonus you will get, so casting
+simple spells like single target attacks are the most common.
 
 ======== Time
 
@@ -134,3 +196,9 @@ to the next day.
 
 Each day, monsters get a bit stronger, so use your time
 judiciously.
+
+If you have too many items in your inventory, then it takes you
+longer to move each cell in the map, but you can look at a
+character sheet and drag items into the "Drop Item" icon
+to drop items anywhere in the world, or you can go to a town
+and sell the items.

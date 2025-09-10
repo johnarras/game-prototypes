@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Crawler.Roles.Constants
+﻿namespace Genrpg.Shared.Crawler.Roles.Constants
 {
     public class RoleScalingTypes
     {
@@ -12,5 +8,6 @@ namespace Genrpg.Shared.Crawler.Roles.Constants
         public const long Healing = 4;
         public const long Summon = 5;
         public const long Utility = 6;
+        public const long Defense = 7;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.Entities.Constants;
@@ -10,10 +11,8 @@ using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Inventory.Settings.Slots;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -115,7 +114,7 @@ namespace Genrpg.Shared.Inventory.Services
             return item;
         }
 
-        public virtual Item RemoveItem(MapObject unit, string itemId,bool deleteItem)
+        public virtual Item RemoveItem(MapObject unit, string itemId, bool deleteItem)
         {
             InventoryData idata = unit.Get<InventoryData>();
 
@@ -282,28 +281,6 @@ namespace Genrpg.Shared.Inventory.Services
             return true;
         }
 
-        private void UpdateEffectsFromItem(Character ch, Item item, bool addStats)
-        {
-            if (item == null || item.Effects == null)
-            {
-                return;
-            }
-
-            int statMult = addStats ? 1 : -1;
-
-            foreach (ItemEffect eff in item.Effects)
-            {
-                if (eff.EntityTypeId == EntityTypes.Stat)
-                {
-                    _statService.Add(ch, eff.EntityId, StatCategories.Base, eff.Quantity * statMult);
-                }
-                else if (eff.EntityTypeId == EntityTypes.StatPct)
-                {
-                    _statService.Add(ch, eff.EntityId, StatCategories.Pct, eff.Quantity * statMult);
-                }
-            }
-        }
-
         public virtual List<Item> GetInventoryFromItemTypeId(MapObject unit, int itemTypeId)
         {
             List<Item> retval = new List<Item>();
@@ -316,7 +293,7 @@ namespace Genrpg.Shared.Inventory.Services
             return idata.GetItemsByItemTypeId(itemTypeId);
         }
 
-        public bool CanEquipItem (MapObject unit, Item item)
+        public bool CanEquipItem(MapObject unit, Item item)
         {
             ItemType itype = _gameData.Get<ItemTypeSettings>(unit).Get(item.ItemTypeId);
 
@@ -334,6 +311,8 @@ namespace Genrpg.Shared.Inventory.Services
                     return false;
                 }
 
+                CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(unit);
+
                 List<Role> roles = _gameData.Get<RoleSettings>(unit).GetRoles(unit.Roles);
 
                 if (roles.Count < 1)
@@ -343,12 +322,12 @@ namespace Genrpg.Shared.Inventory.Services
 
                 if ((slot.IdKey == EquipSlots.MainHand || slot.IdKey == EquipSlots.Ranged))
                 {
-                    if (roles.Any(x => x.BinaryBonuses.Any(x => x.EntityTypeId == EntityTypes.Item && x.EntityId == itype.IdKey)))
+                    if (lootSettings.AllowAllWeaponTypes || roles.Any(x => x.BinaryBonuses.Any(x => x.EntityTypeId == EntityTypes.Item && x.EntityId == itype.IdKey)))
                     {
                         return true;
                     }
                 }
-                else if (roles.Any(x => x.MaxArmorScalingTypeId >= item.ScalingTypeId))
+                else if (lootSettings.AllowAllArmorTypes || roles.Any(x => x.MaxArmorScalingTypeId >= item.ScalingTypeId))
                 {
                     return true;
                 }

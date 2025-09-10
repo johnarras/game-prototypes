@@ -4,7 +4,8 @@
   "IdKey": 85,
   "Name": "Mapping",
   "Desc": "Lets you map the area you're in.",
-  "PowerCost": 2.0,
+  "PowerCost": 5.0,
+  "PowerPerLevel": 1.0,
   "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
@@ -20,5 +21,6 @@
       "ElementTypeId": 2
     }
   ],
-  "SaveTime": "2025-08-06T23:38:18.738Z"
+  "ItemEnchantWeight": 1.0,
+  "SaveTime": "2025-09-09T08:58:31.973Z"
 }

@@ -19,6 +19,8 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         public override void Init()
         {
             _dispatcher.AddListener<CrawlerStateData>(OnNewStateData, GetToken());
+            _dispatcher.AddListener<RefreshPartyStatus>(OnRefreshPartyStatus, GetToken());
+            _dispatcher.AddListener<RefreshUnitStatus>(OnRefreshUnitStatus, GetToken());
 
             for (int i = 0; i < Rows.Count; i++)
             {

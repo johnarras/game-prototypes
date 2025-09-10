@@ -141,12 +141,25 @@
       "MaxTier": 10,
       "BonusPerTier": 1.0,
       "BasePointCost": 4
+    },
+    {
+      "Id": "partyupgrade14default",
+      "ParentId": "default",
+      "IdKey": 14,
+      "Name": "ItemUsesPerCombat",
+      "Desc": "Increases the number of items can be used between combat starts.",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "MaxTier": 2,
+      "BonusPerTier": 1.0,
+      "BasePointCost": 20
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "PartyUpgradeSettings",
-    "SaveTime": "2025-06-07T00:16:50.417Z"
+    "SaveTime": "2025-09-03T02:00:39.198Z"
   },
-  "SaveTime": "2025-06-07T00:16:50.417Z"
+  "SaveTime": "2025-09-03T02:00:39.198Z"
 }

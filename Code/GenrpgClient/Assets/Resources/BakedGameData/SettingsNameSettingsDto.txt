@@ -846,6 +846,18 @@
       "ParentId": "default",
       "IdKey": 141,
       "Name": "TravelSettings"
+    },
+    {
+      "Id": "settingsname142default",
+      "ParentId": "default",
+      "IdKey": 142,
+      "Name": "CrawlerItemSettings"
+    },
+    {
+      "Id": "settingsname143default",
+      "ParentId": "default",
+      "IdKey": 143,
+      "Name": "CrawlerCurrencySettings"
     }
   ],
   "Parent": {

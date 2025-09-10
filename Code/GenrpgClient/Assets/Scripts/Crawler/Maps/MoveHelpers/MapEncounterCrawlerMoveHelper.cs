@@ -93,7 +93,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                         }
 
                         int damage = MathUtils.IntRange(minDam, maxDam, _rand);
-                        _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -damage, ElementTypes.Physical);
+                        _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -damage, ElementTypes.Melee);
 
                         if (pm.Stats.Curr(StatTypes.Health) < 1)
                         {

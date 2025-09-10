@@ -1,5 +1,6 @@
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
 
         public string SingularName { get; set; }
         public string PluralName { get; set; }
-        public long UnitTypeId { get; set; }
+        public UnitType UnitType { get; set; }
 
         public CombatGroup()
         {

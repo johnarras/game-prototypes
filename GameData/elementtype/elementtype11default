@@ -1,0 +1,32 @@
+{
+  "Id": "elementtype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Ranged",
+  "Desc": "Basic element.",
+  "Icon": "Ranged",
+  "Art": "Ranged",
+  "CasterActionName": "Shoot",
+  "ObserverActionName": "Shoots",
+  "CastAnim": "Ranged",
+  "VulnElementTypeId": 10,
+  "VulnDamagePercent": 300,
+  "VulnCritPercentMod": 10,
+  "ResistDamagePercent": 33,
+  "ResistCritPercentMod": -50,
+  "Color": "#51FFCA",
+  "Skills": [],
+  "Procs": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 9,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "Chance": 0.005,
+      "MaxCharges": 1,
+      "CurrCharges": 1,
+      "ElementTypeId": 11
+    }
+  ],
+  "SaveTime": "2025-09-09T01:42:03.03Z"
+}

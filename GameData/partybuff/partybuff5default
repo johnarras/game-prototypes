@@ -3,5 +3,8 @@
   "ParentId": "default",
   "IdKey": 5,
   "Name": "Mapping",
-  "Desc": "Shows you the minimap and lets you see the level map."
+  "Desc": "Shows you the minimap and lets you see the level map.",
+  "ProcChanceScale": 1.0,
+  "EffectScale": 1.0,
+  "SaveTime": "2025-08-29T11:04:35.123Z"
 }

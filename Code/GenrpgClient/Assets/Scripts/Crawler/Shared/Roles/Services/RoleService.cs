@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Combat.Settings;
+﻿using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
@@ -25,7 +24,7 @@ namespace Genrpg.Shared.Crawler.Roles.Services
     {
 
         double GetRoleScalingLevel(PartyData party, CrawlerUnit crawlerUnit, long roleScalingTypeId);
-        double GetSpellScalingLevel (PartyData party, CrawlerUnit crawlerUnit, CrawlerSpell spell);
+        double GetSpellScalingLevel(PartyData party, CrawlerUnit crawlerUnit, CrawlerSpell spell);
 
     }
 
@@ -51,7 +50,6 @@ namespace Genrpg.Shared.Crawler.Roles.Services
                 scalingLossPercent = _gameData.Get<StatusEffectSettings>(_gs.ch).Get(StatusEffects.Cursed).Amount;
             }
 
-
             if (!crawlerUnit.IsPlayer())
             {
                 double scalingPerLevel = _gameData.Get<CrawlerMonsterSettings>(_gs.ch).ScalingPerLevel;
@@ -67,6 +65,7 @@ namespace Genrpg.Shared.Crawler.Roles.Services
                 totalMonsterScaling *= (100 - scalingPerLevel) / 100;
 
                 totalMonsterScaling += combatSettings.BaseMonsterRoleScalingTier;
+
 
                 return totalMonsterScaling;
             }
@@ -87,15 +86,17 @@ namespace Genrpg.Shared.Crawler.Roles.Services
 
                 if (bonusAmount != null)
                 {
-                    totalPartyMemberScaling += unitRole.Level * (bonusAmount.Amount+partyUpgradeScaling+memberUpgradeScaling);
+                    totalPartyMemberScaling += unitRole.Level * (bonusAmount.Amount);
                 }
             }
 
+            totalPartyMemberScaling += crawlerUnit.Level * (partyUpgradeScaling + memberUpgradeScaling);
+
             totalPartyMemberScaling *= (100 - scalingLossPercent) / 100;
-            
+
             totalPartyMemberScaling += combatSettings.BasePlayerRoleScalingTier;
 
-            
+
 
             return (int)(100 * totalPartyMemberScaling) / 100.0;
         }
@@ -112,7 +113,7 @@ namespace Genrpg.Shared.Crawler.Roles.Services
                 while (finalSpell.ReplacesCrawlerSpellId > 0)
                 {
                     CrawlerSpell prevSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(finalSpell.ReplacesCrawlerSpellId);
-                  
+
                     if (prevSpell != null && !spellsSeen.Contains(prevSpell))
                     {
                         finalSpell = prevSpell;
@@ -122,7 +123,7 @@ namespace Genrpg.Shared.Crawler.Roles.Services
                     {
                         break;
                     }
-                                        
+
                 }
             }
 

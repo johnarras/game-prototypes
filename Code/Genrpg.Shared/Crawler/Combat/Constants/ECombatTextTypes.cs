@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Crawler.Combat.Constants
+﻿namespace Genrpg.Shared.Crawler.Combat.Constants
 {
     public enum ECombatTextTypes
     {
@@ -10,5 +6,7 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
         Damage = 1,
         Healing = 2,
         Info = 3,
+        Defense = 4,
+        Thorns = 5,
     };
 }

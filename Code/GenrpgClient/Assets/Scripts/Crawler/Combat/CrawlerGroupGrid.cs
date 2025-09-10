@@ -1,20 +1,19 @@
-﻿using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Monsters.Entities;
+﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Constants;
+using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.UnitEffects.Constants;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Combat
 {
     public class CrawlerGroupGrid : BaseBehaviour
     {
+
+        private IAwaitableService _awaitableService = null;
 
         public GameObject Anchor;
 
@@ -36,19 +35,20 @@ namespace Assets.Scripts.Crawler.Combat
             foreach (CombatGroup group in groups)
             {
 
-                if (group.Units.Any(x=>x is PartyMember member))
+                if (group.Units.Any(x => x is PartyMember member))
                 {
                     continue;
                 }
 
                 CrawlerCombatIcon icon = Icons.FirstOrDefault(x => x.Group.Id == group.Id);
-           
+
                 if (!group.Units.Any(x => !x.StatusEffects.HasBit(StatusEffects.Dead)))
                 {
                     if (icon != null)
                     {
-                        _clientEntityService.DelayDestroy(icon.gameObject, 0.3f, icon.GetToken());
                         Icons.Remove(icon);
+
+                        _awaitableService.ForgetAwaitable(DelayDestroyIcon(icon, icon.GetToken()));
                     }
                 }
                 else
@@ -68,9 +68,9 @@ namespace Assets.Scripts.Crawler.Combat
             List<CrawlerCombatIcon> iconsToRemove = new List<CrawlerCombatIcon>();
             foreach (CrawlerCombatIcon icon in Icons)
             {
-                CombatGroup currGroup = groups.FirstOrDefault(x=>x.Id == icon.Group.Id);
+                CombatGroup currGroup = groups.FirstOrDefault(x => x.Id == icon.Group.Id);
 
-                if (currGroup ==null)
+                if (currGroup == null)
                 {
                     iconsToRemove.Add(icon);
                 }
@@ -83,5 +83,11 @@ namespace Assets.Scripts.Crawler.Combat
             }
         }
 
+
+        private async Awaitable DelayDestroyIcon(CrawlerCombatIcon icon, CancellationToken token)
+        {
+            await Awaitable.WaitForSecondsAsync(CrawlerClientCombatConstants.DestroyCombatIconDelaySeconds, token);
+            _clientEntityService.Destroy(icon.gameObject);
+        }
     }
 }

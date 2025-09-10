@@ -144,7 +144,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
             return (byte)((Get(x, y, CellIndex.Walls) >> MapWallBits.NWallStart) % (1 << MapWallBits.WallBitSize));
         }
 
-        public bool HasEntranceRiddle()
+        public bool EntranceRiddleRequired()
         {
             return EntranceRiddle != null &&
                 !string.IsNullOrEmpty(EntranceRiddle.Text) &&

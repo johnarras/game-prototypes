@@ -8,6 +8,5 @@ namespace Genrpg.Shared.Utils
         {
             return (val & flag) != 0;
         }
-
     }
 }

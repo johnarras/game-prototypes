@@ -1,15 +1,10 @@
-using MessagePack;
-using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Spells.Entities;
-using Newtonsoft.Json;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Monsters.Entities
 {
@@ -26,6 +21,9 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
 
         [JsonIgnore]
         public UnitAction Action { get; set; }
+
+        [JsonIgnore]
+        public double CombatPriority { get; set; }
 
         public string CombatGroupId { get; set; }
 

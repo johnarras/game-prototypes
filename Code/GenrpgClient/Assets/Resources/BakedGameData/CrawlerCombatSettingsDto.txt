@@ -7,7 +7,7 @@
     "GuardianDamageScale": 0.6600000262260437,
     "TauntDamageScale": 0.25,
     "MaxGroupSize": 999,
-    "LuckCritChanceAtLevel": 0.05000000074505806,
+    "LuckCritChanceAtLevel": 0.05,
     "MaxLuckCritRatio": 2.0,
     "HiddenSingleTargetCritPercent": 100.0,
     "GuaranteedHitDefenseRatio": 1.5,
@@ -29,7 +29,10 @@
     "SpeedCombatSequencingDeltaPercent": 20,
     "ExtraCureStatusEffectsRemovedPerTier": 0.2,
     "LuckBonusHitChanceScale": 1.5,
+    "SubsequentAttackPriorityLossPercent": 0.01,
+    "SlowEffectPriorityScale": 0.5,
+    "HitPartyRandomMemberChance": 0.05,
     "Name": "CrawlerCombatSettings",
-    "SaveTime": "2025-08-16T19:36:20.209Z"
+    "SaveTime": "2025-09-06T19:09:06.424Z"
   }
 }

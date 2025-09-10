@@ -1,6 +1,10 @@
-﻿using Genrpg.Shared.Client.GameEvents;
+﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
+using Assets.Scripts.Crawler.Tilemaps;
+using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.UI.Constants;
@@ -11,7 +15,8 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
     {
 
         private ICrawlerService _crawlerService = null;
-
+        private ICrawlerSpellService _spellService = null;
+        private IAwaitableService _awaitableService = null;
 
         public GButton MapButton;
         public GButton SafetyButton;
@@ -20,7 +25,8 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         public GButton CastButton;
         public GButton QuestLogButton;
         public GButton PartyOrderButton;
-        public GButton ResetGameButton;
+        public GButton CastPartyBuffsButton;
+        public GButton UseItemButton;
 
         public override void Init()
         {
@@ -29,23 +35,31 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             _uiService.SetButton(SafetyButton, GetType().Name, ClickSafety);
             _uiService.SetButton(InfoButton, GetType().Name, ClickInfo);
             _uiService.SetButton(MainMenuButton, GetType().Name, ClickMainMenu);
-            _uiService.SetButton(CastButton, GetType().Name, ClickCast);
+            _uiService.SetButton(CastButton, GetType().Name, ClickCastSpell);
             _uiService.SetButton(QuestLogButton, GetType().Name, ClickQuestLog);
             _uiService.SetButton(PartyOrderButton, GetType().Name, ClickPartyOrder);
-            _uiService.SetButton(ResetGameButton, GetType().Name, ResetGame);
+            _uiService.SetButton(CastPartyBuffsButton, GetType().Name, CastAllPartyBuffs);
+            _uiService.SetButton(UseItemButton, GetType().Name, ClickUseItem);
         }
 
         private void ClickMapScreen()
         {
             PartyData party = _crawlerService.GetParty();
 
-            if (party.Buffs.Get(PartyBuffs.Mapping) == 0)
+            if (CrawlerTilemap.RequireMapping && party.Buffs.Get(PartyBuffs.Mapping) == 0)
             {
                 _dispatcher.Dispatch(new ShowFloatingText("You can only look at maps when mapping is active.", EFloatingTextArt.Error));
                 return;
             }
 
-            _screenService.Open(ScreenNames.CrawlerMap);
+            if (_screenService.GetScreen(ScreenNames.CrawlerMap) == null)
+            {
+                _screenService.Open(ScreenNames.CrawlerMap);
+            }
+            else
+            {
+                _screenService.Close(ScreenNames.CrawlerMap);
+            }
         }
 
         private void ClickMainMenu()
@@ -66,11 +80,26 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             }
         }
 
-        private void ClickCast()
+        private void ClickCastSpell()
         {
             if (_crawlerService.GetState() == ECrawlerStates.ExploreWorld)
             {
                 _crawlerService.ChangeState(ECrawlerStates.SelectAlly, GetToken());
+            }
+        }
+
+        private void ClickUseItem()
+        {
+            if (_crawlerService.GetState() == ECrawlerStates.ExploreWorld)
+            {
+                SelectUsableItemArgs args = new SelectUsableItemArgs()
+                {
+                    MemberId = null,
+                    NextState = ECrawlerStates.OnSelectSpell,
+                    ReturnState = ECrawlerStates.ExploreWorld,
+                };
+
+                _crawlerService.ChangeState(ECrawlerStates.SelectUsableItem, GetToken(), args);
             }
         }
 
@@ -90,9 +119,9 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             }
         }
 
-        private void ResetGame()
+        private void CastAllPartyBuffs()
         {
-            _initClient.FullResetGame();
+            _awaitableService.ForgetTask(_spellService.CastAllPartyBuffs(_crawlerService.GetParty(), GetToken()));
         }
     }
 }

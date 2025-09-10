@@ -1,154 +1,162 @@
-spellheaders,IdKey,Name,Desc,RoleScalingTier,Icon,Art,PowerCost,PowerPerLevel,RoleScalingTypeId,MinRange,MaxRange,RequiredStatusEffectId,ReplacesCrawlerSpellId,CombatActionId,TargetTypeId,ExtraCritChance,Flags,StatBonusScaling
-effectheaders,EntityTypeId,EntityId,MinQuantity,,MaxQuantity,ElementTypeId,Name,0,,,,,,,,,,
-Physical Skills,,,,,,,,,,,,,,,,,,
-spell,1,Attack,Melee attack one or more enemies.,1,,,0,0,melee,0,10,0,0,attack,enemy,0,1,1
-effect,attack,1,0,,0,physical,,0,,,,,,,,,,
-spell,2,Defend,Take half damage this turn if you get hit.,1,,,0,0,healing,0,100,0,0,defend,self,0,1,1
-spell,3,Shoot,Attack one or more enemies that are out of melee range.,1,,,0,0,ranged,20,100,0,0,shoot,enemy,0,1,1
-effect,shoot,2,0,,0,physical,,0,,,,,,,,,,
-spell,4,Whirlwind,Hit one or more enemies in all groups within melee range.,2,,,0,0,melee,0,10,0,1,attack,enemyineachgroup,0,0,1
-effect,attack,1,0,,0,physical,,0,,,,,,,,,,
-spell,5,Volley,Hit one or more enemies in all groups with ranged damage.,2,,,0,0,ranged,20,100,0,3,shoot,enemyineachgroup,0,0,1
-effect,shoot,2,0,,0,physical,,0,,,,,,,,,,
-spell,6,Hide,Meld into the shadows to allow next single target ability to crit.,3,,,0,0,utility,0,100,0,0,hide,self,0,0,1
-spell,7,Charge,Passive buff to move the party forward more when advancing.,1,,,0,0,melee,0,100,0,0,cast,self,0,0,1
-effect,statuseffect,4,1,,2,electric,,0,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-Healing/Cures,,,,,,,,,,,,,,,,,,
-spell,20,Heal Wounds,Heal the wounds of an ally.,1,,,3,0.5,healing,0,100,0,0,cast,ally,0,0,1
-effect,healing,0,1,,9,light,,0,,,,,,,,,,
-spell,21,Heal Party,Heal the wounds of all allies.,3,,,10,1,healing,0,100,0,0,cast,allallies,0,0,1
-effect,healing,0,1,,3,light,,0,,,,,,,,,,
-spell,22,Cure,Cure a single ally,1,,,5,0.5,healing,0,100,0,0,cast,ally,0,0,1
-effect,statuseffect,0,-1,,-1,light,,0,,,,,,,,,,
-spell,23,Cure Party,Cure all party members,3,,,15,0,healing,0,100,0,0,cast,allallies,0,0,1
-effect,statuseffect,0,-1,,-1,light,,0,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-Utility,,,,,,,,,,,,,,,,,,
-spell,30,Town Portal,Teleport to a town on the overworld map.,1,,,25,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,1,0,,0,arcane,,0,,,,,,,,,,
-spell,31,Phase Wall,Pass through a wall in front of you if the square behind it exists.,1,,,50,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,2,0,,0,arcane,,0,,,,,,,,,,
-spell,32,Identify Item,Find out the stats an item has.,3,,,10,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,4,0,,0,arcane,,0,,,,,,,,,,
-spell,33,Blink,Jump forward 1-9 squares if you are not impeded by anything.,5,,,10,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,5,0,,0,arcane,,0,,,,,,,,,,
-spell,34,Teleport,Move to a different location in the current map.,8,,,25,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,6,0,,0,arcane,,0,,,,,,,,,,
-spell,35,Set Beacon,Set a teleport location (per player),5,,,1,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,9,0,,0,arcane,,0,,,,,,,,,,
-spell,36,Return to Beacon,Return to the player's teleport location.,5,,,20,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,10,0,,0,arcane,,0,,,,,,,,,,
-spell,37,Identify Monster,Get some information about a monster.,3,,,0,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,3,0,,0,arcane,,0,,,,,,,,,,
-spell,38,Pick Lock,Open a locked door or chest.,1,,,0,0,utility,0,100,0,0,cast,special,0,0,1
-effect,statuseffect,4,1,,2,physical,,0,,,,,,,,,,
-spell,39,Cleanse Area,Disarm any traps nearby.,2,,,50,5,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,7,1,,2,physical,,0,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-Debuffs,,,,,,,,,,,,,,,,,,
-spell,60,Silence,Prevent a group from casting spells.,6,,,15,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,statuseffect,10,1,,2,shadow,,0,,,,,,,,,,
-spell,61,Entangle,Prevent a group from use melee attacks.,5,,,15,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,statuseffect,11,2,,3,nature,,0,,,,,,,,,,
-spell,62,Weaken,Reduce the melee damage of a group of foes.,4,,,5,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,statuseffect,17,100,,100,arcane,,0,,,,,,,,,,
-spell,63,Mesmerize,Make  group of enemies unable to act.,6,,,10,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,statuseffect,4,1,,2,electric,,0,,,,,,,,,,
-spell,64,Charm,Convince a monster to join your side.,5,,,25,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,statuseffect,4,1,,2,shadow,,0,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-Party Buffs,,,,,,,,,,,,,,,,,,
-spell,80,Sense Area,Determine if any traps or interesting things are nearby.,2,,,2,0,utility,0,100,0,0,cast,special,0,0,1
-effect,specialmagic,8,0,,0,arcane,,0,,,,,,,,,,
-spell,81,Light,Create a light to let you see.,1,,,2,,utility,,,,,cast,world,0,0,1
-effect,partybuff,light,1,,1,fire,,,,,,,,,,,,
-spell,82,Magic Compass,Gives you a compass.,3,,,2,,utility,,,,,cast,world,0,0,1
-effect,partybuff,magic compass,1,,1,fire,,,,,,,,,,,,
-spell,83,Levitate,Lets you float over many traps.,2,,,2,,utility,,,,,cast,world,0,0,1
-effect,partybuff,levitate,1,,1,fire,,,,,,,,,,,,
-spell,84,Second Sight,Alerts you to traps nearby.,4,,,2,,utility,,,,,cast,world,0,0,1
-effect,partybuff,second sight,1,,1,fire,,,,,,,,,,,,
-spell,85,Mapping,Lets you map the area you're in.,1,,,2,,utility,,,,,cast,world,0,0,1
-effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,
-spell,86,Batchspell,Casts all party buffs.,5,,,10,,utility,,,,,cast,world,0,0,1
-effect,partybuff,light,1,,1,fire,,,,,,,,,,,,
-effect,partybuff,magic compass,1,,1,fire,,,,,,,,,,,,
-effect,partybuff,levitate,1,,1,fire,,,,,,,,,,,,
-effect,partybuff,second sight,1,,1,fire,,,,,,,,,,,,
-effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-Summons,,,,,,,,,,,,,,,,,,
-spell,100,Call Beast,Summon a beast.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,bear,1,,1,nature,,0,,,,,,,,,,
-spell,101,Conjure Golem,Summon a golem.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,stonegolem,1,,1,nature,,0,,,,,,,,,,
-spell,102,Summon Elemental,Summon an elemental.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,earth elemental,1,,1,nature,,0,,,,,,,,,,
-spell,103,Summon Monk,Summon a monk,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,monk,1,,1,nature,,0,,,,,,,,,,
-spell,104,Summon Scrapper,Summon a scrapper,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,scrapper,1,,1,nature,,0,,,,,,,,,,
-spell,105,Signal Thief,Signal a thief to follow you.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,thief,1,,1,nature,,0,,,,,,,,,,
-spell,106,Summon Skeleton,Summon a skeleton.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,skeleton,1,,1,nature,,0,,,,,,,,,,
-spell,107,Summon Vampire,Summon a Vampire,5,,,9,1,summon,0,100,0,0,cast,self,0,0,1
-effect,unit,vampire,1,,1,nature,,0,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-AttackSpells,,,,,,,,,,,,,,,,,,
-spell,200,Holy Beam,Hit one or more enemies with holy damage.,1,,,4,0.5,healing,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,9,light,,0,,,,,,,,,,
-spell,201,Holy Nova,Hit all enemies in a group with holy damage.,2,,,8,1,healing,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,2,light,,0,,,,,,,,,,
-spell,202,Holy Storm,Hit all enemies with holy damage.,4,,,12,1,healing,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,light,,0,,,,,,,,,,
-spell,210,Fireball,Hit one or more enemies in a group with fire damage.,1,,,5,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,fire,,0,,,,,,,,,,
-spell,211,Flamestrike,Hit all enemies in a group with fire damage.,2,,,10,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,fire,,0,,,,,,,,,,
-spell,212,Firestorm,Hit all enemies with fire damage.,4,,,15,1,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,fire,,0,,,,,,,,,,
-spell,220,Frostbolt,Hit one or more enemies in a group with cold damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,ice,,0,,,,,,,,,,
-spell,221,Cone of Cold,Hit all enemies in a group with cold damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,ice,,0,,,,,,,,,,
-spell,222,Blizzard,Hit all enemies with cold damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,ice,,0,,,,,,,,,,
-spell,230,Lightning Bolt,Hit one or more enemies with electric damage.,1,,,6,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,electric,,0,,,,,,,,,,
-spell,231,Chain Lightning,Hit all enemies in a group with electric damage.,2,,,12,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,electric,,0,,,,,,,,,,
-spell,232,Lightning Storm,Hit all enemies with electric damage.,4,,,18,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,electric,,0,,,,,,,,,,
-spell,240,Poison Arrow,Hit one or more enemies with nature damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,nature,,0,,,,,,,,,,
-spell,241,Poison Spray,Hit all enemies in a group with nature damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,nature,,0,,,,,,,,,,
-spell,242,Plaguestorm,Hit all enemies with poisonous nature damage,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,nature,,0,,,,,,,,,,
-spell,250,Arcane Missiles,Hit one or more enemies with arcane damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,arcane,,0,,,,,,,,,,
-spell,251,Arcane Explosion,Hit all enemies in a group with arcane damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,arcane,,0,,,,,,,,,,
-spell,252,Magestorm,Hit all enemies with arcane damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,arcane,,0,,,,,,,,,,
-spell,260,Darkbolt,Hit one or more enemies with shadow damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,shadow,,0,,,,,,,,,,
-spell,261,Shadow Burst,Hit all enemies in a group with shadow damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,shadow,,0,,,,,,,,,,
-spell,262,Nightstorm,Hit all enemies with shadow damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,shadow,,0,,,,,,,,,,
-spell,270,Shards,Hit one or more enemies with earthen shards.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,earth,,0,,,,,,,,,,
-spell,271,Groundburst,Hit all enemies in a group with earth damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,earth,,0,,,,,,,,,,
-spell,272,Earthquake,Hit all enemies with earth damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,earth,,0,,,,,,,,,,
-spell,280,Acid Bolt,Hit one or more enemies with acid.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1
-effect,damage,3,1,,12,acid,,0,,,,,,,,,,
-spell,281,Acid Spray,Hit all enemies in a group with acid damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1
-effect,damage,3,1,,6,acid,,0,,,,,,,,,,
-spell,282,Acidic Wave,Hit all enemies with acid damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1
-effect,damage,3,1,,4,acid,,0,,,,,,,,,,
+spellheaders,IdKey,Name,Desc,RoleScalingTier,Icon,Art,PowerCost,PowerPerLevel,RoleScalingTypeId,MinRange,MaxRange,RequiredStatusEffectId,ReplacesCrawlerSpellId,CombatActionId,TargetTypeId,ExtraCritChance,Flags,StatBonusScaling,ItemEnchantWeight
+effectheaders,EntityTypeId,EntityId,MinQuantity,,MaxQuantity,ElementTypeId,Name,0,,,,,,,,,,,
+Physical Skills,,,,,,,,,,,,,,,,,,,
+spell,1,Attack,Melee attack one or more enemies.,1,,,0,0,melee,0,10,0,0,attack,enemy,0,1,1,0
+effect,attack,1,0,,0,melee,,0,,,,,,,,,,,
+spell,2,Defend,Take half damage this turn if you get hit.,1,,,0,0,healing,0,100,0,0,defend,self,0,1,1,0
+spell,3,Shoot,Attack one or more enemies that are out of melee range.,1,,,0,0,ranged,20,100,0,0,shoot,enemy,0,1,1,0
+effect,shoot,2,0,,0,ranged,,0,,,,,,,,,,,
+spell,4,Whirlwind,Hit one or more enemies in all groups within melee range.,2,,,0,0,melee,0,10,0,1,attack,enemyineachgroup,0,0,1,0
+effect,attack,1,0,,0,melee,,0,,,,,,,,,,,
+spell,5,Volley,Hit one or more enemies in all groups with ranged damage.,2,,,0,0,ranged,20,100,0,3,shoot,enemyineachgroup,0,0,1,0
+effect,shoot,2,0,,0,ranged,,0,,,,,,,,,,,
+spell,6,Hide,Meld into the shadows to allow next single target ability to crit.,3,,,0,0,utility,0,100,0,0,hide,self,0,0,1,0
+spell,7,Charge,Passive buff to move the party forward more when advancing.,1,,,0,0,melee,0,100,0,0,cast,self,0,0,1,0
+effect,statuseffect,4,1,,2,electric,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Healing/Cures,,,,,,,,,,,,,,,,,,,
+spell,20,Heal Wounds,Heal the wounds of an ally.,1,,,3,0.5,healing,0,100,0,0,cast,ally,0,0,1,1
+effect,healing,0,1,,9,light,,0,,,,,,,,,,,
+spell,21,Heal Party,Heal the wounds of all allies.,3,,,10,1,healing,0,100,0,0,cast,allallies,0,0,1,0.1
+effect,healing,0,1,,3,light,,0,,,,,,,,,,,
+spell,22,Cure,Cure a single ally,1,,,5,0.5,healing,0,100,0,0,cast,ally,0,0,1,1
+effect,statuseffect,0,-1,,-1,light,,0,,,,,,,,,,,
+spell,23,Cure Party,Cure all party members,3,,,15,0,healing,0,100,0,0,cast,allallies,0,0,1,0.1
+effect,statuseffect,0,-1,,-1,light,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Utility,,,,,,,,,,,,,,,,,,,
+spell,30,Town Portal,Teleport to a town on the overworld map.,1,,,25,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,1,0,,0,arcane,,0,,,,,,,,,,,
+spell,31,Phase Wall,Pass through a wall in front of you if the square behind it exists.,1,,,50,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,2,0,,0,arcane,,0,,,,,,,,,,,
+spell,32,Identify Item,Find out the stats an item has.,3,,,10,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,4,0,,0,arcane,,0,,,,,,,,,,,
+spell,33,Blink,Jump forward 1-9 squares if you are not impeded by anything.,5,,,10,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,5,0,,0,arcane,,0,,,,,,,,,,,
+spell,34,Teleport,Move to a different location in the current map.,8,,,25,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,6,0,,0,arcane,,0,,,,,,,,,,,
+spell,35,Beacon,Set a beacon or return to a location.,5,,,1,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,9,0,,0,arcane,,0,,,,,,,,,,,
+spell,37,Identify Monster,Get some information about a monster.,3,,,0,0,utility,0,100,0,0,cast,special,0,0,1,0
+effect,specialmagic,3,0,,0,arcane,,0,,,,,,,,,,,
+spell,38,Pick Lock,Open a locked door or chest.,1,,,0,0,utility,0,100,0,0,cast,special,0,0,1,0
+effect,statuseffect,4,1,,2,melee,,0,,,,,,,,,,,
+spell,39,Cleanse Area,Disarm any traps nearby.,2,,,50,5,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,7,1,,2,melee,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Debuffs,,,,,,,,,,,,,,,,,,,
+spell,60,Silence,Prevent a group from casting spells.,6,,,15,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
+effect,statuseffect,10,1,,2,shadow,,0,,,,,,,,,,,
+spell,61,Entangle,Prevent a group from use melee attacks.,5,,,15,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
+effect,statuseffect,11,2,,3,nature,,0,,,,,,,,,,,
+spell,62,Weaken,Reduce the melee damage of a group of foes.,4,,,5,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
+effect,statuseffect,17,100,,100,arcane,,0,,,,,,,,,,,
+spell,63,Mesmerize,Make  group of enemies unable to act.,6,,,10,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
+effect,statuseffect,4,1,,2,electric,,0,,,,,,,,,,,
+spell,64,Charm,Convince a monster to join your side.,5,,,25,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
+effect,statuseffect,4,1,,2,shadow,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Party Buffs,,,,,,,,,,,,,,,,,,,
+spell,80,Sense Area,Determine if any traps or interesting things are nearby.,2,,,2,0,utility,0,100,0,0,cast,special,0,0,1,1
+effect,specialmagic,8,0,,0,arcane,,0,,,,,,,,,,,
+spell,81,Light,Create a light to let you see.,1,,,5,1,utility,,,,,cast,world,0,0,1,1
+effect,partybuff,light,1,,1,fire,,,,,,,,,,,,,
+spell,82,Magic Compass,Gives you a compass.,3,,,10,2,utility,,,,,cast,world,0,0,1,1
+effect,partybuff,magic compass,1,,1,fire,,,,,,,,,,,,,
+spell,83,Levitate,Lets you float over many traps.,2,,,10,2,utility,,,,,cast,world,0,0,1,1
+effect,partybuff,levitate,1,,1,fire,,,,,,,,,,,,,
+spell,84,Danger Sense,Alerts you to traps nearby.,4,,,10,2,utility,,,,,cast,world,0,0,1,1
+effect,partybuff,danger sense,1,,1,fire,,,,,,,,,,,,,
+spell,85,Mapping,Lets you map the area you're in.,1,,,5,1,utility,,,,,cast,world,0,0,1,1
+effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,,
+spell,86,Batchspell,Casts all party buffs.,5,,,40,5,utility,,,,,cast,world,0,0,1,0
+effect,partybuff,light,1,,1,fire,,,,,,,,,,,,,
+effect,partybuff,magic compass,1,,1,fire,,,,,,,,,,,,,
+effect,partybuff,levitate,1,,1,fire,,,,,,,,,,,,,
+effect,partybuff,danger sense,1,,1,fire,,,,,,,,,,,,,
+effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,,
+spell,87,Autoheal,Sometimes heals your party members.,2,,,10,4,healing,,,,,cast,world,0,0,1,0.1
+effect,partybuff,autoheal,1,,1,light,,,,,,,,,,,,,
+spell,88,Barrier,Sometimes you avoid incoming damage.,3,,,15,3,defense,,,,,cast,world,0,0,1,0.1
+effect,partybuff,barrier,1,,1,earth,,,,,,,,,,,,,
+spell,89,Thorns,Retaliate damage toward your attacker.,4,,,20,2,spelldam,,,,,cast,world,0,0,1,0.1
+effect,partybuff,thorns,1,,1,nature,,,,,,,,,,,,,
+spell,90,Sharpshooter,Increases crit chance with ranged attacks.,3,,,20,2,ranged,,,,,cast,world,0,0,1,0.1
+effect,partybuff,sharpshooter,1,,1,ranged,,,,,,,,,,,,,
+spell,91,Lucky Blade,Increases luck extra hit bonus for melee attacks.,4,,,20,2,melee,,,,,cast,world,0,0,1,0.1
+effect,partybuff,lucky blade,1,,1,melee,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Summons,,,,,,,,,,,,,,,,,,,
+spell,100,Call Beast,Summon a beast.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,bear,1,,1,nature,,0,,,,,,,,,,,
+spell,101,Conjure Golem,Summon a golem.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,stonegolem,1,,1,nature,,0,,,,,,,,,,,
+spell,102,Summon Elemental,Summon an elemental.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,earth elemental,1,,1,nature,,0,,,,,,,,,,,
+spell,103,Summon Monk,Summon a monk,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,monk,1,,1,nature,,0,,,,,,,,,,,
+spell,104,Summon Scrapper,Summon a scrapper,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,scrapper,1,,1,nature,,0,,,,,,,,,,,
+spell,105,Signal Thief,Signal a thief to follow you.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,thief,1,,1,nature,,0,,,,,,,,,,,
+spell,106,Summon Skeleton,Summon a skeleton.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,skeleton,1,,1,nature,,0,,,,,,,,,,,
+spell,107,Summon Vampire,Summon a Vampire,5,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,vampire,1,,1,nature,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+AttackSpells,,,,,,,,,,,,,,,,,,,
+spell,200,Holy Beam,Hit one or more enemies with holy damage.,1,,,4,0.5,healing,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,9,light,,0,,,,,,,,,,,
+spell,201,Holy Nova,Hit all enemies in a group with holy damage.,2,,,8,1,healing,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,2,light,,0,,,,,,,,,,,
+spell,202,Holy Storm,Hit all enemies with holy damage.,4,,,12,1,healing,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,light,,0,,,,,,,,,,,
+spell,210,Fireball,Hit one or more enemies in a group with fire damage.,1,,,5,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,fire,,0,,,,,,,,,,,
+spell,211,Flamestrike,Hit all enemies in a group with fire damage.,2,,,10,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,fire,,0,,,,,,,,,,,
+spell,212,Firestorm,Hit all enemies with fire damage.,4,,,15,1,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,fire,,0,,,,,,,,,,,
+spell,220,Frostbolt,Hit one or more enemies in a group with cold damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,ice,,0,,,,,,,,,,,
+spell,221,Cone of Cold,Hit all enemies in a group with cold damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,ice,,0,,,,,,,,,,,
+spell,222,Blizzard,Hit all enemies with cold damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,ice,,0,,,,,,,,,,,
+spell,230,Lightning Bolt,Hit one or more enemies with electric damage.,1,,,6,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,electric,,0,,,,,,,,,,,
+spell,231,Chain Lightning,Hit all enemies in a group with electric damage.,2,,,12,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,electric,,0,,,,,,,,,,,
+spell,232,Lightning Storm,Hit all enemies with electric damage.,4,,,18,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,electric,,0,,,,,,,,,,,
+spell,240,Poison Arrow,Hit one or more enemies with nature damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,nature,,0,,,,,,,,,,,
+spell,241,Poison Spray,Hit all enemies in a group with nature damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,nature,,0,,,,,,,,,,,
+spell,242,Plaguestorm,Hit all enemies with poisonous nature damage,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,nature,,0,,,,,,,,,,,
+spell,250,Arcane Missiles,Hit one or more enemies with arcane damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,arcane,,0,,,,,,,,,,,
+spell,251,Arcane Explosion,Hit all enemies in a group with arcane damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,arcane,,0,,,,,,,,,,,
+spell,252,Magestorm,Hit all enemies with arcane damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,arcane,,0,,,,,,,,,,,
+spell,260,Darkbolt,Hit one or more enemies with shadow damage.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,shadow,,0,,,,,,,,,,,
+spell,261,Shadow Burst,Hit all enemies in a group with shadow damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,shadow,,0,,,,,,,,,,,
+spell,262,Nightstorm,Hit all enemies with shadow damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,shadow,,0,,,,,,,,,,,
+spell,270,Shards,Hit one or more enemies with earthen shards.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,earth,,0,,,,,,,,,,,
+spell,271,Groundburst,Hit all enemies in a group with earth damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,earth,,0,,,,,,,,,,,
+spell,272,Earthquake,Hit all enemies with earth damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,earth,,0,,,,,,,,,,,
+spell,280,Acid Bolt,Hit one or more enemies with acid.,1,,,4,0.5,spelldam,0,100,0,0,cast,enemy,0,0,1,1
+effect,damage,3,1,,12,acid,,0,,,,,,,,,,,
+spell,281,Acid Spray,Hit all enemies in a group with acid damage.,2,,,8,1,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.2
+effect,damage,3,1,,6,acid,,0,,,,,,,,,,,
+spell,282,Acidic Wave,Hit all enemies with acid damage.,4,,,12,0,spelldam,0,100,0,0,cast,allenemies,0,0,1,0.01
+effect,damage,3,1,,4,acid,,0,,,,,,,,,,,

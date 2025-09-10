@@ -1,12 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Monsters.Entities;
-using System;
-using System.Collections.Generic;
-using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Crawler.Maps.Entities;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
@@ -43,7 +38,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         public List<CombatGroup> Enemies { get; set; } = new List<CombatGroup>();
 
         public List<CombatGroup> Allies { get; set; } = new List<CombatGroup>();
-       
+
         public List<CrawlerUnit> EnemiesKilled { get; set; } = new List<CrawlerUnit>();
 
         public CombatGroup PartyGroup { get; set; }
@@ -52,7 +47,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
 
         public long PlayerActionsRemaining { get; set; }
 
-
+        public List<CrawlerUnit> AttackSequence { get; set; } = new List<CrawlerUnit>();
 
         public bool PartyWonCombat() { return Enemies.Count == 0; }
 

@@ -5,7 +5,6 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Stats.Settings.Stats;
 using MessagePack;
 
 namespace Genrpg.Shared.Crawler.Buffs.Settings
@@ -23,14 +22,27 @@ namespace Genrpg.Shared.Crawler.Buffs.Settings
         [Key(5)] public string AtlasPrefix { get; set; }
         [Key(6)] public string Icon { get; set; }
         [Key(7)] public string Art { get; set; }
-
+        [Key(8)] public double ProcChanceScale { get; set; }
+        [Key(9)] public double EffectScale { get; set; }
     }
 
 
     [MessagePackObject]
-    public class PartyBuffSettings : ParentConstantListSettings<PartyBuff,PartyBuffs>
+    public class PartyBuffSettings : ParentConstantListSettings<PartyBuff, PartyBuffs>
     {
         [Key(0)] public override string Id { get; set; }
+
+
+        public double GetEffectScale(long partyBuffId)
+        {
+            return Get(partyBuffId)?.EffectScale ?? 1;
+
+        }
+
+        public double GetProcChanceScale(long partyBuffId)
+        {
+            return Get(partyBuffId)?.ProcChanceScale ?? 1;
+        }
     }
 
     public class PartyBuffSettingsDto : ParentSettingsDto<PartyBuffSettings, PartyBuff> { }
@@ -41,7 +53,7 @@ namespace Genrpg.Shared.Crawler.Buffs.Settings
 
 
 
-    public class PartyBuffHelper : BaseEntityHelper<PartyBuffSettings,PartyBuff>
+    public class PartyBuffHelper : BaseEntityHelper<PartyBuffSettings, PartyBuff>
     {
         public override long Key => EntityTypes.PartyBuff;
     }

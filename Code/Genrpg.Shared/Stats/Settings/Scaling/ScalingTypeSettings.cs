@@ -4,12 +4,9 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Stats.Entities;
 using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Stats.Settings.Scaling
 {
@@ -45,7 +42,9 @@ namespace Genrpg.Shared.Stats.Settings.Scaling
         /// <summary>
         /// Used for Crawler
         /// </summary>
-        [Key(16)] public int ArmorPct { get; set; } = 100;
+        [Key(16)] public int ArmorPct { get; set; }
+
+        [Key(17)] public long MainStatTypeId { get; set; }
 
         public ScalingType()
         {

@@ -7,5 +7,7 @@
   "Icon": "Npc",
   "Art": "Npc",
   "Radius": 5,
-  "VariationCount": 1
+  "VariationCount": 1,
+  "ShowNameplate": true,
+  "SaveTime": "2025-08-26T15:14:36.351Z"
 }

@@ -49,7 +49,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public DateTime LastVendorRefresh { get; set; }
 
-        public long Gold { get; set; } = 0;
+
+        public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
 
         public long Seed { get; set; }
 
@@ -99,7 +100,47 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public List<PartyMember> Members { get; set; } = new List<PartyMember>();
 
+        public List<string> ItemsUsed { get; set; } = new List<string>();
+
         [JsonIgnore][IgnoreMember] public CrawlerCombatState Combat = null;
+
+        public Dictionary<long, SmallIndexBitList> ItemBuffs { get; set; } = new Dictionary<long, SmallIndexBitList>();
+
+        public bool HasItemBuff(long entityTypeId, long entityId)
+        {
+            if (ItemBuffs.TryGetValue(entityTypeId, out SmallIndexBitList bitList))
+            {
+                if (entityId == 0 || bitList.HasBit(entityId))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void AddItemBuff(long entityTypeId, long entityId)
+        {
+            if (!ItemBuffs.ContainsKey(entityTypeId))
+            {
+                ItemBuffs[entityTypeId] = new SmallIndexBitList();
+            }
+            ItemBuffs[entityTypeId].SetBit(entityId);
+        }
+
+        public void RemoveItemBuff(long entityTypeId, long entityId)
+        {
+
+            if (ItemBuffs.ContainsKey(entityTypeId))
+            {
+                ItemBuffs[entityTypeId].RemoveBit(entityId);
+            }
+        }
+
+        public void ClearItemBuffs()
+        {
+            ItemBuffs.Clear();
+        }
 
         public string GetNextId(string prefix)
         {

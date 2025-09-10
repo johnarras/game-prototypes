@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Spells.Constants;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,8 +30,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 
             PartyData party = _crawlerService.GetParty();
 
+            Item castingItem = null;
+
+            if (selectSpellAction.Action.Action != null)
+            {
+                castingItem = selectSpellAction.Action.Action.CastingItem;
+            }
+
             UnitAction newAction = _combatService.GetActionFromSpell(party, selectSpellAction.Action.Member,
-                selectSpellAction.Spell, null);
+                selectSpellAction.Spell, null, castingItem);
 
             if (newAction == null)
             {

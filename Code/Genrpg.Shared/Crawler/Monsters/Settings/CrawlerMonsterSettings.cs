@@ -1,6 +1,3 @@
-using Genrpg.Shared.BoardGame.Settings;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
@@ -30,6 +27,8 @@ namespace Genrpg.Shared.Crawler.Monsters.Settings
 
         [Key(13)] public double MapUnitKeywordChance { get; set; }
         [Key(14)] public double UnitKeywordChance { get; set; }
+
+        [Key(15)] public double PrimaryStatsPointsPerLevel { get; set; }
     }
 
 

@@ -109,6 +109,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             long roadZoneId = allZoneTypes.FirstOrDefault(x => x.Name == "Road").IdKey;
             long mountainZoneId = allZoneTypes.FirstOrDefault(x => x.Name == "Mountains").IdKey;
 
+
             List<ZoneType> startOkZones = allZoneTypes.Where(x => x.GenChance > 0 && x.IdKey != ZoneTypes.Mountains).ToList();
             while (points.Count > 0 && startOkZones.Count > 0)
             {
@@ -814,6 +815,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             await _questService.AddWorldQuestGivers(party, world, rand, token);
 
+            AddEdgeRivers(outdoorMap, rand);
+
             return newMap;
         }
 
@@ -974,6 +977,156 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     }
                 }
             }
+        }
+
+        private void AddEdgeRivers(CrawlerMap map, IRandom rand)
+        {
+            int edgeLength = 2 * (map.Width + map.Height);
+
+            List<PointXZ> endPoints = new List<PointXZ>();
+
+            int minRiverDist = 11;
+            int maxRiverDist = 25;
+
+            List<int> bottomPoints = GetRandomPointsWithinRange(0, map.Width, minRiverDist, maxRiverDist, rand);
+            List<int> topPoints = GetRandomPointsWithinRange(0, map.Width, minRiverDist, maxRiverDist, rand);
+
+            List<int> leftPoints = GetRandomPointsWithinRange(0, map.Height, minRiverDist, maxRiverDist, rand);
+            List<int> rightPoints = GetRandomPointsWithinRange(0, map.Height, minRiverDist, maxRiverDist, rand);
+
+
+            foreach (int val in bottomPoints)
+            {
+                AddRiver(map, val, 0, rand);
+            }
+
+            foreach (int val in topPoints)
+            {
+                AddRiver(map, val, map.Height - 1, rand);
+            }
+
+            foreach (int val in leftPoints)
+            {
+                AddRiver(map, 0, val, rand);
+            }
+
+            foreach (int val in rightPoints)
+            {
+                AddRiver(map, map.Width - 1, val, rand);
+            }
+
+
+        }
+
+        private void AddRiver(CrawlerMap map, int startX, int startZ, IRandom rand)
+        {
+            int xdir = (startX == 0 ? 1 : startX == map.Width - 1 ? -1 : 0);
+            int zdir = (startZ == 0 ? 1 : startZ == map.Height - 1 ? -1 : 0);
+
+            int xsize = map.Width / 4;
+            int zsize = map.Height / 4;
+
+            int xlen = MathUtils.IntRange(xsize * 2 / 3, xsize * 4 / 3, rand);
+            int zlen = MathUtils.IntRange(zsize * 2 / 3, zsize * 4 / 3, rand);
+
+            int endX = startX + xdir * xsize + MathUtils.IntRange(-xsize / 2, xsize / 2, rand);
+            int endZ = startZ + zdir * zsize + MathUtils.IntRange(-zsize / 2, zsize / 2, rand);
+
+            if (xdir == 0)
+            {
+                endX += MathUtils.IntRange(xsize / 3, xsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
+            }
+            if (zdir == 0)
+            {
+                endZ += MathUtils.IntRange(zsize / 3, zsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
+            }
+
+
+            int maxLength = Math.Max(Math.Abs(endX - startX), Math.Abs(endZ - startZ));
+
+            int minBendLength = 3;
+            int maxBendLength = 6;
+            int bendDelta = 1;
+            double branchChance = 0.2f;
+
+            int dist = 0;
+            int cx = startX;
+            int cz = startZ;
+
+            List<PointXZ> points = new List<PointXZ>();
+
+            while (dist < maxLength)
+            {
+                dist += MathUtils.IntRange(minBendLength, maxBendLength, rand);
+
+                if (dist > maxLength)
+                {
+                    dist = maxLength;
+                }
+
+                double pct = 1.0 * dist / maxLength;
+
+                int nx = (int)(startX + (endX - startX) * pct);
+                int nz = (int)(startZ + (endZ - startZ) * pct);
+
+                nx += MathUtils.IntRange(-bendDelta, bendDelta, rand);
+                nz += MathUtils.IntRange(-bendDelta, bendDelta, rand);
+
+                points.AddRange(_lineGenService.GridConnect(cx, cz, nx, nz, rand.NextDouble() < 0.5));
+
+
+                if (rand.NextDouble() < branchChance)
+                {
+                    int ddx = nx - cx;
+                    int ddz = nz - cz;
+
+                    int ndx = ddz * rand.NextDouble() < 0.5 ? 1 : -1;
+                    int ndz = ddx * rand.NextDouble() < 0.5 ? 1 : -1;
+
+
+                    ndx += MathUtils.IntRange(-bendDelta, bendDelta, rand);
+                    ndz += MathUtils.IntRange(-bendDelta, bendDelta, rand);
+
+                    points.AddRange(_lineGenService.GridConnect(nx, nz, nx + ndx, nz + ndz, rand.NextDouble() < 0.5));
+                }
+            }
+
+            foreach (PointXZ pt in points)
+            {
+                if (pt.X < 0 || pt.Z < 0 || pt.X >= map.Width || pt.Z >= map.Height)
+                {
+                    continue;
+                }
+
+                long terrain = map.Get(pt.X, pt.Z, CellIndex.Terrain);
+
+
+                ZoneType ztype = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(terrain);
+
+                if (ztype != null && (ztype.GenChance > 0 || ztype.IdKey == ZoneTypes.Mountains))
+                {
+                    map.Set(pt.X, pt.Z, CellIndex.Terrain, ZoneTypes.Water);
+                }
+            }
+        }
+
+
+        private List<int> GetRandomPointsWithinRange(int start, int end, int minSkip, int maxSkip, IRandom rand)
+        {
+            List<int> retval = new List<int>();
+
+            int curr = start;
+
+            while (curr < end - maxSkip)
+            {
+                curr += MathUtils.IntRange(minSkip, maxSkip, rand);
+
+                if (curr < end - minSkip)
+                {
+                    retval.Add(curr);
+                }
+            }
+            return retval;
         }
     }
 }

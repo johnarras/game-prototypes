@@ -1,23 +1,23 @@
-﻿using Assets.Scripts.Assets;
+﻿using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
+using Assets.Scripts.UI.Interfaces;
 using Assets.Scripts.WorldCanvas.GameEvents;
+using Assets.Scripts.WorldCanvas.Interfaces;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Scripts.DynamicUI.Services
 {
-    public interface IDynamicUIService : IInitializable
+    public interface IDynamicUIService : IInitializable, IClientResetCleanup
     {
     }
 
@@ -32,18 +32,18 @@ namespace Assets.Scripts.DynamicUI.Services
             public RectTransform Rt { get; set; }
         }
 
+        public const string Subdirectory = "DynamicUI";
 
-        const string Subdirectory = "DynamicUI";
+        public const string DooberPrefabName = "Doober";
 
-        private DynamicUIScreen _dooberScreen;
-        private IScreenService _screenService;
-        private IDispatcher _dispatcher;
-        private ILogService _logService;
-        private IClientUpdateService _updateService;
-        private IClientEntityService _clientEntityService;
-        private IInputService _inputService;
-        private ICameraController _cameraController;
-        private IAssetService _assetService;
+        private DynamicUIScreen _dooberScreen = null;
+        private IScreenService _screenService = null;
+        private IDispatcher _dispatcher = null;
+        private ILogService _logService = null;
+        private IClientUpdateService _updateService = null;
+        private IClientEntityService _clientEntityService = null;
+        private IInputService _inputService = null;
+        private ICameraController _cameraController = null;
 
         private Dictionary<string, DooberTarget> _dooberTargets = new Dictionary<string, DooberTarget>();
 
@@ -57,17 +57,27 @@ namespace Assets.Scripts.DynamicUI.Services
 
         private Camera _mainCam = null;
 
-        private Doober _dooberPrefab;
+
+        private ObjectPool _assetPool = new ObjectPool();
+
 
         public async Task Initialize(CancellationToken token)
         {
             _token = token;
             _dispatcher.AddListener<DynamicUIItem>(OnDynamicUIItem, _token);
+            _dispatcher.AddListener<ShowDynamicUIItem>(OnShowDynamicUIItem, _token);
             _updateService.AddUpdate(this, OnUpdate, UpdateTypes.Regular, _token);
             _dispatcher.AddListener<SetDooberTarget>(OnSetDooberTarget, token);
-            _dispatcher.AddListener<ShowDoober>(OnShowDoober, token);        
+            _dispatcher.AddListener<ShowDooberEvent>(OnShowDoober, token);
             _mainCam = _cameraController?.GetMainCamera() ?? null;
+
             await Task.CompletedTask;
+        }
+
+        public async Task OnClientResetCleanup(CancellationToken token)
+        {
+            await Task.CompletedTask;
+            _assetPool.Clear();
         }
 
         private void OnSetDooberTarget(SetDooberTarget sdt)
@@ -101,11 +111,6 @@ namespace Assets.Scripts.DynamicUI.Services
             });
         }
 
-        private Vector2 GetDooberTarget(IReward reward)
-        {
-            return GetDooberTarget(reward.EntityTypeId, reward.EntityId);
-        }
-
         private Vector2 GetDooberTarget(long entityTypeId, long entityId)
         {
             if (_dooberScreen == null)
@@ -133,12 +138,11 @@ namespace Assets.Scripts.DynamicUI.Services
 
                 _worldSpaceAnchor = dynamicUI.WorldSpaceAnchor;
                 _screenSpaceAnchor = dynamicUI.ScreenSpaceAnchor;
-                _dooberPrefab = dynamicUI.DooberPrefab;
                 _token = CancellationTokenSource.CreateLinkedTokenSource(_token, dynamicUI.GetToken()).Token;
             }
         }
 
-        private void OnShowDoober(ShowDoober showDoober)
+        private void OnShowDoober(ShowDooberEvent showDoober)
         {
 
             SetupAnchors();
@@ -161,24 +165,85 @@ namespace Assets.Scripts.DynamicUI.Services
                 endPos = showDoober.EndPosition;
             }
 
-            Vector2 startPos = RectTransformUtility.WorldToScreenPoint(_mainCam, startPosition);
+            Vector2 startPos = startPosition;
 
-                
-            Doober doober = _clientEntityService.FullInstantiate(_dooberPrefab);
-            _clientEntityService.AddToParent(doober, _screenSpaceAnchor);
+            if (!showDoober.StartsInUI)
+            {
+                startPos = RectTransformUtility.WorldToScreenPoint(_mainCam, startPosition);
+            }
+
+            Vector2 diff = new Vector2(startPos.x - startPosition.x, startPos.y - startPosition.y);
+
+            showDoober.EndPosition = endPos;
+            showDoober.StartPosition = startPos;
+
+            ShowDynamicUIItem showItem = new ShowDynamicUIItem(DynamicUILocation.ScreenSpace,
+               DooberPrefabName, startPos, OnLoadDoober, showDoober, _token, Subdirectory);
+
+            OnShowDynamicUIItem(showItem);
+
+        }
+
+        private void OnShowDynamicUIItem(ShowDynamicUIItem showItem)
+        {
+            _assetPool.CheckoutObject(showItem, AssetCategoryNames.UI, showItem.AssetName,
+                OnLoadDynamicItem, showItem, showItem.Token, showItem.Subdirectory);
+        }
+
+
+        private void OnLoadDynamicItem(object obj, object data, CancellationToken token)
+        {
+            ShowDynamicUIItem showItem = data as ShowDynamicUIItem;
+
+            if (showItem == null || showItem.Handler == null)
+            {
+                return;
+            }
+
+            GameObject go = obj as GameObject;
+            if (go == null)
+            {
+                return;
+            }
+
+            OnDynamicUIItem(new DynamicUIItem(go, _clientEntityService.GetInterface<IDynamicUIItem>(go), showItem.StartPos, DynamicUILocation.ScreenSpace, _assetPool));
+
+            showItem.Handler(obj, showItem.Data, token);
+
+        }
+
+        private void OnLoadDoober(object obj, object data, CancellationToken token)
+        {
+            GameObject go = obj as GameObject;
+            if (go == null)
+            {
+                return;
+            }
+
+            ShowDooberEvent showDoober = data as ShowDooberEvent;
+
+            if (data == null)
+            {
+                _clientEntityService.Destroy(go);
+            }
+
+            Doober doober = _clientEntityService.GetComponent<Doober>(go);
+
+            if (doober == null)
+            {
+                _clientEntityService.Destroy(go);
+                return;
+            }
 
             if (!string.IsNullOrEmpty(showDoober.AtlasName) && !string.IsNullOrEmpty(showDoober.SpriteName))
             {
-                doober.InitData(showDoober.AtlasName, showDoober.SpriteName, startPos, endPos);
+                doober.InitData(showDoober.AtlasName, showDoober.SpriteName, showDoober);
             }
             else
             {
-                doober.InitData(showDoober.EntityTypeId, showDoober.EntityId, showDoober.Quantity, startPos, endPos);
+                doober.InitData(showDoober.EntityTypeId, showDoober.EntityId, showDoober.Quantity, showDoober);
             }
 
-            DynamicUIItem dooberCanvasItem = new DynamicUIItem (doober.gameObject, doober, startPos, DynamicUILocation.ScreenSpace);
-
-            _currentItems.Add(dooberCanvasItem);
         }
 
         private GameObject GetAnchor(DynamicUILocation loc)
@@ -193,18 +258,14 @@ namespace Assets.Scripts.DynamicUI.Services
             }
         }
 
-        public void OnDynamicUIItem (DynamicUIItem item)
+        public void OnDynamicUIItem(DynamicUIItem item)
         {
             if (item != null && item.Go != null && item.WCI != null)
             {
                 SetupAnchors();
-                _clientEntityService.AddToParent(item.Go,GetAnchor(item.Location));
+                _clientEntityService.AddToParent(item.Go, GetAnchor(item.Location));
                 item.Go.transform.position = item.StartPos;
-                _clientEntityService.RegisterDestroyCallback(item.Go, () =>
-                {
-                    _removeList.Add(item);
-                });
-                
+
                 _currentItems.Add(item);
             }
         }
@@ -219,7 +280,15 @@ namespace Assets.Scripts.DynamicUI.Services
                 {
                     _currentItems.Remove(wci);
                 }
-                _clientEntityService.Destroy(wci.Go);
+
+                if (wci.Pool != null)
+                {
+                    wci.Pool.ReturnObject(wci.WCI);
+                }
+                else
+                {
+                    _clientEntityService.Destroy(wci.Go);
+                }
             }
         }
 

@@ -2,5 +2,7 @@
   "Id": "specialmagic9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "SetWarpTarget"
+  "Name": "Beacon",
+  "Desc": "",
+  "SaveTime": "2025-09-04T22:06:18.52Z"
 }

@@ -1,12 +1,12 @@
 ﻿using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Spawns.WorldData;
 
 namespace Assets.Scripts.Buildings
 {
     public class StoreSign : BaseBehaviour
     {
         public GText SignText;
+        public GImage BGImage;
 
         private BuildingType _btype;
         private OnSpawn _spawn;

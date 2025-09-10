@@ -16,5 +16,7 @@
     }
   ],
   "InteractLootItems": [],
-  "LootCrafterTypeId": 6
+  "LootCrafterTypeId": 6,
+  "HasRangedAttacks": true,
+  "SaveTime": "2025-09-09T14:19:58.411Z"
 }

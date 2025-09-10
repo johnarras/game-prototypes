@@ -378,6 +378,12 @@
       "Desc": ""
     },
     {
+      "Id": "entitytype104default",
+      "ParentId": "default",
+      "IdKey": 104,
+      "Name": "CrawlerCurrency"
+    },
+    {
       "Id": "entitytype149default",
       "ParentId": "default",
       "IdKey": 149,

@@ -4,12 +4,15 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
@@ -33,6 +36,9 @@ namespace Genrpg.Shared.Crawler.Party.Services
         void OnEnterMap(PartyData party);
         Task<bool> CheckIfPartyIsDead(PartyData party, CancellationToken token);
         void RearrangePartySlots(PartyData party, List<PartyMember> newPartyArrangement);
+        void UpdateItemBuffs(PartyData party);
+        bool HasPartyBuff(PartyData party, long entityTypeId, long entityId);
+        void AddGold(PartyData party, long quantity);
 
     }
 
@@ -160,7 +166,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 status.RunLevel = 0;
             }
 
-            party.Gold = 0;
+            AddGold(party, -party.Currencies.Get(CrawlerCurrencyTypes.Gold));
             party.HourOfDay = 0;
             party.Combat = null;
             party.InitialCombat = null;
@@ -202,6 +208,42 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 newPartyArrangement[i].PartySlot = i + 1;
             }
             FixPartySlots(party);
+        }
+
+        public void UpdateItemBuffs(PartyData party)
+        {
+            party.ItemBuffs.Clear();
+
+            foreach (PartyMember member in party.GetActiveParty())
+            {
+                foreach (Item item in member.Equipment)
+                {
+                    foreach (ItemEffect eff in item.Effects)
+                    {
+                        if (eff.EntityTypeId != EntityTypes.Stat &&
+                            eff.EntityTypeId != EntityTypes.StatPct)
+                        {
+                            party.AddItemBuff(eff.EntityTypeId, eff.EntityId);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        public bool HasPartyBuff(PartyData party, long entityTypeId, long entityId)
+        {
+            if (party.HasItemBuff(entityTypeId, entityId))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void AddGold(PartyData party, long quantity)
+        {
+            party.Currencies.Add(CrawlerCurrencyTypes.Gold, quantity);
+            _dispatcher.Dispatch(new UpdateCrawlerUI());
         }
     }
 }

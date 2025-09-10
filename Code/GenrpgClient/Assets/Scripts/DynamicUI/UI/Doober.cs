@@ -1,7 +1,6 @@
-﻿
-using Assets.Scripts.ClientEvents.UserCoins;
+﻿using Assets.Scripts.ClientEvents.UserCoins;
+using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.WorldCanvas.Interfaces;
-using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Utils;
 using UnityEngine;
 
@@ -11,77 +10,106 @@ namespace Assets.Scripts.Doobers.UI
     {
         public GImage Image;
 
-        private long _entityTypId = 0;
         private long _entityId = 0;
         private long _quantity = 0;
-
-        private Vector2 _startPos;
-        private Vector2 _endPos;
+        private Vector3 _startPos;
+        private Vector3 _endPos;
 
         RectTransform _rectTransform;
 
-        public void InitData(long entityTypeId, long entityId, long quantity, Vector2 startPos, Vector2 endPos)
+        private ShowDooberEvent _showDoober = null;
+
+        private float _offsetAngle = 0;
+
+        private float _elapsedTime = 0;
+
+        public void InitData(long entityTypeId, long entityId, long quantity, ShowDooberEvent showDoober)
         {
-            _entityTypId = entityTypeId;
             _entityId = entityId;
             _quantity = quantity;
-            _startPos = startPos;
-            _endPos = endPos;
             _assetService.LoadEntityIcon(entityTypeId, entityId, Image, GetToken());
-            _rectTransform = GetComponent<RectTransform>();
-            offAngle = MathUtils.FloatRange(0, 360, _rand);
-            offSpeed = MathUtils.FloatRange(30, 50, _rand);
+            InitShowDoober(showDoober);
         }
 
-        public void InitData(string atlasName, string spriteName, Vector2 startPos, Vector2 endPos)
+        public void InitData(string atlasName, string spriteName, ShowDooberEvent showDoober)
         {
-            _startPos = startPos;
-            _endPos = endPos;
             _assetService.LoadAtlasSpriteInto(atlasName, spriteName, Image, GetToken());
-            _rectTransform = GetComponent<RectTransform>();
-            lerpAccel = 0.0f;
-            lerpSpeed = 0.2f;
+            InitShowDoober(showDoober);
         }
 
-        float lerpAccel = 0.002f;
-        float lerpPct = 0.0f;
-        float lerpSpeed = 0;
+        private void InitShowDoober(ShowDooberEvent showDoober)
+        {
+            _elapsedTime = 0;
+            _offsetAngle = 0;
+            _rectTransform = GetComponent<RectTransform>();
+            _showDoober = showDoober;
+            _startPos = showDoober.StartPosition;
+            _endPos = showDoober.EndPosition;
+            if (showDoober.SizeScale != 0)
+            {
+                transform.localScale = Vector3.one * (float)showDoober.SizeScale;
+            }
+            _rectTransform.position = _startPos;
+            PointAtEndPosition();
+        }
 
-        float offAngle = 0;
-        float offSpeed = 0;
         public bool FrameUpdateIsComplete(float deltaTime)
         {
-
-            offSpeed /= 2;
-
-            if (offSpeed > 0.001f)
+            if (_showDoober == null || _showDoober.LerpTime <= 0)
             {
-                float sin = Mathf.Sin(offAngle);
-                float cos = Mathf.Cos(offAngle);
+                return true;
+            }
 
-                _startPos += new Vector2(cos, sin) * offSpeed;
+            if (_elapsedTime == 0)
+            {
+                _offsetAngle = MathUtils.FloatRange(0, 360, _rand);
+            }
+            _elapsedTime += deltaTime;
+
+            float percentDone = MathUtils.Clamp(0, _elapsedTime / _showDoober.LerpTime, 1);
+
+            if (_showDoober.StartOffsetSize > 0)
+            {
+                float sin = Mathf.Sin(_offsetAngle);
+                float cos = Mathf.Cos(_offsetAngle);
+
+                _startPos += new Vector3(cos, sin, 0) * _showDoober.StartOffsetSize * (1 - percentDone) * (1 - percentDone) * 0.25f;
             }
 
 
-
-            lerpSpeed += lerpAccel;
-            lerpPct += lerpSpeed;
-            if (lerpPct > 1)
+            if (_showDoober.Accelerate)
             {
-                lerpPct = 1;
+                percentDone *= percentDone;
             }
 
-            _rectTransform.position = Vector3.Lerp(_startPos, _endPos, lerpPct);
+            percentDone = MathUtils.Clamp(0, percentDone, 1);
 
-            if (lerpPct == 1)
+            _rectTransform.position = Vector2.Lerp(_startPos, _endPos, percentDone);
+
+
+            if (percentDone >= 1)
             {
                 _dispatcher.Dispatch(new AddUserCoinVisual() { InstantUpdate = false, QuantityAdded = _quantity, UserCoinTypeId = _entityId });
-              
+
+                return true;
             }
 
+            PointAtEndPosition();
 
-            return lerpPct >= 1;
+            return false;
         }
 
+        private void PointAtEndPosition()
+        {
+
+            if (_showDoober.PointAtEnd)
+            {
+                Vector2 posDiff = _endPos - _rectTransform.position;
+
+                float angle = Mathf.Atan2(posDiff.y, posDiff.x) * 180 / Mathf.PI;
+
+                _rectTransform.localEulerAngles = new Vector3(0, 0, angle);
+            }
+        }
     }
 }

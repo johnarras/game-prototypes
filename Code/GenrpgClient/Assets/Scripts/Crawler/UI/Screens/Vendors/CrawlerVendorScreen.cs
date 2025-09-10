@@ -1,9 +1,11 @@
 ﻿
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
@@ -23,12 +25,13 @@ using UnityEngine;
 public class CrawlerVendorScreen : ItemIconScreen
 {
 
-    protected ICrawlerService _crawlerService;
-    protected IInventoryService _inventoryService;
-    protected ILootGenService _lootGenService;
-    private ICrawlerWorldService _crawlerWorldService;
-    private IIconService _iconService;
-    private ICrawlerUpgradeService _upgradeService;
+    protected ICrawlerService _crawlerService = null;
+    protected IInventoryService _inventoryService = null;
+    protected ILootGenService _lootGenService = null;
+    private ICrawlerWorldService _crawlerWorldService = null;
+    private IIconService _iconService = null;
+    private ICrawlerUpgradeService _upgradeService = null;
+    private IPartyService _partyService = null;
 
     public const string VendorIconName = "VendorItemIcon";
 
@@ -119,7 +122,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _iconService.InitItemIcon(idata, VendorItems, _assetService, _token);
         }
 
-        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Gold));
+        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies.Get(CrawlerCurrencyTypes.Gold)));
     }
 
     // Blank
@@ -162,14 +165,14 @@ public class CrawlerVendorScreen : ItemIconScreen
             return;
         }
 
-        if (vendorItem.BuyCost > _party.Gold)
+        if (vendorItem.BuyCost > _party.Currencies.Get(CrawlerCurrencyTypes.Gold))
         {
             _dispatcher.Dispatch(new ShowFloatingText("You need more gold to buy this!", EFloatingTextArt.Error));
             return;
         }
 
 
-        _party.Gold -= vendorItem.BuyCost;
+        _partyService.AddGold(_party, -vendorItem.BuyCost);
 
         _party.VendorItems.Remove(icon.GetDataItem());
         _inventoryService.AddItem(_member, icon.GetDataItem(), true);
@@ -192,7 +195,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             return;
         }
 
-        _party.Gold += (long)(item.SellValue);
+        _partyService.AddGold(_party, item.SellValue);
 
         _inventoryService.RemoveItem(_member, icon.GetDataItem().Id, false);
         _party.VendorBuyback.Add(item);

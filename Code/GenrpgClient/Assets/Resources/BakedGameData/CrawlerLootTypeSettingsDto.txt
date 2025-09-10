@@ -1,0 +1,103 @@
+{
+  "Id": "default",
+  "Children": [
+    {
+      "Id": "crawlerloottype1default",
+      "ParentId": "default",
+      "IdKey": 1,
+      "Name": "Spells",
+      "Desc": "Cast spells",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "EntityTypeId": 100,
+      "ItemEnchantWeight": 0.9,
+      "ScalingPerLevel": 0.25
+    },
+    {
+      "Id": "crawlerloottype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Map Magic",
+      "Desc": "Ignore map magic.",
+      "EntityTypeId": 51,
+      "ItemEnchantWeight": 0.09,
+      "ScalingPerLevel": 1.0
+    },
+    {
+      "Id": "crawlerloottype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Riddles",
+      "Desc": "Ignore riddles",
+      "EntityTypeId": 53,
+      "ItemEnchantWeight": 0.01,
+      "ScalingPerLevel": 1.0
+    },
+    {
+      "Id": "crawlerloottype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Status Effects",
+      "Desc": "Can gain immunity from some Status Effects",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "EntityTypeId": 36,
+      "ItemEnchantWeight": 0.01,
+      "ScalingPerLevel": 0.3
+    },
+    {
+      "Id": "crawlerloottype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Elements",
+      "Desc": "Ignore elemental resistances.",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "EntityTypeId": 27,
+      "ItemEnchantWeight": 0.01,
+      "ScalingPerLevel": 1.0
+    },
+    {
+      "Id": "crawlerloottype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Resistances",
+      "Desc": "Resistant to different elements.",
+      "EntityTypeId": 25,
+      "ItemEnchantWeight": 0.01,
+      "ScalingPerLevel": 1.0
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "BaseLootCost": 10,
+    "WeaponMult": 2.0,
+    "TwoHandWeaponMult": 1.5,
+    "ProcMult": 2.0,
+    "EffectMult": 2.0,
+    "MaxLootItems": 2,
+    "StatPointsPerExtraItem": 2.0,
+    "ItemChancePerMonster": 0.05,
+    "MinGoldPerLevel": 5.0,
+    "MaxGoldPerLevel": 15.0,
+    "InventoryPerPartyMember": 5,
+    "MinLevelExpMultDefault": 0.2,
+    "MaxLevelExpMultDefault": 0.4,
+    "MinLevelGoldMultDefault": 0.2,
+    "MaxLevelGoldMultDefault": 0.4,
+    "ItemChanceDefault": 0.5,
+    "ExtraLootScalePerMonsterBonus": 0.1,
+    "AllowAllArmorTypes": true,
+    "AllowAllWeaponTypes": true,
+    "ItemEnchantChance": 0.1,
+    "LevelDiffBeforeLootLoss": 5,
+    "LootLossPerLevelDiff": 0.15,
+    "MinLootPercent": 0.1,
+    "Name": "CrawlerLootSettings",
+    "SaveTime": "2025-09-06T18:17:02.591Z"
+  },
+  "SaveTime": "2025-09-06T18:17:02.591Z"
+}

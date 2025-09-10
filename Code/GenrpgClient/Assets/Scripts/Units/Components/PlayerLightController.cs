@@ -57,7 +57,7 @@ namespace Assets.Scripts.Controllers
             CrawlerMap map = _crawlerWorldService.GetMap(party.CurrPos.MapId);
 
 
-            if (_crawlerMapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Darkness))
+            if (_crawlerMapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Darkness, true))
             {
                 party.Buffs.Set(PartyBuffs.Light, 0);
                 Headlight.intensity = 0;
@@ -66,7 +66,7 @@ namespace Assets.Scripts.Controllers
 
             if (!haveSetPosition)
             {
-               entity.transform.localPosition = Offset;
+                entity.transform.localPosition = Offset;
             }
             haveSetPosition = true;
 
@@ -81,7 +81,7 @@ namespace Assets.Scripts.Controllers
 
                 if (_stableTicksLeft <= 0)
                 {
-                    _targetIntensity = MathUtils.FloatRange(_startMaxIntensity * 2 / 3, _startMaxIntensity,_rand);
+                    _targetIntensity = MathUtils.FloatRange(_startMaxIntensity * 2 / 3, _startMaxIntensity, _rand);
                     _stableTicksLeft = MathUtils.IntRange(0, _maxStableTicks, _rand);
                 }
             }

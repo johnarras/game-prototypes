@@ -24,6 +24,7 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
@@ -64,8 +65,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         void MarkCellCleansed(int x, int z);
         void UpdateCameraPos(CancellationToken token);
         CrawlerMapRoot GetMapRoot();
-        int GetMagicBits(long mapId, int x, int z);
-        bool HasMagicBit(int x, int z, long bit);
+        int GetMagicBits(long mapId, int x, int z, bool modifyWithPartyBuffs);
+        bool HasMagicBit(int x, int z, long bit, bool modifyWithPartyBuffs);
         string GetMapName(PartyData party, long mapId, int x, int z);
         int GetMapCellHash(long mapId, int x, int z, long extraData);
         long GetEncounterAtCell(PartyData party, CrawlerMap map, int x, int z);
@@ -88,6 +89,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private ICrawlerMoveService _moveService = null;
         private ICrawlerDrawMapService _drawMapService = null;
         private ICrawlerQuestService _questService = null;
+        private IPartyService _partyService = null;
 
         CrawlerMapRoot _crawlerMapRoot = null;
         private CancellationToken _token;
@@ -768,15 +770,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             return _crawlerMapRoot != null && _crawlerMapRoot.Map != null && _crawlerMapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors);
         }
 
-
-
-
-        public bool HasMagicBit(int x, int z, long bit)
+        public bool HasMagicBit(int x, int z, long bit, bool modifyWithPartyBuffs)
         {
-            return FlagUtils.IsSet(GetMagicBits(_party.CurrPos.MapId, x, z), (1 << (int)bit));
+            return FlagUtils.IsSet(GetMagicBits(_party.CurrPos.MapId, x, z, modifyWithPartyBuffs), (1 << (int)bit));
         }
 
-        public int GetMagicBits(long mapId, int x, int z)
+        public int GetMagicBits(long mapId, int x, int z, bool modifyWithPartyBuffs)
         {
             if (_world == null)
             {
@@ -795,6 +794,19 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             if (mapId == _party.CurrPos.MapId && _party.CurrentMap.Cleansed.HasBit(map.GetIndex(x, z)))
             {
                 return 0;
+            }
+
+            if (modifyWithPartyBuffs)
+            {
+                IReadOnlyList<MapMagicType> magicList = _gameData.Get<MapMagicSettings>(_gs.ch).GetData();
+
+                foreach (MapMagicType mtype in magicList)
+                {
+                    if (_partyService.HasPartyBuff(_party, EntityTypes.MapMagic, mtype.IdKey))
+                    {
+                        bits &= (1 << ((int)mtype.IdKey));
+                    }
+                }
             }
 
             return bits << 1;

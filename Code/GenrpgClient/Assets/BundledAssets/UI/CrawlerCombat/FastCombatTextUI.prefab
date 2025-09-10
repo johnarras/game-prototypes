@@ -76,12 +76,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93e5ff467377ae42b269839176a5a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxElapsedSeconds: 2
-  TextMoveSpeed: 60
+  AnimateTime: 0.5
+  TextMoveSpeed: 75
   Anchor: {fileID: 8430175783799455370}
   DamageTemplate: {fileID: 1471358196300770371, guid: 917b6fcce8c41204f8420300078c4e5b,
     type: 3}
   HealingTemplate: {fileID: 1169629519058221832, guid: 65ec9e6dd8fff2d49bf87b9654ecdb39,
     type: 3}
   InfoTemplate: {fileID: 5347693884416944609, guid: b6a483802c9956c43b9c8015bd8e0169,
+    type: 3}
+  DefenseTemplate: {fileID: 1169629519058221832, guid: 3c894ec1408743946b6ed762812db2ed,
+    type: 3}
+  ThornsTemplate: {fileID: 1471358196300770371, guid: cdfad56dc06774945b52245544f11923,
     type: 3}

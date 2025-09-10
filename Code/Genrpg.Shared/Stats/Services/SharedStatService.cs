@@ -2,6 +2,7 @@
 using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;

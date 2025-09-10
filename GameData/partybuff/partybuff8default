@@ -2,5 +2,12 @@
   "Id": "partybuff8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Defense"
+  "Name": "Thorns",
+  "Desc": "Magical thorns hit enemies that attack you.",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "ProcChanceScale": 10.0,
+  "EffectScale": 0.2,
+  "SaveTime": "2025-09-09T13:59:31.913Z"
 }
