@@ -8,9 +8,10 @@
         public const long IdentifyItem = 4;
         public const long Jump = 5;
         public const long Teleport = 6;
-        public const long CleanseLocation = 7;
-        public const long RevealLocation = 8;
+        public const long CleanseArea = 7;
+        public const long RevealArea = 8;
         public const long Beacon = 9;
+        public const long PickLock = 10;
 
     }
 }

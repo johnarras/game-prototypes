@@ -1,6 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+﻿using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
@@ -16,12 +14,11 @@ namespace Genrpg.Shared.ProcGen.Services
     public interface ISamplingService : IInitializable
     {
         List<MyPoint2> PlanePoissonSample(SamplingData sd);
-        List<PointXZ> PlanePoissonSampleInteger(SamplingData sd);   
+        List<PointXZ> PlanePoissonSampleInteger(SamplingData sd);
     }
     public class SamplingService : ISamplingService
     {
         private INoiseService _noiseService = null;
-        private ILogService _logService = null;
 
         public async Task Initialize(CancellationToken token)
         {

@@ -1,5 +1,4 @@
-﻿
-using Genrpg.Shared.Crawler.MapGen.Entities;
+﻿using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
@@ -66,8 +65,17 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map = _worldService.CreateMap(genData, (int)width, (int)height);
                 genData.Name = _zoneGenService.GenerateZoneName(genData.ZoneType.IdKey, rand.Next(), false);
-
-
+                if (_modeService.SingleCityMode(party.Mode))
+                {
+                    if (!string.IsNullOrEmpty(party.RoguelikeDungeonName))
+                    {
+                        genData.Name = party.RoguelikeDungeonName;
+                    }
+                    else
+                    {
+                        party.RoguelikeDungeonName = genData.Name;
+                    }
+                }
             }
             else
             {
@@ -483,23 +491,30 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             MarkTilesNearEntrances(genData, map, entranceExitPoints);
 
-            if (genData.CurrFloor < genData.MaxFloor)
+            if (_modeService.GenerateAllMapsAtOnce(party.Mode))
             {
-                long currMapId = genData.FromMapId;
-                int currFromX = genData.FromMapX;
-                int currFromZ = genData.FromMapZ;
+                if (genData.CurrFloor < genData.MaxFloor)
+                {
+                    long currMapId = genData.FromMapId;
+                    int currFromX = genData.FromMapX;
+                    int currFromZ = genData.FromMapZ;
 
-                genData.FromMapId = map.IdKey;
-                genData.FromMapX = exitX;
-                genData.FromMapZ = exitZ;
+                    genData.FromMapId = map.IdKey;
+                    genData.FromMapX = exitX;
+                    genData.FromMapZ = exitZ;
 
-                await _mapGenService.Generate(party, world, genData, token);
+                    await _mapGenService.Generate(party, world, genData, token);
 
-                genData.FromMapId = currMapId;
-                genData.FromMapX = currFromX;
-                genData.FromMapZ = currFromZ;
+                    genData.FromMapId = currMapId;
+                    genData.FromMapX = currFromX;
+                    genData.FromMapZ = currFromZ;
+                }
             }
-
+            else
+            {
+                map.Details.Add(new MapCellDetail() { EntityTypeId = EntityTypes.Map, EntityId = map.IdKey + 1, X = exitX, Z = exitZ, ToX = -1, ToZ = -1, });
+                map.Details.Add(new MapCellDetail() { EntityTypeId = EntityTypes.Map, EntityId = map.IdKey - 1, X = enterX, Z = enterZ, ToX = -1, ToZ = -1, });
+            }
 
             List<PointXZ> validEmptyCells = new List<PointXZ>();
 
@@ -525,6 +540,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             ModifyZoneTypes(genData, map, roomIds, rand);
 
             AddRoomDoors(genData, map, roomIds, rand);
+
+
 
             return new NewCrawlerMap() { Map = map, EnterX = enterX, EnterZ = enterZ };
         }

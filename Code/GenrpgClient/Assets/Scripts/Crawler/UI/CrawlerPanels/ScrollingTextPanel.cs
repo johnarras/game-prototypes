@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             _dispatcher.AddListener<AddActionPanelText>(OnAddActionPanelText, GetToken());
             _dispatcher.AddListener<CrawlerStateData>(OnNewStateData, GetToken());
 
-            ScrollSpeedSlider.InitSlider(0, CrawlerCombatConstants.ScrollingFramesValues.Length - 1,
+            ScrollSpeedSlider.InitSlider(1, CrawlerCombatConstants.ScrollingFramesValues.Length,
                 _crawlerService.GetParty().ScrollFramesIndex, true, OnChangeSlider);
 
 

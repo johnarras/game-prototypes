@@ -9,7 +9,7 @@
   "HealthPerLevel": 18,
   "ManaPerLevel": 14,
   "MaxArmorScalingTypeId": 3,
-  "CritPercent": 15,
+  "CritPercent": 3,
   "TrainingXpScale": 1.0,
   "TrainingGoldScale": 1.0,
   "BinaryBonuses": [
@@ -87,11 +87,31 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 84
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 90
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 100
+      "EntityId": 130
     },
     {
       "EntityTypeId": 100,
@@ -153,5 +173,5 @@
       "Amount": 1.0
     }
   ],
-  "SaveTime": "2025-09-09T08:59:40.525Z"
+  "SaveTime": "2025-09-15T12:37:17.641Z"
 }

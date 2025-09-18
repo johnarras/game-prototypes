@@ -26,12 +26,13 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
         [Key(9)] public double BaseGroupCountIncreaseChance { get; set; }
         [Key(10)] public double GroupCountIncreaseChancePerLevel { get; set; }
         [Key(11)] public double MaxGroupCountIncreaseChance { get; set; }
-        [Key(12)] public double MaxGroupCountPerLevel { get; set; }
-        [Key(13)] public long MaxGroupCount { get; set; }
+        [Key(12)] public double GroupCountIncreaseMultPerGroupAdded { get; set; }
+        [Key(13)] public double MaxGroupCountPerLevel { get; set; }
+        [Key(14)] public long MaxGroupCount { get; set; }
 
-        [Key(14)] public double SelectRandomUnitForCombatGroupChance { get; set; }
+        [Key(15)] public double SelectRandomUnitForCombatGroupChance { get; set; }
 
-        [Key(15)] public double RangeIncreaseChancePerGroup { get; set; }
+        [Key(16)] public double RangeIncreaseChancePerGroup { get; set; }
 
     }
 

@@ -3,8 +3,6 @@ using Genrpg.ServerShared.DataStores.DbQueues;
 using Genrpg.ServerShared.DataStores.DbQueues.Actions;
 using Genrpg.ServerShared.DataStores.Entities;
 using Genrpg.ServerShared.OnlineResources.Interfaces;
-using Genrpg.ServerShared.Secrets.Services;
-using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
@@ -32,10 +30,7 @@ namespace Genrpg.ServerShared.DataStores
     public class ServerRepositoryService : IServerRepositoryService
     {
 
-        private ISecretsProvider _secretsProvider = null!;
-        private ITextSerializer _textSerializer = null!;
         private IOnlineResourceProvider _resourceProvider = null!;
-        private IAnalyticsService _analyticsService = null!;
 
         public async Task Initialize(CancellationToken toke)
         {

@@ -122,7 +122,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
 
                 _uiService.SetText(text, idname.Name);
 
-                _uiService.AddPointerHandlers(text, () => { InfoPanel.ShowInfo(entityTypeId, idname.IdKey); }, () => { });
+                _uiService.AddPointerHandlers(text, (GameObject go) => { InfoPanel.ShowInfo(entityTypeId, idname.IdKey); }, (GameObject go) => { });
 
             }
         }
@@ -152,11 +152,11 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
                 _uiService.SetText(text, _overviewPages[p].Header);
 
                 List<string> lines = _overviewPages[p].Lines;
-                _uiService.AddPointerHandlers(text, () =>
+                _uiService.AddPointerHandlers(text, (GameObject go) =>
                 {
                     InfoPanel.ShowLines(lines);
                 },
-                () => { });
+                (GameObject go) => { });
             }
 
             if (_overviewPages.Count > 0)

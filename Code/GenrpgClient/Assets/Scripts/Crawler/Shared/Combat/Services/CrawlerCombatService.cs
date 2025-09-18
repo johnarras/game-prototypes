@@ -5,11 +5,13 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -25,6 +27,7 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Services;
+using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
@@ -67,9 +70,10 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         void AddCombatUnits(PartyData party, InitialCombatGroup initial);
         void EndCombat(PartyData party);
         string ShowGroupStatus(CombatGroup group);
-        int GetMaxGroupSize(long level, double difficulty = 1.0f);
+        int GetMaxGroupSize(PartyData party, long level, double difficulty = 1.0f);
         FullMonsterStats GetFullMonsterStats(PartyData party, UnitType unitType, long factionTypeId, long combatLevel, bool isForCombat);
         bool ProccedStatusEffect(CrawlerUnit unit, long statusEffectId);
+        void InitPartyCombatActions(PartyData party);
     }
     public class CrawlerCombatService : ICrawlerCombatService
     {
@@ -89,6 +93,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         private IInfoService _infoService = null;
         private ICrawlerQuestService _questService = null;
         private ICrawlerItemService _crawlerItemService = null;
+        private ICrawlerModeService _modeService = null;
+        private ICrawlerUpgradeService _crawlerUpgradeService = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -114,11 +120,17 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             _dispatcher.Dispatch(new UpdateCombatGroups());
         }
 
-        public int GetMaxGroupSize(long level, double difficulty = 1.0f)
+        public int GetMaxGroupSize(PartyData party, long level, double difficulty = 1.0f)
         {
             StartCombatSettings startSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
 
-            return (int)Math.Min(startSettings.MaxGroupSize, (startSettings.BaseGroupSizeLevelCap + difficulty * startSettings.MaxGroupSizePerLevel));
+            double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.BaseGroupSizeLevelCap + difficulty * startSettings.MaxGroupSizePerLevel));
+
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                maxGroupSize /= 2;
+            }
+            return (int)Math.Max(1, maxGroupSize);
         }
 
         public async Task<bool> StartCombat(PartyData party)
@@ -212,7 +224,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     startSettings.BaseGroupSizeIncreaseChance + startSettings.GroupSizeIncreaseChancePerLevel * difficulty,
                     startSettings.MaxGroupSizeIncreaseChance);
 
-                long maxGroupSize = GetMaxGroupSize(level, difficulty);
+                long maxGroupSize = GetMaxGroupSize(party, level, difficulty);
 
                 int groupCount = CrawlerCombatConstants.StartGroupCount;
 
@@ -222,6 +234,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 while (_rand.NextDouble() < groupCountIncreaseChance && groupCount < startSettings.MaxGroupCount)
                 {
+                    // Make this mult < 1 so it's less liekly to keep adding groups as you add more.
+                    groupCountIncreaseChance *= startSettings.GroupCountIncreaseMultPerGroupAdded;
                     groupCount++;
                 }
 
@@ -677,8 +691,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             }
 
-            //newMonsters = newMonsters.OrderBy(x => Guid.NewGuid().ToString()).ToList();
-
             group.Units.AddRange(newMonsters);
 
             _dispatcher.Dispatch(new UpdateCombatGroups());
@@ -699,14 +711,11 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 }
                 foreach (CrawlerUnit unit in group.Units)
                 {
-                    if (unit is PartyMember member)
+                    if (unit.Actions.Count < unit.ActionsThisRound)
                     {
-                        if (unit.Action == null)
+                        if (!IsDisabled(unit))
                         {
-                            if (!IsDisabled(unit))
-                            {
-                                return false;
-                            }
+                            return false;
                         }
                     }
                 }
@@ -726,8 +735,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     return;
                 }
 
-                party.Combat.PlayerActionsRemaining--;
-
                 CrawlerCombatState combat = party.Combat;
 
                 foreach (CombatGroup group in combat.Enemies)
@@ -736,7 +743,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     List<CrawlerUnit> dupeList = new List<CrawlerUnit>(group.Units);
                     foreach (CrawlerUnit unit in dupeList)
                     {
-                        unit.Action = null;
+                        unit.Actions.Clear();
 
                         List<IDisplayEffect> removeEffectList = new List<IDisplayEffect>();
                         foreach (IDisplayEffect effect in unit.Effects)
@@ -763,7 +770,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     List<CrawlerUnit> dupeList = new List<CrawlerUnit>(group.Units);
                     foreach (CrawlerUnit unit in dupeList)
                     {
-                        unit.Action = null;
+                        unit.Actions.Clear();
                     }
                 }
 
@@ -787,10 +794,12 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (CrawlerUnit unit in party.Combat.PartyGroup.Units)
             {
-                if (unit.Action == null || unit.Action.IsComplete)
+                if (party.Combat.PartyGroup.Units.Any(x => x.Actions.Count < x.ActionsThisRound ||
+                !unit.Actions.Any(x => x.DidCast)))
                 {
                     continue;
                 }
+
 
                 unit.DefendRank = EDefendRanks.None;
 
@@ -804,7 +813,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     }
                 }
 
-                if (unit.Action.CombatActionId == CombatActions.Defend)
+                if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Defend))
                 {
                     if (unit.DefendRank == EDefendRanks.Guardian)
                     {
@@ -815,7 +824,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         unit.DefendRank = EDefendRanks.Defend;
                     }
                 }
-                else if (unit.Action.CombatActionId == CombatActions.Hide)
+                else if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Hide))
                 {
                     unit.HideExtraRange += CrawlerCombatConstants.RangeDelta;
                 }
@@ -840,8 +849,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public bool SetMonsterActions(PartyData party)
         {
-            if (party.Combat == null || !ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
-                party.Combat.PlayerActionsRemaining > 1)
+            if (party.Combat.PartyGroup.CombatGroupAction != ECombatGroupActions.Advance &&
+                (party.Combat == null || !ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
+                party.GetActiveParty().Any(x => x.Actions.Count < x.ActionsThisRound)))
             {
                 return false;
             }
@@ -917,6 +927,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         {
             CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
 
+            group.CombatGroupAction = ECombatGroupActions.None;
             if (group.Units.Count > 0 && group.Range > CrawlerCombatConstants.MinRange)
             {
                 bool shouldAdvance = _rand.NextDouble() < combatSettings.GroupAdvanceChance;
@@ -937,7 +948,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     group.CombatGroupAction = ECombatGroupActions.Advance;
                 }
             }
-            else
+
+            if (group.CombatGroupAction == ECombatGroupActions.None)
             {
                 group.CombatGroupAction = ECombatGroupActions.Fight;
 
@@ -988,12 +1000,17 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 }
                 else
                 {
+                    unit.ActionsThisRound = 1;
                     List<CombatGroup> temp = allyGroups;
                     allyGroups = enemyGroups;
                     enemyGroups = temp;
                     tauntUnits = new List<CrawlerUnit>();
                     return;
                 }
+            }
+            else
+            {
+                unit.ActionsThisRound = 1;
             }
 
             double roleScalingValue = _roleService.GetRoleScalingLevel(party, unit, RoleScalingTypes.SpellDam);
@@ -1106,7 +1123,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             if (combatAction.Spell != null)
             {
-                unit.Action = combatAction;
+                unit.Actions.Clear();
+                unit.AddAction(combatAction);
             }
         }
 
@@ -1472,6 +1490,30 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             }
 
             return _rand.Next(100) < _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId).Amount;
+        }
+
+        public void InitPartyCombatActions(PartyData party)
+        {
+
+            long totalActions = (long)(1 + _crawlerUpgradeService.GetPartyBonus(party, PartyUpgrades.ActionCount));
+
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                totalActions++;
+            }
+
+            foreach (PartyMember member in party.GetActiveParty())
+            {
+                member.Actions.Clear();
+                if (!IsDisabled(member))
+                {
+                    member.ActionsThisRound = totalActions;
+                }
+                else
+                {
+                    member.ActionsThisRound = 0;
+                }
+            }
         }
     }
 }

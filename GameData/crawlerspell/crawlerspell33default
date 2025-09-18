@@ -2,7 +2,7 @@
   "Id": "crawlerspell33default",
   "ParentId": "default",
   "IdKey": 33,
-  "Name": "Blink",
+  "Name": "Jump",
   "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
   "PowerCost": 10.0,
   "StatBonusScaling": 1.0,
@@ -19,5 +19,5 @@
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-09T08:58:31.973Z"
+  "SaveTime": "2025-09-15T12:37:08.302Z"
 }

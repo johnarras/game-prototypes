@@ -6,6 +6,7 @@ using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
@@ -39,6 +40,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         protected ILootGenService _lootService = null;
         protected ITextService _textService = null;
         protected IPartyService _partyService = null;
+        private ICrawlerModeService _modeService = null;
 
         public AnimatedSprite Image;
         public GText NameText;
@@ -62,9 +64,19 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
             IReadOnlyList<EquipSlot> equipSlots = _gameData.Get<EquipSlotSettings>(_gs.ch).GetData();
 
+            bool allSlotsOk = false;
+
+            PartyData party = _crawlerService.GetParty();
+
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                allSlotsOk = true;
+            }
+
+
             foreach (EquipSlot equipSlot in equipSlots)
             {
-                if (!equipSlot.IsCrawlerSlot)
+                if (!allSlotsOk && !equipSlot.IsCrawlerSlot)
                 {
                     EquipSlotIcon icon = EquipmentIcons.FirstOrDefault(x => x.EquipSlotId == equipSlot.IdKey);
                     if (icon != null)

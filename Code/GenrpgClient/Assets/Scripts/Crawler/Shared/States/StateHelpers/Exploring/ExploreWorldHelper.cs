@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -20,8 +21,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
     public class ExploreWorldHelper : BaseStateHelper
     {
 
-        private IScreenService _screenService;
-        private ICrawlerMoveService _moveService;
+        private IScreenService _screenService = null;
+        private ICrawlerMoveService _moveService = null;
+        private IPartyService _partyService = null;
         public class NamedMoveKey
         {
             public char Key { get; private set; }
@@ -64,26 +66,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.ClearBGImage = true;
 
 
-            List<PartyMember> members = party.GetActiveParty();
 
-            int maxPartySlot = 0;
-            if (members.Count > 0)
-            {
-                maxPartySlot = members.Max(x => x.PartySlot);
-            }
-            if (maxPartySlot > 0)
-            {
-                stateData.AddText("1-" + maxPartySlot + " to view a member");
-                foreach (PartyMember member in members)
-                {
-                    stateData.Actions.Add(new CrawlerStateAction("", (char)(member.PartySlot + '0'),
-                        ECrawlerStates.ExploreWorld, extraData: member,
-                        onClickAction: () =>
-                        {
-                            _dispatcher.Dispatch(new CrawlerCharacterScreenData() { Unit = member });
-                        }));
+            long maxPartySize = _partyService.GetMaxPartySize(party);
 
-                }
+            for (int m = 1; m <= maxPartySize; m++)
+            {
+                AddClickPartyMemberButton(stateData, party, m);
             }
 
             stateData.Actions.Add(new CrawlerStateAction(null, rowFiller: true));
@@ -188,6 +176,21 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             await _crawlerMapService.EnterMap(party, mapData, token);
 
             return stateData;
+        }
+
+        private void AddClickPartyMemberButton(CrawlerStateData stateData, PartyData party, int index)
+        {
+
+            stateData.Actions.Add(new CrawlerStateAction("", (char)(index + '0'),
+                ECrawlerStates.ExploreWorld,
+                onClickAction: () =>
+                {
+                    PartyMember member = party.GetMemberInSlot(index);
+                    if (member != null)
+                    {
+                        _dispatcher.Dispatch(new CrawlerCharacterScreenData() { Unit = member });
+                    }
+                }));
         }
     }
 }

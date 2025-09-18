@@ -1,6 +1,4 @@
-using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using MessagePack;
 using Newtonsoft.Json;
 using System;
@@ -46,8 +44,6 @@ namespace Genrpg.Shared.Utils
     [MessagePackObject]
     public class NewtonsoftTextSerializer : ITextSerializer
     {
-        private ILogService _logService = null!;
-
         private JsonSerializerSettings _baseSettings = new JsonSerializerSettings()
         {
             DefaultValueHandling = DefaultValueHandling.Ignore,
@@ -98,7 +94,7 @@ namespace Genrpg.Shared.Utils
 
         public object DeserializeWithType(byte[] bytes, Type t)
         {
-            return DeserializeWithType(Encoding.UTF8.GetString(bytes), t);  
+            return DeserializeWithType(Encoding.UTF8.GetString(bytes), t);
         }
 
         public T Deserialize<T>(string txt) where T : class
@@ -137,11 +133,9 @@ namespace Genrpg.Shared.Utils
     [MessagePackObject]
     public class MessagePackBinarySerializer : IBinarySerializer
     {
-        private ILogService _logService = null!;
-
         public string SerializeToString(object obj)
         {
-            return Encoding.ASCII.GetString(SerializeToBytes(obj)); 
+            return Encoding.ASCII.GetString(SerializeToBytes(obj));
         }
 
         public byte[] SerializeToBytes(object obj)
@@ -161,7 +155,7 @@ namespace Genrpg.Shared.Utils
 
         public T MakeCopy<T>(T t) where T : class
         {
-            return  Deserialize<T>(SerializeToBytes(t));
+            return Deserialize<T>(SerializeToBytes(t));
         }
     }
 }

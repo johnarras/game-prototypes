@@ -5,7 +5,6 @@ using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -35,7 +34,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         private ISamplingService _samplingService = null;
         private ILootGenService _lootGenService = null;
         private IRiddleService _riddleService = null;
-        private ICrawlerQuestService _questService = null;
 
         public override long Key => CrawlerMapTypes.Outdoors;
 
@@ -812,8 +810,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             List<PointXZ> npcPoints = _samplingService.PlanePoissonSampleInteger(samplingData);
 
             await AddMapNpcs(party, world, genData, outdoorMap, npcPoints, rand);
-
-            await _questService.AddWorldQuestGivers(party, world, rand, token);
 
             AddEdgeRivers(outdoorMap, rand);
 

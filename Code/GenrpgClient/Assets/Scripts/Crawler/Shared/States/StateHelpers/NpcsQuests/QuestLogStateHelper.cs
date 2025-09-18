@@ -50,24 +50,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
                     ReturnState = ECrawlerStates.QuestLog,
                 };
 
-                if (partyQuest.CurrQuantity >= quest.Quantity)
-                {
-                    stateData.Actions.Add(new CrawlerStateAction(
+                stateData.Actions.Add(new CrawlerStateAction
+                    (
                         await _questService.ShowQuestStatus(party, quest.IdKey, false, true, false),
-                        CharCodes.None, ECrawlerStates.QuestLog,
-                        () =>
-                        {
-                            _questService.CompleteQuest(party, fullQuest, token);
-                        }));
-                }
-                else
-                {
-                    stateData.Actions.Add(new CrawlerStateAction
-                        (
-                            await _questService.ShowQuestStatus(party, quest.IdKey, false, true, false),
-                            CharCodes.None, ECrawlerStates.QuestDetail, null, fullQuest
-                            ));
-                }
+                        CharCodes.None, ECrawlerStates.QuestDetail, null, fullQuest
+                        ));
             }
 
             stateData.Actions.Add(new CrawlerStateAction("Back to the city", CharCodes.Escape, ECrawlerStates.ExploreWorld));

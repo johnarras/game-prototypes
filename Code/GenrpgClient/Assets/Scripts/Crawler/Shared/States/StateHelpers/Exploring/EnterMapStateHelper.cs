@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -11,8 +13,10 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Riddles.Settings;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Constants;
 using Genrpg.Shared.Zones.Settings;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +27,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
     {
 
         private IPartyService _partyService = null;
+        private ICrawlerMapGenService _mapGenService = null;
+        private ICrawlerModeService _modeService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.EnterMap;
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Map; }
@@ -31,7 +37,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
-
 
             string errorText = null;
             MapCellDetail detail = action.ExtraData as MapCellDetail;
@@ -55,20 +60,120 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             CrawlerMap currMap = world.GetMap(party.CurrPos.MapId);
 
-            CrawlerMap nextMap = world.GetMap(detail.EntityId);
+            List<CrawlerMap> nextMaps = new List<CrawlerMap>();
 
-            if (nextMap == null)
+            CrawlerMap currNextMap = world.GetMap(detail.EntityId);
+
+            if (!_modeService.GenerateAllMapsAtOnce(party.Mode))
+            {
+                if (detail.EntityId > 1)
+                {
+                    List<long> mapIds = new List<long>();
+
+                    mapIds.Add(detail.EntityId);
+
+                    if (detail.EntityId == 2)
+                    {
+                        if (party.MaxLevelEntered > detail.EntityId)
+                        {
+                            mapIds.Add(party.MaxLevelEntered);
+
+                            if (!mapIds.Contains(party.MaxLevelEntered / 2))
+                            {
+                                mapIds.Add(party.MaxLevelEntered / 2);
+                            }
+
+                            if (!mapIds.Contains(party.MaxLevelEntered * 3 / 4))
+                            {
+                                mapIds.Add(party.MaxLevelEntered * 3 / 4);
+                            }
+
+                            if (!mapIds.Contains(party.MaxLevelEntered / 4))
+                            {
+                                mapIds.Add(party.MaxLevelEntered / 4);
+                            }
+                        }
+                    }
+
+                    mapIds = mapIds.OrderBy(x => x).ToList();
+
+                    foreach (long mapId in mapIds)
+                    {
+
+                        world.Seed = _rand.Next();
+
+                        int enterX = party.CurrPos.X;
+                        int enterZ = party.CurrPos.Z;
+
+                        if (party.CurrPos.MapId == 1)
+                        {
+                            enterX = detail.X;
+                            enterZ = detail.Z;
+                        }
+
+                        CrawlerMapGenData genData = new CrawlerMapGenData()
+                        {
+                            FromMapId = mapId - 1,
+                            CurrFloor = mapId - 1,
+                            MaxFloor = mapId,
+                            Level = mapId - 1,
+                            LevelDelta = 0,
+                            MapTypeId = CrawlerMapTypes.Dungeon,
+                            World = world,
+                            FromMapX = enterX,
+                            FromMapZ = enterZ,
+                            ForcedIdKey = mapId,
+                        };
+
+                        world.MaxMapId = detail.EntityId - 1;
+                        currNextMap = await _mapGenService.Generate(party, world, genData, token);
+                        nextMaps.Add(currNextMap);
+                        currNextMap.IdKey = mapId;
+
+                        if (party.MaxLevelEntered < currNextMap.Level)
+                        {
+                            party.MaxLevelEntered = currNextMap.Level;
+                        }
+
+                        if (currMap != null && currMap.IdKey > 1)
+                        {
+                            currNextMap.Name = currMap.Name;
+                        }
+                    }
+
+                    MapCellDetail prevDetail = currNextMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId < currNextMap.IdKey);
+                    if (prevDetail != null)
+                    {
+                        detail.ToX = prevDetail.X;
+                        detail.ToZ = prevDetail.Z;
+                    }
+
+                    await _worldService.SaveWorld(world);
+                }
+                else
+                {
+
+                    MapCellDetail targetDetail = currNextMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId == 2);
+                    if (targetDetail != null)
+                    {
+                        _mapGenService.OneWayLink(world, currMap.IdKey, detail.X, detail.Z, 1, targetDetail.X, targetDetail.Z);
+                    }
+                    nextMaps.Add(currNextMap);
+                }
+            }
+
+            if (nextMaps.Count < 1)
             {
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "No such map exists." };
             }
             stateData.BGImageOnly = true;
 
+            ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMaps[0].ZoneTypeId);
 
-
-            ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMap.ZoneTypeId);
-
-
-            stateData.BGImageOnly = true;
+            if (nextMaps[0].IdKey > 1 && _modeService.SingleCityMode(party.Mode))
+            {
+                zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Dungeon);
+            }
             if (zoneType != null && !string.IsNullOrEmpty(zoneType.Icon))
             {
                 stateData.BGSpriteName = zoneType.Icon;
@@ -78,14 +183,16 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 stateData.BGSpriteName = CrawlerClientConstants.DefaultWorldBG;
             }
 
+
             CrawlerMapStatus nextMapStatus = party.GetMapStatus(detail.EntityId, false);
 
             bool didComplete = party.CompletedMaps.HasBit(detail.EntityId);
 
+            #region Riddles
             bool havePartyBuff = _partyService.HasPartyBuff(party, EntityTypes.Riddle, 0);
-            if (nextMapStatus == null && !didComplete)
+            if (nextMapStatus == null && !didComplete && !_modeService.SingleCityMode(party.Mode))
             {
-                if (nextMap.MapQuestItemId > 0)
+                if (nextMaps[0].MapQuestItemId > 0)
                 {
                     if (havePartyBuff)
                     {
@@ -95,9 +202,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     {
                         WorldQuestItem itemNeeded = null;
 
-                        if (!party.QuestItems.HasBit(nextMap.MapQuestItemId))
+                        if (!party.QuestItems.HasBit(nextMaps[0].MapQuestItemId))
                         {
-                            WorldQuestItem wqi = world.QuestItems.FirstOrDefault(x => x.IdKey == nextMap.MapQuestItemId);
+                            WorldQuestItem wqi = world.QuestItems.FirstOrDefault(x => x.IdKey == nextMaps[0].MapQuestItemId);
                             if (wqi != null)
                             {
                                 itemNeeded = wqi;
@@ -106,7 +213,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
                         if (itemNeeded != null)
                         {
-                            stateData.AddText(nextMap.Name + " requires the following to enter: ");
+                            stateData.AddText(nextMaps[0].Name + " requires the following to enter: ");
 
                             stateData.AddText(itemNeeded.Name);
 
@@ -119,7 +226,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     }
                 }
 
-                if (nextMap.EntranceRiddleRequired())
+                if (nextMaps[0].EntranceRiddleRequired())
                 {
                     if (havePartyBuff)
                     {
@@ -127,7 +234,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     }
                     else
                     {
-                        string[] descLines = nextMap.EntranceRiddle.Text.Split("\n");
+                        string[] descLines = nextMaps[0].EntranceRiddle.Text.Split("\n");
 
                         stateData.AddText("Answer this to pass:\n");
                         stateData.AddBlankLine();
@@ -136,7 +243,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         {
                             if (!string.IsNullOrEmpty(descLines[d]))
                             {
-                                if (!nextMap.HasFlag(CrawlerMapFlags.ShowFullRiddleText))
+                                if (!nextMaps[0].HasFlag(CrawlerMapFlags.ShowFullRiddleText))
                                 {
                                     stateData.AddText(descLines[d].Substring(0, (int)MathUtils.Min(descLines[d].Length, 6)) + "...");
                                 }
@@ -157,13 +264,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             stateData.AddText(_textService.HighlightText(errorText, TextColors.ColorRed));
                         }
 
-                        RiddleType riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(nextMap.EntranceRiddle?.RiddleTypeId ?? 0);
+                        RiddleType riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(nextMaps[0].EntranceRiddle?.RiddleTypeId ?? 0);
 
                         if (riddleType == null || (!riddleType.IsToggle && !riddleType.IsObject))
                         {
                             stateData.AddInputField("Answer:", delegate (string text)
                             {
-                                string normalizedRiddleName = nextMap.EntranceRiddle.Answer.ToLower().Trim();
+                                string normalizedRiddleName = nextMaps[0].EntranceRiddle.Answer.ToLower().Trim();
 
                                 string normalizedText = text.ToLower().Trim();
 
@@ -173,12 +280,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 {
                                     EnterCrawlerMapData enterMapData = new EnterCrawlerMapData()
                                     {
-                                        MapId = nextMap.IdKey,
+                                        MapId = nextMaps[0].IdKey,
                                         MapX = detail.ToX,
                                         MapZ = detail.ToZ,
                                         MapRot = 0,
                                         World = world,
-                                        Map = nextMap,
+                                        Map = nextMaps[0],
                                     };
 
                                     party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
@@ -189,7 +296,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                     ErrorMapCellDetail newErrorDetail = new ErrorMapCellDetail()
                                     {
                                         Detail = detail,
-                                        ErrorText = nextMap.EntranceRiddle.Error,
+                                        ErrorText = nextMaps[0].EntranceRiddle.Error,
                                     };
 
                                     foreach (PartyMember member in party.GetActiveParty())
@@ -206,7 +313,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
                             bool togglesAreCorrect = true;
 
-                            if (maxBitIndex > 0 && Int64.TryParse(nextMap.EntranceRiddle.Answer, out long answerVal))
+                            if (maxBitIndex > 0 && Int64.TryParse(nextMaps[0].EntranceRiddle.Answer, out long answerVal))
                             {
                                 for (int i = 0; i < maxBitIndex; i++)
                                 {
@@ -226,12 +333,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 {
                                     EnterCrawlerMapData enterMapData = new EnterCrawlerMapData()
                                     {
-                                        MapId = nextMap.IdKey,
+                                        MapId = nextMaps[0].IdKey,
                                         MapX = detail.ToX,
                                         MapZ = detail.ToZ,
                                         MapRot = 0,
                                         World = world,
-                                        Map = nextMap,
+                                        Map = nextMaps[0],
                                     };
 
                                     party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
@@ -243,7 +350,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                     ErrorMapCellDetail newErrorDetail = new ErrorMapCellDetail()
                                     {
                                         Detail = detail,
-                                        ErrorText = nextMap.EntranceRiddle.Error,
+                                        ErrorText = nextMaps[0].EntranceRiddle.Error,
                                     };
 
                                     foreach (PartyMember member in party.GetActiveParty())
@@ -266,7 +373,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         {
                             int unclickedButtons = 0;
 
-                            if (int.TryParse(nextMap.EntranceRiddle.Answer, out int allBits))
+                            if (int.TryParse(nextMaps[0].EntranceRiddle.Answer, out int allBits))
                             {
                                 for (int i = 0; i < 32; i++)
                                 {
@@ -289,12 +396,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                     {
                                         EnterCrawlerMapData enterMapData = new EnterCrawlerMapData()
                                         {
-                                            MapId = nextMap.IdKey,
+                                            MapId = nextMaps[0].IdKey,
                                             MapX = detail.ToX,
                                             MapZ = detail.ToZ,
                                             MapRot = 0,
                                             World = world,
-                                            Map = nextMap,
+                                            Map = nextMaps[0],
                                         };
 
                                         party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
@@ -319,26 +426,54 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     }
                 }
             }
+            #endregion
+
+            stateData.AddText("Enter: " + nextMaps[0].GetName(detail.ToX, detail.ToZ));
+            stateData.AddBlankLine();
+            for (int m = 0; m < nextMaps.Count; m++)
+            {
+                char enterCode = (char)(m + 'A');
+
+                CrawlerMap nmap = nextMaps[m];
+
+                AddNewMapButton(party, stateData, enterCode, nmap, detail, world);
+
+            }
+            stateData.AddBlankLine();
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Go to " + nextMap.GetName(detail.ToX, detail.ToZ) + " (Level: " +
-                nextMap.Level + ")?\n\n", CharCodes.None, ECrawlerStates.None, null, null));
+            stateData.Actions.Add(new CrawlerStateAction("No, let's stay here.", 'N', ECrawlerStates.ExploreWorld));
 
-            stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ExploreWorld, null,
-               new EnterCrawlerMapData()
-               {
-                   MapId = nextMap.IdKey,
-                   MapX = detail.ToX,
-                   MapZ = detail.ToZ,
-                   MapRot = 0,
-                   World = world,
-                   Map = nextMap,
-               }));
-
-            stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.ExploreWorld));
-
+            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
             await Task.CompletedTask;
             return stateData;
+        }
+
+        private void AddNewMapButton(PartyData party, CrawlerStateData stateData, char enterCode, CrawlerMap nmap, MapCellDetail detail,
+            CrawlerWorld world)
+        {
+            MapCellDetail prevDetail = (party.CurrPos.MapId < nmap.IdKey ? nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId < nmap.IdKey) :
+                nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId > nmap.IdKey));
+
+            if (prevDetail != null)
+            {
+                detail.ToX = prevDetail.X;
+                detail.ToZ = prevDetail.Z;
+            }
+            EnterCrawlerMapData newMapData = new EnterCrawlerMapData()
+            {
+                MapId = nmap.IdKey,
+                MapX = detail.ToX,
+                MapZ = detail.ToZ,
+                MapRot = 0,
+                World = world,
+                Map = nmap,
+            };
+
+            stateData.Actions.Add(new CrawlerStateAction(enterCode + " Go to " + nmap.GetName(detail.ToX, detail.ToZ) + " (Level: " +
+               nmap.Level + ")?\n\n", enterCode, ECrawlerStates.ExploreWorld, null,
+                    newMapData
+                ));
         }
     }
 }

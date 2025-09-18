@@ -8,6 +8,7 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -55,6 +56,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         protected IZoneGenService _zoneGenService = null;
         protected INameGenService _nameGenService = null;
         protected ILineGenService _lineGenService = null;
+        protected ICrawlerModeService _modeService = null;
 
         public abstract long Key { get; }
 
@@ -151,9 +153,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
         protected async Task AddMapNpcs(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> okPoints, IRandom rand)
         {
-            if (rand.NextDouble() > genData.MapType.NpcChance)
+
+            if (!_modeService.SingleCityMode(party.Mode))
             {
-                return;
+                if (rand.NextDouble() > genData.MapType.NpcChance)
+                {
+                    return;
+                }
             }
 
             List<MapCellDetail> entrances = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
@@ -165,6 +171,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int minDistanceBetweenNpcs = Math.Max(3, genData.MapType.MinNpcSeparation);
 
             int npcQuantity = MathUtils.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
+
+            if (_modeService.SingleCityMode(party.Mode) && npcQuantity > 1)
+            {
+                npcQuantity = 1;
+            }
 
             ZoneType cityZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.City);
 

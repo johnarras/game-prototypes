@@ -96,6 +96,8 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 goldScale = 1;
             }
 
+            goldScale *= Math.Max(1, roles.Count(r => r.RoleCategoryId == RoleCategories.Class));
+
             if (trainingSettings.AdvanceOneClassPerLevel)
             {
                 goldScale = 1;
@@ -155,6 +157,8 @@ namespace Genrpg.Shared.Crawler.Training.Services
             double baseExpToLevel = GetBaseExpForNextLevel(level);
 
             double totalExp = baseExpToLevel * expScale;
+
+            totalExp *= Math.Max(1, roles.Count(r => r.RoleCategoryId == RoleCategories.Class));
 
             return (long)Math.Ceiling(totalExp);
         }

@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Loot.Helpers;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
@@ -93,6 +94,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         private ITrainingService _trainingService = null;
         private ICrawlerWorldService _worldService = null;
         private IPartyService _partyService = null;
+        private ICrawlerModeService _modeService = null;
+
 
         private SetupDictionaryContainer<long, ICrawlerLootTypeHelper> _lootTypeHelpers = new SetupDictionaryContainer<long, ICrawlerLootTypeHelper>();
 
@@ -163,6 +166,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             }
 
             bool allItemSlotsOk = false;
+
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                allItemSlotsOk = true;
+            }
 
             if (itemType == null)
             {
@@ -296,7 +304,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                     x.IdKey <= StatConstants.PrimaryStatEnd && !usedStatTypeIds.Contains(x.IdKey)).ToList();
 
                     int statQuantity = (int)chosenRank.IdKey / 8;
-                    if (_rand.NextDouble() < chosenRank.IdKey * 0.1f)
+                    if (_rand.NextDouble() < chosenRank.IdKey * 0.2f)
                     {
                         statQuantity++;
                     }
@@ -310,13 +318,28 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                     usedStatTypeIds = usedStatTypeIds.OrderBy(x => x).ToList();
 
+
+                    double statAmount = 2 + level / 7.0;
+
+                    if (_modeService.SinglePartyMember(party.Mode))
+                    {
+                        statAmount *= 1.5f;
+                    }
+
+                    int finalStatAmount = (int)statAmount;
+
+                    if (_rand.NextDouble() < (statAmount - finalStatAmount))
+                    {
+                        finalStatAmount++;
+                    }
+
                     foreach (long statTypeId in usedStatTypeIds)
                     {
                         ItemEffect itemEffect = new ItemEffect()
                         {
                             EntityTypeId = EntityTypes.Stat,
                             EntityId = statTypeId,
-                            Quantity = 2 + level / 7,
+                            Quantity = finalStatAmount,
                         };
 
                         item.Effects.Add(itemEffect);
@@ -592,9 +615,16 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
         public long GetPartyInventorySize(PartyData party)
         {
+
             CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(_gs.ch);
             long inventoryPerPlayer = lootSettings.InventoryPerPartyMember + (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.InventorySize);
-            return party.GetActiveParty().Count * inventoryPerPlayer;
+
+            long count = party.GetActiveParty().Count;
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                count = 5;
+            }
+            return count * inventoryPerPlayer;
         }
 
         public async Task<LootGenData> CreateLootGenData(PartyData party, double expMult, double goldMult, double itemMult, string topMessage = null, ECrawlerStates nextState = ECrawlerStates.None, object nextStateData = null)

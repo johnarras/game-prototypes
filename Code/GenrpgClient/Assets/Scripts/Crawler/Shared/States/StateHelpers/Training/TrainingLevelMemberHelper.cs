@@ -1,6 +1,5 @@
 ﻿
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -13,13 +12,13 @@ using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
@@ -85,23 +84,23 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                         {
                             stateData.AddText($"You can train up to {maxDistinctClasses} classes.");
                         }
-                        
+
 
                         RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
-                        List<Role> classRoles = roleSettings.GetData().Where(x => x.RoleCategoryId == RoleCategories.Class).OrderBy(x=>x.Name).ToList();
+                        List<Role> classRoles = roleSettings.GetData().Where(x => x.RoleCategoryId == RoleCategories.Class).OrderBy(x => x.Name).ToList();
 
                         List<long> allClassRoleIds = classRoles.Select(x => x.IdKey).ToList();
 
-                        List<UnitRole> unitRoles = member.Roles.Where(x=>allClassRoleIds.Contains(x.RoleId)).ToList();  
+                        List<UnitRole> unitRoles = member.Roles.Where(x => allClassRoleIds.Contains(x.RoleId)).ToList();
 
-                        List<long> myClassRoleIds = unitRoles.Select(x=>x.RoleId).ToList();  
+                        List<long> myClassRoleIds = unitRoles.Select(x => x.RoleId).ToList();
 
                         foreach (Role role in classRoles)
                         {
 
                             if (maxDistinctClasses > 0 && unitRoles.Count >= maxDistinctClasses &&
                                 !myClassRoleIds.Contains(role.IdKey))
-                            {                              
+                            {
                                 continue;
                             }
 
@@ -114,10 +113,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                                 onClickAction: delegate ()
                                 {
                                     _trainingService.TrainPartyMemberLevels(party, member, role.IdKey, memberData);
-                                }, extraData: memberData, pointerEnterAction: () => { ShowInfo(EntityTypes.Role, role.IdKey); }
+                                }, extraData: memberData, pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.Role, role.IdKey); }
 
-                                
-                                
+
+
                                 ));
 
                         }

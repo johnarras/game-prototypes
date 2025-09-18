@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell137default",
+  "ParentId": "default",
+  "IdKey": 137,
+  "Name": "Dig Up Vampire",
+  "Desc": "Summon a Vampire",
+  "PowerCost": 9.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 5,
+  "RoleScalingTier": 5,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 70,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 8
+    }
+  ],
+  "ItemEnchantWeight": 0.1,
+  "SaveTime": "2025-09-15T12:37:08.302Z"
+}

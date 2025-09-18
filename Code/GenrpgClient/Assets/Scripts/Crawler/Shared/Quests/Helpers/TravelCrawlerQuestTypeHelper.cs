@@ -22,6 +22,12 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         public override async Task SetupQuest(PartyData party, CrawlerWorld world,
             CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+                return;
+            }
+
+
             List<CrawlerNpc> allNpcs = world.Npcs.Where(n => n.MapId != npc.MapId).OrderBy(x => Math.Abs(x.Level - npc.Level)).ToList();
 
             if (allNpcs.Count < 1)

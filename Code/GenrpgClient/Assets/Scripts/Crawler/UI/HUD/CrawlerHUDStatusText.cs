@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Currencies.Constants;
+﻿using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -47,16 +48,20 @@ namespace Assets.Scripts.Crawler.UI.HUD
 
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 
-            if (map == null)
+            if (map == null || party.HasFlag(PartyFlags.InGuildHall))
             {
-                return;
+                _uiService.SetText(MapPositionText, "");
+                _uiService.SetText(MapNameText, "");
+                _uiService.SetText(LevelText, "");
+                _uiService.SetText(CompleteText, "");
             }
-
-            _uiService.SetText(MapPositionText, "(" + party.CurrPos.X + "," + party.CurrPos.Z + ")");
-
-            _uiService.SetText(MapNameText, map.GetName(party.CurrPos.X, party.CurrPos.Z));
-            _uiService.SetText(LevelText, "Level: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z));
-            _uiService.SetText(CompleteText, party.CompletedMaps.HasBit(map.IdKey) ? "Complete!" : "");
+            else
+            {
+                _uiService.SetText(MapPositionText, "(" + party.CurrPos.X + "," + party.CurrPos.Z + ")");
+                _uiService.SetText(MapNameText, map.GetName(party.CurrPos.X, party.CurrPos.Z));
+                _uiService.SetText(LevelText, "Level: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z));
+                _uiService.SetText(CompleteText, party.CompletedMaps.HasBit(map.IdKey) ? "Complete!" : "");
+            }
 
             _uiService.SetText(UpgradePointsText, $"Upgrade Points: {party.UpgradePoints}");
 

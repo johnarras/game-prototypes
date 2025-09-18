@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell142default",
+  "ParentId": "default",
+  "IdKey": 142,
+  "Name": "Summon Elf",
+  "Desc": "Summon an elf.",
+  "PowerCost": 9.0,
+  "PowerPerLevel": 1.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 5,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 2,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 8
+    }
+  ],
+  "ItemEnchantWeight": 0.1,
+  "SaveTime": "2025-09-15T12:37:08.302Z"
+}

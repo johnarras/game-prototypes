@@ -2,7 +2,7 @@
   "Id": "default",
   "Children": [
     {
-      "Id": "crawlerupgrade1default",
+      "Id": "partyupgrade1default",
       "ParentId": "default",
       "IdKey": 1,
       "Name": "ClassCount",
@@ -12,7 +12,7 @@
       "BasePointCost": 100
     },
     {
-      "Id": "crawlerupgrade2default",
+      "Id": "partyupgrade2default",
       "ParentId": "default",
       "IdKey": 2,
       "Name": "ActionCount",
@@ -22,7 +22,7 @@
       "BasePointCost": 100
     },
     {
-      "Id": "crawlerupgrade3default",
+      "Id": "partyupgrade3default",
       "ParentId": "default",
       "IdKey": 3,
       "Name": "StatPercent",
@@ -32,7 +32,7 @@
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade4default",
+      "Id": "partyupgrade4default",
       "ParentId": "default",
       "IdKey": 4,
       "Name": "RoleScaling",
@@ -42,7 +42,7 @@
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade5default",
+      "Id": "partyupgrade5default",
       "ParentId": "default",
       "IdKey": 5,
       "Name": "StatBonusIncrease",
@@ -52,17 +52,17 @@
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade6default",
+      "Id": "partyupgrade6default",
       "ParentId": "default",
       "IdKey": 6,
       "Name": "VendorQuality",
-      "Desc": "Increases the quality and quantity of vendor items.",
+      "Desc": "Increases quality of vendor items",
       "MaxTier": 5,
-      "BonusPerTier": 0.1,
-      "BasePointCost": 1
+      "BonusPerTier": 1.0,
+      "BasePointCost": 10
     },
     {
-      "Id": "crawlerupgrade7default",
+      "Id": "partyupgrade7default",
       "ParentId": "default",
       "IdKey": 7,
       "Name": "LootQuality",
@@ -72,7 +72,7 @@
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade8default",
+      "Id": "partyupgrade8default",
       "ParentId": "default",
       "IdKey": 8,
       "Name": "SummonQuality",
@@ -84,48 +84,40 @@
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade9default",
+      "Id": "partyupgrade9default",
       "ParentId": "default",
       "IdKey": 9,
-      "Name": "PartySize",
-      "Desc": "Allows for a larger party size.",
-      "MaxTier": 2,
-      "BonusPerTier": 1.0,
-      "BasePointCost": 10
+      "Name": "PartyBuffPower",
+      "NameId": "",
+      "Desc": "Adds a percent to the final value of all party buffs cast.",
+      "MaxTier": 5,
+      "BonusPerTier": 0.1,
+      "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade10default",
+      "Id": "partyupgrade10default",
       "ParentId": "default",
       "IdKey": 10,
       "Name": "ExpPercent",
-      "Desc": "Increases the Exp party members gain.",
-      "MaxTier": 10,
+      "Desc": "Adds exp"
+    },
+    {
+      "Id": "partyupgrade11default",
+      "ParentId": "default",
+      "IdKey": 11,
+      "Name": "InventorySize",
+      "Desc": "Adds more inventory size",
+      "MaxTier": 5,
       "BonusPerTier": 50.0,
       "BasePointCost": 5
     },
     {
-      "Id": "crawlerupgrade11default",
-      "ParentId": "default",
-      "IdKey": 11,
-      "Name": "InventorySize",
-      "NameId": "",
-      "Desc": "Max Size of the party's inventory.",
-      "Icon": "",
-      "Art": "",
-      "MaxTier": 5,
-      "BonusPerTier": 10.0,
-      "BasePointCost": 2
-    },
-    {
-      "Id": "crawlerupgrade12default",
+      "Id": "partyupgrade12default",
       "ParentId": "default",
       "IdKey": 12,
       "Name": "GoldPercent",
-      "NameId": "",
-      "Desc": "Increases the Gold party members gain.",
-      "Icon": "",
-      "Art": "",
-      "MaxTier": 10,
+      "Desc": "Adds percent gold bonus",
+      "MaxTier": 5,
       "BonusPerTier": 50.0,
       "BasePointCost": 5
     },
@@ -159,7 +151,7 @@
   "Parent": {
     "Id": "default",
     "Name": "PartyUpgradeSettings",
-    "SaveTime": "2025-09-03T02:00:39.198Z"
+    "SaveTime": "2025-09-14T00:33:10.493Z"
   },
-  "SaveTime": "2025-09-03T02:00:39.198Z"
+  "SaveTime": "2025-09-14T00:33:10.493Z"
 }

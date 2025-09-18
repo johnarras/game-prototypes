@@ -1,41 +1,53 @@
 ﻿using Assets.Scripts.ClientEvents;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.States.Constants;
 using Assets.Scripts.UI.Interfaces;
-using System;
+using Genrpg.Shared.Crawler.Info.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {
-    public class RolloverInfoRow : BaseBehaviour
+    public class RolloverInfoRow : BaseBehaviour, IPointerMoveHandler
     {
         public GText MainText;
         protected ITextService _textService;
         protected IInfoService _infoService;
 
+        protected string _currentLink = null;
         public override void Init()
         {
             _uiService.AddPointerHandlers(MainText, OnPointerEnter, OnPointerExit);
         }
 
 
-        public virtual void OnPointerExit()
+        public virtual void OnPointerExit(GameObject go)
         {
+            _currentLink = null;
             _dispatcher.Dispatch(new HideInfoPanelEvent());
         }
 
-        public virtual void OnPointerEnter()
+        public virtual void OnPointerEnter(GameObject go)
         {
+            UpdateLinkShown();
+        }
 
-            List<string> lines = _infoService.GetInfoLines(_textService.GetLinkUnderMouse(MainText));
+        public void OnPointerMove(PointerEventData eventData)
+        {
+            UpdateLinkShown();
+        }
 
-            if (lines.Count > 0)
+        private void UpdateLinkShown()
+        {
+            string linkText = _textService.GetLinkUnderMouse(MainText);
+            if (linkText != _currentLink)
             {
-                _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+                List<string> lines = _infoService.GetInfoLines(linkText);
+
+                if (lines.Count > 0)
+                {
+                    _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+                    _currentLink = linkText;
+                }
             }
         }
     }

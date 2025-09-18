@@ -26,24 +26,25 @@ effect,statuseffect,0,-1,,-1,light,,0,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Utility,,,,,,,,,,,,,,,,,,,
 spell,30,Town Portal,Teleport to a town on the overworld map.,1,,,25,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,1,0,,0,arcane,,0,,,,,,,,,,,
-spell,31,Phase Wall,Pass through a wall in front of you if the square behind it exists.,1,,,50,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,2,0,,0,arcane,,0,,,,,,,,,,,
+effect,specialmagic,town portal,0,,0,arcane,,0,,,,,,,,,,,
+spell,31,Pass Wall,Pass through a wall in front of you if the square behind it exists.,1,,,50,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,pass wall,0,,0,arcane,,0,,,,,,,,,,,
 spell,32,Identify Item,Find out the stats an item has.,3,,,10,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,4,0,,0,arcane,,0,,,,,,,,,,,
-spell,33,Blink,Jump forward 1-9 squares if you are not impeded by anything.,5,,,10,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,5,0,,0,arcane,,0,,,,,,,,,,,
+effect,specialmagic,identify item,0,,0,arcane,,0,,,,,,,,,,,
+spell,33,Jump,Jump forward 1-9 squares if you are not impeded by anything.,5,,,10,0,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,Jump,0,,0,arcane,,0,,,,,,,,,,,
 spell,34,Teleport,Move to a different location in the current map.,8,,,25,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,6,0,,0,arcane,,0,,,,,,,,,,,
+effect,specialmagic,Teleport,0,,0,arcane,,0,,,,,,,,,,,
 spell,35,Beacon,Set a beacon or return to a location.,5,,,1,0,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,9,0,,0,arcane,,0,,,,,,,,,,,
+effect,specialmagic,beacon,0,,0,arcane,,0,,,,,,,,,,,
 spell,37,Identify Monster,Get some information about a monster.,3,,,0,0,utility,0,100,0,0,cast,special,0,0,1,0
-effect,specialmagic,3,0,,0,arcane,,0,,,,,,,,,,,
+effect,specialmagic,identify monster,0,,0,arcane,,0,,,,,,,,,,,
 spell,38,Pick Lock,Open a locked door or chest.,1,,,0,0,utility,0,100,0,0,cast,special,0,0,1,0
-effect,statuseffect,4,1,,2,melee,,0,,,,,,,,,,,
-spell,39,Cleanse Area,Disarm any traps nearby.,2,,,50,5,utility,0,100,0,0,cast,special,0,0,1,0.1
-effect,specialmagic,7,1,,2,melee,,0,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
+effect,specialmagic,pick lock,1,,2,melee,,0,,,,,,,,,,,
+spell,39,Cleanse Area,Disarm traps and negate nearby room effects.,2,,,50,5,utility,0,100,0,0,cast,special,0,0,1,0.1
+effect,specialmagic,cleanse area,1,,2,melee,,0,,,,,,,,,,,
+spell,80,Reveal Area,Reveal surrounding map cells.,2,,,2,0,utility,0,100,0,0,cast,special,0,0,1,1
+effect,specialmagic,reveal area,0,,0,arcane,,0,,,,,,,,,,,
 Debuffs,,,,,,,,,,,,,,,,,,,
 spell,60,Silence,Prevent a group from casting spells.,6,,,15,0,spelldam,0,100,0,0,cast,oneenemygroup,0,0,1,0.1
 effect,statuseffect,10,1,,2,shadow,,0,,,,,,,,,,,
@@ -57,8 +58,8 @@ spell,64,Charm,Convince a monster to join your side.,5,,,25,0,spelldam,0,100,0,0
 effect,statuseffect,4,1,,2,shadow,,0,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Party Buffs,,,,,,,,,,,,,,,,,,,
-spell,80,Sense Area,Determine if any traps or interesting things are nearby.,2,,,2,0,utility,0,100,0,0,cast,special,0,0,1,1
-effect,specialmagic,8,0,,0,arcane,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
 spell,81,Light,Create a light to let you see.,1,,,5,1,utility,,,,,cast,world,0,0,1,1
 effect,partybuff,light,1,,1,fire,,,,,,,,,,,,,
 spell,82,Magic Compass,Gives you a compass.,3,,,10,2,utility,,,,,cast,world,0,0,1,1
@@ -69,40 +70,48 @@ spell,84,Danger Sense,Alerts you to traps nearby.,4,,,10,2,utility,,,,,cast,worl
 effect,partybuff,danger sense,1,,1,fire,,,,,,,,,,,,,
 spell,85,Mapping,Lets you map the area you're in.,1,,,5,1,utility,,,,,cast,world,0,0,1,1
 effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,,
-spell,86,Batchspell,Casts all party buffs.,5,,,40,5,utility,,,,,cast,world,0,0,1,0
-effect,partybuff,light,1,,1,fire,,,,,,,,,,,,,
-effect,partybuff,magic compass,1,,1,fire,,,,,,,,,,,,,
-effect,partybuff,levitate,1,,1,fire,,,,,,,,,,,,,
-effect,partybuff,danger sense,1,,1,fire,,,,,,,,,,,,,
-effect,partybuff,mapping,1,,1,fire,,,,,,,,,,,,,
 spell,87,Autoheal,Sometimes heals your party members.,2,,,10,4,healing,,,,,cast,world,0,0,1,0.1
 effect,partybuff,autoheal,1,,1,light,,,,,,,,,,,,,
 spell,88,Barrier,Sometimes you avoid incoming damage.,3,,,15,3,defense,,,,,cast,world,0,0,1,0.1
 effect,partybuff,barrier,1,,1,earth,,,,,,,,,,,,,
-spell,89,Thorns,Retaliate damage toward your attacker.,4,,,20,2,spelldam,,,,,cast,world,0,0,1,0.1
-effect,partybuff,thorns,1,,1,nature,,,,,,,,,,,,,
-spell,90,Sharpshooter,Increases crit chance with ranged attacks.,3,,,20,2,ranged,,,,,cast,world,0,0,1,0.1
-effect,partybuff,sharpshooter,1,,1,ranged,,,,,,,,,,,,,
-spell,91,Lucky Blade,Increases luck extra hit bonus for melee attacks.,4,,,20,2,melee,,,,,cast,world,0,0,1,0.1
-effect,partybuff,lucky blade,1,,1,melee,,,,,,,,,,,,,
+spell,89,Retaliate,Retaliate damage toward your attacker.,4,,,20,2,spelldam,,,,,cast,world,0,0,1,0.1
+effect,partybuff,retaliate,1,,1,nature,,,,,,,,,,,,,
+spell,90,Cursed Arrows,Chance to debuff enemies with ranged attacks.,3,,,20,2,ranged,,,,,cast,world,0,0,1,0.1
+effect,partybuff,Cursed Arrows,1,,1,ranged,,,,,,,,,,,,,
+spell,91,Parry,Gives a chance to use your weapon to deflect an attack.,4,,,20,2,melee,,,,,cast,world,0,0,1,0.1
+effect,partybuff,parry,1,,1,melee,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Summons,,,,,,,,,,,,,,,,,,,
-spell,100,Call Beast,Summon a beast.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,130,Call Bear,Summon a bear.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,bear,1,,1,nature,,0,,,,,,,,,,,
-spell,101,Conjure Golem,Summon a golem.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
-effect,unit,stonegolem,1,,1,nature,,0,,,,,,,,,,,
-spell,102,Summon Elemental,Summon an elemental.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,131,Activate Golem,Activate an iron golem.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,irongolem,1,,1,nature,,0,,,,,,,,,,,
+spell,132,Conjure Elemental,Summon an elemental.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,earth elemental,1,,1,nature,,0,,,,,,,,,,,
-spell,103,Summon Monk,Summon a monk,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,133,Summon Monk,Summon a monk,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,monk,1,,1,nature,,0,,,,,,,,,,,
-spell,104,Summon Scrapper,Summon a scrapper,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,134,Summon Scrapper,Summon a scrapper,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,scrapper,1,,1,nature,,0,,,,,,,,,,,
-spell,105,Signal Thief,Signal a thief to follow you.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,135,Signal Thief,Signal a thief to follow you.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,thief,1,,1,nature,,0,,,,,,,,,,,
-spell,106,Summon Skeleton,Summon a skeleton.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,136,Raise Skeleton,Summon a skeleton.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,skeleton,1,,1,nature,,0,,,,,,,,,,,
-spell,107,Summon Vampire,Summon a Vampire,5,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+spell,137,Dig Up Vampire,Summon a Vampire,5,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
 effect,unit,vampire,1,,1,nature,,0,,,,,,,,,,,
+spell,138,Pspspsps Cat,Summon a cat.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,cat,1,,1,nature,,0,,,,,,,,,,,
+spell,139,Summon Guard,Summon a Guard,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,guard,1,,1,nature,,0,,,,,,,,,,,
+spell,140,Summon Barbarian,Summon a Barbarian,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,barbarian,1,,1,nature,,0,,,,,,,,,,,
+spell,141,Call Magician,Summon a magician.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,magician,1,,1,nature,,0,,,,,,,,,,,
+spell,142,Summon Elf,Summon an elf.,1,,,9,1,summon,0,100,0,0,cast,self,0,0,1,0.1
+effect,unit,elf,1,,1,nature,,0,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 AttackSpells,,,,,,,,,,,,,,,,,,,

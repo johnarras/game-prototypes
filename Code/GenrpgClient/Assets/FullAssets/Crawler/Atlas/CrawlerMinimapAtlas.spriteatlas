@@ -59,7 +59,6 @@ SpriteAtlas:
     - cf3342932e23ea2458f5039d8d81f12c: 21300000
     - 45d4de93a9636d64f8e64cb26bc5e422: 21300000
     - 8d30aeb328e6e5249adfb4d40dc75bb3: 21300000
-    - ee525a25cc0d21948b76883a59f274a5: 21300000
     - 38205a454e0365b48862b75baee67a6c: 21300000
     - c0ad1995433db3546b2e4b0685cca9a5: 21300000
     - c16590f56deaa984ebe714df002f3e09: 21300000
@@ -70,6 +69,7 @@ SpriteAtlas:
     - 337489a6be5d9cb40a5ee0cf1ccbed27: 21300000
     - 8d37eec6969f36a45b954e2738f835cf: 21300000
     - 458cc6d65c3c2744b8c3f6b53b0d01fb: 21300000
+    - f0648c27771d5984c99aa7bc8737ff9e: 21300000
     - 8b9c494712ea12b4992e518cf2a62f25: 21300000
     - 8a84a8670258abc4f8b58890aca7f13b: 21300000
     - f9582f6723077da4a8dc003e4eedf293: 21300000
@@ -117,6 +117,7 @@ SpriteAtlas:
     - 5de4ed3eb063cf243ae0b14269c21338: 21300000
     - 88bc675e27c6dc141bb6a1479394b5df: 21300000
     - 9291887e1606c5a41a348693064032ec: 21300000
+    - b69821aecdc3c934388450c5aaf34bbb: 21300000
     - ad98f3bed278767488d1cd462e64dcf0: 21300000
     - b9f409be1b2a3d64e8db2a94afedaa5b: 21300000
     - 5b244b4f17f976e409043432e3a3a3c5: 21300000
@@ -145,7 +146,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cf3342932e23ea2458f5039d8d81f12c, type: 3}
   - {fileID: 21300000, guid: 45d4de93a9636d64f8e64cb26bc5e422, type: 3}
   - {fileID: 21300000, guid: 8d30aeb328e6e5249adfb4d40dc75bb3, type: 3}
-  - {fileID: 21300000, guid: ee525a25cc0d21948b76883a59f274a5, type: 3}
   - {fileID: 21300000, guid: 38205a454e0365b48862b75baee67a6c, type: 3}
   - {fileID: 21300000, guid: c0ad1995433db3546b2e4b0685cca9a5, type: 3}
   - {fileID: 21300000, guid: c16590f56deaa984ebe714df002f3e09, type: 3}
@@ -156,6 +156,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 337489a6be5d9cb40a5ee0cf1ccbed27, type: 3}
   - {fileID: 21300000, guid: 8d37eec6969f36a45b954e2738f835cf, type: 3}
   - {fileID: 21300000, guid: 458cc6d65c3c2744b8c3f6b53b0d01fb, type: 3}
+  - {fileID: 21300000, guid: f0648c27771d5984c99aa7bc8737ff9e, type: 3}
   - {fileID: 21300000, guid: 8b9c494712ea12b4992e518cf2a62f25, type: 3}
   - {fileID: 21300000, guid: 8a84a8670258abc4f8b58890aca7f13b, type: 3}
   - {fileID: 21300000, guid: f9582f6723077da4a8dc003e4eedf293, type: 3}
@@ -203,6 +204,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5de4ed3eb063cf243ae0b14269c21338, type: 3}
   - {fileID: 21300000, guid: 88bc675e27c6dc141bb6a1479394b5df, type: 3}
   - {fileID: 21300000, guid: 9291887e1606c5a41a348693064032ec, type: 3}
+  - {fileID: 21300000, guid: b69821aecdc3c934388450c5aaf34bbb, type: 3}
   - {fileID: 21300000, guid: ad98f3bed278767488d1cd462e64dcf0, type: 3}
   - {fileID: 21300000, guid: b9f409be1b2a3d64e8db2a94afedaa5b, type: 3}
   - {fileID: 21300000, guid: 5b244b4f17f976e409043432e3a3a3c5, type: 3}
@@ -230,7 +232,6 @@ SpriteAtlas:
   - BadlandsObject
   - MountainsTerrain
   - WWWOWall
-  - Stairs
   - Unexplored
   - NpcObject
   - RoadObject
@@ -241,6 +242,7 @@ SpriteAtlas:
   - CaveTerrain
   - DesertObject
   - CityObject
+  - StairsDown
   - WaterTerrain
   - TrainerObject
   - DDDWWall
@@ -288,6 +290,7 @@ SpriteAtlas:
   - DarkForestObject
   - DesertTerrain
   - EquipmentObject
+  - StairsUp
   - TempleObject
   - WDOOWall
   - ArcaneObject

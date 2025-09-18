@@ -1,14 +1,14 @@
-using MessagePack;
 using Genrpg.Shared.Constants;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.ProcGen.Settings.Names;
+using MessagePack;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using Genrpg.Shared.ProcGen.Settings.Names;
 
 namespace Genrpg.Shared.Utils
 {
@@ -201,9 +201,9 @@ namespace Genrpg.Shared.Utils
                 }
             }
 
-            List<IGrouping<int,IPriorityInitializable>> groupedServices = priorityServices.GroupBy(x => x.SetupPriorityAscending()).OrderBy(x=>x.Key).ToList();  
+            List<IGrouping<int, IPriorityInitializable>> groupedServices = priorityServices.GroupBy(x => x.SetupPriorityAscending()).OrderBy(x => x.Key).ToList();
 
-            foreach (IGrouping<int,IPriorityInitializable> group in groupedServices)
+            foreach (IGrouping<int, IPriorityInitializable> group in groupedServices)
             {
 
                 List<Task> priorityTasks = new List<Task>();
@@ -263,7 +263,7 @@ namespace Genrpg.Shared.Utils
                     }
                     catch (Exception ex2)
                     {
-                        Console.WriteLine(ex.ToString() + " " + ex.StackTrace);
+                        Console.WriteLine(ex2.ToString() + " " + ex2.StackTrace + " Parent: " + ex.Message);
                     }
                 }
             }

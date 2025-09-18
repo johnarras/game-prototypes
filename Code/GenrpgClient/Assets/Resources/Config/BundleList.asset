@@ -1461,3 +1461,21 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: textureliststhorns
     IsLocal: 0
+  - BundleName: combatacidcombathit
+    IsLocal: 0
+  - BundleName: combatmeleecombathit
+    IsLocal: 0
+  - BundleName: combatrangedcombathit
+    IsLocal: 0
+  - BundleName: texturelistscurrsedarrows
+    IsLocal: 0
+  - BundleName: texturelistsparrybuff
+    IsLocal: 0
+  - BundleName: texturelistsretaliation
+    IsLocal: 0
+  - BundleName: texturelistscursedarrows
+    IsLocal: 0
+  - BundleName: texturelistsparry
+    IsLocal: 0
+  - BundleName: atlascrawlercurrencytypeicons
+    IsLocal: 0

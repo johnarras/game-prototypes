@@ -20,7 +20,15 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
 
 
         [JsonIgnore]
-        public UnitAction Action { get; set; }
+        public List<UnitAction> Actions { get; set; } = new List<UnitAction>();
+
+        public void AddAction(UnitAction action)
+        {
+            if (!Actions.Contains(action))
+            {
+                Actions.Add(action);
+            }
+        }
 
         [JsonIgnore]
         public double CombatPriority { get; set; }
@@ -32,6 +40,10 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
         public long VulnBits { get; set; }
 
         public long ResistBits { get; set; }
+
+        [JsonIgnore]
+        public long ActionsThisRound { get; set; }
+
 
         public List<UnitKeyword> ExtraKeywords { get; set; } = new List<UnitKeyword>();
 

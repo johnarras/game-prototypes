@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
+using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -117,8 +118,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 }
             }
 
-
-
             List<CrawlerUnit> allUnits = party.Combat.GetAllUnits();
 
             // Remove dead
@@ -137,20 +136,28 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     continue;
                 }
 
-                if (unit.Action == null)
+                if (unit.Actions.Count < 1)
                 {
                     continue;
                 }
 
-                if (unit.Action.IsComplete && unit.Action.SpellBeingCast != null &&
-                    unit.Action.FinalTargets.Count > 0)
+                UnitAction currentAction = unit.Actions.FirstOrDefault(x => x.DidCast && x.SpellBeingCast != null &&
+                x.SpellBeingCast.HitsLeft > 0 &&
+                x.FinalTargets.Count > 0);
+
+                if (currentAction == null)
                 {
-                    await _spellService.CastSpellOnNextTarget(party, unit.Action, token);
-                    continue;
+                    unit.Actions = unit.Actions.Where(x => !x.DidCast && x.SpellBeingCast == null && x.Spell != null).ToList();
+
+                    if (unit.Actions.Count > 0)
+                    {
+                        await _spellService.CastSpell(party, unit.Actions[0], token);
+                    }
                 }
                 else
                 {
-                    await _spellService.CastSpell(party, unit.Action, token);
+                    await _spellService.CastSpellOnNextTarget(party, currentAction, token);
+
                 }
             }
 

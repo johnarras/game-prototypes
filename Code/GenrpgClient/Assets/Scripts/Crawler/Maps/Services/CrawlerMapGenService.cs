@@ -7,6 +7,7 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -37,7 +38,7 @@ namespace Assets.Scripts.Crawler.Maps
         private IClientGameState _gs = null;
         private IClientRandom _rand = null;
         private ICrawlerMapService _mapService = null;
-
+        private ICrawlerModeService _modeService = null;
         private CancellationToken _token;
 
         private PartyData _party;
@@ -135,9 +136,12 @@ namespace Assets.Scripts.Crawler.Maps
 
             SetObjectDirections(newMap.Map, rand);
 
-            if (genData.FromMapId > 0 && newMap.EnterX >= 0 && newMap.EnterZ >= 0)
+            if (_modeService.GenerateAllMapsAtOnce(party.Mode))
             {
-                LinkTwoMaps(world, genData.FromMapId, genData.FromMapX, genData.FromMapZ, newMap.Map.IdKey, newMap.EnterX, newMap.EnterZ);
+                if (genData.FromMapId > 0 && newMap.EnterX >= 0 && newMap.EnterZ >= 0)
+                {
+                    LinkTwoMaps(world, genData.FromMapId, genData.FromMapX, genData.FromMapZ, newMap.Map.IdKey, newMap.EnterX, newMap.EnterZ);
+                }
             }
 
             return newMap.Map;
@@ -149,7 +153,7 @@ namespace Assets.Scripts.Crawler.Maps
             OneWayLink(world, toMapId, toMapX, toMapZ, fromMapId, fromMapX, fromMapZ);
         }
 
-        private void OneWayLink(CrawlerWorld world, long fromMapId, int fromX, int fromZ, long toMapId, int toX, int toZ)
+        public void OneWayLink(CrawlerWorld world, long fromMapId, int fromX, int fromZ, long toMapId, int toX, int toZ)
         {
             CrawlerMap fromMap = world.GetMap(fromMapId);
             CrawlerMap toMap = world.GetMap(toMapId);

@@ -2,14 +2,11 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
@@ -31,10 +28,11 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         protected ILogService _logService = null;
         protected ITextService _textService = null;
         protected ICrawlerCombatService _combatService = null;
+        protected ICrawlerModeService _modeService = null;
 
         public abstract long Key { get; }
         protected abstract string QuestVerb { get; }
-        public abstract Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, 
+        public abstract Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
             MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
 
         protected CrawlerQuestType GetQuestType()
@@ -42,7 +40,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             return _gameData.Get<CrawlerQuestSettings>(_gs.ch).Get(Key);
         }
 
-        protected virtual long GetMaxQuantity(long npcLevel, IRandom rand)
+        protected virtual long GetMaxQuantity(PartyData party, long npcLevel, IRandom rand)
         {
             double monsterScale = GetQuestType().MonsterGroupSizeScale;
 
@@ -50,8 +48,8 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             {
                 return 1;
             }
-                
-            long maxGroupSize = _combatService.GetMaxGroupSize(npcLevel);
+
+            long maxGroupSize = _combatService.GetMaxGroupSize(party, npcLevel);
             return MathUtils.LongRange(maxGroupSize / 2 + 1, maxGroupSize * 3 / 2 + 1, rand);
         }
 
@@ -72,8 +70,8 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
             string startNpcInfo = startNpc.Name + " in " + startMapName;
 
-            string endNpcInfo = "and return to them for a reward.";
-           
+            string endNpcInfo = " and return to them for a reward.";
+
             CrawlerNpc endNpc = world.GetNpc(quest.EndCrawlerNpcId);
 
             if (endNpc != startNpc)
@@ -97,17 +95,17 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             }
 
             sb.Append(quest.Quantity > 1 ? quest.TargetPluralName : quest.TargetSingularName);
-            
+
             CrawlerMap map = world.GetMap(quest.CrawlerMapId);
             if (map != null)
             {
                 sb.Append(" in " + map.Name + " ");
             }
-            
+
             if (showCurrentStatus)
             {
                 string currText = sb.ToString();
-                PartyQuest partyQuest = party.Quests.FirstOrDefault(x=>x.CrawlerQuestId == crawlerQuestId);
+                PartyQuest partyQuest = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == crawlerQuestId);
                 if (party.CompletedQuests.HasBit(quest.IdKey) ||
                     (partyQuest != null && partyQuest.CurrQuantity >= quest.Quantity))
                 {

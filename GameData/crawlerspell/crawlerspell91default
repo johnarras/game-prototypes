@@ -2,8 +2,8 @@
   "Id": "crawlerspell91default",
   "ParentId": "default",
   "IdKey": 91,
-  "Name": "Lucky Blade",
-  "Desc": "Increases luck extra hit bonus for melee attacks.",
+  "Name": "Parry",
+  "Desc": "Gives a chance to use your weapon to deflect an attack.",
   "PowerCost": 20.0,
   "PowerPerLevel": 2.0,
   "StatBonusScaling": 1.0,
@@ -22,5 +22,5 @@
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-09T08:58:31.973Z"
+  "SaveTime": "2025-09-15T12:37:08.302Z"
 }

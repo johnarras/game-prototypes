@@ -10,7 +10,7 @@
         public const long VendorQuality = 6;
         public const long LootQuality = 7;
         public const long SummonQuality = 8;
-        public const long PartySize = 9;
+        public const long PartyBuffPower = 9;
         public const long ExpPercent = 10;
         public const long InventorySize = 11;
         public const long GoldPercent = 12;

@@ -2,5 +2,6 @@
   "Id": "specialmagic3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "IdentifyMonster"
+  "Name": "Identify Monster",
+  "SaveTime": "2025-09-13T18:23:01.315Z"
 }

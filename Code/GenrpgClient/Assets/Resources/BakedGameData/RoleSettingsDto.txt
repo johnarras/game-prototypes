@@ -12,7 +12,7 @@
       "HealthPerLevel": 22,
       "ManaPerLevel": 10,
       "MaxArmorScalingTypeId": 4,
-      "CritPercent": 5,
+      "CritPercent": 2,
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
@@ -99,7 +99,23 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 88
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 89
         },
         {
           "EntityTypeId": 100,
@@ -107,7 +123,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 104
+          "EntityId": 134
         },
         {
           "EntityTypeId": 100,
@@ -189,7 +205,7 @@
       "HealthPerLevel": 16,
       "ManaPerLevel": 10,
       "MaxArmorScalingTypeId": 2,
-      "CritPercent": 20,
+      "CritPercent": 10,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -267,15 +283,31 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 89
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 90
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 91
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 105
+          "EntityId": 135
         },
         {
           "EntityTypeId": 100,
@@ -357,7 +389,7 @@
       "HealthPerLevel": 18,
       "ManaPerLevel": 14,
       "MaxArmorScalingTypeId": 3,
-      "CritPercent": 15,
+      "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -435,11 +467,31 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 83
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 90
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 100
+          "EntityId": 130
         },
         {
           "EntityTypeId": 100,
@@ -513,7 +565,7 @@
       "HealthPerLevel": 12,
       "ManaPerLevel": 22,
       "MaxArmorScalingTypeId": 1,
-      "CritPercent": 10,
+      "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -603,15 +655,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 88
+          "EntityId": 90
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 89
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 101
+          "EntityId": 141
         },
         {
           "EntityTypeId": 100,
@@ -713,7 +761,7 @@
       "HealthPerLevel": 14,
       "ManaPerLevel": 22,
       "MaxArmorScalingTypeId": 1,
-      "CritPercent": 5,
+      "CritPercent": 1,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -791,15 +839,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 83
-        },
-        {
-          "EntityTypeId": 100,
           "EntityId": 84
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -807,7 +847,15 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 103
+          "EntityId": 88
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 91
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 133
         },
         {
           "EntityTypeId": 100,
@@ -893,7 +941,7 @@
       "HealthPerLevel": 18,
       "ManaPerLevel": 14,
       "MaxArmorScalingTypeId": 4,
-      "CritPercent": 5,
+      "CritPercent": 2,
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
@@ -988,6 +1036,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 38
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 62
         },
         {
@@ -996,15 +1048,31 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 83
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 87
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 88
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 90
+          "EntityId": 91
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 101
+          "EntityId": 131
         },
         {
           "EntityTypeId": 100,
@@ -1100,7 +1168,7 @@
       "HealthPerLevel": 16,
       "ManaPerLevel": 16,
       "MaxArmorScalingTypeId": 3,
-      "CritPercent": 5,
+      "CritPercent": 2,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -1186,19 +1254,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 81
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 82
-        },
-        {
-          "EntityTypeId": 100,
           "EntityId": 83
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 84
         },
         {
           "EntityTypeId": 100,
@@ -1218,7 +1274,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 105
+          "EntityId": 91
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 142
         },
         {
           "EntityTypeId": 100,
@@ -1314,7 +1374,7 @@
       "HealthPerLevel": 18,
       "ManaPerLevel": 18,
       "MaxArmorScalingTypeId": 2,
-      "CritPercent": 5,
+      "CritPercent": 3,
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
@@ -1421,19 +1481,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 81
-        },
-        {
-          "EntityTypeId": 100,
           "EntityId": 82
         },
         {
           "EntityTypeId": 100,
           "EntityId": 83
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 84
         },
         {
           "EntityTypeId": 100,
@@ -1449,11 +1501,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 89
+          "EntityId": 91
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 100
+          "EntityId": 138
         },
         {
           "EntityTypeId": 100,
@@ -1553,7 +1605,7 @@
       "HealthPerLevel": 18,
       "ManaPerLevel": 10,
       "MaxArmorScalingTypeId": 3,
-      "CritPercent": 15,
+      "CritPercent": 3,
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
@@ -1644,7 +1696,19 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 88
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 89
         },
         {
           "EntityTypeId": 100,
@@ -1656,7 +1720,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 104
+          "EntityId": 140
         },
         {
           "EntityTypeId": 100,
@@ -1734,7 +1798,7 @@
       "HealthPerLevel": 20,
       "ManaPerLevel": 18,
       "MaxArmorScalingTypeId": 4,
-      "CritPercent": 5,
+      "CritPercent": 1,
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
@@ -1805,6 +1869,14 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 87
         },
         {
@@ -1813,11 +1885,15 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 89
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 91
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 103
+          "EntityId": 139
         },
         {
           "EntityTypeId": 100,
@@ -1901,7 +1977,7 @@
       "HealthPerLevel": 16,
       "ManaPerLevel": 20,
       "MaxArmorScalingTypeId": 3,
-      "CritPercent": 10,
+      "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -1979,15 +2055,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 82
-        },
-        {
-          "EntityTypeId": 100,
           "EntityId": 83
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 84
         },
         {
           "EntityTypeId": 100,
@@ -2003,7 +2071,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 102
+          "EntityId": 90
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 132
         },
         {
           "EntityTypeId": 100,
@@ -2125,7 +2197,7 @@
       "HealthPerLevel": 10,
       "ManaPerLevel": 20,
       "MaxArmorScalingTypeId": 2,
-      "CritPercent": 5,
+      "CritPercent": 2,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
       "BinaryBonuses": [
@@ -2183,14 +2255,6 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 81
-        },
-        {
-          "EntityTypeId": 100,
-          "EntityId": 82
-        },
-        {
-          "EntityTypeId": 100,
           "EntityId": 83
         },
         {
@@ -2199,7 +2263,11 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 85
+          "EntityId": 87
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 88
         },
         {
           "EntityTypeId": 100,
@@ -2207,15 +2275,15 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 101
+          "EntityId": 90
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 106
+          "EntityId": 136
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 107
+          "EntityId": 137
         },
         {
           "EntityTypeId": 100,
@@ -2462,7 +2530,12 @@
       "Abbrev": "Hf",
       "RoleCategoryId": 2,
       "CritPercent": 5,
-      "BinaryBonuses": [],
+      "BinaryBonuses": [
+        {
+          "EntityTypeId": 100,
+          "EntityId": 38
+        }
+      ],
       "AmountBonuses": [
         {
           "EntityTypeId": 43,
@@ -2480,7 +2553,7 @@
   "Parent": {
     "Id": "default",
     "Name": "RoleSettings",
-    "SaveTime": "2025-09-09T08:59:40.525Z"
+    "SaveTime": "2025-09-15T12:37:17.641Z"
   },
-  "SaveTime": "2025-09-09T08:59:40.525Z"
+  "SaveTime": "2025-09-15T12:37:17.641Z"
 }

@@ -12,12 +12,12 @@
   "RoleScalingTier": 1,
   "Effects": [
     {
-      "EntityTypeId": 36,
-      "EntityId": 4,
+      "EntityTypeId": 37,
+      "EntityId": 10,
       "MinQuantity": 1,
       "MaxQuantity": 2,
       "ElementTypeId": 1
     }
   ],
-  "SaveTime": "2025-09-09T08:58:31.973Z"
+  "SaveTime": "2025-09-15T12:37:08.302Z"
 }

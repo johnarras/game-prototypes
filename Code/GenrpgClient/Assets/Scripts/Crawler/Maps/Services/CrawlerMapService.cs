@@ -19,10 +19,12 @@ using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.GameEvents;
+using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Quests.Services;
@@ -38,6 +40,7 @@ using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +74,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         int GetMapCellHash(long mapId, int x, int z, long extraData);
         long GetEncounterAtCell(PartyData party, CrawlerMap map, int x, int z);
         void ClearCellObject(int x, int z);
+        Awaitable<CrawlerMap> GenerateNewMap(PartyData party, CrawlerMap currMap, CancellationToken token);
     }
 
     public class CrawlerMapService : ICrawlerMapService
@@ -90,6 +94,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private ICrawlerDrawMapService _drawMapService = null;
         private ICrawlerQuestService _questService = null;
         private IPartyService _partyService = null;
+        private ICrawlerMapGenService _mapGenService = null;
+        private ICrawlerModeService _modeService = null;
 
         CrawlerMapRoot _crawlerMapRoot = null;
         private CancellationToken _token;
@@ -174,10 +180,17 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 await Awaitable.NextFrameAsync(token);
             }
 
-            CleanMap();
-            await Awaitable.NextFrameAsync(token);
             _party = party;
             _world = await _worldService.GetWorld(_party.WorldId);
+
+            if (!_modeService.GenerateAllMapsAtOnce(party.Mode))
+            {
+                await GenerateNewMap(party, mapData.Map, token);
+            }
+
+            CleanMap();
+            await Awaitable.NextFrameAsync(token);
+
             await _moveService.EnterMap(party, mapData, token);
 
             if (_playerLight == null)
@@ -926,6 +939,83 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     }
                 }
             }
+        }
+
+        public async Awaitable<CrawlerMap> GenerateNewMap(PartyData party, CrawlerMap currMap, CancellationToken token)
+        {
+            if (currMap.IdKey == party.CurrPos.MapId)
+            {
+                return currMap;
+            }
+
+            long mapId = currMap.IdKey;
+
+            CrawlerMap cityMap = _world.GetMap(1);
+            CrawlerMap dungeonMap = _world.GetMap(2);
+
+            party.CompletedMaps.Clear();
+            party.CompletedMaps.SetBit(1);
+            party.Maps.Clear();
+
+            // Enter city
+            if (mapId == 1)
+            {
+                cityMap.Level = (int)Math.Max(party.MaxLevelEntered*3/4, 1);
+                _world.Maps.Clear();
+                _world.AddMap(cityMap);
+                if (dungeonMap != null)
+                {
+                    _world.AddMap(dungeonMap);
+                }
+            }
+            else
+            {
+                currMap = _world.GetMap(mapId);
+
+                _world.Maps.Clear();
+                _world.AddMap(cityMap);
+                if (currMap != null)
+                {
+                    _world.AddMap(currMap);
+                }
+
+                if (currMap == null)
+                {
+                    _world.Seed++;
+                    _world.MaxMapId = mapId - 1;
+                    CrawlerMapGenData genData = new CrawlerMapGenData()
+                    {
+                        FromMapId = mapId - 1,
+                        CurrFloor = mapId - 1,
+                        MaxFloor = mapId,
+                        Level = mapId-1,
+                        LevelDelta = 0,
+                        MapTypeId = CrawlerMapTypes.Dungeon,
+                        World = _world,
+                        FromMapX = party.CurrPos.X,
+                        FromMapZ = party.CurrPos.Z,
+                    };
+
+                    CrawlerMap newMap = await _mapGenService.Generate(party, _world, genData, token);
+
+                    if (party.MaxLevelEntered < newMap.Level)
+                    {
+                        party.MaxLevelEntered = newMap.Level;
+                    }
+
+                    newMap.IdKey = mapId;
+
+                    if (currMap != null)
+                    {
+                        newMap.Name = currMap.Name;
+                    }
+                    currMap = newMap;
+                }
+            }
+
+            await _worldService.SaveWorld(_world);
+
+            return currMap;
         }
     }
 }

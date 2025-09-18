@@ -41,7 +41,10 @@ namespace Assets.Scripts.UI.Crawler
 
         private void OnCrawlerCharacterData(CrawlerCharacterScreenData data)
         {
-            _screenService.Open(ScreenNames.CrawlerCharacter, data);
+            if (_screenService.GetScreen(ScreenNames.CrawlerCharacter) == null)
+            {
+                _screenService.Open(ScreenNames.CrawlerCharacter, data);
+            }
         }
     }
 }

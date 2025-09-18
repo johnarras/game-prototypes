@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     clickAction = delegate ()
                     {
                         selectAction.Action.FinalTargets.Add(partyMember);
-                        selectAction.Member.Action = selectAction.Action;
+                        selectAction.Member.Actions.Add(selectAction.Action);
                     };
                 }
 

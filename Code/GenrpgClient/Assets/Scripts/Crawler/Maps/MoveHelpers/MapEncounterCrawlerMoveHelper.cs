@@ -44,7 +44,6 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             if (encounterTypeId == MapEncounters.Treasure)
             {
-
                 LootGenData lootGenData = await _lootGenService.CreateLootGenData(party,
                     MathUtils.FloatRange(2.0f, 4.0f, _rand), MathUtils.FloatRange(2.0f, 4.0f, _rand), MathUtils.FloatRange(2.0f, 4.0f, _rand), "You Found a Great Treasure!", ECrawlerStates.ExploreWorld, null);
 

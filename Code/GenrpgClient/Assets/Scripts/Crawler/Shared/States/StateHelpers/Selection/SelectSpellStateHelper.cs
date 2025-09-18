@@ -11,6 +11,7 @@ using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
@@ -71,7 +72,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(spellText, chosenChar, nextState, extraData: extra, forceButton: false,
-                    pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, spell.IdKey)));
+                    pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, spell.IdKey)));
             }
 
             stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, currentData.Id, extraData: data));

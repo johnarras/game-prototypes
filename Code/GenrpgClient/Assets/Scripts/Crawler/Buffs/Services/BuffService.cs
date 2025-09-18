@@ -1,0 +1,239 @@
+﻿using Assets.Scripts.Crawler.Items.Services;
+using Genrpg.Shared.Crawler.Buffs.Settings;
+using Genrpg.Shared.Crawler.Combat.Services;
+using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Info.Services;
+using Genrpg.Shared.Crawler.Items.Entities;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Roles.Services;
+using Genrpg.Shared.Crawler.Roles.Settings;
+using Genrpg.Shared.Crawler.Spells.Entities;
+using Genrpg.Shared.Crawler.Spells.Services;
+using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Stats.Constants;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace Assets.Scripts.Crawler.Buffs.Services
+{
+    public interface IBuffService : IInjectable
+    {
+        List<PartyBuff> GetMissingBuffs(PartyData party);
+        List<Role> RolesThatCanBuff(long partyBuffId);
+        string GetMissingBuffsString(PartyData party);
+        float GetPartyBuffPower(PartyData party, long partyBuffId);
+        Task CastAllPartyBuffs(PartyData party, CancellationToken token);
+    }
+
+    public class BuffService : IBuffService
+    {
+
+        private IGameData _gameData = null;
+        private IClientGameState _gs = null;
+        private ICrawlerSpellService _spellService = null;
+        private IInfoService _infoService = null;
+        private ICrawlerService _crawlerService = null;
+        private ICrawlerCombatService _combatService = null;
+        private IRoleService _roleService = null;
+        private ICrawlerItemService _itemService = null;
+        private ICrawlerUpgradeService _upgradeService = null;
+
+        public List<Role> RolesThatCanBuff(long partyBuffId)
+        {
+            CrawlerSpell spell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Effects.Count == 1 &&
+            x.Effects[0].EntityTypeId == EntityTypes.PartyBuff && x.Effects[0].EntityId == partyBuffId);
+
+            if (spell != null)
+            {
+                return _spellService.RolesThatCanCast(spell.IdKey);
+            }
+            return new List<Role>();
+        }
+
+        public List<PartyBuff> GetMissingBuffs(PartyData party)
+        {
+            IReadOnlyList<PartyBuff> allBuffs = _gameData.Get<PartyBuffSettings>(_gs.ch).GetData();
+
+            List<long> roleIds = new List<long>();
+
+            foreach (PartyMember member in party.GetActiveParty())
+            {
+                roleIds.AddRange(member.Roles.Select(x => x.RoleId));
+            }
+
+            roleIds = roleIds.Distinct().OrderBy(x => x).ToList();
+
+            List<Role> partyRoles = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(r => roleIds.Contains(r.IdKey)).ToList();
+
+            List<long> partyRoleIds = partyRoles.Select(x => x.IdKey).Distinct().ToList();
+
+            CrawlerSpellSettings spellSettings = new CrawlerSpellSettings();
+
+
+            List<PartyBuff> missingBuffs = new List<PartyBuff>();
+
+            foreach (PartyBuff partyBuff in allBuffs)
+            {
+                List<Role> buffRoles = RolesThatCanBuff(partyBuff.IdKey);
+
+                if (!buffRoles.Any(r => partyRoleIds.Contains(r.IdKey)))
+                {
+                    missingBuffs.Add(partyBuff);
+                }
+            }
+
+            return missingBuffs;
+        }
+
+        public string GetMissingBuffsString(PartyData party)
+        {
+            List<PartyBuff> missingBuffs = GetMissingBuffs(party);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("Missing Party Buffs: ");
+
+            for (int p = 0; p < missingBuffs.Count; p++)
+            {
+                sb.Append(_infoService.CreateInfoLink(missingBuffs[p]) + (p < missingBuffs.Count - 1 ? ", " : ""));
+            }
+
+            if (missingBuffs.Count == 0)
+            {
+                sb.Append("None.");
+            }
+
+            return sb.ToString();
+        }
+
+        public async Task CastAllPartyBuffs(PartyData party, CancellationToken token)
+        {
+            if (_crawlerService.GetState() != ECrawlerStates.ExploreWorld)
+            {
+                return;
+            }
+
+            IReadOnlyList<PartyBuff> allBuffs = _gameData.Get<PartyBuffSettings>(_gs.ch).GetData();
+
+            Dictionary<PartyMember, List<CrawlerSpell>> spellDict = new Dictionary<PartyMember, List<CrawlerSpell>>();
+
+            foreach (PartyMember member in party.GetActiveParty())
+            {
+                if (_combatService.IsDisabled(member))
+                {
+                    continue;
+                }
+
+                spellDict[member] = _spellService.GetAbilitiesForMember(party, member, true);
+
+            }
+
+            IReadOnlyList<CrawlerSpell> allSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData();
+
+            foreach (PartyBuff pbuff in allBuffs)
+            {
+                CrawlerSpell spell = allSpells.FirstOrDefault(x => x.Effects.Count == 1 && x.Effects[0].EntityTypeId == EntityTypes.PartyBuff &&
+                x.Effects[0].EntityId == pbuff.IdKey);
+
+                if (spell == null)
+                {
+                    continue;
+                }
+
+                PartyMember bestCaster = null;
+                MemberItemSpell memberItemSpell = null;
+                double bestPower = 0;
+
+                foreach (PartyMember member in spellDict.Keys)
+                {
+                    long mana = member.Stats.Curr(StatTypes.Mana);
+
+                    if (spellDict[member].Any(x => x.IdKey == spell.IdKey))
+                    {
+                        long cost = _spellService.GetPowerCost(party, member, spell);
+
+                        if (cost > mana)
+                        {
+                            continue;
+                        }
+
+                        double power = _roleService.GetSpellScalingLevel(party, member, spell);
+
+                        if (bestCaster == null || power > bestPower)
+                        {
+                            bestCaster = member;
+                            bestPower = power;
+                            memberItemSpell = null;
+                        }
+                    }
+
+                    List<MemberItemSpell> itemSpellStart = _itemService.GetUsableItemsForMember(party, member);
+
+
+                    foreach (MemberItemSpell itemSpell in itemSpellStart)
+                    {
+                        if (itemSpell.ChargesLeft < 1)
+                        {
+                            continue;
+                        }
+
+                        ItemEffect effect = itemSpell.UsableItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.IdKey);
+
+                        if (effect != null && effect.Quantity > bestPower)
+                        {
+                            bestCaster = member;
+                            bestPower = effect.Quantity;
+                            memberItemSpell = itemSpell;
+                        }
+                    }
+                }
+
+                if (bestCaster != null)
+                {
+
+                    float newTier = GetPartyBuffPower(party, pbuff.IdKey);
+
+                    if (party.Buffs.Get(pbuff.IdKey) > newTier - 0.001f)
+                    {
+                        continue;
+                    }
+
+                    UnitAction action = _combatService.GetActionFromSpell(party, bestCaster, spell, null, memberItemSpell?.UsableItem ?? null);
+
+                    await _spellService.CastSpell(party, action, token);
+                    await Awaitable.NextFrameAsync(token);
+                }
+            }
+
+            await Task.CompletedTask;
+        }
+
+        public float GetPartyBuffPower(PartyData party, long partyBuffId)
+        {
+            if (party.GetActiveParty().Count < 1)
+            {
+                return 1;
+            }
+
+            long maxLevel = party.GetActiveParty().Max(x => x.Level);
+
+            float baseValue = (float)Math.Sqrt(1 + maxLevel);
+
+            baseValue *= (float)(1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.PartyBuffPower));
+
+            return baseValue;
+        }
+    }
+}

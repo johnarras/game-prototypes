@@ -9,7 +9,7 @@
   "HealthPerLevel": 18,
   "ManaPerLevel": 14,
   "MaxArmorScalingTypeId": 4,
-  "CritPercent": 5,
+  "CritPercent": 2,
   "Guardian": true,
   "TrainingXpScale": 1.0,
   "TrainingGoldScale": 1.0,
@@ -104,6 +104,10 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 38
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 62
     },
     {
@@ -112,15 +116,31 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 87
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 88
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 90
+      "EntityId": 91
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 101
+      "EntityId": 131
     },
     {
       "EntityTypeId": 100,
@@ -204,5 +224,5 @@
       "Amount": 1.0
     }
   ],
-  "SaveTime": "2025-09-09T08:59:40.525Z"
+  "SaveTime": "2025-09-15T12:37:17.641Z"
 }

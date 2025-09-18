@@ -2,7 +2,7 @@
   "Id": "crawlerspell89default",
   "ParentId": "default",
   "IdKey": 89,
-  "Name": "Thorns",
+  "Name": "Retaliate",
   "Desc": "Retaliate damage toward your attacker.",
   "PowerCost": 20.0,
   "PowerPerLevel": 2.0,
@@ -22,5 +22,5 @@
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-09T08:58:31.973Z"
+  "SaveTime": "2025-09-15T12:37:08.302Z"
 }

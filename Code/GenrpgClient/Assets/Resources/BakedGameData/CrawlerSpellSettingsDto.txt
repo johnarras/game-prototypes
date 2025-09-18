@@ -259,7 +259,7 @@
       "Id": "crawlerspell31default",
       "ParentId": "default",
       "IdKey": 31,
-      "Name": "Phase Wall",
+      "Name": "Pass Wall",
       "Desc": "Pass through a wall in front of you if the square behind it exists.",
       "PowerCost": 50.0,
       "StatBonusScaling": 1.0,
@@ -303,7 +303,7 @@
       "Id": "crawlerspell33default",
       "ParentId": "default",
       "IdKey": 33,
-      "Name": "Blink",
+      "Name": "Jump",
       "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
       "PowerCost": 10.0,
       "StatBonusScaling": 1.0,
@@ -399,8 +399,8 @@
       "RoleScalingTier": 1,
       "Effects": [
         {
-          "EntityTypeId": 36,
-          "EntityId": 4,
+          "EntityTypeId": 37,
+          "EntityId": 10,
           "MinQuantity": 1,
           "MaxQuantity": 2,
           "ElementTypeId": 1
@@ -412,7 +412,7 @@
       "ParentId": "default",
       "IdKey": 39,
       "Name": "Cleanse Area",
-      "Desc": "Disarm any traps nearby.",
+      "Desc": "Disarm traps and negate nearby room effects.",
       "PowerCost": 50.0,
       "PowerPerLevel": 5.0,
       "StatBonusScaling": 1.0,
@@ -556,8 +556,8 @@
       "Id": "crawlerspell80default",
       "ParentId": "default",
       "IdKey": 80,
-      "Name": "Sense Area",
-      "Desc": "Determine if any traps or interesting things are nearby.",
+      "Name": "Reveal Area",
+      "Desc": "Reveal surrounding map cells.",
       "PowerCost": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
@@ -700,58 +700,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell86default",
-      "ParentId": "default",
-      "IdKey": 86,
-      "Name": "Batchspell",
-      "Desc": "Casts all party buffs.",
-      "PowerCost": 40.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 6,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 101,
-          "EntityId": 1,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
-        },
-        {
-          "EntityTypeId": 101,
-          "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
-        },
-        {
-          "EntityTypeId": 101,
-          "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
-        },
-        {
-          "EntityTypeId": 101,
-          "EntityId": 2,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
-        },
-        {
-          "EntityTypeId": 101,
-          "EntityId": 5,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
-        }
-      ]
-    },
-    {
       "Id": "crawlerspell87default",
       "ParentId": "default",
       "IdKey": 87,
@@ -805,7 +753,7 @@
       "Id": "crawlerspell89default",
       "ParentId": "default",
       "IdKey": 89,
-      "Name": "Thorns",
+      "Name": "Retaliate",
       "Desc": "Retaliate damage toward your attacker.",
       "PowerCost": 20.0,
       "PowerPerLevel": 2.0,
@@ -830,8 +778,8 @@
       "Id": "crawlerspell90default",
       "ParentId": "default",
       "IdKey": 90,
-      "Name": "Sharpshooter",
-      "Desc": "Increases crit chance with ranged attacks.",
+      "Name": "Cursed Arrows",
+      "Desc": "Chance to debuff enemies with ranged attacks.",
       "PowerCost": 20.0,
       "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
@@ -855,8 +803,8 @@
       "Id": "crawlerspell91default",
       "ParentId": "default",
       "IdKey": 91,
-      "Name": "Lucky Blade",
-      "Desc": "Increases luck extra hit bonus for melee attacks.",
+      "Name": "Parry",
+      "Desc": "Gives a chance to use your weapon to deflect an attack.",
       "PowerCost": 20.0,
       "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
@@ -877,11 +825,11 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell100default",
+      "Id": "crawlerspell130default",
       "ParentId": "default",
-      "IdKey": 100,
-      "Name": "Call Beast",
-      "Desc": "Summon a beast.",
+      "IdKey": 130,
+      "Name": "Call Bear",
+      "Desc": "Summon a bear.",
       "PowerCost": 9.0,
       "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
@@ -902,11 +850,11 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell101default",
+      "Id": "crawlerspell131default",
       "ParentId": "default",
-      "IdKey": 101,
-      "Name": "Conjure Golem",
-      "Desc": "Summon a golem.",
+      "IdKey": 131,
+      "Name": "Activate Golem",
+      "Desc": "Activate an iron golem.",
       "PowerCost": 9.0,
       "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
@@ -918,7 +866,7 @@
       "Effects": [
         {
           "EntityTypeId": 4,
-          "EntityId": 48,
+          "EntityId": 49,
           "MinQuantity": 1,
           "MaxQuantity": 1,
           "ElementTypeId": 8
@@ -927,10 +875,10 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell102default",
+      "Id": "crawlerspell132default",
       "ParentId": "default",
-      "IdKey": 102,
-      "Name": "Summon Elemental",
+      "IdKey": 132,
+      "Name": "Conjure Elemental",
       "Desc": "Summon an elemental.",
       "PowerCost": 9.0,
       "PowerPerLevel": 1.0,
@@ -952,9 +900,9 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell103default",
+      "Id": "crawlerspell133default",
       "ParentId": "default",
-      "IdKey": 103,
+      "IdKey": 133,
       "Name": "Summon Monk",
       "Desc": "Summon a monk",
       "PowerCost": 9.0,
@@ -977,9 +925,9 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell104default",
+      "Id": "crawlerspell134default",
       "ParentId": "default",
-      "IdKey": 104,
+      "IdKey": 134,
       "Name": "Summon Scrapper",
       "Desc": "Summon a scrapper",
       "PowerCost": 9.0,
@@ -1002,9 +950,9 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell105default",
+      "Id": "crawlerspell135default",
       "ParentId": "default",
-      "IdKey": 105,
+      "IdKey": 135,
       "Name": "Signal Thief",
       "Desc": "Signal a thief to follow you.",
       "PowerCost": 9.0,
@@ -1027,10 +975,10 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell106default",
+      "Id": "crawlerspell136default",
       "ParentId": "default",
-      "IdKey": 106,
-      "Name": "Summon Skeleton",
+      "IdKey": 136,
+      "Name": "Raise Skeleton",
       "Desc": "Summon a skeleton.",
       "PowerCost": 9.0,
       "PowerPerLevel": 1.0,
@@ -1052,10 +1000,10 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell107default",
+      "Id": "crawlerspell137default",
       "ParentId": "default",
-      "IdKey": 107,
-      "Name": "Summon Vampire",
+      "IdKey": 137,
+      "Name": "Dig Up Vampire",
       "Desc": "Summon a Vampire",
       "PowerCost": 9.0,
       "PowerPerLevel": 1.0,
@@ -1069,6 +1017,131 @@
         {
           "EntityTypeId": 4,
           "EntityId": 70,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell138default",
+      "ParentId": "default",
+      "IdKey": 138,
+      "Name": "Pspspsps Cat",
+      "Desc": "Summon a cat.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 28,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell139default",
+      "ParentId": "default",
+      "IdKey": 139,
+      "Name": "Summon Guard",
+      "Desc": "Summon a Guard",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 79,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell140default",
+      "ParentId": "default",
+      "IdKey": 140,
+      "Name": "Summon Barbarian",
+      "Desc": "Summon a Barbarian",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 15,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell141default",
+      "ParentId": "default",
+      "IdKey": 141,
+      "Name": "Call Magician",
+      "Desc": "Summon a magician.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 17,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 8
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell142default",
+      "ParentId": "default",
+      "IdKey": 142,
+      "Name": "Summon Elf",
+      "Desc": "Summon an elf.",
+      "PowerCost": 9.0,
+      "PowerPerLevel": 1.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 5,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 2,
           "MinQuantity": 1,
           "MaxQuantity": 1,
           "ElementTypeId": 8
@@ -3835,7 +3908,7 @@
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
     "Name": "CrawlerSpellSettings",
-    "SaveTime": "2025-09-09T08:59:40.525Z"
+    "SaveTime": "2025-09-15T12:37:17.641Z"
   },
-  "SaveTime": "2025-09-09T08:59:40.525Z"
+  "SaveTime": "2025-09-15T12:37:17.641Z"
 }

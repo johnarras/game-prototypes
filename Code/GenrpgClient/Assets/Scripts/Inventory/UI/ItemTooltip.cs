@@ -100,7 +100,7 @@ public class ItemTooltip : BaseTooltip
         if (_data.MainItemType != null)
         {
             if (_data.MainItemType.EquipSlotId == EquipSlots.MainHand ||
-                _data.MainItem.EquipSlotId == EquipSlots.Ranged)
+                _data.MainItemType.EquipSlotId == EquipSlots.Ranged)
             {
                 LootRank lootRank = _gameData.Get<LootRankSettings>(null).Get(_data.MainItem.LootRankId);
 

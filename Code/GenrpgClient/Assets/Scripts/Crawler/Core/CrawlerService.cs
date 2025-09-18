@@ -12,8 +12,10 @@ using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
+using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -22,6 +24,7 @@ using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.LoadSave.Constants;
@@ -60,6 +63,9 @@ namespace Assets.Scripts.Crawler.Services
         private ILocalLoadService _localLoadService = null;
         private ITextSerializer _textSerializer = null;
         private IPartyService _partyService = null;
+        private ICrawlerModeService _modeService = null;
+        private IGameData _gameData = null;
+        private IClientGameState _gs = null;
 
         public const string SaveFileSuffix = ".sav";
         public const string StartSaveFileName = "Start" + SaveFileSuffix;
@@ -218,7 +224,7 @@ namespace Assets.Scripts.Crawler.Services
                 IStateHelper stateHelper = GetStateHelper(action.NextState);
                 if (stateHelper != null)
                 {
-                    //_logService.Info("ChangeState: " + stateHelper.GetKey().ToString());
+                    //_logService.Info("ChangeState: " + stateHelper.Key.ToString());
                     nextStateData = await stateHelper.Init(currData, action, token);
 
                     if (nextStateData.DoNotTransitionToThisState)
@@ -424,7 +430,6 @@ namespace Assets.Scripts.Crawler.Services
             }
             PartyData party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next() };
 
-            _partyService.AddGold(party, 1000);
             return party;
         }
 
@@ -545,12 +550,25 @@ namespace Assets.Scripts.Crawler.Services
             }
             return false;
         }
-        public void NewGame()
+        public async Awaitable NewGame(ECrawlerModes mode)
         {
             _screenService.CloseAll();
             _screenService.Open(ScreenNames.Loading);
+
             PartyData party = CreatePartyDataForSlot(LoadSaveConstants.MinSlot);
             _party = party;
+            _party.Mode = mode;
+            _party.Seed = _rand.Next();
+            _party.CurrPos = new MapPosition();
+            await _worldService.GenerateWorld(_party);
+
+            _partyService.AddGold(party, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+
+            if (!_modeService.StartWithPremadeParty(mode))
+            {
+                _party.Members.Clear();
+            }
+
             InitPartyAfterLoad(party, true);
         }
 

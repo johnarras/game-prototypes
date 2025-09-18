@@ -9,6 +9,10 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
     {
         public override long Key => EntityTypes.RoleScaling;
 
+        public override bool OverviewTypeNameIsPlural() { return false; }
+
+        protected override bool MakeEntityNamePlural() { return false; }
+
         public override List<string> GetInfoLines(long entityId)
         {
             List<string> startLines = base.GetInfoLines(entityId);

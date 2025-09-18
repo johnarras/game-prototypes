@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 {
@@ -37,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                    {
                        member.PortraitName = unitType.Icon;
                    }, member, unitType.Icon,
-                   () => { _dispatcher.Dispatch(new SetWorldPicture(unitType.Icon, false)); }
+                   (GameObject go) => { _dispatcher.Dispatch(new SetWorldPicture(unitType.Icon, false)); }
                    )
                    );
             }

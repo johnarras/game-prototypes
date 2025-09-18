@@ -9,6 +9,7 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
@@ -29,11 +30,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.Quests.Services
 {
+    public class NPCQuestStatus
+    {
+        public long NpcTypeId { get; set; }
+        public List<FullQuest> AvailableQuests { get; set; } = new List<FullQuest>();
+        public List<FullQuest> CurrentQuests { get; set; } = new List<FullQuest>();
+        public List<CrawlerQuest> CompletedQuests { get; set; } = new List<CrawlerQuest>();
+    }
+
+
     public interface ICrawlerQuestService : IInjectable
     {
         Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
@@ -47,6 +56,9 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         Awaitable<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentState, bool showNPC);
         Awaitable CheckForCompletedQuests(PartyData party);
         Awaitable GiveExploreQuestCredit(PartyData party, long mapId);
+        Awaitable<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcTypeId, MapCellDetail npcDetail, CancellationToken token);
+        Awaitable<bool> QuestIsActive(PartyData party, long questId);
+        Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId);
     }
 
     public class CrawlerQuestService : ICrawlerQuestService
@@ -61,67 +73,74 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         private IClientRandom _rand = null;
         private ILootGenService _lootGenService = null;
         private ICrawlerUpgradeService _upgradeService = null;
+        private ICrawlerModeService _modeService = null;
 
         private SetupDictionaryContainer<long, ICrawlerQuestTypeHelper> _questTypeHelpers = new SetupDictionaryContainer<long, ICrawlerQuestTypeHelper>();
 
         public async Awaitable AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token)
         {
-            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
-
             foreach (CrawlerMap startMap in world.Maps)
             {
-                ICrawlerMapGenHelper mapGenHelper = _mapGenService.GetGenHelper(startMap.CrawlerMapTypeId);
+                await SetupQuestsForMap(party, world, startMap, rand, token);
+            }
+        }
 
-                List<MapCellDetail> npcDetails = startMap.Details.Where(x => x.EntityTypeId == EntityTypes.Npc).ToList();
+        private async Awaitable SetupQuestsForMap(PartyData party, CrawlerWorld world, CrawlerMap startMap, IRandom rand, CancellationToken token)
+        {
+            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
 
-                foreach (MapCellDetail npcDetail in npcDetails)
+            ICrawlerMapGenHelper mapGenHelper = _mapGenService.GetGenHelper(startMap.CrawlerMapTypeId);
+
+            List<MapCellDetail> npcDetails = startMap.Details.Where(x => x.EntityTypeId == EntityTypes.Npc).ToList();
+
+            foreach (MapCellDetail npcDetail in npcDetails)
+            {
+                CrawlerNpc npc = world.GetNpc(npcDetail.EntityId);
+
+                if (npc == null)
                 {
-                    CrawlerNpc npc = world.GetNpc(npcDetail.EntityId);
+                    continue;
+                }
+                NpcQuestMaps maps = mapGenHelper.GetQuestMapsForNpc(party, world, startMap, npcDetail, rand);
 
-                    if (npc == null)
-                    {
-                        continue;
-                    }
+                List<MapLink> allMaps = new List<MapLink>();
 
-                    NpcQuestMaps maps = mapGenHelper.GetQuestMapsForNpc(party, world, startMap, npcDetail, rand);
+                allMaps.AddRange(maps.PrimaryMaps.OrderBy(x => HashUtils.NewUUId()));
+                allMaps.AddRange(maps.SecondaryMaps.OrderBy(x => HashUtils.NewUUId()));
 
-                    List<MapLink> allMaps = new List<MapLink>();
+                allMaps = allMaps.Where(x => x.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon).ToList();
 
-                    allMaps.AddRange(maps.PrimaryMaps.OrderBy(x => HashUtils.NewUUId()));
-                    allMaps.AddRange(maps.SecondaryMaps.OrderBy(x => HashUtils.NewUUId()));
+                if (allMaps.Count < 1)
+                {
+                    continue;
+                }
 
-                    allMaps = allMaps.Where(x => x.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon).ToList();
+                int questCount = questSettings.MinQuestsPerNpc;
 
-                    if (allMaps.Count < 1)
-                    {
-                        continue;
-                    }
+                while (rand.NextDouble() < questSettings.ExtraQuestChance && questCount < questSettings.MaxQuestsPerNpc)
+                {
+                    questCount++;
+                }
 
-                    int questCount = questSettings.MinQuestsPerNpc;
+                if (questCount > 2 * allMaps.Count * 2)
+                {
+                    questCount = allMaps.Count * 2;
+                }
 
-                    while (rand.NextDouble() < questSettings.ExtraQuestChance && questCount < questSettings.MaxQuestsPerNpc)
-                    {
-                        questCount++;
-                    }
+                if (_modeService.SingleCityMode(party.Mode))
+                {
+                    questCount = 4;
+                }
 
-                    if (questCount > 2 * allMaps.Count * 2)
-                    {
-                        questCount = allMaps.Count * 2;
-                    }
+                while (GetAllQuestsForNpc(party, world, npc.IdKey).Count < questCount)
+                {
+                    MapLink targetMap = allMaps[rand.Next(allMaps.Count)];
 
-                    for (int q = 0; q < questCount; q++)
-                    {
-                        MapLink targetMap = allMaps[q % allMaps.Count];
+                    CrawlerQuestType questType = RandomUtils.GetRandomElement(questSettings.GetData(), rand);
 
-                        CrawlerQuestType questType = RandomUtils.GetRandomElement(questSettings.GetData(), rand);
-
-                        await SetupQuest(party, world, startMap, targetMap, npc, questType, rand, token);
-
-                    }
+                    await SetupQuest(party, world, startMap, targetMap, npc, questType, rand, token);
                 }
             }
-
-            await Task.CompletedTask;
         }
 
 
@@ -194,6 +213,8 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             int levelAtParty = await _worldService.GetMapLevelAtParty(party);
 
+            int partySize = party.GetActiveParty().Count;
+
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
             party.Quests.Remove(partyQuest);
@@ -209,6 +230,11 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             _dispatcher.Dispatch(new UpdateQuestUI());
             _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
+
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+
+            }
 
         }
 
@@ -282,7 +308,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             List<string> retval = new List<string>();
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
-            List<CrawlerQuest> allQuests = world.GetQuestsForMap(party.CurrPos.MapId).ToList();
+            List<CrawlerQuest> allQuests = await GetQuestsForMap(party, party.CurrPos.MapId);
 
             CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
 
@@ -437,7 +463,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         {
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 
-            List<CrawlerQuest> currentQuests = world.GetQuestsForMap(party.CurrPos.MapId);
+            List<CrawlerQuest> currentQuests = await GetQuestsForMap(party, party.CurrPos.MapId);
 
             if (currentQuests.Count < 1)
             {
@@ -550,6 +576,121 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 pq.CurrQuantity = quest.Quantity;
                 _dispatcher.Dispatch(new UpdateQuestUI());
             }
+        }
+
+        protected List<CrawlerQuest> GetAllQuestsForNpc(PartyData party, CrawlerWorld world, long npcId)
+        {
+
+            List<CrawlerQuest> startQuests = world.Quests.Where(x => x.StartCrawlerNpcId == npcId).ToList();
+            List<CrawlerQuest> endQuests = world.Quests.Where(x => x.EndCrawlerNpcId == npcId).ToList();
+            List<CrawlerQuest> allQuests = startQuests.Concat(endQuests).Distinct().OrderBy(x => x.IdKey).ToList();
+            return allQuests;
+        }
+
+        public async Awaitable<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcId, MapCellDetail currNpcDetail, CancellationToken token)
+        {
+
+            List<CrawlerQuest> allQuests = GetAllQuestsForNpc(party, world, npcId);
+
+            List<FullQuest> availableQuests = new List<FullQuest>();
+
+            List<FullQuest> currentQuests = new List<FullQuest>();
+
+            List<CrawlerQuest> completedQuests = new List<CrawlerQuest>();
+
+            foreach (CrawlerQuest quest in allQuests)
+            {
+                if (party.CompletedQuests.HasBit(quest.IdKey))
+                {
+                    completedQuests.Add(quest);
+                    continue;
+                }
+
+                PartyQuest partyQuest = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == quest.IdKey);
+
+                if (partyQuest == null && quest.StartCrawlerNpcId == npcId)
+                {
+                    availableQuests.Add(new FullQuest() { Quest = quest, ReturnState = ECrawlerStates.NpcMain, NpcDetail = currNpcDetail });
+                }
+                else if (partyQuest != null && quest.EndCrawlerNpcId == npcId)
+                {
+                    currentQuests.Add(new FullQuest()
+                    {
+                        Quest = quest,
+                        Progress = partyQuest,
+                        NpcDetail = currNpcDetail,
+                        ReturnState = ECrawlerStates.NpcMain,
+                    });
+                }
+            }
+
+
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+                foreach (CrawlerQuest completedQuest in completedQuests)
+                {
+                    world.Quests.Remove(completedQuest);
+                }
+
+                int totalQuests = availableQuests.Count + currentQuests.Count;
+
+                int quantityToAdd = 4 - totalQuests;
+
+                if (quantityToAdd > 0)
+                {
+                    CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
+                    CrawlerMap cityMap = world.GetMap(1);
+
+                    int startQuestCount = world.Quests.Count;
+                    await SetupQuestsForMap(party, world, cityMap, _rand, token);
+                    int endQuestCount = world.Quests.Count;
+
+                    if (endQuestCount > startQuestCount)
+                    {
+                        await _worldService.SaveWorld(world);
+                    }
+                }
+            }
+
+            NPCQuestStatus questStatus = new NPCQuestStatus()
+            {
+                AvailableQuests = availableQuests,
+                CurrentQuests = currentQuests,
+                NpcTypeId = npcId,
+            };
+
+            return questStatus;
+        }
+
+        public async Awaitable<bool> QuestIsActive(PartyData party, long questId)
+        {
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+                return true;
+            }
+            CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
+
+            List<CrawlerQuest> quests = await GetQuestsForMap(party, party.CurrPos.MapId);
+
+            return quests.Any(x => x.IdKey == questId);
+
+        }
+
+        public async Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId)
+        {
+            CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
+
+            CrawlerMap map = world.GetMap(mapId);
+
+            if (_modeService.SingleCityMode(party.Mode) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
+            {
+                return world.Quests.ToList();
+            }
+
+            List<CrawlerQuest> list = world.GetQuestsForMap(mapId);
+
+            return list;
+
         }
     }
 }

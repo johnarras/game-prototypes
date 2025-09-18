@@ -3,12 +3,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,22 +13,22 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         public GButton ContinueGameButton;
         public GButton LoadGameButton;
         public GButton NewCrawlerGameButton;
+        public GButton NewRoguelikeGameButton;
         public GButton CloseButton;
 
-        protected IInputService _inputService;
-        private ILoadSaveService _loadSaveService;
-        private ICrawlerService _crawlerService;
-        private IClientAppService _clientAppService;
+        protected IInputService _inputService = null;
+        private ILoadSaveService _loadSaveService = null;
+        private ICrawlerService _crawlerService = null;
+        private IClientAppService _clientAppService = null;
 
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
             await base.OnStartOpen(data, token);
 
-
-
             _uiService.SetButton(ContinueGameButton, GetName(), ClickContinue);
             _uiService.SetButton(QuitGameButton, GetName(), ClickQuit);
             _uiService.SetButton(NewCrawlerGameButton, GetName(), ClickNewCrawler);
+            _uiService.SetButton(NewRoguelikeGameButton, GetName(), ClickNewRoguelike);
             _uiService.SetButton(LoadGameButton, GetName(), ClickLoadGame);
 
 
@@ -54,7 +48,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
             base.ScreenUpdate();
 
             if (_inputService.ContinueKeyIsDown() &&
-                _screenService.GetScreen(ScreenNames.Crawler) != null)                
+                _screenService.GetScreen(ScreenNames.Crawler) != null)
             {
                 _screenService.Close(ScreenNames.CrawlerMainMenu);
             }
@@ -62,7 +56,12 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
 
         private void ClickNewCrawler()
         {
-            _crawlerService.NewGame();
+            _awaitableService.ForgetAwaitable(_crawlerService.NewGame(ECrawlerModes.Crawler));
+        }
+
+        private void ClickNewRoguelike()
+        {
+            _awaitableService.ForgetAwaitable(_crawlerService.NewGame(ECrawlerModes.Roguelike));
         }
 
         private void ClickContinue()

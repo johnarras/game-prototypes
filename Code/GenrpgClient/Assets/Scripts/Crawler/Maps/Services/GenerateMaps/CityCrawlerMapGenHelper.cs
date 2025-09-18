@@ -23,7 +23,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
     public class CityCrawlerMapGenHelper : BaseCrawlerMapGenHelper
     {
-
         public override long Key => CrawlerMapTypes.City;
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
@@ -51,49 +50,53 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int gateZ = -1;
 
             int cityEdgeDistance = 1;
-            // X on border, y in middle.
-            if (rand.NextDouble() < 0.5f)
-            {
-                gateX = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Width - 1 - cityEdgeDistance);
-                gateZ = MathUtils.IntRange(map.Height / 3, map.Height * 2 / 3, rand);
 
-                int start = gateX;
-                int dir = (gateX == cityEdgeDistance ? 1 : -1);
-                int xx = start;
-                while (true)
+            if (!_modeService.SingleCityMode(party.Mode))
+            {
+                // X on border, y in middle.
+                if (rand.NextDouble() < 0.5f)
                 {
-                    if (clearCells[xx, gateZ])
+                    gateX = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Width - 1 - cityEdgeDistance);
+                    gateZ = MathUtils.IntRange(map.Height / 3, map.Height * 2 / 3, rand);
+
+                    int start = gateX;
+                    int dir = (gateX == cityEdgeDistance ? 1 : -1);
+                    int xx = start;
+                    while (true)
                     {
-                        break;
-                    }
-                    clearCells[xx, gateZ] = true;
-                    xx += dir;
-                    if (xx < 0 || xx >= map.Width)
-                    {
-                        break;
+                        if (clearCells[xx, gateZ])
+                        {
+                            break;
+                        }
+                        clearCells[xx, gateZ] = true;
+                        xx += dir;
+                        if (xx < 0 || xx >= map.Width)
+                        {
+                            break;
+                        }
                     }
                 }
-            }
-            else
-            {
-                gateZ = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Height - 1 - cityEdgeDistance);
-                gateX = MathUtils.IntRange(map.Width / 3, map.Width * 2 / 3, rand);
-
-                int start = gateZ;
-                int dir = (gateZ == cityEdgeDistance ? 1 : -1);
-
-                int zz = start;
-                while (true)
+                else
                 {
-                    if (clearCells[gateX, zz])
+                    gateZ = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Height - 1 - cityEdgeDistance);
+                    gateX = MathUtils.IntRange(map.Width / 3, map.Width * 2 / 3, rand);
+
+                    int start = gateZ;
+                    int dir = (gateZ == cityEdgeDistance ? 1 : -1);
+
+                    int zz = start;
+                    while (true)
                     {
-                        break;
-                    }
-                    clearCells[gateX, zz] = true;
-                    zz += dir;
-                    if (zz < 0 || zz >= map.Height)
-                    {
-                        break;
+                        if (clearCells[gateX, zz])
+                        {
+                            break;
+                        }
+                        clearCells[gateX, zz] = true;
+                        zz += dir;
+                        if (zz < 0 || zz >= map.Height)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -129,61 +132,64 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            int visGateX = 0;
-            int visGateZ = 0;
-            int gateBits = 0;
-            int towerX = 0;
-            int towerZ = 0;
-            bool gateIsOnSides = true;
-            if (gateX == mapEdgeDistance)
+            if (!_modeService.SingleCityMode(party.Mode))
             {
-                visGateX = gateX - 1;
-                visGateZ = gateZ;
-                towerX = 0;
-                towerZ = gateZ;
-                gateBits = WallTypes.Door << MapWallBits.EWallStart;
-            }
-            else if (gateX == map.Width - 1 - mapEdgeDistance)
-            {
-                visGateX = gateX;
-                visGateZ = gateZ;
-                towerX = map.Width - 1;
-                towerZ = gateZ;
-                gateBits = WallTypes.Door << MapWallBits.EWallStart;
-            }
-            else if (gateZ == mapEdgeDistance)
-            {
-                visGateX = gateX;
-                visGateZ = gateZ - 1;
-                towerX = gateX;
-                towerZ = 0;
-                gateBits = WallTypes.Door << MapWallBits.NWallStart;
-                gateIsOnSides = false;
-            }
-            else
-            {
-                visGateX = gateX;
-                visGateZ = gateZ;
-                towerX = gateX;
-                towerZ = map.Height - 1;
-                gateBits = WallTypes.Door << MapWallBits.NWallStart;
-                gateIsOnSides = false;
-            }
+                int visGateX = 0;
+                int visGateZ = 0;
+                int gateBits = 0;
+                int towerX = 0;
+                int towerZ = 0;
+                bool gateIsOnSides = true;
+                if (gateX == mapEdgeDistance)
+                {
+                    visGateX = gateX - 1;
+                    visGateZ = gateZ;
+                    towerX = 0;
+                    towerZ = gateZ;
+                    gateBits = WallTypes.Door << MapWallBits.EWallStart;
+                }
+                else if (gateX == map.Width - 1 - mapEdgeDistance)
+                {
+                    visGateX = gateX;
+                    visGateZ = gateZ;
+                    towerX = map.Width - 1;
+                    towerZ = gateZ;
+                    gateBits = WallTypes.Door << MapWallBits.EWallStart;
+                }
+                else if (gateZ == mapEdgeDistance)
+                {
+                    visGateX = gateX;
+                    visGateZ = gateZ - 1;
+                    towerX = gateX;
+                    towerZ = 0;
+                    gateBits = WallTypes.Door << MapWallBits.NWallStart;
+                    gateIsOnSides = false;
+                }
+                else
+                {
+                    visGateX = gateX;
+                    visGateZ = gateZ;
+                    towerX = gateX;
+                    towerZ = map.Height - 1;
+                    gateBits = WallTypes.Door << MapWallBits.NWallStart;
+                    gateIsOnSides = false;
+                }
 
 
-            map.Set(visGateX, visGateZ, CellIndex.Walls, gateBits);
+                map.Set(visGateX, visGateZ, CellIndex.Walls, gateBits);
 
-            if (gateIsOnSides)
-            {
-                map.SetEntity(towerX, towerZ - 1, EntityTypes.Building, BuildingTypes.GuardTower);
-                map.SetEntity(towerX, towerZ + 1, EntityTypes.Building, BuildingTypes.GuardTower);
-                map.SetEntity(towerX, towerZ, EntityTypes.Building, 0);
-            }
-            else
-            {
-                map.SetEntity(towerX - 1, towerZ, EntityTypes.Building, BuildingTypes.GuardTower);
-                map.SetEntity(towerX + 1, towerZ, EntityTypes.Building, BuildingTypes.GuardTower);
-                map.SetEntity(towerX, towerZ, EntityTypes.Building, 0);
+                if (gateIsOnSides)
+                {
+                    map.SetEntity(towerX, towerZ - 1, EntityTypes.Building, BuildingTypes.GuardTower);
+                    map.SetEntity(towerX, towerZ + 1, EntityTypes.Building, BuildingTypes.GuardTower);
+                    map.SetEntity(towerX, towerZ, EntityTypes.Building, 0);
+                }
+                else
+                {
+                    map.SetEntity(towerX - 1, towerZ, EntityTypes.Building, BuildingTypes.GuardTower);
+                    map.SetEntity(towerX + 1, towerZ, EntityTypes.Building, BuildingTypes.GuardTower);
+                    map.SetEntity(towerX, towerZ, EntityTypes.Building, 0);
+                }
             }
 
             IReadOnlyList<BuildingType> buildings = _gameData.Get<BuildingSettings>(null).GetData();
@@ -322,6 +328,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 dungeonCount++;
             }
+
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+                dungeonCount = 1;
+            }
+
             int dungeonLevel = map.Level;
             while (dungeonCount > 0)
             {
@@ -349,6 +361,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map.SetEntity((int)currPoint.X, (int)currPoint.Z, EntityTypes.Building, dungeonMap.BuildingTypeId);
 
+                if (_modeService.SingleCityMode(party.Mode))
+                {
+                    map.Details.Add(new MapCellDetail() { EntityTypeId = EntityTypes.Map, EntityId = dungeonMap.IdKey, X = currPoint.X, Z = currPoint.Z, ToX = -1, ToZ = -1 });
+                }
             }
 
             List<long> terrains = new List<long>() { roadZoneTypeId, fillerZoneTypeId };

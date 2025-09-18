@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 {
@@ -31,7 +32,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 Id = party.GetNextId("P"),
                 FactionTypeId = FactionTypes.Player,
             };
-            
+
 
             List<Role> races = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.RoleCategoryId == RoleCategories.Origin).ToList();
 
@@ -41,9 +42,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 stateData.Actions.Add(new CrawlerStateAction(race.Name, CharCodes.None, ECrawlerStates.ChooseClass,
                     delegate
                     {
-                        member.Roles.Add(new UnitRole() { RoleId = race.IdKey, Level=1 });
+                        member.Roles.Add(new UnitRole() { RoleId = race.IdKey, Level = 1 });
                         member.UnitTypeId = 1;
-                    }, member, null, () => { ShowInfo(EntityTypes.Role, race.IdKey); }
+                    }, member, null, (GameObject go) => { ShowInfo(EntityTypes.Role, race.IdKey); }
                     ));
             }
 

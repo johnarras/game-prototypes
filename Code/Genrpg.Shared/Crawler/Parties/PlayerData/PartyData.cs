@@ -1,5 +1,6 @@
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
@@ -33,6 +34,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
+
+        public ECrawlerModes Mode { get; set; } = ECrawlerModes.Crawler;
 
         [JsonIgnore]
         public List<Item> Inventory { get; set; } = new List<Item>();
@@ -77,6 +80,10 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public long UpgradePoints { get; set; }
 
         public long TotalUpgradePoints { get; set; }
+
+        public int MaxLevelEntered { get; set; }
+
+        public string RoguelikeDungeonName { get; set; }
 
         public List<UpgradeStatus> UpgradeStatuses { get; set; } = new List<UpgradeStatus>();
 

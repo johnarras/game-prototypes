@@ -9,9 +9,9 @@
         public const long Mapping = 5;
         public const long Autoheal = 6;
         public const long Barrier = 7;
-        public const long Thorns = 8;
-        public const long Sharpshooter = 9;
-        public const long LuckyBlade = 10;
+        public const long Retaliate = 8;
+        public const long CursedArrows = 9;
+        public const long Parry = 10;
 
     }
 }

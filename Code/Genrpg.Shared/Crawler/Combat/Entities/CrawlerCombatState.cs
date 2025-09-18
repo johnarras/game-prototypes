@@ -45,8 +45,6 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
 
         public List<StatVal> StatBuffs { get; set; } = new List<StatVal>();
 
-        public long PlayerActionsRemaining { get; set; }
-
         public List<CrawlerUnit> AttackSequence { get; set; } = new List<CrawlerUnit>();
 
         public bool PartyWonCombat() { return Enemies.Count == 0; }

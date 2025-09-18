@@ -1,8 +1,11 @@
 ﻿using Assets.Scripts.Assets;
+using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -14,6 +17,7 @@ using Genrpg.Shared.Crawler.TimeOfDay.Services;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -26,6 +30,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
         private ICrawlerMapService _mapService = null;
         private IScreenService _screenService = null;
         private IAssetService _assetService = null;
+        private IBuffService _buffService = null;
+        private IClientEntityService _clientEntityService = null;
+        private IInfoService _infoService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.GuildMain;
         public override long TriggerBuildingId() { return BuildingTypes.Guild; }
@@ -64,6 +71,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
             stateData.Actions.Add(new CrawlerStateAction("Delete Char", 'D', ECrawlerStates.DeleteMember));
             stateData.Actions.Add(new CrawlerStateAction("Create Char", 'C', ECrawlerStates.ChooseRace));
             stateData.Actions.Add(new CrawlerStateAction("New Maps", 'N', ECrawlerStates.GuildMain, null, "GenerateWorld"));
+
+            stateData.Actions.Add(new CrawlerStateAction("Upgrades", 'U', ECrawlerStates.UpgradeParty));
+
             stateData.Actions.Add(new CrawlerStateAction("Party Order", 'P', ECrawlerStates.PartyOrder,
                 () =>
                 {
@@ -78,7 +88,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
             {
                 stateData.Actions.Add(new CrawlerStateAction("Enter Map", 'E', ECrawlerStates.ExploreWorld));
             }
-            stateData.Actions.Add(new CrawlerStateAction("Upgrades", 'U', ECrawlerStates.UpgradeParty));
+
 
             if (!party.HasFlag(PartyFlags.InGuildHall))
             {
@@ -94,6 +104,29 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                         _screenService.Open(ScreenNames.CrawlerMainMenu);
                     }
                 }, hideText: true));
+
+            stateData.Actions.Add(new CrawlerStateAction(_buffService.GetMissingBuffsString(party), CharCodes.None, ECrawlerStates.DoNotChangeState, null,
+                pointerEnterAction: (GameObject go) =>
+                {
+                    GText gt = _clientEntityService.GetComponent<GText>(go);
+
+                    if (gt != null)
+                    {
+                        List<string> lines = _infoService.GetInfoLines(_textService.GetLinkUnderMouse(gt));
+                        if (lines.Count > 0)
+                        {
+                            _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+                        }
+                    }
+                },
+
+                pointerExitAction: (GameObject go) =>
+                {
+                    _dispatcher.Dispatch(new HideInfoPanelEvent());
+                }
+                ));
+
+
 
 
             while (_assetService.IsDownloading())

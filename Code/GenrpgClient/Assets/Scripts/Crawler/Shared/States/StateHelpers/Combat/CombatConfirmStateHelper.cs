@@ -37,7 +37,16 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             {
                 foreach (CrawlerUnit combatUnit in party.Combat.PartyGroup.Units)
                 {
-                    stateData.AddText(combatUnit.Name + ": " + combatUnit.Action.Text);
+                    string text = combatUnit.Name + ": ";
+                    for (int a = 0; a < combatUnit.Actions.Count; a++)
+                    {
+                        text += combatUnit.Actions[a].Text;
+                        if (a < combatUnit.Actions.Count - 1)
+                        {
+                            text += " and ";
+                        }
+                    }
+                    stateData.AddText(text);
                 }
                 stateData.Actions.Add(new CrawlerStateAction("Use these actions?", CharCodes.None, ECrawlerStates.None));
             }

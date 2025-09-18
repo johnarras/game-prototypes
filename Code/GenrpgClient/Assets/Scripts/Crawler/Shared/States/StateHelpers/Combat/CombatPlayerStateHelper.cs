@@ -8,7 +8,6 @@ using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Utils;
@@ -17,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
@@ -40,40 +40,34 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Party is not fighting in combat" };
             }
 
-            if (party.Combat.PlayerActionsRemaining < 1)
-            {
-                party.Combat.PlayerActionsRemaining = 1;
-            }
-
-            double extraActions = (long)_roguelikeUpgradeService.GetPartyBonus(party, PartyUpgrades.ActionCount);
-            party.Combat.PlayerActionsRemaining += (long)(extraActions);
-
-            double remainder = extraActions - (long)(extraActions);
-
-            if (_rand.NextDouble() < remainder)
-            {
-                party.Combat.PlayerActionsRemaining++;
-            }
-
             CombatGroup group = party.Combat.PartyGroup;
 
-            List<CrawlerUnit> readyUnits = group.Units.Where(x => x is PartyMember member && x.Action != null).ToList();
 
-            List<CrawlerUnit> notReadyUnits = group.Units.Where(x => x is PartyMember member && x.Action == null).ToList();
-
+            List<CrawlerUnit> notReadyUnits = new List<CrawlerUnit>();
+            List<CrawlerUnit> readyUnits = new List<CrawlerUnit>();
+            foreach (CrawlerUnit unit in group.Units)
+            {
+                if (unit.Actions.Count < unit.ActionsThisRound)
+                {
+                    notReadyUnits.Add(unit);
+                }
+                else
+                {
+                    readyUnits.Add(unit);
+                }
+            }
 
             if (notReadyUnits.Count < 1)
             {
                 return new CrawlerStateData(ECrawlerStates.CombatConfirm, true);
             }
 
-
             stateData.WorldSpriteName = notReadyUnits[0].PortraitName;
             List<UnitAction> actions = _combatService.GetActionsForPlayer(party, notReadyUnits[0]);
 
             if (actions.Count == 1 && actions[0].CombatActionId == CombatActions.Disabled)
             {
-                notReadyUnits[0].Action = actions[0];
+                notReadyUnits[0].AddAction(actions[0]);
                 return new CrawlerStateData(ECrawlerStates.CombatPlayer, true);
             }
 
@@ -101,7 +95,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                     };
 
                     stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
-                        nextState, extraData: select, pointerEnterAction: () => ShowInfo(new List<string>() { "Select a spell to cast." })));
+                        nextState, extraData: select, pointerEnterAction: (GameObject go) => ShowInfo(new List<string>() { "Select a spell to cast." })));
                     continue;
                 }
                 else if (unitCombatAction.CombatActionId == CombatActions.UseItem)
@@ -114,7 +108,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                         ReturnState = ECrawlerStates.CombatPlayer,
                     };
                     stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
-                        nextState, extraData: args, pointerEnterAction: () => ShowInfo(new List<string>() { "Select Item to Use." })));
+                        nextState, extraData: args, pointerEnterAction: (GameObject go) => ShowInfo(new List<string>() { "Select Item to Use." })));
                     continue;
                 }
                 else if (unitCombatAction.CombatActionId == CombatActions.Recast)
@@ -135,7 +129,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                     };
 
                     stateData.Actions.Add(new CrawlerStateAction("Recast " + unitCombatAction.Spell.Name, 'R', ECrawlerStates.OnSelectSpell,
-                        extraData: selectSpell, forceButton: false, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey)));
+                        extraData: selectSpell, forceButton: false, pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey)));
                     continue;
                 }
                 else if (unitCombatAction.Spell == null)
@@ -147,10 +141,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                     nextState = ECrawlerStates.CombatPlayer;
                     stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
                         nextState,
-                        pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey),
+                        pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey),
                         onClickAction: delegate ()
                         {
-                            notReadyUnits[0].Action = unitCombatAction;
+                            notReadyUnits[0].AddAction(unitCombatAction);
                         }));
                     continue;
                 }
@@ -174,7 +168,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
 
                         stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
-                            ECrawlerStates.SelectEnemyGroup, extraData: selectSpell, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell?.IdKey ?? 0)));
+                            ECrawlerStates.SelectEnemyGroup, extraData: selectSpell, pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell?.IdKey ?? 0)));
                         continue;
                     }
                     else if (unitCombatAction.Spell.TargetTypeId == TargetTypes.Ally)
@@ -194,7 +188,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                         };
 
                         stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
-                            nextState, extraData: selectSpell, pointerEnterAction: () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell?.IdKey ?? 0)));
+                            nextState, extraData: selectSpell, pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell?.IdKey ?? 0)));
                         continue;
                     }
                     else
@@ -208,16 +202,16 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 }
 
                 Action nextClickAction = null;
-                Action defaultPointerEnterAction = null;
+                Action<GameObject> defaultPointerEnterAction = null;
 
                 if (nextState == ECrawlerStates.CombatPlayer)
                 {
-                    nextClickAction = delegate { notReadyUnits[0].Action = unitCombatAction; };
+                    nextClickAction = delegate { notReadyUnits[0].Actions.Add(unitCombatAction); };
                 }
 
                 if (unitCombatAction.Spell != null)
                 {
-                    defaultPointerEnterAction = () => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey);
+                    defaultPointerEnterAction = (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, unitCombatAction.Spell.IdKey);
                 }
                 stateData.Actions.Add(new CrawlerStateAction(unitCombatAction.Text, GetKeyCode(usedKeyCodes, combatAction, unitCombatAction),
                     nextState, nextClickAction, unitCombatAction, pointerEnterAction: defaultPointerEnterAction));
@@ -227,7 +221,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             if (readyUnits.Count == 0)
             {
                 stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.CombatFightRun,
-                    onClickAction: delegate ()
+                    onClickAction: () =>
                     {
                         group.CombatGroupAction = ECombatGroupActions.None;
                     }));
@@ -235,9 +229,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             else
             {
                 stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.CombatPlayer,
-                    onClickAction: delegate ()
+                    onClickAction: () =>
                     {
-                        readyUnits.Last().Action = null;
+                        readyUnits.Last().Actions.Clear();
                     }));
             }
 

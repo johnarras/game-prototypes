@@ -35,7 +35,7 @@ namespace Assets.Scripts.UI.Interfaces
         void SetAlpha(IText text, float alpha);
         void SetAutoSizing(IText text, bool autoSizing);
         void ResizeGridLayout(IGridLayoutGroup group, float xscale, float yscale);
-        void AddPointerHandlers(object view, Action enterHandler, Action exitHandler);
+        void AddPointerHandlers(object view, Action<GameObject> enterHandler, Action<GameObject> exitHandler);
         void ScrollToBottom(object scrollRectObj);
         void ScrollToTop(object scrollRectObj);
         void SetTextAlignemnt(IText text, int offset); // -1,0,1= left, center, right

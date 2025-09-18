@@ -29,10 +29,11 @@ namespace Genrpg.Shared.Crawler.Spells.Entities
 
         public CrawlerSpell Spell { get; set; }
 
-        public bool IsComplete { get; set; }
+        public bool DidCast { get; set; }
 
         public Item CastingItem { get; set; }
 
         public FullSpell SpellBeingCast { get; set; }
+
     }
 }

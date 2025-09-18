@@ -67,7 +67,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
         Sprite _blankSprite = null;
         Sprite _unexploredSprite = null;
-        Sprite _stairSprite = null;
+        Sprite _upStairSprite = null;
+        Sprite _downStairSprite = null;
         Sprite _riddleSprite = null;
         Sprite _outOfBoundsSprite = null;
         Sprite _trapSprite = null;
@@ -301,7 +302,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             _blankSprite = _atlas.GetSprite("Blank");
             _unexploredSprite = _atlas.GetSprite("Unexplored");
-            _stairSprite = _atlas.GetSprite("Stairs");
+            _upStairSprite = _atlas.GetSprite("StairsUp");
+            _downStairSprite = _atlas.GetSprite("StairsDown");
             _riddleSprite = _atlas.GetSprite("Riddle");
             _trapSprite = _atlas.GetSprite("Trap");
             _monsterSprite = _atlas.GetSprite("Monster");
@@ -552,7 +554,14 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                         if (detail != null && detail.EntityTypeId == EntityTypes.Map)
                         {
-                            _tiles[ix, iz, TilemapIndexes.Object].sprite = _stairSprite;
+                            if (detail.EntityId < _map.IdKey)
+                            {
+                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _upStairSprite;
+                            }
+                            else
+                            {
+                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _downStairSprite;
+                            }
                             didSetObject = true;
                         }
 

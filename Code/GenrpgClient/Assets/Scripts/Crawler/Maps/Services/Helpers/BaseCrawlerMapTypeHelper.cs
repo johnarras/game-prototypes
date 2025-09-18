@@ -60,7 +60,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
                 CrawlerMapStatus status = party.GetMapStatus(mapData.Map.IdKey, true);
             }
 
-            GameObject go = new GameObject() { name = Key.ToString() };
+            GameObject go = new GameObject() { name = "Map" + mapData.MapId.ToString() };
             CrawlerMapRoot mapRoot = _clientEntityService.GetOrAddComponent<CrawlerMapRoot>(go);
 
             mapRoot.SetupFromMap(map);

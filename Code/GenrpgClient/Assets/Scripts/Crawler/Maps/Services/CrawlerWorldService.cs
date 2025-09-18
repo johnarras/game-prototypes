@@ -2,8 +2,8 @@
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
 using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -12,12 +12,12 @@ using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
+using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.LoadSave.Constants;
-using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
@@ -33,20 +33,19 @@ namespace Assets.Scripts.Crawler.Maps.Services
 {
     public class CrawlerWorldService : ICrawlerWorldService
     {
-        private IRepositoryService _repoService;
-        private IGameData _gameData;
-        private ICrawlerMapService _mapService;
-        private ICrawlerMapGenService _mapGenService;
-        private ICrawlerService _crawlerService;
-        private ILogService _logService;
-        private ILootGenService _lootGenService;
-        private IClientRandom _rand;
-        private IDispatcher _dispatcher;
-        private IClientAppService _clientAppService;
-        private IClientGameState _gs;
-        private IPartyService _partyService;
-        private ILoadSaveService _loadSaveService;
-        private ITextSerializer _serializer;
+        private IRepositoryService _repoService = null;
+        private IGameData _gameData = null;
+        private ICrawlerMapService _mapService = null;
+        private ICrawlerMapGenService _mapGenService = null;
+        private ICrawlerService _crawlerService = null;
+        private ILogService _logService = null;
+        private IClientRandom _rand = null;
+        private IDispatcher _dispatcher = null;
+        private IClientAppService _clientAppService = null;
+        private IClientGameState _gs = null;
+        private IPartyService _partyService = null;
+        private ITextSerializer _serializer = null;
+        private ICrawlerQuestService _questService = null;
 
         private CrawlerWorld _world = null;
 
@@ -65,7 +64,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
             CrawlerWorld world = await GenerateInternal(party.WorldId, _source.Token);
 
             CrawlerMap firstCityMap = world.Maps.FirstOrDefault(x => x.CrawlerMapTypeId == CrawlerMapTypes.City);
-
 
             for (int i = LoadSaveConstants.MinSlot; i <= LoadSaveConstants.MaxSlot; i++)
             {
@@ -87,15 +85,24 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         public CrawlerMap CreateMap(CrawlerMapGenData genData, int width, int height)
         {
-            long mapId = ++genData.World.MaxMapId;
+            long mapId = genData.ForcedIdKey;
+
+            if (mapId == 0)
+            {
+                mapId = ++genData.World.MaxMapId;
+            }
+
+            genData.World.Maps = genData.World.Maps.Where(x=>x.IdKey != mapId).ToList();
+            genData.World.ClearCache();
+
             CrawlerMap map = new CrawlerMap()
             {
                 Id = "Map" + mapId,
                 CrawlerMapTypeId = genData.MapTypeId,
                 Width = width,
                 Height = height,
-                Level = genData.Level,
-                LevelDelta = genData.LevelDelta,
+                Level = (int)genData.Level,
+                LevelDelta = (int)genData.LevelDelta,
                 IdKey = mapId,
                 MapFloor = genData.CurrFloor,
                 ArtSeed = genData.ArtSeed,
@@ -113,7 +120,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
             {
                 map.AddFlags(CrawlerMapFlags.IsLooping);
             }
-
 
             if (genData.BaseCrawlerMapId == 0)
             {
@@ -244,16 +250,19 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 ICrawlerMapGenHelper helper = _mapGenService.GetGenHelper(CrawlerMapTypes.Outdoors);
 
                 MyRandom rand = new MyRandom(worldId + 1);
-
                 CrawlerMapGenData genData = new CrawlerMapGenData()
                 {
-                    MapTypeId = CrawlerMapTypes.Outdoors,
+                    MapTypeId = party.Mode == ECrawlerModes.Crawler ? CrawlerMapTypes.Outdoors : CrawlerMapTypes.City,
                     World = world,
                     Level = 1,
                     Looping = false,
                 };
 
                 CrawlerMap outdoorMap = await _mapGenService.Generate(_crawlerService.GetParty(), world, genData, token);
+
+
+                await _questService.AddWorldQuestGivers(party, world, rand, token);
+
 
                 string path = _clientAppService.PersistentDataPath +
                     ClientRepositoryConstants.GetDataPathPrefix() + ClientRepositoryConstants.WorldPathPrefix + worldId;

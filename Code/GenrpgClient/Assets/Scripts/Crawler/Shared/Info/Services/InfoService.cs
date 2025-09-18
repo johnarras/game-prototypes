@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
     {
         List<string> GetInfoLines(long entityTypeId, long entityId);
         string CreateInfoLink(IIdName idname, string nameShown = "");
-        string CreateOverviewLink(string typeName);
+        string CreateOverviewLink(string typeName, bool makePlural);
         List<string> GetInfoLines(string entityLink);
         string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect);
         void SetupOverviewPages(string overviewText);
@@ -64,7 +64,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
                 if (helper != null)
                 {
-                    lines.Insert(0, CreateOverviewLink(helper.GetChildType().Name));
+                    lines.Insert(0, CreateOverviewLink(helper.GetChildType().Name, info.OverviewTypeNameIsPlural()));
                 }
 
                 for (int l = 0; l < lines.Count; l++)
@@ -288,7 +288,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
             return _overviewPages;
         }
 
-        public string CreateOverviewLink(string typeName)
+        public string CreateOverviewLink(string typeName, bool makePlural)
         {
             if (!_overviewLines.ContainsKey(typeName.ToLower()))
             {

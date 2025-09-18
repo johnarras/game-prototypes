@@ -5,25 +5,25 @@
       "Id": "specialmagic1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "TownPortal"
+      "Name": "Town Portal"
     },
     {
       "Id": "specialmagic2default",
       "ParentId": "default",
       "IdKey": 2,
-      "Name": "PassWalll"
+      "Name": "Pass Wall"
     },
     {
       "Id": "specialmagic3default",
       "ParentId": "default",
       "IdKey": 3,
-      "Name": "IdentifyMonster"
+      "Name": "Identify Monster"
     },
     {
       "Id": "specialmagic4default",
       "ParentId": "default",
       "IdKey": 4,
-      "Name": "IdentifyItem"
+      "Name": "Identify Item"
     },
     {
       "Id": "specialmagic5default",
@@ -41,13 +41,13 @@
       "Id": "specialmagic7default",
       "ParentId": "default",
       "IdKey": 7,
-      "Name": "CleanseLocation"
+      "Name": "Cleanse Area"
     },
     {
       "Id": "specialmagic8default",
       "ParentId": "default",
       "IdKey": 8,
-      "Name": "RevealLocation"
+      "Name": "Reveal Area"
     },
     {
       "Id": "specialmagic9default",
@@ -55,12 +55,19 @@
       "IdKey": 9,
       "Name": "Beacon",
       "Desc": ""
+    },
+    {
+      "Id": "specialmagic10default",
+      "ParentId": "default",
+      "IdKey": 10,
+      "Name": "Pick Lock",
+      "Desc": ""
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "SpecialMagicSettings",
-    "SaveTime": "2025-09-04T22:06:18.52Z"
+    "SaveTime": "2025-09-13T18:33:13.799Z"
   },
-  "SaveTime": "2025-09-04T22:06:18.52Z"
+  "SaveTime": "2025-09-13T18:33:13.799Z"
 }

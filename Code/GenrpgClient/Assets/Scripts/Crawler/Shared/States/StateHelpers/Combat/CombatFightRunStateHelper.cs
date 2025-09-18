@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 {
@@ -54,7 +55,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(_combatService.ShowGroupStatus(group),
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
+                    pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
             }
 
             List<Monster> alliedMonsters = new List<Monster>();
@@ -77,7 +78,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(_combatService.ShowGroupStatus(group),
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
+                    pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); }));
 
             }
 
@@ -97,6 +98,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                    onClickAction: delegate ()
                    {
                        party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Fight;
+                       _combatService.InitPartyCombatActions(party);
                    }));
 
 

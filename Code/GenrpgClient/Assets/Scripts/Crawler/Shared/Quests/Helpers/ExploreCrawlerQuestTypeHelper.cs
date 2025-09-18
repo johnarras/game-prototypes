@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Utils;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,6 +20,16 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
                 MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
+
+
+            if (_modeService.SingleCityMode(party.Mode))
+            {
+                // 1 explore quest in crawler mode at once and only rarely
+                if (rand.NextDouble() > 0.1f || world.Quests.Any(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap))
+                {
+                    return;
+                }
+            }
 
             CrawlerQuest quest = new CrawlerQuest()
             {

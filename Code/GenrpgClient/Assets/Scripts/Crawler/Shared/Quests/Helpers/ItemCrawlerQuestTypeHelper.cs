@@ -32,7 +32,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
             ItemNameResult result = _lootGenService.GenerateItemNames(rand, 1, 1).First();
 
-            long quantity = GetMaxQuantity(npc.Level, rand);
+            long quantity = GetMaxQuantity(party, npc.Level, rand);
 
             CrawlerQuest quest = new CrawlerQuest()
             {

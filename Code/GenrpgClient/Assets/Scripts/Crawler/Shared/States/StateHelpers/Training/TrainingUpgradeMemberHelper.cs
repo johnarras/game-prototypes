@@ -1,26 +1,15 @@
 ﻿
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Training.Services;
-using Genrpg.Shared.Crawler.Training.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -71,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                 {
                     _trainingService.TrainPartyMemberUpgrade(party, member, upgrade.IdKey, memberData);
                 },
-                    extraData: memberData, pointerEnterAction: () => { ShowInfo(EntityTypes.MemberUpgrades, upgrade.IdKey); }));
+                    extraData: memberData, pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.MemberUpgrades, upgrade.IdKey); }));
 
             }
 

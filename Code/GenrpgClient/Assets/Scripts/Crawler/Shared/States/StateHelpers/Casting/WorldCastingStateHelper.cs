@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
             }
 
             await _crawlerSpellService.CastSpell(_crawlerService.GetParty(), selectSpellAction.Action.Action, token);
-            selectSpellAction.Action.Action.Caster.Action = null;
+            selectSpellAction.Action.Action.Caster.Actions.Clear();
 
             stateData = new CrawlerStateData(ECrawlerStates.ExploreWorld, true);
 

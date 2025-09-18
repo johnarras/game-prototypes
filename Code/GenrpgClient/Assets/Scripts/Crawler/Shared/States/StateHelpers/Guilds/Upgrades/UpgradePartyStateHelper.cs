@@ -5,13 +5,13 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
 {
@@ -40,15 +40,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
             }
             else
             {
-                stateData.Actions.Add(new CrawlerStateAction(" \n", forceText:true));
+                stateData.Actions.Add(new CrawlerStateAction(" \n", forceText: true));
             }
 
             string errorText = "";
 
             stateData.Actions.Add(new CrawlerStateAction($"Reset Points Current: {party.UpgradePoints}, Total: {party.TotalUpgradePoints}", CharCodes.None, ECrawlerStates.UpgradeParty,
-                () => 
-                { 
-                    _upgradeService.ResetPartyUpgradePoints(party); 
+                () =>
+                {
+                    _upgradeService.ResetPartyUpgradePoints(party);
 
                 }, errorText, forceText: true));
 
@@ -59,7 +59,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
             {
                 sb.Clear();
 
-                int currTier = party.Upgrades.Get(upgrade.IdKey); 
+                int currTier = party.Upgrades.Get(upgrade.IdKey);
                 int nextTier = currTier + 1;
 
                 sb.Append(upgrade.Name + "[T" + party.Upgrades.Get(upgrade.IdKey) + " +" + _upgradeService.GetPartyBonus(party, upgrade.IdKey) + "]");
@@ -81,7 +81,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
                         }
                         _upgradeService.PayForPartyUpgrade(party, upgrade.IdKey);
 
-                    }, errorText, null,  () => ShowUpgradeTooltop(upgrade.IdKey)));
+                    }, errorText, null, (GameObject go) => ShowUpgradeTooltop(upgrade.IdKey)));
             }
 
 
@@ -109,9 +109,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
 
             allLines.Add("Total upgrade cost is NewTier*BaseUpgradeCost\n\n");
 
-            allLines.Add("Bonus Per Tier: " + upgrade.BonusPerTier +"\n\n");
+            allLines.Add("Bonus Per Tier: " + upgrade.BonusPerTier + "\n\n");
 
-            allLines.Add("Max Tier: " + upgrade.MaxTier + "\n\n");  
+            allLines.Add("Max Tier: " + upgrade.MaxTier + "\n\n");
 
             _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = allLines });
         }

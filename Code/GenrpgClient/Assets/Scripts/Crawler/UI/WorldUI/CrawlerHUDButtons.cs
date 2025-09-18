@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Assets.Scripts.Crawler.Tilemaps;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.UI.Constants;
@@ -15,8 +15,8 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
     {
 
         private ICrawlerService _crawlerService = null;
-        private ICrawlerSpellService _spellService = null;
         private IAwaitableService _awaitableService = null;
+        private IBuffService _buffService = null;
 
         public GButton MapButton;
         public GButton SafetyButton;
@@ -121,7 +121,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
         private void CastAllPartyBuffs()
         {
-            _awaitableService.ForgetTask(_spellService.CastAllPartyBuffs(_crawlerService.GetParty(), GetToken()));
+            _awaitableService.ForgetTask(_buffService.CastAllPartyBuffs(_crawlerService.GetParty(), GetToken()));
         }
     }
 }

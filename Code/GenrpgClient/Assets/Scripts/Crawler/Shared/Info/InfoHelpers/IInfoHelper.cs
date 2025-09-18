@@ -8,5 +8,6 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         List<string> GetInfoLines(long entityId);
         string GetTypeName();
         List<IIdName> GetInfoChildren();
+        bool OverviewTypeNameIsPlural();
     }
 }

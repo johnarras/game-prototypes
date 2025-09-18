@@ -1,5 +1,6 @@
 ﻿using Genrpg.Shared.Crawler.States.Constants;
 using System;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.Entities
 {
@@ -11,8 +12,8 @@ namespace Genrpg.Shared.Crawler.States.Entities
             Action onClickAction = null,
             object extraData = null,
             string spriteName = null,
-            Action pointerEnterAction = null,
-            Action pointerExitAction = null,
+            Action<GameObject> pointerEnterAction = null,
+            Action<GameObject> pointerExitAction = null,
             bool rowFiller = false,
             bool forceButton = false,
             bool forceText = false,
@@ -38,8 +39,8 @@ namespace Genrpg.Shared.Crawler.States.Entities
         public Action OnClickAction { get; private set; }
         public string SpriteName { get; private set; }
         public object ExtraData { get; private set; }
-        public Action OnPointerEnter { get; private set; }
-        public Action OnPointerExit { get; private set; }
+        public Action<GameObject> OnPointerEnter { get; private set; }
+        public Action<GameObject> OnPointerExit { get; private set; }
         public bool RowFiller { get; private set; }
         public bool ForceButton { get; private set; }
         public bool ForceText { get; private set; }

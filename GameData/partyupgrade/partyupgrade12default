@@ -1,0 +1,11 @@
+{
+  "Id": "partyupgrade12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "GoldPercent",
+  "Desc": "Adds percent gold bonus",
+  "MaxTier": 5,
+  "BonusPerTier": 50.0,
+  "BasePointCost": 5,
+  "SaveTime": "2025-09-14T00:33:10.493Z"
+}

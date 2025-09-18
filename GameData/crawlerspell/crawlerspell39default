@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 39,
   "Name": "Cleanse Area",
-  "Desc": "Disarm any traps nearby.",
+  "Desc": "Disarm traps and negate nearby room effects.",
   "PowerCost": 50.0,
   "PowerPerLevel": 5.0,
   "StatBonusScaling": 1.0,
@@ -22,5 +22,5 @@
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-09T08:58:31.973Z"
+  "SaveTime": "2025-09-15T12:37:08.302Z"
 }

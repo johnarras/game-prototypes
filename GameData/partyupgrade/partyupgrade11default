@@ -1,0 +1,11 @@
+{
+  "Id": "partyupgrade11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "InventorySize",
+  "Desc": "Adds more inventory size",
+  "MaxTier": 5,
+  "BonusPerTier": 50.0,
+  "BasePointCost": 5,
+  "SaveTime": "2025-09-14T00:33:10.493Z"
+}

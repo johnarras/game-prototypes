@@ -21,7 +21,10 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
         public abstract long Key { get; }
 
-        protected virtual bool MakeNamePlural() { return true; }
+
+        public virtual bool OverviewTypeNameIsPlural() { return true; }
+
+        protected virtual bool MakeEntityNamePlural() { return true; }
 
         public virtual List<string> GetInfoLines(long entityId)
         {
@@ -31,7 +34,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             if (child != null)
             {
-                lines.Add(_infoService.CreateHeaderLine(child.Name, MakeNamePlural()));
+                lines.Add(_infoService.CreateHeaderLine(child.Name, MakeEntityNamePlural()));
 
                 if (child is IIndexedGameItem indexedItem && !string.IsNullOrEmpty(indexedItem.Desc))
                 {

@@ -12,11 +12,12 @@
     "BaseGroupCountIncreaseChance": 0.3,
     "GroupCountIncreaseChancePerLevel": 0.05,
     "MaxGroupCountIncreaseChance": 0.8,
+    "GroupCountIncreaseMultPerGroupAdded": 0.5,
     "MaxGroupCountPerLevel": 0.4,
     "MaxGroupCount": 6,
     "SelectRandomUnitForCombatGroupChance": 0.75,
     "RangeIncreaseChancePerGroup": 0.6,
     "Name": "StartCombatSettings",
-    "SaveTime": "2025-09-09T14:48:01.355Z"
+    "SaveTime": "2025-09-16T21:25:54.246Z"
   }
 }

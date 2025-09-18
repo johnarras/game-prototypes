@@ -316,7 +316,7 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void AddPointerHandlers(object view, Action enterHandler, Action exitHandler)
+        public void AddPointerHandlers(object view, Action<GameObject> enterHandler, Action<GameObject> exitHandler)
         {
             if (view is GameObject go)
             {

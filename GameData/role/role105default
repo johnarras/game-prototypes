@@ -7,7 +7,12 @@
   "Abbrev": "Hf",
   "RoleCategoryId": 2,
   "CritPercent": 5,
-  "BinaryBonuses": [],
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 100,
+      "EntityId": 38
+    }
+  ],
   "AmountBonuses": [
     {
       "EntityTypeId": 43,
@@ -20,5 +25,5 @@
       "Amount": 1.0
     }
   ],
-  "SaveTime": "2025-09-09T08:59:40.525Z"
+  "SaveTime": "2025-09-15T12:37:17.641Z"
 }

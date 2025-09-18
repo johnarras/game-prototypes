@@ -1,16 +1,14 @@
-using MessagePack;
+using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Entities.Utils;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.GameSettings;
-using System.Threading.Tasks;
 using System.Threading;
-using System.Linq;
-using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Core.Entities
 {
@@ -147,13 +145,12 @@ namespace Genrpg.Shared.Core.Entities
             {
                 _logService.Message("ServiceLocator added incompatible type: " + interfaceType.Name + " vs " + obj.GetType().Name);
                 throw new Exception("ServiceLocator added incompatible type: " + interfaceType.Name + " vs " + obj.GetType().Name);
-                return;
             }
 
             if (!interfaceType.IsInterface)
             {
                 _logService.Message("ServiceLocator can only set Interfaces Not: " + interfaceType.Name + " ");
-                throw new Exception("ServiceLocator: Attempted to Set non-interface type. " + interfaceType.Name);               
+                throw new Exception("ServiceLocator: Attempted to Set non-interface type. " + interfaceType.Name);
             }
 
             if (_typeDict.ContainsKey(interfaceType))
@@ -277,7 +274,7 @@ namespace Genrpg.Shared.Core.Entities
                 }
             }
 
-            await Task.WhenAll(tasks);  
+            await Task.WhenAll(tasks);
         }
     }
 }

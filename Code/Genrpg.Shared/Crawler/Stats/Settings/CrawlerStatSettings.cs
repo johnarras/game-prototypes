@@ -16,7 +16,10 @@ namespace Genrpg.Shared.Crawler.Stats.Settings
         [Key(3)] public int MaxRollValue { get; set; }
         // Set because the secondary buff stats are compared using ratios of sizes and we don't want lowlevel combat
         // vs +1 level monsters to instakill the party.
-        [Key(4)] public int BaseBuffStatValue { get; set; } 
+        [Key(4)] public int BaseBuffStatValue { get; set; }
+        [Key(6)] public double BonusScalingMult { get; set; }
+        [Key(7)] public double BonusScalingPower { get; set; }
+        [Key(8)] public double BonusScalingStartVal { get; set; }
     }
 
 

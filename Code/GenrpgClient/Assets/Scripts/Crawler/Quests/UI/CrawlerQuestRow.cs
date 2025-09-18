@@ -61,11 +61,8 @@ namespace Assets.Scripts.Crawler.Quests.UI
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 
             string questStatus = await _questService.ShowQuestStatus(party, _fullQuest.Quest.IdKey, false, true, false);
-            bool iconVisible = true;
-            if (map == null || map.BaseCrawlerMapId != _fullQuest.Quest.CrawlerMapId)
-            {
-                iconVisible = false;
-            }
+            bool iconVisible = map != null && await _questService.QuestIsActive(party, _fullQuest.Quest.IdKey);
+
             _clientEntityService.SetActive(IsActiveImage, iconVisible);
             _uiService.SetText(Text, await _questService.ShowQuestStatus(party, _fullQuest.Quest.IdKey, false, true, false));
             _isActiveQuest = iconVisible;

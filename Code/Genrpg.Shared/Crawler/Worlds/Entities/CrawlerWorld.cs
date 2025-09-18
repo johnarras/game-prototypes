@@ -1,14 +1,12 @@
-using MessagePack;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Interfaces;
-using Newtonsoft.Json;
+using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using System.Threading;
 
 namespace Genrpg.Shared.Crawler.Worlds.Entities
 {
-   
+
     [MessagePackObject]
     public class CrawlerWorld : IStringId, IIdName
     {
@@ -44,17 +42,21 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
             SetupQuestCache();
             CrawlerMap map = GetMap(mapId);
 
+            if (map == null)
+            {
+                return new List<CrawlerQuest>();
+            }
             if (_mapQuests.TryGetValue(map.BaseCrawlerMapId, out List<CrawlerQuest> list))
             {
                 return list;
             }
 
-            return new List<CrawlerQuest>();            
+            return new List<CrawlerQuest>();
         }
 
         public CrawlerNpc GetNpc(long crawlerNpcId)
         {
-            return Npcs.FirstOrDefault(x=>x.IdKey == crawlerNpcId); 
+            return Npcs.FirstOrDefault(x => x.IdKey == crawlerNpcId);
         }
 
         public void AddQuest(CrawlerQuest quest)
@@ -91,7 +93,7 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
                         {
                             _mapQuests[map.BaseCrawlerMapId] = new List<CrawlerQuest>();
                         }
-                        _mapQuests[map.BaseCrawlerMapId].Add(quest);    
+                        _mapQuests[map.BaseCrawlerMapId].Add(quest);
                     }
                 }
             }

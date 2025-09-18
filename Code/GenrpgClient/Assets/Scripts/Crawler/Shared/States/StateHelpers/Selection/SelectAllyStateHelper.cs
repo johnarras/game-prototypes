@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
@@ -44,11 +45,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 
                 Role classRole = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(partyMember.Roles).FirstOrDefault(x => x.RoleCategoryId == RoleCategories.Class);
 
-                Action ptrEnterAction = null;
+                Action<GameObject> ptrEnterAction = null;
 
                 if (classRole != null)
                 {
-                    ptrEnterAction = () => { ShowInfo(EntityTypes.Role, classRole.IdKey); };
+                    ptrEnterAction = (GameObject go) => { ShowInfo(EntityTypes.Role, classRole.IdKey); };
                 }
 
                 stateData.Actions.Add(new CrawlerStateAction(char.ToUpper(c) + partyMember.Name, c,

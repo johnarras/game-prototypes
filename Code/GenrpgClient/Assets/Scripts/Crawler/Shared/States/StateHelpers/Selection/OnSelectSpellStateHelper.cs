@@ -46,7 +46,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             }
 
             selectSpellAction.Action.Action = newAction;
-            selectSpellAction.Action.Member.Action = newAction;
+            selectSpellAction.Action.Member.AddAction(newAction);
 
             if (newAction.Spell.TargetTypeId == TargetTypes.Special)
             {

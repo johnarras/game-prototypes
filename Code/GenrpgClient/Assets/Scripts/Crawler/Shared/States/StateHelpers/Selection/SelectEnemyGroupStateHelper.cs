@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
@@ -51,14 +52,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                 Action clickRowAction = delegate ()
                 {
                     selectAction.Action.Action.FinalTargets = group.Units.ToList();
-                    currUnit.Action = selectAction.Action.Action;
+                    currUnit.AddAction(selectAction.Action.Action);
                     selectAction.Action.Action.FinalTargetGroups = new List<CombatGroup>() { group };
                     _dispatcher.Dispatch(new ClearCombatGroupActions());
                 };
 
                 CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + " " + _combatService.ShowGroupStatus(group), c,
                     selectAction.Action.NextState, onClickAction: clickRowAction, forceButton: false,
-                    pointerEnterAction: () => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); });
+                    pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); });
 
                 stateData.Actions.Add(newAction);
 

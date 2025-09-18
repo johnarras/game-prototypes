@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -52,6 +54,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
         protected IPartyService _partyService = null;
+        private ICrawlerModeService _modeService = null;
 
         public void CalcPartyStats(PartyData party, bool resetCurrStats)
         {
@@ -235,6 +238,12 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                     healthScale = (1 + qualityPercent / 100.0f);
                     damageScale = (1 + qualityPercent / 100.0f);
+
+                    if (_modeService.SinglePartyMember(party.Mode))
+                    {
+                        healthScale *= 1.5f;
+                        damageScale *= 1.5f;
+                    }
                 }
                 else
                 {
@@ -275,6 +284,15 @@ namespace Genrpg.Shared.Crawler.Stats.Services
             }
         }
 
+        public long GetBaseStatBonus(long statValue)
+        {
+            CrawlerStatSettings settings = _gameData.Get<CrawlerStatSettings>(_gs.ch);
+
+            double bonusValue = settings.BonusScalingMult * Math.Pow(statValue - settings.BonusScalingStartVal, settings.BonusScalingPower);
+
+            return (long)bonusValue;
+        }
+
         public long GetStatBonus(PartyData party, CrawlerUnit unit, long statTypeId)
         {
             if (statTypeId < 1)
@@ -286,7 +304,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
             if (statValue >= 16)
             {
-                statBonus = (long)Math.Ceiling(Math.Pow(statValue - 15, 2.0 / 3.0));
+                statBonus = GetBaseStatBonus(statValue);
             }
 
             List<Role> roles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(unit.Roles);

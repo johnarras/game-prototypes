@@ -5,7 +5,6 @@ using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
 using MongoDB.Bson.Serialization.Conventions;
@@ -17,16 +16,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using ZstdSharp.Unsafe;
 
 namespace Genrpg.ServerShared.DataStores.NoSQL
 {
     public class AzureCosmosMongoRepository : IServerRepository
     {
         private ILogService _logService = null;
-        private IAnalyticsService _analyticsService = null;
-        private ITextSerializer _serializer = null;
-        private InitRepoArgs _args = null;
 
         private static ConcurrentDictionary<string, MongoClient> _clientCache = new ConcurrentDictionary<string, MongoClient>();
 
@@ -37,12 +32,12 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
         static object _connectionLock = new object();
 
         #region Core
-        public async Task Init (InitRepoArgs args, 
-            string connectionString, 
-            ILogService logService, 
+        public async Task Init(InitRepoArgs args,
+            string connectionString,
+            ILogService logService,
             IAnalyticsService analyticsService,
             ITextSerializer serializer)
-        { 
+        {
             string databaseName = (args.Env + args.Category.ToString()).ToLower();
             _logService = logService;
             try
@@ -151,7 +146,7 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public INoSQLCollection GetCollection(Type t) 
+        public INoSQLCollection GetCollection(Type t)
         {
             if (_collections.TryGetValue(t, out INoSQLCollection coll))
             {
@@ -162,7 +157,7 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
             // This uses reflection here to avoid having generic scaffolding classes
             // grow throughout the program
             Type baseCollectionType = (t.GetInterface(nameof(IUpdateData)) != null ?
-                typeof (VersionedNoSQLCollection<>) :                
+                typeof(VersionedNoSQLCollection<>) :
                 typeof(MongoNoSQLRepositoryCollection<>));
             Type genericType = baseCollectionType.MakeGenericType(t);
             coll = (INoSQLCollection)Activator.CreateInstance(genericType, new object[] { this, _logService });
@@ -191,10 +186,10 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
         {
             INoSQLCollection collection = GetCollection(obj.GetType());
             return await collection.Delete(obj);
-            
+
         }
 
-        public async Task<bool> DeleteAll<T>(Expression<Func<T,bool>> func) where T : class, IStringId
+        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.DeleteAll(func);
@@ -203,7 +198,7 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
         public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity, int skip) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-           
+
             List<object> objects = await collection.Search(func, quantity, skip);
 
             List<T> retval = new List<T>();
@@ -261,39 +256,39 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
             }
             else // Azure Cosmos does not all multicollection transactions.
             {
-                using (IClientSessionHandle session = await _client.StartSessionAsync())
-                {
-                    try
-                    {
-                        session.StartTransaction();
+                //using (IClientSessionHandle session = await _client.StartSessionAsync())
+                //{
+                //    try
+                //    {
+                //        session.StartTransaction();
 
-                        List<Task<bool>> saves = new List<Task<bool>>();
+                //        List<Task<bool>> saves = new List<Task<bool>>();
 
-                        foreach (T item in list)
-                        {
-                            INoSQLCollection collection = GetCollection(item.GetType());
-                            saves.Add(collection.TransactionSave(item, session));
-                        }
+                //        foreach (T item in list)
+                //        {
+                //            INoSQLCollection collection = GetCollection(item.GetType());
+                //            saves.Add(collection.TransactionSave(item, session));
+                //        }
 
-                        bool[] successes = await Task.WhenAll(saves);
-                        if (successes.Any(x => x == false))
-                        {
-                            await session.AbortTransactionAsync();
-                            return false;
-                        }
-                        else
-                        {
-                            await session.CommitTransactionAsync();
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        _logService.Exception(e, "NoSQLRepository.TransactionSave");
-                        await session.AbortTransactionAsync();
-                        throw new Exception("Failed Transaction", e);
-                    }
-                    return true;
-                }
+                //        bool[] successes = await Task.WhenAll(saves);
+                //        if (successes.Any(x => x == false))
+                //        {
+                //            await session.AbortTransactionAsync();
+                //            return false;
+                //        }
+                //        else
+                //        {
+                //            await session.CommitTransactionAsync();
+                //        }
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        _logService.Exception(e, "NoSQLRepository.TransactionSave");
+                //        await session.AbortTransactionAsync();
+                //        throw new Exception("Failed Transaction", e);
+                //    }
+                //    return true;
+                //}
             }
         }
 

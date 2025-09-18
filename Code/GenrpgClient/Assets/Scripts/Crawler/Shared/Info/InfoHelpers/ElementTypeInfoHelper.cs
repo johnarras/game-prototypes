@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
         public override long Key => EntityTypes.Element;
 
-        protected override bool MakeNamePlural() { return false; }
+        protected override bool MakeEntityNamePlural() { return false; }
 
         public override List<string> GetInfoLines(long entityId)
         {

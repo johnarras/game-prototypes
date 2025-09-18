@@ -24,7 +24,8 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
 
         public static int GetScrollingFrames(int scrollFramesIndex)
         {
-            scrollFramesIndex = MathUtils.Clamp(0, scrollFramesIndex, ScrollingFramesValues.Length - 1);
+
+            scrollFramesIndex = MathUtils.Clamp(0, scrollFramesIndex - 1, ScrollingFramesValues.Length - 1);
             return ScrollingFramesValues[scrollFramesIndex];
         }
 

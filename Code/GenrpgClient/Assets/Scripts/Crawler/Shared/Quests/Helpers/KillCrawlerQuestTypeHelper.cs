@@ -3,6 +3,7 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
+using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Units.Settings;
@@ -17,11 +18,14 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 {
     public class KillCrawlerQuestTypeHelper : BaseCrawlerQuestTypeHelper
     {
+
+        private ICrawlerQuestService _questService = null;
+
         public override long Key => CrawlerQuestTypes.KillMonsters;
 
         protected override string QuestVerb => "Kill";
 
-        public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, 
+        public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
             MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
             CrawlerMapSettings mapService = _gameData.Get<CrawlerMapSettings>(_gs.ch);
@@ -36,21 +40,22 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
                 return;
             }
 
-            List<long> killEntities = world.Quests.Where(x=>x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters).Select(x=>x.TargetEntityId).ToList();
+            List<long> killEntities = world.Quests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters).Select(x => x.TargetEntityId).ToList();
 
-            List<ZoneUnitSpawn> okSpawns = startSpawns.Where(x=>!killEntities.Contains(x.UnitTypeId)).ToList();
+            List<ZoneUnitSpawn> okSpawns = startSpawns.Where(x => !killEntities.Contains(x.UnitTypeId)).ToList();
 
             if (okSpawns.Count < 1)
             {
                 okSpawns = startSpawns;
             }
 
-            List<long> sameDungeonKillQuestUnitIds = world.Quests.Where(x=>
-            x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters &&
-            x.CrawlerMapId == targetMap.Map.BaseCrawlerMapId).Select(x=>x.TargetEntityId).ToList();
 
-            okSpawns = okSpawns.Where(x=>!sameDungeonKillQuestUnitIds.Contains(x.UnitTypeId)).ToList();   
-            
+            List<long> sameDungeonKillQuestUnitIds = (await _questService.GetQuestsForMap(party, party.CurrPos.MapId)).Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.KillMonsters)
+                .Select(x => x.TargetEntityId).Distinct().ToList();
+
+
+            okSpawns = okSpawns.Where(x => !sameDungeonKillQuestUnitIds.Contains(x.UnitTypeId)).ToList();
+
             if (okSpawns.Count < 1)
             {
                 okSpawns = startSpawns;
@@ -70,7 +75,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
                 return;
             }
 
-            long quantity = GetMaxQuantity(npc.Level, rand);
+            long quantity = GetMaxQuantity(party, npc.Level, rand);
 
             CrawlerQuest quest = new CrawlerQuest()
             {
@@ -86,7 +91,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
                 TargetPluralName = unitType.PluralName,
             };
 
-            world.AddQuest(quest);  
+            world.AddQuest(quest);
 
             await Task.CompletedTask;
             return;

@@ -1,11 +1,7 @@
-using Genrpg.Shared.BoardGame.Settings;
-using Genrpg.Shared.Core.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using MessagePack;
-using System;
-using System.Security;
 
 namespace Genrpg.Shared.Crawler.Settings
 {
@@ -14,6 +10,7 @@ namespace Genrpg.Shared.Crawler.Settings
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public long MaxPartySize { get; set; }
+        [Key(2)] public long StartGold { get; set; }
     }
 
 

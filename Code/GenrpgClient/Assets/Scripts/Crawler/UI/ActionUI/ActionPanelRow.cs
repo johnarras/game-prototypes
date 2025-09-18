@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.MVC.Interfaces;
 using Genrpg.Shared.Utils;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.ActionUI
 {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
         protected CrawlerStateAction _action = null;
         protected CrawlerStateData _state = null;
 
-        public void SetAction (CrawlerStateWithAction fullAction)
+        public void SetAction(CrawlerStateWithAction fullAction)
         {
             _action = fullAction.Action;
             _state = fullAction.State;
@@ -35,7 +36,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
 
                 if (_action.Key == CharCodes.Escape)
                 {
-                    text = $"\n\nPress {_textService.HighlightText("Escape")} to return to " + StrUtils.SplitOnCapitalLetters(_action.NextState.ToString());                
+                    text = $"\n\nPress {_textService.HighlightText("Escape")} to return to " + StrUtils.SplitOnCapitalLetters(_action.NextState.ToString());
                 }
                 else if (text != null && text.Length > 0 && char.IsLetterOrDigit(text[0]))
                 {
@@ -64,16 +65,16 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
         {
             if (_action != null && _action.NextState != ECrawlerStates.None)
             {
-                _crawlerService.ChangeState(_state, _action, GetToken());  
+                _crawlerService.ChangeState(_state, _action, GetToken());
             }
         }
 
-        public void OnPointerExit()
+        public void OnPointerExit(GameObject go)
         {
             _uiService.SetAlpha(Text, 1.0f);
             if (_action != null && _action.OnPointerExit != null)
             {
-                _action?.OnPointerExit();
+                _action?.OnPointerExit(go);
             }
             else
             {
@@ -81,7 +82,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
             }
         }
 
-        public void OnPointerEnter()
+        public void OnPointerEnter(GameObject go)
         {
 
             if (_action.NextState != ECrawlerStates.None || _action.OnClickAction != null)
@@ -90,7 +91,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
             }
 
             if (_action != null)
-            { 
+            {
                 if (!string.IsNullOrEmpty(_action.SpriteName))
                 {
                     _dispatcher.Dispatch<ShowWorldPanelImage>(new ShowWorldPanelImage()
@@ -100,7 +101,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
                 }
                 if (_action.OnPointerEnter != null)
                 {
-                    _action.OnPointerEnter();
+                    _action.OnPointerEnter(go);
                 }
             }
         }

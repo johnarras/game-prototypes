@@ -3,15 +3,14 @@ using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -44,20 +43,25 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
     public class PartyService : IPartyService
     {
-        private IGameData _gameData;
-        private IClientGameState _gs;
-        private IClientRandom _rand;
-        private ICrawlerUpgradeService _upgradeService;
-        private IDispatcher _dispatcher;
-        private ICrawlerWorldService _crawlerWorldService;
-        private ICrawlerService _crawlerService;
-
+        private IGameData _gameData = null;
+        private IClientGameState _gs = null;
+        private IClientRandom _rand = null;
+        private IDispatcher _dispatcher = null;
+        private ICrawlerWorldService _crawlerWorldService = null;
+        private ICrawlerService _crawlerService = null;
+        private ICrawlerModeService _modeService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
+
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                return 1;
+            }
+
             CrawlerSettings settings = _gameData.Get<CrawlerSettings>(_gs.ch);
 
-            return settings.MaxPartySize + (int)_upgradeService.GetPartyBonus(party, PartyUpgrades.PartySize);
+            return settings.MaxPartySize;
         }
 
         public void AddPartyMember(PartyData party, PartyMember member)
@@ -141,6 +145,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
             party.CompletedQuests.Clear();
             party.Quests.Clear();
             OnEnterMap(party);
+            party.AddFlags(PartyFlags.InGuildHall);
         }
 
         public void OnEnterMap(PartyData party)

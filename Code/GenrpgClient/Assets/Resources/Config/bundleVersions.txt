@@ -2,7 +2,7 @@
   "ClientPlatform": "Win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2025-09-08T00:02:09.3905122Z"
+    "UpdateTime": "2025-09-14T23:48:17.0993839Z"
   },
   "Versions": {
     "atlascrawlercombat": {
@@ -10,9 +10,14 @@
       "Hash": "bbc6404c6e171bcec433944108c09ed1",
       "ChildDependencies": []
     },
+    "atlascrawlercurrencytypeicons": {
+      "Name": "atlascrawlercurrencytypeicons",
+      "Hash": "f06d8d0636af6328b86a617d48ae3aa4",
+      "ChildDependencies": []
+    },
     "atlascrawlerminimap": {
       "Name": "atlascrawlerminimap",
-      "Hash": "16ceb435c0aca63219a9ffb6986aa46d",
+      "Hash": "f3dfe893331cf7cf4001c81f19880bdf",
       "ChildDependencies": []
     },
     "atlascrawlerui": {
@@ -265,14 +270,19 @@
       "Hash": "64d5e19eedc1e035403c14369d086610",
       "ChildDependencies": []
     },
+    "combatacidcombathit": {
+      "Name": "combatacidcombathit",
+      "Hash": "bc81ab5d5220a01d63f247028e1f8b18",
+      "ChildDependencies": []
+    },
     "combatarcanecombathit": {
       "Name": "combatarcanecombathit",
-      "Hash": "4150192d3c7362a09bb90dee7907296c",
+      "Hash": "072f78a0ecb0c9d4405b8a6a40491606",
       "ChildDependencies": []
     },
     "combatbasecombathit": {
       "Name": "combatbasecombathit",
-      "Hash": "6186e085aa739acc249e60eab74b2130",
+      "Hash": "592cb5fa24ccded5dce39921d4245fa2",
       "ChildDependencies": []
     },
     "combatcombatbolt": {
@@ -282,42 +292,52 @@
     },
     "combatearthcombathit": {
       "Name": "combatearthcombathit",
-      "Hash": "28cd7dc2bad3cd36f2259320c044153a",
+      "Hash": "f13b6e1cdd065bcdcd10e13a0674c894",
       "ChildDependencies": []
     },
     "combatelectriccombathit": {
       "Name": "combatelectriccombathit",
-      "Hash": "75718590a4d53f5deb40c3ef915a0a1e",
+      "Hash": "78d3d6c1a7a5f419a87fb4874ee184cd",
       "ChildDependencies": []
     },
     "combatfirecombathit": {
       "Name": "combatfirecombathit",
-      "Hash": "074c47a587aec5756678b2b1a2381172",
+      "Hash": "dc327f837bdff6f32fe96713f1a7ce3c",
       "ChildDependencies": []
     },
     "combaticecombathit": {
       "Name": "combaticecombathit",
-      "Hash": "60823f9b9d3edd2ca11eac1ec098d806",
+      "Hash": "329e605f6b5eba1e7c78d472fc09151e",
       "ChildDependencies": []
     },
     "combatlightcombathit": {
       "Name": "combatlightcombathit",
-      "Hash": "0fe9f49028fcc46abe76d89dad566127",
+      "Hash": "3d8245bab7d68466590d471e444e1f5b",
+      "ChildDependencies": []
+    },
+    "combatmeleecombathit": {
+      "Name": "combatmeleecombathit",
+      "Hash": "10d17418c468bf27038a3081c98314ad",
       "ChildDependencies": []
     },
     "combatnaturecombathit": {
       "Name": "combatnaturecombathit",
-      "Hash": "0ed27ea3cefd4c82d00e38a4efc01ea9",
+      "Hash": "7060e4254c0ac04b325285bc6adb79c1",
       "ChildDependencies": []
     },
     "combatphysicalcombathit": {
       "Name": "combatphysicalcombathit",
-      "Hash": "2b049c4f5c2a86d5637ae3ec17b7c6c7",
+      "Hash": "bfc40802ba3f55f41321890def7c0d59",
+      "ChildDependencies": []
+    },
+    "combatrangedcombathit": {
+      "Name": "combatrangedcombathit",
+      "Hash": "6c1a6631c985a5532aa63bfbbca1b17a",
       "ChildDependencies": []
     },
     "combatshadowcombathit": {
       "Name": "combatshadowcombathit",
-      "Hash": "d8c2222803a58dab130a70c2ac61b33c",
+      "Hash": "7b4b8389c45332305354607db1774b8d",
       "ChildDependencies": []
     },
     "dungeonsarcane": {
@@ -2542,6 +2562,11 @@
       "Hash": "8c5dceeb831bef2f33c7adc605376c8d",
       "ChildDependencies": []
     },
+    "texturelistscursedarrows": {
+      "Name": "texturelistscursedarrows",
+      "Hash": "c861a4427b4663c83f2f5243c2a38a9d",
+      "ChildDependencies": []
+    },
     "texturelistscyclops": {
       "Name": "texturelistscyclops",
       "Hash": "bd763ccb11300506cd6117acb151444b",
@@ -2822,6 +2847,11 @@
       "Hash": "6b68e046a91584301317703ca0db4b65",
       "ChildDependencies": []
     },
+    "texturelistsparry": {
+      "Name": "texturelistsparry",
+      "Hash": "43ac3b647074a50299497a24827e3185",
+      "ChildDependencies": []
+    },
     "texturelistspointofinterest": {
       "Name": "texturelistspointofinterest",
       "Hash": "a5a89b796adef92c24143e86d928a7c2",
@@ -2835,6 +2865,11 @@
     "texturelistsreddragon": {
       "Name": "texturelistsreddragon",
       "Hash": "6590174f0197b1a2989504a3383ea597",
+      "ChildDependencies": []
+    },
+    "texturelistsretaliation": {
+      "Name": "texturelistsretaliation",
+      "Hash": "c49b36cf1a9728c55db3f3281011f03e",
       "ChildDependencies": []
     },
     "texturelistsroad": {
@@ -2940,11 +2975,6 @@
     "textureliststhief": {
       "Name": "textureliststhief",
       "Hash": "2dab25c630b85da151bab6fc73b5d92e",
-      "ChildDependencies": []
-    },
-    "textureliststhorns": {
-      "Name": "textureliststhorns",
-      "Hash": "54330b23029f68bee9a462f7727d827b",
       "ChildDependencies": []
     },
     "textureliststiger": {
@@ -3528,7 +3558,7 @@
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "c5d9a0e29f64101e9236ff1d8ace9894",
+      "Hash": "d4cb1b3b1b515e062acae2d654a5f002",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui",
@@ -3537,7 +3567,7 @@
     },
     "uicrawleraction": {
       "Name": "uicrawleraction",
-      "Hash": "c2a8e1a5b8ae426f9ca97962fb4c3374",
+      "Hash": "f727c538a36111307ac56998d5e64719",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui"
@@ -3545,7 +3575,7 @@
     },
     "uicrawlerbuffs": {
       "Name": "uicrawlerbuffs",
-      "Hash": "4f482a32f04b466249d0dd7da6137719",
+      "Hash": "db31dc3be12657f482d92f18681b7a15",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3557,7 +3587,7 @@
     },
     "uicrawlerhud": {
       "Name": "uicrawlerhud",
-      "Hash": "a019421d40dc681e108bf729be752ec3",
+      "Hash": "029f261f19908b165e7c0da0b4171287",
       "ChildDependencies": [
         "atlasskillicons",
         "atlasui",
@@ -3569,7 +3599,7 @@
     },
     "uicrawlerinfo": {
       "Name": "uicrawlerinfo",
-      "Hash": "1253b2ac9282c30a367358ae755f0f4c",
+      "Hash": "f346a45a03d7f88aa3446977923c26b3",
       "ChildDependencies": [
         "atlasui"
       ]
@@ -3584,28 +3614,28 @@
     },
     "uicrawlerparty": {
       "Name": "uicrawlerparty",
-      "Hash": "c737fa54702bd36f1933c9685fbfaaba",
+      "Hash": "854558683ecc43597d3d137003269c47",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlerquests": {
       "Name": "uicrawlerquests",
-      "Hash": "e1c212040c138575b0c0d64fc959d06e",
+      "Hash": "7937a5970c2a3d59c845b01a62e6e96a",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlerscreens": {
       "Name": "uicrawlerscreens",
-      "Hash": "cf41e5ae59628337ef6f19329e87fd07",
+      "Hash": "74aa3de06a224f68115d9c428c8446ef",
       "ChildDependencies": [
         "atlasui"
       ]
     },
     "uicrawlertilemaps": {
       "Name": "uicrawlertilemaps",
-      "Hash": "fbba35666e368e7bd46f9628d737a529",
+      "Hash": "c4e858da09a82f028da07f51507aa0c9",
       "ChildDependencies": [
         "atlasui"
       ]

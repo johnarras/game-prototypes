@@ -1,12 +1,9 @@
-﻿
-using Genrpg.Shared.Crawler.Crawlers.Services;
+﻿using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Stats.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Units.Entities;
@@ -15,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
@@ -22,7 +20,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
     public class ChooseClassHelper : BaseStateHelper
     {
 
-        private ICrawlerUpgradeService _roguelikeUpgradeService;
+        private ICrawlerModeService _modeService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.ChooseClass;
 
@@ -35,8 +33,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             PartyData party = _crawlerService.GetParty();
 
-            // JRAJRA -- you only ever get 1 class on character creation
-            //totalClasses += (long)_roguelikeUpgradeService.GetBonus(party, PartyUpgrades.ClassCount);
+            if (_modeService.SinglePartyMember(party.Mode))
+            {
+                totalClasses = 2;
+            }
 
             IReadOnlyList<Role> roles = _gameData.Get<RoleSettings>(null).GetData().Where(x => x.RoleCategoryId == RoleCategories.Class).ToList();
 
@@ -63,8 +63,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 stateData.Actions.Add(new CrawlerStateAction(role.Name, CharCodes.None, nextState,
                     delegate
                     {
-                        member.Roles.Add(new UnitRole() { RoleId = role.IdKey, Level=1 });
-                    }, member, null, () => { ShowInfo(EntityTypes.Role, role.IdKey); }
+                        member.Roles.Add(new UnitRole() { RoleId = role.IdKey, Level = 1 });
+                    }, member, null, (GameObject go) => { ShowInfo(EntityTypes.Role, role.IdKey); }
 
                     ));
             }

@@ -2,7 +2,8 @@
   "Parent": {
     "Id": "default",
     "MaxPartySize": 6,
+    "StartGold": 1000,
     "Name": "CrawlerSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-09-14T19:54:34.799Z"
   }
 }

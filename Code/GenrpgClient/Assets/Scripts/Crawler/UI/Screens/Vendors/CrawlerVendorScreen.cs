@@ -13,6 +13,7 @@ using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Vendors.Settings;
 using System;
@@ -43,6 +44,9 @@ public class CrawlerVendorScreen : ItemIconScreen
 
     PartyData _party;
     PartyMember _member;
+
+    public override Unit GetUnit() { return _member; }
+
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         await base.OnStartOpen(data, token);
@@ -51,7 +55,6 @@ public class CrawlerVendorScreen : ItemIconScreen
         _member = _party.GetActiveParty().First();
         InitPanel();
         ShowVendorItems();
-
     }
 
     private void InitPanel()

@@ -1,13 +1,11 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Spells.Constants;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Settings.SpecialMagic
 {
@@ -33,7 +31,7 @@ namespace Genrpg.Shared.Spells.Settings.SpecialMagic
         [Key(7)] public string Art { get; set; }
     }
     [MessagePackObject]
-    public class SpecialMagicSettings : ParentConstantListSettings<SpecialMagic,SpecialMagics>
+    public class SpecialMagicSettings : ParentConstantListSettings<SpecialMagic, SpecialMagics>
     {
         [Key(0)] public override string Id { get; set; }
     }
@@ -42,4 +40,10 @@ namespace Genrpg.Shared.Spells.Settings.SpecialMagic
     public class SpecialMagicSettingsLoader : ParentSettingsLoader<SpecialMagicSettings, SpecialMagic> { }
 
     public class SpecialMagicSettingsMapper : ParentSettingsMapper<SpecialMagicSettings, SpecialMagic, SpecialMagicSettingsDto> { }
+
+
+    public class SpecialMagicEntityHelper : BaseEntityHelper<SpecialMagicSettings, SpecialMagic>
+    {
+        public override long Key => EntityTypes.SpecialMagic;
+    }
 }

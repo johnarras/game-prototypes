@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,19 +7,19 @@ namespace Assets.Scripts.UI.Pointers
     public class PointerHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
-        private Action _enterHandler;
+        private Action<GameObject> _enterHandler;
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _enterHandler?.Invoke();
+            _enterHandler?.Invoke(eventData.pointerEnter);
         }
 
-        private Action _exitHandler;
+        private Action<GameObject> _exitHandler;
         public void OnPointerExit(PointerEventData eventData)
         {
-            _exitHandler?.Invoke();
+            _exitHandler?.Invoke(eventData.pointerEnter);
         }
 
-        public void SetEnterExitHandlers(Action enterHandler,  Action exitHandler)
+        public void SetEnterExitHandlers(Action<GameObject> enterHandler, Action<GameObject> exitHandler)
         {
             _enterHandler = enterHandler;
             _exitHandler = exitHandler;
