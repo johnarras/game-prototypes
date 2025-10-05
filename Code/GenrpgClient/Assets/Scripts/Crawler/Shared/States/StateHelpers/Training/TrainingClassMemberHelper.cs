@@ -2,7 +2,7 @@
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -32,7 +32,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
         ITrainingService _trainingService = null;
         ICrawlerUpgradeService _upgradeService = null;
-        private ICrawlerModeService _modeService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.TrainingClassMember;
 
@@ -59,7 +58,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
             int maxRoles = (int)(1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.ClassCount));
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 maxRoles++;
             }

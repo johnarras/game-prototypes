@@ -8,17 +8,19 @@
       0
     ]
   },
-  "Gold": 1000,
-  "Seed": 23412,
-  "WorldId": 303658,
-  "CurrPos": {
-    "MapId": 2,
-    "X": -1,
-    "Z": -1,
-    "Rot": 270
+  "Currencies": {
+    "Data": [
+      0,
+      2000,
+      0,
+      0
+    ]
   },
+  "Seed": 1553161120,
+  "WorldId": 303658,
+  "CurrPos": {},
   "RecallPos": {},
-  "NextId": 133,
+  "NextId": 398,
   "Maps": [],
   "CurrentMap": {
     "Visited": {
@@ -53,7 +55,7 @@
     ]
   },
   "SaveSlotId": 1,
-  "CombatTextScrollDelay": 0.2,
+  "ScrollFramesIndex": 4,
   "Buffs": {
     "Data": [
       0.0,
@@ -74,17 +76,19 @@
       "PartySlot": 1,
       "SaveEquipment": [
         {
-          "Id": "I122",
-          "Name": "Brass Sword of the Skull",
-          "Dat": "21 3 1 0 15 180 45 0 0 0 0 0 0 0 0 0 "
+          "Id": "I387",
+          "Name": "Knife of Domination",
+          "Dat": "24 1 1 3 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I123",
-          "Name": "Brass Watchful Knife",
-          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+          "Id": "I388",
+          "Name": "Wand of Guile",
+          "Dat": "32 1 1 3 17 68 17 0 ",
+          "Effects": []
         }
       ],
-      "PermStats": "0 14 13 15 13 15 13 14 0 0 27 19",
+      "PermStats": "0 14 14 15 13 15 13 13 0 0 25 18",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -96,17 +100,16 @@
       },
       "Summons": [
         {
-          "UnitTypeId": 14,
-          "Name": "Monk",
-          "RoleId": 10
+          "UnitTypeId": 28,
+          "Name": "Cat",
+          "RoleId": 8
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Dwarf",
+      "PortraitName": "Coyote",
       "ExtraKeywords": [],
-      "SexTypeId": 2,
-      "Id": "P2",
-      "Name": "Holy Smasher",
+      "Id": "P267",
+      "Name": "Shifty",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -118,7 +121,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:03:01.9588106Z"
+        "GameDataCheckTime": "2025-09-20T15:53:21.2128735Z"
       },
       "Roles": [
         {
@@ -126,7 +129,7 @@
           "Level": 1
         },
         {
-          "RoleId": 10,
+          "RoleId": 8,
           "Level": 1
         }
       ]
@@ -136,17 +139,19 @@
       "PartySlot": 2,
       "SaveEquipment": [
         {
-          "Id": "I124",
-          "Name": "Brass Blade of Ferocity",
-          "Dat": "24 3 1 0 15 120 30 0 0 0 0 0 0 0 0 0 "
+          "Id": "I389",
+          "Name": "Wretched Knife",
+          "Dat": "24 1 1 2 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I125",
-          "Name": "Copper Axe of the Redeemer",
-          "Dat": "31 2 1 0 17 37 9 0 0 0 0 0 0 0 0 0 "
+          "Id": "I390",
+          "Name": "Wand of the Last Stand",
+          "Dat": "32 1 1 1 17 68 17 0 ",
+          "Effects": []
         }
       ],
-      "PermStats": "0 17 13 13 13 15 13 13 0 0 20 10",
+      "PermStats": "0 16 13 13 13 16 13 13 0 0 26 10",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -160,15 +165,14 @@
         {
           "UnitTypeId": 13,
           "Name": "Scrapper",
-          "RoleId": 9
+          "RoleId": 1
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Scrapper",
+      "PortraitName": "Bladesman",
       "ExtraKeywords": [],
-      "SexTypeId": 1,
-      "Id": "P5",
-      "Name": "Crusher",
+      "Id": "P270",
+      "Name": "Fighty",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -180,7 +184,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:03:16.579188Z"
+        "GameDataCheckTime": "2025-09-20T15:53:32.1649368Z"
       },
       "Roles": [
         {
@@ -188,7 +192,7 @@
           "Level": 1
         },
         {
-          "RoleId": 9,
+          "RoleId": 1,
           "Level": 1
         }
       ]
@@ -198,17 +202,19 @@
       "PartySlot": 3,
       "SaveEquipment": [
         {
-          "Id": "I126",
-          "Name": "Singing Knife",
-          "Dat": "24 1 1 0 15 75 18 0 0 0 0 0 0 0 0 0 "
+          "Id": "I391",
+          "Name": "Knife of Anguish",
+          "Dat": "24 1 1 4 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I127",
-          "Name": "Iron Knife of the Tallsealed",
-          "Dat": "31 5 1 0 17 100 25 0 0 0 0 0 0 0 0 0 "
+          "Id": "I392",
+          "Name": "Unstoppable Wand",
+          "Dat": "32 1 1 4 17 68 17 0 ",
+          "Effects": []
         }
       ],
-      "PermStats": "0 13 13 13 15 13 17 13 0 0 16 10",
+      "PermStats": "0 13 13 14 14 14 15 14 0 0 17 17",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -220,17 +226,16 @@
       },
       "Summons": [
         {
-          "UnitTypeId": 39,
-          "Name": "Thief",
+          "UnitTypeId": 2,
+          "Name": "Elf",
           "RoleId": 7
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Halfling",
+      "PortraitName": "Human",
       "ExtraKeywords": [],
-      "SexTypeId": 2,
-      "Id": "P10",
-      "Name": "Lil Sneaky",
+      "Id": "P275",
+      "Name": "Singy",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -242,15 +247,15 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:03:38.5167392Z"
+        "GameDataCheckTime": "2025-09-20T15:53:42.5209267Z"
       },
       "Roles": [
         {
-          "RoleId": 105,
+          "RoleId": 100,
           "Level": 1
         },
         {
-          "RoleId": 2,
+          "RoleId": 7,
           "Level": 1
         }
       ]
@@ -260,14 +265,16 @@
       "PartySlot": 4,
       "SaveEquipment": [
         {
-          "Id": "I128",
-          "Name": "Dusky Dagger",
-          "Dat": "24 1 1 0 15 75 18 0 0 0 0 0 0 0 0 0 "
+          "Id": "I393",
+          "Name": "Vacant Knife",
+          "Dat": "24 1 1 3 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I129",
-          "Name": "Copper Giant Throwing Knife",
-          "Dat": "31 2 1 0 17 37 9 0 0 0 0 0 0 0 0 0 "
+          "Id": "I394",
+          "Name": "Wailing Wand",
+          "Dat": "32 1 1 2 17 68 17 0 ",
+          "Effects": []
         }
       ],
       "PermStats": "0 13 14 13 17 14 13 13 0 0 19 14",
@@ -284,15 +291,14 @@
         {
           "UnitTypeId": 55,
           "Name": "Bear",
-          "RoleId": 8
+          "RoleId": 3
         }
       ],
       "UnitTypeId": 1,
       "PortraitName": "Elf",
       "ExtraKeywords": [],
-      "SexTypeId": 1,
-      "Id": "P17",
-      "Name": "Shoota",
+      "Id": "P282",
+      "Name": "Shooty",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -304,7 +310,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:03:52.2195446Z"
+        "GameDataCheckTime": "2025-09-20T15:54:03.7684506Z"
       },
       "Roles": [
         {
@@ -322,17 +328,19 @@
       "PartySlot": 5,
       "SaveEquipment": [
         {
-          "Id": "I130",
-          "Name": "Copper Fantastic Tooth",
-          "Dat": "24 2 1 0 15 90 22 0 0 0 0 0 0 0 0 0 "
+          "Id": "I395",
+          "Name": "Knife of Revelry",
+          "Dat": "24 1 1 4 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I131",
-          "Name": "Brass Dull Knife",
-          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+          "Id": "I396",
+          "Name": "Stalk of Knights",
+          "Dat": "32 1 1 4 17 68 17 0 ",
+          "Effects": []
         }
       ],
-      "PermStats": "0 13 17 14 13 13 14 13 0 0 12 22",
+      "PermStats": "0 13 16 16 13 13 13 13 0 0 16 20",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -344,17 +352,16 @@
       },
       "Summons": [
         {
-          "UnitTypeId": 48,
-          "Name": "Stone Golem",
-          "RoleId": 12
+          "UnitTypeId": 52,
+          "Name": "Earth Elemental",
+          "RoleId": 11
         }
       ],
       "UnitTypeId": 1,
       "PortraitName": "Gnome",
       "ExtraKeywords": [],
-      "SexTypeId": 2,
-      "Id": "P26",
-      "Name": "Blastem",
+      "Id": "P291",
+      "Name": "Blasty",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -366,7 +373,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:04:14.5557615Z"
+        "GameDataCheckTime": "2025-09-20T15:54:14.6813344Z"
       },
       "Roles": [
         {
@@ -374,7 +381,7 @@
           "Level": 1
         },
         {
-          "RoleId": 4,
+          "RoleId": 11,
           "Level": 1
         }
       ]
@@ -384,14 +391,16 @@
       "PartySlot": 6,
       "SaveEquipment": [
         {
-          "Id": "I132",
-          "Name": "Copper Knife of the Warrior",
-          "Dat": "24 2 1 0 15 90 22 0 0 0 0 0 0 0 0 0 "
+          "Id": "I397",
+          "Name": "Dagger of Piety",
+          "Dat": "24 1 1 2 15 75 18 0 ",
+          "Effects": []
         },
         {
-          "Id": "I133",
-          "Name": "Brass Axe of the Priest",
-          "Dat": "31 3 1 0 17 50 12 0 0 0 0 0 0 0 0 0 "
+          "Id": "I398",
+          "Name": "Torch of Precision",
+          "Dat": "32 1 1 1 17 68 17 0 ",
+          "Effects": []
         }
       ],
       "PermStats": "0 13 13 16 13 13 14 15 0 0 14 24",
@@ -408,15 +417,14 @@
         {
           "UnitTypeId": 14,
           "Name": "Monk",
-          "RoleId": 10
+          "RoleId": 5
         }
       ],
       "UnitTypeId": 1,
       "PortraitName": "Cleric",
       "ExtraKeywords": [],
-      "SexTypeId": 1,
-      "Id": "P37",
-      "Name": "Mendmaster",
+      "Id": "P302",
+      "Name": "Healy",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -428,7 +436,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-07-12T00:04:28.5928363Z"
+        "GameDataCheckTime": "2025-09-20T15:54:27.2293928Z"
       },
       "Roles": [
         {
@@ -441,5 +449,7 @@
         }
       ]
     }
-  ]
+  ],
+  "ItemsUsed": [],
+  "ItemBuffs": {}
 }

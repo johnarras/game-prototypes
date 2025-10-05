@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Settings;
@@ -22,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         {
 
 
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 // 1 explore quest in crawler mode at once and only rarely
                 if (rand.NextDouble() > 0.1f || world.Quests.Any(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap))

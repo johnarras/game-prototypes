@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Bow",
   "Art": "Bow",
-  "MinVal": 1,
-  "MaxVal": 4,
+  "MinVal": 3,
+  "MaxVal": 12,
   "EquipSlotId": 17,
   "Flags": 8,
   "Effects": [],
@@ -115,5 +115,6 @@
       "Name": "Hunting Bow",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-09-19T03:16:19.09Z"
 }

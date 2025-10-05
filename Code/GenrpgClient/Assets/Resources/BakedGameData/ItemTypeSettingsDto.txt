@@ -2582,8 +2582,8 @@
       "Desc": "",
       "Icon": "Bow",
       "Art": "Bow",
-      "MinVal": 1,
-      "MaxVal": 4,
+      "MinVal": 3,
+      "MaxVal": 12,
       "EquipSlotId": 17,
       "Flags": 8,
       "Effects": [],
@@ -2701,8 +2701,8 @@
       "Desc": "",
       "Icon": "Thrown",
       "Art": "Thrown",
-      "MinVal": 1,
-      "MaxVal": 2,
+      "MinVal": 2,
+      "MaxVal": 10,
       "EquipSlotId": 17,
       "Flags": 8,
       "Effects": [],
@@ -2811,7 +2811,7 @@
       "Icon": "Wand",
       "Art": "Wand",
       "MinVal": 1,
-      "MaxVal": 3,
+      "MaxVal": 8,
       "EquipSlotId": 17,
       "Flags": 8,
       "Effects": [],
@@ -8521,7 +8521,7 @@
     "GenGlobalScalingPercent": 10,
     "Id": "default",
     "Name": "ItemTypeSettings",
-    "SaveTime": "2025-06-22T20:05:59.53Z"
+    "SaveTime": "2025-09-19T03:16:19.09Z"
   },
-  "SaveTime": "2025-06-22T20:05:59.53Z"
+  "SaveTime": "2025-09-19T03:16:19.09Z"
 }

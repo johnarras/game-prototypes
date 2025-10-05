@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Modes.Services;
+﻿using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -20,8 +20,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
     public class ChooseClassHelper : BaseStateHelper
     {
 
-        private ICrawlerModeService _modeService = null;
-
         public override ECrawlerStates Key => ECrawlerStates.ChooseClass;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
@@ -33,7 +31,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             PartyData party = _crawlerService.GetParty();
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 totalClasses = 2;
             }

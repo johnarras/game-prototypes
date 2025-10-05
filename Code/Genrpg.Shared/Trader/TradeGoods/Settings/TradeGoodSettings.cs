@@ -4,7 +4,9 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Utils.Data;
 using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Trader.TradeGoods.Settings
 {
@@ -12,6 +14,12 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
     public class TradeGoodSettings : ParentSettings<TradeGood>
     {
         [Key(0)] public override string Id { get; set; }
+    }
+
+    [MessagePackObject]
+    public class TradeGoodProducerCity
+    {
+        [Key(0)] public long CityId { get; set; }
     }
 
     [MessagePackObject]
@@ -27,11 +35,9 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
         [Key(6)] public string Icon { get; set; }
         [Key(7)] public string Art { get; set; }
         [Key(8)] public string CategoryName { get; set; }
-        [Key(9)] public double Density { get; set; }
-        [Key(10)] public long UnitWeight { get; set; }
-        [Key(11)] public long PricePerUnit { get; set; }
-        [Key(12)] public long PricePerWeight { get; set; }
-        [Key(13)] public long YearlyProduction { get; set; }
+        [Key(9)] public double Price { get; set; }
+        [Key(14)] public SmallIdLongCollection CityBuyCosts { get; set; } = new SmallIdLongCollection();
+        [Key(15)] public List<TradeGoodProducerCity> ProducerCities { get; set; } = new List<TradeGoodProducerCity>();
     }
 
     public class TradeGoodSettingsDto : ParentSettingsDto<TradeGoodSettings, TradeGood> { }

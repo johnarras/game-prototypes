@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Permadeath",
+  "Desc": "The game resets when the entire party dies.",
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

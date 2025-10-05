@@ -68,8 +68,11 @@ public class LoadSaveScreen : BaseScreen
 
     private void OnClickLoad()
     {
-        if (_crawlerService.LoadParty(_currSlot) != null)
+        PartyData party = _crawlerService.LoadParty(_currSlot);
+        if (party != null)
         {
+            _crawlerService.InitPartyAfterLoad(party);
+
             StartClose();
         }
         return;
@@ -78,7 +81,7 @@ public class LoadSaveScreen : BaseScreen
 
     private void OnClickContinue()
     {
-        
+
     }
     private void OnClickSave()
     {

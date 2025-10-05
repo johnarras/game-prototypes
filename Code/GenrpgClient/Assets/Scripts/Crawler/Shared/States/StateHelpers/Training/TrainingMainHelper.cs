@@ -1,5 +1,6 @@
 ﻿using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -29,7 +30,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
             stateData.Actions.Add(new CrawlerStateAction("Train Levels:", 'T', ECrawlerStates.TrainingLevelSelect));
             stateData.Actions.Add(new CrawlerStateAction("Add a Class:", 'A', ECrawlerStates.TrainingClassSelect));
-            stateData.Actions.Add(new CrawlerStateAction("Upgrade Training:", 'U', ECrawlerStates.TrainingUpgradeSelect));
+
+            if (_optionsService.HasOption(party, CrawlerOptions.MemberUpgrades))
+            {
+                stateData.Actions.Add(new CrawlerStateAction("Upgrade Training:", 'U', ECrawlerStates.TrainingUpgradeSelect));
+            }
 
             stateData.Actions.Add(new CrawlerStateAction("Back to the city", CharCodes.Escape, ECrawlerStates.ExploreWorld));
 

@@ -6,11 +6,15 @@ using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
+using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -38,6 +42,8 @@ namespace Genrpg.Shared.Crawler.Party.Services
         void UpdateItemBuffs(PartyData party);
         bool HasPartyBuff(PartyData party, long entityTypeId, long entityId);
         void AddGold(PartyData party, long quantity);
+        void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party);
+        void AddExp(PartyData party, PartyMember member, long quantity);
 
     }
 
@@ -49,12 +55,13 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private IDispatcher _dispatcher = null;
         private ICrawlerWorldService _crawlerWorldService = null;
         private ICrawlerService _crawlerService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
+        private ITrainingService _trainingService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 return 1;
             }
@@ -185,9 +192,11 @@ namespace Genrpg.Shared.Crawler.Party.Services
             {
                 return false;
             }
-
-            FullReset(party);
-            await _crawlerWorldService.GenerateWorld(party);
+            if (_optionsService.HasOption(party, CrawlerOptions.Permadeath))
+            {
+                FullReset(party);
+                await _crawlerWorldService.GenerateWorld(party);
+            }
             _crawlerService.ChangeState(ECrawlerStates.GuildMain, token);
             _dispatcher.Dispatch(new RefreshPartyStatus());
             _dispatcher.Dispatch(new UpdateCombatGroups());
@@ -249,6 +258,58 @@ namespace Genrpg.Shared.Crawler.Party.Services
         {
             party.Currencies.Add(CrawlerCurrencyTypes.Gold, quantity);
             _dispatcher.Dispatch(new UpdateCrawlerUI());
+        }
+
+
+        public void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party)
+        {
+
+            long maxPartySize = GetMaxPartySize(party);
+
+            for (int m = 1; m <= maxPartySize; m++)
+            {
+                AddClickPartyMemberButton(stateData, party, m);
+            }
+        }
+
+        private void AddClickPartyMemberButton(CrawlerStateData stateData, PartyData party, int index)
+        {
+
+            stateData.Actions.Add(new CrawlerStateAction("", (char)(index + '0'),
+                ECrawlerStates.None,
+                onClickAction: () =>
+                {
+                    PartyMember member = party.GetMemberInSlot(index);
+                    if (member != null)
+                    {
+                        _dispatcher.Dispatch(new CrawlerCharacterScreenData() { Unit = member });
+                    }
+                }));
+        }
+
+        public void AddExp(PartyData party, PartyMember member, long quantity)
+        {
+            member.Exp += quantity;
+
+            if (_optionsService.HasOption(party, CrawlerOptions.AutoLevelUp))
+            {
+                int levelTimes = 0;
+                do
+                {
+                    TrainingInfo info = _trainingService.GetTrainingInfo(party, member);
+
+                    if (info.CanLevelUp())
+                    {
+                        _trainingService.TrainPartyMemberLevels(party, member, 0, null);
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                while (++levelTimes < 100);
+            }
         }
     }
 }

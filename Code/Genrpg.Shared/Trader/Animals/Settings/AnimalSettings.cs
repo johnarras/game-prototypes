@@ -28,16 +28,9 @@ namespace Genrpg.Shared.Trader.Animals.Settings
         [Key(7)] public string Art { get; set; }
         [Key(8)] public long Endurance { get; set; }
         [Key(9)] public double Speed { get; set; }
-        [Key(10)] public long CarryingCapacity { get; set; }
-        [Key(11)] public long PullingCapacity { get; set; }
-        [Key(12)] public long RoughTerrain { get; set; }
-        [Key(13)] public long HotClimate { get; set; }
-        [Key(14)] public long ColdClimate { get; set; }
-        [Key(15)] public long WetClimate { get; set; }
-        [Key(16)] public long Weight { get; set; }
-        [Key(17)] public long Cost { get; set; }
-        [Key(18)] public long FoodPerDay { get; set; }
-        [Key(19)] public long WaterPerDay { get; set; }
+        [Key(10)] public long Capacity { get; set; }
+        [Key(11)] public long Food { get; set; }
+        [Key(12)] public long Cost { get; set; }
     }
 
     public class AnimalSettingsDto : ParentSettingsDto<AnimalSettings, Animal> { }

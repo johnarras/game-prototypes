@@ -1,0 +1,20 @@
+{
+  "Id": "road91default",
+  "ParentId": "default",
+  "IdKey": 91,
+  "Name": "Ancient Trade Road of Malacca and Oc Eo",
+  "Desc": "A vital road connecting Malacca and Oc Eo.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 74,
+  "EndCityId": 76,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 3.0,
+  "Distance": 656.0,
+  "SaveTime": "2025-09-27T20:35:07.749Z"
+}

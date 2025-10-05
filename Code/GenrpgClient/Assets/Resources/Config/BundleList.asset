@@ -1479,3 +1479,13 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: atlascrawlercurrencytypeicons
     IsLocal: 0
+  - BundleName: uiboardgamehud
+    IsLocal: 0
+  - BundleName: uicaravan
+    IsLocal: 0
+  - BundleName: uitraderhud
+    IsLocal: 0
+  - BundleName: uitraderinfo
+    IsLocal: 0
+  - BundleName: uitradermap
+    IsLocal: 0

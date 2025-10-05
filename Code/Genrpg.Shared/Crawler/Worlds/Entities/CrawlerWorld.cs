@@ -18,8 +18,6 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
 
         [Key(4)] public List<WorldQuestItem> QuestItems { get; set; } = new List<WorldQuestItem>();
 
-        [Key(5)] public long MaxMapId { get; set; }
-
         [Key(6)] public long Seed { get; set; }
 
         [Key(7)] public List<CrawlerNpc> Npcs { get; set; } = new List<CrawlerNpc>();
@@ -33,6 +31,15 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
             _mapQuests = null;
             _questCache = null;
 
+        }
+
+        public long GetMaxMapId()
+        {
+            if (Maps.Count < 1)
+            {
+                return 0;
+            }
+            return Maps.Max(x => x.IdKey);
         }
 
         private Dictionary<long, List<CrawlerQuest>> _mapQuests = null;

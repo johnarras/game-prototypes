@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using System.Threading;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (status.MoveIsComplete || !status.MovedPosition)
+            if (status.MoveIsComplete || !status.MovedPosition || !_optionService.HasOption(party, CrawlerOptions.RandomMonsters))
             {
                 return;
             }

@@ -1,4 +1,5 @@
 ﻿
+using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -12,6 +13,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 {
     public class CombatConfirmStateHelper : BaseCombatStateHelper
     {
+
+        private IAwaitableService _awaitableService = null;
+
         public override ECrawlerStates Key => ECrawlerStates.CombatConfirm;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -56,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 onClickAction: delegate ()
                 {
                     // Need to reset all combat round data and start over.
-                    _combatService.EndCombatRound(party);
+                    _awaitableService.ForgetTask(_combatService.EndCombatRound(party, token));
                 }));
 
 

@@ -1,0 +1,8 @@
+{
+  "Id": "crawleroption1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "One Character",
+  "Desc": "You only have one (2 class, 2 actions per round) character",
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

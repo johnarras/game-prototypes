@@ -1,24 +1,23 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Crawler.Buffs.Constants;
+using Genrpg.Shared.Crawler.GameEvents;
+using Genrpg.Shared.Crawler.Loot.Services;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Settings;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Zones.Settings;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Crawler.Loot.Services;
-using System;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Client.GameEvents;
 
 namespace Genrpg.Shared.Crawler.TimeOfDay.Services
 {
@@ -32,8 +31,6 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
         const int SecondsPerMinute = 60;
         const int MinutesPerHour = 60;
         const int HoursPerDay = 24;
-
-        const int SecondsPerDay = SecondsPerMinute * MinutesPerHour * HoursPerDay;
 
         private IStatService _statService = null;
         private IGameData _gameData = null;
@@ -107,11 +104,11 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
             {
                 hoursSpent = timeSettings.DrinkHours;
             }
-            else if(type == ECrawlerTimeUpdateTypes.Rumor)
+            else if (type == ECrawlerTimeUpdateTypes.Rumor)
             {
-                hoursSpent += timeSettings.RumorHours;  
+                hoursSpent += timeSettings.RumorHours;
             }
-            else if (type == ECrawlerTimeUpdateTypes.Tavern)
+            else if (type == ECrawlerTimeUpdateTypes.GuildHall)
             {
                 hoursSpent = timeSettings.DailyResetHour - party.HourOfDay;
                 if (hoursSpent < 0)

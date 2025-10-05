@@ -7,7 +7,8 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Crawler.Maps
         private IClientGameState _gs = null;
         private IClientRandom _rand = null;
         private ICrawlerMapService _mapService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
         private CancellationToken _token;
 
         private PartyData _party;
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Crawler.Maps
                 return null;
             }
 
-            IClientRandom rand = new ClientRandom(world.MaxMapId + 3 + world.Seed / 3);
+            IClientRandom rand = new ClientRandom(world.GetMaxMapId() + 3 + world.Seed / 3);
 
             genData.MapType = mtype;
             if (genData.GenType == null)
@@ -136,7 +137,7 @@ namespace Assets.Scripts.Crawler.Maps
 
             SetObjectDirections(newMap.Map, rand);
 
-            if (_modeService.GenerateAllMapsAtOnce(party.Mode))
+            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 if (genData.FromMapId > 0 && newMap.EnterX >= 0 && newMap.EnterZ >= 0)
                 {

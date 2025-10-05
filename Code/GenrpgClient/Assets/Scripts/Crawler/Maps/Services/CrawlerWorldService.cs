@@ -2,7 +2,6 @@
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
 using Genrpg.Shared.Crawler.MapGen.Services;
@@ -10,6 +9,8 @@ using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Quests.Services;
@@ -46,6 +47,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
         private IPartyService _partyService = null;
         private ITextSerializer _serializer = null;
         private ICrawlerQuestService _questService = null;
+        private ICrawlerOptionsService _optionsService = null;
 
         private CrawlerWorld _world = null;
 
@@ -89,10 +91,10 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             if (mapId == 0)
             {
-                mapId = ++genData.World.MaxMapId;
+                mapId = genData.World.GetMaxMapId() + 1;
             }
 
-            genData.World.Maps = genData.World.Maps.Where(x=>x.IdKey != mapId).ToList();
+            genData.World.Maps = genData.World.Maps.Where(x => x.IdKey != mapId).ToList();
             genData.World.ClearCache();
 
             CrawlerMap map = new CrawlerMap()
@@ -250,9 +252,10 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 ICrawlerMapGenHelper helper = _mapGenService.GetGenHelper(CrawlerMapTypes.Outdoors);
 
                 MyRandom rand = new MyRandom(worldId + 1);
+
                 CrawlerMapGenData genData = new CrawlerMapGenData()
                 {
-                    MapTypeId = party.Mode == ECrawlerModes.Crawler ? CrawlerMapTypes.Outdoors : CrawlerMapTypes.City,
+                    MapTypeId = _optionsService.HasOption(party, CrawlerOptions.OneDungeon) ? CrawlerMapTypes.City : CrawlerMapTypes.Outdoors,
                     World = world,
                     Level = 1,
                     Looping = false,

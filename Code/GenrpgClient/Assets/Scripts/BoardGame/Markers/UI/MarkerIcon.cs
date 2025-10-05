@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.BoardGame.Markers.Services;
+using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.BoardGame.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Users.PlayerData;
@@ -6,30 +7,23 @@ using Genrpg.Shared.UserStats.Constants;
 
 namespace Assets.Scripts.BoardGame.Markers.UI
 {
-    public class MarkerIcon : BaseBehaviour
+    public class MarkerIcon : EntityIcon
     {
 
         private IClientMarkerService _clientMarkerService = null;
 
-        public GText Name;
-        public GImage Icon;
         public GButton Button;
         public GImage ActiveHighlight;
 
         private Marker _marker;
-        public void SetData(MarkerScreen screen, Marker marker, CoreUserData userData)
+        public void SetMarkerData(MarkerScreen screen, Marker marker, CoreUserData userData)
         {
+            SetEntityData(EntityTypes.Marker, marker.IdKey, 1, 1);
             _marker = marker;
-            _assetService.LoadEntityIcon(EntityTypes.Marker, marker.IdKey, Icon, GetToken());
-            _uiService.SetText(Name, marker.Name);
+            _uiService.SetText(NameText, marker.Name);
             _uiService.SetButton(Button, screen.GetName(), OnClickButton);
 
             _clientEntityService.SetActive(ActiveHighlight, _marker.IdKey == userData.Vars.Get(UserVars.MarkerId));
-        }
-
-        public long MarkerId()
-        {
-            return _marker?.IdKey ?? -1;
         }
 
         private void OnClickButton()

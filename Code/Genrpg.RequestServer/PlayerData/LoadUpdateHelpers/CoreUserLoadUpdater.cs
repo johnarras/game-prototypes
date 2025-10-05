@@ -27,7 +27,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 
             if (userData.Vars.Get(UserVars.PlayMult) == 0)
             {
-                userData.Coins.Add(UserCoinTypes.HardCurrency, newUserSettings.Tokens);   
+                userData.Coins.Add(UserCoinTypes.HardCurrency, newUserSettings.Tokens);
                 userData.Coins.Add(UserCoinTypes.Energy, newUserSettings.Energy);
             }
 
@@ -43,7 +43,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 
             if (userData.Vars.Get(userStatId) < minValue)
             {
-                userData.Vars.Set(userStatId, (short) minValue);
+                userData.Vars.Set(userStatId, (short)minValue);
             }
         }
     }

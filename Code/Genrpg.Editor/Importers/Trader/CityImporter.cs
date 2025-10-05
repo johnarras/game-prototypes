@@ -55,7 +55,9 @@ namespace Genrpg.Editor.Importers.Trader
             IReadOnlyList<Animal> animals = gs.data.Get<AnimalSettings>(null).GetData();
             IReadOnlyList<TradeGood> tradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
 
-            StringBuilder sb = new StringBuilder();
+            List<string> badTradeGoods = new List<string>();
+            List<string> badAnimals = new List<string>();
+            List<string> allTradeGoods = new List<string>();
             string childTypeName = typeof(City).Name.ToLower();
             City currentChild = null;
             for (int row = 0; row < lines.Count; row++)
@@ -90,18 +92,26 @@ namespace Genrpg.Editor.Importers.Trader
                     {
 
                         TradeGood tg = tradeGoods.FirstOrDefault(x => StrUtils.NormalizeWord(productName) == StrUtils.NormalizeWord(x.Name));
+
+                        if (!allTradeGoods.Contains(productName))
+                        {
+                            allTradeGoods.Add(productName);
+                        }
+
                         if (tg == null)
                         {
-                            sb.Append("Bad product name " + productName + " in row " + row + "\n");
+                            if (!badTradeGoods.Contains(productName))
+                            {
+                                badTradeGoods.Add(productName);
+                            }
                             continue;
                         }
-                        currentChild.TradeGoods.Add(new CityTradeGood() { TradeGoodId = tg.IdKey });
+                        currentChild.TradeGoodsProduced.Add(new CityTradeGood() { TradeGoodId = tg.IdKey });
                     }
 
-                    List<string[]> animalNameLists = new List<string[]>();
-
-                    animalNameLists.Add(importRow.CommonlyAvailableAnimals.Split(";"));
-                    animalNameLists.Add(importRow.UncommonlyAvailableAnimals.Split(";"));
+                    List<List<string>> animalNameLists = new List<List<string>>();
+                    animalNameLists.Add(StrUtils.CommaSemiColonSplit(importRow.CommonlyAvailableAnimals));
+                    animalNameLists.Add(StrUtils.CommaSemiColonSplit(importRow.UncommonlyAvailableAnimals));
 
                     for (int i = 0; i < animalNameLists.Count; i++)
                     {
@@ -111,7 +121,10 @@ namespace Genrpg.Editor.Importers.Trader
 
                             if (animal == null)
                             {
-                                sb.Append("Bad animal name: " + animalName + " in row " + row + "\n");
+                                if (!badAnimals.Contains(animalName))
+                                {
+                                    badAnimals.Add(animalName);
+                                }
                                 continue;
                             }
 
@@ -121,7 +134,37 @@ namespace Genrpg.Editor.Importers.Trader
                 }
             }
 
-            String txt = sb.ToString();
+            StringBuilder allTradeSB = new StringBuilder();
+
+            foreach (string tradeSB in allTradeGoods)
+            {
+                allTradeSB.Append(tradeSB + ";");
+            }
+
+
+            string allTrade = allTradeSB.ToString();
+            _logService.Info(allTrade);
+            StringBuilder finalErrors = new StringBuilder();
+
+            if (badTradeGoods.Count > 0)
+            {
+                finalErrors.Append("BadTradeGoods: ");
+                foreach (string error in badTradeGoods)
+                {
+                    finalErrors.Append(error + ";");
+                }
+                finalErrors.Append("\n");
+            }
+            if (badAnimals.Count > 0)
+            {
+                finalErrors.Append("BadAnimals: ");
+                foreach (string error in badAnimals)
+                {
+                    finalErrors.Append(error + ";");
+                }
+                finalErrors.Append("\n");
+            }
+            String txt = finalErrors.ToString();
             if (!string.IsNullOrEmpty(txt))
             {
                 throw new Exception(txt);

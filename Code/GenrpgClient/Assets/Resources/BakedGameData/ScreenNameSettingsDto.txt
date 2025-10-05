@@ -167,7 +167,7 @@
       "Id": "screenname28default",
       "ParentId": "default",
       "IdKey": 28,
-      "Name": "MobileHUD"
+      "Name": "BoardGameHUD"
     },
     {
       "Id": "screenname29default",
@@ -228,12 +228,72 @@
       "ParentId": "default",
       "IdKey": 38,
       "Name": "Marker"
+    },
+    {
+      "Id": "screenname39default",
+      "ParentId": "default",
+      "IdKey": 39,
+      "Name": "CrawlerNewGameOptions"
+    },
+    {
+      "Id": "screenname40default",
+      "ParentId": "default",
+      "IdKey": 40,
+      "Name": "Caravan"
+    },
+    {
+      "Id": "screenname41default",
+      "ParentId": "default",
+      "IdKey": 41,
+      "Name": "TraderMap"
+    },
+    {
+      "Id": "screenname42default",
+      "ParentId": "default",
+      "IdKey": 42,
+      "Name": "TraderHUD"
+    },
+    {
+      "Id": "screenname43default",
+      "ParentId": "default",
+      "IdKey": 43,
+      "Name": "TraderTravel"
+    },
+    {
+      "Id": "screenname44default",
+      "ParentId": "default",
+      "IdKey": 44,
+      "Name": "TraderVendor"
+    },
+    {
+      "Id": "screenname45default",
+      "ParentId": "default",
+      "IdKey": 45,
+      "Name": "TraderCity"
+    },
+    {
+      "Id": "screenname46default",
+      "ParentId": "default",
+      "IdKey": 46,
+      "Name": "TraderQuests"
+    },
+    {
+      "Id": "screenname47default",
+      "ParentId": "default",
+      "IdKey": 47,
+      "Name": "TraderNPC"
+    },
+    {
+      "Id": "screenname48default",
+      "ParentId": "default",
+      "IdKey": 48,
+      "Name": "TraderInfo"
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "ScreenNameSettings",
-    "SaveTime": "2025-06-21T18:58:45.637Z"
+    "SaveTime": "2025-09-27T18:12:40.607Z"
   },
-  "SaveTime": "2025-06-21T18:58:45.637Z"
+  "SaveTime": "2025-09-27T18:12:40.607Z"
 }

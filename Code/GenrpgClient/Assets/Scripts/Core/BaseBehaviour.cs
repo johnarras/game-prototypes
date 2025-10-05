@@ -1,28 +1,27 @@
+using Assets.Scripts.Assets;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Threading;
-using Assets.Scripts.UI.Services;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Interfaces;
 using UnityEngine;
-using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Assets;
 
 public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
 {
-    protected IInitClient _initClient;
-    protected IClientUpdateService _updateService;
-    protected IScreenService _screenService;
-    protected IRealtimeNetworkService _networkService;
-    protected IAssetService _assetService;
-    protected IUIService _uiService;
-    protected ILogService _logService;
-    protected IDispatcher _dispatcher;
-    protected IGameData _gameData;
-    protected IClientGameState _gs;
-    protected IClientRandom _rand;
-    protected IClientEntityService _clientEntityService;
+    protected IInitClient _initClient = null;
+    protected IClientUpdateService _updateService = null;
+    protected IScreenService _screenService = null;
+    protected IRealtimeNetworkService _networkService = null;
+    protected IAssetService _assetService = null;
+    protected IUIService _uiService = null;
+    protected ILogService _logService = null;
+    protected IDispatcher _dispatcher = null;
+    protected IGameData _gameData = null;
+    protected IClientGameState _gs = null;
+    protected IClientRandom _rand = null;
+    protected IClientEntityService _clientEntityService = null;
 
     private CancellationTokenSource _cts = null;
     public CancellationToken GetToken()
@@ -48,7 +47,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
     }
     public GameObject entity
     {
-       get
+        get
         {
             return this.gameObject;
         }
@@ -61,7 +60,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
 
     protected void AddTokenUpdate(Action<CancellationToken> func, int index)
     {
-        _updateService?.AddTokenUpdate(this,func, index, GetToken());
+        _updateService?.AddTokenUpdate(this, func, index, GetToken());
     }
 
     protected void AddDelayedUpdate(Action<CancellationToken> func, float delaySeconds)
@@ -73,7 +72,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
     {
         _dispatcher.AddListener<T>(action, GetToken());
     }
-	
+
     protected virtual void OnDestroy()
     {
         ClearToken();

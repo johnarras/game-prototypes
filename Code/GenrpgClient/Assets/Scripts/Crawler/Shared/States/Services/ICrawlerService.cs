@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
@@ -20,12 +19,13 @@ namespace Genrpg.Shared.Crawler.States.Services
         PartyData GetParty();
         Task SaveGame();
         PartyData LoadParty(long slotId = LoadSaveConstants.MinSlot);
+        void InitPartyAfterLoad(PartyData party);
         void ClearAllStates();
         bool ContinueGame();
         CrawlerStateData PopState();
         CrawlerStateData GetTopLevelState();
         ECrawlerStates GetState();
-        Awaitable NewGame(ECrawlerModes mode);
+        Awaitable NewGame(int options);
         void ClearSpeedup();
         List<IStateHelper> GetAllStateHelpers();
         void UpdateInputs(CancellationToken token);

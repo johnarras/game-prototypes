@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.UI.Constants;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -35,7 +36,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
             member.ClearPermStats();
             member.Stats = new StatGroup();
 
-            int startStatValue = statSettings.StartStat;
+            int startStatValue = statSettings.MinStartValue;
+
+            bool rollStats = _optionsService.HasOption(party, CrawlerOptions.RollStats);
 
             List<Role> memberRoles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(member.Roles);
 
@@ -43,9 +46,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 .Where(x => x.IdKey >= StatConstants.PrimaryStatStart &&
                 x.IdKey <= StatConstants.PrimaryStatEnd).ToList();
 
+
             foreach (StatType statType in statTypes)
             {
-                int statValue = startStatValue + MathUtils.IntRange(statSettings.MinRollValue, statSettings.MaxRollValue, _rand);
+                int statValue = MathUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand);
+
+                if (!rollStats)
+                {
+                    statValue = startStatValue;
+                }
 
                 string textToShow = "";
 
@@ -64,8 +73,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
                 textToShow = statType.Name + ": " + statValue + " " + textToShow;
 
-
-
                 member.AddPermStat(statType.IdKey, statValue);
 
                 stateData.AddText(textToShow);
@@ -76,7 +83,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 "using that stat is used. So a +2 strength bonus with"
                 + " 5 melee attacks would apply 2 damage to each attack.", TextColors.ColorGold));
 
-            if (statSettings.MinRollValue < statSettings.MaxRollValue)
+            if (rollStats)
             {
                 stateData.Actions.Add(new CrawlerStateAction("Reroll", 'R', ECrawlerStates.RollStats, extraData: member));
             }

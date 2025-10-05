@@ -1,4 +1,4 @@
-header road,IdKey,StartCityId,EndCityId,StartCityName,EndCityName,Name,Icon,Art,Maintenance,Difficulty,Danger,Length,SummerHeat,SummerRain,WinterHeat,WinterRain,Desc
+header road,IdKey,StartCityId,EndCityId,StartCityName,EndCityName,Name,Icon,Art,Maintenance,Difficulty,Danger,Distance,SummerHeat,SummerRain,WinterHeat,WinterRain,Desc
 road,1,1,64,Rome,Brindisi,Via Appia,Road,Road,5,2,2,545,4,1,3,4,"The 'Queen of Roads', this vital artery connects Rome to the southern ports of Italy, paved with large stones and lined with tombs."
 road,2,1,61,Rome,Milan,Via Flaminia & Aemilia,Road,Road,5,2,2,580,4,2,2,4,"A major route heading north from Rome, crossing the Apennines and traversing the flat, fertile Po Valley."
 road,3,1,30,Rome,Ravenna,Via Flaminia Minor,Road,Road,4,2,2,400,4,2,2,4,A branch of the Via Flaminia leading to the strategic Adriatic port of Ravenna.
@@ -76,3 +76,23 @@ road,74,2,33,Athens,Thebes,Attican Road,Road,Road,4,2,2,70,5,1,3,4,A well-travel
 road,75,33,12,Thebes,Corinth,Boeotian Path,Road,Road,3,2,3,90,5,1,3,4,A route connecting the plains of Boeotia with the strategic trade hub of Corinth on the isthmus.
 road,76,4,3,Alexandria,Carthage,Great Libyan Desert Route,Road,Road,0,6,6,2340,6,0,3,0,"A theoretical and extremely dangerous direct crossing of the deep Sahara, attempted only by the most desperate or well-prepared caravans."
 road,77,65,10,Tangier,Cadiz,Pillars of Hercules Trail,Road,Road,2,3,4,160,4,2,3,4,"The combined land and sea route crossing the Strait of Gibraltar, the mythical Pillars of Hercules that separate the Mediterranean from the Atlantic."
+road,78,1,3,Rome,Carthage,Sicily-Carthage Sea Route (Sim.),Road,Road,3,1,4,445,5,1,3,5,A major trans-Mediterranean sea lane essential for trade and imperial conflict.
+road,79,15,60,Petra,Hegra,Silk Road (Palmyra-Chang'an),Trail,Trail,2,1,5,426,5,1,1,2,"The most famous overland route connecting the Mediterranean to the Chinese Empire, traversing deserts and mountains."
+road,80,4,38,Alexandria,Tarsus,Nile-Red Sea Trade Route,Trail,Trail,3,2,3,609,6,0,4,0,A crucial trade route following the Nile River and desert paths for goods from Nubia and the Red Sea.
+road,81,43,81,Dura-Europos,Guangzhou,Southern Silk Road (Samarkand-Guangzhou),Trail,Trail,2,3,4,5705,4,4,2,2,"An arduous but essential segment of the Southern Silk Road, connecting Central Asia with the maritime port of Guangzhou."
+road,82,31,26,Aquileia,Cologne,Via Domitia (Simulated Extension),Road,Road,4,2,2,666,3,3,2,4,A simulated Roman extension facilitating movement of troops and trade between Italy and Gaul (France).
+road,83,12,32,Corinth,Sparta,Regional Path of Corinth and Sparta,Path,Path,2,1,2,75,3,3,3,3,A simple path connecting Corinth  and Sparta.
+road,84,6,40,Tyre,Jerusalem,Regional Path of Tyre and Jerusalem,Path,Path,2,1,2,116,3,3,3,3,A simple path connecting Tyre  and Jerusalem.
+road,85,46,20,Susa,Ur,Regional Path of Susa and Ur,Path,Path,2,1,2,142,3,3,3,3,A simple path connecting Susa  and Ur.
+road,86,72,76,Angkor,Oc Eo,Regional Path of Angkor and Oc Eo,Path,Path,2,1,2,267,3,3,3,3,A simple path connecting Angkor  and Oc Eo.
+road,87,72,73,Angkor,Ayutthaya,Regional Path of Angkor and Ayutthaya,Path,Path,2,1,2,276,3,3,3,3,A simple path connecting Angkor  and Ayutthaya.
+road,88,77,83,Bolghar,Ukek,Regional Path of Bolghar and Ukek,Path,Path,2,1,2,360,3,3,3,3,A simple path connecting Bolghar  and Ukek.
+road,89,74,75,Malacca,Palembang,Regional Path of Malacca and Palembang,Path,Path,2,1,2,483,3,3,3,3,A simple path connecting Malacca  and Palembang.
+road,90,79,80,Beijing,Nanjing,Ancient Trade Road of Beijing and Nanjing,Road,Road,3,2,3,656,3,3,3,3,A vital road connecting Beijing and Nanjing.
+road,91,74,76,Malacca,Oc Eo,Ancient Trade Road of Malacca and Oc Eo,Road,Road,3,2,3,656,3,3,3,3,A vital road connecting Malacca and Oc Eo.
+road,92,21,79,Xi'an,Beijing,Ancient Trade Road of Xi'an and Beijing,Road,Road,3,2,3,753,3,3,3,3,A vital road connecting Xi'an and Beijing.
+road,93,77,82,Bolghar,Arkaim,Ancient Trade Road of Bolghar and Arkaim,Road,Road,3,2,3,836,3,3,3,3,A vital road connecting Bolghar and Arkaim.
+road,94,68,83,Artaxata,Ukek,Ancient Trade Road of Artaxata and Ukek,Road,Road,3,2,3,907,3,3,3,3,A vital road connecting Artaxata and Ukek.
+road,95,81,72,Guangzhou,Angkor,Great Silk Trail (Segment 95),Trail,Trail,1,3,5,1140,3,3,3,3,"A massive, trans-continental trade trail connecting  Guangzhou and Angkor."
+road,96,21,78,Xi'an,Karakorum,Great Silk Trail (Segment 96),Trail,Trail,1,3,5,1184,3,3,3,3,"A massive, trans-continental trade trail connecting  Xi'an and Karakorum."
+road,97,82,84,Arkaim,Mangazeya,Great Silk Trail (Segment 97),Trail,Trail,1,3,5,2233,3,3,3,3,"A massive, trans-continental trade trail connecting Arkaim and Mangazeya."

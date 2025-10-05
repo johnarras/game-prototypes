@@ -2,6 +2,7 @@
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -27,7 +28,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
             await Task.CompletedTask;
-            IRandom rand = new MyRandom(genData.World.Seed / 3 + genData.World.MaxMapId * 19 + genData.CurrFloor);
+            IRandom rand = new MyRandom(genData.World.Seed / 3 + genData.World.GetMaxMapId() * 19 + genData.CurrFloor);
 
             CrawlerMap map = null;
 
@@ -65,7 +66,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map = _worldService.CreateMap(genData, (int)width, (int)height);
                 genData.Name = _zoneGenService.GenerateZoneName(genData.ZoneType.IdKey, rand.Next(), false);
-                if (_modeService.SingleCityMode(party.Mode))
+                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
                 {
                     if (!string.IsNullOrEmpty(party.RoguelikeDungeonName))
                     {
@@ -489,9 +490,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             entranceExitPoints.Add(new PointXZ(enterX, enterZ));
             entranceExitPoints.Add(new PointXZ(exitX, exitZ));
 
-            MarkTilesNearEntrances(genData, map, entranceExitPoints);
+            MarkTilesNearEntrances(party, genData, map, entranceExitPoints);
 
-            if (_modeService.GenerateAllMapsAtOnce(party.Mode))
+            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 if (genData.CurrFloor < genData.MaxFloor)
                 {
@@ -529,24 +530,24 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            AddEncounters(genData, map, validEmptyCells, rand);
+            AddEncounters(party, genData, map, validEmptyCells, rand);
 
-            AddQuestItemLocations(genData, map, validEmptyCells, rand);
+            AddQuestItemLocations(party, genData, map, validEmptyCells, rand);
 
-            AddMagicLocations(genData, map, validEmptyCells, rand);
+            AddMagicLocations(party, genData, map, validEmptyCells, rand);
 
-            AddTeleportSquares(genData, map, validEmptyCells, rand);
+            AddTeleportSquares(party, genData, map, validEmptyCells, rand);
 
-            ModifyZoneTypes(genData, map, roomIds, rand);
+            ModifyZoneTypes(party, genData, map, roomIds, rand);
 
-            AddRoomDoors(genData, map, roomIds, rand);
+            AddRoomDoors(party, genData, map, roomIds, rand);
 
 
 
             return new NewCrawlerMap() { Map = map, EnterX = enterX, EnterZ = enterZ };
         }
 
-        protected void AddMagicLocations(CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
+        protected void AddMagicLocations(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
         {
             List<PointXZ> removeList = new List<PointXZ>();
             IReadOnlyList<MapMagicType> mapMagics = _gameData.Get<MapMagicSettings>(_gs.ch).GetData();
@@ -622,7 +623,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
         }
 
-        protected void AddQuestItemLocations(CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
+        protected void AddQuestItemLocations(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -636,7 +637,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
         }
 
-        protected void MarkTilesNearEntrances(CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> entranceExitPoints)
+        protected void MarkTilesNearEntrances(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> entranceExitPoints)
         {
 
             foreach (PointXZ point in entranceExitPoints)
@@ -660,11 +661,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
         }
 
-        protected void AddEncounters(CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
+        protected void AddEncounters(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
         {
             MapEncounterSettings encounterSettings = _gameData.Get<MapEncounterSettings>(_gs.ch);
 
             int encountersToPlace = (int)(validEmptyCells.Count * encounterSettings.EncounterChance);
+
+            int startEncountersToPlace = encountersToPlace;
 
             int encounterTries = encountersToPlace * 20;
 
@@ -675,12 +678,41 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     continue;
                 }
 
+                long encounter = GetRandomEncounter(rand);
+
+                if (encounter == MapEncounters.Treasure && !_optionsService.HasOption(party, CrawlerOptions.RandomChests))
+                {
+                    continue;
+                }
+
+                if (encounter == MapEncounters.Stats && !_optionsService.HasOption(party, CrawlerOptions.StatUpgradeObjects))
+                {
+                    continue;
+                }
+
                 PointXZ pt = validEmptyCells[rand.Next() % validEmptyCells.Count];
                 validEmptyCells.Remove(pt);
 
                 map.SetEntity(pt.X, pt.Z, EntityTypes.MapEncounter, GetRandomEncounter(rand));
                 encountersToPlace--;
             }
+
+
+            if (!_optionsService.HasOption(party, CrawlerOptions.RandomMonsters))
+            {
+                for (int i = 0; i < startEncountersToPlace * 2; i++)
+                {
+                    if (validEmptyCells.Count < 1)
+                    {
+                        continue;
+                    }
+
+                    PointXZ pt = validEmptyCells[rand.Next() % validEmptyCells.Count];
+                    validEmptyCells.Remove(pt);
+                    map.SetEntity(pt.X, pt.Z, EntityTypes.MapEncounter, MapEncounters.Monsters);
+                }
+            }
+
         }
 
         protected long GetRandomEncounter(IRandom rand)
@@ -879,7 +911,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             return true;
         }
 
-        private void AddTeleportSquares(CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
+        private void AddTeleportSquares(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
         {
 
             List<PointXZ> teleportEntryPoints = new List<PointXZ>();
@@ -1225,7 +1257,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
         }
 
-        private void ModifyZoneTypes(CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
+        private void ModifyZoneTypes(PartyData party, CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
         {
 
             List<int> distinctRoomIds = new List<int>();
@@ -1286,7 +1318,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         }
 
         // Try to add doors between rooms and non-rooms.
-        private void AddRoomDoors(CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
+        private void AddRoomDoors(PartyData party, CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
         {
             if (genData.RandomWallsDungeon)
             {

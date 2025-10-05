@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Random Chests",
+  "Desc": "Are there random chests in the world?",
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

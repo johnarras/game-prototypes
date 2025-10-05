@@ -1,17 +1,14 @@
 ﻿using Assets.Scripts.ClientEvents.UserCoins;
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Doobers.UI
 {
-    public class Doober : BaseBehaviour, IDynamicUIItem
+    public class Doober : EntityIcon, IDynamicUIItem
     {
-        public GImage Image;
-
-        private long _entityId = 0;
-        private long _quantity = 0;
         private Vector3 _startPos;
         private Vector3 _endPos;
 
@@ -25,15 +22,13 @@ namespace Assets.Scripts.Doobers.UI
 
         public void InitData(long entityTypeId, long entityId, long quantity, ShowDooberEvent showDoober)
         {
-            _entityId = entityId;
-            _quantity = quantity;
-            _assetService.LoadEntityIcon(entityTypeId, entityId, Image, GetToken());
+            SetEntityData(entityTypeId, entityId, quantity, quantity);
             InitShowDoober(showDoober);
         }
 
         public void InitData(string atlasName, string spriteName, ShowDooberEvent showDoober)
         {
-            _assetService.LoadAtlasSpriteInto(atlasName, spriteName, Image, GetToken());
+            _assetService.LoadAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
             InitShowDoober(showDoober);
         }
 

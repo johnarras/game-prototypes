@@ -9,8 +9,9 @@ using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Entities;
@@ -73,7 +74,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         private IClientRandom _rand = null;
         private ILootGenService _lootGenService = null;
         private ICrawlerUpgradeService _upgradeService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
 
         private SetupDictionaryContainer<long, ICrawlerQuestTypeHelper> _questTypeHelpers = new SetupDictionaryContainer<long, ICrawlerQuestTypeHelper>();
 
@@ -127,7 +128,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                     questCount = allMaps.Count * 2;
                 }
 
-                if (_modeService.SingleCityMode(party.Mode))
+                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
                 {
                     questCount = 4;
                 }
@@ -231,7 +232,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             _dispatcher.Dispatch(new UpdateQuestUI());
             _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
 
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
 
             }
@@ -625,7 +626,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             }
 
 
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 foreach (CrawlerQuest completedQuest in completedQuests)
                 {
@@ -664,7 +665,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
         public async Awaitable<bool> QuestIsActive(PartyData party, long questId)
         {
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 return true;
             }
@@ -682,7 +683,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             CrawlerMap map = world.GetMap(mapId);
 
-            if (_modeService.SingleCityMode(party.Mode) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
             {
                 return world.Quests.ToList();
             }

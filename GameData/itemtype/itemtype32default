@@ -7,7 +7,7 @@
   "Icon": "Wand",
   "Art": "Wand",
   "MinVal": 1,
-  "MaxVal": 3,
+  "MaxVal": 8,
   "EquipSlotId": 17,
   "Flags": 8,
   "Effects": [],
@@ -90,5 +90,6 @@
       "Name": "Rod",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-09-19T03:16:19.09Z"
 }

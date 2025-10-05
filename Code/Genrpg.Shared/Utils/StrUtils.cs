@@ -740,6 +740,11 @@ namespace Genrpg.Shared.Utils
         public static List<string> CommaSemiColonSplit(string str)
         {
 
+            if (string.IsNullOrEmpty(str))
+            {
+                return new List<string>();
+            }
+
             List<string> retval = new List<string>();
             string[] words1 = str.Split(',');
 

@@ -1,12 +1,7 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.UnitEffects.Settings;
+﻿using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.StatusUI
@@ -23,6 +18,7 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
         private long _currentStatusEffects = 0;
         public void InitData(Unit unit)
         {
+
             long newStatusEffects = unit.StatusEffects.Bits[0];
 
             if (newStatusEffects == _currentStatusEffects)
@@ -52,10 +48,10 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
             {
                 if (unit.StatusEffects.HasBit(effect.IdKey))
                 {
-                    if (!_effectIcons.Any(x=>x.GetStatusEffectId() == effect.IdKey))
+                    if (!_effectIcons.Any(x => x.GetStatusEffectId() == effect.IdKey))
                     {
                         StatusEffectIcon newIcon = _clientEntityService.FullInstantiate<StatusEffectIcon>(IconPrefab);
-
+                        _clientEntityService.AddToParent(newIcon, IconAnchor);
                         _effectIcons.Add(newIcon);
                         newIcon.InitData(effect.IdKey);
                     }

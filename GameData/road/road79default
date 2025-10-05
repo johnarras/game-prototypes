@@ -1,0 +1,20 @@
+{
+  "Id": "road79default",
+  "ParentId": "default",
+  "IdKey": 79,
+  "Name": "Silk Road (Palmyra-Chang'an)",
+  "Desc": "The most famous overland route connecting the Mediterranean to the Chinese Empire, traversing deserts and mountains.",
+  "Icon": "Trail",
+  "Art": "Trail",
+  "StartCityId": 15,
+  "EndCityId": 60,
+  "Maintenance": 2.0,
+  "Difficulty": 1.0,
+  "Danger": 5.0,
+  "SummerRain": 1.0,
+  "SummerHeat": 5.0,
+  "WinterRain": 2.0,
+  "WinterHeat": 1.0,
+  "Distance": 426.0,
+  "SaveTime": "2025-09-27T20:35:07.749Z"
+}

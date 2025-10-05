@@ -8,13 +8,14 @@ using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
         private IBuffService _buffService = null;
         private IClientEntityService _clientEntityService = null;
         private IInfoService _infoService = null;
+        private IPartyService _partyService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.GuildMain;
         public override long TriggerBuildingId() { return BuildingTypes.Guild; }
@@ -44,14 +46,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
 
             PartyData party = _crawlerService.GetParty();
 
-            foreach (PartyMember member in party.Members)
-            {
-                member.Stats.SetCurr(StatTypes.Health, member.Stats.Max(StatTypes.Health));
-                member.Stats.SetCurr(StatTypes.Mana, member.Stats.Max(StatTypes.Mana));
-                member.StatusEffects.Clear();
-            }
-
-            party.Buffs.Clear();
+            _statService.FullyRestParty(party);
 
             string txt = action.ExtraData as string;
 
@@ -66,14 +61,18 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                 }
             }
 
+            _partyService.AddClickPartyMemberButtons(stateData, party);
+
             stateData.Actions.Add(new CrawlerStateAction("Add Char", 'A', ECrawlerStates.AddMember));
             stateData.Actions.Add(new CrawlerStateAction("Remove Char", 'R', ECrawlerStates.RemoveMember));
             stateData.Actions.Add(new CrawlerStateAction("Delete Char", 'D', ECrawlerStates.DeleteMember));
             stateData.Actions.Add(new CrawlerStateAction("Create Char", 'C', ECrawlerStates.ChooseRace));
             stateData.Actions.Add(new CrawlerStateAction("New Maps", 'N', ECrawlerStates.GuildMain, null, "GenerateWorld"));
 
-            stateData.Actions.Add(new CrawlerStateAction("Upgrades", 'U', ECrawlerStates.UpgradeParty));
-
+            if (_optionsService.HasOption(party, CrawlerOptions.PartyUpgrades))
+            {
+                stateData.Actions.Add(new CrawlerStateAction("Upgrades", 'U', ECrawlerStates.UpgradeParty));
+            }
             stateData.Actions.Add(new CrawlerStateAction("Party Order", 'P', ECrawlerStates.PartyOrder,
                 () =>
                 {
@@ -89,10 +88,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                 stateData.Actions.Add(new CrawlerStateAction("Enter Map", 'E', ECrawlerStates.ExploreWorld));
             }
 
-
             if (!party.HasFlag(PartyFlags.InGuildHall))
             {
-                await _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Tavern);
+                await _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.GuildHall);
             }
             party.AddFlags(PartyFlags.InGuildHall);
 

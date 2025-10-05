@@ -35,18 +35,18 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
 
             CrawlerMap map = _mapService.GetMapRoot().Map;
 
-            PartyData partyData = _crawlerService.GetParty();
+            PartyData party = _crawlerService.GetParty();
 
-            int index = map.GetEntityId(partyData.CurrPos.X, partyData.CurrPos.Z, EntityTypes.Riddle);
+            int index = map.GetEntityId(party.CurrPos.X, party.CurrPos.Z, EntityTypes.Riddle);
 
             if (index > 0)
             {
-                partyData.AddRiddleBitIndex(index - 1);
+                party.AddRiddleBitIndex(index - 1);
                 _logService.Info("Click Button index: " + index);
             }
 
 
-            _mapService.ClearCellObject(partyData.CurrPos.X, partyData.CurrPos.Z);
+            _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
         }
     }
 }

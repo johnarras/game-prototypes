@@ -14,5 +14,10 @@ namespace Assets.Scripts.UI.Tooltips
                 _clientEntityService.SetActive(Parent, visible);
             }
         }
+
+        public void SetText(string text)
+        {
+            _uiService.SetText(Text, text);
+        }
     }
 }

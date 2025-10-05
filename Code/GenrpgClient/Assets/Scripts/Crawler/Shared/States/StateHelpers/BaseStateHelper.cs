@@ -3,6 +3,7 @@ using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -21,18 +22,19 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
     public abstract class BaseStateHelper : IStateHelper
     {
 
-        protected ICrawlerService _crawlerService;
-        protected ICrawlerStatService _statService;
-        protected ICrawlerCombatService _combatService;
-        protected ICrawlerSpellService _crawlerSpellService;
-        protected ILogService _logService;
-        protected IRepositoryService _repoService;
-        protected IGameData _gameData;
-        protected IClientGameState _gs;
-        protected IClientRandom _rand;
-        protected ICrawlerWorldService _worldService;
-        protected IDispatcher _dispatcher;
-        protected ITextService _textService;
+        protected ICrawlerService _crawlerService = null;
+        protected ICrawlerStatService _statService = null;
+        protected ICrawlerCombatService _combatService = null;
+        protected ICrawlerSpellService _crawlerSpellService = null;
+        protected ILogService _logService = null;
+        protected IRepositoryService _repoService = null;
+        protected IGameData _gameData = null;
+        protected IClientGameState _gs = null;
+        protected IClientRandom _rand = null;
+        protected ICrawlerWorldService _worldService = null;
+        protected IDispatcher _dispatcher = null;
+        protected ITextService _textService = null;
+        protected ICrawlerOptionsService _optionsService = null;
 
         public abstract ECrawlerStates Key { get; }
         public abstract Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token);

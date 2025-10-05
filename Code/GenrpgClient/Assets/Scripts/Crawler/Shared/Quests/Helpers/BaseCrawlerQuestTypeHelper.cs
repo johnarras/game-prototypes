@@ -5,7 +5,7 @@ using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         protected ILogService _logService = null;
         protected ITextService _textService = null;
         protected ICrawlerCombatService _combatService = null;
-        protected ICrawlerModeService _modeService = null;
+        protected ICrawlerOptionsService _optionsService = null;
 
         public abstract long Key { get; }
         protected abstract string QuestVerb { get; }

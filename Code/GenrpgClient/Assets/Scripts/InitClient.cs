@@ -159,7 +159,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
         _cursorService.SetCursor(CursorNames.Default);
 
-        await _gameDataService.LoadCachedSettings(_gs);
+        await _gameDataService.LoadCachedSettings(_gs, false);
 
         await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
 

@@ -50,16 +50,19 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - ba3e1e00e7fe1434299fcbd9c751ca89: 21300000
     - 24166b7001bf0394a9fe2c0da73d3cb1: 21300000
     - 93c293e073407b3459eb8a356c44e88c: 21300000
     - 5d4bdb01def68d045a6a50415852df13: 21300000
     - e8d7fd4119f876e428bb8743f3f4b6dd: 21300000
+    - 20bb38b1491318c479a4ee949a888ece: 21300000
     - aec1bbb1e23de0d4ba54d919be5e5412: 21300000
     - 9d71fb728b43ded47903147665fd6300: 21300000
     - f0c105822171422489e186bc56527136: 21300000
     - be0555923cbcb7e40b19f8af2371029c: 21300000
     - be9e24d2224bffe4f98b37171bb948c2: 21300000
     - 4049a503ed5dba440a5037262bf142b7: 21300000
+    - 677a608307720de4e87a29160cfdb340: 21300000
     - fedda1932fa9a5a48a93b0e09c33dbda: 21300000
     - 6221aed347a74ee4c8bcdfe6ab63f28c: 21300000
     - 00010354f7b76664eb712ab7bf4a057a: 21300000
@@ -102,16 +105,19 @@ SpriteAtlas:
     - 77536e3fd0000a34c958a18310ec9590: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ba3e1e00e7fe1434299fcbd9c751ca89, type: 3}
   - {fileID: 21300000, guid: 24166b7001bf0394a9fe2c0da73d3cb1, type: 3}
   - {fileID: 21300000, guid: 93c293e073407b3459eb8a356c44e88c, type: 3}
   - {fileID: 21300000, guid: 5d4bdb01def68d045a6a50415852df13, type: 3}
   - {fileID: 21300000, guid: e8d7fd4119f876e428bb8743f3f4b6dd, type: 3}
+  - {fileID: 21300000, guid: 20bb38b1491318c479a4ee949a888ece, type: 3}
   - {fileID: 21300000, guid: aec1bbb1e23de0d4ba54d919be5e5412, type: 3}
   - {fileID: 21300000, guid: 9d71fb728b43ded47903147665fd6300, type: 3}
   - {fileID: 21300000, guid: f0c105822171422489e186bc56527136, type: 3}
   - {fileID: 21300000, guid: be0555923cbcb7e40b19f8af2371029c, type: 3}
   - {fileID: 21300000, guid: be9e24d2224bffe4f98b37171bb948c2, type: 3}
   - {fileID: 21300000, guid: 4049a503ed5dba440a5037262bf142b7, type: 3}
+  - {fileID: 21300000, guid: 677a608307720de4e87a29160cfdb340, type: 3}
   - {fileID: 21300000, guid: fedda1932fa9a5a48a93b0e09c33dbda, type: 3}
   - {fileID: 21300000, guid: 6221aed347a74ee4c8bcdfe6ab63f28c, type: 3}
   - {fileID: 21300000, guid: 00010354f7b76664eb712ab7bf4a057a, type: 3}
@@ -153,16 +159,19 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4873131fddb19e649941d81224349f43, type: 3}
   - {fileID: 21300000, guid: 77536e3fd0000a34c958a18310ec9590, type: 3}
   m_PackedSpriteNamesToIndex:
+  - CityIcon
   - BGWorld
   - ButtonClose
   - BlackBar
   - BGCircleBlue
+  - BGTrader
   - BGSilver
   - BGGrayscaleVert
   - BGDots
   - DirLeft
   - StarGolden
   - LevelUpArrow
+  - CheckMark
   - BGGray
   - BGCrawlerButton
   - DirUp

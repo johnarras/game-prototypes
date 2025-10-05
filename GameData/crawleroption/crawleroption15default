@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Auto Level Up",
+  "NameId": "",
+  "Desc": "Do characters level up if possible after gaining Exp?",
+  "SaveTime": "2025-09-22T23:06:14.311Z"
+}

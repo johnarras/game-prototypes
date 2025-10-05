@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Stat Upgrade Objects",
+  "Desc": "Are there stat upgrade objects in the world?",
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

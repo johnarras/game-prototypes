@@ -18,7 +18,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 545.0
+      "Distance": 545.0
     },
     {
       "Id": "road2default",
@@ -37,7 +37,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 580.0
+      "Distance": 580.0
     },
     {
       "Id": "road3default",
@@ -56,7 +56,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 400.0
+      "Distance": 400.0
     },
     {
       "Id": "road4default",
@@ -75,7 +75,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 710.0
+      "Distance": 710.0
     },
     {
       "Id": "road5default",
@@ -94,7 +94,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 415.0
+      "Distance": 415.0
     },
     {
       "Id": "road6default",
@@ -112,7 +112,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 3.0,
       "WinterRain": 6.0,
-      "Length": 550.0
+      "Distance": 550.0
     },
     {
       "Id": "road7default",
@@ -131,7 +131,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 315.0
+      "Distance": 315.0
     },
     {
       "Id": "road8default",
@@ -150,7 +150,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 560.0
+      "Distance": 560.0
     },
     {
       "Id": "road9default",
@@ -169,7 +169,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 465.0
+      "Distance": 465.0
     },
     {
       "Id": "road10default",
@@ -188,7 +188,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 430.0
+      "Distance": 430.0
     },
     {
       "Id": "road11default",
@@ -207,7 +207,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 540.0
+      "Distance": 540.0
     },
     {
       "Id": "road12default",
@@ -226,7 +226,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Length": 200.0
+      "Distance": 200.0
     },
     {
       "Id": "road13default",
@@ -245,7 +245,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Length": 460.0
+      "Distance": 460.0
     },
     {
       "Id": "road14default",
@@ -264,7 +264,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 340.0
+      "Distance": 340.0
     },
     {
       "Id": "road15default",
@@ -283,7 +283,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 510.0
+      "Distance": 510.0
     },
     {
       "Id": "road16default",
@@ -302,7 +302,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 890.0
+      "Distance": 890.0
     },
     {
       "Id": "road17default",
@@ -321,7 +321,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 390.0
+      "Distance": 390.0
     },
     {
       "Id": "road18default",
@@ -340,7 +340,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 205.0
+      "Distance": 205.0
     },
     {
       "Id": "road19default",
@@ -359,7 +359,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 815.0
+      "Distance": 815.0
     },
     {
       "Id": "road20default",
@@ -378,7 +378,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 910.0
+      "Distance": 910.0
     },
     {
       "Id": "road21default",
@@ -397,7 +397,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 280.0
+      "Distance": 280.0
     },
     {
       "Id": "road22default",
@@ -416,7 +416,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Length": 425.0
+      "Distance": 425.0
     },
     {
       "Id": "road23default",
@@ -435,7 +435,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 700.0
+      "Distance": 700.0
     },
     {
       "Id": "road24default",
@@ -454,7 +454,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 240.0
+      "Distance": 240.0
     },
     {
       "Id": "road25default",
@@ -473,7 +473,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Length": 1120.0
+      "Distance": 1120.0
     },
     {
       "Id": "road26default",
@@ -492,7 +492,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Length": 1080.0
+      "Distance": 1080.0
     },
     {
       "Id": "road27default",
@@ -511,7 +511,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 670.0
+      "Distance": 670.0
     },
     {
       "Id": "road28default",
@@ -529,7 +529,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Length": 1750.0
+      "Distance": 1750.0
     },
     {
       "Id": "road29default",
@@ -548,7 +548,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 160.0
+      "Distance": 160.0
     },
     {
       "Id": "road30default",
@@ -567,7 +567,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 100.0
+      "Distance": 100.0
     },
     {
       "Id": "road31default",
@@ -586,7 +586,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 80.0
+      "Distance": 80.0
     },
     {
       "Id": "road32default",
@@ -605,7 +605,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 120.0
+      "Distance": 120.0
     },
     {
       "Id": "road33default",
@@ -624,7 +624,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Length": 1050.0
+      "Distance": 1050.0
     },
     {
       "Id": "road34default",
@@ -643,7 +643,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 950.0
+      "Distance": 950.0
     },
     {
       "Id": "road35default",
@@ -662,7 +662,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 260.0
+      "Distance": 260.0
     },
     {
       "Id": "road36default",
@@ -680,7 +680,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Length": 980.0
+      "Distance": 980.0
     },
     {
       "Id": "road37default",
@@ -698,7 +698,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 350.0
+      "Distance": 350.0
     },
     {
       "Id": "road38default",
@@ -716,7 +716,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 310.0
+      "Distance": 310.0
     },
     {
       "Id": "road39default",
@@ -734,7 +734,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 450.0
+      "Distance": 450.0
     },
     {
       "Id": "road40default",
@@ -752,7 +752,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 475.0
+      "Distance": 475.0
     },
     {
       "Id": "road41default",
@@ -770,7 +770,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 140.0
+      "Distance": 140.0
     },
     {
       "Id": "road42default",
@@ -788,7 +788,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 40.0
+      "Distance": 40.0
     },
     {
       "Id": "road43default",
@@ -806,7 +806,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 55.0
+      "Distance": 55.0
     },
     {
       "Id": "road44default",
@@ -824,7 +824,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 280.0
+      "Distance": 280.0
     },
     {
       "Id": "road45default",
@@ -842,7 +842,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 3.0,
-      "Length": 480.0
+      "Distance": 480.0
     },
     {
       "Id": "road46default",
@@ -860,7 +860,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 220.0
+      "Distance": 220.0
     },
     {
       "Id": "road47default",
@@ -878,7 +878,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 390.0
+      "Distance": 390.0
     },
     {
       "Id": "road48default",
@@ -896,7 +896,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Length": 120.0
+      "Distance": 120.0
     },
     {
       "Id": "road49default",
@@ -913,7 +913,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
-      "Length": 750.0
+      "Distance": 750.0
     },
     {
       "Id": "road50default",
@@ -932,7 +932,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Length": 600.0
+      "Distance": 600.0
     },
     {
       "Id": "road51default",
@@ -950,7 +950,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 90.0
+      "Distance": 90.0
     },
     {
       "Id": "road52default",
@@ -968,7 +968,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 40.0
+      "Distance": 40.0
     },
     {
       "Id": "road53default",
@@ -987,7 +987,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Length": 550.0
+      "Distance": 550.0
     },
     {
       "Id": "road54default",
@@ -1005,7 +1005,7 @@
       "SummerRain": 2.0,
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
-      "Length": 1150.0
+      "Distance": 1150.0
     },
     {
       "Id": "road55default",
@@ -1024,7 +1024,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Length": 410.0
+      "Distance": 410.0
     },
     {
       "Id": "road56default",
@@ -1043,7 +1043,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Length": 240.0
+      "Distance": 240.0
     },
     {
       "Id": "road57default",
@@ -1061,7 +1061,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
-      "Length": 3900.0
+      "Distance": 3900.0
     },
     {
       "Id": "road58default",
@@ -1079,7 +1079,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
-      "Length": 1100.0
+      "Distance": 1100.0
     },
     {
       "Id": "road59default",
@@ -1098,7 +1098,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 4.0,
-      "Length": 1550.0
+      "Distance": 1550.0
     },
     {
       "Id": "road60default",
@@ -1117,7 +1117,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 4.0,
-      "Length": 1350.0
+      "Distance": 1350.0
     },
     {
       "Id": "road61default",
@@ -1135,7 +1135,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 5.0,
-      "Length": 140.0
+      "Distance": 140.0
     },
     {
       "Id": "road62default",
@@ -1154,7 +1154,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 5.0,
-      "Length": 1250.0
+      "Distance": 1250.0
     },
     {
       "Id": "road63default",
@@ -1171,7 +1171,7 @@
       "Danger": 2.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 200.0
+      "Distance": 200.0
     },
     {
       "Id": "road64default",
@@ -1188,7 +1188,7 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 670.0
+      "Distance": 670.0
     },
     {
       "Id": "road65default",
@@ -1205,7 +1205,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 1470.0
+      "Distance": 1470.0
     },
     {
       "Id": "road66default",
@@ -1222,7 +1222,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Length": 370.0
+      "Distance": 370.0
     },
     {
       "Id": "road67default",
@@ -1240,7 +1240,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 1050.0
+      "Distance": 1050.0
     },
     {
       "Id": "road68default",
@@ -1258,7 +1258,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 900.0
+      "Distance": 900.0
     },
     {
       "Id": "road69default",
@@ -1277,7 +1277,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Length": 760.0
+      "Distance": 760.0
     },
     {
       "Id": "road70default",
@@ -1296,7 +1296,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 700.0
+      "Distance": 700.0
     },
     {
       "Id": "road71default",
@@ -1315,7 +1315,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 550.0
+      "Distance": 550.0
     },
     {
       "Id": "road72default",
@@ -1333,7 +1333,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 650.0
+      "Distance": 650.0
     },
     {
       "Id": "road73default",
@@ -1351,7 +1351,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Length": 380.0
+      "Distance": 380.0
     },
     {
       "Id": "road74default",
@@ -1370,7 +1370,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 70.0
+      "Distance": 70.0
     },
     {
       "Id": "road75default",
@@ -1389,7 +1389,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 90.0
+      "Distance": 90.0
     },
     {
       "Id": "road76default",
@@ -1405,7 +1405,7 @@
       "Danger": 6.0,
       "SummerHeat": 6.0,
       "WinterHeat": 3.0,
-      "Length": 2340.0
+      "Distance": 2340.0
     },
     {
       "Id": "road77default",
@@ -1424,13 +1424,391 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Length": 160.0
+      "Distance": 160.0
+    },
+    {
+      "Id": "road78default",
+      "ParentId": "default",
+      "IdKey": 78,
+      "Name": "Sicily-Carthage Sea Route (Sim.)",
+      "Desc": "A major trans-Mediterranean sea lane essential for trade and imperial conflict.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 1,
+      "EndCityId": 3,
+      "Maintenance": 3.0,
+      "Difficulty": 1.0,
+      "Danger": 4.0,
+      "SummerRain": 1.0,
+      "SummerHeat": 5.0,
+      "WinterRain": 5.0,
+      "WinterHeat": 3.0,
+      "Distance": 445.0
+    },
+    {
+      "Id": "road79default",
+      "ParentId": "default",
+      "IdKey": 79,
+      "Name": "Silk Road (Palmyra-Chang'an)",
+      "Desc": "The most famous overland route connecting the Mediterranean to the Chinese Empire, traversing deserts and mountains.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 15,
+      "EndCityId": 60,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 5.0,
+      "SummerRain": 1.0,
+      "SummerHeat": 5.0,
+      "WinterRain": 2.0,
+      "WinterHeat": 1.0,
+      "Distance": 426.0
+    },
+    {
+      "Id": "road80default",
+      "ParentId": "default",
+      "IdKey": 80,
+      "Name": "Nile-Red Sea Trade Route",
+      "Desc": "A crucial trade route following the Nile River and desert paths for goods from Nubia and the Red Sea.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 4,
+      "EndCityId": 38,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerHeat": 6.0,
+      "WinterHeat": 4.0,
+      "Distance": 609.0
+    },
+    {
+      "Id": "road81default",
+      "ParentId": "default",
+      "IdKey": 81,
+      "Name": "Southern Silk Road (Samarkand-Guangzhou)",
+      "Desc": "An arduous but essential segment of the Southern Silk Road, connecting Central Asia with the maritime port of Guangzhou.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 43,
+      "EndCityId": 81,
+      "Maintenance": 2.0,
+      "Difficulty": 3.0,
+      "Danger": 4.0,
+      "SummerRain": 4.0,
+      "SummerHeat": 4.0,
+      "WinterRain": 2.0,
+      "WinterHeat": 2.0,
+      "Distance": 5705.0
+    },
+    {
+      "Id": "road82default",
+      "ParentId": "default",
+      "IdKey": 82,
+      "Name": "Via Domitia (Simulated Extension)",
+      "Desc": "A simulated Roman extension facilitating movement of troops and trade between Italy and Gaul (France).",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 31,
+      "EndCityId": 26,
+      "Maintenance": 4.0,
+      "Difficulty": 2.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 4.0,
+      "WinterHeat": 2.0,
+      "Distance": 666.0
+    },
+    {
+      "Id": "road83default",
+      "ParentId": "default",
+      "IdKey": 83,
+      "Name": "Regional Path of Corinth and Sparta",
+      "Desc": "A simple path connecting Corinth  and Sparta.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 12,
+      "EndCityId": 32,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 75.0
+    },
+    {
+      "Id": "road84default",
+      "ParentId": "default",
+      "IdKey": 84,
+      "Name": "Regional Path of Tyre and Jerusalem",
+      "Desc": "A simple path connecting Tyre  and Jerusalem.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 6,
+      "EndCityId": 40,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 116.0
+    },
+    {
+      "Id": "road85default",
+      "ParentId": "default",
+      "IdKey": 85,
+      "Name": "Regional Path of Susa and Ur",
+      "Desc": "A simple path connecting Susa  and Ur.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 46,
+      "EndCityId": 20,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 142.0
+    },
+    {
+      "Id": "road86default",
+      "ParentId": "default",
+      "IdKey": 86,
+      "Name": "Regional Path of Angkor and Oc Eo",
+      "Desc": "A simple path connecting Angkor  and Oc Eo.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 72,
+      "EndCityId": 76,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 267.0
+    },
+    {
+      "Id": "road87default",
+      "ParentId": "default",
+      "IdKey": 87,
+      "Name": "Regional Path of Angkor and Ayutthaya",
+      "Desc": "A simple path connecting Angkor  and Ayutthaya.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 72,
+      "EndCityId": 73,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 276.0
+    },
+    {
+      "Id": "road88default",
+      "ParentId": "default",
+      "IdKey": 88,
+      "Name": "Regional Path of Bolghar and Ukek",
+      "Desc": "A simple path connecting Bolghar  and Ukek.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 77,
+      "EndCityId": 83,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 360.0
+    },
+    {
+      "Id": "road89default",
+      "ParentId": "default",
+      "IdKey": 89,
+      "Name": "Regional Path of Malacca and Palembang",
+      "Desc": "A simple path connecting Malacca  and Palembang.",
+      "Icon": "Path",
+      "Art": "Path",
+      "StartCityId": 74,
+      "EndCityId": 75,
+      "Maintenance": 2.0,
+      "Difficulty": 1.0,
+      "Danger": 2.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 483.0
+    },
+    {
+      "Id": "road90default",
+      "ParentId": "default",
+      "IdKey": 90,
+      "Name": "Ancient Trade Road of Beijing and Nanjing",
+      "Desc": "A vital road connecting Beijing and Nanjing.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 79,
+      "EndCityId": 80,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 656.0
+    },
+    {
+      "Id": "road91default",
+      "ParentId": "default",
+      "IdKey": 91,
+      "Name": "Ancient Trade Road of Malacca and Oc Eo",
+      "Desc": "A vital road connecting Malacca and Oc Eo.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 74,
+      "EndCityId": 76,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 656.0
+    },
+    {
+      "Id": "road92default",
+      "ParentId": "default",
+      "IdKey": 92,
+      "Name": "Ancient Trade Road of Xi'an and Beijing",
+      "Desc": "A vital road connecting Xi'an and Beijing.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 21,
+      "EndCityId": 79,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 753.0
+    },
+    {
+      "Id": "road93default",
+      "ParentId": "default",
+      "IdKey": 93,
+      "Name": "Ancient Trade Road of Bolghar and Arkaim",
+      "Desc": "A vital road connecting Bolghar and Arkaim.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 77,
+      "EndCityId": 82,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 836.0
+    },
+    {
+      "Id": "road94default",
+      "ParentId": "default",
+      "IdKey": 94,
+      "Name": "Ancient Trade Road of Artaxata and Ukek",
+      "Desc": "A vital road connecting Artaxata and Ukek.",
+      "Icon": "Road",
+      "Art": "Road",
+      "StartCityId": 68,
+      "EndCityId": 83,
+      "Maintenance": 3.0,
+      "Difficulty": 2.0,
+      "Danger": 3.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 907.0
+    },
+    {
+      "Id": "road95default",
+      "ParentId": "default",
+      "IdKey": 95,
+      "Name": "Great Silk Trail (Segment 95)",
+      "Desc": "A massive, trans-continental trade trail connecting  Guangzhou and Angkor.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 81,
+      "EndCityId": 72,
+      "Maintenance": 1.0,
+      "Difficulty": 3.0,
+      "Danger": 5.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 1140.0
+    },
+    {
+      "Id": "road96default",
+      "ParentId": "default",
+      "IdKey": 96,
+      "Name": "Great Silk Trail (Segment 96)",
+      "Desc": "A massive, trans-continental trade trail connecting  Xi'an and Karakorum.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 21,
+      "EndCityId": 78,
+      "Maintenance": 1.0,
+      "Difficulty": 3.0,
+      "Danger": 5.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 1184.0
+    },
+    {
+      "Id": "road97default",
+      "ParentId": "default",
+      "IdKey": 97,
+      "Name": "Great Silk Trail (Segment 97)",
+      "Desc": "A massive, trans-continental trade trail connecting Arkaim and Mangazeya.",
+      "Icon": "Trail",
+      "Art": "Trail",
+      "StartCityId": 82,
+      "EndCityId": 84,
+      "Maintenance": 1.0,
+      "Difficulty": 3.0,
+      "Danger": 5.0,
+      "SummerRain": 3.0,
+      "SummerHeat": 3.0,
+      "WinterRain": 3.0,
+      "WinterHeat": 3.0,
+      "Distance": 2233.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "RoadSettings",
-    "SaveTime": "2025-08-06T23:39:05.787Z"
+    "SaveTime": "2025-09-27T20:35:07.749Z"
   },
-  "SaveTime": "2025-08-06T23:39:05.787Z"
+  "SaveTime": "2025-09-27T20:35:07.749Z"
 }

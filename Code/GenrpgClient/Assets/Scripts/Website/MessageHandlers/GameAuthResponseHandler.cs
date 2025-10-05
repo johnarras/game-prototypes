@@ -1,24 +1,21 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+﻿using Assets.Scripts.Assets;
+using Assets.Scripts.BoardGame.Controllers;
+using Assets.Scripts.GameSettings.Entities;
+using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.WebApi.UploadMap;
+using Genrpg.Shared.Spawns.WorldData;
+using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Assets.Scripts.GameSettings.Services;
-
 using System.Threading;
-using Genrpg.Shared.Spawns.WorldData;
 using UnityEngine;
-using Genrpg.Shared.Characters.PlayerData;
-using Assets.Scripts.GameSettings.Entities;
-using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Assets;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Accounts.WebApi.Login;
-using Genrpg.Shared.MapServer.WebApi.UploadMap;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Assets.Scripts.BoardGame.Controllers;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
@@ -86,6 +83,11 @@ namespace Assets.Scripts.Website.MessageHandlers
                 keepOpenScreens.Add(ScreenNames.MobileHUD);
                 await _screenService.OpenAsync(ScreenNames.MobileHUD, null, token);
                 _boardGameController.LoadCurrentBoard();
+            }
+            else if (_gs.GameMode == EGameModes.Trader)
+            {
+                keepOpenScreens.Add(ScreenNames.TraderHUD);
+                await _screenService.OpenAsync(ScreenNames.TraderHUD, null, token);
             }
             else
             {

@@ -35,7 +35,7 @@ namespace Genrpg.Shared.Trader.Roads.Settings
         [Key(14)] public double SummerHeat { get; set; }
         [Key(15)] public double WinterRain { get; set; }
         [Key(16)] public double WinterHeat { get; set; }
-        [Key(17)] public double Length { get; set; }
+        [Key(17)] public double Distance { get; set; }
     }
 
     public class RoadSettingsDto : ParentSettingsDto<RoadSettings, Road> { }

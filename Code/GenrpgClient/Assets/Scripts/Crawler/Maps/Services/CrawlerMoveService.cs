@@ -54,8 +54,6 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         public const string TurnLeft = "TurnLeft";
         public const string TurnRight = "TurnRight";
         public const string Backward = "Backward";
-        public const string StrafeLeft = "StrafeLeft";
-        public const string StrafeRight = "StrafeRight";
     }
 
     public class MovementKeyCode
@@ -122,14 +120,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 new MovementKeyCode('S', MovementKeyNames.Backward, 0, -1, 0),
                 new MovementKeyCode((char)274, MovementKeyNames.Backward,0, -1, 0),
 
-                new MovementKeyCode('Q', MovementKeyNames.TurnLeft, -1, 0, 0),
+                new MovementKeyCode('A', MovementKeyNames.TurnLeft, -1, 0, 0),
                 new MovementKeyCode((char)276, MovementKeyNames.TurnLeft, -1, 0, 0),
 
-                new MovementKeyCode('E', MovementKeyNames.TurnRight, 1, 0, 0),
+                new MovementKeyCode('D', MovementKeyNames.TurnRight, 1, 0, 0),
                 new MovementKeyCode((char)275, MovementKeyNames.TurnRight, 1, 0, 0),
-
-                new MovementKeyCode('A', MovementKeyNames.StrafeLeft, 0, 0, -1),
-                new MovementKeyCode('D', MovementKeyNames.StrafeRight, 0, 0, 1),
             };
         }
 

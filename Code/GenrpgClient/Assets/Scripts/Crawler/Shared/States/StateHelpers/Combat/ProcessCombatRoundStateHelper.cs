@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (!_combatService.ReadyForCombat(party))
             {
-                await _combatService.EndCombatRound(party);
+                await _combatService.EndCombatRound(party, token);
                 stateData = new CrawlerStateData(ECrawlerStates.CombatFightRun, true);
             }
 

@@ -1,0 +1,20 @@
+{
+  "Id": "road89default",
+  "ParentId": "default",
+  "IdKey": 89,
+  "Name": "Regional Path of Malacca and Palembang",
+  "Desc": "A simple path connecting Malacca  and Palembang.",
+  "Icon": "Path",
+  "Art": "Path",
+  "StartCityId": 74,
+  "EndCityId": 75,
+  "Maintenance": 2.0,
+  "Difficulty": 1.0,
+  "Danger": 2.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 3.0,
+  "Distance": 483.0,
+  "SaveTime": "2025-09-27T20:35:07.749Z"
+}

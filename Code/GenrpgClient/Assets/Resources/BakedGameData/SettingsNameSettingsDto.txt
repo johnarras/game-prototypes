@@ -858,6 +858,18 @@
       "ParentId": "default",
       "IdKey": 143,
       "Name": "CrawlerCurrencySettings"
+    },
+    {
+      "Id": "settingsname144default",
+      "ParentId": "default",
+      "IdKey": 144,
+      "Name": "CrawlerOptionSettings"
+    },
+    {
+      "Id": "settingsname145default",
+      "ParentId": "default",
+      "IdKey": 145,
+      "Name": "TradeEconomySettings"
     }
   ],
   "Parent": {

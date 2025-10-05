@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Crawler.Buffs.Services;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Constants;
@@ -14,11 +13,10 @@ using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Services;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Constants;
@@ -36,16 +34,14 @@ using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Inventory.Settings.Ranks;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Interfaces;
+using Genrpg.Shared.Spells.Entities;
+using Genrpg.Shared.Spells.Helpers.SpellEffectHelpers;
 using Genrpg.Shared.Spells.Procs.Entities;
 using Genrpg.Shared.Spells.Procs.Interfaces;
-using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.Settings.Targets;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System;
@@ -55,6 +51,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Genrpg.Shared.Crawler.Spells.Services.CrawlerSpellService;
 
 namespace Genrpg.Shared.Crawler.Spells.Services
 {
@@ -76,19 +73,21 @@ namespace Genrpg.Shared.Crawler.Spells.Services
         void PickRandomTarget(PartyData party, UnitAction unitAction);
         List<Role> RolesThatCanCast(long crawlerSpellId);
         string RolesThatCanCastString(long crawlerSpellId);
+        void ShowCombatLogText(string text);
+        void AddToActionDict(Dictionary<string, ActionListItem> dict, CrawlerUnit caster, CrawlerUnit target, string actionName, long quantity, long extraMessageBits, bool regularHit, ECombatTextTypes textType, long elementTypeId);
     }
 
 
+    public class ExtraMessageBits
+    {
+        public const long Resists = (1 << 0);
+        public const long Vulnerable = (1 << 1);
+        public const long Misses = (1 << 2);
+    }
 
     public class CrawlerSpellService : ICrawlerSpellService
     {
 
-        class ExtraMessageBits
-        {
-            public const long Resists = (1 << 0);
-            public const long Vulnerable = (1 << 1);
-            public const long Misses = (1 << 2);
-        }
 
 
         private ILogService _logService = null;
@@ -96,21 +95,20 @@ namespace Genrpg.Shared.Crawler.Spells.Services
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
         protected IClientRandom _rand = null;
+        private IDispatcher _dispatcher = null;
         protected ICrawlerStatService _crawlerStatService = null;
         private ITextService _textService = null;
         private IRoleService _roleService = null;
-        private IDispatcher _dispatcher = null;
         private IClientAppService _appService = null;
-        private IPartyService _partyService = null;
         private IInfoService _infoService = null;
-        private IBuffService _buffService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
 
-        private SetupDictionaryContainer<long, ISpecialMagicHelper> _effectHelpers = new SetupDictionaryContainer<long, ISpecialMagicHelper>();
+        private SetupDictionaryContainer<long, ISpecialMagicHelper> _specialMagicEffectHelpers = new SetupDictionaryContainer<long, ISpecialMagicHelper>();
+        private SetupDictionaryContainer<long, ICrawlerSpellEffectHelper> _effectHelpers = new SetupDictionaryContainer<long, ICrawlerSpellEffectHelper>();
 
         public ISpecialMagicHelper GetSpecialEffectHelper(long specialEffectId)
         {
-            if (_effectHelpers.TryGetValue(specialEffectId, out ISpecialMagicHelper specialEffectHelper))
+            if (_specialMagicEffectHelpers.TryGetValue(specialEffectId, out ISpecialMagicHelper specialEffectHelper))
             {
                 return specialEffectHelper;
             }
@@ -182,7 +180,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                 if (!roleSettings.HasBonus(member.Roles, EntityTypes.CrawlerSpell, spell.IdKey))
                 {
-                    if (!_modeService.SinglePartyMember(party.Mode) ||
+                    if (!_optionsService.HasOption(party, CrawlerOptions.OneCharacter) ||
                         !spell.Effects.Any(x => x.EntityTypeId == EntityTypes.SpecialMagic && x.EntityId == SpecialMagics.TownPortal))
                     {
                         continue;
@@ -350,8 +348,6 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             }
 
             long statUsedForScaling = scalingType.ScalingStatTypeId;
-
-
 
 
             foreach (FullEffect fullEffect in endFullEffectList)
@@ -822,7 +818,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         action.SpellBeingCast.HitsLeft = action.SpellBeingCast.HitQuantity;
                     }
 
-                    await CastSpellOnUnit(party, action.Caster, action.SpellBeingCast, currTarget, CrawlerCombatConstants.GetScrollingFrames(party.ScrollFramesIndex), token);
+                    await CastSpellOnUnit(party, action.Caster, action.SpellBeingCast, currTarget, token);
                 }
 
                 if (combatSettings.SubsequentAttackPriorityLossPercent > 0)
@@ -882,12 +878,12 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             }
         }
 
-        private void ShowCombatLogText(string text)
+        public void ShowCombatLogText(string text)
         {
             _dispatcher.Dispatch(new AddActionPanelText(text));
         }
 
-        private void AddToActionDict(Dictionary<string, ActionListItem> dict, CrawlerUnit caster, CrawlerUnit target, string actionName, long quantity, long extraMessageBits, bool regularHit, ECombatTextTypes textType, long elementTypeId)
+        public void AddToActionDict(Dictionary<string, ActionListItem> dict, CrawlerUnit caster, CrawlerUnit target, string actionName, long quantity, long extraMessageBits, bool regularHit, ECombatTextTypes textType, long elementTypeId)
         {
             if (string.IsNullOrEmpty(actionName))
             {
@@ -913,7 +909,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
         }
 
-        internal class ActionListItem
+        public class ActionListItem
         {
             public long ElementTypeId { get; set; }
             public long TotalQuantity { get; set; }
@@ -925,7 +921,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             public CrawlerUnit Target { get; set; }
         }
 
-        public async Awaitable CastSpellOnUnit(PartyData party, CrawlerUnit caster, FullSpell spell, CrawlerUnit target, int delayFrames, CancellationToken token)
+        public async Awaitable CastSpellOnUnit(PartyData party, CrawlerUnit caster, FullSpell spell, CrawlerUnit target, CancellationToken token)
         {
             if (IsGroupTarget(spell.Spell.TargetTypeId))
             {
@@ -936,499 +932,103 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 spell.HitsLeft = Math.Max(1, spell.HitsLeft / 2);
             }
 
-            bool isEnemyTarget = IsEnemyTarget(spell.Spell.TargetTypeId);
+            ApplyEffectArgs args = new ApplyEffectArgs();
 
-            if (isEnemyTarget && target.StatusEffects.HasBit(StatusEffects.Dead))
+            args.IsEnemyTarget = IsEnemyTarget(spell.Spell.TargetTypeId);
+
+            if (args.IsEnemyTarget && target.StatusEffects.HasBit(StatusEffects.Dead))
             {
                 return;
             }
 
-            float delayTime = (delayFrames * 1.0f) / _appService.TargetFrameRate;
-            float afterInitialTextTime = Mathf.Max(0, delayTime - CrawlerClientCombatConstants.CombatDooberFlyTime);
+            args.DelayTime = (CrawlerCombatConstants.GetScrollingFrames(party.ScrollFramesIndex) * 1.0f) / _appService.TargetFrameRate;
 
-            CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(null);
-            RoleSettings roleSettings = _gameData.Get<RoleSettings>(null);
-
-            long currHealth = target.Stats.Curr(StatTypes.Health);
-            long maxHealth = target.Stats.Max(StatTypes.Health);
-
-            long maxDamage = currHealth;
-            long maxHealing = maxHealth - currHealth;
+            args.BuffSettings = _gameData.Get<PartyBuffSettings>(_gs.ch);
+            args.AfterInitialTextTime = Mathf.Max(0, args.DelayTime - CrawlerClientCombatConstants.CombatDooberFlyTime);
+            args.CritChanceScaling = 1.0f;
 
             bool haveMultiHitEffect = spell.Effects.Any(x =>
             x.Effect.EntityTypeId == EntityTypes.Damage ||
             x.Effect.EntityTypeId == EntityTypes.Healing ||
             x.Effect.EntityTypeId == EntityTypes.Attack ||
             x.Effect.EntityTypeId == EntityTypes.Shoot);
-
-
-            PartyBuffSettings partyBuffSettings = _gameData.Get<PartyBuffSettings>(_gs.ch);
-
-            double autoHealValue = party.Buffs.Get(PartyBuffs.Autoheal);
-            double barrierValue = party.Buffs.Get(PartyBuffs.Barrier);
-            double retaliateValue = party.Buffs.Get(PartyBuffs.Retaliate);
-            double parryValue = party.Buffs.Get(PartyBuffs.Parry);
-            double defenseScale = _roleService.GetRoleScalingLevel(party, target, RoleScalingTypes.Defense);
-            double cursedArrowsValue = party.Buffs.Get(PartyBuffs.CursedArrows);
-
             if (!haveMultiHitEffect)
             {
                 spell.HitsLeft = 1;
             }
 
-            long totalDamage = 0;
-            long totalHealing = 0;
-
-            int currHitTimes = 0;
-            long newQuantity = 0;
-            string fullAction = null;
-
-            long casterHit = caster.Stats.Max(StatTypes.Hit);
-            CrawlerUnit finalTarget = target;
-
-            long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
-
-            Dictionary<string, ActionListItem> actionList = new Dictionary<string, ActionListItem>();
-
-            long extraMessageBits = 0;
-
-            double critChanceScaling = 1.0f;
-
 
             while (spell.HitsLeft > 0)
             {
-                bool didKill = false;
-                bool didParry = false;
-
-                if (isEnemyTarget)
+                if (args.IsEnemyTarget)
                 {
-                    if (isEnemyTarget && target.IsPlayer() &&
-                        _rand.NextDouble() < parryValue * partyBuffSettings.GetProcChanceScale(PartyBuffs.Parry))
+                    double parryValue = party.Buffs.Get(PartyBuffs.Parry);
+                    if (args.IsEnemyTarget && target.IsPlayer() &&
+                        _rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
                     {
-                        AddToActionDict(actionList, caster, target, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
-                        didParry = true;
+                        AddToActionDict(args.ActionList, caster, target, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
+                        args.DidParry = true;
                     }
                 }
 
-
-
                 foreach (FullEffect fullEffect in spell.Effects)
                 {
-                    if (!didParry)
+                    if (!args.DidParry)
                     {
                         if (_rand.NextDouble() > fullEffect.Chance)
                         {
                             continue;
                         }
 
-                        if (didKill)
+                        if (args.DidKill)
                         {
                             break;
                         }
 
-                        newQuantity = 0;
-                        fullAction = null;
-                        finalTarget = target;
-                        extraMessageBits = 0;
-                        CrawlerSpellEffect effect = fullEffect.Effect;
-                        OneEffect hit = fullEffect.Hit;
+                        args.NewQuantity = 0;
+                        args.FullAction = null;
+                        args.ExtraMessageBits = 0;
 
-                        long finalMinQuantity = hit.MinQuantity;
-                        long finalMaxQuantity = hit.MaxQuantity;
-
-                        if (effect.EntityTypeId == EntityTypes.Attack ||
-                            effect.EntityTypeId == EntityTypes.Shoot ||
-                            effect.EntityTypeId == EntityTypes.Damage)
+                        if (_effectHelpers.TryGetValue(fullEffect.Effect.EntityTypeId, out ICrawlerSpellEffectHelper helper))
                         {
-                            if (target.StatusEffects.HasBit(StatusEffects.Dead))
-                            {
-                                continue;
-                            }
-
-                            double damageScale = 1.0f;
-                            long elementBits = (long)(1 << (int)effect.ElementTypeId);
-
-                            ElementType etype = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(effect.ElementTypeId);
-                            double finalCritChance = hit.CritChance;
-
-                            bool casterIgnoreResists = caster.FactionTypeId == FactionTypes.Player &&
-                                _partyService.HasPartyBuff(party, EntityTypes.Element, effect.ElementTypeId);
-
-
-                            bool targetHasResist = !casterIgnoreResists &&
-                                (FlagUtils.IsSet(target.ResistBits, elementBits) ||
-                                (target.FactionTypeId == FactionTypes.Player &&
-                                _partyService.HasPartyBuff(party, EntityTypes.Resist, effect.ElementTypeId)));
-
-
-                            if (targetHasResist)
-                            {
-                                if (!FlagUtils.IsSet(target.VulnBits, elementBits))
-                                {
-                                    damageScale *= etype.ResistDamagePercent / 100.0;
-                                    finalCritChance += etype.ResistCritPercentMod;
-                                    extraMessageBits |= ExtraMessageBits.Resists;
-                                }
-                            }
-                            else if (FlagUtils.IsSet(target.VulnBits, elementBits))
-                            {
-                                damageScale *= etype.VulnDamagePercent / 100.0;
-                                extraMessageBits |= ExtraMessageBits.Vulnerable;
-                                finalCritChance += etype.VulnCritPercentMod;
-                            }
-
-                            // Don't allow full crit chance per hit, too strong.
-                            finalCritChance *= critChanceScaling;
-
-                            if (!target.IsPlayer() && target.DefendRank == 0 && finalCritChance > 0 &&
-                                _rand.NextDouble() * 100 < finalCritChance && weakReductionPercent == 0)
-                            {
-                                newQuantity = target.Stats.Curr(StatTypes.Health);
-                                AddToActionDict(actionList, caster, target, "CRITS!", newQuantity, extraMessageBits, false, ECombatTextTypes.Damage, spell.Effects[0].ElementType.IdKey);
-                                didKill = true;
-                            }
-                            else
-                            {
-                                long defenseStatId = StatTypes.Armor;
-                                newQuantity = MathUtils.LongRange(finalMinQuantity, finalMaxQuantity, _rand);
-                                if (effect.EntityTypeId == EntityTypes.Damage)
-                                {
-                                    defenseStatId = StatTypes.Resist;
-                                }
-
-                                if (weakReductionPercent > 0)
-                                {
-                                    newQuantity = Math.Max(1, newQuantity * (100 - weakReductionPercent) / 100);
-                                }
-
-                                if (target.DefendRank == EDefendRanks.Defend)
-                                {
-                                    damageScale = combatSettings.DefendDamageScale;
-                                }
-                                else if (target.DefendRank == EDefendRanks.Guardian)
-                                {
-                                    damageScale = combatSettings.GuardianDamageScale;
-                                }
-                                else if (target.DefendRank == EDefendRanks.Taunt)
-                                {
-                                    damageScale *= combatSettings.TauntDamageScale;
-                                }
-
-                                newQuantity = (long)Math.Max(1, newQuantity * damageScale);
-
-                                long defenseStat = target.Stats.Max(defenseStatId);
-
-                                float defenseStatRatio = 1.0f * casterHit / Math.Max(1, defenseStat);
-
-                                double hitChance = defenseStatRatio / combatSettings.GuaranteedHitDefenseRatio;
-
-                                bool didMiss = false;
-                                if (_rand.NextDouble() > hitChance)
-                                {
-                                    AddToActionDict(actionList, caster, target, "Misses", 0, ExtraMessageBits.Misses, false, ECombatTextTypes.None, 0);
-                                    didMiss = true;
-                                    newQuantity = 0;
-                                }
-
-                                if (casterHit < defenseStat && !didMiss)
-                                {
-                                    double ratio = MathUtils.Clamp(combatSettings.MinHitToDefenseRatio
-                                        , 1.0 * casterHit / defenseStat,
-                                        combatSettings.MaxHitToDefenseRatio);
-
-                                    double newQuantityFract = ratio * newQuantity;
-
-                                    newQuantity = (long)newQuantityFract;
-
-                                    newQuantityFract -= newQuantity;
-
-                                    if (_rand.NextDouble() < newQuantityFract)
-                                    {
-                                        newQuantity++;
-                                    }
-
-                                    newQuantity = Math.Max(1, newQuantity);
-                                }
-
-                                if (target.FactionTypeId == FactionTypes.Player && _rand.NextDouble() * 100 < barrierValue * partyBuffSettings.GetProcChanceScale(PartyBuffs.Barrier))
-                                {
-                                    long removedQuantity = Math.Min(newQuantity, (long)(newQuantity * defenseScale * partyBuffSettings.GetEffectScale(PartyBuffs.Barrier) / 100.0));
-                                    newQuantity -= removedQuantity;
-
-                                    if (removedQuantity > 0)
-                                    {
-                                        AddToActionDict(actionList, target, target, "Absorbed", removedQuantity, 0, false, ECombatTextTypes.Defense, ElementTypes.Earth);
-                                    }
-                                }
-
-                                if (newQuantity > 0)
-                                {
-                                    string actionWord = (effect.EntityTypeId == EntityTypes.Attack ? "Attacks" :
-                                        effect.EntityTypeId == EntityTypes.Shoot ? "Shoots" :
-                                            fullEffect.ElementType.ObserverActionName);
-                                    AddToActionDict(actionList, caster, target, actionWord, newQuantity, extraMessageBits, true, ECombatTextTypes.Damage, spell.Effects[0].ElementType.IdKey);
-                                }
-                            }
-
-                            totalDamage += newQuantity;
-                            _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, -newQuantity, effect.ElementTypeId);
-
-                            // Sharpshooter do some extra damage.
-                            if (currHitTimes == 0 && newQuantity > 0 && effect.EntityTypeId == EntityTypes.Shoot && caster.IsPlayer() &&
-                                _rand.NextDouble() < cursedArrowsValue * partyBuffSettings.GetProcChanceScale(PartyBuffs.CursedArrows))
-                            {
-
-                                long effectTier = (long)(1 + _rand.NextDouble() * (cursedArrowsValue * cursedArrowsValue * partyBuffSettings.GetEffectScale(PartyBuffs.CursedArrows)));
-
-                                StatusEffect statusEffect = _gameData.Get<StatusEffectSettings>(_gs.ch).Get(effectTier);
-
-                                if (statusEffect != null && statusEffect.IdKey < StatusEffects.Dead)
-                                {
-
-                                    DisplayEffect displayEffect = new DisplayEffect()
-                                    {
-                                        MaxDuration = effect.MaxQuantity,
-                                        DurationLeft = effect.MaxQuantity, // MaxQuantity == 0 means infinite
-                                        EntityTypeId = EntityTypes.StatusEffect,
-                                        EntityId = effect.EntityId,
-                                    };
-                                    target.AddEffect(displayEffect);
-                                    fullAction = $"Accurate Hit! {target.Name} is affected by {statusEffect.Name}";
-                                }
-
-                            }
-                        }
-                        else if (effect.EntityTypeId == EntityTypes.Unit)
-                        {
-
-                            PartyMember partyMember = caster as PartyMember;
-                            long unitTypeId = effect.EntityId;
-
-                            if (partyMember == null && unitTypeId == 0)
-                            {
-                                unitTypeId = caster.UnitTypeId;
-                            }
-
-                            UnitType unitType = _gameData.Get<UnitTypeSettings>(null).Get(unitTypeId);
-
-                            if (unitType == null)
-                            {
-                                fullAction = $"{caster.Name} tries to summon an unknown ally.";
-                                continue;
-                            }
-
-                            if (party.Combat != null)
-                            {
-                                long quantity = MathUtils.LongRange(finalMinQuantity, finalMaxQuantity, _rand);
-
-                                if (caster is PartyMember member)
-                                {
-                                    quantity = GetSummonQuantity(party, member, unitType);
-                                }
-
-                                InitialCombatGroup icg = new InitialCombatGroup()
-                                {
-                                    Quantity = quantity,
-                                    UnitTypeId = unitTypeId,
-                                    FactionTypeId = caster.FactionTypeId,
-                                    Level = caster.Level,
-                                    Range = CrawlerCombatConstants.MinRange,
-                                };
-
-                                _combatService.AddCombatUnits(party, icg);
-                            }
-                            else if (partyMember != null)
-                            {
-                                long currRoleId = -1;
-
-                                List<Role> playerRoles = roleSettings.GetRoles(partyMember.Roles);
-                                foreach (Role role in playerRoles)
-                                {
-                                    if (role.BinaryBonuses.Any(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.Spell.IdKey))
-                                    {
-                                        partyMember.Summons = partyMember.Summons.Where(x => x.RoleId != role.IdKey).ToList();
-
-                                        currRoleId = role.IdKey;
-                                    }
-                                }
-
-                                partyMember.Summons.Add(new PartySummon()
-                                {
-                                    Name = unitType.Name,
-                                    UnitTypeId = unitType.IdKey,
-                                    RoleId = currRoleId,
-                                });
-                            }
-                        }
-                        else if (effect.EntityTypeId == EntityTypes.Healing)
-                        {
-                            if (maxHealing < 1)
-                            {
-                                break;
-                            }
-                            newQuantity += MathUtils.LongRange(finalMinQuantity, finalMaxQuantity, _rand);
-
-                            if (weakReductionPercent > 0)
-                            {
-                                newQuantity = Math.Max(1, newQuantity * (100 - weakReductionPercent) / 100);
-                            }
-
-                            if (newQuantity > maxHealing)
-                            {
-                                newQuantity = maxHealing;
-                            }
-                            maxHealing -= newQuantity;
-
-                            totalHealing += newQuantity;
-
-                            finalTarget = target;
-                            if (isEnemyTarget)
-                            {
-                                finalTarget = caster;
-                            }
-                            _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, totalHealing);
-                            AddToActionDict(actionList, caster, target, "Heals", newQuantity, 0, false, ECombatTextTypes.Healing, 0);
-                        }
-                        else if (effect.EntityTypeId == EntityTypes.PartyBuff)
-                        {
-                            double tier = _roleService.GetRoleScalingLevel(party, caster, RoleScalingTypes.Utility);
-
-                            party.Buffs.Set(effect.EntityId, _buffService.GetPartyBuffPower(party, effect.EntityId));
-                            _dispatcher.Dispatch(new UpdateCrawlerUI());
-                            _dispatcher.Dispatch(new ShowPartyMinimap() { Party = party });
-                        }
-                        else if (currHitTimes == 0)
-                        {
-                            if (effect.EntityTypeId == EntityTypes.StatusEffect)
-                            {
-                                IReadOnlyList<StatusEffect> allEffects = _gameData.Get<StatusEffectSettings>(null).GetData();
-
-                                if (effect.MaxQuantity < 0)
-                                {
-                                    double quantityFraction = 1 + Math.Abs(effect.MaxQuantity * combatSettings.ExtraCureStatusEffectsRemovedPerTier);
-
-                                    int finalQuantity = (int)quantityFraction;
-                                    if (_rand.NextDouble() < (quantityFraction - finalQuantity))
-                                    {
-                                        finalQuantity++;
-                                    }
-
-                                    for (int i = 0; i < allEffects.Count && finalQuantity > 0; i++)
-                                    {
-
-                                        if (allEffects[i].IdKey < 1)
-                                        {
-                                            continue;
-                                        }
-                                        finalQuantity--;
-                                        if (target.StatusEffects.HasBit(allEffects[i].IdKey))
-                                        {
-                                            target.RemoveStatusBit(effect.EntityId);
-                                            fullAction = $"{caster.Name} Cleanses {target.Name} of {allEffects[i].Name}";
-                                        }
-                                    }
-
-                                }
-                                else
-                                {
-                                    StatusEffect statusEffect = allEffects.FirstOrDefault(x => x.IdKey == effect.EntityId);
-                                    if (effect != null)
-                                    {
-
-                                        if (target.IsPlayer() && _partyService.HasPartyBuff(party, EntityTypes.StatusEffect, effect.EntityId))
-                                        {
-                                            ShowCombatLogText($"The party is immune to {effect.Name}!");
-                                        }
-                                        else
-                                        {
-                                            IDisplayEffect currentEffect = target.Effects.FirstOrDefault(x =>
-                                                x.EntityTypeId == EntityTypes.StatusEffect &&
-                                                x.EntityId == effect.EntityId);
-                                            if (currentEffect != null)
-                                            {
-                                                if (currentEffect.MaxDuration > 0)
-                                                {
-                                                    if (hit.MaxQuantity > currentEffect.MaxDuration)
-                                                    {
-                                                        currentEffect.MaxDuration = effect.MaxQuantity;
-                                                    }
-                                                    if (hit.MaxQuantity > currentEffect.DurationLeft)
-                                                    {
-                                                        currentEffect.DurationLeft = effect.MaxQuantity;
-                                                    }
-                                                }
-                                            }
-                                            else
-                                            {
-                                                DisplayEffect displayEffect = new DisplayEffect()
-                                                {
-                                                    MaxDuration = effect.MaxQuantity,
-                                                    DurationLeft = effect.MaxQuantity, // MaxQuantity == 0 means infinite
-                                                    EntityTypeId = EntityTypes.StatusEffect,
-                                                    EntityId = effect.EntityId,
-                                                };
-                                                target.AddEffect(displayEffect);
-                                                fullAction = $"{target.Name} is affected by {statusEffect.Name}";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            else if (currHitTimes == 0 && effect.EntityTypeId == EntityTypes.Stat && effect.MaxQuantity > 0)
-                            {
-                                if (party.Combat != null)
-                                {
-                                    StatVal statVal = party.Combat.StatBuffs.FirstOrDefault(x => x.StatTypeId == effect.EntityId);
-                                    if (statVal == null)
-                                    {
-                                        statVal = new StatVal()
-                                        {
-                                            StatTypeId = (short)effect.EntityId,
-                                        };
-                                        party.Combat.StatBuffs.Add(statVal);
-                                    }
-
-                                    if (statVal.Val < caster.Level)
-                                    {
-                                        statVal.Val = (int)caster.Level;
-                                        _crawlerStatService.CalcPartyStats(party, false);
-                                    }
-                                }
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(fullAction))
-                        {
-                            ShowCombatLogText(fullAction);
+                            await helper.ApplyEffectToUnit(party, args, spell, fullEffect, caster, target, token);
                         }
                     }
-                    critChanceScaling *= combatSettings.CritScaledownPerHit;
-
-                    if (target.FactionTypeId == FactionTypes.Player)
+                    if (!string.IsNullOrEmpty(args.FullAction))
                     {
-                        if (_rand.NextDouble() * 100 < partyBuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
+                        ShowCombatLogText(args.FullAction);
+                    }
+                }
+
+
+                args.CritChanceScaling *= _gameData.Get<CrawlerCombatSettings>(_gs.ch).CritScaledownPerHit;
+
+                if (target.FactionTypeId == FactionTypes.Player)
+                {
+                    double autoHealValue = party.Buffs.Get(PartyBuffs.Autoheal);
+                    if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
+                    {
+                        double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
+
+                        double healing = MathUtils.FloatRange(1, maxVal * maxVal, _rand);
+
+                        long currHealth = target.Stats.Curr(StatTypes.Health);
+                        long maxHealth = target.Stats.Max(StatTypes.Health);
+
+                        healing = Math.Min(healing, maxHealth - currHealth);
+
+                        int intHealing = (int)healing;
+
+                        if (intHealing > 0)
                         {
-                            double maxVal = autoHealValue * partyBuffSettings.GetEffectScale(PartyBuffs.Autoheal);
+                            AddToActionDict(args.ActionList, target, target, "AutoHeals", intHealing, 0, false, ECombatTextTypes.Healing, ElementTypes.Earth);
 
-                            double healing = MathUtils.FloatRange(1, maxVal * maxVal, _rand);
-
-                            currHealth = target.Stats.Curr(StatTypes.Health);
-                            maxHealth = target.Stats.Max(StatTypes.Health);
-
-                            healing = Math.Min(healing, maxHealth - currHealth);
-
-                            int intHealing = (int)healing;
-
-                            if (intHealing > 0)
-                            {
-                                AddToActionDict(actionList, target, target, "AutoHeals", intHealing, 0, false, ECombatTextTypes.Healing, ElementTypes.Earth);
-
-                                _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, intHealing);
-                            }
+                            _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, intHealing);
                         }
                     }
                 }
 
-                currHitTimes++;
+                args.CurrHitTimes++;
                 spell.HitsLeft--;
 
                 bool isDead = target.Stats.Curr(StatTypes.Health) <= 0;
@@ -1436,9 +1036,10 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 bool casterIsDead = false;
                 if (spell.HitsLeft < 1 || isDead)
                 {
-                    if (target.FactionTypeId == FactionTypes.Player && totalDamage > 0 && retaliateValue > 0)
+                    double retaliateValue = party.Buffs.Get(PartyBuffs.Retaliate);
+                    if (target.FactionTypeId == FactionTypes.Player && args.TotalDamage > 0 && retaliateValue > 0)
                     {
-                        long thornsDamage = (long)(totalDamage * retaliateValue * partyBuffSettings.GetEffectScale(PartyBuffs.Retaliate));
+                        long thornsDamage = (long)(args.TotalDamage * retaliateValue * args.BuffSettings.GetEffectScale(PartyBuffs.Retaliate));
 
                         thornsDamage = Math.Min(thornsDamage, caster.Stats.Curr(StatTypes.Health));
 
@@ -1448,18 +1049,18 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                             casterIsDead = caster.Stats.Curr(StatTypes.Health) <= 0;
 
-                            AddToActionDict(actionList, target, caster, "Retaliates Against", thornsDamage, 0, false, ECombatTextTypes.Thorns, ElementTypes.Earth);
+                            AddToActionDict(args.ActionList, target, caster, "Retaliates Against", thornsDamage, 0, false, ECombatTextTypes.Thorns, ElementTypes.Earth);
 
                         }
                     }
 
                     bool didShowMisses = false;
 
-                    List<string> actionListKeys = actionList.Keys.ToList();
+                    List<string> actionListKeys = args.ActionList.Keys.ToList();
                     for (int k = 0; k < actionListKeys.Count; k++)
                     {
                         bool showingMissNow = false;
-                        ActionListItem actionListItem = actionList[actionListKeys[k]];
+                        ActionListItem actionListItem = args.ActionList[actionListKeys[k]];
 
                         string extraWords = "";
 
@@ -1485,7 +1086,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         if (actionListItem.IsRegularHit && !didShowMisses)
                         {
                             long missCount = 0;
-                            foreach (ActionListItem item in actionList.Values)
+                            foreach (ActionListItem item in args.ActionList.Values)
                             {
                                 if (FlagUtils.IsSet(item.ExtraMessageBits, ExtraMessageBits.Misses))
                                 {
@@ -1505,9 +1106,9 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         {
                             if (actionListItem.Caster == caster && actionListItem.Target == target)
                             {
-                                ShowCombatDoober(actionListItem.Caster, actionListItem.Target, actionListItem.TotalQuantity, actionListItem.ElementTypeId, delayTime);
+                                ShowCombatDoober(actionListItem.Caster, actionListItem.Target, actionListItem.TotalQuantity, actionListItem.ElementTypeId, args.DelayTime);
                             }
-                            await Awaitable.WaitForSecondsAsync(delayTime, token);
+                            await Awaitable.WaitForSecondsAsync(args.DelayTime, token);
                             ShowFloatingCombatText(actionListItem.Caster, actionListItem.Target,
                                 ((actionListItem.TextType == ECombatTextTypes.Damage ||
                                 actionListItem.TextType == ECombatTextTypes.Thorns)
@@ -1517,20 +1118,17 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         ShowCombatLogText($"{actionListItem.Caster.Name} {actionListKeys[k]} {actionListItem.Target.Name} {hitText}"
                             + (actionListItem.TotalQuantity > 0 ? $" for {actionListItem.TotalQuantity} " : "")
                             + " " + $"{extraWords}");
-                        if (afterInitialTextTime > 0 && (k < actionListKeys.Count - 1 || !isDead))
+                        if (args.AfterInitialTextTime > 0 && (k < actionListKeys.Count - 1 || !isDead))
                         {
-                            await Awaitable.WaitForSecondsAsync(afterInitialTextTime, token);
+                            await Awaitable.WaitForSecondsAsync(args.AfterInitialTextTime, token);
                         }
                     }
 
-                    await CheckHandleUnitDeath(party, caster, target, afterInitialTextTime, token);
-                    await CheckHandleUnitDeath(party, target, caster, afterInitialTextTime, token);
+                    await CheckHandleUnitDeath(party, caster, target, args.AfterInitialTextTime, token);
+                    await CheckHandleUnitDeath(party, target, caster, args.AfterInitialTextTime, token);
                     _dispatcher.Dispatch(new UpdateCombatGroups());
-                    break;
                 }
             }
-
-            await Task.CompletedTask;
         }
 
         private async Awaitable CheckHandleUnitDeath(PartyData party, CrawlerUnit caster, CrawlerUnit target, float afterInitialTextTime, CancellationToken token)
@@ -1623,7 +1221,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             quantity *= _gameData.Get<CrawlerCombatSettings>(_gs.ch).SummonQuantityScale;
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 quantity *= 2;
             }

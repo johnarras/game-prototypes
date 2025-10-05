@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63abf9945ecaf949bb9dbae92f93a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
+  QuantityText: {fileID: 0}
+  NameText: {fileID: 0}
   PartyBuffId: 0
   ContentRoot: {fileID: 1669561361299173121}
   ImageName: 

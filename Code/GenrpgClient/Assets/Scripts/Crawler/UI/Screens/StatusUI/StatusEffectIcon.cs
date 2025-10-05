@@ -1,45 +1,19 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.Entities.UI;
+using Genrpg.Shared.Entities.Constants;
 
 namespace Assets.Scripts.Crawler.UI.StatusUI
 {
-    public class StatusEffectIcon : BaseBehaviour
+    public class StatusEffectIcon : EntityIcon
     {
-
-
-
-        public GImage Icon;
-
-
-
-
-        private long _statusEffectId;
-
         public long GetStatusEffectId()
         {
-            return _statusEffectId;
+            return _entityId;
         }
 
         public void InitData(long statusEffectId)
         {
 
-            _statusEffectId = statusEffectId;   
-
-            StatusEffect statusEffect = _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId);
-
-            if (Icon == null || statusEffect == null)
-            {
-                _clientEntityService.Destroy(gameObject);
-                return;
-            }
-
-
-            _assetService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, statusEffect.Icon, Icon, GetToken());
+            SetEntityData(EntityTypes.StatusEffect, statusEffectId, 1, 1);
 
         }
     }

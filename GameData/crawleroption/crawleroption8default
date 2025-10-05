@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Quests",
+  "Desc": "Have quests that grant rewards.",
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

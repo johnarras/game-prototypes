@@ -1,4 +1,6 @@
-﻿using Genrpg.Shared.Client.Core;
+﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Loot.Constants;
@@ -6,8 +8,9 @@ using Genrpg.Shared.Crawler.Loot.Helpers;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Quests.Services;
@@ -94,7 +97,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         private ITrainingService _trainingService = null;
         private ICrawlerWorldService _worldService = null;
         private IPartyService _partyService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
+        private ITextService _textService = null;
 
 
         private SetupDictionaryContainer<long, ICrawlerLootTypeHelper> _lootTypeHelpers = new SetupDictionaryContainer<long, ICrawlerLootTypeHelper>();
@@ -167,7 +171,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             bool allItemSlotsOk = false;
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 allItemSlotsOk = true;
             }
@@ -321,7 +325,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                     double statAmount = 2 + level / 7.0;
 
-                    if (_modeService.SinglePartyMember(party.Mode))
+                    if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
                     {
                         statAmount *= 1.5f;
                     }
@@ -574,7 +578,12 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 foreach (PartyMember member in party.GetActiveParty())
                 {
-                    member.Exp += loot.Exp;
+                    long oldLevel = member.Level;
+                    _partyService.AddExp(party, member, loot.Exp);
+                    if (member.Level > oldLevel)
+                    {
+                        loot.ExtraMessages.Add(_textService.HighlightText(member.Name + " Levelled up to level " + member.Level + "!", TextColors.ColorGold));
+                    }
                 }
 
                 party.Inventory.AddRange(loot.Items);
@@ -620,7 +629,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             long inventoryPerPlayer = lootSettings.InventoryPerPartyMember + (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.InventorySize);
 
             long count = party.GetActiveParty().Count;
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 count = 5;
             }

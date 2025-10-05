@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0245551aed547e54c98db05c5b586d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.BoardGame.Markers.UI.MarkerIcon
-  Name: {fileID: 6398712557898123429}
   Icon: {fileID: 5669424122486653966}
+  QuantityText: {fileID: 0}
+  NameText: {fileID: 6398712557898123429}
+  NameText: {fileID: 6398712557898123429}
   Button: {fileID: 3780695856622331370}
   ActiveHighlight: {fileID: 3512537995135964340}
 --- !u!222 &8460962285122886584
@@ -215,6 +217,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  Tooltip: {fileID: 0}
 --- !u!1 &7841758186664240252
 GameObject:
   m_ObjectHideFlags: 0

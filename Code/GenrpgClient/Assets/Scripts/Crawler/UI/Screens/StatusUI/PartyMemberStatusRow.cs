@@ -28,6 +28,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
         public ProgressBar ManaBar;
 
         public GText NameText;
+        public GText LevelText;
 
         private PartyMember _partyMember = null;
         private PartyData _party = null;
@@ -116,6 +117,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
                 _clientEntityService.SetActive(Root, true);
                 _uiService.SetText(NameText, _partyMember.Name);
+                _uiService.SetText(LevelText, _partyMember.Level.ToString());
 
                 CombatEffectUI?.SetData(_partyMember.Id, Portrait.AnimatedImage, PortraitParent, _partyMember.FactionTypeId);
 

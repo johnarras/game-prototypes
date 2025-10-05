@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -24,14 +25,18 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
 
+            PartyData party = _crawlerService.GetParty();
 
-            await Task.CompletedTask;
+            if (!_optionsService.HasOption(party, CrawlerOptions.PartyUpgrades))
+            {
+                return new CrawlerStateData(ECrawlerStates.GuildMain);
+            }
+
+
             CrawlerStateData stateData = CreateStateData();
+            await Task.CompletedTask;
 
             string oldErrorText = action.ExtraData as String;
-
-
-            PartyData party = _crawlerService.GetParty();
 
             stateData.AddText("Crawler Upgrades:\n");
             if (!string.IsNullOrEmpty(oldErrorText))

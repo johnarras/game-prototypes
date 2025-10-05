@@ -51,7 +51,7 @@ namespace Assets.Scripts.GameSettings.Services
 
 #endif
         const string BakedGameDataPathSuffix = "BakedGameData/";
-        public async Awaitable LoadCachedSettings(IClientGameState gs)
+        public async Awaitable LoadCachedSettings(IClientGameState gs, bool useBakedSettings)
         {
             GameData gameData = new ClientGameData();
             ClientRepositoryService repo = _repoService as ClientRepositoryService;
@@ -70,8 +70,8 @@ namespace Assets.Scripts.GameSettings.Services
                     bakedSettings = (ITopLevelSettings)_serializer.DeserializeWithType(textAsset.text, loader.GetClientType());
                 }
 
-                if (!_configContainer.Config.SelfContainedClient ||
-                    _configContainer.Config.ExportGameData)
+                if (!useBakedSettings && (!_configContainer.Config.SelfContainedClient ||
+                    _configContainer.Config.ExportGameData))
                 {
                     List<ITopLevelSettings> settingsChoices = new List<ITopLevelSettings>();
 
@@ -90,7 +90,7 @@ namespace Assets.Scripts.GameSettings.Services
                     // If baked settings are newer than the cached downloaded settings, use the new baked data in place of the cached.
                     // This comes up if you create a new client.
                     if (bakedSettings != null && downloadedSettings != null &&
-                        bakedSettings.SaveTime > downloadedSettings.SaveTime)
+                        bakedSettings.SaveTime >= downloadedSettings.SaveTime)
                     {
                         downloadedSettings = bakedSettings;
                     }

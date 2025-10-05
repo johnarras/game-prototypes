@@ -7,10 +7,7 @@ using Genrpg.Shared.BoardGame.Upgrades.WebApi;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Tiles.Settings;
 using Genrpg.Shared.Users.PlayerData;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -106,7 +103,7 @@ namespace Assets.Scripts.BoardGame.Tiles.UI
             {
                 EntityIcon icon = _clientEntityService.FullInstantiate(UpgradeIcon);
                 _clientEntityService.AddToParent(icon, UpgradeCostsAnchor);
-                icon.SetData(EntityTypes.UserCoin, reagent.UserCoinTypeId, reagent.CurrQuantity, reagent.RequiredQuantity);
+                icon.SetEntityData(EntityTypes.UserCoin, reagent.UserCoinTypeId, reagent.CurrQuantity, reagent.RequiredQuantity);
             }
         }
 

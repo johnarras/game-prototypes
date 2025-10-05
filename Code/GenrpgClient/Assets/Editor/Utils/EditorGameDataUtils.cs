@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.GameSettings.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Setup.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -30,7 +27,7 @@ public class EditorGameDataUtils
         _gs = Setup().GetAwaiter().GetResult();
         return _gs;
     }
-   
+
     public static List<IIdName> GetEntityListForEntityTypeId(long entityTypeId)
     {
         _gs = GetEditorGameState();
@@ -60,7 +57,7 @@ public class EditorGameDataUtils
             IClientConfigContainer configContainer = gs.loc.Get<IClientConfigContainer>();
 
             IClientGameDataService _clientGameDataService = gs.loc.Get<IClientGameDataService>();
-            await _clientGameDataService.LoadCachedSettings(gs);
+            await _clientGameDataService.LoadCachedSettings(gs, true);
             return gs;
         }
         catch (Exception ex)

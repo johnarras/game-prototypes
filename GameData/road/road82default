@@ -1,0 +1,20 @@
+{
+  "Id": "road82default",
+  "ParentId": "default",
+  "IdKey": 82,
+  "Name": "Via Domitia (Simulated Extension)",
+  "Desc": "A simulated Roman extension facilitating movement of troops and trade between Italy and Gaul (France).",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 31,
+  "EndCityId": 26,
+  "Maintenance": 4.0,
+  "Difficulty": 2.0,
+  "Danger": 2.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 4.0,
+  "WinterHeat": 2.0,
+  "Distance": 666.0,
+  "SaveTime": "2025-09-27T20:35:07.749Z"
+}

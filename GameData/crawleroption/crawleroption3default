@@ -1,0 +1,8 @@
+{
+  "Id": "crawleroption3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "One Dungeon",
+  "Desc": "One city, one dungeon with levels generated every time.",
+  "SaveTime": "2025-09-22T23:06:14.311Z"
+}

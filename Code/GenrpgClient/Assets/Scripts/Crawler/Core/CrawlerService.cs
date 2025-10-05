@@ -9,12 +9,13 @@ using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -31,6 +32,7 @@ using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
@@ -62,8 +64,7 @@ namespace Assets.Scripts.Crawler.Services
         private ILoadSaveService _loadSaveService = null;
         private ILocalLoadService _localLoadService = null;
         private ITextSerializer _textSerializer = null;
-        private IPartyService _partyService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
 
@@ -344,28 +345,21 @@ namespace Assets.Scripts.Crawler.Services
             return retval;
         }
 
-        private void InitPartyAfterLoad(PartyData party, bool newGame)
+        public void InitPartyAfterLoad(PartyData party)
         {
-            _awaitableService.ForgetAwaitable(InitPartyAfterLoadAsync(party, newGame));
+            _awaitableService.ForgetAwaitable(StartGameAfterLoadAsync(party));
         }
 
-        private async Awaitable InitPartyAfterLoadAsync(PartyData party, bool newGame)
+
+        private async Awaitable StartGameAfterLoadAsync(PartyData party)
         {
             if (party == null)
             {
                 return;
             }
 
-            if (newGame)
-            {
-                await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
-                _screenService.Close(ScreenNames.Loading);
-            }
-            else
-            {
-                _screenService.CloseAll(new List<long>() { ScreenNames.Loading });
-                await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
-            }
+            _screenService.CloseAll(new List<long>() { ScreenNames.Loading });
+            await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
 
             _party = party;
             _party.Inventory = ConvertItemsFromSaveToGame(_party, _party.SaveInventory);
@@ -412,23 +406,28 @@ namespace Assets.Scripts.Crawler.Services
         public bool ContinueGame()
         {
             PartyData party = _loadSaveService.ContinueGame<PartyData>();
-            InitPartyAfterLoad(party, false);
+            if (party != null)
+            {
+                InitPartyAfterLoad(party);
+            }
             return party != null;
         }
 
 
-        private PartyData CreatePartyDataForSlot(long slot)
+        private PartyData LoadPremadeParty(long slot)
         {
             TextAsset textAsset = _localLoadService.LocalLoad<TextAsset>("Config/PartyDataPartyData1");
+            PartyData party = null;
             if (textAsset != null)
             {
-                PartyData partyData = _textSerializer.Deserialize<PartyData>(textAsset.text);
-                if (partyData != null)
+                party = _textSerializer.Deserialize<PartyData>(textAsset.text);
+                if (party != null)
                 {
-                    return partyData;
+                    return party;
                 }
             }
-            PartyData party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next() };
+
+            party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next() };
 
             return party;
         }
@@ -441,9 +440,6 @@ namespace Assets.Scripts.Crawler.Services
             {
                 return null;
             }
-
-            InitPartyAfterLoad(party, false);
-
             return party;
         }
 
@@ -508,6 +504,10 @@ namespace Assets.Scripts.Crawler.Services
                                 ChangeState(currentData, action, token);
                                 break;
                             }
+                            else if (action.OnClickAction != null)
+                            {
+                                action.OnClickAction();
+                            }
                         }
                         else if (_equivalentKeys.TryGetValue(action.Key, out char otherKey))
                         {
@@ -550,26 +550,47 @@ namespace Assets.Scripts.Crawler.Services
             }
             return false;
         }
-        public async Awaitable NewGame(ECrawlerModes mode)
+        public async Awaitable NewGame(int options)
         {
             _screenService.CloseAll();
             _screenService.Open(ScreenNames.Loading);
 
-            PartyData party = CreatePartyDataForSlot(LoadSaveConstants.MinSlot);
-            _party = party;
-            _party.Mode = mode;
-            _party.Seed = _rand.Next();
-            _party.CurrPos = new MapPosition();
-            await _worldService.GenerateWorld(_party);
+            _party = new PartyData();
+            _party.Options = options;
 
-            _partyService.AddGold(party, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
-
-            if (!_modeService.StartWithPremadeParty(mode))
+            if (!_optionsService.HasOption(_party, CrawlerOptions.OneCharacter))
             {
-                _party.Members.Clear();
+                _party = LoadPremadeParty(LoadSaveConstants.MinSlot);
+            }
+            _party.Options = options;
+            _party.Seed = _rand.Next();
+
+            _party.Flags = 0;
+            _party.DaysPlayed = 0;
+            _party.HourOfDay = 0;
+            _party.Currencies.Set(CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+
+            _party.NextId = 1;
+            foreach (PartyMember member in _party.Members)
+            {
+                member.Exp = 0;
+                member.Level = 1;
+                foreach (UnitRole unitRole in member.Roles)
+                {
+                    unitRole.Level = 1;
+                }
             }
 
-            InitPartyAfterLoad(party, true);
+            await StartGameAfterLoadAsync(_party);
+
+            await _worldService.GenerateWorld(_party);
+
+            await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
+            _screenService.Close(ScreenNames.Loading);
+
+
+
+            ChangeState(ECrawlerStates.GuildMain, GetToken());
         }
 
         public List<IStateHelper> GetAllStateHelpers()

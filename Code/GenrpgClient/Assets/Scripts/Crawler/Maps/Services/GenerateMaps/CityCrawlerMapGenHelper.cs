@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
             await Task.CompletedTask;
-            MyRandom rand = new MyRandom(genData.World.Seed / 2 + genData.World.MaxMapId * 17);
+            MyRandom rand = new MyRandom(genData.World.Seed / 2 + genData.World.GetMaxMapId() / 7 + 13);
 
             IReadOnlyList<ZoneType> allZoneTypes = _gameData.Get<ZoneTypeSettings>(null).GetData();
 
@@ -51,7 +52,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             int cityEdgeDistance = 1;
 
-            if (!_modeService.SingleCityMode(party.Mode))
+            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 // X on border, y in middle.
                 if (rand.NextDouble() < 0.5f)
@@ -132,7 +133,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            if (!_modeService.SingleCityMode(party.Mode))
+            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 int visGateX = 0;
                 int visGateZ = 0;
@@ -329,7 +330,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 dungeonCount++;
             }
 
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 dungeonCount = 1;
             }
@@ -361,7 +362,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map.SetEntity((int)currPoint.X, (int)currPoint.Z, EntityTypes.Building, dungeonMap.BuildingTypeId);
 
-                if (_modeService.SingleCityMode(party.Mode))
+                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
                 {
                     map.Details.Add(new MapCellDetail() { EntityTypeId = EntityTypes.Map, EntityId = dungeonMap.IdKey, X = currPoint.X, Z = currPoint.Z, ToX = -1, ToZ = -1 });
                 }

@@ -1,6 +1,7 @@
 ﻿
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -43,35 +44,40 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             }
             memberData.Messages.Clear();
 
-
-
-            stateData.AddText($"{member.Name}: has {member.UpgradePoints} Upgrade Point" + StrUtils.AddPluralSuffix(member.UpgradePoints) + ".");
-            stateData.AddText($"Members receive an upgrade point every {upgradeSettings.LevelsPerPoint} levels.");
-            stateData.AddText($"Click a row to upgrade. (Max Tier is {upgradeSettings.MaxTier})");
-
-            IReadOnlyList<MemberUpgrade> upgrades = upgradeSettings.GetData();
-
-            foreach (MemberUpgrade upgrade in upgrades)
+            if (!_optionsService.HasOption(party, CrawlerOptions.MemberUpgrades))
             {
-                int tier = member.Upgrades.Get(upgrade.IdKey);
-                double bonus = _upgradeService.GetUnitBonus(member, upgrade.EntityTypeId, upgrade.EntityId);
-                stateData.Actions.Add(new CrawlerStateAction($"{upgrade.Name} Tier: {tier}/{upgradeSettings.MaxTier} Bonus:{bonus} ({upgrade.BonusPerTier}/tier)", CharCodes.None, ECrawlerStates.TrainingUpgradeMember,
-                onClickAction: delegate ()
-                {
-                    _trainingService.TrainPartyMemberUpgrade(party, member, upgrade.IdKey, memberData);
-                },
-                    extraData: memberData, pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.MemberUpgrades, upgrade.IdKey); }));
-
+                stateData.AddText("Member upgrades are disabled.");
             }
 
-            foreach (PartyMember pm in party.GetActiveParty())
+            else
             {
-                if (pm != member)
+                stateData.AddText($"{member.Name}: has {member.UpgradePoints} Upgrade Point" + StrUtils.AddPluralSuffix(member.UpgradePoints) + ".");
+                stateData.AddText($"Members receive an upgrade point every {upgradeSettings.LevelsPerPoint} levels.");
+                stateData.AddText($"Click a row to upgrade. (Max Tier is {upgradeSettings.MaxTier})");
+
+                IReadOnlyList<MemberUpgrade> upgrades = upgradeSettings.GetData();
+
+                foreach (MemberUpgrade upgrade in upgrades)
                 {
-                    stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingUpgradeMember, extraData: new TrainingMemberData() { Member = pm }));
+                    int tier = member.Upgrades.Get(upgrade.IdKey);
+                    double bonus = _upgradeService.GetUnitBonus(member, upgrade.EntityTypeId, upgrade.EntityId);
+                    stateData.Actions.Add(new CrawlerStateAction($"{upgrade.Name} Tier: {tier}/{upgradeSettings.MaxTier} Bonus:{bonus} ({upgrade.BonusPerTier}/tier)", CharCodes.None, ECrawlerStates.TrainingUpgradeMember,
+                    onClickAction: delegate ()
+                    {
+                        _trainingService.TrainPartyMemberUpgrade(party, member, upgrade.IdKey, memberData);
+                    },
+                        extraData: memberData, pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.MemberUpgrades, upgrade.IdKey); }));
+
+                }
+
+                foreach (PartyMember pm in party.GetActiveParty())
+                {
+                    if (pm != member)
+                    {
+                        stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingUpgradeMember, extraData: new TrainingMemberData() { Member = pm }));
+                    }
                 }
             }
-
 
             stateData.Actions.Add(new CrawlerStateAction("Back to member select", CharCodes.Escape, ECrawlerStates.TrainingUpgradeSelect));
 

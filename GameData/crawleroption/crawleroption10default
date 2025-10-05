@@ -1,0 +1,10 @@
+{
+  "Id": "crawleroption10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Member Upgrades",
+  "Desc": "Each party member has upgrades.",
+  "AtlasPrefix": "",
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-09-23T00:02:58.853Z"
+}

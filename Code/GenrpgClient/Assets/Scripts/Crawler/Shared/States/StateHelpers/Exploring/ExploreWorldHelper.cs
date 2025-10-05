@@ -65,14 +65,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             CrawlerStateData stateData = CreateStateData();
             stateData.ClearBGImage = true;
 
-
-
-            long maxPartySize = _partyService.GetMaxPartySize(party);
-
-            for (int m = 1; m <= maxPartySize; m++)
-            {
-                AddClickPartyMemberButton(stateData, party, m);
-            }
+            _partyService.AddClickPartyMemberButtons(stateData, party);
 
             stateData.Actions.Add(new CrawlerStateAction(null, rowFiller: true));
 
@@ -81,6 +74,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 
             stateData.AddText("Use WASDQE to move.");
+
             stateData.Actions.Add(new CrawlerStateAction("Cast", 'C'));
             stateData.Actions.Add(new CrawlerStateAction("Map", 'M'));
             stateData.Actions.Add(new CrawlerStateAction("Quest Log", 'L'));
@@ -91,6 +85,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.Actions.Add(new CrawlerStateAction("Guild Hall", 'G', ECrawlerStates.GuildMain));
             stateData.Actions.Add(new CrawlerStateAction("Buffs", 'B'));
             stateData.Actions.Add(new CrawlerStateAction("Use Item", 'U'));
+
+
             if (map != null)
             {
                 if (party.HasFlag(PartyFlags.HasRecall) && map.CrawlerMapTypeId != CrawlerMapTypes.City)
@@ -120,24 +116,16 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             };
 
             stateData.Actions.Add(new CrawlerStateAction(null, rowFiller: true));
-            int moveKeysShown = 0;
 
             IReadOnlyList<MovementKeyCode> moveKeys = _moveService.GetMovementKeyCodes();
 
+            stateData.AddText("USE WASD or Arrow Keys to Move");
             foreach (MovementKeyCode nmk in moveKeys)
             {
                 stateData.Actions.Add(new CrawlerStateAction(nmk.Name, nmk.Key, ECrawlerStates.DoNotChangeState, () =>
                 {
-                    // Don't need this here because we now have click listeners on the actual movement buttons.
-                    // It's a bit janky but trying to move to that system for main UI pieces.
-                    //_moveService.AddMovementKeyInput(nmk.Key, token);
+                    _moveService.AddMovementKeyInput(nmk.Key, token);
                 }, hideText: true));
-                moveKeysShown++;
-
-                if (moveKeysShown % 3 == 0)
-                {
-                    stateData.Actions.Add(new CrawlerStateAction(null, rowFiller: true));
-                }
             }
 
             if (mapData == null)
@@ -176,21 +164,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             await _crawlerMapService.EnterMap(party, mapData, token);
 
             return stateData;
-        }
-
-        private void AddClickPartyMemberButton(CrawlerStateData stateData, PartyData party, int index)
-        {
-
-            stateData.Actions.Add(new CrawlerStateAction("", (char)(index + '0'),
-                ECrawlerStates.ExploreWorld,
-                onClickAction: () =>
-                {
-                    PartyMember member = party.GetMemberInSlot(index);
-                    if (member != null)
-                    {
-                        _dispatcher.Dispatch(new CrawlerCharacterScreenData() { Unit = member });
-                    }
-                }));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Items.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
@@ -11,15 +12,14 @@ using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Services;
-using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Services;
 using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
@@ -38,7 +38,6 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
@@ -57,8 +56,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
     public interface ICrawlerCombatService : IInitializable
     {
         Task<bool> StartCombat(PartyData party);
-        Task EndCombatRound(PartyData party);
-        bool SetMonsterActions(PartyData party);
+        Task<ECombatStepResults> EndCombatRound(PartyData party, CancellationToken token);
         bool ReadyForCombat(PartyData party);
         bool IsDisabled(CrawlerUnit unit);
         bool IsActionBlocked(PartyData party, CrawlerUnit unit, long combatActionId);
@@ -66,7 +64,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         List<UnitAction> GetActionsForPlayer(PartyData party, CrawlerUnit unit);
         UnitAction GetActionFromSpell(PartyData party, CrawlerUnit unit, CrawlerSpell spell,
             List<UnitAction> currentActions = null, Item castingItem = null);
-        void SetInitialActions(PartyData party);
         void AddCombatUnits(PartyData party, InitialCombatGroup initial);
         void EndCombat(PartyData party);
         string ShowGroupStatus(CombatGroup group);
@@ -93,7 +90,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         private IInfoService _infoService = null;
         private ICrawlerQuestService _questService = null;
         private ICrawlerItemService _crawlerItemService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
         private ICrawlerUpgradeService _crawlerUpgradeService = null;
 
         public async Task Initialize(CancellationToken token)
@@ -126,7 +123,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.BaseGroupSizeLevelCap + difficulty * startSettings.MaxGroupSizePerLevel));
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 maxGroupSize /= 2;
             }
@@ -724,7 +721,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             return true;
         }
 
-        public async Task EndCombatRound(PartyData party)
+        public async Task<ECombatStepResults> EndCombatRound(PartyData party, CancellationToken token)
         {
 
             try
@@ -732,7 +729,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 if (party.Combat == null || !ReadyForCombat(party))
                 {
                     _dispatcher.Dispatch(new UpdateCombatGroups());
-                    return;
+                    return ECombatStepResults.Continue;
                 }
 
                 CrawlerCombatState combat = party.Combat;
@@ -783,126 +780,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             {
                 _logService.Exception(ex, "Combat ");
             }
+            return ECombatStepResults.Continue;
         }
 
-        public void SetInitialActions(PartyData party)
-        {
-            // Pass 1 defend and hide
-
-
-            List<long> defenderRoleIds = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.Guardian).Select(x => x.IdKey).ToList();
-
-            foreach (CrawlerUnit unit in party.Combat.PartyGroup.Units)
-            {
-                if (party.Combat.PartyGroup.Units.Any(x => x.Actions.Count < x.ActionsThisRound ||
-                !unit.Actions.Any(x => x.DidCast)))
-                {
-                    continue;
-                }
-
-
-                unit.DefendRank = EDefendRanks.None;
-
-                foreach (UnitRole unitRole in unit.Roles)
-                {
-                    if (defenderRoleIds.Contains(unitRole.RoleId))
-                    {
-                        unit.DefendRank = EDefendRanks.Guardian;
-                        unit.IsGuardian = true;
-                        break;
-                    }
-                }
-
-                if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Defend))
-                {
-                    if (unit.DefendRank == EDefendRanks.Guardian)
-                    {
-                        unit.DefendRank = EDefendRanks.Taunt;
-                    }
-                    else
-                    {
-                        unit.DefendRank = EDefendRanks.Defend;
-                    }
-                }
-                else if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Hide))
-                {
-                    unit.HideExtraRange += CrawlerCombatConstants.RangeDelta;
-                }
-            }
-
-            foreach (CombatGroup cgroup in party.Combat.Allies)
-            {
-                if (cgroup == party.Combat.PartyGroup)
-                {
-                    continue;
-                }
-
-                foreach (CrawlerUnit unit in cgroup.Units)
-                {
-                    if (unit.IsGuardian)
-                    {
-                        unit.DefendRank = EDefendRanks.Guardian;
-                    }
-                }
-            }
-        }
-
-        public bool SetMonsterActions(PartyData party)
-        {
-            if (party.Combat.PartyGroup.CombatGroupAction != ECombatGroupActions.Advance &&
-                (party.Combat == null || !ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
-                party.GetActiveParty().Any(x => x.Actions.Count < x.ActionsThisRound)))
-            {
-                return false;
-            }
-
-            CrawlerCombatState combat = party.Combat;
-
-            List<CrawlerUnit> tauntUnits = new List<CrawlerUnit>();
-            List<CrawlerUnit> hiddenUnits = new List<CrawlerUnit>();
-            List<CrawlerUnit> allUnits = new List<CrawlerUnit>();
-            List<CrawlerUnit> nonGuardianPlayers = new List<CrawlerUnit>();
-
-            foreach (CombatGroup combatGroup in combat.Allies)
-            {
-                List<CrawlerUnit> okUnits = combatGroup.Units.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead) &&
-                !x.StatusEffects.HasBit(StatusEffects.Possessed)).ToList();
-
-                tauntUnits.AddRange(okUnits.Where(x => x.DefendRank >= EDefendRanks.Guardian || !x.IsPlayer()));
-                allUnits.AddRange(okUnits);
-                hiddenUnits.AddRange(okUnits.Where(x => x.HideExtraRange > 0));
-            }
-
-            nonGuardianPlayers = allUnits.Where(x => x.IsPlayer()).Except(tauntUnits).Except(hiddenUnits).ToList();
-
-            List<CrawlerUnit> monsterUnits = tauntUnits.Where(x => !x.IsPlayer()).ToList();
-
-            if (monsterUnits.Count > 0 && !tauntUnits.Any(x => x.DefendRank == EDefendRanks.Taunt))
-            {
-                tauntUnits = monsterUnits;
-            }
-
-            List<CrawlerUnit> nonHiddenUnits = tauntUnits.Where(x => x.HideExtraRange == 0).ToList();
-            if (nonHiddenUnits.Count > 0)
-            {
-                tauntUnits = nonHiddenUnits;
-            }
-
-            foreach (CombatGroup group in combat.Allies)
-            {
-                if (group != party.Combat.PartyGroup && party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Fight)
-                {
-                    SelectGroupActions(party, group, new List<CrawlerUnit>(), hiddenUnits, nonGuardianPlayers, combat.Allies, combat.Enemies);
-                }
-            }
-
-            foreach (CombatGroup group in combat.Enemies)
-            {
-                SelectGroupActions(party, group, tauntUnits, hiddenUnits, nonGuardianPlayers, combat.Enemies, combat.Allies);
-            }
-
-            return true;
-        }
 
         public void RemoveEndOfCombatEffects(PartyData party)
         {
@@ -918,227 +798,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             }
         }
 
-        public void SelectGroupActions(PartyData party, CombatGroup group,
-            List<CrawlerUnit> tauntUnits,
-            List<CrawlerUnit> hiddenUnits,
-            List<CrawlerUnit> nonGuardianPlayers,
-            List<CombatGroup> friends,
-            List<CombatGroup> foes)
-        {
-            CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
-
-            group.CombatGroupAction = ECombatGroupActions.None;
-            if (group.Units.Count > 0 && group.Range > CrawlerCombatConstants.MinRange)
-            {
-                bool shouldAdvance = _rand.NextDouble() < combatSettings.GroupAdvanceChance;
-
-                if (!shouldAdvance && group.UnitType != null)
-                {
-                    TribeType tribeType = _gameData.Get<TribeSettings>(_gs.ch).Get(group.UnitType.TribeTypeId);
-
-                    if (!tribeType.HasRangedAttacks)
-                    {
-                        shouldAdvance = true;
-                    }
-                }
-
-
-                if (shouldAdvance)
-                {
-                    group.CombatGroupAction = ECombatGroupActions.Advance;
-                }
-            }
-
-            if (group.CombatGroupAction == ECombatGroupActions.None)
-            {
-                group.CombatGroupAction = ECombatGroupActions.Fight;
-
-                List<CrawlerSpell> summonSpells = new List<CrawlerSpell>();
-                List<CrawlerSpell> nonSummonSpells = new List<CrawlerSpell>();
-
-
-                UnitType groupUnit = _gameData.Get<UnitTypeSettings>(_gs.ch).Get(group.UnitType.IdKey);
-
-                if (groupUnit != null)
-                {
-                    List<long> spellIds = groupUnit.Effects.Where(x => x.EntityTypeId == EntityTypes.CrawlerSpell).Select(x => x.EntityId).ToList();
-                    IReadOnlyList<CrawlerSpell> currentSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => spellIds.Contains(x.IdKey)).ToList();
-
-                    summonSpells = currentSpells.Where(x => x.Effects.Any(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId > 0)).ToList();
-                    nonSummonSpells = currentSpells.Except(summonSpells).ToList();
-                }
-
-                foreach (CrawlerUnit unit in group.Units)
-                {
-                    SelectMonsterAction(party, group, unit, tauntUnits, hiddenUnits, nonGuardianPlayers, friends, foes, summonSpells, nonSummonSpells);
-                }
-            }
-        }
-
-        public void SelectMonsterAction(PartyData party, CombatGroup unitGroup,
-            CrawlerUnit unit, List<CrawlerUnit> tauntUnits,
-            List<CrawlerUnit> hiddenUnits,
-            List<CrawlerUnit> nonGuardianPlayers,
-            List<CombatGroup> allyGroups, List<CombatGroup> enemyGroups, List<CrawlerSpell> summonSpells,
-            List<CrawlerSpell> nonSummonSpells)
-        {
-            CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
-            CrawlerMonsterSettings monsterSettings = _gameData.Get<CrawlerMonsterSettings>(_gs.ch);
-            CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
-
-
-            if (party.Combat == null)
-            {
-                return;
-            }
-
-            if (unit.IsPlayer())
-            {
-                if (!unit.StatusEffects.HasBit(StatusEffects.Possessed))
-                {
-                    return;
-                }
-                else
-                {
-                    unit.ActionsThisRound = 1;
-                    List<CombatGroup> temp = allyGroups;
-                    allyGroups = enemyGroups;
-                    enemyGroups = temp;
-                    tauntUnits = new List<CrawlerUnit>();
-                    return;
-                }
-            }
-            else
-            {
-                unit.ActionsThisRound = 1;
-            }
-
-            double roleScalingValue = _roleService.GetRoleScalingLevel(party, unit, RoleScalingTypes.SpellDam);
-
-            nonSummonSpells = nonSummonSpells.Where(x => x.RoleScalingTier <= roleScalingValue).ToList();
-
-            List<CrawlerUnit> targets = new List<CrawlerUnit>();
-
-            if (unit.FactionTypeId != FactionTypes.Player)
-            {
-                if (hiddenUnits.Count > 0 && _rand.Next() % 100 < unit.Stats.Max(StatTypes.DetectHidden))
-                {
-                    targets.AddRange(hiddenUnits);
-                }
-                else if (nonGuardianPlayers.Count > 0 && _rand.Next() % 100 < unit.Stats.Max(StatTypes.SmartTarget))
-                {
-                    targets.AddRange(nonGuardianPlayers);
-                }
-                else if (tauntUnits.Count > 0)
-                {
-                    targets.AddRange(tauntUnits);
-                }
-            }
-
-            if (targets.Count < 1)
-            {
-                targets = SelectRandomGroupUnits(enemyGroups);
-            }
-
-            UnitAction combatAction = new UnitAction()
-            {
-                Caster = unit,
-                FinalTargets = targets,
-            };
-
-            // Only enemy monsters summon in combat
-            if (!allyGroups.Contains(party.Combat.PartyGroup) && summonSpells.Count > 0 && _rand.NextDouble() < combatSettings.SummonChance)
-            {
-                CrawlerSpell spell = summonSpells[_rand.Next(summonSpells.Count)];
-
-                long cost = _crawlerSpellService.GetPowerCost(party, unit, spell);
-
-                long mana = unit.Stats.Curr(StatTypes.Mana);
-
-                if (mana >= cost)
-                {
-                    combatAction.CombatActionId = CombatActions.Cast;
-                    combatAction.Spell = spell;
-                    combatAction.FinalTargets = new List<CrawlerUnit>() { unit };
-                }
-            }
-
-            if (combatAction.Spell == null && nonSummonSpells.Count > 0 && _rand.NextDouble() < combatSettings.CastSpellChance)
-            {
-                CrawlerSpell spell = nonSummonSpells[_rand.Next(nonSummonSpells.Count)];
-
-                long cost = _crawlerSpellService.GetPowerCost(party, unit, spell);
-
-                long mana = unit.Stats.Curr(StatTypes.Mana);
-
-                if (mana >= cost)
-                {
-                    combatAction.CombatActionId = CombatActions.Cast;
-                    combatAction.Spell = spell;
-                    combatAction.FinalTargets = targets;
-
-                    if (!_crawlerSpellService.IsEnemyTarget(spell.TargetTypeId))
-                    {
-                        if (spell.TargetTypeId == TargetTypes.AllAllies)
-                        {
-                            combatAction.FinalTargets = new List<CrawlerUnit>();
-                            combatAction.FinalTargetGroups = new List<CombatGroup>(allyGroups);
-                        }
-                        else
-                        {
-                            combatAction.FinalTargets = new List<CrawlerUnit>() { unit };
-                        }
-                    }
-                    else
-                    {
-                        if (spell.TargetTypeId == TargetTypes.OneEnemyGroup)
-                        {
-                            if (enemyGroups.Count > 0)
-                            {
-                                CombatGroup egroup = enemyGroups[_rand.Next(enemyGroups.Count)];
-                                combatAction.FinalTargetGroups = new List<CombatGroup> { egroup };
-                                //combatAction.FinalTargets = new List<CrawlerUnit>(egroup.Units);
-                            }
-                        }
-                        else if (spell.TargetTypeId == TargetTypes.EnemyInEachGroup)
-                        {
-                            combatAction.FinalTargets = new List<CrawlerUnit>();
-                            combatAction.FinalTargetGroups = new List<CombatGroup>(enemyGroups);
-                        }
-                    }
-                }
-            }
-
-            // Now attack if we didn't cast a spell.
-            if (combatAction.Spell == null)
-            {
-                combatAction.Spell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(CrawlerSpells.AttackId);
-                combatAction.CombatActionId = CombatActions.Attack;
-                if (unitGroup.Range > CrawlerCombatConstants.MinRange || !enemyGroups.Any(x => x.Range <= CrawlerCombatConstants.MinRange))
-                {
-                    combatAction.Spell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(CrawlerSpells.ShootId);
-                    combatAction.CombatActionId = CombatActions.Shoot;
-                }
-            }
-
-            if (combatAction.Spell != null)
-            {
-                unit.Actions.Clear();
-                unit.AddAction(combatAction);
-            }
-        }
-
-        private List<CrawlerUnit> SelectRandomGroupUnits(List<CombatGroup> groups)
-        {
-            List<CrawlerUnit> allUnits = new List<CrawlerUnit>();
-
-            groups = groups.Where(x => x.Units.Any(u => !u.StatusEffects.HasBit(StatusEffects.Dead))).ToList();
-            if (groups.Count > 0)
-            {
-                return groups[_rand.Next() % groups.Count].Units;
-            }
-            return null;
-        }
 
         public UnitAction GetActionFromSpell(PartyData party, CrawlerUnit caster, CrawlerSpell spell,
             List<UnitAction> currentActions = null, Item item = null)
@@ -1497,7 +1156,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             long totalActions = (long)(1 + _crawlerUpgradeService.GetPartyBonus(party, PartyUpgrades.ActionCount));
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 totalActions++;
             }

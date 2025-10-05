@@ -6,8 +6,9 @@ using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -40,7 +41,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         protected ILootGenService _lootService = null;
         protected ITextService _textService = null;
         protected IPartyService _partyService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
 
         public AnimatedSprite Image;
         public GText NameText;
@@ -68,7 +69,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
             PartyData party = _crawlerService.GetParty();
 
-            if (_modeService.SinglePartyMember(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
             {
                 allSlotsOk = true;
             }
@@ -250,6 +251,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
                 PartyData party = _crawlerService.GetParty();
                 if (party != null && Items != null && party.Inventory.Contains(dragItem.GetDataItem()))
                 {
+                    _partyService.AddGold(party, dragItem.GetDataItem().SellValue);
                     party.Inventory.Remove(dragItem.GetDataItem());
                     Items.RemoveIcon(dragItem.GetDataItem().Id);
                 }

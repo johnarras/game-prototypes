@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Drop Gives Money",
+  "NameId": "",
+  "Desc": "Dropping an item in your character screen gives the vendor money.",
+  "SaveTime": "2025-10-04T20:35:22.375Z"
+}

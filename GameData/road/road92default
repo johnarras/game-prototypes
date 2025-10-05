@@ -1,0 +1,20 @@
+{
+  "Id": "road92default",
+  "ParentId": "default",
+  "IdKey": 92,
+  "Name": "Ancient Trade Road of Xi'an and Beijing",
+  "Desc": "A vital road connecting Xi'an and Beijing.",
+  "Icon": "Road",
+  "Art": "Road",
+  "StartCityId": 21,
+  "EndCityId": 79,
+  "Maintenance": 3.0,
+  "Difficulty": 2.0,
+  "Danger": 3.0,
+  "SummerRain": 3.0,
+  "SummerHeat": 3.0,
+  "WinterRain": 3.0,
+  "WinterHeat": 3.0,
+  "Distance": 753.0,
+  "SaveTime": "2025-09-27T20:35:07.749Z"
+}

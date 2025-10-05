@@ -1,20 +1,14 @@
-﻿using Assets.Scripts.WorldCanvas.Interfaces;
+﻿using Assets.Scripts.Entities.UI;
+using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Rewards.UI
 {
-    public class PopupRewardIcon : BaseBehaviour, IDynamicUIItem
+    public class PopupRewardIcon : EntityIcon, IDynamicUIItem
     {
         public float ElapsedSeconds { get; set; }
-        public GImage Icon;
-        public GText Quantity;
 
         private float _displayTime;
         private float _distancePerSecond;
@@ -22,10 +16,10 @@ namespace Assets.Scripts.Rewards.UI
 
         public void SetData(IReward reward, float displayTime, float distancePerSecond)
         {
+            SetEntityData(reward.EntityTypeId, reward.EntityId, reward.Quantity);
             _displayTime = displayTime;
             _distancePerSecond = distancePerSecond;
-            _uiService.SetText(Quantity, reward.Quantity > 1 ? "+" + StrUtils.PrintCommaValue(reward.Quantity) : "");
-            _assetService.LoadEntityIcon(reward.EntityTypeId, reward.EntityId, Icon, GetToken());
+            _uiService.SetText(QuantityText, reward.Quantity > 1 ? "+" + StrUtils.PrintCommaValue(reward.Quantity) : "");
         }
 
         public bool FrameUpdateIsComplete(float deltaTime)

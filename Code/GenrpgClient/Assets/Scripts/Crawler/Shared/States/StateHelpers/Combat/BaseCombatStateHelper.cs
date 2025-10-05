@@ -1,5 +1,4 @@
 ﻿using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
@@ -9,7 +8,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         public override bool HideBigPanels() { return false; }
 
         protected ICrawlerUpgradeService _roguelikeUpgradeService = null;
-        protected ICrawlerModeService _modeService = null;
 
         protected override CrawlerStateData CreateStateData()
         {

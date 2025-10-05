@@ -14,7 +14,10 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         private ITimeOfDayService _timeService;
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            await _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Move);
+            if (status.MovedPosition)
+            {
+                await _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Move);
+            }
         }
     }
 }

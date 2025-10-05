@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -41,9 +41,10 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         long GetStatBonus(PartyData party, CrawlerUnit unit, long statId);
 
         void Add(PartyData party, CrawlerUnit unit, long statTypeId, int statCategory, long value, long elementTypeId = 0);
+
+        void FullyRestParty(PartyData party);
+
     }
-
-
 
     public class CrawlerStatService : ICrawlerStatService
     {
@@ -54,7 +55,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
         protected IPartyService _partyService = null;
-        private ICrawlerModeService _modeService = null;
+        private ICrawlerOptionsService _optionsService = null;
 
         public void CalcPartyStats(PartyData party, bool resetCurrStats)
         {
@@ -214,7 +215,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     if (statType.IdKey >= StatConstants.PrimaryStatStart && statType.IdKey <= StatConstants.PrimaryStatEnd)
                     {
-                        _statService.Set(unit, statType.IdKey, StatCategories.Base, (long)(unit.Level * monsterSettings.PrimaryStatsPointsPerLevel) + statSettings.StartStat);
+                        _statService.Set(unit, statType.IdKey, StatCategories.Base, (long)(unit.Level * monsterSettings.PrimaryStatsPointsPerLevel) + statSettings.MinStartValue);
                     }
                     else if (buffStatTypes.Contains(statType.IdKey))
                     {
@@ -239,7 +240,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                     healthScale = (1 + qualityPercent / 100.0f);
                     damageScale = (1 + qualityPercent / 100.0f);
 
-                    if (_modeService.SinglePartyMember(party.Mode))
+                    if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
                     {
                         healthScale *= 1.5f;
                         damageScale *= 1.5f;
@@ -249,8 +250,11 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     healthScale *= (1 + monsterSettings.ExtraHealthScalePerLevel * unit.Level);
                     damageScale *= (1 + monsterSettings.ExtraDamageScalePerLevel * unit.Level);
-                    healthScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraHealthScalePerDay);
-                    damageScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraDamageScalePerDay);
+                    if (_optionsService.HasOption(party, CrawlerOptions.MonstersGetStronger))
+                    {
+                        healthScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraHealthScalePerDay);
+                        damageScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraDamageScalePerDay);
+                    }
                 }
 
                 minHealth = (long)(minHealth * healthScale);
@@ -336,6 +340,18 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         {
             _statService.Add(unit, statTypeId, statCategory, value);
             _dispatcher.Dispatch(new RefreshUnitStatus() { Unit = unit, ElementTypeId = elementTypeId });
+        }
+
+        public void FullyRestParty(PartyData party)
+        {
+            foreach (PartyMember member in party.Members)
+            {
+                member.Stats.SetCurr(StatTypes.Health, member.Stats.Max(StatTypes.Health));
+                member.Stats.SetCurr(StatTypes.Mana, member.Stats.Max(StatTypes.Mana));
+                member.StatusEffects.Clear();
+            }
+
+            party.Buffs.Clear();
         }
     }
 }

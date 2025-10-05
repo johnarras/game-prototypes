@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.UI.Constants;
@@ -13,7 +12,6 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         public GButton ContinueGameButton;
         public GButton LoadGameButton;
         public GButton NewCrawlerGameButton;
-        public GButton NewRoguelikeGameButton;
         public GButton CloseButton;
 
         protected IInputService _inputService = null;
@@ -28,7 +26,6 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
             _uiService.SetButton(ContinueGameButton, GetName(), ClickContinue);
             _uiService.SetButton(QuitGameButton, GetName(), ClickQuit);
             _uiService.SetButton(NewCrawlerGameButton, GetName(), ClickNewCrawler);
-            _uiService.SetButton(NewRoguelikeGameButton, GetName(), ClickNewRoguelike);
             _uiService.SetButton(LoadGameButton, GetName(), ClickLoadGame);
 
 
@@ -56,12 +53,8 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
 
         private void ClickNewCrawler()
         {
-            _awaitableService.ForgetAwaitable(_crawlerService.NewGame(ECrawlerModes.Crawler));
-        }
-
-        private void ClickNewRoguelike()
-        {
-            _awaitableService.ForgetAwaitable(_crawlerService.NewGame(ECrawlerModes.Roguelike));
+            StartClose();
+            _screenService.Open(ScreenNames.CrawlerNewGameOptions);
         }
 
         private void ClickContinue()

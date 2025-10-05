@@ -1,6 +1,8 @@
 ﻿using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
@@ -27,7 +29,7 @@ namespace Genrpg.Shared.Riddles.Services
 {
     public interface IRiddleService : IInitializable
     {
-        Task GenerateRiddles(PartyData partyData, List<CrawlerMap> floors, CrawlerMapGenType genType, IRandom rand);
+        Task GenerateRiddles(PartyData party, List<CrawlerMap> floors, CrawlerMapGenType genType, IRandom rand);
         bool ShouldDrawProp(PartyData party, int x, int z);
         void SetPropPosition(object obj, object dat, CancellationToken token);
 
@@ -39,6 +41,7 @@ namespace Genrpg.Shared.Riddles.Services
         private IClientGameState _gs = null;
         private ICrawlerWorldService _worldService = null;
         private ICrawlerService _crawlerService = null;
+        private ICrawlerOptionsService _optionService = null;
 
         private SetupDictionaryContainer<long, IRiddleTypeHelper> _riddleTypeHelpers = new SetupDictionaryContainer<long, IRiddleTypeHelper>();
 
@@ -244,8 +247,12 @@ namespace Genrpg.Shared.Riddles.Services
         }
 
 
-        public async Task GenerateRiddles(PartyData partyData, List<CrawlerMap> floors, CrawlerMapGenType genType, IRandom rand)
+        public async Task GenerateRiddles(PartyData party, List<CrawlerMap> floors, CrawlerMapGenType genType, IRandom rand)
         {
+            if (!_optionService.HasOption(party, CrawlerOptions.Puzzles))
+            {
+                return;
+            }
 
             InitWords();
             long minFloor = Math.Max(2, floors.Min(x => x.MapFloor));
@@ -253,7 +260,7 @@ namespace Genrpg.Shared.Riddles.Services
 
             IReadOnlyList<RiddleType> riddleTypes = _gameData.Get<RiddleTypeSettings>(_gs.ch).GetData();
 
-            if (floors.Any(x => x.Level <= partyData.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true)))
+            if (floors.Any(x => x.Level <= party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true)))
             {
                 return;
             }

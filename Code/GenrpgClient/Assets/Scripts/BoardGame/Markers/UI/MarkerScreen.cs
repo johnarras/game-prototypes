@@ -2,11 +2,8 @@
 using Genrpg.Shared.BoardGame.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Users.PlayerData;
-using Steamworks;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -41,14 +38,14 @@ namespace Assets.Scripts.BoardGame.Markers.UI
                 return;
             }
 
-            CoreUserData coreUserData = _gs.ch.Get<CoreUserData>(); 
+            CoreUserData coreUserData = _gs.ch.Get<CoreUserData>();
 
             _initializing = true;
             IReadOnlyList<Marker> allMarkers = _gameData.Get<MarkerSettings>(_gs.user).GetData();
 
             foreach (Marker marker in allMarkers)
             {
-                MarkerIcon currIcon = _markerIcons.FirstOrDefault(x => x.MarkerId() == marker.IdKey);
+                MarkerIcon currIcon = _markerIcons.FirstOrDefault(x => x.EntityId == marker.IdKey);
 
                 if (currIcon == null)
                 {
@@ -57,7 +54,7 @@ namespace Assets.Scripts.BoardGame.Markers.UI
                 }
                 else
                 {
-                    currIcon.SetData(this,marker, coreUserData);
+                    currIcon.SetMarkerData(this, marker, coreUserData);
                 }
             }
 
@@ -100,7 +97,7 @@ namespace Assets.Scripts.BoardGame.Markers.UI
             }
 
             _markerIcons.Add(icon);
-            icon.SetData(this, marker, _gs.ch.Get<CoreUserData>());
+            icon.SetMarkerData(this, marker, _gs.ch.Get<CoreUserData>());
         }
     }
 }

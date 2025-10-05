@@ -3,7 +3,7 @@ using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Modes.Services;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -28,7 +28,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
         private IPartyService _partyService = null;
         private ICrawlerMapGenService _mapGenService = null;
-        private ICrawlerModeService _modeService = null;
 
         public override ECrawlerStates Key => ECrawlerStates.EnterMap;
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Map; }
@@ -64,15 +63,20 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             CrawlerMap currNextMap = world.GetMap(detail.EntityId);
 
-            if (!_modeService.GenerateAllMapsAtOnce(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 if (detail.EntityId > 1)
                 {
+
+                    world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == currMap.IdKey).ToList();
+                    world.ClearCache();
+
                     List<long> mapIds = new List<long>();
 
                     mapIds.Add(detail.EntityId);
 
-                    if (detail.EntityId == 2)
+
+                    if (detail.EntityId == 2 && currMap.IdKey == 1)
                     {
                         if (party.MaxLevelEntered > detail.EntityId)
                         {
@@ -125,7 +129,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             ForcedIdKey = mapId,
                         };
 
-                        world.MaxMapId = detail.EntityId - 1;
                         currNextMap = await _mapGenService.Generate(party, world, genData, token);
                         nextMaps.Add(currNextMap);
                         currNextMap.IdKey = mapId;
@@ -158,7 +161,26 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     {
                         _mapGenService.OneWayLink(world, currMap.IdKey, detail.X, detail.Z, 1, targetDetail.X, targetDetail.Z);
                     }
+
+                    MapCellDetail newDetail = currMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId == 1);
+
+                    if (newDetail != null)
+                    {
+                        detail.ToX = newDetail.ToX;
+                        detail.ToZ = newDetail.ToZ;
+                        targetDetail.ToX = newDetail.ToX;
+                        targetDetail.ToZ = newDetail.ToZ;
+                    }
+
                     nextMaps.Add(currNextMap);
+                }
+            }
+            else
+            {
+                CrawlerMap nmap = world.GetMap(detail.EntityId);
+                if (nmap != null)
+                {
+                    nextMaps.Add(nmap);
                 }
             }
 
@@ -170,7 +192,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMaps[0].ZoneTypeId);
 
-            if (nextMaps[0].IdKey > 1 && _modeService.SingleCityMode(party.Mode))
+            if (nextMaps[0].IdKey > 1 && _optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Dungeon);
             }
@@ -190,7 +212,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             #region Riddles
             bool havePartyBuff = _partyService.HasPartyBuff(party, EntityTypes.Riddle, 0);
-            if (nextMapStatus == null && !didComplete && !_modeService.SingleCityMode(party.Mode))
+            if (nextMapStatus == null && !didComplete && !_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 if (nextMaps[0].MapQuestItemId > 0)
                 {
@@ -455,10 +477,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             MapCellDetail prevDetail = (party.CurrPos.MapId < nmap.IdKey ? nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId < nmap.IdKey) :
                 nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId > nmap.IdKey));
 
-            if (prevDetail != null)
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
-                detail.ToX = prevDetail.X;
-                detail.ToZ = prevDetail.Z;
+                if (prevDetail != null && nmap.IdKey > 1)
+                {
+                    detail.ToX = prevDetail.X;
+                    detail.ToZ = prevDetail.Z;
+                }
             }
             EnterCrawlerMapData newMapData = new EnterCrawlerMapData()
             {

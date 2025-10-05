@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StatusEffectIconsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b2a92b08031f56141936ff14231bd857, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 1be15680170c00d4e84763e647223c52: 21300000
+    - e1281141c4125374c804340a0381cc6c: 21300000
+    - 62473c550e1a82146868c45c2e953e8e: 21300000
+    - 301fe5a5755b996409c499f249e76592: 21300000
+    - a90489e5e6583ae4eba2d8874e0507e7: 21300000
+    - 3646a236f72aa3c44a699690cbf474db: 21300000
+    - b9b9e8991b20dbd43a73548fdf5adf0c: 21300000
+    - be782e7beaee7294ea38595626efef00: 21300000
+    - 57482bcb6765bc34595acb70d68889c0: 21300000
+    - ed2e749ce21431b489ba88e57508624b: 21300000
+    - c996dd9cbf57bc2419eeee6b76165ceb: 21300000
+    - 0d70a5ccc9f59a54cb03ff4c068322b5: 21300000
+    - 814e307d986788f4797986b3cb1a6a56: 21300000
+    - cdeffa7efdef69b44a45a5b378bfa2d1: 21300000
+    - 16acb72f4be225745916312bada07a46: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1be15680170c00d4e84763e647223c52, type: 3}
+  - {fileID: 21300000, guid: e1281141c4125374c804340a0381cc6c, type: 3}
+  - {fileID: 21300000, guid: 62473c550e1a82146868c45c2e953e8e, type: 3}
+  - {fileID: 21300000, guid: 301fe5a5755b996409c499f249e76592, type: 3}
+  - {fileID: 21300000, guid: a90489e5e6583ae4eba2d8874e0507e7, type: 3}
+  - {fileID: 21300000, guid: 3646a236f72aa3c44a699690cbf474db, type: 3}
+  - {fileID: 21300000, guid: b9b9e8991b20dbd43a73548fdf5adf0c, type: 3}
+  - {fileID: 21300000, guid: be782e7beaee7294ea38595626efef00, type: 3}
+  - {fileID: 21300000, guid: 57482bcb6765bc34595acb70d68889c0, type: 3}
+  - {fileID: 21300000, guid: ed2e749ce21431b489ba88e57508624b, type: 3}
+  - {fileID: 21300000, guid: c996dd9cbf57bc2419eeee6b76165ceb, type: 3}
+  - {fileID: 21300000, guid: 0d70a5ccc9f59a54cb03ff4c068322b5, type: 3}
+  - {fileID: 21300000, guid: 814e307d986788f4797986b3cb1a6a56, type: 3}
+  - {fileID: 21300000, guid: cdeffa7efdef69b44a45a5b378bfa2d1, type: 3}
+  - {fileID: 21300000, guid: 16acb72f4be225745916312bada07a46, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Nearsighted
+  - Petrified
+  - Weak
+  - Rooted
+  - Possessed
+  - Jittery
+  - Silenced
+  - Poisoned
+  - Diseased
+  - Slowed
+  - Dead
+  - Feeblemind
+  - Stunned
+  - Feared
+  - Cursed
+  m_RenderDataMap: {}
+  m_Tag: StatusEffectIconsAtlas
+  m_IsVariant: 0

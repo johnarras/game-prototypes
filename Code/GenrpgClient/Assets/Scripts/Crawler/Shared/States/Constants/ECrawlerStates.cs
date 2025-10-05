@@ -27,8 +27,8 @@
         QuitGame,
         Help,
 
-        TavernMain,
         ExploreWorld,
+        Camping,
         EnterMap,
         Error,
         GiveLoot,
@@ -36,6 +36,7 @@
         ReturnToSafety,
         GainStats,
         TeleportConfirmation,
+        TavernMain,
 
         NpcMain,
         QuestDetail,

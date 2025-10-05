@@ -4,6 +4,7 @@ using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
@@ -39,7 +40,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
-            IRandom rand = new MyRandom(genData.World.Seed / 4 + genData.World.MaxMapId * 131);
+            IRandom rand = new MyRandom(genData.World.Seed / 4 + genData.World.GetMaxMapId() * 131);
             int width = MathUtils.IntRange(genData.GenType.MinWidth, genData.GenType.MaxWidth, rand);
             int height = MathUtils.IntRange(genData.GenType.MinHeight, genData.GenType.MaxHeight, rand);
 
@@ -597,6 +598,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int gameDungeonUnlockLevel = Math.Max(mapSettings.MinQuestUnlockDungeonLevel,
                 party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true));
 
+            bool haveUnlockQuests = _optionsService.HasOption(party, CrawlerOptions.Puzzles);
             for (int dungeonIndex = 0; dungeonIndex < dungeonMapGroups.Count; dungeonIndex++)
             {
                 List<CrawlerMap> floors = dungeonMapGroups[dungeonIndex];
@@ -605,7 +607,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 CrawlerMap entranceMap = floors.First();
 
-                if (entranceMap.Level >= gameDungeonUnlockLevel && rand.NextDouble() < mapSettings.QuestItemEntranceUnlockChance)
+                if (haveUnlockQuests && entranceMap.Level >= gameDungeonUnlockLevel && rand.NextDouble() < mapSettings.QuestItemEntranceUnlockChance)
+
                 {
                     string questItemName = _lootGenService.GenerateItemNames(rand, 1, 100).First().SingularName;
 

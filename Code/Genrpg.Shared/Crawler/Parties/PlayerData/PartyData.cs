@@ -1,11 +1,11 @@
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
@@ -35,7 +35,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
-        public ECrawlerModes Mode { get; set; } = ECrawlerModes.Crawler;
+        // Options set at the start of the game.
+        public int Options { get; set; }
 
         [JsonIgnore]
         public List<Item> Inventory { get; set; } = new List<Item>();
@@ -89,7 +90,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public SmallIdIntCollection Upgrades { get; set; } = new SmallIdIntCollection();
 
-        public long SaveSlotId { get; set; }
+        public long SaveSlotId { get; set; } = LoadSaveConstants.MinSlot;
 
         public int ScrollFramesIndex { get; set; } = CrawlerCombatConstants.StartScrollFramesIndex;
 

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Settings;
@@ -22,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         public override async Task SetupQuest(PartyData party, CrawlerWorld world,
             CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
-            if (_modeService.SingleCityMode(party.Mode))
+            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
             {
                 return;
             }

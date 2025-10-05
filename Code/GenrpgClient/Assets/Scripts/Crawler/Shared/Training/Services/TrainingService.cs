@@ -32,6 +32,11 @@ namespace Genrpg.Shared.Crawler.Training.Services
         public long NextLevel { get; set; }
         public long TotalExp { get; set; }
         public long ExpLeft { get; set; }
+
+        public bool CanLevelUp()
+        {
+            return Cost <= PartyGold && ExpLeft == 0;
+        }
     }
 
 
@@ -191,6 +196,11 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 Member = member,
             };
 
+            if (memberData == null)
+            {
+                memberData = new TrainingMemberData();
+            }
+
             TrainingInfo info = GetTrainingInfo(party, member);
 
             MemberUpgradeSettings memberUpgradeSettings = _gameData.Get<MemberUpgradeSettings>(_gs.ch);
@@ -203,7 +213,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
             }
 
             _partyService.AddGold(party, -info.Cost);
-            member.Exp -= info.TotalExp;
+            _partyService.AddExp(party, member, -info.TotalExp);
             member.Level++;
 
             NewUpgradePointsResult levelResult = _upgradeService.GetNewPartyUpgradePoints(party, member.Level, UpgradeReasons.PartyLevel, "");
@@ -270,7 +280,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
             return result;
         }
 
-        private void GainStatsOnLevelUp(PartyData partyData, PartyMember member, TrainingMemberData memberData)
+        private void GainStatsOnLevelUp(PartyData party, PartyMember member, TrainingMemberData memberData)
         {
 
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
@@ -380,7 +390,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
             }
 
             _partyService.AddGold(party, -info.Cost);
-            member.Exp -= info.TotalExp;
+            _partyService.AddExp(party, member, -info.TotalExp);
             member.Level++;
 
             foreach (UnitRole urole in member.Roles)

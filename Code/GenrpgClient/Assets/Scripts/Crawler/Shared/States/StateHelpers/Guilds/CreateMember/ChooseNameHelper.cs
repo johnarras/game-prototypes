@@ -1,6 +1,6 @@
 ﻿using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Modes.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Settings;
@@ -23,8 +23,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
     public class ChooseNameHelper : BaseStateHelper
     {
         private ILootGenService _lootGenService = null;
-        private ICrawlerModeService _modeService = null;
-
         public override ECrawlerStates Key => ECrawlerStates.ChooseName;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -106,7 +104,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                             ItemTypeId = okMelee[0].IdKey,
                         };
 
-                        if (_modeService.SinglePartyMember(party.Mode))
+                        if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
                         {
                             igd.Level = 1;
                         }
