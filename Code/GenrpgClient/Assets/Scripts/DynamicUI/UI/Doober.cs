@@ -20,6 +20,7 @@ namespace Assets.Scripts.Doobers.UI
 
         private float _elapsedTime = 0;
 
+
         public void InitData(long entityTypeId, long entityId, long quantity, ShowDooberEvent showDoober)
         {
             SetEntityData(entityTypeId, entityId, quantity, quantity);
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Doobers.UI
 
         public void InitData(string atlasName, string spriteName, ShowDooberEvent showDoober)
         {
-            _assetService.LoadAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
+            _spriteService.LoadAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
             InitShowDoober(showDoober);
         }
 

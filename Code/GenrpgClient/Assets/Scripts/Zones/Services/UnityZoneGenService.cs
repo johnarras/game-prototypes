@@ -1,27 +1,26 @@
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ClientEvents;
-using System.Threading;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Interfaces;
+using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.MapTerrain;
-using UnityEngine; // Needed
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Zones.WorldData;
+using Assets.Scripts.UI.Interfaces;
+using ClientEvents;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.Utils;
 using Genrpg.Shared.Client.Core;
-using System.Threading.Tasks;
-using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Tokens;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.Awaitables;
-using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
-using Assets.Scripts.Assets.Constants;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.Spawns.WorldData;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine; // Needed
 
 public class UnityZoneGenService : ZoneGenService
 {
@@ -60,12 +59,9 @@ public class UnityZoneGenService : ZoneGenService
     {
         _mapTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_gameToken);
         _mapToken = _mapTokenSource.Token;
-        foreach (IInjectable service in _gs.loc.GetVals())
+        foreach (IMapTokenService service in _gs.loc.GetVals<IMapTokenService>())
         {
-            if (service is IMapTokenService tokenService)
-            {
-                tokenService.SetMapToken(_mapToken);
-            }
+            service.SetMapToken(_mapToken);
         }
         _awaitableService.ForgetAwaitable(InnerGenerate(worldId, _mapToken));
     }
@@ -118,7 +114,7 @@ public class UnityZoneGenService : ZoneGenService
             genlist.Add(new ConnectSecondaryLocations());
 
             genlist.Add(new SetupRoadDistances());
-                
+
             genlist.Add(new CreateConnectedZones());
 
             genlist.Add(new AddEdgeMountains());
@@ -140,7 +136,7 @@ public class UnityZoneGenService : ZoneGenService
             genlist.Add(new AddOutcroppings());
 
             genlist.Add(new AddCrevices());
-            
+
             genlist.Add(new AddDetailHeights());
 
             genlist.Add(new AddRoadDips());
@@ -349,7 +345,7 @@ public class UnityZoneGenService : ZoneGenService
                     {
                         _md.alphas[x, y, i] /= alphaTotal;
                         _md.alphas[x, y, i] = MathUtils.Clamp(0, _md.alphas[x, y, i], 1);
-                    }                   
+                    }
                 }
             }
         }
@@ -414,7 +410,7 @@ public class UnityZoneGenService : ZoneGenService
         int currchannels = patch.TerrainTextureIndexes.Count;
 
         int size = MapConstants.TerrainPatchSize * MapConstants.AlphaMapsPerTerrainCell;
-        float[,,] newAlphas = new float[size,size, currchannels];
+        float[,,] newAlphas = new float[size, size, currchannels];
 
         int pauseSize = MapConstants.TerrainPatchSize / 4;
         int pauseVal = pauseSize / 2;
@@ -478,19 +474,19 @@ public class UnityZoneGenService : ZoneGenService
                 bool adjacentToOtherZoneId = false;
                 if (baseZoneId > 0)
                 {
-                    for (int xx = x-1; xx <= x+1; xx++)
-                    {                     
+                    for (int xx = x - 1; xx <= x + 1; xx++)
+                    {
                         if (xx < 0 || xx >= MapConstants.TerrainPatchSize)
                         {
                             continue;
                         }
-                        for (int yy = y-1; yy <= y+1; yy++)
+                        for (int yy = y - 1; yy <= y + 1; yy++)
                         {
                             if (yy < 0 || yy >= MapConstants.TerrainPatchSize)
                             {
                                 continue;
                             }
-                            if (patch.subZoneIds[xx,yy] != baseZoneId)
+                            if (patch.subZoneIds[xx, yy] != baseZoneId)
                             {
                                 adjacentToOtherZoneId = true;
                                 break;
@@ -578,7 +574,7 @@ public class UnityZoneGenService : ZoneGenService
                     await Awaitable.NextFrameAsync(cancellationToken: token);
                 }
                 else
-                { 
+                {
                     for (int c = 0; c < currchannels; c++)
                     {
                         oneCellAlphas[c] /= tempAlphaTotal;
@@ -641,8 +637,8 @@ public class UnityZoneGenService : ZoneGenService
 
     }
 
-    public override void SetOnePatchHeightmaps (TerrainPatchData patch, float[,] globalHeights, float[,] heightOverrides = null)
-    { 
+    public override void SetOnePatchHeightmaps(TerrainPatchData patch, float[,] globalHeights, float[,] heightOverrides = null)
+    {
         if (_gs == null || patch == null)
         {
             return;
@@ -679,11 +675,11 @@ public class UnityZoneGenService : ZoneGenService
             terrainData.SetHeights(0, 0, heightOverrides);
             return;
         }
-            
-        float[,] localHeights= new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
 
-        int startx = gy * (MapConstants.TerrainPatchSize-1);
-        int starty = gx * (MapConstants.TerrainPatchSize-1);
+        float[,] localHeights = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+
+        int startx = gy * (MapConstants.TerrainPatchSize - 1);
+        int starty = gx * (MapConstants.TerrainPatchSize - 1);
 
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
@@ -707,7 +703,7 @@ public class UnityZoneGenService : ZoneGenService
     public override void LoadMap(LoadIntoMapRequest loadData)
     {
 
-   
+
 #if UNITY_EDITOR
         if (string.IsNullOrEmpty(loadData.MapId) && !string.IsNullOrEmpty(InitClient.EditorInstance.CurrMapId))
         {
@@ -742,7 +738,7 @@ public class UnityZoneGenService : ZoneGenService
         }
 
         string postData = _serializer.SerializeToString(loadData);
-        
+
         _webNetworkService.SendClientUserWebRequest(loadData, _gameToken);
     }
 
@@ -792,12 +788,12 @@ public class UnityZoneGenService : ZoneGenService
 
             InitClient initComp = InitClient.EditorInstance;
             if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId))
-            { 
+            {
                 if (initComp.BlockCount >= 3)
                 {
                     _mapProvider.GetMap().BlockCount = initComp.BlockCount;
                 }
-                if(initComp.ZoneSize >= 1)
+                if (initComp.ZoneSize >= 1)
                 {
                     _mapProvider.GetMap().ZoneSize = initComp.ZoneSize;
                 }
@@ -808,7 +804,7 @@ public class UnityZoneGenService : ZoneGenService
                 }
             }
 #endif
-            
+
             if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId) && !fixSeeds)
             {
                 _mapProvider.GetMap().Seed = (int)(DateTime.UtcNow.Ticks % 2000000000);
@@ -873,7 +869,7 @@ public class UnityZoneGenService : ZoneGenService
         terr.treeBillboardDistance = 400;
         terr.treeCrossFadeLength = 5;
         terr.treeMaximumFullLODCount = 500;
-        terr.basemapDistance = 250;      
+        terr.basemapDistance = 250;
         terr.heightmapPixelError = 10;
         terr.detailObjectDensity = 0.5f;
         terr.detailObjectDistance = 200;
@@ -883,10 +879,10 @@ public class UnityZoneGenService : ZoneGenService
         terr.drawInstanced = true;
         terr.allowAutoConnect = true;
         terr.keepUnusedRenderingResources = true;
-        
+
         if (terr.terrainData != null)
         {
-            terr.terrainData.baseMapResolution = (MapConstants.TerrainPatchSize - 1)/2;
+            terr.terrainData.baseMapResolution = (MapConstants.TerrainPatchSize - 1) / 2;
             terr.terrainData.heightmapResolution = patchSize;
             terr.terrainData.alphamapResolution = patchSize * MapConstants.AlphaMapsPerTerrainCell;
             terr.terrainData.SetDetailResolution(MapConstants.DetailResolution, MapConstants.DetailResolutionPerPatch);

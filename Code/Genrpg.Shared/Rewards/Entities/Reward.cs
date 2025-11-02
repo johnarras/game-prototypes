@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.Inventory.PlayerData;
+using MessagePack;
 
 namespace Genrpg.Shared.Rewards.Entities
 {
@@ -12,8 +12,8 @@ namespace Genrpg.Shared.Rewards.Entities
         long QualityTypeId { get; set; }
         int Level { get; set; }
         Item ExtraData { get; set; }
-    }
 
+    }
 
     [MessagePackObject]
     public class Reward : IReward
@@ -24,6 +24,5 @@ namespace Genrpg.Shared.Rewards.Entities
         [Key(3)] public long QualityTypeId { get; set; }
         [Key(4)] public int Level { get; set; }
         [Key(5)] public Item ExtraData { get; set; }
-
     }
 }

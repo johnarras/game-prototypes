@@ -2,6 +2,7 @@
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crafting.Settings.Recipes;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Entities;
@@ -17,11 +18,9 @@ using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Stats.Settings.Scaling;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Vendors.Settings;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Vendors.Settings;
-using Genrpg.Shared.Purchasing.Settings;
 namespace Genrpg.Shared.Inventory.Services
 {
     public interface IItemGenService : IInjectable
@@ -29,7 +28,7 @@ namespace Genrpg.Shared.Inventory.Services
         Item Generate(IRandom rand, ItemGenArgs genData);
         Item CreateSimpleItem(IRandom rand, ItemGenArgs gd);
         Item GenerateLevelRangeItem(IRandom rand, ItemGenArgs gd);
-        ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents);
+        ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null);
 
     }
 
@@ -153,7 +152,7 @@ namespace Genrpg.Shared.Inventory.Services
         }
 
 
-        public ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents)
+        public ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null)
         {
             string badName = "Armor";
 
@@ -218,6 +217,12 @@ namespace Genrpg.Shared.Inventory.Services
 
             string singularItemName = _nameGenService.PickWord(rand, itemNameList);
             string pluralItemName = StrUtils.MakePlural(singularItemName);
+
+            if (!string.IsNullOrEmpty(forcedItemName))
+            {
+                singularItemName = forcedItemName;
+                pluralItemName = StrUtils.MakePlural(singularItemName);
+            }
 
             string adj1 = _nameGenService.PickWord(rand, adjList.Names);
             string adj1Prefix = "";
@@ -305,7 +310,7 @@ namespace Genrpg.Shared.Inventory.Services
                 else
                 {
                     result.SingularName = singularItemName + " of " + suffixName;
-                    result.PluralName = pluralItemName +  " of " + suffixName;
+                    result.PluralName = pluralItemName + " of " + suffixName;
                     return result;
                 }
             }

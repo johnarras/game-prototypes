@@ -1,6 +1,11 @@
 ﻿using Assets.Scripts.Info.UI;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
+using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
@@ -12,6 +17,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
 {
     public class CrawlerInfoScreen : BaseInfoScreen
     {
+        protected ICrawlerService _crawlerService = null;
+        protected ICrawlerWorldService _worldService = null;
 
         public GButton OverviewButton;
         public GButton ClassButton;
@@ -23,6 +30,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         public GButton MemberUpgradesButton;
         public GButton StatusEffectsButton;
         public GButton ElementsButton;
+        public GButton MapsButton;
 
         protected override string OverviewPath => "Text/CrawlerOverview";
 
@@ -39,7 +47,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
             _uiService.SetButton(OverviewButton, GetName(), () => { ShowOverview(); });
             _uiService.SetButton(StatusEffectsButton, GetName(), () => { ShowInfoList(EntityTypes.StatusEffect); });
             _uiService.SetButton(ElementsButton, GetName(), () => { ShowInfoList(EntityTypes.Element); });
-
+            _uiService.SetButton(MapsButton, GetName(), () => { ShowMapList(); });
             ShowOverview();
 
             await Task.CompletedTask;
@@ -59,5 +67,15 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
             ShowChildList(statTypes, EntityTypes.Stat);
         }
 
+        private void ShowMapList()
+        {
+            PartyData party = _crawlerService.GetParty();
+            CrawlerWorld world = _worldService.GetWorld(party.WorldId).Result;
+
+            List<CrawlerMap> okMaps = world.Maps.Where(x => x.BaseCrawlerMapId == x.IdKey).ToList();
+
+            ShowChildList(okMaps, EntityTypes.Map);
+
+        }
     }
 }

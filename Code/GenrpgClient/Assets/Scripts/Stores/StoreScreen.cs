@@ -1,73 +1,102 @@
 ﻿
 
+using Assets.Scripts.Purchasing.Services;
+using Assets.Scripts.Stores;
 using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Purchasing.Settings;
+using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 
 namespace Assets.Scripts.UI.Stores
 {
     public class StoreScreen : BaseScreen
     {
+
         public GameObject StoreParent;
 
-        const string StorePanelPrefab = "StorePanel";
+        public List<StorePanel> Panels = new List<StorePanel>();
 
-        private List<StorePanel> _panels = new List<StorePanel>();
-        private PlayerStoreOfferData _offerData = null;
+        private bool _didPassInOffer = false;
+        private List<PlayerStoreOffer> _offers = new List<PlayerStoreOffer>();
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
-            _offerData = _gs.ch.Get<PlayerStoreOfferData>();
-
-            SetupData(token);
+            if (data is PlayerStoreOffer offer)
+            {
+                _didPassInOffer = true;
+                _offers.Add(offer);
+            }
+            else
+            {
+                _offers = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.ToList();
+            }
 
             AddListener<RefreshStoresResponse>(OnRefreshStores);
 
-            await Task.CompletedTask;
+            await SetupData(GetToken());
+
         }
 
-        private void SetupData(CancellationToken token)
+        private async Task SetupData(CancellationToken token)
         {
-            if (_offerData == null || StoreParent == null)
+            if (_offers.Count < 1 || StoreParent == null)
             {
                 StartClose();
                 return;
             }
 
-            _clientEntityService.DestroyAllChildren(StoreParent);
+            List<Task> initTasks = new List<Task>();
 
-            foreach (PlayerStoreOffer offer in _offerData.StoreOffers)
+
+            foreach (PlayerStoreOffer offer in _offers)
             {
-                StoreTheme theme = _gameData.Get<StoreThemeSettings>(_gs.ch).Get(offer.StoreThemeId);
 
-                _assetService.LoadAssetInto(StoreParent, AssetCategoryNames.Stores, StorePanelPrefab, OnLoadStorePanel, offer, token, theme.Art);
+                // If did not pass in offer, we need a panel for that store slot or don't show.
+
+                // If did not pass in offer, need existing panel to show this store.
+                StorePanel panel = Panels.FirstOrDefault(x => x.StoreSlotId == offer.StoreSlotId);
+
+                if (panel == null)
+                {
+                    continue;
+                }
+
+                _clientEntityService.SetActive(panel, true);
+                initTasks.Add(panel.Init(this, offer, token));
             }
+
+            foreach (StorePanel panel in Panels)
+            {
+                if (!_offers.Any(x => x.StoreSlotId == panel.StoreSlotId))
+                {
+                    _clientEntityService.SetActive(panel, false);
+                }
+            }
+
+            await Task.WhenAll(initTasks);
         }
 
-        private void OnLoadStorePanel(object obj, object data, CancellationToken token)
+        private void OnRefreshStores(RefreshStoresResponse result)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
+            if (!_didPassInOffer)
             {
-                return;
+                _offers = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.ToList();
+            }
+            else
+            {
+                if (_offers.Count > 0)
+                {
+                    PlayerStoreOffer newOffer = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.FirstOrDefault(x => x.StoreSlotId == _offers[0].StoreSlotId);
+                    if (newOffer != null)
+                    {
+                        _offers = new List<PlayerStoreOffer> { newOffer };
+                    }
+                }
             }
 
-            StorePanel storePanel = go.GetComponent<StorePanel>();
-
-            storePanel.Init(this, data as PlayerStoreOffer, token);
-            _panels.Add(storePanel);
-
-        }
-
-        private void OnRefreshStores (RefreshStoresResponse result)
-        {
-            _offerData = result.Stores;
-            SetupData(_token);
+            _awaitableService.ForgetTask(SetupData(GetToken()));
             return;
         }
     }

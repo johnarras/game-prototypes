@@ -67,6 +67,14 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 moveStatus.MoveIsComplete = true;
                 return;
             }
+            else if (encounterTypeId == MapEncounters.LevelMap)
+            {
+                if (!party.CompletedMaps.HasBit(party.CurrPos.MapId))
+                {
+                    _crawlerService.ChangeState(ECrawlerStates.LevelMap, token);
+                    moveStatus.MoveIsComplete = true;
+                }
+            }
             else if (encounterTypeId == MapEncounters.Trap)
             {
 

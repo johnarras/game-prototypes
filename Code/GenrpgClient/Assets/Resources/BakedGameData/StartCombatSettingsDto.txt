@@ -2,12 +2,12 @@
   "Parent": {
     "Id": "default",
     "GroupSizeIncrement": 10,
-    "MaxStartGroupSize": 10,
+    "MaxStartGroupSize": 8,
     "BaseGroupSizeIncreaseChance": 0.1,
     "BaseGroupSizeLevelCap": 8,
     "GroupSizeIncreaseChancePerLevel": 0.01,
     "MaxGroupSizeIncreaseChance": 0.5,
-    "MaxGroupSizePerLevel": 2.5,
+    "MaxGroupSizePerLevel": 1.0,
     "MaxGroupSize": 999,
     "BaseGroupCountIncreaseChance": 0.3,
     "GroupCountIncreaseChancePerLevel": 0.05,
@@ -18,6 +18,6 @@
     "SelectRandomUnitForCombatGroupChance": 0.75,
     "RangeIncreaseChancePerGroup": 0.6,
     "Name": "StartCombatSettings",
-    "SaveTime": "2025-09-16T21:25:54.246Z"
+    "SaveTime": "2025-10-26T16:10:47.807Z"
   }
 }

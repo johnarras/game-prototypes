@@ -1,16 +1,15 @@
 ﻿
-using System;
-using System.Threading.Tasks;
-using Genrpg.Shared.Accounts.Constants;
 using Genrpg.ServerShared.DataStores;
-using System.Threading;
+using Genrpg.Shared.Accounts.Constants;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Tasks.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.Accounts.Services
 {
@@ -24,7 +23,7 @@ namespace Genrpg.ServerShared.Accounts.Services
         {
             List<Task> tasks = new List<Task>();
             CreateIndexData data = new CreateIndexData();
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerShareId), Unique=true});
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerShareId), Unique = true });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerEmail), Unique = true });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerName) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.ReferrerAccountId) });
@@ -37,7 +36,7 @@ namespace Genrpg.ServerShared.Accounts.Services
             tasks.Add(_serverRepositoryService.CreateIndex<AccountConnection>(data));
 
             data = new CreateIndexData();
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.AccountId)});
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.AccountId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.Index) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.ProductId) });
             tasks.Add(_serverRepositoryService.CreateIndex<ConnectionCount>(data));
@@ -48,7 +47,7 @@ namespace Genrpg.ServerShared.Accounts.Services
 
             if (increment == null)
             {
-                increment = new AccountIdIncrement() {  Id = AccountIdIncrement.DocId };
+                increment = new AccountIdIncrement() { Id = AccountIdIncrement.DocId };
                 await _serverRepositoryService.Save<AccountIdIncrement>(increment);
             }
         }
@@ -56,7 +55,7 @@ namespace Genrpg.ServerShared.Accounts.Services
 
         public void AddAccountToProductGraph(Account account, long accountProductId, string referrerId)
         {
-            _taskService.ForgetTask(AddAccountToProductGraphAsync(account, accountProductId, referrerId), false);  
+            _taskService.ForgetTask(AddAccountToProductGraphAsync(account, accountProductId, referrerId), false);
         }
 
         private async Task AddAccountToProductGraphAsync(Account account, long accountProductId, string referrerId)
@@ -72,7 +71,7 @@ namespace Genrpg.ServerShared.Accounts.Services
 
             if (!String.IsNullOrEmpty(referrerId))
             {
-                Account referrerAccount = (await _serverRepositoryService.Search<Account>(x => x.LowerShareId == referrerId.ToLower())).FirstOrDefault();
+                Account referrerAccount = (await _serverRepositoryService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerShareId, referrerId))).FirstOrDefault();
                 if (referrerAccount != null)
                 {
                     referrerAccountId = referrerAccount.Id;
@@ -139,8 +138,8 @@ namespace Genrpg.ServerShared.Accounts.Services
                            x.ProductId == productId &&
                            x.Index == index);
 
-                if (childConnections.Count < AccountConstants.MaxConnectionFanout-1 ||
-                    (childConnections.Count == AccountConstants.MaxConnectionFanout - 1 && 
+                if (childConnections.Count < AccountConstants.MaxConnectionFanout - 1 ||
+                    (childConnections.Count == AccountConstants.MaxConnectionFanout - 1 &&
                     Random.Shared.NextDouble() < 0.1f))
                 {
                     return topAccount.AccountId;
@@ -237,7 +236,7 @@ namespace Genrpg.ServerShared.Accounts.Services
                 incTasks.Add(_serverRepositoryService.AtomicIncrement<ConnectionCount>(connectionCount.Id, nameof(ConnectionCount.ViralCount), 1));
             }
 
-            await Task.WhenAll(incTasks);   
+            await Task.WhenAll(incTasks);
 
         }
 

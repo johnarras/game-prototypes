@@ -51,3 +51,4 @@ MonoBehaviour:
   - AudioManager
   - ZoneState
   - TradeController
+  - ObjectPool

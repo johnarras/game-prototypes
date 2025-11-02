@@ -1,10 +1,14 @@
 ﻿
 
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Client.Assets.Constants;
 using UnityEngine;
 
 public class MoneySegment : BaseBehaviour
 {
+
+    protected ISpriteService _spriteService = null;
+
     public GameObject Parent;
     public GText QuantityText;
     public GImage Icon;
@@ -23,7 +27,7 @@ public class MoneySegment : BaseBehaviour
         }
         if (!string.IsNullOrEmpty(IconName))
         {
-            _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, IconName, Icon, GetToken());
+            _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, IconName, Icon, GetToken());
         }
     }
 

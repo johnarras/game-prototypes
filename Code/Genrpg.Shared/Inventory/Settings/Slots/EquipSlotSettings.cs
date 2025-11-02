@@ -3,11 +3,7 @@ using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Inventory.Settings.Slots
 {
@@ -40,6 +36,8 @@ namespace Genrpg.Shared.Inventory.Settings.Slots
 
         [Key(11)] public long BaseBonusStatTypeId { get; set; }
 
+        [Key(12)] public double BonusStatScale { get; set; }
+
         public EquipSlot()
         {
         }
@@ -47,7 +45,7 @@ namespace Genrpg.Shared.Inventory.Settings.Slots
 
     }
     [MessagePackObject]
-    public class EquipSlotSettings : ParentConstantListSettings<EquipSlot,EquipSlots>
+    public class EquipSlotSettings : ParentConstantListSettings<EquipSlot, EquipSlots>
     {
         [Key(0)] public override string Id { get; set; }
     }

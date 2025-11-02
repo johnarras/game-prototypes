@@ -12,5 +12,6 @@ namespace Genrpg.Shared.Accounts.WebApi.Login
         [Key(2)] public string SessionId { get; set; }
         [Key(3)] public string ClientVersion { get; set; }
         [Key(4)] public DateTime ClientGameDataSaveTime { get; set; }
+        [Key(5)] public string ClientPlatformName { get; set; }
     }
 }

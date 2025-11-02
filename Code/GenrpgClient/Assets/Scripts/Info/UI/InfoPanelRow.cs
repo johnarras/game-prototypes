@@ -1,13 +1,6 @@
-﻿using Assets.Scripts.Crawler.UI.Screens.Info;
+﻿using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Logging.Interfaces;
-using Assets.Scripts.UI.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Info.UI
 {
@@ -22,6 +15,15 @@ namespace Assets.Scripts.Info.UI
         private string _text;
 
         private InfoPanel _panel;
+
+
+        public override void OnReturn()
+        {
+            base.OnReturn();
+            _uiService.SetText(Text, null);
+            _uiService.ClearButton(Button);
+        }
+
         public void InitData(InfoPanel panel, string text)
         {
             _panel = panel;

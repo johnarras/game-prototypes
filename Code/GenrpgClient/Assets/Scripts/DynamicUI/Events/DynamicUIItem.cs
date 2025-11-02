@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using System.Threading;
@@ -45,15 +44,13 @@ namespace Assets.Scripts.WorldCanvas.GameEvents
         public IDynamicUIItem WCI { get; set; }
         public Vector3 StartPos { get; set; }
         public DynamicUILocation Location { get; set; }
-        public ObjectPool Pool { get; set; }
 
-        public DynamicUIItem(GameObject go, IDynamicUIItem wci, Vector3 startPos, DynamicUILocation location, ObjectPool pool)
+        public DynamicUIItem(GameObject go, IDynamicUIItem wci, Vector3 startPos, DynamicUILocation location)
         {
             Go = go;
             WCI = wci;
             StartPos = startPos;
             Location = location;
-            Pool = pool;
         }
     }
 }

@@ -5,8 +5,10 @@
       "Id": "crawleroption1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "One Character",
-      "Desc": "You only have one (2 class, 2 actions per round) character"
+      "Name": "Whole Party",
+      "NameId": "",
+      "Desc": "Whole party or one character with 2 classes and 2 actions per combat round?",
+      "DefaultForNewGame": true
     },
     {
       "Id": "crawleroption2default",
@@ -20,8 +22,10 @@
       "Id": "crawleroption3default",
       "ParentId": "default",
       "IdKey": 3,
-      "Name": "One Dungeon",
-      "Desc": "One city, one dungeon with levels generated every time."
+      "Name": "Full World",
+      "NameId": "",
+      "Desc": "Is there a full world of many cities or one city with one random dungeon?",
+      "DefaultForNewGame": true
     },
     {
       "Id": "crawleroption4default",
@@ -36,7 +40,8 @@
       "ParentId": "default",
       "IdKey": 5,
       "Name": "Roll Stats",
-      "Desc": "Roll player stats when they are created."
+      "Desc": "Roll player stats when they are created.",
+      "DefaultForNewGame": true
     },
     {
       "Id": "crawleroption6default",
@@ -118,7 +123,8 @@
       "IdKey": 15,
       "Name": "Auto Level Up",
       "NameId": "",
-      "Desc": "Do characters level up if possible after gaining Exp?"
+      "Desc": "Do characters level up if possible after gaining Exp?",
+      "DefaultForNewGame": true
     },
     {
       "Id": "crawleroption16default",
@@ -126,13 +132,14 @@
       "IdKey": 16,
       "Name": "Drop Gives Money",
       "NameId": "",
-      "Desc": "Dropping an item in your character screen gives the vendor money."
+      "Desc": "Dropping an item in your character screen gives the vendor money.",
+      "DefaultForNewGame": true
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "CrawlerOptionSettings",
-    "SaveTime": "2025-10-04T20:35:22.375Z"
+    "SaveTime": "2025-11-01T20:10:58.211Z"
   },
-  "SaveTime": "2025-10-04T20:35:22.375Z"
+  "SaveTime": "2025-11-01T20:10:58.211Z"
 }

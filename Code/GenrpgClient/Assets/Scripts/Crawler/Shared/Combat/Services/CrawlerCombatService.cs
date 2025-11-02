@@ -100,12 +100,23 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public void EndCombat(PartyData party)
         {
+
+            if (party.Combat != null)
+            {
+                party.Combat.Allies.Clear();
+                party.Combat.Enemies.Clear();
+                party.Combat.AttackSequence.Clear();
+                party.Combat.EnemiesKilled.Clear();
+            }
+
             party.Combat = null;
+
 
             IReadOnlyList<StatusEffect> statusEffects = _gameData.Get<StatusEffectSettings>(_gs.ch).GetData();
 
             foreach (PartyMember member in party.GetActiveParty())
             {
+                member.Actions.Clear();
                 foreach (StatusEffect effect in statusEffects)
                 {
                     if (effect.RemoveAtEndOfCombat)
@@ -113,6 +124,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         member.StatusEffects.RemoveBit(effect.IdKey);
                     }
                 }
+
             }
             _dispatcher.Dispatch(new UpdateCombatGroups());
         }
@@ -123,7 +135,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.BaseGroupSizeLevelCap + difficulty * startSettings.MaxGroupSizePerLevel));
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 maxGroupSize /= 2;
             }
@@ -323,20 +335,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = MathUtils.LongRange(CrawlerCombatConstants.StartGroupSize, startSettings.MaxStartGroupSize, _rand);
-
-                    while (_rand.NextDouble() < groupSizeIncreaseChance && quantity < startSettings.MaxGroupSize)
-                    {
-                        quantity += MathUtils.LongRange(quantity / 2, quantity, _rand);
-                        quantity += MathUtils.LongRange(CrawlerCombatConstants.StartGroupSize, startSettings.GroupSizeIncrement, _rand);
-                    }
-
-                    quantity = Math.Min(startSettings.MaxGroupSize, quantity);
-
-                    if (quantity > maxGroupSize)
-                    {
-                        quantity = MathUtils.LongRange(maxGroupSize / 2, maxGroupSize, _rand);
-                    }
+                    long quantity = MathUtils.LongRange(CrawlerCombatConstants.StartGroupSize, maxGroupSize, _rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -1156,7 +1155,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             long totalActions = (long)(1 + _crawlerUpgradeService.GetPartyBonus(party, PartyUpgrades.ActionCount));
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 totalActions++;
             }

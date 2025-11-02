@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.ClientEvents;
+﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.ClientEvents;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Entities.UI
     public class EntityIcon : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
+        protected ISpriteService _spriteService = null;
         protected IEntityService _entityService = null;
 
         public GImage Icon;
@@ -25,6 +27,14 @@ namespace Assets.Scripts.Entities.UI
         public long Quantity => _quantity;
         public long MaxQuantity => _maxQuantity;
 
+        public override void OnReturn()
+        {
+            base.OnReturn();
+            Icon.SetSingleSprite(null);
+            _uiService.SetText(QuantityText, null);
+            _uiService.SetText(NameText, null);
+        }
+
         public void SetEntityData(IReward reward, long maxQuantity = 0)
         {
             SetEntityData(reward.EntityTypeId, reward.EntityId, reward.Quantity, maxQuantity);
@@ -38,7 +48,7 @@ namespace Assets.Scripts.Entities.UI
             _quantity = quantity;
             _maxQuantity = maxQuantity;
 
-            _assetService.LoadEntityIcon(entityTypeId, entityId, Icon, GetToken());
+            _spriteService.LoadEntityIcon(entityTypeId, entityId, Icon, GetToken());
 
             if (maxQuantity < 1)
             {

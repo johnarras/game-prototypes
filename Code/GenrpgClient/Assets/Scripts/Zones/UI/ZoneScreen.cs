@@ -1,16 +1,15 @@
-﻿using System;
-using UnityEngine;
-using Genrpg.Shared.Utils;
-
-using System.Threading;
-using Genrpg.Shared.Zones.WorldData;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class ZoneScreen : BaseScreen
 {
-    
+
     public GText ZoneName;
     public GRawImage MapImage;
     public GameObject ArrowParent;
@@ -29,7 +28,7 @@ public class ZoneScreen : BaseScreen
 
     private void Setup()
     {
-        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, _token, "Maps");
+        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, GetToken(), "Maps");
 
         _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
         ShowPlayer();
@@ -99,7 +98,7 @@ public class ZoneScreen : BaseScreen
         float oldmaxy = 0;
 
         if (currZone != null)
-        { 
+        {
             float minx = currZone.ZMin; float miny = currZone.XMin; float maxx = currZone.ZMax; float maxy = currZone.XMax;
 
             xminpct = minx * 1.0f / _mapProvider.GetMap().GetHwid();
@@ -167,12 +166,12 @@ public class ZoneScreen : BaseScreen
             xdiff = maxDiff;
             ydiff = maxDiff;
 
-            
+
             if (mapTexture != null)
             {
                 MapImage.uvRect = new Rect(new Vector2(xminpct, yminpct), new Vector2(xdiff, ydiff));
             }
-            
+
             _lastZoneShown = currZone.IdKey;
 
             _uiService.SetText(ZoneName, currZone.Name);

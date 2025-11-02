@@ -15,5 +15,6 @@
         Cities = 11,
         Roads = 12,
         TradeGoods = 13,
+        LootRanks = 14,
     };
 }

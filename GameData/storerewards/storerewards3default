@@ -1,0 +1,15 @@
+{
+  "Id": "storerewards3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "500 Magic Dust",
+  "Desc": "",
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 1,
+      "Quantity": 500
+    }
+  ],
+  "SaveTime": "2025-10-21T00:14:00.69Z"
+}

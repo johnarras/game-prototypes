@@ -36,8 +36,8 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
         [Key(7)] public string Art { get; set; }
         [Key(8)] public string CategoryName { get; set; }
         [Key(9)] public double Price { get; set; }
-        [Key(14)] public SmallIdLongCollection CityBuyCosts { get; set; } = new SmallIdLongCollection();
-        [Key(15)] public List<TradeGoodProducerCity> ProducerCities { get; set; } = new List<TradeGoodProducerCity>();
+        [Key(10)] public SmallIdLongCollection CityBuyCosts { get; set; } = new SmallIdLongCollection();
+        [Key(11)] public List<TradeGoodProducerCity> ProducerCities { get; set; } = new List<TradeGoodProducerCity>();
     }
 
     public class TradeGoodSettingsDto : ParentSettingsDto<TradeGoodSettings, TradeGood> { }

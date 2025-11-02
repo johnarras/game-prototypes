@@ -2,8 +2,9 @@
   "Id": "lootrank11default",
   "ParentId": "default",
   "IdKey": 11,
-  "Name": "Adamantite",
-  "Armor": 25,
-  "Damage": 12,
-  "CostPct": 2000
+  "Name": "Mithril",
+  "Armor": 35,
+  "Damage": 30,
+  "CostPct": 2000,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

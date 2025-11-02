@@ -7,7 +7,7 @@
   "Icon": "Axe2H",
   "Art": "Axe2H",
   "MinVal": 3,
-  "MaxVal": 14,
+  "MaxVal": 15,
   "EquipSlotId": 15,
   "Flags": 10,
   "Effects": [],
@@ -125,5 +125,6 @@
       "Name": "Executor",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

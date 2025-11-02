@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-
-using System.Threading;
-using UnityEngine.UI; // FIX
-using Genrpg.Shared.UI.Constants;
-using System.Threading.Tasks;
-using Assets.Scripts.Awaitables;
+﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.Interfaces;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine.UI; // FIX
 
 public abstract class BaseScreen : AnimatorBehaviour, IScreen
 {
@@ -17,9 +15,6 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
     protected object _openData;
 
     private static List<GraphicRaycaster> _raycasters = new List<GraphicRaycaster>();
-
-    private CancellationTokenSource _screenSource = new CancellationTokenSource();
-    protected CancellationToken _token;
 
     protected IAwaitableService _awaitableService;
 
@@ -51,7 +46,7 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
         }
     }
 
-    public virtual string GetName()
+    public override string GetName()
     {
         return name;
     }
@@ -63,14 +58,12 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
 
     public virtual async Task StartOpen(object data, CancellationToken token)
     {
-        _screenSource = CancellationTokenSource.CreateLinkedTokenSource(token);
-        _token = _screenSource.Token;
         _openData = data;
-        await OnStartOpen(_openData, token);
+        await OnStartOpen(_openData, GetToken());
 
         if (IntroTime > 0)
         {
-            TriggerAnimation(AnimParams.Intro, IntroTime, OnFinishOpen, token);
+            TriggerAnimation(AnimParams.Intro, IntroTime, OnFinishOpen, GetToken());
         }
         else
         {
@@ -119,11 +112,11 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
         OnStartClose();
         if (OutroTime > 0)
         {
-            TriggerAnimation(AnimParams.Outro, OutroTime, OnFinishClose, _token);
+            TriggerAnimation(AnimParams.Outro, OutroTime, OnFinishClose, GetToken());
         }
         else
         {
-            OnFinishClose(_token);
+            OnFinishClose(GetToken());
         }
     }
 

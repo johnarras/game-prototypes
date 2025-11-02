@@ -1,12 +1,9 @@
 ﻿
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.UI.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using UnityEngine.EventSystems;
 
 public class GDropdown : TMPro.TMP_Dropdown, IDropdown
 {
@@ -69,7 +66,7 @@ public class GDropdown : TMPro.TMP_Dropdown, IDropdown
     }
 
     public void SetFromId(long initialValue)
-    { 
+    {
         IIdName selectedIdn = _iidList.FirstOrDefault(x => x.IdKey == initialValue);
         if (selectedIdn != null)
         {
@@ -82,5 +79,11 @@ public class GDropdown : TMPro.TMP_Dropdown, IDropdown
                 }
             }
         }
+    }
+
+    protected override void OnDestroy()
+    {
+        options.Clear();
+        base.OnDestroy();
     }
 }

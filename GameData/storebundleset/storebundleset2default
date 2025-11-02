@@ -1,0 +1,30 @@
+{
+  "Id": "storebundleset2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Supplies Packs",
+  "Bundles": [
+    {
+      "Index": 1,
+      "StoreRewardsId": 4,
+      "ProductSkuId": 2,
+      "Name": "100 Supplies",
+      "BundleId": "Supplies100"
+    },
+    {
+      "Index": 2,
+      "StoreRewardsId": 5,
+      "ProductSkuId": 7,
+      "Name": "300 Supplies",
+      "BundleId": "Supplies300"
+    },
+    {
+      "Index": 3,
+      "StoreRewardsId": 6,
+      "ProductSkuId": 9,
+      "Name": "500 Supplies",
+      "BundleId": "Supplies500"
+    }
+  ],
+  "SaveTime": "2025-10-21T20:40:44.566Z"
+}

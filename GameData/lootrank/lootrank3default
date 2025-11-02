@@ -3,7 +3,8 @@
   "ParentId": "default",
   "IdKey": 3,
   "Name": "Brass",
-  "Armor": 3,
+  "Armor": 4,
   "Damage": 2,
-  "CostPct": 200
+  "CostPct": 300,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

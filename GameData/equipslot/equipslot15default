@@ -4,5 +4,7 @@
   "IdKey": 15,
   "Name": "MainHand",
   "Active": true,
-  "IsCrawlerSlot": true
+  "IsCrawlerSlot": true,
+  "BonusStatScale": 1.5,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

@@ -1,22 +1,21 @@
-﻿using UnityEngine;
-using Genrpg.Shared.Characters.PlayerData;
-
-using System.Threading;
-using System.Linq;
-using System.Threading.Tasks;
-using Assets.Scripts.UI.Screens;
+﻿using Assets.Scripts.BoardGame.Controllers;
 using Assets.Scripts.PlayerSearch;
-using Assets.Scripts.BoardGame.Controllers;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.UI.Constants;
+using Assets.Scripts.UI.Screens;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.ProcGen.Services;
+using Genrpg.Shared.UI.Constants;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class CharacterSelectScreen : ErrorMessageScreen
 {
-    
+
 #if UNITY_EDITOR
     public GButton GenWorldButton;
     public GButton TestAssetsButton;
@@ -93,7 +92,7 @@ public class CharacterSelectScreen : ErrorMessageScreen
     {
         TestAssetDownloads dl = new TestAssetDownloads();
 
-        _awaitableService.ForgetAwaitable(dl.RunTests(_gs, _token));
+        _awaitableService.ForgetAwaitable(dl.RunTests(_gs, GetToken()));
     }
 
     private void ClickGenerate()
@@ -173,8 +172,8 @@ public class CharacterSelectScreen : ErrorMessageScreen
 
         foreach (CharacterStub stub in _gs.characterStubs)
         {
-            _assetService.LoadAssetInto(CharacterGridParent, AssetCategoryNames.UI, 
-                CharacterRowArt, OnLoadCharacterRow, stub, _token, Subdirectory);
+            _assetService.LoadAssetInto(CharacterGridParent, AssetCategoryNames.UI,
+                CharacterRowArt, OnLoadCharacterRow, stub, GetToken(), Subdirectory);
         }
     }
 
@@ -187,7 +186,7 @@ public class CharacterSelectScreen : ErrorMessageScreen
         }
 
         CharacterStub ch = data as CharacterStub;
-        if (ch ==null)
+        if (ch == null)
         {
             _clientEntityService.Destroy(go);
             return;

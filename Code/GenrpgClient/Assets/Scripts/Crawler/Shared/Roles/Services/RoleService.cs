@@ -129,8 +129,14 @@ namespace Genrpg.Shared.Crawler.Roles.Services
 
             double scalingLevel = GetRoleScalingLevel(party, unit, finalSpell.RoleScalingTypeId);
 
-            scalingLevel -= (finalSpell.RoleScalingTier - 1);
+            //scalingLevel -= (finalSpell.RoleScalingTier - 1);
 
+            if (unit.IsPlayer())
+            {
+                CombatAction action = _gameData.Get<CombatActionSettings>(_gs.ch).Get(spell.CombatActionId);
+
+                scalingLevel += action.BaseBonusHits;
+            }
             return scalingLevel;
         }
     }

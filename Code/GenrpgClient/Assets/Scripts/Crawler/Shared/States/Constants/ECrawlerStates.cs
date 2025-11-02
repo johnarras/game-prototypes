@@ -37,6 +37,7 @@
         GainStats,
         TeleportConfirmation,
         TavernMain,
+        LevelMap,
 
         NpcMain,
         QuestDetail,

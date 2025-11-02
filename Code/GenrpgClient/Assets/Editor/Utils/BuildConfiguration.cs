@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using System.IO;
+﻿using Genrpg.Shared.Client.Contants;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using UnityEditor;
-using Scripts.Assets.Assets.Constants;
-using Genrpg.Shared.Client.Core;
 
 public class PlatformBuildData
 {
@@ -38,7 +37,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.StandaloneWindows,
-            FilePath = PlatformAssetPrefixes.Win,
+            FilePath = ClientPlatformNames.Win,
             ClientPlatform = ClientPlatformNames.Win,
             ApplicationSuffix = ".exe",
         });
@@ -46,7 +45,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.Android,
-            FilePath = PlatformAssetPrefixes.Android,
+            FilePath = ClientPlatformNames.Android,
             ClientPlatform = ClientPlatformNames.Android,
             ApplicationSuffix = ".apk",
         });
@@ -54,23 +53,15 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.iOS,
-            FilePath = PlatformAssetPrefixes.IOS,
+            FilePath = ClientPlatformNames.iOS,
             ClientPlatform = ClientPlatformNames.iOS,
             ApplicationSuffix = ".app",
         });
 
         list.Add(new PlatformBuildData()
         {
-            Target = BuildTarget.StandaloneOSX,
-            FilePath = PlatformAssetPrefixes.OSX,
-            ClientPlatform = ClientPlatformNames.OSX,
-            ApplicationSuffix = ".app",
-        });
-
-        list.Add(new PlatformBuildData()
-        {
             Target = BuildTarget.StandaloneLinux64,
-            FilePath = PlatformAssetPrefixes.Linux,
+            FilePath = ClientPlatformNames.Linux,
             ClientPlatform = ClientPlatformNames.Linux,
             ApplicationSuffix = ".app",
         });

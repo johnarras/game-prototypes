@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
+﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
@@ -13,7 +14,8 @@ namespace Assets.Scripts.Crawler.Combat
 {
     public class CrawlerCombatUI : BaseBehaviour
     {
-        private ICrawlerService _crawlerService;
+        private ICrawlerService _crawlerService = null;
+        private ISpriteService _spriteService = null;
 
         public CrawlerGroupGrid AllyGrid;
         public CrawlerGroupGrid EnemyGrid;
@@ -44,6 +46,8 @@ namespace Assets.Scripts.Crawler.Combat
         {
             _dispatcher.AddListener<UpdateCombatGroups>(OnUpdateCombatGroups, GetToken());
             _dispatcher.AddListener<ShowCombatBolt>(OnShowCombatBolt, GetToken());
+
+            _spriteService.LoadAtlas(AtlasNames.CrawlerCombat, GetToken());
         }
 
         private void UpdateDataInternal()

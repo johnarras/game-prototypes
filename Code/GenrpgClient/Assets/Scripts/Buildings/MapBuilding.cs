@@ -16,5 +16,10 @@ namespace Assets.Scripts.Buildings
             name = btype.Name + "Building";
             Sign?.Init(_btype, _spawn, overrideName);
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
     }
 }

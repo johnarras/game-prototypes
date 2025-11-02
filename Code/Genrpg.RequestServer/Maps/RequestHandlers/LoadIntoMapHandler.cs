@@ -1,25 +1,22 @@
-﻿using Genrpg.Shared.MapServer.Entities.MapCache;
-using Genrpg.Shared.Utils;
-using System.Collections.Concurrent;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Networking.Constants;
-using Genrpg.ServerShared.Maps;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.CloudComms.Constants;
-using Genrpg.ServerShared.CloudComms.Servers.WebServer;
-using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.Utils;
-using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.DataStores.DataGroups;
+﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Services;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.ServerShared.CloudComms.Constants;
+using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
+using Genrpg.ServerShared.CloudComms.Servers.WebServer;
+using Genrpg.ServerShared.CloudComms.Services;
+using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.ServerShared.Maps;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Entities.MapCache;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.Networking.Constants;
+using Genrpg.Shared.Purchasing.PlayerData;
+using System.Collections.Concurrent;
 
 namespace Genrpg.RequestServer.Maps.RequestHandlers
 {
@@ -81,7 +78,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
             List<IUnitData> serverDataList = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, ch);
 
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true);
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
 
             List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(context.user, serverDataList);
 

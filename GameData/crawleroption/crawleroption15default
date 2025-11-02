@@ -5,5 +5,6 @@
   "Name": "Auto Level Up",
   "NameId": "",
   "Desc": "Do characters level up if possible after gaining Exp?",
-  "SaveTime": "2025-09-22T23:06:14.311Z"
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-11-01T20:07:16.693Z"
 }

@@ -2,8 +2,9 @@
   "Id": "lootrank15default",
   "ParentId": "default",
   "IdKey": 15,
-  "Name": "Diamond",
-  "Armor": 50,
-  "Damage": 25,
-  "CostPct": 7500
+  "Name": "Sapphire",
+  "Armor": 60,
+  "Damage": 50,
+  "CostPct": 5000,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

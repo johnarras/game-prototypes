@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Website.Interfaces
 {
@@ -10,6 +8,7 @@ namespace Genrpg.Shared.Website.Interfaces
         string AccountId { get; set; }
         string SessionId { get; set; }
         string ClientVersion { get; set; }
+        string ClientPlatformName { get; set; }
         DateTime ClientGameDataSaveTime { get; set; }
     }
 }

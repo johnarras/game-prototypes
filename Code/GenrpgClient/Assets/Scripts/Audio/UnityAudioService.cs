@@ -1,20 +1,17 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Assets.Scripts.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Users.Entities;
-using System.Threading;
-
-using UnityEngine; // Needed
-using System.Threading.Tasks;
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Awaitables;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Users.Entities;
 using Genrpg.Shared.Users.PlayerData;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine; // Needed
 
 public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService, IInjectOnLoad<IAudioService>, IInitOnResolve
 {
@@ -26,8 +23,6 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         await Task.CompletedTask;
     }
 
-    protected IAwaitableService _awaitableService;
-
     private Dictionary<string, AudioClipList> _audioCache = new Dictionary<string, AudioClipList>();
 
     protected CancellationToken _token;
@@ -36,7 +31,6 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     public void SetGameToken(CancellationToken token)
     {
         _token = token;
-        _awaitableService.ForgetAwaitable(CheckRemoveAudio(_token));
     }
 
     public override void Init()
@@ -104,48 +98,6 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     #endregion
 
 
-    private async Awaitable CheckRemoveAudio(CancellationToken token)
-    {
-        List<AudioClipList> _removeList = null;
-        while (true)
-        {
-            await Awaitable.WaitForSecondsAsync(1.1f, cancellationToken: token);
-
-            foreach (AudioClipList cont in _audioCache.Values)
-            { 
-                if (cont.ShouldRemoveAudio())
-                {
-                    if (_removeList == null)
-                    {
-                        _removeList = new List<AudioClipList>();
-                    }
-
-                    _removeList.Add(cont);
-                }
-            }
-
-            if (_removeList != null && _removeList.Count > 0)
-            {
-                foreach (AudioClipList cont in _removeList)
-                {
-                    if (cont == null)
-                    {
-                        continue;
-                    }
-                    _audioCache.Remove(cont.Name);
-                    cont.Clear();
-                    _clientEntityService.Destroy(cont.gameObject);
-                }
-            }
-            else
-            {
-                _removeList = null;
-            }
-        }
-    }
-
-
-
     public void PlaySound(string soundName, object parent = null, float volume = 1f)
     {
         PlayAudioData playData = new PlayAudioData()
@@ -203,7 +155,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         {
             _clientEntityService.Destroy(go);
             cont = _audioCache[playData.audioName];
-                
+
         }
         else
         {
@@ -227,14 +179,14 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         {
             MusicChannel categoryCont = GetMusicChannel(playData.category);
             CurrentMusic musicCont = new CurrentMusic()
-            {                
-                playData=playData,
+            {
+                playData = playData,
                 clipList = clipList,
                 source = source,
             };
             clipList.IsActiveMusic = true;
-            
-           
+
+
             SetNewMusic(musicCont);
         }
     }
@@ -252,7 +204,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     /// Keep list of default Ids for channels to be read in from a music region.
     /// </summary>
     private Dictionary<AudioCategory, long> _channelIds = new Dictionary<AudioCategory, long>();
- 
+
     public void PlayMusic(IMusicRegion region)
     {
         return;
@@ -263,7 +215,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
 
         //_channelIds[AudioCategory.Music] = 1;
         //_channelIds[AudioCategory.Ambient] = 0;
-        
+
         //if (region != null)
         //{
         //    _channelIds[AudioCategory.Music] = region.MusicTypeId;
@@ -317,7 +269,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         //        category = ch.category,
         //        looping = ch.Looping,
         //        parent = entity,
-                
+
         //    };
 
 
@@ -342,7 +294,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         }
     }
 
-    private void SetNewMusic (CurrentMusic musicCont)
+    private void SetNewMusic(CurrentMusic musicCont)
     {
         if (musicCont == null || musicCont.clipList == null || musicCont.source == null ||
             musicCont.playData == null ||
@@ -382,7 +334,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
             musicCont.clipList.StopSource(musicCont.source);
             catCont.prevList.Remove(currentFadingOutMusic);
             newMusic = currentFadingOutMusic;
-            
+
         }
         else
         {
@@ -408,7 +360,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     private CurrentMusic prevMusic = null;
     private void UpdateMusic()
     {
-        for (int m = 0; m < MusicChannels.Count; m++) 
+        for (int m = 0; m < MusicChannels.Count; m++)
         {
             cont = MusicChannels[m];
             removeList = null;
@@ -417,7 +369,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
                 FadeSourceTo(cont.curr.source, MusicVolumeScale, fadeFrames);
                 FadeSourceTo(cont.curr.prevSource, 0.0f, fadeFrames);
             }
-            for (int mp = 0; mp < cont.prevList.Count; mp++) 
+            for (int mp = 0; mp < cont.prevList.Count; mp++)
             {
                 prevMusic = cont.prevList[mp];
                 float volume = FadeSourceTo(prevMusic.source, 0, fadeFrames);
@@ -433,9 +385,9 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
                 }
             }
 
-            if (cont.curr != null && 
+            if (cont.curr != null &&
                 (removeList == null || !removeList.Contains(cont.curr)) &&
-                cont.curr.GetRandomIzeSeconds() > 0 && 
+                cont.curr.GetRandomIzeSeconds() > 0 &&
                 DateTime.UtcNow > cont.curr.NextRandomizeTime)
             {
                 cont.ChooseNewRandomSound(_rand);
@@ -487,6 +439,48 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         }
         return source.volume;
     }
+
+    #endregion
+
+    #region Cleanup
+
+
+    private List<AudioClipList> _removeList = null;
+    public async Awaitable UpdateAssets(CancellationToken token)
+    {
+        foreach (AudioClipList cont in _audioCache.Values)
+        {
+            if (cont.CanUnloadAudio())
+            {
+                if (_removeList == null)
+                {
+                    _removeList = new List<AudioClipList>();
+                }
+
+                _removeList.Add(cont);
+            }
+        }
+
+        if (_removeList != null && _removeList.Count > 0)
+        {
+            foreach (AudioClipList cont in _removeList)
+            {
+                if (cont == null)
+                {
+                    continue;
+                }
+                _audioCache.Remove(cont.Name);
+                cont.Clear();
+                _clientEntityService.Destroy(cont.gameObject);
+            }
+        }
+        else
+        {
+            _removeList = null;
+        }
+        await Task.CompletedTask;
+    }
+
     #endregion
 
 }

@@ -1,10 +1,10 @@
 
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Interfaces;
-using System.Threading;
-using System.Threading.Tasks;
 using Genrpg.Shared.Setup.Services;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class ClientSetupService : SetupService
 {
@@ -12,33 +12,18 @@ public class ClientSetupService : SetupService
     {
         loc.ResolveSelf();
 
-        List<IInjectable> vals = loc.GetVals();
-
-        foreach (IInjectable service in vals)
-        {
-            if (service is IInitializable initService)
-            {
-                await initService.Initialize(token);
-            }
-        }
         List<Task> setupTasks = new List<Task>();
 
-        foreach (IInjectable service in loc.GetVals())
+        foreach (IInitializable service in loc.GetVals<IInitializable>())
         {
-            if (service is IInitializable initService)
-            {
-                setupTasks.Add(initService.Initialize(token));
-            }
+            setupTasks.Add(service.Initialize(token));
         }
 
         await Task.WhenAll(setupTasks);
 
-        foreach (IInjectable service in loc.GetVals())
+        foreach (IGameTokenService service in loc.GetVals<IGameTokenService>())
         {
-            if (service is IGameTokenService gameTokenService)
-            {
-                gameTokenService.SetGameToken(token);
-            }
+            service.SetGameToken(token);
         }
     }
 }

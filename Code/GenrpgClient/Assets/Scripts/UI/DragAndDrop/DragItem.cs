@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using UnityEngine.EventSystems;
+﻿using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI; // FIX
 
-public class DragItemInitData<TData,TDragItem,TScreen,TInitData> 
+public class DragItemInitData<TData, TDragItem, TScreen, TInitData>
     where TData : class
-    where TScreen : DragItemScreen<TData,TDragItem,TScreen,TInitData>
-    where TDragItem : DragItem<TData,TDragItem,TScreen,TInitData>
+    where TScreen : DragItemScreen<TData, TDragItem, TScreen, TInitData>
+    where TDragItem : DragItem<TData, TDragItem, TScreen, TInitData>
     where TInitData : DragItemInitData<TData, TDragItem, TScreen, TInitData>
 {
     public TData Data;
@@ -17,14 +18,16 @@ public class DragItemInitData<TData,TDragItem,TScreen,TInitData>
 }
 
 
-public abstract class DragItem<TData,TDragItem,TScreen,TInitData> : BaseBehaviour,
-    IPointerEnterHandler, IPointerExitHandler, 
+public abstract class DragItem<TData, TDragItem, TScreen, TInitData> : BaseBehaviour,
+    IPointerEnterHandler, IPointerExitHandler,
     IPointerDownHandler, IPointerClickHandler
     where TData : class
-    where TDragItem : DragItem<TData,TDragItem,TScreen,TInitData>
-    where TScreen : DragItemScreen<TData,TDragItem,TScreen,TInitData>
-    where TInitData : DragItemInitData<TData,TDragItem,TScreen,TInitData>
+    where TDragItem : DragItem<TData, TDragItem, TScreen, TInitData>
+    where TScreen : DragItemScreen<TData, TDragItem, TScreen, TInitData>
+    where TInitData : DragItemInitData<TData, TDragItem, TScreen, TInitData>
 {
+    protected ISpriteService _spriteService = null;
+
     public GButton SelfButton;
 
     protected IInputService _inputService;
@@ -75,7 +78,7 @@ public abstract class DragItem<TData,TDragItem,TScreen,TInitData> : BaseBehaviou
         }
     }
 
-    public void RemoveFlags (int flags)
+    public void RemoveFlags(int flags)
     {
         if (_initData != null)
         {
@@ -211,7 +214,7 @@ public abstract class DragItem<TData,TDragItem,TScreen,TInitData> : BaseBehaviou
         //transTooltip.localPosition += new Vector3(dx, dy, 0);
     }
 
-  
+
 
 
 }

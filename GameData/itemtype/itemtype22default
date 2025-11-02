@@ -7,7 +7,7 @@
   "Icon": "Axe",
   "Art": "Axe",
   "MinVal": 1,
-  "MaxVal": 8,
+  "MaxVal": 9,
   "EquipSlotId": 15,
   "Flags": 8,
   "Effects": [],
@@ -90,5 +90,6 @@
       "Name": "Scythe",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

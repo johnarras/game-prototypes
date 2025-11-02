@@ -7,7 +7,7 @@
   "Icon": "Sword2H",
   "Art": "Sword2H",
   "MinVal": 2,
-  "MaxVal": 12,
+  "MaxVal": 16,
   "EquipSlotId": 15,
   "Flags": 10,
   "Effects": [],
@@ -100,5 +100,6 @@
       "Name": "Greatblade",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

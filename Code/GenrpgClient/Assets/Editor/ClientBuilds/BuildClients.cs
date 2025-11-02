@@ -1,34 +1,32 @@
-﻿using System;
-using System.Reflection;
-using UnityEngine;
+﻿using Genrpg.Shared.Analytics.Services;
+using Genrpg.Shared.Client.Contants;
+using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Setup.Services;
+using Genrpg.Shared.Utils;
+using System;
 using System.Collections.Generic;
-using UnityEditor;
 using System.IO;
 using System.Linq;
-using Scripts.Assets.Assets.Constants;
-using Genrpg.Shared.Setup.Services;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Constants;
-using System.Net;
+using System.Reflection;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 
 public class BuildClients
 {
-    public static void BuildClient (string env, string gameModeStr, string platformName,
+    public static void BuildClient(string env, string gameModeStr, string platformName,
         bool selfContainedClient, bool rebuildBundles)
     {
         IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
         if (string.IsNullOrEmpty(env))
         {
-            Debug.LogError ("No environment set");
+            Debug.LogError("No environment set");
             return;
         }
 
-        if (!Enum.TryParse (gameModeStr, out EGameModes gameMode))
+        if (!Enum.TryParse(gameModeStr, out EGameModes gameMode))
         {
             Debug.LogError("Invalid game mode: " + gameModeStr);
             return;
@@ -36,7 +34,7 @@ public class BuildClients
 
         List<PlatformBuildData> buildDataList = BuildConfiguration.GetbuildConfigs(gs);
 
-        PlatformBuildData buildData = buildDataList.FirstOrDefault(x=>x.ClientPlatform == platformName);
+        PlatformBuildData buildData = buildDataList.FirstOrDefault(x => x.ClientPlatform == platformName);
 
         if (buildData == null)
         {
@@ -54,7 +52,7 @@ public class BuildClients
         EGameModes oldGameMode = _configContainer.Config.GameMode;
         bool oldPlayerContainsAllAssets = _configContainer.Config.SelfContainedClient;
         _configContainer.Config.Env = env;
-        _configContainer.Config.SelfContainedClient = selfContainedClient;    
+        _configContainer.Config.SelfContainedClient = selfContainedClient;
         _configContainer.Config.GameMode = gameMode;
         string gamePrefix = gameMode.ToString();
         string lowerPrefix = gamePrefix.ToLower();
@@ -64,11 +62,11 @@ public class BuildClients
         BundleVersions currentBundleVersions = CreateAssetBundles.CreateBundles(buildData.ClientPlatform, env, rebuildBundles,
             rebuildBundles && !selfContainedClient);
 
-        EditorBuildSettingsScene mainScene = EditorBuildSettings.scenes.FirstOrDefault(x => x.path.IndexOf("GameMain") >= 0);
+        EditorBuildSettingsScene mainScene = EditorBuildSettings.scenes.FirstOrDefault(x => x.path.IndexOf("MainScene") >= 0);
 
         if (mainScene == null)
         {
-            Debug.Log("MainScene: GameMain is missing");
+            Debug.Log("MainScene: MainScene is missing");
             return;
         }
 
@@ -106,7 +104,7 @@ public class BuildClients
         Assembly servicesAssembly = Assembly.GetAssembly(typeof(SetupService));
 
         string lowerEnv = env.ToLower();
-      
+
         string platformString = buildData.ClientPlatform.ToString();
         string appsuffix = buildData.ApplicationSuffix;
         string outputFilesFolder = "../../../Build/" + lowerPrefix + "/" + platformString + "/" + lowerEnv + "/";
@@ -130,8 +128,8 @@ public class BuildClients
         string versionFilePath = outputZipFolder + PatcherUtils.GetPatchVersionFilename();
         File.WriteAllText(versionFilePath, String.Empty);
         File.WriteAllText(versionFilePath, version.ToString());
-        string localVersionPath =   appService.DataPath + "/../" + versionFilePath;
-        string remoteVersionPath = PatcherUtils.GetPatchClientPrefix(gamePrefix, env, PlatformAssetPrefixes.Win, version) + PatcherUtils.GetPatchVersionFilename();
+        string localVersionPath = appService.DataPath + "/../" + versionFilePath;
+        string remoteVersionPath = PatcherUtils.GetPatchClientPrefix(gamePrefix, env, ClientPlatformNames.Win, version) + PatcherUtils.GetPatchVersionFilename();
 
         foreach (BundleVersion bversion in currentBundleVersions.Versions.Values)
         {
@@ -155,7 +153,7 @@ public class BuildClients
 
         for (int i = 0; i < EditorSceneManager.sceneCount; i++)
         {
-            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneAt(i)); 
+            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneAt(i));
         }
         // Maybe do some stuff with debug symbols here.
 
@@ -171,7 +169,7 @@ public class BuildClients
         EditorUtility.SetDirty(_configContainer.Config);
         AssetDatabase.SaveAssets();
 
-        Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient} RB: {rebuildBundles}");   
+        Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient} RB: {rebuildBundles}");
 
     }
 }

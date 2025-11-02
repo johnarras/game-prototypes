@@ -5,7 +5,7 @@
   "Name": "Heal Wounds",
   "Desc": "Heal the wounds of an ally.",
   "PowerCost": 3.0,
-  "PowerPerLevel": 0.5,
+  "PowerPerLevel": 2.0,
   "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
@@ -15,11 +15,12 @@
   "Effects": [
     {
       "EntityTypeId": 34,
-      "MinQuantity": 1,
-      "MaxQuantity": 9,
-      "ElementTypeId": 7
+      "MinQuantity": 3,
+      "MaxQuantity": 15,
+      "ElementTypeId": 7,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 1.0,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

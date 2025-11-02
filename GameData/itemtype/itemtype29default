@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Spear",
   "Art": "Polearm",
-  "MinVal": 3,
-  "MaxVal": 13,
+  "MinVal": 1,
+  "MaxVal": 19,
   "EquipSlotId": 15,
   "Flags": 10,
   "Effects": [],
@@ -105,5 +105,6 @@
       "Name": "Pike",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

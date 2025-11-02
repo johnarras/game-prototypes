@@ -1,13 +1,13 @@
-﻿using System;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Utils;
+﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Input.Constants;
+using Genrpg.Shared.Input.PlayerData;
+using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using Genrpg.Shared.Utils;
+using System;
 using System.Threading;
 using GPointerEventData = UnityEngine.EventSystems.PointerEventData;
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Input.Constants;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Client.Assets.Constants;
 
 public class InitActionIconData : InitSpellIconData
 {
@@ -26,7 +26,7 @@ public class ActionButton : SpellIcon
     DateTime cooldownStart;
     DateTime cooldownEnd;
 
-    
+
 
     public override void Init(InitSpellIconData spellIconData, CancellationToken token)
     {
@@ -37,7 +37,7 @@ public class ActionButton : SpellIcon
         }
         name = GetType().Name + initData.actionIndex;
         _uiService.SetButton(SelfButton, spellIconData.Screen.GetName(), ClickButton);
-        base.Init(spellIconData, token); 
+        base.Init(spellIconData, token);
         if (_gs.ch == null)
         {
             return;
@@ -78,7 +78,7 @@ public class ActionButton : SpellIcon
             iconName = _spell.Icon;
         }
 
-        _assetService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
 
         if (Tint != null && _spell == null)
         {

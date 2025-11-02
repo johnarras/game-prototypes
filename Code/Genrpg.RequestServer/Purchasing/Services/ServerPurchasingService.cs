@@ -1,7 +1,6 @@
 ﻿using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.RequestServer.Purchasing.ValidationHelpers;
-using Genrpg.ServerShared.Core;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Accounts.PlayerData;
@@ -17,17 +16,21 @@ using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Purchasing.WebApi.InitializePurchase;
 using Genrpg.Shared.Purchasing.WebApi.ValidatePurchase;
+using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Time.Services;
 using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
+using MongoDB.Driver;
 
 namespace Genrpg.RequestServer.Purchasing.Services
 {
     public interface IServerPurchasingService : IInitializable
     {
-        Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh);
-        Task InitializePurchase(WebContext context, InitializePurchaseRequest request);
-        Task ValidateReceipt(WebContext context, ValidatePurchaseRequest request);
+        Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh, CancellationToken token);
+        Task InitiatePurchase(WebContext context, InitiatePurchaseRequest request, CancellationToken token);
+        Task ValidatePurchase(WebContext context, ValidatePurchaseRequest request, CancellationToken token);
+        Task RetryFailedValidation(WebContext context, CancellationToken token);
 
     }
     public class ServerPurchasingService : IServerPurchasingService
@@ -37,6 +40,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
         private IGameDataService _gameDataService = null;
         private ILogService _logService = null;
         private ICryptoService _cryptoService = null;
+        private ITimeService _timeService = null;
 
         private SetupDictionaryContainer<EPurchasePlatforms, IPurchaseValidationHelper> _validationHelpers = new SetupDictionaryContainer<EPurchasePlatforms, IPurchaseValidationHelper>();
 
@@ -45,12 +49,12 @@ namespace Genrpg.RequestServer.Purchasing.Services
         {
 
             CreateIndexData data = new CreateIndexData();
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(CompletedPurchaseData.ReceiptHash)});
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(CompletedPurchaseData.ReceiptHash) });
             await _repoService.CreateIndex<Account>(data);
         }
 
         #region GetStores
-        public async Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh)
+        public async Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh, CancellationToken token)
         {
 
             PlayerStoreOfferData storeOfferData = await _repoService.Load<PlayerStoreOfferData>(user.Id);
@@ -60,25 +64,23 @@ namespace Genrpg.RequestServer.Purchasing.Services
                 storeOfferData = new PlayerStoreOfferData() { Id = user.Id };
             }
 
-            DateTime currentTime = DateTime.UtcNow;
+            DateTime currentTime = _timeService.GetTime(user);
 
             VersionSettings versionSettings = _gameData.Get<VersionSettings>(user);
 
             StoreOfferSettings storeOfferSettings = _gameData.Get<StoreOfferSettings>(user);
-            ProductSkuSettings skuSettings = _gameData.Get<ProductSkuSettings>(user);
             StoreFeatureSettings featureSettings = _gameData.Get<StoreFeatureSettings>(user);
             StoreSlotSettings slotSettings = _gameData.Get<StoreSlotSettings>(user);
-            StoreItemSettings productSettings = _gameData.Get<StoreItemSettings>(user);
 
-            if (storeOfferSettings.NextUpdateTime <= DateTime.UtcNow)
+            if (storeOfferSettings.GetNextUpdateTime(currentTime) <= currentTime)
             {
-                storeOfferSettings.SetPrevNextUpdateTimes();
+                storeOfferSettings.SetPrevNextUpdateTimes(currentTime);
             }
 
             if (!forceRefresh &&
             versionSettings.SaveTime == storeOfferData.GameDataSaveTime &&
-            storeOfferData.LastTimeSet >= storeOfferSettings.PrevUpdateTime &&
-            storeOfferData.LastTimeSet < storeOfferSettings.NextUpdateTime)
+            storeOfferData.LastTimeSet >= storeOfferSettings.GetPrevUpdateTime(currentTime) &&
+            storeOfferData.LastTimeSet < storeOfferSettings.GetNextUpdateTime(currentTime))
             {
                 // stores are the same
                 return storeOfferData;
@@ -100,60 +102,15 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             foreach (StoreOffer offer in storeOffers)
             {
-                TryAddOffer(offer, storeDict, user, historyData);
+                TryAddOffer(offer, currentTime, storeDict, user, historyData);
             }
 
             foreach (StoreOffer storeOffer in storeDict.Values)
             {
-                StoreSlot slot = slotSettings.Get(storeOffer.StoreSlotId);
-                StoreFeature feature = featureSettings.Get(storeOffer.StoreFeatureId);
 
-                if (slot == null || feature == null)
-                {
-                    continue;
-                }
+                PlayerStoreOffer playerStoreOffer = CreatePlayerStoreOffer(user, storeOffer);
 
-                List<OfferItem> validItems = storeOffer.Products.Where(x => x.Enabled).ToList();
-
-                if (validItems.Count < 1)
-                {
-                    continue;
-                }
-
-                PlayerStoreOffer playerStoreOffer = new PlayerStoreOffer()
-                {
-                    StoreFeatureId = storeOffer.StoreFeatureId,
-                    StoreSlotId = storeOffer.StoreSlotId,
-                    StoreThemeId = storeOffer.StoreThemeId,
-                    EndDate = storeOffer.EndDate,
-                    Art = storeOffer.Art,
-                    Desc = storeOffer.Desc,
-                    Icon = storeOffer.Icon,
-                    IdKey = storeOffer.IdKey,
-                    Name = storeOffer.Name,
-                    OfferId = storeOffer.OfferId,
-                };
-
-                for (int p = 0; p < validItems.Count; p++)
-                {
-                    OfferItem offerProduct = validItems[p];
-                    StoreItem storeProduct = productSettings.Get(offerProduct.StoreProductId);
-                    ProductSku sku = skuSettings.Get(offerProduct.ProductSkuId);
-
-                    if (storeProduct != null && sku != null)
-                    {
-                        PlayerStoreOfferItem playerOfferProduct = new PlayerStoreOfferItem()
-                        {
-                            Index = p,
-                            StoreItem = storeProduct,
-                            Sku = sku,
-                            UniqueStoreItemId = HashUtils.NewUUId(),
-                        };
-                        playerStoreOffer.Items.Add(playerOfferProduct);
-                    }
-                }
-
-                if (playerStoreOffer.Items.Count > 0)
+                if (playerStoreOffer != null)
                 {
                     storeOfferData.StoreOffers.Add(playerStoreOffer);
                 }
@@ -167,10 +124,77 @@ namespace Genrpg.RequestServer.Purchasing.Services
             return storeOfferData;
         }
 
-        protected void TryAddOffer(StoreOffer offer, Dictionary<long, StoreOffer> currentOffers, IFilteredObject user, PurchaseHistoryData historyData)
+        private PlayerStoreOffer CreatePlayerStoreOffer(IFilteredObject user, StoreOffer storeOffer)
+        {
+            ProductSkuSettings productSkuSettings = _gameData.Get<ProductSkuSettings>(user);
+            StoreRewardsSettings storeRewardSettings = _gameData.Get<StoreRewardsSettings>(user);
+            StoreFeatureSettings storeFeatureSettings = _gameData.Get<StoreFeatureSettings>(user);
+            StoreSlotSettings slotSettings = _gameData.Get<StoreSlotSettings>(user);
+            StoreSlot slot = slotSettings.Get(storeOffer.StoreSlotId);
+            StoreFeature feature = storeFeatureSettings.Get(storeOffer.StoreFeatureId);
+
+            if (slot == null || feature == null)
+            {
+                return null;
+            }
+
+            StoreBundleSet bundleSet = _gameData.Get<StoreBundleSetSettings>(user).Get(storeOffer.StoreBundleSetId);
+
+            if (bundleSet == null || bundleSet.Bundles.Count < 1)
+            {
+                return null;
+            }
+
+
+            PlayerStoreOffer playerStoreOffer = new PlayerStoreOffer()
+            {
+                StoreFeatureId = storeOffer.StoreFeatureId,
+                StoreSlotId = storeOffer.StoreSlotId,
+                StoreThemeId = storeOffer.StoreThemeId,
+                EndDate = storeOffer.EndDate,
+                Art = storeOffer.Art,
+                Desc = storeOffer.Desc,
+                Icon = storeOffer.Icon,
+                IdKey = storeOffer.IdKey,
+                Name = storeOffer.Name,
+                OfferId = storeOffer.OfferId,
+            };
+
+            for (int p = 0; p < bundleSet.Bundles.Count; p++)
+            {
+                StoreBundle storeBundle = bundleSet.Bundles[p];
+                StoreRewards rewards = storeRewardSettings.Get(storeBundle.StoreRewardsId);
+                ProductSku sku = productSkuSettings.Get(storeBundle.ProductSkuId);
+
+                if (rewards != null && sku != null)
+                {
+                    PlayerBundle playerBundle = new PlayerBundle()
+                    {
+                        Index = p,
+                        ProductSkuId = sku.IdKey,
+                        UniqueId = HashUtils.NewUUId(),
+                        BundleId = storeBundle.BundleId
+                    };
+
+                    playerBundle.Rewards = new List<Reward>(rewards.Rewards);
+
+                    playerStoreOffer.Bundles.Add(playerBundle);
+                }
+            }
+
+
+            if (playerStoreOffer.Bundles.Count > 0)
+            {
+                return playerStoreOffer;
+            }
+            return null;
+        }
+
+
+        protected void TryAddOffer(StoreOffer offer, DateTime currentTime, Dictionary<long, StoreOffer> currentOffers, IFilteredObject user, PurchaseHistoryData historyData)
         {
 
-            if (!_gameDataService.AcceptedByFilter(user, offer))
+            if (!_gameDataService.AcceptedByFilter(user, offer, currentTime))
             {
                 return;
             }
@@ -221,100 +245,87 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
         #endregion
 
-        #region InitializePurchase
+        #region InitiatePurchase
 
 
-        public async Task InitializePurchase(WebContext context, InitializePurchaseRequest request)
+        public async Task InitiatePurchase(WebContext context, InitiatePurchaseRequest request, CancellationToken token)
         {
 
             CurrentPurchaseData purchaseData = await context.GetAsync<CurrentPurchaseData>();
 
+            if (purchaseData != null && purchaseData.State != ECurrentPurchaseStates.None)
+            {
+                // Current receipt.
+            }
+
             PlayerStoreOfferData offerData = await context.GetAsync<PlayerStoreOfferData>();
 
-            PlayerStoreOffer playerStoreOffer = offerData.StoreOffers.FirstOrDefault(x => x.OfferId == request.StoreOfferId);
+            PlayerStoreOffer playerStoreOffer = offerData.StoreOffers.FirstOrDefault(x => x.OfferId == request.OfferId);
 
             if (playerStoreOffer == null)
             {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingPlayerStoreOffer);
+                CreatePurchaseIntentErrorResponse(context, request, EInitiatePurchaseStates.MissingPlayerStoreOffer);
                 return;
             }
 
-            StoreOfferSettings offerSettings = _gameData.Get<StoreOfferSettings>(context.user);
+            PlayerBundle playerBundle = playerStoreOffer.Bundles.FirstOrDefault(x => x.BundleId == request.BundleId);
 
-            StoreOffer storeOffer = offerSettings.GetData().FirstOrDefault(x => x.OfferId == request.StoreOfferId);
-
-            if (storeOffer == null)
+            if (playerBundle == null || playerBundle.UniqueId != request.UniqueId)
             {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingStoreOffer);
+                CreatePurchaseIntentErrorResponse(context, request, EInitiatePurchaseStates.MissingPlayerBundle);
                 return;
             }
 
-            if (purchaseData.StoreOffer != null && purchaseData.StoreOffer.OfferId == playerStoreOffer.OfferId)
+            if (playerBundle.Rewards == null || playerBundle.Rewards.Count < 1)
             {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.OfferIsAlreadyInitialized);
+                CreatePurchaseIntentErrorResponse(context, request, EInitiatePurchaseStates.MissingPlayerStoreItem);
                 return;
             }
 
-            if (purchaseData.StoreOffer != null)
-            {
-                _logService.Info(context.user.Id + " replaced offer with OfferId " + purchaseData.StoreOffer.OfferId + " with " +
-                    playerStoreOffer.OfferId); 
-            }
-
-            PlayerStoreOfferItem playerStoreOfferItem = playerStoreOffer.Items.FirstOrDefault(x => x.UniqueStoreItemId == request.UniqueStoreItemId);
-
-            if (playerStoreOfferItem == null)
-            {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingPlayerStoreOfferItem);
-                return;
-            }
-
-            if (playerStoreOfferItem.StoreItem == null)
-            {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingPlayerStoreItem);
-                return;
-            }
-            
-            if (playerStoreOfferItem.Sku == null)
-            {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingOfferItemSku);
-                return;
-            }
-
-            ProductSku currentSku = _gameData.Get<ProductSkuSettings>(context.user).Get(playerStoreOfferItem.Sku.IdKey);
+            ProductSku currentSku = _gameData.Get<ProductSkuSettings>(context.user).Get(playerBundle.ProductSkuId);
 
             if (currentSku == null)
             {
-                CreatePurchaseIntentErrorResponse(context, EInitializePurchaseStates.MissingGameDataSku);
+                CreatePurchaseIntentErrorResponse(context, request, EInitiatePurchaseStates.MissingGameDataSku);
                 return;
             }
 
+            purchaseData.OfferId = request.OfferId;
+            purchaseData.BundleId = request.BundleId;
+            purchaseData.UniqueId = request.UniqueId;
+            purchaseData.Platform = request.Platform;
+            purchaseData.ProductId = GetProductIdFromPlatform(currentSku, request.Platform);
+            purchaseData.State = ECurrentPurchaseStates.Initiated;
+            purchaseData.Rewards = playerBundle.Rewards.ToList();
+            purchaseData.ReceiptData = null;
 
-            // Have Store item and sku set up and it matches, so set this up to be ok.
-
-            purchaseData.StoreOffer = playerStoreOffer;
-            purchaseData.StoreItem = playerStoreOfferItem;
-            purchaseData.State = ECurrentPurchaseStates.Initialized;
-
-            CreatePurchaseIntentSuccessResponse(context, purchaseData); 
-
+            CreatePurchaseIntentSuccessResponse(context, purchaseData);
 
             await Task.CompletedTask;
         }
 
         private void CreatePurchaseIntentSuccessResponse(WebContext context, CurrentPurchaseData purchaseData)
         {
-            context.Responses.AddResponse(new InitializePurchaseResponse()
+            context.Responses.AddResponse(new InitiatePurchaseResponse()
             {
-                State = EInitializePurchaseStates.Success,
-                StoreOfferId = purchaseData.StoreOffer.OfferId,
-                UniqueStoreItemId = purchaseData.StoreItem.UniqueStoreItemId,
+                State = EInitiatePurchaseStates.Success,
+                OfferId = purchaseData.OfferId,
+                BundleId = purchaseData.BundleId,
+                UniqueId = purchaseData.UniqueId,
+                ProductId = purchaseData.ProductId,
+
             });
         }
 
-        private void CreatePurchaseIntentErrorResponse(WebContext context, EInitializePurchaseStates response)
+        private void CreatePurchaseIntentErrorResponse(WebContext context, InitiatePurchaseRequest request, EInitiatePurchaseStates response)
         {
-            context.Responses.AddResponse(new InitializePurchaseResponse() { State = response });
+            context.Responses.AddResponse(new InitiatePurchaseResponse()
+            {
+                State = response,
+                UniqueId = request.UniqueId,
+                BundleId = request.BundleId,
+                OfferId = request.OfferId,
+            });
         }
 
         #endregion
@@ -323,52 +334,231 @@ namespace Genrpg.RequestServer.Purchasing.Services
         #region ValidatePurchase
 
 
-        private void CreateValidationErrorResponse(WebContext context, EPurchaseValidationStates state, string errorMessage = null)            
+        public async Task RetryFailedValidation(WebContext context, CancellationToken token)
         {
+            CurrentPurchaseData purchaseData = await context.GetAsync<CurrentPurchaseData>();
+
+            if ((purchaseData.State == ECurrentPurchaseStates.FailedValidation || purchaseData.State == ECurrentPurchaseStates.Initiated) && purchaseData.FailedValidationTimes < 3)
+            {
+                if (string.IsNullOrEmpty(purchaseData.ReceiptData) || string.IsNullOrEmpty(purchaseData.ProductId) || purchaseData.Rewards == null || purchaseData.Rewards.Count < 1)
+                {
+                    // Bad data, do not retry.
+                    purchaseData.Clear();
+                    return;
+                }
+
+                if (purchaseData.HasFullOrder() && purchaseData.Rewards != null && purchaseData.Rewards.Count > 0)
+                {
+                    await ValidatePurchaseInternal(context, purchaseData.OfferId, purchaseData.BundleId, purchaseData.UniqueId, purchaseData.ProductId, purchaseData.ReceiptData, purchaseData.Platform, purchaseData.Rewards, token);
+                }
+            }
+        }
+
+
+        private void CreateValidationErrorResponse(WebContext context, CurrentPurchaseData purchaseData, EPurchaseValidationStates state, string errorMessage = null)
+        {
+            purchaseData.State = ECurrentPurchaseStates.FailedValidation;
+            purchaseData.FailedValidationTimes++;
+
             context.Responses.AddResponse(new ValidatePurchaseResponse() { ErrorMessage = errorMessage, State = state });
         }
 
-        public async Task ValidateReceipt(WebContext context, ValidatePurchaseRequest request)
+        private void CreateValidationSuccessResponse(WebContext context, CurrentPurchaseData purchaseData)
         {
+            purchaseData.State = ECurrentPurchaseStates.Validated;
+            purchaseData.FailedValidationTimes = 0;
+            context.Responses.AddResponse(new ValidatePurchaseResponse() { State = EPurchaseValidationStates.Success });
+        }
+        private bool AllDataIsOk(string offerId, string bundleId, string uniqueId, string productId)
+        {
+            return !string.IsNullOrEmpty(offerId) &&
+                !string.IsNullOrEmpty(bundleId) &&
+                !string.IsNullOrEmpty(uniqueId) &&
+                !string.IsNullOrEmpty(productId);
+        }
+
+        private string GetProductIdFromPlatform(ProductSku sku, EPurchasePlatforms platform)
+        {
+            if (platform == EPurchasePlatforms.IOS)
+            {
+                return sku.AppleProductId;
+            }
+            return sku.GoogleProductId;
+        }
+
+        public async Task ValidatePurchase(WebContext context, ValidatePurchaseRequest request, CancellationToken token)
+        {
+            CurrentPurchaseData currentPurchase = await context.GetAsync<CurrentPurchaseData>();
 
             if (string.IsNullOrEmpty(request.ReceiptData))
             {
-                CreateValidationErrorResponse(context, EPurchaseValidationStates.NoReceipt);
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.NoReceipt);
                 return;
             }
 
-            string hashedReceipt = _cryptoService.SlowHash(request.ReceiptData);
-
-            List<CompletedPurchaseData> allCompleted = await _repoService.Search<CompletedPurchaseData>(x=>x.ReceiptHash == hashedReceipt);
-
-            if (allCompleted.Any(x => x.ReceiptData == request.ReceiptData))
+            if (string.IsNullOrEmpty(request.OfferId))
             {
-                CreateValidationErrorResponse(context, EPurchaseValidationStates.ReceiptHasBeenValidated);
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingOfferId);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(request.BundleId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingBundleId);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(request.UniqueId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingUniqueId);
+                return;
+            }
+
+            string offerId = null;
+            string bundleId = null;
+            string uniqueId = null;
+            string productId = null;
+            string receiptData = request.ReceiptData;
+            EPurchasePlatforms platform = request.Platform;
+            List<Reward> rewards = new List<Reward>();
+
+            if (currentPurchase != null &&
+                currentPurchase.OfferId == request.OfferId &&
+                currentPurchase.BundleId == request.BundleId &&
+                currentPurchase.UniqueId == request.UniqueId &&
+                currentPurchase.Platform == request.Platform &&
+                currentPurchase.Rewards != null &&
+                currentPurchase.Rewards.Count > 0 &&
+                !string.IsNullOrEmpty(currentPurchase.ProductId))
+            {
+                offerId = request.OfferId;
+                bundleId = request.BundleId;
+                uniqueId = request.UniqueId;
+                rewards = currentPurchase.Rewards;
+                platform = currentPurchase.Platform;
+                productId = currentPurchase.ProductId;
+            }
+
+            if (!AllDataIsOk(offerId, bundleId, uniqueId, productId))
+            {
+                StoreOfferSettings storeOfferSettings = _gameData.Get<StoreOfferSettings>(context.user);
+
+                StoreOffer offer = storeOfferSettings.GetData().FirstOrDefault(x => x.OfferId == request.OfferId);
+
+                if (offer != null)
+                {
+                    StoreBundleSet bundleSet = _gameData.Get<StoreBundleSetSettings>(context.user).Get(offer.StoreBundleSetId);
+
+                    if (bundleSet != null)
+                    {
+                        StoreBundle bundle = bundleSet.Bundles.FirstOrDefault(x => x.BundleId == request.BundleId);
+
+                        if (bundle != null)
+                        {
+                            StoreRewards storeRewards = _gameData.Get<StoreRewardsSettings>(context.user).Get(bundle.StoreRewardsId);
+
+
+                            ProductSku sku = _gameData.Get<ProductSkuSettings>(context.user).Get(bundle.ProductSkuId);
+
+                            if (sku != null)
+                            {
+                                productId = GetProductIdFromPlatform(sku, request.Platform);
+
+                                if (storeRewards != null)
+                                {
+                                    offerId = offer.OfferId;
+                                    bundleId = bundle.BundleId;
+                                    uniqueId = "Recovery";
+                                    rewards = storeRewards.Rewards.ToList();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(offerId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingOfferId, "Missing Store Offer");
+                return;
+            }
+            if (string.IsNullOrEmpty(bundleId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingBundleId, "Missing Bundle");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(uniqueId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingUniqueId, "Missing Unique Id");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(productId))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.MissingProductId, "Missng Product Id");
+                return;
+            }
+
+            await ValidatePurchaseInternal(context, offerId, bundleId, uniqueId, productId, receiptData, platform, rewards, token);
+
+        }
+
+
+        private async Task ValidatePurchaseInternal(WebContext context, string offerId, string bundleId, string uniqueId, string productId, string receiptData, EPurchasePlatforms platform,
+            List<Reward> rewards, CancellationToken token)
+        {
+
+
+            string hashedReceipt = _cryptoService.SlowHash(receiptData);
+
+            CurrentPurchaseData currentPurchase = await context.GetAsync<CurrentPurchaseData>();
+
+            List<CompletedPurchaseData> allCompleted = await _repoService.Search<CompletedPurchaseData>(x => x.ReceiptHash == hashedReceipt);
+
+            if (allCompleted.Any(x => x.ReceiptData == receiptData))
+            {
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.AlreadyValidated, "This receipt has been validated.");
                 return;
             }
 
             PurchaseValidationResult result = null;
 
-            if (_validationHelpers.TryGetValue(request.Platform, out IPurchaseValidationHelper helper))
+            if (_validationHelpers.TryGetValue(platform, out IPurchaseValidationHelper helper))
             {
-                result = await helper.ValidatePurchase(request.ProductSkuId, request.ReceiptData);
+                result = await helper.ValidatePurchase(productId, receiptData);
             }
             else
             {
-                CreateValidationErrorResponse(context, EPurchaseValidationStates.InvalidPlatform);
+                CreateValidationErrorResponse(context, currentPurchase, EPurchaseValidationStates.InvalidPlatform);
                 return;
             }
 
             if (result.State != EPurchaseValidationStates.Success)
             {
-                CreateValidationErrorResponse(context, result.State, result.ErrorMessage);
+                CreateValidationErrorResponse(context, currentPurchase, result.State, result.ErrorMessage);
                 return;
             }
 
 
+            await GiveRewards(context, rewards, token);
+
+            currentPurchase.State = ECurrentPurchaseStates.Validated;
+
+            CreateValidationSuccessResponse(context, currentPurchase);
+
+            currentPurchase.Clear();
+
+
+            await GetCurrentStores(context.user, true, token);
             await Task.CompletedTask;
         }
 
+        private async Task GiveRewards(WebContext context, List<Reward> rewards, CancellationToken token)
+        {
+
+            await Task.CompletedTask;
+        }
 
         #endregion
     }

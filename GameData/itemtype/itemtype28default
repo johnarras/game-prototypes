@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Staff",
   "Art": "Staff",
-  "MinVal": 2,
-  "MaxVal": 10,
+  "MinVal": 3,
+  "MaxVal": 14,
   "EquipSlotId": 15,
   "Flags": 10,
   "Effects": [],
@@ -95,5 +95,6 @@
       "Name": "Quarterstaff",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

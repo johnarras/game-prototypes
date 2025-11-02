@@ -1,11 +1,6 @@
 ﻿using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.Shared.Purchasing.Constants;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
 {
@@ -15,7 +10,6 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using ZstdSharp.Unsafe;
 
     public class IOSValidationResponse
     {
@@ -92,7 +86,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
             _iosSecret = await _secretsProvider.GetSecret(ServerConfigKeys.IOSSecret);
             _packageName = _serverConfig.PackageName;
             _buyURL = _serverConfig.IOSBuyValidationURL;
-            _sandboxURL = _serverConfig.IOSSandboxValidationURL;  
+            _sandboxURL = _serverConfig.IOSSandboxValidationURL;
         }
 
 

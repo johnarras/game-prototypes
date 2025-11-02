@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityId: 24
   ScreenLayer: 0
-  Subdirectory: CrawlerItems
+  Subdirectory: CrawlerMembers

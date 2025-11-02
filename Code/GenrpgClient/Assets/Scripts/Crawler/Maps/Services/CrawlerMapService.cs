@@ -5,6 +5,7 @@ using Assets.Scripts.Controllers;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Maps.EncounterHelpers;
+using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
@@ -73,6 +74,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         int GetMapCellHash(long mapId, int x, int z, long extraData);
         long GetEncounterAtCell(PartyData party, CrawlerMap map, int x, int z);
         void ClearCellObject(int x, int z);
+        void SetMapComplete(PartyData party, CrawlerWorld world, long mapId);
+        EntranceMapData GetEntranceMap(PartyData party, CrawlerWorld world, long mapId);
     }
 
     public class CrawlerMapService : ICrawlerMapService
@@ -177,10 +180,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 await Awaitable.NextFrameAsync(token);
             }
 
+            await _assetService.UnloadUnusedAssetsAsync();
+
             _party = party;
             _world = await _worldService.GetWorld(_party.WorldId);
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 await OnEnterNewRoguelikeMap(party, _world, mapData.Map, token);
             }
@@ -448,7 +453,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             MarkCellVisitedAndCheckForCompletion(_party.CurrPos.MapId, _party.CurrPos.X, _party.CurrPos.Z);
         }
 
-        private void SetMapComplete(PartyData party, CrawlerWorld world, long mapId)
+        public void SetMapComplete(PartyData party, CrawlerWorld world, long mapId)
         {
 
             CrawlerMap map = world.GetMap(mapId);
@@ -472,6 +477,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             }
 
             _questService.GiveExploreQuestCredit(party, mapId);
+            _dispatcher.Dispatch(new ShowPartyMinimap() { Party = party, PartyArrowOnly = false });
+
         }
 
         public void MarkCellCleansed(int x, int z)
@@ -876,7 +883,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             {
                 // Check if map is completed or we have the one-time flag set.
                 // If didn't visit now and didn't complete map, then the encounter is there.
-                if (party.CompletedMaps.HasBit(map.IdKey))
+                if (party.CompletedMaps.HasBit(map.IdKey) && party.LastAutoCompleteLevel != map.IdKey)
                 {
                     return 0;
                 }
@@ -961,6 +968,50 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                 await _worldService.SaveWorld(world);
             }
+        }
+
+        public EntranceMapData GetEntranceMap(PartyData party, CrawlerWorld world, long mapId)
+        {
+            EntranceMapData retval = new EntranceMapData();
+
+            CrawlerMap targetMap = world.GetMap(mapId);
+
+            if (targetMap == null || targetMap.CrawlerMapTypeId == CrawlerMapTypes.Outdoors)
+            {
+                return retval;
+            }
+
+            List<MapCellDetail> details = targetMap.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
+
+            List<CrawlerMap> entranceMaps = new List<CrawlerMap>();
+
+            foreach (MapCellDetail detail in details)
+            {
+                CrawlerMap otherMap = world.GetMap(detail.EntityId);
+
+                if (otherMap != null && otherMap.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
+                {
+                    entranceMaps.Add(otherMap);
+                }
+            }
+
+            if (entranceMaps.Count > 0)
+            {
+                retval.EntranceMap = entranceMaps[0];
+
+                MapCellDetail detail = retval.EntranceMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map &&
+                x.EntityId == targetMap.IdKey);
+
+                if (detail != null)
+                {
+                    retval.EntranceMapName = GetMapName(party, retval.EntranceMap.IdKey, detail.X, detail.Z);
+                    retval.EnterX = detail.X;
+                    retval.EnterZ = detail.Z;
+
+                }
+            }
+
+            return retval;
         }
     }
 }

@@ -4,5 +4,9 @@
   "IdKey": 2,
   "Name": "Ally",
   "Desc": "",
-  "StatBonusScale": 1.0
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "",
+  "StatBonusScale": 1.0,
+  "SaveTime": "2025-10-27T23:21:16.24Z"
 }

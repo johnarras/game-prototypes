@@ -4,5 +4,7 @@
   "IdKey": 3,
   "Name": "Shoulders",
   "Active": true,
-  "BaseBonusStatTypeId": 30
+  "BaseBonusStatTypeId": 30,
+  "BonusStatScale": 1.0,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

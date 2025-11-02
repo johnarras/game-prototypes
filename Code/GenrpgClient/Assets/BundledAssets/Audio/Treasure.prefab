@@ -15,6 +15,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1050807299208215830, guid: 9fccd943278e1744eb8558da69cb6e5c,
         type: 3}
+      propertyPath: TtlSeconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050807299208215830, guid: 9fccd943278e1744eb8558da69cb6e5c,
+        type: 3}
       propertyPath: 'Clips.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 9cc88a7e50f62b54c9454f5eacea52b1, type: 3}

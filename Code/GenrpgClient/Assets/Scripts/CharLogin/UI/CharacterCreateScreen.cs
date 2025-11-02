@@ -1,14 +1,13 @@
 ﻿
-using System.Threading;
-using UnityEngine;
-using System.Threading.Tasks;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Characters.WebApi.CreateChar;
+using Genrpg.Shared.UI.Constants;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class CharacterCreateScreen : BaseScreen
 {
     private IClientWebService _webNetworkService;
-    
+
     public GInputField NameInput;
     public GButton CreateButton;
     public GButton BackButton;
@@ -16,7 +15,7 @@ public class CharacterCreateScreen : BaseScreen
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         _uiService.SetButton(CreateButton, GetName(), ClickCreate);
-        _uiService.SetButton(BackButton, GetName(),ClickBack);
+        _uiService.SetButton(BackButton, GetName(), ClickBack);
 
         await Task.CompletedTask;
     }
@@ -40,7 +39,7 @@ public class CharacterCreateScreen : BaseScreen
             Name = charName,
         };
 
-        _webNetworkService.SendClientUserWebRequest(createCommand, _token);
+        _webNetworkService.SendClientUserWebRequest(createCommand, GetToken());
 
     }
 }

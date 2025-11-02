@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.GameSettings;
@@ -8,7 +9,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
+public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDestroyCallback, IPooledObject
 {
     protected IInitClient _initClient = null;
     protected IClientUpdateService _updateService = null;
@@ -24,7 +25,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
     protected IClientEntityService _clientEntityService = null;
 
     private CancellationTokenSource _cts = null;
-    public CancellationToken GetToken()
+    public virtual CancellationToken GetToken()
     {
         if (_cts == null)
         {
@@ -33,12 +34,34 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
         return _cts.Token;
     }
 
+
+    protected CancellationTokenRegistration _ctRegistration;
+
+
+    public void SetDestroyCallback(Action action)
+    {
+        _ctRegistration.Dispose();
+
+        if (action == null)
+        {
+            return;
+        }
+
+        _ctRegistration = destroyCancellationToken.Register(action);
+    }
+
     protected void ClearToken()
     {
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+        SetDestroyCallback(null);
 
+    }
+
+    public virtual string GetName()
+    {
+        return name;
     }
 
     public virtual void Init()
@@ -76,6 +99,11 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject
     protected virtual void OnDestroy()
     {
         ClearToken();
+    }
+
+    public virtual void OnReturn()
+    {
+
     }
 }
 

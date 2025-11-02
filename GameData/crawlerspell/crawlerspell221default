@@ -5,8 +5,8 @@
   "Name": "Cone of Cold",
   "Desc": "Hit all enemies in a group with cold damage.",
   "PowerCost": 8.0,
-  "PowerPerLevel": 1.0,
-  "StatBonusScaling": 1.0,
+  "PowerPerLevel": 2.0,
+  "StatBonusScaling": 1.5,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 3,
@@ -16,11 +16,12 @@
     {
       "EntityTypeId": 33,
       "EntityId": 3,
-      "MinQuantity": 1,
-      "MaxQuantity": 6,
-      "ElementTypeId": 3
+      "MinQuantity": 6,
+      "MaxQuantity": 17,
+      "ElementTypeId": 3,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 0.2,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

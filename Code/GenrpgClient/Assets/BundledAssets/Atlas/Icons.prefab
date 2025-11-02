@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627ca3aa1fd23f543840b8b2beae6222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TtlSeconds: 5
   Atlas: {fileID: 4343727234628468602, guid: d1b7940aeae7f0b48a6482eca2d2cc49, type: 2}

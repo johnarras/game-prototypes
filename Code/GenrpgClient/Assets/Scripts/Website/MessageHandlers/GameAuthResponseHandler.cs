@@ -2,6 +2,7 @@
 using Assets.Scripts.BoardGame.Controllers;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Purchasing.Services;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Characters.PlayerData;
@@ -25,6 +26,8 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IAssetService _assetService = null;
         private IClientWebService _webNetworkService = null;
         private IBoardGameController _boardGameController = null;
+        private IClientPurchasingService _purchasingService = null;
+
         protected override void InnerProcess(GameAuthResponse response, CancellationToken token)
         {
             _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
@@ -61,6 +64,11 @@ namespace Assets.Scripts.Website.MessageHandlers
             foreach (IUnitData unitData in response.UserData)
             {
                 _gs.ch.Set(unitData);
+            }
+
+            if (response.OfferData != null)
+            {
+                _gs.ch.Set(response.OfferData);
             }
 
             List<ITopLevelSettings> loadedSettings = _gameData.AllSettings();
@@ -105,6 +113,7 @@ namespace Assets.Scripts.Website.MessageHandlers
                     _logService.Exception(ex, "GameAuthLoginHandler");
                 }
             }
+            await _purchasingService.RetryPurchaseAfterLogin(token);
             _screenService.CloseAll(keepOpenScreens);
         }
 

@@ -488,13 +488,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             // Add random dungeons and stuff on the map
             samplingData = new SamplingData()
             {
-                Count = outdoorMap.Width * outdoorMap.Height / 150,
+                Count = outdoorMap.Width * outdoorMap.Height / 100,
                 MaxAttemptsPerItem = 20,
                 XMin = cityDistanceFromEdge,
                 XMax = outdoorMap.Width - cityDistanceFromEdge,
                 YMin = cityDistanceFromEdge,
                 YMax = outdoorMap.Height - cityDistanceFromEdge,
-                MinSeparation = 10,
+                MinSeparation = 7,
                 Seed = rand.Next(),
             };
 
@@ -502,7 +502,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<PointXZ> finalDungeonPoints = new List<PointXZ>();
 
-            double minDistFromCity = 8;
+            double minDistFromCity = 5;
 
             int dungeonAttempts = startDungeonPoints.Count;
             int dungeonSuccess = 0;
@@ -610,7 +610,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 if (haveUnlockQuests && entranceMap.Level >= gameDungeonUnlockLevel && rand.NextDouble() < mapSettings.QuestItemEntranceUnlockChance)
 
                 {
-                    string questItemName = _lootGenService.GenerateItemNames(rand, 1, 100).First().SingularName;
+                    string questItemName = _lootGenService.GenerateItemNames(rand, 1, 100, "Key").First().SingularName;
 
                     int lookbackDistance = 6;
 

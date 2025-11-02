@@ -7,8 +7,6 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Core.Entities
 {
@@ -86,22 +84,25 @@ namespace Genrpg.Shared.Core.Entities
             return list;
         }
 
-        /// <summary>
-        /// Get a list of all services in the ObjectFactory
-        /// </summary>
-        /// <returns></returns>
-        public List<IInjectable> GetVals()
+        public List<T> GetVals<T>() where T : IInjectable
         {
-            List<IInjectable> list = new List<IInjectable>();
+            List<T> retval = new List<T>();
+
             if (_typeDict == null)
             {
-                return list;
+                return retval;
             }
-            foreach (Type type in _typeDict.Keys)
+
+            string interfaceName = typeof(T).Name;
+
+            foreach (IInjectable injectable in _typeDict.Values)
             {
-                list.Add(_typeDict[type]);
+                if (injectable is T t)
+                {
+                    retval.Add(t);
+                }
             }
-            return list;
+            return retval;
         }
 
         /// <summary>
@@ -260,21 +261,5 @@ namespace Genrpg.Shared.Core.Entities
             _storedDictionaryItems.Add(obj);
         }
 
-        public async Task InitializeDictionaryItems(CancellationToken token)
-        {
-            List<Task> tasks = new List<Task>();
-
-
-            List<object> dictItems = new List<object>();
-            foreach (object obj in dictItems)
-            {
-                if (obj is IInitializable initz)
-                {
-                    tasks.Add(initz.Initialize(token));
-                }
-            }
-
-            await Task.WhenAll(tasks);
-        }
     }
 }

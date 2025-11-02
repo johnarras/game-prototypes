@@ -1,14 +1,12 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.Purchasing.Settings;
+using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Genrpg.Shared.Purchasing.PlayerData
 {
@@ -25,19 +23,18 @@ namespace Genrpg.Shared.Purchasing.PlayerData
         [Key(7)] public long StoreSlotId { get; set; }
         [Key(8)] public long StoreThemeId { get; set; }
         [Key(9)] public DateTime EndDate { get; set; }
-
-        [Key(10)] public List<PlayerStoreOfferItem> Items { get; set; } = new List<PlayerStoreOfferItem>();
+        [Key(10)] public List<PlayerBundle> Bundles { get; set; } = new List<PlayerBundle>();
     }
-    
+
     [MessagePackObject]
-    public class PlayerStoreOfferItem
+    public class PlayerBundle
     {
         [Key(0)] public long Index { get; set; }
-        [Key(1)] public StoreItem StoreItem { get; set; }
-        [Key(2)] public ProductSku Sku { get; set; }
-        [Key(3)] public string UniqueStoreItemId { get; set; }
+        [Key(1)] public long ProductSkuId { get; set; }
+        [Key(2)] public string UniqueId { get; set; }
+        [Key(3)] public string BundleId { get; set; }
+        [Key(4)] public List<Reward> Rewards { get; set; } = new List<Reward>();
     }
-
 
 
     [MessagePackObject]

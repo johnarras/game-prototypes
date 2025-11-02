@@ -31,7 +31,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             PartyData party = _crawlerService.GetParty();
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 totalClasses = 2;
             }

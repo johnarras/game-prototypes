@@ -25,7 +25,7 @@ namespace Genrpg.Shared.Rewards.Services
             return null;
         }
 
-        public virtual bool GiveRewards<RL>(IRandom rand, MapObject obj, List<RL> resultList, RewardParams rp) where RL : RewardList            
+        public virtual bool GiveRewards<RL>(IRandom rand, MapObject obj, List<RL> resultList, RewardParams rp) where RL : RewardList
         {
             if (resultList == null)
             {
@@ -53,9 +53,10 @@ namespace Genrpg.Shared.Rewards.Services
             return !hadFailure;
         }
 
-        public virtual bool GiveReward(IRandom rand, MapObject obj, Reward res, RewardParams rp)
+        public virtual bool GiveReward(IRandom rand, MapObject obj, IReward reward, RewardParams rp)
         {
-            return GiveReward(rand, obj, res.EntityTypeId, res.EntityId, res.Quantity, res.ExtraData, rp);
+
+            return GiveReward(rand, obj, reward.EntityTypeId, reward.EntityId, reward.Quantity, reward.ExtraData, rp);
         }
 
         public virtual bool GiveReward(IRandom rand, MapObject obj, long entityType, long entityId, long quantity, object extraData, RewardParams rp)
@@ -76,7 +77,7 @@ namespace Genrpg.Shared.Rewards.Services
             IQuantityRewardHelper quantityHelper = GetRewardHelper(entityTypeId) as IQuantityRewardHelper;
             if (quantityHelper != null)
             {
-                return quantityHelper.Add(obj, entityId, quantity,rp);
+                return quantityHelper.Add(obj, entityId, quantity, rp);
             }
             return false;
         }
@@ -91,7 +92,7 @@ namespace Genrpg.Shared.Rewards.Services
             return false;
         }
 
-        public virtual void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd: class, IStringId
+        public virtual void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, IStringId
         {
         }
     }

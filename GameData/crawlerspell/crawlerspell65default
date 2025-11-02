@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell65default",
+  "ParentId": "default",
+  "IdKey": 65,
+  "Name": "Polymorph Dog",
+  "Desc": "Transform some enemy monsters into dogs.",
+  "PowerCost": 10.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "RoleScalingTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 59,
+      "EntityId": 24,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "ElementTypeId": 6,
+      "Chance": 0.25
+    }
+  ],
+  "ItemEnchantWeight": 0.1,
+  "SaveTime": "2025-10-27T23:25:19.168Z"
+}

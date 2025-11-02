@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI; 
-using UnityEngine.EventSystems;
-
+﻿using Assets.Scripts.Inventory.UI;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Assets.Scripts.Inventory.UI;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public abstract class DragItemScreen<TData,TDragItem,TScreen,TInitData> : BaseScreen 
-    where TData : class 
-    where TDragItem : DragItem<TData,TDragItem,TScreen,TInitData>
-    where TScreen : DragItemScreen<TData,TDragItem,TScreen,TInitData>
+public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : BaseScreen
+    where TData : class
+    where TDragItem : DragItem<TData, TDragItem, TScreen, TInitData>
+    where TScreen : DragItemScreen<TData, TDragItem, TScreen, TInitData>
     where TInitData : DragItemInitData<TData, TDragItem, TScreen, TInitData>
 {
 
@@ -70,7 +69,7 @@ public abstract class DragItemScreen<TData,TDragItem,TScreen,TInitData> : BaseSc
             }
         }
 
-    }  
+    }
 
     public virtual void OnPointerDown(PointerEventData pointerData, TDragItem icon)
     {
@@ -93,7 +92,7 @@ public abstract class DragItemScreen<TData,TDragItem,TScreen,TInitData> : BaseSc
         ResetCurrentDragItem();
         _origItem = icon;
         _dragItem = _clientEntityService.FullInstantiate<TDragItem>(icon);
-        _dragItem.Init(icon.GetInitData(), _token);
+        _dragItem.Init(icon.GetInitData(), GetToken());
         _dragItem.transform.SetParent(dragParent.transform);
         _dragItem.transform.localScale = icon.transform.lossyScale;
         UpdateDragIconPosition();

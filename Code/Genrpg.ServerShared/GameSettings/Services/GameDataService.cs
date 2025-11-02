@@ -13,6 +13,7 @@ using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Utils;
 using Genrpg.Shared.Settings.Settings;
+using Genrpg.Shared.Time.Services;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
 using Genrpg.Shared.Website.Messages;
@@ -32,6 +33,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
         private IGameData _gameData = null;
         private ICryptoService _cryptoService = null;
         protected ITextSerializer _serializer = null;
+        private ITimeService _timeService = null;
 
         public List<IGameSettingsLoader> GetAllLoaders()
         {
@@ -92,13 +94,15 @@ namespace Genrpg.ServerShared.GameSettings.Services
             return true;
         }
 
-        public bool SetGameDataOverrides(IFilteredObject ch, bool forceRefresh)
+        public bool SetGameDataOverrides(IFilteredObject obj, bool forceRefresh)
         {
 
-            if (ch == null || ch.DataOverrides == null)
+            if (obj == null || obj.DataOverrides == null)
             {
                 return true;
             }
+
+            DateTime currentTime = _timeService.GetTime(obj);
 
             VersionSettings versionSettings = _gameData.Get<VersionSettings>(null);
 
@@ -106,9 +110,9 @@ namespace Genrpg.ServerShared.GameSettings.Services
 
             SettingsNameSettings settingsNameSettings = _gameData.Get<SettingsNameSettings>(null);
 
-            if (dataOverrideSettings.NextUpdateTime <= DateTime.UtcNow)
+            if (dataOverrideSettings.GetNextUpdateTime(currentTime) <= currentTime)
             {
-                dataOverrideSettings.SetPrevNextUpdateTimes();
+                dataOverrideSettings.SetPrevNextUpdateTimes(currentTime);
             }
 
             // If we are not force refreshing, don't always update the settings
@@ -118,9 +122,9 @@ namespace Genrpg.ServerShared.GameSettings.Services
             // any changes.
 
             if (!forceRefresh &&
-                versionSettings.SaveTime == ch.DataOverrides.GameDataCheckTime &&
-                ch.DataOverrides.LastTimeSet >= dataOverrideSettings.PrevUpdateTime &&
-                ch.DataOverrides.LastTimeSet < dataOverrideSettings.NextUpdateTime)
+                versionSettings.SaveTime == obj.DataOverrides.GameDataCheckTime &&
+                obj.DataOverrides.LastTimeSet >= dataOverrideSettings.GetPrevUpdateTime(currentTime) &&
+                obj.DataOverrides.LastTimeSet < dataOverrideSettings.GetNextUpdateTime(currentTime))
             {
                 return false;
             }
@@ -132,7 +136,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
             // dataOverrideSettings.GetData() is ordered the DataOverrideSettingsLoader
             foreach (DataOverrideGroup overrideGroup in dataOverrideSettings.GetData())
             {
-                if (AcceptedByFilter(ch, overrideGroup))
+                if (AcceptedByFilter(obj, overrideGroup, currentTime))
                 {
                     // Each group.Items is ordered on load by SettingsId then by DocId
                     foreach (DataOverrideItem groupItem in overrideGroup.Items)
@@ -163,37 +167,37 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 }
             }
 
-            ch.DataOverrides.GameDataCheckTime = versionSettings.SaveTime;
-            ch.DataOverrides.LastTimeSet = DateTime.UtcNow;
+            obj.DataOverrides.GameDataCheckTime = versionSettings.SaveTime;
+            obj.DataOverrides.LastTimeSet = _timeService.GetTime(obj);
 
-            ch.DataOverrides.Items = new List<PlayerSettingsOverrideItem>();
+            obj.DataOverrides.Items = new List<PlayerSettingsOverrideItem>();
 
             foreach (DataOverrideItemPriority priority in priorityOverrides)
             {
-                ch.DataOverrides.Items.Add(new PlayerSettingsOverrideItem()
+                obj.DataOverrides.Items.Add(new PlayerSettingsOverrideItem()
                 {
                     SettingId = settingsNameSettings.Get(priority.SettingsNameId).Name,
                     DocId = priority.DocId,
                 });
             }
 
-            ch.DataOverrides.Items = ch.DataOverrides.Items.OrderBy(x => x.SettingId).ToList();
+            obj.DataOverrides.Items = obj.DataOverrides.Items.OrderBy(x => x.SettingId).ToList();
 
             // This should be deterministic across machines because the player has a set
             // of overrides that should be the same for anyone who's in the same bucket
             // and then the game data save time and the prev update time (last time the
             // overrides changed) will be the same.
-            string fullString = _serializer.SerializeToString(ch.DataOverrides.Items) +
+            string fullString = _serializer.SerializeToString(obj.DataOverrides.Items) +
                 versionSettings.SaveTime.Ticks.ToString() + "." +
-                dataOverrideSettings.PrevUpdateTime.Ticks.ToString();
+                dataOverrideSettings.GetPrevUpdateTime(currentTime).Ticks.ToString();
 
-            ch.DataOverrides.Hash = _cryptoService.QuickHash(fullString);
+            obj.DataOverrides.Hash = _cryptoService.QuickHash(fullString);
 
-            if (ch is CoreCharacter coreChar)
+            if (obj is CoreCharacter coreChar)
             {
                 _repoService.QueueSave(coreChar);
             }
-            else if (ch is Character realCh)
+            else if (obj is Character realCh)
             {
                 CharacterUtils.CopyDataFromTo(realCh, realCh.Core);
                 _repoService.QueueSave(realCh.Core);
@@ -293,9 +297,9 @@ namespace Genrpg.ServerShared.GameSettings.Services
         }
 
 
-        public bool AcceptedByFilter(IFilteredObject obj, IPlayerFilter filter)
+        public bool AcceptedByFilter(IFilteredObject obj, IPlayerFilter filter, DateTime currentTime)
         {
-            if (!PlayerFilterUtils.IsActive(filter))
+            if (!PlayerFilterUtils.IsActive(filter, currentTime))
             {
                 return false;
             }
@@ -321,12 +325,12 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 }
             }
 
-            if (filter.MaxUserDaysSinceInstall > 0 && (DateTime.UtcNow - obj.CreationDate).Days > filter.MaxUserDaysSinceInstall)
+            if (filter.MaxUserDaysSinceInstall > 0 && (currentTime - obj.CreationDate).Days > filter.MaxUserDaysSinceInstall)
             {
                 return false;
             }
 
-            if (filter.MinUserDaysSinceInstall > 0 && (DateTime.UtcNow - obj.CreationDate).Days < filter.MinUserDaysSinceInstall)
+            if (filter.MinUserDaysSinceInstall > 0 && (currentTime - obj.CreationDate).Days < filter.MinUserDaysSinceInstall)
             {
                 return false;
             }

@@ -84,6 +84,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public int MaxLevelEntered { get; set; }
 
+        public long LastAutoCompleteLevel { get; set; }
+
         public string RoguelikeDungeonName { get; set; }
 
         public List<UpgradeStatus> UpgradeStatuses { get; set; } = new List<UpgradeStatus>();

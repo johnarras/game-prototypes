@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -91,6 +92,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                        onClickAction: delegate ()
                        {
                            party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Prepare;
+                           _combatService.InitPartyCombatActions(party);
                        }));
             }
 
@@ -103,11 +105,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
 
 
-            //stateData.Actions.Add(new CrawlerStateAction("Run", 'R', ECrawlerStates.CombatConfirm,
-            //    onClickAction: delegate ()
-            //    {
-            //        party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Run;
-            //    }));
+            if (!_optionsService.HasOption(party, CrawlerOptions.Permadeath))
+            {
+
+                stateData.Actions.Add(new CrawlerStateAction("Run", 'R', ECrawlerStates.CombatConfirm,
+                    onClickAction: delegate ()
+                    {
+                        party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Run;
+                    }));
+            }
 
             long minRange = CrawlerCombatConstants.MaxRange;
 

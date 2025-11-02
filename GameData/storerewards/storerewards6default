@@ -1,0 +1,15 @@
+{
+  "Id": "storerewards6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "500 Supplies",
+  "Desc": "",
+  "Rewards": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 3,
+      "Quantity": 500
+    }
+  ],
+  "SaveTime": "2025-10-21T00:14:00.69Z"
+}

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.Dungeons
 {
@@ -43,6 +38,22 @@ namespace Assets.Scripts.Dungeons
                 return WallMat;
             }
             return WallMat;
+        }
+
+        private void Clear()
+        {
+            for (int a = 0; a < DungeonAssetIndex.Max; a++)
+            {
+                GetMaterials(a).Clear();
+            }
+
+
+        }
+
+        protected override void OnDestroy()
+        {
+            Clear();
+            base.OnDestroy();
         }
 
     }

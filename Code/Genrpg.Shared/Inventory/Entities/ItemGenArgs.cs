@@ -11,6 +11,7 @@ namespace Genrpg.Shared.Inventory.Entities
         [Key(3)] public long Quantity { get; set; }
         [Key(4)] public int Level { get; set; }
         [Key(5)] public long ExtraItems { get; set; }
+        [Key(6)] public string CoreNameOverride { get; set; }
 
         public ItemGenArgs()
         {

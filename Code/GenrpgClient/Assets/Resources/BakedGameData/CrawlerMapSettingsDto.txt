@@ -127,15 +127,16 @@
       "IdKey": 2,
       "Name": "City",
       "Desc": "",
+      "AtlasPrefix": "",
       "Icon": "",
       "Art": "",
       "GenTypes": [
         {
           "Name": "Town",
-          "MinWidth": 10,
-          "MaxWidth": 10,
-          "MinHeight": 10,
-          "MaxHeight": 10,
+          "MinWidth": 12,
+          "MaxWidth": 12,
+          "MinHeight": 12,
+          "MaxHeight": 12,
           "MinFloors": 1,
           "MaxFloors": 1,
           "Weight": 1.0,
@@ -153,9 +154,9 @@
         {
           "Name": "City",
           "MinWidth": 12,
-          "MaxWidth": 16,
+          "MaxWidth": 18,
           "MinHeight": 12,
-          "MaxHeight": 16,
+          "MaxHeight": 18,
           "MinFloors": 1,
           "MaxFloors": 1,
           "Weight": 1.0,
@@ -235,7 +236,7 @@
     "MinQuestUnlockDungeonLevel": 8,
     "MinQuestItemDungeonLevel": 6,
     "Name": "CrawlerMapSettings",
-    "SaveTime": "2025-08-26T15:13:23.578Z"
+    "SaveTime": "2025-10-31T01:32:53.148Z"
   },
-  "SaveTime": "2025-08-26T15:13:23.578Z"
+  "SaveTime": "2025-10-31T01:32:53.148Z"
 }

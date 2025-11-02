@@ -137,7 +137,7 @@ namespace Assets.Scripts.Crawler.Maps
 
             SetObjectDirections(newMap.Map, rand);
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (genData.FromMapId > 0 && newMap.EnterX >= 0 && newMap.EnterZ >= 0)
                 {

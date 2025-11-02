@@ -10,7 +10,10 @@ namespace Assets.Scripts.GameObjects
     public interface ISingletonContainer : IInitializable
     {
         public GameObject GetSingleton(string name);
+        public GameObject GetChildSingleton(string childName, string parentName);
     }
+
+
 
     public class SingletonContainer : ISingletonContainer
     {
@@ -66,6 +69,28 @@ namespace Assets.Scripts.GameObjects
             _clientEntityService.AddToParent(go, _root);
             _objectDict[name] = go;
             return go;
+        }
+
+        public GameObject GetChildSingleton(string childName, string parentName)
+        {
+
+            string fullName = childName + parentName;
+
+            if (_objectDict.TryGetValue(fullName, out GameObject go))
+            {
+                return go;
+            }
+
+            GameObject parent = GetSingleton(parentName);
+
+            GameObject newChild = new GameObject(childName);
+
+            _clientEntityService.AddToParent(newChild, parent);
+
+
+            _objectDict[fullName] = newChild;
+
+            return newChild;
         }
     }
 }

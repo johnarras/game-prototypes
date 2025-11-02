@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.GameEvents;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
-
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class FloatingTextQueuedItem
 {
@@ -16,13 +15,13 @@ public class FloatingTextQueuedItem
 public class FloatingTextScreen : BaseScreen
 {
     private IInputService _inputService;
-    
+
     public GameObject _textAnchor;
 
     private string MessageArt = "FloatingMessageText";
     private string ErrorArt = "FloatingErrorText";
 
-    
+
     public float _TimeBetweenMessages = 3.0f;
 
     private List<FloatingTextItem> _currentItems = new List<FloatingTextItem>();
@@ -48,12 +47,12 @@ public class FloatingTextScreen : BaseScreen
     protected override void ScreenUpdate()
     {
 
-        if (_messageQueue.Count > 0 && (DateTime.UtcNow-_lastShowTime).TotalSeconds >= _TimeBetweenMessages)
+        if (_messageQueue.Count > 0 && (DateTime.UtcNow - _lastShowTime).TotalSeconds >= _TimeBetweenMessages)
         {
             FloatingTextQueuedItem firstItem = _messageQueue[0];
             _messageQueue.RemoveAt(0);
 
-            _assetService.LoadAssetInto(_textAnchor, AssetCategoryNames.UI, firstItem.ArtName, OnLoadText, firstItem.Message, _token, Subdirectory);
+            _assetService.LoadAssetInto(_textAnchor, AssetCategoryNames.UI, firstItem.ArtName, OnLoadText, firstItem.Message, GetToken(), Subdirectory);
 
         }
 
@@ -80,7 +79,7 @@ public class FloatingTextScreen : BaseScreen
             }
             _clientEntityService.Destroy(item.gameObject);
         }
-        
+
     }
 
     private void ShowMessage(string msg, EFloatingTextArt art)

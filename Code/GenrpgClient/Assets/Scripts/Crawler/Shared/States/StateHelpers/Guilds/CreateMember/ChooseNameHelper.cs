@@ -98,13 +98,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                     {
                         okMelee = okMelee.OrderBy(x => (x.MinVal + x.MaxVal)).ToList();
 
+
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okMelee[0].IdKey,
+                            ItemTypeId = okMelee[_rand.Next() % (okMelee.Count + 1) / 2].IdKey,
                         };
 
-                        if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+                        if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
                         {
                             igd.Level = 1;
                         }
@@ -123,7 +124,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okRanged[0].IdKey,
+                            ItemTypeId = okRanged[_rand.Next() % (okRanged.Count + 1) / 2].IdKey,
                         };
                         Item newItem = _lootGenService.GenerateItem(igd);
                         if (newItem != null)

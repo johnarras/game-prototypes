@@ -10,6 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2861210888763606168, guid: 09825c8d9fe4ca649b7607e19d617323,
         type: 3}
+      propertyPath: KeepLoaded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861210888763606168, guid: 09825c8d9fe4ca649b7607e19d617323,
+        type: 3}
+      propertyPath: TtlSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861210888763606168, guid: 09825c8d9fe4ca649b7607e19d617323,
+        type: 3}
       propertyPath: 'Clips.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 13291e3e00d4d654e9cc01d43c467eee, type: 3}

@@ -3,7 +3,8 @@
   "ParentId": "default",
   "IdKey": 4,
   "Name": "Bronze",
-  "Armor": 4,
-  "Damage": 3,
-  "CostPct": 300
+  "Armor": 7,
+  "Damage": 4,
+  "CostPct": 400,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

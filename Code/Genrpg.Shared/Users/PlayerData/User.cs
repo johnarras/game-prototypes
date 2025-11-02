@@ -1,12 +1,9 @@
-using MessagePack;
-
-using Genrpg.Shared.Interfaces;
-using System;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
-using System.Linq;
-using Genrpg.Shared.GameSettings.PlayerData;
-using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using Genrpg.Shared.DataStores.Constants;
+using Genrpg.Shared.GameSettings.PlayerData;
+using Genrpg.Shared.PlayerFiltering.Interfaces;
+using MessagePack;
+using System;
 
 namespace Genrpg.Shared.Users.PlayerData
 {
@@ -34,17 +31,18 @@ namespace Genrpg.Shared.Users.PlayerData
 
         [Key(5)] public string ClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
 
-        [Key(6)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
-
-        [Key(7)] public string ProductAccountId { get; set; }
-
-        [Key(8)] public bool Deleted { get; set; }
-
-        [Key(9)] public int Flags { get; set; }
+        [Key(6)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
+        [Key(7)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
+
+        [Key(8)] public string ProductAccountId { get; set; }
+
+        [Key(9)] public bool Deleted { get; set; }
+
+        [Key(10)] public string ClientPlatformName { get; set; }
 
 
     }

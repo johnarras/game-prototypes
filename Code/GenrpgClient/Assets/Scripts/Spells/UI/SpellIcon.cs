@@ -1,13 +1,14 @@
 ﻿
+using Assets.Scripts.Assets.Sprites.Services;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Threading;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Client.Assets.Constants;
 
 public delegate void OnLoadSpellIconHandler(InitSpellIconData data);
 
-public class InitSpellIconData : DragItemInitData<Spell,SpellIcon,SpellIconScreen,InitSpellIconData>
-{ 
+public class InitSpellIconData : DragItemInitData<Spell, SpellIcon, SpellIconScreen, InitSpellIconData>
+{
     public OnLoadSpellIconHandler handler;
     public SpellIcon createdIcon;
     public string iconPrefabName;
@@ -16,6 +17,9 @@ public class InitSpellIconData : DragItemInitData<Spell,SpellIcon,SpellIconScree
 
 public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIconData>
 {
+
+    protected ISpriteService _spriteService = null;
+
     public GImage Icon;
 
     public override void Init(InitSpellIconData data, CancellationToken token)
@@ -36,7 +40,7 @@ public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIc
             iconName = data.Data.Icon;
         }
 
-        _assetService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
 
     }
 
@@ -68,7 +72,7 @@ public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIc
 
     public override void ShowTooltip()
     {
-        if (_initData == null || _initData.Screen == null || _initData.Screen.ToolTip == null || 
+        if (_initData == null || _initData.Screen == null || _initData.Screen.ToolTip == null ||
             _initData.Data == null || _initData.Screen.GetDragItem() != null)
         {
             return;

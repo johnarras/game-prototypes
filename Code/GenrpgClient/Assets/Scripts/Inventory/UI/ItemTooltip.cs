@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+﻿using Assets.Scripts.Assets.Sprites.Services;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Effects.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.Constants;
@@ -38,6 +39,9 @@ public class ItemTooltip : BaseTooltip
     protected ISharedItemService _sharedItemService = null;
     protected IIconService _iconService = null;
     protected IEffectService _effectService = null;
+    protected ISpriteService _spriteService = null;
+
+
     public const string ItemTooltipRow = "ItemTooltipRow";
 
     public const int StarBaseAmount = 25;
@@ -74,7 +78,7 @@ public class ItemTooltip : BaseTooltip
 
         string bgName = _iconService.GetBackingNameFromQuality(_gameData, _data.MainItem.QualityTypeId);
 
-        _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, RarityImage, token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, RarityImage, token);
 
         ShowMoney();
 

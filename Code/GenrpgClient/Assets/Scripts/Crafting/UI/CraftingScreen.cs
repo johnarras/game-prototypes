@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-using System.Threading;
-using Genrpg.Shared.Inventory.Constants;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crafting.PlayerData.Recipes;
 using Genrpg.Shared.Crafting.Settings.Recipes;
+using Genrpg.Shared.Inventory.Constants;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class CraftingScreen : ItemIconScreen
 {
@@ -14,7 +13,7 @@ public class CraftingScreen : ItemIconScreen
     public const string ReagentRow = "ReagentRow";
     public const string CraftSlotIcon = "CraftSlotIcon";
     public const string CraftInventoryIcon = "CraftInventoryIcon";
-    
+
     public GButton CraftButton;
     public GButton ClearButton;
     public InventoryPanel _inventoryPanel;
@@ -30,7 +29,7 @@ public class CraftingScreen : ItemIconScreen
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         Init();
-        await base.OnStartOpen (data, token);
+        await base.OnStartOpen(data, token);
     }
 
     public override void OnRightClickIcon(ItemIcon icon)
@@ -53,7 +52,7 @@ public class CraftingScreen : ItemIconScreen
 
     private void ClearScreen()
     {
-        
+
     }
 
     public override void Init()
@@ -75,21 +74,21 @@ public class CraftingScreen : ItemIconScreen
 
         if (_inventoryPanel != null)
         {
-            _inventoryPanel.Init(InventoryGroup.Reagents, this, _gs.ch, CraftInventoryIcon, _token);
+            _inventoryPanel.Init(InventoryGroup.Reagents, this, _gs.ch, CraftInventoryIcon, GetToken());
         }
 
     }
 
 
-    protected void ShowOneRecipe (RecipeStatus status)
+    protected void ShowOneRecipe(RecipeStatus status)
     {
         if (status == null)
         {
             return;
         }
 
-        _assetService.LoadAsset(AssetCategoryNames.UI, RecipeRow, OnLoadRecipeRow, 
-            status, _recipeListParent, _token, Subdirectory);        
+        _assetService.LoadAsset(AssetCategoryNames.UI, RecipeRow, OnLoadRecipeRow,
+            status, _recipeListParent, GetToken(), Subdirectory);
     }
 
     private void OnLoadRecipeRow(object obj, object data, CancellationToken token)
@@ -112,7 +111,7 @@ public class CraftingScreen : ItemIconScreen
         _recipes.Add(row);
     }
 
-    public void SetActiveRecipe (RecipeRow row)
+    public void SetActiveRecipe(RecipeRow row)
     {
         if (row == _currentRecipe)
         {

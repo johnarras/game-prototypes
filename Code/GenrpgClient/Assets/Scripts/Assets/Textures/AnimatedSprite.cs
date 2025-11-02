@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Crawler.Combat;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.TextureLists.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
+﻿using Assets.Scripts.TextureLists.Services;
 using Genrpg.Shared.Crawler.TextureLists.Services;
 using Genrpg.Shared.Utils;
 using UnityEngine;
@@ -12,21 +9,18 @@ namespace Assets.Scripts.Assets.Textures
     {
 
         private ITextureListCache _textureListCache;
-        private ICrawlerMapService _crawlerMapService;
 
-        private SpriteList _textureList;
+        private CachedSpriteList _cachedSpriteList;
 
         public GImage AnimatedImage;
         public Sprite BlankSprite;
 
         public bool OnlyShowFirstFrame = false;
 
-
         public bool ShowSequence = false;
         public int FramesBetweenSequenceStep = 2;
 
         const float ChangeToBaseFrameChance = 0.2f;
-        const float ChangeToOtherFrameChance = 0.05f;
 
         private string _currentSpriteName = null;
         private string _newSpriteName = null;
@@ -38,6 +32,12 @@ namespace Assets.Scripts.Assets.Textures
         public override void Init()
         {
             _updateService.AddUpdate(this, LateUpdatePicture, UpdateTypes.Late, GetToken());
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            ClearCurrentSprite();
         }
 
         public void SetImage(string spriteName)
@@ -60,14 +60,23 @@ namespace Assets.Scripts.Assets.Textures
                     return;
                 }
                 _currentSpriteName = downloadData.TextureName;
-                _textureList = downloadData.TextureList;
+
+                if (_cachedSpriteList != null)
+                {
+                    _cachedSpriteList.RemoveRef(this);
+                }
+                _cachedSpriteList = downloadData.TextureList;
+                if (_cachedSpriteList != null)
+                {
+                    _cachedSpriteList.AddRef(this);
+                }
                 ShowTextureFrame(0);
                 _downloadingSpriteName = null;
+
+
+
             }
         }
-
-
-        
 
         private void LateUpdatePicture()
         {
@@ -77,7 +86,7 @@ namespace Assets.Scripts.Assets.Textures
             {
                 if (string.IsNullOrEmpty(spriteName))
                 {
-                    _textureList = null;
+                    _cachedSpriteList = null;
                     _currentSpriteName = spriteName;
                     ShowTextureFrame(0);
                     return;
@@ -91,13 +100,13 @@ namespace Assets.Scripts.Assets.Textures
                 return;
             }
 
-            if (_textureList == null || _textureList.Sprites.Count < 1)
+            if (_cachedSpriteList == null || _cachedSpriteList.SpriteList.Sprites.Count < 1)
             {
-                _uiService.SetImageSprite(AnimatedImage, BlankSprite);
+                ClearCurrentSprite();
                 return;
             }
 
-            if (_textureList.Sprites.Count == 1)
+            if (_cachedSpriteList.SpriteList.Sprites.Count == 1)
             {
                 return;
             }
@@ -114,17 +123,17 @@ namespace Assets.Scripts.Assets.Textures
 
                     if (_currentImageFrame == 0 && _rand.NextDouble() < ChangeToBaseFrameChance)
                     {
-                        ShowTextureFrame(MathUtils.IntRange(1, _textureList.Sprites.Count - 1, _rand));
+                        ShowTextureFrame(MathUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand));
                         return;
                     }
                 }
             }
-           else
+            else
             {
                 if (OnlyShowFirstFrame)
                 {
                     if (_currentImageFrame > 0)
-                    {  
+                    {
                         ShowTextureFrame(0);
                     }
                     return;
@@ -134,7 +143,7 @@ namespace Assets.Scripts.Assets.Textures
                 if (_ticksBetweenFrameUpdate >= FramesBetweenSequenceStep)
                 {
                     _currentImageFrame++;
-                    if (_currentImageFrame >= _textureList.Sprites.Count)
+                    if (_currentImageFrame >= _cachedSpriteList.SpriteList.Sprites.Count)
                     {
                         _currentImageFrame = 0;
                     }
@@ -146,17 +155,29 @@ namespace Assets.Scripts.Assets.Textures
         }
 
 
+        private void ClearCurrentSprite()
+        {
+            AnimatedImage.SetSingleSprite(BlankSprite);
+            if (_cachedSpriteList != null)
+            {
+                _cachedSpriteList.RemoveRef(this);
+                _cachedSpriteList = null;
+            }
+            _currentSpriteName = null;
+            _newSpriteName = null;
+        }
+
         private void ShowTextureFrame(int frame)
         {
-            if ((_textureList == null || _textureList.Sprites.Count < 1))
+            if ((_cachedSpriteList == null || _cachedSpriteList.SpriteList == null || _cachedSpriteList.SpriteList.Sprites.Count < 1))
             {
-                _uiService.SetImageSprite(AnimatedImage, BlankSprite);
+                ClearCurrentSprite();
                 return;
             }
 
-            if (_textureList.Sprites.Count > frame)
+            if (_cachedSpriteList.SpriteList.Sprites.Count > frame)
             {
-                _uiService.SetImageSprite(AnimatedImage, _textureList.Sprites[frame]);
+                AnimatedImage.SetSingleSprite(_cachedSpriteList.SpriteList.Sprites[frame]);
             }
             _currentImageFrame = frame;
         }

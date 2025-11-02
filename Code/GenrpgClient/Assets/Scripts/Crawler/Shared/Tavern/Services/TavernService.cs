@@ -1,17 +1,14 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+﻿using Assets.Scripts.Crawler.Maps.Entities;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Tavern.Services
 {
@@ -32,62 +29,96 @@ namespace Genrpg.Shared.Crawler.Tavern.Services
                 return "Lots of scary monsters out there.";
             }
 
+            bool forceQuestItem = false;
             WorldQuestItem questItem = world.QuestItems[_rand.Next(world.QuestItems.Count)];
 
-            if (_rand.NextDouble() < 0.35f)
+            CrawlerMap partyMap = world.GetMap(party.CurrPos.MapId);
+
+            if (partyMap != null)
             {
-                List<CrawlerMap> cityMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.City).ToList();
-                List<CrawlerMap> outdoorMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Outdoors).ToList();
+                List<MapCellDetail> exits = partyMap.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
 
-                List<CrawlerMap> okMaps = new List<CrawlerMap>();
-                if (_rand.NextDouble() < 0.5f)
-                {
-                    okMaps = cityMaps;
-                }
-                else
-                {
-                    okMaps = outdoorMaps;
-                }
+                List<CrawlerMap> dungeonExits = new List<CrawlerMap>();
 
-                if (okMaps.Count > 0)
+                foreach (MapCellDetail detail in exits)
                 {
-                    CrawlerMap map = okMaps[_rand.Next(okMaps.Count)];
-                    List<MapCellDetail> allExits = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
-
-                    if (allExits.Count > 0)
+                    CrawlerMap dmap = world.GetMap(detail.EntityId);
+                    if (dmap != null && dmap.CrawlerMapTypeId == CrawlerMapTypes.Dungeon &&
+                        dmap.MapQuestItemId > 0)
                     {
-                        MapCellDetail detail = allExits[_rand.Next(allExits.Count)];
+                        dungeonExits.Add(dmap);
+                    }
+                }
 
-                        CrawlerMap targetMap = world.GetMap(detail.EntityId);
 
+                if (dungeonExits.Count > 0)
+                {
+                    CrawlerMap finalMap = dungeonExits[_rand.Next() % dungeonExits.Count];
 
-                        return targetMap.Name + "\ncan be found within\n" +  _mapService.GetMapName(party, map.IdKey, detail.X, detail.Z);
+                    questItem = world.QuestItems.FirstOrDefault(x => x.IdKey == finalMap.IdKey);
 
+                    if (_rand.NextDouble() < 0.80f)
+                    {
+                        forceQuestItem = true;
                     }
                 }
             }
 
-
-            if (_rand.NextDouble() < 0.50f)
+            if (!forceQuestItem && _rand.NextDouble() < 0.35f)
             {
-                CrawlerMap map = world.GetMap(questItem.FoundInMapId);
-                if (map == null)
-                {
-                    return questItem.Name + "\nis out there someplace...";
-                }
-         
-                return questItem.Name + "\ncan be found in\n" + map.Name + (!string.IsNullOrEmpty(questItem.GuardName) ? "\nguarded by\n" + questItem.GuardName : "");
-            }
-            else 
-            {
-                CrawlerMap map = world.GetMap(questItem.UnlocksMapId);
+                List<CrawlerMap> subMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Dungeon).ToList();
 
-                if (map == null)
+                CrawlerMap targetMap = subMaps[_rand.Next() % subMaps.Count];
+
+                EntranceMapData entranceMap = _mapService.GetEntranceMap(party, world, targetMap.IdKey);
+
+                if (entranceMap != null && entranceMap.IsValid())
                 {
-                    return questItem.Name + "\nunlocks a great adventure!";
+                    return targetMap.Name + "\ncan be found within\n" + entranceMap.EntranceMapName;
                 }
-                return "They say that\n" + questItem.Name + "\nis needed to enter\n" + map.Name;
+
+                List<MapCellDetail> details = targetMap.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
+
+                List<CrawlerMap> exitMaps = new List<CrawlerMap>();
+
+                foreach (MapCellDetail detail in details)
+                {
+                    CrawlerMap otherMap = world.GetMap(detail.EntityId);
+
+                    if (otherMap != null && otherMap.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
+                    {
+                        exitMaps.Add(otherMap);
+                    }
+                }
+
+                if (exitMaps.Count > 0)
+                {
+                    CrawlerMap exitMap = exitMaps[_rand.Next(exitMaps.Count)];
+
+                    EntranceMapData entranceData = _mapService.GetEntranceMap(party, world, exitMap.IdKey);
+
+                    if (entranceData != null && entranceData.IsValid())
+                    {
+
+                    }
+                    return targetMap.Name + "\ncan be found within\n" + entranceData.EntranceMapName;
+                }
             }
+
+            if (questItem != null)
+            {
+                CrawlerMap foundMap = world.GetMap(questItem.FoundInMapId);
+
+                CrawlerMap unlockMap = world.GetMap(questItem.UnlocksMapId);
+
+                if (foundMap != null && unlockMap != null)
+                {
+                    return questItem.Name + " that lies within " + foundMap.Name
+                        + " unlocks " + unlockMap.Name;
+                }
+            }
+            return "Great treasures are out there waiting to be found...";
+
         }
     }
 }

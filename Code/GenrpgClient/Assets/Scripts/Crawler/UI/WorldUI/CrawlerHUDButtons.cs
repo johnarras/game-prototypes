@@ -20,6 +20,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         private IAwaitableService _awaitableService = null;
         private IBuffService _buffService = null;
         private ICrawlerOptionsService _optionsService = null;
+        private IClientAppService _appService = null;
 
         public GButton MapButton;
         public GButton SafetyButton;
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         public GButton CampingButton;
         public GButton TraderMapButton;
         public GButton TraderInfoButton;
+        public GButton SnapshotButton;
 
         public override void Init()
         {
@@ -47,6 +49,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             _uiService.SetButton(UseItemButton, GetType().Name, ClickUseItem);
             _uiService.SetButton(TraderMapButton, GetType().Name, ClickTraderMap);
             _uiService.SetButton(TraderInfoButton, GetType().Name, ClickTraderInfo);
+            _uiService.SetButton(SnapshotButton, GetType().Name, ClickTakeSnapshot);
 
             PartyData party = _crawlerService.GetParty();
             if (!_optionsService.HasOption(party, CrawlerOptions.Camping))
@@ -147,6 +150,11 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         private void ClickTraderMap()
         {
             _screenService.Open(ScreenNames.TraderMap);
+        }
+
+        private void ClickTakeSnapshot()
+        {
+            _appService.TakeMemorySnapshot();
         }
     }
 }

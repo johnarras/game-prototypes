@@ -58,7 +58,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
             int maxRoles = (int)(1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.ClassCount));
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 maxRoles++;
             }

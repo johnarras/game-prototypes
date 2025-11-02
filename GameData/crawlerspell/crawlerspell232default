@@ -5,7 +5,8 @@
   "Name": "Lightning Storm",
   "Desc": "Hit all enemies with electric damage.",
   "PowerCost": 18.0,
-  "StatBonusScaling": 1.0,
+  "PowerPerLevel": 5.0,
+  "StatBonusScaling": 2.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 4,
@@ -16,10 +17,11 @@
       "EntityTypeId": 33,
       "EntityId": 3,
       "MinQuantity": 1,
-      "MaxQuantity": 4,
-      "ElementTypeId": 4
+      "MaxQuantity": 30,
+      "ElementTypeId": 4,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 0.01,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

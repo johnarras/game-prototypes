@@ -1,0 +1,207 @@
+﻿using Assets.Scripts.Assets.Entities;
+using Assets.Scripts.Assets.Services;
+using Assets.Scripts.GameObjects;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Core.Interfaces;
+using Genrpg.Shared.Entities.Entities;
+using Genrpg.Shared.Entities.Services;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace Assets.Scripts.Assets.Sprites.Services
+{
+
+    public interface ISpriteService : IInitializable, IClientResetCleanup, IAssetSubsystem
+    {
+        void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token);
+        void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage image, CancellationToken token, OnDownloadHandler handler = null);
+        void LoadAtlas(string atlasName, CancellationToken token, OnDownloadHandler handler = null);
+    }
+
+    public class SpriteService : ISpriteService
+    {
+        protected IAssetService _assetService = null;
+        protected IClientEntityService _clientEntityService = null;
+        protected ILogService _logService = null;
+        protected IClientGameState _gs = null;
+        protected IEntityService _entityService = null;
+        protected ISingletonContainer _singletonContainer = null;
+
+        protected GameObject _assetParent = null;
+
+        protected Dictionary<string, SpriteAtlasContainer> _atlasCache = new Dictionary<string, SpriteAtlasContainer>();
+
+        public async Task Initialize(CancellationToken token)
+        {
+            _assetParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
+            await Task.CompletedTask;
+        }
+
+        public async Task OnClientResetCleanup(CancellationToken token)
+        {
+            foreach (SpriteAtlasContainer container in _atlasCache.Values)
+            {
+                _clientEntityService.Destroy(container.gameObject);
+            }
+            _atlasCache.Clear();
+            await Task.CompletedTask;
+        }
+
+        public void LoadAtlas(string atlasName, CancellationToken token, OnDownloadHandler handler = null)
+        {
+            LoadAtlasSpriteInto(atlasName, null, null, token, handler);
+        }
+
+        public void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage parentSprite, CancellationToken token, OnDownloadHandler handler = null)
+        {
+            GImage image = parentSprite as GImage;
+
+            if (string.IsNullOrEmpty(atlasName))
+            {
+                if (handler != null)
+                {
+                    handler(null, parentSprite, token);
+                }
+                return;
+            }
+
+            if (_atlasCache.TryGetValue(atlasName, out SpriteAtlasContainer cont))
+            {
+                GetAtlasSprite(cont, image, spriteName, handler, token);
+                return;
+            }
+
+            AtlasSpriteDownload atlasDownload = new AtlasSpriteDownload()
+            {
+                AtlasName = atlasName,
+                SpriteName = spriteName,
+                FinalHandler = handler,
+                TargetImage = image,
+            };
+
+            _assetService.LoadAssetInto(_assetParent, AssetCategoryNames.Atlas, atlasName, OnDownloadAtlas, atlasDownload, token);
+        }
+
+        private void OnDownloadAtlas(object obj, object data, CancellationToken token)
+        {
+            AtlasSpriteDownload atlasSpriteDownload = data as AtlasSpriteDownload;
+            GameObject go = obj as GameObject;
+
+            if (go == null)
+            {
+                if (atlasSpriteDownload != null && atlasSpriteDownload.FinalHandler != null)
+                {
+                    atlasSpriteDownload.FinalHandler(null, atlasSpriteDownload.TargetImage, token);
+                }
+
+                return;
+            }
+
+            if (atlasSpriteDownload == null)
+            {
+                _clientEntityService.Destroy(go);
+
+                if (atlasSpriteDownload != null && atlasSpriteDownload.FinalHandler != null)
+                {
+                    atlasSpriteDownload.FinalHandler(null, atlasSpriteDownload.TargetImage, token);
+                }
+                return;
+            }
+
+            SpriteAtlasContainer atlasCont = go.GetComponent<SpriteAtlasContainer>();
+            if (atlasCont == null || atlasCont.Atlas == null)
+            {
+                if (atlasSpriteDownload.FinalHandler != null)
+                {
+                    atlasSpriteDownload.FinalHandler(null, atlasSpriteDownload.TargetImage, token);
+                    _clientEntityService.Destroy(go);
+                    return;
+                }
+            }
+
+            if (!_atlasCache.TryGetValue(atlasSpriteDownload.AtlasName, out SpriteAtlasContainer currAtlasCont))
+            {
+                _atlasCache[atlasSpriteDownload.AtlasName] = atlasCont;
+                atlasCont.UpdateUnloadTime();
+
+            }
+            else
+            {
+                atlasCont = currAtlasCont;
+                _clientEntityService.Destroy(go);
+            }
+
+            GetAtlasSprite(atlasCont, atlasSpriteDownload.TargetImage, atlasSpriteDownload.SpriteName, atlasSpriteDownload.FinalHandler, token);
+
+        }
+
+        private void GetAtlasSprite(SpriteAtlasContainer cont, GImage image, string spriteName, OnDownloadHandler handler, CancellationToken token)
+        {
+            if (cont.Atlas == null)
+            {
+                _logService.Warning($"Missing Atlas in container {cont.name}");
+                if (handler != null)
+                {
+                    handler(null, image, token);
+                }
+                return;
+            }
+
+            Sprite spr = cont.Atlas.GetSprite(spriteName);
+
+            if (spr == null)
+            {
+                _logService.Warning($"Missing sprite {spriteName} in Atlas {cont.name}");
+                if (handler != null)
+                {
+                    handler(null, image, token);
+                }
+                return;
+            }
+
+            if (image == null)
+            {
+                _logService.Warning($"Missing sprite {spriteName} in Atlas {cont.name}");
+                if (handler != null)
+                {
+                    handler(null, image, token);
+                }
+                return;
+            }
+
+            image.SetAtlasSprite(cont, spr);
+
+        }
+
+        public void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token)
+        {
+            EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.user, entityTypeId, entityId);
+
+            if (icon != null && icon.IsValid())
+            {
+                LoadAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
+            }
+            else
+            {
+                _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
+            }
+        }
+
+        public async Awaitable UpdateAssets(CancellationToken token)
+        {
+            List<SpriteAtlasContainer> emptyContainers = _atlasCache.Values.Where(x => x.CanUnload()).ToList();
+
+            foreach (SpriteAtlasContainer emptyCont in emptyContainers)
+            {
+                _atlasCache.Remove(emptyCont.name);
+                _clientEntityService.Destroy(emptyCont.gameObject);
+            }
+            await Task.CompletedTask;
+        }
+    }
+}

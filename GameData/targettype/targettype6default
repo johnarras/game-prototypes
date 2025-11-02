@@ -5,5 +5,6 @@
   "Name": "World",
   "Desc": "World",
   "Icon": "",
-  "StatBonusScale": 1.0
+  "StatBonusScale": 1.0,
+  "SaveTime": "2025-10-27T23:21:16.24Z"
 }

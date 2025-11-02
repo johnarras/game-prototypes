@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
             CrawlerLootType lootType = _gameData.Get<CrawlerLootSettings>(_gs.ch).Get(Key);
 
-            if (spell != null)
+            if (spell != null && lootType != null)
             {
                 item.Effects.Add(new ItemEffect()
                 {

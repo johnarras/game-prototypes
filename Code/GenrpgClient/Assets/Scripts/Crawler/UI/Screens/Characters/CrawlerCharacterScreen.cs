@@ -1,6 +1,7 @@
 ﻿
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades;
 using Assets.Scripts.Inventory.UI;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
@@ -53,6 +54,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
         public OtherIconTarget DropTarget;
 
+        public MemberUpgradesUI Upgrades;
+
         protected override bool CalcStatsOnEquipUnequip() { return false; }
         protected override string GetStatSubdirectory() { return "CrawlerParty"; }
         protected override bool ShowZeroStats() { return false; }
@@ -69,7 +72,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
             PartyData party = _crawlerService.GetParty();
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (_optionsService.HasOption(party, CrawlerOptions.AllEquipmentSlots))
             {
                 allSlotsOk = true;
             }
@@ -109,6 +112,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             PartyData party = _crawlerService.GetParty();
 
             InventoryData idata = _partyMember.Get<InventoryData>();
+
+            Upgrades.InitData(_partyMember);
 
             idata.SetInvenEquip(party.Inventory, _partyMember.Equipment);
 
@@ -195,7 +200,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
                 foreach (Item item in removedItems)
                 {
-                    Items.InitIcon(item, _token);
+                    Items.InitIcon(item, GetToken());
                 }
 
                 CopyDataBack();

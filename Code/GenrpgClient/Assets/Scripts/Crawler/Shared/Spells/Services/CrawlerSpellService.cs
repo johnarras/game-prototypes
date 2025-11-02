@@ -180,7 +180,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                 if (!roleSettings.HasBonus(member.Roles, EntityTypes.CrawlerSpell, spell.IdKey))
                 {
-                    if (!_optionsService.HasOption(party, CrawlerOptions.OneCharacter) ||
+                    if (_optionsService.HasOption(party, CrawlerOptions.WholeParty) ||
                         !spell.Effects.Any(x => x.EntityTypeId == EntityTypes.SpecialMagic && x.EntityId == SpecialMagics.TownPortal))
                     {
                         continue;
@@ -306,7 +306,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             foreach (CrawlerSpellEffect effect in spell.Effects)
             {
-                startFullEffectList.Add(new FullEffect() { Effect = effect, Chance = 1.0, InitialEffect = true });
+                startFullEffectList.Add(new FullEffect() { Effect = effect, Chance = effect.Chance, InitialEffect = true });
             }
 
             List<FullEffect> endFullEffectList = new List<FullEffect>();
@@ -1127,6 +1127,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     await CheckHandleUnitDeath(party, caster, target, args.AfterInitialTextTime, token);
                     await CheckHandleUnitDeath(party, target, caster, args.AfterInitialTextTime, token);
                     _dispatcher.Dispatch(new UpdateCombatGroups());
+                    break;
                 }
             }
         }
@@ -1145,18 +1146,16 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             }
             target.StatusEffects.SetBit(StatusEffects.Dead);
 
-            CombatGroup cg = party.Combat.Enemies.FirstOrDefault(x => x.Id == target.CombatGroupId);
+            CombatGroup cg = party.Combat.GetGroup(target.CombatGroupId);
 
-            if (cg == null)
+            if (cg != null)
             {
-                cg = party.Combat.Allies.FirstOrDefault(x => x.Id == target.CombatGroupId);
-            }
+                cg.Units.Remove(target);
 
-            cg.Units.Remove(target);
-
-            if (cg.FactionTypeId != FactionTypes.Player)
-            {
-                party.Combat.EnemiesKilled.Add(target);
+                if (cg.FactionTypeId != FactionTypes.Player)
+                {
+                    party.Combat.EnemiesKilled.Add(target);
+                }
             }
         }
 
@@ -1221,7 +1220,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             quantity *= _gameData.Get<CrawlerCombatSettings>(_gs.ch).SummonQuantityScale;
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 quantity *= 2;
             }

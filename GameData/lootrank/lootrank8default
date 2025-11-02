@@ -2,8 +2,9 @@
   "Id": "lootrank8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Gold",
-  "Armor": 13,
-  "Damage": 7,
-  "CostPct": 1000
+  "Name": "Silver",
+  "Armor": 21,
+  "Damage": 18,
+  "CostPct": 1000,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

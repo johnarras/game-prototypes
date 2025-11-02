@@ -1,12 +1,9 @@
 ﻿
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.DataStores.Interfaces;
 using System;
 using System.Collections.Generic;
-using Genrpg.Shared.Core.Entities;
 using System.Threading;
-using Genrpg.Shared.GameSettings;
-using System.Threading.Tasks;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 
 namespace Genrpg.Shared.Interfaces
 {
@@ -28,7 +25,7 @@ namespace Genrpg.Shared.Interfaces
 
     public interface IStringOwnerId : IStringId
     {
-       string OwnerId { get; set; }
+        string OwnerId { get; set; }
     }
 
     public interface IMapOwnerId : IStringOwnerId
@@ -112,10 +109,9 @@ namespace Genrpg.Shared.Interfaces
         void SetExplicitType(Type interfaceType, object obj);
         List<Type> GetKeys();
 
-        List<IInjectable> GetVals();
+        List<T> GetVals<T>() where T : IInjectable;
         void Resolve(object obj);
         void StoreDictionaryItem(object obj);
-        Task InitializeDictionaryItems(CancellationToken token);
-        void ResolveSelf();      
+        void ResolveSelf();
     }
 }

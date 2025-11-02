@@ -33,5 +33,17 @@ namespace Assets.Scripts.Dungeons
             }
             return false;
         }
+
+        public void Clear()
+        {
+            Animator = null;
+            Renderers.Clear();
+            DoorRenderers.Clear();
+        }
+
+        protected override void OnDestroy()
+        {
+            Clear();
+        }
     }
 }

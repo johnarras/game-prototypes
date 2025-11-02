@@ -63,7 +63,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             CrawlerMap currNextMap = world.GetMap(detail.EntityId);
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (detail.EntityId > 1)
                 {
@@ -192,7 +192,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMaps[0].ZoneTypeId);
 
-            if (nextMaps[0].IdKey > 1 && _optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (nextMaps[0].IdKey > 1 && !_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Dungeon);
             }
@@ -212,7 +212,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             #region Riddles
             bool havePartyBuff = _partyService.HasPartyBuff(party, EntityTypes.Riddle, 0);
-            if (nextMapStatus == null && !didComplete && !_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (nextMapStatus == null && !didComplete && _optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (nextMaps[0].MapQuestItemId > 0)
                 {
@@ -477,7 +477,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             MapCellDetail prevDetail = (party.CurrPos.MapId < nmap.IdKey ? nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId < nmap.IdKey) :
                 nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId > nmap.IdKey));
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (prevDetail != null && nmap.IdKey > 1)
                 {

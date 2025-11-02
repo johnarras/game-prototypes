@@ -47,7 +47,7 @@ namespace Genrpg.Editor.Services.Importing
             {
                 string header = StrUtils.NormalizeWord(headers[i]);
 
-                PropertyInfo prop = allProperties.FirstOrDefault(x => x.Name.ToLower() == header);
+                PropertyInfo prop = allProperties.FirstOrDefault(x => StrUtils.IsLowercaseEqual(x.Name, header));
 
                 if (prop == null)
                 {
@@ -130,7 +130,7 @@ namespace Genrpg.Editor.Services.Importing
 
             for (int p = 0; p < props.Length; p++)
             {
-                IIdName matchingStat = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == props[p].Name.ToLower());
+                IIdName matchingStat = children.FirstOrDefault(x => StrUtils.IsLowercaseEqual(StrUtils.NormalizeWord(x.Name), props[p].Name));
 
                 if (matchingStat != null)
                 {

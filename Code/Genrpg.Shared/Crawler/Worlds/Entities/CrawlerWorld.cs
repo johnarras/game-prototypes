@@ -18,11 +18,11 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
 
         [Key(4)] public List<WorldQuestItem> QuestItems { get; set; } = new List<WorldQuestItem>();
 
-        [Key(6)] public long Seed { get; set; }
+        [Key(5)] public long Seed { get; set; }
 
-        [Key(7)] public List<CrawlerNpc> Npcs { get; set; } = new List<CrawlerNpc>();
+        [Key(6)] public List<CrawlerNpc> Npcs { get; set; } = new List<CrawlerNpc>();
 
-        [Key(8)] public List<CrawlerQuest> Quests { get; set; } = new List<CrawlerQuest>();
+        [Key(7)] public List<CrawlerQuest> Quests { get; set; } = new List<CrawlerQuest>();
 
 
         public void ClearCache()

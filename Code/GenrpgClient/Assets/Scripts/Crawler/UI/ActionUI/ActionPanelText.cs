@@ -18,5 +18,12 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
                 _uiService.SetButton(Button, "APT", text.OnClickAction);
             }
         }
+
+        public override void OnReturn()
+        {
+            base.OnReturn();
+            _uiService.SetText(Text, null);
+            _uiService.ClearButton(Button);
+        }
     }
 }

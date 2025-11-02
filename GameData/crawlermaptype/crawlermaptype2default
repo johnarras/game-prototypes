@@ -4,15 +4,16 @@
   "IdKey": 2,
   "Name": "City",
   "Desc": "",
+  "AtlasPrefix": "",
   "Icon": "",
   "Art": "",
   "GenTypes": [
     {
       "Name": "Town",
-      "MinWidth": 10,
-      "MaxWidth": 10,
-      "MinHeight": 10,
-      "MaxHeight": 10,
+      "MinWidth": 12,
+      "MaxWidth": 12,
+      "MinHeight": 12,
+      "MaxHeight": 12,
       "MinFloors": 1,
       "MaxFloors": 1,
       "Weight": 1.0,
@@ -30,9 +31,9 @@
     {
       "Name": "City",
       "MinWidth": 12,
-      "MaxWidth": 16,
+      "MaxWidth": 18,
       "MinHeight": 12,
-      "MaxHeight": 16,
+      "MaxHeight": 18,
       "MinFloors": 1,
       "MaxFloors": 1,
       "Weight": 1.0,
@@ -54,5 +55,5 @@
   "MaxNpcQuantity": 3,
   "MinNpcSeparation": 1,
   "MinDistanceToEntrance": 2,
-  "SaveTime": "2025-08-13T01:12:23.773Z"
+  "SaveTime": "2025-10-31T01:32:53.148Z"
 }

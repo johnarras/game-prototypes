@@ -74,7 +74,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             PartyMember notReadyMember = notReadyUnits[0] as PartyMember;
 
 
-            stateData.AddText("Select an action for " + _textService.HighlightText(notReadyMember.Name));
+            stateData.AddText($"Select action {notReadyMember.Actions.Count + 1} for " + _textService.HighlightText(notReadyMember.Name));
 
             List<char> usedKeyCodes = new List<char>();
 

@@ -1,30 +1,25 @@
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameSettings.Services;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.Accounts.WebApi.Signup;
+using Genrpg.Shared.Core.Interfaces;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Users.PlayerData;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Versions.Settings;
+using Genrpg.Shared.Website.Interfaces;
+using Genrpg.Shared.Website.Messages;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Assets.Scripts.GameSettings.Services;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Interfaces;
-using UnityEngine;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Logging.Interfaces;
 using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Website.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Website.Messages;
-using Genrpg.Shared.Client.Core;
-using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Users.PlayerData;
-using Genrpg.Shared.Core.Interfaces;
-using Genrpg.Shared.Accounts.WebApi.Login;
-using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.Versions.Settings;
-using System.Linq;
-using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 
 public interface IClientAuthService : IInitializable, IClientResetCleanup
@@ -74,7 +69,7 @@ public class ClientAuthService : IClientAuthService
         string userid = "";
         string email = "";
         string password = "";
-        
+
         if (localData != null)
         {
             try
@@ -202,7 +197,9 @@ public class ClientAuthService : IClientAuthService
             ProductAccountId = response.ProductAccountId,
             SessionId = response.SessionId,
             ClientVersion = _clientAppService.Version,
+            ClientPlatformName = _clientAppService.GetPlatformName(),
             ClientGameDataSaveTime = _gameData.Get<VersionSettings>(null).SaveTime,
+
         };
 
         _clientWebService.SendGameAuthWebRequest(request, token);

@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         {
 
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 // 1 explore quest in crawler mode at once and only rarely
                 if (rand.NextDouble() > 0.1f || world.Quests.Any(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap))

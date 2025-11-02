@@ -1,18 +1,16 @@
 ﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.Shared.Entities.Helpers
 {
-    public abstract class BaseEntityHelper<TParent,TChild> : IEntityHelper where TParent: ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
+    public abstract class BaseEntityHelper<TParent, TChild> : IEntityHelper where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
     {
         protected IGameData _gameData;
         public IIdName Find(IFilteredObject obj, long id)
@@ -22,10 +20,10 @@ namespace Genrpg.Shared.Entities.Helpers
 
         public List<IIdName> GetChildList(IFilteredObject obj)
         {
-            return _gameData.Get<TParent>(obj).GetData().Cast<IIdName>().ToList();  
+            return _gameData.Get<TParent>(obj).GetData().Cast<IIdName>().ToList();
         }
 
-        public virtual string GetIconAtlasName(IFilteredObject obj, long entityId) 
+        public virtual string GetIconAtlasName(IFilteredObject obj, long entityId)
         {
             TChild child = _gameData.Get<TParent>(obj).Get(entityId);
 
@@ -33,7 +31,7 @@ namespace Genrpg.Shared.Entities.Helpers
             {
                 return indexedItem.AtlasPrefix + typeof(TChild).Name + "Icon";
             }
-            return typeof(TChild).Name + "Icons"; 
+            return typeof(TChild).Name + "Icons";
         }
 
         public abstract long Key { get; }
@@ -42,10 +40,13 @@ namespace Genrpg.Shared.Entities.Helpers
 
         public virtual bool IsMapEntity() { return false; }
 
+        private string _parentTypeName = typeof(TParent).Name.ToLower();
+        private string _childTypeName = typeof(TChild).Name.ToLower();
+
         public virtual bool IsEntityHelperFor(string name)
         {
-            return typeof(TParent).Name.ToLower() == name.ToLower() ||
-                typeof(TChild).Name.ToLower() == name.ToLower();
+            return StrUtils.IsLowercaseEqual(_parentTypeName, name) ||
+                StrUtils.IsLowercaseEqual(_childTypeName, name);
         }
 
         public Type GetParentType()

@@ -5,7 +5,8 @@
   "Name": "Acidic Wave",
   "Desc": "Hit all enemies with acid damage.",
   "PowerCost": 12.0,
-  "StatBonusScaling": 1.0,
+  "PowerPerLevel": 5.0,
+  "StatBonusScaling": 2.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 4,
@@ -15,11 +16,12 @@
     {
       "EntityTypeId": 33,
       "EntityId": 3,
-      "MinQuantity": 1,
-      "MaxQuantity": 4,
-      "ElementTypeId": 10
+      "MinQuantity": 9,
+      "MaxQuantity": 27,
+      "ElementTypeId": 10,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 0.01,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

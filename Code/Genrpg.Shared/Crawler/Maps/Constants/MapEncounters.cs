@@ -8,5 +8,6 @@ namespace Genrpg.Shared.Crawler.Maps.Constants
         public const int Monsters = 3;
         public const int Trap = 4;
         public const int Stats = 5;
+        public const int LevelMap = 6;
     }
 }

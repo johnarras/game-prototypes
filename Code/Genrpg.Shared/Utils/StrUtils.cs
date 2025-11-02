@@ -702,6 +702,11 @@ namespace Genrpg.Shared.Utils
             return word.Replace(" ", "").Replace("\n", "").Replace("\r", "").ToLower().Trim();
         }
 
+        public static bool IsLowercaseEqual(string s1, string s2)
+        {
+            return String.Equals(s1, s2, StringComparison.OrdinalIgnoreCase);
+        }
+
         public static string AddPluralSuffix(long checkVal, string pluralSuffix = "s")
         {
             if (checkVal == 1)

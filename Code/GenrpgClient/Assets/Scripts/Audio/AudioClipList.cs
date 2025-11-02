@@ -6,15 +6,17 @@ public class AudioClipList : BaseBehaviour
 {
     public float Volume = 1f;
     public bool Is3D = false;
-    public bool KeepLoaded;
+    public float TtlSeconds = AssetConstants.DefaultTtl;
     public List<AudioClip> Clips;
     public bool IsActiveMusic { get; set; }
+
+
+    protected DateTime _unloadTime { get; set; } = DateTime.UtcNow.AddSeconds(AssetConstants.DefaultTtl);
 
     // Not set in editor because it might be different depending on how we do overrides and such
     public string Name { get; set; }
 
     protected List<AudioSource> _sources = new List<AudioSource>();
-    protected DateTime lastPlayTime = DateTime.UtcNow;
 
     private bool _isValid = false;
     public bool IsValid()
@@ -41,20 +43,14 @@ public class AudioClipList : BaseBehaviour
         return true;
     }
 
-
-    public double SecondsSinceLastPlay()
+    private void UpdateUnloadTime()
     {
-        if (_sources.Count > 0)
-        {
-            return 0;
-        }
-
-        return (DateTime.UtcNow - lastPlayTime).TotalSeconds;
+        _unloadTime = DateTime.UtcNow.AddSeconds(TtlSeconds);
     }
 
     public AudioSource Play(PlayAudioData playData, int index = -1)
     {
-        lastPlayTime = DateTime.UtcNow;
+        UpdateUnloadTime();
         if (!_isValid || playData == null)
         {
             return null;
@@ -119,7 +115,7 @@ public class AudioClipList : BaseBehaviour
         _sources.Remove(source);
         _clientEntityService.Destroy(source);
     }
-     
+
 
     public void StopAll(float fadeTime = 0.0f)
     {
@@ -127,10 +123,10 @@ public class AudioClipList : BaseBehaviour
         foreach (AudioSource source in sources)
         {
             StopSource(source);
-        }      
+        }
     }
 
-    public bool IsEqual (AudioClipList other)
+    public bool IsEqual(AudioClipList other)
     {
         if (Clips == null || other == null || other.Clips == null || Clips.Count < 1 || Clips.Count != other.Clips.Count)
         {
@@ -149,11 +145,7 @@ public class AudioClipList : BaseBehaviour
 
     }
 
-    
-
-     
-
-    public bool ShouldRemoveAudio()
+    public bool CanUnloadAudio()
     {
         // If we have sources, see if any were deleted or ended and remove them.
         if (_sources.Count > 0)
@@ -178,12 +170,11 @@ public class AudioClipList : BaseBehaviour
             }
             if (_sources.Count < 1)
             {
-                lastPlayTime = DateTime.UtcNow;
+                UpdateUnloadTime();
             }
             return false;
         }
-        else if (!KeepLoaded && !IsActiveMusic && 
-            (DateTime.UtcNow-lastPlayTime).TotalSeconds > 10)
+        else if (!IsActiveMusic && _unloadTime < DateTime.UtcNow)
         {
             return true;
         }

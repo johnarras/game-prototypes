@@ -35,7 +35,8 @@
       "Name": "Cast",
       "WeaponDamageScale": 0.5,
       "StatBonusDamageScale": 1.5,
-      "QuantityIsBaseAmount": true
+      "QuantityIsBaseAmount": true,
+      "BaseBonusHits": 1.0
     },
     {
       "Id": "combataction5default",
@@ -75,7 +76,7 @@
   "Parent": {
     "Id": "default",
     "Name": "CombatActionSettings",
-    "SaveTime": "2025-09-02T21:55:32.186Z"
+    "SaveTime": "2025-10-31T12:44:59.835Z"
   },
-  "SaveTime": "2025-09-02T21:55:32.186Z"
+  "SaveTime": "2025-10-31T12:44:59.835Z"
 }

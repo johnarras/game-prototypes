@@ -1,14 +1,14 @@
-﻿using UnityEngine;
-using System.Threading;
-using System.Collections.Generic;
-using Genrpg.Shared.Trades.Entities;
-using Genrpg.Shared.Trades.Messages;
+﻿using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Inventory.Constants;
-using System.Linq;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
+using Genrpg.Shared.Trades.Entities;
+using Genrpg.Shared.Trades.Messages;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.GameEvents;
+using UnityEngine;
 
 public class TradeScreen : ItemIconScreen
 {
@@ -50,10 +50,10 @@ public class TradeScreen : ItemIconScreen
 
         Items?.Init(InventoryGroup.All, this, _gs.ch, null, token);
 
-        
+
     }
 
-    
+
     public void HandleOnUpdateTrade(OnUpdateTrade onUpdateTrade)
     {
         _tradeObject = onUpdateTrade.TradeObject;
@@ -80,7 +80,7 @@ public class TradeScreen : ItemIconScreen
                     initData.Flags |= ItemIconFlags.NoDrag;
                 }
 
-                ui.ItemIcons[i].Init(initData, _token);
+                ui.ItemIcons[i].Init(initData, GetToken());
             }
         }
         ClearAccepted();
@@ -168,7 +168,7 @@ public class TradeScreen : ItemIconScreen
                 Item item = itemIcon.GetDataItem();
                 if (item != null && item == dragIcon.GetDataItem())
                 {
-                    TradeChars[0].InitIcon(i, null, _token);
+                    TradeChars[0].InitIcon(i, null, GetToken());
                     changedSomething = true;
                     break;
                 }
@@ -185,12 +185,12 @@ public class TradeScreen : ItemIconScreen
                 ItemIcon icon = TradeChars[0].ItemIcons[i];
                 if (icon == otherIconHit)
                 {
-                    TradeChars[0].InitIcon(i, dragIcon.GetDataItem(), _token);
+                    TradeChars[0].InitIcon(i, dragIcon.GetDataItem(), GetToken());
                     changedSomething = true;
                 }
-                else if (icon.GetDataItem() == dragIcon.GetDataItem())              
+                else if (icon.GetDataItem() == dragIcon.GetDataItem())
                 {
-                    TradeChars[0].InitIcon(i, null, _token);
+                    TradeChars[0].InitIcon(i, null, GetToken());
                 }
             }
         }

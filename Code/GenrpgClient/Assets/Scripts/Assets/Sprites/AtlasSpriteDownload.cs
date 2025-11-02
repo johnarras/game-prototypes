@@ -8,10 +8,10 @@ namespace Assets.Scripts.Assets.Entities
 {
     public class AtlasSpriteDownload
     {
-        public string atlasName;
-        public string spriteName;
-        public OnDownloadHandler finalHandler;
-        public object data;
+        public string AtlasName;
+        public string SpriteName;
+        public OnDownloadHandler FinalHandler;
+        public GImage TargetImage;
     }
 
 }

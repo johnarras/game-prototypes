@@ -1,25 +1,33 @@
-﻿using Assets.Scripts.ClientEvents;
+﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.ClientEvents;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Info.UI
 {
     public class InfoPanel : BaseBehaviour
     {
-        private IInfoService _infoService;
+        private IInfoService _infoService = null;
+        private IObjectPool _objectPool = null;
 
         public GameObject Parent;
         public GameObject InfoAnchor;
-        public InfoPanelRow InfoText;
         public bool IsTooltipPanel;
 
         private Stack<List<string>> _infoStack = new Stack<List<string>>();
         private List<string> _currentInfo = null;
 
+
+        private List<InfoPanelRow> _rows = new List<InfoPanelRow>();
+
+        public string Subdirectory = "CrawlerInfo";
+        public string RowPrefabName = "InfoPanelRow";
+
         public override void Init()
         {
-            _clientEntityService.SetActive(InfoText?.gameObject, false);
             if (IsTooltipPanel)
             {
                 _clientEntityService.SetActive(Parent, false);
@@ -32,7 +40,18 @@ namespace Assets.Scripts.Info.UI
 
         public void ClearInfo()
         {
-            _clientEntityService.DestroyAllChildren(InfoAnchor);
+            foreach (InfoPanelRow row in _rows)
+            {
+                _objectPool.ReturnObject(row);
+            }
+            _rows.Clear();
+        }
+
+
+        protected override void OnDestroy()
+        {
+            ClearInfo();
+            base.OnDestroy();
         }
 
         public void ShowLines(List<string> lines)
@@ -53,12 +72,33 @@ namespace Assets.Scripts.Info.UI
 
             foreach (string line in lines)
             {
-                InfoPanelRow listItem = _clientEntityService.FullInstantiate<InfoPanelRow>(InfoText);
 
-                _clientEntityService.AddToParent(listItem, InfoAnchor);
+                _objectPool.CheckoutObject(InfoAnchor, AssetCategoryNames.UI, RowPrefabName, OnLoadRow, line, GetToken(), Subdirectory);
 
-                listItem.InitData(this, line);
             }
+        }
+
+        private void OnLoadRow(object obj, object data, CancellationToken token)
+        {
+            GameObject go = obj as GameObject;
+
+            string txt = data as string;
+
+            if (go == null)
+            {
+                return;
+            }
+
+            InfoPanelRow row = go.GetComponent<InfoPanelRow>();
+
+            if (row == null)
+            {
+                _clientEntityService.Destroy(go);
+                return;
+            }
+
+            row.InitData(this, txt);
+            _rows.Add(row);
         }
 
         public void PopInfoStack()

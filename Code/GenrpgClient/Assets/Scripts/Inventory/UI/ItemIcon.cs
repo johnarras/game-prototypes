@@ -1,13 +1,13 @@
 ﻿
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Entities.Services;
-using System.Threading;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Entities.Services;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Inventory.Constants;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
+using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using Genrpg.Shared.Utils;
+using System.Threading;
 
 
 public delegate void OnLoadItemIconHandler(InitItemIconData data);
@@ -39,7 +39,7 @@ public class InitItemIconData : DragItemInitData<Item, ItemIcon, ItemIconScreen,
 };
 
 
-public class ItemIcon : DragItem<Item,ItemIcon,ItemIconScreen,InitItemIconData>
+public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconData>
 {
 
     protected ISharedItemService _sharedItemService;
@@ -91,9 +91,9 @@ public class ItemIcon : DragItem<Item,ItemIcon,ItemIconScreen,InitItemIconData>
             }
         }
 
-        _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, Background, token);
-        _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, frameName, Frame, token);
-        _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, iconName, Icon, token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, Background, token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, frameName, Frame, token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, iconName, Icon, token);
 
         if (_initData.Data != null)
         {

@@ -53,7 +53,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         Item GenerateItem(ItemGenArgs lootGenData);
         Task<LootGenData> GenerateCombatLoot(PartyData party, CancellationToken token);
         Task<PartyLoot> GiveLoot(PartyData party, CrawlerMap map, LootGenData genData, CancellationToken token);
-        List<ItemNameResult> GenerateItemNames(IRandom rand, int itemCount, int level);
+        List<ItemNameResult> GenerateItemNames(IRandom rand, int itemCount, int level, string forcedItemName = null);
         long GetPartyInventorySize(PartyData party);
         Task<LootGenData> CreateLootGenData(PartyData party, double expMult, double goldMult, double itemMult, string topMessage = null, ECrawlerStates nextState = ECrawlerStates.None, object nextStateData = null);
     }
@@ -110,6 +110,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
         public Item GenerateEquipment(ItemGenArgs itemGenArgs)
         {
+            if (itemGenArgs == null)
+            {
+                itemGenArgs = new ItemGenArgs();
+            }
+
             int level = itemGenArgs.Level;
 
             PartyData party = _crawlerService.GetParty();
@@ -120,7 +125,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             IReadOnlyList<LootRank> ranks = rankSettings.GetData();
 
-            int expectedOffset = (int)(level / rankSettings.LevelsPerQuality + 1);
+            int expectedOffset = (int)(level / Math.Max(1, rankSettings.LevelsPerQuality));
 
             expectedOffset = MathUtils.Clamp(1, expectedOffset, ranks.Count - 2);
 
@@ -140,6 +145,10 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 okRanks.Add(ranks[index]);
             }
 
+            if (okRanks.Count < 1)
+            {
+                return null;
+            }
 
             // Level 0 items have no tiers
             if (level < 1)
@@ -171,7 +180,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             bool allItemSlotsOk = false;
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (_optionsService.HasOption(party, CrawlerOptions.AllEquipmentSlots))
             {
                 allItemSlotsOk = true;
             }
@@ -193,7 +202,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 foreach (ItemType rangedWeaponType in rangedWeapons)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 2; i++)
                     {
                         weaponItems.Add(rangedWeaponType);
                     }
@@ -224,6 +233,19 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
             }
 
+            if (itemType == null)
+            {
+                return null;
+            }
+
+
+            if (scalingType == null)
+            {
+                return null;
+            }
+
+
+
             Item item = new Item() { Id = HashUtils.NewUUId().ToString() };
 
             item.ItemTypeId = itemType.IdKey;
@@ -235,10 +257,10 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             item.LootRankId = chosenRank.IdKey;
             item.QualityTypeId = 0;
 
+            EquipSlot equipSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
+
             if (isArmor)
             {
-                EquipSlot equipSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
-
                 if (equipSlot == null || equipSlot.BaseBonusStatTypeId < 1)
                 {
                     item.ScalingTypeId = 0;
@@ -259,9 +281,9 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             }
 
             string baseItemName = itemType.Name;
-            if (itemType.Names.Count > 0)
+            if (itemType.Names != null && itemType.Names.Count > 0)
             {
-                baseItemName = RandomUtils.GetRandomElement(itemType.Names, _rand).Name;
+                baseItemName = RandomUtils.GetRandomElement(itemType.Names, _rand)?.Name ?? "Armor";
             }
 
             // Weapon damage is calculated dynamically as needed.
@@ -322,33 +344,32 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                     usedStatTypeIds = usedStatTypeIds.OrderBy(x => x).ToList();
 
+                    double midStatAmount = lootSettings.StartStatBonusAmount + level * lootSettings.StatBonusPerLevel;
 
-                    double statAmount = 2 + level / 7.0;
+                    double bonusStatScale = equipSlot.BonusStatScale;
 
-                    if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+                    if (equipSlot.IdKey == EquipSlots.MainHand && itemType.HasFlag(ItemFlags.FlagTwoHandedItem))
                     {
-                        statAmount *= 1.5f;
+                        bonusStatScale += _gameData.Get<EquipSlotSettings>(_gs.ch).Get(EquipSlots.OffHand).BonusStatScale;
                     }
 
-                    int finalStatAmount = (int)statAmount;
-
-                    if (_rand.NextDouble() < (statAmount - finalStatAmount))
-                    {
-                        finalStatAmount++;
-                    }
+                    midStatAmount *= bonusStatScale;
 
                     foreach (long statTypeId in usedStatTypeIds)
                     {
+
+                        double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * (1 + MathUtils.FloatRange(-lootSettings.StatBonusVariance, lootSettings.StatBonusVariance, _rand))));
+
+
                         ItemEffect itemEffect = new ItemEffect()
                         {
                             EntityTypeId = EntityTypes.Stat,
                             EntityId = statTypeId,
-                            Quantity = finalStatAmount,
+                            Quantity = (int)finalStatAmount,
                         };
 
                         item.Effects.Add(itemEffect);
                     }
-
 
                     if (itemGenArgs.ExtraItems > 0)
                     {
@@ -385,7 +406,6 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
                 item.ScalingTypeId = scalingTypeId;
                 item.Level = Math.Max(1, level);
-
             }
 
             double cost = lootSettings.BaseLootCost;
@@ -460,6 +480,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 {
                     itemCount++;
                 }
+            }
+
+            if (_rand.NextDouble() < lootSettings.FirstMonsterItemDropChance)
+            {
+                itemCount++;
             }
 
             long maxLevel = party.GetActiveParty().Max(x => x.Level);
@@ -602,7 +627,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
         List<long> okEquipSlotIds = new List<long>() { EquipSlots.Necklace, EquipSlots.Ring1, EquipSlots.Jewelry1, EquipSlots.OffHand };
 
-        public List<ItemNameResult> GenerateItemNames(IRandom rand, int itemCount, int level)
+        public List<ItemNameResult> GenerateItemNames(IRandom rand, int itemCount, int level, string forcedItemName = null)
         {
             List<ItemType> okItemTypes = _gameData.Get<ItemTypeSettings>(null).GetData().Where(x => okEquipSlotIds.Contains(x.EquipSlotId)).ToList();
 
@@ -616,7 +641,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 long itemTypeId = okItemTypes[rand.Next() % okItemTypes.Count].IdKey;
 
-                retval.Add(_itemGenService.GenerateItemName(rand, itemTypeId, level, lootQualityId, new List<FullReagent>()));
+                retval.Add(_itemGenService.GenerateItemName(rand, itemTypeId, level, lootQualityId, new List<FullReagent>(), forcedItemName));
             }
 
             return retval;
@@ -629,7 +654,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             long inventoryPerPlayer = lootSettings.InventoryPerPartyMember + (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.InventorySize);
 
             long count = party.GetActiveParty().Count;
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 count = 5;
             }

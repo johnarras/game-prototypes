@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.Dungeons;
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +33,28 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public List<GameObject> Props { get; set; } = new List<GameObject>();
 
         public DungeonAsset[] AssetPositions { get; set; } = new DungeonAsset[DungeonAssetPosition.Max];
+
+
+        public void Clear()
+        {
+
+            _clientEntityService?.DestroyAllChildren(Content);
+
+            Props.Clear();
+
+            for (int a = 0; a < AssetPositions.Length; a++)
+            {
+                AssetPositions[a] = null;
+            }
+        }
+
+
+        protected override void OnDestroy()
+        {
+            Clear();
+
+            base.OnDestroy();
+        }
 
     }
 

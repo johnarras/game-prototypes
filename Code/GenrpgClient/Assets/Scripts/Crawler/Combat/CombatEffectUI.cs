@@ -209,13 +209,13 @@ namespace Assets.Scripts.Crawler.Combat
                 _hitImageFrame++;
                 if (_currHit == null || _currHit.Images.Count <= _hitImageFrame / 2)
                 {
-                    _uiService.SetImageSprite(HitImage, null);
+                    HitImage.SetSingleSprite(null);
                     _clientEntityService.SetActive(HitImage, false);
                     _hitImageFrame = -1;
                 }
                 else
                 {
-                    _uiService.SetImageSprite(HitImage, _currHit.Images[_hitImageFrame / 2]);
+                    HitImage.SetSingleSprite(_currHit.Images[_hitImageFrame / 2]);
                 }
             }
         }
@@ -270,7 +270,7 @@ namespace Assets.Scripts.Crawler.Combat
             _clientEntityService.SetActive(HitImage, true);
 
             _currHit = hit;
-            _uiService.SetImageSprite(HitImage, hit.Images[0]);
+            HitImage.SetSingleSprite(hit.Images[0]);
             _hitImageFrame = 0;
             RectTransform rectTransform = HitImage.GetComponent<RectTransform>();
 

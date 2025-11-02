@@ -1,8 +1,10 @@
 ﻿
+using Genrpg.Shared.Client.Contants;
 using Genrpg.Shared.Interfaces;
-using Scripts.Assets.Assets.Constants;
+using Genrpg.Shared.Logging.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.Profiling.Memory;
 using UnityEngine; // Needed
 
 
@@ -15,21 +17,23 @@ public interface IClientAppService : IInitializable
     bool IsPlaying { get; }
     bool IsEditor { get; }
     string Version { get; }
-    string Platform { get; }
+    string RuntimePlatform { get; }
     string DeviceUniqueIdentifier { get; }
     string StreamingAssetsPath { get; }
     void OpenExternalURL(string url);
-    string GetPlatformPrefix();
+    string GetPlatformName();
     string GetRuntimePrefix();
     void SetupScreen(int width, int height, bool isFullScreen, bool isLandscape, int vsyncCount);
     int ScreenWidth { get; }
     int ScreenHeight { get; }
+    Awaitable TakeMemorySnapshot();
 }
 
 
 
 public class ClientAppService : IClientAppService
 {
+    private ILogService _logService = null;
 
     public void Quit()
     {
@@ -45,6 +49,8 @@ public class ClientAppService : IClientAppService
         set { Application.targetFrameRate = value; }
     }
 
+    public int ScreenWidth => Screen.width;
+    public int ScreenHeight => Screen.height;
     public string DataPath => Application.dataPath;
 
     public string PersistentDataPath => Application.persistentDataPath;
@@ -64,21 +70,21 @@ public class ClientAppService : IClientAppService
 
     public void OpenExternalURL(string url) { Application.OpenURL(url); }
 
-    public string GetPlatformPrefix()
+    public string GetPlatformName()
     {
 
-        string prefix = PlatformAssetPrefixes.Win;
+        string prefix = ClientPlatformNames.Win;
 #if UNITY_STANDALONE_OSX
-        prefix = PlatformAssetPrefixes.OSX;
+        prefix = ClientPlatformNames.OSX;
 #endif
 #if UNITY_STANDALONE_LINUX
-        prefix = PlatformAssetPrefixes.Linux;
+        prefix = ClientPlatformNames.Linux;
 #endif
 #if UNITY_ANDROID
-        prefix = PlatformAssetPrefixes.Android;
+        prefix = ClientPlatformNames.Android;
 #endif
 #if UNITY_IOS
-        prefix = PlatformAssetPrefixes.IOS;
+        prefix = ClientPlatformNames.IOS;
 #endif
         return prefix;
     }
@@ -91,14 +97,14 @@ public class ClientAppService : IClientAppService
             return _runtimePrefix;
         }
 
-        string prefix = GetPlatformPrefix();
+        string prefix = GetPlatformName();
         _runtimePrefix = Version + "/" + prefix + "/";
         return _runtimePrefix;
     }
 
     public string Version => Application.version;
 
-    public string Platform => Application.platform.ToString();
+    public string RuntimePlatform => Application.platform.ToString();
 
     public string DeviceUniqueIdentifier => SystemInfo.deviceUniqueIdentifier;
 
@@ -116,8 +122,22 @@ public class ClientAppService : IClientAppService
         QualitySettings.vSyncCount = vsyncCount;
     }
 
-    public int ScreenWidth => Screen.width;
-    public int ScreenHeight => Screen.height;
+    public async Awaitable TakeMemorySnapshot()
+    {
+        _logService.Info("Snapshot1");
+
+        MemoryProfiler.TakeTempSnapshot(OnTakeSnapshot);
+
+        _logService.Info("Snapshot2");
+
+        await Task.CompletedTask;
+    }
+
+    private void OnTakeSnapshot(string txt, bool val)
+    {
+        _logService.Info("Snapshot: " + txt);
+    }
+
 }
 
 

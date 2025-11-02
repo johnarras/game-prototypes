@@ -10,6 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1050807299208215830, guid: 9fccd943278e1744eb8558da69cb6e5c,
         type: 3}
+      propertyPath: TtlSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050807299208215830, guid: 9fccd943278e1744eb8558da69cb6e5c,
+        type: 3}
       propertyPath: Clips.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -38,6 +43,11 @@ PrefabInstance:
       propertyPath: 'Clips.Array.data[4]'
       value: 
       objectReference: {fileID: 8300000, guid: 8de75ef94f8c8a74faaa65f75de0effc, type: 3}
+    - target: {fileID: 1050807299208215830, guid: 9fccd943278e1744eb8558da69cb6e5c,
+        type: 3}
+      propertyPath: ExtraKeepLoadedSeconds
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8002633936216332288, guid: 9fccd943278e1744eb8558da69cb6e5c,
         type: 3}
       propertyPath: m_LocalPosition.x

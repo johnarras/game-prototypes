@@ -96,8 +96,12 @@
     "LevelDiffBeforeLootLoss": 5,
     "LootLossPerLevelDiff": 0.15,
     "MinLootPercent": 0.1,
+    "FirstMonsterItemDropChance": 0.5,
+    "StartStatBonusAmount": 1.5,
+    "StatBonusPerLevel": 0.4,
+    "StatBonusVariance": 0.25,
     "Name": "CrawlerLootSettings",
-    "SaveTime": "2025-09-06T18:17:02.591Z"
+    "SaveTime": "2025-10-26T21:53:50.597Z"
   },
-  "SaveTime": "2025-09-06T18:17:02.591Z"
+  "SaveTime": "2025-10-26T21:53:50.597Z"
 }

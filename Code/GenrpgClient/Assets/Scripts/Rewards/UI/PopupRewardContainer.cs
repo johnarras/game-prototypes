@@ -71,7 +71,7 @@ namespace Assets.Scripts.Rewards.UI
 
             icon.SetData(rew, DisplayTime, DistancePerSecond);
 
-            _dispatcher.Dispatch(new DynamicUIItem(icon.gameObject, icon, transform.position, DynamicUILocation.WorldSpace, null));
+            _dispatcher.Dispatch(new DynamicUIItem(icon.gameObject, icon, transform.position, DynamicUILocation.WorldSpace));
         }
     }
 }

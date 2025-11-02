@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 1,
   "Armor": 1,
-  "CostPct": 125
+  "CostPct": 100,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

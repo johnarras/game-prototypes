@@ -5,5 +5,6 @@
   "Name": "Drop Gives Money",
   "NameId": "",
   "Desc": "Dropping an item in your character screen gives the vendor money.",
-  "SaveTime": "2025-10-04T20:35:22.375Z"
+  "DefaultForNewGame": true,
+  "SaveTime": "2025-11-01T20:00:22.246Z"
 }

@@ -3,9 +3,9 @@
     public class CrawlerOptions
     {
 
-        public const long OneCharacter = 1;
+        public const long WholeParty = 1;
         public const long Permadeath = 2;
-        public const long OneDungeon = 3;
+        public const long FullWorld = 3;
         public const long RandomMonsters = 4;
         public const long RollStats = 5;
         public const long AllEquipmentSlots = 6;

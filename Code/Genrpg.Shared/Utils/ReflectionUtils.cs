@@ -226,8 +226,6 @@ namespace Genrpg.Shared.Utils
                 setupTasks.Add(setupService.Initialize(token));
             }
 
-            await loc.InitializeDictionaryItems(token);
-
             await Task.WhenAll(setupTasks);
 
         }

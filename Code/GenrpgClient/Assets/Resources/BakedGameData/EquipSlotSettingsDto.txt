@@ -11,7 +11,8 @@
       "Art": "",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.25
     },
     {
       "Id": "equipslot2default",
@@ -19,7 +20,8 @@
       "IdKey": 2,
       "Name": "Neck",
       "Active": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 0.5
     },
     {
       "Id": "equipslot3default",
@@ -27,7 +29,8 @@
       "IdKey": 3,
       "Name": "Shoulders",
       "Active": true,
-      "BaseBonusStatTypeId": 30
+      "BaseBonusStatTypeId": 30,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot4default",
@@ -36,7 +39,8 @@
       "Name": "Torso",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.5
     },
     {
       "Id": "equipslot5default",
@@ -45,7 +49,8 @@
       "Name": "Back",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot6default",
@@ -53,7 +58,8 @@
       "IdKey": 6,
       "Name": "Waist",
       "Active": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot7default",
@@ -61,7 +67,8 @@
       "IdKey": 7,
       "Name": "Legs",
       "Active": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.5
     },
     {
       "Id": "equipslot8default",
@@ -70,7 +77,8 @@
       "Name": "Feet",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot9default",
@@ -78,7 +86,8 @@
       "IdKey": 9,
       "Name": "Wrists",
       "Active": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 0.75
     },
     {
       "Id": "equipslot10default",
@@ -87,7 +96,8 @@
       "Name": "Hands",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 0.75
     },
     {
       "Id": "equipslot11default",
@@ -95,7 +105,8 @@
       "IdKey": 11,
       "Name": "LeftFinger",
       "Active": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 0.5
     },
     {
       "Id": "equipslot12default",
@@ -104,7 +115,8 @@
       "Name": "RightFinger",
       "ParentEquipSlotId": 11,
       "Active": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 0.5
     },
     {
       "Id": "equipslot13default",
@@ -112,7 +124,8 @@
       "IdKey": 13,
       "Name": "Jewelry1",
       "Active": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 0.5
     },
     {
       "Id": "equipslot14default",
@@ -121,7 +134,8 @@
       "Name": "Jewelry2",
       "ParentEquipSlotId": 13,
       "Active": true,
-      "BaseBonusStatTypeId": 32
+      "BaseBonusStatTypeId": 32,
+      "BonusStatScale": 0.5
     },
     {
       "Id": "equipslot15default",
@@ -129,7 +143,8 @@
       "IdKey": 15,
       "Name": "MainHand",
       "Active": true,
-      "IsCrawlerSlot": true
+      "IsCrawlerSlot": true,
+      "BonusStatScale": 1.5
     },
     {
       "Id": "equipslot16default",
@@ -139,7 +154,8 @@
       "ParentEquipSlotId": 15,
       "Active": true,
       "IsCrawlerSlot": true,
-      "BaseBonusStatTypeId": 31
+      "BaseBonusStatTypeId": 31,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot17default",
@@ -147,31 +163,35 @@
       "IdKey": 17,
       "Name": "Ranged",
       "Active": true,
-      "IsCrawlerSlot": true
+      "IsCrawlerSlot": true,
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot18default",
       "ParentId": "default",
       "IdKey": 18,
-      "Name": "PoisonVial"
+      "Name": "PoisonVial",
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot19default",
       "ParentId": "default",
       "IdKey": 19,
-      "Name": "Quiver"
+      "Name": "Quiver",
+      "BonusStatScale": 1.0
     },
     {
       "Id": "equipslot30default",
       "ParentId": "default",
       "IdKey": 30,
-      "Name": "Max"
+      "Name": "Max",
+      "BonusStatScale": 1.0
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "EquipSlotSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-10-31T12:58:35.906Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-10-31T12:58:35.906Z"
 }

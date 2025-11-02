@@ -66,7 +66,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map = _worldService.CreateMap(genData, (int)width, (int)height);
                 genData.Name = _zoneGenService.GenerateZoneName(genData.ZoneType.IdKey, rand.Next(), false);
-                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+                if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
                 {
                     if (!string.IsNullOrEmpty(party.RoguelikeDungeonName))
                     {
@@ -492,7 +492,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             MarkTilesNearEntrances(party, genData, map, entranceExitPoints);
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (genData.CurrFloor < genData.MaxFloor)
                 {
@@ -542,6 +542,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             AddRoomDoors(party, genData, map, roomIds, rand);
 
+            AddLevelMap(party, genData, map, validEmptyCells, rand);
 
 
             return new NewCrawlerMap() { Map = map, EnterX = enterX, EnterZ = enterZ };
@@ -696,7 +697,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 map.SetEntity(pt.X, pt.Z, EntityTypes.MapEncounter, GetRandomEncounter(rand));
                 encountersToPlace--;
             }
-
 
             if (!_optionsService.HasOption(party, CrawlerOptions.RandomMonsters))
             {
@@ -1432,6 +1432,21 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
             return true;
+        }
+
+        private void AddLevelMap(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<PointXZ> validEmptyCells, IRandom rand)
+        {
+
+            if (validEmptyCells.Count < 1)
+            {
+                return;
+            }
+
+            PointXZ pt = validEmptyCells[rand.Next() % validEmptyCells.Count];
+            validEmptyCells.Remove(pt);
+
+            map.SetEntity(pt.X, pt.Z, EntityTypes.MapEncounter, MapEncounters.LevelMap);
+
         }
     }
 }

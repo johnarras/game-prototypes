@@ -67,7 +67,7 @@ public class CharacterScreen : ItemIconScreen
 
         if (Items != null)
         {
-            Items.Init(InventoryGroup.Equipment, this, _unit, null, _token);
+            Items.Init(InventoryGroup.Equipment, this, _unit, null, GetToken());
         }
     }
 
@@ -106,7 +106,7 @@ public class CharacterScreen : ItemIconScreen
             Screen = this,
         };
         EquipSlot slot = _gameData.Get<EquipSlotSettings>(_unit).Get(eqIcon.EquipSlotId);
-        eqIcon.Icon.Init(iconInitData, _token);
+        eqIcon.Icon.Init(iconInitData, GetToken());
         _uiService.SetText(eqIcon.Name, slot?.Name ?? "");
     }
 
@@ -156,7 +156,7 @@ public class CharacterScreen : ItemIconScreen
                         statTypeId = -1,
                     };
                     _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI,
-                        StatInfoRowPrefabName, OnDownloadStat, sddFill, _token, GetStatSubdirectory());
+                        StatInfoRowPrefabName, OnDownloadStat, sddFill, GetToken(), GetStatSubdirectory());
                 }
                 StatDownloadData sdd = new StatDownloadData()
                 {
@@ -164,7 +164,7 @@ public class CharacterScreen : ItemIconScreen
                     statTypeId = stat.IdKey,
                 };
                 _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI,
-                    StatInfoRowPrefabName, OnDownloadStat, sdd, _token, GetStatSubdirectory());
+                    StatInfoRowPrefabName, OnDownloadStat, sdd, GetToken(), GetStatSubdirectory());
             }
         }
         else
@@ -377,7 +377,7 @@ public class CharacterScreen : ItemIconScreen
         {
             newEqIcon.Icon.SetDataItem(existingEquipmentInNewSlot);
             newEqIcon.Icon.AddFlags(ItemIconFlags.ShowTooltipNow);
-            newEqIcon.Icon.Init(newEqIcon.Icon.GetInitData(), _token);
+            newEqIcon.Icon.Init(newEqIcon.Icon.GetInitData(), GetToken());
         }
 
         ShowStats();
@@ -449,7 +449,7 @@ public class CharacterScreen : ItemIconScreen
 
         if (oldItem != null)
         {
-            Items.InitIcon(oldItem, _token);
+            Items.InitIcon(oldItem, GetToken());
         }
         ShowStats();
     }

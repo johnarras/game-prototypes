@@ -52,7 +52,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             int cityEdgeDistance = 1;
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 // X on border, y in middle.
                 if (rand.NextDouble() < 0.5f)
@@ -133,7 +133,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 int visGateX = 0;
                 int visGateZ = 0;
@@ -330,7 +330,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 dungeonCount++;
             }
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 dungeonCount = 1;
             }
@@ -362,7 +362,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 map.SetEntity((int)currPoint.X, (int)currPoint.Z, EntityTypes.Building, dungeonMap.BuildingTypeId);
 
-                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+                if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
                 {
                     map.Details.Add(new MapCellDetail() { EntityTypeId = EntityTypes.Map, EntityId = dungeonMap.IdKey, X = currPoint.X, Z = currPoint.Z, ToX = -1, ToZ = -1 });
                 }

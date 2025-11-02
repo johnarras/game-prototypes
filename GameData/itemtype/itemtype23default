@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Hammer",
   "Art": "Mace",
-  "MinVal": 2,
-  "MaxVal": 5,
+  "MinVal": 3,
+  "MaxVal": 7,
   "EquipSlotId": 15,
   "Flags": 8,
   "Effects": [],
@@ -120,5 +120,6 @@
       "Name": "Shillellagh",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

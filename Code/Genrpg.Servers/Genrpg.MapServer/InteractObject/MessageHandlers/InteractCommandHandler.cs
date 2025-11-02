@@ -1,21 +1,14 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Core.Entities;
+﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interactions.Messages;
-using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Crafting.Constants;
 using Genrpg.Shared.Crafting.PlayerData.Crafting;
 using Genrpg.Shared.Crafting.Settings.Crafters;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interactions.Messages;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Utils;
 
 namespace Genrpg.MapServer.InteractObject.MessageHandlers
@@ -92,7 +85,6 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
             completeInteract.SkillPoints = skillPoints;
             completeInteract.GroundObjTypeId = groundObjTypeId;
             completeInteract.IsSkillLoot = message.IsSkillLoot;
-            _logService.Message("Start Interact: " + DateTime.UtcNow + " " + gatherSeconds);
             lock (target.OnActionLock)
             {
                 if (target.OnActionMessage != null && !target.OnActionMessage.IsCancelled())

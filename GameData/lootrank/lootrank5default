@@ -2,8 +2,9 @@
   "Id": "lootrank5default",
   "ParentId": "default",
   "IdKey": 5,
-  "Name": "Iron",
-  "Armor": 6,
-  "Damage": 4,
-  "CostPct": 400
+  "Name": "Jade",
+  "Armor": 10,
+  "Damage": 7,
+  "CostPct": 500,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

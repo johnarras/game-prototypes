@@ -352,6 +352,12 @@
       "Name": "Road"
     },
     {
+      "Id": "entitytype59default",
+      "ParentId": "default",
+      "IdKey": 59,
+      "Name": "Polymorph"
+    },
+    {
       "Id": "entitytype100default",
       "ParentId": "default",
       "IdKey": 100,

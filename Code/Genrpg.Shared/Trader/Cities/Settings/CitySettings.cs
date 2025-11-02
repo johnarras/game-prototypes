@@ -54,13 +54,13 @@ namespace Genrpg.Shared.Trader.Cities.Settings
         [Key(7)] public string Art { get; set; }
         [Key(8)] public string AncientName { get; set; }
         [Key(9)] public long Population { get; set; }
-        [Key(12)] public int MapPixelX { get; set; }
-        [Key(13)] public int MapPixelY { get; set; }
-        [Key(14)] public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
-        [Key(15)] public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
-        [Key(16)] public List<CityRoad> Roads { get; set; } = new List<CityRoad>();
-        [Key(17)] public SmallIdLongCollection CityDistances { get; set; } = new SmallIdLongCollection();
-        [Key(18)] public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
+        [Key(10)] public int MapPixelX { get; set; }
+        [Key(11)] public int MapPixelY { get; set; }
+        [Key(12)] public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
+        [Key(13)] public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
+        [Key(14)] public List<CityRoad> Roads { get; set; } = new List<CityRoad>();
+        [Key(15)] public SmallIdLongCollection CityDistances { get; set; } = new SmallIdLongCollection();
+        [Key(16)] public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
     }
 
     public class CitySettingsDto : ParentSettingsDto<CitySettings, City> { }

@@ -20,7 +20,7 @@ public interface IGameDataService : IInjectable
     List<string> GetEditorIgnoreFields();
     List<IGameSettingsLoader> GetAllLoaders();
     Dictionary<Type, IGameSettingsMapper> GetAllMappers();
-    bool AcceptedByFilter(IFilteredObject obj, IPlayerFilter filter);
+    bool AcceptedByFilter(IFilteredObject obj, IPlayerFilter filter, DateTime currentTime);
     List<ITopLevelSettings> MapToDto(IFilteredObject obj, List<ITopLevelSettings> startSettings);
     bool SetGameDataOverrides(IFilteredObject fobj, bool forceRefresh);
     void GetClientSettings(WebResponseList list, IFilteredObject fobj, bool forceUpdateOverrides);

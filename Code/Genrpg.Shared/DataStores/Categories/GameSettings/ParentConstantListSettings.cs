@@ -1,11 +1,9 @@
 ﻿using Genrpg.Shared.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Utils;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Stats.Settings.Stats;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.DataStores.Categories.GameSettings
 {

@@ -1,26 +1,4 @@
-using Genrpg.Shared.BoardGame.Upgrades.Services;
-using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Crafting.Services;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Factions.Services;
-using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.LoadSave.Services;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Names.Services;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.PlayMultiplier.Services;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.Quests.Services;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.SpellCrafting.Services;
-using Genrpg.Shared.Spells.Services;
-using Genrpg.Shared.Stats.Services;
-using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.UnitEffects.Services;
-using Genrpg.Shared.Units.Services;
-using Genrpg.Shared.UserAbilities.Services;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -40,7 +18,7 @@ namespace Genrpg.Shared.Setup.Services
 
         protected string[] _assemblyPrefixes = new string[] { "Genrpg." };
 
-        public async Task Initialize( CancellationToken toke)
+        public async Task Initialize(CancellationToken toke)
         {
             await Task.CompletedTask;
         }
@@ -56,7 +34,7 @@ namespace Genrpg.Shared.Setup.Services
             SetupAssemblyServices(GetType().Assembly, loc, completedAssemblyNames, token);
             loc.ResolveSelf();
             loc.Resolve(this);
-            await ReflectionUtils.InitializeServiceList(loc, loc.GetVals(), token);
+            await ReflectionUtils.InitializeServiceList(loc, loc.GetVals<IInjectable>(), token);
 
         }
 
@@ -93,13 +71,13 @@ namespace Genrpg.Shared.Setup.Services
                     SetupAssemblyServices(dependency, loc, completedAssemblyNames, token);
                 }
             }
-            InjectAssemblyServices(assembly, loc, completedAssemblyNames, token);  
+            InjectAssemblyServices(assembly, loc, completedAssemblyNames, token);
             completedAssemblyNames.Add(assembly.GetName().Name);
         }
 
         private void InjectAssemblyServices(Assembly assembly, IServiceLocator loc, List<string> completedAssemblyNames, CancellationToken token)
         {
-                
+
             List<Type> injectableTypes = ReflectionUtils.GetTypesImplementing(assembly, typeof(IInjectable));
 
             foreach (Type type in injectableTypes)

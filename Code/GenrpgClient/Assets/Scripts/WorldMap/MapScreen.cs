@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Threading;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
+using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class MapScreen : BaseScreen
 {
@@ -24,7 +24,7 @@ public class MapScreen : BaseScreen
 
     private void Setup()
     {
-        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, _token, Subdirectory);
+        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, GetToken(), Subdirectory);
 
         _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
     }

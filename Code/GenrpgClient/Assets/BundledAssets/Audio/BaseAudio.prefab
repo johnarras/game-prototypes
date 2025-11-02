@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Is3D: 0
-  KeepLoaded: 1
+  TtlSeconds: 2
   Clips:
-  - {fileID: 8300000, guid: 1aaf3bb7f3fd505408b43560893f4c91, type: 3}
+  - {fileID: 0}

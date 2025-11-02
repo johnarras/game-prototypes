@@ -62,6 +62,7 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
         [Key(3)] public long MaxQuantity { get; set; }
         [Key(4)] public long ElementTypeId { get; set; }
         [Key(5)] public string Name { get; set; }
+        [Key(6)] public double Chance { get; set; }
 
     }
 

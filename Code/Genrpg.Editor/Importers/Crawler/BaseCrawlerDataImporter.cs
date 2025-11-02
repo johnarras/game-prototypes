@@ -11,6 +11,7 @@ using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -131,7 +132,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
                 if (ttype != null)
                 {
-                    UnitKeyword tribeKeyword = keywordList.FirstOrDefault(x => x.Name.ToLower() == ttype.Name.ToLower());
+                    UnitKeyword tribeKeyword = keywordList.FirstOrDefault(x => StrUtils.IsLowercaseEqual(x.Name, ttype.Name));
 
                     if (tribeKeyword != null)
                     {
@@ -145,7 +146,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
                 foreach (string nword in nameWords)
                 {
-                    UnitKeyword nameKeyword = keywordList.FirstOrDefault(x => x.Name.ToLower() == nword.ToLower());
+                    UnitKeyword nameKeyword = keywordList.FirstOrDefault(x => StrUtils.IsLowercaseEqual(x.Name, nword));
 
                     if (nameKeyword != null)
                     {

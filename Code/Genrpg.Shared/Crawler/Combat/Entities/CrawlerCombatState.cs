@@ -2,6 +2,7 @@ using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Stats.Entities;
 using MessagePack;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
@@ -49,6 +50,17 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
 
         public bool PartyWonCombat() { return Enemies.Count == 0; }
 
+        public CombatGroup GetGroup(string combatGroupId)
+        {
+            CombatGroup group = Allies.FirstOrDefault(x => x.Id == combatGroupId);
+
+            if (group == null)
+            {
+                group = Enemies.FirstOrDefault(x => x.Id == combatGroupId);
+            }
+
+            return group;
+        }
 
         public List<CrawlerUnit> GetAllUnits()
         {

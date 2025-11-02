@@ -1489,3 +1489,29 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uitradermap
     IsLocal: 0
+  - BundleName: atlasstatuseffecticons
+    IsLocal: 0
+  - BundleName: atlastraderui
+    IsLocal: 0
+  - BundleName: uitrader
+    IsLocal: 0
+  - BundleName: audiomeleehit
+    IsLocal: 0
+  - BundleName: audiorangedhit
+    IsLocal: 0
+  - BundleName: storesdefaultstoreartpanel
+    IsLocal: 0
+  - BundleName: storesgemsstoreartpanel
+    IsLocal: 0
+  - BundleName: storesgreenstoreartpanel
+    IsLocal: 0
+  - BundleName: uicrawlermember
+    IsLocal: 0
+  - BundleName: uicrawlermembers
+    IsLocal: 0
+  - BundleName: audionaturehit
+    IsLocal: 0
+  - BundleName: audioacidhit
+    IsLocal: 0
+  - BundleName: propslevelmap
+    IsLocal: 0

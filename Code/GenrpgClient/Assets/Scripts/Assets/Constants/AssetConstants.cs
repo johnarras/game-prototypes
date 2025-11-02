@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Serialization;
-
-public class AssetConstants
+﻿public class AssetConstants
 {
 
     public const string DefaultDevContentRoot = "http://oxdbassets.blob.core.windows.net";
@@ -18,5 +16,7 @@ public class AssetConstants
     public const string GlobalAssetParent = "GlobalAssetParent";
 
     public const string LocalBundleUserData = "local";
+
+    public const float DefaultTtl = 5.0f;
 
 }

@@ -2,6 +2,7 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 {
@@ -21,7 +22,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
             }
             else if (!string.IsNullOrEmpty(request.Email))
             {
-                account = (await _repoService.Search<Account>(x => x.LowerEmail == request.Email.ToLower())).FirstOrDefault();
+                account = (await _repoService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerEmail, request.Email))).FirstOrDefault();
 
                 if (account == null)
                 {

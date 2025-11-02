@@ -255,7 +255,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                 CrawlerMapGenData genData = new CrawlerMapGenData()
                 {
-                    MapTypeId = _optionsService.HasOption(party, CrawlerOptions.OneDungeon) ? CrawlerMapTypes.City : CrawlerMapTypes.Outdoors,
+                    MapTypeId = !_optionsService.HasOption(party, CrawlerOptions.FullWorld) ? CrawlerMapTypes.City : CrawlerMapTypes.Outdoors,
                     World = world,
                     Level = 1,
                     Looping = false,

@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Info.InfoHelpers;
+﻿using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Info.InfoHelpers;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
@@ -44,6 +45,14 @@ namespace Genrpg.Shared.Crawler.Info.Helpers
             TargetType ttype = _gameData.Get<TargetTypeSettings>(_gs.ch).Get(spell.TargetTypeId);
 
             allLines.Add("Target: " + ttype.Name + " " + ttype.Desc);
+
+            CombatAction action = _gameData.Get<CombatActionSettings>(_gs.ch).Get(spell.CombatActionId);
+
+            if (action.BaseBonusHits > 0)
+            {
+                allLines.Add($"When used, this ability gains an extra {action.BaseBonusHits} hit" + (action.BaseBonusHits == 1 ? "" : "s") +
+                    " beyond the party member's role scaling tier.");
+            }
 
             allLines.Add("Desc: " + spell.Desc);
 

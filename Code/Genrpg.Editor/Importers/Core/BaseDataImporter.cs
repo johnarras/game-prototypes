@@ -130,7 +130,7 @@ namespace Genrpg.Editor.Importers.Core
             {
                 string word = words[w].ToLower().Replace("_", "");
 
-                ElementType etype = elementTypes.FirstOrDefault(x => x.Name.ToLower() == word);
+                ElementType etype = elementTypes.FirstOrDefault(x => StrUtils.IsLowercaseEqual(x.Name, word));
 
                 if (etype != null)
                 {

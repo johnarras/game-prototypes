@@ -158,7 +158,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 return;
             }
-            if (!_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (rand.NextDouble() > genData.MapType.NpcChance)
                 {
@@ -168,7 +168,19 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<MapCellDetail> entrances = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
 
-            okPoints = okPoints.Where(x => !entrances.Any(e =>
+            List<MapCellDetail> blockedEntrances = new List<MapCellDetail>();
+            foreach (MapCellDetail detail in entrances)
+            {
+                CrawlerMap map2 = world.GetMap(detail.EntityId);
+
+                if (map2 != null && (map2.CrawlerMapTypeId == CrawlerMapTypes.Outdoors ||
+                    map2.CrawlerMapTypeId == CrawlerMapTypes.City))
+                {
+                    blockedEntrances.Add(detail);
+                }
+            }
+
+            okPoints = okPoints.Where(x => !blockedEntrances.Any(e =>
             MathUtils.PythagoreanDistance(x.X - e.X, x.Z - e.Z)
             <= genData.MapType.MinDistanceToEntrance)).ToList();
 
@@ -176,7 +188,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             int npcQuantity = MathUtils.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon) && npcQuantity > 1)
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld) && npcQuantity > 1)
             {
                 npcQuantity = 1;
             }

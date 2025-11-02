@@ -1,5 +1,3 @@
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
@@ -23,11 +21,12 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
         [Key(8)] public double WeaponDamageScale { get; set; }
         [Key(9)] public double StatBonusDamageScale { get; set; }
         [Key(10)] public bool QuantityIsBaseAmount { get; set; }
+        [Key(11)] public double BaseBonusHits { get; set; }
     }
 
 
     [MessagePackObject]
-    public class CombatActionSettings : ParentConstantListSettings<CombatAction,CombatActions>
+    public class CombatActionSettings : ParentConstantListSettings<CombatAction, CombatActions>
     {
         [Key(0)] public override string Id { get; set; }
     }

@@ -1,19 +1,21 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using UnityEngine;
+﻿using Assets.Scripts.Assets.Sprites.Services;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.WebApi.DeleteChar;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Entities;
 using System.Threading;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Characters.WebApi.DeleteChar;
+using UnityEngine;
 
 public class CharacterSelectRow : BaseBehaviour
 {
-    private IClientWebService _webNetworkService;
+    private IClientWebService _webNetworkService = null;
+    private ISpriteService _spriteService = null;
 
     public GText NameText;
     public GImage CharImage;
     public GameObject PlayButtonAnchor;
     public GButton DeleteButton;
-    
+
     private CharacterStub _characterStub;
     private CharacterSelectScreen _screen;
 
@@ -25,7 +27,7 @@ public class CharacterSelectRow : BaseBehaviour
         _token = token;
         _uiService.SetText(NameText, ch.Name);
         _uiService.SetButton(DeleteButton, screen.GetName(), ClickDelete);
-        _assetService.LoadAtlasSpriteInto(AtlasNames.Icons, "HelmetMetal_002", CharImage, token);
+        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, "HelmetMetal_002", CharImage, token);
 
         if (PlayButtonAnchor == null)
         {
@@ -34,8 +36,8 @@ public class CharacterSelectRow : BaseBehaviour
 
         foreach (MapStub stub in _gs.mapStubs)
         {
-            _assetService.LoadAssetInto(PlayButtonAnchor, AssetCategoryNames.UI, 
-                "CharacterPlayButton", OnDownloadPlayButton, stub, token, screen.Subdirectory);          
+            _assetService.LoadAssetInto(PlayButtonAnchor, AssetCategoryNames.UI,
+                "CharacterPlayButton", OnDownloadPlayButton, stub, token, screen.Subdirectory);
         }
     }
 

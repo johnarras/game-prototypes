@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using ClientEvents;
-using Genrpg.Shared.Units.Entities;
-
-using Genrpg.Shared.Quests.Services;
-using System.Threading;
-using Genrpg.Shared.Quests.Messages;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Quests.PlayerData;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
-using System.Threading.Tasks;
-using Genrpg.Shared.UI.Constants;
+﻿using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
+using Genrpg.Shared.Quests.Constants;
+using Genrpg.Shared.Quests.Messages;
+using Genrpg.Shared.Quests.PlayerData;
+using Genrpg.Shared.Quests.Services;
+using Genrpg.Shared.Quests.WorldData;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Units.Entities;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 internal class QuestTypeWithIndex
 {
@@ -58,10 +56,10 @@ public class QuestScreen : ItemIconScreen
 
         ShowQuests(true);
 
-        
+
     }
 
-    private void OnAlterQuestState (AlterQuestStateEvent data)
+    private void OnAlterQuestState(AlterQuestStateEvent data)
     {
         ShowQuests(false);
         return;
@@ -165,18 +163,18 @@ public class QuestScreen : ItemIconScreen
                 qtype = _allQuests[i],
                 index = i,
             };
-            _assetService.LoadAssetInto(QuestListParent, AssetCategoryNames.UI, 
-                GetQuestRowPrefab(), OnLoadScreenQuest,  questIndexInfo, _token, Subdirectory);
+            _assetService.LoadAssetInto(QuestListParent, AssetCategoryNames.UI,
+                GetQuestRowPrefab(), OnLoadScreenQuest, questIndexInfo, GetToken(), Subdirectory);
         }
 
     }
-        
+
 
     public void ShowFullQuestData(QuestType qtype)
     {
         if (FullQuestInfo != null)
         {
-            FullQuestInfo.Init(qtype, 0, this, _unit, _token);
+            FullQuestInfo.Init(qtype, 0, this, _unit, GetToken());
         }
     }
 
@@ -190,7 +188,7 @@ public class QuestScreen : ItemIconScreen
 
         QuestTypeWithIndex qindex = data as QuestTypeWithIndex;
 
-        if (qindex == null || qindex.qtype == null) 
+        if (qindex == null || qindex.qtype == null)
         {
             _clientEntityService.Destroy(go);
             return;

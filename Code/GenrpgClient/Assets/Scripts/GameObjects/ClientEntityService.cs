@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Awaitables;
+﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
@@ -322,25 +323,20 @@ namespace Assets.Scripts.GameObjects
                 return;
             }
 
-            List<GameObject> list = new List<GameObject>();
 
-            foreach (Transform t in go.transform)
+            // Iterate backwards from the last child to the first (index 0)
+            // This is safe because destroying a child removes it from the list,
+            // shifting the subsequent elements' indices up.
+            for (int i = go.transform.childCount - 1; i >= 0; i--)
             {
-                if (t.gameObject != null)
-                {
-                    list.Add(t.gameObject);
-                }
+                // Get the child Transform
+                Transform child = go.transform.GetChild(i);
+
+                // Call Destroy() on the child's GameObject.
+                // DO NOT use DestroyImmediate() at runtime.
+                DestroyAllChildren(child.gameObject);
+                Destroy(child.gameObject);
             }
-
-            for (int l = 0; l < list.Count; l++)
-            {
-                GameObject item = list[l];
-
-                DestroyAllChildren(item);
-                Destroy(item);
-
-            }
-
         }
 
         public void SetLayer(object obj, string layerName)
@@ -454,8 +450,10 @@ namespace Assets.Scripts.GameObjects
                 return;
             }
 
-            mb.destroyCancellationToken.Register(action);
-
+            if (action != null && mb is IDestroyCallback dc)
+            {
+                dc.SetDestroyCallback(action);
+            }
         }
 
         public T GetInterface<T>(object obj)

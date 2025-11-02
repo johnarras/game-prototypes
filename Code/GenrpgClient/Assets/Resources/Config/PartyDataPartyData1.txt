@@ -2,6 +2,7 @@
   "Id": "PartyData1",
   "MainMessage": "Yes, it's pretty print JSON. You're welcome.",
   "Flags": 1,
+  "Options": 32724,
   "SaveInventory": [],
   "QuestItems": {
     "Bits": [
@@ -11,21 +12,36 @@
   "Currencies": {
     "Data": [
       0,
-      2000,
+      1000,
       0,
       0
     ]
   },
-  "Seed": 1553161120,
+  "Seed": 1252137624,
   "WorldId": 303658,
-  "CurrPos": {},
+  "CurrPos": {
+    "MapId": 2,
+    "X": 5,
+    "Z": 5
+  },
   "RecallPos": {},
-  "NextId": 398,
-  "Maps": [],
+  "NextId": 134,
+  "Maps": [
+    {
+      "MapId": 2,
+      "Visited": {
+        "Bits": [
+          0
+        ]
+      },
+      "OneTimeEncounters": []
+    }
+  ],
   "CurrentMap": {
     "Visited": {
       "Bits": [
-        0
+        0,
+        8388608
       ]
     },
     "Cleansed": {
@@ -36,7 +52,7 @@
   },
   "CompletedMaps": {
     "Bits": [
-      0
+      4
     ]
   },
   "RiddlesCompleted": {
@@ -76,19 +92,19 @@
       "PartySlot": 1,
       "SaveEquipment": [
         {
-          "Id": "I387",
-          "Name": "Knife of Domination",
-          "Dat": "24 1 1 3 15 75 18 0 ",
+          "Id": "I123",
+          "Name": "Mace of Guilt",
+          "Dat": "23 1 1 3 15 150 37 0 ",
           "Effects": []
         },
         {
-          "Id": "I388",
-          "Name": "Wand of Guile",
-          "Dat": "32 1 1 3 17 68 17 0 ",
+          "Id": "I124",
+          "Name": "Throwing Axe of Thunder",
+          "Dat": "31 1 1 1 17 87 21 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 14 14 15 13 15 13 13 0 0 25 18",
+      "PermStats": "0 12 11 13 11 13 11 12 0 0 27 19",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -100,16 +116,16 @@
       },
       "Summons": [
         {
-          "UnitTypeId": 28,
-          "Name": "Cat",
-          "RoleId": 8
+          "UnitTypeId": 79,
+          "Name": "Guard",
+          "RoleId": 10
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Coyote",
+      "PortraitName": "Dwarf",
       "ExtraKeywords": [],
-      "Id": "P267",
-      "Name": "Shifty",
+      "Id": "P2",
+      "Name": "SirHolySmash",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -121,7 +137,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:53:21.2128735Z"
+        "GameDataCheckTime": "2025-10-25T15:12:13.5518363Z"
       },
       "Roles": [
         {
@@ -129,7 +145,7 @@
           "Level": 1
         },
         {
-          "RoleId": 8,
+          "RoleId": 10,
           "Level": 1
         }
       ]
@@ -139,19 +155,19 @@
       "PartySlot": 2,
       "SaveEquipment": [
         {
-          "Id": "I389",
-          "Name": "Wretched Knife",
-          "Dat": "24 1 1 2 15 75 18 0 ",
+          "Id": "I125",
+          "Name": "Bastard Sword of Might",
+          "Dat": "25 1 1 3 15 375 93 0 ",
           "Effects": []
         },
         {
-          "Id": "I390",
-          "Name": "Wand of the Last Stand",
-          "Dat": "32 1 1 1 17 68 17 0 ",
+          "Id": "I126",
+          "Name": "Blades of Piety",
+          "Dat": "31 1 1 1 17 87 21 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 16 13 13 13 16 13 13 0 0 26 10",
+      "PermStats": "0 13 12 11 12 13 11 11 0 0 20 14",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -163,16 +179,16 @@
       },
       "Summons": [
         {
-          "UnitTypeId": 13,
-          "Name": "Scrapper",
-          "RoleId": 1
+          "UnitTypeId": 49,
+          "Name": "Iron Golem",
+          "RoleId": 6
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Bladesman",
+      "PortraitName": "IronGolem",
       "ExtraKeywords": [],
-      "Id": "P270",
-      "Name": "Fighty",
+      "Id": "P6",
+      "Name": "Mechaorc",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -184,7 +200,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:53:32.1649368Z"
+        "GameDataCheckTime": "2025-10-25T15:12:48.4213438Z"
       },
       "Roles": [
         {
@@ -192,7 +208,7 @@
           "Level": 1
         },
         {
-          "RoleId": 1,
+          "RoleId": 6,
           "Level": 1
         }
       ]
@@ -202,19 +218,19 @@
       "PartySlot": 3,
       "SaveEquipment": [
         {
-          "Id": "I391",
-          "Name": "Knife of Anguish",
-          "Dat": "24 1 1 4 15 75 18 0 ",
+          "Id": "I127",
+          "Name": "Arcane Reaver",
+          "Dat": "21 1 1 3 15 150 37 0 ",
           "Effects": []
         },
         {
-          "Id": "I392",
-          "Name": "Unstoppable Wand",
-          "Dat": "32 1 1 4 17 68 17 0 ",
+          "Id": "I128",
+          "Name": "Axe of Bone",
+          "Dat": "31 1 1 2 17 87 21 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 13 13 14 14 14 15 14 0 0 17 17",
+      "PermStats": "0 11 11 12 13 12 13 11 0 0 17 16",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -232,10 +248,10 @@
         }
       ],
       "UnitTypeId": 1,
-      "PortraitName": "Human",
+      "PortraitName": "Halfling",
       "ExtraKeywords": [],
-      "Id": "P275",
-      "Name": "Singy",
+      "Id": "P11",
+      "Name": "LilSinger",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -247,11 +263,11 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:53:42.5209267Z"
+        "GameDataCheckTime": "2025-10-25T15:13:04.348303Z"
       },
       "Roles": [
         {
-          "RoleId": 100,
+          "RoleId": 105,
           "Level": 1
         },
         {
@@ -265,19 +281,19 @@
       "PartySlot": 4,
       "SaveEquipment": [
         {
-          "Id": "I393",
-          "Name": "Vacant Knife",
-          "Dat": "24 1 1 3 15 75 18 0 ",
+          "Id": "I129",
+          "Name": "Knife of the Mountains",
+          "Dat": "24 1 1 3 15 112 28 0 ",
           "Effects": []
         },
         {
-          "Id": "I394",
-          "Name": "Wailing Wand",
-          "Dat": "32 1 1 2 17 68 17 0 ",
+          "Id": "I130",
+          "Name": "Sturdy Axe",
+          "Dat": "31 1 1 3 17 87 21 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 13 14 13 17 14 13 13 0 0 19 14",
+      "PermStats": "0 11 12 11 15 12 11 11 0 0 19 14",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -297,8 +313,8 @@
       "UnitTypeId": 1,
       "PortraitName": "Elf",
       "ExtraKeywords": [],
-      "Id": "P282",
-      "Name": "Shooty",
+      "Id": "P18",
+      "Name": "PerfectShot",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -310,7 +326,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:54:03.7684506Z"
+        "GameDataCheckTime": "2025-10-25T15:13:20.3348701Z"
       },
       "Roles": [
         {
@@ -328,19 +344,19 @@
       "PartySlot": 5,
       "SaveEquipment": [
         {
-          "Id": "I395",
-          "Name": "Knife of Revelry",
-          "Dat": "24 1 1 4 15 75 18 0 ",
+          "Id": "I131",
+          "Name": "Magical Sword",
+          "Dat": "21 1 1 4 15 150 37 0 ",
           "Effects": []
         },
         {
-          "Id": "I396",
-          "Name": "Stalk of Knights",
-          "Dat": "32 1 1 4 17 68 17 0 ",
+          "Id": "I132",
+          "Name": "Touch of the Hunter",
+          "Dat": "32 1 1 1 17 68 17 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 13 16 16 13 13 13 13 0 0 16 20",
+      "PermStats": "0 11 14 14 11 11 11 11 0 0 16 20",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -360,8 +376,8 @@
       "UnitTypeId": 1,
       "PortraitName": "Gnome",
       "ExtraKeywords": [],
-      "Id": "P291",
-      "Name": "Blasty",
+      "Id": "P27",
+      "Name": "Stormcrasher",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -373,7 +389,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:54:14.6813344Z"
+        "GameDataCheckTime": "2025-10-25T15:13:40.5881772Z"
       },
       "Roles": [
         {
@@ -391,19 +407,19 @@
       "PartySlot": 6,
       "SaveEquipment": [
         {
-          "Id": "I397",
-          "Name": "Dagger of Piety",
-          "Dat": "24 1 1 2 15 75 18 0 ",
+          "Id": "I133",
+          "Name": "Dagger of the Redglow",
+          "Dat": "24 1 1 2 15 112 28 0 ",
           "Effects": []
         },
         {
-          "Id": "I398",
-          "Name": "Torch of Precision",
-          "Dat": "32 1 1 1 17 68 17 0 ",
+          "Id": "I134",
+          "Name": "Wand of Shadows",
+          "Dat": "32 1 1 4 17 68 17 0 ",
           "Effects": []
         }
       ],
-      "PermStats": "0 13 13 16 13 13 14 15 0 0 14 24",
+      "PermStats": "0 11 11 14 11 11 12 13 0 0 14 24",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -423,8 +439,8 @@
       "UnitTypeId": 1,
       "PortraitName": "Cleric",
       "ExtraKeywords": [],
-      "Id": "P302",
-      "Name": "Healy",
+      "Id": "P38",
+      "Name": "SupremeMender",
       "ClientVersion": "0.0.0",
       "Level": 1,
       "FinalX": -1.0,
@@ -436,7 +452,7 @@
       },
       "DataOverrides": {
         "Items": [],
-        "GameDataCheckTime": "2025-09-20T15:54:27.2293928Z"
+        "GameDataCheckTime": "2025-10-25T15:14:24.9385828Z"
       },
       "Roles": [
         {

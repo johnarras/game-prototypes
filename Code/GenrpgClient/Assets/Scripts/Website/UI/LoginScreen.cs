@@ -1,14 +1,14 @@
 ﻿
-using System.Threading;
-using Genrpg.Shared.DataStores.Entities;
-using System.Threading.Tasks;
 using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.UI.Constants;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class LoginScreen : ErrorMessageScreen
 {
-    
+
     public GInputField EmailInput;
     public GInputField PasswordInput;
     public GButton LoginButton;
@@ -18,7 +18,7 @@ public class LoginScreen : ErrorMessageScreen
     protected IClientAuthService _loginService;
     protected IRepositoryService _repoService;
     protected IClientAppService _clientAppService;
-    protected IClientCryptoService _clientCryptoService;    
+    protected IClientCryptoService _clientCryptoService;
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         _uiService.SetButton(LoginButton, GetName(), ClickLogin);
@@ -59,7 +59,7 @@ public class LoginScreen : ErrorMessageScreen
             DeviceId = _clientCryptoService.GetDeviceId(),
         };
 
-        _loginService.SendAccountLogin(loginRequest, _token);
+        _loginService.SendAccountLogin(loginRequest, GetToken());
     }
 }
 

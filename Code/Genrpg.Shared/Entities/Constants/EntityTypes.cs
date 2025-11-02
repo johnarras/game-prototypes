@@ -60,6 +60,7 @@
         public const long Animal = 56;
         public const long TradeGood = 57;
         public const long Road = 58;
+        public const long Polymorph = 59;
 
         // Crawler-specific entitytypes
         public const long CrawlerSpell = 100;

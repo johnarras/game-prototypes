@@ -1,21 +1,20 @@
-﻿using System;
-
-using System.Threading;
-using Genrpg.Shared.DataStores.Entities;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Accounts.Constants;
-using Genrpg.Shared.Utils;
-using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Accounts.WebApi.Signup;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Utils;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class SignupScreen : ErrorMessageScreen
 {
-    
+
     public GInputField NameInput;
     public GInputField ShareIdInput;
     public GInputField ReferrerIdInput;
-    public GInputField EmailInput;   
+    public GInputField EmailInput;
     public GInputField PasswordInput1;
     public GInputField PasswordInput2;
     public GButton LoginButton;
@@ -72,7 +71,7 @@ public class SignupScreen : ErrorMessageScreen
             name = name.Trim();
         }
 
-        if (string.IsNullOrEmpty(name) || 
+        if (string.IsNullOrEmpty(name) ||
             name.Length < AccountConstants.MinNameLength ||
             name.Length > AccountConstants.MaxNameLength)
         {
@@ -86,10 +85,10 @@ public class SignupScreen : ErrorMessageScreen
             return;
         }
 
-        if (string.IsNullOrEmpty(shareId) || 
+        if (string.IsNullOrEmpty(shareId) ||
             shareId.Length < AccountConstants.MinShareIdLength ||
             shareId.Length > AccountConstants.MaxShareIdLength)
-        { 
+        {
             _logService.Message($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
             return;
         }
@@ -133,7 +132,7 @@ public class SignupScreen : ErrorMessageScreen
             DeviceId = _clientCryptoService.GetDeviceId(),
         };
 
-        _authService.SendSignupRequest(signupCommand, _token);
+        _authService.SendSignupRequest(signupCommand, GetToken());
 
     }
 }

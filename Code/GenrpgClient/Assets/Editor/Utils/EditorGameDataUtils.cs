@@ -58,6 +58,7 @@ public class EditorGameDataUtils
 
             IClientGameDataService _clientGameDataService = gs.loc.Get<IClientGameDataService>();
             await _clientGameDataService.LoadCachedSettings(gs, true);
+
             return gs;
         }
         catch (Exception ex)

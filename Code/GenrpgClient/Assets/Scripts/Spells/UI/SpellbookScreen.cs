@@ -1,18 +1,17 @@
-﻿using UnityEngine;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using System.Threading;
+﻿using Assets.Scripts.UI.Spells;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.SpellCrafting.Constants;
 using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.SpellCrafting.Services;
-using Assets.Scripts.UI.Spells;
-using Genrpg.Shared.SpellCrafting.Constants;
-using System.Collections.Generic;
-using Genrpg.Shared.Spells.Settings.Spells;
+using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Elements;
+using Genrpg.Shared.Spells.Settings.Spells;
 using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.DataStores.Entities;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class SpellbookScreen : SpellIconScreen
 {
@@ -43,7 +42,6 @@ public class SpellbookScreen : SpellIconScreen
     public GameObject EffectListParent;
 
     private Spell _selectedSpell = null;
-    private Sprite[] _sprites = null;
 
     private List<SpellEffectEdit> _effectEdits = new List<SpellEffectEdit>();
 
@@ -61,16 +59,6 @@ public class SpellbookScreen : SpellIconScreen
         SetSelectedSpell(null);
         ShowSpells(token);
 
-        if (LoadSpellIconsOnLoad())
-        {
-            _assetService.GetSpriteList(AtlasNames.SkillIcons, OnLoadSprites, token);
-        }
-        
-    }
-
-    private void OnLoadSprites(object[] sprites)
-    {
-        _sprites = sprites.Cast<Sprite>().ToArray();
     }
 
     public override void OnRightClickIcon(SpellIcon icon)
@@ -95,7 +83,7 @@ public class SpellbookScreen : SpellIconScreen
     {
         ElementDropdown?.Init(_gameData.Get<ElementTypeSettings>(_gs.ch).GetData(), OnDropdownValueChanged);
         PowerTypeDropdown?.Init(_gameData.Get<StatSettings>(_gs.ch).GetPowerStats(), OnDropdownValueChanged);
-        
+
         ShotsInput?.Init(SpellModifiers.Shots, OnDropdownValueChanged);
         RangeInput?.Init(SpellModifiers.Range, OnDropdownValueChanged);
         CooldownInput?.Init(SpellModifiers.Cooldown, OnDropdownValueChanged);
@@ -125,9 +113,9 @@ public class SpellbookScreen : SpellIconScreen
             return;
         }
 
-        if (string.IsNullOrEmpty(_editSpell.Icon) && _sprites != null && _sprites.Length > 0)
+        if (string.IsNullOrEmpty(_editSpell.Icon))
         {
-            _editSpell.Icon = _sprites[_rand.Next() % _sprites.Length].name.Replace("(Clone)", "");
+            _editSpell.Icon = "500000";
         }
 
         _networkService.SendMapMessage(new CraftSpell() { CraftedSpell = _editSpell });
@@ -144,21 +132,21 @@ public class SpellbookScreen : SpellIconScreen
         SpellEffect effect = new SpellEffect();
         _editSpell.Effects.Add(effect);
 
-        _assetService.LoadAssetInto(EffectListParent, AssetCategoryNames.UI, 
-            SpellEffectEditPrefabName, OnLoadEffect, effect, _token, Subdirectory);
+        _assetService.LoadAssetInto(EffectListParent, AssetCategoryNames.UI,
+            SpellEffectEditPrefabName, OnLoadEffect, effect, GetToken(), Subdirectory);
     }
 
 
     protected void OnCraftSpellHandler(OnCraftSpell data)
     {
-        SpellPanel.Init(this, null, _token);
+        SpellPanel.Init(this, null, GetToken());
         return;
     }
 
 
     protected void OnDeleteSpellHandler(OnDeleteSpell data)
     {
-        SpellPanel.Init(this, null, _token);
+        SpellPanel.Init(this, null, GetToken());
         return;
     }
 
@@ -261,7 +249,7 @@ public class SpellbookScreen : SpellIconScreen
         for (int e = _effectEdits.Count; e < spell.Effects.Count; e++)
         {
             _assetService.LoadAssetInto(EffectListParent, AssetCategoryNames.UI,
-                SpellEffectEditPrefabName, OnLoadEffect, spell.Effects[e], _token, Subdirectory);
+                SpellEffectEditPrefabName, OnLoadEffect, spell.Effects[e], GetToken(), Subdirectory);
 
         }
     }

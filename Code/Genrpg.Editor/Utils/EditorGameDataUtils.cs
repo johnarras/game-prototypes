@@ -1,34 +1,34 @@
 ﻿using Genrpg.Editor.Entities.Copying;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Setup;
+using Genrpg.Editor.UI.Interfaces;
+using Genrpg.ServerShared.CloudComms.Constants;
+using Genrpg.ServerShared.Config;
+using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.Setup;
 using Genrpg.Shared.Constants;
-using Genrpg.ServerShared.Config;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.ServerShared.GameSettings.Services;
-using System.Text;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Settings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.ServerShared.CloudComms.Constants;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.Settings.Settings;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.UI.Settings;
+using Genrpg.Shared.Utils;
 using System;
-using System.Threading;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Genrpg.Shared.MapMessages;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.Settings.Settings;
-using Genrpg.Shared.Entities.Settings;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.UI.Settings;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Editor.UI.Interfaces;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Utils
 {
@@ -56,7 +56,7 @@ namespace Genrpg.Editor.Utils
             return dataCopy;
         }
 
-        public static async Task<EditorGameState> SetupFromConfig (object parent, string env, bool setupForEditor, IServerConfig serverConfig = null)
+        public static async Task<EditorGameState> SetupFromConfig(object parent, string env, bool setupForEditor, IServerConfig serverConfig = null)
         {
             if (serverConfig == null)
             {
@@ -64,7 +64,7 @@ namespace Genrpg.Editor.Utils
                 serverConfig = await configSetup.SetupServerConfig(EditorGameState.CTS.Token, CloudServerNames.Editor.ToString().ToLower());
             }
             serverConfig.DefaultEnv = env;
-            EditorGameState gs = await new ServerSetup().SetupFromConfig<EditorGameState,EditorSetupService>(parent, CloudServerNames.Editor.ToString().ToLower(), 
+            EditorGameState gs = await new ServerSetup().SetupFromConfig<EditorGameState, EditorSetupService>(parent, CloudServerNames.Editor.ToString().ToLower(),
               EditorGameState.CTS.Token, serverConfig);
 
             gs.data = gs.loc.Get<IGameData>();
@@ -104,7 +104,7 @@ namespace Genrpg.Editor.Utils
             {
                 saveTasks.Add(repoService.Save(dataCopy.Data[i]));
 
-                if (i % 10 == 9 || i == dataCopy.Data.Count-1)
+                if (i % 10 == 9 || i == dataCopy.Data.Count - 1)
                 {
                     await Task.WhenAll(saveTasks);
                     saveTasks = new List<Task>();
@@ -118,7 +118,7 @@ namespace Genrpg.Editor.Utils
             MapMessageInit.InitMapMessages(GetCodeFolderPath());
         }
 
-        static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\";  }
+        static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\"; }
 
         const string GitOffsetPath = "..\\GameData";
         public static void WriteGameDataToDisk(FullGameDataCopy dataCopy, ITextSerializer serializer)
@@ -187,7 +187,7 @@ namespace Genrpg.Editor.Utils
             foreach (IGameSettings settings in allSettings)
             {
                 string subpath = settings.GetType().Name.ToLower();
-                
+
                 string fullDir = Path.Combine(parentPath, subpath);
 
                 if (!Directory.Exists(fullDir))
@@ -262,7 +262,7 @@ namespace Genrpg.Editor.Utils
 
             foreach (string subDirName in directoryNames)
             {
-                Type currType = settingsTypes.FirstOrDefault(x => x.Name.ToLower() == subDirName.ToLower());
+                Type currType = settingsTypes.FirstOrDefault(x => StrUtils.IsLowercaseEqual(x.Name, subDirName));
 
                 if (currType == null)
                 {
@@ -305,8 +305,8 @@ namespace Genrpg.Editor.Utils
             }
             return dataCopy;
         }
-        
-        public static async Task<EditorGameState> SetupForEditing (WindowBase window, string action, string env, Action<EditorGameState> afterAction = null)
+
+        public static async Task<EditorGameState> SetupForEditing(WindowBase window, string action, string env, Action<EditorGameState> afterAction = null)
         {
             try
             {
@@ -418,7 +418,7 @@ namespace Genrpg.Editor.Utils
             return null;
         }
 
-        private static void AddEntityListData<TParent,TChild,TConstantList>(EditorGameState gs)
+        private static void AddEntityListData<TParent, TChild, TConstantList>(EditorGameState gs)
             where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
         {
             TParent parent = gs.data.Get<TParent>(null);
@@ -445,7 +445,7 @@ namespace Genrpg.Editor.Utils
 
             childList = childList.OrderBy(x => x.IdKey).ToList();
 
-            parent.SetData(childList.Cast<TChild>().ToList());  
+            parent.SetData(childList.Cast<TChild>().ToList());
 
 
         }

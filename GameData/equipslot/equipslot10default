@@ -5,5 +5,7 @@
   "Name": "Hands",
   "Active": true,
   "IsCrawlerSlot": true,
-  "BaseBonusStatTypeId": 31
+  "BaseBonusStatTypeId": 31,
+  "BonusStatScale": 0.75,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

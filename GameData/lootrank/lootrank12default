@@ -2,8 +2,9 @@
   "Id": "lootrank12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "Ruby",
-  "Armor": 30,
-  "Damage": 15,
-  "CostPct": 3000
+  "Name": "Adamantite",
+  "Armor": 40,
+  "Damage": 35,
+  "CostPct": 2500,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

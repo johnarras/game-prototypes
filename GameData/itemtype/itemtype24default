@@ -7,7 +7,7 @@
   "Icon": "Dagger",
   "Art": "Dagger",
   "MinVal": 1,
-  "MaxVal": 3,
+  "MaxVal": 6,
   "EquipSlotId": 15,
   "Flags": 8,
   "Effects": [],
@@ -100,5 +100,6 @@
       "Name": "Tooth",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

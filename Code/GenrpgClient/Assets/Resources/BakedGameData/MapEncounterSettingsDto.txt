@@ -44,13 +44,23 @@
       "Desc": "",
       "Icon": "Stats",
       "Weight": 0.2
+    },
+    {
+      "Id": "mapencountertype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Level Map",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "LevelMap",
+      "Art": ""
     }
   ],
   "Parent": {
     "Id": "default",
     "EncounterChance": 0.08,
     "Name": "MapEncounterSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-11-01T21:17:05.928Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-11-01T21:17:05.928Z"
 }

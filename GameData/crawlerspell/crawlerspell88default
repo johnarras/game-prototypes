@@ -18,9 +18,10 @@
       "EntityId": 7,
       "MinQuantity": 1,
       "MaxQuantity": 1,
-      "ElementTypeId": 5
+      "ElementTypeId": 5,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

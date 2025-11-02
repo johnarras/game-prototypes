@@ -1,15 +1,11 @@
-﻿using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
+﻿using Genrpg.Shared.PlayerFiltering.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Genrpg.Shared.PlayerFiltering.Utils
 {
     public static class PlayerFilterUtils
     {
-        public static bool IsActive (IPlayerFilter filter)
+        public static bool IsActive(IPlayerFilter filter, DateTime currTime)
         {
 
             if (!filter.Enabled)
@@ -21,8 +17,6 @@ namespace Genrpg.Shared.PlayerFiltering.Utils
             {
                 return true;
             }
-
-            DateTime currTime = DateTime.UtcNow;
 
             if (currTime < filter.StartDate)
             {
@@ -84,22 +78,18 @@ namespace Genrpg.Shared.PlayerFiltering.Utils
             return false;
         }
 
-        public static DateTime GetNextStartDate(IPlayerFilter filter)
+        public static DateTime GetNextStartDate(IPlayerFilter filter, DateTime currTime)
         {
-            return GetNextDate(filter, filter.StartDate);
+            return GetNextDate(filter, filter.StartDate, currTime);
         }
 
-        public static DateTime GetNextEndDate(IPlayerFilter filter)
+        public static DateTime GetNextEndDate(IPlayerFilter filter, DateTime currTime)
         {
-            return GetNextDate(filter, filter.EndDate);
+            return GetNextDate(filter, filter.EndDate, currTime);
         }
 
-        private static DateTime GetNextDate(IPlayerFilter filter, DateTime dateToCheck)
+        private static DateTime GetNextDate(IPlayerFilter filter, DateTime dateToCheck, DateTime currTime)
         {
-
-         
-
-            DateTime currTime = DateTime.UtcNow;
 
             if (dateToCheck > currTime)
             {

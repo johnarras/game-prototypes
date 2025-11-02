@@ -2,6 +2,7 @@ using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core;
 using Assets.Scripts.GameSettings.Services;
+using Assets.Scripts.Purchasing.Services;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Updates;
@@ -9,7 +10,6 @@ using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using System.Reflection;
@@ -34,16 +34,15 @@ public class InitClient : BaseBehaviour, IInitClient
         return _clientConfig.SelfContainedClient;
     }
 
-    private IClientAuthService _loginService;
-    private ICrawlerService _crawlerService;
-    private IClientConfigContainer _config;
-    private IClientAppService _clientAppService;
-    private ICursorService _cursorService;
-    private ILocalLoadService _localLoadService;
-    private IAwaitableService _awaitableService;
-    private ITextSerializer _serializer;
-    private IClientGameDataService _gameDataService;
-
+    private IClientAuthService _loginService = null;
+    private ICrawlerService _crawlerService = null;
+    private IClientConfigContainer _config = null;
+    private IClientAppService _clientAppService = null;
+    private ICursorService _cursorService = null;
+    private ILocalLoadService _localLoadService = null;
+    private IAwaitableService _awaitableService = null;
+    private IClientGameDataService _gameDataService = null;
+    private IClientPurchasingService _purchasingService = null;
 #if UNITY_EDITOR
     public string CurrMapId;
     public static InitClient EditorInstance { get; set; }
@@ -90,12 +89,9 @@ public class InitClient : BaseBehaviour, IInitClient
     private async Awaitable CleanupGameAsync()
     {
         ShowSplashScreen();
-        foreach (IInjectable inj in _gs.loc.GetVals())
+        foreach (IClientResetCleanup cleanup in _gs.loc.GetVals<IClientResetCleanup>())
         {
-            if (inj is IClientResetCleanup cleanup)
-            {
-                await cleanup.OnClientResetCleanup(GetGameToken());
-            }
+            await cleanup.OnClientResetCleanup(GetGameToken());
         }
         _clientEntityService.DestroyAllChildren(_globalRoot);
 
@@ -163,6 +159,8 @@ public class InitClient : BaseBehaviour, IInitClient
 
         await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
 
+        await _purchasingService.InitializeStores(GetToken());
+
         _screenService.Open(ScreenNames.FloatingText);
         _screenService.Open(ScreenNames.DynamicUI);
 
@@ -174,7 +172,7 @@ public class InitClient : BaseBehaviour, IInitClient
         {
             await _loginService.StartNoUser(GetGameToken());
         }
-        string txt2 = "ScreenWH: " + _clientAppService.ScreenWidth + "x" + _clientAppService.ScreenHeight + " -- " + Game.Prefix + " -- " + _config.Config.Env + " -- " + _clientAppService.Platform;
+        string txt2 = "ScreenWH: " + _clientAppService.ScreenWidth + "x" + _clientAppService.ScreenHeight + " -- " + Game.Prefix + " -- " + _config.Config.Env + " -- " + _clientAppService.RuntimePlatform;
         _logService.Info(txt2);
     }
 

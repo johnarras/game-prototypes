@@ -64,7 +64,7 @@ public class CrawlerVendorScreen : ItemIconScreen
 
         inventoryData.SetInvenEquip(_party.Inventory, _member.Equipment);
 
-        PlayerItems.Init(InventoryGroup.All, this, _member, null, _token);
+        PlayerItems.Init(InventoryGroup.All, this, _member, null, GetToken());
     }
 
 
@@ -122,7 +122,7 @@ public class CrawlerVendorScreen : ItemIconScreen
                 IconPrefabName = VendorIconName,
                 Screen = this,
             };
-            _iconService.InitItemIcon(idata, VendorItems, _assetService, _token);
+            _iconService.InitItemIcon(idata, VendorItems, _assetService, GetToken());
         }
 
         _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies.Get(CrawlerCurrencyTypes.Gold)));
@@ -213,7 +213,7 @@ public class CrawlerVendorScreen : ItemIconScreen
 
     protected override void OnStartClose()
     {
-        _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, _token);
+        _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, GetToken());
         base.OnStartClose();
     }
 }

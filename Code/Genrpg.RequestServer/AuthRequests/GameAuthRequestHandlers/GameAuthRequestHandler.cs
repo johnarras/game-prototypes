@@ -1,19 +1,18 @@
 ﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
-using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.Settings;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages.Error;
-using System.ClientModel.Primitives;
 
 namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 {
@@ -21,6 +20,8 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
     {
 
         protected IGameData _gameData = null;
+        protected IServerPurchasingService _purchasingService = null;
+
         protected override async Task HandleRequestInternal(WebContext context, GameAuthRequest request, CancellationToken token)
         {
 
@@ -63,18 +64,12 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             context.user.SessionId = HashUtils.NewUUId();
             context.user.ClientVersion = request.ClientVersion;
+            context.user.ClientPlatformName = request.ClientPlatformName;
             context.user.DataOverrides.GameDataCheckTime = request.ClientGameDataSaveTime;
             await _serverRepoService.Save(context.user);
 
             List<IUnitData> userData = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, null);
 
-            GameAuthResponse response = new GameAuthResponse()
-            {
-                User = _serializer.ConvertType<User, User>(context.user),
-                CharacterStubs = await _playerDataService.LoadCharacterStubs(context.user.Id),
-                MapStubs = _webServerService.GetMapStubs().Stubs,
-                UserData = await _playerDataService.MapToClientDto(context.user, userData),
-            };
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 
@@ -84,6 +79,23 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = context.user.Id, Name = "User" + context.user.Id });
 
+
+
+            await _purchasingService.RetryFailedValidation(context, token);
+
+
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
+
+
+
+            GameAuthResponse response = new GameAuthResponse()
+            {
+                User = _serializer.ConvertType<User, User>(context.user),
+                CharacterStubs = await _playerDataService.LoadCharacterStubs(context.user.Id),
+                MapStubs = _webServerService.GetMapStubs().Stubs,
+                UserData = await _playerDataService.MapToClientDto(context.user, userData),
+                OfferData = offerData,
+            };
             context.Responses.AddResponse(response);
         }
 

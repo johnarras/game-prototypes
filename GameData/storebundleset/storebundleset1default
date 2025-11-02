@@ -1,0 +1,30 @@
+{
+  "Id": "storebundleset1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Magic Dust Packs",
+  "Bundles": [
+    {
+      "Index": 1,
+      "StoreRewardsId": 1,
+      "ProductSkuId": 2,
+      "Name": "100 Magic Dust",
+      "BundleId": "MagicDust100"
+    },
+    {
+      "Index": 2,
+      "StoreRewardsId": 2,
+      "ProductSkuId": 4,
+      "Name": "300 Magic Dust",
+      "BundleId": "MagicDust300"
+    },
+    {
+      "Index": 3,
+      "StoreRewardsId": 3,
+      "ProductSkuId": 6,
+      "Name": "500 Magic Dust",
+      "BundleId": "MagicDust500"
+    }
+  ],
+  "SaveTime": "2025-10-21T20:40:44.566Z"
+}

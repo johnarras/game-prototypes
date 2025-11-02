@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using ClientEvents;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using System.Threading;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.SpellCrafting.Messages;
-using System.Linq;
+﻿using ClientEvents;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.SpellCrafting.Messages;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Client.Assets.Constants;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 internal class ActionButtonDownload
 {
@@ -24,12 +24,10 @@ public class ActionBars : SpellIconScreen
 
     public const string ActionButtonPrefab = "ActionButton";
 
-    
+
     public List<ActionButtonSet> _buttonSetParents;
 
-    protected override bool LoadSpellIconsOnLoad() { return false; }
-      
-    protected Dictionary<int,ActionButton> _buttons { get; set; }
+    protected Dictionary<int, ActionButton> _buttons { get; set; }
 
     public override string ToString()
     {
@@ -44,7 +42,7 @@ public class ActionBars : SpellIconScreen
 
     public void Init(CancellationToken token)
     {
-        _token = token;
+
         AddListener<OnDeleteSpell>(OnDeleteSpellHandler);
         AddListener<OnStartCast>(OnStartCastHandler);
         AddListener<OnCraftSpell>(OnCraftSpellHandler);
@@ -85,7 +83,7 @@ public class ActionBars : SpellIconScreen
                     Parent = parent,
                 };
 
-                _assetService.LoadAssetInto(parent, AssetCategoryNames.UI, ActionButtonPrefab, OnDownloadButton, abDownload, _token, "ActionBars");
+                _assetService.LoadAssetInto(parent, AssetCategoryNames.UI, ActionButtonPrefab, OnDownloadButton, abDownload, GetToken(), "ActionBars");
             }
         }
     }
@@ -122,7 +120,7 @@ public class ActionBars : SpellIconScreen
         InitActionIconData initData = new InitActionIconData()
         {
             actionIndex = abDownload.Index,
-            Screen = this,      
+            Screen = this,
         };
 
         button.Init(initData, token);
@@ -159,7 +157,7 @@ public class ActionBars : SpellIconScreen
         return;
     }
 
-    private void OnDeleteSpellHandler (OnDeleteSpell data)
+    private void OnDeleteSpellHandler(OnDeleteSpell data)
     {
         if (data == null)
         {
@@ -184,10 +182,10 @@ public class ActionBars : SpellIconScreen
             {
                 InitActionIconData initData = new InitActionIconData()
                 {
-                  actionIndex = button.ActionIndex,
-                  Screen=this,
+                    actionIndex = button.ActionIndex,
+                    Screen = this,
                 };
-                button.Init(initData, _token);
+                button.Init(initData, GetToken());
             }
         }
 
@@ -230,14 +228,14 @@ public class ActionBars : SpellIconScreen
                     Screen = this,
                     Data = spell,
                 };
-                button.Init(initData, _token);
+                button.Init(initData, GetToken());
             }
         }
 
         return;
     }
 
-    protected override void  OnUpdate()
+    protected override void OnUpdate()
     {
         if (_buttons != null)
         {
@@ -302,7 +300,7 @@ public class ActionBars : SpellIconScreen
                 UpdateActionInput(actionDrag.ActionIndex, 0);
             }
         }
-            
+
 
         ResetCurrentDragItem();
     }
@@ -340,7 +338,7 @@ public class ActionBars : SpellIconScreen
         Spell spell = _gs.ch.Get<SpellData>().Get(spellTypeId);
 
         button.SetDataItem(spell);
-        button.Init(button.GetInitData(), _token);
+        button.Init(button.GetInitData(), GetToken());
 
         if (sendCommand)
         {

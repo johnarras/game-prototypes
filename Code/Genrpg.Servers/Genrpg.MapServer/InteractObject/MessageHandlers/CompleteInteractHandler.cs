@@ -1,26 +1,19 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Core.Entities;
+﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.Spawns.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interactions.Messages;
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.ServerShared.Achievements;
-using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.GroundObjects.Settings;
+using Genrpg.Shared.Interactions.Messages;
+using Genrpg.Shared.Inventory.Constants;
+using Genrpg.Shared.Loot.Messages;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.MapMessaging.MessageHandlers;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.MapServer.Spawns.Services;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Spawns.Settings;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 
 namespace Genrpg.MapServer.InteractObject.MessageHandlers
 {
@@ -30,7 +23,6 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
 
         protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, CompleteInteract message)
         {
-            _logService.Message("Finish Interact " + DateTime.UtcNow);
             string errorMessage = "";
             if (ch.ActionMessage == null)
             {

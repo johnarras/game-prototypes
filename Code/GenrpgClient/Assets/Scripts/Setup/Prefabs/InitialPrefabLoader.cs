@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,18 +15,16 @@ public class InitialPrefabLoader : MonoBehaviour
         {
             return;
         }
-        
 
         List<GameObject> entities = new List<GameObject>();
         foreach (string prefab in Prefabs)
         {
-            GameObject prefabObj =  localLoadService.LocalLoad<GameObject>("Prefabs/" + prefab);
+            GameObject prefabObj = localLoadService.LocalLoad<GameObject>("Prefabs/" + prefab);
             if (prefabObj == null)
             {
                 continue;
             }
             entities.Add(prefabObj);
-
 
             try
             {
@@ -35,7 +32,7 @@ public class InitialPrefabLoader : MonoBehaviour
                 newPrefab.name = newPrefab.name.Replace("(Clone)", "");
                 entityService.AddToParent(newPrefab, parent);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
             }

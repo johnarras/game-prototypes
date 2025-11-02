@@ -20,6 +20,8 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
         private ITextService _textService;
         public IView View;
 
+
+
         protected CrawlerStateAction _action = null;
         protected CrawlerStateData _state = null;
 
@@ -104,6 +106,14 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
                     _action.OnPointerEnter(go);
                 }
             }
+        }
+
+        public override void OnReturn()
+        {
+            base.OnReturn();
+            _uiService.SetText(Text, null);
+            _uiService.ClearButton(Button);
+            _uiService.SetAlpha(Text, 1.0f);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.LoadUpdateHelpers;
+using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
@@ -13,6 +14,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
         OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater> _characterLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater>();
         OrderedSetupDictionaryContainer<Type, IUserLoadUpdater> _userLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, IUserLoadUpdater>();
         private IPlayerDataService _playerDataService = null!;
+        private IServerPurchasingService _purchasingService = null!;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -31,7 +33,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
                 if (existingData != null)
                 {
                     continue;
-                }    
+                }
 
                 context.Set(unitData);
             }
@@ -70,7 +72,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
             foreach (IUserLoadUpdater updater in _userLoadUpdateHelpers.OrderedItems())
             {
                 await updater.Update(context, userUnitData);
-            }        
+            }
         }
     }
 }

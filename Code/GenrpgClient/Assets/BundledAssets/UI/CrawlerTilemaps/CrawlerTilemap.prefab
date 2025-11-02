@@ -201,6 +201,8 @@ MonoBehaviour:
   ImageParent: {fileID: 6109828536130719165}
   MagicText: {fileID: 4098416782585100563, guid: d3cf7cdb2bb7c884b89e5bfa24815b61,
     type: 3}
+  CellPrefab: {fileID: 5328987674249071801, guid: 93135b10821188842b5ff37fb7272761,
+    type: 3}
   _tileSize: 48
   Width: 9
   Height: 9

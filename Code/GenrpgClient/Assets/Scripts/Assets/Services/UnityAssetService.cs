@@ -13,7 +13,6 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Client.Assets.Constants;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.MVC.Interfaces;
 using Assets.Scripts.MVC;
@@ -22,10 +21,8 @@ using Assets.Scripts.Assets;
 using System.Collections.Concurrent;
 using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Constants;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Entities.Entities;
 using Assets.Scripts.Assets.Bundles;
-
+using Assets.Scripts.Assets.Services;
 
 
 
@@ -34,23 +31,24 @@ using Assets.Scripts.Assets.Bundles;
 using UnityEditor;
 #endif
 
-public class UnityAssetService : IAssetService
+public class UnityAssetService : IAssetService, IAssetSubsystem
 {
-    private ILogService _logService;
-    private IFileDownloadService _fileDownloadService;
-    protected IClientRandom _rand;
-    protected IClientGameState _gs;
-    protected IClientEntityService _clientEntityService;
-    private IClientConfigContainer _config;
-    private ISingletonContainer _singletonContainer;
-    private IClientAppService _clientAppService;
-    private IBinaryFileRepository _binaryFileRepo;
-    private IInitClient _initClient;
-    private ITextSerializer _serializer;
+    private ILogService _logService = null;
+    private IFileDownloadService _fileDownloadService = null;
+    protected IClientRandom _rand = null;
+    protected IClientGameState _gs = null;
+    protected IClientEntityService _clientEntityService = null;
+    private IClientConfigContainer _config = null;
+    private ISingletonContainer _singletonContainer = null;
+    private IClientAppService _clientAppService = null;
+    private IBinaryFileRepository _binaryFileRepo = null;
+    private IInitClient _initClient = null;
+    private ITextSerializer _serializer = null;
 
-    private IAwaitableService _awaitableService;
-    private ILocalLoadService _localLoadService;
-    private IEntityService _entityService;
+    private IAwaitableService _awaitableService = null;
+    private ILocalLoadService _localLoadService = null;
+    private IClientUpdateService _updateService = null;
+
 
     private const int _maxConcurrentDownloads = 8;
 
@@ -66,9 +64,7 @@ public class UnityAssetService : IAssetService
     protected HashSet<string> _failedLocalLoads = new HashSet<string>();
     private Dictionary<string, GameObject> _localLoads = new Dictionary<string, GameObject>();
 
-    protected Dictionary<string, SpriteAtlas> _atlasCache = new Dictionary<string, SpriteAtlas>();
-    protected Dictionary<string, Sprite[]> _spriteListCache = new Dictionary<string, Sprite[]>();
-    protected Dictionary<string, Sprite> _atlasSpriteCache = new Dictionary<string, Sprite>();
+    protected Dictionary<string, SpriteAtlasContainer> _atlasCache = new Dictionary<string, SpriteAtlasContainer>();
 
     protected BundleVersions _bundleVersions = null;
     protected BundleUpdateInfo _bundleUpdateInfo = null;
@@ -110,7 +106,29 @@ public class UnityAssetService : IAssetService
         return null;
     }
 
+    private List<IAssetSubsystem> _assetSubsystems = null;
+    private int _assetSubsystemIndex = 0;
+    private async Awaitable UpdateAssetSubsystems(CancellationToken token)
+    {
+        if (_assetSubsystems == null)
+        {
+            _assetSubsystems = _gs.loc.GetVals<IAssetSubsystem>();
+        }
 
+        if (_assetSubsystems.Count < 1)
+        {
+            return;
+        }
+
+        while (true)
+        {
+            IAssetSubsystem subsystem = _assetSubsystems[_assetSubsystemIndex++ % _assetSubsystems.Count];
+
+            await subsystem.UpdateAssets(token);
+
+            await Awaitable.WaitForSecondsAsync(0.35f);
+        }
+    }
 
     public async Task Initialize(CancellationToken token)
     {
@@ -119,13 +137,13 @@ public class UnityAssetService : IAssetService
             return;
         }
 
+
         _token = token;
 
         _contentRootUrl = _config.Config.GetContentRoot();
         SetAssetEnv(EDataCategories.Assets, _config.Config.GetAssetDataEnv());
         SetAssetEnv(EDataCategories.Worlds, _config.Config.GetWorldDataEnv());
 
-        _assetParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
         SpriteAtlasManager.atlasRequested += DummyRequestAtlas;
         SpriteAtlasManager.atlasRegistered += DummyRegisterAtlas;
         string persPath = _clientAppService.PersistentDataPath;
@@ -137,8 +155,7 @@ public class UnityAssetService : IAssetService
             _awaitableService.ForgetAwaitable(ProcessBundleQueue(_downloadQueues[i]));
         }
 
-        _awaitableService.ForgetAwaitable(IncrementalClearMemoryCache());
-
+        _awaitableService.ForgetAwaitable(UpdateAssetSubsystems(_token));
 
         if (_initClient.IsSelfContainedClient())
         {
@@ -237,11 +254,12 @@ public class UnityAssetService : IAssetService
         }
 
         _bundleCache = newBundleCache;
-        await UnloadUnusedAssets();
+        await UnloadUnusedAssetsAsync();
     }
 
     private void FullyUnloadAssetBundle(BundleCacheData bundleCache)
     {
+        _logService.Info("DeleteBundle: " + bundleCache.Name + " -- " + _bundleCache.Keys.Count);
         bundleCache.assetBundle.Unload(true);
         _assetCounts.BundlesUnloaded++;
         _clientEntityService.Destroy(bundleCache.assetBundle);
@@ -258,75 +276,66 @@ public class UnityAssetService : IAssetService
         }
 
         bundleCache.ChildDependencies.Clear();
+
     }
 
-    protected async Awaitable IncrementalClearMemoryCache()
+    public async Awaitable UpdateAssets(CancellationToken token)
     {
-        while (true)
+        int removeCount = 0;
+        List<string> bundleCacheKeys = _bundleCache.Keys.ToList();
+        foreach (string item in bundleCacheKeys)
         {
-            await Awaitable.WaitForSecondsAsync(5.0f);
-            if (!TokenUtils.IsValid(_token))
+            if (_bundleCache.TryGetValue(item, out BundleCacheData bundle))
             {
-                return;
-            }
-
-            int removeCount = 0;
-            List<string> bundleCacheKeys = _bundleCache.Keys.ToList();
-            foreach (string item in bundleCacheKeys)
-            {
-                if (_bundleCache.TryGetValue(item, out BundleCacheData bundle))
+                if (bundle.LoadingCount < 1 &&
+                    bundle.assetBundle != null &&
+                    bundle.LastUsed < DateTime.UtcNow.AddSeconds(-3) &&
+                    bundle.ParentDependencies.Count < 1)
                 {
-                    if (bundle.LoadingCount < 1 &&
-                        bundle.assetBundle != null &&
-                        !bundle.KeepLoaded &&
-                        bundle.LastUsed < DateTime.UtcNow.AddSeconds(-20) &&
-                        bundle.ParentDependencies.Count < 1)
+                    if (bundle.DeleteTicks > 0)
                     {
-                        if (bundle.DeleteTicks > 0)
-                        {
-                            bundle.DeleteTicks--;
-                            continue;
-                        }
-
-                        if (bundle.Instances.Any(x => x.Equals(null)))
-                        {
-                            bundle.Instances = bundle.Instances.Where(x => !x.Equals(null)).ToList();
-                        }
-                        if (bundle.Instances.Count > 0)
-                        {
-                            continue;
-                        }
-                        bundle.LastUsed = DateTime.UtcNow;
-                        _bundleCache.Remove(item);
-
-                        FullyUnloadAssetBundle(bundle);
-
-                        removeCount++;
-                        if (removeCount > 5)
-                        {
-                            break;
-                        }
-                        await Awaitable.NextFrameAsync();
-                        if (!TokenUtils.IsValid(_token))
-                        {
-                            return;
-                        }
+                        bundle.DeleteTicks--;
+                        continue;
                     }
-                    else
+
+                    if (bundle.Instances.Any(x => x.Equals(null)))
                     {
-                        bundle.DeleteTicks = 2;
+                        bundle.Instances = bundle.Instances.Where(x => !x.Equals(null)).ToList();
+                    }
+                    if (bundle.Instances.Count > 0)
+                    {
+                        continue;
+                    }
+                    bundle.LastUsed = DateTime.UtcNow;
+                    _bundleCache.Remove(item);
+
+                    FullyUnloadAssetBundle(bundle);
+
+                    removeCount++;
+                    if (removeCount > 5)
+                    {
+                        break;
+                    }
+                    await Awaitable.NextFrameAsync();
+                    if (!TokenUtils.IsValid(_token))
+                    {
+                        return;
                     }
                 }
+                else
+                {
+                    bundle.DeleteTicks = 2;
+                }
             }
-            if (removeCount > 0)
-            {
-                await UnloadUnusedAssets();
-            }
+        }
+        if (removeCount > 0)
+        {
+            await UnloadUnusedAssetsAsync();
         }
     }
 
     private bool _unloadingAssets = false;
-    private async Awaitable UnloadUnusedAssets()
+    public async Awaitable UnloadUnusedAssetsAsync()
     {
         if (_unloadingAssets)
         {
@@ -420,15 +429,6 @@ public class UnityAssetService : IAssetService
             return;
         }
 
-        if (_atlasSpriteCache.ContainsKey(assetName))
-        {
-            if (handler != null)
-            {
-                handler(_atlasSpriteCache[assetName], data, token);
-            }
-            return;
-        }
-
         if (!string.IsNullOrEmpty(subdirectory))
         {
             assetPathSuffix += "/" + subdirectory;
@@ -456,6 +456,10 @@ public class UnityAssetService : IAssetService
                     else
                     {
                         asset = AssetDatabase.LoadAssetAtPath<GameObject>(fullPath);
+                        if (asset is GameObject go)
+                        {
+                            _localLoads[fullPath] = go;
+                        }
                     }
 
                     if (asset == null && assetName.IndexOf("_") != 0)
@@ -727,12 +731,9 @@ public class UnityAssetService : IAssetService
 
         BundleCacheData bdata = new BundleCacheData()
         {
-            name = bad.bundleName,
+            Name = bad.bundleName,
             assetBundle = downloadedBundle,
             LastUsed = DateTime.UtcNow,
-            KeepLoaded = (bad.bundleName.IndexOf("atlas") == 0
-            || bad.bundleName.IndexOf("screen") == 0
-            || bad.bundleName.IndexOf("ui") == 0),
         };
 
         _bundleCache[bad.bundleName] = bdata;
@@ -786,189 +787,6 @@ public class UnityAssetService : IAssetService
         return null;
     }
 
-
-    public void LoadSpriteWithAtlasNameInto(string atlasSlashSpriteName, object parentObject, CancellationToken token)
-    {
-        string[] words = atlasSlashSpriteName.Split('/');
-        if (words.Length != 2 || string.IsNullOrEmpty(words[0]) || string.IsNullOrEmpty(words[1]))
-        {
-            _logService.Warning("Full Sprite name doesn't have format Atlas/Sprite: " + atlasSlashSpriteName);
-            return;
-        }
-
-
-        LoadAtlasSpriteInto(words[0], words[1], parentObject, token);
-    }
-
-    public void LoadAtlasSpriteInto(string atlasName, string spriteName, object parentObject, CancellationToken token)
-    {
-        LoadAtlasSprite(atlasName, spriteName, null, parentObject, token);
-    }
-
-
-    public GameObject _assetParent = null;
-    private void LoadAtlasSprite(string atlasName, string spriteName, OnDownloadHandler handler, object parentSprite, CancellationToken token)
-    {
-        if (string.IsNullOrEmpty(atlasName))
-        {
-            if (handler != null)
-            {
-                handler(null, parentSprite, token);
-            }
-            return;
-        }
-
-        AtlasSpriteDownload atlasDownload = new AtlasSpriteDownload()
-        {
-            atlasName = atlasName,
-            spriteName = spriteName,
-            finalHandler = handler,
-            data = parentSprite,
-        };
-
-        if (_atlasCache.ContainsKey(atlasName))
-        {
-            GetAtlasSprite(atlasDownload, token);
-            return;
-        }
-
-        LoadAssetInto(_assetParent, AssetCategoryNames.Atlas, atlasName, OnDownloadAtlas, atlasDownload, token);
-
-    }
-
-    private void OnDownloadAtlas(object obj, object data, CancellationToken token)
-    {
-        AtlasSpriteDownload atlasSpriteDownload = data as AtlasSpriteDownload;
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            if (atlasSpriteDownload != null && atlasSpriteDownload.finalHandler != null)
-            {
-                atlasSpriteDownload.finalHandler(null, atlasSpriteDownload.data, token);
-            }
-
-            return;
-        }
-
-        if (atlasSpriteDownload == null || string.IsNullOrEmpty(atlasSpriteDownload.atlasName))
-        {
-            _clientEntityService.Destroy(go);
-
-            if (atlasSpriteDownload != null && atlasSpriteDownload.finalHandler != null)
-            {
-                atlasSpriteDownload.finalHandler(null, atlasSpriteDownload.data, token);
-            }
-            return;
-        }
-
-        SpriteAtlasContainer atlasCont = go.GetComponent<SpriteAtlasContainer>();
-        if (atlasCont == null || atlasCont.Atlas == null)
-        {
-            if (atlasSpriteDownload.finalHandler != null)
-            {
-                atlasSpriteDownload.finalHandler(null, atlasSpriteDownload.data, token);
-            }
-        }
-
-        if (_atlasCache.ContainsKey(atlasSpriteDownload.atlasName))
-        {
-            _clientEntityService.Destroy(go);
-        }
-        else
-        {
-            _atlasCache[atlasSpriteDownload.atlasName] = atlasCont.Atlas;
-        }
-
-        GetAtlasSprite(atlasSpriteDownload, token);
-
-    }
-
-    public string GetSpriteCacheKey(string atlasName, string spriteName)
-    {
-        if (string.IsNullOrEmpty(atlasName) || string.IsNullOrEmpty(spriteName)) return "";
-        return (spriteName + "." + atlasName).ToLower();
-    }
-
-    private void GetAtlasSprite(AtlasSpriteDownload download, CancellationToken token)
-    {
-        if (download == null)
-        {
-            return;
-        }
-
-        if ((string.IsNullOrEmpty(download.atlasName) ||
-            string.IsNullOrEmpty(download.spriteName) ||
-            !_atlasCache.ContainsKey(download.atlasName)) &&
-            download.finalHandler != null)
-        {
-            SpriteAtlas atlasTemp = null;
-            if (_atlasCache.ContainsKey(download.atlasName))
-            {
-                atlasTemp = _atlasCache[download.atlasName];
-            }
-            download.finalHandler(atlasTemp, download.data, token);
-            return;
-        }
-
-        SpriteAtlas atlas = _atlasCache[download.atlasName];
-
-        string cacheName = GetSpriteCacheKey(download.atlasName, download.spriteName);
-
-        Sprite sprite = null;
-        if (_atlasSpriteCache.ContainsKey(cacheName))
-        {
-            sprite = _atlasSpriteCache[cacheName];
-        }
-        else
-        {
-            sprite = atlas.GetSprite(download.spriteName);
-            if (sprite != null)
-            {
-                sprite.name = sprite.name.Replace("(Clone)", "");
-                _atlasSpriteCache[cacheName] = sprite;
-            }
-            else
-            {
-                _logService.Debug("Missing sprite: " + download.spriteName);
-            }
-        }
-
-        GImage image = download.data as GImage;
-        if (image != null)
-        {
-            image.sprite = sprite;
-        }
-
-
-        if (download.finalHandler != null)
-        {
-            download.finalHandler(atlas, download.data, token);
-        }
-    }
-
-
-    private void OnDownloadSpriteForList(object obj, object data, CancellationToken token)
-    {
-        SpriteListDelegate spriteDelegate = data as SpriteListDelegate;
-        if (spriteDelegate == null)
-        {
-            return;
-        }
-
-        SpriteAtlas atlas = obj as SpriteAtlas;
-
-        if (obj == null)
-        {
-            spriteDelegate(new Sprite[0]);
-            return;
-        }
-
-        int spriteCount = atlas.spriteCount;
-        Sprite[] retval = new Sprite[atlas.spriteCount];
-        atlas.GetSprites(retval);
-        spriteDelegate(retval);
-    }
 
     protected string GetBundleHash(string bundleName)
     {
@@ -1232,7 +1050,7 @@ public class UnityAssetService : IAssetService
 
         if (go == null)
         {
-            _logService.Error("Failed to load asset from " + bundleCache.name);
+            _logService.Error("Failed to load asset from " + bundleCache.Name);
             return null;
         }
 
@@ -1256,11 +1074,6 @@ public class UnityAssetService : IAssetService
         }
 
         return go;
-    }
-
-    public void GetSpriteList(string atlasName, SpriteListDelegate onLoad, CancellationToken token)
-    {
-        LoadAtlasSprite(atlasName, "", OnDownloadSpriteForList, onLoad, token);
     }
 
     /// <summary>
@@ -1467,20 +1280,6 @@ public class UnityAssetService : IAssetService
     {
         VC vc = await InitViewController<VC, TModel>(model, obj, parent, token);
         handler?.Invoke(vc, token);
-    }
-
-    public void LoadEntityIcon(long entityTypeId, long entityId, object parentImage, CancellationToken token)
-    {
-        EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.user, entityTypeId, entityId);
-
-        if (icon != null && icon.IsValid())
-        {
-            LoadAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
-        }
-        else
-        {
-            _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
-        }
     }
 }
 

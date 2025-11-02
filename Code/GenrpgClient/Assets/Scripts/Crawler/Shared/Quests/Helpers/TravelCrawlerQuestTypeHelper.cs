@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         public override async Task SetupQuest(PartyData party, CrawlerWorld world,
             CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 return;
             }

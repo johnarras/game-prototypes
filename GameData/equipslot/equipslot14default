@@ -5,5 +5,7 @@
   "Name": "Jewelry2",
   "ParentEquipSlotId": 13,
   "Active": true,
-  "BaseBonusStatTypeId": 32
+  "BaseBonusStatTypeId": 32,
+  "BonusStatScale": 0.5,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

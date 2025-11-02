@@ -1,0 +1,11 @@
+{
+  "Id": "mapencountertype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Level Map",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "LevelMap",
+  "Art": "",
+  "SaveTime": "2025-11-01T21:17:05.928Z"
+}

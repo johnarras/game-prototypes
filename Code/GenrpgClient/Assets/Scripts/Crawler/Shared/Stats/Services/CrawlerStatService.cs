@@ -240,7 +240,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                     healthScale = (1 + qualityPercent / 100.0f);
                     damageScale = (1 + qualityPercent / 100.0f);
 
-                    if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+                    if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
                     {
                         healthScale *= 1.5f;
                         damageScale *= 1.5f;

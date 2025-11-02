@@ -4,5 +4,6 @@
   "IdKey": 1,
   "Name": "Attack",
   "WeaponDamageScale": 1.0,
-  "StatBonusDamageScale": 1.0
+  "StatBonusDamageScale": 1.0,
+  "SaveTime": "2025-10-31T12:44:59.835Z"
 }

@@ -49,6 +49,7 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
         [Key(17)] public double ExtraLootScalePerMonsterBonus { get; set; }
         [Key(18)] public bool AllowAllArmorTypes { get; set; }
         [Key(19)] public bool AllowAllWeaponTypes { get; set; }
+
         /// <summary>
         /// Chance to get an item effect per extra spell chance.
         /// </summary>
@@ -57,6 +58,10 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
         [Key(21)] public long LevelDiffBeforeLootLoss { get; set; }
         [Key(22)] public double LootLossPerLevelDiff { get; set; }
         [Key(23)] public double MinLootPercent { get; set; }
+        [Key(24)] public double FirstMonsterItemDropChance { get; set; }
+        [Key(25)] public double StartStatBonusAmount { get; set; }
+        [Key(26)] public double StatBonusPerLevel { get; set; }
+        [Key(27)] public double StatBonusVariance { get; set; }
     }
 
     public class CrawlerLootTypeSettingsDto : ParentSettingsDto<CrawlerLootSettings, CrawlerLootType> { }

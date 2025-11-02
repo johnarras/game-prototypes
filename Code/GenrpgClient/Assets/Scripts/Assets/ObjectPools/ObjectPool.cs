@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,84 +11,103 @@ using UnityEngine;
 
 namespace Assets.Scripts.Assets.ObjectPools
 {
-    public class ObjectPool : IInitOnResolve
+    public interface IObjectPool : IInjectable, IClientResetCleanup, IInjectOnLoad<IObjectPool>
     {
-        protected IAssetService _assetService = null;
-        protected IInitClient _initClient = null;
-        protected IClientEntityService _clientEntityService = null;
-        protected ILogService _logService = null;
+        void CheckoutObject(object parent, string assetCategory, string assetPath,
+            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null);
+        Task<GameObject> CheckoutObjectAsync(object parent, string assetCategory, string assetPath,
+            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null);
+        void ReturnObject(object pooled);
+
+    }
+
+    public class PrefabCache
+    {
+        public string Name;
+        public List<GameObject> Cache = new List<GameObject>();
+        public GameObject Parent;
+    }
+
+    public class ObjectPool : BaseBehaviour, IObjectPool
+    {
         protected ISingletonContainer _singletonContainer = null;
         protected IAwaitableService _awaitableService = null;
+        protected GameObject _pooledObjectParent = null;
 
+        protected Dictionary<string, PrefabCache> _cache = new Dictionary<string, PrefabCache>();
 
-        protected GameObject _globalAssetParent = null;
+        protected Dictionary<GameObject, PrefabCache> _activeMap = new Dictionary<GameObject, PrefabCache>();
 
-        protected Dictionary<string, List<GameObject>> _cache = new Dictionary<string, List<GameObject>>();
-
-        protected Dictionary<string, List<GameObject>> _activeObjects = new Dictionary<string, List<GameObject>>();
-
-        public void Init()
+        public override void Init()
         {
-            _globalAssetParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
+            _pooledObjectParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
         }
 
-        public void Clear()
+        private void Clear()
         {
-            foreach (string key in _cache.Keys)
+            foreach (PrefabCache cache in _cache.Values)
             {
-                foreach (GameObject go in _cache[key])
+                foreach (GameObject go in cache.Cache)
                 {
                     _clientEntityService.Destroy(go);
                 }
+                _clientEntityService.Destroy(cache.Parent);
             }
-            _cache.Clear();
-            foreach (string key in _activeObjects.Keys)
+
+            foreach (GameObject go in _activeMap.Keys)
             {
-                foreach (GameObject obj in _activeObjects[key])
-                {
-                    _clientEntityService.Destroy(obj);
-                }
+                _clientEntityService.Destroy(go);
             }
-            _activeObjects.Clear();
+
+            _cache.Clear();
+            _activeMap.Clear();
         }
 
 
         public void ReturnObject(object obj)
         {
             GameObject go = obj as GameObject;
-            if (go == null)
-            {
-                MonoBehaviour mb = obj as MonoBehaviour;
-                if (mb != null)
-                {
-                    go = mb.gameObject;
-                }
-            }
 
             if (go == null)
             {
+                BaseBehaviour bb = obj as BaseBehaviour;
+
+                if (bb != null)
+                {
+                    go = bb.gameObject;
+                }
+            }
+
+            IPooledObject pooled = obj as IPooledObject;
+
+            if (pooled != null)
+            {
+                pooled.OnReturn();
+            }
+
+            if (!_activeMap.TryGetValue(go, out PrefabCache cache))
+            {
+                _clientEntityService.Destroy(go);
                 return;
             }
 
+            cache.Cache.Add(go);
+            _clientEntityService.SetActive(go, false);
+            _clientEntityService.AddToParent(go, cache.Parent);
 
-            foreach (string key in _activeObjects.Keys)
+            _activeMap.Remove(go);
+
+        }
+
+        private PrefabCache GetCache(string key)
+        {
+            if (!_cache.TryGetValue(key, out PrefabCache currCache))
             {
-                if (_activeObjects[key].Contains(go))
-                {
-                    _activeObjects[key].Remove(go);
-                    if (!_cache.ContainsKey(key))
-                    {
-                        _cache[key] = new List<GameObject>();
-                    }
-                    _cache[key].Add(go);
-                    _clientEntityService.AddToParent(go, _globalAssetParent);
-                    _clientEntityService.SetActive(go, false);
-                    return;
-                }
+                currCache = new PrefabCache();
+                _cache[key] = currCache;
+                currCache.Parent = _singletonContainer.GetChildSingleton(key, AssetConstants.GlobalAssetParent);
             }
-
-            // GameObject was not in active objects, do destroy it.
-            _clientEntityService.Destroy(go);
+            return currCache;
         }
 
         public void CheckoutObject(object parent, string assetCategory, string assetPath,
@@ -123,16 +142,16 @@ namespace Assets.Scripts.Assets.ObjectPools
 
             string bundleName = _assetService.GetBundleNameForCategoryAndAsset(fullAssetCategory, assetPath);
 
-            string fullName = bundleName + "/" + assetPath;
+            string fullName = bundleName + assetPath;
 
             GameObject newItem = null;
-            if (_cache.TryGetValue(fullName, out List<GameObject> cachedItems))
+
+            PrefabCache cache = GetCache(fullName);
+
+            if (cache.Cache.Count > 0)
             {
-                if (cachedItems.Count > 0)
-                {
-                    newItem = cachedItems[cachedItems.Count - 1];
-                    cachedItems.RemoveAt(cachedItems.Count - 1);
-                }
+                newItem = cache.Cache[cache.Cache.Count - 1];
+                cache.Cache.RemoveAt(cache.Cache.Count - 1);
             }
 
             if (newItem == null)
@@ -155,17 +174,21 @@ namespace Assets.Scripts.Assets.ObjectPools
             }
 
             _clientEntityService.SetActive(newItem, true);
+
             if (handler != null)
             {
                 handler(newItem, data, token);
             }
 
-            if (!_activeObjects.ContainsKey(fullName))
-            {
-                _activeObjects[fullName] = new List<GameObject>();
-            }
-            _activeObjects[fullName].Add(newItem);
+            _activeMap[newItem] = cache;
+
             return newItem;
+        }
+
+        public async Task OnClientResetCleanup(CancellationToken token)
+        {
+            Clear();
+            await Task.CompletedTask;
         }
     }
 }

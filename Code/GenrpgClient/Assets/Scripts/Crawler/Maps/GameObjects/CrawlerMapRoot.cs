@@ -21,7 +21,14 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         {
             return DungeonAssets != null && DungeonMaterials != null && DoorMat != null;
         }
+
+        public void Clear()
+        {
+            DungeonAssets?.Clear();
+            DoorMat = null;
+        }
     }
+
 
     public class CrawlerMapRoot : BaseBehaviour
     {
@@ -227,5 +234,46 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
                 GetCellAtWorldPos(detail.X, detail.Z, true).Details.Add(detail);
             }
         }
+
+        public void Clear()
+        {
+            foreach (ClientMapCell worldCell in _worldCells.Values)
+            {
+                worldCell.Clear();
+            }
+
+            foreach (List<ClientMapCell> mapCellList in _mapCellCache.Values)
+            {
+                foreach (ClientMapCell mapCell in mapCellList)
+                {
+                    mapCell.Clear();
+                }
+            }
+
+            foreach (ClientMapCell mapCell in _allCells)
+            {
+                mapCell.Clear();
+            }
+
+            _worldCells.Clear();
+            _mapCellCache.Clear();
+            _allCells.Clear();
+
+            foreach (AssetBlock block in AssetBlocks.Values)
+            {
+                block.Clear();
+            }
+
+            AssetBlocks.Clear();
+
+            base.OnDestroy();
+        }
+
+        protected override void OnDestroy()
+        {
+            Clear();
+            base.OnDestroy();
+        }
+
     }
 }

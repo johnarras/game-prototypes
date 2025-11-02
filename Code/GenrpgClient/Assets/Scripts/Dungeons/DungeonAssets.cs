@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace Assets.Scripts.Dungeons
 {
     public class DungeonAssets : BaseBehaviour
@@ -41,6 +40,41 @@ namespace Assets.Scripts.Dungeons
                 return Fences;
             }
             return Walls;
+        }
+
+
+        private void DestroyAssetList(List<WeightedDungeonAsset> list)
+        {
+            foreach (WeightedDungeonAsset asset in list)
+            {
+                asset.Asset.Clear();
+            }
+            list.Clear();
+        }
+
+
+        public void Clear()
+        {
+
+            for (int i = 0; i < DungeonAssetIndex.Max; i++)
+            {
+                DestroyAssetList(GetAssetList(i));
+            }
+
+
+
+            foreach (WeightedDungeonMaterials weighted in Materials)
+            {
+
+                weighted.Materials = null;
+                //weighted.Materials?.Clear();
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            Clear();
+            base.OnDestroy();
         }
     }
 }

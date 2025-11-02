@@ -41,7 +41,6 @@ namespace Assets.Scripts.UI.Services
         protected IClientEntityService _clientEntityService = null;
         protected IEntityService _entityService = null;
         private ILogService _logService = null;
-        private IClientUpdateService _updateService = null;
         private CancellationToken _token;
         protected IAwaitableService _awaitableService = null;
         private ITextService _textService = null;
@@ -64,19 +63,27 @@ namespace Assets.Scripts.UI.Services
         /// <param name="forceUpdateMesh">Force update Mesh ****EXPENSIVE!!!! USE SPARINGLY ONLY IF TEXT SET AFTER ACTIVATION FAILS!</param>
         public void SetText(IText itext, string txt, bool forceUpdateMesh = false)
         {
-            _updateService.RunOnMainThread(
-                () =>
+            if (itext is GText gtext)
+            {
+                gtext.SetText(txt);
+                if (forceUpdateMesh)
                 {
-                    if (itext is GText gtext)
-                    {
-                        gtext.SetText(txt);
-                        if (forceUpdateMesh)
-                        {
-                            // Use this sparingly.
-                            gtext.ForceMeshUpdate();
-                        }
-                    }
-                });
+                    gtext.ForceMeshUpdate();
+                }
+            }
+            //_updateService.RunOnMainThread(
+            //    () =>
+            //    {
+            //        if (itext is GText gtext)
+            //        {
+            //            gtext.SetText(txt);
+            //            if (forceUpdateMesh)
+            //            {
+            //                // Use this sparingly.
+            //                gtext.ForceMeshUpdate();
+            //            }
+            //        }
+            //    });
         }
 
         public void SetInputText(IInputField iInput, object obj)
@@ -124,17 +131,17 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void SetImageTexture(IRawImage image, object texObj)
+        public void SetImageTexture(IRawImage rawImage, object texObj)
         {
-            if (image is GRawImage gimage)
+            if (rawImage is GRawImage gRawImage)
             {
                 if (texObj is Texture tex)
                 {
-                    gimage.texture = tex;
+                    gRawImage.texture = tex;
                 }
                 else if (texObj == null)
                 {
-                    gimage.texture = null;
+                    gRawImage.texture = null;
                 }
             }
         }
@@ -353,62 +360,46 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public object GetImageTexture(IRawImage image)
+        public object GetImageTexture(IRawImage rawImage)
         {
-            if (image is GRawImage gimage)
+            if (rawImage is GRawImage gRawImage)
             {
-                return gimage.texture;
+                return gRawImage.texture;
             }
             return null;
         }
 
-        public int GetImageHeight(IRawImage image)
+        public int GetImageHeight(IRawImage rawImage)
         {
-            if (image is GRawImage gimage)
+            if (rawImage is GRawImage gRawImage)
             {
-                if (gimage.texture != null)
+                if (gRawImage.texture != null)
                 {
-                    return gimage.texture.height;
+                    return gRawImage.texture.height;
                 }
             }
             return 0;
         }
 
-        public int GetImageWidth(IRawImage image)
+        public int GetImageWidth(IRawImage rawImage)
         {
-            if (image is GRawImage gimage)
+            if (rawImage is GRawImage gRawImage)
             {
-                if (gimage.texture != null)
+                if (gRawImage.texture != null)
                 {
-                    return gimage.texture.width;
+                    return gRawImage.texture.width;
                 }
             }
             return 0;
         }
 
-        public void SetUVRect(IRawImage image, float xpos, float ypos, float xsize, float ysize)
+        public void SetUVRect(IRawImage rawImage, float xpos, float ypos, float xsize, float ysize)
         {
-            if (image is GRawImage gimage)
+            if (rawImage is GRawImage gRawImage)
             {
-                gimage.uvRect = new UnityEngine.Rect(new Vector2(xpos, ypos), new Vector2(xsize, ysize));
+                gRawImage.uvRect = new UnityEngine.Rect(new Vector2(xpos, ypos), new Vector2(xsize, ysize));
             }
         }
-
-        public void SetImageSprite(IImage image, object sprObj)
-        {
-            if (image is GImage gimage)
-            {
-                if (sprObj is Sprite spr)
-                {
-                    gimage.sprite = spr;
-                }
-                else if (sprObj == null)
-                {
-                    gimage.sprite = null;
-                }
-            }
-        }
-
 
         public void SetAsRaycastTarget(object obj, bool isRaycastTarget)
         {
@@ -421,14 +412,14 @@ namespace Assets.Scripts.UI.Services
                     graphic.raycastTarget = isRaycastTarget;
                 }
             }
-
         }
 
-        public void SetImageColor(IImage image, Color color)
+        public void ClearButton(IButton button)
         {
-            if (image is GImage gImage)
+            if (button is GButton gbutton)
             {
-                gImage.color = color;
+                gbutton.onClick.RemoveAllListeners();
+                gbutton.SetDestroyCallback(null);
             }
         }
     }

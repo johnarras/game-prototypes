@@ -631,6 +631,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 65
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 80
         },
         {
@@ -2553,7 +2557,7 @@
   "Parent": {
     "Id": "default",
     "Name": "RoleSettings",
-    "SaveTime": "2025-09-15T12:37:17.641Z"
+    "SaveTime": "2025-10-27T23:25:19.168Z"
   },
-  "SaveTime": "2025-09-15T12:37:17.641Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

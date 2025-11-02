@@ -44,6 +44,7 @@ namespace Assets.Scripts.DynamicUI.Services
         private IClientEntityService _clientEntityService = null;
         private IInputService _inputService = null;
         private ICameraController _cameraController = null;
+        private IObjectPool _objectPool = null;
 
         private Dictionary<string, DooberTarget> _dooberTargets = new Dictionary<string, DooberTarget>();
 
@@ -56,10 +57,6 @@ namespace Assets.Scripts.DynamicUI.Services
         private CancellationToken _token;
 
         private Camera _mainCam = null;
-
-
-        private ObjectPool _assetPool = new ObjectPool();
-
 
         public async Task Initialize(CancellationToken token)
         {
@@ -76,8 +73,14 @@ namespace Assets.Scripts.DynamicUI.Services
 
         public async Task OnClientResetCleanup(CancellationToken token)
         {
+
+            foreach (DynamicUIItem di in _currentItems)
+            {
+                _clientEntityService.Destroy(di.Go);
+            }
+
+
             await Task.CompletedTask;
-            _assetPool.Clear();
         }
 
         private void OnSetDooberTarget(SetDooberTarget sdt)
@@ -186,7 +189,7 @@ namespace Assets.Scripts.DynamicUI.Services
 
         private void OnShowDynamicUIItem(ShowDynamicUIItem showItem)
         {
-            _assetPool.CheckoutObject(showItem, AssetCategoryNames.UI, showItem.AssetName,
+            _objectPool.CheckoutObject(showItem, AssetCategoryNames.UI, showItem.AssetName,
                 OnLoadDynamicItem, showItem, showItem.Token, showItem.Subdirectory);
         }
 
@@ -206,7 +209,7 @@ namespace Assets.Scripts.DynamicUI.Services
                 return;
             }
 
-            OnDynamicUIItem(new DynamicUIItem(go, _clientEntityService.GetInterface<IDynamicUIItem>(go), showItem.StartPos, DynamicUILocation.ScreenSpace, _assetPool));
+            OnDynamicUIItem(new DynamicUIItem(go, _clientEntityService.GetInterface<IDynamicUIItem>(go), showItem.StartPos, DynamicUILocation.ScreenSpace));
 
             showItem.Handler(obj, showItem.Data, token);
 
@@ -280,15 +283,7 @@ namespace Assets.Scripts.DynamicUI.Services
                 {
                     _currentItems.Remove(wci);
                 }
-
-                if (wci.Pool != null)
-                {
-                    wci.Pool.ReturnObject(wci.WCI);
-                }
-                else
-                {
-                    _clientEntityService.Destroy(wci.Go);
-                }
+                _objectPool.ReturnObject(wci.WCI);
             }
         }
 

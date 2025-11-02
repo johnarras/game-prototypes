@@ -1,14 +1,11 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
-using System.Linq;
-using Newtonsoft.Json;
 using Genrpg.Shared.PlayerFiltering.Utils;
+using MessagePack;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.GameSettings.Settings
 {
@@ -16,9 +13,9 @@ namespace Genrpg.Shared.GameSettings.Settings
     public abstract class BaseDataOverrideSettings<TChild> : ParentSettings<TChild> where TChild : ChildSettings, IPlayerFilter, new()
     {
         // Temp internal data to make updating configs cheaper.
-        [JsonIgnore][IgnoreMember] public DateTime PrevUpdateTime { get; set; } = DateTime.MinValue;
-        [JsonIgnore][IgnoreMember] public DateTime NextUpdateTime { get; set; } = DateTime.MaxValue;
-        private List<DateTime> _allUpdateTimes { get; set; } = new List<DateTime>();
+        [JsonIgnore][IgnoreMember] private DateTime _prevUpdateTime { get; set; } = DateTime.MinValue;
+        [JsonIgnore][IgnoreMember] private DateTime _nextUpdateTime { get; set; } = DateTime.MaxValue;
+        [IgnoreMember] private bool _didSetPrevNextUpdateTime = false;
 
         public override void SetData(List<TChild> data)
         {
@@ -28,48 +25,65 @@ namespace Genrpg.Shared.GameSettings.Settings
                 group.OrderSelf();
             }
 
-            _allUpdateTimes = data.Select(x => PlayerFilterUtils.GetNextStartDate(x))
-                .Union(data.Select(x => PlayerFilterUtils.GetNextEndDate(x)))
-                .Distinct().OrderBy(x => x).ToList();
-
-            SetPrevNextUpdateTimes();
+            _didSetPrevNextUpdateTime = false;
 
             base.SetData(data);
         }
 
-
-        private readonly object _updateTimeLock = new object();
-        public void SetPrevNextUpdateTimes()
+        public DateTime GetNextUpdateTime(DateTime currTime)
         {
-            lock (_updateTimeLock)
+            if (!_didSetPrevNextUpdateTime)
             {
-                // We are using DateTime.UtcNow to set these times, but even though all
-                // servers will have slightly different updateTimes they check, if there's
-                // two changes close together, a few servers may update once, and some
-                // may update twice and players who update in between may download
-                // slightly different data, but it will settle once the time goes past
-                // the second update time.
-                DateTime updateTime = DateTime.UtcNow;
-                List<DateTime> updates = _allUpdateTimes;
-
-                if (updates.Any(x => x <= updateTime))
-                {
-                    PrevUpdateTime = updates.Last(x => x <= updateTime);
-                }
-                else
-                {
-                    PrevUpdateTime = DateTime.MinValue;
-                }
-
-                if (updates.Any(x => x > updateTime))
-                {
-                    NextUpdateTime = updates.First(x => x > updateTime);
-                }
-                else
-                {
-                    NextUpdateTime = DateTime.MaxValue;
-                }
+                SetPrevNextUpdateTimes(currTime);
             }
+            return _nextUpdateTime;
+        }
+
+        public DateTime GetPrevUpdateTime(DateTime currTime)
+        {
+            if (!_didSetPrevNextUpdateTime)
+            {
+                SetPrevNextUpdateTimes(currTime);
+            }
+            return _prevUpdateTime;
+        }
+
+
+        public void SetPrevNextUpdateTimes(DateTime currTime)
+        {
+
+            List<TChild> data = _data.ToList();
+
+            List<DateTime> _allUpdateTimes = data.Select(x => PlayerFilterUtils.GetNextStartDate(x, currTime))
+                       .Union(data.Select(x => PlayerFilterUtils.GetNextEndDate(x, currTime)))
+                       .Distinct().OrderBy(x => x).ToList();
+
+            DateTime tempPrevUpdateTime = DateTime.MinValue;
+            DateTime tempNextUpdateTime = DateTime.MaxValue;
+
+            List<DateTime> updates = _allUpdateTimes;
+
+            if (updates.Any(x => x <= currTime))
+            {
+                tempPrevUpdateTime = updates.Last(x => x <= currTime);
+            }
+            else
+            {
+                tempPrevUpdateTime = DateTime.MinValue;
+            }
+
+            if (updates.Any(x => x > currTime))
+            {
+                tempNextUpdateTime = updates.First(x => x > currTime);
+            }
+            else
+            {
+                tempNextUpdateTime = DateTime.MaxValue;
+            }
+
+            _prevUpdateTime = tempPrevUpdateTime;
+            _nextUpdateTime = tempNextUpdateTime;
+            _didSetPrevNextUpdateTime = true;
         }
     }
 }

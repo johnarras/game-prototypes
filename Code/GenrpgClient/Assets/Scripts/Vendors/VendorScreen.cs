@@ -1,16 +1,16 @@
 ﻿
+using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Messages;
 using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.Units.Entities;
-using System.Linq;
-using System.Threading;
-using UnityEngine;
-using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
 using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Vendors.MapObjectAddons;
 using Genrpg.Shared.Vendors.WorldData;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class VendorScreen : ItemIconScreen
 {
@@ -41,13 +41,13 @@ public class VendorScreen : ItemIconScreen
 
         InitPanel();
 
-        _networkService.SendMapMessage(new GetMapObjectStatus() { ObjId =_unit.Id });
+        _networkService.SendMapMessage(new GetMapObjectStatus() { ObjId = _unit.Id });
 
     }
 
     private void OnGetNPCStatusHandler(OnGetMapObjectStatus status)
     {
-        VendorAddon addon = (VendorAddon)status.Addons.FirstOrDefault(x=>x.GetAddonType() == MapObjectAddonTypes.Vendor);
+        VendorAddon addon = (VendorAddon)status.Addons.FirstOrDefault(x => x.GetAddonType() == MapObjectAddonTypes.Vendor);
 
 
         ShowVendorItems(addon);
@@ -57,10 +57,10 @@ public class VendorScreen : ItemIconScreen
 
     private void InitPanel()
     {
-        PlayerItems.Init(InventoryGroup.All, this, _gs.ch, null, _token);
+        PlayerItems.Init(InventoryGroup.All, this, _gs.ch, null, GetToken());
     }
 
-    private void OnAddItemHandler (OnAddItem addItem)
+    private void OnAddItemHandler(OnAddItem addItem)
     {
         if (_addon == null)
         {
@@ -83,7 +83,7 @@ public class VendorScreen : ItemIconScreen
     {
         if (removeItem != null && removeItem.ItemId != null)
         {
-            _inventoryService.RemoveItem(_gs.ch, removeItem.ItemId,false);
+            _inventoryService.RemoveItem(_gs.ch, removeItem.ItemId, false);
             InitPanel();
         }
         return;
@@ -108,14 +108,14 @@ public class VendorScreen : ItemIconScreen
                 IconPrefabName = VendorIconName,
                 Screen = this,
             };
-            _iconService.InitItemIcon(idata, VendorItems,_assetService, _token);
+            _iconService.InitItemIcon(idata, VendorItems, _assetService, GetToken());
         }
     }
 
     // Blank
     public override void OnLeftClickIcon(ItemIcon icon) { }
 
-  
+
 
 
     // Equip or Unequip item.
@@ -138,7 +138,7 @@ public class VendorScreen : ItemIconScreen
     }
 
 
-    private void BuyItem (ItemIcon icon)
+    private void BuyItem(ItemIcon icon)
     {
         if (icon == null || icon.GetDataItem() == null)
         {
@@ -149,7 +149,7 @@ public class VendorScreen : ItemIconScreen
 
     }
 
-    private void SellItem (ItemIcon icon)
+    private void SellItem(ItemIcon icon)
     {
         if (icon == null || icon.GetDataItem() == null)
         {

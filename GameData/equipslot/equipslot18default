@@ -2,5 +2,7 @@
   "Id": "equipslot18default",
   "ParentId": "default",
   "IdKey": 18,
-  "Name": "PoisonVial"
+  "Name": "PoisonVial",
+  "BonusStatScale": 1.0,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

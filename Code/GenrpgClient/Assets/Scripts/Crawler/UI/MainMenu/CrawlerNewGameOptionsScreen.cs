@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Options.Settings;
+﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Genrpg.Shared.Crawler.Options.Settings;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.UI.Constants;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
     public class CrawlerNewGameOptionsScreen : BaseScreen
     {
         private ICrawlerService _crawlerService = null;
+        private ICrawlerMapService _mapService = null;
 
         public GButton NewGameButton;
         public GameObject Anchor;
@@ -22,6 +24,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
 
+            _mapService.CleanMap();
             IReadOnlyList<CrawlerOption> options = _gameData.Get<CrawlerOptionSettings>(_gs.ch).GetData();
 
             foreach (CrawlerOption option in options)

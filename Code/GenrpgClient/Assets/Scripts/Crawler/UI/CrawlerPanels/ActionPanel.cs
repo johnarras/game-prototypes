@@ -1,12 +1,16 @@
-﻿using Assets.Scripts.Crawler.UI.ActionUI;
+﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.UI.ActionUI;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Core;
 using Assets.Scripts.UI.Crawler.ActionUI;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.CrawlerPanels
@@ -19,6 +23,10 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
     public class ActionPanel : BaseBehaviour
     {
 
+        protected IAwaitableService _awaitableService = null;
+        protected IObjectPool _objectPool = null;
+
+
         public GameObject Content;
         public GScrollRect ScrollRect;
         public GameObject Parent;
@@ -27,6 +35,11 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         public ActionPanelRow PanelRow;
         public ActionPanelGrid PanelGrid;
         public ActionPanelRow PanelButton;
+
+        public string RowPrefabName = "ActionPanelRow";
+        public string ButtonPrefabName = "ActionPanelButton";
+
+        private const string Subdirectory = "CrawlerAction";
 
         public List<LabeledInputField> InputFields = new List<LabeledInputField>();
 
@@ -39,25 +52,26 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             _dispatcher.AddListener<CrawlerStateData>(OnNewStateData, GetToken());
         }
 
+
         private void OnNewStateData(CrawlerStateData stateData)
         {
             _nextStateData = stateData;
 
-            _clientEntityService.DestroyAllChildren(Content);
+            Clear();
 
             _clientEntityService.SetActive(Parent, !stateData.HideBigPanels);
 
-            if (stateData.HideBigPanels)
+            if (_nextStateData.HideBigPanels)
             {
                 return;
             }
 
             List<CrawlerStateAction> buttonActions = new List<CrawlerStateAction>();
 
-            for (int a = 0; a < stateData.Actions.Count; a++)
+            for (int a = 0; a < _nextStateData.Actions.Count; a++)
             {
 
-                CrawlerStateAction action = stateData.Actions[a];
+                CrawlerStateAction action = _nextStateData.Actions[a];
 
                 if (action.HideText || (action.Key == CharCodes.Escape && stateData.HasInput()))
                 {
@@ -68,28 +82,26 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
                     string.IsNullOrEmpty(action.Text) || action.Text.Length >= 20 ||
                     action.NextState == ECrawlerStates.None)))
                 {
-                    ActionPanelRow actionPanelRow = _clientEntityService.FullInstantiate(PanelRow);
-                    _clientEntityService.AddToParent(actionPanelRow, Content);
-                    actionPanelRow.SetAction(new CrawlerStateWithAction() { State = stateData, Action = stateData.Actions[a] });
-                    _subObjects.Add(actionPanelRow);
+                    CrawlerStateWithAction csa = new CrawlerStateWithAction() { State = stateData, Action = stateData.Actions[a] };
+
+                    _objectPool.CheckoutObject(Content, AssetCategoryNames.UI, RowPrefabName, OnLoadRow, csa, GetToken(), Subdirectory);
+
                 }
                 else
                 {
                     buttonActions.Add(action);
                 }
             }
-
             ActionPanelGrid grid = null;
+
+            if (buttonActions.Count > 0)
+            {
+            }
 
             for (int a = 0; a < buttonActions.Count; a++)
             {
-                if (grid == null)
-                {
-                    grid = _clientEntityService.FullInstantiate(PanelGrid);
-                    _clientEntityService.AddToParent(grid, Content);
-                    grid.SetData(stateData.UseSmallerButtons);
-                    _subObjects.Add(grid);
-                }
+
+
 
                 CrawlerStateAction action = buttonActions[a];
 
@@ -99,16 +111,24 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
                     continue;
                 }
 
+                if (grid == null)
+                {
+
+                    grid = _clientEntityService.FullInstantiate(PanelGrid);
+                    _clientEntityService.AddToParent(grid, Content);
+                    grid.SetData(stateData.UseSmallerButtons);
+                    _subObjects.Add(grid);
+                }
+
+
                 CrawlerStateWithAction stateAction = new CrawlerStateWithAction()
                 {
                     State = stateData,
                     Action = action,
                 };
 
-                ActionPanelRow button = _clientEntityService.FullInstantiate(PanelButton);
-                _clientEntityService.AddToParent(button, grid.GetContentRoot());
-                button.SetAction(stateAction);
-                _subObjects.Add(button);
+                _objectPool.CheckoutObject(grid.GetContentRoot(), AssetCategoryNames.UI, ButtonPrefabName, OnLoadRow, stateAction, GetToken(), Subdirectory);
+
             }
 
             List<CrawlerInputData> stateInputs = stateData.Inputs;
@@ -133,10 +153,50 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             _uiService.ScrollToBottom(ScrollRect);
         }
 
+        private void OnLoadButton(object obj, object data, CancellationToken token)
+        {
+            OnLoadRow(obj, data, token);
+        }
+
+        private void OnLoadRow(object obj, object data, CancellationToken token)
+        {
+            GameObject go = obj as GameObject;
+            if (go == null)
+            {
+                return;
+            }
+
+            ActionPanelRow apr = go.GetComponent<ActionPanelRow>();
+
+            CrawlerStateWithAction csa = data as CrawlerStateWithAction;
+
+            if (apr == null || csa == null)
+            {
+                _clientEntityService.Destroy(go);
+                return;
+            }
+
+            apr.SetAction(csa);
+            _subObjects.Add(apr);
+        }
+
         public void Clear()
         {
+
+            foreach (object obj in _subObjects)
+            {
+                _objectPool.ReturnObject(obj);
+            }
+
+
             _clientEntityService.DestroyAllChildren(Content);
             _subObjects.Clear();
+        }
+
+        protected override void OnDestroy()
+        {
+            Clear();
+            base.OnDestroy();
         }
     }
 }

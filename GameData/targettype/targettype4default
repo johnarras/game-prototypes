@@ -4,5 +4,6 @@
   "IdKey": 4,
   "Name": "AllEnemies",
   "Desc": "All enemies individually",
-  "StatBonusScale": 0.35
+  "StatBonusScale": 1.5,
+  "SaveTime": "2025-10-27T23:21:16.24Z"
 }

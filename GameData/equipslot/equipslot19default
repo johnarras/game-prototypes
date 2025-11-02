@@ -2,5 +2,7 @@
   "Id": "equipslot19default",
   "ParentId": "default",
   "IdKey": 19,
-  "Name": "Quiver"
+  "Name": "Quiver",
+  "BonusStatScale": 1.0,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

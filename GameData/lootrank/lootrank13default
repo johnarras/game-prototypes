@@ -2,8 +2,9 @@
   "Id": "lootrank13default",
   "ParentId": "default",
   "IdKey": 13,
-  "Name": "Sapphire",
-  "Armor": 35,
-  "Damage": 18,
-  "CostPct": 4000
+  "Name": "Ruby",
+  "Armor": 45,
+  "Damage": 40,
+  "CostPct": 3000,
+  "SaveTime": "2025-10-26T21:40:57.784Z"
 }

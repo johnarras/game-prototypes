@@ -1,50 +1,61 @@
-﻿
+﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.UI.Stores;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.Settings;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Stores
+namespace Assets.Scripts.Stores
 {
     public class StorePanel : BaseBehaviour
     {
 
-        const string ProductPanelPrefab = "StoreProductPanel";
+        protected IAwaitableService _awaitableService = null;
 
-        public GText Header;
-        public GameObject ProductParent;
+        public long StoreSlotId;
 
-        private List<StoreProductPanel> _panels = new List<StoreProductPanel>();
+        public StoreArtPanel ArtPanel;
 
-        private StoreScreen _screen;
-        private PlayerStoreOffer _offer;
-        private StoreTheme _theme;
+        public GameObject ArtAnchor;
 
-        public long Index()
+        protected StoreScreen _screen;
+        protected PlayerStoreOffer _offer;
+        protected StoreTheme _theme;
+
+        public async Task Init(StoreScreen screen, PlayerStoreOffer offer, CancellationToken token)
         {
-            return _offer.StoreSlotId;
-        }
 
-        public void Init(StoreScreen screen, PlayerStoreOffer offer, CancellationToken token)
-        {
+            if (ArtAnchor == null)
+            {
+                return;
+            }
+
             _screen = screen;
             _offer = offer;
 
             _theme = _gameData.Get<StoreThemeSettings>(_gs.ch).Get(offer.StoreThemeId);
 
-            _uiService.SetText(Header, _offer.Name);
-
-            foreach (PlayerStoreOfferItem item in _offer.Items)
+            if (_theme == null)
             {
-                _assetService.LoadAssetInto(ProductParent, AssetCategoryNames.Stores, ProductPanelPrefab, OnLoadStorePanel,
-                    item, token, _theme.Art);
+                _theme = _gameData.Get<StoreThemeSettings>(_gs.ch).GetData().First();
+            }
+
+            if (ArtPanel != null && ArtPanel.ThemeId == _theme.IdKey)
+            {
+                await ArtPanel.Init(screen, offer, _theme, token);
+                return;
+            }
+            else
+            {
+                _clientEntityService.DestroyAllChildren(ArtAnchor);
+                _assetService.LoadAssetInto(ArtAnchor, AssetCategoryNames.Stores, _theme.Art + "StoreArtPanel", OnDownloadStoreArt, null, GetToken());
             }
         }
-        
-        private void OnLoadStorePanel(object obj, object data, CancellationToken token)
+
+        private void OnDownloadStoreArt(object obj, object data, CancellationToken token)
         {
             GameObject go = obj as GameObject;
 
@@ -53,9 +64,16 @@ namespace Assets.Scripts.UI.Stores
                 return;
             }
 
-            StoreProductPanel productPanel = go.GetComponent<StoreProductPanel>();
+            StoreArtPanel artPanel = go.GetComponent<StoreArtPanel>();
 
-            productPanel.Init(data as PlayerStoreOfferItem, _screen.GetName(), _theme, token);
+            if (artPanel == null)
+            {
+                _clientEntityService.Destroy(go);
+                _clientEntityService.SetActive(gameObject, false);
+                return;
+            }
+
+            _awaitableService.ForgetTask(artPanel.Init(_screen, _offer, _theme, GetToken()));
         }
     }
 }

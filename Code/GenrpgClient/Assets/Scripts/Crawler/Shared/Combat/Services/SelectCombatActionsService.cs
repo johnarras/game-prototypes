@@ -48,7 +48,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                 (party.Combat == null || !_combatService.ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
                 party.GetActiveParty().Any(x => x.Actions.Count < x.ActionsThisRound)))
             {
-                return ECombatStepResults.End;
+                return ECombatStepResults.Continue;
             }
 
             CrawlerCombatState combat = party.Combat;

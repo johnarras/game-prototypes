@@ -17,7 +17,8 @@
         {
           "EntityTypeId": 38,
           "EntityId": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "Chance": 1.0
         }
       ],
       "Flags": 1
@@ -54,7 +55,8 @@
         {
           "EntityTypeId": 39,
           "EntityId": 2,
-          "ElementTypeId": 11
+          "ElementTypeId": 11,
+          "Chance": 1.0
         }
       ],
       "Flags": 1
@@ -76,7 +78,8 @@
         {
           "EntityTypeId": 38,
           "EntityId": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "Chance": 1.0
         }
       ]
     },
@@ -98,7 +101,8 @@
         {
           "EntityTypeId": 39,
           "EntityId": 2,
-          "ElementTypeId": 11
+          "ElementTypeId": 11,
+          "Chance": 1.0
         }
       ]
     },
@@ -134,7 +138,8 @@
           "EntityId": 4,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 4
+          "ElementTypeId": 4,
+          "Chance": 1.0
         }
       ]
     },
@@ -145,7 +150,7 @@
       "Name": "Heal Wounds",
       "Desc": "Heal the wounds of an ally.",
       "PowerCost": 3.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -155,9 +160,10 @@
       "Effects": [
         {
           "EntityTypeId": 34,
-          "MinQuantity": 1,
-          "MaxQuantity": 9,
-          "ElementTypeId": 7
+          "MinQuantity": 3,
+          "MaxQuantity": 15,
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -169,7 +175,7 @@
       "Name": "Heal Party",
       "Desc": "Heal the wounds of all allies.",
       "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
+      "PowerPerLevel": 4.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -179,9 +185,10 @@
       "Effects": [
         {
           "EntityTypeId": 34,
-          "MinQuantity": 1,
-          "MaxQuantity": 3,
-          "ElementTypeId": 7
+          "MinQuantity": 2,
+          "MaxQuantity": 12,
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -193,7 +200,7 @@
       "Name": "Cure",
       "Desc": "Cure a single ally",
       "PowerCost": 5.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 2.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -205,7 +212,8 @@
           "EntityTypeId": 36,
           "MinQuantity": -1,
           "MaxQuantity": -1,
-          "ElementTypeId": 7
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -217,6 +225,7 @@
       "Name": "Cure Party",
       "Desc": "Cure all party members",
       "PowerCost": 15.0,
+      "PowerPerLevel": 5.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -228,7 +237,8 @@
           "EntityTypeId": 36,
           "MinQuantity": -1,
           "MaxQuantity": -1,
-          "ElementTypeId": 7
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -250,7 +260,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -272,7 +283,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 2,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -294,7 +306,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 4,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -316,7 +329,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 5,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -338,7 +352,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 6,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -360,7 +375,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 9,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -381,7 +397,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 3,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ]
     },
@@ -403,7 +420,8 @@
           "EntityId": 10,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "Chance": 1.0
         }
       ]
     },
@@ -427,7 +445,8 @@
           "EntityId": 7,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -451,7 +470,8 @@
           "EntityId": 10,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "Chance": 0.25
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -475,7 +495,8 @@
           "EntityId": 11,
           "MinQuantity": 2,
           "MaxQuantity": 3,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 0.25
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -499,7 +520,8 @@
           "EntityId": 17,
           "MinQuantity": 100,
           "MaxQuantity": 100,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 0.25
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -523,7 +545,8 @@
           "EntityId": 4,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 4
+          "ElementTypeId": 4,
+          "Chance": 0.25
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -547,7 +570,33 @@
           "EntityId": 4,
           "MinQuantity": 1,
           "MaxQuantity": 2,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "Chance": 0.25
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "Id": "crawlerspell65default",
+      "ParentId": "default",
+      "IdKey": 65,
+      "Name": "Polymorph Dog",
+      "Desc": "Transform some enemy monsters into dogs.",
+      "PowerCost": 10.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 59,
+          "EntityId": 24,
+          "MinQuantity": 1,
+          "MaxQuantity": 2,
+          "ElementTypeId": 6,
+          "Chance": 0.25
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -569,7 +618,8 @@
         {
           "EntityTypeId": 37,
           "EntityId": 8,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -594,7 +644,8 @@
           "EntityId": 1,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -619,7 +670,8 @@
           "EntityId": 3,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -644,7 +696,8 @@
           "EntityId": 4,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -669,7 +722,8 @@
           "EntityId": 2,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -694,7 +748,8 @@
           "EntityId": 5,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -719,7 +774,8 @@
           "EntityId": 6,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 7
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -744,7 +800,8 @@
           "EntityId": 7,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 5
+          "ElementTypeId": 5,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -769,7 +826,8 @@
           "EntityId": 8,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -794,7 +852,8 @@
           "EntityId": 9,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 11
+          "ElementTypeId": 11,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -819,7 +878,8 @@
           "EntityId": 10,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -831,7 +891,6 @@
       "Name": "Call Bear",
       "Desc": "Summon a bear.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -844,7 +903,8 @@
           "EntityId": 55,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -856,7 +916,6 @@
       "Name": "Activate Golem",
       "Desc": "Activate an iron golem.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -869,7 +928,8 @@
           "EntityId": 49,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -881,7 +941,6 @@
       "Name": "Conjure Elemental",
       "Desc": "Summon an elemental.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -894,7 +953,8 @@
           "EntityId": 52,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -906,7 +966,6 @@
       "Name": "Summon Monk",
       "Desc": "Summon a monk",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -919,7 +978,8 @@
           "EntityId": 14,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -931,7 +991,6 @@
       "Name": "Summon Scrapper",
       "Desc": "Summon a scrapper",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -944,7 +1003,8 @@
           "EntityId": 13,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -956,7 +1016,6 @@
       "Name": "Signal Thief",
       "Desc": "Signal a thief to follow you.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -969,7 +1028,8 @@
           "EntityId": 39,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -981,7 +1041,6 @@
       "Name": "Raise Skeleton",
       "Desc": "Summon a skeleton.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -994,7 +1053,8 @@
           "EntityId": 31,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1006,7 +1066,6 @@
       "Name": "Dig Up Vampire",
       "Desc": "Summon a Vampire",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1019,7 +1078,8 @@
           "EntityId": 70,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1031,7 +1091,6 @@
       "Name": "Pspspsps Cat",
       "Desc": "Summon a cat.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1044,7 +1103,8 @@
           "EntityId": 28,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1056,7 +1116,6 @@
       "Name": "Summon Guard",
       "Desc": "Summon a Guard",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1069,7 +1128,8 @@
           "EntityId": 79,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1081,7 +1141,6 @@
       "Name": "Summon Barbarian",
       "Desc": "Summon a Barbarian",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1094,7 +1153,8 @@
           "EntityId": 15,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1106,7 +1166,6 @@
       "Name": "Call Magician",
       "Desc": "Summon a magician.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1119,7 +1178,8 @@
           "EntityId": 17,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1131,7 +1191,6 @@
       "Name": "Summon Elf",
       "Desc": "Summon an elf.",
       "PowerCost": 9.0,
-      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1144,7 +1203,8 @@
           "EntityId": 2,
           "MinQuantity": 1,
           "MaxQuantity": 1,
-          "ElementTypeId": 8
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.1
@@ -1156,7 +1216,7 @@
       "Name": "Holy Beam",
       "Desc": "Hit one or more enemies with holy damage.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1167,9 +1227,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 9,
-          "ElementTypeId": 7
+          "MinQuantity": 4,
+          "MaxQuantity": 15,
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1181,8 +1242,8 @@
       "Name": "Holy Nova",
       "Desc": "Hit all enemies in a group with holy damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1192,9 +1253,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 7
+          "MinQuantity": 5,
+          "MaxQuantity": 18,
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1206,8 +1268,8 @@
       "Name": "Holy Storm",
       "Desc": "Hit all enemies with holy damage.",
       "PowerCost": 12.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1217,9 +1279,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 7
+          "MinQuantity": 6,
+          "MaxQuantity": 21,
+          "ElementTypeId": 7,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1231,7 +1294,7 @@
       "Name": "Fireball",
       "Desc": "Hit one or more enemies in a group with fire damage.",
       "PowerCost": 5.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1242,9 +1305,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 2
+          "MinQuantity": 3,
+          "MaxQuantity": 16,
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1256,8 +1320,8 @@
       "Name": "Flamestrike",
       "Desc": "Hit all enemies in a group with fire damage.",
       "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1267,9 +1331,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 2
+          "MinQuantity": 4,
+          "MaxQuantity": 19,
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1281,8 +1346,8 @@
       "Name": "Firestorm",
       "Desc": "Hit all enemies with fire damage.",
       "PowerCost": 15.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1292,9 +1357,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 2
+          "MinQuantity": 5,
+          "MaxQuantity": 22,
+          "ElementTypeId": 2,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1306,7 +1372,7 @@
       "Name": "Frostbolt",
       "Desc": "Hit one or more enemies in a group with cold damage.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1317,9 +1383,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 3
+          "MinQuantity": 5,
+          "MaxQuantity": 14,
+          "ElementTypeId": 3,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1331,8 +1398,8 @@
       "Name": "Cone of Cold",
       "Desc": "Hit all enemies in a group with cold damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1342,9 +1409,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 3
+          "MinQuantity": 6,
+          "MaxQuantity": 17,
+          "ElementTypeId": 3,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1356,7 +1424,8 @@
       "Name": "Blizzard",
       "Desc": "Hit all enemies with cold damage.",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1366,9 +1435,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 3
+          "MinQuantity": 7,
+          "MaxQuantity": 20,
+          "ElementTypeId": 3,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1380,7 +1450,7 @@
       "Name": "Lightning Bolt",
       "Desc": "Hit one or more enemies with electric damage.",
       "PowerCost": 6.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1392,8 +1462,9 @@
           "EntityTypeId": 33,
           "EntityId": 3,
           "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 4
+          "MaxQuantity": 20,
+          "ElementTypeId": 4,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1405,8 +1476,8 @@
       "Name": "Chain Lightning",
       "Desc": "Hit all enemies in a group with electric damage.",
       "PowerCost": 12.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1417,8 +1488,9 @@
           "EntityTypeId": 33,
           "EntityId": 3,
           "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 4
+          "MaxQuantity": 25,
+          "ElementTypeId": 4,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1430,7 +1502,8 @@
       "Name": "Lightning Storm",
       "Desc": "Hit all enemies with electric damage.",
       "PowerCost": 18.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1441,8 +1514,9 @@
           "EntityTypeId": 33,
           "EntityId": 3,
           "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 4
+          "MaxQuantity": 30,
+          "ElementTypeId": 4,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1454,7 +1528,7 @@
       "Name": "Poison Arrow",
       "Desc": "Hit one or more enemies with nature damage.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1465,9 +1539,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 8
+          "MinQuantity": 4,
+          "MaxQuantity": 17,
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1479,8 +1554,8 @@
       "Name": "Poison Spray",
       "Desc": "Hit all enemies in a group with nature damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1490,9 +1565,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 8
+          "MinQuantity": 7,
+          "MaxQuantity": 21,
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1504,7 +1580,8 @@
       "Name": "Plaguestorm",
       "Desc": "Hit all enemies with poisonous nature damage",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1514,9 +1591,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 8
+          "MinQuantity": 10,
+          "MaxQuantity": 25,
+          "ElementTypeId": 8,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1528,7 +1606,7 @@
       "Name": "Arcane Missiles",
       "Desc": "Hit one or more enemies with arcane damage.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1539,9 +1617,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 9
+          "MinQuantity": 3,
+          "MaxQuantity": 17,
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1553,8 +1632,8 @@
       "Name": "Arcane Explosion",
       "Desc": "Hit all enemies in a group with arcane damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1564,9 +1643,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 9
+          "MinQuantity": 5,
+          "MaxQuantity": 21,
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1578,7 +1658,8 @@
       "Name": "Magestorm",
       "Desc": "Hit all enemies with arcane damage.",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1588,9 +1669,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 9
+          "MinQuantity": 7,
+          "MaxQuantity": 25,
+          "ElementTypeId": 9,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1602,7 +1684,7 @@
       "Name": "Darkbolt",
       "Desc": "Hit one or more enemies with shadow damage.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1613,9 +1695,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 6
+          "MinQuantity": 4,
+          "MaxQuantity": 17,
+          "ElementTypeId": 6,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1627,8 +1710,8 @@
       "Name": "Shadow Burst",
       "Desc": "Hit all enemies in a group with shadow damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1638,9 +1721,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 6
+          "MinQuantity": 6,
+          "MaxQuantity": 21,
+          "ElementTypeId": 6,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1652,7 +1736,8 @@
       "Name": "Nightstorm",
       "Desc": "Hit all enemies with shadow damage.",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1662,9 +1747,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 6
+          "MinQuantity": 8,
+          "MaxQuantity": 25,
+          "ElementTypeId": 6,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1676,7 +1762,7 @@
       "Name": "Shards",
       "Desc": "Hit one or more enemies with earthen shards.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1687,9 +1773,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 5
+          "MinQuantity": 6,
+          "MaxQuantity": 15,
+          "ElementTypeId": 5,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1701,8 +1788,8 @@
       "Name": "Groundburst",
       "Desc": "Hit all enemies in a group with earth damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1712,9 +1799,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 5
+          "MinQuantity": 7,
+          "MaxQuantity": 17,
+          "ElementTypeId": 5,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1726,7 +1814,8 @@
       "Name": "Earthquake",
       "Desc": "Hit all enemies with earth damage.",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1736,9 +1825,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 5
+          "MinQuantity": 8,
+          "MaxQuantity": 19,
+          "ElementTypeId": 5,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -1750,7 +1840,7 @@
       "Name": "Acid Bolt",
       "Desc": "Hit one or more enemies with acid.",
       "PowerCost": 4.0,
-      "PowerPerLevel": 0.5,
+      "PowerPerLevel": 1.0,
       "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
@@ -1761,9 +1851,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 12,
-          "ElementTypeId": 10
+          "MinQuantity": 3,
+          "MaxQuantity": 17,
+          "ElementTypeId": 10,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1775,8 +1866,8 @@
       "Name": "Acid Spray",
       "Desc": "Hit all enemies in a group with acid damage.",
       "PowerCost": 8.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.5,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
@@ -1786,9 +1877,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 6,
-          "ElementTypeId": 10
+          "MinQuantity": 6,
+          "MaxQuantity": 22,
+          "ElementTypeId": 10,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.2
@@ -1800,7 +1892,8 @@
       "Name": "Acidic Wave",
       "Desc": "Hit all enemies with acid damage.",
       "PowerCost": 12.0,
-      "StatBonusScaling": 1.0,
+      "PowerPerLevel": 5.0,
+      "StatBonusScaling": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
@@ -1810,9 +1903,10 @@
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 4,
-          "ElementTypeId": 10
+          "MinQuantity": 9,
+          "MaxQuantity": 27,
+          "ElementTypeId": 10,
+          "Chance": 1.0
         }
       ],
       "ItemEnchantWeight": 0.01
@@ -3908,7 +4002,7 @@
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
     "Name": "CrawlerSpellSettings",
-    "SaveTime": "2025-09-15T12:37:17.641Z"
+    "SaveTime": "2025-10-27T23:25:19.168Z"
   },
-  "SaveTime": "2025-09-15T12:37:17.641Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

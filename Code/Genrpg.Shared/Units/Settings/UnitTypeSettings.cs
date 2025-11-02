@@ -1,23 +1,15 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.ProcGen.Settings.Monsters;
 using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Helpers;
-using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Units.Interfaces;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Units.Settings
 {
@@ -75,14 +67,19 @@ namespace Genrpg.Shared.Units.Settings
         [Key(22)] public List<CurrentUnitKeyword> Keywords { get; set; } = new List<CurrentUnitKeyword>();
     }
 
-        public class UnitTypeSettingsDto : ParentSettingsDto<UnitTypeSettings, UnitType> { }
+    public class UnitTypeSettingsDto : ParentSettingsDto<UnitTypeSettings, UnitType> { }
 
-        public class UnitTypeSettingsLoader : ParentSettingsLoader<UnitTypeSettings, UnitType> { }
+    public class UnitTypeSettingsLoader : ParentSettingsLoader<UnitTypeSettings, UnitType> { }
 
-        public class UnitTypeSettingsMapper : ParentSettingsMapper<UnitTypeSettings, UnitType, UnitTypeSettingsDto> { }    
+    public class UnitTypeSettingsMapper : ParentSettingsMapper<UnitTypeSettings, UnitType, UnitTypeSettingsDto> { }
 
     public class UnitTypeHelper : BaseEntityHelper<UnitTypeSettings, UnitType>
     {
         public override long Key => EntityTypes.Unit;
+    }
+
+    public class PolymorphHelper : BaseEntityHelper<UnitTypeSettings, UnitType>
+    {
+        public override long Key => EntityTypes.Polymorph;
     }
 }

@@ -20,7 +20,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
     }
 
     [MessagePackObject]
-    public class CrawlerMap : IStringId
+    public class CrawlerMap : IStringId, IIdName
     {
         [Key(0)] public string Id { get; set; }
         [Key(1)] public long IdKey { get; set; }

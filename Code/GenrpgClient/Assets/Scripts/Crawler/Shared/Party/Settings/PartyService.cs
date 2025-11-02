@@ -61,7 +61,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         public long GetMaxPartySize(PartyData party)
         {
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter))
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 return 1;
             }
@@ -160,6 +160,10 @@ namespace Genrpg.Shared.Crawler.Party.Services
             party.FailedKillQuestTimes = 0;
             party.FailedItemQuestTimes = 0;
             party.RemoveFlags(PartyFlags.InGuildHall);
+            if (party.LastAutoCompleteLevel != party.CurrPos.MapId)
+            {
+                party.LastAutoCompleteLevel = 0;
+            }
         }
 
         public void FullReset(PartyData party)

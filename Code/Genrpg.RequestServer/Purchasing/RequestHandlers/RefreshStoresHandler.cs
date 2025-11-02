@@ -1,8 +1,8 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Purchasing.PlayerData;
+﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Services;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 
 namespace Genrpg.RequestServer.Purchasing.RequestHandlers
@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Purchasing.RequestHandlers
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
             Character ch = new Character(coreCh);
 
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true);
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
 
             RefreshStoresResponse response = new RefreshStoresResponse();
 

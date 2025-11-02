@@ -128,7 +128,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                     questCount = allMaps.Count * 2;
                 }
 
-                if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+                if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
                 {
                     questCount = 4;
                 }
@@ -232,7 +232,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             _dispatcher.Dispatch(new UpdateQuestUI());
             _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
 
             }
@@ -626,7 +626,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             }
 
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 foreach (CrawlerQuest completedQuest in completedQuests)
                 {
@@ -665,7 +665,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
         public async Awaitable<bool> QuestIsActive(PartyData party, long questId)
         {
-            if (_optionsService.HasOption(party, CrawlerOptions.OneDungeon))
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 return true;
             }
@@ -683,7 +683,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             CrawlerMap map = world.GetMap(mapId);
 
-            if (_optionsService.HasOption(party, CrawlerOptions.OneCharacter) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
+            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
             {
                 return world.Quests.ToList();
             }

@@ -22,8 +22,6 @@ namespace Assets.Scripts.UI.Interfaces
         int GetIntInput(IInputField field);
         long GetSelectedIdFromName(Type iidNameType, IDropdown dropdown);
         void SetImageTexture(IRawImage image, object tex);
-        void SetImageSprite(IImage image, object spr);
-        void SetImageColor(IImage image, Color color);
         object GetImageTexture(IRawImage image);
         int GetImageHeight(IRawImage image);
         int GetImageWidth(IRawImage image);
@@ -31,6 +29,7 @@ namespace Assets.Scripts.UI.Interfaces
         object GetSelected();
         void SetColor(IText text, object color);
         void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> extraData = null);
+        void ClearButton(IButton button);
         void SetButton(IButton button, string screenName, Func<CancellationToken, Task> awaitableAction, Dictionary<string, string> extraData = null);
         void SetAlpha(IText text, float alpha);
         void SetAutoSizing(IText text, bool autoSizing);

@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Sword",
   "Art": "Sword",
-  "MinVal": 1,
-  "MaxVal": 6,
+  "MinVal": 2,
+  "MaxVal": 8,
   "EquipSlotId": 15,
   "Flags": 8,
   "Effects": [],
@@ -100,5 +100,6 @@
       "Name": "Sabre",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

@@ -1,10 +1,9 @@
-﻿using Genrpg.RequestServer.BoardGame.Helpers.BoardLoadHelpers;
-using Genrpg.RequestServer.Core;
+﻿using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Resets.Settings;
+using Genrpg.Shared.Time.Services;
 using Genrpg.Shared.Users.PlayerData;
 
 namespace Genrpg.RequestServer.Resets.Services
@@ -14,12 +13,14 @@ namespace Genrpg.RequestServer.Resets.Services
 
 
         protected IGameData _gameData;
+        protected ITimeService _timeService = null;
+
         private OrderedSetupDictionaryContainer<Type, IDailyResetHelper> _resetHelpers = new OrderedSetupDictionaryContainer<Type, IDailyResetHelper>();
         //private List<IResetHelper> _helpers = null;
 
         public async Task DailyReset(WebContext context)
         {
-            DateTime currTime = DateTime.UtcNow;
+            DateTime currTime = _timeService.GetTime(context.user);
             ResetSettings settings = _gameData.Get<ResetSettings>(context.user);
 
             CoreUserData userData = await context.GetAsync<CoreUserData>();

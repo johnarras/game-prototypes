@@ -9,14 +9,14 @@ namespace Genrpg.Shared.Crawler.Stats.Settings
     public class CrawlerStatSettings : NoChildSettings // No List
     {
         [Key(0)] public override string Id { get; set; }
-        [Key(2)] public int MinStartValue { get; set; }
-        [Key(3)] public int MaxStartValue { get; set; }
+        [Key(1)] public int MinStartValue { get; set; }
+        [Key(2)] public int MaxStartValue { get; set; }
         // Set because the secondary buff stats are compared using ratios of sizes and we don't want lowlevel combat
         // vs +1 level monsters to instakill the party.
-        [Key(4)] public int BaseBuffStatValue { get; set; }
-        [Key(6)] public double BonusScalingMult { get; set; }
-        [Key(7)] public double BonusScalingPower { get; set; }
-        [Key(8)] public double BonusScalingStartVal { get; set; }
+        [Key(3)] public int BaseBuffStatValue { get; set; }
+        [Key(4)] public double BonusScalingMult { get; set; }
+        [Key(5)] public double BonusScalingPower { get; set; }
+        [Key(6)] public double BonusScalingStartVal { get; set; }
     }
 
 

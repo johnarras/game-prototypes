@@ -56,6 +56,7 @@ public class ClientLogService : ILogService
         UnityEngine.Debug.LogError(txt + " " + e.GetType().Name + " -- " + e.Message + " " + e.StackTrace);
     }
 
+
     public void Info(string txt)
     {
         UnityEngine.Debug.Log(txt);

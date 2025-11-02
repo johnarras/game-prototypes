@@ -2,5 +2,7 @@
   "Id": "equipslot30default",
   "ParentId": "default",
   "IdKey": 30,
-  "Name": "Max"
+  "Name": "Max",
+  "BonusStatScale": 1.0,
+  "SaveTime": "2025-10-31T12:54:21.863Z"
 }

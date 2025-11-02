@@ -83,7 +83,7 @@ namespace Assets.Scripts.Buildings
                 StoreSign sign = _clientEntityService.GetComponent<StoreSign>(gameObject);
                 if (sign != null)
                 {
-                    _uiService.SetImageColor(sign.BGImage, _buildingColors[btype.IdKey]);
+                    sign.BGImage.SetColor(_buildingColors[btype.IdKey]);
                 }
             }
         }

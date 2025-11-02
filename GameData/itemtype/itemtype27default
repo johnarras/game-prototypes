@@ -6,8 +6,8 @@
   "Desc": "",
   "Icon": "Hammer2H",
   "Art": "Mace2H",
-  "MinVal": 2,
-  "MaxVal": 16,
+  "MinVal": 4,
+  "MaxVal": 14,
   "EquipSlotId": 15,
   "Flags": 10,
   "Effects": [],
@@ -120,5 +120,6 @@
       "Name": "Rod",
       "Desc": ""
     }
-  ]
+  ],
+  "SaveTime": "2025-10-25T14:51:39.919Z"
 }

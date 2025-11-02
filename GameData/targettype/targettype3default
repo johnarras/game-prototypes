@@ -4,5 +4,6 @@
   "IdKey": 3,
   "Name": "OneEnemyGroup",
   "Desc": "All Enemies in a group",
-  "StatBonusScale": 0.6
+  "StatBonusScale": 1.25,
+  "SaveTime": "2025-10-27T23:21:16.24Z"
 }

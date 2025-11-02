@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Tilemap;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Buffs.Constants;
@@ -19,7 +20,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Crawler.Tilemaps
 {
@@ -58,6 +58,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
         public GImage PartyImage;
         public GameObject ImageParent;
         public GText MagicText;
+
+        public TilemapCell CellPrefab;
         public int _tileSize = 32;
         public int Width = 9;
         public int Height = 9;
@@ -73,7 +75,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
         Sprite _outOfBoundsSprite = null;
         Sprite _trapSprite = null;
         Sprite _monsterSprite = null;
-        private Image[,,] _tiles;
+        private TilemapCell[,,] _tiles;
         private GText[,] _text;
 
 
@@ -126,7 +128,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             int maxSize = Mathf.Max(width, height);
 
-            while (maxSize > 48)
+            while (maxSize > 32)
             {
                 _tileSize /= 2;
                 maxSize /= 2;
@@ -143,7 +145,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             _mapDepth = (_isBigMap ? TilemapIndexes.SimpleMax : TilemapIndexes.Max);
 
-            _tiles = new Image[Width, Height, _mapDepth];
+            _tiles = new TilemapCell[Width, Height, _mapDepth];
             _text = new GText[Width, Height];
 
             for (int x = 0; x < width; x++)
@@ -152,18 +154,17 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 {
                     for (int l = 0; l < _mapDepth; l++)
                     {
-                        GameObject go = new GameObject() { name = x + "." + z + "." + l };
-                        go.transform.parent = ImageParent.transform;
-                        go.transform.localScale = Vector3.one;
-                        go.transform.localPosition = new Vector3(GetTileOffSetPos(x, Width, _tileSize), GetTileOffSetPos(z, Height, _tileSize), l);
-                        Image image = go.AddComponent<Image>();
-                        image.useSpriteMesh = true;
-                        image.maskable = false;
-                        image.raycastTarget = false;
-                        RectTransform rect = go.GetComponent<RectTransform>();
+                        TilemapCell cell = _clientEntityService.FullInstantiate<TilemapCell>(CellPrefab);
+                        cell.name = $"{x}.{z}.{l}";
+                        cell.transform.parent = ImageParent.transform;
+                        cell.transform.localScale = Vector3.one;
+                        cell.transform.localPosition = new Vector3(GetTileOffSetPos(x, Width, _tileSize), GetTileOffSetPos(z, Height, _tileSize), l);
+
+                        RectTransform rect = cell.GetComponent<RectTransform>();
                         rect.sizeDelta = new Vector2(_tileSize, _tileSize);
-                        _tiles[x, z, l] = image;
-                        image.sprite = _blankSprite;
+                        _tiles[x, z, l] = cell;
+
+                        cell.SetSingleSprite(_blankSprite);
                     }
                 }
             }
@@ -317,8 +318,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
         {
             for (int l = 0; l < _mapDepth; l++)
             {
-                _tiles[x, z, l].sprite = (l == 0 ? _unexploredSprite : _blankSprite);
-                _tiles[x, z, l].color = Color.white;
+                _tiles[x, z, l].SetSingleSprite(l == 0 ? _unexploredSprite : _blankSprite);
+                _tiles[x, z, l].SetColor(Color.white);
             }
         }
 
@@ -326,8 +327,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
         {
             for (int l = 0; l < _mapDepth; l++)
             {
-                _tiles[x, z, l].sprite = (l == 0 ? _outOfBoundsSprite : _blankSprite);
-                _tiles[x, z, l].color = Color.white;
+                _tiles[x, z, l].SetSingleSprite(l == 0 ? _outOfBoundsSprite : _blankSprite);
+                _tiles[x, z, l].SetColor(Color.white);
             }
             ShowText(x, z, null);
         }
@@ -365,7 +366,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 {
                     for (int l = 0; l < _mapDepth; l++)
                     {
-                        _tiles[x, z, l].sprite = _blankSprite;
+                        _tiles[x, z, l].SetSingleSprite(_blankSprite);
                     }
                 }
             }
@@ -412,8 +413,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     if (_spriteCache.TryGetValue("PlayerArrow", out Sprite playerArrow))
                     {
-                        Image tile = _tiles[partyXCell, partyZCell, 0];
-                        PartyImage.sprite = playerArrow;
+                        TilemapCell tile = _tiles[partyXCell, partyZCell, 0];
+                        PartyImage.SetSingleSprite(playerArrow);
                         PartyImage.transform.position = tile.transform.position;
 
                         RectTransform rectTransform = PartyImage.GetComponent<RectTransform>();
@@ -505,22 +506,22 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     {
                         if (terrainSprite != null)
                         {
-                            _tiles[ix, iz, TilemapIndexes.Terrain].sprite = terrainSprite;
+                            _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(terrainSprite);
                         }
                         else
                         {
-                            _tiles[ix, iz, TilemapIndexes.Terrain].sprite = _blankSprite;
+                            _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_blankSprite);
                         }
                     }
                     else
                     {
                         if (_party.CompletedMaps.HasBit(_map.IdKey))
                         {
-                            _tiles[ix, iz, TilemapIndexes.Terrain].sprite = _unexploredSprite;
+                            _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_unexploredSprite);
                         }
                         else
                         {
-                            _tiles[ix, iz, TilemapIndexes.Terrain].sprite = _blankSprite;
+                            _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_blankSprite);
                         }
                     }
 
@@ -529,22 +530,30 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     long treeTypeId = _map.GetEntityId(x, z, EntityTypes.Tree);
                     if (treeTypeId > 0 && _spriteCache.TryGetValue(SpriteNameCategories.Object + treeTypeId, out Sprite objSprite))
                     {
-                        _tiles[ix, iz, TilemapIndexes.Object].sprite = objSprite;
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(objSprite);
                         didSetObject = true;
                     }
 
 
                     long buildingTypeId = _map.GetEntityId(x, z, EntityTypes.Building);
-                    if (buildingTypeId > 0 && _spriteCache.TryGetValue(SpriteNameCategories.Building + buildingTypeId, out Sprite buildingSprite))
+                    if (buildingTypeId > 0)
                     {
-                        _tiles[ix, iz, TilemapIndexes.Object].sprite = buildingSprite;
-                        didSetObject = true;
+                        if (_spriteCache.TryGetValue(SpriteNameCategories.Building + buildingTypeId, out Sprite buildingSprite))
+                        {
+                            BuildingType btype = _gameData.Get<BuildingSettings>(_gs.ch).Get(buildingTypeId);
+                            _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(buildingSprite);
+                            didSetObject = true;
+                        }
+                        else
+                        {
+                            _logService.Info("No building type for " + buildingTypeId);
+                        }
                     }
 
                     long riddleId = _map.GetEntityId(x, z, EntityTypes.Riddle);
                     if (riddleId > 0)
                     {
-                        _tiles[ix, iz, TilemapIndexes.Object].sprite = _riddleSprite;
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_riddleSprite);
                         didSetObject = true;
                     }
 
@@ -556,11 +565,11 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         {
                             if (detail.EntityId < _map.IdKey)
                             {
-                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _upStairSprite;
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_upStairSprite);
                             }
                             else
                             {
-                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _downStairSprite;
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_downStairSprite);
                             }
                             didSetObject = true;
                         }
@@ -571,12 +580,12 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                             if (encounterId == MapEncounters.Monsters)
                             {
-                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _monsterSprite;
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_monsterSprite);
                                 didSetObject = true;
                             }
                             else if (encounterId == MapEncounters.Trap)
                             {
-                                _tiles[ix, iz, TilemapIndexes.Object].sprite = _trapSprite;
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_trapSprite);
                                 didSetObject = true;
                             }
                         }
@@ -584,7 +593,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     if (!didSetObject)
                     {
-                        _tiles[ix, iz, TilemapIndexes.Object].sprite = _blankSprite;
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_blankSprite);
                     }
 
 
@@ -593,13 +602,13 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         FullWallTileImage image = _crawlerMapService.GetMinimapWallFilename(_map, x, z);
                         if (image != null && image.RefImage.Filename == "OOOO" + SpriteNameCategories.Wall)
                         {
-                            _tiles[ix, iz, TilemapIndexes.Walls].sprite = _blankSprite;
+                            _tiles[ix, iz, TilemapIndexes.Walls].SetSingleSprite(_blankSprite);
                         }
                         else
                         {
                             if (_spriteCache.TryGetValue(image.RefImage.Filename + image.RotAngle, out Sprite wallSprite))
                             {
-                                _tiles[ix, iz, TilemapIndexes.Walls].sprite = wallSprite;
+                                _tiles[ix, iz, TilemapIndexes.Walls].SetSingleSprite(wallSprite);
 
 
                                 RectTransform rectTransform = _tiles[ix, iz, TilemapIndexes.Walls].GetComponent<RectTransform>();
@@ -611,14 +620,14 @@ namespace Assets.Scripts.Crawler.Tilemaps
                             }
                             else
                             {
-                                _tiles[ix, iz, TilemapIndexes.Walls].sprite = _blankSprite;
+                                _tiles[ix, iz, TilemapIndexes.Walls].SetSingleSprite(_blankSprite);
                             }
                         }
                     }
 
                     for (int i = 0; i < _tiles.GetLength(2); i++)
                     {
-                        _tiles[ix, iz, i].color = (showGhostImage ? _ghostColor : _whiteColor);
+                        _tiles[ix, iz, i].SetColor(showGhostImage ? _ghostColor : _whiteColor);
                     }
 
                     int magicBits = _crawlerMapService.GetMagicBits(_map.IdKey, x, z, false);

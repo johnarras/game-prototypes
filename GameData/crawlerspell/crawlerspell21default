@@ -5,7 +5,7 @@
   "Name": "Heal Party",
   "Desc": "Heal the wounds of all allies.",
   "PowerCost": 10.0,
-  "PowerPerLevel": 1.0,
+  "PowerPerLevel": 4.0,
   "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
@@ -15,11 +15,12 @@
   "Effects": [
     {
       "EntityTypeId": 34,
-      "MinQuantity": 1,
-      "MaxQuantity": 3,
-      "ElementTypeId": 7
+      "MinQuantity": 2,
+      "MaxQuantity": 12,
+      "ElementTypeId": 7,
+      "Chance": 1.0
     }
   ],
   "ItemEnchantWeight": 0.1,
-  "SaveTime": "2025-09-15T12:37:08.302Z"
+  "SaveTime": "2025-10-27T23:25:19.168Z"
 }

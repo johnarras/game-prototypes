@@ -128,7 +128,7 @@ namespace Assets.Scripts.Crawler.Services
 
         private void OnLateUpdate(CancellationToken token)
         {
-            if (_moveService.UpdatingMovement())
+            if (_moveService.UpdatingMovement() || _changingState)
             {
                 return;
             }
@@ -197,8 +197,10 @@ namespace Assets.Scripts.Crawler.Services
             return helper != null && helper.ShouldDispatchClickKeys();
         }
 
+        private bool _changingState = false;
         private async Awaitable ChangeStateAsync(FullCrawlerState fullState, CancellationToken token)
         {
+            _changingState = true;
             await Awaitable.MainThreadAsync();
             try
             {
@@ -230,6 +232,7 @@ namespace Assets.Scripts.Crawler.Services
 
                     if (nextStateData.DoNotTransitionToThisState)
                     {
+                        _changingState = false;
                         return;
                     }
 
@@ -261,6 +264,7 @@ namespace Assets.Scripts.Crawler.Services
             {
                 _logService.Exception(e, "CrawlerChangeState");
             }
+            _changingState = false;
         }
 
         private IStateHelper GetStateHelper(ECrawlerStates state)
@@ -558,7 +562,7 @@ namespace Assets.Scripts.Crawler.Services
             _party = new PartyData();
             _party.Options = options;
 
-            if (!_optionsService.HasOption(_party, CrawlerOptions.OneCharacter))
+            if (_optionsService.HasOption(_party, CrawlerOptions.WholeParty))
             {
                 _party = LoadPremadeParty(LoadSaveConstants.MinSlot);
             }
