@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.GameSettings.PlayerData;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
+﻿using Genrpg.Shared.PlayerFiltering.Interfaces;
 using System;
 
 namespace Genrpg.Shared.Characters.PlayerData
@@ -21,7 +20,7 @@ namespace Genrpg.Shared.Characters.PlayerData
         long EntityId { get; set; }
         long SexTypeId { get; set; }
         DateTime UpdateTime { get; set; }
-        
+
     }
 
 }

@@ -267,7 +267,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
 
                 // Narrow health randomness a bit at higher levels.
-                int healthCalcTimes = 2 + monster.Level / 10;
+                long healthCalcTimes = 2 + monster.Level / 10;
 
                 for (int t = 0; t < healthCalcTimes; t++)
                 {

@@ -1,31 +1,30 @@
-﻿using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Utils;
+﻿using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Levels.Settings;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
+using Genrpg.Shared.MapServer.Constants;
 using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.NPCs.Settings;
+using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.ProcGen.Settings.Locations;
+using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Vendors.MapObjectAddons;
 using Genrpg.Shared.Zones.Entities;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Vendors.MapObjectAddons;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.NPCs.Settings;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Levels.Settings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Core.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
 
 public interface IMapGenService : IInitializable
 {
@@ -62,11 +61,11 @@ public class MapGenService : IMapGenService
         if (startMap.MinLevel == 0 && startMap.MaxLevel == 0)
         {
             startMap.MinLevel = 1;
-            startMap.MaxLevel = _gameData.Get<LevelSettings>(null).MaxLevel;
+            startMap.MaxLevel = _gameData.Get<RpgLevelSettings>(null).MaxLevel;
         }
         map.MinLevel = startMap.MinLevel;
         map.MaxLevel = startMap.MaxLevel;
-        
+
         map.Id = startMap.Id;
         map.Seed = startMap.Seed;
         map.BlockCount = Math.Min(MapConstants.MaxTerrainGridSize, startMap.BlockCount);
@@ -121,7 +120,7 @@ public class MapGenService : IMapGenService
 
     }
 
-       
+
     public void SetMinMaxSizes(IClientGameState gs)
     {
         foreach (Zone zone in _mapProvider.GetMap().Zones)
@@ -243,7 +242,7 @@ public class MapGenService : IMapGenService
         if (maxLevel - minLevel > 3 && zones.Count > 3)
         {
             int totalLevels = maxLevel - minLevel + 1;
-            zones = zones.Where(x=>x.IdKey >= MapConstants.MapZoneStartId).OrderBy(x => x.Level).ToList();
+            zones = zones.Where(x => x.IdKey >= MapConstants.MapZoneStartId).OrderBy(x => x.Level).ToList();
 
             float levelsPerZone = totalLevels * 1.0f / zones.Count;
 
@@ -407,7 +406,7 @@ public class MapGenService : IMapGenService
                     new VendorAddon() { ItemCount = rand.Next() % 4 + 4, NPCTypeId = npc.IdKey }
                 };
 
-                int overridePercent = (int)(_md.overrideZoneScales[place.EntranceX,place.EntranceZ]);
+                int overridePercent = (int)(_md.overrideZoneScales[place.EntranceX, place.EntranceZ]);
 
                 int unitSpawnX = place.EntranceZ - dz / 2;
                 int unitSpawnZ = place.EntranceX - dx / 2;
@@ -428,7 +427,7 @@ public class MapGenService : IMapGenService
                 };
 
                 _mapProvider.GetSpawns().AddSpawn(initData);
-                BuildingType btype = buildingTypes.FirstOrDefault(x=>x.IdKey == npc.BuildingTypeId);
+                BuildingType btype = buildingTypes.FirstOrDefault(x => x.IdKey == npc.BuildingTypeId);
 
                 if (btype != null)
                 {
@@ -632,7 +631,7 @@ public class MapGenService : IMapGenService
 
 
                     float currentPower = MathUtils.FloatRange(2.0f, 2.7f, rand);
-                    float rot = MathUtils.FloatRange(0, (float)Math.PI/2,rand);
+                    float rot = MathUtils.FloatRange(0, (float)Math.PI / 2, rand);
                     float sin = (float)Math.Sin(rot);
                     float cos = (float)Math.Cos(rot);
                     for (float xx = x - sizes[0] + shift[0]; xx < x + sizes[0] + shift[0]; xx += 0.5f)
@@ -663,7 +662,7 @@ public class MapGenService : IMapGenService
                             xpct = (float)(Math.Pow(xpct, currentPower));
                             zpct = (float)(Math.Pow(zpct, currentPower));
 
-                            if (xpct+zpct > 1)
+                            if (xpct + zpct > 1)
                             {
                                 continue;
                             }
@@ -682,7 +681,7 @@ public class MapGenService : IMapGenService
                     {
                         zoneIds[x, z] = (short)(-zoneIds[x, z]);
                     }
-                    if (zoneIds[x,z] < SharedMapConstants.MapZoneStartId)
+                    if (zoneIds[x, z] < SharedMapConstants.MapZoneStartId)
                     {
                         haveUnsetCell = true;
                     }
@@ -696,7 +695,7 @@ public class MapGenService : IMapGenService
                 {
                     for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
                     {
-                        if (_md.mapZoneIds[x,z] < SharedMapConstants.MapZoneStartId)
+                        if (_md.mapZoneIds[x, z] < SharedMapConstants.MapZoneStartId)
                         {
                             reallyHaveUnsetCell = true;
                             _logService.Message("Cell slipped through processing: " + x + " " + z);
@@ -714,7 +713,7 @@ public class MapGenService : IMapGenService
     private void AddAdjacentZoneId(short[,] zoneIds, List<short> adjacentZones, int x, int z)
     {
         if (x < 0 || x >= zoneIds.GetLength(0) || z < 0 || z >= zoneIds.GetLength(1) ||
-            zoneIds[x,z] < MapConstants.MapZoneStartId)
+            zoneIds[x, z] < MapConstants.MapZoneStartId)
         {
             return;
         }

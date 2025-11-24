@@ -1,10 +1,9 @@
 ﻿using Genrpg.Editor.Entities.Core;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.Utils;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Users.PlayerData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,9 +17,9 @@ namespace Genrpg.Editor.Utils
         }
 
         public static async Task LoadEditorUserData(EditorGameState gs, IRepositoryService repoService, string userId)
-        {        
+        {
 
-            gs.EditorUser.User = await repoService.Load<User>(userId.ToString());
+            gs.EditorUser.GameAccount = await repoService.Load<GameAccount>(userId.ToString());
 
             List<CharacterStub> charStubs = await gs.loc.Get<IPlayerDataService>().LoadCharacterStubs(userId.ToString());
 
@@ -33,7 +32,7 @@ namespace Genrpg.Editor.Utils
 
                     EditorCharacter ech = new EditorCharacter() { Character = ch, CoreCharacter = coreChar };
                     gs.EditorUser.Characters.Add(ech);
-                    await gs.loc.Get<IPlayerDataService>().LoadAllPlayerData(gs.rand, gs.EditorUser.User, ch);
+                    await gs.loc.Get<IPlayerDataService>().LoadAllPlayerData(gs.rand, gs.EditorUser.GameAccount, ch);
                     foreach (IUnitData dataCont in ch.GetAllData().Values)
                     {
                         ech.Data.Add(new EditorUnitData() { Data = dataCont });
@@ -46,9 +45,9 @@ namespace Genrpg.Editor.Utils
         {
 
             List<Task<bool>> tasks = new List<Task<bool>>();
-            if (gs.LookedAtObjects.Contains(gs.EditorUser.User))
+            if (gs.LookedAtObjects.Contains(gs.EditorUser.GameAccount))
             {
-                tasks.Add(repoService.Save(gs.EditorUser.User));
+                tasks.Add(repoService.Save(gs.EditorUser.GameAccount));
             }
             if (gs.EditorUser.Characters != null)
             {
@@ -68,14 +67,14 @@ namespace Genrpg.Editor.Utils
                 }
             }
 
-            await Task.WhenAll(tasks);  
+            await Task.WhenAll(tasks);
         }
 
         public static async Task DeleteEditorUserData(EditorGameState gs, IRepositoryService repoService)
         {
 
             List<Task<bool>> tasks = new List<Task<bool>>();
-            tasks.Add(repoService.Delete(gs.EditorUser.User));
+            tasks.Add(repoService.Delete(gs.EditorUser.GameAccount));
 
             if (gs.EditorUser.Characters != null)
             {
@@ -89,7 +88,7 @@ namespace Genrpg.Editor.Utils
                 }
             }
 
-            await Task.WhenAll(tasks);  
+            await Task.WhenAll(tasks);
 
         }
     }

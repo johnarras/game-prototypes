@@ -1,11 +1,8 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.BoardGame.Settings;
+using MessagePack;
+using System;
 
 namespace Genrpg.Shared.UserEnergy.Settings
 {
@@ -24,12 +21,12 @@ namespace Genrpg.Shared.UserEnergy.Settings
 
         [Key(5)] public int StorageCap { get; set; } = 80;
 
-        public int GetMaxStorage(int level)
+        public int GetMaxStorage(long level)
         {
             return (int)Math.Min(StorageCap, StartStorage + level / LevelsPerIncrement * IncrementQuantity);
         }
 
-        public double EnergyPerHour(int level)
+        public double EnergyPerHour(long level)
         {
             return GetMaxStorage(level) * HourlyRegenPercent;
         }

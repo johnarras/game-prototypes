@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
         [Key(4)] public long CrawlerMapTypeId { get; set; } = CrawlerMapTypes.Dungeon;
         [Key(5)] public int Width { get; set; }
         [Key(6)] public int Height { get; set; }
-        [Key(7)] public int Level { get; set; }
+        [Key(7)] public long Level { get; set; }
         [Key(8)] public int LevelDelta { get; set; }
         [Key(9)] public long MapFloor { get; set; }
         [Key(10)] public string FromPlaceName { get; set; }
@@ -191,7 +191,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
             return retval;
         }
 
-        public int GetMapLevelAtPoint(int x, int z)
+        public long GetMapLevelAtPoint(int x, int z)
         {
             if (CrawlerMapTypeId != CrawlerMapTypes.Outdoors ||
                 Regions == null || Regions.Count < 1 || LevelDelta < 1)

@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
+﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
@@ -44,6 +44,8 @@ namespace Genrpg.Shared.Crawler.Party.Services
         void AddGold(PartyData party, long quantity);
         void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party);
         void AddExp(PartyData party, PartyMember member, long quantity);
+        void AddCurrency(PartyData party, long entityId, long quantity);
+        void SetCurrencyQuantity(PartyData party, long entityId, long quantity);
 
     }
 
@@ -260,10 +262,32 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
         public void AddGold(PartyData party, long quantity)
         {
-            party.Currencies.Add(CrawlerCurrencyTypes.Gold, quantity);
-            _dispatcher.Dispatch(new UpdateCrawlerUI());
+            AddCurrency(party, CrawlerCurrencyTypes.Gold, quantity);
         }
 
+        public void AddCurrency(PartyData party, long entityId, long quantity)
+        {
+            party.Currencies.Add(entityId, quantity);
+            _dispatcher.Dispatch(new AddEntityQuantityVisual()
+            {
+                EntityTypeId = EntityTypes.CrawlerCurrency,
+                EntityId = entityId,
+                QuantityAdded = quantity
+            });
+        }
+
+        public void SetCurrencyQuantity(PartyData party, long entityId, long quantity)
+        {
+            party.Currencies.Set(entityId, quantity);
+
+            _dispatcher.Dispatch(new SetEntityQuantityVisual()
+            {
+                EntityTypeId = EntityTypes.CrawlerCurrency,
+                EntityId = entityId,
+                NewQuantity = quantity,
+                InstantUpdate = true,
+            });
+        }
 
         public void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party)
         {

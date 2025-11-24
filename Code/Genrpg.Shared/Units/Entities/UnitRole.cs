@@ -9,6 +9,6 @@ namespace Genrpg.Shared.Units.Entities
     public class UnitRole
     {
         [Key(0)] public long RoleId { get; set; }
-        [Key(1)] public int Level { get; set; }
+        [Key(1)] public long Level { get; set; }
     }
 }

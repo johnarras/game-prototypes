@@ -1,0 +1,10 @@
+{
+  "Id": "crawlercurrencytype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Metal",
+  "Icon": "MetalIcon",
+  "Art": "MetalArt",
+  "CraftingStatTypeId": 11,
+  "SaveTime": "2025-11-18T03:04:02.688Z"
+}

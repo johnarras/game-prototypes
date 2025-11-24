@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;

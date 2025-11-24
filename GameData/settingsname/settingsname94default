@@ -2,5 +2,6 @@
   "Id": "settingsname94default",
   "ParentId": "default",
   "IdKey": 94,
-  "Name": "ActivitySettings"
+  "Name": "SpellTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

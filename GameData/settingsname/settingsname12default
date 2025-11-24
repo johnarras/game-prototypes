@@ -2,5 +2,6 @@
   "Id": "settingsname12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "CraftingSettings"
+  "Name": "ChestSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

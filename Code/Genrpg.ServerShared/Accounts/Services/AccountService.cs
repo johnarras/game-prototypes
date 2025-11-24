@@ -71,7 +71,7 @@ namespace Genrpg.ServerShared.Accounts.Services
 
             if (!String.IsNullOrEmpty(referrerId))
             {
-                Account referrerAccount = (await _serverRepositoryService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerShareId, referrerId))).FirstOrDefault();
+                Account referrerAccount = (await _serverRepositoryService.Search<Account>(x => x.LowerShareId == referrerId.ToLower())).FirstOrDefault();
                 if (referrerAccount != null)
                 {
                     referrerAccountId = referrerAccount.Id;

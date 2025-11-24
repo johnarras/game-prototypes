@@ -1,0 +1,10 @@
+{
+  "Id": "crawlercurrencytype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Leather",
+  "Icon": "LeatherIcon",
+  "Art": "LeatherArt",
+  "CraftingStatTypeId": 14,
+  "SaveTime": "2025-11-18T03:04:02.688Z"
+}

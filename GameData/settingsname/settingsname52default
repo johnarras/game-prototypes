@@ -2,5 +2,6 @@
   "Id": "settingsname52default",
   "ParentId": "default",
   "IdKey": 52,
-  "Name": "ScalingTypeSettings"
+  "Name": "ItemTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

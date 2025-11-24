@@ -2,5 +2,6 @@
   "Id": "settingsname93default",
   "ParentId": "default",
   "IdKey": 93,
-  "Name": "BoardGameSettings"
+  "Name": "SpellModifierSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

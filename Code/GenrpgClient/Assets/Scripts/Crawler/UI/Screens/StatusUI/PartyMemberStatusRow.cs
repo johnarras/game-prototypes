@@ -3,10 +3,14 @@ using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.UI.Units;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Roles.Services;
+using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Stats.Constants;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.StatusUI
@@ -15,8 +19,9 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
     public class PartyMemberStatusRow : BaseUnitUI
     {
-        private ICrawlerService _crawlerService;
-        private ITrainingService _trainingService;
+        protected ICrawlerService _crawlerService = null;
+        protected ITrainingService _trainingService = null;
+        protected IRoleService _roleService = null;
 
         public GButton Button;
         public GameObject PortraitParent;
@@ -35,6 +40,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
         private int _memberIndex = 0;
 
         public GImage LevelUpImage;
+        public GImage GuardianImage;
 
         public void SetData(int memberIndex)
         {
@@ -132,6 +138,11 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
                 TrainingInfo info = _trainingService.GetTrainingInfo(_party, _partyMember);
 
                 _clientEntityService.SetActive(LevelUpImage, info.ExpLeft < 1);
+
+                List<Role> userRoles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(_partyMember.Roles);
+
+                _clientEntityService.SetActive(GuardianImage, userRoles.Any(x => x.Guardian));
+
             }
         }
 

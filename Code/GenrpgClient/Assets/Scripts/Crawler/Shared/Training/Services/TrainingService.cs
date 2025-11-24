@@ -43,7 +43,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
     public class TrainingResult
     {
         public PartyMember Member { get; set; }
-        public int NewUpgradePoints { get; set; }
+        public long NewUpgradePoints { get; set; }
     }
 
     public interface ITrainingService : IInitializable
@@ -257,13 +257,13 @@ namespace Genrpg.Shared.Crawler.Training.Services
             {
                 int upgradesPerTier = (int)_upgradeService.GetPartyBonus(party, PartyUpgrades.MemberUpgradePoints) + 1;
 
-                int tiers = member.Level / memberUpgradeSettings.LevelsPerPoint;
+                long tiers = member.Level / memberUpgradeSettings.LevelsPerPoint;
 
-                int totalPoints = upgradesPerTier * tiers;
+                long totalPoints = upgradesPerTier * tiers;
 
-                int usedPoints = member.Upgrades.Data.Sum(u => u);
+                long usedPoints = member.Upgrades.Data.Sum(u => u);
 
-                int newPoints = totalPoints - usedPoints;
+                long newPoints = totalPoints - usedPoints;
 
                 if (newPoints > 0)
                 {

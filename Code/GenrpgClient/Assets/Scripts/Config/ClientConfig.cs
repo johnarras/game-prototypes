@@ -16,12 +16,17 @@ using Genrpg.Shared.Constants;
 
 public interface IClientConfigContainer : IInjectable, IExplicitInject
 {
-   ClientConfig Config { get; set; }
+    ClientConfig Config { get; }
 }
 
 public class ClientConfigContainer : IClientConfigContainer
 {
-    public ClientConfig Config { get; set; }
+    public ClientConfig Config { get; }
+
+    public ClientConfigContainer(ClientConfig config)
+    {
+        Config = config;
+    }
 }
 
 [Serializable]
@@ -32,7 +37,7 @@ public class ClientConfig : ScriptableObject
     public string WebEndpointOverride;
     public string AssetEnvOverride;
     public string WorldEnvOverride;
-    public int AccountProductId = 2;
+    public int ProductId = 2;
     public bool SelfContainedClient;
     public bool ExportGameData;
 
@@ -40,7 +45,7 @@ public class ClientConfig : ScriptableObject
     public string IOSSecret;
     public string PackageName;
 
-    public string GetWebEndpoint ()
+    public string GetWebEndpoint()
     {
         if (Env == EnvNames.Local)
         {

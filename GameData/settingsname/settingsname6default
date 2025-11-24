@@ -2,5 +2,6 @@
   "Id": "settingsname6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "CharmUseSettings"
+  "Name": "BridgeTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

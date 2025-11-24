@@ -12,7 +12,7 @@ namespace Genrpg.Shared.Accounts.WebApi.Signup
         [Key(2)] public string Name { get; set; }
         [Key(3)] public string ShareId { get; set; }
         [Key(4)] public string ReferrerId { get; set; }
-        [Key(5)] public long AccountProductId { get; set; }
+        [Key(5)] public long ProductId { get; set; }
         [Key(6)] public string ClientVersion { get; set; }
 
         [Key(7)] public string DeviceId { get; set; }

@@ -2,5 +2,6 @@
   "Id": "settingsname124default",
   "ParentId": "default",
   "IdKey": 124,
-  "Name": "UpgradeReasonSettings"
+  "Name": "WeatherTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

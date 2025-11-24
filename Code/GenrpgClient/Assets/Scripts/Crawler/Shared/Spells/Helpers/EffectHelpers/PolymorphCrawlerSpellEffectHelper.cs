@@ -43,7 +43,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             party.Combat.AttackSequence.Remove(target);
 
-            target.Actions.Clear();
+            target.CombatActions.Clear();
             InitialCombatGroup icg = new InitialCombatGroup()
             {
                 Quantity = 1,

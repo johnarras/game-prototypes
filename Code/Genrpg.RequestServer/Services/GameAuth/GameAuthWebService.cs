@@ -1,10 +1,10 @@
 ﻿
-using Genrpg.Shared.Website.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Website.Messages;
-using Genrpg.RequestServer.Services.WebServer;
-using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers;
+using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Services.WebServer;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Website.Interfaces;
+using Genrpg.Shared.Website.Messages;
 
 namespace Genrpg.RequestServer.Services.GameAuth
 {

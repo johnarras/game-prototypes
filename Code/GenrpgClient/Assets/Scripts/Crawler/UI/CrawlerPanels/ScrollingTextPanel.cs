@@ -1,10 +1,8 @@
 ﻿using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.UI.Abstractions;
-using Assets.Scripts.UI.Core;
 using Assets.Scripts.UI.Crawler.ActionUI;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using System.Collections.Generic;
@@ -28,8 +26,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
         public const string RowPrefabName = "ActionPanelText";
 
-        public NamedSlider ScrollSpeedSlider;
-
         private List<ActionPanelText> _subObjects = new List<ActionPanelText>();
 
         public override void Init()
@@ -37,15 +33,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             _dispatcher.AddListener<AddActionPanelText>(OnAddActionPanelText, GetToken());
             _dispatcher.AddListener<CrawlerStateData>(OnNewStateData, GetToken());
 
-            ScrollSpeedSlider.InitSlider(1, CrawlerCombatConstants.ScrollingFramesValues.Length,
-                _crawlerService.GetParty().ScrollFramesIndex, true, OnChangeSlider);
-
-
-        }
-
-        private void OnChangeSlider(float newValue)
-        {
-            _crawlerService.GetParty().ScrollFramesIndex = (int)newValue;
         }
 
         public void OnNewStateData(CrawlerStateData stateData)

@@ -1,25 +1,24 @@
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Constants;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings.PlayerData;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Interfaces;
+using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.Networking.Interfaces;
+using Genrpg.Shared.Pathfinding.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spells.Interfaces;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Networking.Interfaces;
-using Genrpg.Shared.GameSettings.PlayerData;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using Genrpg.Shared.Pathfinding.Entities;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Units.Entities;
-using Newtonsoft.Json;
-using Genrpg.Shared.DataStores.Constants;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
@@ -43,7 +42,6 @@ namespace Genrpg.Shared.MapObjects.Entities
         public string LocationPlaceId { get; set; }
 
         public long PrevZoneId { get; set; }
-        public int Level { get; set; }
         public long FactionTypeId { get; set; }
         public long AddonBits { get; set; }
 
@@ -54,6 +52,8 @@ namespace Genrpg.Shared.MapObjects.Entities
         public float FinalX { get; set; } = -1;
 
         public float FinalZ { get; set; } = -1;
+
+        public long Level { get; set; }
 
         [JsonIgnore] public WaypointList Waypoints { get; private set; } = new WaypointList();
 
@@ -90,7 +90,7 @@ namespace Genrpg.Shared.MapObjects.Entities
 
         public void ReturnPackage(MapMessagePackage package)
         {
-            package.Clear();           
+            package.Clear();
             _packageCache.Enqueue(package);
         }
 
@@ -123,7 +123,7 @@ namespace Genrpg.Shared.MapObjects.Entities
 
             if (effect.EntityTypeId == EntityTypes.StatusEffect)
             {
-                if (!Effects.Any(x=>x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == effect.EntityId))
+                if (!Effects.Any(x => x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == effect.EntityId))
                 {
                     StatusEffects.RemoveBit(effect.EntityId);
                 }
@@ -133,7 +133,7 @@ namespace Genrpg.Shared.MapObjects.Entities
         public void RemoveStatusBit(long statusBitId)
         {
             StatusEffects.RemoveBit(statusBitId);
-            if (Effects.Any(x=>x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == statusBitId))
+            if (Effects.Any(x => x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == statusBitId))
             {
                 lock (this)
                 {
@@ -161,17 +161,17 @@ namespace Genrpg.Shared.MapObjects.Entities
         }
 
         public bool Moving { get; set; }
-        
+
         public string TargetId { get; set; }
-        
+
         [JsonIgnore] public object OnActionLock { get; set; } = new object();
-        
+
         public IMapApiMessage OnActionMessage { get; set; }
-        
+
         public IMapApiMessage ActionMessage { get; set; }
-        
+
         public IMapSpawn Spawn { get; set; }
-        
+
         private bool _isDeleted { get; set; }
 
         public List<UnitRole> Roles { get; set; } = new List<UnitRole>();
@@ -232,7 +232,7 @@ namespace Genrpg.Shared.MapObjects.Entities
         public virtual bool IsGroundObject() { return false; }
 
         // This exists here, but it is only set up for players for now
-        
+
         protected IConnection _conn = null;
         public virtual void AddMessage(IMapApiMessage message)
         {

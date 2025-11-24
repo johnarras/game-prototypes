@@ -1,22 +1,15 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
-using Genrpg.Shared.UserCoins.Settings;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using MessagePack;
 
 namespace Genrpg.Shared.Entities.Settings
 {
     [MessagePackObject]
-    public class EntitySettings : ParentConstantListSettings<EntityType,EntityTypes>
+    public class EntitySettings : ParentConstantListSettings<EntityType, EntityTypes>
     {
         [Key(0)] public override string Id { get; set; }
     }

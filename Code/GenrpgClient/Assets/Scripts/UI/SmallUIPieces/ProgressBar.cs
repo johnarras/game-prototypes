@@ -1,5 +1,6 @@
-﻿using System;
-using Genrpg.Shared.Utils;
+﻿using Genrpg.Shared.Utils;
+using System;
+using UnityEngine;
 
 public class ProgressBar : BaseBehaviour
 {
@@ -8,20 +9,23 @@ public class ProgressBar : BaseBehaviour
         Hide = 0,
         Current = 1,
         CurrentOverMax = 2,
-        Custom=3,
-        Percent=4,
+        Custom = 3,
+        Percent = 4,
     }
 
-    
+
     public GAnimator Animator;
     public GImage FrontBar;
     public GImage BackBar;
+    public RectTransform BGRect;
+    public RectTransform FrontRect;
+    public RectTransform BackRect;
     public int FillTicks = 0;
     public float PulsePercent;
     public float MinBarWidth;
     public float MaxBarWidth;
     public GText BarText;
-    
+
     public ShowTextOption _textOption = ShowTextOption.CurrentOverMax;
 
     private long _minValue = 0;
@@ -29,7 +33,7 @@ public class ProgressBar : BaseBehaviour
     private long _currValue = 0;
     private long _targetValue = 0;
     private long _oldValue = -999999999999;
-   
+
     private string _customText = "";
 
     public long GetMinValue()
@@ -51,6 +55,8 @@ public class ProgressBar : BaseBehaviour
     {
         base.Init();
         AddUpdate(ProgressUpdate, UpdateTypes.Regular);
+        ShowText();
+        ShowBar();
     }
 
     /// <summary>
@@ -62,7 +68,7 @@ public class ProgressBar : BaseBehaviour
     /// <param name="currValue"></param>
     /// <param name="textOpt"></param>
     /// <param name="fillTicks"></param>
-    public void InitRange (long minValue, long maxValue, long currValue)
+    public void InitRange(long minValue, long maxValue, long currValue)
     {
         _minValue = minValue;
         _maxValue = maxValue;
@@ -81,7 +87,7 @@ public class ProgressBar : BaseBehaviour
     public void ShowBar()
     {
         ShowText();
-        if (FrontBar == null)
+        if (FrontBar == null || _clientEntityService == null)
         {
             return;
         }
@@ -89,22 +95,22 @@ public class ProgressBar : BaseBehaviour
         // Front bar only, always shows curr value
         if (BackBar == null)
         {
-            ShowOneBar(FrontBar, _currValue);
+            ShowOneBar(FrontRect, _currValue);
         }
         else
         {
             long frontValue = Math.Min(_currValue, _targetValue);
             long backValue = Math.Max(_currValue, _targetValue);
-            ShowOneBar(FrontBar, frontValue);
-            ShowOneBar(BackBar, backValue);
+            ShowOneBar(FrontRect, frontValue);
+            ShowOneBar(BackRect, backValue);
         }
     }
 
     private double _currPct = -1;
     private bool _didInit = false;
-    private void ShowOneBar (GImage bar, long value)
-    { 
-        if (bar == null)
+    private void ShowOneBar(RectTransform rect, long value)
+    {
+        if (rect == null || BGRect == null)
         {
             return;
         }
@@ -117,33 +123,38 @@ public class ProgressBar : BaseBehaviour
         }
 
         currPct = MathUtils.Clamp(0, currPct, 1);
-        
+
         if (_currPct == currPct && _didInit)
         {
             return;
         }
         _currPct = currPct;
         _didInit = true;
-        if (currPct <= 0 && bar.IsActive())
+        if (currPct <= 0 && rect.gameObject.activeSelf)
         {
-            _clientEntityService.SetActive(bar, false);
+            _clientEntityService.SetActive(rect.gameObject, false);
         }
-        else if (currPct > 0 && !bar.IsActive())
+        else if (currPct > 0 && !rect.gameObject.activeSelf)
         {
-            _clientEntityService.SetActive(bar, true);
+            _clientEntityService.SetActive(rect.gameObject, true);
         }
-        UnityEngine.RectTransform rectTransform = GetComponent<UnityEngine.RectTransform>();
-        MaxBarWidth = rectTransform.rect.width;
+        if (MaxBarWidth <= MinBarWidth)
+        {
+            MaxBarWidth = BGRect.rect.width;
+        }
         if (currPct >= 0)
         {
-            int barWidth = (int)(MinBarWidth + currPct * (MaxBarWidth - MinBarWidth));
-            bar.rectTransform.sizeDelta = new UnityEngine.Vector2((float)(barWidth), bar.rectTransform.sizeDelta.y);
+            // These calculations assume that the bar is fully stretched within the parent object.
+            float barSize = MaxBarWidth - MinBarWidth;
+            float barWidth = (float)(currPct - 1) * barSize;
+
+            rect.sizeDelta = new UnityEngine.Vector2(barWidth, rect.sizeDelta.y);
         }
     }
 
     private void ShowText()
     {
-        if (BarText == null)
+        if (BarText == null || _uiService == null)
         {
             return;
         }

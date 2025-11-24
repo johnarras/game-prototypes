@@ -1,0 +1,10 @@
+{
+  "Id": "crawlercurrencytype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Wood",
+  "Icon": "WoodIcon",
+  "Art": "WoodArt",
+  "CraftingStatTypeId": 13,
+  "SaveTime": "2025-11-18T03:04:02.688Z"
+}

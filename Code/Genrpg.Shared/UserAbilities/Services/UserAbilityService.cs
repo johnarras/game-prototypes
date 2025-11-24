@@ -1,11 +1,6 @@
 ﻿using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.UserAbilities.Settings;
-using Genrpg.Shared.Users.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

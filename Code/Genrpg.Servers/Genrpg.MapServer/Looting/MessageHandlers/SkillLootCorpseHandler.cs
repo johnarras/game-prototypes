@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Core.Entities;
+﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Interactions.Messages;
 using Genrpg.Shared.Crafting.Constants;
 using Genrpg.Shared.Crafting.PlayerData.Crafting;
 using Genrpg.Shared.Crafting.Settings.Crafters;
+using Genrpg.Shared.Interactions.Messages;
+using Genrpg.Shared.Loot.Messages;
 using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.MapMessaging.MessageHandlers;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.MapServer.Looting.MessageHandlers
 {
@@ -67,7 +61,7 @@ namespace Genrpg.MapServer.Looting.MessageHandlers
             string actionName = crafterType.GatherActionName;
             string animName = crafterType.GatherAnimation;
             float gatherSeconds = crafterType.GatherSeconds;
-            int level = looter.Level;
+            long level = looter.Level;
             int skillPoints = 0;
 
             if (looter is Character ch)

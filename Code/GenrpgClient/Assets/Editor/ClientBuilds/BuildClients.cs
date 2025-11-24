@@ -59,8 +59,10 @@ public class BuildClients
         EditorUtility.SetDirty(_configContainer.Config);
         AssetDatabase.SaveAssets();
 
+        Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(appService.DataPath + "/../../../AppConfig/App.config");
+
         BundleVersions currentBundleVersions = CreateAssetBundles.CreateBundles(buildData.ClientPlatform, env, rebuildBundles,
-            rebuildBundles && !selfContainedClient);
+            true);
 
         EditorBuildSettingsScene mainScene = EditorBuildSettings.scenes.FirstOrDefault(x => x.path.IndexOf("MainScene") >= 0);
 
@@ -93,7 +95,6 @@ public class BuildClients
 
 
         ClientBuildVersionSettings.UpdateVersionFile(clientSettings, env);
-        Debug.Log("Version: " + version);
 
         string outputZipFolder = "../../../Build/" + lowerPrefix + "/zips/";
         if (!Directory.Exists(outputZipFolder))
@@ -168,6 +169,12 @@ public class BuildClients
         _configContainer.Config.GameMode = oldGameMode;
         EditorUtility.SetDirty(_configContainer.Config);
         AssetDatabase.SaveAssets();
+
+        Debug.Log("Version: " + version);
+        foreach (string key in kvDict.Keys)
+        {
+            Debug.Log("KV: " + key + " -- " + kvDict[key]);
+        }
 
         Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient} RB: {rebuildBundles}");
 

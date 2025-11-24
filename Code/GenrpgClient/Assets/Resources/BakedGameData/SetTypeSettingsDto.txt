@@ -6,7 +6,6 @@
       "ParentId": "default",
       "IdKey": 1,
       "Name": "",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Art": "",

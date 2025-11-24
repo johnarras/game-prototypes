@@ -1,23 +1,20 @@
+using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Constants;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.PlayerFiltering.Interfaces;
+using Genrpg.Shared.PlayerFiltering.Settings;
 using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
 using System.Linq;
-using Newtonsoft.Json;
-using Genrpg.Shared.PlayerFiltering.Settings;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.GameSettings.Mappers;
 
 namespace Genrpg.Shared.GameSettings.Settings
 {
     [MessagePackObject]
     public class DataOverrideSettings : BaseDataOverrideSettings<DataOverrideGroup>
     {
-        [Key(0)] public override string Id { get; set; } 
+        [Key(0)] public override string Id { get; set; }
     }
 
     [MessagePackObject]
@@ -31,24 +28,25 @@ namespace Genrpg.Shared.GameSettings.Settings
         [Key(4)] public bool Enabled { get; set; } = true;
 
         [Key(5)] public long TotalModSize { get; set; }
-        [Key(6)] public long MaxAcceptableModValue { get; set; }
+        [Key(6)] public long MaxModValue { get; set; }
         [Key(7)] public long Priority { get; set; }
 
-        [Key(8)] public double MinUserDaysSinceInstall { get; set; }
-        [Key(9)] public double MaxUserDaysSinceInstall { get; set; }
+        [Key(8)] public double MinInstallDays { get; set; }
+        [Key(9)] public double MaxInstallDays { get; set; }
         [Key(10)] public long MinLevel { get; set; }
         [Key(11)] public long MaxLevel { get; set; }
         [Key(12)] public long MinPurchaseCount { get; set; }
+        [Key(23)] public long MaxPurchaseCount { get; set; }
         [Key(13)] public double MinPurchaseTotal { get; set; }
+        [Key(24)] public double MaxPurchaseTotal { get; set; }
 
-        [Key(14)] public bool UseDateRange { get; set; }
-        [Key(15)] public DateTime StartDate { get; set; }
-        [Key(16)] public DateTime EndDate { get; set; }
+        [Key(15)] public DateTime StartDate { get; set; } = DateTime.MinValue;
+        [Key(16)] public DateTime EndDate { get; set; } = DateTime.MaxValue;
         [Key(17)] public int RepeatHours { get; set; }
         [Key(18)] public bool RepeatMonthly { get; set; }
 
-        [Key(19)] public string MaxClientVersion { get; set; }
-        [Key(20)] public string MinClientVersion { get; set; }
+        [Key(19)] public string MaxClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
+        [Key(20)] public string MinClientVersion { get; set; } = VersionConstants.MaxVersion.ToString();
 
         [Key(21)] public List<DataOverrideItem> Items { get; set; } = new List<DataOverrideItem>();
         [Key(22)] public List<AllowedPlayer> AllowedPlayers { get; set; } = new List<AllowedPlayer>();

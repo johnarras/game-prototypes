@@ -92,7 +92,7 @@
   "Parent": {
     "Id": "default",
     "Name": "QualityTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-11-24T17:13:23.088Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

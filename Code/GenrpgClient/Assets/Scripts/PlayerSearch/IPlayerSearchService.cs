@@ -1,14 +1,9 @@
 ﻿using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Users.PlayerData;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using UnityEngine.SearchService;
 
 namespace Assets.Scripts.PlayerSearch
 {

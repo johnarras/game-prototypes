@@ -2,5 +2,6 @@
   "Id": "settingsname103default",
   "ParentId": "default",
   "IdKey": 103,
-  "Name": "UserEnergySettings"
+  "Name": "TargetTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

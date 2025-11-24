@@ -9,7 +9,7 @@ namespace Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues
         public string Id { get; set; }
         public string Name { get; set; }
         public string ZoneName { get; set; }
-        public int Level { get; set; }
+        public long Level { get; set; }
     }
 
     public class WhoListResponse : IMapInstanceQueueMessage, IResponseQueueMessage

@@ -2,10 +2,10 @@
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
@@ -20,7 +20,7 @@ namespace Genrpg.Editor.Entities.Core
         public EditorGameData EditorGameData { get; set; }
         public IGameData data { get; set; }
         public MyRandom rand { get; set; } = new MyRandom();
-        public EditorGameState(IServerConfig config): base(config)
+        public EditorGameState(IServerConfig config) : base(config)
         {
             EditorUser = new EditorUser();
         }
@@ -76,7 +76,7 @@ namespace Genrpg.Editor.Entities.Core
 
     public class EditorUser
     {
-        public User User { get; set; }
+        public GameAccount GameAccount { get; set; }
         public List<EditorCharacter> Characters { get; set; }
 
         public EditorUser()

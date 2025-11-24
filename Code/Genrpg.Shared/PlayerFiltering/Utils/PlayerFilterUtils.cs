@@ -13,11 +13,6 @@ namespace Genrpg.Shared.PlayerFiltering.Utils
                 return false;
             }
 
-            if (!filter.UseDateRange)
-            {
-                return true;
-            }
-
             if (currTime < filter.StartDate)
             {
                 return false;

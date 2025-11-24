@@ -1,11 +1,9 @@
 ﻿
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.Utils;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.Core;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.WebApi.CreateChar;
+using Genrpg.Shared.Entities.Constants;
 
 namespace Genrpg.RequestServer.Characters.RequestHandlers
 {
@@ -13,7 +11,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
     {
         protected override async Task InnerHandleMessage(WebContext context, CreateCharRequest request, CancellationToken token)
         {
-            List<CharacterStub> charStubs = await _playerDataService.LoadCharacterStubs(context.user.Id);
+            List<CharacterStub> charStubs = await _playerDataService.LoadCharacterStubs(context.acct.Id);
 
             int nextId = 1;
 
@@ -28,9 +26,9 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
             CoreCharacter coreCh = new CoreCharacter()
             {
-                Id = context.user.Id + "." + nextId,
+                Id = context.acct.Id + "." + nextId,
                 Name = request.Name,
-                UserId = context.user.Id,
+                UserId = context.acct.Id,
                 Level = 1,
                 EntityTypeId = EntityTypes.Unit,
                 EntityId = request.UnitTypeId,

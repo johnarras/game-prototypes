@@ -166,7 +166,7 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
             if (image == null)
             {
-                _logService.Warning($"Missing sprite {spriteName} in Atlas {cont.name}");
+                _logService.Warning($"Missing Image for {spriteName} in Atlas {cont.name}");
                 if (handler != null)
                 {
                     handler(null, image, token);
@@ -180,7 +180,7 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
         public void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token)
         {
-            EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.user, entityTypeId, entityId);
+            EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.ch, entityTypeId, entityId);
 
             if (icon != null && icon.IsValid())
             {

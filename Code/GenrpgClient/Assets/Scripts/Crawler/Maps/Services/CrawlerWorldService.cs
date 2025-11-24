@@ -334,12 +334,12 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         }
 
-        public async Task<int> GetMapLevelAtParty(PartyData party)
+        public async Task<long> GetMapLevelAtParty(PartyData party)
         {
             return await GetMapLevelAtPoint(await GetWorld(party.WorldId), party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z);
         }
 
-        public async Task<int> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
+        public async Task<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
         {
             CrawlerMap map = world.GetMap(mapId);
 

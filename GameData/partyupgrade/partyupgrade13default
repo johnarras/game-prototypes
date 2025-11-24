@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 13,
   "Name": "MemberTalentPoints",
-  "NameId": "",
   "Desc": "Increases the number of member talent points players receive.",
   "Icon": "",
   "Art": "",

@@ -1,9 +1,8 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.Utils;
+﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.WebApi.DeleteChar;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 
 namespace Genrpg.RequestServer.Characters.RequestHandlers
 {
@@ -17,7 +16,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
             {
                 Character ch = new Character(coreCh);
 
-                await _playerDataService.LoadAllPlayerData(context.rand, context.user, ch);
+                await _playerDataService.LoadAllPlayerData(context.rand, context.acct, ch);
                 await _repoService.Delete(coreCh);
 
                 foreach (IUnitData data in ch.GetAllData().Values)
@@ -32,7 +31,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
             DeleteCharResponse response = new DeleteCharResponse()
             {
-                AllCharacters = await _playerDataService.LoadCharacterStubs(context.user.Id),
+                AllCharacters = await _playerDataService.LoadCharacterStubs(context.acct.Id),
             };
 
             context.Responses.AddResponse(response);

@@ -2,30 +2,6 @@
   "Id": "default",
   "Children": [
     {
-      "Id": "derivedstatf53d6a29-b90d-438f-a266-a737def529dadefault",
-      "ParentId": "default",
-      "Name": "DerivedStat",
-      "FromStatTypeId": 15,
-      "ToStatTypeId": 31,
-      "Percent": 100
-    },
-    {
-      "Id": "derivedstat3a84c9ce-c89b-42cc-b579-442944763112default",
-      "ParentId": "default",
-      "Name": "DerivedStat",
-      "FromStatTypeId": 11,
-      "ToStatTypeId": 61,
-      "Percent": 100
-    },
-    {
-      "Id": "derivedstatbc89c1c4-f897-4622-8fed-22a2dfbfc244default",
-      "ParentId": "default",
-      "Name": "DerivedStat",
-      "FromStatTypeId": 15,
-      "ToStatTypeId": 1,
-      "Percent": 1000
-    },
-    {
       "Id": "derivedstat5db38de3-7e10-4b6e-beea-9666e7ebbc5fdefault",
       "ParentId": "default",
       "Name": "DerivedStat",
@@ -34,11 +10,19 @@
       "Percent": 200
     },
     {
-      "Id": "derivedstat7d362341-d91d-4c26-9972-140aba7bb774default",
+      "Id": "derivedstat582788f4-ebb1-40b5-9637-2312a9dcf003default",
       "ParentId": "default",
       "Name": "DerivedStat",
-      "FromStatTypeId": 14,
+      "FromStatTypeId": 12,
       "ToStatTypeId": 22,
+      "Percent": 200
+    },
+    {
+      "Id": "derivedstat3a84c9ce-c89b-42cc-b579-442944763112default",
+      "ParentId": "default",
+      "Name": "DerivedStat",
+      "FromStatTypeId": 11,
+      "ToStatTypeId": 61,
       "Percent": 100
     },
     {
@@ -58,12 +42,28 @@
       "Percent": 100
     },
     {
-      "Id": "derivedstat582788f4-ebb1-40b5-9637-2312a9dcf003default",
+      "Id": "derivedstat7d362341-d91d-4c26-9972-140aba7bb774default",
       "ParentId": "default",
       "Name": "DerivedStat",
-      "FromStatTypeId": 12,
+      "FromStatTypeId": 14,
       "ToStatTypeId": 22,
-      "Percent": 200
+      "Percent": 100
+    },
+    {
+      "Id": "derivedstatf53d6a29-b90d-438f-a266-a737def529dadefault",
+      "ParentId": "default",
+      "Name": "DerivedStat",
+      "FromStatTypeId": 15,
+      "ToStatTypeId": 31,
+      "Percent": 100
+    },
+    {
+      "Id": "derivedstatbc89c1c4-f897-4622-8fed-22a2dfbfc244default",
+      "ParentId": "default",
+      "Name": "DerivedStat",
+      "FromStatTypeId": 15,
+      "ToStatTypeId": 1,
+      "Percent": 1000
     }
   ],
   "Parent": {

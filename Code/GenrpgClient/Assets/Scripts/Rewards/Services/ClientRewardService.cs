@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.UserCoins;
+﻿using Assets.Scripts.ClientEvents.Entities;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
@@ -12,10 +12,10 @@ namespace Assets.Scripts.Rewards.Services
         private IDispatcher _dispatcher;
         public override void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp)
         {
-            if (entityTypeId == EntityTypes.UserCoin && (rp == null || !rp.SkipVisualUpdate))
+            if (entityTypeId == EntityTypes.CoreCurrency && (rp == null || !rp.SkipVisualUpdate))
             {
                 // Use doobers instead?
-                _dispatcher.Dispatch(new AddUserCoinVisual() { InstantUpdate = false, QuantityAdded = diff, UserCoinTypeId = entityId });
+                _dispatcher.Dispatch(new AddEntityQuantityVisual() { EntityTypeId = entityTypeId, InstantUpdate = false, QuantityAdded = diff, EntityId = entityId });
             }
         }
     }

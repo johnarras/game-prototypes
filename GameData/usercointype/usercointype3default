@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype3default",
-  "ParentId": "default",
-  "IdKey": 3,
-  "Name": "Energy",
-  "Icon": "EnergyIcon",
-  "Art": "EnergyArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

@@ -2,5 +2,6 @@
   "Id": "settingsname37default",
   "ParentId": "default",
   "IdKey": 37,
-  "Name": "LootRankSettings"
+  "Name": "DerivedStatSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

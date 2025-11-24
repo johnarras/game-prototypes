@@ -1,4 +1,6 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
@@ -17,6 +19,11 @@ namespace Genrpg.Shared.Purchasing.Settings
 
     public class BridgeSettingsMapper : ParentSettingsMapper<ProductSkuSettings, ProductSku, ProductSkuSettingsDto> { }
 
+
+    public class ProductSkuEntityHelper : BaseEntityHelper<ProductSkuSettings, ProductSku>
+    {
+        public override long Key => EntityTypes.ProductSku;
+    }
 
 
     [MessagePackObject]

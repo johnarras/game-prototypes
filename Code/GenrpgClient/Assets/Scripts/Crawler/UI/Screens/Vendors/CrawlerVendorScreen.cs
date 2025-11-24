@@ -88,7 +88,7 @@ public class CrawlerVendorScreen : ItemIconScreen
 
             int quantity = MathUtils.IntRange(4, 10, _rand);
 
-            int level = await _crawlerWorldService.GetMapLevelAtParty(_party);
+            long level = await _crawlerWorldService.GetMapLevelAtParty(_party);
 
             double quality = _upgradeService.GetPartyBonus(_party, PartyUpgrades.VendorQuality);
 

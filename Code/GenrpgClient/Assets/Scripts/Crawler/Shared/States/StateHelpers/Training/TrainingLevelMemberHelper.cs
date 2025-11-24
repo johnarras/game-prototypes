@@ -106,8 +106,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
                             UnitRole urole = member.Roles.FirstOrDefault(x => x.RoleId == role.IdKey);
 
-                            int currLevel = (urole != null ? urole.Level : 0);
-                            int nextLevel = currLevel + 1;
+                            long currLevel = (urole != null ? urole.Level : 0);
+                            long nextLevel = currLevel + 1;
 
                             stateData.Actions.Add(new CrawlerStateAction($"Train {_infoService.CreateInfoLink(role)} to Level {nextLevel} for {info.Cost} Gold", 'T', ECrawlerStates.TrainingLevelMember,
                                 onClickAction: delegate ()

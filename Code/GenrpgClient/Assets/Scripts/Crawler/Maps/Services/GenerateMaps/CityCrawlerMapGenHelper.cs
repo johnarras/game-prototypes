@@ -335,7 +335,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 dungeonCount = 1;
             }
 
-            int dungeonLevel = map.Level;
+            long dungeonLevel = map.Level;
             while (dungeonCount > 0)
             {
                 if (fillerBuildingPositions.Count < 1)

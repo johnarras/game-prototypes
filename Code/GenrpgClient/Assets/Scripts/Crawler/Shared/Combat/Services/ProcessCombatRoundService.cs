@@ -95,22 +95,22 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     continue;
                 }
 
-                if (unit.Actions.Count < 1)
+                if (unit.CombatActions.Count < 1)
                 {
                     continue;
                 }
 
-                UnitAction currentAction = unit.Actions.FirstOrDefault(x => x.DidCast && x.SpellBeingCast != null &&
+                UnitAction currentAction = unit.CombatActions.FirstOrDefault(x => x.DidCast && x.SpellBeingCast != null &&
                 x.SpellBeingCast.HitsLeft > 0 &&
                 x.FinalTargets.Count > 0);
 
                 if (currentAction == null)
                 {
-                    unit.Actions = unit.Actions.Where(x => !x.DidCast && x.SpellBeingCast == null && x.Spell != null).ToList();
+                    unit.CombatActions = unit.CombatActions.Where(x => !x.DidCast && x.SpellBeingCast == null && x.Spell != null).ToList();
 
-                    if (unit.Actions.Count > 0)
+                    if (unit.CombatActions.Count > 0)
                     {
-                        await _spellService.CastSpell(party, unit.Actions[0], token);
+                        await _spellService.CastSpell(party, unit.CombatActions[0], token);
                     }
                 }
                 else
@@ -248,8 +248,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (CrawlerUnit unit in party.Combat.PartyGroup.Units)
             {
-                if (party.Combat.PartyGroup.Units.Any(x => x.Actions.Count < x.ActionsThisRound ||
-                !unit.Actions.Any(x => x.DidCast)))
+                if (party.Combat.PartyGroup.Units.Any(x => x.CombatActions.Count < x.ActionsThisRound ||
+                !unit.CombatActions.Any(x => x.DidCast)))
                 {
                     continue;
                 }
@@ -267,7 +267,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     }
                 }
 
-                if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Defend))
+                if (unit.CombatActions.Any(x => x.CombatActionId == CombatActions.Defend))
                 {
                     if (unit.DefendRank == EDefendRanks.Guardian)
                     {
@@ -278,7 +278,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         unit.DefendRank = EDefendRanks.Defend;
                     }
                 }
-                else if (unit.Actions.Any(x => x.CombatActionId == CombatActions.Hide))
+                else if (unit.CombatActions.Any(x => x.CombatActionId == CombatActions.Hide))
                 {
                     unit.HideExtraRange += CrawlerCombatConstants.RangeDelta;
                 }

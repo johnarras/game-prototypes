@@ -1,10 +1,5 @@
 ﻿using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.GameSettings.Entities
 {
@@ -20,7 +15,7 @@ namespace Assets.Scripts.GameSettings.Entities
             return base.Get<T>(obj);
         }
 
-        public void SetFilteredObject(IFilteredObject obj)
+        public void SetSettingsObject(IFilteredObject obj)
         {
             _obj = null;
         }

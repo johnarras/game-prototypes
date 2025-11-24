@@ -1,12 +1,11 @@
 ﻿
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 
 public class MainMenuScreen : BaseScreen
 {
-    
+
     public GButton ExitMapButton;
     public GButton LogoutAccountButton;
     public GButton QuitGameButton;
@@ -38,7 +37,7 @@ public class MainMenuScreen : BaseScreen
     {
         _loginService.ExitMap();
     }
-    
+
 
 }
 

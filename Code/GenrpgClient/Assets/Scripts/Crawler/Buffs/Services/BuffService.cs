@@ -37,8 +37,17 @@ namespace Assets.Scripts.Crawler.Buffs.Services
         Task CastAllPartyBuffs(PartyData party, CancellationToken token);
     }
 
+
     public class BuffService : IBuffService
     {
+
+        class BuffCaster
+        {
+            public PartyMember Member { get; set; }
+            public double Power { get; set; }
+            public long Mana { get; set; }
+            public MemberItemSpell ItemSpell { get; set; }
+        }
 
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
@@ -80,7 +89,6 @@ namespace Assets.Scripts.Crawler.Buffs.Services
             List<long> partyRoleIds = partyRoles.Select(x => x.IdKey).Distinct().ToList();
 
             CrawlerSpellSettings spellSettings = new CrawlerSpellSettings();
-
 
             List<PartyBuff> missingBuffs = new List<PartyBuff>();
 
@@ -129,7 +137,11 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
             Dictionary<PartyMember, List<CrawlerSpell>> spellDict = new Dictionary<PartyMember, List<CrawlerSpell>>();
 
-            foreach (PartyMember member in party.GetActiveParty())
+            List<PartyMember> members = party.GetActiveParty();
+
+            members.Reverse();
+
+            foreach (PartyMember member in members)
             {
                 if (_combatService.IsDisabled(member))
                 {
@@ -152,35 +164,31 @@ namespace Assets.Scripts.Crawler.Buffs.Services
                     continue;
                 }
 
-                PartyMember bestCaster = null;
-                MemberItemSpell memberItemSpell = null;
-                double bestPower = 0;
+                List<BuffCaster> casters = new List<BuffCaster>();
 
-                foreach (PartyMember member in spellDict.Keys)
+                BuffCaster currCaster = null;
+
+                foreach (PartyMember member in party.GetActiveParty())
                 {
-                    long mana = member.Stats.Curr(StatTypes.Mana);
+                    currCaster = new BuffCaster()
+                    {
+                        Member = member,
+                        Mana = member.Stats.Curr(StatTypes.Mana),
+                    };
+
+                    casters.Add(currCaster);
 
                     if (spellDict[member].Any(x => x.IdKey == spell.IdKey))
                     {
                         long cost = _spellService.GetPowerCost(party, member, spell);
 
-                        if (cost > mana)
+                        if (cost <= currCaster.Mana)
                         {
-                            continue;
-                        }
-
-                        double power = _roleService.GetSpellScalingLevel(party, member, spell);
-
-                        if (bestCaster == null || power > bestPower)
-                        {
-                            bestCaster = member;
-                            bestPower = power;
-                            memberItemSpell = null;
+                            currCaster.Power = _roleService.GetSpellScalingLevel(party, member, spell);
                         }
                     }
 
                     List<MemberItemSpell> itemSpellStart = _itemService.GetUsableItemsForMember(party, member);
-
 
                     foreach (MemberItemSpell itemSpell in itemSpellStart)
                     {
@@ -191,17 +199,22 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
                         ItemEffect effect = itemSpell.UsableItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.IdKey);
 
-                        if (effect != null && effect.Quantity > bestPower)
+                        if (effect != null && effect.Quantity >= currCaster.Power)
                         {
-                            bestCaster = member;
-                            bestPower = effect.Quantity;
-                            memberItemSpell = itemSpell;
+                            currCaster.ItemSpell = itemSpell;
+                            currCaster.Power = effect.Quantity;
                         }
                     }
                 }
 
-                if (bestCaster != null)
+                List<BuffCaster> orderedCasters =
+                    casters.OrderByDescending(x => x.Power)
+                    .ThenByDescending(x => x.ItemSpell != null ? 1 : 0)
+                    .ThenByDescending(x => x.Mana).ToList();
+
+                if (orderedCasters.Count > 0 && orderedCasters[0].Power > 0)
                 {
+
 
                     float newTier = GetPartyBuffPower(party, pbuff.IdKey);
 
@@ -210,7 +223,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
                         continue;
                     }
 
-                    UnitAction action = _combatService.GetActionFromSpell(party, bestCaster, spell, null, memberItemSpell?.UsableItem ?? null);
+                    UnitAction action = _combatService.GetActionFromSpell(party, orderedCasters[0].Member, spell, null, orderedCasters[0].ItemSpell?.UsableItem ?? null);
 
                     await _spellService.CastSpell(party, action, token);
                     await Awaitable.NextFrameAsync(token);

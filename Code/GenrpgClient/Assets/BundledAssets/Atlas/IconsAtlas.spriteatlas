@@ -52,7 +52,6 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 9c2e1000e79454c4dafc30fd7594c145: 21300000
     - ef7536006280dcc4f918b62fcba2465d: 21300000
-    - 275caa10be87c2f449fbf637d52d2f4d: 21300000
     - c7dfcc10a54474749a941634f2e4d33a: 21300000
     - 9e3f3e105df155a4d9b759bec34dc39c: 21300000
     - 687c1a2031fd9a64a8d53bd88adc46e2: 21300000
@@ -88,6 +87,7 @@ SpriteAtlas:
     - b6063a419e86b6e48960f3566706e302: 21300000
     - 41be1a51149b4914d8feca8b7bf3a7cd: 21300000
     - 2d662d51287f6ad499116eca467d4e02: 21300000
+    - 83b0df51832515a49bf639189935f9cb: 21300000
     - d63077615da06ed4d94ec8ddbb5e771a: 21300000
     - 80687c61aac6c5647972f653aa0a65aa: 21300000
     - b45f8f61764d1e0419fe44d66716b856: 21300000
@@ -477,7 +477,6 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 9c2e1000e79454c4dafc30fd7594c145, type: 3}
   - {fileID: 21300000, guid: ef7536006280dcc4f918b62fcba2465d, type: 3}
-  - {fileID: 21300000, guid: 275caa10be87c2f449fbf637d52d2f4d, type: 3}
   - {fileID: 21300000, guid: c7dfcc10a54474749a941634f2e4d33a, type: 3}
   - {fileID: 21300000, guid: 9e3f3e105df155a4d9b759bec34dc39c, type: 3}
   - {fileID: 21300000, guid: 687c1a2031fd9a64a8d53bd88adc46e2, type: 3}
@@ -513,6 +512,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b6063a419e86b6e48960f3566706e302, type: 3}
   - {fileID: 21300000, guid: 41be1a51149b4914d8feca8b7bf3a7cd, type: 3}
   - {fileID: 21300000, guid: 2d662d51287f6ad499116eca467d4e02, type: 3}
+  - {fileID: 21300000, guid: 83b0df51832515a49bf639189935f9cb, type: 3}
   - {fileID: 21300000, guid: d63077615da06ed4d94ec8ddbb5e771a, type: 3}
   - {fileID: 21300000, guid: 80687c61aac6c5647972f653aa0a65aa, type: 3}
   - {fileID: 21300000, guid: b45f8f61764d1e0419fe44d66716b856, type: 3}
@@ -901,7 +901,6 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - BodyCarapice_001
   - Wand_004
-  - Blank
   - HelmetPlate_005
   - Axe2H_002
   - PantsPlate_002
@@ -937,6 +936,7 @@ SpriteAtlas:
   - GlovesMetal_001
   - Cloak_001
   - Bow_005
+  - Blank
   - BodyEye_001
   - HelmetMetal_003
   - Frame_100

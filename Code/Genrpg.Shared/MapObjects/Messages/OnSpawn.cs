@@ -1,21 +1,19 @@
-using MessagePack;
-
-using System;
-using System.Collections.Generic;
-
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapObjects.Interfaces;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.MapMessages;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Stats.Messages;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spells.Interfaces;
+using Genrpg.Shared.Spells.Settings.Effects;
+using Genrpg.Shared.Stats.Messages;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using MessagePack;
+using System;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.MapObjects.Messages
 {
@@ -40,7 +38,7 @@ namespace Genrpg.Shared.MapObjects.Messages
         [Key(15)] public bool IsPlayer { get; set; }
         [Key(16)] public string TargetId { get; set; }
         [Key(17)] public int TempFlags { get; set; }
-        [Key(18)] public int Level { get; set; }
+        [Key(18)] public long Level { get; set; }
         [Key(19)] public int OverrideZonePercent { get; set; }
         [Key(20)] public AttackerInfo FirstAttacker { get; set; }
         [Key(21)] public List<RewardList> Loot { get; set; }
@@ -49,7 +47,7 @@ namespace Genrpg.Shared.MapObjects.Messages
         [Key(24)] public List<FullStat> Stats { get; set; }
         [Key(25)] public long AddonBits { get; set; }
         public long GetAddonBits() { return AddonBits; }
-        
+
         // Do not send Addons on spawn.
         public List<IMapObjectAddon> GetAddons() { return new List<IMapObjectAddon>(); }
 

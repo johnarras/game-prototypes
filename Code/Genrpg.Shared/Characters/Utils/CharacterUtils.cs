@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Users.Entities;
+﻿using Genrpg.Shared.Characters.PlayerData;
 
 namespace Genrpg.Shared.Characters.Utils
 {

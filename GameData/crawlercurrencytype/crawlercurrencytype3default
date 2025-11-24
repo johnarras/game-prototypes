@@ -1,0 +1,10 @@
+{
+  "Id": "crawlercurrencytype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Cloth",
+  "Icon": "ClothIcon",
+  "Art": "ClothArt",
+  "CraftingStatTypeId": 12,
+  "SaveTime": "2025-11-18T03:04:02.688Z"
+}

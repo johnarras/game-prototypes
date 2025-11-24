@@ -1,14 +1,13 @@
+using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.UI.Entities;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Utils;
-using UnityEngine; 
-using Genrpg.Shared.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
-using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Entities;
+using UnityEngine;
 
 [Serializable]
 public class CullDistanceOverride
@@ -24,7 +23,6 @@ public interface ICameraController : IInitializable
     void BeforeMoveUpdate();
     void AfterMoveUpdate();
     List<Camera> GetAllCameras();
-    void SetupForBoardGame();
 }
 
 public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<ICameraController>, IInitOnResolve
@@ -44,30 +42,30 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
 
     public List<CullDistanceOverride> LayerCullDistanceOverrides;
 
-	private const float CameraDistScale = 1.2f; // 1.5f?
-	private Vector3 StartCameraOffset = new Vector3(0,2.0f,-10.0f)*CameraDistScale;
-	private const float StartCameraDistance = 4.125f*CameraDistScale;
+    private const float CameraDistScale = 1.2f; // 1.5f?
+    private Vector3 StartCameraOffset = new Vector3(0, 2.0f, -10.0f) * CameraDistScale;
+    private const float StartCameraDistance = 4.125f * CameraDistScale;
 
-	protected float CameraHeightAboveGroundTarget = 2.0f;
-	
-	private Vector3 CameraOffset = new Vector3 (0,0.95f,-4.0f)*CameraDistScale;
+    protected float CameraHeightAboveGroundTarget = 2.0f;
+
+    private Vector3 CameraOffset = new Vector3(0, 0.95f, -4.0f) * CameraDistScale;
     private Vector3 OldCameraOffset = new Vector3(0, 0.95f, -4.0f) * CameraDistScale;
     private Vector3 CamPos = Vector3.zero;
-	private Vector3 LookAtPos = Vector3.zero;
+    private Vector3 LookAtPos = Vector3.zero;
 
-	private bool _lockCameraPosition = false;
+    private bool _lockCameraPosition = false;
     private bool _lockOffset = false;
-	private float LockedCameraAngle { get; set; }
-	
-	private float CameraDistance = 0.0f;
-	
-	private const float minHeightAboveTerrain = 2.0f;
-	
-	private  float MinCameraDistance = 10f;
-	private float MaxCameraDistance = 20;
-	private float CameraZoomSpeed = 0.2f;
-	private float CameraZoomScale = 1.1f;
-	private float CameraMoveScale = 1.5f;
+    private float LockedCameraAngle { get; set; }
+
+    private float CameraDistance = 0.0f;
+
+    private const float minHeightAboveTerrain = 2.0f;
+
+    private float MinCameraDistance = 10f;
+    private float MaxCameraDistance = 20;
+    private float CameraZoomSpeed = 0.2f;
+    private float CameraZoomScale = 1.1f;
+    private float CameraMoveScale = 1.5f;
 
     private int _onStairsTicks = 0;
 
@@ -109,7 +107,7 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
 
     int _maxDistance = 100;
 
-    
+
 
     public void SetupCullDistances(int maxDistance = 0)
     {
@@ -134,13 +132,13 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
                 {
                     cullDistances[layerId] = (maxDistance > 0 ? maxDistance : dist.CullDistance);
                 }
-               
+
             }
 
             MainCam.layerCullDistances = cullDistances;
         }
 
-	}
+    }
 
     private Vector3 FixedOffset = Vector3.zero;
 
@@ -155,31 +153,31 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
         _lockOffset = true;
     }
 
-	protected bool button0 = false;
-	protected bool button1 = false;
-	protected Vector3 prevPos = Vector3.zero;
+    protected bool button0 = false;
+    protected bool button1 = false;
+    protected Vector3 prevPos = Vector3.zero;
 
-	protected Camera cam = null;
+    protected Camera cam = null;
 
-	protected float moveScale = 0.0f;
-	protected Vector3 currPos = Vector3.zero;
-	protected Vector3 diffPos = Vector3.zero;
+    protected float moveScale = 0.0f;
+    protected Vector3 currPos = Vector3.zero;
+    protected Vector3 diffPos = Vector3.zero;
     protected int mouseDownTicks = 0;
 
-	protected GameObject player = null;
+    protected GameObject player = null;
 
-	protected float targetCameraDistance = 0.0f;
+    protected float targetCameraDistance = 0.0f;
 
     float scrollWheel = 0;
     float oldDist = 0;
     float newDist = 0;
     float dz = 0;
     float newSpeed = 0;
-    
-	public virtual bool CheckSwitchPlayerObject()
-	{
-		return false;
-	}
+
+    public virtual bool CheckSwitchPlayerObject()
+    {
+        return false;
+    }
 
     public virtual void SetIsOnStairsNow(bool value)
     {
@@ -227,7 +225,7 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
             _onStairsTicks--;
         }
 
-        if (_gs.user == null)
+        if (_gs.acct == null)
         {
             return;
         }
@@ -392,16 +390,16 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
                 beforeCampos *= beforeDistScale;
                 OldCameraOffset = CameraOffset;
                 CameraOffset = beforeCampos;
-                
+
 
                 // Rorate the player to face where the camera is facing and undo the
                 // rotation so the camera keeps facing the same direction
                 if (button1)
                 {
 
-                    beforeDiffPos = player.transform.position -entity.transform.position;
+                    beforeDiffPos = player.transform.position - entity.transform.position;
 
-                    beforeAngle = (float)(Math.Atan2(beforeDiffPos.z, -beforeDiffPos.x) * 180f / Math.PI-90);
+                    beforeAngle = (float)(Math.Atan2(beforeDiffPos.z, -beforeDiffPos.x) * 180f / Math.PI - 90);
 
                     beforeCurrAngle = player.transform.localRotation.eulerAngles.y;
 
@@ -413,7 +411,7 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
                     player.transform.localRotation *= beforeRot;
 
                     CameraOffset = Quaternion.Inverse(beforeRot) * CameraOffset;
-                   
+
                 }
 
             }
@@ -429,13 +427,13 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
         }
 
         UpdateCamera();
-	}
+    }
 
-	public float RescaleMouseMoveDelta(float delta)
-	{
+    public float RescaleMouseMoveDelta(float delta)
+    {
 
-        return delta*Math.Max(0.5f, CameraDistance)*0.50f;
-	}
+        return delta * Math.Max(0.5f, CameraDistance) * 0.50f;
+    }
 
     Vector3 lookAtPos = Vector3.zero;
     Vector3 camPos2 = Vector3.zero;
@@ -460,49 +458,49 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
     bool didHit = false;
 
     public void UpdateCamera()
-	{
-	    player = _playerManager.GetPlayerGameObject();
-		if (player == null || _md.GeneratingMap || MainCam == null)
-		{
-			return;
-		}
+    {
+        player = _playerManager.GetPlayerGameObject();
+        if (player == null || _md.GeneratingMap || MainCam == null)
+        {
+            return;
+        }
 
-        lookAtPos = player.transform.position + new Vector3 (0,CameraHeightAboveGroundTarget,0);
+        lookAtPos = player.transform.position + new Vector3(0, CameraHeightAboveGroundTarget, 0);
 
-		if (_lockCameraPosition)
-		{
-			lookAtPos = LookAtPos;
-		}
+        if (_lockCameraPosition)
+        {
+            lookAtPos = LookAtPos;
+        }
 
         desiredLookAngle = player.transform.eulerAngles.y;
 
-		if (_lockCameraPosition)
-		{
-			desiredLookAngle = LockedCameraAngle;
-		}
-		else
-		{
-			LockedCameraAngle = desiredLookAngle;
-		}
+        if (_lockCameraPosition)
+        {
+            desiredLookAngle = LockedCameraAngle;
+        }
+        else
+        {
+            LockedCameraAngle = desiredLookAngle;
+        }
 
-		lookAtRotation = Quaternion.Euler (0, desiredLookAngle, 0);
-			
-		cameraOffset = Vector3.zero;
+        lookAtRotation = Quaternion.Euler(0, desiredLookAngle, 0);
+
+        cameraOffset = Vector3.zero;
 
         CameraDistance = MathUtils.Clamp(MinCameraDistance, CameraDistance, MaxCameraDistance);
-			
-		if (CameraDistance != 0)
-		{
-			lookRatio = CameraDistance/CameraOffset.magnitude;
-			CameraOffset = CameraOffset*lookRatio;
-		}
-		cameraOffset = CameraOffset;
-        MoveCamera(lookAtPos + lookAtRotation*cameraOffset, lookAtPos);
+
+        if (CameraDistance != 0)
+        {
+            lookRatio = CameraDistance / CameraOffset.magnitude;
+            CameraOffset = CameraOffset * lookRatio;
+        }
+        cameraOffset = CameraOffset;
+        MoveCamera(lookAtPos + lookAtRotation * cameraOffset, lookAtPos);
 
         camPos2 = MainCam.transform.position;
-		terrainHeightAtCamera = _terrainManager.SampleHeight(camPos2.x, camPos2.z);
+        terrainHeightAtCamera = _terrainManager.SampleHeight(camPos2.x, camPos2.z);
 
-        camDist = Vector3.Distance(lookAtPos, MainCam.transform.position)+1.0f;
+        camDist = Vector3.Distance(lookAtPos, MainCam.transform.position) + 1.0f;
         camYPos = MainCam.transform.position.y;
 
         didHit = Physics.Raycast(lookAtPos, MainCam.transform.position - lookAtPos,
@@ -549,7 +547,7 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
     Camera lookCam = null;
     public void MoveCamera(Vector3 camPos, Vector3 lookAtPos)
     {
-        for (int c =0; c < Cameras.Count; c++)
+        for (int c = 0; c < Cameras.Count; c++)
         {
             lookCam = Cameras[c];
             lookCam.transform.position = camPos;

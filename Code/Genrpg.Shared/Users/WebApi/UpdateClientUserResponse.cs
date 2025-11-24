@@ -9,6 +9,6 @@ namespace Genrpg.Shared.Users.WebApi
     [MessagePackObject]
     public class UpdateClientUserResponse : IWebResponse
     {
-        [Key(0)] public int Level { get; set; }
+        [Key(0)] public long Level { get; set; }
     }
 }

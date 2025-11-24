@@ -3,13 +3,11 @@ using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.RequestServer.Purchasing.ValidationHelpers;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.Purchasing.Constants;
 using Genrpg.Shared.Purchasing.PlayerData;
@@ -18,7 +16,6 @@ using Genrpg.Shared.Purchasing.WebApi.InitializePurchase;
 using Genrpg.Shared.Purchasing.WebApi.ValidatePurchase;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Time.Services;
-using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
 using MongoDB.Driver;
@@ -27,7 +24,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 {
     public interface IServerPurchasingService : IInitializable
     {
-        Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh, CancellationToken token);
+        Task<PlayerStoreOfferData> GetCurrentStores(WebContext context, IFilteredObject user, bool forceRefresh, CancellationToken token);
         Task InitiatePurchase(WebContext context, InitiatePurchaseRequest request, CancellationToken token);
         Task ValidatePurchase(WebContext context, ValidatePurchaseRequest request, CancellationToken token);
         Task RetryFailedValidation(WebContext context, CancellationToken token);
@@ -38,7 +35,6 @@ namespace Genrpg.RequestServer.Purchasing.Services
         protected IRepositoryService _repoService = null;
         private IGameData _gameData = null;
         private IGameDataService _gameDataService = null;
-        private ILogService _logService = null;
         private ICryptoService _cryptoService = null;
         private ITimeService _timeService = null;
 
@@ -50,14 +46,14 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             CreateIndexData data = new CreateIndexData();
             data.Configs.Add(new IndexConfig() { MemberName = nameof(CompletedPurchaseData.ReceiptHash) });
-            await _repoService.CreateIndex<Account>(data);
+            await _repoService.CreateIndex<CompletedPurchaseData>(data);
         }
 
         #region GetStores
-        public async Task<PlayerStoreOfferData> GetCurrentStores(User user, bool forceRefresh, CancellationToken token)
+        public async Task<PlayerStoreOfferData> GetCurrentStores(WebContext context, IFilteredObject user, bool forceRefresh, CancellationToken token)
         {
 
-            PlayerStoreOfferData storeOfferData = await _repoService.Load<PlayerStoreOfferData>(user.Id);
+            PlayerStoreOfferData storeOfferData = await context.GetAsync<PlayerStoreOfferData>();
 
             if (storeOfferData == null)
             {
@@ -92,13 +88,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             storeOfferData.StoreOffers.Clear();
 
-            PurchaseHistoryData historyData = await _repoService.Load<PurchaseHistoryData>(user.Id);
-
-            if (historyData == null)
-            {
-                historyData = new PurchaseHistoryData() { Id = user.Id };
-                await _repoService.Save(historyData);
-            }
+            PurchaseHistoryData historyData = await context.GetAsync<PurchaseHistoryData>();
 
             foreach (StoreOffer offer in storeOffers)
             {
@@ -119,15 +109,12 @@ namespace Genrpg.RequestServer.Purchasing.Services
             storeOfferData.GameDataSaveTime = versionSettings.SaveTime;
             storeOfferData.LastTimeSet = currentTime;
 
-            await _repoService.Save(storeOfferData);
-
             return storeOfferData;
         }
 
         private PlayerStoreOffer CreatePlayerStoreOffer(IFilteredObject user, StoreOffer storeOffer)
         {
             ProductSkuSettings productSkuSettings = _gameData.Get<ProductSkuSettings>(user);
-            StoreRewardsSettings storeRewardSettings = _gameData.Get<StoreRewardsSettings>(user);
             StoreFeatureSettings storeFeatureSettings = _gameData.Get<StoreFeatureSettings>(user);
             StoreSlotSettings slotSettings = _gameData.Get<StoreSlotSettings>(user);
             StoreSlot slot = slotSettings.Get(storeOffer.StoreSlotId);
@@ -163,10 +150,9 @@ namespace Genrpg.RequestServer.Purchasing.Services
             for (int p = 0; p < bundleSet.Bundles.Count; p++)
             {
                 StoreBundle storeBundle = bundleSet.Bundles[p];
-                StoreRewards rewards = storeRewardSettings.Get(storeBundle.StoreRewardsId);
                 ProductSku sku = productSkuSettings.Get(storeBundle.ProductSkuId);
 
-                if (rewards != null && sku != null)
+                if (storeBundle.Rewards != null && storeBundle.Rewards.Count > 0 && sku != null)
                 {
                     PlayerBundle playerBundle = new PlayerBundle()
                     {
@@ -176,7 +162,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
                         BundleId = storeBundle.BundleId
                     };
 
-                    playerBundle.Rewards = new List<Reward>(rewards.Rewards);
+                    playerBundle.Rewards = new List<Reward>(storeBundle.Rewards);
 
                     playerStoreOffer.Bundles.Add(playerBundle);
                 }
@@ -455,21 +441,18 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
                         if (bundle != null)
                         {
-                            StoreRewards storeRewards = _gameData.Get<StoreRewardsSettings>(context.user).Get(bundle.StoreRewardsId);
-
-
                             ProductSku sku = _gameData.Get<ProductSkuSettings>(context.user).Get(bundle.ProductSkuId);
 
                             if (sku != null)
                             {
                                 productId = GetProductIdFromPlatform(sku, request.Platform);
 
-                                if (storeRewards != null)
+                                if (bundle.Rewards != null && bundle.Rewards.Count > 0)
                                 {
                                     offerId = offer.OfferId;
                                     bundleId = bundle.BundleId;
                                     uniqueId = "Recovery";
-                                    rewards = storeRewards.Rewards.ToList();
+                                    rewards = bundle.Rewards.ToList();
                                 }
                             }
                         }
@@ -508,8 +491,6 @@ namespace Genrpg.RequestServer.Purchasing.Services
         private async Task ValidatePurchaseInternal(WebContext context, string offerId, string bundleId, string uniqueId, string productId, string receiptData, EPurchasePlatforms platform,
             List<Reward> rewards, CancellationToken token)
         {
-
-
             string hashedReceipt = _cryptoService.SlowHash(receiptData);
 
             CurrentPurchaseData currentPurchase = await context.GetAsync<CurrentPurchaseData>();
@@ -540,7 +521,6 @@ namespace Genrpg.RequestServer.Purchasing.Services
                 return;
             }
 
-
             await GiveRewards(context, rewards, token);
 
             currentPurchase.State = ECurrentPurchaseStates.Validated;
@@ -549,8 +529,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             currentPurchase.Clear();
 
-
-            await GetCurrentStores(context.user, true, token);
+            await GetCurrentStores(context, context.user, true, token);
             await Task.CompletedTask;
         }
 

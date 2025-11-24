@@ -1,10 +1,7 @@
-﻿using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
+﻿using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Names;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Entities.Interfaces
 {

@@ -1,0 +1,59 @@
+﻿using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Options.Services;
+using Assets.Scripts.UI.Abstractions;
+using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.States.Services;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Assets.Scripts.Options
+{
+    public class ClientOptionsScreen : BaseScreen
+    {
+        protected IAudioService _audioService = null;
+        protected ICrawlerService _crawlerService = null;
+        protected IClientOptionsService _optionsService = null;
+
+        public GToggle FullScreenToggle;
+
+        public GSlider MusicVolumeSlider;
+        public GSlider SoundVolumeSlider;
+        public GSlider AmbientVolumeSlider;
+        public GSlider TextScrollSpeedSlider;
+
+        protected override async Task OnStartOpen(object data, CancellationToken token)
+        {
+
+            Dictionary<EAudioCategories, GSlider> audioSliders = new Dictionary<EAudioCategories, GSlider>();
+
+            audioSliders[EAudioCategories.Sound] = SoundVolumeSlider;
+            audioSliders[EAudioCategories.Music] = MusicVolumeSlider;
+            audioSliders[EAudioCategories.Ambient] = AmbientVolumeSlider;
+
+            foreach (EAudioCategories category in audioSliders.Keys)
+            {
+                _uiService.SetSlider(audioSliders[category],
+                    AudioConstants.MinVolume, AudioConstants.MaxVolume, _audioService.GetVolume(category),
+                    (float value) => { _audioService.SetVolume(category, value); });
+            }
+
+            _uiService.SetSlider(TextScrollSpeedSlider, 1, CrawlerCombatConstants.ScrollingFramesValues.Length,
+            _crawlerService.GetParty()?.ScrollFramesIndex ?? 1, (float newValue) =>
+            {
+                if (_crawlerService.GetParty() != null)
+                {
+                    _crawlerService.GetParty().ScrollFramesIndex = (int)newValue;
+                }
+            });
+
+            await Task.CompletedTask;
+        }
+
+        protected override void OnStartClose()
+        {
+            _optionsService.SaveOptions();
+            base.OnStartClose();
+        }
+    }
+}

@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: BundleList
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Assets.Bundles.BundleList
   Bundles:
+  - BundleName: atlascorecurrencytypeicons
+    IsLocal: 0
   - BundleName: atlascrawlercombat
+    IsLocal: 0
+  - BundleName: atlascrawlercurrencytypeicons
     IsLocal: 0
   - BundleName: atlascrawlerminimap
     IsLocal: 0
@@ -27,9 +31,13 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: atlasskillicons
     IsLocal: 0
+  - BundleName: atlasstatuseffecticons
+    IsLocal: 0
+  - BundleName: atlastraderui
+    IsLocal: 0
   - BundleName: atlasui
     IsLocal: 0
-  - BundleName: atlasusercointypeicons
+  - BundleName: audioacidhit
     IsLocal: 0
   - BundleName: audioarcanehit
     IsLocal: 0
@@ -57,9 +65,15 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: audiolighthit
     IsLocal: 0
+  - BundleName: audiomeleehit
+    IsLocal: 0
   - BundleName: audiomonsterhit
     IsLocal: 0
+  - BundleName: audionaturehit
+    IsLocal: 0
   - BundleName: audiophysicalhit
+    IsLocal: 0
+  - BundleName: audiorangedhit
     IsLocal: 0
   - BundleName: audioshadowhit
     IsLocal: 0
@@ -117,6 +131,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: bushesthistle
     IsLocal: 0
+  - BundleName: combatacidcombathit
+    IsLocal: 0
   - BundleName: combatarcanecombathit
     IsLocal: 0
   - BundleName: combatbasecombathit
@@ -133,9 +149,13 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: combatlightcombathit
     IsLocal: 0
+  - BundleName: combatmeleecombathit
+    IsLocal: 0
   - BundleName: combatnaturecombathit
     IsLocal: 0
   - BundleName: combatphysicalcombathit
+    IsLocal: 0
+  - BundleName: combatrangedcombathit
     IsLocal: 0
   - BundleName: combatshadowcombathit
     IsLocal: 0
@@ -683,6 +703,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: propsherbnode
     IsLocal: 0
+  - BundleName: propslevelmap
+    IsLocal: 0
   - BundleName: propsmapmod
     IsLocal: 0
   - BundleName: propsmetalnode
@@ -725,11 +747,11 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: rocksrockswamp
     IsLocal: 0
-  - BundleName: storesdefault
+  - BundleName: storesdefaultstoreartpanel
     IsLocal: 0
-  - BundleName: storesgems
+  - BundleName: storesgemsstoreartpanel
     IsLocal: 0
-  - BundleName: storesgreen
+  - BundleName: storesgreenstoreartpanel
     IsLocal: 0
   - BundleName: terraintexcobblea
     IsLocal: 0
@@ -955,9 +977,13 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: texturelistsassassin
     IsLocal: 0
+  - BundleName: texturelistsautoheal
+    IsLocal: 0
   - BundleName: texturelistsbadlands
     IsLocal: 0
   - BundleName: texturelistsbarbarian
+    IsLocal: 0
+  - BundleName: texturelistsbarrier
     IsLocal: 0
   - BundleName: texturelistsbasemonster
     IsLocal: 0
@@ -1000,6 +1026,8 @@ MonoBehaviour:
   - BundleName: texturelistscrab
     IsLocal: 0
   - BundleName: texturelistscrocodile
+    IsLocal: 0
+  - BundleName: texturelistscursedarrows
     IsLocal: 0
   - BundleName: texturelistscyclops
     IsLocal: 0
@@ -1113,11 +1141,15 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: texturelistsorc
     IsLocal: 0
+  - BundleName: texturelistsparry
+    IsLocal: 0
   - BundleName: texturelistspointofinterest
     IsLocal: 0
   - BundleName: texturelistsrat
     IsLocal: 0
   - BundleName: texturelistsreddragon
+    IsLocal: 0
+  - BundleName: texturelistsretaliation
     IsLocal: 0
   - BundleName: texturelistsroad
     IsLocal: 0
@@ -1377,6 +1409,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uiblockers
     IsLocal: 0
+  - BundleName: uicaravan
+    IsLocal: 0
   - BundleName: uicharacters
     IsLocal: 0
   - BundleName: uicharms
@@ -1400,6 +1434,8 @@ MonoBehaviour:
   - BundleName: uicrawlerinfo
     IsLocal: 0
   - BundleName: uicrawleritems
+    IsLocal: 0
+  - BundleName: uicrawlermembers
     IsLocal: 0
   - BundleName: uicrawlerparty
     IsLocal: 0
@@ -1433,9 +1469,7 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uimarkers
     IsLocal: 0
-  - BundleName: uimobilehud
-    IsLocal: 0
-  - BundleName: uinewcrawlergamescreen
+  - BundleName: uioptions
     IsLocal: 0
   - BundleName: uiquests
     IsLocal: 0
@@ -1451,37 +1485,7 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uitrade
     IsLocal: 0
-  - BundleName: uiunits
-    IsLocal: 0
-  - BundleName: uizones
-    IsLocal: 0
-  - BundleName: texturelistsautoheal
-    IsLocal: 0
-  - BundleName: texturelistsbarrier
-    IsLocal: 0
-  - BundleName: textureliststhorns
-    IsLocal: 0
-  - BundleName: combatacidcombathit
-    IsLocal: 0
-  - BundleName: combatmeleecombathit
-    IsLocal: 0
-  - BundleName: combatrangedcombathit
-    IsLocal: 0
-  - BundleName: texturelistscurrsedarrows
-    IsLocal: 0
-  - BundleName: texturelistsparrybuff
-    IsLocal: 0
-  - BundleName: texturelistsretaliation
-    IsLocal: 0
-  - BundleName: texturelistscursedarrows
-    IsLocal: 0
-  - BundleName: texturelistsparry
-    IsLocal: 0
-  - BundleName: atlascrawlercurrencytypeicons
-    IsLocal: 0
-  - BundleName: uiboardgamehud
-    IsLocal: 0
-  - BundleName: uicaravan
+  - BundleName: uitrader
     IsLocal: 0
   - BundleName: uitraderhud
     IsLocal: 0
@@ -1489,29 +1493,11 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uitradermap
     IsLocal: 0
-  - BundleName: atlasstatuseffecticons
+  - BundleName: uiunits
     IsLocal: 0
-  - BundleName: atlastraderui
+  - BundleName: uizones
     IsLocal: 0
-  - BundleName: uitrader
+  - BundleName: storesmanastoreartpanel
     IsLocal: 0
-  - BundleName: audiomeleehit
-    IsLocal: 0
-  - BundleName: audiorangedhit
-    IsLocal: 0
-  - BundleName: storesdefaultstoreartpanel
-    IsLocal: 0
-  - BundleName: storesgemsstoreartpanel
-    IsLocal: 0
-  - BundleName: storesgreenstoreartpanel
-    IsLocal: 0
-  - BundleName: uicrawlermember
-    IsLocal: 0
-  - BundleName: uicrawlermembers
-    IsLocal: 0
-  - BundleName: audionaturehit
-    IsLocal: 0
-  - BundleName: audioacidhit
-    IsLocal: 0
-  - BundleName: propslevelmap
+  - BundleName: storessuppliesstoreartpanel
     IsLocal: 0

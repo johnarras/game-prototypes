@@ -72,6 +72,7 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public double StatBuffPowerCost { get; set; }
         [Key(2)] public double StatBuffPowerPerLevel { get; set; }
+
     }
 
     public class CrawlerSpellSettingsDto : ParentSettingsDto<CrawlerSpellSettings, CrawlerSpell> { }

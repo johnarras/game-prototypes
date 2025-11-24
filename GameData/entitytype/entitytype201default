@@ -2,5 +2,8 @@
   "Id": "entitytype201default",
   "ParentId": "default",
   "IdKey": 201,
-  "Name": "UserCoinRewardMult"
+  "Name": "BaseCoreCurrencyRegen",
+  "Icon": "BaseCoreCurrencyRegen",
+  "Art": "BaseCoreCurrencyRegen",
+  "SaveTime": "2025-11-20T20:57:53.925Z"
 }

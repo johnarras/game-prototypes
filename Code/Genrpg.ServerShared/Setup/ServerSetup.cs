@@ -12,7 +12,7 @@ namespace Genrpg.ServerShared.Setup
 {
     public class ServerSetup
     {
-        public async Task<GS> SetupFromConfig<GS, TSetupService>(object currentObject, string serverId, CancellationToken token, IServerConfig serverConfigIn = null) 
+        public async Task<GS> SetupFromConfig<GS, TSetupService>(object currentObject, string serverId, CancellationToken token, IServerConfig serverConfigIn = null)
             where GS : ServerGameState
             where TSetupService : SetupService
         {
@@ -32,13 +32,13 @@ namespace Genrpg.ServerShared.Setup
                 }
 
                 GS gs = (GS)Activator.CreateInstance(typeof(GS), new object[] { config });
-                TSetupService setupService = (TSetupService) Activator.CreateInstance(typeof(TSetupService));
+                TSetupService setupService = (TSetupService)Activator.CreateInstance(typeof(TSetupService));
                 await setupService.SetupGame(gs.loc, token);
+
+                gs.loc.Resolve(currentObject);
 
                 IGameDataService gameDataService = gs.loc.Get<IGameDataService>();
                 IGameData gameData = await gameDataService.LoadGameData(setupService.CreateMissingGameData());
-
-                gs.loc.Resolve(currentObject);
 
                 return gs;
             }

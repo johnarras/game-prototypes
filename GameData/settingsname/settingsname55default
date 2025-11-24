@@ -2,5 +2,6 @@
   "Id": "settingsname55default",
   "ParentId": "default",
   "IdKey": 55,
-  "Name": "SetTypeSettings"
+  "Name": "LootRankSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

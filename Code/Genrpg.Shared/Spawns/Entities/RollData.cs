@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Spawns.Entities
     // MessagePackIgnore  
     public class RollData
     {
-        public int Level = 0;
+        public long Level = 0;
         public long QualityTypeId = 0;
         public int Times = 1;
         public int Depth = 0;

@@ -78,7 +78,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
             List<IUnitData> serverDataList = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, ch);
 
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, ch, true, token);
 
             List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(context.user, serverDataList);
 
@@ -107,7 +107,8 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                     Stores = offerData,
                 };
 
-                context.user.CurrCharId = coreCh.Id;
+                context.acct.CurrCharId = coreCh.Id;
+                context.Set(context.acct);
 
                 context.Responses.AddResponse(loadResponse);
 

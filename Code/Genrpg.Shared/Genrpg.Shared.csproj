@@ -8,12 +8,15 @@
     <Compile Remove="Currencies\Messages\**" />
     <Compile Remove="MapMessages\Messages\**" />
     <Compile Remove="Spells\Loaders\**" />
+    <Compile Remove="Trader\Caravans\Settings\**" />
     <EmbeddedResource Remove="Currencies\Messages\**" />
     <EmbeddedResource Remove="MapMessages\Messages\**" />
     <EmbeddedResource Remove="Spells\Loaders\**" />
+    <EmbeddedResource Remove="Trader\Caravans\Settings\**" />
     <None Remove="Currencies\Messages\**" />
     <None Remove="MapMessages\Messages\**" />
     <None Remove="Spells\Loaders\**" />
+    <None Remove="Trader\Caravans\Settings\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +29,7 @@
     <Folder Include="Chests\Services\" />
     <Folder Include="Inventory\Settings\Slots\" />
     <Folder Include="TimedEvents\NewFolder\" />
-    <Folder Include="Trader\Caravans\Settings\" />
+    <Folder Include="CoreCurrencies\RewardHelpers\" />
     <Folder Include="UserAbilities\Constants\" />
   </ItemGroup>
 

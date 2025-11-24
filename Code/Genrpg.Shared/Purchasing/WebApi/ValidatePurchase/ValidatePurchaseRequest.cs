@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Purchasing.WebApi.ValidatePurchase
         [Key(1)] public string BundleId { get; set; }
         [Key(2)] public string UniqueId { get; set; }
         [Key(3)] public string ReceiptData { get; set; }
-        [Key(5)] public EPurchasePlatforms Platform { get; set; }
+        [Key(4)] public EPurchasePlatforms Platform { get; set; }
 
     }
 }

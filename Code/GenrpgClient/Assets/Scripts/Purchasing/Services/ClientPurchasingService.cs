@@ -183,11 +183,11 @@ namespace Assets.Scripts.Purchasing.Services
 
         private async Task<CurrentPurchaseData> LoadCurrentPurchaseData()
         {
-            CurrentPurchaseData data = await _repoService.Load<CurrentPurchaseData>(_gs.user.Id);
+            CurrentPurchaseData data = await _repoService.Load<CurrentPurchaseData>(_gs.acct.Id);
 
             if (data == null)
             {
-                data = new CurrentPurchaseData() { Id = _gs.user.Id };
+                data = new CurrentPurchaseData() { Id = _gs.acct.Id };
             }
             return data;
         }
@@ -310,7 +310,7 @@ namespace Assets.Scripts.Purchasing.Services
 
             if (initiateResponse.ProductId != clientProduct.Product.definition.id)
             {
-                purchaseData = new CurrentPurchaseData() { Id = _gs.user.Id };
+                purchaseData = new CurrentPurchaseData() { Id = _gs.acct.Id };
                 await SaveCurrentPurchaseData(purchaseData);
                 ShowErrorResponse("Product Id does not match with the server.");
                 return;

@@ -2,5 +2,6 @@
   "Id": "settingsname24default",
   "ParentId": "default",
   "IdKey": 24,
-  "Name": "EntitySettings"
+  "Name": "CrawlerItemSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

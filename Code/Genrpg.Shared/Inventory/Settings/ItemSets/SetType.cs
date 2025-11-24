@@ -1,9 +1,9 @@
-using MessagePack;
-using Genrpg.Shared.Interfaces;
-using System.Collections.Generic;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Spells.Casting;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Spells.Casting;
+using Genrpg.Shared.Stats.Entities;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Inventory.Settings.ItemSets
 {
@@ -15,7 +15,6 @@ namespace Genrpg.Shared.Inventory.Settings.ItemSets
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string NameId { get; set; }
         [Key(5)] public string Desc { get; set; }
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }

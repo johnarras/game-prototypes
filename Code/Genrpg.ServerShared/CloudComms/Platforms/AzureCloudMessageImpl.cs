@@ -1,25 +1,25 @@
-﻿using Azure.Messaging.ServiceBus.Administration;
-using Azure.Messaging.ServiceBus;
+﻿using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
+using Genrpg.ServerShared.CloudComms.Constants;
+using Genrpg.ServerShared.CloudComms.Platforms.PubSub;
+using Genrpg.ServerShared.CloudComms.PubSub.Constants;
+using Genrpg.ServerShared.CloudComms.PubSub.Entities;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin;
+using Genrpg.ServerShared.CloudComms.Queues.Entities;
+using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.DataStores.Constants;
 using Genrpg.ServerShared.Secrets.Services;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
-using Genrpg.ServerShared.CloudComms.Queues.Entities;
-using System.Collections.Generic;
-using Genrpg.ServerShared.CloudComms.Constants;
-using Genrpg.Shared.Utils;
-using System.Text;
-using Genrpg.ServerShared.CloudComms.PubSub.Entities;
-using Genrpg.ServerShared.CloudComms.Services;
-using System.Collections.Concurrent;
-using Genrpg.Shared.Interfaces;
-using Genrpg.ServerShared.CloudComms.PubSub.Constants;
-using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin;
-using Genrpg.ServerShared.CloudComms.Platforms.PubSub;
-using Genrpg.Shared.Tasks.Services;
 
 namespace Genrpg.ServerShared.CloudComms.Platforms
 {
@@ -42,7 +42,7 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
         private ITaskService _taskService = null;
 
         private string _env;
-        private string _serverId;       
+        private string _serverId;
         private CancellationToken _token = CancellationToken.None;
 
         // Core ServiceBus
@@ -62,7 +62,16 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
 
         public void Dispose()
         {
+
             _serviceBusClient?.DisposeAsync();
+
+            foreach (ServiceBusSender sender in _queueSenders.Values)
+            {
+                sender.DisposeAsync();
+            }
+
+            _queueSenders.Clear();
+
         }
 
         public async Task Init(IServiceLocator loc, IServerConfig config, ILogService logService, ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, CancellationToken token)
@@ -71,7 +80,7 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
             _logService = logService;
             _secretsProvider = secretsProvider;
             _serializer = serializer;
-            _taskService= taskService;  
+            _taskService = taskService;
             _loc = loc;
             _token = token;
             _config = config;
@@ -184,7 +193,10 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
                 _queueSenders[envelope.ToServerId] = sender;
             }
 
-            ServiceBusMessage serviceBusMessage = new ServiceBusMessage(_serializer.SerializeToString(envelope));
+            ServiceBusMessage serviceBusMessage = new ServiceBusMessage(_serializer.SerializeToString(envelope))
+            {
+                TimeToLive = TimeSpan.FromSeconds(CloudCommsConstants.MessageTtlSeconds)
+            };
             _taskService.ForgetTask(sender.SendMessageAsync(serviceBusMessage), false);
 
         }

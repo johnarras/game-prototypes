@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Interfaces;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -43,7 +42,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             }
             else
             {
-                stateData = new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Failed to start combat.",};
+                stateData = new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Failed to start combat.", };
             }
 
             await Task.CompletedTask;

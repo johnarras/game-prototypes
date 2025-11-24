@@ -3,9 +3,8 @@ using Assets.Scripts.PlayerSearch;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Users.PlayerData;
 
 public class CharacterPlayButton : BaseBehaviour
 {
@@ -30,7 +29,7 @@ public class CharacterPlayButton : BaseBehaviour
 
     public void ClickPlay()
     {
-        _playerSearchService.AccountSearch(_gs.user.Id,
+        _playerSearchService.AccountSearch(_gs.acct.Id,
            (PublicAccount acct) =>
            {
                if (acct != null)
@@ -44,7 +43,7 @@ public class CharacterPlayButton : BaseBehaviour
            },
            GetToken());
 
-        _playerSearchService.UserSearch(_gs.user.Id,
+        _playerSearchService.UserSearch(_gs.acct.Id,
               (PublicUser user) =>
               {
                   if (user != null)
@@ -74,7 +73,7 @@ public class CharacterPlayButton : BaseBehaviour
             GetToken());
 
 
-        LoadIntoMapRequest lwd = new LoadIntoMapRequest() { Env= _config.Config.Env, MapId = _mapId, CharId = _charId, GenerateMap = false };
+        LoadIntoMapRequest lwd = new LoadIntoMapRequest() { Env = _config.Config.Env, MapId = _mapId, CharId = _charId, GenerateMap = false };
         _zoneGenService.LoadMap(lwd);
     }
 }

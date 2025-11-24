@@ -1,6 +1,4 @@
-﻿
-using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Client.Assets.Constants;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Threading;
@@ -17,8 +15,6 @@ public class InitSpellIconData : DragItemInitData<Spell, SpellIcon, SpellIconScr
 
 public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIconData>
 {
-
-    protected ISpriteService _spriteService = null;
 
     public GImage Icon;
 

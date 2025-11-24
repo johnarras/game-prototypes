@@ -2,5 +2,6 @@
   "Id": "settingsname98default",
   "ParentId": "default",
   "IdKey": 98,
-  "Name": "RewardSourceSettings"
+  "Name": "StoreBundleSetSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

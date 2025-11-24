@@ -1,7 +1,7 @@
 using MessagePack;
 using System;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Genrpg.Shared.Utils
 {
@@ -13,29 +13,29 @@ namespace Genrpg.Shared.Utils
             return Guid.NewGuid().ToString(); // only spot we should use this method
         }
 
-        private static List<char> _idChars = null;
-        public static List<char> GetIdChars()
+        private static char[] _base58Chars = null;
+        public static char[] GetBase58Chars()
         {
-            if (_idChars != null)
+            if (_base58Chars != null)
             {
-                return _idChars;
+                return _base58Chars;
             }
             List<char> retval = new List<char>();
             for (int i = 0; i < 128; i++)
             {
                 char c = (char)i;
-                if (char.IsLetterOrDigit(c))
+                if (char.IsLetterOrDigit(c) && c != '0' && c != 'O' && c != 'l' && c != 'I')
                 {
                     retval.Add(c);
                 }
             }
-            _idChars = retval;
-            return _idChars;
+            _base58Chars = retval.ToArray();
+            return _base58Chars;
         }
 
         public static string GetIdFromVal(long val)
         {
-            List<char> idChars = GetIdChars();
+            char[] idChars = GetBase58Chars();
 
             StringBuilder sb = new StringBuilder();
 
@@ -43,8 +43,8 @@ namespace Genrpg.Shared.Utils
 
             while (idval > 0)
             {
-                sb.Append(idChars[(int)(idval % idChars.Count)]);
-                idval /= idChars.Count;
+                sb.Append(idChars[(int)(idval % idChars.Length)]);
+                idval /= idChars.Length;
             }
             return sb.ToString();
         }

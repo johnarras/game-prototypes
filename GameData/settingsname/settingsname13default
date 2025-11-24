@@ -2,5 +2,6 @@
   "Id": "settingsname13default",
   "ParentId": "default",
   "IdKey": 13,
-  "Name": "CrawlerCombatSettings"
+  "Name": "CitySettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

@@ -282,8 +282,8 @@ public class ClientWebService : IClientWebService
 
             WebServerRequestSet requestSet = new WebServerRequestSet()
             {
-                UserId = _gs?.user?.Id ?? null,
-                SessionId = _gs?.user?.SessionId ?? null,
+                UserId = _gs?.acct?.Id ?? null,
+                SessionId = _gs?.acct?.SessionId ?? null,
             };
 
             List<CancellationToken> allTokens = _pending.Select(x => x.Token).Distinct().ToList();

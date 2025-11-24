@@ -1,5 +1,4 @@
 using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -21,6 +20,21 @@ namespace Genrpg.Shared.Core.Entities
     // MessagePackIgnore
     public class ServiceLocator : IServiceLocator
     {
+
+
+        private Dictionary<Type, TypeFieldInfo> _fieldCache = new Dictionary<Type, TypeFieldInfo>();
+        public class TypeFieldInfo
+        {
+            public bool InitOnResolve { get; set; }
+            public List<TypeField> Fields = new List<TypeField>();
+        }
+
+        public class TypeField
+        {
+            public FieldInfo Field { get; set; }
+            public object Value { get; set; }
+            public bool InitOnResolve { get; set; }
+        }
 
         public ServiceLocator(ITextSerializer serializer, ILogService logService, IAnalyticsService analyticsService, IGameData gameData)
         {
@@ -168,25 +182,55 @@ namespace Genrpg.Shared.Core.Entities
             _nameDict[interfaceType.Name] = inj;
         }
 
+        string serviceTypeName = typeof(IInjectable).Name;
+        string serviceLocatorTypeName = typeof(IServiceLocator).Name;
+        string initOnResolveTypeName = typeof(IInitOnResolve).Name;
+
+        private void ResolveFromFieldCache(object obj, TypeFieldInfo tfi)
+        {
+            foreach (TypeField tf in tfi.Fields)
+            {
+                if (tf.Value != null)
+                {
+                    tf.Field.SetValue(obj, tf.Value);
+                }
+                if (tf.InitOnResolve)
+                {
+                    Resolve(tf.Field.GetValue(obj));
+                }
+            }
+            if (tfi.InitOnResolve)
+            {
+                IInitOnResolve initOnResolve = (IInitOnResolve)obj;
+                initOnResolve.Init();
+            }
+        }
+
         public void Resolve(object obj)
         {
             if (obj == null)
             {
                 return;
             }
-            Type type = obj.GetType();
-            if (!type.IsClass)
+
+            Type startType = obj.GetType();
+            if (!startType.IsClass)
             {
                 return;
             }
 
-            string serviceTypeName = typeof(IInjectable).Name;
-            string serviceLocatorTypeName = typeof(IServiceLocator).Name;
-            string initOnResolveTypeName = typeof(IInitOnResolve).Name;
+            if (_fieldCache.TryGetValue(startType, out TypeFieldInfo tfi))
+            {
+                ResolveFromFieldCache(obj, tfi);
+                return;
+            }
+
+            Type currType = startType;
+            tfi = new TypeFieldInfo();
 
             while (true)
             {
-                FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+                FieldInfo[] fields = currType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
                 foreach (FieldInfo field in fields)
                 {
@@ -197,54 +241,54 @@ namespace Genrpg.Shared.Core.Entities
 
                     Type fieldType = field.FieldType;
 
+                    TypeField tf = new TypeField()
+                    {
+                        Field = field,
+                    };
 
                     if (fieldType.GetInterface(initOnResolveTypeName) != null)
                     {
-                        Resolve(EntityUtils.GetObjectValue(obj, field));
+                        tf.InitOnResolve = true;
                     }
 
                     if (fieldType.Name == serviceLocatorTypeName)
                     {
-                        EntityUtils.SetObjectValue(obj, field, this);
-                        continue;
+                        tf.Value = this;
                     }
-
-                    Type serviceType = fieldType.GetInterface(serviceTypeName);
-                    if (serviceType == null)
+                    else
                     {
-                        continue;
+                        Type serviceType = fieldType.GetInterface(serviceTypeName);
+                        if (serviceType != null && fieldType.IsInterface)
+                        {
+                            tf.Value = GetByName(fieldType.Name);
+                        }
                     }
 
-                    if (!fieldType.IsInterface)
+                    if (tf.InitOnResolve || tf.Value != null)
                     {
-                        continue;
+                        tfi.Fields.Add(tf);
                     }
-
-                    object serviceObject = GetByName(fieldType.Name);
-                    if (serviceObject == null)
-                    {
-                        continue;
-                    }
-
-                    EntityUtils.SetObjectValue(obj, field, serviceObject);
-
                 }
-                type = type.BaseType;
-                if (!type.IsClass || type == typeof(object))
+                currType = currType.BaseType;
+                if (!currType.IsClass || currType == typeof(object))
                 {
                     break;
                 }
             }
 
-            if (obj.GetType().GetInterface(initOnResolveTypeName) != null)
+            if (startType.GetInterface(initOnResolveTypeName) != null)
             {
-                IInitOnResolve initOnResolve = (IInitOnResolve)obj;
-                initOnResolve.Init();
+                tfi.InitOnResolve = true;
             }
+
+            _fieldCache[startType] = tfi;
+
+            ResolveFromFieldCache(obj, tfi);
         }
 
         public void ResolveSelf()
         {
+            _fieldCache.Clear();
             foreach (object val in _typeDict.Values)
             {
                 Resolve(val);

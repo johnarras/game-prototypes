@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype12default",
-  "ParentId": "default",
-  "IdKey": 12,
-  "Name": "Leather",
-  "Icon": "LeatherIcon",
-  "Art": "LeatherArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

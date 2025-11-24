@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
     [MessagePackObject]
     public class InitialCombatState
     {
-        [Key(0)] public int Level { get; set; }
+        [Key(0)] public long Level { get; set; }
         [Key(1)] public double Difficulty { get; set; } = 1.0f;
         [Key(2)] public List<InitialCombatGroup> CombatGroups { get; set; } = new List<InitialCombatGroup>();
         [Key(3)] public long WorldQuestItemId { get; set; }
@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         [Key(0)] public long UnitTypeId { get; set; }
         [Key(1)] public long Quantity { get; set; }
         [Key(2)] public int Range { get; set; }
-        [Key(4)] public int Level { get; set; }
+        [Key(4)] public long Level { get; set; }
         [Key(3)] public string BossName { get; set; }
         [Key(5)] public long FactionTypeId { get; set; }
     }
@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
     {
         public int RoundsComplete { get; set; } = 0;
 
-        public int Level { get; set; } = 1;
+        public long Level { get; set; } = 1;
 
         public List<CombatGroup> Enemies { get; set; } = new List<CombatGroup>();
 

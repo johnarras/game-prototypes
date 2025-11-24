@@ -12,7 +12,7 @@ public class MusicChannel
 {
     public float Volume;
     public bool Looping;
-    public AudioCategory category;
+    public EAudioCategories category;
     public CurrentMusic curr = null;
     public List<CurrentMusic> prevList = new List<CurrentMusic>();
 

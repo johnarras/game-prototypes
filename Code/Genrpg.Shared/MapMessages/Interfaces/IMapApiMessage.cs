@@ -9,7 +9,7 @@ namespace Genrpg.Shared.MapMessages.Interfaces
     [Union(3,typeof(Combat.Messages.Died))]
     [Union(4,typeof(Combat.Messages.InterruptCast))]
     [Union(5,typeof(Errors.Messages.ErrorMessage))]
-    [Union(6,typeof(Levels.Messages.NewLevel))]
+    [Union(6,typeof(Levels.Messages.NewRpgLevel))]
     [Union(7,typeof(Loot.Messages.ClearLoot))]
     [Union(8,typeof(Loot.Messages.LootCorpse))]
     [Union(9,typeof(Loot.Messages.SendRewards))]
@@ -51,9 +51,8 @@ namespace Genrpg.Shared.MapMessages.Interfaces
     [Union(45,typeof(Targets.Messages.OnTargetIsDead))]
     [Union(46,typeof(Targets.Messages.SetTarget))]
     [Union(47,typeof(Trades.Messages.OnCompleteTrade))]
-    [Union(48,typeof(UserCoins.Messages.OnAddUserCoin))]
-    [Union(49,typeof(WhoList.Messages.GetWhoList))]
-    [Union(50,typeof(WhoList.Messages.OnGetWhoList))]
+    [Union(48,typeof(WhoList.Messages.GetWhoList))]
+    [Union(49,typeof(WhoList.Messages.OnGetWhoList))]
     public interface IMapApiMessage : IMapMessage
     {
     }

@@ -1,21 +1,20 @@
-﻿using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Website.Interfaces;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.ServerShared.Accounts.Services;
-using Genrpg.Shared.Accounts.PlayerData;
-using MongoDB.Driver;
-using Genrpg.RequestServer.Services.WebServer;
+﻿using Genrpg.RequestServer.AuthRequests.Constants;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.Services;
+using Genrpg.RequestServer.Services.WebServer;
+using Genrpg.ServerShared.Accounts.Services;
+using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Crypto.Services;
-using Genrpg.RequestServer.AuthRequests.Constants;
+using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.ServerShared.PlayerData;
+using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Website.Interfaces;
+using Genrpg.Shared.Website.Messages.Error;
+using MongoDB.Driver;
 
 namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 {
@@ -53,14 +52,13 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 
         protected async Task AfterAuthSuccess(WebContext context, Account account, IAccountAuthRequest request, EAuthResponse authResponse)
         {
-            ProductRecord prodRecord = account.Products.FirstOrDefault(x => x.ProductId == request.AccountProductId);
+            ProductRecord prodRecord = account.Products.FirstOrDefault(x => x.ProductId == request.ProductId);
 
             if (prodRecord == null)
             {
                 prodRecord = new ProductRecord()
                 {
-                    ProductAccountId = HashUtils.NewUUId(),
-                    ProductId = request.AccountProductId,
+                    ProductId = request.ProductId,
                 };
                 account.Products.Add(prodRecord);
             }
@@ -100,12 +98,11 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
             AccountLoginResponse response = new AccountLoginResponse()
             {
                 AccountId = account.Id,
-                ProductAccountId = prodRecord.ProductAccountId,
                 LoginToken = clientLoginToken,
                 SessionId = sessionData.SessionId,
             };
 
-            _accountService.AddAccountToProductGraph(account, request.AccountProductId, request.ReferrerId);
+            _accountService.AddAccountToProductGraph(account, request.ProductId, request.ReferrerId);
 
             UpdatePublicAccount(account);
 

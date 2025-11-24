@@ -1,7 +1,7 @@
-﻿using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Characters.PlayerData;
+﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 
 namespace Genrpg.RequestServer.GameSettings.RequestHandlers
@@ -14,7 +14,7 @@ namespace Genrpg.RequestServer.GameSettings.RequestHandlers
         {
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
             _gameDataService.GetClientSettings(context.Responses, context.user, false);
-            
+
             await Task.CompletedTask;
         }
     }

@@ -36,7 +36,7 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
 
             float gatherSeconds = 0;
 
-            int level = target.Level;
+            long level = target.Level;
             int skillPoints = 0;
             long groundObjTypeId = 0;
 

@@ -1,16 +1,12 @@
+using Genrpg.Shared.DataStores.Categories.WorldData;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.ProcGen.Settings.Locations;
+using Genrpg.Shared.Utils;
 using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Utils;
-using System.Reflection.Emit;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Categories.WorldData;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Settings.Locations;
 
 namespace Genrpg.Shared.Zones.WorldData
 {
@@ -37,7 +33,7 @@ namespace Genrpg.Shared.Zones.WorldData
         [Key(12)] public long RockTextureTypeId { get; set; }
         [Key(13)] public long RoadTextureTypeId { get; set; }
 
-        [Key(14)] public int Level { get; set; }
+        [Key(14)] public long Level { get; set; }
 
         [Key(15)] public string Art { get; set; }
 
@@ -75,7 +71,7 @@ namespace Genrpg.Shared.Zones.WorldData
                 loc.CleanForClient();
             }
 
-            
+
         }
 
         public Location GetLocation(string id)
@@ -136,7 +132,7 @@ namespace Genrpg.Shared.Zones.WorldData
             return Name + " [#" + IdKey + "]";
         }
 
-        public int GetFinalUnitLevel(IRandom rand, float x, float z, int startLevel, int mapMaxLevel)
+        public long GetFinalUnitLevel(IRandom rand, float x, float z, long startLevel, long mapMaxLevel)
         {
             float dmaxx = XMax - x;
             float dmaxz = ZMax - z;

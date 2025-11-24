@@ -92,24 +92,31 @@ namespace Genrpg.Editor.Utils
         public static async Task SaveFullGameData(IUICanvas form, FullGameDataCopy dataCopy, string env, bool deleteExistingData, CancellationToken token)
         {
 
-            EditorGameState gs = await SetupFromConfig(form, env, false);
-            IRepositoryService repoService = gs.loc.Get<IRepositoryService>();
-
-            List<IGameSettings> dataList = new List<IGameSettings>();
-
-            // This will overload Cosmos serverless...soo put breakpoints here to slow down the saving
-            // to avoid 429 errors
-            List<Task> saveTasks = new List<Task>();
-            for (int i = 0; i < dataCopy.Data.Count; i++)
+            try
             {
-                saveTasks.Add(repoService.Save(dataCopy.Data[i]));
+                EditorGameState gs = await SetupFromConfig(form, env, false);
+                IRepositoryService repoService = gs.loc.Get<IRepositoryService>();
 
-                if (i % 10 == 9 || i == dataCopy.Data.Count - 1)
+                List<IGameSettings> dataList = new List<IGameSettings>();
+
+                // This will overload Cosmos serverless...soo put breakpoints here to slow down the saving
+                // to avoid 429 errors
+                List<Task> saveTasks = new List<Task>();
+                for (int i = 0; i < dataCopy.Data.Count; i++)
                 {
-                    await Task.WhenAll(saveTasks);
-                    saveTasks = new List<Task>();
-                    await Task.Delay(1000);
+                    saveTasks.Add(repoService.Save(dataCopy.Data[i]));
+
+                    if (i % 10 == 9 || i == dataCopy.Data.Count - 1)
+                    {
+                        await Task.WhenAll(saveTasks);
+                        saveTasks = new List<Task>();
+                        await Task.Delay(1000);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
             }
         }
 
@@ -235,10 +242,12 @@ namespace Genrpg.Editor.Utils
             File.WriteAllText(fullPath, txt);
         }
 
-        public static async Task<FullGameDataCopy> LoadDataFromDisk(IUICanvas form, ITextSerializer serializer, CancellationToken token)
+        public static async Task<FullGameDataCopy> LoadDataFromDisk(IUICanvas form, CancellationToken token)
         {
 
             EditorGameState gs = await SetupFromConfig(form, EnvNames.Dev, false);
+
+            ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
 
             FullGameDataCopy dataCopy = new FullGameDataCopy();
 
@@ -267,7 +276,7 @@ namespace Genrpg.Editor.Utils
                 if (currType == null)
                 {
                     Console.WriteLine("Unknown IGameSetting type {0}", subDirName);
-                    break;
+                    continue;
                 }
 
                 try
@@ -312,6 +321,7 @@ namespace Genrpg.Editor.Utils
             {
                 EditorGameState gs = await EditorGameDataUtils.SetupFromConfig(window, env, true);
 
+                ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
 
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -340,6 +350,8 @@ namespace Genrpg.Editor.Utils
                 {
                     maxIndex = allSettingNames.Max(x => x.IdKey);
                 }
+
+
 
 
                 AddEntityListData<EntitySettings, EntityType, EntityTypes>(gs);

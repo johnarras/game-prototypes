@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype1default",
-  "ParentId": "default",
-  "IdKey": 1,
-  "Name": "Tokens",
-  "Icon": "TokensIcon",
-  "Art": "TokensArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

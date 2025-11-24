@@ -358,6 +358,22 @@
       "Name": "Polymorph"
     },
     {
+      "Id": "entitytype60default",
+      "ParentId": "default",
+      "IdKey": 60,
+      "Name": "StoreRewards",
+      "Icon": "StoreRewards",
+      "Art": "StoreRewards"
+    },
+    {
+      "Id": "entitytype61default",
+      "ParentId": "default",
+      "IdKey": 61,
+      "Name": "ProductSku",
+      "Icon": "ProductSku",
+      "Art": "ProductSku"
+    },
+    {
       "Id": "entitytype100default",
       "ParentId": "default",
       "IdKey": 100,
@@ -423,25 +439,47 @@
       "Id": "entitytype200default",
       "ParentId": "default",
       "IdKey": 200,
-      "Name": "UserCoinType"
+      "Name": "CoreCurrency",
+      "Icon": "CoreCurrency",
+      "Art": "CoreCurrency"
     },
     {
       "Id": "entitytype201default",
       "ParentId": "default",
       "IdKey": 201,
-      "Name": "UserCoinRewardMult"
+      "Name": "BaseCoreCurrencyRegen",
+      "Icon": "BaseCoreCurrencyRegen",
+      "Art": "BaseCoreCurrencyRegen"
     },
     {
       "Id": "entitytype202default",
       "ParentId": "default",
       "IdKey": 202,
-      "Name": "UserCoinMaxStorage"
+      "Name": "BaseCoreCurrencyStorage",
+      "Icon": "BaseCoreCurrencyStorage",
+      "Art": "BaseCoreCurrencyStorage"
+    },
+    {
+      "Id": "entitytype203default",
+      "ParentId": "default",
+      "IdKey": 203,
+      "Name": "BonusCoreCurrencyRegen",
+      "Icon": "BonusCoreCurrencyRegen",
+      "Art": "BonusCoreCurrencyRegen"
+    },
+    {
+      "Id": "entitytype204default",
+      "ParentId": "default",
+      "IdKey": 204,
+      "Name": "BonusCoreCurrencyStorage",
+      "Icon": "BonusCoreCurrencyStorage",
+      "Art": "BonusCoreCurrencyStorage"
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "EntitySettings",
-    "SaveTime": "2025-06-13T22:28:54.48Z"
+    "SaveTime": "2025-11-20T20:57:53.925Z"
   },
-  "SaveTime": "2025-06-13T22:28:54.48Z"
+  "SaveTime": "2025-11-20T20:57:53.925Z"
 }

@@ -1,24 +1,18 @@
-using MessagePack;
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.AI.Settings;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Factories;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.Settings.Spells;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.MapObjects.Factories;
-using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Units.Factories
 {
@@ -66,7 +60,7 @@ namespace Genrpg.Shared.Units.Factories
                 return null;
             }
 
-            int level = levelZone.GetFinalUnitLevel(rand, spawn.X, spawn.Z, levelZone.Level, _mapProvider.GetMap().MaxLevel);
+            long level = levelZone.GetFinalUnitLevel(rand, spawn.X, spawn.Z, levelZone.Level, _mapProvider.GetMap().MaxLevel);
 
 
             Unit unit = new Unit();

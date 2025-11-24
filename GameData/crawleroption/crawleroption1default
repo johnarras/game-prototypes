@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 1,
   "Name": "Whole Party",
-  "NameId": "",
   "Desc": "Whole party or one character with 2 classes and 2 actions per combat round?",
   "DefaultForNewGame": true,
   "SaveTime": "2025-11-01T20:10:58.211Z"

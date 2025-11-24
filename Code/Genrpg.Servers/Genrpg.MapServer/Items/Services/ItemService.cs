@@ -1,26 +1,22 @@
-﻿using Genrpg.MapServer.Maps;
+﻿using Genrpg.MapServer.Crafting.Services;
+using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Spawns.Services;
+using Genrpg.MapServer.Trades.Services;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Units.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Spells.Casting;
-using System.Linq;
-using System;
-using System.Threading;
-using Genrpg.MapServer.Crafting.Services;
-using Genrpg.MapServer.Trades.Services;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.MapServer.Spawns.Services;
+using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Spells.Casting;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.MapServer.Items.Services
 {
@@ -51,8 +47,8 @@ namespace Genrpg.MapServer.Items.Services
             new UseItemResult() { ItemUsed = item, Success = false });
         }
 
-        private UseItemResult UseItemInternal (IRandom rand, Character ch, Item item)
-        { 
+        private UseItemResult UseItemInternal(IRandom rand, Character ch, Item item)
+        {
             UseItemResult res = new UseItemResult() { ItemUsed = item, Success = false };
             if (item == null)
             {

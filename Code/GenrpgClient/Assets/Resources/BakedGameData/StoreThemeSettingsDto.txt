@@ -12,21 +12,24 @@
       "Id": "storetheme2default",
       "ParentId": "default",
       "IdKey": 2,
-      "Name": "Gem Store",
-      "Art": "Gems"
+      "Name": "Mana Store",
+      "Desc": "",
+      "Art": "Mana"
     },
     {
       "Id": "storetheme3default",
       "ParentId": "default",
       "IdKey": 3,
-      "Name": "Green Store",
-      "Art": "Green"
+      "Name": "Supplies Store",
+      "Desc": "",
+      "Art": "Supplies",
+      "AtlasPrefix": ""
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "StoreThemeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-11-22T20:44:31.37Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-11-22T20:44:31.37Z"
 }

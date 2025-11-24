@@ -14,14 +14,9 @@ using Genrpg.Shared.Trades.Constants;
 using Genrpg.Shared.Trades.Entities;
 using Genrpg.Shared.Trades.Messages;
 using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Users.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Trades.Services
 {
@@ -219,7 +214,7 @@ namespace Genrpg.MapServer.Trades.Services
         }
 
         private void HandleCancelTradeInternal(Character ch, CancelTrade cancelTrade, FullTradeObject fullTrade)
-        { 
+        {
             foreach (Character tradeChar in fullTrade.OrderedCharacters)
             {
                 CancelCharTrade(tradeChar);
@@ -325,7 +320,7 @@ namespace Genrpg.MapServer.Trades.Services
                         tradeObject.Chars[i].CharName = orderedChars[i].Name;
                         orderedChars[i].Trade = tradeObject;
                     }
-                    
+
                     OnUpdateTrade onUpdateTrade = new OnUpdateTrade() { TradeObject = tradeObject };
 
                     for (int i = 0; i < orderedChars.Count; i++)
@@ -462,7 +457,7 @@ namespace Genrpg.MapServer.Trades.Services
 
             tradeChar.Money = updateTrade.Money;
             tradeChar.Items = newItems;
-          
+
             foreach (TradeChar tradeChar2 in fullTrade.TradeObject.Chars)
             {
                 tradeChar2.Accepted = false;
@@ -493,8 +488,8 @@ namespace Genrpg.MapServer.Trades.Services
         }
 
         private void SafeHandleOnCompleteTrade(Character ch, OnCompleteTrade onCompleteTrade)
-        { 
-            
+        {
+
             foreach (TradeChar tradeChar in onCompleteTrade.TradeObject.Chars)
             {
                 // Remove all items from your inven

@@ -13,6 +13,6 @@ namespace Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues
         public string Name { get; set; }
         public string MapId { get; set; }
         public string InstanceId { get; set; }
-        public int Level { get; set; }
+        public long Level { get; set; }
     }
 }

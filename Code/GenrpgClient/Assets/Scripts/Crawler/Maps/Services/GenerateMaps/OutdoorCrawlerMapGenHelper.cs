@@ -595,7 +595,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<int> questItemIndexesUsed = new List<int>();
 
-            int gameDungeonUnlockLevel = Math.Max(mapSettings.MinQuestUnlockDungeonLevel,
+            long gameDungeonUnlockLevel = Math.Max(mapSettings.MinQuestUnlockDungeonLevel,
                 party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true));
 
             bool haveUnlockQuests = _optionsService.HasOption(party, CrawlerOptions.Puzzles);

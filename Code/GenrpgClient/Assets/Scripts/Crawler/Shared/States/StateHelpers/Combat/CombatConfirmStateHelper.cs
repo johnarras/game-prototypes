@@ -42,10 +42,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 foreach (CrawlerUnit combatUnit in party.Combat.PartyGroup.Units)
                 {
                     string text = combatUnit.Name + ": ";
-                    for (int a = 0; a < combatUnit.Actions.Count; a++)
+                    for (int a = 0; a < combatUnit.CombatActions.Count; a++)
                     {
-                        text += combatUnit.Actions[a].Text;
-                        if (a < combatUnit.Actions.Count - 1)
+                        text += combatUnit.CombatActions[a].Text;
+                        if (a < combatUnit.CombatActions.Count - 1)
                         {
                             text += " and ";
                         }

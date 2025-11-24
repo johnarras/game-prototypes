@@ -2,5 +2,6 @@
   "Id": "settingsname61default",
   "ParentId": "default",
   "IdKey": 61,
-  "Name": "SpellTypeSettings"
+  "Name": "NameSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

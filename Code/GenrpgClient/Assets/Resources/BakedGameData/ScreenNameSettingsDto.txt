@@ -288,12 +288,18 @@
       "ParentId": "default",
       "IdKey": 48,
       "Name": "TraderInfo"
+    },
+    {
+      "Id": "screenname49default",
+      "ParentId": "default",
+      "IdKey": 49,
+      "Name": "ClientOptions"
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "ScreenNameSettings",
-    "SaveTime": "2025-09-27T18:12:40.607Z"
+    "SaveTime": "2025-11-15T21:11:50.49Z"
   },
-  "SaveTime": "2025-09-27T18:12:40.607Z"
+  "SaveTime": "2025-11-15T21:11:50.49Z"
 }

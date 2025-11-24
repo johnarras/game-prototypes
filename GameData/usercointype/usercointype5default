@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype5default",
-  "ParentId": "default",
-  "IdKey": 5,
-  "Name": "Cosmetics",
-  "Icon": "CosmeticsIcon",
-  "Art": "CosmeticsArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

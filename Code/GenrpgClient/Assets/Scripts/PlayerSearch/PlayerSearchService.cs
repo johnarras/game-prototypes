@@ -1,16 +1,9 @@
 ﻿using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.DataStores.Categories;
-using Genrpg.Shared.DataStores.Constants;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Users.PlayerData;
-using Genrpg.Shared.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.PlayerSearch
 {
@@ -30,7 +23,7 @@ namespace Assets.Scripts.PlayerSearch
 
         public void UserSearch(string userId, Action<PublicUser> handler, CancellationToken token)
         {
-            PlayerSearch(userId, handler, EDataCategories.Players,token);
+            PlayerSearch(userId, handler, EDataCategories.Players, token);
         }
 
 

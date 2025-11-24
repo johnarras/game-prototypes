@@ -5,13 +5,79 @@
       "Id": "crawlercurrencytype1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "Gold"
+      "Name": "Gold",
+      "Desc": "Used for basic purchases.",
+      "Icon": "GoldIcon",
+      "Art": "GoldArt"
+    },
+    {
+      "Id": "crawlercurrencytype2default",
+      "ParentId": "default",
+      "IdKey": 2,
+      "Name": "Metal",
+      "Icon": "MetalIcon",
+      "Art": "MetalArt",
+      "CraftingStatTypeId": 11
+    },
+    {
+      "Id": "crawlercurrencytype3default",
+      "ParentId": "default",
+      "IdKey": 3,
+      "Name": "Cloth",
+      "Icon": "ClothIcon",
+      "Art": "ClothArt",
+      "CraftingStatTypeId": 12
+    },
+    {
+      "Id": "crawlercurrencytype4default",
+      "ParentId": "default",
+      "IdKey": 4,
+      "Name": "Wood",
+      "Icon": "WoodIcon",
+      "Art": "WoodArt",
+      "CraftingStatTypeId": 13
+    },
+    {
+      "Id": "crawlercurrencytype5default",
+      "ParentId": "default",
+      "IdKey": 5,
+      "Name": "Leather",
+      "Icon": "LeatherIcon",
+      "Art": "LeatherArt",
+      "CraftingStatTypeId": 14
+    },
+    {
+      "Id": "crawlercurrencytype6default",
+      "ParentId": "default",
+      "IdKey": 6,
+      "Name": "Essence",
+      "Icon": "EssenceIcon",
+      "Art": "EssenceArt",
+      "CraftingStatTypeId": 17
+    },
+    {
+      "Id": "crawlercurrencytype7default",
+      "ParentId": "default",
+      "IdKey": 7,
+      "Name": "Gems",
+      "Icon": "GemsIcon",
+      "Art": "GemsArt",
+      "CraftingStatTypeId": 16
+    },
+    {
+      "Id": "crawlercurrencytype8default",
+      "ParentId": "default",
+      "IdKey": 8,
+      "Name": "Stone",
+      "Icon": "StoneIcon",
+      "Art": "StoneArt",
+      "CraftingStatTypeId": 15
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "CrawlerCurrencySettings",
-    "SaveTime": "2025-09-07T18:11:42.348Z"
+    "SaveTime": "2025-11-18T03:04:02.688Z"
   },
-  "SaveTime": "2025-09-07T18:11:42.348Z"
+  "SaveTime": "2025-11-18T03:04:02.688Z"
 }

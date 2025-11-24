@@ -8,7 +8,7 @@ public class PlayAudioData
     public string audioName;
     public float volume;
     public GameObject parent;
-    public AudioCategory category;
+    public EAudioCategories category;
     public bool looping;
     public AudioSource source;
 }

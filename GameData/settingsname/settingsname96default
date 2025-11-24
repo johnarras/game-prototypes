@@ -2,5 +2,6 @@
   "Id": "settingsname96default",
   "ParentId": "default",
   "IdKey": 96,
-  "Name": "UserAbilitySettings"
+  "Name": "StatSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

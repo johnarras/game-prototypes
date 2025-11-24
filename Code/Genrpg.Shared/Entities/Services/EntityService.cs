@@ -1,25 +1,15 @@
 ﻿
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Core.Entities;
-using System.Threading;
-using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Entities.Entities;
 using Genrpg.Shared.Entities.Interfaces;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using System;
-using System.Linq;
-using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Crawler.Info.Constants;
-using Genrpg.Shared.Entities.Entities;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.PlayerFiltering.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Entities.Services
 {
@@ -35,10 +25,10 @@ namespace Genrpg.Shared.Entities.Services
 
     public class EntityService : IEntityService
     {
-        private SetupDictionaryContainer<Type,IGameSettingsLoader> _loaders = new SetupDictionaryContainer<Type, IGameSettingsLoader> ();
+        private SetupDictionaryContainer<Type, IGameSettingsLoader> _loaders = new SetupDictionaryContainer<Type, IGameSettingsLoader>();
         private SetupDictionaryContainer<long, IEntityHelper> _entityHelpers = new SetupDictionaryContainer<long, IEntityHelper>();
         protected IGameData _gameData;
-    
+
         public IEntityHelper GetEntityHelper(long entityTypeId)
         {
             if (_entityHelpers.TryGetValue(entityTypeId, out IEntityHelper helper))
@@ -74,11 +64,11 @@ namespace Genrpg.Shared.Entities.Services
         {
             Dictionary<long, IEntityHelper> helpers = _entityHelpers.GetDict();
 
-            IEntityHelper helper = helpers.Values.FirstOrDefault(x=>x.GetEditorPropertyName() == tableName);
+            IEntityHelper helper = helpers.Values.FirstOrDefault(x => x.GetEditorPropertyName() == tableName);
 
             if (helper != null)
             {
-                return helper.GetChildList(obj).OrderBy(x=>x.IdKey).ToList();
+                return helper.GetChildList(obj).OrderBy(x => x.IdKey).ToList();
             }
 
             IGameSettingsLoader loader = _loaders.GetDict().Values.FirstOrDefault(x => x.GetChildType().Name == tableName);

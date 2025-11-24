@@ -18,6 +18,6 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
         [Key(5)] public float SpreadY { get; set; }
         [Key(6)] public float DirX { get; set; }
         [Key(7)] public float DirY { get; set; }
-        [Key(8)] public int Level { get; set; }
+        [Key(8)] public long Level { get; set; }
     }
 }

@@ -15,7 +15,6 @@
       "ParentId": "default",
       "IdKey": 2,
       "Name": "PartyLevel",
-      "NameId": "",
       "Desc": "New Max Party Level",
       "GamePoints": 1,
       "RunPoints": 1
@@ -25,7 +24,6 @@
       "ParentId": "default",
       "IdKey": 3,
       "Name": "CompleteQuest",
-      "NameId": "",
       "Desc": "Completing a Quest",
       "Icon": "",
       "RunPoints": 5,

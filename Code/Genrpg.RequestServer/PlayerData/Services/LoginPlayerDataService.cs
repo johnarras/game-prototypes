@@ -23,7 +23,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         public async Task<List<IUnitData>> LoadPlayerDataOnLogin(WebContext context, Character ch = null)
         {
-            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.user, ch);
+            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, ch);
 
             List<IUnitData> allData = context.GetAllData();
             foreach (IUnitData unitData in dataList)
@@ -64,11 +64,6 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         protected async Task UpdateUserOnLoad(WebContext context, List<IUnitData> userUnitData)
         {
-            if (context.user.Level < 1)
-            {
-                context.user.Level = 1;
-            }
-
             foreach (IUserLoadUpdater updater in _userLoadUpdateHelpers.OrderedItems())
             {
                 await updater.Update(context, userUnitData);

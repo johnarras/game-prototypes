@@ -1,11 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.BoardGame.Settings;
+using MessagePack;
 
 namespace Genrpg.Shared.Resets.Settings
 {

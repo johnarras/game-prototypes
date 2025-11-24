@@ -2,29 +2,48 @@
   "Id": "storebundleset1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Magic Dust Packs",
+  "Name": "Mana Packs",
+  "NameId": "ManaPacks",
   "Bundles": [
     {
       "Index": 1,
-      "StoreRewardsId": 1,
       "ProductSkuId": 2,
-      "Name": "100 Magic Dust",
-      "BundleId": "MagicDust100"
+      "Name": "100 Mana",
+      "BundleId": "Mana100",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 3,
+          "Quantity": 100
+        }
+      ]
     },
     {
       "Index": 2,
-      "StoreRewardsId": 2,
       "ProductSkuId": 4,
-      "Name": "300 Magic Dust",
-      "BundleId": "MagicDust300"
+      "Name": "300 Mana",
+      "BundleId": "Mana300",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 3,
+          "Quantity": 300
+        }
+      ]
     },
     {
       "Index": 3,
-      "StoreRewardsId": 3,
       "ProductSkuId": 6,
-      "Name": "500 Magic Dust",
-      "BundleId": "MagicDust500"
+      "Name": "500 Mana",
+      "BundleId": "Mana500",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 3,
+          "Quantity": 500
+        }
+      ]
     }
   ],
-  "SaveTime": "2025-10-21T20:40:44.566Z"
+  "SaveTime": "2025-11-22T19:09:35.143Z"
 }

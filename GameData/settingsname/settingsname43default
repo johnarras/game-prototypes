@@ -2,5 +2,6 @@
   "Id": "settingsname43default",
   "ParentId": "default",
   "IdKey": 43,
-  "Name": "NPCSettings"
+  "Name": "FactionSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

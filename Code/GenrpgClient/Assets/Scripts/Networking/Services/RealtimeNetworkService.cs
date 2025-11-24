@@ -140,10 +140,10 @@ public class RealtimeNetworkService : IRealtimeNetworkService
             return;
         }
 
-        if (_gs.user != null)
+        if (_gs.acct != null)
         {
-            userid = _gs.user.Id;
-            sessionid = _gs.user.SessionId;
+            userid = _gs.acct.Id;
+            sessionid = _gs.acct.SessionId;
         }
 
         if (_clientConn == null || _clientConn.RemoveMe())

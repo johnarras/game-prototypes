@@ -1,0 +1,9 @@
+{
+  "Id": "default",
+  "MonsterDropReagentChance": 0.05,
+  "ScrapReagentChance": 0.1,
+  "CurrentStatUpgradeCostScale": 1.0,
+  "UpgradeStatIncreaseScale": 0.5,
+  "Name": "CrawlerCraftingSettings",
+  "SaveTime": "2025-11-16T19:53:25.786Z"
+}

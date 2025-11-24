@@ -15,7 +15,6 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         {
             List<string> lines = base.GetInfoLines(entityId);
 
-
             ElementType etype = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(entityId);
 
             lines.Add("Vulnerable target Damage Scale: " + etype.VulnDamagePercent + "%");

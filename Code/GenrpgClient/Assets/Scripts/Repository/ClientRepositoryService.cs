@@ -1,27 +1,25 @@
 ﻿
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
+using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Setup.Constants;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using UnityEngine;
-using System.Threading.Tasks;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.Logging.Interfaces;
 using System.Threading;
-using Genrpg.Shared.Setup.Constants;
-using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Repository
 {
     public class ClientRepositoryService : IRepositoryService
     {
-        
-
         private ILogService _logService = null;
-        private IClientAppService _clientAppService;
-        private ITextSerializer _serializer;
+        private IClientAppService _clientAppService = null;
+        private ITextSerializer _serializer = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -129,11 +127,11 @@ namespace Assets.Scripts.Repository
         }
 
         private Dictionary<Type, object> _repoCache = new Dictionary<Type, object>();
-        public IClientRepositoryCollection GetRepositoryFromType (Type t)
+        public IClientRepositoryCollection GetRepositoryFromType(Type t)
         {
             if (_repoCache.TryGetValue(t, out object repo))
             {
-                return (IClientRepositoryCollection) repo;
+                return (IClientRepositoryCollection)repo;
             }
 
             Type baseRepoType = typeof(ClientRepositoryCollection<>);
@@ -142,7 +140,7 @@ namespace Assets.Scripts.Repository
 
             _repoCache[t] = newRepo;
 
-            return (IClientRepositoryCollection) newRepo;
+            return (IClientRepositoryCollection)newRepo;
         }
 
         public ClientRepositoryCollection<T> GetRepository<T>() where T : class, IStringId
@@ -157,7 +155,7 @@ namespace Assets.Scripts.Repository
         }
 
         // Don't allow this on the client
-        public async Task<bool> UpdateDict<T>(string docId, Dictionary<string,object> fieldNameUpdates) where T : class, IStringId
+        public async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
         {
             T doc = await Load<T>(docId);
 

@@ -3,7 +3,6 @@ using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Accounts.Constants;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.Utils;
 
 namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 {
@@ -43,7 +42,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                 return;
             }
 
-            Account account = (await _repoService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerEmail, request.Email))).FirstOrDefault();
+            Account account = (await _repoService.Search<Account>(x => x.LowerEmail == request.Email.ToLower())).FirstOrDefault();
 
             EAuthResponse authResponse = EAuthResponse.Failure;
             if (account != null)
@@ -62,7 +61,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 
                 if (!string.IsNullOrEmpty(request.ReferrerId))
                 {
-                    refAccount = (await _repoService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerEmail, request.ReferrerId))).FirstOrDefault();
+                    refAccount = (await _repoService.Search<Account>(x => x.LowerEmail == request.ReferrerId.ToLower())).FirstOrDefault();
 
                     if (refAccount == null)
                     {
@@ -81,7 +80,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                     }
                 }
 
-                Account existingShareIdAccount = (await _repoService.Search<Account>(x => StrUtils.IsLowercaseEqual(x.LowerEmail, request.Email))).FirstOrDefault();
+                Account existingShareIdAccount = (await _repoService.Search<Account>(x => x.LowerEmail == request.Email.ToLower())).FirstOrDefault();
 
                 if (existingShareIdAccount != null)
                 {
@@ -106,7 +105,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                     Email = request.Email,
                     LowerEmail = request.Email.ToLower(),
                     CreatedOn = DateTime.UtcNow,
-                    OriginalAccountProductId = request.AccountProductId,
+                    OriginalProductId = request.ProductId,
                     Flags = 0,
                 };
 

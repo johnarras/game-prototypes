@@ -1,33 +1,26 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Constants;
-using System.Threading;
-using Genrpg.MapServer.Combat.Messages;
-using Genrpg.MapServer.Maps;
+﻿using Genrpg.MapServer.Combat.Messages;
 using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Combat.Messages;
-using Genrpg.Shared.Characters.PlayerData;
-using System.Linq;
-using Genrpg.Shared.Currencies.Constants;
+using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Spawns.Services;
 using Genrpg.ServerShared.Achievements;
 using Genrpg.Shared.Achievements.Constants;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Combat.Messages;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Levels.Settings;
+using Genrpg.Shared.Rewards.Constants;
+using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Constants;
-using Genrpg.MapServer.Spawns.Services;
+using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.MapServer.Units.Services
 {
@@ -85,7 +78,7 @@ namespace Genrpg.MapServer.Units.Services
                 targ.SkillLoot = new List<RewardList>();
 
                 targ.Loot = _spawnService.Roll(rand, _gameData.Get<SpawnSettings>(targ).MonsterLootSpawnTableId, rollData);
-                LevelInfo levelData = _gameData.Get<LevelSettings>(targ).Get(targ.Level);
+                RpgLevel levelData = _gameData.Get<RpgLevelSettings>(targ).Get(targ.Level);
 
                 if (levelData != null)
                 {
@@ -101,7 +94,7 @@ namespace Genrpg.MapServer.Units.Services
                     });
                 }
 
-                targ.Loot = targ.Loot.Where(x=>x.Rewards.Count > 0).ToList();   
+                targ.Loot = targ.Loot.Where(x => x.Rewards.Count > 0).ToList();
 
                 if (utype.LootItems != null)
                 {
@@ -120,7 +113,7 @@ namespace Genrpg.MapServer.Units.Services
                     targ.SkillLoot.AddRange(_spawnService.Roll(rand, ttype.InteractLootItems, rollData));
                 }
 
-                targ.SkillLoot = targ.SkillLoot.Where(x=>x.Rewards.Count > 0).ToList(); 
+                targ.SkillLoot = targ.SkillLoot.Where(x => x.Rewards.Count > 0).ToList();
 
                 foreach (AttackerInfo info in targ.GetAttackers())
                 {
@@ -155,7 +148,7 @@ namespace Genrpg.MapServer.Units.Services
             _objectManager.RemoveObject(rand, targ.Id, UnitConstants.CorpseDespawnSeconds);
 
         }
-       
+
         public bool IsOkUnit(Unit unit, bool playersOk)
         {
             if (unit == null)

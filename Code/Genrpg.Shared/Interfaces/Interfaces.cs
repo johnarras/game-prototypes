@@ -81,7 +81,7 @@ namespace Genrpg.Shared.Interfaces
         int VariationCount { get; set; }
     }
 
-    public interface INameId
+    public interface INameId : IIdName
     {
         string NameId { get; set; }
     }

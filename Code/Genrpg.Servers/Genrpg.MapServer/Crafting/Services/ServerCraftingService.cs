@@ -1,6 +1,5 @@
 ﻿using Genrpg.MapServer.Trades.Services;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Crafting.Constants;
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crafting.Messages;
@@ -15,15 +14,10 @@ using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using ZstdSharp.Unsafe;
 
 namespace Genrpg.MapServer.Crafting.Services
 {
@@ -32,7 +26,7 @@ namespace Genrpg.MapServer.Crafting.Services
     {
         CraftingResult CraftItem(IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false);
         UseItemResult LearnRecipe(IRandom rand, Character ch, Item recipeItem);
-        Item GenerateRecipeReward(IRandom rand, int level);
+        Item GenerateRecipeReward(IRandom rand, long level);
     }
 
     public class ServerCraftingService : IServerCraftingService
@@ -49,8 +43,8 @@ namespace Genrpg.MapServer.Crafting.Services
                 new CraftingResult());
         }
 
-        private CraftingResult CraftItemInternal (IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false)
-        { 
+        private CraftingResult CraftItemInternal(IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false)
+        {
             CraftingResult result = new CraftingResult();
             CraftingStats stats = _sharedCraftingService.CalculateStatsFromReagents(rand, ch, data);
 
@@ -112,20 +106,19 @@ namespace Genrpg.MapServer.Crafting.Services
 
             int levelDiff = maxCraftableLevel - recipeSkillLevel;
 
-            int recipeSkillGainChance = GetGainPercentChanceFromLevelDiff(recipeSkillLevel - stats.Level);
+            long recipeSkillGainChance = GetGainPercentChanceFromLevelDiff(recipeSkillLevel - stats.Level);
 
             if (rand.NextDouble() * 100 < recipeSkillGainChance && recipeStatus.Get() < recipeStatus.GetMaxLevel())
             {
                 recipeStatus.AddLevel(1);
             }
 
-            int crafterSkillGainChance = GetGainPercentChanceFromLevelDiff(crafterLevel - stats.Level);
+            long crafterSkillGainChance = GetGainPercentChanceFromLevelDiff(crafterLevel - stats.Level);
 
             if (rand.NextDouble() * 100 < crafterSkillGainChance)
             {
                 crafterStatus.AddSkillPoints(CraftingConstants.CraftingSkill, 1);
             }
-
 
             if (stats.Level > maxCraftableLevel)
             {
@@ -178,9 +171,9 @@ namespace Genrpg.MapServer.Crafting.Services
         /// </summary>
         /// <param name="levelDiff"></param>
         /// <returns></returns>
-        protected int GetGainPercentChanceFromLevelDiff(int levelDiff)
+        protected long GetGainPercentChanceFromLevelDiff(long levelDiff)
         {
-            int gainPercent = 0;
+            long gainPercent = 0;
             if (levelDiff >= 20)
             {
                 gainPercent = 0;
@@ -208,7 +201,7 @@ namespace Genrpg.MapServer.Crafting.Services
         /// <param name="ps"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public Item GenerateRecipeReward(IRandom rand, int level)
+        public Item GenerateRecipeReward(IRandom rand, long level)
         {
 
             return null;

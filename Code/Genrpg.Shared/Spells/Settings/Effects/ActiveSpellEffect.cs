@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Spells.Settings.Effects
         [Key(4)] public string CasterId { get; set; }
         [Key(5)] public string CasterGroupId { get; set; }
         [Key(6)] public string TargetId { get; set; }
-        [Key(7)] public int Level { get; set; }
+        [Key(7)] public long Level { get; set; }
         [Key(8)] public long SpellId { get; set; }
         [Key(9)] public string Icon { get; set; }
         [Key(10)] public float MaxDuration { get; set; } // 0 = infinite duration

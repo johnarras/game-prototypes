@@ -362,10 +362,10 @@ MonoBehaviour:
   ExitMapButton: {fileID: 0}
   LogoutAccountButton: {fileID: 0}
   QuitGameButton: {fileID: 7594712274086208457}
+  ToggleFullScreenButton: {fileID: 0}
   ContinueGameButton: {fileID: 3451862812050377722}
   LoadGameButton: {fileID: 1253360774354439867}
   NewCrawlerGameButton: {fileID: 1865144628985212528}
-  NewRoguelikeGameButton: {fileID: 0}
   CloseButton: {fileID: 3061170179592127957}
 --- !u!114 &5804664779383612210
 MonoBehaviour:

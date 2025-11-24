@@ -2,5 +2,6 @@
   "Id": "settingsname15default",
   "ParentId": "default",
   "IdKey": 15,
-  "Name": "CrawlerSpellSettings"
+  "Name": "CollectionThemeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

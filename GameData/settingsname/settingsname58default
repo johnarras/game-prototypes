@@ -2,5 +2,6 @@
   "Id": "settingsname58default",
   "ParentId": "default",
   "IdKey": 58,
-  "Name": "SpawnSettings"
+  "Name": "MapModEffectTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

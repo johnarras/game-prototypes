@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Purchasing.RequestHandlers
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
             Character ch = new Character(coreCh);
 
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, ch, true, token);
 
             RefreshStoresResponse response = new RefreshStoresResponse();
 

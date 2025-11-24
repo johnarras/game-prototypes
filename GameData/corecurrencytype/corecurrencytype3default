@@ -1,0 +1,12 @@
+{
+  "Id": "corecurrencytype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Mana",
+  "Icon": "Mana",
+  "Art": "Mana",
+  "StartCurr": 40,
+  "StartRegen": 4,
+  "StartStorage": 40,
+  "SaveTime": "2025-11-20T18:50:13.106Z"
+}

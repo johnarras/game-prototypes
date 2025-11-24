@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype9default",
-  "ParentId": "default",
-  "IdKey": 9,
-  "Name": "Herbs",
-  "Icon": "HerbsIcon",
-  "Art": "HerbsArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

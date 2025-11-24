@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Animations;
 using Assets.Scripts.UI.Constants;
@@ -24,6 +23,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -71,19 +71,6 @@ namespace Assets.Scripts.UI.Services
                     gtext.ForceMeshUpdate();
                 }
             }
-            //_updateService.RunOnMainThread(
-            //    () =>
-            //    {
-            //        if (itext is GText gtext)
-            //        {
-            //            gtext.SetText(txt);
-            //            if (forceUpdateMesh)
-            //            {
-            //                // Use this sparingly.
-            //                gtext.ForceMeshUpdate();
-            //            }
-            //        }
-            //    });
         }
 
         public void SetInputText(IInputField iInput, object obj)
@@ -421,6 +408,32 @@ namespace Assets.Scripts.UI.Services
                 gbutton.onClick.RemoveAllListeners();
                 gbutton.SetDestroyCallback(null);
             }
+        }
+
+        public void SetToggle(GToggle gToggle, UnityAction<bool> listener)
+        {
+            if (gToggle.Toggle == null)
+            {
+                return;
+            }
+            gToggle.Toggle.onValueChanged.RemoveAllListeners();
+            gToggle.Toggle.onValueChanged.AddListener(listener);
+            _clientEntityService.RegisterDestroyCallback(gToggle, () => gToggle.Toggle?.onValueChanged.RemoveAllListeners());
+        }
+
+        public void SetSlider(GSlider slider, float minValueIn, float maxValueIn, float currValue, UnityAction<float> valueChangedEvent)
+        {
+            if (slider == null)
+            {
+                return;
+            }
+            slider.minValue = minValueIn;
+            slider.maxValue = maxValueIn;
+            slider.value = currValue;
+
+            slider.onValueChanged.RemoveAllListeners();
+            slider.onValueChanged.AddListener(valueChangedEvent);
+            _clientEntityService.RegisterDestroyCallback(slider, () => { slider.onValueChanged.RemoveAllListeners(); });
         }
     }
 }

@@ -6,7 +6,6 @@
       "ParentId": "default",
       "IdKey": 1,
       "Name": "Whole Party",
-      "NameId": "",
       "Desc": "Whole party or one character with 2 classes and 2 actions per combat round?",
       "DefaultForNewGame": true
     },
@@ -23,7 +22,6 @@
       "ParentId": "default",
       "IdKey": 3,
       "Name": "Full World",
-      "NameId": "",
       "Desc": "Is there a full world of many cities or one city with one random dungeon?",
       "DefaultForNewGame": true
     },
@@ -48,7 +46,6 @@
       "ParentId": "default",
       "IdKey": 6,
       "Name": "All Equipment Slots",
-      "NameId": "",
       "Desc": "Do we use all equipment slots or a more limited subset?",
       "DefaultForNewGame": true
     },
@@ -122,7 +119,6 @@
       "ParentId": "default",
       "IdKey": 15,
       "Name": "Auto Level Up",
-      "NameId": "",
       "Desc": "Do characters level up if possible after gaining Exp?",
       "DefaultForNewGame": true
     },
@@ -131,7 +127,6 @@
       "ParentId": "default",
       "IdKey": 16,
       "Name": "Drop Gives Money",
-      "NameId": "",
       "Desc": "Dropping an item in your character screen gives the vendor money.",
       "DefaultForNewGame": true
     }

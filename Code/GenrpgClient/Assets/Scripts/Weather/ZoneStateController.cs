@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using ClientEvents;
-using Genrpg.Shared.Utils;
+﻿using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.ProcGen.Settings.Weather;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Players.Messages;
-using Genrpg.Shared.Interfaces;
-using System.Threading.Tasks;
-using System.Threading;
-using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Assets.Scripts.Interfaces;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.UI.Constants;
+using Assets.Scripts.UI.Entities;
+using ClientEvents;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Assets.Scripts.UI.Entities;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Players.Messages;
+using Genrpg.Shared.ProcGen.Settings.Weather;
+using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public struct UpdateColor
 {
@@ -100,7 +99,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
     {
         return Sun;
     }
-    
+
 
     public static float AmbientScale = 1.0f;
     public static float SunlightScale = 1.0f;
@@ -114,7 +113,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
     public bool PauseUpdates = false;
     public const int MaxTicksBetweenZoneUpdates = 3;
 
-  
+
     public float LinearFogEnd = 300;
 
 
@@ -181,7 +180,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
         FogColor.Set(Color.gray);
         RenderSettings.fog = true;
         SetupSkybox();
-        
+
     }
 
     public void SetupSkybox()
@@ -189,10 +188,10 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
         RenderSettings.skybox = SkyboxMaterial;
         if (RenderSettings.skybox != null)
         {
-            RenderSettings.skybox.SetColor("_Tint", UnityEngine.Color.white*2);
+            RenderSettings.skybox.SetColor("_Tint", UnityEngine.Color.white * 2);
         }
     }
-    
+
     public Zone GetCurrentZone()
     {
         return _currentZone;
@@ -357,7 +356,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
         SunlightColor.Current = _modTextureService.MoveCurrToTargetColor(SunlightColor.Current, SunlightColor.Target, delta);
         SkyColor.Current = _modTextureService.MoveCurrToTargetColor(SkyColor.Current, SkyColor.Target, delta);
         CloudColor.Current = _modTextureService.MoveCurrToTargetColor(CloudColor.Current, CloudColor.Target, delta);
-        FogDensity.Current = _modTextureService.MoveCurrFloatToTarget(FogDensity.Current, FogDensity.Target*fogDensityMult, delta * 0.01f);
+        FogDensity.Current = _modTextureService.MoveCurrFloatToTarget(FogDensity.Current, FogDensity.Target * fogDensityMult, delta * 0.01f);
 
         if (_cameraController != null)
         {
@@ -402,9 +401,9 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
 
         if (RenderSettings.skybox != null)
         {
-            RenderSettings.skybox.SetColor("_Tint", FogColor.Current*0.5f);
+            RenderSettings.skybox.SetColor("_Tint", FogColor.Current * 0.5f);
         }
-           
+
 
     }
 
@@ -418,7 +417,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
 
         if (windBurstEnd < DateTime.UtcNow && Wind.windMain > 0)
         {
-            Wind.windMain = 0.13f*Wind.windMain * WindScale.Current;
+            Wind.windMain = 0.13f * Wind.windMain * WindScale.Current;
         }
         if (nextWindBurst < DateTime.UtcNow)
         {

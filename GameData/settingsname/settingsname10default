@@ -2,5 +2,6 @@
   "Id": "settingsname10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "CombatActionSettings"
+  "Name": "CharmUseSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

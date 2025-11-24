@@ -1,0 +1,10 @@
+{
+  "Id": "default",
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "LevelTrackRewardSettings",
+    "SaveTime": "2025-11-24T16:19:28.311Z"
+  },
+  "SaveTime": "2025-11-24T16:19:28.311Z"
+}

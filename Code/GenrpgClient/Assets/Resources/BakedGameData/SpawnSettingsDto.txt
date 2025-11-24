@@ -6,7 +6,6 @@
       "ParentId": "default",
       "IdKey": 1,
       "Name": "MonsterLoot",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -53,7 +52,6 @@
       "ParentId": "default",
       "IdKey": 2,
       "Name": "Generated",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -273,7 +271,6 @@
       "ParentId": "default",
       "IdKey": 3,
       "Name": "Gems",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -348,7 +345,6 @@
       "ParentId": "default",
       "IdKey": 4,
       "Name": "Elements",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -388,7 +384,6 @@
       "ParentId": "default",
       "IdKey": 5,
       "Name": "Cloth",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -407,7 +402,6 @@
       "ParentId": "default",
       "IdKey": 6,
       "Name": "Leather",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -426,7 +420,6 @@
       "ParentId": "default",
       "IdKey": 7,
       "Name": "Metal",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -459,7 +452,6 @@
       "ParentId": "default",
       "IdKey": 8,
       "Name": "Herb",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -541,7 +533,6 @@
       "ParentId": "default",
       "IdKey": 9,
       "Name": "Magic",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -574,7 +565,6 @@
       "ParentId": "default",
       "IdKey": 10,
       "Name": "MobSmallHuman",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -628,7 +618,6 @@
       "ParentId": "default",
       "IdKey": 11,
       "Name": "MobUndead",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -753,7 +742,6 @@
       "ParentId": "default",
       "IdKey": 13,
       "Name": "MobLargeHuman",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1012,7 +1000,6 @@
       "ParentId": "default",
       "IdKey": 16,
       "Name": "MobDry",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1094,7 +1081,6 @@
       "ParentId": "default",
       "IdKey": 17,
       "Name": "MobSwamp",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1388,7 +1374,6 @@
       "ParentId": "default",
       "IdKey": 20,
       "Name": "ShallowDungeon",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1421,7 +1406,6 @@
       "ParentId": "default",
       "IdKey": 21,
       "Name": "DeepDungeon",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1461,7 +1445,6 @@
       "ParentId": "default",
       "IdKey": 22,
       "Name": "Wood",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1480,7 +1463,6 @@
       "ParentId": "default",
       "IdKey": 23,
       "Name": "Stone",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1499,7 +1481,6 @@
       "ParentId": "default",
       "IdKey": 24,
       "Name": "Precious",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1518,7 +1499,6 @@
       "ParentId": "default",
       "IdKey": 25,
       "Name": "ChestLoot",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1613,7 +1593,6 @@
       "ParentId": "default",
       "IdKey": 26,
       "Name": "FurryMonsterLoot",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1660,7 +1639,6 @@
       "ParentId": "default",
       "IdKey": 27,
       "Name": "BugLoot",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [
@@ -1721,7 +1699,6 @@
       "ParentId": "default",
       "IdKey": 28,
       "Name": "FlyingLoot",
-      "NameId": "",
       "Desc": "",
       "Icon": "",
       "Items": [

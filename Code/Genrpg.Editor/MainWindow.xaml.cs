@@ -8,7 +8,6 @@ using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Utils;
@@ -34,7 +33,6 @@ namespace Genrpg.Editor
         private string _prefix;
 
         private IGameDataService _gameDataService = null;
-        private IRepositoryService _repoService = null;
         private ICloudCommsService _cloudCommsService = null;
         private ITextSerializer _serializer = null;
 
@@ -371,7 +369,7 @@ namespace Genrpg.Editor
 
         private async Task CopyGameDataFromGitToDatabaseAsync(SmallPopup form, string env, CancellationToken token)
         {
-            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadDataFromDisk(form, _serializer, token);
+            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadDataFromDisk(form, token);
             await EditorGameDataUtils.SaveFullGameData(form, dataCopy, env, true, token);
 
             form.StartClose();

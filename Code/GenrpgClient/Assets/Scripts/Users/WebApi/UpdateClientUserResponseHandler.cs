@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Login.Messages.Core;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Users.WebApi;
 using System.Threading;
 
@@ -8,7 +9,8 @@ namespace Assets.Scripts.Users.WebApi
     {
         protected override void InnerProcess(UpdateClientUserResponse result, CancellationToken token)
         {
-            _gs.user.Level = result.Level;
+            CoreUserData userData = _gs.ch.Get<CoreUserData>();
+            userData.Level = result.Level;
         }
     }
 }

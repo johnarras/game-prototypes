@@ -2,5 +2,6 @@
   "Id": "settingsname23default",
   "ParentId": "default",
   "IdKey": 23,
-  "Name": "ElementTypeSettings"
+  "Name": "CrawlerCurrencySettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

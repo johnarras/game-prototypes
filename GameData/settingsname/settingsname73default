@@ -2,5 +2,6 @@
   "Id": "settingsname73default",
   "ParentId": "default",
   "IdKey": 73,
-  "Name": "TribeSettings"
+  "Name": "ResetSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

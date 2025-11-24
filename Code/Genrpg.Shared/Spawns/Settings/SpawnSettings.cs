@@ -1,17 +1,12 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Spawns.Settings
 {
@@ -21,9 +16,9 @@ namespace Genrpg.Shared.Spawns.Settings
         long EntityId { get; }
         long MinQuantity { get; }
         long MaxQuantity { get; }
-        int GroupId { get;}
+        int GroupId { get; }
         string Name { get; }
-        long MinLevel { get;}
+        long MinLevel { get; }
     }
 
 
@@ -55,7 +50,6 @@ namespace Genrpg.Shared.Spawns.Settings
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string NameId { get; set; }
         [Key(5)] public string Desc { get; set; }
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }

@@ -6,11 +6,11 @@ using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.Settings;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages.Error;
 
@@ -50,56 +50,53 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 return;
             }
 
-            context.user = (await _serverRepoService.Search<User>(x => x.ProductAccountId == request.ProductAccountId && !x.Deleted)).FirstOrDefault();
+            context.acct = (await _serverRepoService.Search<GameAccount>(x => x.AccountId == request.AccountId && !x.Deleted)).FirstOrDefault();
 
-            if (context.user == null)
+            if (context.acct == null)
             {
-                context.user = new User()
+                context.acct = new GameAccount()
                 {
                     Id = sessionData.Id, // Not good idea if we want to have different users per account (for deletion)
-                    ProductAccountId = request.ProductAccountId,
+                    AccountId = request.AccountId,
                     CreationDate = DateTime.UtcNow,
                 };
             }
 
-            context.user.SessionId = HashUtils.NewUUId();
-            context.user.ClientVersion = request.ClientVersion;
-            context.user.ClientPlatformName = request.ClientPlatformName;
+            context.acct.SessionId = HashUtils.NewUUId();
+            context.acct.ClientVersion = request.ClientVersion;
+            context.acct.ClientPlatformName = request.ClientPlatformName;
+            context.Set(context.acct);
+
+            context.user = await context.GetAsync<CoreUserData>();
             context.user.DataOverrides.GameDataCheckTime = request.ClientGameDataSaveTime;
-            await _serverRepoService.Save(context.user);
+            context.user.ClientVersion = context.acct.ClientVersion;
 
-            List<IUnitData> userData = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, null);
-
+            List<IUnitData> allUserData = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, null);
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 
             _gameDataService.GetClientSettings(context.Responses, context.user, true);
 
-            UpdatePublicUser(sessionData, context.user);
+            UpdatePublicUser(sessionData, context.acct);
 
-            _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = context.user.Id, Name = "User" + context.user.Id });
-
-
+            _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = context.acct.Id, Name = "User" + context.acct.Id });
 
             await _purchasingService.RetryFailedValidation(context, token);
 
-
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context.user, true, token);
-
-
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, context.user, true, token);
 
             GameAuthResponse response = new GameAuthResponse()
             {
-                User = _serializer.ConvertType<User, User>(context.user),
-                CharacterStubs = await _playerDataService.LoadCharacterStubs(context.user.Id),
+                GameAccount = _serializer.ConvertType<GameAccount, GameAccount>(context.acct),
+                CharacterStubs = await _playerDataService.LoadCharacterStubs(context.acct.Id),
                 MapStubs = _webServerService.GetMapStubs().Stubs,
-                UserData = await _playerDataService.MapToClientDto(context.user, userData),
+                UserData = await _playerDataService.MapToClientDto(context.user, allUserData),
                 OfferData = offerData,
             };
-            context.Responses.AddResponse(response);
+            context.Responses.AddFront(response);
         }
 
-        private void UpdatePublicUser(AccountSessionData account, User user)
+        private void UpdatePublicUser(AccountSessionData account, GameAccount user)
         {
             // Just always make new files and save them.
 

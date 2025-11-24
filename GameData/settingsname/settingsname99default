@@ -2,5 +2,6 @@
   "Id": "settingsname99default",
   "ParentId": "default",
   "IdKey": 99,
-  "Name": "UserStatSettings"
+  "Name": "StoreFeatureSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

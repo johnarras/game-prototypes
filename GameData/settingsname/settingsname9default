@@ -2,5 +2,6 @@
   "Id": "settingsname9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "ClutterTypeSettings"
+  "Name": "CharmBonusSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

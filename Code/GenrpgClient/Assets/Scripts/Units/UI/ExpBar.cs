@@ -9,7 +9,7 @@ using Genrpg.Shared.Units.Entities;
 
 public class ExpBar : BaseBehaviour
 {
-    
+
     public ProgressBar _progressBar;
 
     private long _curr = 0;
@@ -25,7 +25,7 @@ public class ExpBar : BaseBehaviour
 
         long currLevelId = _gs.ch.Level;
 
-        LevelInfo nextLevelData = _gameData.Get<LevelSettings>(_gs.ch).Get(_gs.ch.Level);
+        RpgLevel nextLevelData = _gameData.Get<RpgLevelSettings>(_gs.ch).Get(_gs.ch.Level);
 
         if (nextLevelData == null)
         {

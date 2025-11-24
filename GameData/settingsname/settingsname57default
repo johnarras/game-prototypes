@@ -2,5 +2,6 @@
   "Id": "settingsname57default",
   "ParentId": "default",
   "IdKey": 57,
-  "Name": "SkillTypeSettings"
+  "Name": "MapMagicSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

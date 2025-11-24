@@ -112,7 +112,7 @@ namespace Genrpg.Editor
             SmallPopup form = UIHelper.ShowBlockingDialog(_win, "Loading user data");
             Task.Run(() => EditorPlayerUtils.LoadEditorUserData(_gs, _repoService, acct.Id)).GetAwaiter().GetResult();
             form.StartClose();
-            if (_gs.EditorUser.User == null)
+            if (_gs.EditorUser.GameAccount == null)
             {
                 UIHelper.ShowMessageBox(_win, "User Not Found").Wait();
                 return;

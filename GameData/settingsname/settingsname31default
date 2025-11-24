@@ -2,5 +2,6 @@
   "Id": "settingsname31default",
   "ParentId": "default",
   "IdKey": 31,
-  "Name": "FtueTriggerSettings"
+  "Name": "CrawlerSpellSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

@@ -1,0 +1,12 @@
+{
+  "Id": "corecurrencytype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Coins",
+  "Icon": "Coins",
+  "Art": "Coins",
+  "StartCurr": 800,
+  "StartRegen": 100,
+  "StartStorage": 800,
+  "SaveTime": "2025-11-20T18:50:13.106Z"
+}

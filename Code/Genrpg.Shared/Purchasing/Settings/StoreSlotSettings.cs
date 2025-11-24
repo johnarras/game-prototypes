@@ -2,11 +2,7 @@ using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Entities;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Purchasing.Settings
 {
@@ -33,5 +29,6 @@ namespace Genrpg.Shared.Purchasing.Settings
         [Key(5)] public string Art { get; set; }
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }
+        [Key(8)] public bool IsDefaultStore { get; set; }
     }
 }

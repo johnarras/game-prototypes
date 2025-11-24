@@ -70,7 +70,7 @@ namespace Genrpg.Shared.Stats.Services
                 oldMaxStats[stat.IdKey] = unit.Stats.Max(stat.IdKey);
             }
 
-            LevelInfo levelData = _gameData.Get<LevelSettings>(unit).Get(unit.Level);
+            RpgLevel levelData = _gameData.Get<RpgLevelSettings>(unit).Get(unit.Level);
 
             unit.Stats.ResetAll();
 
@@ -316,7 +316,7 @@ namespace Genrpg.Shared.Stats.Services
         /// <param name="gs">GameState</param>
         /// <param name="unit">The monster modified</param>
         /// <param name="levData">The data used for level-scaled stats</param>
-        protected virtual void AddDerivedStats(Unit unit, LevelInfo levData)
+        protected virtual void AddDerivedStats(Unit unit, RpgLevel levData)
         {
             if (unit == null)
             {
@@ -366,7 +366,7 @@ namespace Genrpg.Shared.Stats.Services
         /// <param name="unit">Monster/Player to modify</param>
         /// <param name="e">The effect doing the modifiying</param>
         /// <param name="levData">Level data used for the StatLevelPercent effects</param>
-        protected void AddEffectStat(Unit unit, IEffect e, LevelInfo levData, int multiplier)
+        protected void AddEffectStat(Unit unit, IEffect e, RpgLevel levData, int multiplier)
         {
             if (unit == null || e == null)
             {

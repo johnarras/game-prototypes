@@ -72,10 +72,10 @@ RectTransform:
   - {fileID: 6228179642720027864}
   m_Father: {fileID: 5603986736771190889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 624, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4657248081093064348
 CanvasRenderer:
@@ -628,7 +628,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 624, y: 540}
+  m_SizeDelta: {x: 384, y: 384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6045920636187407099
 MonoBehaviour:
@@ -682,6 +682,8 @@ MonoBehaviour:
     type: 3}
   PanelButton: {fileID: 5738065232065933566, guid: 76df40fc05fab124389208f851a440be,
     type: 3}
+  RowPrefabName: ActionPanelRow
+  ButtonPrefabName: ActionPanelButton
   InputFields:
   - {fileID: 4773102738680239013}
   - {fileID: 6293309790243369509}
@@ -780,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}
@@ -987,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}
@@ -1194,7 +1196,7 @@ PrefabInstance:
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7921855890685124001, guid: c883e124e5fbd1c4f89c64a78ffd23f4,
         type: 3}

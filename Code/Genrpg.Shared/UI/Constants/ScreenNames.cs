@@ -51,6 +51,7 @@
         public const long TraderQuests = 46;
         public const long TraderNPC = 47;
         public const long TraderInfo = 48;
+        public const long ClientOptions = 49;
 
 
     }

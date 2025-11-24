@@ -5,6 +5,7 @@ using MessagePack;
 
 namespace Genrpg.Shared.Crawler.Stats.Settings
 {
+
     [MessagePackObject]
     public class CrawlerStatSettings : NoChildSettings // No List
     {

@@ -2,5 +2,6 @@
   "Id": "settingsname85default",
   "ParentId": "default",
   "IdKey": 85,
-  "Name": "TileTypeSettings"
+  "Name": "SeasonThemeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

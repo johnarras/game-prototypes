@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Crafting.Entities
         [Key(0)] public long EntityTypeId { get; set; }
         [Key(1)] public long EntityId { get; set; }
         [Key(2)] public List<CraftingStat> Stats { get; set; } = new List<CraftingStat>();
-        [Key(3)] public int Level { get; set; }
+        [Key(3)] public long Level { get; set; }
         [Key(4)] public long QualityTypeId { get; set; }
         [Key(5)] public long RecipeTypeId { get; set; }
         [Key(6)] public long ScalingTypeId { get; set; }

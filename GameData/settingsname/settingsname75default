@@ -2,5 +2,6 @@
   "Id": "settingsname75default",
   "ParentId": "default",
   "IdKey": 75,
-  "Name": "UserCoinSettings"
+  "Name": "RiddleSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

@@ -1,4 +1,5 @@
 ﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
@@ -9,11 +10,9 @@ using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Users.Loaders;
-using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +25,7 @@ namespace Genrpg.ServerShared.PlayerData
         protected IRepositoryService _repoService = null;
         protected ITaskService _taskService = null;
 
-        SetupDictionaryContainer<Type,IUnitDataLoader> _loaderObjects = new SetupDictionaryContainer<Type, IUnitDataLoader>();
+        SetupDictionaryContainer<Type, IUnitDataLoader> _loaderObjects = new SetupDictionaryContainer<Type, IUnitDataLoader>();
         SetupDictionaryContainer<Type, IUnitDataMapper> _mapperObjects = new SetupDictionaryContainer<Type, IUnitDataMapper>();
         SetupDictionaryContainer<Type, ISharedUserDataLoader> _sharedObjectLoaders = new SetupDictionaryContainer<Type, ISharedUserDataLoader>();
 
@@ -34,12 +33,12 @@ namespace Genrpg.ServerShared.PlayerData
         {
             List<Task> loaderTasks = new List<Task>();
             CreateIndexData data = new CreateIndexData();
-           // data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(CoreCharacter.UserId), Unique = false });
-           // await _repoService.CreateIndex<CoreCharacter>(data);
+            // data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(CoreCharacter.UserId), Unique = false });
+            // await _repoService.CreateIndex<CoreCharacter>(data);
             await Task.CompletedTask;
         }
 
-        public Dictionary<Type,IUnitDataLoader> GetLoaders()
+        public Dictionary<Type, IUnitDataLoader> GetLoaders()
         {
             return _loaderObjects.GetDict();
         }
@@ -63,7 +62,6 @@ namespace Genrpg.ServerShared.PlayerData
             List<IUnitData> retval = new List<IUnitData>();
 
             Version clientVersion = new Version(obj.ClientVersion);
-
             foreach (IUnitData serverData in serverDataList)
             {
                 if (_mapperObjects.TryGetValue(serverData.GetType(), out IUnitDataMapper mapper))
@@ -84,8 +82,8 @@ namespace Genrpg.ServerShared.PlayerData
             return retval;
         }
 
-        public async Task<T> LoadTopLevelData<T> (Character ch) where T : class, ITopLevelUnitData, new()
-        { 
+        public async Task<T> LoadTopLevelData<T>(Character ch) where T : class, ITopLevelUnitData, new()
+        {
             IUnitDataLoader loader = GetLoader<T>();
 
             if (loader != null)
@@ -95,27 +93,27 @@ namespace Genrpg.ServerShared.PlayerData
             return default;
         }
 
-        private async Task CreateDefaultSharedUserData(User user)
+        private async Task CreateDefaultSharedUserData(GameAccount acct)
         {
             List<Task> tasks = new List<Task>();
             foreach (ISharedUserDataLoader loader in _sharedObjectLoaders.GetDict().Values)
             {
-                tasks.Add(loader.CreateDefaultData(user.Id));
+                tasks.Add(loader.CreateDefaultData(acct.Id));
             }
 
             await Task.WhenAll(tasks);
         }
 
-        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, User user, Character ch = null)
+        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, Character ch = null)
         {
             bool haveCharacter = ch != null;
 
             if (!haveCharacter)
             {
-                ch = new Character(new CoreCharacter()) { Id = user.Id, UserId = user.Id };
+                ch = new Character(new CoreCharacter()) { Id = acct.Id, UserId = acct.Id };
             }
 
-            _taskService.ForgetTask(CreateDefaultSharedUserData(user), false);
+            _taskService.ForgetTask(CreateDefaultSharedUserData(acct), false);
 
             List<Task<IUnitData>> allTasks = new List<Task<IUnitData>>();
             foreach (IUnitDataLoader loader in _loaderObjects.GetDict().Values)
@@ -129,7 +127,7 @@ namespace Genrpg.ServerShared.PlayerData
             IUnitData[] dataArray = await Task.WhenAll(allTasks);
 
             List<IUnitData> dataList = dataArray.ToList();
-           
+
             return dataList;
         }
 

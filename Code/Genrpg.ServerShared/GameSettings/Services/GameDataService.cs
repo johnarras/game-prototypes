@@ -315,22 +315,22 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 return false;
             }
 
-            if (filter.TotalModSize > 0 && filter.MaxAcceptableModValue > 0)
+            if (filter.TotalModSize > 0 && filter.MaxModValue > 0)
             {
                 long idHash = StrUtils.GetPrefixIdHash(filter.IdKey + obj.Id);
 
-                if (idHash % filter.TotalModSize >= filter.MaxAcceptableModValue)
+                if (idHash % filter.TotalModSize >= filter.MaxModValue)
                 {
                     return false;
                 }
             }
 
-            if (filter.MaxUserDaysSinceInstall > 0 && (currentTime - obj.CreationDate).Days > filter.MaxUserDaysSinceInstall)
+            if (filter.MaxInstallDays > 0 && (currentTime - obj.CreationDate).Days > filter.MaxInstallDays)
             {
                 return false;
             }
 
-            if (filter.MinUserDaysSinceInstall > 0 && (currentTime - obj.CreationDate).Days < filter.MinUserDaysSinceInstall)
+            if (filter.MinInstallDays > 0 && (currentTime - obj.CreationDate).Days < filter.MinInstallDays)
             {
                 return false;
             }

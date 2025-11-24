@@ -1,10 +1,20 @@
-﻿using System;
+﻿using Assets.Scripts.Audio.Constants;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine; // Needed
+
+public class FullAudioSource
+{
+    public PlayAudioData PlayData;
+    public AudioSource Source;
+}
 
 public class AudioClipList : BaseBehaviour
 {
-    public float Volume = 1f;
+
+
+    public float Volume = AudioConstants.MaxVolume;
     public bool Is3D = false;
     public float TtlSeconds = AssetConstants.DefaultTtl;
     public List<AudioClip> Clips;
@@ -16,7 +26,7 @@ public class AudioClipList : BaseBehaviour
     // Not set in editor because it might be different depending on how we do overrides and such
     public string Name { get; set; }
 
-    protected List<AudioSource> _sources = new List<AudioSource>();
+    protected List<FullAudioSource> _sources = new List<FullAudioSource>();
 
     private bool _isValid = false;
     public bool IsValid()
@@ -46,6 +56,26 @@ public class AudioClipList : BaseBehaviour
     private void UpdateUnloadTime()
     {
         _unloadTime = DateTime.UtcNow.AddSeconds(TtlSeconds);
+    }
+
+    public void UpdateVolume(Dictionary<EAudioCategories, float> volumes)
+    {
+        List<FullAudioSource> sources = _sources.ToList();
+
+        foreach (FullAudioSource source in sources)
+        {
+            float currVolume = volumes[source.PlayData.category];
+
+            if (currVolume == 0)
+            {
+                StopAll();
+                continue;
+            }
+            else
+            {
+                source.Source.volume = source.PlayData.volume * Volume * currVolume;
+            }
+        }
     }
 
     public AudioSource Play(PlayAudioData playData, int index = -1)
@@ -100,29 +130,38 @@ public class AudioClipList : BaseBehaviour
             source.volume = playData.volume;
             source.Play();
         }
-        _sources.Add(source);
+        _sources.Add(new FullAudioSource()
+        {
+            PlayData = playData,
+            Source = source,
+        });
         return source;
     }
 
-
     public void StopSource(AudioSource source)
     {
-        if (source == null || !_sources.Contains(source))
+        if (source == null)
         {
             return;
         }
 
-        _sources.Remove(source);
-        _clientEntityService.Destroy(source);
-    }
+        FullAudioSource fullSource = _sources.FirstOrDefault(x => x.Source == source);
 
+        if (fullSource == null)
+        {
+            return;
+        }
+
+        _sources.Remove(fullSource);
+        _clientEntityService.Destroy(fullSource.Source);
+    }
 
     public void StopAll(float fadeTime = 0.0f)
     {
-        List<AudioSource> sources = new List<AudioSource>(_sources);
-        foreach (AudioSource source in sources)
+        List<FullAudioSource> sources = new List<FullAudioSource>(_sources);
+        foreach (FullAudioSource source in sources)
         {
-            StopSource(source);
+            StopSource(source.Source);
         }
     }
 
@@ -152,7 +191,8 @@ public class AudioClipList : BaseBehaviour
         {
             for (int s = 0; s < _sources.Count; s++)
             {
-                AudioSource source = _sources[s];
+                FullAudioSource fullSource = _sources[s];
+                AudioSource source = fullSource.Source;
 
                 if (source == null)
                 {
@@ -164,7 +204,8 @@ public class AudioClipList : BaseBehaviour
                 {
                     source.clip = null;
                     _clientEntityService.Destroy(source);
-                    _sources.Remove(source);
+                    fullSource.Source = null;
+                    _sources.Remove(fullSource);
                     s--;
                 }
             }
@@ -180,20 +221,4 @@ public class AudioClipList : BaseBehaviour
         }
         return false;
     }
-
-    public void Clear()
-    {
-        if (Clips != null)
-        {
-            foreach (AudioClip clip in Clips)
-            {
-                if (clip != null)
-                {
-                    _assetService.UnloadAsset(clip);
-                }
-            }
-        }
-        Clips = new List<AudioClip>();
-    }
-
 }

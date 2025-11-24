@@ -2,6 +2,8 @@
   "Id": "storetheme2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Gem Store",
-  "Art": "Gems"
+  "Name": "Mana Store",
+  "Desc": "",
+  "Art": "Mana",
+  "SaveTime": "2025-11-22T20:44:31.37Z"
 }

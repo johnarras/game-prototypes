@@ -23,6 +23,9 @@ namespace Genrpg.Editor.Importers.Core
             string childTypeName = typeof(TChild).Name.ToLower();
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
+            Dictionary<string, object> _contextObjects = new Dictionary<string, object>();
+
+
             TChild currentChild = null;
             for (int row = 0; row < lines.Count; row++)
             {
@@ -42,7 +45,6 @@ namespace Genrpg.Editor.Importers.Core
                     headers[headerWord] = rowWords;
                     continue;
                 }
-
 
                 if (rowWords[0] == childTypeName)
                 {

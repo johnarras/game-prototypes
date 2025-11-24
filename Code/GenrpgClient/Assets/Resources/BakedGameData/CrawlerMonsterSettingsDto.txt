@@ -16,6 +16,7 @@
     "MapUnitKeywordChance": 0.25,
     "UnitKeywordChance": 0.5,
     "PrimaryStatsPointsPerLevel": 0.25,
+    "BasicLoot": [],
     "Name": "CrawlerMonsterSettings",
     "SaveTime": "2025-10-26T18:34:25.719Z"
   }

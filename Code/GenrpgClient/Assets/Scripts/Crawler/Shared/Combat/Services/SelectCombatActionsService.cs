@@ -9,6 +9,7 @@ using Genrpg.Shared.Crawler.Monsters.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Services;
+using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.Spells.Services;
@@ -21,6 +22,7 @@ using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Units.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -46,10 +48,12 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
         {
             if (party.Combat.PartyGroup.CombatGroupAction != ECombatGroupActions.Advance &&
                 (party.Combat == null || !_combatService.ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
-                party.GetActiveParty().Any(x => x.Actions.Count < x.ActionsThisRound)))
+                party.GetActiveParty().Any(x => x.CombatActions.Count < x.ActionsThisRound)))
             {
                 return ECombatStepResults.Continue;
             }
+
+            List<long> defenderRoleIds = _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.Guardian).Select(x => x.IdKey).ToList();
 
             CrawlerCombatState combat = party.Combat;
 
@@ -66,6 +70,17 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                 tauntUnits.AddRange(okUnits.Where(x => x.DefendRank >= EDefendRanks.Guardian || !x.IsPlayer()));
                 allUnits.AddRange(okUnits);
                 hiddenUnits.AddRange(okUnits.Where(x => x.HideExtraRange > 0));
+            }
+
+            if (tauntUnits.Count < 1)
+            {
+                foreach (PartyMember member in party.GetActiveParty())
+                {
+                    if (member.Roles.Any(x => defenderRoleIds.Contains(x.RoleId)))
+                    {
+                        tauntUnits.Add(member);
+                    }
+                }
             }
 
             nonGuardianPlayers = allUnits.Where(x => x.IsPlayer()).Except(tauntUnits).Except(hiddenUnits).ToList();
@@ -216,6 +231,8 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                 {
                     targets.AddRange(tauntUnits);
                 }
+
+                targets = targets.OrderBy(x => Guid.NewGuid()).ToList();
             }
 
             if (targets.Count < 1)
@@ -306,7 +323,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             if (combatAction.Spell != null)
             {
-                unit.Actions.Clear();
+                unit.CombatActions.Clear();
                 unit.AddAction(combatAction);
             }
         }

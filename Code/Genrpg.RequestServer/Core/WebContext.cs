@@ -1,22 +1,23 @@
 ﻿using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
+using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MongoDB.Driver;
-using Genrpg.Shared.Website.Interfaces;
-using Genrpg.Shared.Users.PlayerData;
-using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.Website.Messages;
+using Genrpg.Shared.Website.Messages.Error;
+using MongoDB.Driver;
 
 namespace Genrpg.RequestServer.Core
 {
 
     public class WebContext : ServerGameState
     {
-        public User user { get; set; }
+        public GameAccount acct { get; set; }
+
+        public CoreUserData user { get; set; }
 
         public MyRandom rand { get; set; } = new MyRandom();
 
@@ -35,14 +36,13 @@ namespace Genrpg.RequestServer.Core
             _repoService = locIn.Get<IRepositoryService>();
         }
 
-        public async Task<User> LoadUser(string userId)
+        public async Task<GameAccount> LoadUser(string userId)
         {
-            if (user == null)
+            if (acct == null)
             {
-                user = await _repoService.Load<User>(userId);
-                Set(user);
+                acct = await _repoService.Load<GameAccount>(userId);
             }
-            return user;
+            return acct;
         }
 
         protected Dictionary<string, IUnitData> _unitData = new Dictionary<string, IUnitData>();
@@ -73,7 +73,7 @@ namespace Genrpg.RequestServer.Core
         {
             if (string.IsNullOrEmpty(docId))
             {
-                docId = user.Id;
+                docId = acct.Id;
             }
 
             string cacheKey = GetFullKey(typeof(T), docId);
@@ -96,11 +96,11 @@ namespace Genrpg.RequestServer.Core
             string ownerId = null;
             if (typeof(IUserData).IsAssignableFrom(typeof(T)))
             {
-                ownerId = user.Id;
+                ownerId = acct.Id;
             }
-            else if (!string.IsNullOrEmpty(user.CurrCharId))
+            else if (!string.IsNullOrEmpty(acct.CurrCharId))
             {
-                ownerId = user.CurrCharId;
+                ownerId = acct.CurrCharId;
             }
             string fullKey = GetFullKey(typeof(T), idkey.ToString());
 
@@ -131,11 +131,11 @@ namespace Genrpg.RequestServer.Core
             {
                 if (typeof(IUserData).IsAssignableFrom(typeof(T)))
                 {
-                    id = user.Id;
+                    id = acct.Id;
                 }
-                else if (!string.IsNullOrEmpty(user.CurrCharId))
+                else if (!string.IsNullOrEmpty(acct.CurrCharId))
                 {
-                    id = user.CurrCharId;
+                    id = acct.CurrCharId;
                 }
                 else
                 {
@@ -169,11 +169,6 @@ namespace Genrpg.RequestServer.Core
         public async Task SaveAll()
         {
             List<Task> saveTasks = new List<Task>();
-
-            if (user != null)
-            {
-                saveTasks.Add(_repoService.Save(user));
-            }
 
             List<IUnitData> unitDataList = GetAllData();
 

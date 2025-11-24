@@ -1,7 +1,9 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Spawns.Settings;
 using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Monsters.Settings
 {
@@ -29,6 +31,8 @@ namespace Genrpg.Shared.Crawler.Monsters.Settings
         [Key(14)] public double UnitKeywordChance { get; set; }
 
         [Key(15)] public double PrimaryStatsPointsPerLevel { get; set; }
+
+        [Key(16)] public List<SpawnItem> BasicLoot { get; set; } = new List<SpawnItem>();
     }
 
 

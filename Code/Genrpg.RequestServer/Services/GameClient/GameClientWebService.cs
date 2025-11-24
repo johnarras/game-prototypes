@@ -1,13 +1,14 @@
-﻿using Genrpg.ServerShared.GameSettings.Services;
+﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Resets.Services;
+using Genrpg.RequestServer.Services.WebServer;
+using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.RequestServer.Services.WebServer;
-using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.Resets.Services;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 
 namespace Genrpg.RequestServer.Services.GameClient
 {
@@ -16,7 +17,7 @@ namespace Genrpg.RequestServer.Services.GameClient
         private IGameDataService _gameDataService = null;
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
-        private IHourlyUpdateService _hourlyUpdateService = null;
+        private IPeriodicUpdateService _hourlyUpdateService = null;
         private ITextSerializer _serializer = null;
 
         public async Task HandleUserClientRequest(WebContext context, string postData, CancellationToken token)
@@ -69,13 +70,14 @@ namespace Genrpg.RequestServer.Services.GameClient
         {
             await context.LoadUser(userId);
 
-            if (context.user == null || context.user.SessionId != sessionId)
+            if (context.acct == null || context.acct.SessionId != sessionId)
             {
                 return;
             }
 
+            context.user = await context.GetAsync<CoreUserData>();
             _gameDataService.GetClientSettings(context.Responses, context.user, false);
-            await _hourlyUpdateService.CheckHourlyUpdate(context);
+            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context);
 
             return;
         }

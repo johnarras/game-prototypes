@@ -212,12 +212,14 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             CrawlerQuestType questType = questSettings.Get(fullQuest.Quest.CrawlerQuestTypeId);
 
-            int levelAtParty = await _worldService.GetMapLevelAtParty(party);
+            long levelAtParty = await _worldService.GetMapLevelAtParty(party);
 
             int partySize = party.GetActiveParty().Count;
 
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
+
+            lootGenData.ItemCount += (int)MathUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBit(fullQuest.Quest.IdKey);
 

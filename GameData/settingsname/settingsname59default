@@ -2,5 +2,6 @@
   "Id": "settingsname59default",
   "ParentId": "default",
   "IdKey": 59,
-  "Name": "SpecialMagicSettings"
+  "Name": "MemberUpgradeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

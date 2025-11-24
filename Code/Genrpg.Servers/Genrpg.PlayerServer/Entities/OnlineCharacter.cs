@@ -15,6 +15,6 @@ namespace Genrpg.PlayerServer.Entities
         public string MapInstanceId { get; set; }
         public long ZoneId { get; set; }
         public long GuildId { get; set; }
-        public int Level { get; set; }
+        public long Level { get; set; }
     }
 }

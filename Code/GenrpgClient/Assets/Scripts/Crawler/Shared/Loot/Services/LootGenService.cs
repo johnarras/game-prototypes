@@ -63,7 +63,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         public double Exp { get; set; }
         public double Gold { get; set; }
         public int ItemCount { get; set; }
-        public int Level { get; set; }
+        public long Level { get; set; }
         public List<long> QuestItems { get; set; } = new List<long>();
         public ECrawlerStates NextState { get; set; } = ECrawlerStates.None;
         public object NextStateData { get; set; } = null;
@@ -115,7 +115,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 itemGenArgs = new ItemGenArgs();
             }
 
-            int level = itemGenArgs.Level;
+            long level = itemGenArgs.Level;
 
             PartyData party = _crawlerService.GetParty();
 
@@ -371,9 +371,9 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                         item.Effects.Add(itemEffect);
                     }
 
-                    if (itemGenArgs.ExtraItems > 0)
+                    if (itemGenArgs.PowerIncrease > 0)
                     {
-                        double extraStatQuantity = lootSettings.StatPointsPerExtraItem * itemGenArgs.ExtraItems;
+                        double extraStatQuantity = lootSettings.StatPointsPerExtraItem * itemGenArgs.PowerIncrease;
                         foreach (ItemEffect effect in item.Effects)
                         {
                             if (effect.EntityTypeId == EntityTypes.Stat)
@@ -384,7 +384,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                             }
                         }
 
-                        if (_rand.NextDouble() < lootSettings.ItemEnchantChance * itemGenArgs.ExtraItems)
+                        if (_rand.NextDouble() < lootSettings.ItemEnchantChance * itemGenArgs.PowerIncrease)
                         {
                             CrawlerLootType enchantType = RandomUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
 
@@ -551,7 +551,6 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             double lootQualityBonus = _upgradeService.GetPartyBonus(party, PartyUpgrades.LootQuality);
 
-
             long extraItems = Math.Max(0, genData.ItemCount - lootSettings.MaxLootItems);
 
             for (int i = 0; i < Math.Min(lootSettings.MaxLootItems, genData.ItemCount); i++)
@@ -560,7 +559,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 {
                     Level = genData.Level,
                     QualityTypeId = (long)(_rand.NextDouble() * (lootQualityBonus * 2 + 0.5f)),
-                    ExtraItems = extraItems,
+                    PowerIncrease = extraItems,
                 };
 
                 Item item = GenerateItem(itemGenArgs);
@@ -665,7 +664,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         {
             CrawlerLootSettings settings = _gameData.Get<CrawlerLootSettings>(_gs.ch);
 
-            int level = await _worldService.GetMapLevelAtParty(party);
+            long level = await _worldService.GetMapLevelAtParty(party);
 
             int itemCount = 1;
 

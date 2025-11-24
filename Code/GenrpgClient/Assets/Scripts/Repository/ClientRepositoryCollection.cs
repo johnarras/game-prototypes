@@ -1,30 +1,26 @@
-﻿
-using Genrpg.Shared.Entities.Utils;
+﻿using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
-
-using Genrpg.Shared.Logging.Interfaces;
 using System.Threading.Tasks;
-using UnityEngine;
-using Assets.Scripts.Repository.Constants;
 
 public interface IClientRepositoryCollection
 {
-    Awaitable<bool> Save(object t, bool verbose = false);
-    Awaitable<object> LoadWithType(Type t, string id);
+    Task<bool> Save(object t, bool verbose = false);
+    Task<object> LoadWithType(Type t, string id);
 }
 
 public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T : class, IStringId
 {
 
-    private ILogService _logService;
-    private IClientAppService _clientAppService;
-    private ITextSerializer _serializer;
-    public ClientRepositoryCollection(ILogService logService, 
+    private ILogService _logService = null;
+    private IClientAppService _clientAppService = null;
+    private ITextSerializer _serializer = null;
+    public ClientRepositoryCollection(ILogService logService,
         IClientAppService clientAppService,
         ITextSerializer serializer)
     {
@@ -33,7 +29,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         _serializer = serializer;
     }
 
-    public virtual async Awaitable<bool> SaveAll(List<T> list)
+    public virtual async Task<bool> SaveAll(List<T> list)
     {
         if (list == null)
         {
@@ -53,7 +49,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
     }
 
 
-    public async Awaitable<T> Load(String id)
+    public async Task<T> Load(String id)
     {
         try
         {
@@ -83,7 +79,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
     /// <param name="id">Id to save (key)</param>
     /// <param name="data">Data to save (value)</param>
     /// <returns>Were the parameters ok? Not checking actual save success here.</returns>
-    public async Awaitable<bool> StringSave(string id, string data, bool verboseSave = false)
+    public async Task<bool> StringSave(string id, string data, bool verboseSave = false)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -95,12 +91,12 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         return true;
     }
 
-    public async Awaitable<bool> Save(object t, bool verbose = false)
+    public async Task<bool> Save(object t, bool verbose = false)
     {
-        return await SaveInternal(t,verbose);
+        return await SaveInternal(t, verbose);
     }
 
-    private async Awaitable<bool> SaveInternal(object t, bool verbose)
+    private async Task<bool> SaveInternal(object t, bool verbose)
     {
         if (t == null)
         {
@@ -132,7 +128,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         await Task.CompletedTask;
         return true;
     }
-    public async Awaitable<bool> Delete(T t)
+    public async Task<bool> Delete(T t)
     {
         if (t == null)
         {
@@ -318,21 +314,21 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         }
     }
 
-    public async Awaitable<List<T>> LoadAll(List<string> ids)
+    public async Task<List<T>> LoadAll(List<string> ids)
     {
 
         await Task.CompletedTask;
         throw new NotImplementedException();
     }
 
-    public async Awaitable<List<T>> Search(Expression<Func<T, bool>> func, int quantity=100, int skip = 0)
+    public async Task<List<T>> Search(Expression<Func<T, bool>> func, int quantity = 100, int skip = 0)
     {
 
         await Task.CompletedTask;
         throw new NotImplementedException();
     }
 
-    public async Awaitable<object> LoadWithType(Type t, string id)
+    public async Task<object> LoadWithType(Type t, string id)
     {
 
         await Task.CompletedTask;

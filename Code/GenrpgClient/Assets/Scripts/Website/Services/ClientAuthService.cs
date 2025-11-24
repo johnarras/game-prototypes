@@ -4,13 +4,13 @@ using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
 using Genrpg.Shared.Core.Interfaces;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Users.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
 using Genrpg.Shared.Website.Interfaces;
@@ -108,7 +108,7 @@ public class ClientAuthService : IClientAuthService
     {
         _logService.Info("Logging out");
         ExitMMOMap();
-        _gs.user = null;
+        _gs.acct = null;
         _screenService.CloseAll();
         _screenService.Close(ScreenNames.HUD);
         _screenService.Open(ScreenNames.Login);
@@ -150,7 +150,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable SendAccountLogin(AccountLoginRequest request, CancellationToken token)
     {
-        request.AccountProductId = _config.Config.AccountProductId;
+        request.ProductId = _config.Config.ProductId;
 
         AccountLoginResponse result = await _clientWebService.SendAccountAuthWebRequestAsync<AccountLoginResponse>(request, token);
 
@@ -162,7 +162,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable StartNoUser(CancellationToken token)
     {
-        GameAuthResponse result = new GameAuthResponse() { User = new User() { Id = "Local" } };
+        GameAuthResponse result = new GameAuthResponse() { GameAccount = new GameAccount() { Id = "Local" } };
 
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
@@ -173,7 +173,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable SendSignupRequest(AccountSignupRequest request, CancellationToken token)
     {
-        request.AccountProductId = _config.Config.AccountProductId;
+        request.ProductId = _config.Config.ProductId;
         _clientWebService.SendAccountAuthWebRequest(request, token);
         await Task.CompletedTask;
     }
@@ -194,12 +194,10 @@ public class ClientAuthService : IClientAuthService
         GameAuthRequest request = new GameAuthRequest()
         {
             AccountId = response.AccountId,
-            ProductAccountId = response.ProductAccountId,
             SessionId = response.SessionId,
             ClientVersion = _clientAppService.Version,
             ClientPlatformName = _clientAppService.GetPlatformName(),
             ClientGameDataSaveTime = _gameData.Get<VersionSettings>(null).SaveTime,
-
         };
 
         _clientWebService.SendGameAuthWebRequest(request, token);

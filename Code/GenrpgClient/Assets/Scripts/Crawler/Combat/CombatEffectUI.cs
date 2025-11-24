@@ -3,7 +3,6 @@
 using Assets.Scripts.CombatFX;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.GameEvents;

@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Interactions.Messages
         [Key(1)] public string TargetId { get; set; }
         [Key(2)] public long CrafterTypeId { get; set; }
         [Key(3)] public int SkillPoints { get; set; }
-        [Key(4)] public int Level { get; set; }
+        [Key(4)] public long Level { get; set; }
         [Key(5)] public long GroundObjTypeId { get; set; }
         [Key(6)] public bool IsSkillLoot { get; set; }
     }

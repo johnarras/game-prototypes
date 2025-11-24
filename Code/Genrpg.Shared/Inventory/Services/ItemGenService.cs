@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Inventory.Services
         Item Generate(IRandom rand, ItemGenArgs genData);
         Item CreateSimpleItem(IRandom rand, ItemGenArgs gd);
         Item GenerateLevelRangeItem(IRandom rand, ItemGenArgs gd);
-        ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null);
+        ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, long level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null);
 
     }
 
@@ -152,10 +152,9 @@ namespace Genrpg.Shared.Inventory.Services
         }
 
 
-        public ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, int level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null)
+        public ItemNameResult GenerateItemName(IRandom rand, long itemTypeId, long level, long qualityTypeId, List<FullReagent> reagents, string forcedItemName = null)
         {
             string badName = "Armor";
-
 
             ItemNameResult result = new ItemNameResult()
             {
@@ -462,7 +461,7 @@ namespace Genrpg.Shared.Inventory.Services
             }
 
             long baseStat = 10;
-            LevelInfo levelData = _gameData.Get<LevelSettings>(null).Get(genData.Level);
+            RpgLevel levelData = _gameData.Get<RpgLevelSettings>(null).Get(genData.Level);
             if (levelData != null)
             {
                 baseStat = levelData.StatAmount;

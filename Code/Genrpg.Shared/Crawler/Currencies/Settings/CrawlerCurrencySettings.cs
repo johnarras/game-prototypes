@@ -28,6 +28,7 @@ namespace Genrpg.Shared.Crawler.Currencies.Settings
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }
         [Key(8)] public string Art { get; set; }
+        [Key(9)] public long CraftingStatTypeId { get; set; }
 
     }
 

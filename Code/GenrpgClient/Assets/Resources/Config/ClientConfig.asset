@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ae576c33749ec44a78ff4b3922352d, type: 3}
   m_Name: ClientConfig
   m_EditorClassIdentifier: 
-  GameMode: 0
+  GameMode: 3
   Env: local
   WebEndpointOverride: 
   AssetEnvOverride: 
   WorldEnvOverride: 
-  AccountProductId: 2
+  ProductId: 2
   SelfContainedClient: 1
   ExportGameData: 1
   GooglePlaySecret: 

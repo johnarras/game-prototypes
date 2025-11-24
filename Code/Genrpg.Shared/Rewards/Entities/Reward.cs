@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Rewards.Entities
         long EntityId { get; set; }
         long Quantity { get; set; }
         long QualityTypeId { get; set; }
-        int Level { get; set; }
+        long Level { get; set; }
         Item ExtraData { get; set; }
 
     }
@@ -22,7 +22,7 @@ namespace Genrpg.Shared.Rewards.Entities
         [Key(1)] public long EntityId { get; set; }
         [Key(2)] public long Quantity { get; set; }
         [Key(3)] public long QualityTypeId { get; set; }
-        [Key(4)] public int Level { get; set; }
+        [Key(4)] public long Level { get; set; }
         [Key(5)] public Item ExtraData { get; set; }
     }
 }

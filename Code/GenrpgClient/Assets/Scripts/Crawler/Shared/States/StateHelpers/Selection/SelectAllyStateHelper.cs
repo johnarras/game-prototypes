@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < partyMembers.Count; m++)
             {
                 PartyMember partyMember = partyMembers[m];
-                char c = (char)('a' + m);
+                char c = (char)('A' + m);
 
                 SelectAction selectAction = new SelectAction()
                 {

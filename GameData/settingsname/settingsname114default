@@ -2,5 +2,6 @@
   "Id": "settingsname114default",
   "ParentId": "default",
   "IdKey": 114,
-  "Name": "RoleScalingTypeSettings"
+  "Name": "TravelSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

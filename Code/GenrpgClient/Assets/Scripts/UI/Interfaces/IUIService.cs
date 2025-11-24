@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Client.Tokens;
+﻿using Assets.Scripts.UI.Abstractions;
+using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.UI.Interfaces
 {
@@ -40,5 +42,7 @@ namespace Assets.Scripts.UI.Interfaces
         void SetTextAlignemnt(IText text, int offset); // -1,0,1= left, center, right
         void SetInteractable(IButton button, bool interactable);
         void SetAsRaycastTarget(object obj, bool isRaycastTarget);
+        void SetToggle(GToggle toggle, UnityAction<bool> listener);
+        void SetSlider(GSlider slider, float minValueIn, float maxValueIn, float currValue, UnityAction<float> valueChangedEvent);
     }
 }

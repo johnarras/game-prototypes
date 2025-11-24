@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype6default",
-  "ParentId": "default",
-  "IdKey": 6,
-  "Name": "Upgrades",
-  "Icon": "UpgradesIcon",
-  "Art": "UpgradesArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

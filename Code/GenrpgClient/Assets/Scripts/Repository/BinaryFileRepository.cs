@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -6,13 +5,13 @@ using Genrpg.Shared.Utils;
 using System;
 using System.IO;
 
-public interface IBinaryFileRepository :IInjectable
+public interface IBinaryFileRepository : IInjectable
 {
     string GetPath(string id);
     void DeleteAllData();
-    string Load(string id);
+    string LoadText(string id);
     byte[] LoadBytes(string id);
-    void Save(string id, string val);
+    void SaveText(string id, string val);
     void SaveBytes(string id, byte[] val);
     void Delete(string id);
     void SaveObject(string fileName, object obj);
@@ -20,10 +19,10 @@ public interface IBinaryFileRepository :IInjectable
 }
 
 public class BinaryFileRepository : IBinaryFileRepository
-{ 
-    private ILogService _logService;
-    private IClientAppService _clientAppService;
-    private ITextSerializer _serializer;
+{
+    private ILogService _logService = null;
+    private IClientAppService _clientAppService = null;
+    private ITextSerializer _serializer = null;
 
     protected string GetPathPrefix()
     {
@@ -42,7 +41,6 @@ public class BinaryFileRepository : IBinaryFileRepository
 
         return prefix;
     }
-
 
     public string GetPath(string id)
     {
@@ -71,10 +69,9 @@ public class BinaryFileRepository : IBinaryFileRepository
             Directory.CreateDirectory(basePath);
         }
 
-
         if (id.LastIndexOf("/") >= 0)
         {
-            string beforeSlash = id.Substring(0,id.LastIndexOf("/"));
+            string beforeSlash = id.Substring(0, id.LastIndexOf("/"));
             if (!string.IsNullOrEmpty(beforeSlash))
             {
                 string fullDir = basePath + "/" + beforeSlash;
@@ -87,7 +84,6 @@ public class BinaryFileRepository : IBinaryFileRepository
         return basePath + "/" + id;
     }
 
-
     public void DeleteAllData()
     {
         string pathPrefix = GetPathPrefix();
@@ -97,28 +93,28 @@ public class BinaryFileRepository : IBinaryFileRepository
         }
     }
 
-    public string Load (string id)
+    public string LoadText(string id)
     {
         string path = GetPath(id);
         try
-		{
+        {
             if (!File.Exists(path))
             {
                 return "";
             }
             return File.ReadAllText(path, System.Text.Encoding.UTF8);
-		}
-		catch (Exception e) 
-		{ 
-            _logService.Info("Failed to read file: " + path + " " + e.Message); 
-		}
+        }
+        catch (Exception e)
+        {
+            _logService.Info("Failed to read file: " + path + " " + e.Message);
+        }
         return "";
-	}
+    }
 
     public byte[] LoadBytes(string id)
     {
         string path = GetPath(id);
-        
+
         try
         {
             if (!File.Exists(path))
@@ -134,19 +130,18 @@ public class BinaryFileRepository : IBinaryFileRepository
         return null;
     }
 
-
-    public void Save(string id, string val)
+    public void SaveText(string id, string val)
     {
         string path = GetPath(id);
         try
-		{
+        {
             File.WriteAllText(path, val, System.Text.Encoding.UTF8);
-		}
-		catch (Exception e)
-		{
-		    _logService.Info("Failed to save text file: " + path + " " + e.Message);
-		}
-	}
+        }
+        catch (Exception e)
+        {
+            _logService.Info("Failed to save text file: " + path + " " + e.Message);
+        }
+    }
 
     public void SaveBytes(string id, byte[] val)
     {
@@ -166,18 +161,18 @@ public class BinaryFileRepository : IBinaryFileRepository
     }
 
 
-    public void Delete (string id)
+    public void Delete(string id)
     {
         string path = GetPath(id);
         try
-		{
+        {
             File.Delete(path);
-		}
-		catch (Exception e)
-		{
-		    _logService.Info("Failed to delete file: " + path + " " + e.Message);
-		}
-	}
+        }
+        catch (Exception e)
+        {
+            _logService.Info("Failed to delete file: " + path + " " + e.Message);
+        }
+    }
 
     public void SaveObject(string fileName, object obj)
     {
@@ -185,11 +180,11 @@ public class BinaryFileRepository : IBinaryFileRepository
         {
             return;
         }
-        Save(fileName, _serializer.SerializeToString(obj));
+        SaveText(fileName, _serializer.SerializeToString(obj));
     }
 
     public T LoadObject<T>(string fileName) where T : class
     {
-        return _serializer.Deserialize<T>(Load(fileName));
+        return _serializer.Deserialize<T>(LoadText(fileName));
     }
 }

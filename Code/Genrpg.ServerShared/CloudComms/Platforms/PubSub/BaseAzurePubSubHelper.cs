@@ -3,9 +3,7 @@ using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.PubSub.Entities;
-using Genrpg.ServerShared.Core;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Utils;
@@ -17,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.CloudComms.Platforms.PubSub
 {
-    public abstract class BaseAzurePubSubHelper<M, H> : IAzurePubSubHelper where M : class, IPubSubMessage where H : IPubSubMessageHandler
+    public abstract class BaseAzurePubSubHelper<M, H> : IDisposable, IAzurePubSubHelper where M : class, IPubSubMessage where H : IPubSubMessageHandler
     {
         public abstract string BaseTopicName();
 
@@ -83,7 +81,10 @@ namespace Genrpg.ServerShared.CloudComms.Platforms.PubSub
             {
                 PubSubMessageEnvelope envelope = new PubSubMessageEnvelope() { Message = m };
 
-                ServiceBusMessage serviceBusMessage = new ServiceBusMessage(_serializer.SerializeToString(envelope));
+                ServiceBusMessage serviceBusMessage = new ServiceBusMessage(_serializer.SerializeToString(envelope))
+                {
+                    TimeToLive = TimeSpan.FromSeconds(CloudCommsConstants.MessageTtlSeconds)
+                };
                 _taskService.ForgetTask(_sender.SendMessageAsync(serviceBusMessage), false);
             }
             else
@@ -156,5 +157,10 @@ namespace Genrpg.ServerShared.CloudComms.Platforms.PubSub
             }
         }
 
+        public void Dispose()
+        {
+            _serviceBusClient.DisposeAsync();
+            _sender?.DisposeAsync();
+        }
     }
 }

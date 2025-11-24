@@ -237,7 +237,7 @@ namespace Genrpg.Shared.Inventory.Services
             if (buyPrice < 1)
             {
                 long itemValue = minBuyPrice;
-                LevelInfo levelData = gameData.Get<LevelSettings>(unit).Get(item.Level);
+                RpgLevel levelData = gameData.Get<RpgLevelSettings>(unit).Get(item.Level);
                 if (levelData != null)
                 {
                     itemValue = levelData.KillMoney * 5;

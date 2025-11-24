@@ -12,12 +12,12 @@ namespace Assets.Scripts.Login.Messages.Core
 {
     public abstract class BaseClientWebResponseHandler<T> : IClientLoginResultHandler where T : class, IWebResponse
     {
-        protected ILogService _logService;
-        protected IRepositoryService _repoService;
-        protected IDispatcher _dispatcher;
-        protected IGameData _gameData;
-        protected IClientGameState _gs;
-        protected IAwaitableService _awaitableService;
+        protected ILogService _logService = null;
+        protected IRepositoryService _repoService = null;
+        protected IDispatcher _dispatcher = null;
+        protected IGameData _gameData = null;
+        protected IClientGameState _gs = null;
+        protected IAwaitableService _awaitableService = null;
         public Type Key => typeof(T);
 
         virtual public int Priority() { return 0; }

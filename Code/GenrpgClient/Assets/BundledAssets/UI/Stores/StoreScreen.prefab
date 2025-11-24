@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b31aef4ec9559740b24be5bd2c2b6f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77536e3fd0000a34c958a18310ec9590, type: 3}
   m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -375,8 +375,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3882988987774571252}
   - {fileID: 2465356643589933312}
+  - {fileID: 3882988987774571252}
   m_Father: {fileID: 224547052052100556}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -873,13 +873,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -960.21814
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
@@ -940,8 +960,8 @@ PrefabInstance:
       addedObject: {fileID: 8195347559682510454}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ca68e607a8c6043be92f86b34a696c, type: 3}
---- !u!4 &2465356643589933312 stripped
-Transform:
+--- !u!224 &2465356643589933312 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
     type: 3}
   m_PrefabInstance: {fileID: 7053955804117297883}
@@ -973,13 +993,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -960.21814
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
         type: 3}
@@ -1052,8 +1092,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee9c9ba3cbe4f54abb43989faf22287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Stores.StorePanel
---- !u!4 &3882988987774571252 stripped
-Transform:
+--- !u!224 &3882988987774571252 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 4886998919732831195, guid: a2ca68e607a8c6043be92f86b34a696c,
     type: 3}
   m_PrefabInstance: {fileID: 8516656855054430511}

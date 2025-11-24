@@ -55,10 +55,10 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
             CrawlerMapStatus mapStatus = party.GetMapStatus(party.CurrPos.MapId, true);
 
-            int statAdded = 5 + 5 * (map.Level / 10);
+            long statAdded = 5 + 5 * (map.Level / 10);
 
             List<PartyMember> members = party.GetActiveParty();
-          
+
             for (int p = 0; p < members.Count; p++)
             {
                 PartyMember pm = members[p];

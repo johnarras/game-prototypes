@@ -50,12 +50,33 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 368b07b0a5afd3743897b8a6df908de4: 21300000
+    - 2d2440e0f0ff0424999354415bbe5f96: 21300000
     - 294491723d0338e40bed238d80e586f3: 21300000
+    - 6f43a735e887fa943988928369192eaa: 21300000
+    - 8d004b3670c7b3145be0bbeb0ccd001d: 21300000
+    - 28ca586649a6ffe4a9520c310eb1f73e: 21300000
+    - 3272688bb02ad114ab57c99d38e94ef2: 21300000
+    - c791650f99bc6b24689f1671c02ecd6e: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 368b07b0a5afd3743897b8a6df908de4, type: 3}
+  - {fileID: 21300000, guid: 2d2440e0f0ff0424999354415bbe5f96, type: 3}
   - {fileID: 21300000, guid: 294491723d0338e40bed238d80e586f3, type: 3}
+  - {fileID: 21300000, guid: 6f43a735e887fa943988928369192eaa, type: 3}
+  - {fileID: 21300000, guid: 8d004b3670c7b3145be0bbeb0ccd001d, type: 3}
+  - {fileID: 21300000, guid: 28ca586649a6ffe4a9520c310eb1f73e, type: 3}
+  - {fileID: 21300000, guid: 3272688bb02ad114ab57c99d38e94ef2, type: 3}
+  - {fileID: 21300000, guid: c791650f99bc6b24689f1671c02ecd6e, type: 3}
   m_PackedSpriteNamesToIndex:
+  - ClothIcon
+  - EssenceIcon
   - GoldIcon
+  - StoneIcon
+  - WoodIcon
+  - GemsIcon
+  - MetalIcon
+  - LeatherIcon
   m_RenderDataMap: {}
   m_Tag: CrawlerCurrencyTypeIcons
   m_IsVariant: 0

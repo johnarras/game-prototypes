@@ -1,23 +1,18 @@
-using MessagePack;
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.AI.Settings;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Factories;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.Settings.Spells;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Zones.WorldData;
-using System.Linq;
-using Genrpg.Shared.MapObjects.Factories;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Units.Factories
 {
@@ -36,7 +31,7 @@ namespace Genrpg.Shared.Units.Factories
 
             Zone zone = _mapProvider.GetMap().Get<Zone>(spawn.ZoneId);
 
-            int level = zone != null ? zone.Level : 1;
+            long level = zone != null ? zone.Level : 1;
             if (utype == null)
             {
                 if (spawn.ZoneId > 0)
@@ -89,7 +84,7 @@ namespace Genrpg.Shared.Units.Factories
 
             IReadOnlyList<ElementType> etypes = _gameData.Get<ElementTypeSettings>(unit).GetData();
 
-            spell.ElementTypeId = etypes[(rand.Next() % (etypes.Count-1) + 1)].IdKey;
+            spell.ElementTypeId = etypes[(rand.Next() % (etypes.Count - 1) + 1)].IdKey;
             spell.Id = HashUtils.NewUUId();
             SpellData spellData = unit.Get<SpellData>();
             spellData.Add(spell);

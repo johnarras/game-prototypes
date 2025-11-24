@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype7default",
-  "ParentId": "default",
-  "IdKey": 7,
-  "Name": "Wood",
-  "Icon": "WoodIcon",
-  "Art": "WoodArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

@@ -1,8 +1,6 @@
 ﻿
-using Assets.Scripts.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 
 public class LoadingScreen : BaseScreen

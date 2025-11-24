@@ -62,6 +62,9 @@
         public const long Road = 58;
         public const long Polymorph = 59;
 
+        public const long StoreRewards = 60;
+        public const long ProductSku = 61;
+
         // Crawler-specific entitytypes
         public const long CrawlerSpell = 100;
         public const long PartyBuff = 101;
@@ -77,9 +80,11 @@
         public const long CollectionTierList = 153;
 
         // User Reward Types
-        public const long UserCoin = 200;
-        public const long UserCoinRewardMult = 201;
-        public const long UserCoinMaxStorage = 202;
+        public const long CoreCurrency = 200;
+        public const long BaseCoreCurrencyRegen = 201;
+        public const long BaseCoreCurrencyStorage = 202;
+        public const long BonusCoreCurrencyRegen = 203;
+        public const long BonusCoreCurrencyStorage = 204;
 
     }
 }

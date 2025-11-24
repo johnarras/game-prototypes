@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
 
         bool PayForPartyUpgrade(PartyData party, long upgradeId);
 
-        NewUpgradePointsResult GetNewPartyUpgradePoints(PartyData party, int newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite);
+        NewUpgradePointsResult GetNewPartyUpgradePoints(PartyData party, long newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite);
 
         bool ResetPartyUpgradePoints(PartyData party);
 
@@ -35,12 +35,12 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
     public class NewUpgradePointsResult
     {
         public long UpgradeReasonId { get; set; }
-        public int NewLevel { get; set; }
-        public int TotalUpgradePoints { get; set; }
-        public int GameUpgradePoints { get; set; }
-        public int RunUpgradePoints { get; set; }
-        public int GameLevelsCompleted { get; set; }
-        public int RunLevelsCompleted { get; set; }
+        public long NewLevel { get; set; }
+        public long TotalUpgradePoints { get; set; }
+        public long GameUpgradePoints { get; set; }
+        public long RunUpgradePoints { get; set; }
+        public long GameLevelsCompleted { get; set; }
+        public long RunLevelsCompleted { get; set; }
         public List<string> Messages { get; set; } = new List<string>();
     }
 
@@ -118,7 +118,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             return true;
         }
 
-        public NewUpgradePointsResult GetNewPartyUpgradePoints(PartyData party, int newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite)
+        public NewUpgradePointsResult GetNewPartyUpgradePoints(PartyData party, long newLevel, long upgradeReasonId, string textColor = TextColors.ColorWhite)
         {
             NewUpgradePointsResult result = new NewUpgradePointsResult()
             {

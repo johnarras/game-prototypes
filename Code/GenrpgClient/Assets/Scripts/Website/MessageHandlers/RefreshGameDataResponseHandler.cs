@@ -12,9 +12,8 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
                 _gs.ch.DataOverrides = result.DataOverrides;
             }
-            else if (_gs.user != null)
+            else
             {
-                _gs.user.DataOverrides = result.DataOverrides;
             }
             _gameData.AddData(result.NewSettings);
         }

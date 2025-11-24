@@ -10,14 +10,17 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.Currencies.Settings;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
+using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.Services;
@@ -67,6 +70,7 @@ namespace Assets.Scripts.Crawler.Services
         private ICrawlerOptionsService _optionsService = null;
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
+        protected IPartyService _partyService = null;
 
         public const string SaveFileSuffix = ".sav";
         public const string StartSaveFileName = "Start" + SaveFileSuffix;
@@ -572,7 +576,16 @@ namespace Assets.Scripts.Crawler.Services
             _party.Flags = 0;
             _party.DaysPlayed = 0;
             _party.HourOfDay = 0;
-            _party.Currencies.Set(CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+            IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+
+            foreach (CrawlerCurrencyType ctype in ctypes)
+            {
+                _partyService.SetCurrencyQuantity(_party, ctype.IdKey, 0);
+            }
+
+            _partyService.SetCurrencyQuantity(_party, CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+
+            CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
 
             _party.NextId = 1;
             foreach (PartyMember member in _party.Members)
@@ -583,6 +596,7 @@ namespace Assets.Scripts.Crawler.Services
                 {
                     unitRole.Level = 1;
                 }
+                member.Summons = new List<PartySummon>();
             }
 
             await StartGameAfterLoadAsync(_party);

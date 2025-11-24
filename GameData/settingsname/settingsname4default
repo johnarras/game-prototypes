@@ -2,5 +2,6 @@
   "Id": "settingsname4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "BuildingSettings"
+  "Name": "AphorismSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

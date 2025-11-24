@@ -3,28 +3,47 @@
   "ParentId": "default",
   "IdKey": 2,
   "Name": "Supplies Packs",
+  "NameId": "SuppliesPacks",
   "Bundles": [
     {
       "Index": 1,
-      "StoreRewardsId": 4,
-      "ProductSkuId": 2,
+      "ProductSkuId": 3,
       "Name": "100 Supplies",
-      "BundleId": "Supplies100"
+      "BundleId": "Supplies100",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 2,
+          "Quantity": 100
+        }
+      ]
     },
     {
       "Index": 2,
-      "StoreRewardsId": 5,
-      "ProductSkuId": 7,
-      "Name": "300 Supplies",
-      "BundleId": "Supplies300"
+      "ProductSkuId": 6,
+      "Name": "300 Mana",
+      "BundleId": "Supplies300",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 2,
+          "Quantity": 300
+        }
+      ]
     },
     {
       "Index": 3,
-      "StoreRewardsId": 6,
       "ProductSkuId": 9,
-      "Name": "500 Supplies",
-      "BundleId": "Supplies500"
+      "Name": "500 Mana",
+      "BundleId": "Supplies300",
+      "Rewards": [
+        {
+          "EntityTypeId": 200,
+          "EntityId": 2,
+          "Quantity": 500
+        }
+      ]
     }
   ],
-  "SaveTime": "2025-10-21T20:40:44.566Z"
+  "SaveTime": "2025-11-22T19:09:35.143Z"
 }

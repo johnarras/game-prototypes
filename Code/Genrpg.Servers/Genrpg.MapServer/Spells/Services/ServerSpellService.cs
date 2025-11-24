@@ -1,39 +1,35 @@
 ﻿
+using Genrpg.MapServer.AI.Services;
+using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Spells.SpellEffectHandlers;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Errors.Messages;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Spells.Casting;
+using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Spells.Interfaces;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Spells.PlayerData;
+using Genrpg.Shared.Spells.PlayerData.Spells;
+using Genrpg.Shared.Spells.Settings.Effects;
+using Genrpg.Shared.Spells.Settings.Elements;
+using Genrpg.Shared.Spells.Settings.Skills;
+using Genrpg.Shared.Spells.Settings.Spells;
+using Genrpg.Shared.Spells.Utils;
+using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Stats.Entities;
+using Genrpg.Shared.Targets.Messages;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Characters.PlayerData;
 using System.Threading;
-using Genrpg.MapServer.Maps;
-using Genrpg.MapServer.Spells.SpellEffectHandlers;
-using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Errors.Messages;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.MapServer.AI.Services;
-using Genrpg.MapServer.Combat.Messages;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.Spells.Utils;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Spells.Settings.Skills;
-using Genrpg.Shared.Spells.Settings.Spells;
-using Genrpg.Shared.Spells.Casting;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Spells.PlayerData;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spells.Services
 {
@@ -48,7 +44,7 @@ namespace Genrpg.MapServer.Spells.Services
 
 
         protected Dictionary<TryCastState, string> _tryCastText;
-        public async Task Initialize( CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
             _tryCastText = new Dictionary<TryCastState, string>();
             foreach (TryCastState state in Enum.GetValues<TryCastState>())
@@ -533,7 +529,7 @@ namespace Genrpg.MapServer.Spells.Services
             SkillType skillType = hit.SkillType;
             long elementRank = 0;
             long skillRank = 0;
-            int level = sendSpell.CasterLevel;
+            long level = sendSpell.CasterLevel;
 
             double elemSkillScalePct = elementType.GetScalePct(skillType.IdKey) / 100.0f;
 
@@ -864,7 +860,7 @@ namespace Genrpg.MapServer.Spells.Services
                     if (false && _objectManager.GetUnit(targetId, out Unit target))
                     {
                         string moreText = "Del: " + target.IsDeleted() + "\nMV " + target.Moving + "\nSPD: " + target.Speed + "\nTID: " + target.TargetId
-                            + "\nNotOk: " + target.UnitWasNotOk + "\nLastUpd: " + target.LastUpdateTime 
+                            + "\nNotOk: " + target.UnitWasNotOk + "\nLastUpd: " + target.LastUpdateTime
                             + "\nNow: " + DateTime.UtcNow
                             + "\nATC: " + target.GetAttackers().Count + "\nWP: " + target.Waypoints.Waypoints.Count +
                             "\nXZ: (" + target.X + "," + target.Z + ")\nFXZ: (" +
@@ -873,7 +869,7 @@ namespace Genrpg.MapServer.Spells.Services
                             + target.GetNextXPos() + "," + target.GetNextZPos() + ") "
                             + "\nEvade: " + target.HasFlag(UnitFlags.Evading) + "\nDead: " + target.HasFlag(UnitFlags.IsDead)
                             + "\nHps: " + target.Stats.Curr(StatTypes.Health)
-                            + "\nDidStartCombat: " + target.HasFlag(UnitFlags.DidStartCombat) 
+                            + "\nDidStartCombat: " + target.HasFlag(UnitFlags.DidStartCombat)
 
                             ;
                         result.StateText += moreText;

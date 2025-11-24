@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype14default",
-  "ParentId": "default",
-  "IdKey": 14,
-  "Name": "Mana",
-  "Icon": "ManaIcon",
-  "Art": "ManaArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

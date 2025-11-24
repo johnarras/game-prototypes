@@ -2,5 +2,6 @@
   "Id": "settingsname102default",
   "ParentId": "default",
   "IdKey": 102,
-  "Name": "ResetSettings"
+  "Name": "StoreThemeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

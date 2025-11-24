@@ -4002,7 +4002,7 @@
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
     "Name": "CrawlerSpellSettings",
-    "SaveTime": "2025-10-27T23:25:19.168Z"
+    "SaveTime": "2025-11-04T15:21:06.272Z"
   },
-  "SaveTime": "2025-10-27T23:25:19.168Z"
+  "SaveTime": "2025-11-04T15:21:06.272Z"
 }

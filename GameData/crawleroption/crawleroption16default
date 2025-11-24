@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 16,
   "Name": "Drop Gives Money",
-  "NameId": "",
   "Desc": "Dropping an item in your character screen gives the vendor money.",
   "DefaultForNewGame": true,
   "SaveTime": "2025-11-01T20:00:22.246Z"

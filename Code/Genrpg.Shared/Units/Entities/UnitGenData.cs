@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Units.Entities
     public class UnitGenData
     {
         [Key(0)] public long UnitTypeId { get; set; }
-        [Key(1)] public int Level { get; set; }
+        [Key(1)] public long Level { get; set; }
         [Key(2)] public long FactionTypeId { get; set; }
         [Key(3)] public long ZoneId { get; set; }
 

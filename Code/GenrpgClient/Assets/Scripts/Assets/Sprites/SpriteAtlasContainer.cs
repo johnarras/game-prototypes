@@ -45,7 +45,7 @@ public class SpriteAtlasContainer : BaseBehaviour
 
     public bool CanUnload()
     {
-        return _unloadTime <= DateTime.UtcNow && _refs.Any(x => x != null);
+        return _unloadTime <= DateTime.UtcNow && !_refs.Any(x => x != null);
     }
 
     public void AddRef(GImage image)

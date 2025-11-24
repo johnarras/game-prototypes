@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

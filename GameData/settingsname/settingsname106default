@@ -2,5 +2,6 @@
   "Id": "settingsname106default",
   "ParentId": "default",
   "IdKey": 106,
-  "Name": "TimeOfDaySettings"
+  "Name": "TextureTypeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

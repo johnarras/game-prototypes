@@ -5,13 +5,13 @@
       "Id": "storeslot1default",
       "ParentId": "default",
       "IdKey": 1,
-      "Name": "Gem Store"
+      "Name": "Mana Store"
     },
     {
       "Id": "storeslot2default",
       "ParentId": "default",
       "IdKey": 2,
-      "Name": "Gold Store"
+      "Name": "Supplies Store"
     },
     {
       "Id": "storeslot3default",

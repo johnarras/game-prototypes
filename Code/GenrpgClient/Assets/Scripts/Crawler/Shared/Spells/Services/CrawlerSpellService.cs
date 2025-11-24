@@ -132,12 +132,15 @@ namespace Genrpg.Shared.Crawler.Spells.Services
         {
             EActionCategories actionCategory = party.GetActionCategory();
 
-            IReadOnlyList<CrawlerSpell> allSpells = _gameData.Get<CrawlerSpellSettings>(null).GetData();
+            CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(null);
+
+            IReadOnlyList<CrawlerSpell> allSpells = spellSettings.GetData();
 
             List<CrawlerSpell> castSpells = allSpells.Where(x =>
             (x.CombatActionId == CombatActions.Cast) == chooseSpells).ToList();
 
             List<CrawlerSpell> okSpells = new List<CrawlerSpell>();
+
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 
@@ -194,8 +197,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         continue;
                     }
 
-                    // No stat buffs outside of combat for the moment to keep it simpler
-                    if (spell.Effects.Any(x => x.EntityTypeId == EntityTypes.Stat))
+                    if (spell.Effects.Any(x => x.EntityTypeId == EntityTypes.Stat || x.EntityTypeId == EntityTypes.Unit))
                     {
                         continue;
                     }
@@ -848,11 +850,11 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                         if (action.SpellBeingCast.HitsLeft < 1 || action.FinalTargets.Count < 1)
                         {
-                            action.Caster.Actions.Remove(action);
+                            action.Caster.CombatActions.Remove(action);
                             action.Caster.ActionsThisRound--;
                         }
 
-                        if (action.Caster.Actions.Count > 0)
+                        if (action.Caster.CombatActions.Count > 0)
                         {
                             action.Caster.CombatPriority *= (1 - _rand.NextDouble() * combatSettings.SubsequentAttackPriorityLossPercent);
 

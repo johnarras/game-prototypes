@@ -2,5 +2,6 @@
   "Id": "settingsname83default",
   "ParentId": "default",
   "IdKey": 83,
-  "Name": "BoardModeSettings"
+  "Name": "ScreenNameSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

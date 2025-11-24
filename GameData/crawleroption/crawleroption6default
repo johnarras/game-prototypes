@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 6,
   "Name": "All Equipment Slots",
-  "NameId": "",
   "Desc": "Do we use all equipment slots or a more limited subset?",
   "DefaultForNewGame": true,
   "SaveTime": "2025-10-04T20:34:59.775Z"

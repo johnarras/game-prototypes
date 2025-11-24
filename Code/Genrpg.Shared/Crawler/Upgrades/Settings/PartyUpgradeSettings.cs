@@ -1,17 +1,16 @@
-using MessagePack;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using MessagePack;
 
 namespace Genrpg.Shared.Crawler.Upgrades.Settings
 {
     [MessagePackObject]
-    public class PartyUpgradeSettings : ParentConstantListSettings<PartyUpgrade,PartyUpgrades>
+    public class PartyUpgradeSettings : ParentConstantListSettings<PartyUpgrade, PartyUpgrades>
     {
         [Key(0)] public override string Id { get; set; }
     }
@@ -24,7 +23,6 @@ namespace Genrpg.Shared.Crawler.Upgrades.Settings
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string NameId { get; set; }
         [Key(5)] public string Desc { get; set; }
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }

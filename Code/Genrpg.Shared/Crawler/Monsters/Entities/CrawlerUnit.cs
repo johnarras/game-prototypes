@@ -20,13 +20,13 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
 
 
         [JsonIgnore]
-        public List<UnitAction> Actions { get; set; } = new List<UnitAction>();
+        public List<UnitAction> CombatActions { get; set; } = new List<UnitAction>();
 
         public void AddAction(UnitAction action)
         {
-            if (!Actions.Contains(action))
+            if (!CombatActions.Contains(action))
             {
-                Actions.Add(action);
+                CombatActions.Add(action);
             }
         }
 

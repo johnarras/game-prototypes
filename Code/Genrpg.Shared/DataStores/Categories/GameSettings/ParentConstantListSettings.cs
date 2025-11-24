@@ -1,7 +1,6 @@
 ﻿using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,11 +10,6 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
     {
         public override void SetupForEditor(List<object> saveList)
         {
-            if (typeof(TChild).Name == "StatType")
-            {
-                Console.WriteLine("StatTypes");
-            }
-
             List<NameValue> nameList = ReflectionUtils.GetNumericConstants(typeof(TConstants));
 
             foreach (NameValue nv in nameList)
@@ -27,6 +21,13 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
                     TChild child = new TChild();
                     child.IdKey = nv.IdKey;
                     child.Name = nv.Name;
+
+                    if (child is IIndexedGameItem indexedChild)
+                    {
+                        indexedChild.Icon = nv.Name;
+                        indexedChild.Art = nv.Name;
+                    }
+
                     _data.Add(child);
                     saveList.Add(child);
                 }

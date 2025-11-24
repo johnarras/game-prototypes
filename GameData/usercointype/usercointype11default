@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype11default",
-  "ParentId": "default",
-  "IdKey": 11,
-  "Name": "Food",
-  "Icon": "FoodIcon",
-  "Art": "FoodArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

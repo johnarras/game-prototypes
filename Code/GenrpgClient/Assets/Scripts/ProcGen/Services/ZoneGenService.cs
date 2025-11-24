@@ -1,35 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Entities.Utils;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Utils;
-using System.Threading;
-using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Units.Services;
-using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Levels.Settings;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Names.Settings;
+using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.ProcGen.Settings.Plants;
+using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.ProcGen.Settings.Trees;
 using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.DataStores.Entities;
-using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
-using UnityEngine;
+using Genrpg.Shared.Units.Services;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Client.Tokens;
-using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public interface IZoneGenService : IInitializable
 {
@@ -48,8 +47,8 @@ public interface IZoneGenService : IInitializable
 
     void SetAllAlphamaps(float[,,] alphaMaps, CancellationToken token);
 
-    void SetAllHeightmaps(float[,] heights, CancellationToken token); 
-        
+    void SetAllHeightmaps(float[,] heights, CancellationToken token);
+
     void LoadMap(LoadIntoMapRequest loadData);
     void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token);
     Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token);
@@ -262,7 +261,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             return null;
         }
 
-        int maxLevel = _gameData.Get<LevelSettings>(_gs.ch).MaxLevel;
+        int maxLevel = _gameData.Get<RpgLevelSettings>(_gs.ch).MaxLevel;
 
         Zone zone = new Zone();
         zone.IdKey = zoneId++;
@@ -312,7 +311,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
                 allTextures = new List<TextureType>();
             }
             IReadOnlyList<TextureChannel> channels = _gameData.Get<TextureChannelSettings>(_gs.ch).GetData();
-        
+
             for (int i = 0; i < channels.Count; i++)
             {
                 TextureChannel channel = channels[i];

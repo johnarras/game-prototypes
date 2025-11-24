@@ -1,43 +1,36 @@
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Users.Entities;
-using Genrpg.Shared.Characters.PlayerData;
-using System.Collections.Generic;
-using Genrpg.Shared.MapServer.Entities;
-
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Interfaces;
-using Assets.Scripts.GameSettings.Entities;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Client.Core;
-using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Users.PlayerData;
+using Assets.Scripts.GameSettings.Entities;
+using Assets.Scripts.Options.Services;
+using Genrpg.Shared.Analytics.Services;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.Constants;
-using UnityEngine;
+using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Utils;
-using Assets.Scripts.Repository;
+using System.Collections.Generic;
 
 
 
 public interface IClientGameState : IGameState, IInjectable, IExplicitInject
 {
-    User user { get; set; }
+    GameAccount acct { get; set; }
     Character ch { get; set; }
     List<CharacterStub> characterStubs { get; set; }
     List<MapStub> mapStubs { get; set; }
-    InitialClientConfig GetConfig();
     EGameModes GameMode { get; set; }
-    void UpdateUserFlags(int flag, bool val);
 }
 
 public class ClientGameState : GameState, IInjectable, IClientGameState
 {
-    public IMapGenData md { get; set; } = null;   
-    public User user { get; set; }
+    public IMapGenData md { get; set; } = null;
+    public GameAccount acct { get; set; }
     public Character ch { get; set; }
-    public List<CharacterStub> characterStubs { get; set; }  = new List<CharacterStub>();
-    public List<MapStub> mapStubs { get; set; } = new List<MapStub>(); 
+    public List<CharacterStub> characterStubs { get; set; } = new List<CharacterStub>();
+    public List<MapStub> mapStubs { get; set; } = new List<MapStub>();
 
     public EGameModes GameMode { get; set; }
 
@@ -51,75 +44,16 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
     private ITextSerializer _serializer = null;
     public ClientGameState(ClientConfig config, IInitClient initClient)
     {
-        ClientConfigContainer configContainer = new ClientConfigContainer();
-        configContainer.Config = config;
-        ITextSerializer serializer = new NewtonsoftTextSerializer();
-        _logService = new ClientLogService(configContainer.Config, serializer);
-        IAnalyticsService analyticsService = new ClientAnalyticsService(configContainer.Config, _logService, serializer);
-        loc = new ServiceLocator(serializer, _logService, analyticsService, new ClientGameData());
-        loc.Set(initClient);   
+        ClientConfigContainer configContainer = new ClientConfigContainer(config);
+        ITextSerializer textSerializer = new NewtonsoftTextSerializer();
+        _logService = new ClientLogService(configContainer.Config, textSerializer);
+        _clientAppService = new ClientAppService(_logService);
+        IAnalyticsService analyticsService = new ClientAnalyticsService(configContainer.Config, _logService, textSerializer);
+        loc = new ServiceLocator(textSerializer, _logService, analyticsService, new ClientGameData());
+        loc.Set(initClient);
+        loc.Set(_clientAppService);
         loc.Set<IClientGameState>(this);
         loc.Set<IClientConfigContainer>(configContainer);
+        loc.Set<IClientOptionsService>(new ClientOptionsService(_logService, _clientAppService, _serializer));
     }
-
-    protected string ConfigFilename = "InitialClientConfig";
-    protected InitialClientConfig _config = null;
-    public InitialClientConfig GetConfig()
-    {
-        if (_config == null)
-        {
-            ClientRepositoryCollection<InitialClientConfig> repo = new ClientRepositoryCollection<InitialClientConfig>(_logService, _clientAppService, _serializer);
-            _config = repo.Load(ConfigFilename).GetAwaiter().GetResult();
-            if (_config == null)
-            {
-                _config = new InitialClientConfig()
-                {
-                    Id = ConfigFilename,
-                };
-                // Do this here rather than in constructor because protobuf will ignore zeroes
-                _config.UserFlags |= UserFlags.SoundActive | UserFlags.MusicActive;
-                SaveConfig();
-            }
-        }
-        return _config;
-    }
-
-    public void SaveConfig()
-    {
-        if (_config == null)
-        {
-            _config = new InitialClientConfig()
-            {
-                Id = ConfigFilename,
-            };
-        }
-        _awaitableService.ForgetAwaitable(SaveConfig(_config));
-    }
-
-    private async Awaitable SaveConfig(InitialClientConfig config)
-    {
-        ClientRepositoryCollection<InitialClientConfig> repo = new ClientRepositoryCollection<InitialClientConfig>(_logService, _clientAppService, _serializer);
-        await repo.Save(config);
-    }
-
-    public void UpdateUserFlags(int flag, bool val)
-    {
-        if (user == null)
-        {
-            return;
-        }
-        if (val)
-        {
-            user.AddFlags(flag);
-        }
-        else
-        {
-            user.RemoveFlags(flag);
-        }
-
-        InitialClientConfig config = GetConfig();
-        config.UserFlags = user.Flags;
-        SaveConfig();
-    }
-
 }

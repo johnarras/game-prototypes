@@ -146,8 +146,8 @@ namespace Genrpg.Shared.Crafting.Services
             double levelRemainder = averageLevel - (float)Math.Floor(averageLevel);
             double qualityRemainder = averageQuality - (float)Math.Floor(averageQuality);
 
-            LevelInfo prevLev = _gameData.Get<LevelSettings>(ch).Get((int)Math.Floor(averageLevel));
-            LevelInfo nextLev = _gameData.Get<LevelSettings>(ch).Get((int)Math.Ceiling(averageLevel));
+            RpgLevel prevLev = _gameData.Get<RpgLevelSettings>(ch).Get((int)Math.Floor(averageLevel));
+            RpgLevel nextLev = _gameData.Get<RpgLevelSettings>(ch).Get((int)Math.Ceiling(averageLevel));
             QualityType prevQuality = _gameData.Get<QualityTypeSettings>(ch).Get((int)Math.Floor(averageQuality));
             QualityType nextQuality = _gameData.Get<QualityTypeSettings>(ch).Get((int)Math.Ceiling(averageQuality));
             

@@ -1,13 +1,9 @@
-using Genrpg.Shared.BoardGame.Settings;
-using Genrpg.Shared.Characters.PlayerData;
+
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Stats.Entities;
 using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.TimeOfDay.Settings
 {
@@ -30,7 +26,7 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Settings
 
 
         [Key(5)] public double EatHours { get; set; }
-        [Key(6)] public double DrinkHours { get; set; } 
+        [Key(6)] public double DrinkHours { get; set; }
         [Key(7)] public double RumorHours { get; set; }
 
 

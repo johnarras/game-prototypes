@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Assets;
-using Assets.Scripts.BoardGame.Controllers;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Purchasing.Services;
@@ -25,7 +24,6 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IScreenService _screenService = null;
         private IAssetService _assetService = null;
         private IClientWebService _webNetworkService = null;
-        private IBoardGameController _boardGameController = null;
         private IClientPurchasingService _purchasingService = null;
 
         protected override void InnerProcess(GameAuthResponse response, CancellationToken token)
@@ -45,7 +43,7 @@ namespace Assets.Scripts.Website.MessageHandlers
                 keepOpenScreens.Add(ScreenNames.Login);
             }
 
-            if (response == null || response.User == null)
+            if (response == null || response.GameAccount == null)
             {
                 _screenService.CloseAll(keepOpenScreens);
                 if (keepOpenScreens.Count < 1)
@@ -56,10 +54,10 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             keepOpenScreens.Clear();
-            _gs.user = response.User;
+            _gs.acct = response.GameAccount;
             _gs.characterStubs = response.CharacterStubs;
             _gs.mapStubs = response.MapStubs;
-            _gs.ch = new Character(new CoreCharacter()) { Id = _gs.user.Id, UserId = _gs.user.Id, Name = "StubCharacter" };
+            _gs.ch = new Character(new CoreCharacter()) { Id = _gs.acct.Id, UserId = _gs.acct.Id, Name = "StubCharacter" };
 
             foreach (IUnitData unitData in response.UserData)
             {
@@ -74,7 +72,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             List<ITopLevelSettings> loadedSettings = _gameData.AllSettings();
             if (_gameData is ClientGameData clientGameData)
             {
-                clientGameData.SetFilteredObject(_gs.ch);
+                clientGameData.SetSettingsObject(_gs.ch);
             }
 
             await Awaitable.NextFrameAsync(cancellationToken: token);
@@ -85,12 +83,6 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
                 keepOpenScreens.Add(ScreenNames.CrawlerMainMenu);
                 await _screenService.OpenAsync(ScreenNames.CrawlerMainMenu, null, token);
-            }
-            else if (_gs.GameMode == EGameModes.BoardGame)
-            {
-                keepOpenScreens.Add(ScreenNames.MobileHUD);
-                await _screenService.OpenAsync(ScreenNames.MobileHUD, null, token);
-                _boardGameController.LoadCurrentBoard();
             }
             else if (_gs.GameMode == EGameModes.Trader)
             {

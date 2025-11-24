@@ -2,5 +2,6 @@
   "Id": "settingsname3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "BridgeTypeSettings"
+  "Name": "AnimalSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

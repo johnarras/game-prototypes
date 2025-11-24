@@ -1,11 +1,10 @@
 ﻿using Genrpg.RequestServer.Core;
-using Genrpg.Shared.BoardGame.Constants;
+using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.MobileGame.Constants;
 using Genrpg.Shared.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.Settings;
 using Genrpg.Shared.PlayMultiplier.WebApi;
-using Genrpg.Shared.UserCoins.Constants;
-using Genrpg.Shared.Users.PlayerData;
-using Genrpg.Shared.UserStats.Constants;
 
 namespace Genrpg.RequestServer.PlayMultiplier.Services
 {
@@ -16,23 +15,28 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
         {
             CoreUserData userData = await context.GetAsync<CoreUserData>();
 
-            int level = context.user.Level;
+            long level = userData.Level;
 
-            long energy = userData.Coins.Get(UserCoinTypes.Energy);
+            if (userData.Level < 1)
+            {
+                userData.Level = 1;
+            }
 
-            List<PlayMult> validMults = _sharedPlayMultService.GetValidMults(context.user, level, energy);
+            long supplies = userData.Currencies.Curr(CoreCurrencyTypes.Supplies);
+
+            List<PlayMult> validMults = _sharedPlayMultService.GetValidMults(context.user, level, supplies);
 
             bool isOkMult = validMults.Any(x => x.Mult == newPlayMult);
 
             if (isOkMult == true)
             {
-                userData.Vars.Set(UserVars.PlayMult, newPlayMult);
+                userData.Mult = newPlayMult;
                 context.Responses.AddResponse(new SetPlayMultResponse() { Success = true, NewPlayMult = newPlayMult });
             }
 
             PlayMult okMult = validMults.LastOrDefault(x => x.Mult < newPlayMult);
 
-            context.Responses.AddResponse(new SetPlayMultResponse() { Success = false, NewPlayMult = okMult?.Mult ?? BoardGameConstants.MinPlayMult });
+            context.Responses.AddResponse(new SetPlayMultResponse() { Success = false, NewPlayMult = okMult?.Mult ?? MobileGameConstants.MinPlayMult });
 
         }
     }

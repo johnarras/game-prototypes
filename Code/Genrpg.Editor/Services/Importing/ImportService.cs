@@ -91,20 +91,35 @@ namespace Genrpg.Editor.Services.Importing
                             {
                                 if (dropdownList.Count > 0)
                                 {
-                                    string lowerName = StrUtils.NormalizeWord(data[i]);
+                                    string lowerDataName = StrUtils.NormalizeWord(data[i]);
 
                                     foreach (IIdName iidname in dropdownList)
                                     {
-                                        string lowerIdName = StrUtils.NormalizeWord(iidname.Name);
+                                        string lowerObjName = StrUtils.NormalizeWord(iidname.Name);
 
-
-                                        if (lowerIdName.Length >= lowerName.Length &&
-                                            lowerName == lowerIdName.Substring(0, lowerName.Length))
+                                        if (lowerObjName != null &&
+                                            lowerObjName.Length >= lowerDataName.Length &&
+                                            lowerDataName == lowerObjName.Substring(0, lowerDataName.Length))
                                         {
                                             prop.SetValue(curr, iidname.IdKey);
                                             didFindName = true;
                                             break;
                                         }
+
+                                        if (iidname is INameId ind)
+                                        {
+                                            string lowerObjNameId = StrUtils.NormalizeWord(ind.NameId);
+
+                                            if (lowerObjNameId != null &&
+                                                lowerObjNameId.Length >= lowerDataName.Length &&
+                                                lowerDataName == lowerDataName.Substring(0, lowerObjNameId.Length))
+                                            {
+                                                prop.SetValue(curr, iidname.IdKey);
+                                                didFindName = true;
+                                                break;
+                                            }
+                                        }
+
                                     }
                                 }
                             }

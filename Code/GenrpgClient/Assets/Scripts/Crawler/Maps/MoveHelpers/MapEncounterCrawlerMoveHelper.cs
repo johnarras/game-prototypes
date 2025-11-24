@@ -87,8 +87,8 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                     long maxStatusEffectTier = Math.Min(StatusEffects.Dead - 1, (int)(map.Level * mapSettings.TrapDebuffLevelScaling));
 
-                    int minDam = map.Level * mapSettings.TrapMinDamPerLevel;
-                    int maxDam = map.Level * mapSettings.TrapMaxDamagePerLevel;
+                    long minDam = map.Level * mapSettings.TrapMinDamPerLevel;
+                    long maxDam = map.Level * mapSettings.TrapMaxDamagePerLevel;
 
                     foreach (PartyMember pm in party.GetActiveParty())
                     {
@@ -99,7 +99,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                             continue;
                         }
 
-                        int damage = MathUtils.IntRange(minDam, maxDam, _rand);
+                        long damage = MathUtils.LongRange(minDam, maxDam, _rand);
                         _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -damage, ElementTypes.Melee);
 
                         if (pm.Stats.Curr(StatTypes.Health) < 1)

@@ -1,10 +1,10 @@
 ﻿using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Interfaces;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Resets.Settings;
 using Genrpg.Shared.Time.Services;
-using Genrpg.Shared.Users.PlayerData;
 
 namespace Genrpg.RequestServer.Resets.Services
 {

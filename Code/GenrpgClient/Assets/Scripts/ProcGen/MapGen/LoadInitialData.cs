@@ -57,8 +57,8 @@ public class LoadInitialData : BaseZoneGenerator
         }
         _networkService.SendMapMessage(new AddPlayer()
         {
-            UserId = _gs.user.Id,
-            SessionId = _gs.user.SessionId,
+            UserId = _gs.acct.Id,
+            SessionId = _gs.acct.SessionId,
             CharacterId = _gs.ch.Id,
         });
 
@@ -68,7 +68,7 @@ public class LoadInitialData : BaseZoneGenerator
             controller.StartUpdates();
         }
 
-        _logService.Debug("LOADINTOMAP START " + _gs.user.SessionId);
+        _logService.Debug("LOADINTOMAP START " + _gs.acct.SessionId);
         
     }
 

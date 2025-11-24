@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype10default",
-  "ParentId": "default",
-  "IdKey": 10,
-  "Name": "Iron",
-  "Icon": "IronIcon",
-  "Art": "IronArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Genrpg.Shared.Levels.Messages;
+﻿using Genrpg.Shared.Levels.Messages;
 using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitFrame : BaseBehaviour
@@ -24,10 +24,10 @@ public class UnitFrame : BaseBehaviour
 
     public void Init(Unit unitIn)
     {
-        AddListener<NewLevel>(OnLevelUpdate);
+        AddListener<NewRpgLevel>(OnLevelUpdate);
         AddListener<OnAddEffect>(AddVisualEffect);
         AddListener<OnRemoveEffect>(RemoveVisualEffect);
-        AddListener<OnUpdateEffect>(UpdateVisualEffect );
+        AddListener<OnUpdateEffect>(UpdateVisualEffect);
         _unit = unitIn;
         _controller = _clientEntityService.FindInParents<UnitController>(entity);
         if (_controller != null)
@@ -58,7 +58,7 @@ public class UnitFrame : BaseBehaviour
         }
         UpdateVisibility();
     }
-    
+
     public void UpdateVisibility()
     {
         if (_unit == null || _controller == null)
@@ -95,7 +95,7 @@ public class UnitFrame : BaseBehaviour
         _clientEntityService.SetActive(_currentTargetIcon, showStar);
     }
 
-    private void OnLevelUpdate(NewLevel newLevel)
+    private void OnLevelUpdate(NewRpgLevel newLevel)
     {
         if (_unit == null || _unit.Id != newLevel.UnitId)
         {
@@ -117,7 +117,7 @@ public class UnitFrame : BaseBehaviour
         return;
     }
 
-    private void RemoveVisualEffect (OnRemoveEffect eff)
+    private void RemoveVisualEffect(OnRemoveEffect eff)
     {
         if (_unit == null || eff.TargetId != _unit.Id)
         {

@@ -2,5 +2,6 @@
   "Id": "settingsname56default",
   "ParentId": "default",
   "IdKey": 56,
-  "Name": "SexTypeSettings"
+  "Name": "MapEncounterSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

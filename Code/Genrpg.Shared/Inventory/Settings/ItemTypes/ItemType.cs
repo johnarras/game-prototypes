@@ -1,23 +1,19 @@
-using MessagePack;
-
-using Genrpg.Shared.Core.Entities;
-
-using Genrpg.Shared.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Levels.Settings;
-using Genrpg.Shared.Names.Settings;
-using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Inventory.Settings.Qualities;
 using Genrpg.Shared.Inventory.Settings.Slots;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Levels.Settings;
 using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Names.Settings;
+using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.Units.Entities;
+using MessagePack;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Inventory.Settings.ItemTypes
 {
@@ -69,7 +65,7 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
         }
 
 
-        public int GetFromRangeLevel(int desiredLevel)
+        public long GetFromRangeLevel(long desiredLevel)
         {
             if (LevelRanges == null || LevelRanges.Count < 1)
             {
@@ -147,7 +143,7 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
                 Effects.Count > 0;
         }
 
-        public Dictionary<long, long> GetCraftingStatPercents(IGameData gameData, Unit crafter, int level, long quality)
+        public Dictionary<long, long> GetCraftingStatPercents(IGameData gameData, Unit crafter, long level, long quality)
         {
             Dictionary<long, long> dict = new Dictionary<long, long>();
 
@@ -156,7 +152,7 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
                 return dict;
             }
 
-            LevelInfo ldata = gameData.Get<LevelSettings>(crafter).Get(level);
+            RpgLevel ldata = gameData.Get<RpgLevelSettings>(crafter).Get(level);
             QualityType qtype = gameData.Get<QualityTypeSettings>(crafter).Get(quality);
 
             int baseStat = 10;

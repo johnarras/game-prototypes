@@ -1,13 +1,12 @@
-using MessagePack;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.PlayerData;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.PlayerFiltering.Interfaces;
+using MessagePack;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.GameSettings
 {
@@ -85,7 +84,7 @@ namespace Genrpg.Shared.GameSettings
             }
         }
 
-        private Dictionary<Type, Dictionary<string,IGameSettings>> _dataDict = null!;
+        private Dictionary<Type, Dictionary<string, IGameSettings>> _dataDict = null!;
         public virtual T Get<T>(IFilteredObject obj) where T : IGameSettings
         {
             SetupDataDict(false);
@@ -110,7 +109,7 @@ namespace Genrpg.Shared.GameSettings
             return default(T)!;
         }
 
-        public void Set(ITopLevelSettings t) 
+        public void Set(ITopLevelSettings t)
         {
             if (t is IChildSettings childSettings)
             {
@@ -124,8 +123,8 @@ namespace Genrpg.Shared.GameSettings
             {
                 _allData.Remove(currentObject);
             }
-                                       
-            _allData.Add(t1);  
+
+            _allData.Add(t1);
         }
 
         public void AddData(List<ITopLevelSettings> settingsList)

@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.Interfaces;
+using MessagePack;
 
 namespace Genrpg.Shared.Characters.PlayerData
 {
@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Characters.PlayerData
     {
         [Key(0)] public string Id { get; set; }
         [Key(1)] public string Name { get; set; }
-        [Key(2)] public int Level { get; set; }
+        [Key(2)] public long Level { get; set; }
 
     }
 }

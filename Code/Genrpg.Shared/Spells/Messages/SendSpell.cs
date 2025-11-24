@@ -1,11 +1,8 @@
-using MessagePack;
-using Genrpg.Shared.Stats.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapMessages;
-using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using Genrpg.Shared.Spells.Settings.Elements;
+using Genrpg.Shared.Stats.Entities;
+using MessagePack;
 
 namespace Genrpg.Shared.Spells.Messages
 {
@@ -15,7 +12,7 @@ namespace Genrpg.Shared.Spells.Messages
 
         [Key(0)] public string CasterId { get; set; }
         [Key(1)] public string CasterGroupId { get; set; }
-        [Key(2)] public int CasterLevel { get; set; }
+        [Key(2)] public long CasterLevel { get; set; }
         [Key(3)] public long CasterFactionId { get; set; }
         [IgnoreMember] public ReadOnlyStatGroup CasterStats { get; set; }
         [Key(4)] public Spell Spell { get; set; }

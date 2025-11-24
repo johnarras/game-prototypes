@@ -13,7 +13,6 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.DataStores.DataGroups;
-using Assets.Scripts.GameObjects;
 using Genrpg.Shared.MVC.Interfaces;
 using Assets.Scripts.MVC;
 using Assets.Scripts.Awaitables;
@@ -39,7 +38,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
     protected IClientGameState _gs = null;
     protected IClientEntityService _clientEntityService = null;
     private IClientConfigContainer _config = null;
-    private ISingletonContainer _singletonContainer = null;
     private IClientAppService _clientAppService = null;
     private IBinaryFileRepository _binaryFileRepo = null;
     private IInitClient _initClient = null;
@@ -47,7 +45,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
     private IAwaitableService _awaitableService = null;
     private ILocalLoadService _localLoadService = null;
-    private IClientUpdateService _updateService = null;
 
 
     private const int _maxConcurrentDownloads = 8;

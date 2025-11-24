@@ -74,6 +74,7 @@ SpriteAtlas:
     - 8b9c494712ea12b4992e518cf2a62f25: 21300000
     - 8a84a8670258abc4f8b58890aca7f13b: 21300000
     - f9582f6723077da4a8dc003e4eedf293: 21300000
+    - ca3180b77f6adbf4a93fb669465fa3dc: 21300000
     - ff19a0b798b458d43b2457f6506b2545: 21300000
     - 5553bde7f23f349428c625a94fdb9e71: 21300000
     - c1957208b7711b340b090229994d3433: 21300000
@@ -122,6 +123,7 @@ SpriteAtlas:
     - ad98f3bed278767488d1cd462e64dcf0: 21300000
     - b9f409be1b2a3d64e8db2a94afedaa5b: 21300000
     - 5b244b4f17f976e409043432e3a3a3c5: 21300000
+    - 67c9516f22795d44b8995674eab56915: 21300000
     - 8f7ed3bff4dc40c4bacb3f0ce5b6bbfa: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -162,6 +164,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8b9c494712ea12b4992e518cf2a62f25, type: 3}
   - {fileID: 21300000, guid: 8a84a8670258abc4f8b58890aca7f13b, type: 3}
   - {fileID: 21300000, guid: f9582f6723077da4a8dc003e4eedf293, type: 3}
+  - {fileID: 21300000, guid: ca3180b77f6adbf4a93fb669465fa3dc, type: 3}
   - {fileID: 21300000, guid: ff19a0b798b458d43b2457f6506b2545, type: 3}
   - {fileID: 21300000, guid: 5553bde7f23f349428c625a94fdb9e71, type: 3}
   - {fileID: 21300000, guid: c1957208b7711b340b090229994d3433, type: 3}
@@ -210,6 +213,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ad98f3bed278767488d1cd462e64dcf0, type: 3}
   - {fileID: 21300000, guid: b9f409be1b2a3d64e8db2a94afedaa5b, type: 3}
   - {fileID: 21300000, guid: 5b244b4f17f976e409043432e3a3a3c5, type: 3}
+  - {fileID: 21300000, guid: 67c9516f22795d44b8995674eab56915, type: 3}
   - {fileID: 21300000, guid: 8f7ed3bff4dc40c4bacb3f0ce5b6bbfa, type: 3}
   m_PackedSpriteNamesToIndex:
   - SandObject
@@ -249,6 +253,7 @@ SpriteAtlas:
   - WaterTerrain
   - TrainerObject
   - DDDWWall
+  - Cauldron
   - SnowObject
   - PlayerArrow
   - WDDOWall
@@ -297,6 +302,7 @@ SpriteAtlas:
   - TempleObject
   - WDOOWall
   - ArcaneObject
+  - Chest
   - BadlandsTerrain
   m_RenderDataMap: {}
   m_Tag: CrawlerMinimapAtlas

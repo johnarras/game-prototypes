@@ -1,0 +1,9 @@
+{
+  "Id": "entitytype203default",
+  "ParentId": "default",
+  "IdKey": 203,
+  "Name": "BonusCoreCurrencyRegen",
+  "Icon": "BonusCoreCurrencyRegen",
+  "Art": "BonusCoreCurrencyRegen",
+  "SaveTime": "2025-11-20T20:57:53.925Z"
+}

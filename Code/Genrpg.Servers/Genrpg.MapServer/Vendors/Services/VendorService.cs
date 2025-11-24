@@ -76,7 +76,7 @@ namespace Genrpg.MapServer.Vendors.Services
             }
 
             int currItemCount = MathUtils.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
-            int level = mapObject.Level;
+            long level = mapObject.Level;
             Zone zone = _mapProvider.GetMap().Get<Zone>(mapObject.ZoneId);
 
             if (zone != null)
@@ -126,8 +126,8 @@ namespace Genrpg.MapServer.Vendors.Services
             _tradeService.SafeModifyObject(obj, delegate { BuyItemInternal(rand, obj, buyItem); });
         }
 
-        private void BuyItemInternal (IRandom rand, MapObject obj, BuyItem buyItem)
-        { 
+        private void BuyItemInternal(IRandom rand, MapObject obj, BuyItem buyItem)
+        {
             if (!_objectManager.GetObject(buyItem.UnitId, out MapObject vendor))
             {
                 obj.AddMessage(new ErrorMessage("Shopkeeper doesn't exist."));
@@ -199,7 +199,7 @@ namespace Genrpg.MapServer.Vendors.Services
         }
 
         private void SellItemInternal(IRandom rand, MapObject obj, SellItem sellItem)
-        { 
+        {
             if (!_objectManager.GetObject(sellItem.UnitId, out MapObject mapObject))
             {
                 obj.AddMessage(new ErrorMessage("That vendor doesn't exist."));

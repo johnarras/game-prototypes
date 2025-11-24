@@ -1,12 +1,7 @@
-using MessagePack;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Core.Settings;
+using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.BoardGame.Settings;
+using MessagePack;
 
 namespace Genrpg.Shared.Vendors.Settings
 {

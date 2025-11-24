@@ -82,7 +82,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public long TotalUpgradePoints { get; set; }
 
-        public int MaxLevelEntered { get; set; }
+        public long MaxLevelEntered { get; set; }
 
         public long LastAutoCompleteLevel { get; set; }
 
@@ -193,7 +193,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         }
 
-        public int GetUpgradePointsLevel(long upgradeReasonId, bool gameUpgrade)
+        public long GetUpgradePointsLevel(long upgradeReasonId, bool gameUpgrade)
         {
             UpgradeStatus status = UpgradeStatuses.FirstOrDefault(x => x.UpgradeReasonId == upgradeReasonId);
             if (status != null)

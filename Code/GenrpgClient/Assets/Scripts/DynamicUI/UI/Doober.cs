@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.UserCoins;
+﻿using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
@@ -85,7 +85,7 @@ namespace Assets.Scripts.Doobers.UI
 
             if (percentDone >= 1)
             {
-                _dispatcher.Dispatch(new AddUserCoinVisual() { InstantUpdate = false, QuantityAdded = _quantity, UserCoinTypeId = _entityId });
+                _dispatcher.Dispatch(new AddEntityQuantityVisual() { EntityTypeId = _entityTypeId, InstantUpdate = false, QuantityAdded = _currQuantity, EntityId = _entityId });
 
                 return true;
             }

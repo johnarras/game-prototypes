@@ -1,5 +1,4 @@
 using MessagePack;
-using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -21,8 +20,8 @@ namespace Genrpg.Shared.Accounts.PlayerData
         [Key(9)] public string PasswordHash { get; set; }
         [Key(10)] public List<AuthRecord> AuthRecords { get; set; } = new List<AuthRecord>();
         [Key(11)] public DateTime CreatedOn { get; set; }
-        [Key(12)] public long OriginalAccountProductId { get; set; }
-        [Key(13)] public int Flags { get; set; }        
+        [Key(12)] public long OriginalProductId { get; set; }
+        [Key(13)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
@@ -48,7 +47,6 @@ namespace Genrpg.Shared.Accounts.PlayerData
     public class ProductRecord
     {
         [Key(0)] public long ProductId { get; set; }
-        [Key(1)] public string ProductAccountId { get; set; }
     }
 
 }

@@ -1,9 +1,0 @@
-{
-  "Id": "usercointype2default",
-  "ParentId": "default",
-  "IdKey": 2,
-  "Name": "Gold",
-  "Icon": "GoldIcon",
-  "Art": "GoldArt",
-  "SaveTime": "2025-08-27T00:46:00.707Z"
-}

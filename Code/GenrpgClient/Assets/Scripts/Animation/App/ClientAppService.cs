@@ -8,7 +8,7 @@ using Unity.Profiling.Memory;
 using UnityEngine; // Needed
 
 
-public interface IClientAppService : IInitializable
+public interface IClientAppService : IInitializable, IExplicitInject
 {
     void Quit();
     int TargetFrameRate { get; set; }
@@ -27,13 +27,21 @@ public interface IClientAppService : IInitializable
     int ScreenWidth { get; }
     int ScreenHeight { get; }
     Awaitable TakeMemorySnapshot();
+    bool IsFullScreen();
+    void SetFullScreen(bool isFullScreen);
 }
 
 
 
 public class ClientAppService : IClientAppService
 {
-    private ILogService _logService = null;
+
+    protected ILogService _logService = null;
+
+    public ClientAppService(ILogService logService)
+    {
+        _logService = logService;
+    }
 
     public void Quit()
     {
@@ -124,20 +132,29 @@ public class ClientAppService : IClientAppService
 
     public async Awaitable TakeMemorySnapshot()
     {
-        _logService.Info("Snapshot1");
+        Debug.Log("Snapshot1");
 
         MemoryProfiler.TakeTempSnapshot(OnTakeSnapshot);
 
-        _logService.Info("Snapshot2");
+        Debug.Log("Snapshot2");
 
         await Task.CompletedTask;
     }
 
     private void OnTakeSnapshot(string txt, bool val)
     {
-        _logService.Info("Snapshot: " + txt);
+        Debug.Log("Snapshot: " + txt);
     }
 
+    public bool IsFullScreen()
+    {
+        return Screen.fullScreen;
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        SetupScreen(Screen.width, Screen.height, isFullScreen, Screen.orientation == ScreenOrientation.LandscapeLeft, QualitySettings.vSyncCount);
+    }
 }
 
 

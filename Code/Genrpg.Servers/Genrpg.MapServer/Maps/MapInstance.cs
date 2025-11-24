@@ -1,68 +1,48 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Players.Constants;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Characters.PlayerData;
-using System.ComponentModel;
-using Genrpg.ServerShared.PlayerData;
-using Genrpg.ServerShared.Setup;
-using Genrpg.ServerShared.Core;
-using Genrpg.MapServer.Networking;
-using Genrpg.Shared.Crafting.PlayerData;
-using Genrpg.Shared.MapMessages.Interfaces;
-using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.CloudMessaging.Interfaces;
-using Genrpg.Shared.Utils;
-using System.Net;
-using Newtonsoft.Json.Serialization;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Networking.Listeners;
-using Genrpg.Shared.Players.Messages;
-using Genrpg.Shared.Pings.Messages;
-using Genrpg.Shared.Errors.Messages;
-using Genrpg.Shared.Stats.Messages;
-using Genrpg.Shared.Networking.Constants;
-using Genrpg.Shared.Networking.Entities;
-using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.MapServer.Setup.Instances;
 using Genrpg.ServerShared.CloudComms.Constants;
-using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.GameSettings.Messages;
+using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
+using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.ServerShared.Maps;
 using Genrpg.ServerShared.MapSpawns;
-using Genrpg.Shared.DataStores.Categories;
-using Genrpg.Shared.Characters.Utils;
-using Newtonsoft.Json.Linq;
-using MongoDB.Bson.Serialization.Serializers;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.ServerShared.Config;
-using Genrpg.MapServer.Setup.Instances;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.GameSettings.PlayerData;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Users.PlayerData;
+using Genrpg.ServerShared.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using ZstdSharp.Unsafe;
+using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Errors.Messages;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings.Messages;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Networking.Constants;
+using Genrpg.Shared.Networking.Entities;
+using Genrpg.Shared.Pathfinding.Services;
+using Genrpg.Shared.Pings.Messages;
+using Genrpg.Shared.Players.Messages;
+using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Maps
 {
-    public class MapInstance : BaseServer<ServerGameState,MapInstanceSetupService,IMapInstanceCloudMessageHandler>, IDisposable
+    public class MapInstance : BaseServer<ServerGameState, MapInstanceSetupService, IMapInstanceCloudMessageHandler>, IDisposable
     {
         private IListener _listener = null;
 
@@ -83,7 +63,7 @@ namespace Genrpg.MapServer.Maps
         protected IMapProvider _mapProvider;
         private ITextSerializer _textSerializer = null;
         private IBinarySerializer _binarySerializer = null;
-        private ITaskService _taskService = null;       
+        private ITaskService _taskService = null;
 
         public const double UpdateMS = 100.0f;
 
@@ -95,7 +75,7 @@ namespace Genrpg.MapServer.Maps
         private int _mapSize = 0;
         private EMapApiSerializers _serializerType;
 
-        
+
 
         private IRandom _rand = new MyRandom();
 
@@ -168,7 +148,7 @@ namespace Genrpg.MapServer.Maps
 
             InitMapInstanceData initData = data as InitMapInstanceData;
             _isRunning = true;
-            
+
             _instanceTokenSource = CancellationTokenSource.CreateLinkedTokenSource(parentToken, _tokenSource.Token);
 
             // Step 2: Load map before setting up messaging and object manager
@@ -182,7 +162,7 @@ namespace Genrpg.MapServer.Maps
             _serializerType = initData.SerializerType;
             _host = "127.0.0.1";
             _mapSize = _mapProvider.GetMap().BlockCount;
-            
+
             if (_config.DefaultEnv.IndexOf(EnvNames.Test) >= 0 || _config.DefaultEnv.IndexOf(EnvNames.Prod) >= 0)
             {
                 _host = _config.PublicIP;
@@ -222,9 +202,9 @@ namespace Genrpg.MapServer.Maps
             {
                 _players.Add(connState);
             }
-        }        
+        }
 
-        public void ReceiveCommands(List<IMapApiMessage> commands, CancellationToken token, object connStateObject )
+        public void ReceiveCommands(List<IMapApiMessage> commands, CancellationToken token, object connStateObject)
         {
             ServerConnectionState connState = connStateObject as ServerConnectionState;
 
@@ -278,7 +258,7 @@ namespace Genrpg.MapServer.Maps
                         UpdatePlayerConnections();
                         await timer.WaitForNextTickAsync(token).ConfigureAwait(false);
                     }
-                }            
+                }
             }
             catch (OperationCanceledException ce)
             {
@@ -335,14 +315,14 @@ namespace Genrpg.MapServer.Maps
                     return;
                 }
 
-                User user = await _repoService.Load<User>(add.UserId);
+                GameAccount gameAcct = await _repoService.Load<GameAccount>(add.UserId);
 
-                if (user == null)
+                if (gameAcct == null)
                 {
                     connState.conn.AddMessage(new ErrorMessage("User does not exist"));
                     return;
                 }
-                if (user.SessionId != add.SessionId)
+                if (gameAcct.SessionId != add.SessionId)
                 {
                     connState.conn.AddMessage(new ErrorMessage("Invalid session id"));
                     return;
@@ -369,7 +349,7 @@ namespace Genrpg.MapServer.Maps
 
                     ch.NearbyGridsSeen = new List<PointXZ>();
                     connState.ch = ch;
-                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, user, ch);
+                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct, ch);
                     foreach (IUnitData unitData in allUnitData)
                     {
                         ch.Set(unitData);
@@ -400,12 +380,12 @@ namespace Genrpg.MapServer.Maps
                     _messageService.SendMessage(connState.ch, connState.ch.GetCachedMessage<SaveDirty>(true));
                     SendPlayerEnterMapMessage(connState.ch);
                 }
-               
+
                 connState.conn.AddMessage(new OnFinishLoadPlayer());
             }
             catch (Exception e)
             {
-               _logService.Exception(e, "AddPlayer");
+                _logService.Exception(e, "AddPlayer");
             }
         }
 

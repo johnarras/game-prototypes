@@ -47,7 +47,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             List<CrawlerUnit> readyUnits = new List<CrawlerUnit>();
             foreach (CrawlerUnit unit in group.Units)
             {
-                if (unit.Actions.Count < unit.ActionsThisRound)
+                if (unit.CombatActions.Count < unit.ActionsThisRound)
                 {
                     notReadyUnits.Add(unit);
                 }
@@ -74,7 +74,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             PartyMember notReadyMember = notReadyUnits[0] as PartyMember;
 
 
-            stateData.AddText($"Select action {notReadyMember.Actions.Count + 1} for " + _textService.HighlightText(notReadyMember.Name));
+            stateData.AddText($"Select action {notReadyMember.CombatActions.Count + 1} for " + _textService.HighlightText(notReadyMember.Name));
 
             List<char> usedKeyCodes = new List<char>();
 
@@ -206,7 +206,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
                 if (nextState == ECrawlerStates.CombatPlayer)
                 {
-                    nextClickAction = delegate { notReadyUnits[0].Actions.Add(unitCombatAction); };
+                    nextClickAction = delegate { notReadyUnits[0].CombatActions.Add(unitCombatAction); };
                 }
 
                 if (unitCombatAction.Spell != null)
@@ -231,7 +231,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.CombatPlayer,
                     onClickAction: () =>
                     {
-                        readyUnits.Last().Actions.Clear();
+                        readyUnits.Last().CombatActions.Clear();
                     }));
             }
 

@@ -2,5 +2,6 @@
   "Id": "settingsname50default",
   "ParentId": "default",
   "IdKey": 50,
-  "Name": "ReputationSettings"
+  "Name": "GuildDegreeSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

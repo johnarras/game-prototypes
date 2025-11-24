@@ -1,14 +1,7 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.BoardGame.Settings;
+using MessagePack;
 
 namespace Genrpg.Shared.AI.Settings
 {
@@ -30,7 +23,7 @@ namespace Genrpg.Shared.AI.Settings
     }
 
 
-    public class AISettingsLoader : NoChildSettingsLoader<AISettings> {}
+    public class AISettingsLoader : NoChildSettingsLoader<AISettings> { }
 
     public class AISettingsDto : NoChildSettingsDto<AISettings> { }
 

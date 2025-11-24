@@ -5,7 +5,7 @@
     {
         Crawler = 0,
         MMO = 1,
-        BoardGame = 2,
+        Unused = 2,
         Trader = 3,
     }
 

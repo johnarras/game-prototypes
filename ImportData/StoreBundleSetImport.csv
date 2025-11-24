@@ -1,0 +1,19 @@
+header storebundleset,IdKey,Name,NameId,
+header storebundle,Index,Name,Price,BundleId
+header reward,EntityTypeId,EntityId,Quantity,
+,,,,
+storebundleset,1,Mana Packs,ManaPacks,
+storebundle,1,100 Mana,1.99,Mana100
+reward,corecurrency,mana,100,
+storebundle,2,300 Mana,3.99,Mana300
+reward,corecurrency,mana,300,
+storebundle,3,500 Mana,5.99,Mana500
+reward,corecurrency,mana,500,
+,,,,
+storebundleset,2,Supplies Packs,SuppliesPacks,
+storebundle,1,100 Supplies,2.99,Supplies100
+reward,corecurrency,supplies,100,
+storebundle,2,300 Mana,5.99,Supplies300
+reward,corecurrency,supplies,300,
+storebundle,3,500 Mana,8.99,Supplies300
+reward,corecurrency,supplies,500,

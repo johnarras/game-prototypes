@@ -1,0 +1,16 @@
+{
+  "Id": "rpglevel64default",
+  "ParentId": "default",
+  "IdKey": 64,
+  "RewardList": [],
+  "CurrExp": 265000,
+  "MobCount": 89.2,
+  "MobExp": 2354,
+  "QuestCount": 11.1,
+  "QuestExp": 4900,
+  "KillMoney": 628,
+  "StatAmount": 404,
+  "MonsterStatScale": 50,
+  "AbilityPoints": 3,
+  "SaveTime": "2025-11-24T16:32:50.207Z"
+}

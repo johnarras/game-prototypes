@@ -2,5 +2,6 @@
   "Id": "settingsname25default",
   "ParentId": "default",
   "IdKey": 25,
-  "Name": "EquipSlotSettings"
+  "Name": "CrawlerLootSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

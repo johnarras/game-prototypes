@@ -1,7 +1,4 @@
 ﻿using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Levels.Settings;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
@@ -12,9 +9,6 @@ using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Stats.Services
 {
@@ -81,7 +75,7 @@ namespace Genrpg.MapServer.Stats.Services
             }
 
             long baseStat = 100000;
-            LevelInfo lev = _gameData.Get<LevelSettings>(unit).Get(unit.Level);
+            RpgLevel lev = _gameData.Get<RpgLevelSettings>(unit).Get(unit.Level);
             if (lev != null)
             {
                 baseStat = lev.StatAmount;

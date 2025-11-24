@@ -2,5 +2,8 @@
   "Id": "entitytype202default",
   "ParentId": "default",
   "IdKey": 202,
-  "Name": "UserCoinMaxStorage"
+  "Name": "BaseCoreCurrencyStorage",
+  "Icon": "BaseCoreCurrencyStorage",
+  "Art": "BaseCoreCurrencyStorage",
+  "SaveTime": "2025-11-20T20:57:53.925Z"
 }

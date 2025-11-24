@@ -1,10 +1,8 @@
 ﻿using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Tiles.Settings;
-using Genrpg.Shared.UserCoins.Settings;
 
 namespace Genrpg.Editor.Importers.BoardGame
 {
@@ -43,16 +41,6 @@ namespace Genrpg.Editor.Importers.BoardGame
                 if (reagents != null)
                 {
                     current.UpgradeReagents.Clear();
-
-                    foreach (UserCoinType coinType in gs.data.Get<UserCoinSettings>(null).GetData())
-                    {
-                        int quantity = EntityUtils.GetObjectInt(reagents, coinType.Name);
-
-                        if (quantity > 0)
-                        {
-                            current.UpgradeReagents.Add(new TileUpgradeReagent() { Quantity = quantity, UserCoinTypeId = coinType.IdKey });
-                        }
-                    }
                 }
             }
         }

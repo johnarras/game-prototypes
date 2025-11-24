@@ -116,7 +116,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (PartyMember member in party.GetActiveParty())
             {
-                member.Actions.Clear();
+                member.CombatActions.Clear();
                 foreach (StatusEffect effect in statusEffects)
                 {
                     if (effect.RemoveAtEndOfCombat)
@@ -171,34 +171,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             StartCombatSettings startSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
 
+            CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
+
             List<InitialCombatGroup> partySummons = new List<InitialCombatGroup>();
-
-            foreach (PartyMember member in members)
-            {
-                if (member.Summons.Count > 0 && !IsDisabled(member))
-                {
-                    foreach (PartySummon summon in member.Summons)
-                    {
-                        UnitType unitType = _gameData.Get<UnitTypeSettings>(_gs.ch).Get(summon.UnitTypeId);
-
-                        if (unitType != null)
-                        {
-                            long summonQuantity = _crawlerSpellService.GetSummonQuantity(party, member, unitType);
-
-                            InitialCombatGroup icg = new InitialCombatGroup()
-                            {
-                                UnitTypeId = unitType.IdKey,
-                                Quantity = summonQuantity,
-                                Level = member.Level,
-                                FactionTypeId = FactionTypes.Player,
-                                Range = CrawlerCombatConstants.MinRange,
-                            };
-
-                            partySummons.Add(icg);
-                        }
-                    }
-                }
-            }
 
             CombatGroup partyGroup = new CombatGroup()
             {
@@ -707,7 +682,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 }
                 foreach (CrawlerUnit unit in group.Units)
                 {
-                    if (unit.Actions.Count < unit.ActionsThisRound)
+                    if (unit.CombatActions.Count < unit.ActionsThisRound)
                     {
                         if (!IsDisabled(unit))
                         {
@@ -739,7 +714,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     List<CrawlerUnit> dupeList = new List<CrawlerUnit>(group.Units);
                     foreach (CrawlerUnit unit in dupeList)
                     {
-                        unit.Actions.Clear();
+                        unit.CombatActions.Clear();
 
                         List<IDisplayEffect> removeEffectList = new List<IDisplayEffect>();
                         foreach (IDisplayEffect effect in unit.Effects)
@@ -766,7 +741,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     List<CrawlerUnit> dupeList = new List<CrawlerUnit>(group.Units);
                     foreach (CrawlerUnit unit in dupeList)
                     {
-                        unit.Actions.Clear();
+                        unit.CombatActions.Clear();
                     }
                 }
 
@@ -1162,7 +1137,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (PartyMember member in party.GetActiveParty())
             {
-                member.Actions.Clear();
+                member.CombatActions.Clear();
                 if (!IsDisabled(member))
                 {
                     member.ActionsThisRound = totalActions;

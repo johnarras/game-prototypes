@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.BoardGame.Controllers;
+﻿
 using Assets.Scripts.PlayerSearch;
 using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Characters.PlayerData;
@@ -25,7 +25,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     public GButton LogoutButton;
     public GButton QuitButton;
     public GButton CrawlerButton;
-    public GButton BoardGameButton;
     public GText ErrorText;
 
     protected IZoneGenService _zoneGenService;
@@ -33,7 +32,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     protected INoiseService _noiseService;
     protected IInputService _inputService;
     protected IPlayerSearchService _playerSearchService;
-    private IBoardGameController _boardGameController;
     private IClientConfigContainer _configContainer;
     private IClientAppService _clientAppService;
     private ICrawlerService _crawlerService;
@@ -74,7 +72,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
         _uiService.SetButton(LogoutButton, GetName(), ClickLogout);
         _uiService.SetButton(CreateButton, GetName(), ClickCharacterCreate);
         _uiService.SetButton(QuitButton, GetName(), ClickQuit);
-        _uiService.SetButton(BoardGameButton, GetName(), ClickBoardGame);
 
         SetupCharacterGrid();
 
@@ -119,13 +116,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     }
 
 #endif
-
-    private void ClickBoardGame()
-    {
-        _screenService.CloseAll();
-        _screenService.Open(ScreenNames.MobileHUD);
-        _boardGameController.LoadCurrentBoard();
-    }
 
     private void ClickCharacterCreate()
     {

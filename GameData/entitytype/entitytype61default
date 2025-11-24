@@ -1,0 +1,9 @@
+{
+  "Id": "entitytype61default",
+  "ParentId": "default",
+  "IdKey": 61,
+  "Name": "ProductSku",
+  "Icon": "ProductSku",
+  "Art": "ProductSku",
+  "SaveTime": "2025-11-22T03:07:38.081Z"
+}

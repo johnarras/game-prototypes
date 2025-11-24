@@ -2,5 +2,6 @@
   "Id": "settingsname7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "ChatSettings"
+  "Name": "BuildingArtSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

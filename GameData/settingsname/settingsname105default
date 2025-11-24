@@ -2,5 +2,6 @@
   "Id": "settingsname105default",
   "ParentId": "default",
   "IdKey": 105,
-  "Name": "CrawlerMapSettings"
+  "Name": "TextureChannelSettings",
+  "SaveTime": "2025-11-24T17:13:23.088Z"
 }

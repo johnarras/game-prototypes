@@ -35,7 +35,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
                             return;
                         }
 
-
                         _partyService.RemovePartyMember(party, member);
                         _statService.CalcPartyStats(party, true);
                         _crawlerService.SaveGame();

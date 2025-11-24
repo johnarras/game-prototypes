@@ -1,25 +1,16 @@
 ﻿using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.UI.Images
 {
     public class CrawlerSprite : BaseBehaviour
     {
-        private ICrawlerMapService _crawlerMapService;
-
-
         public bool IsBG;
         public AnimatedSprite Sprite;
 
         public GImage FrontBacking;
 
-        public override void Init ()
+        public override void Init()
         {
             _dispatcher.AddListener<CrawlerStateData>(OnNewStateData, GetToken());
 
@@ -59,6 +50,6 @@ namespace Assets.Scripts.Crawler.UI.Images
             }
 
             ShowImage(imageToShow.SpriteName, null, false);
-        }      
+        }
     }
 }

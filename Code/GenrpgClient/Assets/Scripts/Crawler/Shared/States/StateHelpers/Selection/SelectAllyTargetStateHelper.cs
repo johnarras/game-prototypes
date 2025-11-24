@@ -60,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < partyMembers.Count; m++)
             {
                 PartyMember partyMember = partyMembers[m];
-                char c = (char)('a' + m);
+                char c = (char)('A' + m);
 
                 Action clickAction = null;
 
@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     clickAction = delegate ()
                     {
                         selectAction.Action.FinalTargets.Add(partyMember);
-                        selectAction.Member.Actions.Add(selectAction.Action);
+                        selectAction.Member.AddAction(selectAction.Action);
                     };
                 }
 

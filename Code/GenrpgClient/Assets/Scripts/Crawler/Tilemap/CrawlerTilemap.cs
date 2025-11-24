@@ -75,6 +75,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
         Sprite _outOfBoundsSprite = null;
         Sprite _trapSprite = null;
         Sprite _monsterSprite = null;
+        Sprite _cauldronSprite = null;
+        Sprite _chestSprite = null;
         private TilemapCell[,,] _tiles;
         private GText[,] _text;
 
@@ -156,7 +158,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     {
                         TilemapCell cell = _clientEntityService.FullInstantiate<TilemapCell>(CellPrefab);
                         cell.name = $"{x}.{z}.{l}";
-                        cell.transform.parent = ImageParent.transform;
+                        cell.transform.SetParent(ImageParent.transform);
                         cell.transform.localScale = Vector3.one;
                         cell.transform.localPosition = new Vector3(GetTileOffSetPos(x, Width, _tileSize), GetTileOffSetPos(z, Height, _tileSize), l);
 
@@ -308,6 +310,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
             _riddleSprite = _atlas.GetSprite("Riddle");
             _trapSprite = _atlas.GetSprite("Trap");
             _monsterSprite = _atlas.GetSprite("Monster");
+            _cauldronSprite = _atlas.GetSprite("Cauldron");
+            _chestSprite = _atlas.GetSprite("Chest");
             _outOfBoundsSprite = _atlas.GetSprite("OutOfBounds");
 
             InitImages(Width, Height, _tileSize);
@@ -576,7 +580,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                         if (!didSetObject)
                         {
-                            int encounterId = _map.GetEntityId(x, z, EntityTypes.MapEncounter);
+                            long encounterId = _crawlerMapService.GetEncounterAtCell(_party, _map, x, z);
 
                             if (encounterId == MapEncounters.Monsters)
                             {
@@ -586,6 +590,17 @@ namespace Assets.Scripts.Crawler.Tilemaps
                             else if (encounterId == MapEncounters.Trap)
                             {
                                 _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_trapSprite);
+                                didSetObject = true;
+                            }
+                            else if (encounterId == MapEncounters.Treasure)
+                            {
+
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_chestSprite);
+                                didSetObject = true;
+                            }
+                            else if (encounterId == MapEncounters.Stats)
+                            {
+                                _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_cauldronSprite);
                                 didSetObject = true;
                             }
                         }

@@ -13,6 +13,6 @@ namespace Genrpg.Shared.Crafting.Entities
         [Key(3)] public long ItemTypeId { get; set; }
         [Key(4)] public long QualityTypeId { get; set; }
         [Key(5)] public int Quantity { get; set; }
-        [Key(6)] public int Level { get; set; }
+        [Key(6)] public long Level { get; set; }
     }
 }
