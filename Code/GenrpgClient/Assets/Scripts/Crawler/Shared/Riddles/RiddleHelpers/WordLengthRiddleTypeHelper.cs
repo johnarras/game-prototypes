@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
     public class WordLengthRiddleTypeHelper : BaseRiddleTypeHelper
     {
-        public override long Key => RiddleTypes.WordLength;
+        public override long HelperKey => RiddleTypes.WordLength;
 
         protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
         {

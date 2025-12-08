@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Errors
 {
     public class ErrorStateHelper : BaseStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.Error;
+        public override ECrawlerStates HelperKey => ECrawlerStates.Error;
 
 
 

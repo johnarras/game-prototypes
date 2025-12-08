@@ -2,16 +2,16 @@
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 {
     public class DeleteConfirmHelper : BaseStateHelper
     {
         private IPartyService _partyService;
-        public override ECrawlerStates Key => ECrawlerStates.DeleteConfirm;
+        public override ECrawlerStates HelperKey => ECrawlerStates.DeleteConfirm;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
@@ -19,10 +19,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 
             PartyMember member = action.ExtraData as PartyMember;
 
-            stateData.Actions.Add(new CrawlerStateAction("Delete " + member.Name + "?\n\n", CharCodes.None, ECrawlerStates.None, null, null,
+            stateData.Actions.Add(new CrawlerStateAction("Delete " + member.Name + "?\n\n", Key.None, ECrawlerStates.None, null, null,
                 member.PortraitName));
 
-            stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.DeleteMember,
+            stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.DeleteMember,
                 delegate
                 {
                     if (member.PartySlot > 0)
@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 
                 }));
 
-            stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.DeleteMember));
+            stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.DeleteMember));
 
             await Task.CompletedTask;
             return stateData;

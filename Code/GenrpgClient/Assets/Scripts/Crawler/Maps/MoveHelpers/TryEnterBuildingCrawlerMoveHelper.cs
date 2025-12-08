@@ -78,7 +78,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 IStateHelper helper = helpers.FirstOrDefault(x => x.TriggerDetailEntityTypeId() == detail.EntityTypeId);
                 if (helper != null)
                 {
-                    return new ForcedNextState() { NextState = helper.Key, Detail = detail };
+                    return new ForcedNextState() { NextState = helper.HelperKey, Detail = detail };
                 }
             }
 
@@ -86,7 +86,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             if (buildingHelper != null)
             {
-                return new ForcedNextState() { NextState = buildingHelper.Key };
+                return new ForcedNextState() { NextState = buildingHelper.HelperKey };
             }
 
             return null;

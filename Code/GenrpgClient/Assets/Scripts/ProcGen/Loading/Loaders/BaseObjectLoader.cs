@@ -1,16 +1,16 @@
 ﻿
-using UnityEngine;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Utils;
-using System.Threading;
+using Assets.Scripts.Assets;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
-using Assets.Scripts.Assets;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System.Threading;
+using UnityEngine;
 
 public abstract class BaseObjectLoader : IInjectable
 {
@@ -23,12 +23,12 @@ public abstract class BaseObjectLoader : IInjectable
     protected IMapGenData _md;
     protected IClientEntityService _clientEntityService;
 
-    public abstract bool LoadObject(PatchLoadData loadData, uint objectId, int x, int y, 
+    public abstract bool LoadObject(PatchLoadData loadData, uint objectId, int x, int y,
         Zone currZone, ZoneType currZoneType, CancellationToken token);
 
-    protected void OnDownloadObject(object obj, object data, CancellationToken token)
+    protected void OnDownloadObject(GameObject go, DownloadObjectData data, CancellationToken token)
     {
-        FinalPlaceObject(obj as GameObject, data as DownloadObjectData, token);
+        FinalPlaceObject(go, data, token);
     }
 
     public virtual void FinalPlaceObject(GameObject go, DownloadObjectData dlo, CancellationToken token)

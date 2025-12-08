@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         private ICrawlerUpgradeService _upgradeService = null;
         private ICrawlerService _crawlerService = null;
 
-        public override long Key => EntityTypes.PartyUpgrades;
+        public override long HelperKey => EntityTypes.PartyUpgrades;
 
 
         public override List<string> GetInfoLines(long entityId)

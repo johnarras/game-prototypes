@@ -38,7 +38,7 @@ namespace Genrpg.Editor.Importers.Trader
 
         public override string ImportDataFilename => "CitiesImport.csv";
 
-        public override EImportTypes Key => EImportTypes.Cities;
+        public override EImportTypes HelperKey => EImportTypes.Cities;
 
         protected override void ImportChildSubObject(EditorGameState gs, City current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

@@ -38,7 +38,7 @@ namespace Genrpg.Shared.TimedEvents.Settings
 
     public class TimedEventHelper : BaseEntityHelper<TimedEventTypeSettings, TimedEventType>
     {
-        public override long Key => EntityTypes.TimedEvent;
+        public override long HelperKey => EntityTypes.TimedEvent;
     }
 
 }

@@ -51,7 +51,7 @@ namespace Genrpg.Shared.Buildings.Settings
 
     public class BuildingHelper : BaseEntityHelper<BuildingSettings, BuildingType>
     {
-        public override long Key => EntityTypes.Building;
+        public override long HelperKey => EntityTypes.Building;
     }
 
 }

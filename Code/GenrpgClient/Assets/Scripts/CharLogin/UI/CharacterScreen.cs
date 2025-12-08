@@ -156,7 +156,7 @@ public class CharacterScreen : ItemIconScreen
                         statTypeId = -1,
                     };
                     _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI,
-                        StatInfoRowPrefabName, OnDownloadStat, sddFill, GetToken(), GetStatSubdirectory());
+                        StatInfoRowPrefabName, OnDownloadStat, GetToken(), sddFill, GetStatSubdirectory());
                 }
                 StatDownloadData sdd = new StatDownloadData()
                 {
@@ -164,7 +164,7 @@ public class CharacterScreen : ItemIconScreen
                     statTypeId = stat.IdKey,
                 };
                 _assetService.LoadAssetInto(StatGridParent, AssetCategoryNames.UI,
-                    StatInfoRowPrefabName, OnDownloadStat, sdd, GetToken(), GetStatSubdirectory());
+                    StatInfoRowPrefabName, OnDownloadStat, GetToken(), sdd, GetStatSubdirectory());
             }
         }
         else
@@ -176,22 +176,13 @@ public class CharacterScreen : ItemIconScreen
         }
     }
 
-    private void OnDownloadStat(object obj, object data, CancellationToken token)
+    private void OnDownloadStat(GameObject go, StatDownloadData downloadData, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        StatDownloadData downloadData = data as StatDownloadData;
-
         if (downloadData == null || downloadData.currUnit == null || downloadData.statTypeId < 1)
         {
             _clientEntityService.Destroy(go);
             return;
         }
-
 
         StatInfoRow statRow = go.GetComponent<StatInfoRow>();
         if (statRow == null)

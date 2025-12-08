@@ -109,7 +109,7 @@ namespace Genrpg.Shared.Interfaces
         void SetExplicitType(Type interfaceType, object obj);
         List<Type> GetKeys();
 
-        List<T> GetVals<T>() where T : IInjectable;
+        List<T> GetVals<T>();
         void Resolve(object obj);
         void StoreDictionaryItem(object obj);
         void ResolveSelf();

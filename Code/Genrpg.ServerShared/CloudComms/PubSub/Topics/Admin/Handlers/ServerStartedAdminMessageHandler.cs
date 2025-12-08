@@ -12,7 +12,7 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers
 {
     public class ServerStartedAdminMessageHandler : BaseAdminPubSubMessageHandler<ServerStartedAdminMessage>
     {
-        public override Type Key => typeof(ServerStartedAdminMessage);
+        public override Type HelperKey => typeof(ServerStartedAdminMessage);
 
         protected override async Task InnerHandleMessage(ServerStartedAdminMessage message, CancellationToken token)
         {

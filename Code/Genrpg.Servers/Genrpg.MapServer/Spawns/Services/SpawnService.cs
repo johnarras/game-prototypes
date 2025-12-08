@@ -1,29 +1,24 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Services;
-using System.Threading;
-using System.Runtime.InteropServices;
-using Genrpg.Shared.Spawns.Interfaces;
-using System.Linq;
-using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.GameSettings;
+﻿using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spawns.Settings;
+using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spawns.Services
 {
 
     public interface ISpawnService : IInitializable
     {
-        List<RewardList> Roll(IRandom rand, long spawnTableId, RollData rollData);
-        List<RewardList> Roll(IRandom rand, SpawnTable st, RollData rollData);
-        List<RewardList> Roll<SI>(IRandom rand, List<SI> items, RollData rollData) where SI : ISpawnItem;
+        List<RewardList> Roll(IRandom rand, long spawnTableId, RollLootArgs rollLootArgs);
+        List<RewardList> Roll(IRandom rand, SpawnTable st, RollLootArgs rollLootArgs);
+        List<RewardList> Roll<SI>(IRandom rand, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem;
     }
 
     /// <summary>
@@ -52,38 +47,38 @@ namespace Genrpg.MapServer.Spawns.Services
             return null;
         }
 
-        public List<RewardList> Roll(IRandom rand, long spawnTableId, RollData rollData)
+        public List<RewardList> Roll(IRandom rand, long spawnTableId, RollLootArgs rollLootArgs)
         {
-            return Roll(rand, _gameData.Get<SpawnSettings>(null).Get(spawnTableId), rollData);
+            return Roll(rand, _gameData.Get<SpawnSettings>(null).Get(spawnTableId), rollLootArgs);
         }
 
         // Different public roll methods.
 
-        public List<RewardList> Roll(IRandom rand, SpawnTable st, RollData rollData)
+        public List<RewardList> Roll(IRandom rand, SpawnTable st, RollLootArgs rollLootArgs)
         {
             if (st == null)
             {
                 return new List<RewardList>();
             }
 
-            return Roll(rand, st.Items, rollData);
+            return Roll(rand, st.Items, rollLootArgs);
         }
 
-        public List<RewardList> Roll<SI>(IRandom rand, List<SI> items, RollData rollData) where SI : ISpawnItem
+        public List<RewardList> Roll<SI>(IRandom rand, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
-            return InnerRoll(rand, items, rollData);
+            return InnerRoll(rand, items, rollLootArgs);
         }
 
-        private List<RewardList> InnerRoll<SI>(IRandom rand, List<SI> items, RollData rollData) where SI : ISpawnItem
+        private List<RewardList> InnerRoll<SI>(IRandom rand, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             List<RewardList> list = new List<RewardList>();
 
-            list.Add(new RewardList() { RewardSourceId = rollData.RewardSourceId, EntityId = rollData.EntityId });
-            for (int i = 0; i < rollData.Times; i++)
+            list.Add(new RewardList() { RewardSourceId = rollLootArgs.RewardSourceId, EntityId = rollLootArgs.EntityId });
+            for (int i = 0; i < rollLootArgs.Times; i++)
             {
-                rollData.Depth++;
-                list.AddRange(RollOnce(rand, items, rollData));
-                rollData.Depth--;
+                rollLootArgs.Depth++;
+                list.AddRange(RollOnce(rand, items, rollLootArgs));
+                rollLootArgs.Depth--;
             }
 
             return list;
@@ -99,7 +94,7 @@ namespace Genrpg.MapServer.Spawns.Services
         /// <param name="qualityTypeId">Power of the loot</param>
         /// <param name="depth">Depth of the recursion</param>
         /// <returns>A list of spawn results</returns>
-        private List<RewardList> RollOnce<SI>(IRandom rand, List<SI> items, RollData rollData) where SI : ISpawnItem
+        private List<RewardList> RollOnce<SI>(IRandom rand, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             if (items == null)
             {
@@ -111,7 +106,7 @@ namespace Genrpg.MapServer.Spawns.Services
             List<SI> rollEachList = new List<SI>();
             foreach (SI si in items)
             {
-                if (si.MinLevel > rollData.Level)
+                if (si.MinLevel > rollLootArgs.Level)
                 {
                     continue;
                 }
@@ -119,9 +114,9 @@ namespace Genrpg.MapServer.Spawns.Services
                 {
                     if (rand.NextDouble() * 100 < si.Weight)
                     {
-                        rollData.Depth++;
-                        retval = retval.Concat(RollOneItem(rand, si, rollData)).ToList();
-                        rollData.Depth--;
+                        rollLootArgs.Depth++;
+                        retval = retval.Concat(RollOneItem(rand, si, rollLootArgs)).ToList();
+                        rollLootArgs.Depth--;
                     }
                     continue;
                 }
@@ -140,9 +135,9 @@ namespace Genrpg.MapServer.Spawns.Services
 
                 if (si != null)
                 {
-                    rollData.Depth++;
-                    retval = retval.Concat(RollOneItem(rand, si, rollData)).ToList();
-                    rollData.Depth--;
+                    rollLootArgs.Depth++;
+                    retval = retval.Concat(RollOneItem(rand, si, rollLootArgs)).ToList();
+                    rollLootArgs.Depth--;
                 }
 
             }
@@ -150,11 +145,11 @@ namespace Genrpg.MapServer.Spawns.Services
         }
 
 
-        private List<RewardList> RollOneItem<SI>(IRandom rand, SI si, RollData rollData) where SI : ISpawnItem
+        private List<RewardList> RollOneItem<SI>(IRandom rand, SI si, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             List<RewardList> retval = new List<RewardList>();
 
-            if (rollData.Depth > 10)
+            if (rollLootArgs.Depth > 10)
             {
                 return retval;
             }
@@ -163,7 +158,7 @@ namespace Genrpg.MapServer.Spawns.Services
 
             if (rollHelper != null)
             {
-                retval = rollHelper.Roll(rand, rollData, si);
+                retval = rollHelper.Roll(rand, rollLootArgs, si);
                 return retval;
             }
 
@@ -176,8 +171,8 @@ namespace Genrpg.MapServer.Spawns.Services
             rew.EntityId = si.EntityId;
             rew.EntityTypeId = si.EntityTypeId;
             rew.Quantity = quantity;
-            rew.QualityTypeId = rollData.QualityTypeId;
-            rew.Level = rollData.Level;
+            rew.QualityTypeId = rollLootArgs.QualityTypeId;
+            rew.Level = rollLootArgs.Level;
             rewardList.Rewards.Add(rew);
 
             return retval;

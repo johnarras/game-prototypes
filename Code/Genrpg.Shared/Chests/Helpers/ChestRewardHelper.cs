@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Chests.Helpers
 {
     public class ChestRewardHelper : IRewardHelper
     {
-        public long Key => EntityTypes.Chest;
+        public long HelperKey => EntityTypes.Chest;
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {

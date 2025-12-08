@@ -1,9 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Genrpg.Shared.Rewards.Constants
+﻿namespace Genrpg.Shared.Rewards.Constants
 {
     public class RewardSources
     {
@@ -21,5 +16,6 @@ namespace Genrpg.Shared.Rewards.Constants
         public const long Bonus = 12;
         public const long PVP = 13;
         public const long Levelup = 14;
+        public const long HourlyReset = 15;
     }
 }

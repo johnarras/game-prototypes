@@ -9,10 +9,11 @@
       "Desc": "The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person.",
       "Icon": "Donkey",
       "Art": "Donkey",
-      "Speed": 2.0,
+      "Speed": 2,
       "Capacity": 1,
-      "Food": 1,
-      "Cost": 750
+      "Supplies": 1,
+      "Cost": 750,
+      "StartsUnlocked": true
     },
     {
       "Id": "animal2default",
@@ -22,10 +23,10 @@
       "Desc": "A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances.",
       "Icon": "Pony",
       "Art": "Pony",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 1,
-      "Food": 1,
-      "Cost": 7250
+      "Supplies": 1,
+      "Cost": 41000
     },
     {
       "Id": "animal3default",
@@ -35,10 +36,10 @@
       "Desc": "A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal.",
       "Icon": "Mule",
       "Art": "Mule",
-      "Speed": 2.0,
+      "Speed": 3,
       "Capacity": 2,
-      "Food": 2,
-      "Cost": 2500
+      "Supplies": 2,
+      "Cost": 29250
     },
     {
       "Id": "animal4default",
@@ -48,10 +49,10 @@
       "Desc": "Bred for speed and agility, this horse is ideal for riders, messengers, and lightly packed scouts. Less efficient for heavy loads than a mule.",
       "Icon": "RidingHorse",
       "Art": "RidingHorse",
-      "Speed": 5.0,
+      "Speed": 6,
       "Capacity": 1,
-      "Food": 2,
-      "Cost": 19500
+      "Supplies": 2,
+      "Cost": 58250
     },
     {
       "Id": "animal5default",
@@ -61,10 +62,10 @@
       "Desc": "A wild ass from the deserts of Persia. Faster than a donkey but notoriously difficult to tame and control. A prestigious, if impractical, chariot animal.",
       "Icon": "TamedOnager",
       "Art": "TamedOnager",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 2,
-      "Food": 2,
-      "Cost": 29250
+      "Supplies": 2,
+      "Cost": 163750
     },
     {
       "Id": "animal6default",
@@ -74,10 +75,10 @@
       "Desc": "A heavier, stronger breed of horse, used for pulling wagons and plows. Faster than an ox but requires more care and better quality food (grain).",
       "Icon": "DraftHorse",
       "Art": "DraftHorse",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 3,
-      "Food": 4,
-      "Cost": 27750
+      "Supplies": 4,
+      "Cost": 155500
     },
     {
       "Id": "animal7default",
@@ -87,10 +88,10 @@
       "Desc": "A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge.",
       "Icon": "HeavyWarhorse",
       "Art": "HeavyWarhorse",
-      "Speed": 4.0,
+      "Speed": 5,
       "Capacity": 2,
-      "Food": 4,
-      "Cost": 20500
+      "Supplies": 4,
+      "Cost": 78250
     },
     {
       "Id": "animal8default",
@@ -100,10 +101,10 @@
       "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
       "Icon": "Ox",
       "Art": "Ox",
-      "Speed": 2.0,
+      "Speed": 3,
       "Capacity": 5,
-      "Food": 4,
-      "Cost": 31250
+      "Supplies": 4,
+      "Cost": 356000
     },
     {
       "Id": "animal9default",
@@ -113,10 +114,10 @@
       "Desc": "A type of domestic cattle from India with a distinctive fatty hump. Highly resistant to heat and drought, making it an ideal draft animal for the region.",
       "Icon": "Zebu",
       "Art": "Zebu",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 3,
-      "Food": 3,
-      "Cost": 65500
+      "Supplies": 3,
+      "Cost": 368750
     },
     {
       "Id": "animal10default",
@@ -126,10 +127,10 @@
       "Desc": "A powerful bovine, perfectly adapted for pulling plows and carts through deep mud and water. Slower and less heat-tolerant than an ox on dry land.",
       "Icon": "WaterBuffalo",
       "Art": "WaterBuffalo",
-      "Speed": 2.0,
+      "Speed": 3,
       "Capacity": 4,
-      "Food": 3,
-      "Cost": 24250
+      "Supplies": 3,
+      "Cost": 276500
     },
     {
       "Id": "animal11default",
@@ -139,10 +140,10 @@
       "Desc": "The one-humped 'ship of the desert'. Unmatched endurance in hot, arid climates due to its ability to conserve water. The backbone of caravan trade in Africa and Arabia.",
       "Icon": "DromedaryCamel",
       "Art": "DromedaryCamel",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 2,
-      "Food": 3,
-      "Cost": 8750
+      "Supplies": 3,
+      "Cost": 48500
     },
     {
       "Id": "animal12default",
@@ -152,10 +153,10 @@
       "Desc": "The two-humped camel of Central Asia. Even stronger than a dromedary and better adapted to cold climates, making it vital for the high-altitude sections of the Silk Road.",
       "Icon": "BactrianCamel",
       "Art": "BactrianCamel",
-      "Speed": 4.0,
+      "Speed": 5,
       "Capacity": 2,
-      "Food": 3,
-      "Cost": 48500
+      "Supplies": 3,
+      "Cost": 185250
     },
     {
       "Id": "animal13default",
@@ -165,10 +166,10 @@
       "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
       "Icon": "Yak",
       "Art": "Yak",
-      "Speed": 2.0,
-      "Capacity": 4,
-      "Food": 3,
-      "Cost": 24250
+      "Speed": 5,
+      "Capacity": 3,
+      "Supplies": 3,
+      "Cost": 1406250
     },
     {
       "Id": "animal14default",
@@ -178,10 +179,10 @@
       "Desc": "A semi-domesticated deer of the far north. A vital resource for northern cultures, used as a pack animal or for pulling sleds over snow and tundra.",
       "Icon": "Reindeer",
       "Art": "Reindeer",
-      "Speed": 4.0,
+      "Speed": 5,
       "Capacity": 1,
-      "Food": 2,
-      "Cost": 5000
+      "Supplies": 2,
+      "Cost": 19500
     },
     {
       "Id": "animal15default",
@@ -191,10 +192,10 @@
       "Desc": "A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.",
       "Icon": "AsianElephant",
       "Art": "AsianElephant",
-      "Speed": 3.0,
+      "Speed": 4,
       "Capacity": 6,
-      "Food": 6,
-      "Cost": 262500
+      "Supplies": 6,
+      "Cost": 1474500
     },
     {
       "Id": "animal16default",
@@ -204,14 +205,13 @@
       "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
       "Icon": "Yak",
       "Art": "Yak",
-      "Endurance": 6,
-      "Speed": 2.0
+      "Speed": 2
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "AnimalSettings",
-    "SaveTime": "2025-09-27T17:15:58.821Z"
+    "SaveTime": "2025-12-06T22:05:33.863Z"
   },
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

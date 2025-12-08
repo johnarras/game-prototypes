@@ -3,6 +3,7 @@ using Assets.Scripts.UI.ClientEvents;
 using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.Animations
 {
@@ -12,7 +13,7 @@ namespace Assets.Scripts.UI.Animations
         private IAwaitableService _awaitableService = null;
 
         public GButton Button;
-        public char Key;
+        public Key Key;
 
         private Action _action;
 
@@ -33,7 +34,7 @@ namespace Assets.Scripts.UI.Animations
 
         private void OnClickKey(ClickKey ck)
         {
-            if (char.ToLower(ck.Key) != char.ToLower(Key))
+            if (ck.Key != Key)
             {
                 return;
             }

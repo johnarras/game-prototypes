@@ -1,21 +1,21 @@
 
-using System;
-using UnityEngine;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Interfaces;
-using ClientEvents;
-using Genrpg.Shared.Units.Entities;
-using System.Threading;
-using Genrpg.Shared.AI.Settings;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Client.Core;
 using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Tokens;
+using ClientEvents;
+using Genrpg.Shared.AI.Settings;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public interface IUnitSetupService : IInitializable, IMapTokenService
 {
@@ -67,7 +67,7 @@ public class UnitSetupService : IUnitSetupService
         }
 
         ClientMapObjectGridItem gridItem = null;
-        
+
         if (_objectManager.GetGridItem(loadData.Obj.Id, out gridItem))
         {
             if (gridItem.Controller != null && gridItem.GameObj != null)
@@ -88,7 +88,7 @@ public class UnitSetupService : IUnitSetupService
             mc.WalkAnimSpeed = artData.WalkAnimSpeed;
             mc.RunAnimSpeed = artData.RunAnimSpeed;
         }
-        
+
 
         GameObject go = new GameObject();
         go.name = loadData.Obj.Name;
@@ -229,7 +229,7 @@ public class UnitSetupService : IUnitSetupService
         go.name = "Player" + go.name;
         _playerManager.SetUnit(pc);
         _assetService.LoadAssetInto(go, AssetCategoryNames.UI,
-            "PlayerLight", null, null, token, "Units");
+            "PlayerLight", null, token, default(object), "Units");
         _dispatcher.Dispatch(new SetMapPlayerEvent() { Ch = unit as Character });
         CreateHealthBar(go, unit, token);
     }
@@ -251,15 +251,12 @@ public class UnitSetupService : IUnitSetupService
             height = artData.HealthBarHeight / artData.SizeScale;
         }
         healthParent.transform.localPosition = new Vector3(0, height, 0);
-        _assetService.LoadAssetInto(healthParent, AssetCategoryNames.UI, 
-            "MapHealthBar", OnCreateHealthBar, unit, token, "Units");
+        _assetService.LoadAssetInto(healthParent, AssetCategoryNames.UI,
+            "MapHealthBar", OnCreateHealthBar, token, unit, "Units");
     }
 
-    private void OnCreateHealthBar(object obj, object data, CancellationToken token)
+    private void OnCreateHealthBar(GameObject go, Unit unit, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        Unit unit = data as Unit;
-
         if (go == null)
         {
             return;
@@ -277,7 +274,7 @@ public class UnitSetupService : IUnitSetupService
         {
             healthBar.Init(unit);
         }
-        
+
     }
 }
 

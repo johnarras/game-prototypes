@@ -7,7 +7,7 @@ namespace Assets.Scripts.Trader.Info.Helpers
 {
     public class CityInfoHelper : BaseInfoHelper<CitySettings, City>
     {
-        public override long Key => EntityTypes.City;
+        public override long HelperKey => EntityTypes.City;
 
         public override List<string> GetInfoLines(long entityId)
         {

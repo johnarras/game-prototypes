@@ -2,20 +2,19 @@
   "Id": "dataoverridegroup1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Begin Test",
+  "Name": "None",
   "Enabled": true,
-  "Priority": 2,
-  "EndDate": "3000-01-01T06:00:00Z",
-  "MaxClientVersion": "",
-  "MinClientVersion": "",
+  "EndDate": "9999-12-31T23:59:59.9999999Z",
+  "MaxClientVersion": "9999.9.9",
+  "MinClientVersion": "0.0.0",
   "Items": [
     {
       "Enabled": true,
-      "SettingsNameId": 93,
+      "SettingsNameId": 34,
       "DocId": "abtest",
-      "Name": "BoardGameTest"
+      "Name": "None"
     }
   ],
   "AllowedPlayers": [],
-  "SaveTime": "2025-05-31T10:34:19.752Z"
+  "SaveTime": "2025-12-02T21:45:24.986Z"
 }

@@ -1,6 +1,7 @@
 ﻿
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Crawler.Shared.Crafting.Services;
 using Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades;
 using Assets.Scripts.Inventory.UI;
 using Assets.Scripts.UI.Constants;
@@ -42,7 +43,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         protected ILootGenService _lootService = null;
         protected ITextService _textService = null;
         protected IPartyService _partyService = null;
-        private ICrawlerOptionsService _optionsService = null;
+        protected ICrawlerOptionsService _optionsService = null;
+        protected ICrawlerCraftingService _craftingService = null;
 
         public AnimatedSprite Image;
         public GText NameText;
@@ -256,9 +258,10 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
                 PartyData party = _crawlerService.GetParty();
                 if (party != null && Items != null && party.Inventory.Contains(dragItem.GetDataItem()))
                 {
-                    _partyService.AddGold(party, dragItem.GetDataItem().SellValue);
-                    party.Inventory.Remove(dragItem.GetDataItem());
-                    Items.RemoveIcon(dragItem.GetDataItem().Id);
+                    if (_craftingService.ScrapItem(party, dragItem.GetDataItem(), DropTarget.transform.position))
+                    {
+                        Items.RemoveIcon(dragItem.GetDataItem().Id);
+                    }
                 }
             }
         }

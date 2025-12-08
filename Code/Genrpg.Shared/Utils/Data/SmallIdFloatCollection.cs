@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Genrpg.Shared.Utils.Data
 {
-    public class SmallIdFloatCollection : BaseSmallIdCollection<float>
+    public class SmallIdFloatCollection : BaseSmallIdQuantityCollection<float>
     {
         protected override float InternalAdd(float first, float second)
         {

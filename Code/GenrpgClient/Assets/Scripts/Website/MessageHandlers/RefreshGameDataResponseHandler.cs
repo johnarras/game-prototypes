@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+﻿using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 using System.Threading;
 
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
             }
             _gameData.AddData(result.NewSettings);
+            _dispatcher.Dispatch(new OnNewGameData());
         }
     }
 }

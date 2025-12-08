@@ -1,16 +1,16 @@
+using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.Entities;
+using Assets.Scripts.Awaitables;
+using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using UnityEngine.Networking;
-using UnityEngine;
 using System.Threading.Tasks;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.DataStores.DataGroups;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Assets;
-using Assets.Scripts.Assets.Entities;
+using UnityEngine;
+using UnityEngine.Networking;
 
 public class DownloadFileData
 {
@@ -22,7 +22,7 @@ public class DownloadFileData
 
     public EDataCategories Category { get; set; }
 
-    public OnDownloadHandler Handler { get; set; }
+    public FileDownloadHandler Handler { get; set; }
 
     public object Data { get; set; }
 
@@ -88,7 +88,7 @@ public class FileDownloadService : IFileDownloadService
     private Dictionary<string, List<InternalFileDownload>> _downloading = new Dictionary<string, List<InternalFileDownload>>();
 
     protected HashSet<string> _failedDownloads = new HashSet<string>();
-   
+
     // If it's in the cache, return it.
     // If it's a failed download, return nothing.
     // If it's in downloading, add the handler to the queue.	

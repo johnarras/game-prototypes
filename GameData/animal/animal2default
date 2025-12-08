@@ -6,9 +6,9 @@
   "Desc": "A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances.",
   "Icon": "Pony",
   "Art": "Pony",
-  "Speed": 3.0,
+  "Speed": 4,
   "Capacity": 1,
-  "Food": 1,
-  "Cost": 7250,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 1,
+  "Cost": 41000,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

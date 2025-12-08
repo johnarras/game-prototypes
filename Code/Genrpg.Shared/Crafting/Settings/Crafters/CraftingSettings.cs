@@ -69,7 +69,7 @@ namespace Genrpg.Shared.Crafting.Settings.Crafters
 
     public class CrafterSettingsHelper : BaseEntityHelper<CraftingSettings,CrafterType>
     {
-        public override long Key => EntityTypes.Crafter;
+        public override long HelperKey => EntityTypes.Crafter;
     }
 
 

@@ -10,7 +10,7 @@ namespace Genrpg.Editor.Importers.Purchasing
     public class StoreOfferImporter : BaseStoreOfferImporter<StoreOfferSettings, StoreOffer>
     {
         public override string ImportDataFilename => "StoreOfferImport.csv";
-        public override EImportTypes Key => EImportTypes.StoreOffers;
+        public override EImportTypes HelperKey => EImportTypes.StoreOffers;
 
         protected override void ImportChildSubObject(EditorGameState gs, StoreOffer current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

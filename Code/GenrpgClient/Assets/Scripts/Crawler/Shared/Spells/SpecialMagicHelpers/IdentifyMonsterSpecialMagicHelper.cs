@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
     {
 
 
-        public override long Key => SpecialMagics.IdentifyMonster;
+        public override long HelperKey => SpecialMagics.IdentifyMonster;
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
             SelectSpellAction action, CrawlerSpell spell, CrawlerSpellEffect effect, CancellationToken token)

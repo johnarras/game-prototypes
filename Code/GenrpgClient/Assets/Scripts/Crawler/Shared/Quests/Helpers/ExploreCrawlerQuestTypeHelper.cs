@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 {
     public class ExploreCrawlerQuestTypeHelper : BaseCrawlerQuestTypeHelper
     {
-        public override long Key => CrawlerQuestTypes.ExploreMap;
+        public override long HelperKey => CrawlerQuestTypes.ExploreMap;
 
         protected override string QuestVerb => "Fully Explore";
 

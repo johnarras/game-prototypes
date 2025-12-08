@@ -6,10 +6,11 @@ namespace Genrpg.RequestServer.Spawns.Helpers
 {
     public class UserCoinWebRollHelper : BaseWebRollHelper
     {
-        public override long Key => EntityTypes.CoreCurrency;
+        public override long HelperKey => EntityTypes.CoreCurrency;
 
-        public override async Task<long> GetQuantityMult(WebContext context, RollData rollData, long entityId)
+        public override async Task<long> GetQuantityMult(WebContext context, RollLootArgs rollLootArgs, long entityId)
         {
+            await Task.CompletedTask;
             return 1;
         }
     }

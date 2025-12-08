@@ -7,9 +7,9 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Temples.Services;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
 {
@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
 
         private ITempleService _templeService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.Temple;
+        public override ECrawlerStates HelperKey => ECrawlerStates.Temple;
         public override long TriggerBuildingId() { return BuildingTypes.Temple; }
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -46,7 +46,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
                 if (cost > 0)
                 {
                     TempleResult newResult = new TempleResult();
-                    stateData.Actions.Add(new CrawlerStateAction(member.Name + "(" + cost + ")", CharCodes.None, ECrawlerStates.Temple,
+                    stateData.Actions.Add(new CrawlerStateAction(member.Name + "(" + cost + ")", Key.None, ECrawlerStates.Temple,
                         () =>
                         {
                             _templeService.HealPartyMember(party, member, newResult);
@@ -55,7 +55,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
             await Task.CompletedTask;
             return stateData;
 

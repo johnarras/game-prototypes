@@ -71,7 +71,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         private IServerConfig _serverConfig = null;
         private ITextSerializer _serializer = null;
 
-        public EPurchasePlatforms Key => EPurchasePlatforms.IOS;
+        public EPurchasePlatforms HelperKey => EPurchasePlatforms.IOS;
         private const string AppleValidationURL = "https://buy.itunes.apple.com/verifyReceipt"; // Use sandbox URL for testing
 
 

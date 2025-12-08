@@ -23,7 +23,7 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
     {
         private ICrawlerWorldService _worldService = null;
         private ICrawlerMapService _mapService = null;
-        public override long Key => RiddleTypes.Buttons;
+        public override long HelperKey => RiddleTypes.Buttons;
 
         public override void SetPropPosition(object prop, object data, CancellationToken token)
         {

@@ -1,7 +1,4 @@
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Stats.Constants
 {
@@ -29,6 +26,11 @@ namespace Genrpg.Shared.Stats.Constants
 
 
         public const long MaxStatType = 71;
+
+        public static bool IsPrimaryStat(long statTypeId)
+        {
+            return statTypeId >= PrimaryStatStart && statTypeId <= PrimaryStatEnd;
+        }
 
     }
 }

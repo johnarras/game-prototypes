@@ -14,6 +14,7 @@ namespace Assets.Scripts.Options
         protected IAudioService _audioService = null;
         protected ICrawlerService _crawlerService = null;
         protected IClientOptionsService _optionsService = null;
+        protected IClientAppService _appService = null;
 
         public GToggle FullScreenToggle;
 
@@ -47,6 +48,9 @@ namespace Assets.Scripts.Options
                 }
             });
 
+            FullScreenToggle?.SetIsOn(_appService.IsFullScreen());
+            _uiService.SetToggle(FullScreenToggle, ToggleFullScreen);
+
             await Task.CompletedTask;
         }
 
@@ -54,6 +58,11 @@ namespace Assets.Scripts.Options
         {
             _optionsService.SaveOptions();
             base.OnStartClose();
+        }
+
+        private void ToggleFullScreen(bool isOn)
+        {
+            _appService.SetFullScreen(!_appService.IsFullScreen());
         }
     }
 }

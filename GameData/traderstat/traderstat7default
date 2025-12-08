@@ -1,0 +1,9 @@
+{
+  "Id": "traderstat7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Mana Storage",
+  "Icon": "ManaStorage",
+  "Art": "ManaStorage",
+  "SaveTime": "2025-12-02T01:17:13.917Z"
+}

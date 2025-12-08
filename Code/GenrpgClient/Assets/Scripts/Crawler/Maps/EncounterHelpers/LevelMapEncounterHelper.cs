@@ -16,7 +16,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
     public class LevelMapEncounterHelper : BaseClientMapEncounterHelper
     {
-        public override long Key => MapEncounters.LevelMap;
+        public override long HelperKey => MapEncounters.LevelMap;
 
         public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {

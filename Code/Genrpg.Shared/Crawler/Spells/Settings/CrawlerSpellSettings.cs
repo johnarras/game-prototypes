@@ -83,6 +83,6 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
 
     public class CrawlerSpellHelper : BaseEntityHelper<CrawlerSpellSettings, CrawlerSpell>
     {
-        public override long Key => EntityTypes.CrawlerSpell;
+        public override long HelperKey => EntityTypes.CrawlerSpell;
     }
 }

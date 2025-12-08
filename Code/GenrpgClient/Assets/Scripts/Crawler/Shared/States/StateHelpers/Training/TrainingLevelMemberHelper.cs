@@ -13,12 +13,12 @@ using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
         ICrawlerUpgradeService _upgradeService;
         ITrainingService _trainingService = null;
         IInfoService _infoService = null;
-        public override ECrawlerStates Key => ECrawlerStates.TrainingLevelMember;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TrainingLevelMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -72,7 +72,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                     if (!trainingSettings.AdvanceOneClassPerLevel)
                     {
 
-                        stateData.Actions.Add(new CrawlerStateAction($"Train level {member.Level + 1} for {info.Cost} Gold", 'T', ECrawlerStates.TrainingLevelMember,
+                        stateData.Actions.Add(new CrawlerStateAction($"Train level {member.Level + 1} for {info.Cost} Gold", Key.T, ECrawlerStates.TrainingLevelMember,
                             onClickAction: delegate ()
                             {
                                 _trainingService.TrainPartyMemberLevels(party, member, 0, memberData);
@@ -109,7 +109,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                             long currLevel = (urole != null ? urole.Level : 0);
                             long nextLevel = currLevel + 1;
 
-                            stateData.Actions.Add(new CrawlerStateAction($"Train {_infoService.CreateInfoLink(role)} to Level {nextLevel} for {info.Cost} Gold", 'T', ECrawlerStates.TrainingLevelMember,
+                            stateData.Actions.Add(new CrawlerStateAction($"Train {_infoService.CreateInfoLink(role)} to Level {nextLevel} for {info.Cost} Gold", Key.T, ECrawlerStates.TrainingLevelMember,
                                 onClickAction: delegate ()
                                 {
                                     _trainingService.TrainPartyMemberLevels(party, member, role.IdKey, memberData);
@@ -133,12 +133,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             {
                 if (pm != member)
                 {
-                    stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingLevelMember, extraData: new TrainingMemberData() { Member = pm }));
+                    stateData.Actions.Add(new CrawlerStateAction("", FromChar((char)(pm.PartySlot + '0')), ECrawlerStates.TrainingLevelMember, extraData: new TrainingMemberData() { Member = pm }));
                 }
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to member select", CharCodes.Escape, ECrawlerStates.TrainingLevelSelect));
+            stateData.Actions.Add(new CrawlerStateAction("Back to member select", Key.Escape, ECrawlerStates.TrainingLevelSelect));
 
 
 

@@ -1,0 +1,9 @@
+{
+  "Id": "traderstat6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Mana Regen",
+  "Icon": "ManaRegen",
+  "Art": "ManaRegen",
+  "SaveTime": "2025-12-02T01:17:13.917Z"
+}

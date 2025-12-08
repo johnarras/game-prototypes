@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
     public class StatusEffectInfoHelper : BaseInfoHelper<StatusEffectSettings, StatusEffect>
     {
-        public override long Key => EntityTypes.StatusEffect;
+        public override long HelperKey => EntityTypes.StatusEffect;
 
         public override List<string> GetInfoLines(long entityId)
         {

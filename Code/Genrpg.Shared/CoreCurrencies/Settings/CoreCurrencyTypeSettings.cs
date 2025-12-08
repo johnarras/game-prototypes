@@ -33,36 +33,16 @@ namespace Genrpg.Shared.CoreCurrencies.Settings
         [Key(6)] public string AtlasPrefix { get; set; }
         [Key(7)] public string Icon { get; set; }
         [Key(8)] public string Art { get; set; }
-        [Key(9)] public long StartCurr { get; set; }
-        [Key(10)] public long StartRegen { get; set; }
-        [Key(11)] public long StartStorage { get; set; }
-
-
+        [Key(9)] public long RegenTraderStatId { get; set; }
+        [Key(10)] public long StorageTraderStatId { get; set; }
     }
     public class CoreCurrencyTypeSettingsDto : ParentSettingsDto<CoreCurrencyTypeSettings, CoreCurrencyType> { }
     public class CoreCurrencyTypeSettingsLoader : ParentSettingsLoader<CoreCurrencyTypeSettings, CoreCurrencyType> { }
 
     public class CoreCurrencyTypeSettingsMapper : ParentSettingsMapper<CoreCurrencyTypeSettings, CoreCurrencyType, CoreCurrencyTypeSettingsDto> { }
 
-
     public class CoreCurrencyTypeHelper : BaseEntityHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
     {
-        public override long Key => EntityTypes.CoreCurrency;
-    }
-    public class BaseCoreCurrencyRegenHelper : BaseEntityHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
-    {
-        public override long Key => EntityTypes.BaseCoreCurrencyRegen;
-    }
-    public class BaseCoreCurrencyStorageHelper : BaseEntityHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
-    {
-        public override long Key => EntityTypes.BaseCoreCurrencyStorage;
-    }
-    public class BonusCoreCurrencyRegenHelper : BaseEntityHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
-    {
-        public override long Key => EntityTypes.BonusCoreCurrencyRegen;
-    }
-    public class BonusCoreCurrencyStorageHelper : BaseEntityHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
-    {
-        public override long Key => EntityTypes.BonusCoreCurrencyStorage;
+        public override long HelperKey => EntityTypes.CoreCurrency;
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using System.Threading;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
@@ -81,17 +80,11 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
             return;
         }
         _assetService.LoadAssetInto(entity, AssetCategoryNames.UI,
-            InteractGlow, OnLoadGlow, null, token, "Core");
+            InteractGlow, OnLoadGlow, token, default(object), "Core");
     }
 
-    private void OnLoadGlow(object obj, object data, CancellationToken token)
+    private void OnLoadGlow(GameObject glow, object data, CancellationToken token)
     {
-        GameObject glow = obj as GameObject;
-        if (glow == null)
-        {
-            return;
-        }
-
         if (glow.transform.parent == null)
         {
             _clientEntityService.Destroy(glow);
@@ -110,12 +103,12 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
         {
             return false;
         }
-        
+
         if (_mapObj == null || _mapObj.IsDeleted())
         {
             return false;
         }
-        
+
 
         float dist = Vector3.Distance(go.transform.position, entity.transform.position);
         return dist < MapConstants.MaxInteractDistance;
@@ -123,7 +116,7 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
 
     public void MouseEnter()
     {
-        _OnPointerEnter();    
+        _OnPointerEnter();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -169,7 +162,7 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    { 
+    {
     }
 
     protected virtual void _OnPointerEnter()

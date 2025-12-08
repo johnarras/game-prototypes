@@ -2,7 +2,10 @@
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crafting.Entities;
+using Genrpg.Shared.Crawler.Crafting.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Constants;
 using Genrpg.Shared.Crawler.Loot.Helpers;
 using Genrpg.Shared.Crawler.Loot.Settings;
@@ -36,6 +39,7 @@ using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Scaling;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Vendors.Settings;
 using System;
 using System.Collections.Generic;
@@ -61,7 +65,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
     public class LootGenData
     {
         public double Exp { get; set; }
-        public double Gold { get; set; }
+        public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
         public int ItemCount { get; set; }
         public long Level { get; set; }
         public List<long> QuestItems { get; set; } = new List<long>();
@@ -73,7 +77,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
     public class PartyLoot
     {
-        public long Gold { get; set; }
+        public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
         public long Exp { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<long> NewQuestItems { get; set; } = new List<long>();
@@ -456,6 +460,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(null);
 
+            CrawlerCraftingSettings craftingSettings = _gameData.Get<CrawlerCraftingSettings>(null);
+
             double extraScalePerBonus = lootSettings.ExtraLootScalePerMonsterBonus;
 
             double itemChance = lootSettings.ItemChancePerMonster;
@@ -464,6 +470,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             double gold = 0;
 
             int itemCount = 0;
+            int reagentCount = 0;
 
             long minGold = (long)(party.Combat.Level * lootSettings.MinGoldPerLevel);
             long maxGold = (long)(party.Combat.Level * lootSettings.MaxGoldPerLevel);
@@ -479,6 +486,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 if (_rand.NextDouble() < itemChance * lootScale)
                 {
                     itemCount++;
+                }
+
+                if (_rand.NextDouble() < craftingSettings.MonsterDropReagentChance)
+                {
+                    reagentCount++;
                 }
             }
 
@@ -504,7 +516,6 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 lootLossMessage = $"Loot scaled down to {levelLootScale}% of normal since your max level is so far above the monsters. ";
 
-
                 gold *= levelLootScale;
                 exp *= levelLootScale;
                 itemCount = (int)(itemCount * levelLootScale);
@@ -512,7 +523,6 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             LootGenData allLootGenData = new LootGenData()
             {
-                Gold = gold,
                 Exp = exp,
                 Level = party.Combat.Level,
                 ItemCount = itemCount,
@@ -520,6 +530,19 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 NextState = ECrawlerStates.ExploreWorld,
                 NextStateData = null,
             };
+
+            allLootGenData.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)gold);
+
+            if (reagentCount > 0)
+            {
+                IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(null).GetData();
+
+                for (int i = 0; i < reagentCount; i++)
+                {
+                    allLootGenData.Currencies.Add(ctypes[_rand.Next() % ctypes.Count].IdKey, 1);
+                }
+            }
+
 
             allLootGenData.TopMessages.Add("You are Victorious!");
             if (!string.IsNullOrEmpty(lootLossMessage))
@@ -586,16 +609,26 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                     Item lastItem = items.Last();
                     items.Remove(lastItem);
 
-                    genData.Gold += lastItem.BuyCost;
+                    genData.Currencies.Add(CrawlerCurrencyTypes.Gold, lastItem.BuyCost);
                 }
 
 
                 loot.Items = items;
 
-                loot.Gold = (long)(genData.Gold * (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.GoldPercent) / 100.0f));
+                loot.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)(genData.Currencies.Get(CrawlerCurrencyTypes.Gold) *
+                    (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.GoldPercent) / 100.0f)));
 
 
-                _partyService.AddGold(party, loot.Gold);
+                IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+
+                foreach (CrawlerCurrencyType ctype in ctypes)
+                {
+
+                    if (loot.Currencies.Get(ctype.IdKey) > 0)
+                    {
+                        _partyService.AddCurrency(party, ctype.IdKey, loot.Currencies.Get(ctype.IdKey));
+                    }
+                }
 
                 genData.Exp = (long)(genData.Exp * (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.ExpPercent) / 100.0f));
                 loot.Exp = (long)genData.Exp / party.GetActiveParty().Count;
@@ -678,12 +711,15 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             LootGenData genData = new LootGenData()
             {
                 Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * MathUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
-                Gold = _trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult * MathUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand),
                 ItemCount = itemCount,
                 NextState = nextState,
                 NextStateData = nextStateData,
                 Level = level,
             };
+
+            genData.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
+                MathUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand)));
+
             if (!string.IsNullOrEmpty(topMessage))
             {
                 genData.TopMessages.Add(topMessage);

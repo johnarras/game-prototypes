@@ -163,19 +163,12 @@ public class CharacterSelectScreen : ErrorMessageScreen
         foreach (CharacterStub stub in _gs.characterStubs)
         {
             _assetService.LoadAssetInto(CharacterGridParent, AssetCategoryNames.UI,
-                CharacterRowArt, OnLoadCharacterRow, stub, GetToken(), Subdirectory);
+                CharacterRowArt, OnLoadCharacterRow, GetToken(), stub, Subdirectory);
         }
     }
 
-    private void OnLoadCharacterRow(object row, object data, CancellationToken token)
+    private void OnLoadCharacterRow(GameObject go, CharacterStub ch, CancellationToken token)
     {
-        GameObject go = row as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        CharacterStub ch = data as CharacterStub;
         if (ch == null)
         {
             _clientEntityService.Destroy(go);

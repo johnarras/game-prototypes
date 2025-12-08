@@ -24,7 +24,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
     public class CityCrawlerMapGenHelper : BaseCrawlerMapGenHelper
     {
-        public override long Key => CrawlerMapTypes.City;
+        public override long HelperKey => CrawlerMapTypes.City;
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {

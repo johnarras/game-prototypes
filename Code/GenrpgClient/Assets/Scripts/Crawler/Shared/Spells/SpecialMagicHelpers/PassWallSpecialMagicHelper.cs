@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class PassWallSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.PassWall;
+        public override long HelperKey => SpecialMagics.PassWall;
 
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,

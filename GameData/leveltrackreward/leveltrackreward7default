@@ -1,0 +1,10 @@
+{
+  "Id": "leveltrackreward7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Exp": 60,
+  "EntityTypeId": 202,
+  "EntityId": 11,
+  "Quantity": 3,
+  "SaveTime": "2025-12-06T22:09:01.895Z"
+}

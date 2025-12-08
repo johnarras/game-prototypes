@@ -11,6 +11,7 @@ using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.Purchasing.PlayerData;
+using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages.Error;
 
@@ -49,6 +50,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 context.Responses.AddResponse(new ErrorResponse() { Error = "Session Id must be refreshed." });
                 return;
             }
+            CaravanData caravanData = null;
 
             context.acct = (await _serverRepoService.Search<GameAccount>(x => x.AccountId == request.AccountId && !x.Deleted)).FirstOrDefault();
 

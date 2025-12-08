@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Genrpg.Shared.DataStores.Entities;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using System.Collections.Generic;
 using System.Threading;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class InitSpellTooltipData : InitTooltipData
 {
@@ -66,20 +65,13 @@ public class SpellTooltip : BaseTooltip
             return;
         }
 
-        _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI, 
-            SpellTooltipRow, OnLoadRow, data, _token, "Spells");
+        _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI,
+            SpellTooltipRow, OnLoadRow, _token, data, "Spells");
     }
 
-    private void OnLoadRow(object obj, object data, CancellationToken token)
+    private void OnLoadRow(GameObject go, SpellTooltipRowData rowData, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
         SpellTooltipRow row = go.GetComponent<SpellTooltipRow>();
-        SpellTooltipRowData rowData = data as SpellTooltipRowData;
         if (row == null || rowData == null)
         {
             _clientEntityService.Destroy(go);

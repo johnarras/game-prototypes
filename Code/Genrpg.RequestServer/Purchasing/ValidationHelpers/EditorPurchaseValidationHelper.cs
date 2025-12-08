@@ -5,7 +5,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
 {
     public class EditorPurchaseValidationHelper : IPurchaseValidationHelper
     {
-        public EPurchasePlatforms Key => EPurchasePlatforms.Editor;
+        public EPurchasePlatforms HelperKey => EPurchasePlatforms.Editor;
 
         public Task Initialize(CancellationToken token)
         {

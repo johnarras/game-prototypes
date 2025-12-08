@@ -9,7 +9,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
 {
     public class TrainingLevelSelectHelper : BaseTrainingSelectMemberHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.TrainingLevelSelect;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TrainingLevelSelect;
 
         public override string GetMainMessage() { return "Which party member will level up?"; }
 

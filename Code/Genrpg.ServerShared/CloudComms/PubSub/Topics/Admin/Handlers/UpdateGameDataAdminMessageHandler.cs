@@ -14,7 +14,7 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers
 {
     public class UpdateGameDataAdminMessageHandler : BaseAdminPubSubMessageHandler<UpdateGameDataAdminMessage>
     {
-        public override Type Key => typeof(UpdateGameDataAdminMessage);
+        public override Type HelperKey => typeof(UpdateGameDataAdminMessage);
 
         protected override async Task InnerHandleMessage(UpdateGameDataAdminMessage message, CancellationToken token)
         {

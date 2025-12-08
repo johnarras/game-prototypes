@@ -142,17 +142,17 @@ namespace Genrpg.Shared.Utils
 
                     T inst = (T)EntityUtils.DefaultConstructor(t);
 
-                    if (inst == null || inst.Key == null)
+                    if (inst == null || inst.HelperKey == null)
                     {
                         continue;
                     }
 
-                    if (dict.ContainsKey(inst.Key))
+                    if (dict.ContainsKey(inst.HelperKey))
                     {
-                        dict.Remove(inst.Key);
+                        dict.Remove(inst.HelperKey);
                     }
 
-                    dict[inst.Key] = inst;
+                    dict[inst.HelperKey] = inst;
                     try
                     {
                         loc.StoreDictionaryItem(inst);

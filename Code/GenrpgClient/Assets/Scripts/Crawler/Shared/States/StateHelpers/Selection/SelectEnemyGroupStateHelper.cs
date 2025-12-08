@@ -7,20 +7,20 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
     public class SelectEnemyGroupStateHelper : BaseCombatStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.SelectEnemyGroup;
+        public override ECrawlerStates HelperKey => ECrawlerStates.SelectEnemyGroup;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -57,7 +57,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     _dispatcher.Dispatch(new ClearCombatGroupActions());
                 };
 
-                CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + " " + _combatService.ShowGroupStatus(group), c,
+                CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + " " + _combatService.ShowGroupStatus(group), FromChar(c),
                     selectAction.Action.NextState, onClickAction: clickRowAction, forceButton: false,
                     pointerEnterAction: (GameObject go) => { ShowInfo(EntityTypes.Unit, group.UnitType.IdKey); });
 
@@ -74,7 +74,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.CombatPlayer,
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.CombatPlayer,
                 delegate ()
                 {
                     _dispatcher.Dispatch(new ClearCombatGroupActions());

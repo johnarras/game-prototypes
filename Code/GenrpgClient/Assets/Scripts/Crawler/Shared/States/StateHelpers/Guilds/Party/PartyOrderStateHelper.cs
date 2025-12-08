@@ -3,10 +3,10 @@ using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
 {
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
         }
 
 
-        public override ECrawlerStates Key => ECrawlerStates.PartyOrder;
+        public override ECrawlerStates HelperKey => ECrawlerStates.PartyOrder;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
             {
 
                 PartyMember member = arrangement.NewOrder[i];
-                stateData.Actions.Add(new CrawlerStateAction(member.Name, CharCodes.None, ECrawlerStates.PartyOrder,
+                stateData.Actions.Add(new CrawlerStateAction(member.Name, Key.None, ECrawlerStates.PartyOrder,
                 () =>
                     {
                         arrangement.NewOrder.Remove(member);
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
             for (int i = 0; i < arrangement.OldOrder.Count; i++)
             {
                 PartyMember member = arrangement.OldOrder[i];
-                stateData.Actions.Add(new CrawlerStateAction(member.Name, (char)('1' + i), ECrawlerStates.PartyOrder,
+                stateData.Actions.Add(new CrawlerStateAction(member.Name, FromChar((char)('1' + i)), ECrawlerStates.PartyOrder,
                     () =>
                     {
                         arrangement.OldOrder.Remove(member);
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
                     }, arrangement));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("\nExit Without Saving", CharCodes.Escape, _crawlerService.GetPrevState(ECrawlerStates.GuildMain)));
+            stateData.Actions.Add(new CrawlerStateAction("\nExit Without Saving", Key.Escape, _crawlerService.GetPrevState(ECrawlerStates.GuildMain)));
 
 
             await Task.CompletedTask;

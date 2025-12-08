@@ -6,7 +6,7 @@ using Genrpg.Shared.Rewards.Entities;
 using MessagePack;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Levels.Settings
+namespace Genrpg.Shared.RpgLevels.Settings
 {
     [MessagePackObject]
     public class RpgLevel : ChildSettings, IIndexedGameItem

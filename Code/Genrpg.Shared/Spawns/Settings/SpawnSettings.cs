@@ -50,11 +50,11 @@ namespace Genrpg.Shared.Spawns.Settings
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public List<SpawnItem> Items { get; set; }
-        [Key(9)] public string Art { get; set; }
+        [Key(4)] public string Desc { get; set; }
+        [Key(5)] public string AtlasPrefix { get; set; }
+        [Key(6)] public string Icon { get; set; }
+        [Key(7)] public List<SpawnItem> Items { get; set; }
+        [Key(8)] public string Art { get; set; }
 
         public SpawnTable()
         {
@@ -69,7 +69,7 @@ namespace Genrpg.Shared.Spawns.Settings
 
         public class SpawnHelper : BaseEntityHelper<SpawnSettings, SpawnTable>
         {
-            public override long Key => EntityTypes.Spawn;
+            public override long HelperKey => EntityTypes.Spawn;
         }
 
 

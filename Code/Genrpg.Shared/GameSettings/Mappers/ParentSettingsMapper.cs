@@ -16,7 +16,7 @@ namespace Genrpg.Shared.GameSettings.Mappers
         public virtual Version GetMaxClientVersion() { return VersionConstants.MaxVersion; }
         public virtual Type GetClientType() { return typeof(TDto); }
         public virtual bool SendToClient() { return true; }
-        [IgnoreMember] public virtual Type Key => typeof(TParent);
+        [IgnoreMember] public virtual Type HelperKey => typeof(TParent);
 
 
         public virtual ITopLevelSettings MapToDto(ITopLevelSettings settings, bool simplify)

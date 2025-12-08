@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
     public abstract class BaseNumericSpellEffectHelper : BaseSpellEffectHelper
     {
 
-        virtual protected string TierSuffix() { return $"{_infoService.CreateInfoLink(_gameData.Get<RoleScalingTypeSettings>(_gs.ch).Get(Key))} per Tier"; }
+        virtual protected string TierSuffix() { return $"{_infoService.CreateInfoLink(_gameData.Get<RoleScalingTypeSettings>(_gs.ch).Get(HelperKey))} per Tier"; }
 
         public override string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect)
         {

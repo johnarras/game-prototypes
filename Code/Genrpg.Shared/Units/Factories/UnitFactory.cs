@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Units.Factories
     public class UnitFactory : BaseMapObjectFactory
     {
         private IStatService _statService = null;
-        public override long Key => EntityTypes.Unit;
+        public override long HelperKey => EntityTypes.Unit;
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {
             UnitType utype = _gameData.Get<UnitTypeSettings>(null).Get(spawn.EntityId);

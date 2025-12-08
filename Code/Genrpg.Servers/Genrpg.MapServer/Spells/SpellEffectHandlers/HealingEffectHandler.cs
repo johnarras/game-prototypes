@@ -15,7 +15,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {
     public class HealingEffectHandler : HealthEffectHandler
     {
-        public override long Key => EntityTypes.Healing;
+        public override long HelperKey => EntityTypes.Healing;
         public override bool IsModifyStatEffect() { return false; }
         public override bool UseStatScaling() { return true; }
 

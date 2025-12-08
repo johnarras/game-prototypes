@@ -15,7 +15,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     public class PartyBuffEffectCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {
         protected IRoleService _roleService = null;
-        public override long Key => EntityTypes.PartyBuff;
+        public override long HelperKey => EntityTypes.PartyBuff;
 
         public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {

@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Entities.Helpers
 
         protected IMapProvider _mapProvider;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public IIdName Find(IFilteredObject obj, long id)
         {
@@ -24,7 +24,7 @@ namespace Genrpg.Shared.Entities.Helpers
                 return null;
             }
 
-            return _mapProvider.GetMap().GetEditorListFromEntityTypeId(Key).FirstOrDefault();
+            return _mapProvider.GetMap().GetEditorListFromEntityTypeId(HelperKey).FirstOrDefault();
         }
 
         public List<IIdName> GetChildList(IFilteredObject obj)
@@ -35,12 +35,12 @@ namespace Genrpg.Shared.Entities.Helpers
                 return null;
             }
 
-            return _mapProvider.GetMap().GetEditorListFromEntityTypeId(Key);
+            return _mapProvider.GetMap().GetEditorListFromEntityTypeId(HelperKey);
         }
 
         public virtual string GetIconAtlasName(IFilteredObject filteredObj, long entityId)
         {
-            IIdName idname = _mapProvider.GetMap().GetEditorListFromEntityTypeId(Key).FirstOrDefault();
+            IIdName idname = _mapProvider.GetMap().GetEditorListFromEntityTypeId(HelperKey).FirstOrDefault();
 
             if (idname is IIndexedGameItem indexedItem && !string.IsNullOrEmpty(indexedItem.AtlasPrefix))
             {

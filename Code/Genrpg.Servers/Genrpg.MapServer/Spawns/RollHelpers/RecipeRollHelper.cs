@@ -1,38 +1,33 @@
 ﻿using Genrpg.MapServer.Crafting.Services;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spawns.RollHelpers
 {
     public class RecipeRollHelper : IRollHelper
     {
-        public long Key => EntityTypes.Recipe;
+        public long HelperKey => EntityTypes.Recipe;
 
         private IServerCraftingService _craftingService = null;
-        public List<RewardList> Roll<SI>(IRandom rand, RollData rollData, SI spawnItem) where SI : ISpawnItem
+        public List<RewardList> Roll<SI>(IRandom rand, RollLootArgs rollLootArgs, SI spawnItem) where SI : ISpawnItem
         {
             List<RewardList> retval = new List<RewardList>();
             RewardList rewardList = new RewardList();
-            Item newItem = _craftingService.GenerateRecipeReward(rand, rollData.Level);
+            Item newItem = _craftingService.GenerateRecipeReward(rand, rollLootArgs.Level);
             if (newItem != null)
             {
                 Reward rew = new Reward();
                 rew.EntityId = newItem.ItemTypeId;
                 rew.EntityTypeId = EntityTypes.Item;
                 rew.Quantity = 1;
-                rew.QualityTypeId = rollData.QualityTypeId;
-                rew.Level = rollData.Level;
+                rew.QualityTypeId = rollLootArgs.QualityTypeId;
+                rew.Level = rollLootArgs.Level;
                 rewardList.Rewards.Add(rew);
             }
             return retval;

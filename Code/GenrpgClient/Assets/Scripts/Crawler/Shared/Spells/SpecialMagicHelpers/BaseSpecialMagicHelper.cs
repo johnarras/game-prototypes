@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -9,7 +10,6 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
-using Assets.Scripts.UI.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
         protected ITextService _textService;
         protected IRoleService _roleService;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public abstract Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData, SelectSpellAction action, CrawlerSpell spell, CrawlerSpellEffect effect,
             CancellationToken token);

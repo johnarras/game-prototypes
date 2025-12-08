@@ -41,7 +41,7 @@ namespace Genrpg.Shared.Crawler.Currencies.Settings
 
     public class CrawlerCurrencyHelper : BaseEntityHelper<CrawlerCurrencySettings, CrawlerCurrencyType>
     {
-        public override long Key => EntityTypes.CrawlerCurrency;
+        public override long HelperKey => EntityTypes.CrawlerCurrency;
     }
 
 }

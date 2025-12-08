@@ -1,13 +1,12 @@
 ﻿
-using UnityEngine;
-
-using Genrpg.Shared.Utils.Data;
-using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.Fences;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.ProcGen.Settings.Fences;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System.Threading;
+using UnityEngine;
 
 public class FenceObjectLoader : BaseObjectLoader
 {
@@ -46,8 +45,8 @@ public class FenceObjectLoader : BaseObjectLoader
         dlo.allowRandomPlacement = false;
         dlo.rotation = new MyPointF(0, angle, hangle);
         dlo.AfterLoad = AfterLoadObject;
-        
-        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, dlo, null, token);
+
+        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
         return true;
     }
@@ -62,4 +61,3 @@ public class FenceObjectLoader : BaseObjectLoader
         }
     }
 }
-    

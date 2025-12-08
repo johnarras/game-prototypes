@@ -98,7 +98,7 @@ namespace Genrpg.Shared.Core.Entities
             return list;
         }
 
-        public List<T> GetVals<T>() where T : IInjectable
+        public List<T> GetVals<T>()
         {
             List<T> retval = new List<T>();
 
@@ -111,7 +111,7 @@ namespace Genrpg.Shared.Core.Entities
 
             foreach (IInjectable injectable in _typeDict.Values)
             {
-                if (injectable is T t)
+                if (injectable is T t && !retval.Contains(t))
                 {
                     retval.Add(t);
                 }

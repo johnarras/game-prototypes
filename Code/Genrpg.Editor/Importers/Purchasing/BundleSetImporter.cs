@@ -22,7 +22,7 @@ namespace Genrpg.Editor.Importers.Purchasing
     {
         public override string ImportDataFilename => "StoreBundleSetImport.csv";
 
-        public override EImportTypes Key => EImportTypes.StoreBundles;
+        public override EImportTypes HelperKey => EImportTypes.StoreBundles;
 
         protected override void ImportChildSubObject(EditorGameState gs, StoreBundleSet current, int line, string firstColumn, string[] headers, string[] rowWords)
         {

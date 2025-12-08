@@ -57,21 +57,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
             if (ttype != null && !string.IsNullOrEmpty(ttype.Art))
             {
-                _assetService.LoadAssetInto(parent, AssetCategoryNames.Dungeons, "TerrainFloor", OnLoadTerrainFloor, ttype, token);
+                _assetService.LoadAssetInto(parent, AssetCategoryNames.Dungeons, "TerrainFloor", OnLoadTerrainFloor, token, ttype);
             }
         }
 
-        private void OnLoadTerrainFloor(object obj, object data, CancellationToken token)
+        private void OnLoadTerrainFloor(GameObject go, TextureType ttype, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
-            TextureType ttype = data as TextureType;
-
             SpriteRenderer renderer = _clientEntityService.GetComponent<SpriteRenderer>(go);
             if (renderer == null || ttype == null)
             {
@@ -79,21 +70,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 return;
             }
 
-            _assetService.LoadAsset(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, renderer, renderer.gameObject, token);
+            _assetService.LoadAsset(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, renderer.gameObject, token, renderer);
 
         }
 
-        private void OnDownloadTerrainTexture(object obj, object data, CancellationToken token)
+        private void OnDownloadTerrainTexture(GameObject go, SpriteRenderer renderer, CancellationToken token)
         {
-
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
-            SpriteRenderer renderer = data as SpriteRenderer;
 
             if (renderer == null)
             {

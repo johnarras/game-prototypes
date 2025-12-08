@@ -36,20 +36,20 @@ namespace Genrpg.Shared.GameSettings.Settings
         [Key(10)] public long MinLevel { get; set; }
         [Key(11)] public long MaxLevel { get; set; }
         [Key(12)] public long MinPurchaseCount { get; set; }
-        [Key(23)] public long MaxPurchaseCount { get; set; }
-        [Key(13)] public double MinPurchaseTotal { get; set; }
-        [Key(24)] public double MaxPurchaseTotal { get; set; }
+        [Key(13)] public long MaxPurchaseCount { get; set; }
+        [Key(14)] public double MinPurchaseTotal { get; set; }
+        [Key(15)] public double MaxPurchaseTotal { get; set; }
 
-        [Key(15)] public DateTime StartDate { get; set; } = DateTime.MinValue;
-        [Key(16)] public DateTime EndDate { get; set; } = DateTime.MaxValue;
-        [Key(17)] public int RepeatHours { get; set; }
-        [Key(18)] public bool RepeatMonthly { get; set; }
+        [Key(16)] public DateTime StartDate { get; set; } = DateTime.MinValue;
+        [Key(17)] public DateTime EndDate { get; set; } = DateTime.MaxValue;
+        [Key(18)] public int RepeatHours { get; set; }
+        [Key(19)] public bool RepeatMonthly { get; set; }
 
-        [Key(19)] public string MaxClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
-        [Key(20)] public string MinClientVersion { get; set; } = VersionConstants.MaxVersion.ToString();
+        [Key(20)] public string MaxClientVersion { get; set; } = VersionConstants.MaxVersion.ToString();
+        [Key(21)] public string MinClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
 
-        [Key(21)] public List<DataOverrideItem> Items { get; set; } = new List<DataOverrideItem>();
-        [Key(22)] public List<AllowedPlayer> AllowedPlayers { get; set; } = new List<AllowedPlayer>();
+        [Key(22)] public List<DataOverrideItem> Items { get; set; } = new List<DataOverrideItem>();
+        [Key(23)] public List<AllowedPlayer> AllowedPlayers { get; set; } = new List<AllowedPlayer>();
 
         public void OrderSelf()
         {

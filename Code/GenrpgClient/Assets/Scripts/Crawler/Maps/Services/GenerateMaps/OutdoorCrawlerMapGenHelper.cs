@@ -36,7 +36,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         private ILootGenService _lootGenService = null;
         private IRiddleService _riddleService = null;
 
-        public override long Key => CrawlerMapTypes.Outdoors;
+        public override long HelperKey => CrawlerMapTypes.Outdoors;
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {

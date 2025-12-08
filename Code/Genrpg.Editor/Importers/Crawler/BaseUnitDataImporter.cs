@@ -63,7 +63,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
         public abstract override string ImportDataFilename { get; }
 
-        public abstract override EImportTypes Key { get; }
+        public abstract override EImportTypes HelperKey { get; }
 
         public abstract long GetEntityTypeId();
 

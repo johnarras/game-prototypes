@@ -71,6 +71,6 @@ namespace Genrpg.Shared.Trader.Cities.Settings
 
     public class CityEntityHelper : BaseEntityHelper<CitySettings, City>
     {
-        public override long Key => EntityTypes.City;
+        public override long HelperKey => EntityTypes.City;
     }
 }

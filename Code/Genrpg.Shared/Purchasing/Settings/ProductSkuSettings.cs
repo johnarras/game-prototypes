@@ -22,7 +22,7 @@ namespace Genrpg.Shared.Purchasing.Settings
 
     public class ProductSkuEntityHelper : BaseEntityHelper<ProductSkuSettings, ProductSku>
     {
-        public override long Key => EntityTypes.ProductSku;
+        public override long HelperKey => EntityTypes.ProductSku;
     }
 
 

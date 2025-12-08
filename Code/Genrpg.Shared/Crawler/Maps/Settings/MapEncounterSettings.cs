@@ -42,6 +42,6 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
 
     public class MapEncounterEntityHelper : BaseEntityHelper<MapEncounterSettings, MapEncounterType>
     {
-        public override long Key => EntityTypes.MapEncounter;
+        public override long HelperKey => EntityTypes.MapEncounter;
     }
 }

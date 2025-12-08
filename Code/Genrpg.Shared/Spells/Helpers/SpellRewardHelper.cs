@@ -18,6 +18,6 @@ namespace Genrpg.Shared.Spells.Helpers
         {
             return true;
         }
-        public long Key => EntityTypes.Spell;
+        public long HelperKey => EntityTypes.Spell;
     }
 }

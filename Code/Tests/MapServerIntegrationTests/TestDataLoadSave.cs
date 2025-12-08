@@ -35,10 +35,10 @@ namespace Tests.MapServerTests
 
             foreach (IGameSettingsLoader loader in allLoaders)
             {
-                List<ITopLevelSettings> currSettings = allSettings.Where(x=>x.GetType() == loader.Key).ToList();
+                List<ITopLevelSettings> currSettings = allSettings.Where(x=>x.GetType() == loader.HelperKey).ToList();
 
                 Assert.IsNotNull(currSettings.FirstOrDefault(x => x.Id == GameDataConstants.DefaultFilename), "Missing Default setting for " +
-                    loader.Key);
+                    loader.HelperKey);
 
             }
 

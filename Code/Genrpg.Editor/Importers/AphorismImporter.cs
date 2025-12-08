@@ -12,7 +12,7 @@ namespace Genrpg.Editor.Importers
     {
         public override string ImportDataFilename => "Aphorisms.txt";
 
-        public override EImportTypes Key => EImportTypes.Aphorisms;
+        public override EImportTypes HelperKey => EImportTypes.Aphorisms;
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)
         {

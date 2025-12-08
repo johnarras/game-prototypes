@@ -7,7 +7,7 @@ namespace Assets.Scripts.Trader.Info.Helpers
 {
     public class RoadInfoHelper : BaseInfoHelper<RoadSettings, Road>
     {
-        public override long Key => EntityTypes.Road;
+        public override long HelperKey => EntityTypes.Road;
 
         public override List<string> GetInfoLines(long entityId)
         {

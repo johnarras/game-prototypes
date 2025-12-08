@@ -7,12 +7,14 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.MVC.Interfaces;
 using Genrpg.Shared.Utils;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.Crawler.ActionUI
 {
     public class ActionPanelRow : BaseBehaviour
     {
 
+        protected IInputService _inputService = null;
 
         public GText Text;
         public GButton Button;
@@ -36,14 +38,13 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
             {
                 string text = _action.Text;
 
-                if (_action.Key == CharCodes.Escape)
+                if (_action.Key == Key.Escape)
                 {
                     text = $"\n\nPress {_textService.HighlightText("Escape")} to return to " + StrUtils.SplitOnCapitalLetters(_action.NextState.ToString());
                 }
                 else if (text != null && text.Length > 0 && char.IsLetterOrDigit(text[0]))
                 {
-                    if (char.ToUpper(text[0]) == (char)(_action.Key) ||
-                        char.ToLower(text[0]) == (char)(_action.Key))
+                    if (_inputService.FromChar(text[0]) == _action.Key)
                     {
                         char firstLetter = text[0];
                         text = $"{_textService.HighlightText(text[0])}{text.Substring(1)}";

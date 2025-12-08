@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Entities.Services
             {
                 List<ITopLevelSettings> levelSettings = _gameData.AllSettings();
 
-                ITopLevelSettings matchingSettings = levelSettings.FirstOrDefault(x => x.GetType() == loader.Key);
+                ITopLevelSettings matchingSettings = levelSettings.FirstOrDefault(x => x.GetType() == loader.HelperKey);
 
                 if (matchingSettings != null)
                 {

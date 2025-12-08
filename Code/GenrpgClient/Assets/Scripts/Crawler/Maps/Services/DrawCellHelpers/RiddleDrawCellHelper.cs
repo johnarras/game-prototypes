@@ -40,17 +40,17 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     };
 
-                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, riddleType.Art, OnDownloadObject, loadData, token);
+                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, riddleType.Art, OnDownloadObject, token, loadData);
                 }
             }
 
             await Task.CompletedTask;
         }
 
-        protected override void OnDownloadObject(object obj, object data, CancellationToken token)
+        protected override void OnDownloadObject(GameObject go, CrawlerObjectLoadData loadData, CancellationToken token)
         {
-            base.OnDownloadObject(obj, data, token);
-            _riddleService.SetPropPosition(obj, data, token);
+            base.OnDownloadObject(go, loadData, token);
+            _riddleService.SetPropPosition(go, loadData, token);
         }
     }
 }

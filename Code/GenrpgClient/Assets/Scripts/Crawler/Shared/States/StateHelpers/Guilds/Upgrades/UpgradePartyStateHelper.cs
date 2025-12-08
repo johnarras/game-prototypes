@@ -6,13 +6,13 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
 {
@@ -20,7 +20,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
     {
 
         private ICrawlerUpgradeService _upgradeService;
-        public override ECrawlerStates Key => ECrawlerStates.UpgradeParty;
+        public override ECrawlerStates HelperKey => ECrawlerStates.UpgradeParty;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -50,7 +50,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
 
             string errorText = "";
 
-            stateData.Actions.Add(new CrawlerStateAction($"Reset Points Current: {party.UpgradePoints}, Total: {party.TotalUpgradePoints}", CharCodes.None, ECrawlerStates.UpgradeParty,
+            stateData.Actions.Add(new CrawlerStateAction($"Reset Points Current: {party.UpgradePoints}, Total: {party.TotalUpgradePoints}", Key.None, ECrawlerStates.UpgradeParty,
                 () =>
                 {
                     _upgradeService.ResetPartyUpgradePoints(party);
@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
                     sb.Append(" +" + _upgradeService.GetPartyBonus(party, upgrade.IdKey, nextTier) + "]");
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(sb.ToString(), CharCodes.None, ECrawlerStates.UpgradeParty,
+                stateData.Actions.Add(new CrawlerStateAction(sb.ToString(), Key.None, ECrawlerStates.UpgradeParty,
                     () =>
                     {
                         if (party.Members.Count > 0)
@@ -90,7 +90,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.GuildMain));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.GuildMain));
             return stateData;
         }
 

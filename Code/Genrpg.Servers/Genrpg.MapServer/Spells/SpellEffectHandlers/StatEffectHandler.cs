@@ -15,7 +15,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {
     public class StatEffectHandler : BaseSpellEffectHandler
     {
-        public override long Key => EntityTypes.Stat;
+        public override long HelperKey => EntityTypes.Stat;
         public override bool IsModifyStatEffect() { return true; }
         public override bool UseStatScaling() { return true; }
 

@@ -25,7 +25,7 @@ namespace Genrpg.RequestServer.ClientUserRequests.RequestHandlers
 
         protected abstract Task InnerHandleMessage(WebContext context, TRequest request, CancellationToken token);
 
-        public Type Key => typeof(TRequest);
+        public Type HelperKey => typeof(TRequest);
 
         public virtual async Task Reset()
         {

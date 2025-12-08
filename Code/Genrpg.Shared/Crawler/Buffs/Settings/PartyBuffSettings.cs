@@ -56,7 +56,7 @@ namespace Genrpg.Shared.Crawler.Buffs.Settings
 
     public class PartyBuffHelper : BaseEntityHelper<PartyBuffSettings, PartyBuff>
     {
-        public override long Key => EntityTypes.PartyBuff;
+        public override long HelperKey => EntityTypes.PartyBuff;
     }
 
 }

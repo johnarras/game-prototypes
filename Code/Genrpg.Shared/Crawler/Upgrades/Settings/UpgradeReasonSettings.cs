@@ -21,13 +21,13 @@ namespace Genrpg.Shared.Crawler.Upgrades.Settings
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public string Art { get; set; }
-        [Key(9)] public int GamePoints { get; set; }
-        [Key(10)] public int RunPoints { get; set; }
-        [Key(11)] public bool AlwaysSingleLevel { get; set; }
+        [Key(4)] public string Desc { get; set; }
+        [Key(5)] public string AtlasPrefix { get; set; }
+        [Key(6)] public string Icon { get; set; }
+        [Key(7)] public string Art { get; set; }
+        [Key(8)] public int GamePoints { get; set; }
+        [Key(9)] public int RunPoints { get; set; }
+        [Key(10)] public bool AlwaysSingleLevel { get; set; }
 
     }
 

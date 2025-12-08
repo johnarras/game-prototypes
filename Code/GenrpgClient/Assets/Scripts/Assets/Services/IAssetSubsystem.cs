@@ -1,10 +1,9 @@
-﻿using Genrpg.Shared.Interfaces;
-using System.Threading;
+﻿using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Services
 {
-    public interface IAssetSubsystem : IInjectable
+    public interface IAssetSubsystem
     {
         Awaitable UpdateAssets(CancellationToken token);
     }

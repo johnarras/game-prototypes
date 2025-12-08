@@ -1,21 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using ClientEvents;
+﻿using ClientEvents;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Quests.Entities;
-using Genrpg.Shared.Quests.Services;
-using System.Threading;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Quests.PlayerData;
 using Genrpg.Shared.Inventory.Settings.Qualities;
 using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Quests.Constants;
+using Genrpg.Shared.Quests.Entities;
+using Genrpg.Shared.Quests.PlayerData;
+using Genrpg.Shared.Quests.Services;
+using Genrpg.Shared.Quests.WorldData;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Client.Assets.Constants;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 public class QuestInfoUI : BaseBehaviour
 {
@@ -26,7 +25,7 @@ public class QuestInfoUI : BaseBehaviour
     public const string ScreenTaskPrefab = "QuestScreenTaskRow";
     public const string HUDTaskPrefab = "QuestHUDTaskRow";
 
-    
+
     public GameObject ContentParent;
     public GImage StatusIcon;
     public GText QuestName;
@@ -64,7 +63,7 @@ public class QuestInfoUI : BaseBehaviour
     {
         _clientEntityService.SetActive(ContentParent, _qtype != null);
         if (_qtype == null)
-        {            
+        {
             return;
         }
         string rowPrefabName = GetTaskRowPrefabName();
@@ -94,7 +93,7 @@ public class QuestInfoUI : BaseBehaviour
             foreach (QuestTask task in _qtype.Tasks)
             {
                 _assetService.LoadAssetInto(TaskParent, AssetCategoryNames.UI,
-                    rowPrefabName, OnLoadTask, task, _token, _screen.Subdirectory);
+                    rowPrefabName, OnLoadTask, _token, task, _screen.Subdirectory);
             }
         }
 
@@ -145,7 +144,7 @@ public class QuestInfoUI : BaseBehaviour
                     qualityString = " " + qualityType.Name;
                 }
             }
-            string txt = "Create " + _qtype.ItemQuantity + "" + qualityString + " Item" + (_qtype.ItemQuantity==1?"":"s");
+            string txt = "Create " + _qtype.ItemQuantity + "" + qualityString + " Item" + (_qtype.ItemQuantity == 1 ? "" : "s");
             _uiService.SetText(ItemRewardText, txt);
         }
     }
@@ -204,16 +203,8 @@ public class QuestInfoUI : BaseBehaviour
         return;
     }
 
-    private void OnLoadTask (object obj, object data, CancellationToken token)
+    private void OnLoadTask(GameObject go, QuestTask task, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        QuestTask task = data as QuestTask;
-
         if (task == null)
         {
             _clientEntityService.Destroy(go);

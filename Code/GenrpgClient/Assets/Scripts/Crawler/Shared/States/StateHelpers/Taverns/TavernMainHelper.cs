@@ -9,9 +9,9 @@ using Genrpg.Shared.Crawler.Tavern.Services;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
 {
@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
     {
         private ITimeOfDayService _timeService = null;
         private ITavernService _tavernService = null;
-        public override ECrawlerStates Key => ECrawlerStates.TavernMain;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TavernMain;
         public override long TriggerBuildingId() { return BuildingTypes.Tavern; }
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -40,21 +40,21 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Eat", 'E', ECrawlerStates.TavernMain,
+            stateData.Actions.Add(new CrawlerStateAction("Eat", Key.E, ECrawlerStates.TavernMain,
             () =>
                 {
                     _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Eat);
                 },
             "You have a delicious meal!"));
 
-            stateData.Actions.Add(new CrawlerStateAction("Drink", 'D', ECrawlerStates.TavernMain,
+            stateData.Actions.Add(new CrawlerStateAction("Drink", Key.D, ECrawlerStates.TavernMain,
             () =>
             {
                 _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Drink);
             },
             "You enjoy your drink!"));
 
-            stateData.Actions.Add(new CrawlerStateAction("Rumor", 'R', ECrawlerStates.TavernMain,
+            stateData.Actions.Add(new CrawlerStateAction("Rumor", Key.R, ECrawlerStates.TavernMain,
             () =>
             {
                 _timeService.UpdateTime(party, ECrawlerTimeUpdateTypes.Rumor);
@@ -62,7 +62,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
                 _textService.HighlightText("Someone whispers...\n\"" + _tavernService.GetRumor(party, world) + "\"", TextColors.ColorCyan)
             ));
 
-            stateData.Actions.Add(new CrawlerStateAction("Exit", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("Exit", Key.Escape, ECrawlerStates.ExploreWorld));
             await Task.CompletedTask;
             return stateData;
         }

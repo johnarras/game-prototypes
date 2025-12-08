@@ -1,9 +1,8 @@
-﻿using Genrpg.Shared.Interfaces;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Genrpg.Shared.Client.Tokens
 {
-    public interface IGameTokenService : IInjectable
+    public interface IGameTokenService
     {
         void SetGameToken(CancellationToken token);
     }

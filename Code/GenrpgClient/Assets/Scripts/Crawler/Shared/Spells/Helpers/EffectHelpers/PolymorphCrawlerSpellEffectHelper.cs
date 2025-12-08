@@ -13,7 +13,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public class PolymorphCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {
-        public override long Key => EntityTypes.Polymorph;
+        public override long HelperKey => EntityTypes.Polymorph;
 
         public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {

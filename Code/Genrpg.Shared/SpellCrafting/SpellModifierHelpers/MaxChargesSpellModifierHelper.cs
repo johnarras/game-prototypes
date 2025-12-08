@@ -9,7 +9,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class MaxChargesSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.MaxCharges;
+        public override long HelperKey => SpellModifiers.MaxCharges;
 
         public override double GetCostScale(MapObject obj, double value)
         {

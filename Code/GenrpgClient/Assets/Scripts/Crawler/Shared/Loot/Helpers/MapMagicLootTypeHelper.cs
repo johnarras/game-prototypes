@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 {
     public class MapMagicLootTypeHelper : BaseCrawlerLootTypeHelper
     {
-        public override long Key => EntityTypes.MapMagic;
+        public override long HelperKey => EntityTypes.MapMagic;
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {

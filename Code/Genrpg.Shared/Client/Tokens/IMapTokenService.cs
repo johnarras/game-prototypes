@@ -1,9 +1,8 @@
-﻿using Genrpg.Shared.Interfaces;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Genrpg.Shared.Client.Tokens
 {
-    public interface IMapTokenService : IInjectable
+    public interface IMapTokenService
     {
         void SetMapToken(CancellationToken token);
     }

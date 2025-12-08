@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
     public class MemberUpgradeInfoHelper : BaseInfoHelper<MemberUpgradeSettings,MemberUpgrade>
     {
 
-        public override long Key => EntityTypes.MemberUpgrades;
+        public override long HelperKey => EntityTypes.MemberUpgrades;
 
         public override List<string> GetInfoLines(long entityId)
         {

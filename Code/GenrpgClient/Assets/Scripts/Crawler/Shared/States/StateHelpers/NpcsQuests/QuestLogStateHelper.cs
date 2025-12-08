@@ -4,11 +4,11 @@ using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
 
         private ICrawlerQuestService _questService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.QuestLog;
+        public override ECrawlerStates HelperKey => ECrawlerStates.QuestLog;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -53,11 +53,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
                 stateData.Actions.Add(new CrawlerStateAction
                     (
                         await _questService.ShowQuestStatus(party, quest.IdKey, false, true, false),
-                        CharCodes.None, ECrawlerStates.QuestDetail, null, fullQuest
+                        Key.None, ECrawlerStates.QuestDetail, null, fullQuest
                         ));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to the city", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("Back to the city", Key.Escape, ECrawlerStates.ExploreWorld));
 
             await Task.CompletedTask;
             return stateData;

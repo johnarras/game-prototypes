@@ -6,6 +6,6 @@ namespace Genrpg.Shared.Currencies.Helpers
 {
     public class CurrencyRewardHelper : BaseQuantityRewardHelper<CurrencyData, CurrencyStatus>
     {
-        public override long Key => EntityTypes.Currency;
+        public override long HelperKey => EntityTypes.Currency;
     }
 }

@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Buildings.Factories
 {
     public class BuildingObjectFactory : BaseMapObjectFactory
     {
-        public override long Key => EntityTypes.Building;
+        public override long HelperKey => EntityTypes.Building;
 
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {

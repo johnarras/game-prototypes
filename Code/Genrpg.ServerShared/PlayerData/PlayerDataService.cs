@@ -104,7 +104,7 @@ namespace Genrpg.ServerShared.PlayerData
             await Task.WhenAll(tasks);
         }
 
-        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, Character ch = null)
+        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, List<IUnitData> existingData, Character ch = null)
         {
             bool haveCharacter = ch != null;
 
@@ -120,6 +120,11 @@ namespace Genrpg.ServerShared.PlayerData
             {
                 if (haveCharacter || loader.IsUserData())
                 {
+                    if (existingData.Any(x => x.GetType() == loader.GetServerType()))
+                    {
+                        continue;
+                    }
+
                     allTasks.Add(LoadOrCreateData(loader, _repoService, ch));
                 }
             }
@@ -127,6 +132,8 @@ namespace Genrpg.ServerShared.PlayerData
             IUnitData[] dataArray = await Task.WhenAll(allTasks);
 
             List<IUnitData> dataList = dataArray.ToList();
+
+            dataList.AddRange(existingData);
 
             return dataList;
         }

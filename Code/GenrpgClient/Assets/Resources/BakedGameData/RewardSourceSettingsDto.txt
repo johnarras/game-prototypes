@@ -84,6 +84,14 @@
       "ParentId": "default",
       "IdKey": 14,
       "Name": "Levelup"
+    },
+    {
+      "Id": "rewardsourcetype15default",
+      "ParentId": "default",
+      "IdKey": 15,
+      "Name": "HourlyReset",
+      "Icon": "HourlyReset",
+      "Art": "HourlyReset"
     }
   ],
   "Parent": {

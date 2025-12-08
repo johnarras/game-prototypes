@@ -9,7 +9,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class RadiusSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.Radius;
+        public override long HelperKey => SpellModifiers.Radius;
 
         const double _radiusDiv = 3;
 

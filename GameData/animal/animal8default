@@ -6,9 +6,9 @@
   "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
   "Icon": "Ox",
   "Art": "Ox",
-  "Speed": 2.0,
+  "Speed": 3,
   "Capacity": 5,
-  "Food": 4,
-  "Cost": 31250,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 4,
+  "Cost": 356000,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

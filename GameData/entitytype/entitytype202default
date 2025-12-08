@@ -2,8 +2,8 @@
   "Id": "entitytype202default",
   "ParentId": "default",
   "IdKey": 202,
-  "Name": "BaseCoreCurrencyStorage",
-  "Icon": "BaseCoreCurrencyStorage",
-  "Art": "BaseCoreCurrencyStorage",
-  "SaveTime": "2025-11-20T20:57:53.925Z"
+  "Name": "BaseTraderStat",
+  "Icon": "BaseTraderStat",
+  "Art": "BaseTraderStat",
+  "SaveTime": "2025-12-02T01:17:13.917Z"
 }

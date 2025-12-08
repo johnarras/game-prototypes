@@ -10,11 +10,11 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
         private ICrawlerMapService _crawlerMapService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.ExploreWorld;
+        public override ECrawlerStates HelperKey => ECrawlerStates.ExploreWorld;
         public override bool IsTopLevelState() { return true; }
         public override bool HideBigPanels() { return true; }
         public override bool ShouldDispatchClickKeys() { return true; }
@@ -75,16 +75,16 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             stateData.AddText("Use WASDQE to move.");
 
-            stateData.Actions.Add(new CrawlerStateAction("Cast", 'C'));
-            stateData.Actions.Add(new CrawlerStateAction("Map", 'M'));
-            stateData.Actions.Add(new CrawlerStateAction("Quest Log", 'L'));
-            stateData.Actions.Add(new CrawlerStateAction("Info", 'I'));
-            stateData.Actions.Add(new CrawlerStateAction("Recall", 'R'));
-            stateData.Actions.Add(new CrawlerStateAction("Options", 'O'));
-            stateData.Actions.Add(new CrawlerStateAction("Party Order", 'P'));
-            stateData.Actions.Add(new CrawlerStateAction("Guild Hall", 'G', ECrawlerStates.GuildMain));
-            stateData.Actions.Add(new CrawlerStateAction("Buffs", 'B'));
-            stateData.Actions.Add(new CrawlerStateAction("Use Item", 'U'));
+            stateData.Actions.Add(new CrawlerStateAction("Cast", Key.C));
+            stateData.Actions.Add(new CrawlerStateAction("Map", Key.M));
+            stateData.Actions.Add(new CrawlerStateAction("Quest Log", Key.L));
+            stateData.Actions.Add(new CrawlerStateAction("Info", Key.I));
+            stateData.Actions.Add(new CrawlerStateAction("Recall", Key.R));
+            stateData.Actions.Add(new CrawlerStateAction("Options", Key.O));
+            stateData.Actions.Add(new CrawlerStateAction("Party Order", Key.P));
+            stateData.Actions.Add(new CrawlerStateAction("Guild Hall", Key.G, ECrawlerStates.GuildMain));
+            stateData.Actions.Add(new CrawlerStateAction("Buffs", Key.B));
+            stateData.Actions.Add(new CrawlerStateAction("Use Item", Key.U));
 
 
             if (map != null)
@@ -98,7 +98,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
                     if (recallMap != null)
                     {
-                        stateData.Actions.Add(new CrawlerStateAction("Return to " + recallMap.Name + "?", 'R', ECrawlerStates.ReturnToSafety));
+                        stateData.Actions.Add(new CrawlerStateAction("Return to " + recallMap.Name + "?", Key.R, ECrawlerStates.ReturnToSafety));
                     }
                 }
             }
@@ -152,7 +152,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 mapData = firstCityData;
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld,
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld,
                 () =>
                 {
                     if (_screenService.GetLayerScreen(ScreenLayers.Screens) == null)

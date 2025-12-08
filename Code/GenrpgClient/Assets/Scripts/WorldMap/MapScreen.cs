@@ -24,14 +24,14 @@ public class MapScreen : BaseScreen
 
     private void Setup()
     {
-        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, GetToken(), Subdirectory);
+        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, GetToken(), default(object), Subdirectory);
 
         _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
     }
 
-    private void OnLoadArrow(object obj, object data, CancellationToken token)
+    private void OnLoadArrow(GameObject go, object data, CancellationToken token)
     {
-        ArrowObject = obj as GameObject;
+        ArrowObject = go;
         ShowPlayer();
     }
 

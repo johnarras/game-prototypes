@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d2876be6d9c08b409274b86baad3554, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e782ae4548cab91448f309a16a3e5219, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -284,7 +284,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  Tooltip: {fileID: 0}
 --- !u!223 &3146230182469074648
 Canvas:
   m_ObjectHideFlags: 0

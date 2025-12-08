@@ -1,4 +1,5 @@
-﻿using ClientEvents;
+﻿using Assets.Scripts.Input;
+using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Input.Constants;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 internal class ActionButtonDownload
 {
@@ -21,6 +23,7 @@ internal class ActionButtonDownload
 public class ActionBars : SpellIconScreen
 {
     private IRepositoryService _repoService = null!;
+    private IKeyboardService _keyboardService = null;
 
     public const string ActionButtonPrefab = "ActionButton";
 
@@ -83,22 +86,13 @@ public class ActionBars : SpellIconScreen
                     Parent = parent,
                 };
 
-                _assetService.LoadAssetInto(parent, AssetCategoryNames.UI, ActionButtonPrefab, OnDownloadButton, abDownload, GetToken(), "ActionBars");
+                _assetService.LoadAssetInto(parent, AssetCategoryNames.UI, ActionButtonPrefab, OnDownloadButton, GetToken(), abDownload, "ActionBars");
             }
         }
     }
 
-    private void OnDownloadButton(object obj, object data, CancellationToken token)
+    private void OnDownloadButton(GameObject go, ActionButtonDownload abDownload, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            return;
-        }
-
-        ActionButtonDownload abDownload = data as ActionButtonDownload;
-
         if (abDownload == null)
         {
             return;
@@ -261,7 +255,7 @@ public class ActionBars : SpellIconScreen
             return;
         }
 
-        _inputService.PerformAction(actionButton.ActionIndex);
+        _keyboardService.PerformAction(actionButton.ActionIndex, Key.None);
     }
 
     protected override void HandleDragDrop(SpellIconScreen screen, SpellIcon dragItem, SpellIcon otherIconHit, GameObject finalObjectHit)

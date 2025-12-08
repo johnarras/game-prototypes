@@ -29,7 +29,6 @@
     <Folder Include="Chests\Services\" />
     <Folder Include="Inventory\Settings\Slots\" />
     <Folder Include="TimedEvents\NewFolder\" />
-    <Folder Include="CoreCurrencies\RewardHelpers\" />
     <Folder Include="UserAbilities\Constants\" />
   </ItemGroup>
 

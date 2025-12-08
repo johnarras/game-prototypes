@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
     public class PositionWordFindRiddleTypeHelper : BaseRiddleTypeHelper
     {
-        public override long Key => RiddleTypes.PositionWordFind;
+        public override long HelperKey => RiddleTypes.PositionWordFind;
 
         protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
         {

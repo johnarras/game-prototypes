@@ -5,8 +5,7 @@
   "Name": "Supplies",
   "Icon": "Supplies",
   "Art": "Supplies",
-  "StartCurr": 60,
-  "StartRegen": 10,
-  "StartStorage": 60,
-  "SaveTime": "2025-11-20T18:50:13.106Z"
+  "RegenTraderStatId": 9,
+  "StorageTraderStatId": 8,
+  "SaveTime": "2025-12-02T01:17:13.917Z"
 }

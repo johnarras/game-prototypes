@@ -1,98 +1,128 @@
+using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.ClientEvents;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Entities;
-using Assets.Scripts.UI.Interfaces;
-using ClientEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Spells.Settings.Skills;
-using Genrpg.Shared.Spells.Utils;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-internal class InputContainer
+internal class CustomInputAction
 {
-    public KeyCode Code;
-    public KeyComm Command;
-    public int MouseButton = -1;
+    public Key Key;
+    public InputAction Action;
+    public Action<InputAction.CallbackContext> PerformCallback;
+    public Action<InputAction.CallbackContext> CancelCallback;
+
+    public bool IsPressed()
+    {
+        if (Action != null)
+        {
+            return Action.phase == InputActionPhase.Performed;
+        }
+        return false;
+    }
 }
 
-public interface IInputService : IInitializable
+public interface IInputService : IInitializable, IClientResetCleanup
 {
     bool MouseClickNow(int index);
     float GetDeltaTime();
     bool MouseIsDown(int mouseIndex);
     Vector3 MousePosition();
-    void PerformAction(int actionButtonIndex);
     bool ModifierIsActive(string keyCommand);
-    string[] MoveInputsToCheck();
     void SetDisabled(bool isDisabled);
-    bool GetKeyDown(char key, bool dispatchClickKeys = false);
-    bool GetKey(char key);
+    bool WasPressedThisFrame(char key, bool dispatchClickKeys = false);
+    bool WasPressedThisFrame(Key key, bool dispatchClickKeys = false);
+    bool IsPressed(char key);
+    bool IsPressed(Key k);
     bool ContinueKeyIsDown();
+    float GetAxis(string mouseAxisName);
+    Key FromChar(char c);
+    bool EditingText();
 }
 
 public class InputService : IInputService
 {
 
-    private ICameraController _cameraController;
-    private IPlayerManager _playerManager;
-    protected IMapGenData _md;
-    private IClientUpdateService _updateService;
-    private IDispatcher _dispatcher;
-    private IClientGameState _gs;
-    private ILogService _logService;
-    private IScreenService _screenService;
-    private IGameData _gameData;
-    private IRealtimeNetworkService _networkService;
-    IClientMapObjectManager _objectManager;
-    private IClientEntityService _clientEntityService;
+    private ICameraController _cameraController = null;
+    private IPlayerManager _playerManager = null;
+    private IMapGenData _md = null;
+    private IClientUpdateService _updateService = null;
+    private IDispatcher _dispatcher = null;
+    private IClientGameState _gs = null;
+    private IClientEntityService _clientEntityService = null;
+
+    List<IKeyboardSubsystem> _keyboardSystems = new List<IKeyboardSubsystem>();
+
+    private bool _didSetupInputMap = false;
 
     public async Task Initialize(CancellationToken token)
     {
         _updateService.AddUpdate(this, InputUpdate, UpdateTypes.Regular, token);
-        _dispatcher.AddListener<MapIsLoadedEvent>(UpdateInputs, token);
+        _keyboardSystems = _gs.loc.GetVals<IKeyboardSubsystem>();
 
         await Task.CompletedTask;
     }
 
-    public bool GetKeyDown(char c, bool dispatchClickKeys = false)
+    /// <summary>
+    /// Pressed this frame
+    /// </summary>
+    /// <param name="c"></param>
+    /// <param name="dispatchClickKeys"></param>
+    /// <returns></returns>
+    public bool WasPressedThisFrame(char c, bool dispatchClickKeys = false)
     {
-        char c2 = (c < 256 ? char.ToLower(c) : c);
-        if (Input.GetKeyDown((KeyCode)c2))
+        return WasPressedThisFrame(Keyboard.current.FindKeyOnCurrentKeyboardLayout(c.ToString())?.keyCode ?? Key.None, dispatchClickKeys);
+    }
+
+    public bool WasPressedThisFrame(Key k, bool dispatchClickKeys = false)
+    {
+        if (k == Key.None)
         {
-            if (dispatchClickKeys)
+            return false;
+        }
+        try
+        {
+
+            bool wasPressed = Keyboard.current[k]?.wasPressedThisFrame ?? false;
+
+            if (wasPressed && dispatchClickKeys)
             {
-                _dispatcher.Dispatch(new ClickKey() { Key = c2 });
+                _dispatcher.Dispatch(new ClickKey() { Key = k });
             }
-            return true;
+            return wasPressed;
+        }
+        catch (Exception ee)
+        {
+            Debug.Log("EXC: " + ee.Message + " " + k);
         }
         return false;
     }
 
-    public bool GetKey(char c)
+    /// <summary>
+    /// Is down in general
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public bool IsPressed(Key c)
     {
-        char c2 = (c < 256 ? char.ToLower(c) : c);
-        if (Input.GetKey((KeyCode)c2))
+        if (c == Key.None)
         {
-            return true;
+            return false;
         }
-        return false;
+        return Keyboard.current[c]?.isPressed ?? false;
+    }
+
+    public bool IsPressed(char c)
+    {
+        return IsPressed(Keyboard.current.FindKeyOnCurrentKeyboardLayout(c.ToString())?.keyCode ?? Key.None);
     }
 
     private bool _isDisabled = false;
@@ -101,106 +131,9 @@ public class InputService : IInputService
         _isDisabled = isDisabled;
     }
 
-    private bool EditingText()
-    {
-        return _clientEntityService.GetComponent<GInputField>(EventSystem.current.currentSelectedGameObject) != null;
-    }
-
-    private Dictionary<string, InputContainer> _stringInputs = null;
-    private Dictionary<KeyCode, InputContainer> _keyCodeInputs = null;
-
-    private List<InputContainer> _checkEachFrameInputs = null;
-
 
     public float GetDeltaTime() { return Time.deltaTime; }
 
-
-
-    private List<String> _actionKeysTocheck = null;
-
-    private List<int> _currActionIndexes = null;
-
-
-    private void UpdateInputs(MapIsLoadedEvent worldLoaded)
-    {
-
-        SetupAbilityIndexes();
-        UpdateFromInputs();
-    }
-
-    private void UpdateFromInputs()
-    {
-        KeyCommData inputList = _gs.ch.Get<KeyCommData>();
-
-        if (inputList == null || inputList.GetData().Count < 1)
-        {
-            return;
-        }
-
-        _stringInputs = new Dictionary<string, InputContainer>();
-        _keyCodeInputs = new Dictionary<KeyCode, InputContainer>();
-        _checkEachFrameInputs = new List<InputContainer>();
-
-        foreach (KeyComm item in inputList.GetData())
-        {
-            if (string.IsNullOrEmpty(item.KeyPress) || string.IsNullOrEmpty(item.KeyCommand))
-            {
-                continue;
-            }
-            item.KeyPress = item.KeyPress.ToLower();
-            int mouseButton = -1;
-            char kc = CharCodes.None;
-            if (item.KeyPress.Length == 1)
-            {
-                try
-                {
-                    kc = (char)(item.KeyPress[0]);
-                }
-                catch (Exception e)
-                {
-                    _logService.Exception(e, "Bad KeyCode");
-                    continue;
-                }
-            }
-            else if (item.KeyPress == "space")
-            {
-                kc = CharCodes.Space;
-            }
-            else if (item.KeyPress == "esc")
-            {
-                kc = CharCodes.Escape;
-            }
-            else if (item.KeyPress == "tab")
-            {
-                kc = CharCodes.Tab;
-            }
-            else if (item.KeyPress.IndexOf("mouse") == 0)
-            {
-                string mouseButtonString = item.KeyPress.Replace("mouse", "");
-                Int32.TryParse(mouseButtonString, out mouseButton);
-            }
-
-            if (kc == CharCodes.None && mouseButton < 0)
-            {
-                continue;
-            }
-
-            if (mouseButton >= 0 && mouseButton < 6)
-            {
-                kc = (char)((int)(KeyCode.Mouse0) + mouseButton);
-            }
-
-            InputContainer kci = new InputContainer() { Code = (KeyCode)kc, Command = item, MouseButton = mouseButton };
-            if (!_stringInputs.ContainsKey(item.KeyCommand))
-            {
-                _stringInputs[item.KeyCommand] = kci;
-                if (item.KeyCommand.ToLower().IndexOf("screen") >= 0)
-                {
-                    _checkEachFrameInputs.Add(kci);
-                }
-            }
-        }
-    }
 
     public bool MouseClickNow(int index)
     {
@@ -209,7 +142,7 @@ public class InputService : IInputService
             return false;
         }
 
-        return Input.GetMouseButtonDown(index);
+        return Mouse.current.IsPressed(index);
     }
 
     public bool MouseIsDown(int index)
@@ -219,76 +152,107 @@ public class InputService : IInputService
             return false;
         }
 
-        return Input.GetMouseButton(index);
+        if (index == 0)
+        {
+            return Mouse.current.leftButton.isPressed;
+        }
+        else if (index == 1)
+        {
+            return Mouse.current.rightButton.isPressed;
+        }
+        {
+            return false;
+        }
     }
 
     public Vector3 MousePosition()
     {
-        return Input.mousePosition;
-    }
-
-    public bool KeyPressNow(string keyCommand)
-    {
-        if (string.IsNullOrEmpty(keyCommand) || _stringInputs == null || !_stringInputs.ContainsKey(keyCommand))
-        {
-            return false;
-        }
-        if (_stringInputs[keyCommand].MouseButton >= 0)
-        {
-            if (Input.GetMouseButtonDown(_stringInputs[keyCommand].MouseButton))
-            {
-                return true;
-            }
-        }
-
-        KeyCode code = _stringInputs[keyCommand].Code;
-
-        return Input.GetKeyDown(code);
+        Vector2 pos = Mouse.current.position.ReadValue();
+        return new Vector3(pos.x, pos.y, 0);
     }
 
     public bool ModifierIsActive(string keyCommand)
     {
         if (keyCommand == KeyComm.ShiftName)
         {
-            return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            return IsPressed(Key.LeftShift) || IsPressed(Key.RightShift);
         }
         else if (keyCommand == KeyComm.CtrlName)
         {
-            return Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+            return IsPressed(Key.LeftCtrl) || IsPressed(Key.RightCtrl);
         }
         else if (keyCommand == KeyComm.AltName)
         {
-            return Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
+            return IsPressed(Key.LeftAlt) || IsPressed(Key.RightAlt);
         }
         return false;
     }
 
-    public bool KeyIsDown(string keyCommand)
+    int mouseLayerMask = 0;
+
+    private List<CustomInputAction> customActions = new List<CustomInputAction>();
+
+    private void SetupInputMap()
     {
-
-        if (string.IsNullOrEmpty(keyCommand) || _stringInputs == null || !_stringInputs.ContainsKey(keyCommand))
+        if (_didSetupInputMap)
         {
-            return false;
+            return;
         }
 
-        if (_stringInputs[keyCommand].MouseButton >= 0)
+        foreach (Key key in Enum.GetValues(typeof(Key)))
         {
-            if (MouseIsDown(_stringInputs[keyCommand].MouseButton) ||
-                MouseClickNow(_stringInputs[keyCommand].MouseButton))
+
+            string keyName = Enum.GetName(typeof(Key), key);
+            CustomInputAction customAction = new CustomInputAction()
             {
-                return true;
+                Key = key,
+            };
+            InputAction ia = new InputAction(keyName, type: InputActionType.Button);
+            customAction.Action = ia;
+            if (keyName.IndexOf("Digit") == 0)
+            {
+                keyName = keyName.Replace("Digit", "");
             }
+            ia.AddBinding("<Keyboard>/" + keyName);
+            customActions.Add(customAction);
+
+            Action<InputAction.CallbackContext> performAction = (InputAction.CallbackContext context) =>
+            {
+                OnKeyPress(customAction.Key);
+            };
+
+            Action<InputAction.CallbackContext> cancelAction = (InputAction.CallbackContext context) =>
+            {
+                OnKeyRelease(customAction.Key);
+            };
+
+            ia.performed += performAction;
+            ia.canceled += cancelAction;
+            customAction.PerformCallback = performAction;
+            customAction.CancelCallback = cancelAction;
+            ia.Enable();
+
         }
 
-        KeyCode code = _stringInputs[keyCommand].Code;
-
-        return Input.GetKeyDown(code) || Input.GetKey(code);
-
+        _didSetupInputMap = true;
     }
 
-    int mouseLayerMask = 0;
-    bool screenIsShowing = false;
-    List<ActiveScreen> screens = null;
+
+    private void OnKeyPress(Key key)
+    {
+        foreach (IKeyboardSubsystem subsystem in _keyboardSystems)
+        {
+            subsystem.OnKeyPress(key);
+        }
+    }
+
+    private void OnKeyRelease(Key key)
+    {
+        foreach (IKeyboardSubsystem subsystem in _keyboardSystems)
+        {
+            subsystem.OnKeyRelease(key);
+        }
+    }
 
     private void InputUpdate()
     {
@@ -296,12 +260,10 @@ public class InputService : IInputService
         {
             return;
         }
-        if (_stringInputs == null || _checkEachFrameInputs == null)
-        {
-            return;
-        }
 
-        if (!Input.GetKeyDown(KeyCode.Escape))
+        SetupInputMap();
+
+        if (!WasPressedThisFrame(Key.Escape))
         {
             if (_md.GeneratingMap)
             {
@@ -310,15 +272,6 @@ public class InputService : IInputService
         }
 
         GetMapMouseHit();
-
-        UpdateUIInputs();
-
-        UpdateMovementInputs();
-
-        UpdateTarget(false);
-
-        UpdateActionInputs();
-
     }
 
     RaycastHit hit;
@@ -334,6 +287,10 @@ public class InputService : IInputService
     {
         if (mainCam == null)
         {
+            if (_cameraController == null)
+            {
+                return;
+            }
             mainCam = _cameraController.GetMainCamera();
         }
 
@@ -347,7 +304,7 @@ public class InputService : IInputService
             playerObject = _playerManager.GetPlayerGameObject();
         }
 
-        ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        ray = mainCam.ScreenPointToRay(MousePosition());
 
         didHitObject = Physics.Raycast(ray, out hit, MapConstants.MaxMouseRaycastDistance, mouseLayerMask);
 
@@ -409,223 +366,38 @@ public class InputService : IInputService
                 interactObject.MouseExit();
             }
         }
-
-    }
-
-    private void UpdateUIInputs()
-    {
-        screens = null;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            screens = _screenService.GetAllScreens();
-            if (screens != null && screens.Count > 0)
-            {
-                _screenService.CloseAll();
-                if (_playerManager.GetPlayerGameObject() != null)
-                {
-                    return;
-                }
-            }
-        }
-
-        if (!EditingText())
-        {
-            foreach (InputContainer kci in _checkEachFrameInputs)
-            {
-                if (Input.GetKeyDown(kci.Code))
-                {
-                    screenIsShowing = false;
-                    if (screens == null)
-                    {
-                        screens = _screenService.GetAllScreens();
-                    }
-                    foreach (ActiveScreen obj in screens)
-                    {
-                        ActiveScreen ssi = obj as ActiveScreen;
-                        if (ssi == null)
-                        {
-                            continue;
-                        }
-
-                        if (_screenService.GetFullScreenNameFromId(ssi.ScreenId) == kci.Command.KeyCommand)
-                        {
-                            _screenService.Close(ssi.ScreenId);
-                            screenIsShowing = true;
-                            break;
-                        }
-                    }
-
-                    if (!screenIsShowing)
-                    {
-                        _screenService.StringOpen(kci.Command.KeyCommand.Replace("Screen", ""));
-                    }
-                }
-            }
-        }
-        else
-        {
-
-        }
-    }
-
-    public string[] MoveInputsToCheck()
-    {
-        return _moveInputsToCheck;
-    }
-
-    private string[] _moveInputsToCheck = new string[]
-    {
-        KeyComm.Forward,
-        KeyComm.Backward,
-        KeyComm.TurnLeft,
-        KeyComm.TurnRight,
-        KeyComm.StrafeLeft,
-        KeyComm.StrafeRight,
-        KeyComm.Jump
-    };
-
-    private void UpdateMovementInputs()
-    {
-        if (!_playerManager.Exists())
-        {
-            return;
-        }
-        if (EditingText())
-        {
-            return;
-        }
-
-        foreach (string kc in _moveInputsToCheck)
-        {
-            _playerManager.SetKeyPercent(kc, KeyIsDown(kc) ? 1 : 0);
-        }
-        if (MouseIsDown(0) && MouseIsDown(1))
-        {
-            _playerManager.SetKeyPercent(KeyComm.Forward, 1.0f);
-        }
-    }
-
-    private void UpdateTarget(bool forceTarget)
-    {
-        if (KeyPressNow(KeyComm.TargetNext) || forceTarget)
-        {
-            _playerManager.TargetNext();
-        }
-    }
-
-    private void SetupAbilityIndexes()
-    {
-        _currActionIndexes = new List<int>();
-
-        _actionKeysTocheck = new List<string>();
-
-        for (int i = InputConstants.MinActionIndex; i <= InputConstants.MaxActionIndex; i++)
-        {
-            _actionKeysTocheck.Add(KeyComm.ActionPrefix + i);
-        }
-    }
-
-    private void UpdateActionInputs()
-    {
-
-        _currActionIndexes.Clear();
-
-        if (!_playerManager.Exists())
-        {
-            return;
-        }
-
-        if (_screenService.GetLayerScreen(ScreenLayers.Screens) != null)
-        {
-            return;
-        }
-
-        for (int k = 0; k < _actionKeysTocheck.Count; k++)
-        {
-            if (KeyPressNow(_actionKeysTocheck[k]))
-            {
-                _currActionIndexes.Add(k + 1);
-            }
-        }
-
-        if (_currActionIndexes.Count > 0)
-        {
-            for (int i = 0; i < _currActionIndexes.Count; i++)
-            {
-                PerformAction(_currActionIndexes[i]);
-            }
-        }
-    }
-
-    private DateTime _lastActionTime = DateTime.UtcNow;
-    public void PerformAction(int actionIndex)
-    {
-        if ((DateTime.UtcNow - _lastActionTime).TotalSeconds < 0.5f)
-        {
-            return;
-        }
-        ActionInputData actionInputs = _gs.ch.Get<ActionInputData>();
-        ActionInput actionKey = actionInputs.GetInput(actionIndex);
-        if (actionKey == null || actionKey.SpellId == 0)
-        {
-            return;
-        }
-
-        Spell spell = _gs.ch.Get<SpellData>().Get(actionKey.SpellId);
-
-        if (spell == null)
-        {
-            return;
-        }
-
-        if (!_playerManager.TryGetUnit(out Unit playerUnit))
-        {
-            return;
-        }
-
-        SkillType skillType = _gameData.Get<SkillTypeSettings>(_gs.ch).Get(spell.Effects.FirstOrDefault()?.SkillTypeId ?? 0);
-        if (!_objectManager.GetUnit(playerUnit.TargetId, out Unit target))
-        {
-            if (skillType.TargetTypeId == TargetTypes.Ally)
-            {
-                target = playerUnit;
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        if (!SpellUtils.IsValidTarget(target, playerUnit.FactionTypeId, skillType.TargetTypeId))
-        {
-            if (skillType.TargetTypeId == TargetTypes.Ally)
-            {
-                target = playerUnit;
-            }
-            else
-            {
-                return;
-            }
-        }
-
-
-        if (target == null)
-        {
-            UpdateTarget(true);
-            return;
-        }
-        CastSpell castSpell = new CastSpell()
-        {
-            SpellId = spell.IdKey,
-            TargetId = target.Id,
-        };
-        _networkService.SendMapMessage(castSpell);
-        _lastActionTime = DateTime.UtcNow;
     }
 
     public bool ContinueKeyIsDown()
     {
-        return GetKeyDown(CharCodes.Escape) || GetKeyDown(CharCodes.Space) || GetKeyDown(CharCodes.Enter);
+        return WasPressedThisFrame(Key.Escape) || WasPressedThisFrame(Key.Space) || WasPressedThisFrame(Key.Enter);
+    }
+
+    public float GetAxis(string mouseAxisName)
+    {
+        return Mouse.current.scroll.ReadValue().y;
+    }
+
+    public Key FromChar(char c)
+    {
+        return Keyboard.current.FindKeyOnCurrentKeyboardLayout(c.ToString())?.keyCode ?? Key.None;
+    }
+
+    public async Task OnReset(CancellationToken token)
+    {
+        if (customActions != null)
+        {
+            foreach (CustomInputAction action in customActions)
+            {
+                action.Action.performed -= action.PerformCallback;
+                action.Action.canceled -= action.CancelCallback;
+            }
+        }
+        await Task.CompletedTask;
+    }
+
+    public bool EditingText()
+    {
+        return _clientEntityService.GetComponent<GInputField>(EventSystem.current.currentSelectedGameObject) != null;
     }
 }

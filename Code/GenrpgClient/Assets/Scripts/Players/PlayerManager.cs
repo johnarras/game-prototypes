@@ -1,6 +1,10 @@
-﻿using Assets.Scripts.Pathfinding.Utils;
+﻿using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.Input;
+using Assets.Scripts.Input.Interfaces;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Pathfinding.Services;
 using Genrpg.Shared.Targets.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
@@ -8,13 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Client.Tokens;
+using UnityEngine.InputSystem;
 
 
-public interface IPlayerManager : IInjectable, IMapTokenService
+public interface IPlayerManager : IInitializable, IMapTokenService, IKeyboardSubsystem
 {
     void SetUnit(UnitController unitController);
     bool TryGetUnit(out Unit unit);
@@ -22,10 +25,11 @@ public interface IPlayerManager : IInjectable, IMapTokenService
     string GetUnitId();
     bool Exists();
     void SetCurrentTarget(string targetId);
-    void TargetNext(); 
+    void TargetNext();
     void SetKeyPercent(string commandName, float percent);
     void MoveAboveObstacles();
     void SetPlayerObject(GameObject entity);
+    string[] MoveInputsToCheck();
 }
 
 public class PlayerManager : IPlayerManager
@@ -36,12 +40,20 @@ public class PlayerManager : IPlayerManager
     private IClientRandom _rand;
     private CancellationToken _mapToken;
 
-    private IClientPathfindingUtils _clientPathfindingUtils;
-    private IClientMapObjectManager _mapObjectManager;
-    private IPathfindingService _pathfindingService;
-    private IRealtimeNetworkService _networkService;
-    private ILogService _logService;
-    private IClientEntityService _clientEntityService;
+    private IClientMapObjectManager _mapObjectManager = null;
+    private IRealtimeNetworkService _networkService = null;
+    private IClientEntityService _clientEntityService = null;
+    private IInputService _inputService = null;
+    private IClientUpdateService _updateService = null;
+    private IDispatcher _dispatcher = null;
+    private IClientGameState _gs = null;
+
+    public async Task Initialize(CancellationToken token)
+    {
+        _updateService.AddUpdate(this, OnFrameTick, UpdateTypes.Regular, token);
+        _dispatcher.AddListener<OnNewGameData>(OnNewGameDataHandler, token);
+        await Task.CompletedTask;
+    }
 
     public void SetPlayerObject(GameObject entity)
     {
@@ -75,7 +87,7 @@ public class PlayerManager : IPlayerManager
         _unitController?.SetKeyPercent(keyName, percent);
     }
 
-  
+
     public bool TryGetUnit(out Unit unit)
     {
         unit = _unit;
@@ -172,7 +184,7 @@ public class PlayerManager : IPlayerManager
             }
 
 
-           List<Unit> closeUnits = new List<Unit>();
+            List<Unit> closeUnits = new List<Unit>();
             foreach (Unit obj in units)
             {
 
@@ -252,5 +264,102 @@ public class PlayerManager : IPlayerManager
             }
         }
         _entity.transform.position += new Vector3(0, 10, 0);
+    }
+
+
+    private string[] _moveInputsToCheck = new string[]
+    {
+        KeyComm.Forward,
+        KeyComm.Backward,
+        KeyComm.TurnLeft,
+        KeyComm.TurnRight,
+        KeyComm.StrafeLeft,
+        KeyComm.StrafeRight,
+        KeyComm.Jump
+    };
+
+    public string[] MoveInputsToCheck()
+    {
+        return _moveInputsToCheck;
+    }
+
+    public void OnKeyPress(Key key)
+    {
+        InputContainer cont = _movementInputs.FirstOrDefault(x => x.Key == key);
+        if (cont == null)
+        {
+            return;
+        }
+        cont.IsPressed = true;
+    }
+
+    public void OnKeyRelease(Key key)
+    {
+        InputContainer cont = _movementInputs.FirstOrDefault(x => x.Key == key);
+        if (cont == null)
+        {
+            return;
+        }
+        cont.IsPressed = false;
+    }
+
+    private void OnFrameTick()
+    {
+
+        if (!Exists())
+        {
+            return;
+        }
+        if (_inputService.EditingText())
+        {
+            return;
+        }
+
+        UpdateMovementInputs();
+    }
+
+
+    private Dictionary<Key, bool> _pressedKeys = new Dictionary<Key, bool>();
+    private void UpdateMovementInputs()
+    {
+        foreach (InputContainer cont in _movementInputs)
+        {
+            SetKeyPercent(cont.Command.KeyCommand, cont.IsPressed ? 1 : 0);
+        }
+        if (_inputService.MouseIsDown(0) && _inputService.MouseIsDown(1))
+        {
+            SetKeyPercent(KeyComm.Forward, 1.0f);
+        }
+    }
+
+    private List<InputContainer> _movementInputs = new List<InputContainer>();
+    private void OnNewGameDataHandler(OnNewGameData loaded)
+    {
+
+        KeyCommData inputData = _gs.ch.Get<KeyCommData>();
+
+        IReadOnlyList<KeyComm> inputList = inputData.GetData();
+
+        _movementInputs.Clear();
+
+        foreach (string moveInput in MoveInputsToCheck())
+        {
+            KeyComm kc = inputList.FirstOrDefault(x => x.KeyCommand == moveInput);
+
+            if (kc == null || string.IsNullOrWhiteSpace(kc.KeyCommand) || string.IsNullOrEmpty(kc.KeyPress))
+            {
+                continue;
+            }
+
+            InputContainer cont = new InputContainer()
+            {
+                Command = kc,
+                MouseButton = -1,
+                Key = _inputService.FromChar(kc.KeyPress[0]),
+                IsPressed = false
+            };
+
+            _movementInputs.Add(cont);
+        }
     }
 }

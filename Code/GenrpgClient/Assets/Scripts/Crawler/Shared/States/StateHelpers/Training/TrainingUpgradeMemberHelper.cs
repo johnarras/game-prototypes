@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
@@ -23,7 +24,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
         ICrawlerUpgradeService _upgradeService;
         ITrainingService _trainingService = null;
-        public override ECrawlerStates Key => ECrawlerStates.TrainingUpgradeMember;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TrainingUpgradeMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -61,7 +62,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                 {
                     int tier = member.Upgrades.Get(upgrade.IdKey);
                     double bonus = _upgradeService.GetUnitBonus(member, upgrade.EntityTypeId, upgrade.EntityId);
-                    stateData.Actions.Add(new CrawlerStateAction($"{upgrade.Name} Tier: {tier}/{upgradeSettings.MaxTier} Bonus:{bonus} ({upgrade.BonusPerTier}/tier)", CharCodes.None, ECrawlerStates.TrainingUpgradeMember,
+                    stateData.Actions.Add(new CrawlerStateAction($"{upgrade.Name} Tier: {tier}/{upgradeSettings.MaxTier} Bonus:{bonus} ({upgrade.BonusPerTier}/tier)", Key.None, ECrawlerStates.TrainingUpgradeMember,
                     onClickAction: delegate ()
                     {
                         _trainingService.TrainPartyMemberUpgrade(party, member, upgrade.IdKey, memberData);
@@ -74,12 +75,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                 {
                     if (pm != member)
                     {
-                        stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingUpgradeMember, extraData: new TrainingMemberData() { Member = pm }));
+                        stateData.Actions.Add(new CrawlerStateAction("", FromChar((char)(pm.PartySlot + '0')), ECrawlerStates.TrainingUpgradeMember, extraData: new TrainingMemberData() { Member = pm }));
                     }
                 }
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to member select", CharCodes.Escape, ECrawlerStates.TrainingUpgradeSelect));
+            stateData.Actions.Add(new CrawlerStateAction("Back to member select", Key.Escape, ECrawlerStates.TrainingUpgradeSelect));
 
 
 

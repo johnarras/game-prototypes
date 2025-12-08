@@ -22,7 +22,7 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
                 userData.Level = 1;
             }
 
-            long supplies = userData.Currencies.Curr(CoreCurrencyTypes.Supplies);
+            long supplies = userData.Currencies.Get(CoreCurrencyTypes.Supplies);
 
             List<PlayMult> validMults = _sharedPlayMultService.GetValidMults(context.user, level, supplies);
 

@@ -44,6 +44,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Services
 {
@@ -86,9 +87,6 @@ namespace Assets.Scripts.Crawler.Services
 
         private Stack<CrawlerStateData> _stateStack { get; set; } = new Stack<CrawlerStateData>();
 
-
-        private Dictionary<char, char> _equivalentKeys = new Dictionary<char, char>();
-
         public async Task Initialize(CancellationToken token)
         {
             _token = token;
@@ -113,7 +111,7 @@ namespace Assets.Scripts.Crawler.Services
         public void ChangeState(ECrawlerStates crawlerState, CancellationToken token, object extraData = null, ECrawlerStates returnState = ECrawlerStates.None)
         {
             CrawlerStateData stateData = new CrawlerStateData(returnState) { ExtraData = extraData };
-            CrawlerStateAction action = new CrawlerStateAction(null, CharCodes.None, crawlerState, extraData: extraData);
+            CrawlerStateAction action = new CrawlerStateAction(null, Key.None, crawlerState, extraData: extraData);
             ChangeState(stateData, action, token);
         }
 
@@ -152,7 +150,7 @@ namespace Assets.Scripts.Crawler.Services
                 _awaitableService.ForgetAwaitable(ChangeStateAsync(fullCrawlerState, token));
             }
 
-            if (_inputService.GetKeyDown(CharCodes.Escape))
+            if (_inputService.WasPressedThisFrame(Key.Escape))
             {
                 ActiveScreen activeScreen = _screenService.GetLayerScreen(ScreenLayers.Screens);
                 if (activeScreen != null)
@@ -480,8 +478,11 @@ namespace Assets.Scripts.Crawler.Services
             await Task.CompletedTask;
         }
 
+
+        private bool _canUpdateInputs = false;
         private void UpdateGame(CancellationToken token)
         {
+            _canUpdateInputs = false;
             if (_stateQueue.Count > 0)
             {
                 if (_stateQueue.Any(x => x.Action != null && x.Action.NextState != ECrawlerStates.DoNotChangeState))
@@ -489,49 +490,41 @@ namespace Assets.Scripts.Crawler.Services
                     return;
                 }
             }
-
-            UpdateInputs(token);
+            _canUpdateInputs = true;
         }
 
-        public void UpdateInputs(CancellationToken token)
+        public void OnKeyPress(Key key)
         {
+            if (!_canUpdateInputs)
+            {
+                return;
+            }
             if (_stateStack.TryPeek(out CrawlerStateData currentData))
             {
-
                 bool shouldDispatchClickKeys = ShouldDispatchClickKeys();
                 if (currentData.Actions.Count > 0)
                 {
-                    foreach (CrawlerStateAction action in currentData.Actions)
+                    CrawlerStateAction action = currentData.Actions.FirstOrDefault(x => x.Key == key);
+                    if (action != null)
                     {
                         //Explcitly set Escape to go back up a level, Do not have a global escape
                         // Also we do not check ALL keys every frame, just ones that the underlying state allows.
-                        if (_inputService.GetKeyDown(action.Key, shouldDispatchClickKeys))
+                        if (_inputService.WasPressedThisFrame(action.Key, shouldDispatchClickKeys))
                         {
                             if (action.NextState != ECrawlerStates.None)
                             {
-                                ChangeState(currentData, action, token);
-                                break;
+                                ChangeState(currentData, action, _token);
                             }
                             else if (action.OnClickAction != null)
                             {
                                 action.OnClickAction();
                             }
                         }
-                        else if (_equivalentKeys.TryGetValue(action.Key, out char otherKey))
-                        {
-                            if (_inputService.GetKey(otherKey))
-                            {
-                                ChangeState(currentData, action, token);
-                                break;
-                            }
-                        }
-
                     }
                 }
 
                 if (currentData.ShouldCheckInput() &&
-                    (_inputService.GetKeyDown(CharCodes.Return) ||
-                    _inputService.GetKeyDown(CharCodes.Enter)))
+                    (_inputService.WasPressedThisFrame(Key.Enter)))
                 {
                     currentData.CheckInput();
                 }
@@ -623,6 +616,15 @@ namespace Assets.Scripts.Crawler.Services
                 return tryPrevState;
             }
             return GetTopLevelState().Id;
+        }
+
+        public void OnQuit()
+        {
+            SaveGame().Wait();
+        }
+
+        public void OnKeyRelease(Key key)
+        {
         }
     }
 }

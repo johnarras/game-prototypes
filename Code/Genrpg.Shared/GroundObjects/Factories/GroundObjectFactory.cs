@@ -13,7 +13,7 @@ namespace Genrpg.Shared.GroundObjects.Factories
     // MessagePackIgnore
     public class GroundObjectFactory : BaseMapObjectFactory
     {
-        public override long Key => EntityTypes.GroundObject; 
+        public override long HelperKey => EntityTypes.GroundObject; 
 
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {

@@ -8,7 +8,7 @@ namespace Genrpg.Editor.Importers.Trader
     {
         public override string ImportDataFilename => "TradeGoodsImport.csv";
 
-        public override EImportTypes Key => EImportTypes.TradeGoods;
+        public override EImportTypes HelperKey => EImportTypes.TradeGoods;
 
         protected override void ImportChildSubObject(EditorGameState gs, TradeGood current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

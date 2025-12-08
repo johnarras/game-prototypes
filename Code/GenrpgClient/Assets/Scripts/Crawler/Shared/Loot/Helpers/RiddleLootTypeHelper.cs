@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 {
     public class RiddleLootTypeHelper : BaseCrawlerLootTypeHelper
     {
-        public override long Key => EntityTypes.Riddle;
+        public override long HelperKey => EntityTypes.Riddle;
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {

@@ -1,7 +1,7 @@
 ﻿using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.Time.GameData;
+using Genrpg.Shared.Time.Settings;
 using System;
 
 namespace Genrpg.Shared.Time.Services

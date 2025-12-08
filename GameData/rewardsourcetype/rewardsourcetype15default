@@ -1,0 +1,9 @@
+{
+  "Id": "rewardsourcetype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "HourlyReset",
+  "Icon": "HourlyReset",
+  "Art": "HourlyReset",
+  "SaveTime": "2025-12-02T01:11:07.143Z"
+}

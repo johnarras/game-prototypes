@@ -1,23 +1,22 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+﻿using Assets.Scripts.UI.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
+using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Settings.SpecialMagic;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Assets.Scripts.UI.Constants;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class TeleportSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.Teleport;
+        public override long HelperKey => SpecialMagics.Teleport;
 
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
@@ -53,7 +52,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
                 }
             });
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.SelectSpell));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.SelectSpell));
 
             await Task.CompletedTask;
             return stateData;

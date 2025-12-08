@@ -1,13 +1,12 @@
 ﻿
-using UnityEngine;
-
-using Genrpg.Shared.Utils.Data;
-using System.Threading;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.ProcGen.Settings.Clutter;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.ProcGen.Settings.Clutter;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System.Threading;
+using UnityEngine;
 
 public class ClutterObjectLoader : BaseObjectLoader
 {
@@ -44,7 +43,7 @@ public class ClutterObjectLoader : BaseObjectLoader
 
         dlo.rotation = new MyPointF(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
 
-        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, dlo, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
         if (indexHash % 3 == 2)
         {
@@ -64,9 +63,9 @@ public class ClutterObjectLoader : BaseObjectLoader
 
             dlo.rotation = new MyPointF(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
 
-            _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, dlo, null, token);
+            _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
-           
+
         }
         return true;
     }
@@ -78,7 +77,7 @@ public class ClutterObjectLoader : BaseObjectLoader
         MeshCollider collider = go.GetComponent<MeshCollider>();
 
         if (collider != null)
-        { 
+        {
             collider.convex = true;
         }
 

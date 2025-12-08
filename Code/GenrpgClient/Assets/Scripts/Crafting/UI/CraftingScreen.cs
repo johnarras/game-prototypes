@@ -88,19 +88,13 @@ public class CraftingScreen : ItemIconScreen
         }
 
         _assetService.LoadAsset(AssetCategoryNames.UI, RecipeRow, OnLoadRecipeRow,
-            status, _recipeListParent, GetToken(), Subdirectory);
+             _recipeListParent, GetToken(), status, Subdirectory);
     }
 
-    private void OnLoadRecipeRow(object obj, object data, CancellationToken token)
+    private void OnLoadRecipeRow(GameObject go, RecipeStatus status, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
 
         RecipeRow row = go.GetComponent<RecipeRow>();
-        RecipeStatus status = data as RecipeStatus;
         if (status == null || row == null)
         {
             _clientEntityService.Destroy(go);

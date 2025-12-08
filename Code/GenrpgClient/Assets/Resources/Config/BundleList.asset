@@ -27,13 +27,9 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: atlasicons
     IsLocal: 0
-  - BundleName: atlasmarkericons
-    IsLocal: 0
   - BundleName: atlasskillicons
     IsLocal: 0
   - BundleName: atlasstatuseffecticons
-    IsLocal: 0
-  - BundleName: atlastraderui
     IsLocal: 0
   - BundleName: atlasui
     IsLocal: 0
@@ -82,14 +78,6 @@ MonoBehaviour:
   - BundleName: audioswampmusic
     IsLocal: 0
   - BundleName: audiotreasure
-    IsLocal: 0
-  - BundleName: boardprizeschestprize
-    IsLocal: 0
-  - BundleName: boardprizescreditsprize
-    IsLocal: 0
-  - BundleName: boardprizesenergyprize
-    IsLocal: 0
-  - BundleName: boardprizesgemsprize
     IsLocal: 0
   - BundleName: buildingsdefault
     IsLocal: 0
@@ -377,6 +365,18 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: magicnatureshield
     IsLocal: 0
+  - BundleName: magicramgedblast
+    IsLocal: 0
+  - BundleName: magicramgedexplosion
+    IsLocal: 0
+  - BundleName: magicrangedenchant
+    IsLocal: 0
+  - BundleName: magicrangedhit
+    IsLocal: 0
+  - BundleName: magicrangedprojectile
+    IsLocal: 0
+  - BundleName: magicrangedshield
+    IsLocal: 0
   - BundleName: magicshadowaura
     IsLocal: 0
   - BundleName: magicshadowblast
@@ -421,20 +421,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: magicwatershield
     IsLocal: 0
-  - BundleName: markersbluemarker
-    IsLocal: 0
-  - BundleName: markerscyanmarker
-    IsLocal: 0
-  - BundleName: markersgreenmarker
-    IsLocal: 0
-  - BundleName: markersorangemarker
-    IsLocal: 0
-  - BundleName: markerspurplemarker
-    IsLocal: 0
-  - BundleName: markersredmarker
-    IsLocal: 0
-  - BundleName: markersyellowmarker
-    IsLocal: 0
   - BundleName: monstersairelemental
     IsLocal: 0
   - BundleName: monstersassassin
@@ -454,6 +440,8 @@ MonoBehaviour:
   - BundleName: monstersbluedragon
     IsLocal: 0
   - BundleName: monstersbuck
+    IsLocal: 0
+  - BundleName: monstersbull
     IsLocal: 0
   - BundleName: monsterscat
     IsLocal: 0
@@ -749,9 +737,9 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: storesdefaultstoreartpanel
     IsLocal: 0
-  - BundleName: storesgemsstoreartpanel
+  - BundleName: storesmanastoreartpanel
     IsLocal: 0
-  - BundleName: storesgreenstoreartpanel
+  - BundleName: storessuppliesstoreartpanel
     IsLocal: 0
   - BundleName: terraintexcobblea
     IsLocal: 0
@@ -1237,42 +1225,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: texturelistszombie
     IsLocal: 0
-  - BundleName: tilesadventuretile
-    IsLocal: 0
-  - BundleName: tilesalchemisttile
-    IsLocal: 0
-  - BundleName: tilesbarrackstile
-    IsLocal: 0
-  - BundleName: tilesdeserttile
-    IsLocal: 0
-  - BundleName: tilesfarmtile
-    IsLocal: 0
-  - BundleName: tilesforesttile
-    IsLocal: 0
-  - BundleName: tilesguardtowertile
-    IsLocal: 0
-  - BundleName: tileshillstile
-    IsLocal: 0
-  - BundleName: tileslumbermilltile
-    IsLocal: 0
-  - BundleName: tilesmagetowertile
-    IsLocal: 0
-  - BundleName: tilesmountaintile
-    IsLocal: 0
-  - BundleName: tilesplainstile
-    IsLocal: 0
-  - BundleName: tilessmithytile
-    IsLocal: 0
-  - BundleName: tilesstonemasontile
-    IsLocal: 0
-  - BundleName: tilesswamptile
-    IsLocal: 0
-  - BundleName: tilestannertile
-    IsLocal: 0
-  - BundleName: tilestownhalltile
-    IsLocal: 0
-  - BundleName: tilestreasurytile
-    IsLocal: 0
   - BundleName: treesamurcork
     IsLocal: 0
   - BundleName: treesamurcorkbare
@@ -1481,8 +1433,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uitexturelists
     IsLocal: 0
-  - BundleName: uitiles
-    IsLocal: 0
   - BundleName: uitrade
     IsLocal: 0
   - BundleName: uitrader
@@ -1496,8 +1446,4 @@ MonoBehaviour:
   - BundleName: uiunits
     IsLocal: 0
   - BundleName: uizones
-    IsLocal: 0
-  - BundleName: storesmanastoreartpanel
-    IsLocal: 0
-  - BundleName: storessuppliesstoreartpanel
     IsLocal: 0

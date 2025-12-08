@@ -6,9 +6,9 @@
   "Desc": "The one-humped 'ship of the desert'. Unmatched endurance in hot, arid climates due to its ability to conserve water. The backbone of caravan trade in Africa and Arabia.",
   "Icon": "DromedaryCamel",
   "Art": "DromedaryCamel",
-  "Speed": 3.0,
+  "Speed": 4,
   "Capacity": 2,
-  "Food": 3,
-  "Cost": 8750,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 3,
+  "Cost": 48500,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

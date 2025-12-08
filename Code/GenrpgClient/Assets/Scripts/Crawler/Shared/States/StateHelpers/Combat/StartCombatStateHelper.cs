@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
     public class StartCombatStateHelper : BaseCombatStateHelper
     {
         private IAudioService _audioService;
-        public override ECrawlerStates Key => ECrawlerStates.StartCombat;
+        public override ECrawlerStates HelperKey => ECrawlerStates.StartCombat;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {

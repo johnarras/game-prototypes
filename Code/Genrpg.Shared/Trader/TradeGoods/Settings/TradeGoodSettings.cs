@@ -46,9 +46,8 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
 
     public class TradeGoodSettingsMapper : ParentSettingsMapper<TradeGoodSettings, TradeGood, TradeGoodSettingsDto> { }
 
-
     public class TradeGoodEntityHelper : BaseEntityHelper<TradeGoodSettings, TradeGood>
     {
-        public override long Key => EntityTypes.TradeGood;
+        public override long HelperKey => EntityTypes.TradeGood;
     }
 }

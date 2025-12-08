@@ -26,7 +26,7 @@ namespace Genrpg.Shared.Inventory.Helpers
             return true;
         }
 
-        public long Key => EntityTypes.Item;
+        public long HelperKey => EntityTypes.Item;
 
     }
 }

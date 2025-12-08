@@ -11,19 +11,19 @@ using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 {
     public class ChooseNameHelper : BaseStateHelper
     {
         private ILootGenService _lootGenService = null;
-        public override ECrawlerStates Key => ECrawlerStates.ChooseName;
+        public override ECrawlerStates HelperKey => ECrawlerStates.ChooseName;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -35,7 +35,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             stateData.WorldSpriteName = member.PortraitName;
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.ChoosePortrait,
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.ChoosePortrait,
                 extraData: member));
 
             stateData.AddInputField("Name: ", delegate (string text)

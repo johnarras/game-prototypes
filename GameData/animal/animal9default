@@ -6,9 +6,9 @@
   "Desc": "A type of domestic cattle from India with a distinctive fatty hump. Highly resistant to heat and drought, making it an ideal draft animal for the region.",
   "Icon": "Zebu",
   "Art": "Zebu",
-  "Speed": 3.0,
+  "Speed": 4,
   "Capacity": 3,
-  "Food": 3,
-  "Cost": 65500,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 3,
+  "Cost": 368750,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

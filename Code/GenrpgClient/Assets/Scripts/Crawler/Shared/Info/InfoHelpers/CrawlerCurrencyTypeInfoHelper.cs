@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
     public class CrawlerCurrencyTypeInfoHelper : BaseInfoHelper<ElementTypeSettings, ElementType>
     {
 
-        public override long Key => EntityTypes.CrawlerCurrency;
+        public override long HelperKey => EntityTypes.CrawlerCurrency;
 
         protected override bool MakeEntityNamePlural() { return false; }
 

@@ -35,7 +35,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
         protected abstract Task HandleRequestInternal(WebContext context, TRequest request, CancellationToken token);
 
-        public Type Key => typeof(TRequest);
+        public Type HelperKey => typeof(TRequest);
 
         public virtual async Task Reset()
         {

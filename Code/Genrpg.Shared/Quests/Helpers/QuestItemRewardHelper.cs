@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Quests.Helpers
             return true;
         }
 
-        public long Key => EntityTypes.QuestItem;
+        public long HelperKey => EntityTypes.QuestItem;
 
     }
 }

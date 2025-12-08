@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
     public class RoleInfoHelper : BaseInfoHelper<RoleSettings, Role>
     {
-        public override long Key => EntityTypes.Role;
+        public override long HelperKey => EntityTypes.Role;
 
         public override List<string> GetInfoLines(long entityId)
         {

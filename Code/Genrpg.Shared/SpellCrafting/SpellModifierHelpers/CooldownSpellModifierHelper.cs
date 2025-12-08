@@ -12,7 +12,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class CooldownSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.Cooldown;
+        public override long HelperKey => SpellModifiers.Cooldown;
 
 
         double lowval = 10;

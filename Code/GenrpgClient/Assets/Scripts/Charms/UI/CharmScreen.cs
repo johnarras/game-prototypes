@@ -20,21 +20,14 @@ namespace Assets.Scripts.UI.Charms
 
             foreach (PlayerCharm status in charmData.GetData())
             {
-                _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI, CharmRowPrefabName, OnLoadStatusRow, status, token, "Charms");
+                _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI, CharmRowPrefabName, OnLoadStatusRow, token, status, "Charms");
             }
 
             await Task.CompletedTask;
         }
 
-        private void OnLoadStatusRow (object obj, object data, CancellationToken token)
+        private void OnLoadStatusRow(GameObject go, PlayerCharm charm, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
             CharmRow row = go.GetComponent<CharmRow>();
             if (row == null)
             {
@@ -42,7 +35,7 @@ namespace Assets.Scripts.UI.Charms
                 return;
             }
 
-            row.Init(data as PlayerCharm);
+            row.Init(charm);
         }
     }
 }

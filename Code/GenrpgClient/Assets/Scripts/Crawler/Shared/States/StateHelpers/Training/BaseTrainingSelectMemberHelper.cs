@@ -1,22 +1,17 @@
-﻿using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Crawler.States.StateHelpers.Training;
-using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
 {
     public abstract class BaseTrainingSelectMemberHelper : BaseStateHelper
     {
-        public abstract override ECrawlerStates Key { get; }
+        public abstract override ECrawlerStates HelperKey { get; }
 
         public abstract string GetMainMessage();
 
@@ -34,17 +29,17 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
             {
 
                 ECrawlerStates nextState = GetNextState();
-                char nextKeyCode = (char)(member.PartySlot + '0');
+                Key nextKeyCode = FromChar((char)(member.PartySlot + '0'));
                 if (_combatService.IsDisabled(member))
                 {
                     nextState = ECrawlerStates.None;
-                    nextKeyCode = CharCodes.None;
+                    nextKeyCode = Key.None;
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(member.PartySlot + " " + member.Name, nextKeyCode, nextState, extraData: new TrainingMemberData() { Member = member}));
+                stateData.Actions.Add(new CrawlerStateAction(member.PartySlot + " " + member.Name, nextKeyCode, nextState, extraData: new TrainingMemberData() { Member = member }));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to the trainer", CharCodes.Escape, ECrawlerStates.TrainingMain));
+            stateData.Actions.Add(new CrawlerStateAction("Back to the trainer", Key.Escape, ECrawlerStates.TrainingMain));
 
             await Task.CompletedTask;
             return stateData;

@@ -6,6 +6,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 
     public class DungeonCrawlerMapTypeHelper : BaseCrawlerMapTypeHelper
     {
-        public override long Key => CrawlerMapTypes.Dungeon;
+        public override long HelperKey => CrawlerMapTypes.Dungeon;
     }
 }

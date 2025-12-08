@@ -756,6 +756,36 @@
       "ParentId": "default",
       "IdKey": 126,
       "Name": "ZoneTypeSettings"
+    },
+    {
+      "Id": "settingsname127default",
+      "ParentId": "default",
+      "IdKey": 127,
+      "Name": "TraderStatSettings"
+    },
+    {
+      "Id": "settingsname128default",
+      "ParentId": "default",
+      "IdKey": 128,
+      "Name": "TraderNewPlayerSettings"
+    },
+    {
+      "Id": "settingsname129default",
+      "ParentId": "default",
+      "IdKey": 129,
+      "Name": "NewPlayerBonusSettings"
+    },
+    {
+      "Id": "settingsname130default",
+      "ParentId": "default",
+      "IdKey": 130,
+      "Name": "DefaultStoreOfferSettings"
+    },
+    {
+      "Id": "settingsname131default",
+      "ParentId": "default",
+      "IdKey": 131,
+      "Name": "HoldingsSettings"
     }
   ],
   "Parent": {

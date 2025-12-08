@@ -1,7 +1,7 @@
 ﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
-using Genrpg.Shared.Levels.Messages;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.RpgLevels.Messages;
 using Genrpg.Shared.Utils;
 
 namespace Genrpg.MapServer.Levelup.MessageHandlers

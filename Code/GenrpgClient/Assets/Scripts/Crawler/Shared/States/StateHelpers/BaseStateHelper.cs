@@ -12,10 +12,10 @@ using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers
 {
@@ -35,8 +35,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
         protected IDispatcher _dispatcher = null;
         protected ITextService _textService = null;
         protected ICrawlerOptionsService _optionsService = null;
+        protected IInputService _inputService = null;
 
-        public abstract ECrawlerStates Key { get; }
+        public abstract ECrawlerStates HelperKey { get; }
         public abstract Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token);
 
         public virtual bool IsTopLevelState() { return false; }
@@ -48,7 +49,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
 
         protected virtual CrawlerStateData CreateStateData()
         {
-            return new CrawlerStateData(Key)
+            return new CrawlerStateData(HelperKey)
             {
                 BGImageOnly = OnlyUseBGImage(),
             };
@@ -66,8 +67,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
 
         virtual protected void AddSpaceAction(CrawlerStateData stateData, ECrawlerStates nextState = ECrawlerStates.ExploreWorld, object extraData = null)
         {
-            stateData.Actions.Add(new CrawlerStateAction($"\n\nPress {_textService.HighlightText("Space")} to continue...", CharCodes.Space, nextState,
+            stateData.Actions.Add(new CrawlerStateAction($"\n\nPress {_textService.HighlightText("Space")} to continue...", Key.Space, nextState,
                 extraData: extraData));
+        }
+
+        protected virtual Key FromChar(char c)
+        {
+            return _inputService.FromChar(c);
         }
     }
 }

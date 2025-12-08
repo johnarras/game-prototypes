@@ -1,17 +1,15 @@
 ﻿
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.MapObjects.Entities;
-using UnityEngine;
-using System.Threading;
-using Genrpg.Shared.MapObjects.Messages;
-using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Assets;
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Utils;
+using System.Threading;
+using UnityEngine;
 
 /// <summary>
 /// Base class for object loaders
@@ -20,7 +18,7 @@ using Assets.Scripts.Awaitables;
 /// </summary>
 public abstract class BaseMapObjectLoader : IMapObjectLoader
 {
-    public abstract long Key { get; }
+    public abstract long HelperKey { get; }
 
     public abstract Awaitable Load(OnSpawn message, MapObject loadedObject, CancellationToken token);
 
@@ -73,7 +71,7 @@ public abstract class BaseMapObjectLoader : IMapObjectLoader
         }
 
         float height = _terrainManager.SampleHeight(nx, nz);
-       
+
         go.transform.position = new Vector3(nx, height, nz);
         go.transform.eulerAngles = new Vector3(0, data.Spawn.Rot, 0);
 

@@ -16,7 +16,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class RevealAreaSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.RevealArea;
+        public override long HelperKey => SpecialMagics.RevealArea;
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
             SelectSpellAction action, CrawlerSpell spell, CrawlerSpellEffect effect, CancellationToken token)

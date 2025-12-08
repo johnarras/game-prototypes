@@ -75,11 +75,11 @@ namespace Genrpg.Shared.Units.Settings
 
     public class UnitTypeHelper : BaseEntityHelper<UnitTypeSettings, UnitType>
     {
-        public override long Key => EntityTypes.Unit;
+        public override long HelperKey => EntityTypes.Unit;
     }
 
     public class PolymorphHelper : BaseEntityHelper<UnitTypeSettings, UnitType>
     {
-        public override long Key => EntityTypes.Polymorph;
+        public override long HelperKey => EntityTypes.Polymorph;
     }
 }

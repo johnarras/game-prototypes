@@ -64,8 +64,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             foreach (CombatGroup combatGroup in combat.Allies)
             {
-                List<CrawlerUnit> okUnits = combatGroup.Units.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead) &&
-                !x.StatusEffects.HasBit(StatusEffects.Possessed)).ToList();
+                List<CrawlerUnit> okUnits = combatGroup.Units.Where(x => _combatService.IsValidEnemyTarget(x)).ToList();
 
                 tauntUnits.AddRange(okUnits.Where(x => x.DefendRank >= EDefendRanks.Guardian || !x.IsPlayer()));
                 allUnits.AddRange(okUnits);
@@ -76,7 +75,8 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             {
                 foreach (PartyMember member in party.GetActiveParty())
                 {
-                    if (member.Roles.Any(x => defenderRoleIds.Contains(x.RoleId)))
+                    if (_combatService.IsValidEnemyTarget(member) &&
+                        member.Roles.Any(x => defenderRoleIds.Contains(x.RoleId)))
                     {
                         tauntUnits.Add(member);
                     }
@@ -239,6 +239,8 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             {
                 targets = SelectRandomGroupUnits(enemyGroups);
             }
+
+            targets = targets.OrderBy(x => Guid.NewGuid()).ToList();
 
             UnitAction combatAction = new UnitAction()
             {

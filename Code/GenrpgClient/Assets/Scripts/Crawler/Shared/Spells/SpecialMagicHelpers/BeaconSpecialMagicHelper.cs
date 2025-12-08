@@ -6,15 +6,15 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class BeaconSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.Beacon;
+        public override long HelperKey => SpecialMagics.Beacon;
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
             SelectSpellAction action, CrawlerSpell spell, CrawlerSpellEffect effect, CancellationToken token)
@@ -54,12 +54,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
                     string txt = "Return to Beacon At " + beaconMap.Name + " (" + member.BeaconMapX + "," + member.BeaconMapZ + ")";
 
 
-                    stateData.Actions.Add(new CrawlerStateAction(txt, 'R', ECrawlerStates.ExploreWorld, extraData: mapData));
+                    stateData.Actions.Add(new CrawlerStateAction(txt, Key.R, ECrawlerStates.ExploreWorld, extraData: mapData));
                     stateData.AddBlankLine();
                 }
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Set Beacon Target", 'S', ECrawlerStates.ExploreWorld, () =>
+            stateData.Actions.Add(new CrawlerStateAction("Set Beacon Target", Key.S, ECrawlerStates.ExploreWorld, () =>
             {
                 member.BeaconMapId = party.CurrPos.MapId;
                 member.BeaconMapX = party.CurrPos.X;
@@ -68,7 +68,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
             }));
             stateData.AddBlankLine();
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to Exploration.", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("Back to Exploration.", Key.Escape, ECrawlerStates.ExploreWorld));
 
             return stateData;
         }

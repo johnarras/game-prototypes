@@ -1,21 +1,17 @@
 ﻿using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.ItemSets;
-using Genrpg.Shared.Levels.Settings;
+using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Spells.Casting;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.PlayerData;
-using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Stats.Settings.DerivedStats;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Units.Constants;
@@ -25,8 +21,6 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 namespace Genrpg.Shared.Stats.Services
 {
 
@@ -85,7 +79,7 @@ namespace Genrpg.Shared.Stats.Services
             long coreStatAmount = StatConstants.MinBaseStat;
             long monsterScalePercent = 0;
 
-            List<StatType> coreStats = _gameData.Get<StatSettings>(unit).GetData().Where(x => x.IdKey >= StatConstants.PrimaryStatStart && x.IdKey <= StatConstants.PrimaryStatEnd).ToList();
+            List<StatType> coreStats = _gameData.Get<StatSettings>(unit).GetData().Where(x => StatConstants.IsPrimaryStat(x.IdKey)).ToList();
 
             if (levelData != null)
             {
@@ -242,7 +236,7 @@ namespace Genrpg.Shared.Stats.Services
             if (unit.StatPct != 0 && unit.StatPct != 100)
             {
                 for (int statTypeId = 1; statTypeId < StatConstants.MaxStatType; statTypeId++)
-                { 
+                {
                     Set(unit, statTypeId, StatCategories.Base, unit.Stats.Pct(statTypeId) * unit.StatPct / 100);
                 }
             }
@@ -340,7 +334,7 @@ namespace Genrpg.Shared.Stats.Services
 
         public List<StatType> GetPrimaryStatTypes(Unit unit)
         {
-            return _gameData.Get<StatSettings>(unit).GetData().Where(x => x.IdKey >= StatConstants.PrimaryStatStart && x.IdKey <= StatConstants.PrimaryStatEnd).ToList();
+            return _gameData.Get<StatSettings>(unit).GetData().Where(x => StatConstants.IsPrimaryStat(x.IdKey)).ToList();
         }
 
         public List<StatType> GetAttackStatTypes(Unit unit)

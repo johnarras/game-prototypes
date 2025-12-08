@@ -14,7 +14,6 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
-using Genrpg.Shared.Utils;
 using Scripts.Assets.Audio.Constants;
 using System;
 using System.Collections.Generic;
@@ -25,6 +24,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Services
@@ -187,12 +187,12 @@ namespace Assets.Scripts.UI.Services
         {
             ButtonKeyListener listener = _clientEntityService.GetComponent<ButtonKeyListener>(button);
 
-            if (listener == null || listener.Key == CharCodes.None)
+            if (listener == null || listener.Key == Key.None)
             {
                 return;
             }
             listener.SetClickAction(action);
-            char capitalizeLetter = char.ToUpper(listener.Key);
+            char capitalizeLetter = (char)listener.Key;
             List<GText> gts = _clientEntityService.GetComponents<GText>(button);
 
             foreach (GText gt in gts)

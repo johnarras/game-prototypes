@@ -33,7 +33,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
         protected IDispatcher _dispatcher = null;
         protected IClientRandom _rand = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public virtual async Awaitable<CrawlerMapRoot> EnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
         {

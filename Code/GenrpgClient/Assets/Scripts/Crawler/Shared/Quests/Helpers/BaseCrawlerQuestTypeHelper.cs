@@ -30,14 +30,14 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         protected ICrawlerCombatService _combatService = null;
         protected ICrawlerOptionsService _optionsService = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         protected abstract string QuestVerb { get; }
         public abstract Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
             MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
 
         protected CrawlerQuestType GetQuestType()
         {
-            return _gameData.Get<CrawlerQuestSettings>(_gs.ch).Get(Key);
+            return _gameData.Get<CrawlerQuestSettings>(_gs.ch).Get(HelperKey);
         }
 
         protected virtual long GetMaxQuantity(PartyData party, long npcLevel, IRandom rand)

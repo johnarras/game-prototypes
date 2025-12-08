@@ -50,6 +50,6 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
 
     public class ItemHelper : BaseEntityHelper<ItemTypeSettings, ItemType>
     {
-        public override long Key => EntityTypes.Item;
+        public override long HelperKey => EntityTypes.Item;
     }
 }

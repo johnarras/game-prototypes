@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 
         protected IGameData _gameData = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         public abstract string DisplayEffect(IFilteredObject obj, IEffect effect);
 
     }

@@ -12,7 +12,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
         protected IClientGameState _gs = null;
         protected IClientRandom _rand = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         public abstract void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args);
     }
 }

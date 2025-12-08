@@ -1,24 +1,27 @@
 ﻿using Assets.Scripts.UI.Chat;
+using Genrpg.Shared.Chat.Constants;
 using Genrpg.Shared.Chat.Messages;
+using Genrpg.Shared.Chat.Settings;
 using Genrpg.Shared.WhoList.Entities;
 using Genrpg.Shared.WhoList.Messages;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; 
-using Genrpg.Shared.Chat.Constants;
-using Genrpg.Shared.Chat.Settings;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace UI
 {
     public class ChatWindow : BaseBehaviour
     {
-            
+
+        protected IInputService _inputService = null;
+
         public GameObject ChatParent;
         public GInputField ChatInput;
         public GText ChatTextPrefix;
         public GImage InputBackground;
         public ChatRow Row;
-        
+
         public int _maxRows = 20;
 
         private List<ChatRow> _rows = new List<ChatRow>();
@@ -38,7 +41,7 @@ namespace UI
 
         private void UpdateChat()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (_inputService.WasPressedThisFrame(Key.Enter))
             {
                 SetEditing(!_editing);
             }
@@ -151,8 +154,8 @@ namespace UI
                 if (_currentChatType.IdKey == ChatTypes.Tell)
                 {
                     targetName = text.Substring(0, text.IndexOf(" "));
-                    text = text.Substring(targetName.Length);    
-                    
+                    text = text.Substring(targetName.Length);
+
                     if (string.IsNullOrEmpty(targetName) || string.IsNullOrEmpty(text))
                     {
                         SetEditing(false);
@@ -202,7 +205,7 @@ namespace UI
 
 
         private void AddChatRow(OnChatMessage message)
-        { 
+        {
             ChatRow newRow = _clientEntityService.FullInstantiate(Row.gameObject).GetComponent<ChatRow>();
             newRow.gameObject.SetActive(true);
             _clientEntityService.AddToParent(newRow.gameObject, ChatParent);

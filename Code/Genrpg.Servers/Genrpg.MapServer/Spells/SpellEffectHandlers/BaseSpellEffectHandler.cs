@@ -28,7 +28,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
         protected IAchievementService _achievementService;
         public virtual float GetTickLength() { return SpellConstants.BaseTickSeconds; }
         public abstract List<ActiveSpellEffect> CreateEffects(IRandom rand, SpellHit spellHit);
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         public abstract bool HandleEffect(IRandom rand, ActiveSpellEffect eff);
         public abstract bool IsModifyStatEffect();
         public abstract bool UseStatScaling();

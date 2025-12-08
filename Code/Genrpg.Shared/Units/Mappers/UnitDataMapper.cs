@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Units.Mappers
             return !typeof(IServerOnlyData).IsAssignableFrom(typeof(TServer));
         }
 
-        public virtual Type Key => typeof(TServer); 
+        public virtual Type HelperKey => typeof(TServer); 
 
     }
 }

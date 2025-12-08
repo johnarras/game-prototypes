@@ -6,7 +6,6 @@
     "DefendDamageScale": 0.5,
     "GuardianDamageScale": 0.6600000262260437,
     "TauntDamageScale": 0.25,
-    "MaxGroupSize": 999,
     "LuckCritChanceAtLevel": 0.05,
     "MaxLuckCritRatio": 2.0,
     "HiddenSingleTargetCritPercent": 100.0,
@@ -33,6 +32,6 @@
     "SlowEffectPriorityScale": 0.5,
     "HitPartyRandomMemberChance": 0.05,
     "Name": "CrawlerCombatSettings",
-    "SaveTime": "2025-10-26T11:15:39.251Z"
+    "SaveTime": "2025-11-29T01:55:50.702Z"
   }
 }

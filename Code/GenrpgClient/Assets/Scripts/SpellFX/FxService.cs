@@ -1,14 +1,11 @@
-﻿
-using Genrpg.Shared.Client.Assets;
+﻿using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Spells.Messages;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine; 
+using UnityEngine;
 
 public class FullFX
 {
@@ -65,20 +62,12 @@ public class FxService : IFxService
             return;
         }
 
-        _assetService.LoadAsset(AssetCategoryNames.Magic, fx.Art, OnLoadFX, full, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Magic, fx.Art, OnLoadFX, null, token, full);
     }
 
-    private void OnLoadFX(object obj, object data, CancellationToken token)
+    private void OnLoadFX(GameObject go, FullFX full, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            return;
-        }
-        
-        FullFX full = data as FullFX;
-        if (full ==null)
+        if (full == null)
         {
             _clientEntityService.Destroy(go);
             return;

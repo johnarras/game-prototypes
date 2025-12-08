@@ -447,39 +447,55 @@
       "Id": "entitytype201default",
       "ParentId": "default",
       "IdKey": 201,
-      "Name": "BaseCoreCurrencyRegen",
-      "Icon": "BaseCoreCurrencyRegen",
-      "Art": "BaseCoreCurrencyRegen"
+      "Name": "TraderStat",
+      "Icon": "TraderStat",
+      "Art": "TraderStat"
     },
     {
       "Id": "entitytype202default",
       "ParentId": "default",
       "IdKey": 202,
-      "Name": "BaseCoreCurrencyStorage",
-      "Icon": "BaseCoreCurrencyStorage",
-      "Art": "BaseCoreCurrencyStorage"
+      "Name": "BaseTraderStat",
+      "Icon": "BaseTraderStat",
+      "Art": "BaseTraderStat"
     },
     {
       "Id": "entitytype203default",
       "ParentId": "default",
       "IdKey": 203,
-      "Name": "BonusCoreCurrencyRegen",
-      "Icon": "BonusCoreCurrencyRegen",
-      "Art": "BonusCoreCurrencyRegen"
+      "Name": "BonusTraderStat",
+      "Icon": "BonusTraderStat",
+      "Art": "BonusTraderStat"
     },
     {
-      "Id": "entitytype204default",
+      "Id": "entitytype210default",
       "ParentId": "default",
-      "IdKey": 204,
-      "Name": "BonusCoreCurrencyStorage",
-      "Icon": "BonusCoreCurrencyStorage",
-      "Art": "BonusCoreCurrencyStorage"
+      "IdKey": 210,
+      "Name": "TraderStat",
+      "Icon": "TraderStat",
+      "Art": "TraderStat"
+    },
+    {
+      "Id": "entitytype211default",
+      "ParentId": "default",
+      "IdKey": 211,
+      "Name": "BaseTraderStat",
+      "Icon": "BaseTraderStat",
+      "Art": "BaseTraderStat"
+    },
+    {
+      "Id": "entitytype212default",
+      "ParentId": "default",
+      "IdKey": 212,
+      "Name": "BonusTraderStat",
+      "Icon": "BonusTraderStat",
+      "Art": "BonusTraderStat"
     }
   ],
   "Parent": {
     "Id": "default",
     "Name": "EntitySettings",
-    "SaveTime": "2025-11-20T20:57:53.925Z"
+    "SaveTime": "2025-12-02T01:11:07.143Z"
   },
-  "SaveTime": "2025-11-20T20:57:53.925Z"
+  "SaveTime": "2025-12-02T01:11:07.143Z"
 }

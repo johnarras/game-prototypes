@@ -28,7 +28,7 @@ public class ZoneScreen : BaseScreen
 
     private void Setup()
     {
-        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, GetToken(), "Maps");
+        _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, GetToken(), default(object), "Maps");
 
         _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
         ShowPlayer();
@@ -36,9 +36,9 @@ public class ZoneScreen : BaseScreen
     }
 
 
-    private void OnLoadArrow(object obj, object data, CancellationToken token)
+    private void OnLoadArrow(GameObject go, object data, CancellationToken token)
     {
-        ArrowObject = obj as GameObject;
+        ArrowObject = go;
     }
 
     protected override void ScreenUpdate()

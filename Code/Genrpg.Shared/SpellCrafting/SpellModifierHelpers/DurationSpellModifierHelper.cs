@@ -9,7 +9,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class DurationSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.Duration;
+        public override long HelperKey => SpellModifiers.Duration;
 
         public override double GetCostScale(MapObject obj, double value)
         {

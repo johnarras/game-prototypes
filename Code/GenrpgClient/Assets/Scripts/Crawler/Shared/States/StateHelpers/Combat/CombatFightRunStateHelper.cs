@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 {
@@ -25,7 +26,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         private ICrawlerMoveService _moveService;
         private IInfoService _infoService;
 
-        public override ECrawlerStates Key => ECrawlerStates.CombatFightRun;
+        public override ECrawlerStates HelperKey => ECrawlerStates.CombatFightRun;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -88,7 +89,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (party.Combat.RoundsComplete == 0)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Prepare", 'P', ECrawlerStates.CombatPlayer,
+                stateData.Actions.Add(new CrawlerStateAction("Prepare", Key.P, ECrawlerStates.CombatPlayer,
                        onClickAction: delegate ()
                        {
                            party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Prepare;
@@ -96,7 +97,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                        }));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Fight", 'F', ECrawlerStates.CombatPlayer,
+            stateData.Actions.Add(new CrawlerStateAction("Fight", Key.F, ECrawlerStates.CombatPlayer,
                    onClickAction: delegate ()
                    {
                        party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Fight;
@@ -108,7 +109,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             if (!_optionsService.HasOption(party, CrawlerOptions.Permadeath))
             {
 
-                stateData.Actions.Add(new CrawlerStateAction("Run", 'R', ECrawlerStates.CombatConfirm,
+                stateData.Actions.Add(new CrawlerStateAction("Run", Key.R, ECrawlerStates.CombatConfirm,
                     onClickAction: delegate ()
                     {
                         party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Run;
@@ -124,7 +125,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (minRange > CrawlerCombatConstants.MinRange)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Advance", 'A', ECrawlerStates.CombatConfirm,
+                stateData.Actions.Add(new CrawlerStateAction("Advance", Key.A, ECrawlerStates.CombatConfirm,
                onClickAction: delegate ()
                {
                    party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Advance;

@@ -23,7 +23,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         public async Task<List<IUnitData>> LoadPlayerDataOnLogin(WebContext context, Character ch = null)
         {
-            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, ch);
+            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.GetAllData(), ch);
 
             List<IUnitData> allData = context.GetAllData();
             foreach (IUnitData unitData in dataList)

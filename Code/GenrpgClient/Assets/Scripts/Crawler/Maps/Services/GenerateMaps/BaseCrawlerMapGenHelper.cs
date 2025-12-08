@@ -59,7 +59,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         protected ILineGenService _lineGenService = null;
         protected ICrawlerOptionsService _optionsService = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public abstract Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData crawlerMapGenData, CancellationToken token);
         public abstract NpcQuestMaps GetQuestMapsForNpc(PartyData party, CrawlerWorld world, CrawlerMap map, MapCellDetail npcDetail, IRandom rand);

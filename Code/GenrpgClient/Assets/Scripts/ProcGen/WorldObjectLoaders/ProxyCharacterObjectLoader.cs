@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class ProxyCharacterObjectLoader : UnitObjectLoader
 {
-    public override long Key => EntityTypes.ProxyCharacter;
+    public override long HelperKey => EntityTypes.ProxyCharacter;
 
     public override async Awaitable Load(OnSpawn spawn, MapObject obj, CancellationToken token)
     {
         await base.Load(spawn, obj, token);
     }
-    protected override void AfterLoadUnit(object obj, object data, CancellationToken token)
+    protected override void AfterLoadUnit(GameObject go, SpawnLoadData loadData, CancellationToken token)
     {
-        base.AfterLoadUnit(obj, data, token);
+        base.AfterLoadUnit(go, loadData, token);
     }
 }

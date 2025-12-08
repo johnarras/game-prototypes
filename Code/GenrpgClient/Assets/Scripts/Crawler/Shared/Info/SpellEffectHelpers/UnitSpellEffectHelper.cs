@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 {
     public class UnitSpellEffectHelper : BaseSpellEffectHelper
     {
-        public override long Key => EntityTypes.Unit;
+        public override long HelperKey => EntityTypes.Unit;
 
         public override string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect)
         {

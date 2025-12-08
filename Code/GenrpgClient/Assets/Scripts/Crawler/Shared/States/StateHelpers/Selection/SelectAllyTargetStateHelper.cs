@@ -3,18 +3,18 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
     public class SelectAllyTargetStateHelper : BaseCombatStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.SelectAllyTarget;
+        public override ECrawlerStates HelperKey => ECrawlerStates.SelectAllyTarget;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -60,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < partyMembers.Count; m++)
             {
                 PartyMember partyMember = partyMembers[m];
-                char c = (char)('A' + m);
+                char c = (char)(Key.A + m);
 
                 Action clickAction = null;
 
@@ -81,11 +81,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     };
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(char.ToUpper(c) + " " + partyMember.Name, c,
+                stateData.Actions.Add(new CrawlerStateAction(char.ToUpper(c) + " " + partyMember.Name, FromChar(c),
                   nextAction, clickAction, action.ExtraData));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, selectAction.ReturnState));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, selectAction.ReturnState));
 
 
             await Task.CompletedTask;

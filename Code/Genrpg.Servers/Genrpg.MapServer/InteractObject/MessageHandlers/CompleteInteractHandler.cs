@@ -80,13 +80,13 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
                         MaxQuantity = gtype.MaxRolls,
                     });
 
-                    RollData rollData = new RollData()
+                    RollLootArgs rollLootArgs = new RollLootArgs()
                     {
                         Level = message.Level,
                         QualityTypeId = QualityTypes.Common,
                         Times = 1,
                     };
-                    List<RewardList> rewards = _spawnService.Roll(rand, lootItems, rollData);
+                    List<RewardList> rewards = _spawnService.Roll(rand, lootItems, rollLootArgs);
 
                     if (rewards.Count > 0)
                     {

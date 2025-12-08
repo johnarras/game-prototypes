@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
         private ICrawlerQuestService _questService = null;
 
-        public override long Key => CrawlerQuestTypes.KillMonsters;
+        public override long HelperKey => CrawlerQuestTypes.KillMonsters;
 
         protected override string QuestVerb => "Kill";
 

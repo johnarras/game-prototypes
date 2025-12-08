@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Quests.Entities;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -53,35 +54,42 @@ namespace Assets.Scripts.Crawler.Quests.UI
             List<long> validQuestIds = new List<long>();
             foreach (PartyQuest partyQuest in party.Quests)
             {
-                CrawlerQuest quest = world.GetQuest(partyQuest.CrawlerQuestId);
-
-                if (quest == null)
+                try
                 {
-                    party.Quests.Remove(partyQuest);
-                    continue;
-                }
+                    CrawlerQuest quest = world.GetQuest(partyQuest.CrawlerQuestId);
 
-                validQuestIds.Add(quest.IdKey);
-
-                CrawlerQuestRow row = _currentRows.FirstOrDefault(x => x.GetQuestId() == quest.IdKey);
-
-                if (row != null)
-                {
-                    row.UpdateData();
-                }
-                else
-                {
-                    FullQuest fullQuest = new FullQuest()
+                    if (quest == null)
                     {
-                        Quest = quest,
-                        Progress = partyQuest,
-                        ReturnState = ECrawlerStates.ExploreWorld,
-                    };
+                        party.Quests.Remove(partyQuest);
+                        continue;
+                    }
 
-                    row = _clientEntityService.FullInstantiate<CrawlerQuestRow>(RowPrefab);
-                    _clientEntityService.AddToParent(row, Anchor);
-                    _currentRows.Add(row);
-                    row.SetData(fullQuest);
+                    validQuestIds.Add(quest.IdKey);
+
+                    CrawlerQuestRow row = _currentRows.FirstOrDefault(x => x.GetQuestId() == quest.IdKey);
+
+                    if (row != null)
+                    {
+                        row.UpdateData();
+                    }
+                    else
+                    {
+                        FullQuest fullQuest = new FullQuest()
+                        {
+                            Quest = quest,
+                            Progress = partyQuest,
+                            ReturnState = ECrawlerStates.ExploreWorld,
+                        };
+
+                        row = _clientEntityService.FullInstantiate<CrawlerQuestRow>(RowPrefab);
+                        _clientEntityService.AddToParent(row, Anchor);
+                        _currentRows.Add(row);
+                        row.SetData(fullQuest);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    _logService.Info(ee.Message + " " + ee.StackTrace);
                 }
             }
 

@@ -42,7 +42,7 @@ namespace Genrpg.Shared.TimedEvents.Seasons.Settings
 
     public class SeasonThemeHelper : BaseEntityHelper<SeasonThemeSettings, SeasonTheme>
     {
-        public override long Key => EntityTypes.SeasonTierList;
+        public override long HelperKey => EntityTypes.SeasonTierList;
     }
 
 }

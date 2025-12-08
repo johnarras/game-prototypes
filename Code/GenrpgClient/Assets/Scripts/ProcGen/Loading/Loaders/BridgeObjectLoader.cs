@@ -1,7 +1,6 @@
 ﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Bridges;
 using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using System.Threading;
@@ -21,7 +20,7 @@ public class BridgeObjectLoader : BaseObjectLoader
         int angle = (int)(MapConstants.BridgeAngleDiv * (upperNumber & ((1 << MapConstants.BridgeHeightBitShift) - 1)));
         float bridgeHeight = (upperNumber >> MapConstants.BridgeHeightBitShift) + MapConstants.MinLandHeight;
 
-        BridgeType bridgeType = _gameData.Get<BridgeTypeSettings>(_gs.ch).Get ((int)objectId);
+        BridgeType bridgeType = _gameData.Get<BridgeTypeSettings>(_gs.ch).Get((int)objectId);
         if (bridgeType == null)
         {
             return false;
@@ -43,7 +42,7 @@ public class BridgeObjectLoader : BaseObjectLoader
         dlo.rotation = new MyPointF(0, angle, 0);
         dlo.AfterLoad = AfterLoadObject;
 
-        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, dlo, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
         return true;
     }

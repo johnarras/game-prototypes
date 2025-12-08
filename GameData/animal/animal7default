@@ -6,9 +6,9 @@
   "Desc": "A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge.",
   "Icon": "HeavyWarhorse",
   "Art": "HeavyWarhorse",
-  "Speed": 4.0,
+  "Speed": 5,
   "Capacity": 2,
-  "Food": 4,
-  "Cost": 20500,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 4,
+  "Cost": 78250,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

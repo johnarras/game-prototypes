@@ -13,12 +13,12 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
     public abstract class BaseSpellModifierHelper : ISpellModifierHelper
     {
         private IGameData _gameData = null;
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         public abstract double GetCostScale(MapObject obj, double value);
 
         protected virtual SpellModifier GetModifier(MapObject obj)
         {
-            return _gameData.Get<SpellModifierSettings>(obj).Get(Key);
+            return _gameData.Get<SpellModifierSettings>(obj).Get(HelperKey);
         }
 
         public virtual double GetMinValue(MapObject obj)

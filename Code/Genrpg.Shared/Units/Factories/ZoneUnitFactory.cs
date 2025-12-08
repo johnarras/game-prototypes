@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Units.Factories
     public class ZoneUnitFactory : BaseMapObjectFactory
     {
         private IStatService _statService = null;
-        public override long Key => EntityTypes.ZoneUnit;
+        public override long HelperKey => EntityTypes.ZoneUnit;
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {
 

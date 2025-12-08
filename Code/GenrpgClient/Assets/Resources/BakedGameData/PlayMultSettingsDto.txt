@@ -48,43 +48,22 @@
       "ParentId": "default",
       "IdKey": 5,
       "Name": "",
-      "Mult": 25,
+      "Mult": 20,
       "MinLevel": 8
     },
     {
       "Id": "playmult6default",
       "ParentId": "default",
       "IdKey": 6,
-      "Mult": 50,
+      "Mult": 30,
       "MinLevel": 12
-    },
-    {
-      "Id": "playmult7default",
-      "ParentId": "default",
-      "IdKey": 7,
-      "Mult": 100,
-      "MinEnergy": 1000
-    },
-    {
-      "Id": "playmult8default",
-      "ParentId": "default",
-      "IdKey": 8,
-      "Mult": 250,
-      "MinEnergy": 5000
-    },
-    {
-      "Id": "playmult9default",
-      "ParentId": "default",
-      "IdKey": 9,
-      "Mult": 500,
-      "MinEnergy": 10000
     }
   ],
   "Parent": {
     "Id": "default",
     "AvgRollChangePercent": 0.05000000074505806,
     "Name": "PlayMultSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "SaveTime": "2025-11-27T18:09:04.373Z"
   },
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2025-11-27T18:09:04.373Z"
 }

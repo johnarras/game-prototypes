@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         protected ICrawlerOptionsService _optionService = null;
 
         public abstract int Order { get; }
-        public Type Key => GetType();
+        public Type HelperKey => GetType();
         public abstract Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token);
     }
 }

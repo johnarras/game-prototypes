@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public virtual void SetPropPosition(object prop, object data, CancellationToken token)
         {
@@ -33,8 +33,8 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                 return;
             }
 
-            prevFloor.RiddleHints = new MapRiddleHints() { RiddleTypeId = Key };
-            lockedFloor.EntranceRiddle = new MapEntranceRiddle() { RiddleTypeId = Key };
+            prevFloor.RiddleHints = new MapRiddleHints() { RiddleTypeId = HelperKey };
+            lockedFloor.EntranceRiddle = new MapEntranceRiddle() { RiddleTypeId = HelperKey };
 
             if (!await AddRiddleInternal(lookup, lockedFloor, prevFloor, openPoints, rand))
             {

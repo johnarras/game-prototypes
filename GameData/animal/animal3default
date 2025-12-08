@@ -6,9 +6,9 @@
   "Desc": "A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal.",
   "Icon": "Mule",
   "Art": "Mule",
-  "Speed": 2.0,
+  "Speed": 3,
   "Capacity": 2,
-  "Food": 2,
-  "Cost": 2500,
-  "SaveTime": "2025-09-27T17:15:58.821Z"
+  "Supplies": 2,
+  "Cost": 29250,
+  "SaveTime": "2025-12-06T22:05:33.863Z"
 }

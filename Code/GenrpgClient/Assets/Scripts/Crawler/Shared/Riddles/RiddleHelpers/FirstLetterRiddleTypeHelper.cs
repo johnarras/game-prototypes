@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
     public class FirstLetterFindRiddleTypeHelper : BaseRiddleTypeHelper
     {
-        public override long Key => RiddleTypes.FirstLetter;
+        public override long HelperKey => RiddleTypes.FirstLetter;
 
         protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
         {

@@ -47,6 +47,6 @@ namespace Genrpg.Shared.TimedEvents.Settings
 
     public class TimedEventCurrencyHelper : BaseEntityHelper<TimedEventCurrencySettings, TimedEventCurrencyType>
     {
-        public override long Key => EntityTypes.TimedEventCurrency;
+        public override long HelperKey => EntityTypes.TimedEventCurrency;
     }
 }

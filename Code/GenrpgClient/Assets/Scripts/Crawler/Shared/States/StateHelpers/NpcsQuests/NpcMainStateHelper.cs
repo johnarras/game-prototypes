@@ -11,9 +11,9 @@ using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
 
         private ICrawlerQuestService _questService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.NpcMain;
+        public override ECrawlerStates HelperKey => ECrawlerStates.NpcMain;
         public override long TriggerBuildingId() { return BuildingTypes.Npc; }
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Npc; }
 
@@ -69,7 +69,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
                 {
                     stateData.Actions.Add(new CrawlerStateAction(" --> " +
                         await _questService.ShowQuestStatus(party, fullQuest.Quest.IdKey, true, false, false),
-                        CharCodes.None, ECrawlerStates.QuestDetail, null,
+                        Key.None, ECrawlerStates.QuestDetail, null,
                      fullQuest));
                 }
             }
@@ -85,7 +85,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
                     {
                         stateData.Actions.Add(new CrawlerStateAction(
                             await _questService.ShowQuestStatus(party, fullQuest.Quest.IdKey, false, true, false),
-                            CharCodes.None, ECrawlerStates.NpcMain,
+                            Key.None, ECrawlerStates.NpcMain,
                             () =>
                             {
                                 _questService.CompleteQuest(party, fullQuest, token);
@@ -95,13 +95,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
                     {
                         stateData.Actions.Add(new CrawlerStateAction
                             (await _questService.ShowQuestStatus(party, fullQuest.Quest.IdKey, false, true, false),
-                                CharCodes.None, ECrawlerStates.QuestDetail, null, fullQuest
+                                Key.None, ECrawlerStates.QuestDetail, null, fullQuest
                                 ));
                     }
                 }
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to the city", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("Back to the city", Key.Escape, ECrawlerStates.ExploreWorld));
 
             await Task.CompletedTask;
             return stateData;
@@ -111,7 +111,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
         {
             stateData.AddText("This building is empty...");
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to the city", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("Back to the city", Key.Escape, ECrawlerStates.ExploreWorld));
 
             return stateData;
         }

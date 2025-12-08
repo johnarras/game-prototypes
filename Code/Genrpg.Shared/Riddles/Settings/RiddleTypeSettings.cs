@@ -39,7 +39,7 @@ namespace Genrpg.Shared.Riddles.Settings
 
     public class RiddleTypeEntityHelper : BaseEntityHelper<RiddleTypeSettings, RiddleType>
     {
-        public override long Key => EntityTypes.RiddleType;
+        public override long HelperKey => EntityTypes.RiddleType;
     }
 
 }

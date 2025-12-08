@@ -1,4 +1,4 @@
-header storeoffer,IdKey,Name,Enabled,OfferId,StoreSlotId,StoreFeatureId,StoreThemeId,StoreBundleSetId,MinLevel,MaxLevel,MinPurchaseCount,MaxPurchaseCount,MinInstallDays,MaxInstallDays,TotalModSize,MaxModValue,Priority,MinClientVersion,MaxClientVersion,StartDate,EndDate,RepeatHours,RepeatMonthly
-filter,,,,,,,,,,,,,,,,,,,,,,,
-storeoffer,1,Main Mana Packs,TRUE,DefaultManaPacks,mana store,unlimited,mana,manapacks,,,,,,,,,,,,,,,
-storeoffer,2,Main Supplies Packs,TRUE,DefaultSupplyPacks,supplies store,unlimited,supplies,suppliespacks,,,,,,,,,,,,,,,
+header storeoffer,IdKey,Name,Enabled,IsDefaultOffer,OfferId,StoreSlotId,StoreFeatureId,StoreThemeId,StoreBundleSetId,MinLevel,MaxLevel,MinPurchaseCount,MaxPurchaseCount,MinInstallDays,MaxInstallDays,TotalModSize,MaxModValue,Priority,MinClientVersion,MaxClientVersion,StartDate,EndDate,RepeatHours,RepeatMonthly
+filter,,,,,,,,,,,,,,,,,,,,,,,,
+storeoffer,1,Main Mana Packs,TRUE,TRUE,DefaultManaPacks,mana store,unlimited,mana,manapacks,,,,,,,,,,,,,,,
+storeoffer,2,Main Supplies Packs,TRUE,TRUE,DefaultSupplyPacks,supplies store,unlimited,supplies,suppliespacks,,,,,,,,,,,,,,,

@@ -10,13 +10,13 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 {
     public class CrawlerSpellLootTypeHelper : BaseCrawlerLootTypeHelper
     {
-        public override long Key => EntityTypes.CrawlerSpell;
+        public override long HelperKey => EntityTypes.CrawlerSpell;
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {
             CrawlerSpell spell = RandomUtils.GetRandomEnchant(_gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData(), _rand);
 
-            CrawlerLootType lootType = _gameData.Get<CrawlerLootSettings>(_gs.ch).Get(Key);
+            CrawlerLootType lootType = _gameData.Get<CrawlerLootSettings>(_gs.ch).Get(HelperKey);
 
             if (spell != null && lootType != null)
             {

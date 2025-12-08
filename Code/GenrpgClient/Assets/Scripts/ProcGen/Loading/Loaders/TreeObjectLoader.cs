@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using System.Threading;
 using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Trees;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Assets.Constants;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 public class TreeObjectLoader : BaseObjectLoader
 {
@@ -46,7 +45,7 @@ public class TreeObjectLoader : BaseObjectLoader
         if (!treeType.HasFlag(TreeFlags.IsWaterItem) &&
             _mapProvider.GetMap().OverrideZoneId > 0 && _mapProvider.GetMap().OverrideZonePercent > 0)
         {
-            if (loadData.patch.overrideZoneScales[x,y] < _mapProvider.GetMap().OverrideZonePercent)
+            if (loadData.patch.overrideZoneScales[x, y] < _mapProvider.GetMap().OverrideZonePercent)
             {
                 Zone zone = _mapProvider.GetMap().Get<Zone>(_mapProvider.GetMap().OverrideZoneId);
                 if (zone != null)
@@ -67,7 +66,7 @@ public class TreeObjectLoader : BaseObjectLoader
                             okTreeIds = treeIds;
                         }
                     }
-                    
+
                     if (okTreeIds.Count > 0)
                     {
                         long treeTypeId = okTreeIds[(loadData.gx * 191 + loadData.gy * 2189 + x * 108061 + y * 857) % okTreeIds.Count];
@@ -118,23 +117,23 @@ public class TreeObjectLoader : BaseObjectLoader
             }
             dlo.scale = finalScale;
 
-            _assetService.LoadAsset(assetCategory, artName, OnDownloadObjectDirect, dlo, null, token);
+            _assetService.LoadAsset(assetCategory, artName, OnDownloadObjectDirect, null, token, dlo);
 
         }
         else
         {
             fullProto = new FullTreePrototype();
             fullProto.treeType = treeType;
-            
+
 
             StartPlaceInstance(loadData, treeType, assetCategory, artName, x, y, null, token);
         }
         return true;
     }
 
-    protected void OnDownloadObjectDirect(object obj, object data, CancellationToken token)
+    protected void OnDownloadObjectDirect(GameObject go, DownloadObjectData dlo, CancellationToken token)
     {
-        OnDownloadObject(obj, data, token);
+        OnDownloadObject(go, dlo, token);
     }
 
 
@@ -182,11 +181,11 @@ public class TreeObjectLoader : BaseObjectLoader
         if (proto == null || protoIndex < 0)
         {
             TreePrototype tp = new TreePrototype();
-            ObjectPrototype op = new ObjectPrototype() 
-            {   
-                Name = key, 
-                Prototype = tp, 
-                DataItem = dataItem, 
+            ObjectPrototype op = new ObjectPrototype()
+            {
+                Name = key,
+                Prototype = tp,
+                DataItem = dataItem,
                 terrManager = loadData.terrManager,
                 token = token,
             };
@@ -205,7 +204,7 @@ public class TreeObjectLoader : BaseObjectLoader
             }
             else
             {
-                _assetService.LoadAsset(assetCategory, artName, OnDownloadPrototype, op, loadData.protoParent, token);
+                _assetService.LoadAsset(assetCategory, artName, OnDownloadPrototype, loadData.protoParent, token, op);
             }
         }
 
@@ -228,7 +227,7 @@ public class TreeObjectLoader : BaseObjectLoader
 
         TreeInstance ti = new TreeInstance();
         ti.prototypeIndex = protoIndex;
-        
+
 
         float ex = x + ddx;
         float ey = height;
@@ -261,7 +260,7 @@ public class TreeObjectLoader : BaseObjectLoader
             {
                 Vector3 offset = currNormal * -(0.3f + (2.5f * (1 - currNormal.y)) / Math.Max(1.0f, offsetScale));
                 ex += offset.x;
-                ey += offset.y-1.0f;
+                ey += offset.y - 1.0f;
                 ez += offset.z;
             }
 
@@ -272,20 +271,13 @@ public class TreeObjectLoader : BaseObjectLoader
         }
         float posMult = 1.0f / (MapConstants.TerrainPatchSize - 1);
         float extraDepth = (isbush ? 0 : 1.5f);
-        ti.position = new Vector3(ex * posMult, (ey-extraDepth) / MapConstants.MapHeight, ez * posMult);
+        ti.position = new Vector3(ex * posMult, (ey - extraDepth) / MapConstants.MapHeight, ez * posMult);
         instances.Add(ti);
     }
 
 
-    private void OnDownloadPrototype(object obj, object data, CancellationToken token)
+    private void OnDownloadPrototype(GameObject go, ObjectPrototype op, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        ObjectPrototype op = data as ObjectPrototype;
         if (op == null || op.Prototype == null)
         {
             _clientEntityService.Destroy(go);

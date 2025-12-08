@@ -29,7 +29,7 @@ namespace Assets.Scripts.Rewards.UI
 
         public void ShowReward(IReward reward)
         {
-            _assetService.LoadAssetInto(gameObject, AssetCategoryNames.UI, "PopupRewardIcon", OnLoadIcon, reward, GetToken(),
+            _assetService.LoadAssetInto(gameObject, AssetCategoryNames.UI, "PopupRewardIcon", OnLoadIcon, GetToken(), reward,
                 "Rewards");
 
             _dispatcher.Dispatch(new ShowDooberEvent()
@@ -45,22 +45,8 @@ namespace Assets.Scripts.Rewards.UI
             });
         }
 
-        private void OnLoadIcon(object obj, object data, CancellationToken token)
+        private void OnLoadIcon(GameObject go, IReward rew, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
-            IReward rew = data as IReward;
-
-            if (rew == null)
-            {
-                return;
-            }
-
             PopupRewardIcon icon = go.GetComponent<PopupRewardIcon>();
 
             if (icon == null)

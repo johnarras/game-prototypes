@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
     public class BasicRiddleTypeHelper : BaseRiddleTypeHelper
     {
-        public override long Key => RiddleTypes.Basic;
+        public override long HelperKey => RiddleTypes.Basic;
 
         protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
         {

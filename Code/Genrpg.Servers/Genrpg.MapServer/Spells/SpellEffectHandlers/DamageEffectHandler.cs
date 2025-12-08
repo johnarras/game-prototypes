@@ -20,7 +20,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
     {
 
 
-        public override long Key => EntityTypes.Damage;
+        public override long HelperKey => EntityTypes.Damage;
         public override bool IsModifyStatEffect() { return false; }
         public override bool UseStatScaling() { return true; }
 

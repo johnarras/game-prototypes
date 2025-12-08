@@ -8,6 +8,6 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 {
     public class DamageSpellEffectHelper : BaseNumericSpellEffectHelper
     {
-        public override long Key => EntityTypes.Damage;
+        public override long HelperKey => EntityTypes.Damage;
     }
 }

@@ -24,6 +24,6 @@ namespace Genrpg.Shared.ProcGen.Settings.Trees
 
     public class TreeEntityHelper : BaseEntityHelper<TreeTypeSettings,TreeType>
     {
-        public override long Key => EntityTypes.Tree;
+        public override long HelperKey => EntityTypes.Tree;
     }
 }

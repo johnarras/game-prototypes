@@ -246,7 +246,7 @@ public class CameraController : BaseBehaviour, ICameraController, IInjectOnLoad<
         moveScale = CameraMoveScale * _inputService.GetDeltaTime();
         currPos = _inputService.MousePosition();
         diffPos = currPos - prevPos;
-        scrollWheel = -Input.GetAxis("Mouse ScrollWheel");
+        scrollWheel = -_inputService.GetAxis("Mouse ScrollWheel");
 
         if (targetCameraDistance <= 0.0f)
         {

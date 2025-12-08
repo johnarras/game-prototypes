@@ -16,7 +16,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
     {
         public virtual Type GetChildType() { return typeof(TServer); }
         public virtual bool SendToClient() { return true; }
-        [IgnoreMember] public virtual Type Key => typeof(TServer); 
+        [IgnoreMember] public virtual Type HelperKey => typeof(TServer); 
         public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
 
         public virtual async Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing)

@@ -1,16 +1,15 @@
 ﻿
-using UnityEngine;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
-using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.Rocks;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.ProcGen.Settings.Rocks;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
+using System.Threading;
+using UnityEngine;
 
 public class RockObjectLoader : BaseObjectLoader
 {
-    public override bool LoadObject(PatchLoadData loadData, uint objectId, 
+    public override bool LoadObject(PatchLoadData loadData, uint objectId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
         if (objectId < MapConstants.RockObjectOffset + MapConstants.MapObjectOffsetMult)
@@ -52,7 +51,7 @@ public class RockObjectLoader : BaseObjectLoader
         dlo.data = (smallObject ? "small" : "");
         dlo.AfterLoad = AfterLoadRock;
 
-        _assetService.LoadAsset(AssetCategoryNames.Rocks, artName, OnDownloadObject, dlo, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Rocks, artName, OnDownloadObject, null, token, dlo);
 
         return true;
 

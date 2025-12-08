@@ -5,7 +5,7 @@ namespace Genrpg.Shared.Quests.Helpers
 {
     public class QuestTypeHelper : BaseMapEntityHelper<QuestType>
     {
-        public override long Key => EntityTypes.Quest;
+        public override long HelperKey => EntityTypes.Quest;
 
 }
 }

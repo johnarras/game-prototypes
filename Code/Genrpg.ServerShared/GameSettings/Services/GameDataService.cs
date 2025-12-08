@@ -176,12 +176,12 @@ namespace Genrpg.ServerShared.GameSettings.Services
             {
                 obj.DataOverrides.Items.Add(new PlayerSettingsOverrideItem()
                 {
-                    SettingId = settingsNameSettings.Get(priority.SettingsNameId).Name,
+                    SettingsNameId = settingsNameSettings.Get(priority.SettingsNameId).IdKey,
                     DocId = priority.DocId,
                 });
             }
 
-            obj.DataOverrides.Items = obj.DataOverrides.Items.OrderBy(x => x.SettingId).ToList();
+            obj.DataOverrides.Items = obj.DataOverrides.Items.OrderBy(x => x.SettingsNameId).ToList();
 
             // This should be deterministic across machines because the player has a set
             // of overrides that should be the same for anyone who's in the same bucket
@@ -244,7 +244,9 @@ namespace Genrpg.ServerShared.GameSettings.Services
 
             GameDataOverrideList newOverrides = fobj.DataOverrides;
 
-            List<ITopLevelSettings> allSettings = _gameData.AllSettings();
+            SettingsNameSettings settingsNameSettings = _gameData.Get<SettingsNameSettings>(fobj);
+
+            List<ITopLevelSettings> overrideSettings = _gameData.OverrideSettings();
 
             List<ITopLevelSettings> orderedDefaultSettings = _gameData.DescendingTimeOrderedDefaultSettings();
 
@@ -274,8 +276,8 @@ namespace Genrpg.ServerShared.GameSettings.Services
             {
                 foreach (PlayerSettingsOverrideItem item in newOverrides.Items)
                 {
-                    ITopLevelSettings topLevel = allSettings.FirstOrDefault(x =>
-                    x.Id == item.DocId && x.GetType().Name == item.SettingId);
+                    ITopLevelSettings topLevel = overrideSettings.FirstOrDefault(x =>
+                    x.Id == item.DocId && settingsNameSettings.GetIdFromTypeName(x.GetType().Name) == item.SettingsNameId);
 
                     if (topLevel != null)
                     {

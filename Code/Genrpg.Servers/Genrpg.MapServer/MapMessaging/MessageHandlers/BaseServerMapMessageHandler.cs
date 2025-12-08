@@ -28,7 +28,7 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
         where TMapMessage : class, IMapMessage
         where TMapObject : MapObject
     { 
-        public Type Key => typeof(TMapMessage);
+        public Type HelperKey => typeof(TMapMessage);
 
         protected IMapMessageService _messageService = null;
         protected IMapObjectManager _objectManager = null;

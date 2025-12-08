@@ -18,7 +18,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public class StatusEffectCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {
-        public override long Key => EntityTypes.StatusEffect;
+        public override long HelperKey => EntityTypes.StatusEffect;
 
         public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {

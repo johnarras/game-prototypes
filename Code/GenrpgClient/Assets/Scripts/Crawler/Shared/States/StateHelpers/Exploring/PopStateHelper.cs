@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
     public class PopStateHelper : BaseStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.PopState;
+        public override ECrawlerStates HelperKey => ECrawlerStates.PopState;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {

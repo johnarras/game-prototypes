@@ -76,13 +76,13 @@ namespace Genrpg.MapServer.Items.Services
                 {
                     shouldRemoveItem = true;
                     theProc = spawnProc;
-                    RollData rollData = new RollData()
+                    RollLootArgs rollLootArgs = new RollLootArgs()
                     {
                         Level = ch.Level,
                         QualityTypeId = item.QualityTypeId,
                         Times = 1
                     };
-                    List<RewardList> newItems = _spawnService.Roll(rand, spawnProc.EntityId, rollData);
+                    List<RewardList> newItems = _spawnService.Roll(rand, spawnProc.EntityId, rollLootArgs);
                     if (newItems != null)
                     {
                         _rewardService.GiveRewards(rand, ch, newItems, null);

@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Entities.Helpers
             return typeof(TChild).Name + "Icons";
         }
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public virtual string GetEditorPropertyName() { return typeof(TChild).Name; }
 

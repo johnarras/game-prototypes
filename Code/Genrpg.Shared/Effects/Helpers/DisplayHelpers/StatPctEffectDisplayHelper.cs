@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 {
     public class StatPctEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.StatPct;
+        public override long HelperKey => EntityTypes.StatPct;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

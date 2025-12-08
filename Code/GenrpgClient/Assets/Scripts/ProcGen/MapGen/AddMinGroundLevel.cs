@@ -1,8 +1,8 @@
 
-using UnityEngine;
-using System.Threading;
-using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Core;
+using System.Threading;
+using UnityEngine;
 
 // Settings for YES reflection
 // Fres Int: 0.1, Pow: 1.08 Bias: 0
@@ -14,11 +14,11 @@ using Genrpg.Shared.Client.Assets.Constants;
 public class AddMinGroundLevel : BaseZoneGenerator
 {
     private IInitClient _initClient;
-    public override async Awaitable Generate (CancellationToken token)
+    public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
         AddKillCollider(_gs);
-	}
+    }
 
 
     private GameObject _killCollider = null;
@@ -28,13 +28,13 @@ public class AddMinGroundLevel : BaseZoneGenerator
         {
             return;
         }
-        _assetService.LoadAssetInto(_initClient.GetRootObject(), AssetCategoryNames.Prefabs, MapConstants.KillColliderName, OnLoadKillCollider, null, _token);
+        _assetService.LoadAssetInto(_initClient.GetRootObject(), AssetCategoryNames.Prefabs, MapConstants.KillColliderName, OnLoadKillCollider, _token, default(object));
     }
 
-    private void OnLoadKillCollider (object obj, object data, CancellationToken token)
+    private void OnLoadKillCollider(GameObject go, object data, CancellationToken token)
     {
-        _killCollider = obj as GameObject;
+        _killCollider = go;
     }
 
 }
-	
+

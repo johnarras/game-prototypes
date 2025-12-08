@@ -1,7 +1,7 @@
 ﻿
-using Genrpg.Shared.Client.Assets.Constants;
 using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
@@ -11,8 +11,7 @@ using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.ProcGen.Settings.Trees;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.UI.Settings;
 using Genrpg.Shared.Units.Settings;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.UI.Settings;
 
 public class TestAssetDownloads : IInjectable
 {
@@ -41,9 +39,9 @@ public class TestAssetDownloads : IInjectable
         TestScreens(token);
 
 
-        TestAssetCategory<UnitTypeSettings,UnitType>(AssetCategoryNames.Monsters, token);
+        TestAssetCategory<UnitTypeSettings, UnitType>(AssetCategoryNames.Monsters, token);
 
-        TestAssetCategory<TextureTypeSettings,TextureType>(AssetCategoryNames.TerrainTex, token);
+        TestAssetCategory<TextureTypeSettings, TextureType>(AssetCategoryNames.TerrainTex, token);
 
         TestAssetCategory<TreeTypeSettings, TreeType>(AssetCategoryNames.Trees, token,
             x => !x.HasFlag(TreeFlags.IsBush));
@@ -59,18 +57,16 @@ public class TestAssetDownloads : IInjectable
         await Task.CompletedTask;
     }
 
-    private void OnDownloadAsset(System.Object obj, object data, CancellationToken token)
+    private void OnDownloadAsset(GameObject go, object data, CancellationToken token)
     {
-        if (obj == null)
+        if (go == null)
         {
-           _logService.Info("Failed Download: " + data);
+            _logService.Info("Failed Download: " + data);
         }
-        _clientEntityService.Destroy(obj);
-
-       
+        _clientEntityService.Destroy(go);
     }
 
-    private void TestAssetCategory<Parent,Child> (string assetCategoryName, CancellationToken token, Func<Child, bool> filter = null) where Parent : ITopLevelSettings
+    private void TestAssetCategory<Parent, Child>(string assetCategoryName, CancellationToken token, Func<Child, bool> filter = null) where Parent : ITopLevelSettings
     {
         Parent settings = _gameData.Get<Parent>(null);
 
@@ -80,7 +76,7 @@ public class TestAssetDownloads : IInjectable
             return;
         }
 
-        List<Child> childSettings = settings.GetChildren().Cast<Child>().ToList();  
+        List<Child> childSettings = settings.GetChildren().Cast<Child>().ToList();
 
         if (childSettings == null || childSettings.Count < 1)
         {
@@ -89,14 +85,14 @@ public class TestAssetDownloads : IInjectable
 
         if (filter != null)
         {
-            childSettings = childSettings.Where(x=> filter(x) == true).ToList();
+            childSettings = childSettings.Where(x => filter(x) == true).ToList();
         }
 
         foreach (Child setting in childSettings)
         {
             if (setting is IIndexedGameItem indexedItem)
             {
-                if (indexedItem.IdKey == 0 || 
+                if (indexedItem.IdKey == 0 ||
                     string.IsNullOrEmpty(indexedItem.Art) ||
                     indexedItem.Art.IndexOf("Unused") >= 0)
                 {
@@ -113,15 +109,15 @@ public class TestAssetDownloads : IInjectable
                     for (int i = 1; i <= variationItem.VariationCount; i++)
                     {
 
-                        _assetService.LoadAsset(assetCategoryName, indexedItem.Art + i,
-                            OnDownloadAsset, assetCategoryName + "-" + indexedItem.Art + i, null, token);
+                        _assetService.LoadAsset<object>(assetCategoryName, indexedItem.Art + i,
+                            OnDownloadAsset, assetCategoryName + "-" + indexedItem.Art + i, token);
                     }
                 }
 
                 else
                 {
-                    _assetService.LoadAsset(assetCategoryName, indexedItem.Art,
-                        OnDownloadAsset, assetCategoryName + "-" + indexedItem.Art, null, token);
+                    _assetService.LoadAsset<object>(assetCategoryName, indexedItem.Art,
+                        OnDownloadAsset, assetCategoryName + "-" + indexedItem.Art, token);
                 }
             }
         }
@@ -135,7 +131,7 @@ public class TestAssetDownloads : IInjectable
         {
             string subDir = _screenService.GetSubdirectory(sname.IdKey);
 
-            _assetService.LoadAsset(AssetCategoryNames.UI, sname.Name + "Screen", OnDownloadAsset, "Screen: " + sname.Name, null, token, subDir);
+            _assetService.LoadAsset(AssetCategoryNames.UI, sname.Name + "Screen", OnDownloadAsset, "Screen: " + sname.Name, token, default(object), subDir);
         }
     }
 
@@ -156,7 +152,7 @@ public class TestAssetDownloads : IInjectable
             foreach (string fxName in fxNames)
             {
                 string fullName = element.Art + fxName;
-                _assetService.LoadAsset(AssetCategoryNames.Magic, fullName, OnDownloadAsset, fullName, null, token);
+                _assetService.LoadAsset<object>(AssetCategoryNames.Magic, fullName, OnDownloadAsset, fullName, token);
             }
         }
 

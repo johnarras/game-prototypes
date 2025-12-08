@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -8,6 +10,7 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +24,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         private ILootGenService _lootService = null;
         private IAudioService _audioService;
 
-        public override ECrawlerStates Key => ECrawlerStates.GiveLoot;
+        public override ECrawlerStates HelperKey => ECrawlerStates.GiveLoot;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -56,9 +59,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             {
                 stateData.AddText(loot.Exp + " Exp per party member!");
             }
-            if (loot.Gold > 0)
+
+            IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+
+            foreach (CrawlerCurrencyType ctype in ctypes)
             {
-                stateData.AddText(loot.Gold + " Gold!");
+                if (loot.Currencies.Get(ctype.IdKey) > 0)
+                {
+                    stateData.AddText(loot.Currencies.Get(CrawlerCurrencyTypes.Gold) + " " + ctype.Name + "!");
+                }
             }
 
             if (loot.Items.Count > 0)

@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Entities;
-using Genrpg.Shared.Core.Interfaces;
+using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MVC.Interfaces;
@@ -15,8 +15,8 @@ namespace Assets.Scripts.Assets
     public interface IAssetService : IInitializable, IClientResetCleanup
     {
         bool IsInitialized();
-        void LoadAssetInto(object parent, string assetCategory, string assetPath, OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null);
-        void LoadAsset(string assetCategory, string assetPath, OnDownloadHandler handler, object data, object parent, CancellationToken token, string subdirectory = null);
+        void LoadAssetInto<T>(object parent, string assetCategory, string assetPath, AssetDownloadHandler<T> handler, CancellationToken token, T data = default(T), string subdirectory = null);
+        void LoadAsset<T>(string assetCategory, string assetPath, AssetDownloadHandler<T> handler, object parent, CancellationToken token, T data = default(T), string subdirectory = null);
         Task<T> LoadAssetAsync<T>(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null) where T : class;
         Task<object> LoadAssetAsync(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null);
         string GetBundleNameForCategoryAndAsset(string assetCategory, string assetPath);

@@ -26,7 +26,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         private ICrawlerService _crawlerService = null;
 
 
-        public override long Key => EntityTypes.Unit;
+        public override long HelperKey => EntityTypes.Unit;
 
         public override List<string> GetInfoLines(long entityId)
         {

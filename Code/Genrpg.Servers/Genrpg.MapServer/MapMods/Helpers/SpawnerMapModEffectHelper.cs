@@ -25,7 +25,7 @@ namespace Genrpg.MapServer.MapMods.Helpers
 
         const int MinSeparation = 5;
 
-        public long Key => MapModEffects.Spawner;
+        public long HelperKey => MapModEffects.Spawner;
 
         public void Process(IRandom rand, MapMod mapMod, MapModAddon addon, MapModEffect effect)
         {

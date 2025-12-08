@@ -2,6 +2,7 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Controllers;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Maps.EncounterHelpers;
@@ -16,7 +17,6 @@ using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.GameEvents;
@@ -263,14 +263,14 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                     string dungeonArtName = ztype.Art;
 
-                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName, OnLoadDungeonAssets, block, null, token);
+                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName, OnLoadDungeonAssets, null, token, block);
 
                 }
             }
 
             string buildingArtFolder = _gameData.Get<BuildingArtSettings>(_gs.ch).Get(mapRoot.Map.BuildingArtId).Art;
 
-            _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, null, null, token, buildingArtFolder);
+            _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, null, token, default(object), buildingArtFolder);
 
 
             while (mapRoot.AssetBlocks.Any(a => !a.Value.IsReady()))
@@ -290,17 +290,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _crawlerMapRoot.CityAssets = assetGo.GetComponent<CityAssets>();
         }
 
-        private void OnLoadDungeonAssets(object obj, object data, CancellationToken token)
+        private void OnLoadDungeonAssets(GameObject assetGo, AssetBlock block, CancellationToken token)
         {
-            GameObject assetGo = obj as GameObject;
-
-            if (assetGo == null)
-            {
-                return;
-            }
-
-
-            AssetBlock block = data as AssetBlock;
 
             if (block == null)
             {
@@ -347,7 +338,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             }
         }
 
-        public async Task OnClientResetCleanup(CancellationToken token)
+        public async Task OnReset(CancellationToken token)
         {
             CleanMap();
             await Task.CompletedTask;

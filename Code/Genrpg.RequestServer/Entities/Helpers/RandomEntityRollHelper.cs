@@ -4,16 +4,9 @@ using Genrpg.RequestServer.Spawns.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.RequestServer.Entities.Helpers
 {
@@ -25,9 +18,9 @@ namespace Genrpg.RequestServer.Entities.Helpers
         private IEntityService _entityService = null;
         private IWebSpawnService _webSpawnService = null;
 
-        public override long Key => EntityTypes.RandomEntity;
+        public override long HelperKey => EntityTypes.RandomEntity;
 
-        public override async Task<List<Reward>> Roll<SI>(WebContext context, RollData rollData, SI si)
+        public override async Task<List<Reward>> Roll<SI>(WebContext context, RollLootArgs rollLootArgs, SI si)
         {
             List<Reward> rewards = new List<Reward>();
 
@@ -44,7 +37,7 @@ namespace Genrpg.RequestServer.Entities.Helpers
 
             if (weightedItems.Count > 0)
             {
-                double weightSum = weightedItems.Sum(x=>x.Weight);
+                double weightSum = weightedItems.Sum(x => x.Weight);
                 double weightChosen = context.rand.NextDouble() * weightSum;
 
                 foreach (IWeightedItem weightedItem in weightedItems)
@@ -60,16 +53,16 @@ namespace Genrpg.RequestServer.Entities.Helpers
 
                         if (otherRollHelper != null)
                         {
-                            quantityMult = await otherRollHelper.GetQuantityMult(context, rollData, origItem.IdKey);
+                            quantityMult = await otherRollHelper.GetQuantityMult(context, rollLootArgs, origItem.IdKey);
                         }
 
                         rewards.Add(new Reward()
                         {
                             EntityTypeId = si.EntityId,
                             EntityId = origItem.IdKey,
-                            QualityTypeId = rollData.QualityTypeId,
-                            Level = rollData.Level,
-                            Quantity = MathUtils.LongRange(si.MinQuantity*quantityMult, si.MaxQuantity*quantityMult, context.rand),
+                            QualityTypeId = rollLootArgs.QualityTypeId,
+                            Level = rollLootArgs.Level,
+                            Quantity = MathUtils.LongRange(si.MinQuantity * quantityMult, si.MaxQuantity * quantityMult, context.rand),
                         });
                         break;
                     }

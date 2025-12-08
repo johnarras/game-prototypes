@@ -6,7 +6,6 @@
   "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
   "Icon": "Yak",
   "Art": "Yak",
-  "Endurance": 6,
-  "Speed": 2.0,
+  "Speed": 2,
   "SaveTime": "2025-08-06T23:38:54.824Z"
 }

@@ -1,0 +1,9 @@
+{
+  "Id": "traderstat9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Supplies Regen",
+  "Icon": "SuppliesRegen",
+  "Art": "SuppliesRegen",
+  "SaveTime": "2025-12-02T01:17:13.917Z"
+}

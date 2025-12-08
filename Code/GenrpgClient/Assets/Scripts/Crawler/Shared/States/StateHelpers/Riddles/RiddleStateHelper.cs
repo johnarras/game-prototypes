@@ -6,16 +6,16 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Riddles.Settings;
-using Genrpg.Shared.Utils;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
 {
     public class RiddleStateHelper : BaseStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.Riddle;
+        public override ECrawlerStates HelperKey => ECrawlerStates.Riddle;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
 
                 stateData.AddText("The orb is " + currState);
                 stateData.AddText("Do you want to turn it " + oppState);
-                stateData.Actions.Add(new CrawlerStateAction("Yes turn it " + oppState, 'Y', ECrawlerStates.Riddle,
+                stateData.Actions.Add(new CrawlerStateAction("Yes turn it " + oppState, Key.Y, ECrawlerStates.Riddle,
                     () =>
                     {
                         if (isOn)
@@ -90,10 +90,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
                         }
                         _dispatcher.Dispatch(new RedrawMapCell() { X = party.CurrPos.X, Z = party.CurrPos.Z });
                     }, moveStatus));
-                stateData.Actions.Add(new CrawlerStateAction("No leave it alone.", 'N', ECrawlerStates.ExploreWorld, null));
+                stateData.Actions.Add(new CrawlerStateAction("No leave it alone.", Key.N, ECrawlerStates.ExploreWorld, null));
             }
             AddSpaceAction(stateData);
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
             await Task.CompletedTask;
             return stateData;

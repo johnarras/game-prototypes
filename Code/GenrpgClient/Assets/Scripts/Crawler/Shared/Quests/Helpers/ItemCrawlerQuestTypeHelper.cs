@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 
         protected override string QuestVerb => "Collect";
 
-        public override long Key => CrawlerQuestTypes.LootItems;
+        public override long HelperKey => CrawlerQuestTypes.LootItems;
 
         public override async Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap,
             MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token)

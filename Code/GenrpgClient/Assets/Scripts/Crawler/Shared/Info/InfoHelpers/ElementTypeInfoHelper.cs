@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
     public class ElementTypeInfoHelper : BaseInfoHelper<ElementTypeSettings, ElementType>
     {
 
-        public override long Key => EntityTypes.Element;
+        public override long HelperKey => EntityTypes.Element;
 
         protected override bool MakeEntityNamePlural() { return false; }
 

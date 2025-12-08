@@ -3,8 +3,8 @@ using ClientEvents;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Levels.Settings;
 using Genrpg.Shared.Rewards.Messages;
+using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Units.Entities;
 
 public class ExpBar : BaseBehaviour

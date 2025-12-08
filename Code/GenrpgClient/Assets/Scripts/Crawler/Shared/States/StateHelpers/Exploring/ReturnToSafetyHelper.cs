@@ -8,13 +8,14 @@ using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
     public class ReturnToSafetyHelper : BaseStateHelper
     {
         private ITextSerializer _serializer;
-        public override ECrawlerStates Key => ECrawlerStates.ReturnToSafety;
+        public override ECrawlerStates HelperKey => ECrawlerStates.ReturnToSafety;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -43,13 +44,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         MapRot = party.RecallPos.Rot,
                     };
 
-                    stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ExploreWorld,
+                    stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
                         () =>
                         {
                             party.RecallPos = new MapPosition();
                         }, mapData));
 
-                    stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.ExploreWorld));
+                    stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.ExploreWorld));
 
                 }
                 else
@@ -72,14 +73,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         ReturnToSafety = true,
                     };
 
-                    stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ExploreWorld,
+                    stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
                         () =>
                         {
                             party.RecallPos = _serializer.MakeCopy(party.CurrPos);
                             party.RemoveFlags(PartyFlags.HasRecall);
                         }, safetyData));
 
-                    stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.ExploreWorld));
+                    stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.ExploreWorld));
 
                 }
                 else
@@ -88,9 +89,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     stateData.AddText("explore another dungeon level.");
                 }
             }
-               
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
             return stateData;
         }

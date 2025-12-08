@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Options.Services
 {
-    public interface IClientOptionsService : IInitializable, IExplicitInject
+    public interface IClientOptionsService : IInitializable, IExplicitInject, IClientQuitCleanup
     {
         LocalClientOptions GetOptions();
         void SaveOptions();
@@ -68,6 +69,16 @@ namespace Assets.Scripts.Options.Services
         public void SaveOptions()
         {
             _repo.Save(GetOptions()).Wait();
+        }
+
+        public void OnQuit()
+        {
+            if (!_clientAppService.IsFullScreen())
+            {
+                _options.ScreenWidth = _clientAppService.ScreenWidth;
+                _options.ScreenHeight = _clientAppService.ScreenHeight;
+            }
+            SaveOptions();
         }
     }
 }

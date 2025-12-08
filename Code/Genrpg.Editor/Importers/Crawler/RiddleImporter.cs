@@ -14,7 +14,7 @@ namespace Genrpg.Editor.Importers.Crawler
     {
         public override string ImportDataFilename => "Riddles.txt";
 
-        public override EImportTypes Key => EImportTypes.Riddles;
+        public override EImportTypes HelperKey => EImportTypes.Riddles;
 
 
 

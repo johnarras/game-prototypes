@@ -14,48 +14,47 @@ namespace Genrpg.Shared.Crawler.Combat.Settings
         [Key(3)] public double DefendDamageScale { get; set; }
         [Key(4)] public double GuardianDamageScale { get; set; }
         [Key(5)] public double TauntDamageScale { get; set; }
-        [Key(6)] public long MaxGroupSize { get; set; }
-        [Key(7)] public double LuckCritChanceAtLevel { get; set; }
-        [Key(8)] public double MaxLuckCritRatio { get; set; }
-        [Key(9)] public double HiddenSingleTargetCritPercent { get; set; }
-        [Key(10)] public double GuaranteedHitDefenseRatio { get; set; }
-        [Key(11)] public double RandomEncounterChance { get; set; }
-        [Key(12)] public int MovesBetweenEncounters { get; set; }
+        [Key(6)] public double LuckCritChanceAtLevel { get; set; }
+        [Key(7)] public double MaxLuckCritRatio { get; set; }
+        [Key(8)] public double HiddenSingleTargetCritPercent { get; set; }
+        [Key(9)] public double GuaranteedHitDefenseRatio { get; set; }
+        [Key(10)] public double RandomEncounterChance { get; set; }
+        [Key(11)] public int MovesBetweenEncounters { get; set; }
 
-        [Key(13)] public double GroupAdvanceChance { get; set; }
+        [Key(12)] public double GroupAdvanceChance { get; set; }
 
 
-        [Key(14)] public double CastSpellChance { get; set; }
-        [Key(15)] public double SummonChance { get; set; }
+        [Key(13)] public double CastSpellChance { get; set; }
+        [Key(14)] public double SummonChance { get; set; }
 
-        [Key(16)] public double DebuffTiersPerUnitLevel { get; set; }
-        [Key(17)] public double MinDebuffChance { get; set; }
-        [Key(18)] public double DebuffChancePerLevel { get; set; }
-        [Key(19)] public double MaxDebuffChance { get; set; }
+        [Key(15)] public double DebuffTiersPerUnitLevel { get; set; }
+        [Key(16)] public double MinDebuffChance { get; set; }
+        [Key(17)] public double DebuffChancePerLevel { get; set; }
+        [Key(18)] public double MaxDebuffChance { get; set; }
 
-        [Key(20)] public double BaseMonsterRoleScalingTier { get; set; }
-        [Key(21)] public double BasePlayerRoleScalingTier { get; set; }
+        [Key(19)] public double BaseMonsterRoleScalingTier { get; set; }
+        [Key(20)] public double BasePlayerRoleScalingTier { get; set; }
 
-        [Key(22)] public double SummonQuantityScale { get; set; }
+        [Key(21)] public double SummonQuantityScale { get; set; }
 
-        [Key(23)] public double CritScaledownPerHit { get; set; }
+        [Key(22)] public double CritScaledownPerHit { get; set; }
 
-        [Key(24)] public double MonsterExtraHealthScalePerDay { get; set; }
-        [Key(25)] public double MonsterExtraDamageScalePerDay { get; set; }
+        [Key(23)] public double MonsterExtraHealthScalePerDay { get; set; }
+        [Key(24)] public double MonsterExtraDamageScalePerDay { get; set; }
 
-        [Key(26)] public int SpeedCombatSequencingDeltaPercent { get; set; }
+        [Key(25)] public int SpeedCombatSequencingDeltaPercent { get; set; }
 
-        [Key(27)] public double ExtraCureStatusEffectsRemovedPerTier { get; set; }
+        [Key(26)] public double ExtraCureStatusEffectsRemovedPerTier { get; set; }
 
-        [Key(28)] public double LuckBonusHitChanceScale { get; set; }
+        [Key(27)] public double LuckBonusHitChanceScale { get; set; }
 
         /// After attacking a unit, how much variance is in the unit's resequencing into the queue.
         /// </summary>
-        [Key(29)] public double SubsequentAttackPriorityLossPercent { get; set; }
+        [Key(28)] public double SubsequentAttackPriorityLossPercent { get; set; }
 
-        [Key(30)] public double SlowEffectPriorityScale { get; set; }
+        [Key(29)] public double SlowEffectPriorityScale { get; set; }
 
-        [Key(31)] public double HitPartyRandomMemberChance { get; set; }
+        [Key(30)] public double HitPartyRandomMemberChance { get; set; }
 
     }
 

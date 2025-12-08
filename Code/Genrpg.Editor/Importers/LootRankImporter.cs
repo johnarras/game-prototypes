@@ -9,7 +9,7 @@ namespace Genrpg.Editor.Importers
     {
         public override string ImportDataFilename => "LootRankImport.csv";
 
-        public override EImportTypes Key => EImportTypes.LootRanks;
+        public override EImportTypes HelperKey => EImportTypes.LootRanks;
 
         protected override void ImportChildSubObject(EditorGameState gs, LootRank current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

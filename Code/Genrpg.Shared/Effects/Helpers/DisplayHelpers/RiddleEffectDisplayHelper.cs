@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 
     public class RiddleEffectEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.Riddle;
+        public override long HelperKey => EntityTypes.Riddle;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

@@ -6,7 +6,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class RangeSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.Range;
+        public override long HelperKey => SpellModifiers.Range;
 
         // Linear in range, max at 3x at 45 units so 
         public override double GetCostScale(MapObject obj, double value)

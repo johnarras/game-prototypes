@@ -71,6 +71,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         FullMonsterStats GetFullMonsterStats(PartyData party, UnitType unitType, long factionTypeId, long combatLevel, bool isForCombat);
         bool ProccedStatusEffect(CrawlerUnit unit, long statusEffectId);
         void InitPartyCombatActions(PartyData party);
+        bool IsValidEnemyTarget(CrawlerUnit unit);
     }
     public class CrawlerCombatService : ICrawlerCombatService
     {
@@ -133,7 +134,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         {
             StartCombatSettings startSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
 
-            double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.BaseGroupSizeLevelCap + difficulty * startSettings.MaxGroupSizePerLevel));
+            double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.StartMaxGroupSize + difficulty * startSettings.GroupSizeIncreasePerLevel));
 
             if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
@@ -204,13 +205,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 double difficulty = (long)Math.Max(1, level * initialState.Difficulty);
 
-                double groupSizeIncreaseChance = MathUtils.Clamp(startSettings.BaseGroupSizeIncreaseChance,
-                    startSettings.BaseGroupSizeIncreaseChance + startSettings.GroupSizeIncreaseChancePerLevel * difficulty,
-                    startSettings.MaxGroupSizeIncreaseChance);
-
                 long maxGroupSize = GetMaxGroupSize(party, level, difficulty);
 
-                int groupCount = CrawlerCombatConstants.StartGroupCount;
+                int groupCount = CrawlerCombatConstants.MinGroupCount;
 
                 double groupCountIncreaseChance = MathUtils.Clamp(startSettings.BaseGroupCountIncreaseChance,
                     startSettings.BaseGroupCountIncreaseChance + startSettings.GroupCountIncreaseChancePerLevel * difficulty,
@@ -223,7 +220,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     groupCount++;
                 }
 
-                int maxGroupCount = (int)Math.Min(startSettings.MaxGroupCount, CrawlerCombatConstants.StartGroupCount + (int)(startSettings.MaxGroupCountPerLevel * difficulty));
+                int maxGroupCount = (int)Math.Min(startSettings.MaxGroupCount, CrawlerCombatConstants.MinGroupCount + (int)(startSettings.MaxGroupCountPerLevel * difficulty));
 
                 groupCount = Math.Min(groupCount, maxGroupCount);
 
@@ -310,7 +307,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = MathUtils.LongRange(CrawlerCombatConstants.StartGroupSize, maxGroupSize, _rand);
+                    long quantity = MathUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -564,6 +561,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 return;
             }
 
+            StartCombatSettings startCombatSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
+
             CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
 
             List<CombatGroup> groups = initial.FactionTypeId == FactionTypes.Player ? party.Combat.Allies : party.Combat.Enemies;
@@ -634,7 +633,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             List<Monster> newMonsters = new List<Monster>();
             for (int i = 0; i < initial.Quantity; i++)
             {
-                if (group.Units.Count >= combatSettings.MaxGroupSize)
+                if (group.Units.Count >= startCombatSettings.MaxGroupSize)
                 {
                     break;
                 }
@@ -1147,6 +1146,12 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     member.ActionsThisRound = 0;
                 }
             }
+        }
+
+        public bool IsValidEnemyTarget(CrawlerUnit unit)
+        {
+            return !unit.StatusEffects.HasBit(StatusEffects.Dead) &&
+                !unit.StatusEffects.HasBit(StatusEffects.Possessed);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Genrpg.Shared.Currencies.Settings
 
     public class CurrencyHelper : BaseEntityHelper<CurrencySettings, CurrencyType>
     {
-        public override long Key => EntityTypes.Currency;
+        public override long HelperKey => EntityTypes.Currency;
     }
 
 }

@@ -1,22 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Services;
-using System.Threading;
-using System.Runtime.InteropServices;
-using Genrpg.Shared.Spawns.Interfaces;
-using System.Linq;
-using Genrpg.Shared.Spawns.Settings;
+﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Spawns.Helpers;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.RequestServer.Spawns.Helpers;
-using Genrpg.RequestServer.Core;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Spawns.Settings;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.RequestServer.Spawns.Services
 {
@@ -24,9 +14,9 @@ namespace Genrpg.RequestServer.Spawns.Services
     public interface IWebSpawnService : IInitializable
     {
         IWebRollHelper GetRollHelper(long entityTypeid);
-        Task<List<RewardList>> Roll(WebContext context, long spawnTableId, RollData rollData);
-        Task<List<RewardList>> Roll(WebContext context, SpawnTable st, RollData rollData);
-        Task<List<RewardList>> Roll<SI>(WebContext context, List<SI> items, RollData rollData) where SI : ISpawnItem;
+        Task<List<RewardList>> Roll(WebContext context, long spawnTableId, RollLootArgs rollLootArgs);
+        Task<List<RewardList>> Roll(WebContext context, SpawnTable st, RollLootArgs rollLootArgs);
+        Task<List<RewardList>> Roll<SI>(WebContext context, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem;
     }
 
     /// <summary>
@@ -55,38 +45,38 @@ namespace Genrpg.RequestServer.Spawns.Services
             return null;
         }
 
-        public async Task<List<RewardList>> Roll(WebContext context, long spawnTableId, RollData rollData)
+        public async Task<List<RewardList>> Roll(WebContext context, long spawnTableId, RollLootArgs rollLootArgs)
         {
-            return await Roll(context, _gameData.Get<SpawnSettings>(null).Get(spawnTableId), rollData);
+            return await Roll(context, _gameData.Get<SpawnSettings>(null).Get(spawnTableId), rollLootArgs);
         }
 
         // Different public roll methods.
 
-        public async Task<List<RewardList>> Roll(WebContext context, SpawnTable st, RollData rollData)
+        public async Task<List<RewardList>> Roll(WebContext context, SpawnTable st, RollLootArgs rollLootArgs)
         {
             if (st == null)
             {
                 return new List<RewardList>();
             }
 
-            return await Roll(context, st.Items, rollData);
+            return await Roll(context, st.Items, rollLootArgs);
         }
 
-        public async Task<List<RewardList>> Roll<SI>(WebContext context, List<SI> items, RollData rollData) where SI : ISpawnItem
+        public async Task<List<RewardList>> Roll<SI>(WebContext context, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
-            return await InnerRoll(context, items, rollData);
+            return await InnerRoll(context, items, rollLootArgs);
         }
 
-        private async Task<List<RewardList>> InnerRoll<SI>(WebContext context, List<SI> items, RollData rollData) where SI : ISpawnItem
+        private async Task<List<RewardList>> InnerRoll<SI>(WebContext context, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             List<RewardList> list = new List<RewardList>();
 
-            list.Add(new RewardList() { RewardSourceId = rollData.RewardSourceId, EntityId = rollData.EntityId });
-            for (int i = 0; i < rollData.Times; i++)
+            list.Add(new RewardList() { RewardSourceId = rollLootArgs.RewardSourceId, EntityId = rollLootArgs.EntityId });
+            for (int i = 0; i < rollLootArgs.Times; i++)
             {
-                rollData.Depth++;
-                list[0].Rewards = list[0].Rewards.Concat(await RollOnce(context, items, rollData)).ToList();
-                rollData.Depth--;
+                rollLootArgs.Depth++;
+                list[0].Rewards = list[0].Rewards.Concat(await RollOnce(context, items, rollLootArgs)).ToList();
+                rollLootArgs.Depth--;
             }
 
             return list;
@@ -102,7 +92,7 @@ namespace Genrpg.RequestServer.Spawns.Services
         /// <param name="qualityTypeId">Power of the loot</param>
         /// <param name="depth">Depth of the recursion</param>
         /// <returns>A list of spawn responses</returns>
-        private async Task<List<Reward>> RollOnce<SI>(WebContext context, List<SI> items, RollData rollData) where SI : ISpawnItem
+        private async Task<List<Reward>> RollOnce<SI>(WebContext context, List<SI> items, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             if (items == null)
             {
@@ -115,7 +105,7 @@ namespace Genrpg.RequestServer.Spawns.Services
             List<SI> rollEachList = new List<SI>();
             foreach (SI si in items)
             {
-                if (si.MinLevel > rollData.Level)
+                if (si.MinLevel > rollLootArgs.Level)
                 {
                     continue;
                 }
@@ -123,9 +113,9 @@ namespace Genrpg.RequestServer.Spawns.Services
                 {
                     if (context.rand.NextDouble() * 100 < si.Weight)
                     {
-                        rollData.Depth++;
-                        retval = retval.Concat(await RollOneItem(context, si, rollData)).ToList();
-                        rollData.Depth--;
+                        rollLootArgs.Depth++;
+                        retval = retval.Concat(await RollOneItem(context, si, rollLootArgs)).ToList();
+                        rollLootArgs.Depth--;
                     }
                     continue;
                 }
@@ -144,20 +134,20 @@ namespace Genrpg.RequestServer.Spawns.Services
 
                 if (si != null)
                 {
-                    rollData.Depth++;
-                    retval = retval.Concat(await RollOneItem(context, si, rollData)).ToList();
-                    rollData.Depth--;
+                    rollLootArgs.Depth++;
+                    retval = retval.Concat(await RollOneItem(context, si, rollLootArgs)).ToList();
+                    rollLootArgs.Depth--;
                 }
             }
             return retval;
         }
 
 
-        private async Task<List<Reward>> RollOneItem<SI>(WebContext context, SI si, RollData rollData) where SI : ISpawnItem
+        private async Task<List<Reward>> RollOneItem<SI>(WebContext context, SI si, RollLootArgs rollLootArgs) where SI : ISpawnItem
         {
             List<Reward> retval = new List<Reward>();
 
-            if (rollData.Depth > 10)
+            if (rollLootArgs.Depth > 10)
             {
                 return retval;
             }
@@ -166,7 +156,7 @@ namespace Genrpg.RequestServer.Spawns.Services
 
             if (rollHelper != null)
             {
-                retval = await rollHelper.Roll(context, rollData, si);
+                retval = await rollHelper.Roll(context, rollLootArgs, si);
                 return retval;
             }
 
@@ -176,8 +166,8 @@ namespace Genrpg.RequestServer.Spawns.Services
             rew.EntityId = si.EntityId;
             rew.EntityTypeId = si.EntityTypeId;
             rew.Quantity = quantity;
-            rew.QualityTypeId = rollData.QualityTypeId;
-            rew.Level = rollData.Level;
+            rew.QualityTypeId = rollLootArgs.QualityTypeId;
+            rew.Level = rollLootArgs.Level;
             retval.Add(rew);
 
             return retval;

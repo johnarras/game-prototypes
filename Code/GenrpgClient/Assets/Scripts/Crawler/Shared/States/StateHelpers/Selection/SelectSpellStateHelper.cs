@@ -7,11 +7,11 @@ using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
     {
 
         protected IRoleService _roleService = null!;
-        public override ECrawlerStates Key => ECrawlerStates.SelectSpell;
+        public override ECrawlerStates HelperKey => ECrawlerStates.SelectSpell;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -64,18 +64,18 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     extra = null;
                 }
 
-                char chosenChar = (s < 26 ? (char)('A' + s) : (s < 36 ? (char)('0' + s - 26) : CharCodes.None));
+                Key chosenKey = FromChar((char)(s < 26 ? (char)('A' + s) : (s < 36 ? (char)('0' + s - 26) : 0)));
 
-                if (chosenChar != CharCodes.None)
+                if (chosenKey != Key.None)
                 {
-                    spellText = chosenChar + " " + spellText;
+                    spellText = chosenKey + " " + spellText;
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(spellText, chosenChar, nextState, extraData: extra, forceButton: false,
+                stateData.Actions.Add(new CrawlerStateAction(spellText, chosenKey, nextState, extraData: extra, forceButton: false,
                     pointerEnterAction: (GameObject go) => ShowInfo(EntityTypes.CrawlerSpell, spell.IdKey)));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, currentData.Id, extraData: data));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, currentData.Id, extraData: data));
 
 
             await Task.CompletedTask;

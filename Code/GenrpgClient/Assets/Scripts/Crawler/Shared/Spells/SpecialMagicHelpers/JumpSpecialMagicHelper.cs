@@ -13,12 +13,13 @@ using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class JumpSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.Jump;
+        public override long HelperKey => SpecialMagics.Jump;
 
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
@@ -48,7 +49,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
                 }
             });
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.SelectSpell));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.SelectSpell));
 
             await Task.CompletedTask;
             return stateData;

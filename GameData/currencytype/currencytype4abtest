@@ -1,0 +1,8 @@
+{
+  "Id": "currencytype4abtest",
+  "ParentId": "abtest",
+  "IdKey": 4,
+  "Name": "Ability",
+  "Art": "new text blah",
+  "SaveTime": "2025-12-02T21:35:18.586Z"
+}

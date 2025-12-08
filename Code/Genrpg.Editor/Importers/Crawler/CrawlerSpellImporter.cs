@@ -13,7 +13,7 @@ namespace Genrpg.Editor.Importers.Crawler
     {
         public override string ImportDataFilename => "CrawlerSpellImport.csv";
 
-        public override EImportTypes Key => EImportTypes.CrawlerSpells;
+        public override EImportTypes HelperKey => EImportTypes.CrawlerSpells;
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)
         {

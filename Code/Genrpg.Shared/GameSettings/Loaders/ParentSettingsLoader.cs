@@ -24,7 +24,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
         protected IRepositoryService _repoService;
 
         [IgnoreMember]
-        public virtual Type Key => typeof(TParent);
+        public virtual Type HelperKey => typeof(TParent);
         public virtual Type GetChildType() { return typeof(TChild); }
 
         public virtual async Task Initialize(CancellationToken token)

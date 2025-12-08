@@ -5,6 +5,6 @@ namespace Genrpg.Shared.Quests.Helpers
 {
     public class QuestItemHelper : BaseMapEntityHelper<QuestItem>
     {
-        public override long Key => EntityTypes.QuestItem;
+        public override long HelperKey => EntityTypes.QuestItem;
     }
 }

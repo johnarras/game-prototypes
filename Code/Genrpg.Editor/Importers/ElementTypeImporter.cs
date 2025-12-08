@@ -10,7 +10,7 @@ namespace Genrpg.Editor.Importers
     {
         public override string ImportDataFilename => "ElementTypeImport.csv";
 
-        public override EImportTypes Key => EImportTypes.Elements;
+        public override EImportTypes HelperKey => EImportTypes.Elements;
 
         protected override void ImportChildSubObject(EditorGameState gs, ElementType current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

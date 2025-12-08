@@ -20,11 +20,11 @@ namespace Assets.Scripts.WorldCanvas.GameEvents
         public Vector3 StartPos { get; set; }
         public DynamicUILocation Location { get; set; }
         public object Data { get; set; }
-        public OnDownloadHandler Handler { get; set; }
+        public AssetDownloadHandler<object> Handler { get; set; }
         public CancellationToken Token { get; set; }
 
         public ShowDynamicUIItem(DynamicUILocation location, string assetName, Vector3 startPos,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null)
+            AssetDownloadHandler<object> handler, object data, CancellationToken token, string subdirectory = null)
         {
             Location = location;
             AssetName = assetName;

@@ -6,6 +6,6 @@ namespace Genrpg.RequestServer.Core.Currencies.Helpers
 {
     public class CurrencyAsyncRewardHelper : BaseAsyncOwnerQuantityRewardHelper<CurrencyData, CurrencyStatus>
     {
-        public override long Key => EntityTypes.Currency;
+        public override long HelperKey => EntityTypes.Currency;
     }
 }

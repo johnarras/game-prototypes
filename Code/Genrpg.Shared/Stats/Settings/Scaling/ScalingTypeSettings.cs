@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Stats.Settings.Scaling
 
     public class ScalingHelper : BaseEntityHelper<ScalingTypeSettings, ScalingType>
     {
-        public override long Key => EntityTypes.Scaling;
+        public override long HelperKey => EntityTypes.Scaling;
     }
 
 }

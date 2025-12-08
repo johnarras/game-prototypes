@@ -5,9 +5,9 @@ using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 {
@@ -16,7 +16,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
         private IAwaitableService _awaitableService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.CombatConfirm;
+        public override ECrawlerStates HelperKey => ECrawlerStates.CombatConfirm;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -31,11 +31,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Advance)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to advance?", CharCodes.None, ECrawlerStates.None));
+                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to advance?", Key.None, ECrawlerStates.None));
             }
             else if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Run)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to run?", CharCodes.None, ECrawlerStates.None));
+                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to run?", Key.None, ECrawlerStates.None));
             }
             else
             {
@@ -52,11 +52,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                     }
                     stateData.AddText(text);
                 }
-                stateData.Actions.Add(new CrawlerStateAction("Use these actions?", CharCodes.None, ECrawlerStates.None));
+                stateData.Actions.Add(new CrawlerStateAction("Use these actions?", Key.None, ECrawlerStates.None));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ProcessCombatRound));
-            stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.CombatFightRun,
+            stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ProcessCombatRound));
+            stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.CombatFightRun,
                 onClickAction: delegate ()
                 {
                     // Need to reset all combat round data and start over.

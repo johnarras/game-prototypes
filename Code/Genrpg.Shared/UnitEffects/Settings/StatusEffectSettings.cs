@@ -44,6 +44,6 @@ namespace Genrpg.Shared.UnitEffects.Settings
 
     public class StatusEffectEntityHelper : BaseEntityHelper<StatusEffectSettings, StatusEffect>
     {
-        public override long Key => EntityTypes.StatusEffect;
+        public override long HelperKey => EntityTypes.StatusEffect;
     }
 }

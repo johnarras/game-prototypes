@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Rewards.Helpers
     {
 
         protected IRewardService _rewardService;
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
@@ -36,7 +36,7 @@ namespace Genrpg.Shared.Rewards.Helpers
             TParent parentData = obj.Get<TParent>();
             TChild status = parentData.Get(entityId);
             status.Quantity += quantity;
-            _rewardService.OnAddQuantity(obj, status, Key, status.IdKey, quantity, rp);
+            _rewardService.OnAddQuantity(obj, status, HelperKey, status.IdKey, quantity, rp);
             return true;
         }
 

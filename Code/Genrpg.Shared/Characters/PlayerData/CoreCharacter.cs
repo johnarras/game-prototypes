@@ -31,13 +31,13 @@ namespace Genrpg.Shared.Characters.PlayerData
         [Key(18)] public long SexTypeId { get; set; }
         [Key(19)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
 
-        public string GetDocName(string settingName)
+        public string GetDocName(long settingsNameId)
         {
             if (_overrideList == null)
             {
                 return GameDataConstants.DefaultFilename;
             }
-            PlayerSettingsOverrideItem item = _overrideList.Items.FirstOrDefault(x => x.SettingId == settingName);
+            PlayerSettingsOverrideItem item = _overrideList.Items.FirstOrDefault(x => x.SettingsNameId == settingsNameId);
             return item?.DocId ?? GameDataConstants.DefaultFilename;
         }
 

@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 {
     public class MapMagicEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.MapMagic;
+        public override long HelperKey => EntityTypes.MapMagic;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

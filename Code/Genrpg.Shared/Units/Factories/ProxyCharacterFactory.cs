@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Units.Factories
     [MessagePackObject]
     public class ProxyCharacterFactory : UnitFactory
     {
-        public override long Key => EntityTypes.ProxyCharacter;
+        public override long HelperKey => EntityTypes.ProxyCharacter;
 
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {

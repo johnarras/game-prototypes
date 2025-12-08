@@ -13,9 +13,12 @@ public class ClientFlags
 public class LocalClientOptions : IStringId
 {
     public string Id { get; set; }
-    public int UserFlags { get; set; }
-    public int ScreenWidth { get; set; }
-    public int ScreenHeight { get; set; }
+    public int ScreenWidth { get; set; } = 1920;
+    public int ScreenHeight { get; set; } = 1080;
+    public int Flags { get; set; }
+    public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
+    public void AddFlags(int flagBits) { Flags |= flagBits; }
+    public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
     public SmallIdFloatCollection AudioVolumes { get; set; } = new SmallIdFloatCollection();
 

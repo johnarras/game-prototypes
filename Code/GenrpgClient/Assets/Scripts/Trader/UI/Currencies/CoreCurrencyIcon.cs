@@ -1,7 +1,8 @@
 ﻿using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Entities;
+using Genrpg.Shared.CoreCurrencies.Services;
+using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.UserEnergy.WebApi;
 using Genrpg.Shared.Utils;
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Trader.UI.Currencies
     {
 
         protected IClientWebService _webService = null;
+        protected ICoreCurrencyService _coreCurrencyService = null;
 
         public ProgressBar FillBar;
         public EntityTypeWithIdUI EntityUI;
@@ -25,9 +27,11 @@ namespace Assets.Scripts.Trader.UI.Currencies
         public override void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
         {
             CoreUserData userData = _gs.ch.Get<CoreUserData>();
-            CoreCurrencyStatus status = userData.Currencies.GetStatus(entityId);
-            base.SetEntityData(entityTypeId, entityId, status.Curr(), status.Storage());
-            FillBar.InitRange(0, status.Storage(), status.Curr());
+            TraderStatData statData = _gs.ch.Get<TraderStatData>();
+            long currQuantity = userData.Currencies.Get(entityId);
+            long storage = _coreCurrencyService.GetStorage(entityId, userData, statData);
+            base.SetEntityData(entityTypeId, entityId, currQuantity, storage);
+            FillBar.InitRange(0, storage, currQuantity);
         }
 
         protected override void UpdateQuantity()
@@ -40,9 +44,8 @@ namespace Assets.Scripts.Trader.UI.Currencies
             else
             {
                 CoreUserData userData = _gs.ch.Get<CoreUserData>();
-                CoreCurrencyStatus status = userData.Currencies.GetStatus(EntityUI.EntityId);
 
-                double totalSeconds = (status.NextRegenTick - DateTime.UtcNow).TotalSeconds;
+                double totalSeconds = (userData.NextHourlyUpdate - DateTime.UtcNow).TotalSeconds;
 
                 if (totalSeconds < 1)
                 {
@@ -51,7 +54,8 @@ namespace Assets.Scripts.Trader.UI.Currencies
 
                 long finalSeconds = (int)Math.Max(0, totalSeconds);
 
-                _uiService.SetText(QuantityText, $"+{status.Regen()} in " + TimeUtils.PrintTime(finalSeconds));
+                long regen = _coreCurrencyService.GetRegen(_entityId, userData, _gs.ch.Get<TraderStatData>());
+                _uiService.SetText(QuantityText, $"+{regen} in " + TimeUtils.PrintTime(finalSeconds));
             }
         }
 

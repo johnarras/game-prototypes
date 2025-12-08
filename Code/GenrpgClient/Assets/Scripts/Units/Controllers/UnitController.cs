@@ -1,29 +1,30 @@
 
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
+using Assets.Scripts.Input;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
-using System.Threading;
-using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Units.Constants;
-using System.Linq;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 public class UnitController : BaseBehaviour
 {
-    protected IClientMapObjectManager _objectManager;
-    protected IMapTerrainManager _terrainManager;
-    protected IPathfindingService _pathfindingService;
-    protected IInputService _inputService;
-    protected IPlayerManager _playerManager;
-    protected IClientAppService _clientAppService;
+    protected IClientMapObjectManager _objectManager = null;
+    protected IMapTerrainManager _terrainManager = null;
+    protected IPathfindingService _pathfindingService = null;
+    protected IInputService _inputService = null;
+    protected IPlayerManager _playerManager = null;
+    protected IClientAppService _clientAppService = null;
+    protected IKeyboardService _keyboardService = null;
+
     public const int IdleState = 0;
     public const int CombatState = 1;
     public const int LeashState = 2;
@@ -37,7 +38,7 @@ public class UnitController : BaseBehaviour
     public const float SwimDepth = 1.2f;
 
     protected GAnimator anims = null;
-	protected CharacterController cc = null;
+    protected CharacterController cc = null;
     Rigidbody rb = null;
     protected Unit _unit = null;
     protected CancellationToken _token;
@@ -84,32 +85,32 @@ public class UnitController : BaseBehaviour
         rb.freezeRotation = true;
     }
 
-	protected IDictionary<string, float> _downKeys = new Dictionary<string,float>();
-	public virtual void SetKeyPercent (string commandName, float percent)
-	{
+    protected IDictionary<string, float> _downKeys = new Dictionary<string, float>();
+    public virtual void SetKeyPercent(string commandName, float percent)
+    {
         if (string.IsNullOrEmpty(commandName))
         {
             return;
         }
         _downKeys[commandName] = percent;
-	}
+    }
 
-	public virtual float GetKeyPercent (string commandName)
-	{
-        if (string.IsNullOrEmpty(commandName)) 
-        { 
-            return 0.0f; 
+    public virtual float GetKeyPercent(string commandName)
+    {
+        if (string.IsNullOrEmpty(commandName))
+        {
+            return 0.0f;
         }
-        if (!_downKeys.ContainsKey (commandName)) 
-        { 
-            _downKeys[commandName] = 0.0f; 
+        if (!_downKeys.ContainsKey(commandName))
+        {
+            _downKeys[commandName] = 0.0f;
         }
         return MathUtils.Clamp(0, _downKeys[commandName], 1);
-	}
-    
+    }
+
     public virtual void SetInputValues(int keysDown, float rot)
     {
-        string[] moveInputsToCheck = _inputService.MoveInputsToCheck();
+        string[] moveInputsToCheck = _playerManager.MoveInputsToCheck();
         for (int i = 0; i < moveInputsToCheck.Length; i++)
         {
             SetKeyPercent(moveInputsToCheck[i], FlagUtils.IsSet(keysDown, 1 << i) ? 1 : 0);
@@ -120,7 +121,7 @@ public class UnitController : BaseBehaviour
     protected int GetKeysDown()
     {
         int retval = 0;
-        string[] moveInputsToCheck = _inputService.MoveInputsToCheck();
+        string[] moveInputsToCheck = _playerManager.MoveInputsToCheck();
         for (int i = 0; i < moveInputsToCheck.Length; i++)
         {
             if (GetKeyPercent(moveInputsToCheck[i]) > 0)
@@ -167,14 +168,14 @@ public class UnitController : BaseBehaviour
 
         float dz = 0.0f;
         float dx = 0.0f;
-        float sKeyPct = GetKeyPercent(KeyComm.Backward)*BackupSpeedScale;
+        float sKeyPct = GetKeyPercent(KeyComm.Backward) * BackupSpeedScale;
         float wKeyPct = GetKeyPercent(KeyComm.Forward);
 
 
         dx += sKeyPct * moveSpeed;
         dx -= wKeyPct * moveSpeed;
 
-        
+
         if ((dx != 0 || dz != 0) &&
             _unit.ActionMessage != null)
         {
@@ -186,31 +187,31 @@ public class UnitController : BaseBehaviour
         }
 
         if (IsSwimming()) { dx *= SwimSpeedScale(); }
-       
+
         Vector3 startPos = entity.transform.position;
         float rotateAmount = 0.0f;
         rotateAmount -= GetKeyPercent(KeyComm.TurnLeft) * rotSpeed;
         rotateAmount += GetKeyPercent(KeyComm.TurnRight) * rotSpeed;
-        if (rotateAmount != 0) {entity.transform.rotation *= Quaternion.Euler(0, rotateAmount, 0); }
+        if (rotateAmount != 0) { entity.transform.rotation *= Quaternion.Euler(0, rotateAmount, 0); }
 
         ShowMoveAnimations(dx, dz);
 
         Vector3 endPos = startPos;
-		if (dx != 0 || dz != 0)
-		{
+        if (dx != 0 || dz != 0)
+        {
             //dz *= (100.0f + _unit.Stats.Pct(StatType.Speed) / 100);
             float nrot = entity.transform.localEulerAngles.y;
-            double sin = Math.Sin (nrot*Math.PI/180.0);
-            double cos = Math.Cos(nrot*Math.PI/180.0);
+            double sin = Math.Sin(nrot * Math.PI / 180.0);
+            double cos = Math.Cos(nrot * Math.PI / 180.0);
 
-            float nz = (float) -(dx*cos+dz*sin);
-            float nx = (float) (dz*cos-dx*sin);
+            float nz = (float)-(dx * cos + dz * sin);
+            float nx = (float)(dz * cos - dx * sin);
 
             float ny = 0.0f;
 
-            float mx = startPos.x+nx;
-            float my = startPos.y+ny;
-            float mz = startPos.z+nz;
+            float mx = startPos.x + nx;
+            float my = startPos.y + ny;
+            float mz = startPos.z + nz;
 
             endPos = new Vector3(mx, my, mz);
 
@@ -235,11 +236,11 @@ public class UnitController : BaseBehaviour
         {
             cc.SimpleMove(diff);
         }
-	}
+    }
 
     float _oldAnimDx = 0;
     float _oldAnimDz = 0;
-    protected virtual void ShowMoveAnimations (float dx, float dz)
+    protected virtual void ShowMoveAnimations(float dx, float dz)
     {
         if (anims == null)
         {
@@ -285,7 +286,7 @@ public class UnitController : BaseBehaviour
     }
 
     public virtual void ProcessDeath(Unit killer) { }
-   
+
     protected UnitFrame _mapHealthBar = null;
     public virtual void SetState(int state)
     {
@@ -320,7 +321,7 @@ public class UnitController : BaseBehaviour
     private bool _died = false;
     public void OnDeath(Died died, CancellationToken token)
     {
-        _unit.AddFlag(UnitFlags.IsDead); 
+        _unit.AddFlag(UnitFlags.IsDead);
         if (_died)
         {
             return;
@@ -364,7 +365,7 @@ public class UnitController : BaseBehaviour
                 // JRAJRA TODO REMOVE ONCE REAL ANIMS COME IN
                 entity.transform.GetChild(0).transform.Rotate(new Vector3(1, 0, 0), 180);
                 entity.transform.GetChild(0).transform.position += new Vector3(0, 1, 0);
-            }   
+            }
             return;
         }
         AnimUtils.Trigger(anims, AnimParams.Die, 1);
@@ -398,20 +399,12 @@ public class UnitController : BaseBehaviour
         {
 
             _assetService.LoadAssetInto(entity, AssetCategoryNames.UI, CombatTextUI.UIPrefabName,
-                OnLoadCombatText, text, _token, "FloatingText");
+                OnLoadCombatText, _token, text, "FloatingText");
         }
     }
 
-    private void OnLoadCombatText(object obj, object data, CancellationToken token)
+    private void OnLoadCombatText(GameObject go, CombatText text, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        CombatText text = data as CombatText;
-
         if (text == null)
         {
             _clientEntityService.Destroy(go);

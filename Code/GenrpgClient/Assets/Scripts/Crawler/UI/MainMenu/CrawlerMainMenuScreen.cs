@@ -72,10 +72,5 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         {
             _clientAppService.Quit();
         }
-
-        private void ClickToggleFullScreen()
-        {
-            _clientAppService.SetFullScreen(!_clientAppService.IsFullScreen());
-        }
     }
 }

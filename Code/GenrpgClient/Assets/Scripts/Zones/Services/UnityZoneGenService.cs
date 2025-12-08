@@ -2,6 +2,7 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.DataUpdates;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Interfaces;
 using ClientEvents;
@@ -297,6 +298,7 @@ public class UnityZoneGenService : ZoneGenService
 
 
         _dispatcher.Dispatch(new MapIsLoadedEvent());
+        _dispatcher.Dispatch(new OnNewGameData());
         _md.GeneratingMap = false;
         await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
         _playerManager.MoveAboveObstacles();

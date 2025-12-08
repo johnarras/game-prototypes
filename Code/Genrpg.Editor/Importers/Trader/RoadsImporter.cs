@@ -8,7 +8,7 @@ namespace Genrpg.Editor.Importers.Trader
     {
         public override string ImportDataFilename => "RoadsImport.csv";
 
-        public override EImportTypes Key => EImportTypes.Roads;
+        public override EImportTypes HelperKey => EImportTypes.Roads;
 
         protected override void ImportChildSubObject(EditorGameState gs, Road current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

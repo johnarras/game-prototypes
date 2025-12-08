@@ -7,11 +7,11 @@ using Assets.Scripts.UI.Crawler.ActionUI;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 {
@@ -73,12 +73,12 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
                 CrawlerStateAction action = _nextStateData.Actions[a];
 
-                if (action.HideText || (action.Key == CharCodes.Escape && stateData.HasInput()))
+                if (action.HideText || (action.Key == Key.Escape && stateData.HasInput()))
                 {
                     continue;
                 }
 
-                if (!action.ForceButton || action.ForceText || (!action.ForceButton && !action.RowFiller && (action.Key == CharCodes.Escape || action.Key == CharCodes.Space ||
+                if (!action.ForceButton || action.ForceText || (!action.ForceButton && !action.RowFiller && (action.Key == Key.Escape || action.Key == Key.Space ||
                     string.IsNullOrEmpty(action.Text) || action.Text.Length >= 20 ||
                     action.NextState == ECrawlerStates.None)))
                 {
@@ -195,7 +195,6 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
         protected override void OnDestroy()
         {
-            Clear();
             base.OnDestroy();
         }
     }

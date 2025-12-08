@@ -14,7 +14,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
     public abstract class BaseCharacterLoadUpdater : ICharacterLoadUpdater
     {
 
-        public Type Key => GetType();
+        public Type HelperKey => GetType();
         public virtual int Order => 0;
 
         public abstract Task Update(WebContext context, Character ch);

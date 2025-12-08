@@ -11,7 +11,7 @@ namespace Genrpg.Shared.GameSettings.Mappers
     {
         public virtual Version GetMinClientVersion() { return VersionConstants.MinVersion; }
         public virtual Version GetMaxClientVersion() { return VersionConstants.MaxVersion; }
-        [IgnoreMember] public virtual Type Key => typeof(TServer);
+        [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
         public virtual Type GetClientType() { return typeof(TDto); }
         public virtual bool SendToClient() { return true; }
 

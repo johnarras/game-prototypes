@@ -1,9 +1,9 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameSettings.Services;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
@@ -178,7 +178,7 @@ public class ClientAuthService : IClientAuthService
         await Task.CompletedTask;
     }
 
-    public async Task OnClientResetCleanup(CancellationToken token)
+    public async Task OnReset(CancellationToken token)
     {
         ExitMMOMap();
         await Task.CompletedTask;

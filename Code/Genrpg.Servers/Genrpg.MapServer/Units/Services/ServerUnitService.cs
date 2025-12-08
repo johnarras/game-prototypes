@@ -9,9 +9,9 @@ using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Levels.Settings;
 using Genrpg.Shared.Rewards.Constants;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Spells.Settings.Effects;
@@ -62,7 +62,7 @@ namespace Genrpg.MapServer.Units.Services
             targ.Loot = new List<RewardList>();
             targ.SkillLoot = new List<RewardList>();
 
-            RollData rollData = new RollData()
+            RollLootArgs rollLootArgs = new RollLootArgs()
             {
                 Level = targ.Level,
                 Depth = 0,
@@ -77,7 +77,7 @@ namespace Genrpg.MapServer.Units.Services
 
                 targ.SkillLoot = new List<RewardList>();
 
-                targ.Loot = _spawnService.Roll(rand, _gameData.Get<SpawnSettings>(targ).MonsterLootSpawnTableId, rollData);
+                targ.Loot = _spawnService.Roll(rand, _gameData.Get<SpawnSettings>(targ).MonsterLootSpawnTableId, rollLootArgs);
                 RpgLevel levelData = _gameData.Get<RpgLevelSettings>(targ).Get(targ.Level);
 
                 if (levelData != null)
@@ -98,19 +98,19 @@ namespace Genrpg.MapServer.Units.Services
 
                 if (utype.LootItems != null)
                 {
-                    targ.Loot.AddRange(_spawnService.Roll(rand, utype.LootItems, rollData));
+                    targ.Loot.AddRange(_spawnService.Roll(rand, utype.LootItems, rollLootArgs));
                 }
                 // Quest loot? need list of quests from caster?
 
                 if (utype.InteractLootItems != null)
                 {
-                    targ.SkillLoot = _spawnService.Roll(rand, utype.InteractLootItems, rollData);
+                    targ.SkillLoot = _spawnService.Roll(rand, utype.InteractLootItems, rollLootArgs);
                 }
 
                 if (ttype != null)
                 {
-                    targ.Loot.AddRange(_spawnService.Roll(rand, ttype.LootItems, rollData));
-                    targ.SkillLoot.AddRange(_spawnService.Roll(rand, ttype.InteractLootItems, rollData));
+                    targ.Loot.AddRange(_spawnService.Roll(rand, ttype.LootItems, rollLootArgs));
+                    targ.SkillLoot.AddRange(_spawnService.Roll(rand, ttype.InteractLootItems, rollLootArgs));
                 }
 
                 targ.SkillLoot = targ.SkillLoot.Where(x => x.Rewards.Count > 0).ToList();

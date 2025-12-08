@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
             return ScrollingFramesValues[scrollFramesIndex];
         }
 
-        public const int StartGroupCount = 1;
-        public const int StartGroupSize = 1;
+        public const int MinGroupCount = 1;
+        public const int MinGroupSize = 1;
     }
 }

@@ -1,19 +1,47 @@
-﻿using System.Threading;
+﻿using Genrpg.Shared.Logging.Interfaces;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Entities
 {
-    public class BundleDownload
+    public interface IBundleDownload
     {
-        public string url;
-        public string bundleName;
-        public string assetName;
-        public OnDownloadHandler handler;
-        public System.Object data;
-        public GameObject parent;
-        public bool isLocal;
-        public int idHash;
-        public CancellationToken Token;
+        string url { get; set; }
+        string bundleName { get; set; }
+        string assetName { get; set; }
+        GameObject parent { get; set; }
+        bool isLocal { get; set; }
+        int idHash { get; set; }
+        CancellationToken Token { get; set; }
+
+        void CallDownloadHandler(GameObject asset, ILogService logService);
+    }
+
+
+    public class BundleDownload<T> : IBundleDownload
+    {
+        public string url { get; set; }
+        public string bundleName { get; set; }
+        public string assetName { get; set; }
+        public AssetDownloadHandler<T> handler { get; set; }
+        public T data { get; set; }
+        public GameObject parent { get; set; }
+        public bool isLocal { get; set; }
+        public int idHash { get; set; }
+        public CancellationToken Token { get; set; }
+
+        public void CallDownloadHandler(GameObject asset, ILogService logService)
+        {
+            if (asset == null)
+            {
+                logService.Info("Failed To load asset: " + assetName + " from " + bundleName);
+            }
+            else if (handler != null)
+            {
+                handler(asset, data, Token);
+            }
+
+        }
     }
 
 }

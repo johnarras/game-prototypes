@@ -14,7 +14,7 @@ namespace Genrpg.RequestServer.Rewards.RewardHelpers.Core
         protected IGameData _gameData = null;
         protected IWebRewardService _serverRewardService = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public abstract Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
     }

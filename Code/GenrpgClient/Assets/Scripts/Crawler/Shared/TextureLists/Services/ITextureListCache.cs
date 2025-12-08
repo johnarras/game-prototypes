@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Assets.Services;
-using Genrpg.Shared.Core.Interfaces;
+using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
 

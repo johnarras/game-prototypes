@@ -18,7 +18,7 @@ namespace Assets.Scripts.Login.Messages.Core
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
         protected IAwaitableService _awaitableService = null;
-        public Type Key => typeof(T);
+        public Type HelperKey => typeof(T);
 
         virtual public int Priority() { return 0; }
 

@@ -1,5 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Combat.Constants;
+﻿using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Info.EffectHelpers;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -9,9 +8,6 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.GameSettings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 {
@@ -24,7 +20,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
         protected ICrawlerService _crawlerService;
 
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
         public abstract string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect);
 
         protected virtual string GetRoleScalingText(CrawlerSpell spell, CrawlerSpellEffect effect, string prefix = " per ")

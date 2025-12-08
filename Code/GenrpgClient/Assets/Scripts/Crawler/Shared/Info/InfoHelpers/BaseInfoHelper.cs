@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         protected IInfoService _infoService;
 
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
 
         public virtual bool OverviewTypeNameIsPlural() { return true; }

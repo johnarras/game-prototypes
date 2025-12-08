@@ -1,18 +1,13 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Loaders;
-using System.Linq;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Stats.Constants;
+using MessagePack;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Stats.Settings.Stats
 {/// <summary>
@@ -65,14 +60,14 @@ namespace Genrpg.Shared.Stats.Settings.Stats
 
     public class StatTypeHelper : BaseEntityHelper<StatSettings, StatType>
     {
-        public override long Key => EntityTypes.Stat;
+        public override long HelperKey => EntityTypes.Stat;
     }
     public class StatBonusTypeHelper : BaseEntityHelper<StatSettings, StatType>
     {
-        public override long Key => EntityTypes.StatBonus;
+        public override long HelperKey => EntityTypes.StatBonus;
     }
     public class StatPctHelper : BaseEntityHelper<StatSettings, StatType>
     {
-        public override long Key => EntityTypes.StatPct;
+        public override long HelperKey => EntityTypes.StatPct;
     }
 }

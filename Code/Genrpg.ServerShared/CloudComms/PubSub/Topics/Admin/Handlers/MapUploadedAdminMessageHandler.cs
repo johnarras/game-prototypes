@@ -12,7 +12,7 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers
 {
     public class MapUploadedAdminMessageHandler : BaseAdminPubSubMessageHandler<MapUploadedAdminMessage>
     {
-        public override Type Key => typeof(MapUploadedAdminMessage);
+        public override Type HelperKey => typeof(MapUploadedAdminMessage);
 
         protected override async Task InnerHandleMessage(MapUploadedAdminMessage message, CancellationToken token)
         {

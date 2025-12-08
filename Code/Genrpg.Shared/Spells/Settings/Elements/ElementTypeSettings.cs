@@ -115,7 +115,7 @@ namespace Genrpg.Shared.Spells.Settings.Elements
 
     public class ElementTypeHelper : BaseEntityHelper<ElementTypeSettings, ElementType>
     {
-        public override long Key => EntityTypes.Element;
+        public override long HelperKey => EntityTypes.Element;
     }
 
 

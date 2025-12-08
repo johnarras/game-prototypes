@@ -1,6 +1,7 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameSettings.Services;
 using Assets.Scripts.Purchasing.Services;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
@@ -8,8 +9,6 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Updates;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Core.Interfaces;
-using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using System.Reflection;
@@ -35,7 +34,6 @@ public class InitClient : BaseBehaviour, IInitClient
     }
 
     private IClientAuthService _loginService = null;
-    private ICrawlerService _crawlerService = null;
     private IClientConfigContainer _config = null;
     private IClientAppService _clientAppService = null;
     private ICursorService _cursorService = null;
@@ -91,7 +89,7 @@ public class InitClient : BaseBehaviour, IInitClient
         ShowSplashScreen();
         foreach (IClientResetCleanup cleanup in _gs.loc.GetVals<IClientResetCleanup>())
         {
-            await cleanup.OnClientResetCleanup(GetGameToken());
+            await cleanup.OnReset(GetGameToken());
         }
         _clientEntityService.DestroyAllChildren(_globalRoot);
 
@@ -121,6 +119,7 @@ public class InitClient : BaseBehaviour, IInitClient
         _gs.loc.Resolve(this);
         await clientInitializer.SetupGame(_gs.loc, GetToken());
         _gs.loc.Resolve(this);
+        _clientAppService.ShowCurrentScreenState();
         if (loadPrefabs)
         {
             InitialPrefabLoader prefabLoader = _localLoadService.LocalLoad<InitialPrefabLoader>("Prefabs/PrefabLoader");
@@ -145,19 +144,18 @@ public class InitClient : BaseBehaviour, IInitClient
         _logService.Info("GAME MODE: " + GameMode.ToString());
         // Initial app appearance.
         _clientAppService.TargetFrameRate = 30;
-        //_clientAppService.SetupScreen(1920, 1080, false, true, 0);
         _dispatcher.AddListener<NewVersionResponse>(OnNewVersion, GetGameToken());
 
         while (!_assetService.IsInitialized())
         {
-            await Awaitable.WaitForSecondsAsync(0.1f);
+            await Awaitable.WaitForSecondsAsync(0.1f, GetGameToken());
         }
 
         _cursorService.SetCursor(CursorNames.Default);
 
         await _gameDataService.LoadCachedSettings(_gs, false);
 
-        await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
+        await _screenService.OpenAsync(ScreenNames.Loading, null, GetGameToken());
 
         await _purchasingService.InitializeStores(GetToken());
 
@@ -179,11 +177,17 @@ public class InitClient : BaseBehaviour, IInitClient
 
     void OnApplicationQuit()
     {
+        ShowSplashScreen();
         _gameTokenSource.Cancel();
         _gameTokenSource.Dispose();
         _gameTokenSource = null;
-        _networkService?.CloseClient();
-        _crawlerService?.SaveGame();
+        if (_gs != null && _gs.loc != null)
+        {
+            foreach (IClientQuitCleanup cleanup in _gs.loc.GetVals<IClientQuitCleanup>())
+            {
+                cleanup.OnQuit();
+            }
+        }
     }
 
     public CancellationToken GetGameToken()

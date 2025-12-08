@@ -3,7 +3,6 @@ using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Levels.Settings;
 using Genrpg.Shared.Quests.Constants;
 using Genrpg.Shared.Quests.PlayerData;
 using Genrpg.Shared.Quests.WorldData;
@@ -13,6 +12,7 @@ using System.Threading;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.RpgLevels.Settings;
 
 namespace Genrpg.Shared.Quests.Services
 {

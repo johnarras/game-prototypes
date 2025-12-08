@@ -21,7 +21,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
     public class DungeonMapGenHelper : BaseCrawlerMapGenHelper
     {
-        public override long Key => CrawlerMapTypes.Dungeon;
+        public override long HelperKey => CrawlerMapTypes.Dungeon;
 
         private ISamplingService _samplingService = null;
 

@@ -14,12 +14,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class TownPortalSpecialMagicHelper : BaseSpecialMagicHelper
     {
-        public override long Key => SpecialMagics.TownPortal;
+        public override long HelperKey => SpecialMagics.TownPortal;
 
         public override async Task<CrawlerStateData> HandleEffect(CrawlerStateData stateData,
             SelectSpellAction action, CrawlerSpell spell, CrawlerSpellEffect effect, CancellationToken token)
@@ -55,7 +56,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
                     IsTownPortal = true,
                 };
 
-                stateData.Actions.Add(new CrawlerStateAction(cityMap.Name + " (Level " + cityMap.Level + ")", CharCodes.None, ECrawlerStates.ExploreWorld,
+                stateData.Actions.Add(new CrawlerStateAction(cityMap.Name + " (Level " + cityMap.Level + ")", Key.None, ECrawlerStates.ExploreWorld,
                    () =>
                    {
                        _spellService.RemoveSpellPowerCost(party, action.Action.Member, action.Spell);
@@ -69,7 +70,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
                 stateData.AddText(_textService.HighlightText(action.PreviousError, TextColors.ColorRed));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.SelectSpell));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.SelectSpell));
 
             await Task.CompletedTask;
             return stateData;

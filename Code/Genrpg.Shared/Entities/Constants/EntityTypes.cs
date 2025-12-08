@@ -81,10 +81,9 @@
 
         // User Reward Types
         public const long CoreCurrency = 200;
-        public const long BaseCoreCurrencyRegen = 201;
-        public const long BaseCoreCurrencyStorage = 202;
-        public const long BonusCoreCurrencyRegen = 203;
-        public const long BonusCoreCurrencyStorage = 204;
+        public const long TraderStat = 201;
+        public const long BaseTraderStat = 202;
+        public const long BonusTraderStat = 203;
 
     }
 }

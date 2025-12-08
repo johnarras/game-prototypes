@@ -17,7 +17,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         private IServerConfig _serverConfig = null;
 
 
-        public EPurchasePlatforms Key => EPurchasePlatforms.GooglePlay;
+        public EPurchasePlatforms HelperKey => EPurchasePlatforms.GooglePlay;
 
         private string _packageName;
         private AndroidPublisherService _publisherService;

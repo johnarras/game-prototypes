@@ -16,7 +16,7 @@ namespace Genrpg.Shared.Crawler.Info.Helpers
 
         private ICrawlerSpellService _spellService = null;
 
-        public override long Key => EntityTypes.CrawlerSpell;
+        public override long HelperKey => EntityTypes.CrawlerSpell;
 
         protected override bool IsValidInfoChild(CrawlerSpell child)
         {

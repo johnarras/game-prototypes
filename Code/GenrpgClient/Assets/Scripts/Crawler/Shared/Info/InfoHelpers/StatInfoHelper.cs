@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
     public class StatInfoHelper : BaseInfoHelper<StatSettings, StatType>
     {
 
-        public override long Key => EntityTypes.Stat;
+        public override long HelperKey => EntityTypes.Stat;
 
         protected override bool IsValidInfoChild(StatType stype)
         {

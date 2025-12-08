@@ -1,6 +1,5 @@
 ﻿using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
 using System;
@@ -8,7 +7,7 @@ using System.Threading;
 
 public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler where T : class, IMapApiMessage
 {
-    public Type Key => typeof(T);
+    public Type HelperKey => typeof(T);
 
     protected IClientMapObjectManager _objectManager;
     protected IMapTerrainManager _terrainManager;

@@ -37,7 +37,7 @@ public class CharacterSelectRow : BaseBehaviour
         foreach (MapStub stub in _gs.mapStubs)
         {
             _assetService.LoadAssetInto(PlayButtonAnchor, AssetCategoryNames.UI,
-                "CharacterPlayButton", OnDownloadPlayButton, stub, token, screen.Subdirectory);
+                "CharacterPlayButton", OnDownloadPlayButton, token, stub, screen.Subdirectory);
         }
     }
 
@@ -61,17 +61,8 @@ public class CharacterSelectRow : BaseBehaviour
         _webNetworkService.SendClientUserWebRequest(com, _token);
     }
 
-    private void OnDownloadPlayButton(object obj, object data, CancellationToken token)
+    private void OnDownloadPlayButton(GameObject go, MapStub stub, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            return;
-        }
-
-        MapStub stub = data as MapStub;
-
         if (stub == null)
         {
             Destroy(go);

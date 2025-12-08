@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
 using Assets.Scripts.UI.Interfaces;
@@ -6,7 +7,6 @@ using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
@@ -71,14 +71,12 @@ namespace Assets.Scripts.DynamicUI.Services
             await Task.CompletedTask;
         }
 
-        public async Task OnClientResetCleanup(CancellationToken token)
+        public async Task OnReset(CancellationToken token)
         {
-
             foreach (DynamicUIItem di in _currentItems)
             {
                 _clientEntityService.Destroy(di.Go);
             }
-
 
             await Task.CompletedTask;
         }
@@ -194,24 +192,16 @@ namespace Assets.Scripts.DynamicUI.Services
         }
 
 
-        private void OnLoadDynamicItem(object obj, object data, CancellationToken token)
+        private void OnLoadDynamicItem(GameObject go, ShowDynamicUIItem showItem, CancellationToken token)
         {
-            ShowDynamicUIItem showItem = data as ShowDynamicUIItem;
-
             if (showItem == null || showItem.Handler == null)
-            {
-                return;
-            }
-
-            GameObject go = obj as GameObject;
-            if (go == null)
             {
                 return;
             }
 
             OnDynamicUIItem(new DynamicUIItem(go, _clientEntityService.GetInterface<IDynamicUIItem>(go), showItem.StartPos, DynamicUILocation.ScreenSpace));
 
-            showItem.Handler(obj, showItem.Data, token);
+            showItem.Handler(go, showItem.Data, token);
 
         }
 

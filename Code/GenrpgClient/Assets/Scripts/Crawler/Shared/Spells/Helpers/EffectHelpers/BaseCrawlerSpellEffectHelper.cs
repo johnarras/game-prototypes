@@ -27,7 +27,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         protected ICrawlerStatService _crawlerStatService = null;
         protected ICrawlerCombatService _combatService = null;
 
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
         public abstract Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token);
     }

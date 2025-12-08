@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 {
     public class StatSpellEffectHelper : BaseSpellEffectHelper
     {
-        public override long Key => EntityTypes.Stat;
+        public override long HelperKey => EntityTypes.Stat;
 
         public override string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect)
         {

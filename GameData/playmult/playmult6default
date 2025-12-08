@@ -2,6 +2,7 @@
   "Id": "playmult6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Mult": 50,
-  "MinLevel": 12
+  "Mult": 30,
+  "MinLevel": 12,
+  "SaveTime": "2025-11-27T18:09:04.373Z"
 }

@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Utils.Data
     /// used at most times.
     /// </summary>
     [MessagePackObject]
-    public class SmallIdShortCollection : BaseSmallIdCollection<short>
+    public class SmallIdShortCollection : BaseSmallIdQuantityCollection<short>
     {
         protected override short InternalAdd(short first, short second)
         {

@@ -17,4 +17,9 @@ public class GToggle : BaseBehaviour
     {
         return Toggle.isOn;
     }
+
+    public void SetIsOn(bool isOn)
+    {
+        Toggle.isOn = isOn;
+    }
 }

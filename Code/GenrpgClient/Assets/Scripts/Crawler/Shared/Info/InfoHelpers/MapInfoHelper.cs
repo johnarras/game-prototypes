@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         protected ICrawlerMapService _mapService = null;
         protected IInfoService _infoService = null;
 
-        public virtual long Key => EntityTypes.Map;
+        public virtual long HelperKey => EntityTypes.Map;
 
         public List<IIdName> GetInfoChildren()
         {

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Levels.Messages;
+﻿using Genrpg.Shared.RpgLevels.Messages;
 
 namespace Assets.Scripts.MessageHandlers.Levels
 {

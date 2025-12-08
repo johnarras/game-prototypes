@@ -13,6 +13,6 @@ namespace Genrpg.Shared.Factions.Helpers
 {
     public class ReputationRewardHelper : BaseQuantityRewardHelper<ReputationData,ReputationStatus>
     {
-        public override long Key => EntityTypes.Reputation;
+        public override long HelperKey => EntityTypes.Reputation;
     }
 }

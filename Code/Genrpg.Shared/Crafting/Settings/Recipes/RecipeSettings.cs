@@ -51,30 +51,30 @@ namespace Genrpg.Shared.Crafting.Settings.Recipes
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public long EntityId { get; set; }
-        [Key(9)] public long EntityTypeId { get; set; }
-        [Key(10)] public int MinQuantity { get; set; } = 1;
-        [Key(11)] public int MaxQuantity { get; set; } = 1;
-        [Key(12)] public string Art { get; set; }
-        [Key(13)] public int ScalingPct { get; set; } = 100;
+        [Key(4)] public string Desc { get; set; }
+        [Key(5)] public string AtlasPrefix { get; set; }
+        [Key(6)] public string Icon { get; set; }
+        [Key(7)] public long EntityId { get; set; }
+        [Key(8)] public long EntityTypeId { get; set; }
+        [Key(9)] public int MinQuantity { get; set; } = 1;
+        [Key(10)] public int MaxQuantity { get; set; } = 1;
+        [Key(11)] public string Art { get; set; }
+        [Key(12)] public int ScalingPct { get; set; } = 100;
 
 
         /// <summary>
         /// Use this for recipes that have a list of reagents rather than a choice.
         /// </summary>
-        [Key(14)] public long CrafterTypeId { get; set; }
+        [Key(13)] public long CrafterTypeId { get; set; }
 
 
-        [Key(15)] public int Flags { get; set; }
+        [Key(14)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
 
-        [Key(16)] public List<Reagent> ExplicitReagents { get; set; } = new List<Reagent>();
+        [Key(15)] public List<Reagent> ExplicitReagents { get; set; } = new List<Reagent>();
 
     }
 
@@ -87,6 +87,6 @@ namespace Genrpg.Shared.Crafting.Settings.Recipes
 
     public class RecipeHelper : BaseEntityHelper<RecipeSettings, RecipeType>
     {
-        public override long Key => EntityTypes.Recipe;
+        public override long HelperKey => EntityTypes.Recipe;
     }
 }

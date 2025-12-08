@@ -1,5 +1,6 @@
 ﻿
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -13,10 +14,11 @@ namespace Assets.Scripts.Controllers
 {
     public class PlayerLightController : BaseBehaviour
     {
-        private IModTextureService _modTextureService;
-        private ICrawlerMapService _crawlerMapService;
-        private ICrawlerService _crawlerService;
-        private ICrawlerWorldService _crawlerWorldService;
+        private IModTextureService _modTextureService = null;
+        private ICrawlerMapService _crawlerMapService = null;
+        private ICrawlerService _crawlerService = null;
+        private ICrawlerWorldService _crawlerWorldService = null;
+        private IClientConfigContainer _configContainer = null;
 
         public float Range = 75;
 
@@ -43,6 +45,10 @@ namespace Assets.Scripts.Controllers
             _startMaxIntensity = MaxIntensity;
             _targetIntensity = MaxIntensity;
             _currIntensity = MaxIntensity;
+            if (_configContainer.Config.GameMode != EGameModes.Crawler && Headlight != null)
+            {
+                Headlight.intensity = 0;
+            }
         }
 
         bool haveSetPosition = false;

@@ -22,7 +22,7 @@ namespace Genrpg.Editor.Importers.BoardGame
 
         public override string ImportDataFilename => "TileTypeImport.csv";
 
-        public override EImportTypes Key => EImportTypes.TileTypes;
+        public override EImportTypes HelperKey => EImportTypes.TileTypes;
 
         protected override void ImportChildSubObject(EditorGameState gs, TileType current, int line, string firstColumn, string[] headers, string[] rowWords)
         {

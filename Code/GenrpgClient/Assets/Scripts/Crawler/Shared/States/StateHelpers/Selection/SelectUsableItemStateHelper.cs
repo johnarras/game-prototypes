@@ -7,10 +7,10 @@ using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
 {
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
 
         private ICrawlerItemService _crawlerItemService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.SelectUsableItem;
+        public override ECrawlerStates HelperKey => ECrawlerStates.SelectUsableItem;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -94,7 +94,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
                 string text = charCode + " " + memberItem.GetDescription();
 
                 stateData.Actions.Add(new CrawlerStateAction(text,
-                    (char)('A' + m), ECrawlerStates.OnSelectSpell, extraData: selectSpell));
+                    FromChar((char)('A' + m)), ECrawlerStates.OnSelectSpell, extraData: selectSpell));
             }
 
             if (drainedItems.Count > 0)
@@ -107,7 +107,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
                 stateData.AddText(_textService.HighlightText(drainedItem.GetDescription(), TextColors.ColorRed));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, data.ReturnState, extraData: data));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, data.ReturnState, extraData: data));
 
 
             await Task.CompletedTask;

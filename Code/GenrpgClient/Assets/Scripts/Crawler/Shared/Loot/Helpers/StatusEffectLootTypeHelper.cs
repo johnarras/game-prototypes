@@ -13,13 +13,13 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 {
     public class StatusEffectLootTypeHelper : BaseCrawlerLootTypeHelper
     {
-        public override long Key => EntityTypes.StatusEffect;
+        public override long HelperKey => EntityTypes.StatusEffect;
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {
             IReadOnlyList<StatusEffect> effects = _gameData.Get<StatusEffectSettings>(_gs.ch).GetData();
 
-            CrawlerLootType lootType = _gameData.Get<CrawlerLootSettings>(_gs.ch).Get(Key);
+            CrawlerLootType lootType = _gameData.Get<CrawlerLootSettings>(_gs.ch).Get(HelperKey);
 
             long maxRank = (int)(1 + item.Level * lootType.ScalingPerLevel);
 

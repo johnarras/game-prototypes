@@ -5,6 +5,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 {
     public class CityCrawlerMapTypeHelper : BaseCrawlerMapTypeHelper
     {
-        public override long Key => CrawlerMapTypes.City;
+        public override long HelperKey => CrawlerMapTypes.City;
     }
 }

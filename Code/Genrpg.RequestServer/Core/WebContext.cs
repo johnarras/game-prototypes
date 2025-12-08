@@ -56,7 +56,7 @@ namespace Genrpg.RequestServer.Core
             {
                 id = iid.IdKey.ToString();
             }
-            _unitData.Add(GetFullKey(doc.GetType(), id), doc);
+            _unitData[GetFullKey(doc.GetType(), id)] = doc;
         }
 
         public void Remove<T>(string docId) where T : class, IUnitData, new()

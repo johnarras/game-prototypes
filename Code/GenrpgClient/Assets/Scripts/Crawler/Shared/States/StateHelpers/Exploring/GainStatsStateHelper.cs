@@ -9,12 +9,12 @@ using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 {
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
         private ICrawlerStatService _crawlerStatService = null;
         private ICrawlerMapService _mapService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.GainStats;
+        public override ECrawlerStates HelperKey => ECrawlerStates.GainStats;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -62,7 +62,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
             for (int p = 0; p < members.Count; p++)
             {
                 PartyMember pm = members[p];
-                stateData.Actions.Add(new CrawlerStateAction(pm.Name, (char)('1' + p), ECrawlerStates.ExploreWorld,
+                stateData.Actions.Add(new CrawlerStateAction(pm.Name, FromChar((char)('1' + p)), ECrawlerStates.ExploreWorld,
                     () =>
                     {
                         pm.AddPermStat(statType.IdKey, statAdded);
@@ -74,7 +74,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
 
             await Task.CompletedTask;

@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
             {
                 Character ch = new Character(coreCh);
 
-                await _playerDataService.LoadAllPlayerData(context.rand, context.acct, ch);
+                await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.GetAllData(), ch);
                 await _repoService.Delete(coreCh);
 
                 foreach (IUnitData data in ch.GetAllData().Values)

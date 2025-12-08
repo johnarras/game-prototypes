@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Users.Loaders
     {
         private IRepositoryService _repoService = null;
 
-        [IgnoreMember] public Type Key => typeof(TServer);
+        [IgnoreMember] public Type HelperKey => typeof(TServer);
 
         public async Task CreateDefaultData(string userId)
         {

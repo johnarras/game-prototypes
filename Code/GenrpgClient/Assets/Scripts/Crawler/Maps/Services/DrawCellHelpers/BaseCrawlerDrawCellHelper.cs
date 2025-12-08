@@ -4,19 +4,12 @@ using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Props;
 using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
@@ -33,21 +26,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
 
         public abstract int Order { get; }
 
-        public virtual Type Key => GetType();
-        
+        public virtual Type HelperKey => GetType();
+
         public abstract Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token);
 
-        protected virtual void OnDownloadObject(object obj, object data, CancellationToken token)
+        protected virtual void OnDownloadObject(GameObject go, CrawlerObjectLoadData loadData, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
-            CrawlerObjectLoadData loadData = data as CrawlerObjectLoadData;
-
             if (loadData != null)
             {
                 go.transform.eulerAngles = new Vector3(0, loadData.Angle, 0);

@@ -115,7 +115,7 @@ namespace Genrpg.Shared.Crawler.Roles.Settings
 
     public class RoleHelper : BaseEntityHelper<RoleSettings, Role>
     {
-        public override long Key => EntityTypes.Role;
+        public override long HelperKey => EntityTypes.Role;
     }
 
 }

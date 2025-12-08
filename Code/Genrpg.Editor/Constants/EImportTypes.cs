@@ -18,5 +18,7 @@
         LootRanks,
         StoreBundles,
         StoreOffers,
+        NewPlayerBonuses,
+        LevelTrackRewards,
     };
 }

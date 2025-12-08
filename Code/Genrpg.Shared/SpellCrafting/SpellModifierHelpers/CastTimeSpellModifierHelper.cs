@@ -10,7 +10,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class CastTimeSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.CastTime;
+        public override long HelperKey => SpellModifiers.CastTime;
 
 
 

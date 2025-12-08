@@ -16,6 +16,8 @@ namespace Assets.Scripts.UI.Interfaces
 
         void StartUpdates();
 
+        void OnQuit();
+
         ActiveScreen GetScreen(long screenId);
 
         ActiveScreen GetLayerScreen(ScreenLayers layerId);

@@ -5,8 +5,7 @@
   "Name": "Mana",
   "Icon": "Mana",
   "Art": "Mana",
-  "StartCurr": 40,
-  "StartRegen": 4,
-  "StartStorage": 40,
-  "SaveTime": "2025-11-20T18:50:13.106Z"
+  "RegenTraderStatId": 6,
+  "StorageTraderStatId": 7,
+  "SaveTime": "2025-12-02T01:17:13.917Z"
 }

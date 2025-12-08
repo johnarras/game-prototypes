@@ -17,11 +17,11 @@ using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Services;
 using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
 {
@@ -36,7 +36,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
         private IInfoService _infoService = null;
         private IPartyService _partyService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.GuildMain;
+        public override ECrawlerStates HelperKey => ECrawlerStates.GuildMain;
         public override long TriggerBuildingId() { return BuildingTypes.Guild; }
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
@@ -63,29 +63,29 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
 
             _partyService.AddClickPartyMemberButtons(stateData, party);
 
-            stateData.Actions.Add(new CrawlerStateAction("Add Char", 'A', ECrawlerStates.AddMember));
-            stateData.Actions.Add(new CrawlerStateAction("Remove Char", 'R', ECrawlerStates.RemoveMember));
-            stateData.Actions.Add(new CrawlerStateAction("Delete Char", 'D', ECrawlerStates.DeleteMember));
-            stateData.Actions.Add(new CrawlerStateAction("Create Char", 'C', ECrawlerStates.ChooseRace));
-            stateData.Actions.Add(new CrawlerStateAction("New Maps", 'N', ECrawlerStates.GuildMain, null, "GenerateWorld"));
+            stateData.Actions.Add(new CrawlerStateAction("Add Char", Key.A, ECrawlerStates.AddMember));
+            stateData.Actions.Add(new CrawlerStateAction("Remove Char", Key.R, ECrawlerStates.RemoveMember));
+            stateData.Actions.Add(new CrawlerStateAction("Delete Char", Key.D, ECrawlerStates.DeleteMember));
+            stateData.Actions.Add(new CrawlerStateAction("Create Char", Key.C, ECrawlerStates.ChooseRace));
+            stateData.Actions.Add(new CrawlerStateAction("New Maps", Key.N, ECrawlerStates.GuildMain, null, "GenerateWorld"));
 
             if (_optionsService.HasOption(party, CrawlerOptions.PartyUpgrades))
             {
-                stateData.Actions.Add(new CrawlerStateAction("Upgrades", 'U', ECrawlerStates.UpgradeParty));
+                stateData.Actions.Add(new CrawlerStateAction("Upgrades", Key.U, ECrawlerStates.UpgradeParty));
             }
-            stateData.Actions.Add(new CrawlerStateAction("Party Order", 'P', ECrawlerStates.PartyOrder,
+            stateData.Actions.Add(new CrawlerStateAction("Party Order", Key.P, ECrawlerStates.PartyOrder,
                 () =>
                 {
                     _crawlerService.ChangeState(ECrawlerStates.PartyOrder, token, ECrawlerStates.GuildMain);
                 }));
-            stateData.Actions.Add(new CrawlerStateAction("Info", 'I', ECrawlerStates.GuildMain, onClickAction:
+            stateData.Actions.Add(new CrawlerStateAction("Info", Key.I, ECrawlerStates.GuildMain, onClickAction:
                 () =>
                 {
                     _screenService.Open(ScreenNames.CrawlerInfo);
                 }));
             if (party.GetActiveParty().Count > 0)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Enter Map", 'E', ECrawlerStates.ExploreWorld));
+                stateData.Actions.Add(new CrawlerStateAction("Enter Map", Key.E, ECrawlerStates.ExploreWorld));
             }
 
             if (!party.HasFlag(PartyFlags.InGuildHall))
@@ -94,7 +94,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
             }
             party.AddFlags(PartyFlags.InGuildHall);
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.DoNotChangeState,
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.DoNotChangeState,
                 () =>
                 {
                     if (_screenService.GetScreen(ScreenNames.CrawlerMainMenu) == null)
@@ -103,7 +103,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                     }
                 }, hideText: true));
 
-            stateData.Actions.Add(new CrawlerStateAction(_buffService.GetMissingBuffsString(party), CharCodes.None, ECrawlerStates.DoNotChangeState, null,
+            stateData.Actions.Add(new CrawlerStateAction(_buffService.GetMissingBuffsString(party), Key.None, ECrawlerStates.DoNotChangeState, null,
                 pointerEnterAction: (GameObject go) =>
                 {
                     GText gt = _clientEntityService.GetComponent<GText>(go);

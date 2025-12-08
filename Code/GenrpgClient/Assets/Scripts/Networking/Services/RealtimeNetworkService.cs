@@ -1,28 +1,27 @@
 ﻿#define SHOW_SEND_RECEIVE_MESSAGES
 #undef SHOW_SEND_RECEIVE_MESSAGES
 
-using System;
-using System.Collections.Generic;
-
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.Core.Interfaces;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
-using System.Threading;
-using Genrpg.Shared.Networking.Messages;
-using Genrpg.Shared.Networking.Interfaces;
 using Genrpg.Shared.Networking.Constants;
 using Genrpg.Shared.Networking.Entities.TCP;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
-using Genrpg.Shared.Logging.Interfaces;
-using UnityEngine;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Tokens;
-using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Networking.Interfaces;
+using Genrpg.Shared.Networking.Messages;
 using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
-public interface IRealtimeNetworkService : IInitializable, IMapTokenService
+public interface IRealtimeNetworkService : IInitializable, IMapTokenService, IClientQuitCleanup
 {
     void CloseClient();
     void SetRealtimeEndpoint(string host, long port, EMapApiSerializers serializer);
@@ -65,13 +64,13 @@ public class RealtimeNetworkService : IRealtimeNetworkService
     {
         return _token;
     }
-   
+
     public void CloseClient()
     {
         if (_clientConn != null)
         {
-            _clientConn.Shutdown(null,"CloseClient");
-                
+            _clientConn.Shutdown(null, "CloseClient");
+
             _clientConn = null;
         }
     }
@@ -103,7 +102,7 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         {
             await Awaitable.NextFrameAsync(cancellationToken: token);
             while (_messages.TryDequeue(out IMapApiMessage message))
-            {                
+            {
                 HandleOneMapApiMessage(message, token);
             }
         }
@@ -119,7 +118,7 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         SendMessageList(messages);
     }
 
-    protected void SendMessageList (List<IPlayerCommand> messages)
+    protected void SendMessageList(List<IPlayerCommand> messages)
     {
 
 #if SHOW_SEND_RECEIVE_MESSAGES
@@ -131,7 +130,7 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         }
         _logService.Debug(sb.ToString());
 #endif
-            
+
         string userid = "";
         string sessionid = "";
 
@@ -150,8 +149,8 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         {
             ISerializer serializer = _serializerType == EMapApiSerializers.MessagePack ? _binarySerializer : _textSerializer;
             _logService.Info("Create Realtime Client: " + _host + " " + _port);
-            _clientConn = new ConnectTcpConn(_host, _port, 
-                HandleMapMessages, 
+            _clientConn = new ConnectTcpConn(_host, _port,
+                HandleMapMessages,
                 _logService, serializer, _taskService, _token, null);
 
         }
@@ -206,4 +205,8 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         }
     }
 
+    public void OnQuit()
+    {
+        CloseClient();
+    }
 }

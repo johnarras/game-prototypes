@@ -23,13 +23,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 {
 
     public interface ICrawlerMoveService : IInitializable
     {
-        Task AddMovementKeyInput(char keyChar, CancellationToken token);
+        Task AddMovementKeyInput(Key keyChar, CancellationToken token);
         void ClearMovement();
         void FinishMove(CrawlerMoveStatus status);
         bool UpdatingMovement();
@@ -58,13 +59,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
     public class MovementKeyCode
     {
-        public char Key { get; private set; }
+        public Key Key { get; private set; }
         public int RotationAmount { get; private set; }
         public int ForwardAmount { get; private set; }
         public int RightAmount { get; private set; }
         public string Name { get; private set; }
 
-        public MovementKeyCode(char key, string name, int rotationAmount, int forwardAmount, int rightAmount)
+        public MovementKeyCode(Key key, string name, int rotationAmount, int forwardAmount, int rightAmount)
         {
             Key = key;
             Name = name;
@@ -96,7 +97,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private CrawlerWorld _world = null;
         private bool _updatingMovement = false;
         const int maxQueuedMoves = 2;
-        Queue<char> _movementQueue = new Queue<char>();
+        Queue<Key> _movementQueue = new Queue<Key>();
 
 
         public async Task Initialize(CancellationToken token)
@@ -114,17 +115,17 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         {
             _movementKeyCodes = new List<MovementKeyCode>
             {
-                new MovementKeyCode('W', MovementKeyNames.Forward, 0, 1, 0),
-                new MovementKeyCode((char)273, MovementKeyNames.Forward, 0, 1, 0),
+                new MovementKeyCode(Key.W, MovementKeyNames.Forward, 0, 1, 0),
+                new MovementKeyCode(Key.UpArrow, MovementKeyNames.Forward, 0, 1, 0),
 
-                new MovementKeyCode('S', MovementKeyNames.Backward, 0, -1, 0),
-                new MovementKeyCode((char)274, MovementKeyNames.Backward,0, -1, 0),
+                new MovementKeyCode(Key.S, MovementKeyNames.Backward, 0, -1, 0),
+                new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,0, -1, 0),
 
-                new MovementKeyCode('A', MovementKeyNames.TurnLeft, -1, 0, 0),
-                new MovementKeyCode((char)276, MovementKeyNames.TurnLeft, -1, 0, 0),
+                new MovementKeyCode(Key.A, MovementKeyNames.TurnLeft, -1, 0, 0),
+                new MovementKeyCode(Key.LeftArrow, MovementKeyNames.TurnLeft, -1, 0, 0),
 
-                new MovementKeyCode('D', MovementKeyNames.TurnRight, 1, 0, 0),
-                new MovementKeyCode((char)275, MovementKeyNames.TurnRight, 1, 0, 0),
+                new MovementKeyCode(Key.D, MovementKeyNames.TurnRight, 1, 0, 0),
+                new MovementKeyCode(Key.RightArrow, MovementKeyNames.TurnRight, 1, 0, 0),
             };
         }
 
@@ -167,7 +168,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _updatingMovement = updatingMovement;
         }
 
-        public async Task AddMovementKeyInput(char keyChar, CancellationToken token)
+        public async Task AddMovementKeyInput(Key keyChar, CancellationToken token)
         {
             if (_movementQueue.Count < maxQueuedMoves)
             {
@@ -202,7 +203,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 }
 
                 _updatingMovement = true;
-                while (_movementQueue.TryDequeue(out char currCommand))
+                while (_movementQueue.TryDequeue(out Key currCommand))
                 {
                     if (!CanMoveNow())
                     {

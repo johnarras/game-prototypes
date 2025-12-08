@@ -26,7 +26,7 @@ namespace Genrpg.Editor.Importers.Core
 
         public abstract string ImportDataFilename { get; }
 
-        public abstract EImportTypes Key { get; }
+        public abstract EImportTypes HelperKey { get; }
 
         protected abstract Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines);
 

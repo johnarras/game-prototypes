@@ -18,7 +18,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
     {
 
 
-        public override long Key => -1;
+        public override long HelperKey => -1;
         public override bool IsModifyStatEffect() { return false; }
         public override bool UseStatScaling() { return true; }
         public override float GetTickLength() { return SpellConstants.DotTickSeconds; }

@@ -685,7 +685,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             CrawlerMap map = world.GetMap(mapId);
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld) && map != null && map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
             {
                 return world.Quests.ToList();
             }

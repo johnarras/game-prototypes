@@ -164,7 +164,7 @@ namespace Assets.Scripts.Crawler.Combat
                     }
                     else
                     {
-                        _assetService.LoadAssetInto(gameObject, AssetCategoryNames.Combat, elementType.Art + CombatHitPrefabSuffix, OnLoadCombatHit, elementType, GetToken());
+                        _assetService.LoadAssetInto(gameObject, AssetCategoryNames.Combat, elementType.Art + CombatHitPrefabSuffix, OnLoadCombatHit, GetToken(), elementType);
                     }
                 }
             }
@@ -219,15 +219,8 @@ namespace Assets.Scripts.Crawler.Combat
             }
         }
 
-        private void OnLoadCombatHit(object obj, object data, CancellationToken token)
+        private void OnLoadCombatHit(GameObject go, ElementType etype, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
             CombatHit hit = go.GetComponent<CombatHit>();
 
             if (hit == null)
@@ -235,8 +228,6 @@ namespace Assets.Scripts.Crawler.Combat
                 _clientEntityService.Destroy(go);
                 return;
             }
-
-            ElementType etype = data as ElementType;
 
             if (etype == null)
             {

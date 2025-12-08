@@ -15,7 +15,7 @@ namespace Genrpg.RequestServer.RequestHandlers
 
         protected abstract Task InnerHandleMessage(T message);
 
-        public Type Key => typeof(T);
+        public Type HelperKey => typeof(T);
 
         public async Task HandleMessage(IQueueMessage message, CancellationToken token)
         {

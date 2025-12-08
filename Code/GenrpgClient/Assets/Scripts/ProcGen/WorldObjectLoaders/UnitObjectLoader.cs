@@ -1,21 +1,20 @@
-﻿using UnityEngine;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.MapObjects.Entities;
-
-using Genrpg.Shared.Constants;
-using System.Threading;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Combat.Messages;
-using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Units.Constants;
-using System.Threading.Tasks;
-using Genrpg.Shared.Units.Settings;
+﻿using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Combat.Messages;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Units.Settings;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class UnitObjectLoader : BaseMapObjectLoader
 {
-    public override long Key => EntityTypes.Unit;
+    public override long HelperKey => EntityTypes.Unit;
     protected override string GetLayerName() { return LayerNames.UnitLayer; }
 
     public override async Awaitable Load(OnSpawn spawn, MapObject obj, CancellationToken token)
@@ -33,25 +32,17 @@ public class UnitObjectLoader : BaseMapObjectLoader
             Obj = obj,
             Token = token,
         };
-        
 
-        _assetService.LoadAsset(AssetCategoryNames.Monsters, utype.Art, AfterLoadUnit, loadData, null, token);
+
+        _assetService.LoadAsset(AssetCategoryNames.Monsters, utype.Art, AfterLoadUnit, null, token, loadData);
         await Task.CompletedTask;
     }
 
 
 
     private IUnitSetupService _zoneGenService = null;
-    protected virtual void AfterLoadUnit(object obj, object data, CancellationToken token)
+    protected virtual void AfterLoadUnit(GameObject artGo, SpawnLoadData loadData, CancellationToken token)
     {
-        SpawnLoadData loadData = data as SpawnLoadData;
-        GameObject artGo = obj as GameObject;
-
-        if (artGo == null)
-        {
-            return;
-        }
-
         if (_objectManager.GetController(loadData.Spawn.ObjId, out UnitController currController))
         {
             _clientEntityService.Destroy(artGo);
@@ -99,7 +90,7 @@ public class UnitObjectLoader : BaseMapObjectLoader
         }
 
         _objectManager.AddObject(loadData.Obj, go);
-        
+
     }
 
     private async Awaitable WaitForTerrain(GameObject go, SpawnLoadData loadData, CancellationToken token)

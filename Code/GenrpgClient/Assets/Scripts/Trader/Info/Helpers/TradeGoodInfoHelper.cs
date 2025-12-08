@@ -7,7 +7,7 @@ namespace Assets.Scripts.Trader.Info.Helpers
 {
     public class TradeGoodInfoHelper : BaseInfoHelper<TradeGoodSettings, TradeGood>
     {
-        public override long Key => EntityTypes.TradeGood;
+        public override long HelperKey => EntityTypes.TradeGood;
 
         public override List<string> GetInfoLines(long entityId)
         {

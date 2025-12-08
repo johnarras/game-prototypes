@@ -1,19 +1,18 @@
 ﻿using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Houses
 {
     public class EnterHouseHelper : BuildingStateHelper
-    { 
-        public override ECrawlerStates Key => ECrawlerStates.EnterHouse;
+    {
+        public override ECrawlerStates HelperKey => ECrawlerStates.EnterHouse;
         public override long TriggerBuildingId() { return BuildingTypes.House; }
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -36,7 +35,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Houses
             {
                 if (party.Combat == null)
                 {
-                    stateData.Actions.Add(new CrawlerStateAction("Exit House", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+                    stateData.Actions.Add(new CrawlerStateAction("Exit House", Key.Escape, ECrawlerStates.ExploreWorld));
                     AddSpaceAction(stateData);
                 }
             }

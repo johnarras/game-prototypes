@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
     public class RoleScalingInfoHelper : BaseInfoHelper<RoleScalingTypeSettings, RoleScalingType>
     {
-        public override long Key => EntityTypes.RoleScaling;
+        public override long HelperKey => EntityTypes.RoleScaling;
 
         public override bool OverviewTypeNameIsPlural() { return false; }
 

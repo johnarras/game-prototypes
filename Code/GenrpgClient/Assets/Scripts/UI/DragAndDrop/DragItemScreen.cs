@@ -13,7 +13,7 @@ public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : Bas
     where TInitData : DragItemInitData<TData, TDragItem, TScreen, TInitData>
 {
 
-    protected IInputService _inputService;
+    protected IInputService _inputService = null;
 
     public BaseTooltip ToolTip;
     public MoneyDisplay _playerMoney;

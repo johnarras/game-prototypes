@@ -1,15 +1,15 @@
 ﻿
+using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using MongoDB.Driver;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using System.Collections.Concurrent;
-using MongoDB.Driver;
 using System.Reflection;
-using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.Shared.Logging.Interfaces;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.NoSQL
 {
@@ -135,6 +135,11 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
             if (t == null)
             {
                 return false;
+            }
+
+            if (typeof(T).Name == "CoreUserData")
+            {
+                Console.WriteLine("Saving Core Data");
             }
 
             try
@@ -303,7 +308,7 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
             return 1;
         }
 
-        protected virtual Dictionary<string,object> UpdateFieldNameUpdates(Dictionary<string,object> fieldNameUpdates)
+        protected virtual Dictionary<string, object> UpdateFieldNameUpdates(Dictionary<string, object> fieldNameUpdates)
         {
             return fieldNameUpdates;
         }
@@ -389,13 +394,13 @@ namespace Genrpg.ServerShared.DataStores.NoSQL
 
             UpdateDefinition<T> update = Builders<T>.Update.Inc(fieldName, value);
 
-            FindOneAndUpdateOptions<T> options = new FindOneAndUpdateOptions<T>() 
-            { 
+            FindOneAndUpdateOptions<T> options = new FindOneAndUpdateOptions<T>()
+            {
                 ReturnDocument = ReturnDocument.After,
                 BypassDocumentValidation = true,
             };
 
-            return await _collection.FindOneAndUpdateAsync(filter, update,options);
+            return await _collection.FindOneAndUpdateAsync(filter, update, options);
 
         }
 

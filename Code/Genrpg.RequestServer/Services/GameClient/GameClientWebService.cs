@@ -17,7 +17,7 @@ namespace Genrpg.RequestServer.Services.GameClient
         private IGameDataService _gameDataService = null;
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
-        private IPeriodicUpdateService _hourlyUpdateService = null;
+        private IHourlyUpdateService _hourlyUpdateService = null;
         private ITextSerializer _serializer = null;
 
         public async Task HandleUserClientRequest(WebContext context, string postData, CancellationToken token)

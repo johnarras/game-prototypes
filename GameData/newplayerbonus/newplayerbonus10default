@@ -1,0 +1,9 @@
+{
+  "Id": "newplayerbonus10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "EntityTypeId": 202,
+  "EntityId": 3,
+  "Quantity": 2,
+  "SaveTime": "2025-12-06T22:15:16.206Z"
+}

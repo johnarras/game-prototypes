@@ -26,11 +26,11 @@ namespace Genrpg.Shared.Trader.Animals.Settings
         [Key(5)] public string AtlasPrefix { get; set; }
         [Key(6)] public string Icon { get; set; }
         [Key(7)] public string Art { get; set; }
-        [Key(8)] public long Endurance { get; set; }
-        [Key(9)] public double Speed { get; set; }
-        [Key(10)] public long Capacity { get; set; }
-        [Key(11)] public long Food { get; set; }
-        [Key(12)] public long Cost { get; set; }
+        [Key(8)] public long Speed { get; set; }
+        [Key(9)] public long Capacity { get; set; }
+        [Key(10)] public long Supplies { get; set; }
+        [Key(11)] public long Cost { get; set; }
+        [Key(12)] public bool StartsUnlocked { get; set; }
     }
 
     public class AnimalSettingsDto : ParentSettingsDto<AnimalSettings, Animal> { }
@@ -41,6 +41,6 @@ namespace Genrpg.Shared.Trader.Animals.Settings
 
     public class AnimalEntityHelper : BaseEntityHelper<AnimalSettings, Animal>
     {
-        public override long Key => EntityTypes.Animal;
+        public override long HelperKey => EntityTypes.Animal;
     }
 }

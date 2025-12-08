@@ -7,6 +7,6 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 {
     public class HealingSpellEffectHelper : BaseNumericSpellEffectHelper
     {
-        public override long Key => EntityTypes.Healing;
+        public override long HelperKey => EntityTypes.Healing;
     }
 }

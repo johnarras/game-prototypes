@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Services;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Entities.Entities;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
@@ -19,8 +19,8 @@ namespace Assets.Scripts.Assets.Sprites.Services
     public interface ISpriteService : IInitializable, IClientResetCleanup, IAssetSubsystem
     {
         void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token);
-        void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage image, CancellationToken token, OnDownloadHandler handler = null);
-        void LoadAtlas(string atlasName, CancellationToken token, OnDownloadHandler handler = null);
+        void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage image, CancellationToken token, AssetDownloadHandler<object> handler = null);
+        void LoadAtlas(string atlasName, CancellationToken token, AssetDownloadHandler<object> handler = null);
     }
 
     public class SpriteService : ISpriteService
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Assets.Sprites.Services
             await Task.CompletedTask;
         }
 
-        public async Task OnClientResetCleanup(CancellationToken token)
+        public async Task OnReset(CancellationToken token)
         {
             foreach (SpriteAtlasContainer container in _atlasCache.Values)
             {
@@ -52,12 +52,12 @@ namespace Assets.Scripts.Assets.Sprites.Services
             await Task.CompletedTask;
         }
 
-        public void LoadAtlas(string atlasName, CancellationToken token, OnDownloadHandler handler = null)
+        public void LoadAtlas(string atlasName, CancellationToken token, AssetDownloadHandler<object> handler = null)
         {
             LoadAtlasSpriteInto(atlasName, null, null, token, handler);
         }
 
-        public void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage parentSprite, CancellationToken token, OnDownloadHandler handler = null)
+        public void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage parentSprite, CancellationToken token, AssetDownloadHandler<object> handler = null)
         {
             GImage image = parentSprite as GImage;
 
@@ -84,14 +84,11 @@ namespace Assets.Scripts.Assets.Sprites.Services
                 TargetImage = image,
             };
 
-            _assetService.LoadAssetInto(_assetParent, AssetCategoryNames.Atlas, atlasName, OnDownloadAtlas, atlasDownload, token);
+            _assetService.LoadAssetInto(_assetParent, AssetCategoryNames.Atlas, atlasName, OnDownloadAtlas, token, atlasDownload);
         }
 
-        private void OnDownloadAtlas(object obj, object data, CancellationToken token)
+        private void OnDownloadAtlas(GameObject go, AtlasSpriteDownload atlasSpriteDownload, CancellationToken token)
         {
-            AtlasSpriteDownload atlasSpriteDownload = data as AtlasSpriteDownload;
-            GameObject go = obj as GameObject;
-
             if (go == null)
             {
                 if (atlasSpriteDownload != null && atlasSpriteDownload.FinalHandler != null)
@@ -140,8 +137,12 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
         }
 
-        private void GetAtlasSprite(SpriteAtlasContainer cont, GImage image, string spriteName, OnDownloadHandler handler, CancellationToken token)
+        private void GetAtlasSprite(SpriteAtlasContainer cont, GImage image, string spriteName, AssetDownloadHandler<object> handler, CancellationToken token)
         {
+            if (string.IsNullOrEmpty(spriteName))
+            {
+                return;
+            }
             if (cont.Atlas == null)
             {
                 _logService.Warning($"Missing Atlas in container {cont.name}");
@@ -166,7 +167,6 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
             if (image == null)
             {
-                _logService.Warning($"Missing Image for {spriteName} in Atlas {cont.name}");
                 if (handler != null)
                 {
                     handler(null, image, token);

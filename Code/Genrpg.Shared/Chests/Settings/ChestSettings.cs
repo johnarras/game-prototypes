@@ -53,6 +53,6 @@ namespace Genrpg.Shared.Chests.Settings
 
     public class ChestHelper : BaseEntityHelper<ChestSettings, Chest>
     {
-        public override long Key => EntityTypes.Chest;
+        public override long HelperKey => EntityTypes.Chest;
     }
 }

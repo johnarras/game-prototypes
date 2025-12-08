@@ -43,7 +43,7 @@ namespace Genrpg.Shared.TimedEvents.Collections.Settings
 
     public class CollectionTierListHelper : BaseEntityHelper<CollectionTierListSettings, CollectionTierList>
     {
-        public override long Key => EntityTypes.CollectionTierList;
+        public override long HelperKey => EntityTypes.CollectionTierList;
     }
 
 }

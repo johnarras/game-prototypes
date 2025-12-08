@@ -45,6 +45,6 @@ namespace Genrpg.Shared.Zones.Settings
 
     public class ZoneCategoryHelper : BaseEntityHelper<ZoneCategorySettings, ZoneCategory>
     {
-        public override long Key => EntityTypes.ZoneCategory;
+        public override long HelperKey => EntityTypes.ZoneCategory;
     }
 }

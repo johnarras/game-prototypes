@@ -11,11 +11,11 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
@@ -33,7 +33,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
         ITrainingService _trainingService = null;
         ICrawlerUpgradeService _upgradeService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.TrainingClassMember;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TrainingClassMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -69,7 +69,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                 +
                 (maxRoles == 1 ? "" : "es") + $",\n\nso {member.Name} cannot gain any more classes.");
 
-                stateData.Actions.Add(new CrawlerStateAction("Back to member select", CharCodes.Escape, ECrawlerStates.TrainingClassSelect));
+                stateData.Actions.Add(new CrawlerStateAction("Back to member select", Key.Escape, ECrawlerStates.TrainingClassSelect));
 
                 return stateData;
 
@@ -95,7 +95,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
                 };
                 newMemberData.Messages.Add($"You added the {role.Name} Class!");
-                stateData.Actions.Add(new CrawlerStateAction($"Add Class {role.Name}", (char)(i + '0'), ECrawlerStates.TrainingClassMember,
+                stateData.Actions.Add(new CrawlerStateAction($"Add Class {role.Name}", FromChar((char)(i + '0')), ECrawlerStates.TrainingClassMember,
                     onClickAction: delegate ()
                     {
                         _trainingService.TrainPartyMemberAddClass(party, member, role.IdKey);
@@ -110,12 +110,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             {
                 if (pm != member)
                 {
-                    stateData.Actions.Add(new CrawlerStateAction("", (char)(pm.PartySlot + '0'), ECrawlerStates.TrainingClassMember, extraData: new TrainingMemberData() { Member = pm }));
+                    stateData.Actions.Add(new CrawlerStateAction("", FromChar((char)(pm.PartySlot + '0')), ECrawlerStates.TrainingClassMember, extraData: new TrainingMemberData() { Member = pm }));
                 }
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Back to member select", CharCodes.Escape, ECrawlerStates.TrainingClassSelect));
+            stateData.Actions.Add(new CrawlerStateAction("Back to member select", Key.Escape, ECrawlerStates.TrainingClassSelect));
 
             await Task.CompletedTask;
             return stateData;

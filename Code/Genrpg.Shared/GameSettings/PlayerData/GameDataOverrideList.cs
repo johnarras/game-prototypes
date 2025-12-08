@@ -1,14 +1,13 @@
 using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.GameSettings.PlayerData
 {
     [MessagePackObject]
     public class PlayerSettingsOverrideItem
     {
-        [Key(0)] public string SettingId { get; set; }
+        [Key(0)] public long SettingsNameId { get; set; }
         [Key(1)] public string DocId { get; set; }
     }
     [MessagePackObject]

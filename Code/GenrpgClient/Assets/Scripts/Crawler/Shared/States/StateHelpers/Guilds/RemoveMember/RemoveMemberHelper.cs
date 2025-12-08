@@ -2,16 +2,16 @@
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
 {
     public class RemoveMemberHelper : BaseStateHelper
     {
         private IPartyService _partyService;
-        public override ECrawlerStates Key => ECrawlerStates.RemoveMember;
+        public override ECrawlerStates HelperKey => ECrawlerStates.RemoveMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
@@ -27,7 +27,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
                 {
                     continue;
                 }
-                stateData.Actions.Add(new CrawlerStateAction(member.Name, CharCodes.None, ECrawlerStates.RemoveMember,
+                stateData.Actions.Add(new CrawlerStateAction(member.Name, Key.None, ECrawlerStates.RemoveMember,
                     delegate
                     {
                         if (member.PartySlot < 1)
@@ -42,7 +42,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
                     }, member));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.GuildMain, null, null));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.GuildMain, null, null));
 
 
             await Task.CompletedTask;

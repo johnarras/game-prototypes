@@ -1,9 +1,9 @@
 ﻿using Genrpg.Shared.Characters.PlayerData;
-using System.Threading;
-using Genrpg.Shared.MapObjects.Messages;
-using UnityEngine;
-using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.Units.Settings;
+using System.Threading;
+using UnityEngine;
 
 class AddPlayerToMap : BaseZoneGenerator
 {
@@ -20,18 +20,14 @@ class AddPlayerToMap : BaseZoneGenerator
             return;
         }
 
-        _assetService.LoadAssetInto(null, AssetCategoryNames.Monsters, utype.Art, OnLoadPlayer, _gs.ch, token);
+        _assetService.LoadAssetInto(null, AssetCategoryNames.Monsters, utype.Art, OnLoadPlayer, token, _gs.ch);
 
     }
 
-    private void OnLoadPlayer(object obj, object data, CancellationToken token)
+    private void OnLoadPlayer(GameObject go, Character ch, CancellationToken token)
     {
-        GameObject artGo = obj as GameObject;
-
-        Character ch = data as Character;
-
-        if (artGo == null || ch == null)
-        { 
+        if (go == null || ch == null)
+        {
             return;
         }
         SpawnLoadData loadData = new SpawnLoadData()
@@ -40,11 +36,11 @@ class AddPlayerToMap : BaseZoneGenerator
             Spawn = new OnSpawn(),
             Token = _token,
         };
-        
-        GameObject go = _unitSetupService.SetupUnit(artGo, loadData, _token);
+
+        GameObject go2 = _unitSetupService.SetupUnit(go, loadData, _token);
         float height = _terrainManager.SampleHeight(ch.X, ch.Z);
-        go.transform.position = new Vector3(ch.X, MapConstants.MapHeight, ch.Z);
-        go.transform.eulerAngles = new Vector3(0, ch.Rot, 0);
+        go2.transform.position = new Vector3(ch.X, MapConstants.MapHeight, ch.Z);
+        go2.transform.eulerAngles = new Vector3(0, ch.Rot, 0);
 
     }
 }

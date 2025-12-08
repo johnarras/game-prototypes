@@ -41,6 +41,6 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
 
     public class MapMagicEntityHelper : BaseEntityHelper<MapMagicSettings, MapMagicType>
     {
-        public override long Key => EntityTypes.MapMagic;
+        public override long HelperKey => EntityTypes.MapMagic;
     }
 }

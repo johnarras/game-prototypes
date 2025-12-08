@@ -7,11 +7,11 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Utils;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         private IAwaitableService _awaitableService = null;
         private ILootGenService _lootGenService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.ProcessCombatRound;
+        public override ECrawlerStates HelperKey => ECrawlerStates.ProcessCombatRound;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -31,8 +31,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             stateData.Actions.Add(new CrawlerStateAction("Processing combat...\n\n"));
             stateData.Actions.Add(new CrawlerStateAction("FIGHT!"));
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Space, ECrawlerStates.DoNotChangeState, ContinueAtEndOfRound));
-            stateData.Actions.Add(new CrawlerStateAction("", 'F', ECrawlerStates.DoNotChangeState, ContinueAtEndOfRound));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Space, ECrawlerStates.DoNotChangeState, ContinueAtEndOfRound));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.F, ECrawlerStates.DoNotChangeState, ContinueAtEndOfRound));
 
             PartyData party = _crawlerService.GetParty();
 

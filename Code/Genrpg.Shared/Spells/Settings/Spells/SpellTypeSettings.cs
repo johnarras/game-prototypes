@@ -83,6 +83,6 @@ namespace Genrpg.Shared.Spells.Settings.Spells
 
     public class SpellHelper : BaseEntityHelper<SpellTypeSettings, SpellType>
     {
-        public override long Key => EntityTypes.Spell;
+        public override long HelperKey => EntityTypes.Spell;
     }
 }

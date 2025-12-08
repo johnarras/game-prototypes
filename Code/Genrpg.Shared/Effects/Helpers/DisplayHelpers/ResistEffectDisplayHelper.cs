@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 
     public class ResistEffectEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.Resist;
+        public override long HelperKey => EntityTypes.Resist;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

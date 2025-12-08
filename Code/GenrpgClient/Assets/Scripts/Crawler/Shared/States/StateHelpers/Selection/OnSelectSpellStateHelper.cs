@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
 {
     public class OnSelectSpellStateHelper : BaseCombatStateHelper
     {
-        public override ECrawlerStates Key => ECrawlerStates.OnSelectSpell;
+        public override ECrawlerStates HelperKey => ECrawlerStates.OnSelectSpell;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {

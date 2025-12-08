@@ -4,9 +4,9 @@ using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
 {
@@ -14,7 +14,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
     {
         private ICrawlerQuestService _questService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.QuestDetail;
+        public override ECrawlerStates HelperKey => ECrawlerStates.QuestDetail;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -32,10 +32,10 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
             object nextStateAction = fullQuest.NpcDetail;
 
             stateData.AddText("Quest: " + await _questService.ShowQuestStatus(party, fullQuest.Quest.IdKey, true, true, true));
-            
+
             if (fullQuest.Progress == null)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Accept Quest", 'A', nextState,
+                stateData.Actions.Add(new CrawlerStateAction("Accept Quest", Key.A, nextState,
                     () =>
                     {
                         _questService.AcceptQuest(party, fullQuest, token);
@@ -43,14 +43,14 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
             }
             else
             {
-                stateData.Actions.Add(new CrawlerStateAction("Drop Quest", 'D', nextState,
+                stateData.Actions.Add(new CrawlerStateAction("Drop Quest", Key.D, nextState,
                     () =>
                     {
                         _questService.DropQuest(party, fullQuest, token);
                     }, nextStateAction));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, nextState, null, fullQuest.NpcDetail));
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, nextState, null, fullQuest.NpcDetail));
 
 
             await Task.CompletedTask;

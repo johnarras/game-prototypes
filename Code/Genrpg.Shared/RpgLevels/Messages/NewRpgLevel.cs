@@ -1,7 +1,7 @@
 using Genrpg.Shared.MapMessages;
 using MessagePack;
 
-namespace Genrpg.Shared.Levels.Messages
+namespace Genrpg.Shared.RpgLevels.Messages
 {
     [MessagePackObject]
     public sealed class NewRpgLevel : BaseMapApiMessage

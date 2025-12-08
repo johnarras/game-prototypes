@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
@@ -29,7 +30,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         private IPartyService _partyService = null;
         private ICrawlerMapGenService _mapGenService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.EnterMap;
+        public override ECrawlerStates HelperKey => ECrawlerStates.EnterMap;
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Map; }
         protected override bool OnlyUseBGImage() { return true; }
 
@@ -241,7 +242,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
                             AddSpaceAction(stateData);
 
-                            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+                            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
                             return stateData;
                         }
@@ -383,10 +384,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 });
 
                             stateData.AddText("Are you ready to continue?");
-                            stateData.Actions.Add(new CrawlerStateAction("Yes, the Orbs are Set Correctly", 'Y', ECrawlerStates.DoNotChangeState,
+                            stateData.Actions.Add(new CrawlerStateAction("Yes, the Orbs are Set Correctly", Key.Y, ECrawlerStates.DoNotChangeState,
                                 onClickAction));
 
-                            stateData.Actions.Add(new CrawlerStateAction("No, let me check the Orbs again.", 'N', ECrawlerStates.ExploreWorld));
+                            stateData.Actions.Add(new CrawlerStateAction("No, let me check the Orbs again.", Key.N, ECrawlerStates.ExploreWorld));
 
 
 
@@ -413,7 +414,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             {
 
                                 stateData.Actions.Add(new CrawlerStateAction("The path is clear, do you wish to go?"));
-                                stateData.Actions.Add(new CrawlerStateAction("Yes go to the next floor.", 'Y',
+                                stateData.Actions.Add(new CrawlerStateAction("Yes go to the next floor.", Key.Y,
                                     ECrawlerStates.ExploreWorld, () =>
                                     {
                                         EnterCrawlerMapData enterMapData = new EnterCrawlerMapData()
@@ -430,7 +431,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                         _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token, enterMapData);
                                     }));
 
-                                stateData.Actions.Add(new CrawlerStateAction("No, stay on this flor..", 'N', ECrawlerStates.ExploreWorld));
+                                stateData.Actions.Add(new CrawlerStateAction("No, stay on this flor..", Key.N, ECrawlerStates.ExploreWorld));
 
 
                             }
@@ -439,10 +440,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 string barText = (unclickedButtons == 1 ? "There is one bar blocking the next floor" :
                                     "There are " + unclickedButtons + " bars still blocking the next floor.");
                                 stateData.Actions.Add(new CrawlerStateAction(barText));
-                                stateData.Actions.Add(new CrawlerStateAction("Ok", 'O', ECrawlerStates.ExploreWorld));
+                                stateData.Actions.Add(new CrawlerStateAction("Ok", Key.O, ECrawlerStates.ExploreWorld));
                             }
                         }
-                        stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+                        stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
                         return stateData;
                     }
@@ -454,7 +455,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.AddBlankLine();
             for (int m = 0; m < nextMaps.Count; m++)
             {
-                char enterCode = (char)(m + 'A');
+                Key enterCode = FromChar((char)(m + 'A'));
 
                 CrawlerMap nmap = nextMaps[m];
 
@@ -464,14 +465,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.AddBlankLine();
 
 
-            stateData.Actions.Add(new CrawlerStateAction("No, let's stay here.", 'N', ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("No, let's stay here.", Key.N, ECrawlerStates.ExploreWorld));
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
             await Task.CompletedTask;
             return stateData;
         }
 
-        private void AddNewMapButton(PartyData party, CrawlerStateData stateData, char enterCode, CrawlerMap nmap, MapCellDetail detail,
+        private void AddNewMapButton(PartyData party, CrawlerStateData stateData, Key enterCode, CrawlerMap nmap, MapCellDetail detail,
             CrawlerWorld world)
         {
             MapCellDetail prevDetail = (party.CurrPos.MapId < nmap.IdKey ? nmap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId < nmap.IdKey) :

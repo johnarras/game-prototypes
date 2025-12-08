@@ -2,7 +2,6 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,11 +12,12 @@ namespace Assets.Scripts.Assets.ObjectPools
 {
     public interface IObjectPool : IInjectable, IClientResetCleanup, IInjectOnLoad<IObjectPool>
     {
-        void CheckoutObject(object parent, string assetCategory, string assetPath,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null);
-        Task<GameObject> CheckoutObjectAsync(object parent, string assetCategory, string assetPath,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null);
+        void CheckoutObject<T>(object parent, string assetCategory, string assetPath,
+            AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null);
+        Task<GameObject> CheckoutObjectAsync<T>(object parent, string assetCategory, string assetPath,
+            AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null);
         void ReturnObject(object pooled);
+        void Clear();
 
     }
 
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Assets.ObjectPools
             _pooledObjectParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
         }
 
-        private void Clear()
+        public void Clear()
         {
             foreach (PrefabCache cache in _cache.Values)
             {
@@ -110,28 +110,28 @@ namespace Assets.Scripts.Assets.ObjectPools
             return currCache;
         }
 
-        public void CheckoutObject(object parent, string assetCategory, string assetPath,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null)
+        public void CheckoutObject<T>(object parent, string assetCategory, string assetPath,
+            AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null)
         {
-            _awaitableService.ForgetTask(CheckoutObjectAsync(parent, assetCategory, assetPath, handler, data, token, subdirectory));
+            _awaitableService.ForgetTask(CheckoutObjectAsync<T>(parent, assetCategory, assetPath, handler, data, token, subdirectory));
         }
 
-        public async Task<T> CheckoutObjectAsync<T>(object parent, string assetCategory, string assetPath,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null) where T : MonoBehaviour
+        public async Task<MB> CheckoutObjectAsync<MB, T>(object parent, string assetCategory, string assetPath,
+            AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null) where MB : MonoBehaviour
         {
-            GameObject obj = await CheckoutObjectAsync(parent, assetCategory, assetPath, handler, data, token, subdirectory);
+            GameObject obj = await CheckoutObjectAsync<T>(parent, assetCategory, assetPath, handler, data, token, subdirectory);
 
             if (obj == null)
             {
-                return default(T);
+                return default(MB);
             }
 
-            return _clientEntityService.GetComponent<T>(obj);
+            return _clientEntityService.GetComponent<MB>(obj);
         }
 
 
-        public async Task<GameObject> CheckoutObjectAsync(object parent, string assetCategory, string assetPath,
-            OnDownloadHandler handler, object data, CancellationToken token, string subdirectory = null)
+        public async Task<GameObject> CheckoutObjectAsync<T>(object parent, string assetCategory, string assetPath,
+            AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null)
         {
 
             string fullAssetCategory = assetCategory;
@@ -185,7 +185,7 @@ namespace Assets.Scripts.Assets.ObjectPools
             return newItem;
         }
 
-        public async Task OnClientResetCleanup(CancellationToken token)
+        public async Task OnReset(CancellationToken token)
         {
             Clear();
             await Task.CompletedTask;

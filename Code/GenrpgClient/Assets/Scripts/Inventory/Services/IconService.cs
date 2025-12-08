@@ -1,10 +1,7 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Assets;
+﻿using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Assets;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Settings;
 using Genrpg.Shared.Inventory.Settings.Qualities;
 using System.Threading;
 using UnityEngine;
@@ -62,18 +59,13 @@ public class IconService : IIconService
             prefabName = data.IconPrefabName;
         }
 
-        assetService.LoadAssetInto(parent, AssetCategoryNames.UI, 
-            prefabName, OnLoadItemIcon, data, token, data.SubDirectory);
+        assetService.LoadAssetInto(parent, AssetCategoryNames.UI,
+            prefabName, OnLoadItemIcon, token, data, data.SubDirectory);
 
     }
 
-    private void OnLoadItemIcon(object obj, object data, CancellationToken token)
+    private void OnLoadItemIcon(GameObject go, InitItemIconData idata, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
         ItemIcon iicon = go.GetComponent<ItemIcon>();
         if (iicon == null)
         {
@@ -81,8 +73,6 @@ public class IconService : IIconService
             return;
         }
 
-
-        InitItemIconData idata = data as InitItemIconData;
         if (idata == null)
         {
             _clientEntityService.Destroy(go);
@@ -102,18 +92,13 @@ public class IconService : IIconService
             prefabName = data.iconPrefabName;
         }
 
-        assetService.LoadAssetInto(parent, AssetCategoryNames.UI, 
-            prefabName, OnLoadSpellIcon, data, token, data.subdirectory);
+        assetService.LoadAssetInto(parent, AssetCategoryNames.UI,
+            prefabName, OnLoadSpellIcon, token, data, data.subdirectory);
 
     }
 
-    private void OnLoadSpellIcon(object obj, object data, CancellationToken token)
+    private void OnLoadSpellIcon(GameObject go, InitSpellIconData idata, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
         SpellIcon iicon = go.GetComponent<SpellIcon>();
         if (iicon == null)
         {
@@ -121,8 +106,6 @@ public class IconService : IIconService
             return;
         }
 
-
-        InitSpellIconData idata = data as InitSpellIconData;
         if (idata == null)
         {
             _clientEntityService.Destroy(go);

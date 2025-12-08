@@ -1,5 +1,5 @@
 ﻿using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Levels.Settings;
+using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Stats.Services;

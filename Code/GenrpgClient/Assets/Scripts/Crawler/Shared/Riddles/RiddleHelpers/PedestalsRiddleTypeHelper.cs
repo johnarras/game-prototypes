@@ -1,18 +1,16 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+﻿using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Riddles.Entities;
 using Genrpg.Shared.Utils;
-using System;
+using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Entities.Constants;
-using System.Linq;
 using UnityEngine;
-using Genrpg.Shared.Logging.Interfaces;
-using Steamworks;
 
 namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
@@ -21,7 +19,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
         public int Index { get; set; }
         public string Value { get; set; }
         public bool IsValid { get; set; }
-      
+
     }
 
 
@@ -31,7 +29,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
     /// </summary>
     public class PedestalsRiddleTypeHelper : BaseRiddleTypeHelper
     {
-        public override long Key => RiddleTypes.Pedestals;
+        public override long HelperKey => RiddleTypes.Pedestals;
 
         protected ILogService _logService = null;
 
@@ -95,7 +93,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
             {
                 for (int i = 0; i < pedestalCount; i++)
                 {
-                    finalPoints.Add(new PointXZ(startPoint.X+i, startPoint.Z)); 
+                    finalPoints.Add(new PointXZ(startPoint.X + i, startPoint.Z));
                 }
             }
 
@@ -158,7 +156,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                 }
                 isLikePedestal = isMult;
             }
-            else 
+            else
             {
                 isLikePedestal = true;
                 long weightTotal = lookup.WordsContainingLetters.Values.Sum(x => x.Count);
@@ -199,7 +197,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                         goodExampleWords.Add(newWord);
                     }
 
-                    List<char> usedLetters = new List<char>();  
+                    List<char> usedLetters = new List<char>();
                     for (int c = 0; c < newWord.Length; c++)
                     {
                         char lowerChar = char.ToLower(newWord[c]);
@@ -216,9 +214,9 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                 {
                     if (lettersUsedCounts[i] == exampleWordCount)
                     {
-                        if ((char)(i+'a') != chosenLetter)
+                        if ((char)(i + 'a') != chosenLetter)
                         {
-                            otherLettersFullyUsed.Add((char)(i+'a'));
+                            otherLettersFullyUsed.Add((char)(i + 'a'));
                         }
                     }
                 }
@@ -237,17 +235,17 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
                 List<string> badExampleWords = new List<string>();
 
-                while (badExampleWords.Count < exampleWordCount+1)
+                while (badExampleWords.Count < exampleWordCount + 1)
                 {
-                    string badExample = allBadWords[rand.Next(allBadWords.Count)];  
+                    string badExample = allBadWords[rand.Next(allBadWords.Count)];
                     if (!badExampleWords.Contains(badExample))
                     {
                         badExampleWords.Add(badExample);
                     }
                 }
 
-                goodExampleWords = goodExampleWords.OrderBy(x=>HashUtils.NewUUId()).ToList();    
-                badExampleWords = badExampleWords.OrderBy(x=>HashUtils.NewUUId()).ToList();  
+                goodExampleWords = goodExampleWords.OrderBy(x => HashUtils.NewUUId()).ToList();
+                badExampleWords = badExampleWords.OrderBy(x => HashUtils.NewUUId()).ToList();
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("I like these things:\n");
@@ -262,9 +260,9 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                     sb.Append(word + " ");
                 }
                 sb.Append("\n");
-                hintString = sb.ToString(); 
+                hintString = sb.ToString();
 
-                List<string> goodTestWords = allGoodWords.Except(goodExampleWords).ToList();    
+                List<string> goodTestWords = allGoodWords.Except(goodExampleWords).ToList();
                 List<string> badTestWords = allBadWords.Except(badExampleWords).ToList();
 
                 for (int i = 0; i < pedestalCount; i++)
@@ -286,7 +284,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                         {
                             Index = i,
                             IsValid = false,
-                            Value = badTestWords[rand.Next(badTestWords.Count)] 
+                            Value = badTestWords[rand.Next(badTestWords.Count)]
                         };
                         badTestWords.Remove(index.Value);
                         indexes.Add(index);
@@ -299,14 +297,14 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
             List<MapCellDetail> clueDetails = new List<MapCellDetail>();
             for (int i = 0; i < indexes.Count; i++)
             {
-                
+
                 PedestalIndex pedestal = indexes[i];
 
                 int currIndex = i + 1;
 
                 StringBuilder clueText = new StringBuilder();
 
-                clueText.Append("A pedestal numbered " + (i+1) + "/" + indexes.Count + " is here.\n");
+                clueText.Append("A pedestal numbered " + (i + 1) + "/" + indexes.Count + " is here.\n");
                 clueText.Append("'" + pedestal.Value + "' is engraved on the pedestal.\n");
                 clueText.Append("A mysterious voice says:\n");
                 clueText.Append(hintString + "\n");
@@ -324,7 +322,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
                 prevFloor.SetEntity(openPoint.X, openPoint.Z, EntityTypes.Riddle, currIndex);
                 prevFloor.RiddleHints.Hints.Add(new RiddleHint() { Index = currIndex, Text = clueText.ToString() });
-                
+
                 if (pedestal.IsValid)
                 {
                     riddleAnswer |= (1 << currIndex);

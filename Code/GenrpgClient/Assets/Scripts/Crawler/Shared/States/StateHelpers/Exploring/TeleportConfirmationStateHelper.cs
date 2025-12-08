@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -8,6 +7,7 @@ using Genrpg.Shared.Crawler.States.StateHelpers;
 using Genrpg.Shared.Entities.Constants;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 {
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
     {
         private ICrawlerMapService _mapService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.TeleportConfirmation;
+        public override ECrawlerStates HelperKey => ECrawlerStates.TeleportConfirmation;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -32,13 +32,13 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
             stateData.Actions.Add(new CrawlerStateAction("There is a teleport here."));
             stateData.Actions.Add(new CrawlerStateAction("Do you wish to enter it?"));
-            stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ExploreWorld,
+            stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
             () =>
             {
                 _mapService.MovePartyTo(party, detail.ToX, detail.ToZ, party.CurrPos.Rot, true, token);
             }, null));
 
-            stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.ExploreWorld));
             await Task.CompletedTask;
             return stateData;
         }

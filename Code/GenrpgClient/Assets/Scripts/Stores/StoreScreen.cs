@@ -1,8 +1,6 @@
-﻿
-
-using Assets.Scripts.Purchasing.Services;
-using Assets.Scripts.Stores;
+﻿using Assets.Scripts.Stores;
 using Genrpg.Shared.Purchasing.PlayerData;
+using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +28,39 @@ namespace Assets.Scripts.UI.Stores
             }
             else
             {
-                _offers = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.ToList();
+                _offers = GetOfferList();
             }
 
             AddListener<RefreshStoresResponse>(OnRefreshStores);
 
             await SetupData(GetToken());
 
+        }
+
+        protected List<PlayerStoreOffer> GetOfferList()
+        {
+
+            List<PlayerStoreOffer> customOffers = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.ToList();
+
+            List<PlayerStoreOffer> defaultOffers = _gameData.Get<DefaultStoreOfferSettings>(_gs.ch).Offers.ToList();
+
+            List<PlayerStoreOffer> finalList = defaultOffers;
+
+            foreach (PlayerStoreOffer offer in customOffers)
+            {
+                PlayerStoreOffer defaultOffer = finalList.FirstOrDefault(x => x.StoreSlotId == offer.StoreSlotId);
+
+                if (defaultOffer != null)
+                {
+                    finalList.Remove(defaultOffer);
+                }
+
+                finalList.Add(offer);
+            }
+
+            finalList = finalList.OrderBy(x => x.StoreSlotId).ToList();
+
+            return finalList;
         }
 
         private async Task SetupData(CancellationToken token)
@@ -82,13 +106,13 @@ namespace Assets.Scripts.UI.Stores
         {
             if (!_didPassInOffer)
             {
-                _offers = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.ToList();
+                _offers = GetOfferList();
             }
             else
             {
                 if (_offers.Count > 0)
                 {
-                    PlayerStoreOffer newOffer = _gs.ch.Get<PlayerStoreOfferData>().StoreOffers.FirstOrDefault(x => x.StoreSlotId == _offers[0].StoreSlotId);
+                    PlayerStoreOffer newOffer = GetOfferList().FirstOrDefault(x => x.StoreSlotId == _offers[0].StoreSlotId);
                     if (newOffer != null)
                     {
                         _offers = new List<PlayerStoreOffer> { newOffer };

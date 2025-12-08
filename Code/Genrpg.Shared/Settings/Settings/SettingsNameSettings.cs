@@ -1,11 +1,12 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Entities.Helpers;
-using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Settings;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Settings.Settings
 {
@@ -28,6 +29,28 @@ namespace Genrpg.Shared.Settings.Settings
     public class SettingsNameSettings : ParentSettings<SettingsName>
     {
         [Key(0)] public override string Id { get; set; }
+
+        private Dictionary<string, long> _nameToIdDict = new Dictionary<string, long>();
+        public override void SetData(List<SettingsName> data)
+        {
+            base.SetData(data);
+
+            Dictionary<string, long> tempDict = new Dictionary<string, long>();
+            foreach (SettingsName sn in data)
+            {
+                tempDict[sn.Name] = sn.IdKey;
+            }
+            _nameToIdDict = tempDict;
+        }
+
+        public long GetIdFromTypeName(string typeName)
+        {
+            if (_nameToIdDict.TryGetValue(typeName, out long id))
+            {
+                return id;
+            }
+            return 0;
+        }
     }
 
     public class SettingsNameSettingsDto : ParentSettingsDto<SettingsNameSettings, SettingsName> { }
@@ -36,9 +59,9 @@ namespace Genrpg.Shared.Settings.Settings
 
     public class SettingsNameSettingsMapper : ParentSettingsMapper<SettingsNameSettings, SettingsName, SettingsNameSettingsDto> { }
 
-    public class ScreenNameEntityHelper : BaseEntityHelper<ScreenNameSettings,ScreenName>
+    public class ScreenNameEntityHelper : BaseEntityHelper<ScreenNameSettings, ScreenName>
     {
-        public override long Key => EntityTypes.ScreenName;
+        public override long HelperKey => EntityTypes.ScreenName;
     }
 
 }

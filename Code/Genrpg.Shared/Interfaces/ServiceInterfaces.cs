@@ -1,10 +1,6 @@
 ﻿
-using System.Threading.Tasks;
-using Genrpg.Shared.Core.Entities;
 using System.Threading;
-using Genrpg.Shared.Utils;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Interfaces
 {
@@ -42,11 +38,11 @@ namespace Genrpg.Shared.Interfaces
     /// </summary>
     public interface ISetupDictionaryItem<T>
     {
-        T Key { get; }
+        T HelperKey { get; }
     }
 
-    public interface IOrderedSetupDictionaryItem<T> :ISetupDictionaryItem<T>
+    public interface IOrderedSetupDictionaryItem<T> : ISetupDictionaryItem<T>
     {
-       int Order { get; }
+        int Order { get; }
     }
 }

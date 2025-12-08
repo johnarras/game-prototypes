@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Spawns.Helpers
 {
     public class SpawnRewardHelper : IRewardHelper
     {
-        public long Key => EntityTypes.Spawn;
+        public long HelperKey => EntityTypes.Spawn;
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {

@@ -83,27 +83,18 @@ namespace Assets.Scripts.TextureLists.Services
                 TextureName = textureName
             };
 
-            _assetService.LoadAssetInto(GetTextureListParent(), AssetCategoryNames.TextureLists, textureName, OnDownloadTextureList, downloadData, token);
+            _assetService.LoadAssetInto(GetTextureListParent(), AssetCategoryNames.TextureLists, textureName, OnDownloadTextureList, token, downloadData);
         }
 
-        public async Task OnClientResetCleanup(CancellationToken token)
+        public async Task OnReset(CancellationToken token)
         {
             _clientEntityService.DestroyAllChildren(GetTextureListParent());
             _textureListCache = new Dictionary<string, CachedSpriteList>();
             await Task.CompletedTask;
         }
 
-        private void OnDownloadTextureList(object obj, object data, CancellationToken token)
+        private void OnDownloadTextureList(GameObject go, DownloadTextureListData downloadData, CancellationToken token)
         {
-
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
-            DownloadTextureListData downloadData = data as DownloadTextureListData;
 
             if (downloadData == null || string.IsNullOrEmpty(downloadData.TextureName))
             {

@@ -23,7 +23,7 @@ namespace Genrpg.Shared.MapObjects.Factories
         protected ITextSerializer _serializer;
 
         public abstract MapObject Create(IRandom rand, IMapSpawn spawn);
-        public abstract long Key { get; }
+        public abstract long HelperKey { get; }
 
     }
 }

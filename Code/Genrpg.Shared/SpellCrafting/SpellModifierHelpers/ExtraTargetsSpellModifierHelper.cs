@@ -9,7 +9,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class ExtraTargetsSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.ExtraTargets;
+        public override long HelperKey => SpellModifiers.ExtraTargets;
 
 
         const double _extraTargetMult = 0.9f;

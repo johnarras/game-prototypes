@@ -1,17 +1,17 @@
-﻿using Assets.Scripts.MapTerrain;
+﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.MapTerrain;
+using Assets.Scripts.ProcGen.Loading.Utils;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Logging.Interfaces;
-using Assets.Scripts.ProcGen.Loading.Utils;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Awaitables;
 
 public class FullDetailPrototype : BaseDetailPrototype
 {
@@ -220,7 +220,7 @@ public class PlantAssetLoader : IPlantAssetLoader
                     }
                     if (patch.grassAmounts[x, y, i] > 0)
                     {
-                        FullDetailPrototype proto = currentProtos[i+offset];
+                        FullDetailPrototype proto = currentProtos[i + offset];
                         detailblock[proto.Index][x, y] = (int)patch.grassAmounts[x, y, i];
                     }
                 }
@@ -256,54 +256,54 @@ public class PlantAssetLoader : IPlantAssetLoader
             full.proto = dp;
             if (gx >= 0 && gy >= 0)
             {
-                _assetService.LoadAsset(AssetCategoryNames.Grass, full.plantType.Art, OnDownloadGrass, full, null, token);
+                _assetService.LoadAsset(AssetCategoryNames.Grass, full.plantType.Art, OnDownloadGrass, null, token, full);
             }
         }
     }
-private void OnDownloadGrass(object obj, object data, CancellationToken token)
-{
-    FullDetailPrototype full = data as FullDetailPrototype;
-    if (full == null || full.proto == null)
+    private void OnDownloadGrass(object obj, object data, CancellationToken token)
     {
-        return;
-    }
+        FullDetailPrototype full = data as FullDetailPrototype;
+        if (full == null || full.proto == null)
+        {
+            return;
+        }
 
-    GameObject go = obj as GameObject;
+        GameObject go = obj as GameObject;
 
-    if (go == null)
-    {
-        _logService.Error("no GameObject: " + obj + " " + full.plantType.Art);
-        return;
-    }
+        if (go == null)
+        {
+            _logService.Error("no GameObject: " + obj + " " + full.plantType.Art);
+            return;
+        }
 
-    SpriteList tlist = go.GetComponent<SpriteList>();
-    if (tlist == null || tlist.Sprites == null || tlist.Sprites.Count < 1)
-    {
-        full.proto.prototype = go;
-        full.proto.renderMode = DetailRenderMode.VertexLit;
-        full.proto.usePrototypeMesh = true;
-    }
-    else
-    {
-        full.proto.prototypeTexture = tlist.Sprites[0].texture;
-        full.proto.healthyColor = Color.white;
-        full.proto.renderMode = DetailRenderMode.GrassBillboard;
-        full.proto.dryColor = Color.white;
-    }
+        SpriteList tlist = go.GetComponent<SpriteList>();
+        if (tlist == null || tlist.Sprites == null || tlist.Sprites.Count < 1)
+        {
+            full.proto.prototype = go;
+            full.proto.renderMode = DetailRenderMode.VertexLit;
+            full.proto.usePrototypeMesh = true;
+        }
+        else
+        {
+            full.proto.prototypeTexture = tlist.Sprites[0].texture;
+            full.proto.healthyColor = Color.white;
+            full.proto.renderMode = DetailRenderMode.GrassBillboard;
+            full.proto.dryColor = Color.white;
+        }
 
-    TerrainPatchData grid = _terrainManager.GetMapGrid(full.XGrid, full.YGrid) as TerrainPatchData;
-    if (grid == null)
-    {
-        _clientEntityService.Destroy(go);
-        return;
+        TerrainPatchData grid = _terrainManager.GetMapGrid(full.XGrid, full.YGrid) as TerrainPatchData;
+        if (grid == null)
+        {
+            _clientEntityService.Destroy(go);
+            return;
+        }
+        Terrain terr = grid.terrain as Terrain;
+        if (terr == null)
+        {
+            _clientEntityService.Destroy(go);
+            return;
+        }
+        _clientEntityService.AddToParent(go, terr.gameObject);
+        go.SetActive(false);
     }
-    Terrain terr = grid.terrain as Terrain;
-    if (terr == null)
-    {
-        _clientEntityService.Destroy(go);
-        return;
-    }
-    _clientEntityService.AddToParent(go, terr.gameObject);
-    go.SetActive(false);
-}
 }

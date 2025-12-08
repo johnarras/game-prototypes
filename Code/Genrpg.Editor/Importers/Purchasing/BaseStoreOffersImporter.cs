@@ -1,7 +1,13 @@
-﻿using Genrpg.Editor.Importers.Core;
+﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Purchasing.PlayerData;
+using Genrpg.Shared.Purchasing.Services;
+using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers.Purchasing
 {
@@ -15,5 +21,42 @@ namespace Genrpg.Editor.Importers.Purchasing
             return true;
         }
         protected ITextSerializer _serializer = null;
+        protected IPurchasingService _purchasingService = null;
+
+        protected override async Task<bool> UpdateAfterImport(WindowBase window, EditorGameState gs)
+        {
+            StoreOfferSettings offerSettings = gs.data.Get<StoreOfferSettings>(null);
+            StoreBundleSetSettings bundleSettings = gs.data.Get<StoreBundleSetSettings>(null);
+
+
+            DefaultStoreOfferSettings defaultSettings = gs.data.Get<DefaultStoreOfferSettings>(null);
+
+            defaultSettings.Offers = new List<PlayerStoreOffer>();
+
+            Dictionary<long, StoreOffer> defaultOffers = new Dictionary<long, StoreOffer>();
+            foreach (StoreOffer offer in offerSettings.GetData())
+            {
+                if (offer.IsDefaultOffer)
+                {
+                    defaultOffers[offer.StoreSlotId] = offer;
+                }
+            }
+
+            foreach (StoreOffer offer in defaultOffers.Values)
+            {
+                PlayerStoreOffer playerOffer = _purchasingService.CreatePlayerStoreOffer(null, offer);
+
+                if (playerOffer != null)
+                {
+                    defaultSettings.Offers.Add(playerOffer);
+                }
+            }
+
+            gs.LookedAtObjects.Add(defaultSettings);
+
+
+            await Task.CompletedTask;
+            return true;
+        }
     }
 }

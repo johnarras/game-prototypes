@@ -5,9 +5,9 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {
@@ -17,7 +17,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
         private ICrawlerMapService _mapService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.LevelMap;
+        public override ECrawlerStates HelperKey => ECrawlerStates.LevelMap;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
@@ -39,7 +39,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 stateData.AddText("You have found a map of this area.");
                 stateData.AddText("Would you like to examine it?");
 
-                stateData.Actions.Add(new CrawlerStateAction("Yes", 'Y', ECrawlerStates.ExploreWorld,
+                stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
 
                     () =>
                     {
@@ -47,7 +47,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         party.LastAutoCompleteLevel = party.CurrPos.MapId;
                     }));
 
-                stateData.Actions.Add(new CrawlerStateAction("No", 'N', ECrawlerStates.ExploreWorld));
+                stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.ExploreWorld));
 
 
             }
@@ -57,7 +57,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             }
 
 
-            stateData.Actions.Add(new CrawlerStateAction("", CharCodes.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
 
             return stateData;

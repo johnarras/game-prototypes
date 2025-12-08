@@ -17,7 +17,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
     public class TreasureMapEncounterHelper : BaseClientMapEncounterHelper
     {
-        public override long Key => MapEncounters.Treasure;
+        public override long HelperKey => MapEncounters.Treasure;
 
         public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {

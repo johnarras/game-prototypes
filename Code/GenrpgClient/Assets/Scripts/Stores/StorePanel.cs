@@ -51,19 +51,12 @@ namespace Assets.Scripts.Stores
             else
             {
                 _clientEntityService.DestroyAllChildren(ArtAnchor);
-                _assetService.LoadAssetInto(ArtAnchor, AssetCategoryNames.Stores, _theme.Art + "StoreArtPanel", OnDownloadStoreArt, null, GetToken());
+                _assetService.LoadAssetInto<object>(ArtAnchor, AssetCategoryNames.Stores, _theme.Art + "StoreArtPanel", OnDownloadStoreArt, GetToken());
             }
         }
 
-        private void OnDownloadStoreArt(object obj, object data, CancellationToken token)
+        private void OnDownloadStoreArt(GameObject go, object data, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-
-            if (go == null)
-            {
-                return;
-            }
-
             StoreArtPanel artPanel = go.GetComponent<StoreArtPanel>();
 
             if (artPanel == null)

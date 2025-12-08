@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8eea591da32ade34794e9d478e3dc4a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -130,6 +130,8 @@ MonoBehaviour:
   Icon: {fileID: 0}
   QuantityText: {fileID: 0}
   NameText: {fileID: 0}
+  IsMainIcon: 0
+  UpdateTicks: 10
   PartyBuffId: 0
   ContentRoot: {fileID: 1669561361299173121}
   ImageName: 
@@ -155,14 +157,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8eea591da32ade34794e9d478e3dc4a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -180,6 +182,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2507903872002535432}
     m_Modifications:
+    - target: {fileID: 1053129980958927221, guid: 0db43d859bf0aed478b49247e6cc34e4,
+        type: 3}
+      propertyPath: BlankSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b,
+        type: 3}
     - target: {fileID: 5058313415678019349, guid: 0db43d859bf0aed478b49247e6cc34e4,
         type: 3}
       propertyPath: m_Pivot.x

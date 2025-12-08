@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Threading;
+﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.Zones.WorldData;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Assets;
-using Assets.Scripts.Assets;
-using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Assets.Textures;
+using Genrpg.Shared.ProcGen.Settings.Textures;
+using Genrpg.Shared.Zones.WorldData;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 
 public class TerrainTextureData
@@ -136,7 +134,7 @@ public class TerrainTextureManager : ITerrainTextureManager
         newDownloadData.Terr = terr;
         newDownloadData.TextureIndex = index;
 
-        _assetService.LoadAssetInto(_terrainManager.GetTerrainTextureParent(), AssetCategoryNames.TerrainTex, artName, OnDownloadArt, newDownloadData, token);
+        _assetService.LoadAssetInto(_terrainManager.GetTerrainTextureParent(), AssetCategoryNames.TerrainTex, artName, OnDownloadArt, token, newDownloadData);
     }
 
 
@@ -190,16 +188,8 @@ public class TerrainTextureManager : ITerrainTextureManager
         return _terrainManager.GetFromTerrainTextureCache(ttype.Name);
     }
 
-    private void OnDownloadArt(object obj, object dataIn, CancellationToken token)
+    private void OnDownloadArt(GameObject go, DownloadTerrainTextureData ddata, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            return;
-        }
-        DownloadTerrainTextureData ddata = dataIn as DownloadTerrainTextureData;
-
         if (ddata.Terr == null || ddata.TexType == null)
         {
             _clientEntityService.Destroy(go);
@@ -253,7 +243,7 @@ public class TerrainTextureManager : ITerrainTextureManager
             DownloadTerrainTextureData newDownloadData = new DownloadTerrainTextureData();
             newDownloadData.TexType = textureType;
 
-            _assetService.LoadAssetInto(_terrainManager.GetTerrainTextureParent(), AssetCategoryNames.TerrainTex, textureType.Name, OnDownloadTextureToCache, newDownloadData, token);
+            _assetService.LoadAssetInto(_terrainManager.GetTerrainTextureParent(), AssetCategoryNames.TerrainTex, textureType.Name, OnDownloadTextureToCache, token, newDownloadData);
         }
 
         await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
@@ -265,16 +255,8 @@ public class TerrainTextureManager : ITerrainTextureManager
 
         await Awaitable.WaitForSecondsAsync(0.1f * _gameData.Get<TextureTypeSettings>(_gs.ch).GetData().Count, cancellationToken: token);
     }
-    private void OnDownloadTextureToCache(object obj, object dataIn, CancellationToken token)
+    private void OnDownloadTextureToCache(GameObject go, DownloadTerrainTextureData ddata, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (go == null)
-        {
-            return;
-        }
-        DownloadTerrainTextureData ddata = dataIn as DownloadTerrainTextureData;
-
         if (ddata.TexType == null)
         {
             _clientEntityService.Destroy(go);

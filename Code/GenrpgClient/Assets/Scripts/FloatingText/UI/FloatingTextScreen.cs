@@ -52,7 +52,7 @@ public class FloatingTextScreen : BaseScreen
             FloatingTextQueuedItem firstItem = _messageQueue[0];
             _messageQueue.RemoveAt(0);
 
-            _assetService.LoadAssetInto(_textAnchor, AssetCategoryNames.UI, firstItem.ArtName, OnLoadText, firstItem.Message, GetToken(), Subdirectory);
+            _assetService.LoadAssetInto(_textAnchor, AssetCategoryNames.UI, firstItem.ArtName, OnLoadText, GetToken(), firstItem.Message, Subdirectory);
 
         }
 
@@ -105,14 +105,8 @@ public class FloatingTextScreen : BaseScreen
         _messageQueue.Add(queuedItem);
     }
 
-    private void OnLoadText(object obj, object data, CancellationToken token)
+    private void OnLoadText(GameObject go, string txt, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-        string txt = data as String;
         if (string.IsNullOrEmpty(txt))
         {
             _clientEntityService.Destroy(go);

@@ -1,28 +1,24 @@
 ﻿
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.Crafting.Constants;
+using Genrpg.Shared.Crafting.Entities;
+using Genrpg.Shared.Crafting.Settings.Recipes;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using Genrpg.Shared.Inventory.Settings.Qualities;
+using Genrpg.Shared.Inventory.Settings.Slots;
+using Genrpg.Shared.RpgLevels.Settings;
+using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Stats.Settings.Scaling;
+using Genrpg.Shared.Stats.Settings.Stats;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Levels.Settings;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Stats.Settings.Scaling;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Inventory.Settings.Qualities;
-using Genrpg.Shared.Crafting.Entities;
-using Genrpg.Shared.Crafting.Settings.Recipes;
-using System.Threading;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Crafting.Constants;
-using Genrpg.Shared.Inventory.Settings.Slots;
 
 namespace Genrpg.Shared.Crafting.Services
 {
@@ -150,7 +146,7 @@ namespace Genrpg.Shared.Crafting.Services
             RpgLevel nextLev = _gameData.Get<RpgLevelSettings>(ch).Get((int)Math.Ceiling(averageLevel));
             QualityType prevQuality = _gameData.Get<QualityTypeSettings>(ch).Get((int)Math.Floor(averageQuality));
             QualityType nextQuality = _gameData.Get<QualityTypeSettings>(ch).Get((int)Math.Ceiling(averageQuality));
-            
+
             if (nextQuality == null)
             {
                 nextQuality = prevQuality;
@@ -224,7 +220,7 @@ namespace Genrpg.Shared.Crafting.Services
                 {
                     scaleTypeScalingPct = scaleType.DefPct;
                 }
-                else if (key >= StatConstants.PrimaryStatStart && key <= StatConstants.PrimaryStatEnd)
+                else if (StatConstants.IsPrimaryStat(key))
                 {
                     scaleTypeScalingPct = scaleType.AttPct;
                 }
@@ -272,7 +268,7 @@ namespace Genrpg.Shared.Crafting.Services
 
             if (recipeType != null)
             {
-                return (int)(Math.Max(CraftingConstants.MinReagentQuantity, 
+                return (int)(Math.Max(CraftingConstants.MinReagentQuantity,
                     Math.Ceiling(recipeType.ScalingPct * settings.ReagentQuantityPerPercent)));
             }
             return CraftingConstants.BadReagentQuantity;

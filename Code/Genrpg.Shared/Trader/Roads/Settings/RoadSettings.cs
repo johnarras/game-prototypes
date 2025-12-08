@@ -46,6 +46,6 @@ namespace Genrpg.Shared.Trader.Roads.Settings
 
     public class RoadEntityHelper : BaseEntityHelper<RoadSettings, Road>
     {
-        public override long Key => EntityTypes.Road;
+        public override long HelperKey => EntityTypes.Road;
     }
 }

@@ -1,17 +1,17 @@
 ﻿
-using UnityEngine;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Constants;
-using System.Threading;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapObjects.Messages;
 using Assets.Scripts.GroundObjects;
-using System.Threading.Tasks;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Messages;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class MapModObjectLoader : BaseMapObjectLoader
 {
-    public override long Key => EntityTypes.MapMod;
+    public override long HelperKey => EntityTypes.MapMod;
     protected override string GetLayerName() { return LayerNames.ObjectLayer; }
 
     public override async Awaitable Load(OnSpawn spawn, MapObject obj, CancellationToken token)
@@ -26,26 +26,14 @@ public class MapModObjectLoader : BaseMapObjectLoader
             Token = token,
         };
 
-        _assetService.LoadAsset(AssetCategoryNames.Props, "MapMod", OnDownloadMapModObject, loadData, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Props, "MapMod", OnDownloadMapModObject, null, token, loadData);
 
         await Task.CompletedTask;
         return;
     }
 
-    private void OnDownloadMapModObject(object obj, object data, CancellationToken token)
+    private void OnDownloadMapModObject(GameObject go, SpawnLoadData loadData, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        SpawnLoadData loadData = data as SpawnLoadData;
-        if (loadData ==null)
-        {
-            return;
-        }
-
         MapModObject mapModObject = go.GetComponent<MapModObject>();
 
         mapModObject.Init(loadData.Spawn);

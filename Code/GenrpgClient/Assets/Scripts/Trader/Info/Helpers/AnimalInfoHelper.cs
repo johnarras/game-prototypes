@@ -7,7 +7,7 @@ namespace Assets.Scripts.Trader.Info.Helpers
 {
     public class AnimalInfoHelper : BaseInfoHelper<AnimalSettings, Animal>
     {
-        public override long Key => EntityTypes.Animal;
+        public override long HelperKey => EntityTypes.Animal;
 
         public override List<string> GetInfoLines(long entityId)
         {

@@ -133,7 +133,7 @@ public class SpellbookScreen : SpellIconScreen
         _editSpell.Effects.Add(effect);
 
         _assetService.LoadAssetInto(EffectListParent, AssetCategoryNames.UI,
-            SpellEffectEditPrefabName, OnLoadEffect, effect, GetToken(), Subdirectory);
+            SpellEffectEditPrefabName, OnLoadEffect, GetToken(), effect, Subdirectory);
     }
 
 
@@ -249,31 +249,23 @@ public class SpellbookScreen : SpellIconScreen
         for (int e = _effectEdits.Count; e < spell.Effects.Count; e++)
         {
             _assetService.LoadAssetInto(EffectListParent, AssetCategoryNames.UI,
-                SpellEffectEditPrefabName, OnLoadEffect, spell.Effects[e], GetToken(), Subdirectory);
+                SpellEffectEditPrefabName, OnLoadEffect, GetToken(), spell.Effects[e], Subdirectory);
 
         }
     }
 
 
-    private void OnLoadEffect(object obj, object data, CancellationToken token)
+    private void OnLoadEffect(GameObject go, SpellEffect spellEffect, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-
-        if (obj == null)
-        {
-            _logService.Error("Failed to load SpellEffectEdit");
-            return;
-        }
-
         SpellEffectEdit edit = go.GetComponent<SpellEffectEdit>();
 
         if (edit == null)
         {
-            _logService.Error("SpellEffectEdit Component missing");
+            _clientEntityService.Destroy(go);
             return;
         }
 
-        edit.Init(data as SpellEffect, _editSpell, this, OnDropdownValueChanged);
+        edit.Init(spellEffect, _editSpell, this, OnDropdownValueChanged);
 
         _effectEdits.Add(edit);
 

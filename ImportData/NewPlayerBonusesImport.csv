@@ -1,0 +1,15 @@
+header newplayerbonus,IdKey,EntityTypeId,EntityId,Quantity
+newplayerbonus,1,basetraderstat,coins storage,800
+newplayerbonus,2,basetraderstat,coins regen,80
+newplayerbonus,3,basetraderstat,supplies storage,60
+newplayerbonus,4,basetraderstat,supplies regen,6
+newplayerbonus,5,basetraderstat,mana storage,40
+newplayerbonus,6,basetraderstat,mana regen,4
+newplayerbonus,7,basetraderstat,guards,2
+newplayerbonus,8,basetraderstat,caravan animals,1
+newplayerbonus,9,animal,donkey,1
+newplayerbonus,10,basetraderstat,holdings tradegoods,2
+newplayerbonus,11,basetraderstat,foraging,1
+newplayerbonus,12,corecurrency,coins,800
+newplayerbonus,13,corecurrency,supplies,120
+newplayerbonus,14,corecurrency,mana,40

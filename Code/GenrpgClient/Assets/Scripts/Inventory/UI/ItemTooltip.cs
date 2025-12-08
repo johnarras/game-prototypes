@@ -207,19 +207,12 @@ public class ItemTooltip : BaseTooltip
         }
 
         _assetService.LoadAssetInto(RowParent, AssetCategoryNames.UI,
-            ItemTooltipRow, OnLoadRow, data, _token, "Items");
+            ItemTooltipRow, OnLoadRow, _token, data, "Items");
     }
 
-    private void OnLoadRow(object obj, object data, CancellationToken token)
+    private void OnLoadRow(GameObject go, ItemTooltipRowData rowData, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
         ItemTooltipRow row = go.GetComponent<ItemTooltipRow>();
-        ItemTooltipRowData rowData = data as ItemTooltipRowData;
         if (row == null || rowData == null)
         {
             _clientEntityService.Destroy(go);

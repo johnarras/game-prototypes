@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
@@ -21,7 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
     public class RollStatsHelper : BaseStateHelper
     {
 
-        public override ECrawlerStates Key => ECrawlerStates.RollStats;
+        public override ECrawlerStates HelperKey => ECrawlerStates.RollStats;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
@@ -85,7 +86,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             if (rollStats)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Reroll", 'R', ECrawlerStates.RollStats, extraData: member));
+                stateData.Actions.Add(new CrawlerStateAction("Reroll", Key.R, ECrawlerStates.RollStats, extraData: member));
             }
             else
             {
@@ -94,10 +95,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("Accept", 'A', ECrawlerStates.ChoosePortrait, extraData: member));
+            stateData.Actions.Add(new CrawlerStateAction("Accept", Key.A, ECrawlerStates.ChoosePortrait, extraData: member));
 
 
-            stateData.Actions.Add(new CrawlerStateAction("Escape", CharCodes.Escape, ECrawlerStates.ChooseClass,
+            stateData.Actions.Add(new CrawlerStateAction("Escape", Key.Escape, ECrawlerStates.ChooseClass,
                 delegate
                 {
                     member.Stats = new StatGroup();

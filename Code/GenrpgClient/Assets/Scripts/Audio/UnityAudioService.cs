@@ -130,17 +130,11 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
             return;
         }
 
-        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.audioName, OnDownloadAudio, playData, entity, _token);
+        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.audioName, OnDownloadAudio, entity, _token, playData);
     }
 
-    private void OnDownloadAudio(object obj, object data, CancellationToken token)
+    private void OnDownloadAudio(GameObject go, PlayAudioData playData, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
         AudioClipList cont = go.GetComponent<AudioClipList>();
         if (cont == null || !cont.IsValid())
         {
@@ -148,7 +142,6 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
             return;
         }
 
-        PlayAudioData playData = data as PlayAudioData;
         if (playData == null || string.IsNullOrEmpty(playData.audioName))
         {
             _clientEntityService.Destroy(go);

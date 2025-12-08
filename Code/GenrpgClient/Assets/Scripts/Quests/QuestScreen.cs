@@ -164,7 +164,7 @@ public class QuestScreen : ItemIconScreen
                 index = i,
             };
             _assetService.LoadAssetInto(QuestListParent, AssetCategoryNames.UI,
-                GetQuestRowPrefab(), OnLoadScreenQuest, questIndexInfo, GetToken(), Subdirectory);
+                GetQuestRowPrefab(), OnLoadScreenQuest, GetToken(), questIndexInfo, Subdirectory);
         }
 
     }
@@ -178,16 +178,8 @@ public class QuestScreen : ItemIconScreen
         }
     }
 
-    private void OnLoadScreenQuest(object obj, object data, CancellationToken token)
+    private void OnLoadScreenQuest(GameObject go, QuestTypeWithIndex qindex, CancellationToken token)
     {
-        GameObject go = obj as GameObject;
-        if (go == null)
-        {
-            return;
-        }
-
-        QuestTypeWithIndex qindex = data as QuestTypeWithIndex;
-
         if (qindex == null || qindex.qtype == null)
         {
             _clientEntityService.Destroy(go);

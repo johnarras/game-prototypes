@@ -1,14 +1,14 @@
 
-using UnityEngine;
 using ClientEvents;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Utils;
 using System.Threading;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Assets.Constants;
+using UnityEngine;
 
 public class MinimapUI : BaseBehaviour
 {
-    
+
     public GameObject MainPanel;
     public GRawImage MapImage;
     public GameObject ArrowParent;
@@ -28,7 +28,7 @@ public class MinimapUI : BaseBehaviour
         AddUpdate(MinimapUpdate, UpdateTypes.Regular);
         if (ArrowParent != null)
         {
-            _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, null, token, "Maps");
+            _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, token, default(object), "Maps");
         }
 
         ShowMapImage();
@@ -40,7 +40,7 @@ public class MinimapUI : BaseBehaviour
         {
             _uiService.SetImageTexture(MapImage, _mapTexture);
             OnEnableMinimap(null);
-            
+
         }
         else
         {
@@ -69,15 +69,15 @@ public class MinimapUI : BaseBehaviour
         return _mapTexture;
     }
 
-    private void OnLoadArrow(object obj, object data, CancellationToken token)
+    private void OnLoadArrow(GameObject obj, object data, CancellationToken token)
     {
-        ArrowObject = obj as GameObject;
+        ArrowObject = obj;
     }
 
-	void MinimapUpdate()
-	{
-        GameObject player = _playerManager.GetPlayerGameObject ();
-        if (player == null || MapImage ==  null || MapImage.texture == null || _md.GeneratingMap)
+    void MinimapUpdate()
+    {
+        GameObject player = _playerManager.GetPlayerGameObject();
+        if (player == null || MapImage == null || MapImage.texture == null || _md.GeneratingMap)
         {
             return;
         }
@@ -102,14 +102,14 @@ public class MinimapUI : BaseBehaviour
 
         float rot = player.transform.eulerAngles.y;
 
-		if (ArrowObject != null)
-		{
-			ArrowObject.transform.eulerAngles = new Vector3(0,0,-rot);
-		}
+        if (ArrowObject != null)
+        {
+            ArrowObject.transform.eulerAngles = new Vector3(0, 0, -rot);
+        }
 
 
 
-	}
+    }
 
     private void OnEnableMinimap(EnableMinimapEvent data)
     {
@@ -123,7 +123,7 @@ public class MinimapUI : BaseBehaviour
         return;
     }
 
-    
+
 
 }
 

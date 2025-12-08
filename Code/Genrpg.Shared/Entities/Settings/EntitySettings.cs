@@ -36,6 +36,6 @@ namespace Genrpg.Shared.Entities.Settings
 
     public class RandomEntityHelper : BaseEntityHelper<EntitySettings, EntityType>
     {
-        public override long Key => EntityTypes.RandomEntity;
+        public override long HelperKey => EntityTypes.RandomEntity;
     }
 }

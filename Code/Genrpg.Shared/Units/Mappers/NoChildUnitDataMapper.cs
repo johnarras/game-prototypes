@@ -31,9 +31,9 @@ namespace Genrpg.Shared.Units.Mappers
 
         public bool SendToClient()
         {
-            return !typeof(IServerOnlyData).IsAssignableFrom(Key);
+            return !typeof(IServerOnlyData).IsAssignableFrom(HelperKey);
         }
 
-        [IgnoreMember] public virtual Type Key => typeof(TPlayerData);
+        [IgnoreMember] public virtual Type HelperKey => typeof(TPlayerData);
     }
 }

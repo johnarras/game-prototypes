@@ -6,6 +6,6 @@ namespace Genrpg.Shared.Zones.Helpers
 {
     public class ZoneHelper : BaseMapEntityHelper<Zone>
     {
-        public override long Key => EntityTypes.Zone;
+        public override long HelperKey => EntityTypes.Zone;
     }
 }

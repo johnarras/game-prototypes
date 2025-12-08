@@ -8,10 +8,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.ProcGen.Settings.Trees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -46,7 +42,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     };
 
-                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Trees, treeType.Art + variation, OnDownloadObject, loadData, token);
+                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Trees, treeType.Art + variation, OnDownloadObject, token, loadData);
 
                 }
             }

@@ -1,4 +1,6 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+﻿using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Input.Interfaces;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
@@ -11,7 +13,7 @@ using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.States.Services
 {
-    public interface ICrawlerService : IInitializable
+    public interface ICrawlerService : IInitializable, IClientQuitCleanup, IKeyboardSubsystem
     {
         CancellationToken GetToken();
         void ChangeState(ECrawlerStates state, CancellationToken token, object extraData = null, ECrawlerStates returnState = ECrawlerStates.None);
@@ -28,7 +30,6 @@ namespace Genrpg.Shared.Crawler.States.Services
         Awaitable NewGame(int options);
         void ClearSpeedup();
         List<IStateHelper> GetAllStateHelpers();
-        void UpdateInputs(CancellationToken token);
         long GetCrawlerScreenId();
         ECrawlerStates GetPrevState(ECrawlerStates tryPrevState = ECrawlerStates.None);
     }

@@ -13,7 +13,7 @@ namespace Genrpg.Shared.MapObjects.MapObjectAddons.Factories
 {
     public class MapModFactory : BaseMapObjectFactory
     {
-        public override long Key => EntityTypes.MapMod;
+        public override long HelperKey => EntityTypes.MapMod;
 
         public override MapObject Create(IRandom rand, IMapSpawn spawn)
         {

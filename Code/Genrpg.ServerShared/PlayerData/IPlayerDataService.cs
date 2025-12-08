@@ -15,7 +15,7 @@ namespace Genrpg.ServerShared.PlayerData
     {
         void SavePlayerData(Character ch, bool saveAll);
         Task<List<IUnitData>> MapToClientDto(IFilteredObject obj, List<IUnitData> serverDataList);
-        Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, Character ch = null);
+        Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, List<IUnitData> existingData, Character ch = null);
         Task<List<CharacterStub>> LoadCharacterStubs(string userId);
         Dictionary<Type, IUnitDataLoader> GetLoaders();
         IUnitDataLoader GetLoader<T>() where T : IUnitData;

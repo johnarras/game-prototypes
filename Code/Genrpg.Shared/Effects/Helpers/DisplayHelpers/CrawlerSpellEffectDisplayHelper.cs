@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 {
     public class CrawlerSpellEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.CrawlerSpell;
+        public override long HelperKey => EntityTypes.CrawlerSpell;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

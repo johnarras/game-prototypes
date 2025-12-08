@@ -51,6 +51,6 @@ namespace Genrpg.Shared.Crawler.Upgrades.Settings
 
     public class MemberUpgradeHelper : BaseEntityHelper<MemberUpgradeSettings, MemberUpgrade>
     {
-        public override long Key => EntityTypes.MemberUpgrades;
+        public override long HelperKey => EntityTypes.MemberUpgrades;
     }
 }

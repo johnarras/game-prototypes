@@ -6,6 +6,6 @@ namespace Genrpg.RequestServer.Factions.Helpers
 {
     public class ReputationAsyncRewardHelper : BaseAsyncOwnerQuantityRewardHelper<ReputationData, ReputationStatus>
     {
-        public override long Key => EntityTypes.Reputation;
+        public override long HelperKey => EntityTypes.Reputation;
     }
 }

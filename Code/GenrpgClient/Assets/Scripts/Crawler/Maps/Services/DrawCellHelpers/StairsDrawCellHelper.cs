@@ -7,10 +7,8 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -45,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     };
 
-                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, (showDownStairs ? "StairsDown" : "StairsUp"), OnDownloadObject, loadData, token);
+                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, (showDownStairs ? "StairsDown" : "StairsUp"), OnDownloadObject, token, loadData);
                 }
             }
 

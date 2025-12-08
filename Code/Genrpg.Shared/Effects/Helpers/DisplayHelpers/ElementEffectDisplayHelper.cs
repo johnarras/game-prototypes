@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
 
     public class ElementEffectEffectDisplayHelper : BaseEffectDisplayHelper
     {
-        public override long Key => EntityTypes.Element;
+        public override long HelperKey => EntityTypes.Element;
 
         public override string DisplayEffect(IFilteredObject obj, IEffect effect)
         {

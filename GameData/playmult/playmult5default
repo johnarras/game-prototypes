@@ -3,6 +3,7 @@
   "ParentId": "default",
   "IdKey": 5,
   "Name": "",
-  "Mult": 25,
-  "MinLevel": 8
+  "Mult": 20,
+  "MinLevel": 8,
+  "SaveTime": "2025-11-27T18:09:04.373Z"
 }

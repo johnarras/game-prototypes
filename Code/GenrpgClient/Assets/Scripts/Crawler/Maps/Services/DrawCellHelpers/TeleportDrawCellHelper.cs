@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                     Seed = _mapService.GetMapCellHash(mapRoot.Map.IdKey, cell.MapX, cell.MapZ, 17),
 
                 };
-                _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, "TeleportIn", OnDownloadObject, loadData, token);
+                _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, "TeleportIn", OnDownloadObject, token, loadData);
             }
             await Task.CompletedTask;
         }

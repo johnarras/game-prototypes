@@ -83,6 +83,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorchlightUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8290690816368782431, guid: f89cbe5082aeee147b7e1fc10283f94a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

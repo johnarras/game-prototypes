@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         private ICrawlerService _crawlerService = null;
         private ICrawlerSpellService _spellService = null;
 
-        public override long Key => EntityTypes.PartyBuff;
+        public override long HelperKey => EntityTypes.PartyBuff;
 
         protected override bool MakeEntityNamePlural() { return false; }
 

@@ -2,12 +2,12 @@ using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers;
 using Genrpg.Editor.UI;
+using Genrpg.Editor.UI.Interfaces;
 using Genrpg.Editor.Utils;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.HelperClasses;
 using System;
 using System.Threading.Tasks;
-using Genrpg.Editor.UI.Interfaces;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -54,6 +54,10 @@ namespace Genrpg.Editor
                 for (int a = 0; a < actionWords.Length; a++)
                 {
                     string action = actionWords[a];
+                    if (action == "None")
+                    {
+                        continue;
+                    }
 
                     UIHelper.CreateButton(this,
                         EButtonTypes.Default,

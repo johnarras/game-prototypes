@@ -25,12 +25,12 @@ namespace Genrpg.Shared.Crawler.Roles.Settings
         [Key(1)] public override string ParentId { get; set; }
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public override string Name { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public string Art { get; set; }
-        [Key(9)] public long ScalingStatTypeId { get; set; }
-        [Key(10)] public long ScalingEquipSlotId { get; set; }
+        [Key(4)] public string Desc { get; set; }
+        [Key(5)] public string AtlasPrefix { get; set; }
+        [Key(6)] public string Icon { get; set; }
+        [Key(7)] public string Art { get; set; }
+        [Key(8)] public long ScalingStatTypeId { get; set; }
+        [Key(9)] public long ScalingEquipSlotId { get; set; }
 
 
     }
@@ -44,7 +44,7 @@ namespace Genrpg.Shared.Crawler.Roles.Settings
 
     public class RoleScalingHelper : BaseEntityHelper<RoleScalingTypeSettings, RoleScalingType>
     {
-        public override long Key => EntityTypes.RoleScaling;
+        public override long HelperKey => EntityTypes.RoleScaling;
     }
 
 }

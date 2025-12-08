@@ -1,13 +1,14 @@
 ﻿using Genrpg.Shared.Crawler.States.Constants;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Genrpg.Shared.Crawler.States.Entities
 {
     public class CrawlerStateAction
     {
         public CrawlerStateAction(string text,
-            char key = '\0',
+            Key key = Key.None,
             ECrawlerStates nextState = ECrawlerStates.None,
             Action onClickAction = null,
             object extraData = null,
@@ -34,7 +35,7 @@ namespace Genrpg.Shared.Crawler.States.Entities
         }
 
         public string Text { get; private set; }
-        public char Key { get; private set; }
+        public Key Key { get; private set; }
         public ECrawlerStates NextState { get; private set; }
         public Action OnClickAction { get; private set; }
         public string SpriteName { get; private set; }

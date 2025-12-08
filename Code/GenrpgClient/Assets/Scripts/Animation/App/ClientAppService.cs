@@ -1,4 +1,5 @@
 ﻿
+using Assets.Scripts.Options.Services;
 using Genrpg.Shared.Client.Contants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -29,6 +30,7 @@ public interface IClientAppService : IInitializable, IExplicitInject
     Awaitable TakeMemorySnapshot();
     bool IsFullScreen();
     void SetFullScreen(bool isFullScreen);
+    void ShowCurrentScreenState();
 }
 
 
@@ -37,6 +39,7 @@ public class ClientAppService : IClientAppService
 {
 
     protected ILogService _logService = null;
+    protected IClientOptionsService _optionsService = null;
 
     public ClientAppService(ILogService logService)
     {
@@ -68,6 +71,8 @@ public class ClientAppService : IClientAppService
     public bool IsPlaying => Application.isPlaying;
 
     public bool IsEditor => Application.isEditor;
+
+
 
 
     public async Task Initialize(CancellationToken token)
@@ -121,7 +126,11 @@ public class ClientAppService : IClientAppService
     public void SetupScreen(int width, int height, bool isFullScreen, bool isLandscape, int vsyncCount)
     {
 
-        _fullScreenMode = isFullScreen ? FullScreenMode.MaximizedWindow : FullScreenMode.Windowed;
+        if (!IsPlaying)
+        {
+            return;
+        }
+        _fullScreenMode = isFullScreen ? FullScreenMode.ExclusiveFullScreen : FullScreenMode.Windowed;
 
         Screen.SetResolution(width, height, _fullScreenMode);
         Screen.orientation = isLandscape ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
@@ -151,9 +160,34 @@ public class ClientAppService : IClientAppService
         return Screen.fullScreen;
     }
 
+    public void ShowCurrentScreenState()
+    {
+        LocalClientOptions options = _optionsService.GetOptions();
+        SetFullScreen(options.HasFlag(ClientFlags.IsFullScreen));
+    }
+
     public void SetFullScreen(bool isFullScreen)
     {
-        SetupScreen(Screen.width, Screen.height, isFullScreen, Screen.orientation == ScreenOrientation.LandscapeLeft, QualitySettings.vSyncCount);
+        LocalClientOptions options = _optionsService.GetOptions();
+        if (isFullScreen)
+        {
+            if (Screen.width < Screen.currentResolution.width)
+            {
+                options.ScreenWidth = Screen.width;
+            }
+            if (Screen.height < Screen.currentResolution.height)
+            {
+                options.ScreenHeight = Screen.height;
+            }
+            options.AddFlags(ClientFlags.IsFullScreen);
+            SetupScreen(Screen.currentResolution.width, Screen.currentResolution.height, isFullScreen, Screen.orientation == ScreenOrientation.LandscapeLeft, QualitySettings.vSyncCount);
+        }
+        else
+        {
+            options.RemoveFlags(ClientFlags.IsFullScreen);
+            SetupScreen(options.ScreenWidth, options.ScreenHeight, false, Screen.orientation == ScreenOrientation.LandscapeLeft, QualitySettings.vSyncCount);
+        }
+        _optionsService.SaveOptions();
     }
 }
 

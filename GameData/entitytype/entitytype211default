@@ -1,0 +1,9 @@
+{
+  "Id": "entitytype211default",
+  "ParentId": "default",
+  "IdKey": 211,
+  "Name": "BaseTraderStat",
+  "Icon": "BaseTraderStat",
+  "Art": "BaseTraderStat",
+  "SaveTime": "2025-11-27T22:38:56.417Z"
+}

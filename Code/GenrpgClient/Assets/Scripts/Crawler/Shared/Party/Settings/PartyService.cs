@@ -59,6 +59,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private ICrawlerService _crawlerService = null;
         private ICrawlerOptionsService _optionsService = null;
         private ITrainingService _trainingService = null;
+        private IInputService _inputService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
@@ -303,7 +304,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private void AddClickPartyMemberButton(CrawlerStateData stateData, PartyData party, int index)
         {
 
-            stateData.Actions.Add(new CrawlerStateAction("", (char)(index + '0'),
+            stateData.Actions.Add(new CrawlerStateAction("", _inputService.FromChar((char)(index + '0')),
                 ECrawlerStates.None,
                 onClickAction: () =>
                 {

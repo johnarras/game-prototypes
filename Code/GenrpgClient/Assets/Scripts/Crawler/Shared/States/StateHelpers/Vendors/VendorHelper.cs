@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Vendors
     {
         private IScreenService _screenService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.Vendor;
+        public override ECrawlerStates HelperKey => ECrawlerStates.Vendor;
         public override long TriggerBuildingId() { return BuildingTypes.Equipment; }
         public override bool HideBigPanels() { return true; }
         protected override bool OnlyUseBGImage() { return true; }

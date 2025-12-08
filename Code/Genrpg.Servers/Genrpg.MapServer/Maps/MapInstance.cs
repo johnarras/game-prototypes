@@ -349,7 +349,7 @@ namespace Genrpg.MapServer.Maps
 
                     ch.NearbyGridsSeen = new List<PointXZ>();
                     connState.ch = ch;
-                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct, ch);
+                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct, new List<IUnitData>(), ch);
                     foreach (IUnitData unitData in allUnitData)
                     {
                         ch.Set(unitData);

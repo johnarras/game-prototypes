@@ -118,7 +118,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
             AddListener<ClearCrawlerTilemaps>(OnClearCrawlerTilemaps);
             if (_spriteCache.Keys.Count < 1)
             {
-                _assetService.LoadAssetInto(this, AssetCategoryNames.Atlas, "CrawlerMinimap", OnLoadAtlas, null, GetToken());
+                _assetService.LoadAssetInto(this, AssetCategoryNames.Atlas, "CrawlerMinimap", OnLoadAtlas, GetToken(), default(object));
             }
         }
 
@@ -226,20 +226,14 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             if (_spriteCache.Keys.Count < 1)
             {
-                _assetService.LoadAssetInto(this, AssetCategoryNames.Atlas, "CrawlerMinimap", OnLoadAtlas, null, GetToken());
+                _assetService.LoadAssetInto(this, AssetCategoryNames.Atlas, "CrawlerMinimap", OnLoadAtlas, GetToken(), default(object));
             }
             await Task.CompletedTask;
         }
 
         private string[] _allTerrainSuffixes = new string[] { SpriteNameCategories.Terrain, SpriteNameCategories.Object };
-        private void OnLoadAtlas(object obj, object data, CancellationToken token)
+        private void OnLoadAtlas(GameObject go, object data, CancellationToken token)
         {
-            GameObject go = obj as GameObject;
-            if (go == null)
-            {
-                return;
-            }
-
             SpriteAtlasContainer cont = go.GetComponent<SpriteAtlasContainer>();
             if (cont == null || cont.Atlas == null)
             {

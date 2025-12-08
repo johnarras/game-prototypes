@@ -44,6 +44,6 @@ namespace Genrpg.Shared.Spells.Settings.SpecialMagic
 
     public class SpecialMagicEntityHelper : BaseEntityHelper<SpecialMagicSettings, SpecialMagic>
     {
-        public override long Key => EntityTypes.SpecialMagic;
+        public override long HelperKey => EntityTypes.SpecialMagic;
     }
 }

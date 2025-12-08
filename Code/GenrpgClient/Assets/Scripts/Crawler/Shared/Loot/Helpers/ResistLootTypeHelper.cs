@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 {
     public class ResistLootTypeHelper : BaseCrawlerLootTypeHelper
     {
-        public override long Key => EntityTypes.Resist;
+        public override long HelperKey => EntityTypes.Resist;
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {

@@ -13,7 +13,7 @@ namespace Genrpg.Editor.Importers.Crawler
     {
         public override string ImportDataFilename => "UnitKeywordImport.csv";
 
-        public override EImportTypes Key => EImportTypes.UnitKeywords;
+        public override EImportTypes HelperKey => EImportTypes.UnitKeywords;
 
         public override long GetEntityTypeId() { return EntityTypes.UnitKeyword; }
     }

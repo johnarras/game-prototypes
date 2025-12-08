@@ -8,7 +8,7 @@ namespace Genrpg.RequestServer.Resets.Commands
     public class UpdateCoreCurrenciesRequestHandler : BaseClientUserRequestHandler<UpdateCoreCurrenciesRequest>
     {
 
-        private IPeriodicUpdateService _hourlyUpdateService = null;
+        private IHourlyUpdateService _hourlyUpdateService = null;
         protected override async Task InnerHandleMessage(WebContext context, UpdateCoreCurrenciesRequest request, CancellationToken token)
         {
             await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context);

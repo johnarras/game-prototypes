@@ -1,8 +1,8 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using MessagePack;
 
 namespace Genrpg.Shared.PlayMultiplier.Settings
 {
@@ -27,6 +27,7 @@ namespace Genrpg.Shared.PlayMultiplier.Settings
         [Key(8)] public long Mult { get; set; }
         [Key(9)] public long MinLevel { get; set; }
         [Key(10)] public long MinEnergy { get; set; }
+        [Key(11)] public long BonusDistancePerSpeed { get; set; }
     }
 
     public class PlayMultSettingsDto : ParentSettingsDto<PlayMultSettings, PlayMult> { }

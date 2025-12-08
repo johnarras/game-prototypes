@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts.Assets.Entities
+﻿namespace Assets.Scripts.Assets.Entities
 {
     public class AtlasSpriteDownload
     {
         public string AtlasName;
         public string SpriteName;
-        public OnDownloadHandler FinalHandler;
+        public AssetDownloadHandler<object> FinalHandler;
         public GImage TargetImage;
     }
 

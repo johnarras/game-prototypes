@@ -9,7 +9,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {
     public class ScaleSpellModifierHelper : BaseSpellModifierHelper
     {
-        public override long Key => SpellModifiers.Scale;
+        public override long HelperKey => SpellModifiers.Scale;
 
         public override double GetCostScale(MapObject obj, double value)
         {

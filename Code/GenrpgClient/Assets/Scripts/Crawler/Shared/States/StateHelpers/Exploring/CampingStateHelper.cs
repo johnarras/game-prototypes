@@ -15,7 +15,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
         private ITimeOfDayService _timeService = null;
 
-        public override ECrawlerStates Key => ECrawlerStates.Camping;
+        public override ECrawlerStates HelperKey => ECrawlerStates.Camping;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {

@@ -137,7 +137,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 {
                     if (helper.GetTypeName() == words[0])
                     {
-                        return GetInfoLines(helper.Key, entityId);
+                        return GetInfoLines(helper.HelperKey, entityId);
                     }
                 }
             }
@@ -252,7 +252,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
                             List<IIdName> children = helper.GetChildList(_gs.ch);
 
-                            if (_infoHelperDict.TryGetValue(helper.Key, out IInfoHelper infoHelper))
+                            if (_infoHelperDict.TryGetValue(helper.HelperKey, out IInfoHelper infoHelper))
                             {
                                 children = infoHelper.GetInfoChildren();
                             }

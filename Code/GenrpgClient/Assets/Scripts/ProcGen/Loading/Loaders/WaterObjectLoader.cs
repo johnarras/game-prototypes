@@ -1,11 +1,11 @@
 ﻿
-using UnityEngine;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Utils.Data;
-using System.Threading;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Client.Assets.Constants;
+using System.Threading;
+using UnityEngine;
 
 public class WaterObjectLoader : BaseObjectLoader
 {
@@ -30,33 +30,21 @@ public class WaterObjectLoader : BaseObjectLoader
         dlo.loadData = loadData;
         dlo.x = x;
         dlo.y = y;
-        dlo.finalZ = heightOffset-0.5f;
+        dlo.finalZ = heightOffset - 0.5f;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Prefabs;
         dlo.data = new MyPointF(xSize, heightOffset, zSize);
 
-        _assetService.LoadAsset(AssetCategoryNames.Prefabs, artName, OnDownloadWater, dlo, null, token);
+        _assetService.LoadAsset(AssetCategoryNames.Prefabs, artName, OnDownloadWater, null, token, dlo);
 
         return true;
 
     }
-    public virtual void OnDownloadWater(object obj, object data, CancellationToken token)
+    public virtual void OnDownloadWater(GameObject go, DownloadObjectData dlo, CancellationToken token)
     {
-        DownloadObjectData dlo = data as DownloadObjectData;
-        if (dlo == null)
-        {
-            return;
-        }
-
         MyPointF size = dlo.data as MyPointF;
         if (size == null)
-        {
-            return;
-        }
-
-        GameObject go = obj as GameObject;
-        if (go == null)
         {
             return;
         }
@@ -85,7 +73,7 @@ public class WaterObjectLoader : BaseObjectLoader
 
         float mult = 2.0f; // = 100.0f // if AQUAS
         go.transform.localPosition = new Vector3(dlo.x, dlo.finalZ, dlo.y);
-        go.transform.localScale = new Vector3(size.X*mult, 1, size.Z*mult);
+        go.transform.localScale = new Vector3(size.X * mult, 1, size.Z * mult);
         _clientEntityService.SetLayer(go, LayerUtils.NameToLayer(LayerNames.Water));
 
 

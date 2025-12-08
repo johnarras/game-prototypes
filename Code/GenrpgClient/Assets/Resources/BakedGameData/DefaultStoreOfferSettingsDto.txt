@@ -1,0 +1,107 @@
+{
+  "Parent": {
+    "Id": "default",
+    "Offers": [
+      {
+        "IdKey": 1,
+        "OfferId": "DefaultManaPacks",
+        "Name": "Main Mana Packs",
+        "StoreFeatureId": 1,
+        "StoreSlotId": 1,
+        "StoreThemeId": 2,
+        "EndDate": "9999-12-31T23:59:59.9999999Z",
+        "Bundles": [
+          {
+            "ProductSkuId": 2,
+            "UniqueId": "e46df9e0-3ba9-4f13-b63c-301261210af5",
+            "BundleId": "Mana100",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 3,
+                "Quantity": 100
+              }
+            ]
+          },
+          {
+            "Index": 1,
+            "ProductSkuId": 4,
+            "UniqueId": "b31971f1-ac55-4ff6-b1cb-5b8893fe330c",
+            "BundleId": "Mana300",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 3,
+                "Quantity": 300
+              }
+            ]
+          },
+          {
+            "Index": 2,
+            "ProductSkuId": 6,
+            "UniqueId": "dc3a3edd-b5b6-456d-9b3b-cdce9a52f9a0",
+            "BundleId": "Mana500",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 3,
+                "Quantity": 500
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "IdKey": 2,
+        "OfferId": "DefaultSupplyPacks",
+        "Name": "Main Supplies Packs",
+        "StoreFeatureId": 1,
+        "StoreSlotId": 2,
+        "StoreThemeId": 3,
+        "EndDate": "9999-12-31T23:59:59.9999999Z",
+        "Bundles": [
+          {
+            "ProductSkuId": 3,
+            "UniqueId": "0d15cde7-40c8-4383-96f7-0ab883519eff",
+            "BundleId": "Supplies100",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 2,
+                "Quantity": 100
+              }
+            ]
+          },
+          {
+            "Index": 1,
+            "ProductSkuId": 6,
+            "UniqueId": "77d3aeaf-5d57-40ed-9465-75e61f088782",
+            "BundleId": "Supplies300",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 2,
+                "Quantity": 300
+              }
+            ]
+          },
+          {
+            "Index": 2,
+            "ProductSkuId": 9,
+            "UniqueId": "0748d1ed-9e43-4947-a85d-fff2d5a0c9dd",
+            "BundleId": "Supplies300",
+            "Rewards": [
+              {
+                "EntityTypeId": 200,
+                "EntityId": 2,
+                "Quantity": 500
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Name": "DefaultStoreOfferSettings",
+    "SaveTime": "2025-12-03T00:42:26.228Z"
+  }
+}

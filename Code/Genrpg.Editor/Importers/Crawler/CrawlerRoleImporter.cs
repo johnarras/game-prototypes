@@ -22,7 +22,7 @@ namespace Genrpg.Editor.Importers.Crawler
     {
         public override string ImportDataFilename => "CrawlerRoleImport.csv";
 
-        public override EImportTypes Key => EImportTypes.CrawlerRoles;
+        public override EImportTypes HelperKey => EImportTypes.CrawlerRoles;
 
         const int MaxRoles = 100;
 
