@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawlerloottype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Spells",
       "Desc": "Cast spells",
@@ -15,8 +12,6 @@
       "ScalingPerLevel": 0.25
     },
     {
-      "Id": "crawlerloottype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Map Magic",
       "Desc": "Ignore map magic.",
@@ -25,8 +20,6 @@
       "ScalingPerLevel": 1.0
     },
     {
-      "Id": "crawlerloottype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Riddles",
       "Desc": "Ignore riddles",
@@ -35,8 +28,6 @@
       "ScalingPerLevel": 1.0
     },
     {
-      "Id": "crawlerloottype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Status Effects",
       "Desc": "Can gain immunity from some Status Effects",
@@ -48,8 +39,6 @@
       "ScalingPerLevel": 0.3
     },
     {
-      "Id": "crawlerloottype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Elements",
       "Desc": "Ignore elemental resistances.",
@@ -61,8 +50,6 @@
       "ScalingPerLevel": 1.0
     },
     {
-      "Id": "crawlerloottype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Resistances",
       "Desc": "Resistant to different elements.",
@@ -100,8 +87,8 @@
     "StartStatBonusAmount": 1.5,
     "StatBonusPerLevel": 0.4,
     "StatBonusVariance": 0.25,
-    "Name": "CrawlerLootSettings",
-    "SaveTime": "2025-10-26T21:53:50.597Z"
+    "Name": "CrawlerLootSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-26T21:53:50.597Z"
 }

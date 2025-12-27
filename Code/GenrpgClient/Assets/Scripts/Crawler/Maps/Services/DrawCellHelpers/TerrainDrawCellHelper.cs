@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -103,3 +103,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
     }
 }
+
+

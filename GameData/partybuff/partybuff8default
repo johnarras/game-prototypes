@@ -5,9 +5,8 @@
   "Name": "Retaliate",
   "Desc": "Retaliate damage against enemies that attack you.",
   "AtlasPrefix": "",
-  "Icon": "",
-  "Art": "",
+  "Icon": "Retaliate",
+  "Art": "Retaliate",
   "ProcChanceScale": 10.0,
-  "EffectScale": 0.2,
-  "SaveTime": "2025-09-10T22:14:38.869Z"
+  "EffectScale": 0.2
 }

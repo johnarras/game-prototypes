@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,3 +20,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Entities
         protected abstract Task InnerHandleMessage(M message, CancellationToken token);
     }
 }
+
+

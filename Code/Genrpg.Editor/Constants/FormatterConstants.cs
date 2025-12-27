@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Windows.UI.Text;
@@ -14,3 +14,5 @@ namespace Genrpg.Editor.Constants
         public const int TinyLabelFontSize = 7;
     }
 }
+
+

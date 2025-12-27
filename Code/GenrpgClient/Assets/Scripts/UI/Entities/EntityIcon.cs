@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Doobers.Events;
@@ -36,6 +36,7 @@ namespace Assets.Scripts.Entities.UI
         public long Quantity => _currQuantity;
         public long MaxQuantity => _maxQuantity;
 
+        protected virtual bool IsDooberTarget => true;
         public override void OnReturn()
         {
             base.OnReturn();
@@ -59,10 +60,13 @@ namespace Assets.Scripts.Entities.UI
             _currQuantity = _startQuantity;
             _targetQuantity = _startQuantity;
             _ticksSinceUpdate = UpdateTicks;
-            _updateService.AddUpdate(this, UpdateQuantity, UpdateTypes.Late, GetToken());
-            AddListener<AddEntityQuantityVisual>(OnAddEntityQuantityVisual);
-            AddListener<SetEntityQuantityVisual>(OnSetEntityQuantityVisual);
-            AddListener<ReplaceEntityModel>(OnReplaceEntityModel);
+            AddUpdate(UpdateQuantity, UpdateTypes.Late);
+            if (IsDooberTarget)
+            {
+                AddListener<AddEntityQuantityVisual>(OnAddEntityQuantityVisual);
+                AddListener<SetEntityQuantityVisual>(OnSetEntityQuantityVisual);
+                AddListener<ReplaceEntityModel>(OnReplaceEntityModel);
+            }
 
             if (IsMainIcon)
             {
@@ -182,3 +186,5 @@ namespace Assets.Scripts.Entities.UI
         }
     }
 }
+
+

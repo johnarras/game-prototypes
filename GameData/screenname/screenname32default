@@ -2,5 +2,7 @@
   "Id": "screenname32default",
   "ParentId": "default",
   "IdKey": 32,
-  "Name": "CrawlerInfo"
+  "Name": "CrawlerInfo",
+  "ScreenLayerId": 20,
+  "Subdirectory": "CrawlerInfo"
 }

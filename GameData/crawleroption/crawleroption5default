@@ -4,6 +4,5 @@
   "IdKey": 5,
   "Name": "Roll Stats",
   "Desc": "Roll player stats when they are created.",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:00:22.246Z"
+  "DefaultForNewGame": true
 }

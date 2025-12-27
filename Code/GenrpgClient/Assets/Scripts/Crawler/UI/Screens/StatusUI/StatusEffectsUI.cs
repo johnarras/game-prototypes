@@ -1,7 +1,7 @@
-﻿using Genrpg.Shared.UnitEffects.Settings;
+using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.StatusUI
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
             {
                 if (unit.StatusEffects.HasBit(effect.IdKey))
                 {
-                    if (!_effectIcons.Any(x => x.GetStatusEffectId() == effect.IdKey))
+                    if (!_effectIcons.FastAny(x => x.GetStatusEffectId() == effect.IdKey))
                     {
                         StatusEffectIcon newIcon = _clientEntityService.FullInstantiate<StatusEffectIcon>(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
@@ -60,3 +60,5 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
         }
     }
 }
+
+

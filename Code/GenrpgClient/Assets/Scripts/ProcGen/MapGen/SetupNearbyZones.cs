@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 public class SetupNearbyZones : BaseAddMountains
 {
 
-    protected IMapGenService _mapGenService;
+    protected IMapGenService _mapGenService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         
@@ -67,4 +67,6 @@ public class SetupNearbyZones : BaseAddMountains
 
 
 }
+
+
 

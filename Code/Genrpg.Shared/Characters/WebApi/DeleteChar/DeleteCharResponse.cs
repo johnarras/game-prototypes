@@ -6,9 +6,10 @@ using Genrpg.Shared.Website.Interfaces;
 
 namespace Genrpg.Shared.Characters.WebApi.DeleteChar
 {
-    [MessagePackObject]
     public class DeleteCharResponse : IWebResponse
     {
-        [Key(0)] public List<CharacterStub> AllCharacters { get; set; }
+        public List<CharacterStub> AllCharacters { get; set; }
     }
 }
+
+

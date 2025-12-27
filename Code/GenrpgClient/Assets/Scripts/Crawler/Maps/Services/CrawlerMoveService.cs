@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.MoveHelpers;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
@@ -172,7 +172,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         {
             if (_movementQueue.Count < maxQueuedMoves)
             {
-                if (_movementKeyCodes.Any(x => x.Key == keyChar))
+                if (_movementKeyCodes.FastAny(x => x.Key == keyChar))
                 {
                     _movementQueue.Enqueue(keyChar);
                 }
@@ -419,3 +419,4 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         }
     }
 }
+

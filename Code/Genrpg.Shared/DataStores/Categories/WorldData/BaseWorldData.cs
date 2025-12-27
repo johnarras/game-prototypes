@@ -1,10 +1,10 @@
-﻿using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 
 namespace Genrpg.Shared.DataStores.Categories.WorldData
 {
-    [DataGroup(EDataCategories.Worlds,ERepoTypes.NoSQL)]
+    [DataGroup(EDataCategories.Worlds, ERepoTypes.Mongo)]
     public abstract class BaseWorldData : IStringId
     {
         [MessagePack.IgnoreMember]
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.DataStores.Categories.WorldData
         public abstract void Delete(IRepositoryService repoSystem);
     }
 }
+
+

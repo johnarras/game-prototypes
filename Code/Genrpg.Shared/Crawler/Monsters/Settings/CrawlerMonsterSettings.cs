@@ -1,45 +1,50 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Spawns.Settings;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Monsters.Settings
 {
-    [MessagePackObject]
     public class CrawlerMonsterSettings : NoChildSettings // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public int BaseMinDam { get; set; }
-        [Key(2)] public int BaseMaxDam { get; set; }
-        [Key(3)] public double MinDamPerLevel { get; set; }
-        [Key(4)] public double MaxDamPerLevel { get; set; }
-        [Key(5)] public double ScalingPerLevel { get; set; }
+        public override string Id { get; set; }
+        public int BaseMinDam { get; set; }
+        public int BaseMaxDam { get; set; }
+        public double MinDamPerLevel { get; set; }
+        public double MaxDamPerLevel { get; set; }
+        public double ScalingPerLevel { get; set; }
 
-        [Key(6)] public int BaseMinHealth { get; set; }
-        [Key(7)] public int BaseMaxHealth { get; set; }
-        [Key(8)] public double MinHealthPerLevel { get; set; }
-        [Key(9)] public double MaxHealthPerLevel { get; set; }
+        public int BaseMinHealth { get; set; }
+        public int BaseMaxHealth { get; set; }
+        public double MinHealthPerLevel { get; set; }
+        public double MaxHealthPerLevel { get; set; }
 
 
-        [Key(10)] public long ManaPerLevel { get; set; }
-        [Key(11)] public double ExtraHealthScalePerLevel { get; set; }
-        [Key(12)] public double ExtraDamageScalePerLevel { get; set; }
+        public long ManaPerLevel { get; set; }
+        public double ExtraHealthScalePerLevel { get; set; }
+        public double ExtraDamageScalePerLevel { get; set; }
 
-        [Key(13)] public double MapUnitKeywordChance { get; set; }
-        [Key(14)] public double UnitKeywordChance { get; set; }
+        public double MapUnitKeywordChance { get; set; }
+        public double UnitKeywordChance { get; set; }
 
-        [Key(15)] public double PrimaryStatsPointsPerLevel { get; set; }
+        public double PrimaryStatsPointsPerLevel { get; set; }
 
-        [Key(16)] public List<SpawnItem> BasicLoot { get; set; } = new List<SpawnItem>();
+        public List<SpawnItem> BasicLoot { get; set; } = new List<SpawnItem>();
     }
 
 
     public class CrawlerMonsterSettingsLoader : NoChildSettingsLoader<CrawlerMonsterSettings> { }
 
 
-    public class CrawlerMonsterSettingsDto : NoChildSettingsDto<CrawlerMonsterSettings> { }
+    public class CrawlerMonsterSettingsDto : NoChildSettingsDto<CrawlerMonsterSettings>
+    {
+        public override CrawlerMonsterSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class CrawlerMonsterSettingsMapper : NoChildSettingsMapper<CrawlerMonsterSettings, CrawlerMonsterSettingsDto> { }
 }
+
+

@@ -4,7 +4,6 @@ using Genrpg.Shared.Inventory.PlayerData;
 
 namespace Genrpg.Shared.Crawler.Items.Entities
 {
-    // MessagePackIgnore
     public class MemberItemSpell
     {
         public PartyMember Member { get; set; }
@@ -18,3 +17,5 @@ namespace Genrpg.Shared.Crawler.Items.Entities
         }
     }
 }
+
+

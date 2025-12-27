@@ -2,7 +2,6 @@ using MessagePack;
 namespace Genrpg.Shared.ProcGen.Settings.MapWater
 {
 
-    // MessagePackIgnore  
     public class WaterGenData
     {
 
@@ -28,3 +27,5 @@ namespace Genrpg.Shared.ProcGen.Settings.MapWater
         }
     }
 }
+
+

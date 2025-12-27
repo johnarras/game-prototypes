@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.Stores;
+using Assets.Scripts.Stores;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,7 +12,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.Stores
 {
-    public class StoreScreen : BaseScreen
+    public class StoreScreen : TypedArgScreen<PlayerStoreOffer>
     {
 
         public GameObject StoreParent;
@@ -19,9 +21,9 @@ namespace Assets.Scripts.UI.Stores
 
         private bool _didPassInOffer = false;
         private List<PlayerStoreOffer> _offers = new List<PlayerStoreOffer>();
-        protected override async Task OnStartOpen(object data, CancellationToken token)
+        protected override async Task OnStartOpen(PlayerStoreOffer offer, CancellationToken token)
         {
-            if (data is PlayerStoreOffer offer)
+            if (offer != null)
             {
                 _didPassInOffer = true;
                 _offers.Add(offer);
@@ -93,7 +95,7 @@ namespace Assets.Scripts.UI.Stores
 
             foreach (StorePanel panel in Panels)
             {
-                if (!_offers.Any(x => x.StoreSlotId == panel.StoreSlotId))
+                if (!_offers.FastAny(x => x.StoreSlotId == panel.StoreSlotId))
                 {
                     _clientEntityService.SetActive(panel, false);
                 }
@@ -125,3 +127,5 @@ namespace Assets.Scripts.UI.Stores
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Dungeons
@@ -15,3 +15,5 @@ namespace Assets.Scripts.Dungeons
         }
     }
 }
+
+

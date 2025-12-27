@@ -23,3 +23,5 @@ namespace Genrpg.Shared.MapObjects.MapObjectAddons.Factories
         }
     }
 }
+
+

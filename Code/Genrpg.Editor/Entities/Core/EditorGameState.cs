@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Interfaces;
+using Genrpg.Editor.Interfaces;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Characters.PlayerData;
@@ -137,3 +137,5 @@ namespace Genrpg.Editor.Entities.Core
         }
     }
 }
+
+

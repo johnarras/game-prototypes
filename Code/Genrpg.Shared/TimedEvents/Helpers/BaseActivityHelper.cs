@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
@@ -52,3 +52,5 @@ namespace Genrpg.Shared.TimedEvents.Helpers
 
     }
 }
+
+

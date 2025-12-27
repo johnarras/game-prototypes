@@ -1,4 +1,4 @@
-﻿using UnityEngine.EventSystems;
+using UnityEngine.EventSystems;
 using System.Threading;
 using Genrpg.Shared.Inventory.Services;
 
@@ -47,4 +47,6 @@ public class CraftInventoryIcon : ItemIcon, IPointerEnterHandler, IPointerExitHa
         currQuantity = idata.Data.Quantity;
     }
 }
+
+
 

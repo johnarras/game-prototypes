@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Doobers.UI
 
         private float _elapsedTime = 0;
 
-
+        protected override bool IsDooberTarget => false;
         public void InitData(long entityTypeId, long entityId, long quantity, ShowDooberEvent showDoober)
         {
             SetEntityData(entityTypeId, entityId, quantity, quantity);
@@ -109,3 +109,5 @@ namespace Assets.Scripts.Doobers.UI
         }
     }
 }
+
+

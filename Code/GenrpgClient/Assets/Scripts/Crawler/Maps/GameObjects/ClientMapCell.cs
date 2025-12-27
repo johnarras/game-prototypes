@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Dungeons;
+using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,3 +59,5 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     }
 
 }
+
+

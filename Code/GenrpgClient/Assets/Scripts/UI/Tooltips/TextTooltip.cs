@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.ClientEvents.UI;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.UI.Tooltips
@@ -38,3 +38,5 @@ namespace Assets.Scripts.UI.Tooltips
         }
     }
 }
+
+

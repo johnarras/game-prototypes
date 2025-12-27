@@ -28,7 +28,7 @@ SpriteAtlas:
       m_TextureFormat: -1
       m_TextureCompression: 2
       m_CompressionQuality: 100
-      m_CrunchedCompression: 1
+      m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
       m_IgnorePlatformSupport: 0
@@ -36,11 +36,11 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 2
+      padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
@@ -52,15 +52,18 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 9e6c26010f475d04f86ec8f2d2e9ae42: 21300000
     - a2b0267168a8942458ea857d0abbc479: 21300000
+    - 5c7818dce2cc1684c989015ec9d03d19: 21300000
     - 7c3450edd2d6da04ea34bec0a9f4cace: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9e6c26010f475d04f86ec8f2d2e9ae42, type: 3}
   - {fileID: 21300000, guid: a2b0267168a8942458ea857d0abbc479, type: 3}
+  - {fileID: 21300000, guid: 5c7818dce2cc1684c989015ec9d03d19, type: 3}
   - {fileID: 21300000, guid: 7c3450edd2d6da04ea34bec0a9f4cace, type: 3}
   m_PackedSpriteNamesToIndex:
   - Supplies
   - Mana
+  - Food
   - Coins
   m_RenderDataMap: {}
   m_Tag: AnimalIcons

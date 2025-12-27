@@ -1,4 +1,4 @@
-﻿
+
 
 public class FloatingTextItem : BaseBehaviour
 {
@@ -8,3 +8,5 @@ public class FloatingTextItem : BaseBehaviour
 
     public float ElapsedSeconds { get; set; }
 }
+
+

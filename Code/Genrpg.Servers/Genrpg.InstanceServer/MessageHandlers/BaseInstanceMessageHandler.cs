@@ -1,4 +1,4 @@
-﻿using Azure.Core;
+using Azure.Core;
 using Genrpg.InstanceServer.Managers;
 using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
@@ -29,3 +29,5 @@ namespace Genrpg.InstanceServer.MessageHandlers
         }
     }
 }
+
+

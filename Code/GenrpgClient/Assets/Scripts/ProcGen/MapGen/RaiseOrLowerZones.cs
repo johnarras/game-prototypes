@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Genrpg.Shared.Utils;
@@ -426,3 +426,4 @@ public class RaiseOrLowerZones : BaseZoneGenerator
 
     }
 }
+

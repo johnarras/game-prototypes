@@ -10,7 +10,6 @@ using Genrpg.Shared.Utils;
 
 namespace Genrpg.Shared.GroundObjects.Factories
 {
-    // MessagePackIgnore
     public class GroundObjectFactory : BaseMapObjectFactory
     {
         public override long HelperKey => EntityTypes.GroundObject; 
@@ -29,3 +28,5 @@ namespace Genrpg.Shared.GroundObjects.Factories
         }
     }
 }
+
+

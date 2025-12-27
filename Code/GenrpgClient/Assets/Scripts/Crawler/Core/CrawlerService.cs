@@ -1,11 +1,10 @@
-﻿
+
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Entities;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
@@ -34,9 +33,9 @@ using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -155,7 +154,7 @@ namespace Assets.Scripts.Crawler.Services
                 ActiveScreen activeScreen = _screenService.GetLayerScreen(ScreenLayers.Screens);
                 if (activeScreen != null)
                 {
-                    _screenService.Close(activeScreen.ScreenId);
+                    _dispatcher.Dispatch(new CloseScreen(activeScreen.ScreenId));
                 }
             }
         }
@@ -364,19 +363,37 @@ namespace Assets.Scripts.Crawler.Services
                 return;
             }
 
-            _screenService.CloseAll(new List<long>() { ScreenNames.Loading });
+
+            _dispatcher.Dispatch(new CloseAllScreens() { KeepOpenScreens = new List<long>() { ScreenNames.Loading } });
             await _screenService.OpenAsync(ScreenNames.Loading, null, GetToken());
 
             _party = party;
             _party.Inventory = ConvertItemsFromSaveToGame(_party, _party.SaveInventory);
 
-            foreach (PartyMember member in _party.Members)
+            // Party.Members is only for backwards compat with older savefiles.
+            if (_party.Members != null && _party.Members.Count > 0)
+            {
+                foreach (PartyMember member in _party.Members)
+                {
+                    if (member.PartySlot > 0)
+                    {
+                        _party.ActiveParty.Add(member);
+                    }
+                    else
+                    {
+                        _party.InGuild.Add(member);
+                    }
+                }
+                _party.Members.Clear();
+            }
+
+            foreach (PartyMember member in _party.GetAllMembers())
             {
                 member.Equipment = ConvertItemsFromSaveToGame(_party, member.SaveEquipment);
                 member.ConvertDataAfterLoad();
             }
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 _spellService.SetupCombatData(party, member);
             }
@@ -393,7 +410,7 @@ namespace Assets.Scripts.Crawler.Services
 
             await _screenService.OpenAsync(GetCrawlerScreenId(), null, _token);
 
-            if (party.HasFlag(PartyFlags.InGuildHall) || party.GetActiveParty().Count < 1)
+            if (party.HasFlag(PartyFlags.InGuildHall) || party.ActiveParty.Count < 1)
             {
                 ChangeState(ECrawlerStates.GuildMain, GetToken());
             }
@@ -467,7 +484,7 @@ namespace Assets.Scripts.Crawler.Services
 
                 _party.SaveInventory = ConvertItemsFromGameToSave(_party, _party.Inventory);
 
-                foreach (PartyMember member in _party.Members)
+                foreach (PartyMember member in _party.GetAllMembers())
                 {
                     member.SaveEquipment = ConvertItemsFromGameToSave(_party, member.Equipment);
                     member.ConvertDataBeforeSave();
@@ -553,8 +570,8 @@ namespace Assets.Scripts.Crawler.Services
         }
         public async Awaitable NewGame(int options)
         {
-            _screenService.CloseAll();
-            _screenService.Open(ScreenNames.Loading);
+            _dispatcher.Dispatch(new CloseAllScreens());
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
 
             _party = new PartyData();
             _party.Options = options;
@@ -581,7 +598,7 @@ namespace Assets.Scripts.Crawler.Services
             CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
 
             _party.NextId = 1;
-            foreach (PartyMember member in _party.Members)
+            foreach (PartyMember member in _party.GetAllMembers())
             {
                 member.Exp = 0;
                 member.Level = 1;
@@ -597,7 +614,7 @@ namespace Assets.Scripts.Crawler.Services
             await _worldService.GenerateWorld(_party);
 
             await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
-            _screenService.Close(ScreenNames.Loading);
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
 
 
 
@@ -628,3 +645,5 @@ namespace Assets.Scripts.Crawler.Services
         }
     }
 }
+
+

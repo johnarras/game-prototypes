@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Abstractions;
+using Assets.Scripts.UI.Abstractions;
 using UnityEditor;
 using UnityEditor.UI;
 
@@ -16,3 +16,5 @@ namespace Assets.Editor.CustomEditors
 
     }
 }
+
+

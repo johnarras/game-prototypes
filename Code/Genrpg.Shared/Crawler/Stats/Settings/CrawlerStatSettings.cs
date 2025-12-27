@@ -1,30 +1,35 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using MessagePack;
 
 namespace Genrpg.Shared.Crawler.Stats.Settings
 {
 
-    [MessagePackObject]
     public class CrawlerStatSettings : NoChildSettings // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public int MinStartValue { get; set; }
-        [Key(2)] public int MaxStartValue { get; set; }
+        public override string Id { get; set; }
+        public int MinStartValue { get; set; }
+        public int MaxStartValue { get; set; }
         // Set because the secondary buff stats are compared using ratios of sizes and we don't want lowlevel combat
         // vs +1 level monsters to instakill the party.
-        [Key(3)] public int BaseBuffStatValue { get; set; }
-        [Key(4)] public double BonusScalingMult { get; set; }
-        [Key(5)] public double BonusScalingPower { get; set; }
-        [Key(6)] public double BonusScalingStartVal { get; set; }
+        public int BaseBuffStatValue { get; set; }
+        public double BonusScalingMult { get; set; }
+        public double BonusScalingPower { get; set; }
+        public double BonusScalingStartVal { get; set; }
     }
 
 
     public class CrawlerStatSettingsLoader : NoChildSettingsLoader<CrawlerStatSettings> { }
 
 
-    public class CrawlerStatSettingsDto : NoChildSettingsDto<CrawlerStatSettings> { }
+    public class CrawlerStatSettingsDto : NoChildSettingsDto<CrawlerStatSettings>
+    {
+        public override CrawlerStatSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class CrawlerStatSettingsMapper : NoChildSettingsMapper<CrawlerStatSettings, CrawlerStatSettingsDto> { }
 }
+
+

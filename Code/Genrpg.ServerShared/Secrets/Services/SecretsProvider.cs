@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Config;
+using Genrpg.ServerShared.Config;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,3 +30,5 @@ namespace Genrpg.ServerShared.Secrets.Services
         }
     }
 }
+
+

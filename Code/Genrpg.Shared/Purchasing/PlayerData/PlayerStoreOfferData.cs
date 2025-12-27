@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Purchasing.PlayerData
 
 
     [MessagePackObject]
-    public class PlayerStoreOfferData : NoChildPlayerData, IUserData, IServerOnlyData
+    public class PlayerStoreOfferData : UniquePersonalUserData, IUserData, IServerOnlyData
     {
         [Key(0)] public override string Id { get; set; }
 
@@ -49,7 +49,12 @@ namespace Genrpg.Shared.Purchasing.PlayerData
         [Key(3)] public List<PlayerStoreOffer> StoreOffers { get; set; } = new List<PlayerStoreOffer>();
     }
 
-    public class PlayerStoreOfferDto : NoChildPlayerDataDto<PlayerStoreOfferData> { }
+    [MessagePackObject]
+    public class PlayerStoreOfferDto : NoChildPlayerDataDto<PlayerStoreOfferData>
+    {
+        [Key(0)] public override PlayerStoreOfferData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
 
 
     public class PlayerStoreOfferDataMapper : NoChildUnitDataMapper<PlayerStoreOfferData, PlayerStoreOfferDto> { }
@@ -57,3 +62,5 @@ namespace Genrpg.Shared.Purchasing.PlayerData
 
     public class CurrentStoresLoader : UnitDataLoader<PlayerStoreOfferData> { }
 }
+
+

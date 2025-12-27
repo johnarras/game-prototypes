@@ -22,3 +22,5 @@ namespace Genrpg.Shared.Inventory.PlayerData
         [Key(10)] public string Name { get; set; }
     }
 }
+
+

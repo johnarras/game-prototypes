@@ -1,38 +1,38 @@
 using MessagePack;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Categories.PlayerData;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.GameSettings.Mappers;
 
 namespace Genrpg.Shared.Input.Settings
 {
-    [MessagePackObject]
     public class InputSettings : ParentSettings<ActionInputSetting>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
 
-    [MessagePackObject]
     public class ActionInputSetting : ChildSettings
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public int Index { get; set; }
-        [Key(3)] public long SpellId { get; set; }
-        [Key(4)] public override string Name { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public int Index { get; set; }
+        public long SpellId { get; set; }
+        public override string Name { get; set; }
     }
 
-    public class ActionInputSettingsDto : ParentSettingsDto<InputSettings, ActionInputSetting> { }
+    public class ActionInputSettingsDto : ParentSettingsDto<InputSettings, ActionInputSetting>
+    {
+        public override List<ActionInputSetting> Children { get; set; }
+        public override InputSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class ActionInputSettingsLoader : ParentSettingsLoader<InputSettings, ActionInputSetting> { }
 
     public class ActionInputSettingsMapper : ParentSettingsMapper<InputSettings, ActionInputSetting, ActionInputSettingsDto> { }
 
 
 }
+
+

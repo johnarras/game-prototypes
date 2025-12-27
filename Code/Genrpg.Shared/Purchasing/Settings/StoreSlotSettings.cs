@@ -1,34 +1,40 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Purchasing.Settings
 {
-    [MessagePackObject]
     public class StoreSlotSettings : ParentSettings<StoreSlot>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class StoreSlotSettingsDto : ParentSettingsDto<StoreSlotSettings, StoreSlot> { }
+    public class StoreSlotSettingsDto : ParentSettingsDto<StoreSlotSettings, StoreSlot>
+    {
+        public override List<StoreSlot> Children { get; set; }
+        public override StoreSlotSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class StoreSlotSettingsLoader : ParentSettingsLoader<StoreSlotSettings, StoreSlot> { }
 
     public class StoreSlotSettingsMapper : ParentSettingsMapper<StoreSlotSettings, StoreSlot, StoreSlotSettingsDto> { }
 
 
-    [MessagePackObject]
     public class StoreSlot : ChildSettings, IIndexedGameItem
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string Art { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public bool IsDefaultStore { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string Art { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public bool IsDefaultStore { get; set; }
     }
 }
+
+

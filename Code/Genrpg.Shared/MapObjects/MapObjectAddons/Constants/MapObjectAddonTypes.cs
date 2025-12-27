@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -14,3 +14,5 @@ namespace Genrpg.Shared.MapObjects.MapObjectAddons.Constants
         public const long DynamicSpawn = 4;
     }
 }
+
+

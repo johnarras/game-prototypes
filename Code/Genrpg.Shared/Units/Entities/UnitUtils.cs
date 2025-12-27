@@ -7,7 +7,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Units.Entities
 {
-    [MessagePackObject]
     public class UnitUtils
     {
         public static bool TurnTowardNextPosition(Unit unit, float maxRotation=360)
@@ -176,3 +175,5 @@ namespace Genrpg.Shared.Units.Entities
         }
     }
 }
+
+

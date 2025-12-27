@@ -1,8 +1,9 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -140,3 +141,5 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
         }
     }
 }
+
+

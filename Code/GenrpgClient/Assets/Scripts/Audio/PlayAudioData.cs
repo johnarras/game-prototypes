@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine; // Needed
 using Genrpg.Shared.Audio.Settings;
 
@@ -12,3 +12,5 @@ public class PlayAudioData
     public bool looping;
     public AudioSource source;
 }
+
+

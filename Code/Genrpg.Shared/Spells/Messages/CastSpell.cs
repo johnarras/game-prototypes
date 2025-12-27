@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(1)] public string TargetId { get; set; }
     }
 }
+
+

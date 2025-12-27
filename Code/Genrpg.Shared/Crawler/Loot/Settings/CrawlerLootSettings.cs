@@ -1,70 +1,74 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Loot.Settings
 {
-    [MessagePackObject]
     public class CrawlerLootType : ChildSettings, IIndexedGameItem, IItemEnchantWeight
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
 
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
-        [Key(8)] public long EntityTypeId { get; set; }
-        [Key(9)] public double ItemEnchantWeight { get; set; }
-        [Key(10)] public double ScalingPerLevel { get; set; }
+        public long EntityTypeId { get; set; }
+        public double ItemEnchantWeight { get; set; }
+        public double ScalingPerLevel { get; set; }
     }
 
 
-    [MessagePackObject]
     public class CrawlerLootSettings : ParentSettings<CrawlerLootType> // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public long BaseLootCost { get; set; }
-        [Key(2)] public double WeaponMult { get; set; }
-        [Key(3)] public double TwoHandWeaponMult { get; set; }
-        [Key(4)] public double ProcMult { get; set; }
-        [Key(5)] public double EffectMult { get; set; }
-        [Key(6)] public long MaxLootItems { get; set; }
-        [Key(7)] public double StatPointsPerExtraItem { get; set; }
-        [Key(8)] public double ItemChancePerMonster { get; set; }
-        [Key(9)] public double MinGoldPerLevel { get; set; }
-        [Key(10)] public double MaxGoldPerLevel { get; set; }
-        [Key(11)] public long InventoryPerPartyMember { get; set; }
-        [Key(12)] public double MinLevelExpMultDefault { get; set; }
-        [Key(13)] public double MaxLevelExpMultDefault { get; set; }
-        [Key(14)] public double MinLevelGoldMultDefault { get; set; }
-        [Key(15)] public double MaxLevelGoldMultDefault { get; set; }
-        [Key(16)] public double ItemChanceDefault { get; set; }
-        [Key(17)] public double ExtraLootScalePerMonsterBonus { get; set; }
-        [Key(18)] public bool AllowAllArmorTypes { get; set; }
-        [Key(19)] public bool AllowAllWeaponTypes { get; set; }
+        public override string Id { get; set; }
+        public long BaseLootCost { get; set; }
+        public double WeaponMult { get; set; }
+        public double TwoHandWeaponMult { get; set; }
+        public double ProcMult { get; set; }
+        public double EffectMult { get; set; }
+        public long MaxLootItems { get; set; }
+        public double StatPointsPerExtraItem { get; set; }
+        public double ItemChancePerMonster { get; set; }
+        public double MinGoldPerLevel { get; set; }
+        public double MaxGoldPerLevel { get; set; }
+        public long InventoryPerPartyMember { get; set; }
+        public double MinLevelExpMultDefault { get; set; }
+        public double MaxLevelExpMultDefault { get; set; }
+        public double MinLevelGoldMultDefault { get; set; }
+        public double MaxLevelGoldMultDefault { get; set; }
+        public double ItemChanceDefault { get; set; }
+        public double ExtraLootScalePerMonsterBonus { get; set; }
+        public bool AllowAllArmorTypes { get; set; }
+        public bool AllowAllWeaponTypes { get; set; }
 
         /// <summary>
         /// Chance to get an item effect per extra spell chance.
         /// </summary>
-        [Key(20)] public double ItemEnchantChance { get; set; }
+        public double ItemEnchantChance { get; set; }
 
-        [Key(21)] public long LevelDiffBeforeLootLoss { get; set; }
-        [Key(22)] public double LootLossPerLevelDiff { get; set; }
-        [Key(23)] public double MinLootPercent { get; set; }
-        [Key(24)] public double FirstMonsterItemDropChance { get; set; }
-        [Key(25)] public double StartStatBonusAmount { get; set; }
-        [Key(26)] public double StatBonusPerLevel { get; set; }
-        [Key(27)] public double StatBonusVariance { get; set; }
+        public long LevelDiffBeforeLootLoss { get; set; }
+        public double LootLossPerLevelDiff { get; set; }
+        public double MinLootPercent { get; set; }
+        public double FirstMonsterItemDropChance { get; set; }
+        public double StartStatBonusAmount { get; set; }
+        public double StatBonusPerLevel { get; set; }
+        public double StatBonusVariance { get; set; }
     }
 
-    public class CrawlerLootTypeSettingsDto : ParentSettingsDto<CrawlerLootSettings, CrawlerLootType> { }
+    public class CrawlerLootTypeSettingsDto : ParentSettingsDto<CrawlerLootSettings, CrawlerLootType>
+    {
+        public override List<CrawlerLootType> Children { get; set; }
+        public override CrawlerLootSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class CrawlerLootTypeSettingsLoader : ParentSettingsLoader<CrawlerLootSettings, CrawlerLootType> { }
 
@@ -72,3 +76,5 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
 
 
 }
+
+

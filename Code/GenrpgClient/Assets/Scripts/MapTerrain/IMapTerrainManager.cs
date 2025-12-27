@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.MapTerrain;
+using Assets.Scripts.MapTerrain;
 
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
@@ -46,3 +46,4 @@ public interface IMapTerrainManager : IInitializable
     BaseObjectLoader GetLoader(long mapObjectOffset);
     Awaitable SetupOneTerrainPatch(TerrainPatchData patch, CancellationToken token);
 }
+

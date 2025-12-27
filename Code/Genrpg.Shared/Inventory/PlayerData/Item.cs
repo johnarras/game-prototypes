@@ -59,3 +59,5 @@ namespace Genrpg.Shared.Inventory.PlayerData
     }
 
 }
+
+

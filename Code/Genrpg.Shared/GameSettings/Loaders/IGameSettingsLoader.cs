@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -14,5 +15,8 @@ namespace Genrpg.Shared.GameSettings.Loaders
     {
         Type GetChildType();
         Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing);
+        List<CreateIndexData> GetIndexes();
     }
 }
+
+

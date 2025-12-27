@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Loot.Messages;
+using Genrpg.Shared.Loot.Messages;
 using Genrpg.Shared.Units.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.MessageHandlers.Corpses
         }
     }
 }
+
+

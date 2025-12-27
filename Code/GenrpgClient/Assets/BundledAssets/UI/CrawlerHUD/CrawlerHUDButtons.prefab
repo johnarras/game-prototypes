@@ -31,12 +31,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2618375938579167885}
-  - {fileID: 3440290237841797106}
   - {fileID: 1536475315705331568}
   - {fileID: 1952582495029755533}
-  - {fileID: 1441023220460507553}
   - {fileID: 1623780174745808673}
+  - {fileID: 1441023220460507553}
   - {fileID: 3257638858271976724}
+  - {fileID: 3440290237841797106}
   - {fileID: 8764646009641165084}
   - {fileID: 3600365593863267276}
   - {fileID: 1650389781344684326}
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 6068116055585206064, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6282249388747545836, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
@@ -211,17 +211,17 @@ PrefabInstance:
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
@@ -261,12 +261,12 @@ PrefabInstance:
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -240
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
         type: 3}
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 3064798966963633679}
   Key: 38
+  SuppressAction: 0
 --- !u!224 &4891378516407924929 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -608,6 +609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 1210262889862375378}
   Key: 0
+  SuppressAction: 0
 --- !u!1001 &4730944818375514159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,6 +844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 9214685634288609775}
   Key: 27
+  SuppressAction: 0
 --- !u!224 &1623780174745808673 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -1094,6 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 9191473518227574760}
   Key: 29
+  SuppressAction: 0
 --- !u!224 &1650389781344684326 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -1352,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 8951846114712418750}
   Key: 16
+  SuppressAction: 0
 --- !u!114 &8951846114712418750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,
@@ -1598,6 +1603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 8833382201019209583}
   Key: 35
+  SuppressAction: 0
 --- !u!224 &1441023220460507553 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -1850,6 +1856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 8246381031671052355}
   Key: 23
+  SuppressAction: 0
 --- !u!224 &1952582495029755533 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -2113,6 +2120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 6407373889278152947}
   Key: 24
+  SuppressAction: 0
 --- !u!114 &6407373889278152947 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,
@@ -2365,6 +2373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 6385789652009444610}
   Key: 32
+  SuppressAction: 0
 --- !u!114 &6385789652009444610 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,
@@ -2622,6 +2631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 6132051795850387560}
   Key: 34
+  SuppressAction: 0
 --- !u!114 &6132051795850387560 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,
@@ -2874,6 +2884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 5566352105025944643}
   Key: 17
+  SuppressAction: 0
 --- !u!114 &5566352105025944643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,
@@ -3120,6 +3131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 5104738961636239676}
   Key: 30
+  SuppressAction: 0
 --- !u!224 &3440290237841797106 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6282348067021977358, guid: 5c9869171580d75409477c4264a26770,
@@ -3378,6 +3390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Animations.ButtonKeyListener
   Button: {fileID: 4925959411298347994}
   Key: 26
+  SuppressAction: 0
 --- !u!114 &4925959411298347994 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487435691555664320, guid: 5c9869171580d75409477c4264a26770,

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Interfaces;
 using System.Threading.Tasks;
 
@@ -9,3 +9,5 @@ namespace Genrpg.RequestServer.Resets.Services
         Task DailyReset(WebContext context);
     }
 }
+
+

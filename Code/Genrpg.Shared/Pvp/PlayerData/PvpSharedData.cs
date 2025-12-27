@@ -7,18 +7,19 @@ using System.Text;
 
 namespace Genrpg.Shared.Pvp.PlayerData
 {
-    [MessagePackObject]
     public class PvpSharedData : BaseSharedPlayerData
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
 
         // Which tile indexes are damaged
-        [Key(1)] public long Damage { get; set; }
+        public long Damage { get; set; }
 
         // Which tile indexes have guards
-        [Key(2)] public long Guards { get; set; }
+        public long Guards { get; set; }
     }
 
 
     public class PvpSharedDataLoader : SharedUserDataLoader<PvpSharedData> { }
 }
+
+

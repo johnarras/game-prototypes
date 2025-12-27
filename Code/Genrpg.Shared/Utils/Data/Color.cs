@@ -8,13 +8,12 @@ namespace Genrpg.Shared.Utils.Data
     ///  class so it's better (IMO) to match the runtime setup for the game
     ///  rather than the extra handholding needed in the editor
     /// </summary>
-    [MessagePackObject]
     public class MyColorF
     {
-        [Key(0)] public float R { get; set; }
-        [Key(1)] public float G { get; set; }
-        [Key(2)] public float B { get; set; }
-        [Key(3)] public float A { get; set; }
+        public float R { get; set; }
+        public float G { get; set; }
+        public float B { get; set; }
+        public float A { get; set; }
 
         public MyColorF()
         {
@@ -82,3 +81,5 @@ namespace Genrpg.Shared.Utils.Data
 
     }
 }
+
+

@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Assets.Scripts.UI.ScreenSystem;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.GameEvents;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ public class FloatingTextQueuedItem
 
 public class FloatingTextScreen : BaseScreen
 {
-    private IInputService _inputService;
+    private IInputService _inputService = null;
 
     public GameObject _textAnchor;
 
@@ -128,4 +129,6 @@ public class FloatingTextScreen : BaseScreen
         ft.ElapsedSeconds = 0;
     }
 }
+
+
 

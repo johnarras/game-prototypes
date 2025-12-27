@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.MapGen.Entities;
@@ -313,3 +313,5 @@ namespace Assets.Scripts.Crawler.Maps
 
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawlercurrencytype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Gold",
       "Desc": "Used for basic purchases.",
@@ -11,8 +8,6 @@
       "Art": "GoldArt"
     },
     {
-      "Id": "crawlercurrencytype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Metal",
       "Icon": "MetalIcon",
@@ -20,8 +15,6 @@
       "CraftingStatTypeId": 11
     },
     {
-      "Id": "crawlercurrencytype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Cloth",
       "Icon": "ClothIcon",
@@ -29,8 +22,6 @@
       "CraftingStatTypeId": 12
     },
     {
-      "Id": "crawlercurrencytype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Wood",
       "Icon": "WoodIcon",
@@ -38,8 +29,6 @@
       "CraftingStatTypeId": 13
     },
     {
-      "Id": "crawlercurrencytype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Leather",
       "Icon": "LeatherIcon",
@@ -47,8 +36,6 @@
       "CraftingStatTypeId": 14
     },
     {
-      "Id": "crawlercurrencytype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Essence",
       "Icon": "EssenceIcon",
@@ -56,8 +43,6 @@
       "CraftingStatTypeId": 17
     },
     {
-      "Id": "crawlercurrencytype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Gems",
       "Icon": "GemsIcon",
@@ -65,8 +50,6 @@
       "CraftingStatTypeId": 16
     },
     {
-      "Id": "crawlercurrencytype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Stone",
       "Icon": "StoneIcon",
@@ -76,8 +59,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CrawlerCurrencySettings",
-    "SaveTime": "2025-11-18T03:04:02.688Z"
+    "Name": "CrawlerCurrencySettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-18T03:04:02.688Z"
 }

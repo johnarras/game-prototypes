@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Interfaces;
 using System.Threading;
 
@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Client.Core
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Monsters.Settings;
@@ -9,7 +9,6 @@ using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.UnitEffects.Settings;
@@ -31,11 +30,10 @@ namespace Genrpg.Shared.Crawler.Roles.Services
     public class RoleService : IRoleService
     {
 
-        private IGameData _gameData;
-        private IClientGameState _gs;
-        private ILogService _logService;
+        private IGameData _gameData = null;
+        private IClientGameState _gs = null;
 
-        private ICrawlerUpgradeService _upgradeService;
+        private ICrawlerUpgradeService _upgradeService = null;
 
         public double GetRoleScalingLevel(PartyData party, CrawlerUnit crawlerUnit, long roleScalingTypeId)
         {
@@ -141,3 +139,5 @@ namespace Genrpg.Shared.Crawler.Roles.Services
         }
     }
 }
+
+

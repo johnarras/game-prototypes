@@ -97,6 +97,27 @@
       79
     ]
   },
-  "ProducerCities": [],
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  "ProducerCities": [
+    {
+      "CityId": 7
+    },
+    {
+      "CityId": 20
+    },
+    {
+      "CityId": 33
+    },
+    {
+      "CityId": 44
+    },
+    {
+      "CityId": 47
+    },
+    {
+      "CityId": 50
+    },
+    {
+      "CityId": 66
+    }
+  ]
 }

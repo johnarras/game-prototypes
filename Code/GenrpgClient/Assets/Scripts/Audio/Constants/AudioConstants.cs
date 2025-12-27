@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Audio.Constants
+namespace Assets.Scripts.Audio.Constants
 {
     public class AudioConstants
     {
@@ -6,3 +6,5 @@
         public const float MaxVolume = 1.0f;
     }
 }
+
+

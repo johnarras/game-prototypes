@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Accounts.PlayerData;
+using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Interfaces;
@@ -14,3 +14,5 @@ namespace Assets.Scripts.PlayerSearch
         void CharacterSearch(string charId, Action<PublicCharacter> handler, CancellationToken token);
     }
 }
+
+

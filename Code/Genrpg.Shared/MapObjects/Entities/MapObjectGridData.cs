@@ -10,11 +10,10 @@ using Genrpg.Shared.Spawns.WorldData;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
-    // MessagePackIgnore
     public class MapObjectGridData
     {
-        [Key(0)] public int GX { get; set; }
-        [Key(1)] public int GZ { get; set; }
+        public int GX { get; set; }
+        public int GZ { get; set; }
         /// <summary>
         /// List of objects in a grid. This is handled in an immutable fashion so
         /// that it gets locked on Add and Remove, but any number of threads can read from it to get nearby objects.
@@ -22,8 +21,8 @@ namespace Genrpg.Shared.MapObjects.Entities
         /// Do we need a volatile field instead?
         /// </summary>
         protected List<MapObject> _objs { get; set; } = new List<MapObject>();
-        [Key(2)] public List<MapSpawn> Spawns { get; set; } = new List<MapSpawn>();
-        [Key(3)] public bool SpawnedObjects { get; set; }
+        public List<MapSpawn> Spawns { get; set; } = new List<MapSpawn>();
+        public bool SpawnedObjects { get; set; }
 
         public object SpawnLock = new object();
         public object ObjsLock = new object();
@@ -56,3 +55,5 @@ namespace Genrpg.Shared.MapObjects.Entities
         }
     }
 }
+
+

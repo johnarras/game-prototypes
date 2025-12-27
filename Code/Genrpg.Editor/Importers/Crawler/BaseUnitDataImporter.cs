@@ -1,10 +1,11 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Reflection;
 using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -375,3 +376,5 @@ namespace Genrpg.Editor.Importers.Crawler
         }
     }
 }
+
+

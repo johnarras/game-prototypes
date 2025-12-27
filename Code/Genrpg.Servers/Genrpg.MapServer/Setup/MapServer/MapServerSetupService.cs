@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Admin.Services;
+using Genrpg.MapServer.Admin.Services;
 using Genrpg.MapServer.CharMail.Services;
 using Genrpg.MapServer.Maps.Services;
 using Genrpg.MapServer.Rewards.Services;
@@ -22,3 +22,5 @@ namespace Genrpg.MapServer.Setup.MapServer
     {
     }
 }
+
+

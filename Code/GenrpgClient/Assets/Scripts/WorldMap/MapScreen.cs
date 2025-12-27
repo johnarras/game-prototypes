@@ -1,4 +1,6 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Assets.Scripts.Minimap.Services;
+using Assets.Scripts.UI.ScreenSystem;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,10 +10,11 @@ public class MapScreen : BaseScreen
 {
 
     public GameObject ArrowParent = null;
-    public GRawImage MapImage;
-    private IPlayerManager _playerManager;
-    private IMapProvider _mapProvider;
-    protected IMapGenData _md;
+    public GRawImage MapImage = null;
+    private IPlayerManager _playerManager = null;
+    private IMapProvider _mapProvider = null;
+    protected IMapGenData _md = null;
+    protected IMinimapService _minimapService = null;
 
     GameObject ArrowObject = null;
 
@@ -26,7 +29,7 @@ public class MapScreen : BaseScreen
     {
         _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, GetToken(), default(object), Subdirectory);
 
-        _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
+        _uiService.SetImageTexture(MapImage, _minimapService.GetTexture());
     }
 
     private void OnLoadArrow(GameObject go, object data, CancellationToken token)
@@ -87,4 +90,6 @@ public class MapScreen : BaseScreen
     {
     }
 }
+
+
 

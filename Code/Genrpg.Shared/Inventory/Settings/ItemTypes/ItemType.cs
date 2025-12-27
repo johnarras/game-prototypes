@@ -17,7 +17,6 @@ using System.Linq;
 
 namespace Genrpg.Shared.Inventory.Settings.ItemTypes
 {
-    [MessagePackObject]
     public class ItemType : ChildSettings, IIndexedGameItem
     {
 
@@ -25,35 +24,35 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
         public const int LevelGap = 2 * MinRangedItemLevel;
 
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
-        [Key(8)] public int MinVal { get; set; }
-        [Key(9)] public int MaxVal { get; set; }
+        public int MinVal { get; set; }
+        public int MaxVal { get; set; }
         // Probably want to use bitfields but bleh. IDK.
-        [Key(10)] public long EquipSlotId { get; set; }
+        public long EquipSlotId { get; set; }
 
-        [Key(11)] public int Flags { get; set; }
+        public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
 
-        [Key(12)] public List<ItemEffect> Effects { get; set; }
+        public List<ItemEffect> Effects { get; set; }
 
-        [Key(13)] public List<LevelRangeName> LevelRanges { get; set; }
+        public List<LevelRangeName> LevelRanges { get; set; }
 
-        [Key(14)] public List<QualityName> QualityNames { get; set; }
+        public List<QualityName> QualityNames { get; set; }
 
-        [Key(15)] public List<NameCount> IconCounts { get; set; }
+        public List<NameCount> IconCounts { get; set; }
 
-        [Key(16)] public List<WeightedName> Names { get; set; }
+        public List<WeightedName> Names { get; set; }
 
         public ItemType()
         {
@@ -278,13 +277,14 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
         }
     }
 
-    [MessagePackObject]
     public class LevelRangeName
     {
-        [Key(0)] public int MinLevel { get; set; }
-        [Key(1)] public int MaxLevel { get; set; }
-        [Key(2)] public string Name { get; set; }
+        public int MinLevel { get; set; }
+        public int MaxLevel { get; set; }
+        public string Name { get; set; }
 
-        [Key(3)] public string Icon { get; set; }
+        public string Icon { get; set; }
     }
 }
+
+

@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Trader.Caravans.PlayerData
     /// This is modified only when the player buys or sells items or adds or removes animals.
     /// </summary>
     [MessagePackObject]
-    public class CaravanData : NoChildPlayerData, IUserData
+    public class CaravanData : UniquePersonalUserData, IUserData
     {
         [Key(0)] public override string Id { get; set; }
 
@@ -25,6 +25,7 @@ namespace Genrpg.Shared.Trader.Caravans.PlayerData
     public class CaravanAnimal
     {
         [Key(0)] public long AnimalTypeId { get; set; }
+        [Key(1)] public long SkinTypeId { get; set; }
     }
 
     [MessagePackObject]
@@ -33,3 +34,5 @@ namespace Genrpg.Shared.Trader.Caravans.PlayerData
         [Key(0)] public long TradeGoodId { get; set; }
     }
 }
+
+

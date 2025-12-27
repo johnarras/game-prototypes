@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Assets.Textures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         }
     }
 }
+
+

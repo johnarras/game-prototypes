@@ -1,26 +1,21 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Quests.Services;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Messages;
 using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Rewards.Services
 {
     public class ServerRewardService : RewardService
     {
-        IServerQuestService _questService = null;
+        protected IServerQuestService _questService = null;
         protected IMapMessageService _messageService = null;
-
+        protected IFullRepositoryService _fullRepoService = null;
         public override bool GiveRewards<RL>(IRandom rand, MapObject obj, List<RL> resultList, RewardParams rp)
         {
             foreach (RewardList rl in resultList)
@@ -40,7 +35,7 @@ namespace Genrpg.MapServer.Rewards.Services
             {
                 return;
             }
-            _repoService.QueueSave(upd);
+            _fullRepoService.QueueSave(upd);
 
             if (upd is IOwnerQuantityChild quantityChild)
             {
@@ -57,3 +52,5 @@ namespace Genrpg.MapServer.Rewards.Services
         }
     }
 }
+
+

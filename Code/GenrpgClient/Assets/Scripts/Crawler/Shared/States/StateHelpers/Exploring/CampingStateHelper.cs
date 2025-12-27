@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.GameEvents;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -36,3 +36,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
         }
     }
 }
+
+

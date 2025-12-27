@@ -17,35 +17,34 @@ using Genrpg.Shared.ProcGen.Settings.Names;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
-    [MessagePackObject]
     public class Map : BaseWorldData, IName, IMapRoot
     {
         public override void Delete(IRepositoryService repoSystem) { repoSystem.Delete(this); }
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public string Name { get; set; }
-        [Key(2)] public string Desc { get; set; }
-        [Key(3)] public string Icon { get; set; }
-        [Key(4)] public string Art { get; set; }
+        public override string Id { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
-        [Key(5)] public int MinLevel { get; set; }
-        [Key(6)] public int MaxLevel { get; set; }
+        public int MinLevel { get; set; }
+        public int MaxLevel { get; set; }
 
-        [Key(7)] public int BlockCount { get; set; }
-        [Key(8)] public float ZoneSize { get; set; }
+        public int BlockCount { get; set; }
+        public float ZoneSize { get; set; }
 
-        [Key(9)] public long Seed { get; set; }
+        public long Seed { get; set; }
 
-        [Key(10)] public int MapVersion { get; set; }
+        public int MapVersion { get; set; }
 
-        [Key(11)] public int SpawnX { get; set; }
-        [Key(12)] public int SpawnY { get; set; }
+        public int SpawnX { get; set; }
+        public int SpawnY { get; set; }
 
-        [Key(13)] public long OverrideZoneId { get; set; }
-        [Key(14)] public float OverrideZonePercent { get; set; }
+        public long OverrideZoneId { get; set; }
+        public float OverrideZonePercent { get; set; }
 
-        [Key(15)] public List<QuestType> Quests { get; set; }
-        [Key(16)] public List<QuestItem> QuestItems { get; set; }
-        [Key(17)] public List<Zone> Zones { get; set; }
+        public List<QuestType> Quests { get; set; }
+        public List<QuestItem> QuestItems { get; set; }
+        public List<Zone> Zones { get; set; }
 
         public Map()
         {
@@ -151,3 +150,5 @@ namespace Genrpg.Shared.MapServer.Entities
         }
     }
 }
+
+

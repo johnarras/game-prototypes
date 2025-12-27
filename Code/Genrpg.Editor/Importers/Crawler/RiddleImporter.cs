@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Riddles.Settings;
@@ -95,3 +95,5 @@ namespace Genrpg.Editor.Importers.Crawler
         }
     }
 }
+
+

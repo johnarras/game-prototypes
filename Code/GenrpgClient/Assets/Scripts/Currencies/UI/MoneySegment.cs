@@ -1,4 +1,4 @@
-﻿
+
 
 using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -38,3 +38,5 @@ public class MoneySegment : BaseBehaviour
         _uiService?.SetText(QuantityText, txt);
     }
 }
+
+

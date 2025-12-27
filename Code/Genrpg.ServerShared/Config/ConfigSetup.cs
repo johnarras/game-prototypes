@@ -1,12 +1,9 @@
-﻿using Genrpg.ServerShared.Config.Constants;
+using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.Inventory.Settings.ItemSets;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,47 +19,57 @@ namespace Genrpg.ServerShared.Config
 
             string filePath = config.FilePath;
 
-            serverConfig.DefaultEnv = ConfigurationManager.AppSettings[ServerConfigKeys.MainEnv];
+            serverConfig.DefaultEnv = ConfigurationManager.AppSettings[AppConfigKeys.MainEnv];
 
             foreach (string dataCategory in Enum.GetNames(typeof(EDataCategories)))
             {
-                serverConfig.DataEnvs[dataCategory] = GetValueOrDefault(dataCategory + ServerConfigKeys.EnvSuffix, serverConfig.DefaultEnv);
+                serverConfig.DataEnvs[dataCategory] = GetValueOrDefault(dataCategory + AppConfigKeys.EnvSuffix, serverConfig.DefaultEnv);
             }
 
-            serverConfig.MessagingEnv = GetValueOrDefault(ServerConfigKeys.MessagingEnv, serverConfig.DefaultEnv);
-            
-            serverConfig.ContentRoot = ConfigurationManager.AppSettings[ServerConfigKeys.ContentRoot];
+            serverConfig.MessagingEnv = GetValueOrDefault(AppConfigKeys.MessagingEnv, serverConfig.DefaultEnv);
 
-            serverConfig.PublicIP = ConfigurationManager.AppSettings[ServerConfigKeys.PublicIP];
+            serverConfig.ContentRoot = ConfigurationManager.AppSettings[AppConfigKeys.ContentRoot];
 
-            SetSecret(serverConfig, ServerConfigKeys.EtherscanKey);
-            SetSecret(serverConfig, ServerConfigKeys.IOSSecret);
-            SetSecret(serverConfig, ServerConfigKeys.GooglePlaySecret);
+            serverConfig.PublicIP = ConfigurationManager.AppSettings[AppConfigKeys.PublicIP];
 
-            serverConfig.PackageName = ConfigurationManager.AppSettings[ServerConfigKeys.PackageName];
+            SetSecret(serverConfig, AppConfigKeys.EtherscanKey);
+            SetSecret(serverConfig, AppConfigKeys.IOSSecret);
+            SetSecret(serverConfig, AppConfigKeys.GooglePlaySecret);
 
-            serverConfig.IOSBuyValidationURL = ConfigurationManager.AppSettings[ServerConfigKeys.IOSBuyValidationURL];
+            serverConfig.PackageName = ConfigurationManager.AppSettings[AppConfigKeys.PackageName];
 
-            serverConfig.IOSSandboxValidationURL = ConfigurationManager.AppSettings[ServerConfigKeys.IOSSandboxValidationURL];
+            serverConfig.IOSBuyValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.IOSBuyValidationURL];
 
-            serverConfig.GooglePlayValidationURL = ConfigurationManager.AppSettings[ServerConfigKeys.GooglePlayValidationURL];
+            serverConfig.IOSSandboxValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.IOSSandboxValidationURL];
+
+            serverConfig.GooglePlayValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.GooglePlayValidationURL];
 
             List<string> allKeys = ConfigurationManager.AppSettings.AllKeys.ToList();
 
-            string noSql = ERepoTypes.NoSQL.ToString();
-            string blob = ERepoTypes.Blob.ToString();
 
-            string defaultNoSqlConnection = ConfigurationManager.AppSettings[noSql + ServerConfigKeys.Default + ServerConfigKeys.ConnectionSuffix];
-            string defaultBlobConnection = ConfigurationManager.AppSettings[blob + ServerConfigKeys.Default + ServerConfigKeys.ConnectionSuffix];
+            Dictionary<string, string> defaultConnections = new Dictionary<string, string>();
+
+            foreach (string repoType in Enum.GetNames(typeof(ERepoTypes)))
+            {
+                defaultConnections[repoType] = ConfigurationManager.AppSettings[repoType + AppConfigKeys.Default + AppConfigKeys.ConnectionSuffix];
+            }
 
             foreach (string key in allKeys)
             {
-                if (key.IndexOf(ServerConfigKeys.ConnectionSuffix) > 0)
+                if (key.IndexOf(AppConfigKeys.ConnectionSuffix) > 0)
                 {
-                    string shortKey = key.Replace(ServerConfigKeys.ConnectionSuffix, "");
+                    string shortKey = key.Replace(AppConfigKeys.ConnectionSuffix, "");
 
-                    string defaultValue = (shortKey.IndexOf(noSql) >= 0 ? defaultNoSqlConnection :
-                        shortKey.IndexOf(blob) >= 0 ? defaultBlobConnection : "");
+                    string defaultValue = "";
+
+                    foreach (string repoType in defaultConnections.Keys)
+                    {
+                        if (shortKey.IndexOf(repoType) >= 0)
+                        {
+                            defaultValue = defaultConnections[repoType];
+                            break;
+                        }
+                    }
 
                     serverConfig.SetSecret(shortKey, GetValueOrDefault(key, defaultValue));
                 }
@@ -81,7 +88,7 @@ namespace Genrpg.ServerShared.Config
         {
             string configValue = ConfigurationManager.AppSettings[key];
 
-            if (string.IsNullOrEmpty(configValue) || configValue == ServerConfigKeys.Default)
+            if (string.IsNullOrEmpty(configValue) || configValue == AppConfigKeys.Default)
             {
                 return defaultValue;
             }
@@ -89,3 +96,5 @@ namespace Genrpg.ServerShared.Config
         }
     }
 }
+
+

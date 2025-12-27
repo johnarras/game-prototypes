@@ -8,3 +8,5 @@ namespace Genrpg.Shared.Quests.WorldData
         [Key(1)] public long CurrQuantity { get; set; }
     }
 }
+
+

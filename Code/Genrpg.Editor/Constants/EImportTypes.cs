@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Editor.Constants
+namespace Genrpg.Editor.Constants
 {
     public enum EImportTypes
     {
@@ -20,5 +20,8 @@
         StoreOffers,
         NewPlayerBonuses,
         LevelTrackRewards,
+        SkinTypes,
     };
 }
+
+

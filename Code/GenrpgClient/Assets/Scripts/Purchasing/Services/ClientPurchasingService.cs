@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Contants;
+using Genrpg.Shared.Client.Contants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -445,3 +445,5 @@ namespace Assets.Scripts.Purchasing.Services
         }
     }
 }
+
+

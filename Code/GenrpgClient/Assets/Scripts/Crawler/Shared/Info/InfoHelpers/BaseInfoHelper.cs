@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Info.Services;
+using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Services;
@@ -14,9 +14,9 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
         protected IGameData _gameData;
         protected IClientGameState _gs;
-        protected ICrawlerStatService _statService;
-        protected IEntityService _entityService;
-        protected IInfoService _infoService;
+        protected ICrawlerStatService _statService = null;
+        protected IEntityService _entityService = null;
+        protected IInfoService _infoService = null;
 
 
         public abstract long HelperKey { get; }
@@ -56,3 +56,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

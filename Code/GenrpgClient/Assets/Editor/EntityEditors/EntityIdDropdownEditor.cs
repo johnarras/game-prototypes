@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.GameSettings;
@@ -65,3 +65,5 @@ public class EntityIdDropdownEditor : Editor
         DrawDefaultInspector();
     }
 }
+
+

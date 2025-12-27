@@ -8,13 +8,12 @@ using System.Text;
 namespace Genrpg.Shared.Crawler.Maps.Constants
 {
 
-    [MessagePackObject]
     public class MapDir
     {
-        [Key(0)] public int Dir { get; set; }
-        [Key(1)] public int OppDir { get; set; }
-        [Key(2)] public int DX { get; set; }
-        [Key(3)] public int DZ { get; set; }
+        public int Dir { get; set; }
+        public int OppDir { get; set; }
+        public int DX { get; set; }
+        public int DZ { get; set; }
     }
 
     public static class MapDirs
@@ -39,3 +38,5 @@ namespace Genrpg.Shared.Crawler.Maps.Constants
         }
     }
 }
+
+

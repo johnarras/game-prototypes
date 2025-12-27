@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Currencies.Constants
+namespace Genrpg.Shared.Crawler.Currencies.Constants
 {
     public class CrawlerCurrencyTypes
     {
@@ -12,3 +12,5 @@
         public const long Stone = 8;
     }
 }
+
+

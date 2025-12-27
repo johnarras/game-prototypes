@@ -1,8 +1,8 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Charms.PlayerData
@@ -41,7 +41,13 @@ namespace Genrpg.Shared.Charms.PlayerData
     {
         [Key(0)] public override string Id { get; set; }
     }
-    public class PlayerCharmDto : OwnerDtoList<PlayerCharmData, PlayerCharm> { }
+    [MessagePackObject]
+    public class PlayerCharmDto : OwnerDtoList<PlayerCharmData, PlayerCharm>
+    {
+        [Key(0)] public override List<PlayerCharm> Children { get; set; }
+        [Key(1)] public override PlayerCharmData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
 
     public class CharmDataLoader : OwnerIdDataLoader<PlayerCharmData, PlayerCharm>
@@ -50,3 +56,5 @@ namespace Genrpg.Shared.Charms.PlayerData
 
     public class CharmDataMapper : OwnerIdDataMapper<PlayerCharmData, PlayerCharm, PlayerCharmDto> { }
 }
+
+

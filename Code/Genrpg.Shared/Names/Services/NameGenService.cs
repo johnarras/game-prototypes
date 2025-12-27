@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.Utils;
@@ -316,3 +316,5 @@ namespace Genrpg.Shared.Names.Services
         }
     }
 }
+
+

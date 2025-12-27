@@ -1,0 +1,8 @@
+{
+  "Id": "traderstat12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "CaravanTradeGoods",
+  "Icon": "CaravanTradeGoods",
+  "Art": "CaravanTradeGoods"
+}

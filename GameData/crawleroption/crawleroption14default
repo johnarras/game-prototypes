@@ -4,6 +4,5 @@
   "IdKey": 14,
   "Name": "Camping",
   "Desc": "Can players camp to regain stats. (Chance of encounter.)",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-09-23T00:02:58.853Z"
+  "DefaultForNewGame": true
 }

@@ -1,4 +1,4 @@
-﻿using Azure.Messaging.ServiceBus.Administration;
+using Azure.Messaging.ServiceBus.Administration;
 using Azure.Messaging.ServiceBus;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Utils;
@@ -21,3 +21,5 @@ namespace Genrpg.ServerShared.CloudComms.Platforms.PubSub
 
     }
 }
+
+

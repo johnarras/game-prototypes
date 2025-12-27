@@ -5,11 +5,12 @@ using Genrpg.Shared.Website.Interfaces;
 
 namespace Genrpg.Shared.MapServer.WebApi.UploadMap
 {
-    [MessagePackObject]
     public class UploadMapRequest : IClientUserRequest
     {
-        [Key(0)] public Map Map { get; set; }
-        [Key(1)] public MapSpawnData SpawnData { get; set; }
-        [Key(2)] public string WorldDataEnv { get; set; }
+        public Map Map { get; set; }
+        public MapSpawnData SpawnData { get; set; }
+        public string WorldDataEnv { get; set; }
     }
 }
+
+

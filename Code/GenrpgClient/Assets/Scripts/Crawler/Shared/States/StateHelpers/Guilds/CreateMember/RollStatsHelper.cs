@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -116,3 +116,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Options.Constants
+namespace Genrpg.Shared.Crawler.Options.Constants
 {
     public class CrawlerOptions
     {
@@ -23,3 +23,5 @@
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,3 +10,5 @@ namespace Genrpg.Shared.DataStores.Constants
         public static readonly Version MaxVersion = new Version("9999.9.9");
     }
 }
+
+

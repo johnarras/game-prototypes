@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Accounts.Services;
+using Genrpg.ServerShared.Accounts.Services;
 using Genrpg.ServerShared.Achievements;
 using Genrpg.ServerShared.CloudComms.Services.Admin;
 using Genrpg.ServerShared.CloudComms.Services;
@@ -22,3 +22,5 @@ namespace Genrpg.ServerShared.Setup
     {
     }
 }
+
+

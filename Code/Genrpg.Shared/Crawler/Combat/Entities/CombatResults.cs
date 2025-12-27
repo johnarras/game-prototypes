@@ -6,7 +6,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
-    // MessagePackIgnore
     public class CombatResults
     {
         public CrawlerCombatState StartState { get; set; }
@@ -14,3 +13,5 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         public CrawlerCombatState EndState { get; set; }
     }
 }
+
+

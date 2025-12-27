@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapObjects.Messages;
 using System.Threading;
 
@@ -9,3 +9,4 @@ public class SpawnLoadData
     public bool FixedPosition;
     public CancellationToken Token;
 }
+

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class BezierCurveCreator : BaseBehaviour
 {
@@ -11,12 +10,8 @@ public class BezierCurveCreator : BaseBehaviour
 
         Vector3 point2 = new Vector3(10, 10, 0);
         Vector3 tan2 = new Vector3(0, 1, 0);
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
+

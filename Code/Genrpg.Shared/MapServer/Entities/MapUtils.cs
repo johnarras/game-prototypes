@@ -9,7 +9,6 @@ using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
-    [MessagePackObject]
     public class MapUtils
     {
         public static string GetMapFolder(string MapId, long MapVersion)
@@ -74,3 +73,5 @@ namespace Genrpg.Shared.MapServer.Entities
         }
     }  
 }
+
+

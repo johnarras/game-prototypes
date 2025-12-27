@@ -1,8 +1,9 @@
 using MessagePack;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Factions.PlayerData
 {
@@ -31,9 +32,17 @@ namespace Genrpg.Shared.Factions.PlayerData
         }
 
     }
-    public class ReputationDto : OwnerDtoList<ReputationData, ReputationStatus> { }
+    [MessagePackObject]
+    public class ReputationDto : OwnerDtoList<ReputationData, ReputationStatus>
+    {
+        [Key(0)] public override List<ReputationStatus> Children { get; set; }
+        [Key(1)] public override ReputationData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
     public class ReputationDataLoader : OwnerIdDataLoader<ReputationData, ReputationStatus> { }
 
 
     public class ReputationDataMapper : OwnerDataMapper<ReputationData, ReputationStatus, ReputationDto> { }
 }
+
+

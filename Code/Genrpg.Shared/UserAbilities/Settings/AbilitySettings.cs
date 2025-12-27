@@ -1,8 +1,9 @@
 using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Interfaces;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.UserAbilities.Settings
 {
@@ -26,13 +27,12 @@ namespace Genrpg.Shared.UserAbilities.Settings
     }
 
 
-    [MessagePackObject]
     public class UserAbilitySettings : ParentSettings<UserAbilityType>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public long BaseUpgradeCost { get; set; } = 3;
-        [Key(2)] public long LinearUpgradeCost { get; set; } = 5;
-        [Key(3)] public long QuadraticUpgradeCost { get; set; } = 2;
+        public override string Id { get; set; }
+        public long BaseUpgradeCost { get; set; } = 3;
+        public long LinearUpgradeCost { get; set; } = 5;
+        public long QuadraticUpgradeCost { get; set; } = 2;
 
         public long GetUpgradeCostForNextLevel(long nextLevel)
         {
@@ -40,26 +40,32 @@ namespace Genrpg.Shared.UserAbilities.Settings
         }
     }
 
-    [MessagePackObject]
     public class UserAbilityType : ChildSettings, IIndexedGameItem
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public long BaseQuantity { get; set; }
-        [Key(9)] public long QuantityPerRank { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public long BaseQuantity { get; set; }
+        public long QuantityPerRank { get; set; }
 
     }
 
-    public class UserAbilitySettingsDto : ParentSettingsDto<UserAbilitySettings, UserAbilityType> { }
+    public class UserAbilitySettingsDto : ParentSettingsDto<UserAbilitySettings, UserAbilityType>
+    {
+        public override string Id { get; set; }
+        public override UserAbilitySettings Parent { get; set; }
+        public override List<UserAbilityType> Children { get; set; } = new List<UserAbilityType>();
+    }
 
     public class UserAbilitySettingsLoader : ParentSettingsLoader<UserAbilitySettings, UserAbilityType> { }
 
     public class UserAbilitySettingsMapper : ParentSettingsMapper<UserAbilitySettings, UserAbilityType, UserAbilitySettingsDto> { }
 
 }
+
+

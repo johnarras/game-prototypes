@@ -1,38 +1,37 @@
+using Genrpg.Editor.Constants;
+using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Interfaces;
+using Genrpg.Editor.Services.Reflection;
+using Genrpg.Editor.UI;
+using Genrpg.Editor.UI.Interfaces;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.ServerShared.PlayerData;
+using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Categories.WorldData;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Interfaces;
+using Genrpg.Shared.Entities.Services;
+using Genrpg.Shared.Entities.Utils;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Units.Loaders;
+using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Shared.Entities.Interfaces;
-using Genrpg.ServerShared.PlayerData;
-using System.Threading.Tasks;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.DataStores.Categories.WorldData;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Editor.Interfaces;
-using Genrpg.Shared.Units.Loaders;
-using Genrpg.Editor.UI;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Editor.Entities.MetaData;
-using Genrpg.Editor.Services.Reflection;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.GameSettings;
 using System.Threading;
+using System.Threading.Tasks;
 using Windows.System;
-using Genrpg.Editor.Constants;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Shared.Tasks.Services;
 
 namespace Genrpg.Editor
 {
@@ -54,9 +53,6 @@ namespace Genrpg.Editor
         protected CanvasBase _singleGrid = null;
         protected CommunityToolkit.WinUI.UI.Controls.DataGrid _multiGrid = null;
 
-        private TypeMetaData _typeMetaData = null;
-
-
         public const int MaxButtonsPerRow = 8;
         public const int SingleItemWidth = 120;
         public const int SingleItemHeight = 40;
@@ -75,8 +71,8 @@ namespace Genrpg.Editor
         protected IList<String> IgnoredFields;
 
         protected IEditorReflectionService _reflectionService = null;
-        protected IGameDataService _gameDataService = null;
-        protected IRepositoryService _repoService = null;
+        protected IServerGameDataService _gameDataService = null;
+        protected IFullRepositoryService _repoService = null;
         protected ILogService _logService = null;
         protected IGameData _gameData = null;
         protected ITaskService _taskService = null;
@@ -89,9 +85,12 @@ namespace Genrpg.Editor
             {
                 return true;
             }
-            
+
             return false;
         }
+
+
+        protected static readonly string[] EditorIgnoreFields = new string[] { "_lookup", "SaveTime", "UpdateTime" };
 
 
         private CanvasBase _canvas = new CanvasBase();
@@ -103,7 +102,6 @@ namespace Genrpg.Editor
         public DataView(EditorGameState gs, DataWindow win, Object obj, Object parent, Object grandParent, DataView parentView)
         {
             Content = _canvas;
-            _typeMetaData = gs.data.Get<EditorMetaDataSettings>(null)?.GetMetaDataForType(obj.GetType().Name);
             _gs = gs;
             _gs.loc.Resolve(this);
 
@@ -138,7 +136,7 @@ namespace Genrpg.Editor
 
             if (_gameDataService != null)
             {
-                IgnoredFields = _gameDataService.GetEditorIgnoreFields();
+                IgnoredFields = EditorIgnoreFields;
             }
 
             if (IgnoredFields == null)
@@ -191,7 +189,7 @@ namespace Genrpg.Editor
         }
 
         private void CreateMultiGrid()
-        {          
+        {
             if (_multiGrid != null && Contains(_multiGrid))
             {
                 _multiGrid.SelectionChanged -= MultiGrid_SelectionChanged;
@@ -280,7 +278,7 @@ namespace Genrpg.Editor
 
             if (_window != null)
             {
-                UIHelper.CreateLabel (this, ELabelTypes.Default, "TopLabel", _window.ShowStack(), _window.Width, 20, 10, 10);
+                UIHelper.CreateLabel(this, ELabelTypes.Default, "TopLabel", _window.ShowStack(), _window.Width, 20, 10, 10);
             }
 
             int y = 30;
@@ -481,8 +479,6 @@ namespace Genrpg.Editor
 
                 UIHelper.CreateLabel(_singleGrid, ELabelTypes.Default, mem.Name + "Label", mem.Name, sx * 4 / 5, sy, labelX, labelY);
 
-                AddEntityDesc(Obj, mem, _singleGrid, sx, sy, labelX, labelY);
-
                 object eb = AddSingleControl(mem, _singleGrid, sx, sy, controlX, controlY);
 
                 if (eb != null)
@@ -526,17 +522,6 @@ namespace Genrpg.Editor
                 numEditorsShown++;
             }
 
-        }
-
-        private void AddEntityDesc(object parentObject, MemberInfo mem, CanvasBase canvas, int sx, int sy, int tx, int ty)
-        {
-            MemberMetaData metaData = _typeMetaData?.MemberData?.FirstOrDefault(x => x.MemberName == mem.Name);
-            if (metaData != null && !string.IsNullOrEmpty(metaData.Description))
-            {
-                int height = 20;
-                UIHelper.CreateLabel(_singleGrid, ELabelTypes.Default, mem.Name + "Desc", metaData.Description,
-                    250, height, tx, ty - height, FormatterConstants.SmallLabelFontSize);
-            }
         }
 
         // Add a control to the parent object. We add it here because then
@@ -952,7 +937,7 @@ namespace Genrpg.Editor
                 }
             }
 
-            comboBox.SelectionChanged += OnComboBoxBaseChanged; 
+            comboBox.SelectionChanged += OnComboBoxBaseChanged;
 
             return comboBox;
         }
@@ -1101,8 +1086,6 @@ namespace Genrpg.Editor
 
                 ButtonBase button = UIHelper.CreateButton(_singleGrid, EButtonTypes.Default, mem.Name + "Button", txt, SingleItemWidth, SingleItemHeight,
                     x, y, OnClickSingleTopButton);
-
-                AddEntityDesc(Obj, mem, _singleGrid, SingleItemWidth, SingleItemHeight, x, y);
 
                 _numSingleTopButtonsShown++;
 
@@ -1383,7 +1366,7 @@ namespace Genrpg.Editor
             {
                 object row2 = item;
 
-                if(row2 == row)
+                if (row2 == row)
                 {
                     return index;
                 }
@@ -1407,9 +1390,9 @@ namespace Genrpg.Editor
                 newItems.Add(item);
             }
 
-            if (rid < 0 || rid >= newItems.Count) 
+            if (rid < 0 || rid >= newItems.Count)
             {
-                rid = newItems.Count -1;
+                rid = newItems.Count - 1;
             }
 
             if (rid >= 0)
@@ -1544,7 +1527,7 @@ namespace Genrpg.Editor
 
                 CreateMultiGrid();
                 _multiGrid.ItemsSource = new List<IIdName>();
-                _multiGrid.SelectedItem = null;              
+                _multiGrid.SelectedItem = null;
                 _multiGrid.ItemsSource = elist;
                 UIHelper.SetVisible(_multiGrid, true);
 
@@ -1559,7 +1542,7 @@ namespace Genrpg.Editor
                 }
 
                 await Task.CompletedTask;
-                _taskService.ForgetTask(WaitForGridColumns(underlyingType, iidlist),false);
+                _taskService.ForgetTask(WaitForGridColumns(underlyingType, iidlist), false);
             });
         }
 
@@ -1579,7 +1562,7 @@ namespace Genrpg.Editor
                     object col = _multiGrid.Columns[j];
                 }
 
-                List<string> ignoreFields = _gameDataService.GetEditorIgnoreFields();
+                string[] ignoreFields = EditorIgnoreFields;
                 List<MemberInfo> members = _reflectionService.GetMembers(underlyingType);
 
                 for (int i = 0; i < members.Count; i++)
@@ -1591,7 +1574,7 @@ namespace Genrpg.Editor
                     }
 
                     UIHelper.RemoveDataColumnNamed(_multiGrid, objMember.Name);
-                   
+
                 }
 
 
@@ -1680,3 +1663,5 @@ namespace Genrpg.Editor
         }
     }
 }
+
+

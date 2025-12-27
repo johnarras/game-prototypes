@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.TimeOfDay.Constants
+namespace Genrpg.Shared.Crawler.TimeOfDay.Constants
 {
     public enum ECrawlerTimeUpdateTypes
     {
@@ -11,3 +11,5 @@
         Rumor = 6,
     };
 }
+
+

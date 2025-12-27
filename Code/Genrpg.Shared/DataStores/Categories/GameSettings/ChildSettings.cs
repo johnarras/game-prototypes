@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,3 +21,5 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
         public abstract override string Name { get; set; }
     }
 }
+
+

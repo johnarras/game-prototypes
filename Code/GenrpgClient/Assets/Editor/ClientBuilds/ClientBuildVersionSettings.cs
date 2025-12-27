@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using UnityEditor;
 using Genrpg.Shared.Core.Entities;
@@ -47,3 +47,5 @@ public class ClientBuildVersionSettings : ScriptableObject
     }
 
 }
+
+

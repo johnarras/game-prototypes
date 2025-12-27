@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 
 namespace Assets.Scripts.Crawler.Maps.Entities
 {
@@ -16,3 +16,5 @@ namespace Assets.Scripts.Crawler.Maps.Entities
         }
     }
 }
+
+

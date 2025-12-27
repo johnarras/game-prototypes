@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.SpellCrafting.Settings;
 using Genrpg.Shared.SpellCrafting.Services;
 using Genrpg.Shared.SpellCrafting.SpellModifierHelpers;
@@ -57,3 +57,5 @@ namespace Assets.Scripts.UI.Spells
 
     }
 }
+
+

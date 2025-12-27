@@ -1,0 +1,10 @@
+{
+  "Id": "skintype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Mule",
+  "Icon": "Mule",
+  "Art": "Mule",
+  "AnimalTypeId": 3,
+  "IsDefault": true
+}

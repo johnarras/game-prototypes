@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Interfaces;
+using Assets.Scripts.ClientEvents.UI;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -13,8 +13,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Vendors
 {
     public class VendorHelper : BuildingStateHelper
     {
-        private IScreenService _screenService = null;
-
         public override ECrawlerStates HelperKey => ECrawlerStates.Vendor;
         public override long TriggerBuildingId() { return BuildingTypes.Equipment; }
         public override bool HideBigPanels() { return true; }
@@ -24,10 +22,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Vendors
         {
             CrawlerStateData crawlerStateData = CreateStateData();
             crawlerStateData.BGSpriteName = CrawlerClientConstants.VendorImage;
-            _screenService.Open(ScreenNames.CrawlerVendor);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerVendor));
 
             await Task.CompletedTask;
             return crawlerStateData;
         }
     }
 }
+
+

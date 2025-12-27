@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
+using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.ServerShared.Core;
 using System;
 using System.Collections.Generic;
@@ -17,3 +17,5 @@ namespace Genrpg.PlayerServer.MessageHandlers
         }
     }
 }
+
+

@@ -1,9 +1,5 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MessagePack;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
 
 namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages
 {
@@ -13,3 +9,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages
         public string WorldDataEnv { get; set; }
     }
 }
+
+

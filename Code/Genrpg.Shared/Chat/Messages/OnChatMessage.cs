@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Chat.Messages
         [Key(3)] public string Message { get; set; }
     }
 }
+
+

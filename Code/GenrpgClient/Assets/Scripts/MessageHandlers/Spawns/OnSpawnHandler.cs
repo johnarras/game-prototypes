@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapObjects.Messages;
@@ -51,3 +51,5 @@ public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>
         }
     }
 }
+
+

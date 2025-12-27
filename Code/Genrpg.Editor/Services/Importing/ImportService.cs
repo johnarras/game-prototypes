@@ -1,7 +1,7 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Reflection;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
@@ -32,7 +32,7 @@ namespace Genrpg.Editor.Services.Importing
     {
 
         private IEditorReflectionService _reflectionService = null;
-        private IRepositoryService _repoService = null;
+        private IFullRepositoryService _repoService = null;
 
         public T ImportLine<T>(EditorGameState gs, int row, string[] data, string[] headers, T curr = null, bool firstColumnHasData = false) where T : class, new()
         {
@@ -277,3 +277,5 @@ namespace Genrpg.Editor.Services.Importing
         }
     }
 }
+
+

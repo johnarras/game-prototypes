@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.ProcGen.Entities
 {
-    // MessagePackIgnore                        
     public class ConnectedPairData
     {
         public ConnectPointData Point1;
@@ -9,3 +8,5 @@ namespace Genrpg.Shared.ProcGen.Entities
         public double Distance;
     }
 }
+
+

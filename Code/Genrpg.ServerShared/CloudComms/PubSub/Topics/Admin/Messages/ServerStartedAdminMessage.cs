@@ -1,4 +1,5 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
+using MessagePack;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,3 +13,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages
         public string ServerId { get; set; }
     }
 }
+
+

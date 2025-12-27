@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
+using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
@@ -260,3 +260,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         }
     }
 }
+
+

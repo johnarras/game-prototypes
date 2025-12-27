@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.WhoList.Messages;
+using Genrpg.Shared.WhoList.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,3 +10,5 @@ namespace Assets.Scripts.MessageHandlers.WhoList
 {
     public class OnGetWhoListHandler : DispatchClientMapMessageHandler<OnGetWhoList> { }
 }
+
+

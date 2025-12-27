@@ -9,21 +9,22 @@ using System.Text;
 namespace Genrpg.Shared.Spawns.Entities
 {
     // Used to set up a spawn, not exact same object to allow us to add/remove extra data relative to the final spawn.
-    [MessagePackObject]
     public class InitSpawnData
     {
-        [Key(0)] public long EntityTypeId { get; set; }
-        [Key(1)] public long EntityId { get; set; }
-        [Key(2)] public string Name { get; set; }
-        [Key(3)] public float SpawnX { get; set; }
-        [Key(4)] public float SpawnZ { get; set; }
-        [Key(5)] public float Rot { get; set; }
-        [Key(6)] public long ZoneId { get; set; }
-        [Key(7)] public string LocationId { get; set; }
-        [Key(8)] public string LocationPlaceId { get; set; }
-        [Key(9)] public long FactionTypeId { get; set; } = 1;
-        [Key(10)] public int ZoneOverridePercent { get; set; }
-        [Key(11)] public int SpawnSeconds { get; set; } = SpawnConstants.DefaultSpawnSeconds;
-        [Key(12)] public List<IMapObjectAddon> Addons { get; set; } = new List<IMapObjectAddon>();
+        public long EntityTypeId { get; set; }
+        public long EntityId { get; set; }
+        public string Name { get; set; }
+        public float SpawnX { get; set; }
+        public float SpawnZ { get; set; }
+        public float Rot { get; set; }
+        public long ZoneId { get; set; }
+        public string LocationId { get; set; }
+        public string LocationPlaceId { get; set; }
+        public long FactionTypeId { get; set; } = 1;
+        public int ZoneOverridePercent { get; set; }
+        public int SpawnSeconds { get; set; } = SpawnConstants.DefaultSpawnSeconds;
+        public List<IMapObjectAddon> Addons { get; set; } = new List<IMapObjectAddon>();
     }
 }
+
+

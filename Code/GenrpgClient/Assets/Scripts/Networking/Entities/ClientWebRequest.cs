@@ -1,26 +1,24 @@
-using UnityEngine.Networking;
+using Genrpg.Shared.Logging.Interfaces;
 using System;
-
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.Logging.Interfaces;
-using System.Collections.Generic;
-using Genrpg.Shared.Client.Core; // Needed
+using UnityEngine.Networking;
 
 public class ClientWebRequest
 {
-	private IClientGameState _gs;
-	private string _uri;
+    private IClientGameState _gs;
+    private string _uri;
     private string _postData;
     private WebResultsHandler _handler = null;
     private ILogService _logService = null;
     const int MaxTimes = 3;
-	public async Awaitable SendRequest (ILogService logService, string uri, string postData, List<FullWebRequest> commands, WebResultsHandler handler, CancellationToken token)
+    public async Awaitable SendRequest(ILogService logService, string uri, string postData, List<FullWebRequest> commands, WebResultsHandler handler, CancellationToken token)
     {
         _logService = logService;
         _uri = uri;
         _postData = postData != null ? postData : "";
-      
+
         _handler = handler;
         WWWForm form = new WWWForm();
         form.AddField("Data", _postData);
@@ -67,5 +65,6 @@ public class ClientWebRequest
                 break;
             }
         }
-	}
+    }
 }
+

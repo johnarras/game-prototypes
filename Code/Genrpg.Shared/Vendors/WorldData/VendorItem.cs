@@ -9,3 +9,5 @@ namespace Genrpg.Shared.Vendors.WorldData
         [Key(1)] public Item Item { get; set; }
     }
 }
+
+

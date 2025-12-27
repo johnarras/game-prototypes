@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using UnityEngine.EventSystems;
 
@@ -17,3 +17,5 @@ namespace Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents
         }
     }
 }
+
+

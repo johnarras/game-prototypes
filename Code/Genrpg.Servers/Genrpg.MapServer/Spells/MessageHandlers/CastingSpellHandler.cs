@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -65,3 +65,5 @@ namespace Genrpg.MapServer.Spells.MessageHandlers
         }
     }
 }
+
+

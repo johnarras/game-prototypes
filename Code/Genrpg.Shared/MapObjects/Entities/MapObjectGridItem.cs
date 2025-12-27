@@ -6,7 +6,6 @@ using System.Text;
 namespace Genrpg.Shared.MapObjects.Entities
 {
     
-    // MessagePackIgnore
     public class MapObjectGridItem
     {
         public MapObject Obj { get; set; }
@@ -16,3 +15,5 @@ namespace Genrpg.Shared.MapObjects.Entities
         public int OldGZ { get; set; }
     }
 }
+
+

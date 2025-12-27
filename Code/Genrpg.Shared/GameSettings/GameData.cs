@@ -3,8 +3,7 @@ using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using Genrpg.Shared.Settings.Settings;
-using MessagePack;
+using Genrpg.Shared.SettingsNames.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +23,9 @@ namespace Genrpg.Shared.GameSettings
         void CopyFrom(IGameData data);
     }
 
-    [MessagePackObject]
     public class GameData : IGameData
     {
+
         public const int IdBlockSize = 10000;
 
         private List<ITopLevelSettings> _allData { get; set; } = new List<ITopLevelSettings>();
@@ -174,11 +173,9 @@ namespace Genrpg.Shared.GameSettings
 
             PlayerSettingsOverrideItem item = obj.DataOverrides.Items.FirstOrDefault(x => x.SettingsNameId == settingsId);
 
-            if (item != null || settingsId == 0 || settingsId == 93)
-            {
-                Console.WriteLine("Found AB");
-            }
             return item?.DocId ?? GameDataConstants.DefaultFilename;
         }
     }
 }
+
+

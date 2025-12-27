@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.MapServer.CloudMessaging.Interfaces;
 using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Networking.Listeners;
@@ -7,6 +7,7 @@ using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.ServerShared.Maps;
@@ -17,7 +18,6 @@ using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Errors.Messages;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Messages;
@@ -30,6 +30,7 @@ using Genrpg.Shared.Networking.Entities;
 using Genrpg.Shared.Pathfinding.Services;
 using Genrpg.Shared.Pings.Messages;
 using Genrpg.Shared.Players.Messages;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Utils;
@@ -54,11 +55,11 @@ namespace Genrpg.MapServer.Maps
         private IMapObjectManager _objectManager = null;
         private IStatService _statService = null;
         private IPathfindingService _pathfindingService = null;
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
         private IPlayerDataService _playerDataService = null;
         private IMapSpawnDataService _mapSpawnDataService = null;
         private IMapDataService _mapDataService = null;
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         protected ILogService _logService = null;
         protected IMapProvider _mapProvider;
         private ITextSerializer _textSerializer = null;
@@ -295,7 +296,7 @@ namespace Genrpg.MapServer.Maps
             {
                 return;
             }
-            _playerDataService.SavePlayerData(connState.ch, true);
+            _playerDataService.SavePlayerData(connState.ch);
             Character ch = connState.ch;
             if (ch != null)
             {
@@ -430,3 +431,5 @@ namespace Genrpg.MapServer.Maps
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
 using Genrpg.Shared.UI.Constants;
@@ -19,3 +19,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

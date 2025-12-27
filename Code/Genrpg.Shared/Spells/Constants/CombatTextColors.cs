@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Spells.Constants
 {
-    [MessagePackObject]
     public class CombatTextColors
     {
         public const int White = 0;
@@ -15,3 +14,5 @@ namespace Genrpg.Shared.Spells.Constants
         public const int Green = 8;
     }
 }
+
+

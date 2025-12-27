@@ -1,39 +1,38 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.RpgLevels.Settings
 {
-    [MessagePackObject]
     public class RpgLevel : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public List<Reward> RewardList { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public List<Reward> RewardList { get; set; }
 
-        [Key(8)] public long CurrExp { get; set; }
-        [Key(9)] public float MobCount { get; set; }
-        [Key(10)] public long MobExp { get; set; }
-        [Key(11)] public float QuestCount { get; set; }
-        [Key(12)] public long QuestExp { get; set; }
-        [Key(13)] public long KillMoney { get; set; }
+        public long CurrExp { get; set; }
+        public float MobCount { get; set; }
+        public long MobExp { get; set; }
+        public float QuestCount { get; set; }
+        public long QuestExp { get; set; }
+        public long KillMoney { get; set; }
 
-        [Key(14)] public int StatAmount { get; set; }
-        [Key(15)] public int MonsterStatScale { get; set; }
+        public int StatAmount { get; set; }
+        public int MonsterStatScale { get; set; }
 
-        [Key(16)] public int AbilityPoints { get; set; }
+        public int AbilityPoints { get; set; }
 
-        [Key(17)] public string Art { get; set; }
+        public string Art { get; set; }
 
 
         public RpgLevel()
@@ -42,17 +41,23 @@ namespace Genrpg.Shared.RpgLevels.Settings
         }
     }
 
-    [MessagePackObject]
     public class RpgLevelSettings : ParentSettings<RpgLevel>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public int MaxLevel { get; set; }
+        public override string Id { get; set; }
+        public int MaxLevel { get; set; }
     }
 
-    public class RpgLevelSettingsDto : ParentSettingsDto<RpgLevelSettings, RpgLevel> { }
+    public class RpgLevelSettingsDto : ParentSettingsDto<RpgLevelSettings, RpgLevel>
+    {
+        public override List<RpgLevel> Children { get; set; }
+        public override RpgLevelSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class RpgLevelSettingsLoader : ParentSettingsLoader<RpgLevelSettings, RpgLevel> { }
 
     public class RpgLevelSettingsMapper : ParentSettingsMapper<RpgLevelSettings, RpgLevel, RpgLevelSettingsDto> { }
 
 }
+
+

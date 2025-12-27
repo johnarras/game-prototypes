@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Threading;
@@ -11,3 +11,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Entities
         Task HandleMessage(IPubSubMessage message, CancellationToken token);
     }
 }
+
+

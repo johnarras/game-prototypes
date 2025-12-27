@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.DataStores.Entities;
@@ -14,24 +14,24 @@ using UnityEngine;
 
 public class BaseZoneGenerator : IZoneGenerator, IInitializable
 {
-    protected IAssetService _assetService;
-    protected IFileDownloadService _fileDownloadService;
+    protected IAssetService _assetService = null;
+    protected IFileDownloadService _fileDownloadService = null;
     protected IClientMapObjectManager _objectManager;
     protected IMapTerrainManager _terrainManager;
-    protected INoiseService _noiseService;
-    protected IZoneGenService _zoneGenService;
+    protected INoiseService _noiseService = null;
+    protected IZoneGenService _zoneGenService = null;
     protected CancellationToken _token;
-    protected ILogService _logService;
-    protected IRepositoryService _repoService;
+    protected ILogService _logService = null;
+    protected IRepositoryService _repoService = null;
     protected IDispatcher _dispatcher;
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
     protected IClientRandom _rand;
     protected IMapGenData _md;
-    protected IPathfindingService _pathfindingService;
-    protected IClientEntityService _clientEntityService;
-    protected IAwaitableService _awaitableService;
+    protected IPathfindingService _pathfindingService = null;
+    protected IClientEntityService _clientEntityService = null;
+    protected IAwaitableService _awaitableService = null;
 
     public virtual async Awaitable Generate(CancellationToken token)
     {
@@ -45,3 +45,4 @@ public class BaseZoneGenerator : IZoneGenerator, IInitializable
         await Task.CompletedTask;
     }
 }
+

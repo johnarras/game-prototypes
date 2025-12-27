@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Purchasing.Settings;
 
@@ -17,3 +17,5 @@ namespace Genrpg.Editor.Importers.Purchasing
         }
     }
 }
+
+

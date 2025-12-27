@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
         bool ShouldDispatchClickKeys();
     }
 }
+
+

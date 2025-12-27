@@ -1,11 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+using Assets.Scripts.UI.ScreenSystem;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class BlockerScreen : BaseScreen
 {
@@ -14,3 +10,5 @@ public class BlockerScreen : BaseScreen
         await Task.CompletedTask;
     }
 }
+
+

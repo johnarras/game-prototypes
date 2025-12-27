@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.MapServer.Constants
 {
-    [MessagePackObject]
     public class SharedMapConstants
     {
         public const int TerrainPatchSize = 129;
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.MapServer.Constants
         public const int MapSpawnArraySize = 100;
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Spells.PlayerData.Spells;
+using Genrpg.Shared.Spells.PlayerData.Spells;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,3 +11,5 @@ public class SpellIconScreen : DragItemScreen<Spell, SpellIcon, SpellIconScreen,
     }
 
 }
+
+

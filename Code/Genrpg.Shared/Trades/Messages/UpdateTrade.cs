@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Trades.Messages
         [Key(1)] public long Money { get; set; }
     }
 }
+
+

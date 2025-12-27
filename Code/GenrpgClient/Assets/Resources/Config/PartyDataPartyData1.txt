@@ -86,7 +86,7 @@
     ]
   },
   "Quests": [],
-  "Members": [
+  "ActiveParty": [
     {
       "Stats": {},
       "PartySlot": 1,

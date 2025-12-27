@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.GameEvents
 {
-    [MessagePackObject]
     public class ShowPartyMinimap
     {
-        [Key(0)] public PartyData Party { get; set; }
-        [Key(1)] public bool PartyArrowOnly { get; set; }
+        public PartyData Party { get; set; }
+        public bool PartyArrowOnly { get; set; }
     }
 }
+
+

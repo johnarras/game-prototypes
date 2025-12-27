@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Combat.Messages;
+using Genrpg.MapServer.Combat.Messages;
 using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Spawns.Services;
@@ -174,3 +174,5 @@ namespace Genrpg.MapServer.Units.Services
         }
     }
 }
+
+

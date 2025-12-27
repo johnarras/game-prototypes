@@ -1,0 +1,12 @@
+{
+  "Id": "travelreward1default",
+  "IdKey": 1,
+  "Name": "Coins",
+  "ParentId": "default",
+  "EntityTypeId": 200,
+  "EntityId": 1,
+  "MinQuantity": 1,
+  "MaxQuantity": 2,
+  "Weight": 85.0,
+  "GroupId": 1
+}

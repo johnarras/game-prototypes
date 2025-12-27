@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Assets.Scripts.Core.Interfaces
@@ -8,3 +8,5 @@ namespace Assets.Scripts.Core.Interfaces
         Task OnReset(CancellationToken token);
     }
 }
+
+

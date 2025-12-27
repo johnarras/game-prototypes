@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using Genrpg.Shared.UI.Interfaces;
 
@@ -37,3 +37,5 @@ namespace Assets.Scripts.UI.Core
         }
     }
 }
+
+

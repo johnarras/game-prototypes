@@ -1,19 +1,18 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using MessagePack;
+using Newtonsoft.Json;
 
 namespace Genrpg.Shared.DataStores.Categories.PlayerData.Core
 {
-    [DataGroup(EDataCategories.Players, ERepoTypes.NoSQL)]
-    // MessagePackIgnore
     public abstract class BasePlayerData : IUnitData
     {
         [IgnoreMember]
+        [JsonProperty("id")]
         public abstract string Id { get; set; }
 
         public abstract IUnitData Unpack();
 
     }
 }
+
+

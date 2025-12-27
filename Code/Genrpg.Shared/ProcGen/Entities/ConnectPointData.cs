@@ -7,7 +7,6 @@ namespace Genrpg.Shared.ProcGen.Entities
     /// <summary>
     /// Use this to determine what items to conenct in a graph.
     /// </summary>
-    // MessagePackIgnore  
     public class ConnectPointData
     {
         public long Id;
@@ -40,3 +39,5 @@ namespace Genrpg.Shared.ProcGen.Entities
 
     }
 }
+
+

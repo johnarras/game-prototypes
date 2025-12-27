@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "fencetype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Fence",
       "Art": "Fence",
@@ -12,8 +9,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "FenceTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "FenceTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

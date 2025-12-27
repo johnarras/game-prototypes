@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +11,7 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 
 namespace Genrpg.Shared.MapObjects.Factories
 {
@@ -27,3 +28,5 @@ namespace Genrpg.Shared.MapObjects.Factories
 
     }
 }
+
+

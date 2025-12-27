@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -26,7 +26,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 // 1 explore quest in crawler mode at once and only rarely
-                if (rand.NextDouble() > 0.1f || world.Quests.Any(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap))
+                if (rand.NextDouble() > 0.1f || world.Quests.FastAny(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.ExploreMap))
                 {
                     return;
                 }
@@ -58,3 +58,5 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         }
     }
 }
+
+

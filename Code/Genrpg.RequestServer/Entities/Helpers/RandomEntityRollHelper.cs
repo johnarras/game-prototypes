@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Spawns.Helpers;
 using Genrpg.RequestServer.Spawns.Services;
 using Genrpg.Shared.Entities.Constants;
@@ -30,8 +30,6 @@ namespace Genrpg.RequestServer.Entities.Helpers
             {
                 return rewards;
             }
-
-
 
             List<IWeightedItem> weightedItems = childObjects.Cast<IWeightedItem>().ToList();
 
@@ -74,3 +72,5 @@ namespace Genrpg.RequestServer.Entities.Helpers
         }
     }
 }
+
+

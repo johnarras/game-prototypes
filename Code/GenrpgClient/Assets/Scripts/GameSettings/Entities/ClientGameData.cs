@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 
 namespace Assets.Scripts.GameSettings.Entities
@@ -21,3 +21,5 @@ namespace Assets.Scripts.GameSettings.Entities
         }
     }
 }
+
+

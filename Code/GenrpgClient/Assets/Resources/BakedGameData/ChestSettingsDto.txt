@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "chest1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Common Chest",
       "Icon": "CommonChest",
@@ -14,8 +11,6 @@
       "Loot": []
     },
     {
-      "Id": "chest2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Common Chest",
       "Icon": "CommonChest",
@@ -26,8 +21,6 @@
       "Loot": []
     },
     {
-      "Id": "chest3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Uncommon Chest",
       "Icon": "UncommonChest",
@@ -38,8 +31,6 @@
       "Loot": []
     },
     {
-      "Id": "chest4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Rare Chest",
       "Desc": "",
@@ -51,8 +42,6 @@
       "Loot": []
     },
     {
-      "Id": "chest5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Epic Chest",
       "Desc": "",
@@ -64,8 +53,6 @@
       "Loot": []
     },
     {
-      "Id": "chest6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Legendary Chest",
       "Desc": "",
@@ -77,8 +64,6 @@
       "Loot": []
     },
     {
-      "Id": "chest7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Heroic Chest",
       "Desc": "",
@@ -90,8 +75,6 @@
       "Loot": []
     },
     {
-      "Id": "chest8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Random Chest",
       "Desc": "",
@@ -105,32 +88,32 @@
     "Id": "default",
     "TieredCurrencyLoot": [
       {
+        "Name": "",
         "EntityTypeId": 200,
         "EntityId": 1,
         "MinQuantity": 5,
         "MaxQuantity": 15,
-        "Weight": 100.0,
-        "Name": ""
+        "Weight": 100.0
       },
       {
+        "Name": "",
         "EntityTypeId": 200,
         "EntityId": 3,
         "MinQuantity": 5,
         "MaxQuantity": 15,
-        "Weight": 100.0,
-        "Name": ""
+        "Weight": 100.0
       },
       {
+        "Name": "",
         "EntityTypeId": 200,
         "EntityId": 2,
         "MinQuantity": 5,
         "MaxQuantity": 15,
-        "Weight": 100.0,
-        "Name": ""
+        "Weight": 100.0
       }
     ],
-    "Name": "ChestSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "ChestSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

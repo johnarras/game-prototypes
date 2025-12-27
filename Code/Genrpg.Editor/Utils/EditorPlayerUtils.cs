@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
@@ -33,7 +33,7 @@ namespace Genrpg.Editor.Utils
                     EditorCharacter ech = new EditorCharacter() { Character = ch, CoreCharacter = coreChar };
                     gs.EditorUser.Characters.Add(ech);
                     await gs.loc.Get<IPlayerDataService>().LoadAllPlayerData(gs.rand, gs.EditorUser.GameAccount, new List<IUnitData>(), ch);
-                    foreach (IUnitData dataCont in ch.GetAllData().Values)
+                    foreach (ITopLevelUnitData dataCont in ch.GetTopLevelData())
                     {
                         ech.Data.Add(new EditorUnitData() { Data = dataCont });
                     }
@@ -57,7 +57,7 @@ namespace Genrpg.Editor.Utils
                     {
                         tasks.Add(repoService.Save(ech.CoreCharacter));
                     }
-                    foreach (IUnitData unitData in ech.Character.GetAllData().Values)
+                    foreach (IUnitData unitData in ech.Character.GetAllData())
                     {
                         if (gs.LookedAtObjects.Contains(unitData))
                         {
@@ -81,7 +81,7 @@ namespace Genrpg.Editor.Utils
                 foreach (EditorCharacter ech in gs.EditorUser.Characters)
                 {
                     tasks.Add(repoService.Delete(ech.CoreCharacter));
-                    foreach (IUnitData unitData in ech.Character.GetAllData().Values)
+                    foreach (IUnitData unitData in ech.Character.GetAllData())
                     {
                         tasks.Add(repoService.Delete(unitData));
                     }
@@ -93,3 +93,5 @@ namespace Genrpg.Editor.Utils
         }
     }
 }
+
+

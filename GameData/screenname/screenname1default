@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 1,
   "Name": "HUD",
-  "SaveTime": "2025-11-15T21:11:50.49Z"
+  "ScreenLayerId": 10,
+  "Subdirectory": "HUD"
 }

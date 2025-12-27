@@ -13,41 +13,40 @@ using Genrpg.Shared.Zones.Settings;
 
 namespace Genrpg.Shared.ProcGen.Entities
 {
-    [MessagePackObject]
     public class GenZone
     {
-        [Key(0)] public long IdKey { get; set; }
-        [Key(1)] public float RoadDipScale { get; set; }
+        public long IdKey { get; set; }
+        public float RoadDipScale { get; set; }
 
-        [Key(2)] public float RoadDirtScale { get; set; }
+        public float RoadDirtScale { get; set; }
 
-        [Key(3)] public float GrassDensity { get; set; }
+        public float GrassDensity { get; set; }
 
-        [Key(4)] public float GrassFreq { get; set; }
+        public float GrassFreq { get; set; }
 
-        [Key(5)] public float TreeDensity { get; set; }
+        public float TreeDensity { get; set; }
 
-        [Key(6)] public float TreeFreq { get; set; }
+        public float TreeFreq { get; set; }
 
-        [Key(7)] public float BushDensity { get; set; }
+        public float BushDensity { get; set; }
 
-        [Key(8)] public float BushFreq { get; set; }
+        public float BushFreq { get; set; }
 
-        [Key(9)] public float RockDensity { get; set; }
+        public float RockDensity { get; set; }
 
-        [Key(10)] public float RockFreq { get; set; }
+        public float RockFreq { get; set; }
 
-        [Key(11)] public float DetailFreq { get; set; }
+        public float DetailFreq { get; set; }
 
-        [Key(12)] public float DetailAmp { get; set; }
+        public float DetailAmp { get; set; }
 
-        [Key(13)] public float SpreadChance { get; set; }
+        public float SpreadChance { get; set; }
 
-        [Key(14)] public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
-        [Key(15)] public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
+        public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
+        public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
 
-        [Key(16)] public List<ZoneRelation> ZonesNearLevel { get; set; } = new List<ZoneRelation>();
-        [Key(17)] public List<ZoneRelation> ZonesNearPos { get; set; } = new List<ZoneRelation>();
+        public List<ZoneRelation> ZonesNearLevel { get; set; } = new List<ZoneRelation>();
+        public List<ZoneRelation> ZonesNearPos { get; set; } = new List<ZoneRelation>();
 
 
         public ZoneTreeType GetTree(int treeTypeId)
@@ -92,3 +91,5 @@ namespace Genrpg.Shared.ProcGen.Entities
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Interfaces;
@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Spells.Helpers.SpellEffectHelpers
         Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token);
     }
 }
+
+

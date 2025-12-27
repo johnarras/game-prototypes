@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.GroundObjects.MapObjects;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
     {
     }
 }
+
+

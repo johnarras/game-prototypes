@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.TextureLists.Services;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -43,7 +43,7 @@ namespace Assets.Scripts.TextureLists.Services
 
         public bool HasReferences()
         {
-            return _refs.Any(x => !(x is null));
+            return _refs.FastAny(x => !(x is null));
         }
 
     }
@@ -51,9 +51,9 @@ namespace Assets.Scripts.TextureLists.Services
     public class TextureListCache : ITextureListCache
     {
 
-        private IAssetService _assetService;
+        private IAssetService _assetService = null;
         private ISingletonContainer _singletonContainer;
-        private IClientEntityService _clientEntityService;
+        private IClientEntityService _clientEntityService = null;
 
         private GameObject _textureListParent;
 
@@ -68,7 +68,7 @@ namespace Assets.Scripts.TextureLists.Services
         {
             if (_textureListParent == null)
             {
-                _textureListParent = _singletonContainer.GetSingleton("TextureListParent");
+                _textureListParent = _singletonContainer.GetAssetParent<TextureList>();
             }
             return _textureListParent;
         }
@@ -149,3 +149,5 @@ namespace Assets.Scripts.TextureLists.Services
         }
     }
 }
+
+

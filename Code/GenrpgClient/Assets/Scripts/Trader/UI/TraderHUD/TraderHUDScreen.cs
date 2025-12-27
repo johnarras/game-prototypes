@@ -1,4 +1,5 @@
-﻿using System.Threading;
+using Assets.Scripts.UI.ScreenSystem;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
@@ -11,3 +12,5 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         }
     }
 }
+
+

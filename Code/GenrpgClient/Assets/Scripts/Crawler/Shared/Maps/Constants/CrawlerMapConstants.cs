@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Shared.Crawler.Maps.Constants
 {
     public class CrawlerMapConstants
@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Crawler.Maps.Constants
         public const double TreeChanceScale = 0.25f;
     }
 }
+
+

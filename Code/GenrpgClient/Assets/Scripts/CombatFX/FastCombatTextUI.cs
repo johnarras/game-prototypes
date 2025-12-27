@@ -1,4 +1,4 @@
-﻿
+
 
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Crawler.Combat.Constants;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI.CombatTexts
     public class FastCombatTextUI : BaseBehaviour
     {
 
-        private IClientAppService _appService;
+        private IClientAppService _appService = null;
 
         public float AnimateTime = 1.0f;
         public float TextMoveSpeed = 30.0f;
@@ -58,7 +58,7 @@ namespace Assets.Scripts.UI.CombatTexts
             _framesPerSecond = _appService.TargetFrameRate;
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
 
-            _updateService.AddUpdate(this, LoadNewTexts, UpdateTypes.Regular, GetToken());
+            AddUpdate(LoadNewTexts, UpdateTypes.Regular);
         }
 
         private void OnShowCombatText(ShowCombatText showCombatText)
@@ -165,3 +165,5 @@ namespace Assets.Scripts.UI.CombatTexts
         }
     }
 }
+
+

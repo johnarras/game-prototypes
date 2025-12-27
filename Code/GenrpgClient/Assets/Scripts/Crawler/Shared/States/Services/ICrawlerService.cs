@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Input.Interfaces;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -34,3 +34,5 @@ namespace Genrpg.Shared.Crawler.States.Services
         ECrawlerStates GetPrevState(ECrawlerStates tryPrevState = ECrawlerStates.None);
     }
 }
+
+

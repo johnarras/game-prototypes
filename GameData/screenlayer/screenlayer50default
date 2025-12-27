@@ -1,0 +1,7 @@
+{
+  "Id": "screenlayer50default",
+  "ParentId": "default",
+  "IdKey": 50,
+  "Name": "DynamicUI",
+  "SkipInAllScreensList": true
+}

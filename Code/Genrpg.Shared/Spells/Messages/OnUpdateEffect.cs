@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(2)] public float DurationLeft { get; set; }
     }
 }
+
+

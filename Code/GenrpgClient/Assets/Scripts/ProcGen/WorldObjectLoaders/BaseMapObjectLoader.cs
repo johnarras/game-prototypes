@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.MapTerrain;
@@ -25,13 +25,13 @@ public abstract class BaseMapObjectLoader : IMapObjectLoader
     protected abstract string GetLayerName();
 
     protected IMapTerrainManager _terrainManager;
-    protected IAssetService _assetService;
+    protected IAssetService _assetService = null;
     protected IClientMapObjectManager _objectManager;
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientEntityService _clientEntityService;
-    protected IAwaitableService _awaitableService;
+    protected IClientEntityService _clientEntityService = null;
+    protected IAwaitableService _awaitableService = null;
 
     public void FinalPlaceObject(GameObject go, SpawnLoadData data, string layerName)
     {
@@ -83,3 +83,4 @@ public abstract class BaseMapObjectLoader : IMapObjectLoader
         _objectManager.AddObject(data.Obj, go);
     }
 }
+

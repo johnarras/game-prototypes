@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Client.Core
         public ClientRandom(long seed) : base(seed) { }
     }
 }
+
+

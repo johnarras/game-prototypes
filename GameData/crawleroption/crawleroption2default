@@ -4,6 +4,5 @@
   "IdKey": 2,
   "Name": "Permadeath",
   "Desc": "The game resets when the entire party dies.",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:10:58.211Z"
+  "DefaultForNewGame": true
 }

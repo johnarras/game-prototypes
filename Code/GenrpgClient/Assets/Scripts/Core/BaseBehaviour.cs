@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
@@ -11,10 +10,7 @@ using UnityEngine;
 
 public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDestroyCallback, IPooledObject
 {
-    protected IInitClient _initClient = null;
     protected IClientUpdateService _updateService = null;
-    protected IScreenService _screenService = null;
-    protected IRealtimeNetworkService _networkService = null;
     protected IAssetService _assetService = null;
     protected IUIService _uiService = null;
     protected ILogService _logService = null;
@@ -23,6 +19,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
     protected IClientGameState _gs = null;
     protected IClientRandom _rand = null;
     protected IClientEntityService _clientEntityService = null;
+    private IInitClient _initClient = null;
 
     private CancellationTokenSource _cts = null;
     public virtual CancellationToken GetToken()
@@ -34,9 +31,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
         return _cts.Token;
     }
 
-
     protected CancellationTokenRegistration _ctRegistration;
-
 
     public void SetDestroyCallback(Action action)
     {
@@ -106,4 +101,6 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
 
     }
 }
+
+
 

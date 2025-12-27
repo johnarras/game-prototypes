@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Settings;
@@ -18,3 +18,5 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         Task<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool fullDescription,  bool showCurrentStatus, bool showNPC);
     }
 }
+
+

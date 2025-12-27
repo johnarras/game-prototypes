@@ -1,0 +1,12 @@
+{
+  "Id": "travelreward2default",
+  "IdKey": 2,
+  "Name": "Supplies",
+  "ParentId": "default",
+  "EntityTypeId": 200,
+  "EntityId": 2,
+  "MinQuantity": 1,
+  "MaxQuantity": 2,
+  "Weight": 4.0,
+  "GroupId": 1
+}

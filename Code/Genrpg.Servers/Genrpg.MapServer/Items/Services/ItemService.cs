@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Crafting.Services;
+using Genrpg.MapServer.Crafting.Services;
 using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Spawns.Services;
 using Genrpg.MapServer.Trades.Services;
@@ -132,3 +132,5 @@ namespace Genrpg.MapServer.Items.Services
         }
     }
 }
+
+

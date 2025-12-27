@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils;
 using System;
 using UnityEngine;
 
@@ -268,3 +268,5 @@ public class ProgressBar : BaseBehaviour
 
 
 }
+
+

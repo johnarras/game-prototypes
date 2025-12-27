@@ -13,3 +13,5 @@ namespace Genrpg.Shared.SpellCrafting.Messages
         [Key(0)] public Spell CraftedSpell { get; set; }
     }
 }
+
+

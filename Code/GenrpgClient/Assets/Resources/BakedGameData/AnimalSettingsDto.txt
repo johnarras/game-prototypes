@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "animal1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Donkey",
       "Desc": "The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person.",
@@ -16,8 +13,6 @@
       "StartsUnlocked": true
     },
     {
-      "Id": "animal2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Pony",
       "Desc": "A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances.",
@@ -29,8 +24,6 @@
       "Cost": 41000
     },
     {
-      "Id": "animal3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Mule",
       "Desc": "A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal.",
@@ -42,8 +35,6 @@
       "Cost": 29250
     },
     {
-      "Id": "animal4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Riding Horse",
       "Desc": "Bred for speed and agility, this horse is ideal for riders, messengers, and lightly packed scouts. Less efficient for heavy loads than a mule.",
@@ -55,8 +46,6 @@
       "Cost": 58250
     },
     {
-      "Id": "animal5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Tamed Onager",
       "Desc": "A wild ass from the deserts of Persia. Faster than a donkey but notoriously difficult to tame and control. A prestigious, if impractical, chariot animal.",
@@ -68,8 +57,6 @@
       "Cost": 163750
     },
     {
-      "Id": "animal6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Draft Horse",
       "Desc": "A heavier, stronger breed of horse, used for pulling wagons and plows. Faster than an ox but requires more care and better quality food (grain).",
@@ -81,8 +68,6 @@
       "Cost": 155500
     },
     {
-      "Id": "animal7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Heavy Warhorse",
       "Desc": "A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge.",
@@ -94,8 +79,6 @@
       "Cost": 78250
     },
     {
-      "Id": "animal8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Ox",
       "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
@@ -107,8 +90,6 @@
       "Cost": 356000
     },
     {
-      "Id": "animal9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Zebu",
       "Desc": "A type of domestic cattle from India with a distinctive fatty hump. Highly resistant to heat and drought, making it an ideal draft animal for the region.",
@@ -120,8 +101,6 @@
       "Cost": 368750
     },
     {
-      "Id": "animal10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Water Buffalo",
       "Desc": "A powerful bovine, perfectly adapted for pulling plows and carts through deep mud and water. Slower and less heat-tolerant than an ox on dry land.",
@@ -133,8 +112,6 @@
       "Cost": 276500
     },
     {
-      "Id": "animal11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Dromedary Camel",
       "Desc": "The one-humped 'ship of the desert'. Unmatched endurance in hot, arid climates due to its ability to conserve water. The backbone of caravan trade in Africa and Arabia.",
@@ -146,8 +123,6 @@
       "Cost": 48500
     },
     {
-      "Id": "animal12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Bactrian Camel",
       "Desc": "The two-humped camel of Central Asia. Even stronger than a dromedary and better adapted to cold climates, making it vital for the high-altitude sections of the Silk Road.",
@@ -159,8 +134,6 @@
       "Cost": 185250
     },
     {
-      "Id": "animal13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Yak",
       "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
@@ -172,8 +145,6 @@
       "Cost": 1406250
     },
     {
-      "Id": "animal14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Reindeer",
       "Desc": "A semi-domesticated deer of the far north. A vital resource for northern cultures, used as a pack animal or for pulling sleds over snow and tundra.",
@@ -185,8 +156,6 @@
       "Cost": 19500
     },
     {
-      "Id": "animal15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Asian Elephant",
       "Desc": "A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.",
@@ -196,22 +165,12 @@
       "Capacity": 6,
       "Supplies": 6,
       "Cost": 1474500
-    },
-    {
-      "Id": "animal16default",
-      "ParentId": "default",
-      "IdKey": 16,
-      "Name": "Yak",
-      "Desc": "The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.",
-      "Icon": "Yak",
-      "Art": "Yak",
-      "Speed": 2
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "AnimalSettings",
-    "SaveTime": "2025-12-06T22:05:33.863Z"
+    "Name": "AnimalTypeSettings"
   },
-  "SaveTime": "2025-12-06T22:05:33.863Z"
+  "Id": "default",
+  "SaveTime": "2025-12-23T21:38:00.331Z"
 }

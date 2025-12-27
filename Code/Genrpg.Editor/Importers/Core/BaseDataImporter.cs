@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Importing;
 using Genrpg.Shared.DataStores.Entities;
@@ -147,3 +147,5 @@ namespace Genrpg.Editor.Importers.Core
 
     }
 }
+
+

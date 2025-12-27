@@ -7,24 +7,23 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.Inventory.Settings.ItemSets
 {
-    [MessagePackObject]
     public class SetType : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
-        [Key(8)] public List<SetPiece> Pieces { get; set; }
+        public List<SetPiece> Pieces { get; set; }
 
-        [Key(9)] public List<SetStat> Stats { get; set; }
+        public List<SetStat> Stats { get; set; }
 
-        [Key(10)] public List<SetSpellProc> Procs { get; set; }
+        public List<SetSpellProc> Procs { get; set; }
 
 
         public SetType()
@@ -34,36 +33,33 @@ namespace Genrpg.Shared.Inventory.Settings.ItemSets
             Procs = new List<SetSpellProc>();
         }
     }
-    [MessagePackObject]
     public class SetStat : IStatPct
     {
-        [Key(0)] public int ItemCount { get; set; }
-        [Key(1)] public long StatTypeId { get; set; }
-        [Key(2)] public int Percent { get; set; }
-        [Key(3)] public string Name { get; set; }
+        public int ItemCount { get; set; }
+        public long StatTypeId { get; set; }
+        public int Percent { get; set; }
+        public string Name { get; set; }
     }
-    [MessagePackObject]
     public class SetSpellProc : IOldSpellProc
     {
-        [Key(0)] public int Chance { get; set; }
-        [Key(1)] public long SpellId { get; set; }
-        [Key(2)] public int Cooldown { get; set; }
-        [Key(3)] public long ProcTypeId { get; set; }
-        [Key(4)] public long FromElementTypeId { get; set; }
-        [Key(5)] public long FromSkillTypeId { get; set; }
-        [Key(6)] public int Scale { get; set; }
-        [Key(7)] public int ItemCount { get; set; }
-        [Key(8)] public string Name { get; set; }
+        public int Chance { get; set; }
+        public long SpellId { get; set; }
+        public int Cooldown { get; set; }
+        public long ProcTypeId { get; set; }
+        public long FromElementTypeId { get; set; }
+        public long FromSkillTypeId { get; set; }
+        public int Scale { get; set; }
+        public int ItemCount { get; set; }
+        public string Name { get; set; }
     }
-    [MessagePackObject]
     public class SetPiece
     {
-        [Key(0)] public long ItemTypeId { get; set; }
-        [Key(1)] public string Name { get; set; }
+        public long ItemTypeId { get; set; }
+        public string Name { get; set; }
 
-        [Key(2)] public List<StatPct> Stats { get; set; } = new List<StatPct>();
+        public List<StatPct> Stats { get; set; } = new List<StatPct>();
 
-        [Key(3)] public List<OldSpellProc> OldProcs { get; set; } = new List<OldSpellProc>();
+        public List<OldSpellProc> OldProcs { get; set; } = new List<OldSpellProc>();
 
         public SetPiece()
         {
@@ -71,3 +67,5 @@ namespace Genrpg.Shared.Inventory.Settings.ItemSets
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.MessageHandlers;
+using Assets.Scripts.MessageHandlers;
 using Genrpg.Shared.Trades.Messages;
 using System;
 using System.Collections.Generic;
@@ -14,3 +14,5 @@ namespace Assets.Scripts.Trade.MessageHandlers
 
     }
 }
+
+

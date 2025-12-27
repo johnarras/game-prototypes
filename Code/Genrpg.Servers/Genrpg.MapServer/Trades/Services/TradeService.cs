@@ -1,9 +1,9 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Maps;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Errors.Messages;
 using Genrpg.Shared.Inventory.PlayerData;
@@ -25,7 +25,7 @@ namespace Genrpg.MapServer.Trades.Services
         private IMapObjectManager _objManager = null;
         private IMapMessageService _messageService = null;
         private IInventoryService _inventoryService = null;
-        private IRepositoryService _repoService = null;
+        private IFullRepositoryService _repoService = null;
         private IRewardService _rewardService = null;
 
         #region Utils
@@ -519,3 +519,4 @@ namespace Genrpg.MapServer.Trades.Services
         #endregion
     }
 }
+

@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -23,15 +24,24 @@ namespace Genrpg.Shared.Entities.Helpers
             return _gameData.Get<TParent>(obj).GetData().Cast<IIdName>().ToList();
         }
 
-        public virtual string GetIconAtlasName(IFilteredObject obj, long entityId)
+        public virtual string GetIconAtlasName(IFilteredObject obj, long entityId, EEntityIconCategories category)
         {
             TChild child = _gameData.Get<TParent>(obj).Get(entityId);
 
+            // Prefixes can be like LargeCurrencyIcons
+            string prefix = "";
+            if (category != EEntityIconCategories.Default)
+            {
+                prefix = category.ToString();
+            }
+
+            /// Atlas prefix is for stuff large groups of items that need to be split up like cards or 
+            /// markers/pieces for your gameplay.
             if (child is IIndexedGameItem indexedItem && !string.IsNullOrEmpty(indexedItem.AtlasPrefix))
             {
-                return indexedItem.AtlasPrefix + typeof(TChild).Name + "Icon";
+                prefix += indexedItem.AtlasPrefix;
             }
-            return typeof(TChild).Name + "Icons";
+            return prefix + typeof(TChild).Name + "Icons";
         }
 
         public abstract long HelperKey { get; }
@@ -60,3 +70,5 @@ namespace Genrpg.Shared.Entities.Helpers
         }
     }
 }
+
+

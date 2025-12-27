@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.UI.Dungeons;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -136,3 +136,5 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
         }
     }
 }
+
+

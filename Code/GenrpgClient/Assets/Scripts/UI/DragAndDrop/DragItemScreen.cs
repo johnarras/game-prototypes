@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Inventory.UI;
+using Assets.Scripts.Inventory.UI;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -68,7 +68,6 @@ public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : Bas
                 OnPointerUp();
             }
         }
-
     }
 
     public virtual void OnPointerDown(PointerEventData pointerData, TDragItem icon)
@@ -218,3 +217,4 @@ public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : Bas
         }
     }
 }
+

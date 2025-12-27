@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Riddles.Entities;
@@ -17,3 +17,5 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
         void SetPropPosition(object prop, object data, CancellationToken token);
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,4 +21,6 @@ public class MapGenFlags
     public const int MinorRoad = 1 << 13;
     public const int IsLocationPatch = 1 << 14;
 }
+
+
 

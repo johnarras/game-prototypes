@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Interfaces;
 using System;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Crawler.Info.EffectHelpers
         string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect);
     }
 }
+
+

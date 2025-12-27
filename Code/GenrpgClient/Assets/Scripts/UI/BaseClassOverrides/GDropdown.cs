@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
 using System;
@@ -87,3 +87,5 @@ public class GDropdown : TMPro.TMP_Dropdown, IDropdown
         base.OnDestroy();
     }
 }
+
+

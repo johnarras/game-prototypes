@@ -1,4 +1,4 @@
-﻿using Genrpg.MonsterServer.Admin;
+using Genrpg.MonsterServer.Admin;
 using Genrpg.ServerShared.CloudComms.Services.Admin;
 using Genrpg.ServerShared.Setup;
 using Genrpg.Shared.Core.Entities;
@@ -11,3 +11,5 @@ namespace Genrpg.MonsterServer.Setup
     {
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.Stores;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Purchasing.PlayerData;
@@ -70,3 +70,5 @@ namespace Assets.Scripts.Stores
         }
     }
 }
+
+

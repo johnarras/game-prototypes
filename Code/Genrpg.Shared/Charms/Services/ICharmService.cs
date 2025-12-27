@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Charms.PlayerData;
+using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Charms.Services
         List<string> PrintBonuses(PlayerCharmBonusList list);
     }
 }
+
+

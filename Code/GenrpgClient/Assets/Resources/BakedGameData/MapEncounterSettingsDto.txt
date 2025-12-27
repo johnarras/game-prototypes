@@ -1,24 +1,17 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "mapencountertype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "OtherFeature",
       "Icon": "OtherFeature"
     },
     {
-      "Id": "mapencountertype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Treasure",
       "Icon": "Treasure",
       "Weight": 0.1
     },
     {
-      "Id": "mapencountertype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Monsters",
       "Icon": "Monsters",
@@ -26,8 +19,6 @@
       "CanRepeat": true
     },
     {
-      "Id": "mapencountertype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Trap",
       "Icon": "Trap",
@@ -37,8 +28,6 @@
       "CanBeCleansed": true
     },
     {
-      "Id": "mapencountertype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Stats",
       "Desc": "",
@@ -46,8 +35,6 @@
       "Weight": 0.2
     },
     {
-      "Id": "mapencountertype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Level Map",
       "Desc": "",
@@ -59,8 +46,8 @@
   "Parent": {
     "Id": "default",
     "EncounterChance": 0.08,
-    "Name": "MapEncounterSettings",
-    "SaveTime": "2025-11-01T21:17:05.928Z"
+    "Name": "MapEncounterSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-01T21:17:05.928Z"
 }

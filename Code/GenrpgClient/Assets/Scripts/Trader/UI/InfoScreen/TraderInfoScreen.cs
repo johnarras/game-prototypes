@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Info.UI;
+using Assets.Scripts.Info.UI;
 using Genrpg.Shared.Entities.Constants;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,3 +28,5 @@ namespace Assets.Scripts.Trader.UI.InfoScreen
         }
     }
 }
+
+

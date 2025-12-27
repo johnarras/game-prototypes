@@ -1,9 +1,8 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,9 +40,9 @@ public class TypedDownloadFileData<T> : DownloadFileData
 
 public class FileDownloadService : IFileDownloadService
 {
-    private IClientAppService _appService;
-    private IModTextureService _modTextureService;
-    protected IAwaitableService _awaitableService;
+    private IClientAppService _appService = null;
+    private IModTextureService _modTextureService = null;
+    protected IAwaitableService _awaitableService = null;
     private ITextSerializer _serializer;
     public async Task Initialize(CancellationToken token)
     {
@@ -74,8 +73,8 @@ public class FileDownloadService : IFileDownloadService
 
     }
 
-    private ILogService _logService;
-    private IAssetService _assetService;
+    private ILogService _logService = null;
+    private IAssetService _assetService = null;
     private IBinaryFileRepository _binaryFileRepo = null;
 
     private int _fileDownloadingCount = 0;
@@ -322,3 +321,4 @@ public class FileDownloadService : IFileDownloadService
         DownloadFile(newUrl, fileData, token);
     }
 }
+

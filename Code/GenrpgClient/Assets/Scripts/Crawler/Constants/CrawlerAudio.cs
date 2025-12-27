@@ -1,4 +1,4 @@
-﻿
+
 
 namespace Assets.Scripts.Crawler.Constants
 {
@@ -10,3 +10,5 @@ namespace Assets.Scripts.Crawler.Constants
         public const string DoorOpen = "DoorOpen";
     }
 }
+
+

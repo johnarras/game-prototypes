@@ -8,13 +8,14 @@ using Genrpg.Shared.Crawler.Combat.Constants;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
-    [MessagePackObject]
     public class OneEffect
     {
-        [Key(0)] public EHitTypes HitType { get; set; }
-        [Key(1)] public long MinQuantity { get; set; }
-        [Key(2)] public long MaxQuantity { get; set; }
-        [Key(3)] public double CritChance { get; set; }
-        [Key(4)] public double PowerPercent { get; set; } = 100;
+        public EHitTypes HitType { get; set; }
+        public long MinQuantity { get; set; }
+        public long MaxQuantity { get; set; }
+        public double CritChance { get; set; }
+        public double PowerPercent { get; set; } = 100;
     }
 }
+
+

@@ -1,6 +1,5 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.Core;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Core;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.LoadSave.PlayerData;
@@ -72,7 +71,14 @@ namespace Genrpg.Shared.LoadSave.Services
 
             playerData.Id = GetFilenameFromSlot<T>(slotId);
 
-            _repoService.Save(playerData, verbose);
+            RepoSaveArgs args = null;
+
+            if (verbose)
+            {
+                args = new RepoSaveArgs() { Verbose = verbose };
+            }
+
+            _repoService.Save(playerData, args);
 
             UpdateCurrentSaveSlot(slotId);
 
@@ -117,3 +123,5 @@ namespace Genrpg.Shared.LoadSave.Services
         }
     }
 }
+
+

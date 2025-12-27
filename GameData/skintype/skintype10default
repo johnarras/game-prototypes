@@ -1,0 +1,10 @@
+{
+  "Id": "skintype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Water Buffalo",
+  "Icon": "WaterBuffalo",
+  "Art": "WaterBuffalo",
+  "AnimalTypeId": 10,
+  "IsDefault": true
+}

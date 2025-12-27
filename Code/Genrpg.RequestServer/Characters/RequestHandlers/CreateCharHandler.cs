@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
@@ -45,8 +45,10 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
                 AllCharacters = charStubs,
             };
 
-            context.Responses.AddResponse(response);
+            context.AddResponse(response);
 
         }
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "rolescalingtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Melee",
       "Desc": "Increases melee attacks per level.",
@@ -11,8 +8,6 @@
       "ScalingEquipSlotId": 15
     },
     {
-      "Id": "rolescalingtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Ranged",
       "Desc": "Increases ranged attacks per level.",
@@ -20,8 +15,6 @@
       "ScalingEquipSlotId": 17
     },
     {
-      "Id": "rolescalingtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "SpellDam",
       "Desc": "Increases spell damage tiers per level.",
@@ -29,8 +22,6 @@
       "ScalingEquipSlotId": 15
     },
     {
-      "Id": "rolescalingtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Healing",
       "Desc": "Increases healing, cures, and holy magic per level.",
@@ -38,8 +29,6 @@
       "ScalingEquipSlotId": 15
     },
     {
-      "Id": "rolescalingtype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Summon",
       "Desc": "Increases the number of creatures summoned per level.",
@@ -47,8 +36,6 @@
       "ScalingEquipSlotId": 15
     },
     {
-      "Id": "rolescalingtype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Utility",
       "Desc": "Increases how quickly the player can get utility spells.",
@@ -56,8 +43,6 @@
       "ScalingEquipSlotId": 15
     },
     {
-      "Id": "rolescalingtype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Defense",
       "Desc": "Gives a chance to lessen or ignore damage.",
@@ -67,8 +52,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "RoleScalingTypeSettings",
-    "SaveTime": "2025-08-29T09:32:34.763Z"
+    "Name": "RoleScalingTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-08-29T09:32:34.763Z"
 }

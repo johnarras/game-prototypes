@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Tilemap;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -112,7 +112,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 return;
             }
 
-            _updateService.AddUpdate(gameObject, OnLateUpdate, UpdateTypes.Late, GetToken());
+            AddUpdate(OnLateUpdate, UpdateTypes.Late);
 
             AddListener<ShowPartyMinimap>(OnShowPartyMinimap);
             AddListener<ClearCrawlerTilemaps>(OnClearCrawlerTilemaps);
@@ -670,3 +670,5 @@ namespace Assets.Scripts.Crawler.Tilemaps
         }
     }
 }
+
+

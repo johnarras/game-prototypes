@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using UnityEngine;
-using System.Collections.Generic;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Core.Constants;
 
@@ -34,9 +33,10 @@ public class ClientConfig : ScriptableObject
 {
     public EGameModes GameMode = EGameModes.Crawler;
     public string Env = EnvNames.Dev;
-    public string WebEndpointOverride;
-    public string AssetEnvOverride;
-    public string WorldEnvOverride;
+    public string BaseWebEndpoint;
+    public string ContentEndpoint;
+    public string AssetsEnv;
+    public string WorldsEnv;
     public int ProductId = 2;
     public bool SelfContainedClient;
     public bool ExportGameData;
@@ -51,36 +51,7 @@ public class ClientConfig : ScriptableObject
         {
             return "http://localhost:5000";
         }
-        return "https://" + Env.ToLower() + "-genrpg.azurewebsites.net";
-    }
-
-    public string GetContentRoot()
-    {
-        return AssetConstants.DefaultDevContentRoot;
-    }
-
-    public string GetAssetDataEnv()
-    {
-        return GetDefaultOrOverride(AssetEnvOverride);
-    }
-    public string GetWorldDataEnv()
-    {
-        return GetDefaultOrOverride(WorldEnvOverride);
-    }
-
-    private string GetDefaultOrOverride(string overrideEnv)
-    {
-        string assetEnv = overrideEnv;
-
-        if (string.IsNullOrEmpty(assetEnv))
-        {
-            assetEnv = Env;
-        }
-        if (assetEnv == EnvNames.Local)
-        {
-            assetEnv = EnvNames.Dev;
-        }
-        return assetEnv;
+        return BaseWebEndpoint.Replace("XXXX", Env.ToLower());
     }
 
 #if UNITY_EDITOR
@@ -90,14 +61,5 @@ public class ClientConfig : ScriptableObject
         ScriptableObjectUtils.CreateBasicInstance<ClientConfig>();
     }
 #endif
-
-    public string GetConnectionString(string key)
-    {
-        return "";
-    }
-
-    public Dictionary<string, string> GetConnectionStrings()
-    {
-        return new Dictionary<string, string>();
-    }
 }
+

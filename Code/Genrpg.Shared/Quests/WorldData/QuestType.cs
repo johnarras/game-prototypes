@@ -31,22 +31,22 @@ namespace Genrpg.Shared.Quests.WorldData
         [Key(3)] public long IdKey { get; set; }
         [Key(4)] public string Name { get; set; }
         [Key(5)] public string Desc { get; set; }
-        [Key(100)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        [Key(6)] public string AtlasPrefix { get; set; }
+        [Key(7)] public string Icon { get; set; }
+        [Key(8)] public string Art { get; set; }
 
-        [Key(8)] public List<QuestTask> Tasks { get; set; }
+        [Key(9)] public List<QuestTask> Tasks { get; set; }
 
-        [Key(9)] public int MapVersion { get; set; }
-        [Key(10)] public long ZoneId { get; set; }
-        [Key(11)] public long MinLevel { get; set; }
-        [Key(12)] public string StartObjId { get; set; }
-        [Key(13)] public string EndObjId { get; set; }
+        [Key(10)] public int MapVersion { get; set; }
+        [Key(11)] public long ZoneId { get; set; }
+        [Key(12)] public long MinLevel { get; set; }
+        [Key(13)] public string StartObjId { get; set; }
+        [Key(14)] public string EndObjId { get; set; }
 
-        [Key(14)] public int CurrencyScale { get; set; }
+        [Key(15)] public int CurrencyScale { get; set; }
 
-        [Key(15)] public int ItemQuantity { get; set; }
-        [Key(16)] public long ItemQualityTypeId { get; set; }
+        [Key(16)] public int ItemQuantity { get; set; }
+        [Key(17)] public long ItemQualityTypeId { get; set; }
 
         public QuestType()
         {
@@ -187,3 +187,5 @@ namespace Genrpg.Shared.Quests.WorldData
         }
     }
 }
+
+

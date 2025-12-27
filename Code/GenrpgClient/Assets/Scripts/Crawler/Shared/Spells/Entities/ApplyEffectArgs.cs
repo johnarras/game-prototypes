@@ -1,6 +1,6 @@
-﻿using Genrpg.Shared.Crawler.Buffs.Settings;
+using Genrpg.Shared.Crawler.Buffs.Settings;
+using Genrpg.Shared.Crawler.Spells.Services;
 using System.Collections.Generic;
-using static Genrpg.Shared.Crawler.Spells.Services.CrawlerSpellService;
 
 namespace Genrpg.Shared.Spells.Entities
 {
@@ -23,3 +23,5 @@ namespace Genrpg.Shared.Spells.Entities
         public Dictionary<string, ActionListItem> ActionList = new Dictionary<string, ActionListItem>();
     }
 }
+
+

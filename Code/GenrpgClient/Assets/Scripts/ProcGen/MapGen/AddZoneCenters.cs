@@ -10,7 +10,7 @@ using Genrpg.Shared.ProcGen.Services;
 
 public class AddZoneCenters : BaseZoneGenerator
 {
-    protected ISamplingService _sampleService;
+    protected ISamplingService _sampleService = null;
 
     public const int WallPatchId = 1;
 	public override async Awaitable Generate (CancellationToken token)
@@ -86,3 +86,5 @@ public class AddZoneCenters : BaseZoneGenerator
   	}
 }
 	
+
+

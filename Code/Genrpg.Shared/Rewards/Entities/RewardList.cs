@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Rewards.Entities
         [Key(3)] public long EntityId { get; set; }
     }
 }
+
+

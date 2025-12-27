@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Crawler.Shared.Crafting.Services;
@@ -21,10 +21,10 @@ using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Inventory.Messages;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.Slots;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -277,3 +277,5 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
         }
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "ftuestep1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "",
       "Desc": "This is the Zone Screen!",
@@ -18,8 +15,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "FtueStepSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "FtueStepSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.ServerShared.CloudComms.Constants;
@@ -22,7 +22,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 {
     public class LoadIntoMapHandler : BaseClientUserRequestHandler<LoadIntoMapRequest>
     {
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
         private IMapDataService _mapDataService = null;
         private ICloudCommsService _cloudCommsService = null;
         private IServerPurchasingService _purchasingService = null;
@@ -69,9 +69,9 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
             }
             if (coreCh.MapId != request.MapId)
             {
+                context.Set(coreCh);
                 coreCh.X = fullCachedMap.Map.SpawnX;
                 coreCh.Z = fullCachedMap.Map.SpawnY;
-                context.Set(coreCh);
             }
 
             Character ch = new Character(coreCh);
@@ -93,7 +93,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
             try
             {
-                _gameDataService.GetClientSettings(context.Responses, ch, true);
+                context.AddResponseRange(_gameDataService.GetClientSettings(ch, true));
                 LoadIntoMapResponse loadResponse = new LoadIntoMapResponse()
                 {
                     Map = _serializer.ConvertType<Map, Map>(fullCachedMap.Map),
@@ -107,10 +107,10 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                     Stores = offerData,
                 };
 
-                context.acct.CurrCharId = coreCh.Id;
                 context.Set(context.acct);
+                context.acct.CurrCharId = coreCh.Id;
 
-                context.Responses.AddResponse(loadResponse);
+                context.AddResponse(loadResponse);
 
                 PublicCharacter publicChar = new PublicCharacter()
                 {
@@ -121,11 +121,11 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                     UnitTypeId = coreCh.EntityId
                 };
 
-                _repoService.QueueSave(publicChar);
+                await _repoService.Save(publicChar);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString() + " " + ex.StackTrace);
+                _logService.Exception(ex, "LoadIntoMap");
             }
         }
         // This needs to be sent to another server someplace to handle this synchronization and load balancing.
@@ -180,3 +180,5 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
     }
 }
+
+

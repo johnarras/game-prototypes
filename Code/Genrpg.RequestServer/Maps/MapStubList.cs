@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Entities;
 using System.Collections.Generic;
 
 namespace Genrpg.RequestServer.Maps
@@ -8,3 +8,5 @@ namespace Genrpg.RequestServer.Maps
         public List<MapStub> Stubs { get; set; } = new List<MapStub>();
     }
 }
+
+

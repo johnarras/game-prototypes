@@ -1,3 +1,4 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
@@ -5,7 +6,6 @@ using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,36 +14,34 @@ namespace Genrpg.Shared.Stats.Settings.Stats
  /// Stats have current core stats:
  /// Health/Mana/Might/Intellect/Willpower/Agility
  /// </summary>
-    [MessagePackObject]
     public class StatType : ChildSettings, IIndexedGameItem
     {
 
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Abbrev { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string AtlasPrefix { get; set; }
-        [Key(7)] public string Icon { get; set; }
-        [Key(8)] public string Art { get; set; }
-        [Key(9)] public string ColorName { get; set; }
-        [Key(10)] public string ColorCode { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Abbrev { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public string ColorName { get; set; }
+        public string ColorCode { get; set; }
 
-        [Key(11)] public int MaxPool { get; set; }
-        [Key(12)] public int RegenSeconds { get; set; }
-        [Key(13)] public int GenScalePct { get; set; }
-        [Key(14)] public long BonusStatTypeId { get; set; }
-        [Key(15)] public bool IsCrawlerStat { get; set; }
+        public int MaxPool { get; set; }
+        public int RegenSeconds { get; set; }
+        public int GenScalePct { get; set; }
+        public long BonusStatTypeId { get; set; }
+        public bool IsCrawlerStat { get; set; }
 
     }
 
-    [MessagePackObject]
     public class StatSettings : ParentConstantListSettings<StatType, StatTypes>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public int StatConstantUnitMultiple { get; set; }
+        public override string Id { get; set; }
+        public int StatConstantUnitMultiple { get; set; }
 
         public List<StatType> GetPowerStats()
         {
@@ -52,7 +50,12 @@ namespace Genrpg.Shared.Stats.Settings.Stats
         }
     }
 
-    public class StatSettingsDto : ParentSettingsDto<StatSettings, StatType> { }
+    public class StatSettingsDto : ParentSettingsDto<StatSettings, StatType>
+    {
+        public override List<StatType> Children { get; set; }
+        public override StatSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class StatSettingsLoader : ParentSettingsLoader<StatSettings, StatType> { }
 
     public class StatSettingsMapper : ParentSettingsMapper<StatSettings, StatType, StatSettingsDto> { }
@@ -71,3 +74,5 @@ namespace Genrpg.Shared.Stats.Settings.Stats
         public override long HelperKey => EntityTypes.StatPct;
     }
 }
+
+

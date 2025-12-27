@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Users.WebApi;
 using System.Threading;
@@ -14,3 +14,5 @@ namespace Assets.Scripts.Users.WebApi
         }
     }
 }
+
+

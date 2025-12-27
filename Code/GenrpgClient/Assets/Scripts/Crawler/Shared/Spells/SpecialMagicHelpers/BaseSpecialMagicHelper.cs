@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
@@ -20,14 +20,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
     {
         protected IDispatcher _dispatcher;
         protected IGameData _gameData;
-        protected ICrawlerService _crawlerService;
-        protected ICrawlerCombatService _combatService;
-        protected ICrawlerMapService _mapService;
-        protected ICrawlerWorldService _worldService;
-        protected ILogService _logService;
-        protected ICrawlerSpellService _spellService;
-        protected ITextService _textService;
-        protected IRoleService _roleService;
+        protected ICrawlerService _crawlerService = null;
+        protected ICrawlerCombatService _combatService = null;
+        protected ICrawlerMapService _mapService = null;
+        protected ICrawlerWorldService _worldService = null;
+        protected ILogService _logService = null;
+        protected ICrawlerSpellService _spellService = null;
+        protected ITextService _textService = null;
+        protected IRoleService _roleService = null;
 
         public abstract long HelperKey { get; }
 
@@ -35,3 +35,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
             CancellationToken token);
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.HelperClasses
         public IEnumerable<Val> OrderedItems() { return _dictionary.Values.OrderBy(x=>x.Order); }        
     }
 }
+
+

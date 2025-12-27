@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Entities;
+using Genrpg.ServerShared.CloudComms.PubSub.Entities;
 using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
 using Genrpg.Shared.Interfaces;
@@ -28,3 +28,5 @@ namespace Genrpg.ServerShared.CloudComms.Services
         void SendPubSubMessage(IPubSubMessage message);
     }
 }
+
+

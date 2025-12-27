@@ -1,33 +1,26 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.MapServer.Maps;
+
 using Genrpg.MapServer.AI.Services;
-using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Entities;
+using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Spells.Services;
-using Genrpg.Shared.Utils;
+using Genrpg.ServerShared.CloudComms.Services;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Utils;
+using System;
 
 namespace Genrpg.MapServer.MapMessaging.MessageHandlers
 {
-    public abstract class BaseServerMapMessageHandler<TMapObject,TMapMessage> : IMapMessageHandler 
+    public abstract class BaseServerMapMessageHandler<TMapObject, TMapMessage> : IMapMessageHandler
         where TMapMessage : class, IMapMessage
         where TMapObject : MapObject
-    { 
+    {
         public Type HelperKey => typeof(TMapMessage);
 
         protected IMapMessageService _messageService = null;
@@ -37,7 +30,7 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
         protected IRewardService _rewardService = null;
         protected ICloudCommsService _cloudCommsService = null;
         protected ILogService _logService = null;
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         protected IGameData _gameData;
 
         public virtual void Setup(IServiceLocator loc)
@@ -55,3 +48,5 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
         }
     }
 }
+
+

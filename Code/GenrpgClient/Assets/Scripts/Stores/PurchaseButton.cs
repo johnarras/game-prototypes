@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Purchasing.Services;
+using Assets.Scripts.Purchasing.Services;
 using Genrpg.Shared.Purchasing.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,3 +31,5 @@ namespace Assets.Scripts.Stores
         }
     }
 }
+
+

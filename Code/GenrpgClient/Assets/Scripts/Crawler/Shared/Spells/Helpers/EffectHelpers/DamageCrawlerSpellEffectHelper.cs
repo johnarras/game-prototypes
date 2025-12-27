@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Constants;
 
 namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
@@ -7,3 +7,5 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         public override long HelperKey => EntityTypes.Damage;
     }
 }
+
+

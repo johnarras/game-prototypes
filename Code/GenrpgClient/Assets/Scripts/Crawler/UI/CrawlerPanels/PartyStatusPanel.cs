@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.UI.Crawler.StatusUI;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -10,7 +10,7 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 {
     public class PartyStatusPanel : BaseBehaviour
     {
-        private ICrawlerService _crawlerService;
+        private ICrawlerService _crawlerService = null;
 
         public List<PartyMemberStatusRow> Rows = new List<PartyMemberStatusRow>();
 
@@ -68,3 +68,5 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         }
     }
 }
+
+

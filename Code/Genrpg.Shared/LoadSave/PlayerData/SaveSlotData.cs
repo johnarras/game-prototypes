@@ -1,14 +1,10 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Core;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using MessagePack;
 
 namespace Genrpg.Shared.LoadSave.PlayerData
 {
     [MessagePackObject]
-    public class SaveSlotData : NoChildPlayerData
+    public class SaveSlotData : UniquePersonalUserData
     {
         public const string Filename = "Default";
 
@@ -16,3 +12,5 @@ namespace Genrpg.Shared.LoadSave.PlayerData
         [Key(1)] public long SlotId { get; set; }
     }
 }
+
+

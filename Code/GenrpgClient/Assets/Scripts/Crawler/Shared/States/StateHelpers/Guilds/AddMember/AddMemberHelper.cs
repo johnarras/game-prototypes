@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.AddMember
 {
     public class AddMemberHelper : BaseStateHelper
     {
-        private IPartyService _partyService;
+        private IPartyService _partyService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.AddMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -21,25 +21,15 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.AddMember
             PartyData party = _crawlerService.GetParty();
 
             stateData.AddText("Your max party size is " + _partyService.GetMaxPartySize(party));
-            for (int m = 0; m < party.Members.Count; m++)
+            for (int m = 0; m < party.InGuild.Count; m++)
             {
-                PartyMember member = party.Members[m];
+                PartyMember member = party.InGuild[m];
 
-                if (member.PartySlot > 0)
-                {
-                    continue;
-                }
                 stateData.Actions.Add(new CrawlerStateAction(member.Name, Key.None, ECrawlerStates.AddMember,
                 delegate
                 {
-                    if (member.PartySlot > 0)
-                    {
-                        return;
-                    }
-
                     party = _crawlerService.GetParty();
-
-                    _partyService.AddPartyMember(party, member);
+                    _partyService.AddActivePartyMember(party, member);
                     _statService.CalcPartyStats(party, true);
                     _crawlerService.SaveGame();
 
@@ -54,3 +44,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.AddMember
         }
     }
 }
+
+

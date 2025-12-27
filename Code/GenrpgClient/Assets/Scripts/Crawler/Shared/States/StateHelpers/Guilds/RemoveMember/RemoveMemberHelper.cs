@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
 {
     public class RemoveMemberHelper : BaseStateHelper
     {
-        private IPartyService _partyService;
+        private IPartyService _partyService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.RemoveMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
@@ -19,23 +19,14 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
 
             PartyData party = _crawlerService.GetParty();
 
-            for (int m = 0; m < party.Members.Count; m++)
+            for (int m = 0; m < party.ActiveParty.Count; m++)
             {
-                PartyMember member = party.Members[m];
+                PartyMember member = party.ActiveParty[m];
 
-                if (member.PartySlot == 0)
-                {
-                    continue;
-                }
                 stateData.Actions.Add(new CrawlerStateAction(member.Name, Key.None, ECrawlerStates.RemoveMember,
                     delegate
                     {
-                        if (member.PartySlot < 1)
-                        {
-                            return;
-                        }
-
-                        _partyService.RemovePartyMember(party, member);
+                        _partyService.RemoveActivePartyMember(party, member);
                         _statService.CalcPartyStats(party, true);
                         _crawlerService.SaveGame();
 
@@ -50,3 +41,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.RemoveMember
         }
     }
 }
+
+

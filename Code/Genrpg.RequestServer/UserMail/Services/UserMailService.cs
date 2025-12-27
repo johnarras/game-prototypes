@@ -1,6 +1,6 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.UserMail.LetterHelpers;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.UserMail.PlayerData;
 
@@ -8,9 +8,9 @@ namespace Genrpg.RequestServer.UserMail.Services
 {
     public class UserMailService : IUserMailService
     {
-        SetupDictionaryContainer<long,IUserLetterHelper> _mailHelpers = new SetupDictionaryContainer<long, IUserLetterHelper> ();
+        SetupDictionaryContainer<long, IUserLetterHelper> _mailHelpers = new SetupDictionaryContainer<long, IUserLetterHelper>();
 
-        protected IRepositoryService _repoService;
+        protected IFullRepositoryService _repoService;
 
         public async Task ProcessMail(WebContext context)
         {
@@ -32,3 +32,5 @@ namespace Genrpg.RequestServer.UserMail.Services
         }
     }
 }
+
+

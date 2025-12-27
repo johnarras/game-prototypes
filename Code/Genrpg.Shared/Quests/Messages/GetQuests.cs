@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Quests.Messages
         [Key(0)] public string ObjId { get; set; }
     }
 }
+
+

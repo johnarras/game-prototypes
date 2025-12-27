@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Shared.Combat.Constants;
+using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
@@ -22,6 +22,7 @@ using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,9 +47,9 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
         public async Task<ECombatStepResults> SetMonsterActions(PartyData party, CancellationToken token)
         {
-            if (party.Combat.PartyGroup.CombatGroupAction != ECombatGroupActions.Advance &&
+            if (party.Combat.PartyGroup.CombatGroupAction != ECombatGroupActions.Charge &&
                 (party.Combat == null || !_combatService.ReadyForCombat(party) || party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Prepare ||
-                party.GetActiveParty().Any(x => x.CombatActions.Count < x.ActionsThisRound)))
+                party.ActiveParty.FastAny(x => x.CombatActions.Count < x.ActionsThisRound)))
             {
                 return ECombatStepResults.Continue;
             }
@@ -73,10 +74,10 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             if (tauntUnits.Count < 1)
             {
-                foreach (PartyMember member in party.GetActiveParty())
+                foreach (PartyMember member in party.ActiveParty)
                 {
                     if (_combatService.IsValidEnemyTarget(member) &&
-                        member.Roles.Any(x => defenderRoleIds.Contains(x.RoleId)))
+                        member.Roles.FastAny(x => defenderRoleIds.Contains(x.RoleId)))
                     {
                         tauntUnits.Add(member);
                     }
@@ -87,7 +88,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             List<CrawlerUnit> monsterUnits = tauntUnits.Where(x => !x.IsPlayer()).ToList();
 
-            if (monsterUnits.Count > 0 && !tauntUnits.Any(x => x.DefendRank == EDefendRanks.Taunt))
+            if (monsterUnits.Count > 0 && !tauntUnits.FastAny(x => x.DefendRank == EDefendRanks.Taunt))
             {
                 tauntUnits = monsterUnits;
             }
@@ -128,22 +129,22 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             group.CombatGroupAction = ECombatGroupActions.None;
             if (group.Units.Count > 0 && group.Range > CrawlerCombatConstants.MinRange)
             {
-                bool shouldAdvance = _rand.NextDouble() < combatSettings.GroupAdvanceChance;
+                bool shouldCharge = _rand.NextDouble() < combatSettings.GroupAdvanceChance;
 
-                if (!shouldAdvance && group.UnitType != null)
+                if (!shouldCharge && group.UnitType != null)
                 {
                     TribeType tribeType = _gameData.Get<TribeSettings>(_gs.ch).Get(group.UnitType.TribeTypeId);
 
                     if (!tribeType.HasRangedAttacks)
                     {
-                        shouldAdvance = true;
+                        shouldCharge = true;
                     }
                 }
 
 
-                if (shouldAdvance)
+                if (shouldCharge)
                 {
-                    group.CombatGroupAction = ECombatGroupActions.Advance;
+                    group.CombatGroupAction = ECombatGroupActions.Charge;
                 }
             }
 
@@ -162,7 +163,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                     List<long> spellIds = groupUnit.Effects.Where(x => x.EntityTypeId == EntityTypes.CrawlerSpell).Select(x => x.EntityId).ToList();
                     IReadOnlyList<CrawlerSpell> currentSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => spellIds.Contains(x.IdKey)).ToList();
 
-                    summonSpells = currentSpells.Where(x => x.Effects.Any(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId > 0)).ToList();
+                    summonSpells = currentSpells.Where(x => x.Effects.FastAny(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId > 0)).ToList();
                     nonSummonSpells = currentSpells.Except(summonSpells).ToList();
                 }
 
@@ -316,7 +317,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             {
                 combatAction.Spell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(CrawlerSpells.AttackId);
                 combatAction.CombatActionId = CombatActions.Attack;
-                if (unitGroup.Range > CrawlerCombatConstants.MinRange || !enemyGroups.Any(x => x.Range <= CrawlerCombatConstants.MinRange))
+                if (unitGroup.Range > CrawlerCombatConstants.MinRange || !enemyGroups.FastAny(x => x.Range <= CrawlerCombatConstants.MinRange))
                 {
                     combatAction.Spell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(CrawlerSpells.ShootId);
                     combatAction.CombatActionId = CombatActions.Shoot;
@@ -334,7 +335,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
         {
             List<CrawlerUnit> allUnits = new List<CrawlerUnit>();
 
-            groups = groups.Where(x => x.Units.Any(u => !u.StatusEffects.HasBit(StatusEffects.Dead))).ToList();
+            groups = groups.Where(x => x.Units.FastAny(u => !u.StatusEffects.HasBit(StatusEffects.Dead))).ToList();
             if (groups.Count > 0)
             {
                 return groups[_rand.Next() % groups.Count].Units;
@@ -343,3 +344,5 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
         }
     }
 }
+
+

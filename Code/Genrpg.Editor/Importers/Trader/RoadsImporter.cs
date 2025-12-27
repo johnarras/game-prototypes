@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Trader.Roads.Settings;
 
@@ -16,3 +16,5 @@ namespace Genrpg.Editor.Importers.Trader
         }
     }
 }
+
+

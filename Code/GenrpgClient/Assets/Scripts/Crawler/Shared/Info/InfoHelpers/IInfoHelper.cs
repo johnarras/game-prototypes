@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         bool OverviewTypeNameIsPlural();
     }
 }
+
+

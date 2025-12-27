@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.AI.Constants
         public const float IdleWanderRange = 25.0f;
     }
 }
+
+

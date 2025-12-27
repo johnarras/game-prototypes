@@ -29,3 +29,5 @@ namespace Genrpg.Shared.Buildings.Factories
         }
     }
 }
+
+

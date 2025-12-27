@@ -1,16 +1,14 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Options.Services;
-using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System.Collections.Generic;
 
 
@@ -45,11 +43,9 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
     public ClientGameState(ClientConfig config, IInitClient initClient)
     {
         ClientConfigContainer configContainer = new ClientConfigContainer(config);
-        ITextSerializer textSerializer = new NewtonsoftTextSerializer();
-        _logService = new ClientLogService(configContainer.Config, textSerializer);
+        _logService = new ClientLogService(configContainer.Config);
         _clientAppService = new ClientAppService(_logService);
-        IAnalyticsService analyticsService = new ClientAnalyticsService(configContainer.Config, _logService, textSerializer);
-        loc = new ServiceLocator(textSerializer, _logService, analyticsService, new ClientGameData());
+        _loc = new ServiceLocator(_logService, new ClientGameData());
         loc.Set(initClient);
         loc.Set(_clientAppService);
         loc.Set<IClientGameState>(this);
@@ -57,3 +53,5 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
         loc.Set<IClientOptionsService>(new ClientOptionsService(_logService, _clientAppService, _serializer));
     }
 }
+
+

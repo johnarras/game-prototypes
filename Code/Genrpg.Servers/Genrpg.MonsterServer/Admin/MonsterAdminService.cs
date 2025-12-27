@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.Services.Admin;
+using Genrpg.ServerShared.CloudComms.Services.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,3 +11,5 @@ namespace Genrpg.MonsterServer.Admin
     {
     }
 }
+
+

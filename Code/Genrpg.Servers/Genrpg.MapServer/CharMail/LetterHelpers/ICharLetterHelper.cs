@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.CharMail.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UserMail.PlayerData;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.CharMail.LetterHelpers
         Task ProcessLetter(Character ch, CharLetter letter);
     }
 }
+
+

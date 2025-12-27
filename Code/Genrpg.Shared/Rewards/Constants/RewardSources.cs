@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Rewards.Constants
+namespace Genrpg.Shared.Rewards.Constants
 {
     public class RewardSources
     {
@@ -19,3 +19,5 @@
         public const long HourlyReset = 15;
     }
 }
+
+

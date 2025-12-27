@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Services;
+using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Crawler.TextureLists.Services
         void LoadTextureList(string textureName, DownloadTextureListHandler handler, object data, CancellationToken token);
     }
 }
+
+

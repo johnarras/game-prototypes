@@ -8,33 +8,32 @@ using System.Collections.Generic;
 namespace Genrpg.Shared.Purchasing.Settings
 {
 
-    [MessagePackObject]
     public class StoreBundle
     {
-        [Key(0)] public long Index { get; set; }
-        [Key(1)] public long ProductSkuId { get; set; }
-        [Key(2)] public string Name { get; set; }
-        [Key(3)] public string BundleId { get; set; }
-        [Key(4)] public List<Reward> Rewards { get; set; } = new List<Reward>();
+        public long Index { get; set; }
+        public long ProductSkuId { get; set; }
+        public string Name { get; set; }
+        public string BundleId { get; set; }
+        public List<Reward> Rewards { get; set; } = new List<Reward>();
     }
 
-    [MessagePackObject]
     public class StoreBundleSet : ChildSettings, IIdName, INameId
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string NameId { get; set; }
-        [Key(5)] public List<StoreBundle> Bundles { get; set; } = new List<StoreBundle>();
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string NameId { get; set; }
+        public List<StoreBundle> Bundles { get; set; } = new List<StoreBundle>();
 
     }
 
-    [MessagePackObject]
     public class StoreBundleSetSettings : ParentSettings<StoreBundleSet>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
     public class StoreBundleSetLoader : ParentSettingsLoader<StoreBundleSetSettings, StoreBundleSet> { }
 }
+
+

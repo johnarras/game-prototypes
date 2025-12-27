@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Assets.Scripts.UI.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -59,3 +59,5 @@ namespace Assets.Scripts.UI.MainMenu
         }
     }
 }
+
+

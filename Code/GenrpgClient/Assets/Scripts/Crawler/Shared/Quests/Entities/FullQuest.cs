@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -18,3 +18,5 @@ namespace Genrpg.Shared.Crawler.Quests.Entities
         }
     }
 }
+
+

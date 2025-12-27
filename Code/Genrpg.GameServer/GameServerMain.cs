@@ -1,12 +1,11 @@
-﻿using Genrpg.MapServer.MainServer;
-using Genrpg.ServerShared.MainServer;
 using Genrpg.InstanceServer;
-using Genrpg.PlayerServer;
+using Genrpg.MapServer.MainServer;
 using Genrpg.MonsterServer;
+using Genrpg.PlayerServer;
 using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.Logging;
-using Genrpg.Shared.Utils;
+using Genrpg.ServerShared.MainServer;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.GameServer
 {
@@ -25,7 +24,7 @@ namespace Genrpg.GameServer
     }
 
     public class GameServer
-    { 
+    {
         private List<IBaseServer> _servers = new List<IBaseServer>();
         private CancellationTokenSource _serverTokenSource = new CancellationTokenSource();
         public async Task RunGame()
@@ -37,15 +36,15 @@ namespace Genrpg.GameServer
                 serverConfig = await new ConfigSetup().SetupServerConfig(_serverTokenSource.Token, "GameServer");
 
                 InstanceServerMain instanceServer = new InstanceServerMain();
-                await instanceServer.Init(null, null, _serverTokenSource.Token);
+                await instanceServer.Init(_serverTokenSource.Token);
                 _servers.Add(instanceServer);
 
                 PlayerServerMain playerServer = new PlayerServerMain();
-                await playerServer.Init(null, null, _serverTokenSource.Token);
+                await playerServer.Init(_serverTokenSource.Token);
                 _servers.Add(playerServer);
 
                 MonsterServerMain monsterServer = new MonsterServerMain();
-                await monsterServer.Init(null, null, _serverTokenSource.Token);
+                await monsterServer.Init(_serverTokenSource.Token);
                 _servers.Add(monsterServer);
 
                 int serverCount = 2;
@@ -57,13 +56,13 @@ namespace Genrpg.GameServer
                         MapServerCount = serverCount,
                         MapServerIndex = i,
                         MapServerId = HashUtils.NewUUId(),
-                        StartPort = 4000 + 100*i,
+                        StartPort = 4000 + 100 * i,
                         MapIds = new List<string>(),
-                    }; 
-                    
+                    };
+
                     MapServerMain mapServer = new MapServerMain();
 
-                    await mapServer.Init(initServerData, null, _serverTokenSource.Token);
+                    await mapServer.Init(_serverTokenSource.Token, initServerData);
 
                     _servers.Add(mapServer);
 
@@ -81,3 +80,6 @@ namespace Genrpg.GameServer
         }
     }
 }
+
+
+

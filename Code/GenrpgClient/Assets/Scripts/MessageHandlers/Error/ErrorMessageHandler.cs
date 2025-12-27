@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Errors.Messages;
 using System.Threading;
 
@@ -9,3 +9,5 @@ public class ErrorMessageHandler : BaseClientMapMessageHandler<ErrorMessage>
         _logService.Error(msg.ErrorText);
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,3 +18,5 @@ namespace Assets.Scripts.Dungeons
         public const int Max = 6;
     }
 }
+
+

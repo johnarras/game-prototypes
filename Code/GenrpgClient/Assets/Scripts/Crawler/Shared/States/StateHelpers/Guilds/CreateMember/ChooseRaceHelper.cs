@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -56,3 +56,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
         }
     }
 }
+
+

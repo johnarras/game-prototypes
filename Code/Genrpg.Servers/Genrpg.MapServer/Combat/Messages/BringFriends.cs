@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.MapMessages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.Combat.Messages
         public long TargetFactionId { get; set; }  
     }
 }
+
+

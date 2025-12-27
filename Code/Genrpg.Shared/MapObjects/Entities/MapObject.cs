@@ -1,6 +1,5 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Constants;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings.PlayerData;
 using Genrpg.Shared.MapMessages.Interfaces;
@@ -9,6 +8,7 @@ using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Networking.Interfaces;
 using Genrpg.Shared.Pathfinding.Entities;
+using Genrpg.Shared.Serialization.Attributes;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Units.Entities;
@@ -22,7 +22,7 @@ using System.Linq;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
-    // MessagePackIgnore
+    [MessagePackIgnoreType]
     public class MapObject : IMapObject, IDisposable
     {
         public string Id { get; set; }
@@ -176,9 +176,6 @@ namespace Genrpg.Shared.MapObjects.Entities
 
         public List<UnitRole> Roles { get; set; } = new List<UnitRole>();
 
-        private bool _isDirty = false;
-        public bool IsDirty() { return _isDirty; }
-        public void SetDirty(bool dirty) { _isDirty = dirty; }
 
         public TAddon GetAddon<TAddon>() where TAddon : IMapObjectAddon
         {
@@ -311,14 +308,10 @@ namespace Genrpg.Shared.MapObjects.Entities
             _dataDict[obj2.GetType()] = obj2;
         }
 
-        public virtual void Delete<T>(IRepositoryService repoSystem) where T : class, IUnitData, new() { }
+        public virtual List<ITopLevelUnitData> GetTopLevelData() { return new List<ITopLevelUnitData>(); }
 
-        public virtual Dictionary<Type, IUnitData> GetAllData() { return new Dictionary<Type, IUnitData>(); }
-
-        public virtual void SaveData(IRepositoryService repoService, bool saveAll)
-        {
-        }
-
-
+        public virtual List<IUnitData> GetAllData() { return new List<IUnitData>(); }
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawlermaptype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Dungeon",
       "Desc": "",
@@ -122,8 +119,6 @@
       "RoomIsDifferentZoneTypeChance": 0.25
     },
     {
-      "Id": "crawlermaptype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "City",
       "Desc": "",
@@ -180,8 +175,6 @@
       "MinDistanceToEntrance": 2
     },
     {
-      "Id": "crawlermaptype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Outdoors",
       "Desc": "",
@@ -235,8 +228,8 @@
     "UnitKeywordChance": 0.25,
     "MinQuestUnlockDungeonLevel": 8,
     "MinQuestItemDungeonLevel": 6,
-    "Name": "CrawlerMapSettings",
-    "SaveTime": "2025-10-31T01:32:53.148Z"
+    "Name": "CrawlerMapSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-31T01:32:53.148Z"
 }

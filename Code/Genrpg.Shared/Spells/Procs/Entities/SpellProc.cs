@@ -6,19 +6,20 @@ using System.Text;
 
 namespace Genrpg.Shared.Spells.Procs.Entities
 {
-    [MessagePackObject]
     public class SpellProc : IProc
     {
-        [Key(0)] public long EntityTypeId { get; set; }
-        [Key(1)] public long EntityId { get; set; }
-        [Key(2)] public long MinQuantity { get; set; }
-        [Key(3)] public long MaxQuantity { get; set; }
-        [Key(4)] public double Chance { get; set; }
-        [Key(5)] public long MaxCharges { get; set; }
-        [Key(6)] public long CurrCharges { get; set; }
-        [Key(7)] public long CooldownSeconds { get; set; }
-        [Key(8)] public DateTime LastUsedTime { get; set; }
-        [Key(9)] public long ElementTypeId { get; set; }
-        [Key(10)] public string Name { get; set; }
+        public long EntityTypeId { get; set; }
+        public long EntityId { get; set; }
+        public long MinQuantity { get; set; }
+        public long MaxQuantity { get; set; }
+        public double Chance { get; set; }
+        public long MaxCharges { get; set; }
+        public long CurrCharges { get; set; }
+        public long CooldownSeconds { get; set; }
+        public DateTime LastUsedTime { get; set; }
+        public long ElementTypeId { get; set; }
+        public string Name { get; set; }
     }
 }
+
+

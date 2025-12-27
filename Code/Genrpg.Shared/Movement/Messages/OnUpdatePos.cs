@@ -47,3 +47,5 @@ namespace Genrpg.Shared.Movement.Messages
         public void SetKeysDown(int keysDown) { Dat[KeysDown] = (ushort)keysDown; }
     }
 }
+
+

@@ -1,26 +1,16 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Entities.Services;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Quests.Constants;
 using Genrpg.Shared.Quests.Entities;
 using Genrpg.Shared.Quests.PlayerData;
-using Genrpg.Shared.Quests.Services;
 using Genrpg.Shared.Quests.WorldData;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Quests.Services
 {
@@ -35,7 +25,7 @@ namespace Genrpg.MapServer.Quests.Services
         //private ISharedQuestService _questService = null;
         //private IRewardService _rewardService = null;
 
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         private IMapProvider _mapProvider = null;
         private IGameData _gameData = null;
 
@@ -232,3 +222,5 @@ namespace Genrpg.MapServer.Quests.Services
 
     }
 }
+
+

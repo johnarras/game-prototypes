@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -141,3 +141,4 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
 
     }
 }
+

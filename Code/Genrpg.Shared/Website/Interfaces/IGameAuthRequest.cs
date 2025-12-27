@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Genrpg.Shared.Website.Interfaces
 {
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Website.Interfaces
         DateTime ClientGameDataSaveTime { get; set; }
     }
 }
+
+

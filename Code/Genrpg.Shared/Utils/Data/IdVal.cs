@@ -10,10 +10,9 @@ namespace Genrpg.Shared.Utils.Data
         [Key(1)] public long Val { get; set; }
     }
 
-    [MessagePackObject]
     public class IdValList
     {
-        [Key(0)] public List<IdVal> _vals { get; set; } = new List<IdVal>();
+        public List<IdVal> _vals { get; set; } = new List<IdVal>();
 
         public long Get(long id)
         {
@@ -37,3 +36,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

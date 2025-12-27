@@ -97,6 +97,60 @@
       107
     ]
   },
-  "ProducerCities": [],
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  "ProducerCities": [
+    {
+      "CityId": 3
+    },
+    {
+      "CityId": 4
+    },
+    {
+      "CityId": 9
+    },
+    {
+      "CityId": 16
+    },
+    {
+      "CityId": 17
+    },
+    {
+      "CityId": 24
+    },
+    {
+      "CityId": 26
+    },
+    {
+      "CityId": 29
+    },
+    {
+      "CityId": 30
+    },
+    {
+      "CityId": 38
+    },
+    {
+      "CityId": 49
+    },
+    {
+      "CityId": 51
+    },
+    {
+      "CityId": 52
+    },
+    {
+      "CityId": 61
+    },
+    {
+      "CityId": 63
+    },
+    {
+      "CityId": 66
+    },
+    {
+      "CityId": 70
+    },
+    {
+      "CityId": 71
+    }
+  ]
 }

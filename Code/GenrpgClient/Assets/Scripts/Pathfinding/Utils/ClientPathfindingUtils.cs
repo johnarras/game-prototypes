@@ -1,14 +1,11 @@
-﻿
+
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Pathfinding.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using UnityEngine;
@@ -30,6 +27,7 @@ namespace Assets.Scripts.Pathfinding.Utils
         private CancellationToken _token;
         private ILogService _logService = null!;
         protected IAwaitableService _awaitableService = null!;
+        private IClientEntityService _clientEntityService = null;
 
         public void SetMapToken(CancellationToken token)
         {
@@ -76,8 +74,11 @@ namespace Assets.Scripts.Pathfinding.Utils
             await Awaitable.WaitForSecondsAsync(4.0f);
             foreach (GameObject obj in objs)
             {
-                GameObject.Destroy(obj);
+                _clientEntityService.Destroy(obj);
             }
+            objs.Clear();
         }
     }
 }
+
+

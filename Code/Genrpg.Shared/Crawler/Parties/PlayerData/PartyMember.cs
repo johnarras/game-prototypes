@@ -13,14 +13,12 @@ using System.Text;
 namespace Genrpg.Shared.Crawler.Parties.PlayerData
 {
 
-    // MessagePackIgnore
     public class StatRegenFraction
     {
-        [Key(0)] public long StatTypeId { get; set; }
-        [Key(1)] public float Fraction { get; set; }
+        public long StatTypeId { get; set; }
+        public float Fraction { get; set; }
     }
 
-    // MessagePackIgnore
     public class PartyMember : CrawlerUnit
     {
         public int PartySlot { get; set; }
@@ -129,3 +127,5 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         protected override bool AlwaysCreateMissingData() { return true; }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.Services.Admin;
+using Genrpg.ServerShared.CloudComms.Services.Admin;
 
 namespace Genrpg.PlayerServer.Admin
 {
@@ -6,3 +6,5 @@ namespace Genrpg.PlayerServer.Admin
     {
     }
 }
+
+

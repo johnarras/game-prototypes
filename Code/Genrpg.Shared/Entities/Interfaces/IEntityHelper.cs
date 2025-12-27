@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Genrpg.Shared.Entities.Interfaces
         // Find an object of the given type.
         IIdName Find(IFilteredObject obj, long id);
 
-        string GetIconAtlasName(IFilteredObject obj, long entityId);
+        string GetIconAtlasName(IFilteredObject obj, long entityId, EEntityIconCategories category);
 
         string GetEditorPropertyName();
 
@@ -24,3 +25,5 @@ namespace Genrpg.Shared.Entities.Interfaces
         Type GetChildType();
     }
 }
+
+

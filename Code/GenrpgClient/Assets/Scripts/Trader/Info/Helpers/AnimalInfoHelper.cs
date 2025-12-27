@@ -1,11 +1,11 @@
-﻿using Genrpg.Shared.Crawler.Info.InfoHelpers;
+using Genrpg.Shared.Crawler.Info.InfoHelpers;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.Animals.Settings;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Trader.Info.Helpers
 {
-    public class AnimalInfoHelper : BaseInfoHelper<AnimalSettings, Animal>
+    public class AnimalInfoHelper : BaseInfoHelper<AnimalTypeSettings, AnimalType>
     {
         public override long HelperKey => EntityTypes.Animal;
 
@@ -19,3 +19,5 @@ namespace Assets.Scripts.Trader.Info.Helpers
         }
     }
 }
+
+

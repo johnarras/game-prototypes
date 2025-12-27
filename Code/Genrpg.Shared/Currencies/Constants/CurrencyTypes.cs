@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Currencies.Constants
+namespace Genrpg.Shared.Currencies.Constants
 {
     public class CurrencyTypes
     {
@@ -7,3 +7,5 @@
 
     }
 }
+
+

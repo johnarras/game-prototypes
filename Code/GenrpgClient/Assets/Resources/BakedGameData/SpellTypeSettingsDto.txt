@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "spelltype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Attack",
       "Desc": "",
@@ -22,8 +19,6 @@
       ]
     },
     {
-      "Id": "spelltype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Heal",
       "Desc": "",
@@ -42,8 +37,6 @@
       ]
     },
     {
-      "Id": "spelltype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Fireball",
       "Desc": "",
@@ -63,8 +56,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "SpellTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "SpellTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

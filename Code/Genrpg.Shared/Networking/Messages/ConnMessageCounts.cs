@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Networking.Messages
         [Key(4)] public long Seconds { get; set; }
     }
 }
+
+

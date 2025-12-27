@@ -1,7 +1,7 @@
-﻿
+
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -45,7 +45,7 @@ public class SpriteAtlasContainer : BaseBehaviour
 
     public bool CanUnload()
     {
-        return _unloadTime <= DateTime.UtcNow && !_refs.Any(x => x != null);
+        return _unloadTime <= DateTime.UtcNow && !_refs.FastAny(x => x != null);
     }
 
     public void AddRef(GImage image)
@@ -70,3 +70,4 @@ public class SpriteAtlasContainer : BaseBehaviour
     }
 
 }
+

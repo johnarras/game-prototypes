@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 
 namespace Genrpg.Shared.Client.Tokens
 {
@@ -7,3 +7,5 @@ namespace Genrpg.Shared.Client.Tokens
         void SetGameToken(CancellationToken token);
     }
 }
+
+

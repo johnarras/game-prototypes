@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Units.Settings;
 using System;
@@ -18,3 +18,5 @@ namespace Genrpg.Editor.Importers.Crawler
         public override long GetEntityTypeId() { return EntityTypes.UnitKeyword; }
     }
 }
+
+

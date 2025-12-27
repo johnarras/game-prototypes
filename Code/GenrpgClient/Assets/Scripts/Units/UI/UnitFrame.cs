@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.RpgLevels.Messages;
+using Genrpg.Shared.RpgLevels.Messages;
 using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
@@ -136,3 +136,4 @@ public class UnitFrame : BaseBehaviour
         return;
     }
 }
+

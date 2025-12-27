@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Constants;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,3 +10,5 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
         public override long HelperKey => EntityTypes.Healing;
     }
 }
+
+

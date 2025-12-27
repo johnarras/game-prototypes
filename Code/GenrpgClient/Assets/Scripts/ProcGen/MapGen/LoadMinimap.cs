@@ -1,20 +1,18 @@
-
-using System;
-
-
+using Assets.Scripts.Minimap.Services;
+using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.MapServer.Entities;
+using System;
 using System.Threading;
 using UnityEngine;
-using ClientEvents;
-using Genrpg.Shared.DataStores.Categories;
-using Genrpg.Shared.DataStores.DataGroups;
 
 public class LoadMinimap : BaseZoneGenerator
 {
 
-    private IBinaryFileRepository _binaryFileRepo;
+    private IBinaryFileRepository _binaryFileRepo = null;
+    private IMinimapService _minimapService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
+
         await base.Generate(token);
         try
         {
@@ -43,10 +41,12 @@ public class LoadMinimap : BaseZoneGenerator
         }
     }
 
-    private void OnDownloadMinimap (object obj, object data, CancellationToken token)
+    private void OnDownloadMinimap(object obj, object data, CancellationToken token)
     {
         Texture2D tex = obj as Texture2D;
 
-        MinimapUI.SetTexture(tex);
+        _minimapService.SetTexture(tex);
     }
 }
+
+

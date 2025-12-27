@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -44,3 +44,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
         }
     }
 }
+
+

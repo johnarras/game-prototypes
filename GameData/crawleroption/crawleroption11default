@@ -4,6 +4,5 @@
   "IdKey": 11,
   "Name": "Monsters Get Stronger",
   "Desc": "Monsters get stronger each day.",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:07:16.693Z"
+  "DefaultForNewGame": true
 }

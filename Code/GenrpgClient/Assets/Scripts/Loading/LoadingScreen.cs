@@ -1,5 +1,6 @@
-﻿
+
 using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.UI.ScreenSystem;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,9 +14,9 @@ public class LoadingScreen : BaseScreen
         // Play music null plays music track 1 and ambient track 0 (none)
         _audioService.PlayMusic(null);
 
-        _objectPool.Clear();
-
         await Task.CompletedTask;
     }
 }
+
+
 

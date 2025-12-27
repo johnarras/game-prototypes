@@ -12,3 +12,5 @@ namespace Genrpg.Shared.MapObjects.Messages
         [Key(0)] public string ObjId { get; set; }
     }
 }
+
+

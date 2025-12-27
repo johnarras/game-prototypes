@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Combat.Messages
     {
     }
 }
+
+

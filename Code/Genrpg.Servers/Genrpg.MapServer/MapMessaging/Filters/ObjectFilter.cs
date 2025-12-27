@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using System;
@@ -12,3 +12,5 @@ namespace Genrpg.MapServer.MapMessaging.Filters
         public abstract List<MapObject> Filter(IMapApiMessage message, List<MapObject> initialTargets);
     }
 }
+
+

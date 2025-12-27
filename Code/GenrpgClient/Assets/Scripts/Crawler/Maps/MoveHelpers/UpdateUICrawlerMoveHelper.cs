@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using System.Threading;
@@ -18,3 +18,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         }
     }
 }
+
+

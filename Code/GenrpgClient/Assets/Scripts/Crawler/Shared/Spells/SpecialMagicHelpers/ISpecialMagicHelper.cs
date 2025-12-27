@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
             CrawlerSpell spell, CrawlerSpellEffect effect, CancellationToken token);
     }
 }
+
+

@@ -1,11 +1,12 @@
-﻿
+
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Ftue.Constants;
 using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Ftue.Settings.Steps;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Utils;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -14,12 +15,12 @@ namespace Assets.Scripts.Ftue.Services
 {
     public class ClientFtueService : FtueService
     {
-        IScreenService _screenService = null;
-        protected IAwaitableService _awaitableService;
+        protected IDispatcher _dispatcher = null;
+        protected IAwaitableService _awaitableService = null;
 
         public override FtueStep StartStep(IRandom random, Character ch, long ftueStepId)
         {
-            FtueStep newStep = base.StartStep(random ,ch, ftueStepId);
+            FtueStep newStep = base.StartStep(random, ch, ftueStepId);
 
             if (newStep == null)
             {
@@ -38,9 +39,11 @@ namespace Assets.Scripts.Ftue.Services
 
             if (newStep.FtuePopupTypeId != FtuePopupTypes.NoWindow)
             {
-                _screenService.Open(ScreenNames.Ftue, newStep);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.Ftue, newStep));
             }
             await Task.CompletedTask;
         }
     }
 }
+
+

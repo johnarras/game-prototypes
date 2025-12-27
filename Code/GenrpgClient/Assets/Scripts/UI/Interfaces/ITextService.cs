@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.UI.Interfaces;
@@ -17,3 +17,5 @@ namespace Assets.Scripts.UI.Interfaces
         string GetLinkUnderMouse(IText text);
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.TimedEvents.Constants;
+using Genrpg.Shared.TimedEvents.Constants;
 using Genrpg.Shared.TimedEvents.Helpers;
 using Genrpg.Shared.TimedEvents.Collections.Settings;
 
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.TimedEvents.Collections.Helpers
         public override long Key => TimedEventTypes.Collection;
     }
 }
+
+

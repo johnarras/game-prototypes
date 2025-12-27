@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Interfaces;
 using System;
@@ -115,3 +115,5 @@ namespace Genrpg.Shared.Interfaces
         void ResolveSelf();
     }
 }
+
+

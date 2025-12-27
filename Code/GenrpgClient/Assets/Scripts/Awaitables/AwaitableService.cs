@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -32,3 +32,5 @@ namespace Assets.Scripts.Awaitables
         }
     }
 }
+
+

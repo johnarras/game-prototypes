@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.CoreCurrencies.Constants
+namespace Genrpg.Shared.CoreCurrencies.Constants
 {
     public class CurrencyDataOffset
     {
@@ -9,3 +9,5 @@
         public const int BonusStorage = 4;
     }
 }
+
+

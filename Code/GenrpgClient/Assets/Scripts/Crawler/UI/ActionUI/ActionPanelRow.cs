@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.MVC.Interfaces;
 using Genrpg.Shared.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,11 +17,8 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
 
         public GText Text;
         public GButton Button;
-        private ICrawlerService _crawlerService;
-        private ITextService _textService;
-        public IView View;
-
-
+        private ICrawlerService _crawlerService = null;
+        private ITextService _textService = null;
 
         protected CrawlerStateAction _action = null;
         protected CrawlerStateData _state = null;
@@ -55,7 +51,6 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
                 {
                     _uiService.SetAutoSizing(Text, true);
                 }
-
 
                 _uiService.SetText(Text, text);
 
@@ -118,3 +113,5 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
         }
     }
 }
+
+

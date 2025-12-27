@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.MapServer.Services;
 using System.Threading;
 using UnityEngine; // Needed
 
@@ -70,3 +70,5 @@ public class ClutterObject : BaseBehaviour
        entity.transform.position -= normal * (2 + (index * 13) % 8) * 0.05f;
     }
 }
+
+

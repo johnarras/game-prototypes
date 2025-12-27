@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -65,3 +65,5 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         }
     }
 }
+
+

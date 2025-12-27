@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Combat.Messages;
+using Genrpg.MapServer.Combat.Messages;
 using Genrpg.MapServer.Levelup.Services;
 using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
@@ -38,3 +38,5 @@ namespace Genrpg.MapServer.Combat.MessageHandlers
         }
     }
 }
+
+

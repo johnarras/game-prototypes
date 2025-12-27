@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
@@ -26,9 +26,9 @@ public interface IFxService : IInitializable
 public class FxService : IFxService
 {
     private IClientMapObjectManager _objectManager;
-    private IAssetService _assetService;
+    private IAssetService _assetService = null;
     private IClientGameState _gs;
-    protected IClientEntityService _clientEntityService;
+    protected IClientEntityService _clientEntityService = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -78,3 +78,4 @@ public class FxService : IFxService
 
     }
 }
+

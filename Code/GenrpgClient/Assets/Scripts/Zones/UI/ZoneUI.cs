@@ -1,4 +1,4 @@
-﻿using ClientEvents;
+using ClientEvents;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Zones.Entities;
@@ -42,4 +42,6 @@ public class ZoneUI : BaseBehaviour
         return;
     }
 }
+
+
 

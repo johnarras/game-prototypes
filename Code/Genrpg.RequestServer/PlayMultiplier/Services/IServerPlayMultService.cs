@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,3 +14,5 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
         Task SetPlayMult(WebContext context, long newPlayMult);
     }
 }
+
+

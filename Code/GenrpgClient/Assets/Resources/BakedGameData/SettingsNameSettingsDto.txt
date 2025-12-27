@@ -1,797 +1,554 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "settingsname1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "AchievementSettings"
     },
     {
-      "Id": "settingsname2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "AISettings"
     },
     {
-      "Id": "settingsname3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "AnimalSettings"
     },
     {
-      "Id": "settingsname4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "AphorismSettings"
     },
     {
-      "Id": "settingsname5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "AuthSettings"
     },
     {
-      "Id": "settingsname6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "BridgeTypeSettings"
     },
     {
-      "Id": "settingsname7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "BuildingArtSettings"
     },
     {
-      "Id": "settingsname8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "BuildingSettings"
     },
     {
-      "Id": "settingsname9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "CharmBonusSettings"
     },
     {
-      "Id": "settingsname10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "CharmUseSettings"
     },
     {
-      "Id": "settingsname11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "ChatSettings"
     },
     {
-      "Id": "settingsname12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "ChestSettings"
     },
     {
-      "Id": "settingsname13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "CitySettings"
     },
     {
-      "Id": "settingsname14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "ClutterTypeSettings"
     },
     {
-      "Id": "settingsname15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "CollectionThemeSettings"
     },
     {
-      "Id": "settingsname16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "CollectionTierListSettings"
     },
     {
-      "Id": "settingsname17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "CombatActionSettings"
     },
     {
-      "Id": "settingsname18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "CoreCurrencyTypeSettings"
     },
     {
-      "Id": "settingsname19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "CoreSettings"
     },
     {
-      "Id": "settingsname20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "CraftingSettings"
     },
     {
-      "Id": "settingsname21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "CrawlerCombatSettings"
     },
     {
-      "Id": "settingsname22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "CrawlerCraftingSettings"
     },
     {
-      "Id": "settingsname23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "CrawlerCurrencySettings"
     },
     {
-      "Id": "settingsname24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "CrawlerItemSettings"
     },
     {
-      "Id": "settingsname25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "CrawlerLootSettings"
     },
     {
-      "Id": "settingsname26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "CrawlerMapSettings"
     },
     {
-      "Id": "settingsname27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "CrawlerMonsterSettings"
     },
     {
-      "Id": "settingsname28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "CrawlerOptionSettings"
     },
     {
-      "Id": "settingsname29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "CrawlerQuestSettings"
     },
     {
-      "Id": "settingsname30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "CrawlerSettings"
     },
     {
-      "Id": "settingsname31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "CrawlerSpellSettings"
     },
     {
-      "Id": "settingsname32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "CrawlerStatSettings"
     },
     {
-      "Id": "settingsname33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "CrawlerTrainingSettings"
     },
     {
-      "Id": "settingsname34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "CurrencySettings"
     },
     {
-      "Id": "settingsname35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "DamageSettings"
     },
     {
-      "Id": "settingsname36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "DataOverrideSettings"
     },
     {
-      "Id": "settingsname37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "DerivedStatSettings"
     },
     {
-      "Id": "settingsname38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "DungeonArtSettings"
     },
     {
-      "Id": "settingsname39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "EditorMetaDataSettings"
     },
     {
-      "Id": "settingsname40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "ElementTypeSettings"
     },
     {
-      "Id": "settingsname41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "EntitySettings"
     },
     {
-      "Id": "settingsname42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "EquipSlotSettings"
     },
     {
-      "Id": "settingsname43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "FactionSettings"
     },
     {
-      "Id": "settingsname44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "FenceTypeSettings"
     },
     {
-      "Id": "settingsname45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "FtueEffectSettings"
     },
     {
-      "Id": "settingsname46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "FtuePopupTypeSettings"
     },
     {
-      "Id": "settingsname47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "FtueStepSettings"
     },
     {
-      "Id": "settingsname48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "FtueTriggerSettings"
     },
     {
-      "Id": "settingsname49default",
-      "ParentId": "default",
       "IdKey": 49,
       "Name": "GroundObjTypeSettings"
     },
     {
-      "Id": "settingsname50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "GuildDegreeSettings"
     },
     {
-      "Id": "settingsname51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "InputSettings"
     },
     {
-      "Id": "settingsname52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "ItemTypeSettings"
     },
     {
-      "Id": "settingsname53default",
-      "ParentId": "default",
       "IdKey": 53,
       "Name": "KeyCommSettings"
     },
     {
-      "Id": "settingsname54default",
-      "ParentId": "default",
       "IdKey": 54,
       "Name": "LevelTrackRewardSettings"
     },
     {
-      "Id": "settingsname55default",
-      "ParentId": "default",
       "IdKey": 55,
       "Name": "LootRankSettings"
     },
     {
-      "Id": "settingsname56default",
-      "ParentId": "default",
       "IdKey": 56,
       "Name": "MapEncounterSettings"
     },
     {
-      "Id": "settingsname57default",
-      "ParentId": "default",
       "IdKey": 57,
       "Name": "MapMagicSettings"
     },
     {
-      "Id": "settingsname58default",
-      "ParentId": "default",
       "IdKey": 58,
       "Name": "MapModEffectTypeSettings"
     },
     {
-      "Id": "settingsname59default",
-      "ParentId": "default",
       "IdKey": 59,
       "Name": "MemberUpgradeSettings"
     },
     {
-      "Id": "settingsname60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "MusicTypeSettings"
     },
     {
-      "Id": "settingsname61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "NameSettings"
     },
     {
-      "Id": "settingsname62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "NewUserSettings"
     },
     {
-      "Id": "settingsname63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "NPCSettings"
     },
     {
-      "Id": "settingsname64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "PartyBuffSettings"
     },
     {
-      "Id": "settingsname65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "PartyUpgradeSettings"
     },
     {
-      "Id": "settingsname66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "PlantTypeSettings"
     },
     {
-      "Id": "settingsname67default",
-      "ParentId": "default",
       "IdKey": 67,
       "Name": "PlayMultSettings"
     },
     {
-      "Id": "settingsname68default",
-      "ParentId": "default",
       "IdKey": 68,
       "Name": "ProcTypeSettings"
     },
     {
-      "Id": "settingsname69default",
-      "ParentId": "default",
       "IdKey": 69,
       "Name": "ProductSkuSettings"
     },
     {
-      "Id": "settingsname70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "QualityTypeSettings"
     },
     {
-      "Id": "settingsname71default",
-      "ParentId": "default",
       "IdKey": 71,
       "Name": "RecipeSettings"
     },
     {
-      "Id": "settingsname72default",
-      "ParentId": "default",
       "IdKey": 72,
       "Name": "ReputationSettings"
     },
     {
-      "Id": "settingsname73default",
-      "ParentId": "default",
       "IdKey": 73,
       "Name": "ResetSettings"
     },
     {
-      "Id": "settingsname74default",
-      "ParentId": "default",
       "IdKey": 74,
       "Name": "RewardSourceSettings"
     },
     {
-      "Id": "settingsname75default",
-      "ParentId": "default",
       "IdKey": 75,
       "Name": "RiddleSettings"
     },
     {
-      "Id": "settingsname76default",
-      "ParentId": "default",
       "IdKey": 76,
       "Name": "RiddleTypeSettings"
     },
     {
-      "Id": "settingsname77default",
-      "ParentId": "default",
       "IdKey": 77,
       "Name": "RoadSettings"
     },
     {
-      "Id": "settingsname78default",
-      "ParentId": "default",
       "IdKey": 78,
       "Name": "RockTypeSettings"
     },
     {
-      "Id": "settingsname79default",
-      "ParentId": "default",
       "IdKey": 79,
       "Name": "RoleScalingTypeSettings"
     },
     {
-      "Id": "settingsname80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "RoleSettings"
     },
     {
-      "Id": "settingsname81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "RpgLevelSettings"
     },
     {
-      "Id": "settingsname82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "ScalingTypeSettings"
     },
     {
-      "Id": "settingsname83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "ScreenNameSettings"
     },
     {
-      "Id": "settingsname84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "ScreenOverrideSettings"
     },
     {
-      "Id": "settingsname85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "SeasonThemeSettings"
     },
     {
-      "Id": "settingsname86default",
-      "ParentId": "default",
       "IdKey": 86,
       "Name": "SeasonTierListSettings"
     },
     {
-      "Id": "settingsname87default",
-      "ParentId": "default",
       "IdKey": 87,
       "Name": "SettingsNameSettings"
     },
     {
-      "Id": "settingsname88default",
-      "ParentId": "default",
       "IdKey": 88,
       "Name": "SetTypeSettings"
     },
     {
-      "Id": "settingsname89default",
-      "ParentId": "default",
       "IdKey": 89,
       "Name": "SexTypeSettings"
     },
     {
-      "Id": "settingsname90default",
-      "ParentId": "default",
       "IdKey": 90,
       "Name": "SkillTypeSettings"
     },
     {
-      "Id": "settingsname91default",
-      "ParentId": "default",
       "IdKey": 91,
       "Name": "SpawnSettings"
     },
     {
-      "Id": "settingsname92default",
-      "ParentId": "default",
       "IdKey": 92,
       "Name": "SpecialMagicSettings"
     },
     {
-      "Id": "settingsname93default",
-      "ParentId": "default",
       "IdKey": 93,
       "Name": "SpellModifierSettings"
     },
     {
-      "Id": "settingsname94default",
-      "ParentId": "default",
       "IdKey": 94,
       "Name": "SpellTypeSettings"
     },
     {
-      "Id": "settingsname95default",
-      "ParentId": "default",
       "IdKey": 95,
       "Name": "StartCombatSettings"
     },
     {
-      "Id": "settingsname96default",
-      "ParentId": "default",
       "IdKey": 96,
       "Name": "StatSettings"
     },
     {
-      "Id": "settingsname97default",
-      "ParentId": "default",
       "IdKey": 97,
       "Name": "StatusEffectSettings"
     },
     {
-      "Id": "settingsname98default",
-      "ParentId": "default",
       "IdKey": 98,
       "Name": "StoreBundleSetSettings"
     },
     {
-      "Id": "settingsname99default",
-      "ParentId": "default",
       "IdKey": 99,
       "Name": "StoreFeatureSettings"
     },
     {
-      "Id": "settingsname100default",
-      "ParentId": "default",
       "IdKey": 100,
       "Name": "StoreOfferSettings"
     },
     {
-      "Id": "settingsname101default",
-      "ParentId": "default",
       "IdKey": 101,
       "Name": "StoreSlotSettings"
     },
     {
-      "Id": "settingsname102default",
-      "ParentId": "default",
       "IdKey": 102,
       "Name": "StoreThemeSettings"
     },
     {
-      "Id": "settingsname103default",
-      "ParentId": "default",
       "IdKey": 103,
       "Name": "TargetTypeSettings"
     },
     {
-      "Id": "settingsname104default",
-      "ParentId": "default",
       "IdKey": 104,
       "Name": "TempleSettings"
     },
     {
-      "Id": "settingsname105default",
-      "ParentId": "default",
       "IdKey": 105,
       "Name": "TextureChannelSettings"
     },
     {
-      "Id": "settingsname106default",
-      "ParentId": "default",
       "IdKey": 106,
       "Name": "TextureTypeSettings"
     },
     {
-      "Id": "settingsname107default",
-      "ParentId": "default",
       "IdKey": 107,
       "Name": "TileTypeSettings"
     },
     {
-      "Id": "settingsname108default",
-      "ParentId": "default",
       "IdKey": 108,
       "Name": "TimedEventCurrencySettings"
     },
     {
-      "Id": "settingsname109default",
-      "ParentId": "default",
       "IdKey": 109,
       "Name": "TimedEventTypeSettings"
     },
     {
-      "Id": "settingsname110default",
-      "ParentId": "default",
       "IdKey": 110,
       "Name": "TimeOfDaySettings"
     },
     {
-      "Id": "settingsname111default",
-      "ParentId": "default",
       "IdKey": 111,
       "Name": "TimeSettings"
     },
     {
-      "Id": "settingsname112default",
-      "ParentId": "default",
       "IdKey": 112,
       "Name": "TradeEconomySettings"
     },
     {
-      "Id": "settingsname113default",
-      "ParentId": "default",
       "IdKey": 113,
       "Name": "TradeGoodSettings"
     },
     {
-      "Id": "settingsname114default",
-      "ParentId": "default",
       "IdKey": 114,
       "Name": "TravelSettings"
     },
     {
-      "Id": "settingsname115default",
-      "ParentId": "default",
       "IdKey": 115,
       "Name": "TreeTypeSettings"
     },
     {
-      "Id": "settingsname116default",
-      "ParentId": "default",
       "IdKey": 116,
       "Name": "TribeSettings"
     },
     {
-      "Id": "settingsname117default",
-      "ParentId": "default",
       "IdKey": 117,
       "Name": "UnitKeywordSettings"
     },
     {
-      "Id": "settingsname118default",
-      "ParentId": "default",
       "IdKey": 118,
       "Name": "UnitTypeSettings"
     },
     {
-      "Id": "settingsname119default",
-      "ParentId": "default",
       "IdKey": 119,
       "Name": "UpgradeReasonSettings"
     },
     {
-      "Id": "settingsname120default",
-      "ParentId": "default",
       "IdKey": 120,
       "Name": "UserAbilitySettings"
     },
     {
-      "Id": "settingsname121default",
-      "ParentId": "default",
       "IdKey": 121,
       "Name": "UserEnergySettings"
     },
     {
-      "Id": "settingsname122default",
-      "ParentId": "default",
       "IdKey": 122,
       "Name": "VendorSettings"
     },
     {
-      "Id": "settingsname123default",
-      "ParentId": "default",
       "IdKey": 123,
       "Name": "VersionSettings"
     },
     {
-      "Id": "settingsname124default",
-      "ParentId": "default",
       "IdKey": 124,
       "Name": "WeatherTypeSettings"
     },
     {
-      "Id": "settingsname125default",
-      "ParentId": "default",
       "IdKey": 125,
       "Name": "ZoneCategorySettings"
     },
     {
-      "Id": "settingsname126default",
-      "ParentId": "default",
       "IdKey": 126,
       "Name": "ZoneTypeSettings"
     },
     {
-      "Id": "settingsname127default",
-      "ParentId": "default",
       "IdKey": 127,
       "Name": "TraderStatSettings"
     },
     {
-      "Id": "settingsname128default",
-      "ParentId": "default",
       "IdKey": 128,
       "Name": "TraderNewPlayerSettings"
     },
     {
-      "Id": "settingsname129default",
-      "ParentId": "default",
       "IdKey": 129,
       "Name": "NewPlayerBonusSettings"
     },
     {
-      "Id": "settingsname130default",
-      "ParentId": "default",
       "IdKey": 130,
       "Name": "DefaultStoreOfferSettings"
     },
     {
-      "Id": "settingsname131default",
-      "ParentId": "default",
       "IdKey": 131,
       "Name": "HoldingsSettings"
+    },
+    {
+      "IdKey": 132,
+      "Name": "ScreenLayerSettings"
+    },
+    {
+      "IdKey": 133,
+      "Name": "SkinTypeSettings"
+    },
+    {
+      "IdKey": 134,
+      "Name": "AnimalTypeSettings"
+    },
+    {
+      "IdKey": 135,
+      "Name": "TravelPathSettings"
+    },
+    {
+      "IdKey": 136,
+      "Name": "TravelRewardSettings"
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "SettingsNameSettings",
-    "SaveTime": "2025-11-24T17:13:23.088Z"
+    "Name": "SettingsNameSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-24T17:13:23.088Z"
 }

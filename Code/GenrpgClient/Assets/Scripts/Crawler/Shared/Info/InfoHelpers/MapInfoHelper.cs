@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Entities;
+using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -128,3 +128,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

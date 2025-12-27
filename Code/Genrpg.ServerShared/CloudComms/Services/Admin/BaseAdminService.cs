@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
 using Genrpg.ServerShared.GameSettings.Services;
@@ -15,7 +15,7 @@ namespace Genrpg.ServerShared.CloudComms.Services.Admin
 {
     public class BaseAdminService : IAdminService
     {
-        protected IGameDataService _gameDataService = null;
+        protected IServerGameDataService _gameDataService = null;
         protected IServerConfig _config = null;
 
         virtual public async Task HandleReloadGameState()
@@ -34,3 +34,5 @@ namespace Genrpg.ServerShared.CloudComms.Services.Admin
         }
     }
 }
+
+

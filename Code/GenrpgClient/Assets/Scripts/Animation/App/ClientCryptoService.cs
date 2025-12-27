@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Security.Cryptography;
 using Genrpg.Shared.Interfaces;
@@ -14,7 +14,7 @@ public interface IClientCryptoService :IInjectable
 
 public class ClientCryptoService : IClientCryptoService
 {
-    private IClientAppService _appService;
+    private IClientAppService _appService = null;
     public string EncryptString(string txt)
     {
         byte[] bytes = Encoding.UTF8.GetBytes(txt);
@@ -58,3 +58,4 @@ public class ClientCryptoService : IClientCryptoService
         return new byte[] { 77, 1, 12, 37, 33, 98, 49, 22 };
     }
 }
+

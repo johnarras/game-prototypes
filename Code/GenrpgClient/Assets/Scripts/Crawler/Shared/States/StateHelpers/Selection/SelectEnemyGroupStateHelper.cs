@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -86,3 +86,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
         }
     }
 }
+
+

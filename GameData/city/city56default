@@ -26,31 +26,31 @@
   ],
   "Animals": [
     {
-      "AnimalId": 9,
+      "AnimalTypeId": 9,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 10,
+      "AnimalTypeId": 10,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 15,
+      "AnimalTypeId": 15,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 4,
+      "AnimalTypeId": 4,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 2,
+      "AnimalTypeId": 2,
       "PriceScale": 10.0
     },
     {
-      "AnimalId": 12,
+      "AnimalTypeId": 12,
       "PriceScale": 10.0
     },
     {
-      "AnimalId": 13,
+      "AnimalTypeId": 13,
       "PriceScale": 10.0
     }
   ],
@@ -340,6 +340,5 @@
       227,
       909
     ]
-  },
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  }
 }

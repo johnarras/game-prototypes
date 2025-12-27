@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
             {
                 CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-                foreach (PartyMember pm in party.GetActiveParty())
+                foreach (PartyMember pm in party.ActiveParty)
                 {
                     if (pm.StatusEffects.HasBit(StatusEffects.Dead))
                     {
@@ -63,3 +63,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         }
     }
 }
+
+

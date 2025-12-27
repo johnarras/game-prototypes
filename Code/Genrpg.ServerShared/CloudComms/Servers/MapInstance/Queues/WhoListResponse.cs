@@ -1,4 +1,5 @@
-﻿using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
+using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
+using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues
@@ -19,3 +20,5 @@ namespace Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues
         public string ErrorText { get; set; }
     }
 }
+
+

@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Assets;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
@@ -81,9 +80,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
             stateData.Actions.Add(new CrawlerStateAction("Info", Key.I, ECrawlerStates.GuildMain, onClickAction:
                 () =>
                 {
-                    _screenService.Open(ScreenNames.CrawlerInfo);
+                    _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerInfo));
                 }));
-            if (party.GetActiveParty().Count > 0)
+            if (party.ActiveParty.Count > 0)
             {
                 stateData.Actions.Add(new CrawlerStateAction("Enter Map", Key.E, ECrawlerStates.ExploreWorld));
             }
@@ -99,7 +98,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                 {
                     if (_screenService.GetScreen(ScreenNames.CrawlerMainMenu) == null)
                     {
-                        _screenService.Open(ScreenNames.CrawlerMainMenu);
+                        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerMainMenu));
                     }
                 }, hideText: true));
 
@@ -132,10 +131,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
                 await Awaitable.NextFrameAsync(token);
             }
 
-            _screenService.Close(ScreenNames.Loading);
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
 
             return stateData;
 
         }
     }
 }
+
+

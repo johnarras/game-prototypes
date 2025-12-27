@@ -1,24 +1,17 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "storetheme1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Default",
       "Art": "Default"
     },
     {
-      "Id": "storetheme2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Mana Store",
       "Desc": "",
       "Art": "Mana"
     },
     {
-      "Id": "storetheme3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Supplies Store",
       "Desc": "",
@@ -28,8 +21,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "StoreThemeSettings",
-    "SaveTime": "2025-11-22T20:44:31.37Z"
+    "Name": "StoreThemeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-22T20:44:31.37Z"
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
 namespace Genrpg.Editor.UI
@@ -11,3 +11,5 @@ namespace Genrpg.Editor.UI
         public ContentDialogResultBase Result { get; set; } = ContentDialogResultBase.None;
     }
 }
+
+

@@ -1,0 +1,7 @@
+{
+  "Id": "screenlayer60default",
+  "ParentId": "default",
+  "IdKey": 60,
+  "Name": "FloatingText",
+  "SkipInAllScreensList": true
+}

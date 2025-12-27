@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
@@ -214,7 +214,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             long levelAtParty = await _worldService.GetMapLevelAtParty(party);
 
-            int partySize = party.GetActiveParty().Count;
+            int partySize = party.ActiveParty.Count;
 
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
@@ -675,7 +675,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             List<CrawlerQuest> quests = await GetQuestsForMap(party, party.CurrPos.MapId);
 
-            return quests.Any(x => x.IdKey == questId);
+            return quests.FastAny(x => x.IdKey == questId);
 
         }
 
@@ -697,3 +697,5 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         }
     }
 }
+
+

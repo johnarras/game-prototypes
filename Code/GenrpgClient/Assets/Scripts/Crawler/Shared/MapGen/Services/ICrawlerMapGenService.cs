@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.MapGen.Helpers;
+using Genrpg.Shared.Crawler.MapGen.Helpers;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Crawler.MapGen.Services
         void OneWayLink(CrawlerWorld world, long fromMapId, int fromX, int fromZ, long toMapId, int toX, int toZ);
     }
 }
+
+

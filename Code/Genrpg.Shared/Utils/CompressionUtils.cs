@@ -1,4 +1,4 @@
-﻿using System.IO.Compression;
+using System.IO.Compression;
 using System.IO;
 
 namespace Genrpg.Shared.Utils
@@ -28,3 +28,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

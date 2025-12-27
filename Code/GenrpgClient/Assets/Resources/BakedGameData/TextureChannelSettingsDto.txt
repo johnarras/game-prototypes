@@ -1,29 +1,22 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "texturechannel1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Dirt"
     },
     {
-      "Id": "texturechannel2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Road"
     },
     {
-      "Id": "texturechannel3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Steep"
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "TextureChannelSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "TextureChannelSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

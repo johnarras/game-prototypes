@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Combat.Constants
+namespace Genrpg.Shared.Crawler.Combat.Constants
 {
     public enum ECombatTextTypes
     {
@@ -10,3 +10,5 @@
         Thorns = 5,
     };
 }
+
+

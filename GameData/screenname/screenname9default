@@ -2,5 +2,7 @@
   "Id": "screenname9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "Signup"
+  "Name": "Signup",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Login"
 }

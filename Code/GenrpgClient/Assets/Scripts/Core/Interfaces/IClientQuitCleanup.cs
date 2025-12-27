@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 
 namespace Assets.Scripts.Core.Interfaces
 {
@@ -7,3 +7,5 @@ namespace Assets.Scripts.Core.Interfaces
         void OnQuit();
     }
 }
+
+

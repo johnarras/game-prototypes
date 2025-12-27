@@ -1,28 +1,28 @@
-﻿
-using Genrpg.Shared.Utils;
-using Genrpg.ServerShared.MainServer;
-using Genrpg.ServerShared.CloudComms.Constants;
-using Genrpg.ServerShared.Crypto.Services;
-using Genrpg.Shared.Crypto.Entities;
-using System.Text;
-using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Charms.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.RequestServer.Setup;
-using Genrpg.RequestServer.Services.NoUsers;
-using Genrpg.Shared.Website.Messages;
+
 using Genrpg.RequestServer.RequestHandlers;
-using System.Formats.Tar;
+using Genrpg.RequestServer.Services.AccountAuth;
 using Genrpg.RequestServer.Services.GameAuth;
 using Genrpg.RequestServer.Services.GameClient;
-using Genrpg.RequestServer.Services.AccountAuth;
+using Genrpg.RequestServer.Services.NoUsers;
+using Genrpg.RequestServer.Setup;
+using Genrpg.ServerShared.CloudComms.Constants;
+using Genrpg.ServerShared.Crypto.Services;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.ServerShared.MainServer;
+using Genrpg.Shared.Charms.PlayerData;
+using Genrpg.Shared.Charms.Services;
+using Genrpg.Shared.Crypto.Entities;
+using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Website.Messages;
+using System.Text;
 
 namespace Genrpg.RequestServer.Core
 {
     /// <summary>
     /// This is a minimal amount of webdev used to get us into code that can be used elsewhere easier.
     /// </summary>
-    public class WebRequestServer : BaseServer<WebContext, WebsiteSetupService, IWebRequestHandler>
+    public class WebRequestServer : BaseServer<WebContext, WebsiteSetupService, IQueueMessageHandler>
     {
         protected IGameClientWebService _gameClientWebService { get; private set; }
         protected IAccountAuthWebService _accountAuthWebService { get; private set; }
@@ -30,8 +30,9 @@ namespace Genrpg.RequestServer.Core
         protected ICryptoService _cryptoService { get; private set; }
         protected ICharmService _charmService { get; private set; }
         protected INoUserWebService _noUserWebService { get; private set; }
-        protected IRepositoryService _repositoryService { get; private set; }
-        protected ITextSerializer _serializer { get; private set; } 
+        protected IFullRepositoryService _repositoryService { get; private set; }
+        protected ITextSerializer _textSerializer { get; private set; }
+        protected IBinarySerializer _binarySerializer { get; private set; }
         private CancellationTokenSource _serverSource = new CancellationTokenSource();
         protected CancellationToken _token => _serverSource.Token;
 
@@ -39,19 +40,12 @@ namespace Genrpg.RequestServer.Core
         {
             _serverSource = new CancellationTokenSource();
 
-            Init(null, null, _serverSource.Token).Wait();
-            _gameClientWebService = _context.loc.Get<IGameClientWebService>();
-            _accountAuthWebService = _context.loc.Get<IAccountAuthWebService>();
-            _gameAuthWebService = _context.loc.Get<IGameAuthWebService>();
-            _cryptoService = _context.loc.Get<ICryptoService>();
-            _charmService = _context.loc.Get<ICharmService>();
-            _noUserWebService = _context.loc.Get<INoUserWebService>();
-            _serializer = _context.loc.Get<ITextSerializer>();
+            Init(_serverSource.Token).Wait();
         }
 
         protected WebContext SetupContext()
         {
-            return new WebContext(_config, _context.loc);
+            return new WebContext(_config, _context.loc, _repositoryService, _binarySerializer);
         }
 
         protected string _serverInstanceId = CloudServerNames.Login + HashUtils.NewUUId().ToString().ToLowerInvariant();
@@ -91,7 +85,11 @@ namespace Genrpg.RequestServer.Core
 
         private string PackageResponses(WebContext context)
         {
-            return _serializer.SerializeToString(new WebServerResponseSet() { Responses = context.Responses.GetResponses() });
+            string txt = _textSerializer.SerializeToString(new WebServerResponseSet() { Responses = context.GetResponseList() });
+
+            context.Dispose();
+
+            return txt;
         }
 
         public async Task<string> HandleTxList(string address)
@@ -129,3 +127,5 @@ namespace Genrpg.RequestServer.Core
         }
     }
 }
+
+

@@ -1,10 +1,11 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
 using Genrpg.ServerShared.Setup;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Services;
 using System;
 using System.Threading;
@@ -24,11 +25,12 @@ namespace Genrpg.ServerShared.MainServer
         where TSetupService : SetupService
         where IQMessageHandler : IQueueMessageHandler
     {
-        protected TGameState _context;
+        protected TGameState _context = null;
         protected CancellationTokenSource _tokenSource = new CancellationTokenSource();
-        protected string _serverId;
-        protected ICloudCommsService _cloudCommsService;
+        protected string _serverId = null;
+        protected ICloudCommsService _cloudCommsService = null;
         protected IServerConfig _config = null;
+        protected ILogService _logService = null;
 
         public virtual CancellationToken GetToken()
         {
@@ -54,7 +56,7 @@ namespace Genrpg.ServerShared.MainServer
 
         private SetupDictionaryContainer<Type, IQMessageHandler> _queueHandlers = new();
 
-        public async Task Init(object data, object parentObject, CancellationToken serverToken)
+        public async Task Init(CancellationToken serverToken, object data = null, object parentObject = null)
         {
 
             try
@@ -77,7 +79,7 @@ namespace Genrpg.ServerShared.MainServer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " " + ex.StackTrace);
+                _logService.Exception(ex, "BaseServer.Init");
             }
 
         }
@@ -85,3 +87,5 @@ namespace Genrpg.ServerShared.MainServer
         protected abstract string GetServerId(object data);
     }
 }
+
+

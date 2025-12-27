@@ -2,5 +2,7 @@
   "Id": "screenname3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "FloatingText"
+  "Name": "FloatingText",
+  "ScreenLayerId": 60,
+  "Subdirectory": "FloatingText"
 }

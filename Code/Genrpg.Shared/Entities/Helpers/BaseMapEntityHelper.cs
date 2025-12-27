@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Entities.Interfaces;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
@@ -38,7 +39,7 @@ namespace Genrpg.Shared.Entities.Helpers
             return _mapProvider.GetMap().GetEditorListFromEntityTypeId(HelperKey);
         }
 
-        public virtual string GetIconAtlasName(IFilteredObject filteredObj, long entityId)
+        public virtual string GetIconAtlasName(IFilteredObject filteredObj, long entityId, EEntityIconCategories category)
         {
             IIdName idname = _mapProvider.GetMap().GetEditorListFromEntityTypeId(HelperKey).FirstOrDefault();
 
@@ -75,3 +76,5 @@ namespace Genrpg.Shared.Entities.Helpers
         }
     }
 }
+
+

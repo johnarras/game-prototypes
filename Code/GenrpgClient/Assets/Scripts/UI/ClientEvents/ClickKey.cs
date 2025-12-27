@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.ClientEvents
@@ -8,3 +8,5 @@ namespace Assets.Scripts.UI.ClientEvents
         public Key Key { get; set; }
     }
 }
+
+

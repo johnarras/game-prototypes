@@ -33,7 +33,7 @@ public class AddCrevices : BaseZoneGenerator
     public const int RoadEFfectDist = 16;
     public const int RoadZeroDist = 8;
 
-    protected ILineGenService _lineGenService;
+    protected ILineGenService _lineGenService = null;
 
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -554,3 +554,5 @@ public class AddCrevices : BaseZoneGenerator
         }
     }
 }
+
+

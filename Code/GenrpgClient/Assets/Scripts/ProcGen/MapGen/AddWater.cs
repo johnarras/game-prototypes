@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Genrpg.Shared.Utils;
 using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.MapWater;
@@ -10,7 +10,7 @@ using UnityEngine;
 public class AddWater : BaseZoneGenerator
 {
 
-    private IAddPoolService _addPoolService;
+    private IAddPoolService _addPoolService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -323,3 +323,5 @@ public class AddWater : BaseZoneGenerator
     }
 
 }
+
+

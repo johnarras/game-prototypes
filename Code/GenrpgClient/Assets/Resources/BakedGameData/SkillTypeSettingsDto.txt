@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "skilltype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Attack",
       "Desc": "",
@@ -18,8 +15,6 @@
       "EffectEntityTypeId": 33
     },
     {
-      "Id": "skilltype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Blast",
       "TargetTypeId": 1,
@@ -31,8 +26,6 @@
       "EffectEntityTypeId": 33
     },
     {
-      "Id": "skilltype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Heal",
       "TargetTypeId": 2,
@@ -44,8 +37,6 @@
       "EffectEntityTypeId": 34
     },
     {
-      "Id": "skilltype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Defense",
       "Desc": "",
@@ -60,22 +51,16 @@
       "EffectEntityTypeId": 35
     },
     {
-      "Id": "skilltype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Gathering",
       "StatScalePercent": 100
     },
     {
-      "Id": "skilltype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Crafting",
       "StatScalePercent": 100
     },
     {
-      "Id": "skilltype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "AddStat",
       "TargetTypeId": 2,
@@ -87,8 +72,6 @@
       "EffectEntityTypeId": 31
     },
     {
-      "Id": "skilltype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "RemoveStat",
       "Desc": "",
@@ -103,8 +86,6 @@
       "EffectEntityTypeId": 31
     },
     {
-      "Id": "skilltype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Summon",
       "TargetTypeId": 2,
@@ -116,8 +97,6 @@
       "EffectEntityTypeId": 4
     },
     {
-      "Id": "skilltype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "AddDebuff",
       "TargetTypeId": 1,
@@ -125,8 +104,6 @@
       "EffectEntityTypeId": 36
     },
     {
-      "Id": "skilltype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "RemoveDebuff",
       "TargetTypeId": 2,
@@ -134,8 +111,6 @@
       "EffectEntityTypeId": 36
     },
     {
-      "Id": "skilltype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Shoot",
       "TargetTypeId": 1,
@@ -144,8 +119,6 @@
       "EffectEntityTypeId": 33
     },
     {
-      "Id": "skilltype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "AddBuff",
       "TargetTypeId": 2,
@@ -153,8 +126,6 @@
       "EffectEntityTypeId": 36
     },
     {
-      "Id": "skilltype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "RemoveBuff",
       "TargetTypeId": 1,
@@ -164,8 +135,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "SkillTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "SkillTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

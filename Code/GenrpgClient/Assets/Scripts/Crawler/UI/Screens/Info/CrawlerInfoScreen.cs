@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Info.UI;
+using Assets.Scripts.Info.UI;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -79,3 +79,5 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         }
     }
 }
+
+

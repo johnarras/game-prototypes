@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.MapObjects.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,3 +10,5 @@ namespace Genrpg.Shared.MapMods.MapObjects
     {
     }
 }
+
+

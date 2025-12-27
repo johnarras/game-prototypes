@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.ProcGen.Loading.Utils;
@@ -24,13 +24,13 @@ public interface IPlantAssetLoader : IInjectable
 }
 public class PlantAssetLoader : IPlantAssetLoader
 {
-    private IAssetService _assetService;
+    private IAssetService _assetService = null;
     private IMapTerrainManager _terrainManager;
-    private ILogService _logService;
+    private ILogService _logService = null;
     private IZonePlantValidator _zonePlantValidator;
     private IMapProvider _mapProvider;
-    protected IClientEntityService _clientEntityService;
-    private IAwaitableService _awaitableService;
+    protected IClientEntityService _clientEntityService = null;
+    private IAwaitableService _awaitableService = null;
 
     public void SetupOneMapGrass(int gx, int gy, CancellationToken token)
     {
@@ -307,3 +307,4 @@ public class PlantAssetLoader : IPlantAssetLoader
         go.SetActive(false);
     }
 }
+

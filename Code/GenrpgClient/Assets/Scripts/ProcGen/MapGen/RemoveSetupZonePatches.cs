@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Utils;
@@ -61,3 +61,4 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
         while (somethingchanged);
     }
 }
+

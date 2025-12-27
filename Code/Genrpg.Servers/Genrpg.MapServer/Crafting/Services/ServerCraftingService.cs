@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Trades.Services;
+using Genrpg.MapServer.Trades.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crafting.Constants;
 using Genrpg.Shared.Crafting.Entities;
@@ -258,3 +258,5 @@ namespace Genrpg.MapServer.Crafting.Services
         }
     }
 }
+
+

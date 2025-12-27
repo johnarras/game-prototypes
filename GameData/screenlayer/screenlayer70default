@@ -1,0 +1,7 @@
+{
+  "Id": "screenlayer70default",
+  "ParentId": "default",
+  "IdKey": 70,
+  "Name": "DragItems",
+  "SkipInAllScreensList": true
+}

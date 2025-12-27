@@ -1,8 +1,9 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Input.PlayerData;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.SpellCrafting.Services;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Spells;
@@ -16,7 +17,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         private IGameData _gameData = null;
         private ITextSerializer _serializer = null;
 
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         public override int Order => 2;
 
         public override async Task Update(WebContext context, Character ch)
@@ -38,7 +39,11 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
                 ActionInput ai = adata.GetData().FirstOrDefault(x => x.SpellId == i);
                 if (ai == null)
                 {
-                    adata.SetInput(i, i, _repoService);
+                    ActionInput newInput = adata.SetInput(i, i);
+                    if (newInput != null)
+                    {
+                        _repoService.QueueSave(newInput);
+                    }
                 }
                 else
                 {
@@ -49,7 +54,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 
             foreach (Spell spell in spellData.GetData())
             {
-                _spellCraftingService.ValidateSpellData(ch, spell);
+                _spellCraftingService.CreateNewSpellData(ch, spell);
             }
 
 
@@ -57,3 +62,5 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         }
     }
 }
+
+

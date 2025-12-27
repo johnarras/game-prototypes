@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Interactions.Messages
         [Key(1)] public bool IsSkillLoot { get; set; }
     }
 }
+
+

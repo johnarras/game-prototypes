@@ -6,6 +6,5 @@
   "Desc": "Allows more classes per character.",
   "MaxTier": 1,
   "BonusPerTier": 1.0,
-  "BasePointCost": 100,
-  "SaveTime": "2025-09-11T17:51:14.346Z"
+  "BasePointCost": 100
 }

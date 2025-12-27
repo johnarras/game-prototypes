@@ -1,4 +1,5 @@
-﻿
+using MessagePack;
+
 using Genrpg.Shared.Networking.Constants;
 
 namespace Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues
@@ -14,3 +15,5 @@ namespace Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues
         public EMapApiSerializers SerializerType { get; set; }
     }
 }
+
+

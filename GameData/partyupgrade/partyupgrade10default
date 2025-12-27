@@ -6,6 +6,5 @@
   "Desc": "Adds exp",
   "MaxTier": 5,
   "BonusPerTier": 50.0,
-  "BasePointCost": 5,
-  "SaveTime": "2025-10-24T22:59:08.69Z"
+  "BasePointCost": 5
 }

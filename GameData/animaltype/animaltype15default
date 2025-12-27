@@ -1,0 +1,13 @@
+{
+  "Id": "animaltype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Asian Elephant",
+  "Desc": "A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.",
+  "Icon": "AsianElephant",
+  "Art": "AsianElephant",
+  "Speed": 4,
+  "Capacity": 6,
+  "Supplies": 6,
+  "Cost": 1474500
+}

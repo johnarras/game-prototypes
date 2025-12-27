@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Inventory.Entities;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
         public abstract void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args);
     }
 }
+
+

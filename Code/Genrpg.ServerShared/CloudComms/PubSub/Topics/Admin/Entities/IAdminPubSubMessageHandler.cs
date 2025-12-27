@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Entities;
+using Genrpg.ServerShared.CloudComms.PubSub.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,3 +11,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities
     {
     }
 }
+
+

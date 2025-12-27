@@ -1,5 +1,3 @@
-﻿
-using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
@@ -9,10 +7,9 @@ using System.Collections.Generic;
 public class MoneyDisplay : BaseBehaviour
 {
 
-    private ICrawlerService _crawlerService;
     public List<MoneySegment> _segments;
 
-    
+
     public bool UpdateToCharMoney = false;
 
     public override void Init()
@@ -70,9 +67,9 @@ public class MoneyDisplay : BaseBehaviour
             MoneySegment seg = _segments[s];
 
             long currAmount = amountLeft % SegmentDiv;
-            if (currAmount == 0 && (money > 0 || s < _segments.Count-1))
+            if (currAmount == 0 && (money > 0 || s < _segments.Count - 1))
             {
-                _clientEntityService.SetActive(seg.GetParent(), false);               
+                _clientEntityService.SetActive(seg.GetParent(), false);
             }
             else
             {
@@ -83,3 +80,4 @@ public class MoneyDisplay : BaseBehaviour
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,3 +10,5 @@ namespace Genrpg.Shared.Crawler.Constants
         public const int HasRecall =  1 << 1;
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.Interfaces;
@@ -13,7 +13,7 @@ namespace Genrpg.ServerShared.PlayerData
 {
     public interface IPlayerDataService : IInitializable
     {
-        void SavePlayerData(Character ch, bool saveAll);
+        void SavePlayerData(Character ch);
         Task<List<IUnitData>> MapToClientDto(IFilteredObject obj, List<IUnitData> serverDataList);
         Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, List<IUnitData> existingData, Character ch = null);
         Task<List<CharacterStub>> LoadCharacterStubs(string userId);
@@ -22,3 +22,5 @@ namespace Genrpg.ServerShared.PlayerData
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Units.Entities;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.MessageHandlers.Stats
         }
     }
 }
+
+

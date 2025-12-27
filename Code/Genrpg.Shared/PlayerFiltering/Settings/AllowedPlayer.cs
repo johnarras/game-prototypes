@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Genrpg.Shared.PlayerFiltering.Settings
 {
-    [MessagePackObject]
     public class AllowedPlayer
     {
-        [Key(0)] public string PlayerId { get; set; }
+        public string PlayerId { get; set; }
     }
 }
+
+

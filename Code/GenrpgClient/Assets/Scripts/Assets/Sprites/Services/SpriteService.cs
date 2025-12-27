@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Assets.Entities;
+using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Entities.Entities;
+using Genrpg.Shared.Entities.Assets;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace Assets.Scripts.Assets.Sprites.Services
 {
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
         public async Task Initialize(CancellationToken token)
         {
-            _assetParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
+            _assetParent = _singletonContainer.GetAssetParent<SpriteAtlas>();
             await Task.CompletedTask;
         }
 
@@ -205,3 +206,5 @@ namespace Assets.Scripts.Assets.Sprites.Services
         }
     }
 }
+
+

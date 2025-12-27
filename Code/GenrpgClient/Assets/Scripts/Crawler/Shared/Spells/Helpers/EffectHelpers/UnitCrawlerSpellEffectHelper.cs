@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 List<Role> playerRoles = roleSettings.GetRoles(partyMember.Roles);
                 foreach (Role role in playerRoles)
                 {
-                    if (role.BinaryBonuses.Any(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.Spell.IdKey))
+                    if (role.BinaryBonuses.FastAny(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.Spell.IdKey))
                     {
                         partyMember.Summons = partyMember.Summons.Where(x => x.RoleId != role.IdKey).ToList();
 
@@ -87,3 +87,4 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         }
     }
 }
+

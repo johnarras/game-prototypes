@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -34,3 +34,5 @@ namespace Genrpg.Shared.Buildings.Constants
         public const long Npc = 26;
     }
 }
+
+

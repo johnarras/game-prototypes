@@ -1,6 +1,8 @@
-﻿namespace Genrpg.Shared.Units.Entities
+namespace Genrpg.Shared.Units.Entities
 {
     class UnitSpellType
     {
     }
 }
+
+

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
@@ -14,9 +15,11 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
 
     protected object _openData;
 
-    private static List<GraphicRaycaster> _raycasters = new List<GraphicRaycaster>();
+    private List<GraphicRaycaster> _raycasters = new List<GraphicRaycaster>();
 
-    protected IAwaitableService _awaitableService;
+    protected IAwaitableService _awaitableService = null;
+    protected IScreenService _screenService = null;
+    protected IRealtimeNetworkService _networkService = null;
 
     // Called when screen first opens.
     protected abstract Task OnStartOpen(object data, CancellationToken token);
@@ -129,10 +132,11 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
     // Called after close animation ends.
     protected virtual void OnFinishClose(CancellationToken token)
     {
-        _screenService.FinishClose(ScreenId);
+        _dispatcher.Dispatch(new FinishCloseScreen(ScreenId));
     }
-
 }
+
+
 
 
 

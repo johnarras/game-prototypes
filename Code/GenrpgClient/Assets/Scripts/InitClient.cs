@@ -1,46 +1,48 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameSettings.Services;
 using Assets.Scripts.Purchasing.Services;
+using Assets.Scripts.Resets.ClientEvents;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Updates;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.U2D;
 
+public interface IInitClient : IInjectable
+{
+    CoreClientData GetCoreClientData();
+    CancellationToken GetGameToken();
+}
 
 public class InitClient : BaseBehaviour, IInitClient
 {
 
     [SerializeField]
-    private ClientConfig _clientConfig;
+    private ClientConfig _clientConfig = null;
 
     [SerializeField]
     private SplashOverlay _splashOverlay = null;
 
-    [SerializeField]
-    private GameObject _globalRoot;
 
-    public bool IsSelfContainedClient()
-    {
-        return _clientConfig.SelfContainedClient;
-    }
+    [SerializeField]
+    private CoreClientData _coreClientData = null;
 
     private IClientAuthService _loginService = null;
     private IClientConfigContainer _config = null;
     private IClientAppService _clientAppService = null;
     private ICursorService _cursorService = null;
-    private ILocalLoadService _localLoadService = null;
     private IAwaitableService _awaitableService = null;
-    private IClientGameDataService _gameDataService = null;
     private IClientPurchasingService _purchasingService = null;
+    protected IScreenService _screenService = null;
+
 #if UNITY_EDITOR
     public string CurrMapId;
     public static InitClient EditorInstance { get; set; }
@@ -57,17 +59,30 @@ public class InitClient : BaseBehaviour, IInitClient
 
     private CancellationTokenSource _gameTokenSource = new CancellationTokenSource();
 
+    public CancellationToken GetGameToken()
+    {
+        return _gameTokenSource?.Token ?? CancellationToken.None;
+    }
+
     private void Awake()
     {
+        SpriteAtlasManager.atlasRequested += DummyRequestAtlas;
+        SpriteAtlasManager.atlasRegistered += DummyRegisterAtlas;
         ReflectionUtils.AddAllowedAssembly(Assembly.GetExecutingAssembly());
     }
 
-    public object GetRootObject()
+    public CoreClientData GetCoreClientData()
     {
-        return _globalRoot;
+        return _coreClientData;
     }
 
-    public void FullResetGame()
+
+    public void OnFullResetGame(FullResetGame full)
+    {
+        FullResetGameInternal();
+    }
+
+    private void FullResetGameInternal()
     {
         _awaitableService.ForgetAwaitable(FullResetGameAsync());
     }
@@ -79,9 +94,9 @@ public class InitClient : BaseBehaviour, IInitClient
 
     public void ShowSplashScreen(string message = null, bool showResetButton = false)
     {
-        _screenService?.CloseAll();
+        _dispatcher.Dispatch(new CloseAllScreens());
         _splashOverlay.gameObject.SetActive(true);
-        _splashOverlay.Show(this, message, showResetButton);
+        _splashOverlay.Show(FullResetGameInternal, message, showResetButton);
     }
 
     private async Awaitable CleanupGameAsync()
@@ -91,13 +106,10 @@ public class InitClient : BaseBehaviour, IInitClient
         {
             await cleanup.OnReset(GetGameToken());
         }
-        _clientEntityService.DestroyAllChildren(_globalRoot);
-
         _gameTokenSource?.Cancel();
         _gameTokenSource?.Dispose();
         _gameTokenSource = new CancellationTokenSource();
         ClearToken();
-        _globalUpdater = null;
     }
 
     private async Awaitable FullResetGameAsync()
@@ -111,22 +123,14 @@ public class InitClient : BaseBehaviour, IInitClient
         await InitGameAsync();
     }
 
-    public async Awaitable<IClientGameState> InitialSetup(bool loadPrefabs)
+    public async Awaitable<IClientGameState> InitialSetup()
     {
         _gs = new ClientGameState(_clientConfig, this);
         _gs.GameMode = GameMode;
         ClientSetupService clientInitializer = new ClientSetupService();
         _gs.loc.Resolve(this);
-        await clientInitializer.SetupGame(_gs.loc, GetToken());
-        _gs.loc.Resolve(this);
+        await clientInitializer.SetupGame(_gs, new List<object> { this }, GetToken());
         _clientAppService.ShowCurrentScreenState();
-        if (loadPrefabs)
-        {
-            InitialPrefabLoader prefabLoader = _localLoadService.LocalLoad<InitialPrefabLoader>("Prefabs/PrefabLoader");
-            await prefabLoader.LoadPrefabs(_gs, _clientEntityService, _localLoadService, _globalRoot);
-        }
-        await clientInitializer.FinalInitialize(_gs.loc, GetGameToken());
-        _gs.loc.Resolve(this);
         return _gs;
     }
 
@@ -135,7 +139,7 @@ public class InitClient : BaseBehaviour, IInitClient
 #if UNITY_EDITOR
         EditorInstance = this;
 #endif
-        await InitialSetup(true);
+        await InitialSetup();
 
         string envName = _config.Config.Env.ToString();
 
@@ -145,22 +149,22 @@ public class InitClient : BaseBehaviour, IInitClient
         // Initial app appearance.
         _clientAppService.TargetFrameRate = 30;
         _dispatcher.AddListener<NewVersionResponse>(OnNewVersion, GetGameToken());
+        _dispatcher.AddListener<FullResetGame>(OnFullResetGame, GetGameToken());
 
-        while (!_assetService.IsInitialized())
+        while (!_assetService.IsInitialized() ||
+            !_screenService.IsInitialized())
         {
             await Awaitable.WaitForSecondsAsync(0.1f, GetGameToken());
         }
 
         _cursorService.SetCursor(CursorNames.Default);
 
-        await _gameDataService.LoadCachedSettings(_gs, false);
-
         await _screenService.OpenAsync(ScreenNames.Loading, null, GetGameToken());
 
         await _purchasingService.InitializeStores(GetToken());
 
-        _screenService.Open(ScreenNames.FloatingText);
-        _screenService.Open(ScreenNames.DynamicUI);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.FloatingText));
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.DynamicUI));
 
         if (!GameModeUtils.IsPureClientMode(_gs.GameMode))
         {
@@ -190,11 +194,6 @@ public class InitClient : BaseBehaviour, IInitClient
         }
     }
 
-    public CancellationToken GetGameToken()
-    {
-        return _gameTokenSource.Token;
-    }
-
     private async Awaitable DelayRemoveSplashScreen(CancellationToken token)
     {
         while (_screenService == null || _screenService.GetAllScreens().Count < 1)
@@ -210,19 +209,21 @@ public class InitClient : BaseBehaviour, IInitClient
         ShowSplashScreen("New Version Available", false);
     }
 
-    private IGlobalUpdater _globalUpdater;
-    public void SetGlobalUpdater(IGlobalUpdater updater)
+    protected override void OnDestroy()
     {
-        _globalUpdater = updater;
+        SpriteAtlasManager.atlasRequested -= DummyRequestAtlas;
+        SpriteAtlasManager.atlasRegistered -= DummyRegisterAtlas;
     }
 
-    private void Update()
+    private void DummyRequestAtlas(string tag, System.Action<SpriteAtlas> callback)
     {
-        _globalUpdater?.OnUpdate();
+
     }
 
-    private void LateUpdate()
+    private void DummyRegisterAtlas(SpriteAtlas callback)
     {
-        _globalUpdater?.OnLateUpdate();
+
     }
+
 }
+

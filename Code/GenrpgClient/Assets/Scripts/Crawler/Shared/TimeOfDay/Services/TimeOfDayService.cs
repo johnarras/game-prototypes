@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
@@ -126,7 +126,7 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
                 party.DaysPlayed++;
             }
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 if (member.StatusEffects.MatchAnyBits(-1))
                 {
@@ -209,3 +209,5 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
         }
     }
 }
+
+

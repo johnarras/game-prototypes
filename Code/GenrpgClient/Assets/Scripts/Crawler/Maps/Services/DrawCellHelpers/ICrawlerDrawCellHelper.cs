@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -14,3 +14,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
         Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int worldX, int worldZ, int mapX, int mapZ, CancellationToken token);
     }
 }
+
+

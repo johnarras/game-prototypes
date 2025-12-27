@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Movement.Messages
         [Key(2)] public int GridZ { get; set; }
     }
 }
+
+

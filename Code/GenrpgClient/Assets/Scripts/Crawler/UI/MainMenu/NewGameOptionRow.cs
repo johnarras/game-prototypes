@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Options.Settings;
+using Genrpg.Shared.Crawler.Options.Settings;
 
 namespace Assets.Scripts.Crawler.UI.MainMenu
 {
@@ -27,3 +27,5 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
 
     }
 }
+
+

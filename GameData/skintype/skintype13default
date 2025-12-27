@@ -1,0 +1,10 @@
+{
+  "Id": "skintype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Yak",
+  "Icon": "Yak",
+  "Art": "Yak",
+  "AnimalTypeId": 13,
+  "IsDefault": true
+}

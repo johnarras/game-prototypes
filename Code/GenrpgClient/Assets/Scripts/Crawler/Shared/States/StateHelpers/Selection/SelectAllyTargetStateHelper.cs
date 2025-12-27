@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
@@ -42,13 +42,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Cannot select ally without select action" };
             }
 
-            List<PartyMember> partyMembers = party.GetActiveParty();
+            List<PartyMember> partyMembers = party.ActiveParty;
 
             bool selectingCaster = false;
             ECrawlerStates nextAction = ECrawlerStates.SelectSpell;
             if (selectAction.Member == null)
             {
-                partyMembers = partyMembers.Where(x => !_combatService.IsDisabled(x)).ToList();
+                partyMembers = partyMembers.Where(x => !_combatService.IsDisabled(x)).OrderBy(x => x.PartySlot).ToList();
                 selectingCaster = true;
             }
             else
@@ -60,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < partyMembers.Count; m++)
             {
                 PartyMember partyMember = partyMembers[m];
-                char c = (char)(Key.A + m);
+                char c = (char)('A' + m);
 
                 Action clickAction = null;
 
@@ -93,3 +93,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
         }
     }
 }
+
+

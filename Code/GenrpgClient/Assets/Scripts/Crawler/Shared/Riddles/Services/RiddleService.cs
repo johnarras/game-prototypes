@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Options.Constants;
@@ -260,7 +260,7 @@ namespace Genrpg.Shared.Riddles.Services
 
             IReadOnlyList<RiddleType> riddleTypes = _gameData.Get<RiddleTypeSettings>(_gs.ch).GetData();
 
-            if (floors.Any(x => x.Level <= party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true)))
+            if (floors.FastAny(x => x.Level <= party.GetUpgradePointsLevel(UpgradeReasons.CompleteDungeon, true)))
             {
                 return;
             }
@@ -283,7 +283,7 @@ namespace Genrpg.Shared.Riddles.Services
 
                 CrawlerMap prevFloor = floors.FirstOrDefault(x => x.MapFloor == floorChosen - 1);
 
-                if (prevFloor == null || prevFloor.Details.Any(x => x.EntityTypeId == EntityTypes.Riddle))
+                if (prevFloor == null || prevFloor.Details.FastAny(x => x.EntityTypeId == EntityTypes.Riddle))
                 {
                     continue;
                 }
@@ -321,3 +321,4 @@ namespace Genrpg.Shared.Riddles.Services
 
     }
 }
+

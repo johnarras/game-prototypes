@@ -16,16 +16,15 @@ namespace Genrpg.Shared.Spells.Casting
         int Scale { get; set; }
     }
 
-    [MessagePackObject]
     public class OldSpellProc : IOldSpellProc
     {
-        [Key(0)] public int Chance { get; set; }
-        [Key(1)] public long SpellId { get; set; }
-        [Key(2)] public int Cooldown { get; set; }
-        [Key(3)] public long ProcTypeId { get; set; }
-        [Key(4)] public long FromElementTypeId { get; set; }
-        [Key(5)] public long FromSkillTypeId { get; set; }
-        [Key(6)] public int Scale { get; set; }
+        public int Chance { get; set; }
+        public long SpellId { get; set; }
+        public int Cooldown { get; set; }
+        public long ProcTypeId { get; set; }
+        public long FromElementTypeId { get; set; }
+        public long FromSkillTypeId { get; set; }
+        public int Scale { get; set; }
 
 
 
@@ -44,3 +43,5 @@ namespace Genrpg.Shared.Spells.Casting
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.AI.Services;
 using Genrpg.Shared.Core.Entities;
 using System;
@@ -34,3 +34,5 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
         public abstract bool UseStatScaling();
     }
 }
+
+

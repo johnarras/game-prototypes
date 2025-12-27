@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Entities.UI;
+using Assets.Scripts.Entities.UI;
 
 namespace Assets.Scripts.Trader.UI.Icons
 {
@@ -6,3 +6,5 @@ namespace Assets.Scripts.Trader.UI.Icons
     {
     }
 }
+
+

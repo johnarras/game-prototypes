@@ -2,5 +2,7 @@
   "Id": "screenname23default",
   "ParentId": "default",
   "IdKey": 23,
-  "Name": "Crawler"
+  "Name": "Crawler",
+  "ScreenLayerId": 10,
+  "Subdirectory": "CrawlerHUD"
 }

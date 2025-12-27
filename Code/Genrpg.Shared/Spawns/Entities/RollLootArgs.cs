@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Spawns.Entities
 {
-    // MessagePackIgnore  
     public class RollLootArgs
     {
         public long Level = 0;
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.Spawns.Entities
         public long EntityId = 0;
     }
 }
+
+

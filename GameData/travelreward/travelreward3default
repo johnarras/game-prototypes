@@ -1,0 +1,12 @@
+{
+  "Id": "travelreward3default",
+  "IdKey": 3,
+  "Name": "Mana",
+  "ParentId": "default",
+  "EntityTypeId": 200,
+  "EntityId": 3,
+  "MinQuantity": 1,
+  "MaxQuantity": 2,
+  "Weight": 1.0,
+  "GroupId": 1
+}

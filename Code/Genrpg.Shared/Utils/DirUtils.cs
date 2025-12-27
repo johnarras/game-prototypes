@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,3 +51,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

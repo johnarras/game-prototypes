@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 using System.Threading;
 
@@ -13,3 +13,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

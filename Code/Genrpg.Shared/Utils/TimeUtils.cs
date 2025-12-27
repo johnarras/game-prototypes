@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace Genrpg.Shared.Utils
 {
@@ -40,4 +40,6 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+
 

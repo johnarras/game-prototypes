@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using MessagePack;
 
 namespace Genrpg.Shared.Utils.Data
 {
     public class SmallIdDoubleCollection : BaseSmallIdQuantityCollection<double>
     {
+        public override double[] Data { get; set; } = new double[4];
         protected override double InternalAdd(double first, double second)
         {
             return first + second;
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

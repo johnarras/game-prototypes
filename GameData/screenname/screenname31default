@@ -2,5 +2,7 @@
   "Id": "screenname31default",
   "ParentId": "default",
   "IdKey": 31,
-  "Name": "LoadSave"
+  "Name": "LoadSave",
+  "ScreenLayerId": 30,
+  "Subdirectory": "CrawlerScreens"
 }

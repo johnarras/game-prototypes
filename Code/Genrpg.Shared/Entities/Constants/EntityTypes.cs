@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Entities.Constants
+namespace Genrpg.Shared.Entities.Constants
 {
     public class EntityTypes
     {
@@ -64,6 +64,7 @@
 
         public const long StoreRewards = 60;
         public const long ProductSku = 61;
+        public const long Skin = 62;
 
         // Crawler-specific entitytypes
         public const long CrawlerSpell = 100;
@@ -71,6 +72,7 @@
         public const long Map = 102;
         public const long Role = 103;
         public const long CrawlerCurrency = 104;
+
 
 
         public const long TimedEventCurrency = 149;
@@ -87,3 +89,5 @@
 
     }
 }
+
+

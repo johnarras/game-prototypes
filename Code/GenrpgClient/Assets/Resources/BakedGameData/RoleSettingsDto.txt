@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "role1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Warrior",
       "Desc": "Tough Fighter",
@@ -123,6 +120,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 134
         },
         {
@@ -195,8 +196,6 @@
       ]
     },
     {
-      "Id": "role2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Thief",
       "Desc": "Sneaky Fighter",
@@ -307,6 +306,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 135
         },
         {
@@ -379,8 +382,6 @@
       ]
     },
     {
-      "Id": "role3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Hunter",
       "Desc": "Ranged Combat",
@@ -491,6 +492,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 130
         },
         {
@@ -555,8 +560,6 @@
       ]
     },
     {
-      "Id": "role4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Mage",
       "Desc": "Spell Damage",
@@ -663,6 +666,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 141
         },
         {
@@ -755,8 +762,6 @@
       ]
     },
     {
-      "Id": "role5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Cleric",
       "Desc": "Healing",
@@ -859,6 +864,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 133
         },
         {
@@ -935,8 +944,6 @@
       ]
     },
     {
-      "Id": "role6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Engineer",
       "Desc": "Hybrid ",
@@ -1076,6 +1083,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 131
         },
         {
@@ -1162,8 +1173,6 @@
       ]
     },
     {
-      "Id": "role7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Bard",
       "Desc": "Hybrid Spell",
@@ -1282,6 +1291,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 142
         },
         {
@@ -1368,8 +1381,6 @@
       ]
     },
     {
-      "Id": "role8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Druid",
       "Desc": "Full Hybrid",
@@ -1509,6 +1520,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 138
         },
         {
@@ -1599,8 +1614,6 @@
       ]
     },
     {
-      "Id": "role9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Barbarian",
       "Desc": "Big Melee Dam",
@@ -1724,6 +1737,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 140
         },
         {
@@ -1792,8 +1809,6 @@
       ]
     },
     {
-      "Id": "role10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Paladin",
       "Desc": "Tanky Heals",
@@ -1897,6 +1912,10 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 139
         },
         {
@@ -1971,8 +1990,6 @@
       ]
     },
     {
-      "Id": "role11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Elementalist",
       "Desc": "Spell Dam and Heals",
@@ -2076,6 +2093,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 90
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 92
         },
         {
           "EntityTypeId": 100,
@@ -2191,8 +2212,6 @@
       ]
     },
     {
-      "Id": "role12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Necromancer",
       "Desc": "Undead Summons",
@@ -2280,6 +2299,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 90
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 93
         },
         {
           "EntityTypeId": 100,
@@ -2400,8 +2423,6 @@
       ]
     },
     {
-      "Id": "role100default",
-      "ParentId": "default",
       "IdKey": 100,
       "Name": "Human",
       "Desc": "Normal people",
@@ -2422,8 +2443,6 @@
       ]
     },
     {
-      "Id": "role101default",
-      "ParentId": "default",
       "IdKey": 101,
       "Name": "Elf",
       "Desc": "Slightly more Ranged",
@@ -2449,8 +2468,6 @@
       ]
     },
     {
-      "Id": "role102default",
-      "ParentId": "default",
       "IdKey": 102,
       "Name": "Dwarf",
       "Desc": "More health",
@@ -2472,8 +2489,6 @@
       ]
     },
     {
-      "Id": "role103default",
-      "ParentId": "default",
       "IdKey": 103,
       "Name": "Half-Orc",
       "Desc": "More Melee",
@@ -2499,8 +2514,6 @@
       ]
     },
     {
-      "Id": "role104default",
-      "ParentId": "default",
       "IdKey": 104,
       "Name": "Gnome",
       "Desc": "More Spell Dam",
@@ -2526,8 +2539,6 @@
       ]
     },
     {
-      "Id": "role105default",
-      "ParentId": "default",
       "IdKey": 105,
       "Name": "Halfling",
       "Desc": "More Crit",
@@ -2556,8 +2567,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "RoleSettings",
-    "SaveTime": "2025-10-27T23:25:19.168Z"
+    "Name": "RoleSettings"
   },
-  "SaveTime": "2025-10-27T23:25:19.168Z"
+  "Id": "default",
+  "SaveTime": "2025-12-14T01:45:07.052Z"
 }

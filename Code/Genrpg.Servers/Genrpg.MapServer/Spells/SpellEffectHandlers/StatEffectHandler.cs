@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Messages;
@@ -65,3 +65,5 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
         }
     }
 }
+
+

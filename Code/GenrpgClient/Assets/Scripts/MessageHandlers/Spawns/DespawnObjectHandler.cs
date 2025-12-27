@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.MapObjects.Messages;
 using System.Threading;
 
@@ -12,3 +12,5 @@ namespace Assets.Scripts.MessageHandlers.Spawns
         }
     }
 }
+
+

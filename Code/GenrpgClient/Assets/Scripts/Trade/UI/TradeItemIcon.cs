@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.PlayerData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,3 +18,5 @@ namespace Assets.Scripts.UI.Trade
         }
     }
 }
+
+

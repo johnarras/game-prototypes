@@ -1,0 +1,50 @@
+{
+  "Children": [
+    {
+      "IdKey": 10,
+      "Name": "HUD",
+      "SkipInAllScreensList": true
+    },
+    {
+      "IdKey": 20,
+      "Name": "Screens"
+    },
+    {
+      "IdKey": 30,
+      "Name": "Popups"
+    },
+    {
+      "IdKey": 40,
+      "Name": "Overlays"
+    },
+    {
+      "IdKey": 50,
+      "Name": "DynamicUI",
+      "SkipInAllScreensList": true
+    },
+    {
+      "IdKey": 60,
+      "Name": "FloatingText",
+      "SkipInAllScreensList": true
+    },
+    {
+      "IdKey": 70,
+      "Name": "DragItems",
+      "SkipInAllScreensList": true
+    },
+    {
+      "IdKey": 80,
+      "Name": "Blocker"
+    },
+    {
+      "IdKey": 90,
+      "Name": "Loading"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "ScreenLayerSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2025-12-08T19:17:22.902Z"
+}

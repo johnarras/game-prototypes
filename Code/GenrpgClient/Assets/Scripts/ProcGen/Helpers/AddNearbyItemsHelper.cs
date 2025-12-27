@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Entities;
@@ -216,3 +216,5 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
         return nearbyItemsCount;
     }
 }
+
+

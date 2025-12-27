@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
@@ -179,3 +179,5 @@ namespace Genrpg.MapServer.MapMessaging.Entities
         }
     }
 }
+
+

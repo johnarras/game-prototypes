@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
 using System;
 using System.Threading;
@@ -9,3 +9,5 @@ public interface IClientMapMessageHandler : ISetupDictionaryItem<Type>
     // Unity actions.
     void Process(IMapApiMessage msg, CancellationToken token);
 }
+
+

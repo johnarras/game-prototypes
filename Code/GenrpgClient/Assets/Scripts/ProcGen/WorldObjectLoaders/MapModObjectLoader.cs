@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.GroundObjects;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
@@ -41,6 +41,8 @@ public class MapModObjectLoader : BaseMapObjectLoader
         go.transform.position += new Vector3(0, 1, 0);
     }
 }
+
+
 
 
 

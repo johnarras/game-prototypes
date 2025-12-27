@@ -4,19 +4,20 @@ using System;
 
 namespace Genrpg.Shared.Accounts.WebApi.Signup
 {
-    [MessagePackObject]
     public class AccountSignupRequest : IAccountAuthRequest
     {
-        [Key(0)] public string Email { get; set; }
-        [Key(1)] public string Password { get; set; }
-        [Key(2)] public string Name { get; set; }
-        [Key(3)] public string ShareId { get; set; }
-        [Key(4)] public string ReferrerId { get; set; }
-        [Key(5)] public long ProductId { get; set; }
-        [Key(6)] public string ClientVersion { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public string ShareId { get; set; }
+        public string ReferrerId { get; set; }
+        public long ProductId { get; set; }
+        public string ClientVersion { get; set; }
 
-        [Key(7)] public string DeviceId { get; set; }
+        public string DeviceId { get; set; }
 
-        [Key(8)] public DateTime ClientGameDataSaveTime { get; set; }
+        public DateTime ClientGameDataSaveTime { get; set; }
     }
 }
+
+

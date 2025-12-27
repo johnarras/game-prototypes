@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
@@ -283,3 +283,5 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
     }
 }
+
+

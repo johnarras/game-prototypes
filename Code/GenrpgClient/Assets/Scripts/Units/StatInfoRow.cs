@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.UI.WorldUI;
+using Assets.Scripts.Crawler.UI.WorldUI;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using Genrpg.Shared.Units.Entities;
@@ -98,3 +98,4 @@ public class StatInfoRow : RolloverInfoRow
 
 
 }
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Charms.Constants;
+using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Services;
 using Genrpg.Shared.Interfaces;
@@ -53,3 +53,5 @@ namespace Assets.Scripts.UI.Charms
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Client.Assets.Constants
+namespace Genrpg.Shared.Client.Assets.Constants
 {
     public class AtlasNames
     {
@@ -11,3 +11,5 @@
         public const string CrawlerCombat = "CrawlerCombat";
     }
 }
+
+

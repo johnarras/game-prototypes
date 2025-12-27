@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "scalingtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Cloth Armor",
       "Desc": "",
@@ -25,8 +22,6 @@
       "MainStatTypeId": 12
     },
     {
-      "Id": "scalingtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Leather Armor",
       "Desc": "",
@@ -48,8 +43,6 @@
       "MainStatTypeId": 14
     },
     {
-      "Id": "scalingtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Wood Armor",
       "Desc": "",
@@ -72,8 +65,6 @@
       "MainStatTypeId": 13
     },
     {
-      "Id": "scalingtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Metal Armor",
       "Desc": "",
@@ -98,8 +89,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "ScalingTypeSettings",
-    "SaveTime": "2025-08-23T21:13:45.952Z"
+    "Name": "ScalingTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-08-23T21:13:45.952Z"
 }

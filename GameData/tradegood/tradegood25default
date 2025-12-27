@@ -97,6 +97,21 @@
       2016
     ]
   },
-  "ProducerCities": [],
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  "ProducerCities": [
+    {
+      "CityId": 3
+    },
+    {
+      "CityId": 4
+    },
+    {
+      "CityId": 8
+    },
+    {
+      "CityId": 38
+    },
+    {
+      "CityId": 49
+    }
+  ]
 }

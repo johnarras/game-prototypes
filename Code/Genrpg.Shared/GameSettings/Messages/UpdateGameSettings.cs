@@ -8,3 +8,5 @@ namespace Genrpg.Shared.GameSettings.Messages
     {
     }
 }
+
+

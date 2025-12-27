@@ -1,11 +1,9 @@
-﻿
+
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Setup.Constants;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -15,7 +13,15 @@ using UnityEngine;
 
 namespace Assets.Scripts.Repository
 {
-    public class ClientRepositoryService : IRepositoryService
+
+    public interface IClientRepositoryService : IRepositoryService
+    {
+        Task<bool> StringSave<T>(string id, string data) where T : class, IStringId;
+        Task<T> LoadObjectFromString<T>(string id) where T : class, IStringId;
+        Task<object> LoadWithType(Type t, string id);
+    }
+
+    public class ClientRepositoryService : IClientRepositoryService
     {
         private ILogService _logService = null;
         private IClientAppService _clientAppService = null;
@@ -64,27 +70,18 @@ namespace Assets.Scripts.Repository
             Save(t).Wait();
         }
 
-        public async Task<bool> Save<T>(T t, bool verbose = false) where T : class, IStringId
+        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : class, IStringId
         {
             try
             {
                 IClientRepositoryCollection repo = GetRepositoryFromType(t.GetType());
-                return await repo.Save(t, verbose);
+                return await repo.Save(t, args);
             }
             catch (Exception e)
             {
                 Debug.Log("EXC: " + e.Message + " " + e.StackTrace);
             }
             return false;
-        }
-
-        public async Task<bool> SaveAll<T>(List<T> list) where T : class, IStringId
-        {
-            foreach (T t in list)
-            {
-                await Save(t);
-            }
-            return true;
         }
 
         public async Task<bool> StringSave<T>(string id, string data) where T : class, IStringId
@@ -99,31 +96,10 @@ namespace Assets.Scripts.Repository
             return await repo.LoadObjectFromString(id);
         }
 
-        public async Task<List<T>> LoadAll<T>(List<string> ids) where T : class, IStringId
-        {
-            ClientRepositoryCollection<T> repo = GetRepository<T>();
-            return await repo.LoadAll(ids);
-        }
-
         public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity = 1000, int skip = 0) where T : class, IStringId
         {
             ClientRepositoryCollection<T> repo = GetRepository<T>();
             return await repo.Search(func);
-        }
-
-        public Task CreateIndex<T>(CreateIndexData data) where T : class, IStringId
-        {
-            return Task.CompletedTask;
-        }
-
-        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId
-        {
-            return await SaveAll(list);
-        }
-
-        public void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, IStringId
-        {
-            SaveAll(list).Wait();
         }
 
         private Dictionary<Type, object> _repoCache = new Dictionary<Type, object>();
@@ -154,46 +130,7 @@ namespace Assets.Scripts.Repository
             return false;
         }
 
-        // Don't allow this on the client
-        public async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
-        {
-            T doc = await Load<T>(docId);
-
-            if (doc != null)
-            {
-                foreach (string key in fieldNameUpdates.Keys)
-                {
-                    EntityUtils.SetObjectValue(doc, key, fieldNameUpdates[key]);
-                }
-
-                return await Save(doc);
-            }
-
-            await Task.CompletedTask;
-            return false;
-        }
-        public void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
-        {
-            UpdateDict<T>(docId, fieldNameUpdates).Wait();
-        }
-
-        public async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
-        {
-            T doc = await Load<T>(docId);
-
-            if (doc != null)
-            {
-                action(doc);
-                return await Save(doc);
-            }
-
-            await Task.CompletedTask;
-            return false;
-        }
-
-        public void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
-        {
-            UpdateAction<T>(docId, action).Wait();
-        }
     }
 }
+
+

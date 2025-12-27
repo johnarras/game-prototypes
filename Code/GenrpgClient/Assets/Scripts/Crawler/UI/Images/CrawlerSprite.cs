@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 
 namespace Assets.Scripts.Crawler.UI.Images
@@ -53,3 +53,5 @@ namespace Assets.Scripts.Crawler.UI.Images
         }
     }
 }
+
+

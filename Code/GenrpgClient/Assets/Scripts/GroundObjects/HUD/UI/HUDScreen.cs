@@ -1,29 +1,28 @@
-﻿
+
+using Assets.Scripts.Resets.ClientEvents;
 using Assets.Scripts.UI;
-using Genrpg.Shared.Client.Core;
 using System.Threading;
 using System.Threading.Tasks;
 using UI;
-using UnityEngine;
 
 public class HUDScreen : BaseScreen
 {
 
     public ZoneUI _zoneUI;
 
-    
+
     public MinimapUI _minimap;
 
-    
+
     public UnitFrameContainer _unitFrame;
 
-    
+
     public NetworkStatusUI _networkStatus;
 
-    
+
     public ActionBars _actionBars;
 
-    
+
     public ChatWindow _chatWindow;
 
     public GButton ResetButton;
@@ -36,13 +35,15 @@ public class HUDScreen : BaseScreen
         _networkStatus?.Init(token);
         _actionBars?.Init(token);
 
-        _uiService.SetButton(ResetButton, GetType().Name, OnClickReset);
+        _uiService.SetButton(ResetButton, name, OnClickReset);
 
         await Task.CompletedTask;
     }
 
     private void OnClickReset()
     {
-        _initClient.FullResetGame();
+        _dispatcher.Dispatch(new FullResetGame());
     }
 }
+
+

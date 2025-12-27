@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 
 public class EntityTypeWithIdUI : BaseBehaviour
@@ -8,3 +8,5 @@ public class EntityTypeWithIdUI : BaseBehaviour
     [HideInInspector]
     public int EntityId;
 }
+
+

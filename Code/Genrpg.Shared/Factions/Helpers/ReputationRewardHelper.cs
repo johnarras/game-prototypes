@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.PlayerData;
 using Genrpg.Shared.Rewards.Helpers;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Factions.Helpers
         public override long HelperKey => EntityTypes.Reputation;
     }
 }
+
+

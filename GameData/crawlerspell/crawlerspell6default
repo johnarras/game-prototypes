@@ -10,6 +10,5 @@
   "TargetTypeId": 9,
   "RoleScalingTypeId": 6,
   "RoleScalingTier": 3,
-  "Effects": [],
-  "SaveTime": "2025-10-27T23:25:19.168Z"
+  "Effects": []
 }

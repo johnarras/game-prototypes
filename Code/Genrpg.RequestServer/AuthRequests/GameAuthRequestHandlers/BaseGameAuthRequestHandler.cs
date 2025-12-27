@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.Accounts.Services;
@@ -8,9 +8,8 @@ using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages.Error;
 
@@ -22,10 +21,10 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
         protected IPlayerDataService _playerDataService = null!;
         protected ILoginPlayerDataService _loginPlayerDataService = null!;
         protected ILogService _logService = null!;
-        protected IServerRepositoryService _serverRepoService = null!;
+        protected IFullRepositoryService _serverRepoService = null!;
         protected IServerConfig _config = null!;
         protected IWebServerService _loginServerService = null!;
-        protected IGameDataService _gameDataService = null!;
+        protected IServerGameDataService _gameDataService = null!;
         protected ICloudCommsService _cloudCommsService = null!;
         protected IWebServerService _webServerService = null!;
         protected IAccountService _accountService = null!;
@@ -44,12 +43,21 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
         public async Task Execute(WebContext context, IGameAuthRequest request, CancellationToken token)
         {
-            await HandleRequestInternal(context, (TRequest)request, token);
+            try
+            {
+                await HandleRequestInternal(context, (TRequest)request, token);
+            }
+            catch (Exception ex)
+            {
+                _logService.Exception(ex, "GameAuth.Execute");
+            }
         }
         protected void ShowError(WebContext context, string msg)
         {
-            context.Responses.AddResponse(new ErrorResponse() { Error = msg });
+            context.AddResponse(new ErrorResponse() { Error = msg });
         }
 
     }
 }
+
+

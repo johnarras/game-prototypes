@@ -1,10 +1,10 @@
-﻿
+
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.PlayerSearch;
 using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
 using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.UI.Constants;
@@ -27,14 +27,13 @@ public class CharacterSelectScreen : ErrorMessageScreen
     public GButton CrawlerButton;
     public GText ErrorText;
 
-    protected IZoneGenService _zoneGenService;
-    protected IClientAuthService _loginService;
-    protected INoiseService _noiseService;
-    protected IInputService _inputService;
-    protected IPlayerSearchService _playerSearchService;
-    private IClientConfigContainer _configContainer;
-    private IClientAppService _clientAppService;
-    private ICrawlerService _crawlerService;
+    protected IZoneGenService _zoneGenService = null;
+    protected IClientAuthService _loginService = null;
+    protected INoiseService _noiseService = null;
+    protected IInputService _inputService = null;
+    protected IPlayerSearchService _playerSearchService = null;
+    private IClientConfigContainer _configContainer = null;
+    private IClientAppService _clientAppService = null;
 
     public const string CharacterRowArt = "CharacterSelectRow";
 
@@ -119,8 +118,8 @@ public class CharacterSelectScreen : ErrorMessageScreen
 
     private void ClickCharacterCreate()
     {
-        _screenService.Open(ScreenNames.CharacterCreate);
-        _screenService.Close(ScreenNames.CharacterSelect);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterCreate));
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.CharacterSelect));
 
     }
 
@@ -190,4 +189,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     }
 
 }
+
+
 

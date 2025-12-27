@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Networking.Constants
         MessagePack = 2,
     }
 }
+
+

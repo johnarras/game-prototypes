@@ -1,20 +1,21 @@
-﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
+using System.Text;
 
 namespace Genrpg.RequestServer.Services.GameClient
 {
     public class GameClientWebService : IGameClientWebService
     {
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
         private IHourlyUpdateService _hourlyUpdateService = null;
@@ -39,7 +40,7 @@ namespace Genrpg.RequestServer.Services.GameClient
 
                 List<IWebResponse> errors = new List<IWebResponse>();
 
-                foreach (IWebResponse response in context.Responses.GetResponses())
+                foreach (IWebResponse response in context.GetResponseList())
                 {
                     if (response is ErrorResponse error)
                     {
@@ -49,16 +50,22 @@ namespace Genrpg.RequestServer.Services.GameClient
 
                 if (errors.Count > 0)
                 {
-                    context.Responses.Clear();
-                    context.Responses.AddRange(errors);
+                    context.ClearResponses();
+                    context.AddResponseRange(errors);
                     return;
                 }
 
-                await context.SaveAll();
+                await context.SaveAllOneTime();
             }
             catch (Exception e)
             {
-                string errorMessage = "HandleLoginCommand." + commandSet.Requests.Select(x => x.GetType().Name + " ").ToList();
+                StringBuilder sb = new StringBuilder();
+                foreach (IWebRequest req in commandSet.Requests)
+                {
+                    sb.Append(req.GetType().Name + " ");
+                }
+                sb.Append(" Exception: " + e.Message + "\n" + e.StackTrace);
+                string errorMessage = "HandleUserClient." + sb.ToString();
                 _logService.Exception(e, errorMessage);
                 context.ShowError(errorMessage);
             }
@@ -76,11 +83,13 @@ namespace Genrpg.RequestServer.Services.GameClient
             }
 
             context.user = await context.GetAsync<CoreUserData>();
-            _gameDataService.GetClientSettings(context.Responses, context.user, false);
-            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context);
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, false));
+            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, false);
 
             return;
         }
 
     }
 }
+
+

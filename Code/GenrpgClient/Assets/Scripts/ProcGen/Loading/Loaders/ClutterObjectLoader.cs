@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Clutter;
 using Genrpg.Shared.Utils;
@@ -88,3 +88,5 @@ public class ClutterObjectLoader : BaseObjectLoader
         }
     }
 }
+
+

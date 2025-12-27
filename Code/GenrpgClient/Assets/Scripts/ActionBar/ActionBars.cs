@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.Input;
+using Assets.Scripts.Input;
 using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.SpellCrafting.Messages;
@@ -22,7 +21,6 @@ internal class ActionButtonDownload
 
 public class ActionBars : SpellIconScreen
 {
-    private IRepositoryService _repoService = null!;
     private IKeyboardService _keyboardService = null;
 
     public const string ActionButtonPrefab = "ActionButton";
@@ -322,7 +320,7 @@ public class ActionBars : SpellIconScreen
         ActionButton button = _buttons[actionIndex];
 
         ActionInputData actionInputs = _gs.ch.Get<ActionInputData>();
-        actionInputs.SetInput(actionIndex, spellTypeId, _repoService);
+        actionInputs.SetInput(actionIndex, spellTypeId);
         if (button == null || button.GetInitData() == null)
         {
             return;
@@ -340,3 +338,4 @@ public class ActionBars : SpellIconScreen
         }
     }
 }
+

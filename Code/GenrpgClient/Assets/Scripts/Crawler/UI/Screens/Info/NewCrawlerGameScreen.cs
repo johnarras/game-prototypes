@@ -1,8 +1,4 @@
-﻿using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Assets.Scripts.UI.ScreenSystem;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
@@ -12,7 +8,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
     public class NewCrawlerGameScreen : BaseScreen, IPointerDownHandler
     {
 
-        private IInputService _inputService;
+        private IInputService _inputService = null;
         public GText Text;
 
         public int FramesBetweenNewLetter = 5;
@@ -47,3 +43,5 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         }
     }
 }
+
+

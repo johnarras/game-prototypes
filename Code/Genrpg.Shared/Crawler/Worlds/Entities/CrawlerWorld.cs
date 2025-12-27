@@ -7,22 +7,21 @@ using System.Linq;
 namespace Genrpg.Shared.Crawler.Worlds.Entities
 {
 
-    [MessagePackObject]
     public class CrawlerWorld : IStringId, IIdName
     {
-        [Key(0)] public string Id { get; set; }
-        [Key(1)] public long IdKey { get; set; }
-        [Key(2)] public string Name { get; set; }
+        public string Id { get; set; }
+        public long IdKey { get; set; }
+        public string Name { get; set; }
 
-        [Key(3)] public List<CrawlerMap> Maps { get; set; } = new List<CrawlerMap>();
+        public List<CrawlerMap> Maps { get; set; } = new List<CrawlerMap>();
 
-        [Key(4)] public List<WorldQuestItem> QuestItems { get; set; } = new List<WorldQuestItem>();
+        public List<WorldQuestItem> QuestItems { get; set; } = new List<WorldQuestItem>();
 
-        [Key(5)] public long Seed { get; set; }
+        public long Seed { get; set; }
 
-        [Key(6)] public List<CrawlerNpc> Npcs { get; set; } = new List<CrawlerNpc>();
+        public List<CrawlerNpc> Npcs { get; set; } = new List<CrawlerNpc>();
 
-        [Key(7)] public List<CrawlerQuest> Quests { get; set; } = new List<CrawlerQuest>();
+        public List<CrawlerQuest> Quests { get; set; } = new List<CrawlerQuest>();
 
 
         public void ClearCache()
@@ -137,3 +136,5 @@ namespace Genrpg.Shared.Crawler.Worlds.Entities
         }
     }
 }
+
+

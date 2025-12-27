@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Ftue.Messages
         [Key(0)] public long FtueStepId { get; set; }
     }
 }
+
+

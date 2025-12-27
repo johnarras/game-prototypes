@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.DataStores.Interfaces;
@@ -37,3 +37,5 @@ namespace Genrpg.Shared.Units.Mappers
         [IgnoreMember] public virtual Type HelperKey => typeof(TPlayerData);
     }
 }
+
+

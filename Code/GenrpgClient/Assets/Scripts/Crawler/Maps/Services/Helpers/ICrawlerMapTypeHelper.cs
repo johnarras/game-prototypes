@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Maps.GameObjects;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 
     }
 }
+
+

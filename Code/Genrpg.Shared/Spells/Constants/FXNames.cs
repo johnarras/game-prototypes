@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Spells.Constants
 {
-    [MessagePackObject]
     public class FXNames
     {
         public const string Cast = "Cast";
@@ -15,3 +14,5 @@ namespace Genrpg.Shared.Spells.Constants
         public const string Channel = "Channel";
     }
 }
+
+

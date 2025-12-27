@@ -2,5 +2,7 @@
   "Id": "screenname15default",
   "ParentId": "default",
   "IdKey": 15,
-  "Name": "Vendor"
+  "Name": "Vendor",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Items"
 }

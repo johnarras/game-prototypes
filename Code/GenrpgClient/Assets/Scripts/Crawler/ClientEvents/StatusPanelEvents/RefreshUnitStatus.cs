@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Monsters.Entities;
+using Genrpg.Shared.Crawler.Monsters.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,3 +13,5 @@ namespace Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents
         public long ElementTypeId { get; set; }
     }
 }
+
+

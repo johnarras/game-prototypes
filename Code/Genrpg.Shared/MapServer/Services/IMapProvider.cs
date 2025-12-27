@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Spawns.WorldData;
 using System;
@@ -17,3 +17,5 @@ namespace Genrpg.Shared.MapServer.Services
 
     }
 }
+
+

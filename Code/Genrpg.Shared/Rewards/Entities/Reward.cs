@@ -26,3 +26,5 @@ namespace Genrpg.Shared.Rewards.Entities
         [Key(5)] public Item ExtraData { get; set; }
     }
 }
+
+

@@ -1,4 +1,5 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.DataStores.Constants;
 using MessagePack;
 using System;
@@ -6,7 +7,7 @@ using System;
 namespace Genrpg.Shared.Core.PlayerData
 {
     [MessagePackObject]
-    public class GameAccount : NoChildPlayerData
+    public class GameAccount : NoChildIndexedUserData, IUserData
     {
         /// <summary>
         /// Used for the id found in the relational database
@@ -22,3 +23,5 @@ namespace Genrpg.Shared.Core.PlayerData
         [Key(7)] public string ClientPlatformName { get; set; }
     }
 }
+
+

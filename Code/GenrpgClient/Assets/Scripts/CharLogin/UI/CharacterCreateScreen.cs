@@ -1,4 +1,6 @@
-﻿
+
+using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Characters.WebApi.CreateChar;
 using Genrpg.Shared.UI.Constants;
 using System.Threading;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 public class CharacterCreateScreen : BaseScreen
 {
-    private IClientWebService _webNetworkService;
+    private IClientWebService _webNetworkService = null;
 
     public GInputField NameInput;
     public GButton CreateButton;
@@ -22,8 +24,8 @@ public class CharacterCreateScreen : BaseScreen
 
     public void ClickBack()
     {
-        _screenService.Open(ScreenNames.CharacterSelect);
-        _screenService.Close(ScreenNames.CharacterCreate);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.CharacterCreate));
     }
     public void ClickCreate()
     {
@@ -43,4 +45,6 @@ public class CharacterCreateScreen : BaseScreen
 
     }
 }
+
+
 

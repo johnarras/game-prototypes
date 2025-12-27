@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Constants;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,3 +49,5 @@ namespace Genrpg.Shared.Crawler.States.Entities
 
     }
 }
+
+

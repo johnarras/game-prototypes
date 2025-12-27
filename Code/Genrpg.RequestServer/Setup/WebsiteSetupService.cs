@@ -1,4 +1,4 @@
-﻿
+
 
 using Genrpg.ServerShared.Setup;
 
@@ -8,3 +8,5 @@ namespace Genrpg.RequestServer.Setup
     {
     }
 }
+
+

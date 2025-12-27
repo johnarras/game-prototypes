@@ -1,9 +1,6 @@
 {
-  "Id": "abtest",
   "Children": [
     {
-      "Id": "currencytype2abtest",
-      "ParentId": "abtest",
       "IdKey": 2,
       "Name": "Money",
       "PluralName": "",
@@ -12,64 +9,48 @@
       "Art": "updated tuning"
     },
     {
-      "Id": "currencytype3abtest",
-      "ParentId": "abtest",
       "IdKey": 3,
       "Name": "Exp",
       "Icon": "IconStarGold"
     },
     {
-      "Id": "currencytype4abtest",
-      "ParentId": "abtest",
       "IdKey": 4,
       "Name": "Ability",
       "Art": "new text blah"
     },
     {
-      "Id": "currencytype101abtest",
-      "ParentId": "abtest",
       "IdKey": 101,
       "Name": "Alignment Tokens"
     },
     {
-      "Id": "currencytype102abtest",
-      "ParentId": "abtest",
       "IdKey": 102,
       "Name": "Race Tokens",
       "Art": "aaa"
     },
     {
-      "Id": "currencytype103abtest",
-      "ParentId": "abtest",
       "IdKey": 103,
       "Name": "Religion Tokens",
       "Icon": "IconCross",
       "Art": "bbb"
     },
     {
-      "Id": "currencytype104abtest",
-      "ParentId": "abtest",
       "IdKey": 104,
       "Name": "Job Tokens",
       "Icon": "IconHammer"
     },
     {
-      "Id": "currencytype106abtest",
-      "ParentId": "abtest",
       "IdKey": 106,
       "Name": "Monster Tokens"
     },
     {
-      "Id": "currencytype107abtest",
-      "ParentId": "abtest",
       "IdKey": 107,
       "Name": "Player Tokens"
     }
   ],
   "Parent": {
     "Id": "abtest",
-    "Name": "CurrencySettings",
-    "SaveTime": "2025-12-02T21:51:19.282Z"
+    "Name": "CurrencySettings"
   },
+  "Id": "abtest",
   "SaveTime": "2025-12-02T21:51:19.282Z"
 }

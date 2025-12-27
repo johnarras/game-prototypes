@@ -1,4 +1,3 @@
-﻿
 using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Accounts.Constants;
 using Genrpg.Shared.Accounts.PlayerData;
@@ -16,30 +15,30 @@ namespace Genrpg.ServerShared.Accounts.Services
     public class AccountService : IAccountService
     {
 
-        private IServerRepositoryService _serverRepositoryService = null;
+        private IFullRepositoryService _serverRepositoryService = null;
         private ITaskService _taskService = null;
 
         public async Task Initialize(CancellationToken token)
         {
             List<Task> tasks = new List<Task>();
-            CreateIndexData data = new CreateIndexData();
+            CreateIndexData data = new CreateIndexData(typeof(Account));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerShareId), Unique = true });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerEmail), Unique = true });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerName) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.ReferrerAccountId) });
-            tasks.Add(_serverRepositoryService.CreateIndex<Account>(data));
+            tasks.Add(_serverRepositoryService.CreateIndexes(data));
 
-            data = new CreateIndexData();
+            data = new CreateIndexData(typeof(AccountConnection));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.AccountId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.Index) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.ProductId) });
-            tasks.Add(_serverRepositoryService.CreateIndex<AccountConnection>(data));
+            tasks.Add(_serverRepositoryService.CreateIndexes(data));
 
-            data = new CreateIndexData();
+            data = new CreateIndexData(typeof(ConnectionCount));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.AccountId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.Index) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.ProductId) });
-            tasks.Add(_serverRepositoryService.CreateIndex<ConnectionCount>(data));
+            tasks.Add(_serverRepositoryService.CreateIndexes(data));
 
             await Task.WhenAll(tasks);
 
@@ -247,9 +246,11 @@ namespace Genrpg.ServerShared.Accounts.Services
             MyRandom random = new MyRandom(increment.AccountId);
 
             long newAccountId = random.Next() + AccountConstants.IdStartVal;
-
-            string newId = HashUtils.GetIdFromVal(newAccountId); // Feel free to use a GUID or something...I just think it's neat I can autoincrement in nosql. :)
+            // Feel free to use a GUID or something...I just think it's neat I can autoincrement in mongo. :)
+            string newId = HashUtils.GetIdFromVal(newAccountId);
             return newId;
         }
     }
 }
+
+

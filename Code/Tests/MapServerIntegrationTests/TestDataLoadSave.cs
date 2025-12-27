@@ -1,11 +1,11 @@
-﻿using Genrpg.MapServer.MainServer;
+using Genrpg.MapServer.MainServer;
 using Genrpg.ServerShared.Core;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Settings;
-using Genrpg.Shared.Settings.Settings;
+using Genrpg.Shared.SettingsNames.Settings;
 
 namespace Tests.MapServerTests
 {
@@ -15,7 +15,7 @@ namespace Tests.MapServerTests
         const string serverName = "mapservertests";
 
 
-        private IGameDataService _gameDataService = null!;
+        private IServerGameDataService _gameDataService = null!;
         private IGameData _gameData = null!;
 
         [TestMethod]
@@ -83,3 +83,4 @@ namespace Tests.MapServerTests
         }
     }
 }
+

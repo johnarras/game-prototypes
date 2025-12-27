@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawlerspell1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Attack",
       "Desc": "Melee attack one or more enemies.",
@@ -24,8 +21,6 @@
       "Flags": 1
     },
     {
-      "Id": "crawlerspell2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Defend",
       "Desc": "Take half damage this turn if you get hit.",
@@ -39,8 +34,6 @@
       "Flags": 1
     },
     {
-      "Id": "crawlerspell3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Shoot",
       "Desc": "Attack one or more enemies that are out of melee range.",
@@ -62,8 +55,6 @@
       "Flags": 1
     },
     {
-      "Id": "crawlerspell4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Whirlwind",
       "Desc": "Hit one or more enemies in all groups within melee range.",
@@ -84,8 +75,6 @@
       ]
     },
     {
-      "Id": "crawlerspell5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Volley",
       "Desc": "Hit one or more enemies in all groups with ranged damage.",
@@ -107,8 +96,6 @@
       ]
     },
     {
-      "Id": "crawlerspell6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Hide",
       "Desc": "Meld into the shadows to allow next single target ability to crit.",
@@ -121,8 +108,6 @@
       "Effects": []
     },
     {
-      "Id": "crawlerspell7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Charge",
       "Desc": "Passive buff to move the party forward more when advancing.",
@@ -144,8 +129,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Heal Wounds",
       "Desc": "Heal the wounds of an ally.",
@@ -169,8 +152,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Heal Party",
       "Desc": "Heal the wounds of all allies.",
@@ -194,8 +175,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Cure",
       "Desc": "Cure a single ally",
@@ -219,8 +198,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Cure Party",
       "Desc": "Cure all party members",
@@ -244,8 +221,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Town Portal",
       "Desc": "Teleport to a town on the overworld map.",
@@ -267,8 +242,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Pass Wall",
       "Desc": "Pass through a wall in front of you if the square behind it exists.",
@@ -290,8 +263,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Identify Item",
       "Desc": "Find out the stats an item has.",
@@ -313,8 +284,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "Jump",
       "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
@@ -336,8 +305,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "Teleport",
       "Desc": "Move to a different location in the current map.",
@@ -359,8 +326,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "Beacon",
       "Desc": "Set a beacon or return to a location.",
@@ -382,8 +347,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "Identify Monster",
       "Desc": "Get some information about a monster.",
@@ -403,8 +366,6 @@
       ]
     },
     {
-      "Id": "crawlerspell38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "Pick Lock",
       "Desc": "Open a locked door or chest.",
@@ -426,8 +387,6 @@
       ]
     },
     {
-      "Id": "crawlerspell39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "Cleanse Area",
       "Desc": "Disarm traps and negate nearby room effects.",
@@ -452,8 +411,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "Silence",
       "Desc": "Prevent a group from casting spells.",
@@ -477,8 +434,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "Entangle",
       "Desc": "Prevent a group from use melee attacks.",
@@ -502,8 +457,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "Weaken",
       "Desc": "Reduce the melee damage of a group of foes.",
@@ -527,8 +480,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Mesmerize",
       "Desc": "Make  group of enemies unable to act.",
@@ -552,8 +503,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "Charm",
       "Desc": "Convince a monster to join your side.",
@@ -577,8 +526,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "Polymorph Dog",
       "Desc": "Transform some enemy monsters into dogs.",
@@ -602,8 +549,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "Reveal Area",
       "Desc": "Reveal surrounding map cells.",
@@ -625,8 +570,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "Light",
       "Desc": "Create a light to let you see.",
@@ -651,8 +594,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "Magic Compass",
       "Desc": "Gives you a compass.",
@@ -677,8 +618,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "Levitate",
       "Desc": "Lets you float over many traps.",
@@ -703,8 +642,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "Danger Sense",
       "Desc": "Alerts you to traps nearby.",
@@ -729,8 +666,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "Mapping",
       "Desc": "Lets you map the area you're in.",
@@ -755,8 +690,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell87default",
-      "ParentId": "default",
       "IdKey": 87,
       "Name": "Autoheal",
       "Desc": "Sometimes heals your party members.",
@@ -781,8 +714,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell88default",
-      "ParentId": "default",
       "IdKey": 88,
       "Name": "Barrier",
       "Desc": "Sometimes you avoid incoming damage.",
@@ -807,8 +738,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell89default",
-      "ParentId": "default",
       "IdKey": 89,
       "Name": "Retaliate",
       "Desc": "Retaliate damage toward your attacker.",
@@ -833,8 +762,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell90default",
-      "ParentId": "default",
       "IdKey": 90,
       "Name": "Cursed Arrows",
       "Desc": "Chance to debuff enemies with ranged attacks.",
@@ -859,8 +786,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell91default",
-      "ParentId": "default",
       "IdKey": 91,
       "Name": "Parry",
       "Desc": "Gives a chance to use your weapon to deflect an attack.",
@@ -885,8 +810,54 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell130default",
-      "ParentId": "default",
+      "IdKey": 92,
+      "Name": "Apply Dot",
+      "Desc": "Chance to apply a DoT to enemies when damaging them.",
+      "PowerCost": 20.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 3,
+      "RoleScalingTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 11,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 11,
+          "Chance": 1.0
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "IdKey": 93,
+      "Name": "Lifesteal",
+      "Desc": "Chance to get some health back when damaging enemies.",
+      "PowerCost": 20.0,
+      "PowerPerLevel": 2.0,
+      "StatBonusScaling": 1.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 6,
+      "RoleScalingTypeId": 4,
+      "RoleScalingTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 101,
+          "EntityId": 12,
+          "MinQuantity": 1,
+          "MaxQuantity": 1,
+          "ElementTypeId": 1,
+          "Chance": 1.0
+        }
+      ],
+      "ItemEnchantWeight": 0.1
+    },
+    {
       "IdKey": 130,
       "Name": "Call Bear",
       "Desc": "Summon a bear.",
@@ -910,8 +881,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell131default",
-      "ParentId": "default",
       "IdKey": 131,
       "Name": "Activate Golem",
       "Desc": "Activate an iron golem.",
@@ -935,8 +904,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell132default",
-      "ParentId": "default",
       "IdKey": 132,
       "Name": "Conjure Elemental",
       "Desc": "Summon an elemental.",
@@ -960,8 +927,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell133default",
-      "ParentId": "default",
       "IdKey": 133,
       "Name": "Summon Monk",
       "Desc": "Summon a monk",
@@ -985,8 +950,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell134default",
-      "ParentId": "default",
       "IdKey": 134,
       "Name": "Summon Scrapper",
       "Desc": "Summon a scrapper",
@@ -1010,8 +973,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell135default",
-      "ParentId": "default",
       "IdKey": 135,
       "Name": "Signal Thief",
       "Desc": "Signal a thief to follow you.",
@@ -1035,8 +996,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell136default",
-      "ParentId": "default",
       "IdKey": 136,
       "Name": "Raise Skeleton",
       "Desc": "Summon a skeleton.",
@@ -1060,8 +1019,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell137default",
-      "ParentId": "default",
       "IdKey": 137,
       "Name": "Dig Up Vampire",
       "Desc": "Summon a Vampire",
@@ -1085,8 +1042,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell138default",
-      "ParentId": "default",
       "IdKey": 138,
       "Name": "Pspspsps Cat",
       "Desc": "Summon a cat.",
@@ -1110,8 +1065,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell139default",
-      "ParentId": "default",
       "IdKey": 139,
       "Name": "Summon Guard",
       "Desc": "Summon a Guard",
@@ -1135,8 +1088,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell140default",
-      "ParentId": "default",
       "IdKey": 140,
       "Name": "Summon Barbarian",
       "Desc": "Summon a Barbarian",
@@ -1160,8 +1111,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell141default",
-      "ParentId": "default",
       "IdKey": 141,
       "Name": "Call Magician",
       "Desc": "Summon a magician.",
@@ -1185,8 +1134,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell142default",
-      "ParentId": "default",
       "IdKey": 142,
       "Name": "Summon Elf",
       "Desc": "Summon an elf.",
@@ -1210,8 +1157,6 @@
       "ItemEnchantWeight": 0.1
     },
     {
-      "Id": "crawlerspell200default",
-      "ParentId": "default",
       "IdKey": 200,
       "Name": "Holy Beam",
       "Desc": "Hit one or more enemies with holy damage.",
@@ -1236,8 +1181,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell201default",
-      "ParentId": "default",
       "IdKey": 201,
       "Name": "Holy Nova",
       "Desc": "Hit all enemies in a group with holy damage.",
@@ -1262,8 +1205,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell202default",
-      "ParentId": "default",
       "IdKey": 202,
       "Name": "Holy Storm",
       "Desc": "Hit all enemies with holy damage.",
@@ -1288,8 +1229,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell210default",
-      "ParentId": "default",
       "IdKey": 210,
       "Name": "Fireball",
       "Desc": "Hit one or more enemies in a group with fire damage.",
@@ -1314,8 +1253,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell211default",
-      "ParentId": "default",
       "IdKey": 211,
       "Name": "Flamestrike",
       "Desc": "Hit all enemies in a group with fire damage.",
@@ -1340,8 +1277,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell212default",
-      "ParentId": "default",
       "IdKey": 212,
       "Name": "Firestorm",
       "Desc": "Hit all enemies with fire damage.",
@@ -1366,8 +1301,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell220default",
-      "ParentId": "default",
       "IdKey": 220,
       "Name": "Frostbolt",
       "Desc": "Hit one or more enemies in a group with cold damage.",
@@ -1392,8 +1325,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell221default",
-      "ParentId": "default",
       "IdKey": 221,
       "Name": "Cone of Cold",
       "Desc": "Hit all enemies in a group with cold damage.",
@@ -1418,8 +1349,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell222default",
-      "ParentId": "default",
       "IdKey": 222,
       "Name": "Blizzard",
       "Desc": "Hit all enemies with cold damage.",
@@ -1444,8 +1373,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell230default",
-      "ParentId": "default",
       "IdKey": 230,
       "Name": "Lightning Bolt",
       "Desc": "Hit one or more enemies with electric damage.",
@@ -1470,8 +1397,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell231default",
-      "ParentId": "default",
       "IdKey": 231,
       "Name": "Chain Lightning",
       "Desc": "Hit all enemies in a group with electric damage.",
@@ -1496,8 +1421,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell232default",
-      "ParentId": "default",
       "IdKey": 232,
       "Name": "Lightning Storm",
       "Desc": "Hit all enemies with electric damage.",
@@ -1522,8 +1445,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell240default",
-      "ParentId": "default",
       "IdKey": 240,
       "Name": "Poison Arrow",
       "Desc": "Hit one or more enemies with nature damage.",
@@ -1548,8 +1469,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell241default",
-      "ParentId": "default",
       "IdKey": 241,
       "Name": "Poison Spray",
       "Desc": "Hit all enemies in a group with nature damage.",
@@ -1574,8 +1493,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell242default",
-      "ParentId": "default",
       "IdKey": 242,
       "Name": "Plaguestorm",
       "Desc": "Hit all enemies with poisonous nature damage",
@@ -1600,8 +1517,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell250default",
-      "ParentId": "default",
       "IdKey": 250,
       "Name": "Arcane Missiles",
       "Desc": "Hit one or more enemies with arcane damage.",
@@ -1626,8 +1541,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell251default",
-      "ParentId": "default",
       "IdKey": 251,
       "Name": "Arcane Explosion",
       "Desc": "Hit all enemies in a group with arcane damage.",
@@ -1652,8 +1565,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell252default",
-      "ParentId": "default",
       "IdKey": 252,
       "Name": "Magestorm",
       "Desc": "Hit all enemies with arcane damage.",
@@ -1678,8 +1589,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell260default",
-      "ParentId": "default",
       "IdKey": 260,
       "Name": "Darkbolt",
       "Desc": "Hit one or more enemies with shadow damage.",
@@ -1704,8 +1613,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell261default",
-      "ParentId": "default",
       "IdKey": 261,
       "Name": "Shadow Burst",
       "Desc": "Hit all enemies in a group with shadow damage.",
@@ -1730,8 +1637,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell262default",
-      "ParentId": "default",
       "IdKey": 262,
       "Name": "Nightstorm",
       "Desc": "Hit all enemies with shadow damage.",
@@ -1756,8 +1661,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell270default",
-      "ParentId": "default",
       "IdKey": 270,
       "Name": "Shards",
       "Desc": "Hit one or more enemies with earthen shards.",
@@ -1782,8 +1685,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell271default",
-      "ParentId": "default",
       "IdKey": 271,
       "Name": "Groundburst",
       "Desc": "Hit all enemies in a group with earth damage.",
@@ -1808,8 +1709,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell272default",
-      "ParentId": "default",
       "IdKey": 272,
       "Name": "Earthquake",
       "Desc": "Hit all enemies with earth damage.",
@@ -1834,8 +1733,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell280default",
-      "ParentId": "default",
       "IdKey": 280,
       "Name": "Acid Bolt",
       "Desc": "Hit one or more enemies with acid.",
@@ -1860,8 +1757,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "crawlerspell281default",
-      "ParentId": "default",
       "IdKey": 281,
       "Name": "Acid Spray",
       "Desc": "Hit all enemies in a group with acid damage.",
@@ -1886,8 +1781,6 @@
       "ItemEnchantWeight": 0.2
     },
     {
-      "Id": "crawlerspell282default",
-      "ParentId": "default",
       "IdKey": 282,
       "Name": "Acidic Wave",
       "Desc": "Hit all enemies with acid damage.",
@@ -1912,8 +1805,6 @@
       "ItemEnchantWeight": 0.01
     },
     {
-      "Id": "crawlerspell10031default",
-      "ParentId": "default",
       "IdKey": 10031,
       "Name": "Enhance Armor",
       "PowerCost": 10.0,
@@ -1933,8 +1824,6 @@
       ]
     },
     {
-      "Id": "crawlerspell10032default",
-      "ParentId": "default",
       "IdKey": 10032,
       "Name": "Enhance Resist",
       "PowerCost": 10.0,
@@ -1954,8 +1843,6 @@
       ]
     },
     {
-      "Id": "crawlerspell10063default",
-      "ParentId": "default",
       "IdKey": 10063,
       "Name": "Enhance Speed",
       "PowerCost": 10.0,
@@ -1975,8 +1862,6 @@
       ]
     },
     {
-      "Id": "crawlerspell10070default",
-      "ParentId": "default",
       "IdKey": 10070,
       "Name": "Enhance Hit",
       "PowerCost": 10.0,
@@ -1996,8 +1881,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20000default",
-      "ParentId": "default",
       "IdKey": 20000,
       "Name": "Monster Call None",
       "PowerCost": 100.0,
@@ -2017,8 +1900,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20001default",
-      "ParentId": "default",
       "IdKey": 20001,
       "Name": "Monster Call Human",
       "PowerCost": 100.0,
@@ -2039,8 +1920,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20002default",
-      "ParentId": "default",
       "IdKey": 20002,
       "Name": "Monster Call Elf",
       "PowerCost": 100.0,
@@ -2061,8 +1940,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20003default",
-      "ParentId": "default",
       "IdKey": 20003,
       "Name": "Monster Call Dwarf",
       "PowerCost": 100.0,
@@ -2083,8 +1960,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20004default",
-      "ParentId": "default",
       "IdKey": 20004,
       "Name": "Monster Call Mongrel",
       "PowerCost": 100.0,
@@ -2105,8 +1980,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20005default",
-      "ParentId": "default",
       "IdKey": 20005,
       "Name": "Monster Call Gnome",
       "PowerCost": 100.0,
@@ -2127,8 +2000,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20006default",
-      "ParentId": "default",
       "IdKey": 20006,
       "Name": "Monster Call Halfling",
       "PowerCost": 100.0,
@@ -2149,8 +2020,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20007default",
-      "ParentId": "default",
       "IdKey": 20007,
       "Name": "Monster Call Goblin",
       "PowerCost": 100.0,
@@ -2171,8 +2040,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20008default",
-      "ParentId": "default",
       "IdKey": 20008,
       "Name": "Monster Call Hobgoblin",
       "PowerCost": 100.0,
@@ -2193,8 +2060,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20009default",
-      "ParentId": "default",
       "IdKey": 20009,
       "Name": "Monster Call Warrior",
       "PowerCost": 100.0,
@@ -2215,8 +2080,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20010default",
-      "ParentId": "default",
       "IdKey": 20010,
       "Name": "Monster Call Fighter",
       "PowerCost": 100.0,
@@ -2237,8 +2100,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20011default",
-      "ParentId": "default",
       "IdKey": 20011,
       "Name": "Monster Call Bladesman",
       "PowerCost": 100.0,
@@ -2259,8 +2120,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20012default",
-      "ParentId": "default",
       "IdKey": 20012,
       "Name": "Monster Call Swordsman",
       "PowerCost": 100.0,
@@ -2281,8 +2140,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20013default",
-      "ParentId": "default",
       "IdKey": 20013,
       "Name": "Monster Call Scrapper",
       "PowerCost": 100.0,
@@ -2303,8 +2160,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20014default",
-      "ParentId": "default",
       "IdKey": 20014,
       "Name": "Monster Call Monk",
       "PowerCost": 100.0,
@@ -2325,8 +2180,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20015default",
-      "ParentId": "default",
       "IdKey": 20015,
       "Name": "Monster Call Barbarian",
       "PowerCost": 100.0,
@@ -2347,8 +2200,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20016default",
-      "ParentId": "default",
       "IdKey": 20016,
       "Name": "Monster Call Mage",
       "PowerCost": 100.0,
@@ -2369,8 +2220,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20017default",
-      "ParentId": "default",
       "IdKey": 20017,
       "Name": "Monster Call Magician",
       "PowerCost": 100.0,
@@ -2391,8 +2240,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20018default",
-      "ParentId": "default",
       "IdKey": 20018,
       "Name": "Monster Call Conjurer",
       "PowerCost": 100.0,
@@ -2413,8 +2260,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20019default",
-      "ParentId": "default",
       "IdKey": 20019,
       "Name": "Monster Call Sorcerer",
       "PowerCost": 100.0,
@@ -2435,8 +2280,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20020default",
-      "ParentId": "default",
       "IdKey": 20020,
       "Name": "Monster Call Wizard",
       "PowerCost": 100.0,
@@ -2457,8 +2300,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20021default",
-      "ParentId": "default",
       "IdKey": 20021,
       "Name": "Monster Call Faerie",
       "PowerCost": 100.0,
@@ -2479,8 +2320,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20022default",
-      "ParentId": "default",
       "IdKey": 20022,
       "Name": "Monster Call Cleric",
       "PowerCost": 100.0,
@@ -2501,8 +2340,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20023default",
-      "ParentId": "default",
       "IdKey": 20023,
       "Name": "Monster Call Medusa",
       "PowerCost": 100.0,
@@ -2523,8 +2360,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20024default",
-      "ParentId": "default",
       "IdKey": 20024,
       "Name": "Monster Call Dog",
       "PowerCost": 100.0,
@@ -2545,8 +2380,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20025default",
-      "ParentId": "default",
       "IdKey": 20025,
       "Name": "Monster Call Hound",
       "PowerCost": 100.0,
@@ -2567,8 +2400,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20026default",
-      "ParentId": "default",
       "IdKey": 20026,
       "Name": "Monster Call Wolf",
       "PowerCost": 100.0,
@@ -2589,8 +2420,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20027default",
-      "ParentId": "default",
       "IdKey": 20027,
       "Name": "Monster Call Coyote",
       "PowerCost": 100.0,
@@ -2611,8 +2440,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20028default",
-      "ParentId": "default",
       "IdKey": 20028,
       "Name": "Monster Call Cat",
       "PowerCost": 100.0,
@@ -2633,8 +2460,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20029default",
-      "ParentId": "default",
       "IdKey": 20029,
       "Name": "Monster Call Tiger",
       "PowerCost": 100.0,
@@ -2655,8 +2480,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20030default",
-      "ParentId": "default",
       "IdKey": 20030,
       "Name": "Monster Call Lion",
       "PowerCost": 100.0,
@@ -2677,8 +2500,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20031default",
-      "ParentId": "default",
       "IdKey": 20031,
       "Name": "Monster Call Skeleton",
       "PowerCost": 100.0,
@@ -2699,8 +2520,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20032default",
-      "ParentId": "default",
       "IdKey": 20032,
       "Name": "Monster Call Zombie",
       "PowerCost": 100.0,
@@ -2721,8 +2540,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20033default",
-      "ParentId": "default",
       "IdKey": 20033,
       "Name": "Monster Call Ghoul",
       "PowerCost": 100.0,
@@ -2743,8 +2560,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20034default",
-      "ParentId": "default",
       "IdKey": 20034,
       "Name": "Monster Call Wight",
       "PowerCost": 100.0,
@@ -2765,8 +2580,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20035default",
-      "ParentId": "default",
       "IdKey": 20035,
       "Name": "Monster Call Wraith",
       "PowerCost": 100.0,
@@ -2787,8 +2600,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20036default",
-      "ParentId": "default",
       "IdKey": 20036,
       "Name": "Monster Call Ghost",
       "PowerCost": 100.0,
@@ -2809,8 +2620,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20037default",
-      "ParentId": "default",
       "IdKey": 20037,
       "Name": "Monster Call Spectre",
       "PowerCost": 100.0,
@@ -2831,8 +2640,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20038default",
-      "ParentId": "default",
       "IdKey": 20038,
       "Name": "Monster Call Lich",
       "PowerCost": 100.0,
@@ -2853,8 +2660,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20039default",
-      "ParentId": "default",
       "IdKey": 20039,
       "Name": "Monster Call Thief",
       "PowerCost": 100.0,
@@ -2875,8 +2680,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20040default",
-      "ParentId": "default",
       "IdKey": 20040,
       "Name": "Monster Call Rogue",
       "PowerCost": 100.0,
@@ -2897,8 +2700,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20041default",
-      "ParentId": "default",
       "IdKey": 20041,
       "Name": "Monster Call Assassin",
       "PowerCost": 100.0,
@@ -2919,8 +2720,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20042default",
-      "ParentId": "default",
       "IdKey": 20042,
       "Name": "Monster Call Demon",
       "PowerCost": 100.0,
@@ -2941,8 +2740,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20043default",
-      "ParentId": "default",
       "IdKey": 20043,
       "Name": "Monster Call Blue Dragon",
       "PowerCost": 100.0,
@@ -2963,8 +2760,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20044default",
-      "ParentId": "default",
       "IdKey": 20044,
       "Name": "Monster Call Red Dragon",
       "PowerCost": 100.0,
@@ -2985,8 +2780,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20045default",
-      "ParentId": "default",
       "IdKey": 20045,
       "Name": "Monster Call White Dragon",
       "PowerCost": 100.0,
@@ -3007,8 +2800,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20046default",
-      "ParentId": "default",
       "IdKey": 20046,
       "Name": "Monster Call Black Dragon",
       "PowerCost": 100.0,
@@ -3029,8 +2820,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20047default",
-      "ParentId": "default",
       "IdKey": 20047,
       "Name": "Monster Call Green Dragon",
       "PowerCost": 100.0,
@@ -3051,8 +2840,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20048default",
-      "ParentId": "default",
       "IdKey": 20048,
       "Name": "Monster Call Stone Golem",
       "PowerCost": 100.0,
@@ -3073,8 +2860,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20049default",
-      "ParentId": "default",
       "IdKey": 20049,
       "Name": "Monster Call Iron Golem",
       "PowerCost": 100.0,
@@ -3095,8 +2880,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20050default",
-      "ParentId": "default",
       "IdKey": 20050,
       "Name": "Monster Call Flesh Golem",
       "PowerCost": 100.0,
@@ -3117,8 +2900,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20051default",
-      "ParentId": "default",
       "IdKey": 20051,
       "Name": "Monster Call Air Elemental",
       "PowerCost": 100.0,
@@ -3139,8 +2920,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20052default",
-      "ParentId": "default",
       "IdKey": 20052,
       "Name": "Monster Call Earth Elemental",
       "PowerCost": 100.0,
@@ -3161,8 +2940,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20053default",
-      "ParentId": "default",
       "IdKey": 20053,
       "Name": "Monster Call Fire Elemental",
       "PowerCost": 100.0,
@@ -3183,8 +2960,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20054default",
-      "ParentId": "default",
       "IdKey": 20054,
       "Name": "Monster Call Water Elemental",
       "PowerCost": 100.0,
@@ -3205,8 +2980,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20055default",
-      "ParentId": "default",
       "IdKey": 20055,
       "Name": "Monster Call Bear",
       "PowerCost": 100.0,
@@ -3227,8 +3000,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20056default",
-      "ParentId": "default",
       "IdKey": 20056,
       "Name": "Monster Call Slime",
       "PowerCost": 100.0,
@@ -3249,8 +3020,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20057default",
-      "ParentId": "default",
       "IdKey": 20057,
       "Name": "Monster Call Spider",
       "PowerCost": 100.0,
@@ -3271,8 +3040,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20058default",
-      "ParentId": "default",
       "IdKey": 20058,
       "Name": "Monster Call Scorpion",
       "PowerCost": 100.0,
@@ -3293,8 +3060,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20059default",
-      "ParentId": "default",
       "IdKey": 20059,
       "Name": "Monster Call Chimera",
       "PowerCost": 100.0,
@@ -3315,8 +3080,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20060default",
-      "ParentId": "default",
       "IdKey": 20060,
       "Name": "Monster Call Orc",
       "PowerCost": 100.0,
@@ -3337,8 +3100,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20061default",
-      "ParentId": "default",
       "IdKey": 20061,
       "Name": "Monster Call Ogre",
       "PowerCost": 100.0,
@@ -3359,8 +3120,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20062default",
-      "ParentId": "default",
       "IdKey": 20062,
       "Name": "Monster Call Rat",
       "PowerCost": 100.0,
@@ -3381,8 +3140,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20063default",
-      "ParentId": "default",
       "IdKey": 20063,
       "Name": "Monster Call Bat",
       "PowerCost": 100.0,
@@ -3403,8 +3160,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20064default",
-      "ParentId": "default",
       "IdKey": 20064,
       "Name": "Monster Call Salamander",
       "PowerCost": 100.0,
@@ -3425,8 +3180,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20065default",
-      "ParentId": "default",
       "IdKey": 20065,
       "Name": "Monster Call Wyvern",
       "PowerCost": 100.0,
@@ -3447,8 +3200,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20066default",
-      "ParentId": "default",
       "IdKey": 20066,
       "Name": "Monster Call Frog",
       "PowerCost": 100.0,
@@ -3469,8 +3220,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20067default",
-      "ParentId": "default",
       "IdKey": 20067,
       "Name": "Monster Call Lizardman",
       "PowerCost": 100.0,
@@ -3491,8 +3240,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20068default",
-      "ParentId": "default",
       "IdKey": 20068,
       "Name": "Monster Call Werewolf",
       "PowerCost": 100.0,
@@ -3513,8 +3260,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20069default",
-      "ParentId": "default",
       "IdKey": 20069,
       "Name": "Monster Call Troll",
       "PowerCost": 100.0,
@@ -3535,8 +3280,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20070default",
-      "ParentId": "default",
       "IdKey": 20070,
       "Name": "Monster Call Vampire",
       "PowerCost": 100.0,
@@ -3557,8 +3300,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20071default",
-      "ParentId": "default",
       "IdKey": 20071,
       "Name": "Monster Call Mummy",
       "PowerCost": 100.0,
@@ -3579,8 +3320,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20072default",
-      "ParentId": "default",
       "IdKey": 20072,
       "Name": "Monster Call Harpy",
       "PowerCost": 100.0,
@@ -3601,8 +3340,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20073default",
-      "ParentId": "default",
       "IdKey": 20073,
       "Name": "Monster Call Griffon",
       "PowerCost": 100.0,
@@ -3623,8 +3360,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20074default",
-      "ParentId": "default",
       "IdKey": 20074,
       "Name": "Monster Call Manticore",
       "PowerCost": 100.0,
@@ -3645,8 +3380,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20075default",
-      "ParentId": "default",
       "IdKey": 20075,
       "Name": "Monster Call Snake",
       "PowerCost": 100.0,
@@ -3667,8 +3400,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20076default",
-      "ParentId": "default",
       "IdKey": 20076,
       "Name": "Monster Call Steed",
       "PowerCost": 100.0,
@@ -3689,8 +3420,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20077default",
-      "ParentId": "default",
       "IdKey": 20077,
       "Name": "Monster Call Basilisk",
       "PowerCost": 100.0,
@@ -3711,8 +3440,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20078default",
-      "ParentId": "default",
       "IdKey": 20078,
       "Name": "Monster Call Giant",
       "PowerCost": 100.0,
@@ -3733,8 +3460,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20079default",
-      "ParentId": "default",
       "IdKey": 20079,
       "Name": "Monster Call Guard",
       "PowerCost": 100.0,
@@ -3755,8 +3480,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20080default",
-      "ParentId": "default",
       "IdKey": 20080,
       "Name": "Monster Call Gnoll",
       "PowerCost": 100.0,
@@ -3777,8 +3500,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20081default",
-      "ParentId": "default",
       "IdKey": 20081,
       "Name": "Monster Call Frog",
       "PowerCost": 100.0,
@@ -3799,8 +3520,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20082default",
-      "ParentId": "default",
       "IdKey": 20082,
       "Name": "Monster Call Buck",
       "PowerCost": 100.0,
@@ -3821,8 +3540,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20083default",
-      "ParentId": "default",
       "IdKey": 20083,
       "Name": "Monster Call Crab",
       "PowerCost": 100.0,
@@ -3843,8 +3560,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20084default",
-      "ParentId": "default",
       "IdKey": 20084,
       "Name": "Monster Call Crocodile",
       "PowerCost": 100.0,
@@ -3865,8 +3580,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20085default",
-      "ParentId": "default",
       "IdKey": 20085,
       "Name": "Monster Call Snail",
       "PowerCost": 100.0,
@@ -3887,8 +3600,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20086default",
-      "ParentId": "default",
       "IdKey": 20086,
       "Name": "Monster Call Treant",
       "PowerCost": 100.0,
@@ -3909,8 +3620,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20087default",
-      "ParentId": "default",
       "IdKey": 20087,
       "Name": "Monster Call Kobold",
       "PowerCost": 100.0,
@@ -3931,8 +3640,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20088default",
-      "ParentId": "default",
       "IdKey": 20088,
       "Name": "Monster Call Cyclops",
       "PowerCost": 100.0,
@@ -3953,8 +3660,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20089default",
-      "ParentId": "default",
       "IdKey": 20089,
       "Name": "Monster Call Hydra",
       "PowerCost": 100.0,
@@ -3975,8 +3680,6 @@
       ]
     },
     {
-      "Id": "crawlerspell20090default",
-      "ParentId": "default",
       "IdKey": 20090,
       "Name": "Monster Call Bull",
       "PowerCost": 100.0,
@@ -4001,8 +3704,8 @@
     "Id": "default",
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
-    "Name": "CrawlerSpellSettings",
-    "SaveTime": "2025-11-04T15:21:06.272Z"
+    "Name": "CrawlerSpellSettings"
   },
-  "SaveTime": "2025-11-04T15:21:06.272Z"
+  "Id": "default",
+  "SaveTime": "2025-12-14T01:45:07.052Z"
 }

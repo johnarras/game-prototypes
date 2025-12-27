@@ -1,0 +1,130 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Donkey",
+      "Icon": "Donkey",
+      "Art": "Donkey",
+      "AnimalTypeId": 1,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 2,
+      "Name": "Pony",
+      "Icon": "Pony",
+      "Art": "Pony",
+      "AnimalTypeId": 2,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 3,
+      "Name": "Mule",
+      "Icon": "Mule",
+      "Art": "Mule",
+      "AnimalTypeId": 3,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 4,
+      "Name": "Riding Horse",
+      "Icon": "RidingHorse",
+      "Art": "RidingHorse",
+      "AnimalTypeId": 4,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 5,
+      "Name": "Tamed Onager",
+      "Icon": "TamedOnager",
+      "Art": "TamedOnager",
+      "AnimalTypeId": 5,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 6,
+      "Name": "Draft Horse",
+      "Icon": "DraftHorse",
+      "Art": "DraftHorse",
+      "AnimalTypeId": 6,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 7,
+      "Name": "Heavy Warhorse",
+      "Icon": "HeavyWarhorse",
+      "Art": "HeavyWarhorse",
+      "AnimalTypeId": 7,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 8,
+      "Name": "Ox",
+      "Icon": "Ox",
+      "Art": "Ox",
+      "AnimalTypeId": 8,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 9,
+      "Name": "Zebu",
+      "Icon": "Zebu",
+      "Art": "Zebu",
+      "AnimalTypeId": 9,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 10,
+      "Name": "Water Buffalo",
+      "Icon": "WaterBuffalo",
+      "Art": "WaterBuffalo",
+      "AnimalTypeId": 10,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 11,
+      "Name": "Dromedary Camel",
+      "Icon": "DromedaryCamel",
+      "Art": "DromedaryCamel",
+      "AnimalTypeId": 11,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 12,
+      "Name": "Bactrian Camel",
+      "Icon": "BactrianCamel",
+      "Art": "BactrianCamel",
+      "AnimalTypeId": 12,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 13,
+      "Name": "Yak",
+      "Icon": "Yak",
+      "Art": "Yak",
+      "AnimalTypeId": 13,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 14,
+      "Name": "Reindeer",
+      "Icon": "Reindeer",
+      "Art": "Reindeer",
+      "AnimalTypeId": 14,
+      "IsDefault": true
+    },
+    {
+      "IdKey": 15,
+      "Name": "Asian Elephant",
+      "Icon": "AsianElephant",
+      "Art": "AsianElephant",
+      "AnimalTypeId": 15,
+      "IsDefault": true
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SkinTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2025-12-23T21:38:09.006Z"
+}

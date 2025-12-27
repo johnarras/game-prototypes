@@ -8,13 +8,14 @@ using Genrpg.Shared.Spells.PlayerData.Spells;
 
 namespace Genrpg.Shared.Spells.Casting
 {
-    // MessagePackIgnore  
     public class TryCastResult
     {
         public TryCastState State;
-        [Key(0)] public Unit Target { get; set; }
-        [Key(1)] public Spell Spell { get; set; }
-        [Key(2)] public ElementType ElementType { get; set; }
-        [Key(3)] public string StateText { get; set; }
+        public Unit Target { get; set; }
+        public Spell Spell { get; set; }
+        public ElementType ElementType { get; set; }
+        public string StateText { get; set; }
     }
 }
+
+

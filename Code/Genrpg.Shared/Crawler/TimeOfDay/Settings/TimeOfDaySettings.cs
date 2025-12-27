@@ -1,47 +1,51 @@
+using MessagePack;
 
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.TimeOfDay.Settings
 {
-    [MessagePackObject]
     public class StatRegenHours
     {
-        [Key(0)] public long StatTypeId { get; set; }
-        [Key(1)] public double RegenHours { get; set; }
-        [Key(2)] public string Name { get; set; } = null;
+        public long StatTypeId { get; set; }
+        public double RegenHours { get; set; }
+        public string Name { get; set; } = null;
     }
 
-    [MessagePackObject]
     public class TimeOfDaySettings : NoChildSettings // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public double DailyResetHour { get; set; }
-        [Key(2)] public double BaseMoveMinutes { get; set; }
-        [Key(3)] public double CombatRoundMinutes { get; set; }
-        [Key(4)] public double RestHours { get; set; }
+        public override string Id { get; set; }
+        public double DailyResetHour { get; set; }
+        public double BaseMoveMinutes { get; set; }
+        public double CombatRoundMinutes { get; set; }
+        public double RestHours { get; set; }
 
 
-        [Key(5)] public double EatHours { get; set; }
-        [Key(6)] public double DrinkHours { get; set; }
-        [Key(7)] public double RumorHours { get; set; }
+        public double EatHours { get; set; }
+        public double DrinkHours { get; set; }
+        public double RumorHours { get; set; }
 
 
-        [Key(8)] public List<StatRegenHours> RegenHours { get; set; }
+        public List<StatRegenHours> RegenHours { get; set; }
 
-        [Key(9)] public double LevitateSpeedup { get; set; }
+        public double LevitateSpeedup { get; set; }
 
-        [Key(10)] public double MoveSpeedIncreasePerExtraInventoryItem { get; set; }
+        public double MoveSpeedIncreasePerExtraInventoryItem { get; set; }
     }
 
 
     public class TimeOfDaySettingsLoader : NoChildSettingsLoader<TimeOfDaySettings> { }
 
 
-    public class TimeOfDaySettingsDto : NoChildSettingsDto<TimeOfDaySettings> { }
+    public class TimeOfDaySettingsDto : NoChildSettingsDto<TimeOfDaySettings>
+    {
+        public override TimeOfDaySettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class TimeOfDaySettingsMapper : NoChildSettingsMapper<TimeOfDaySettings, TimeOfDaySettingsDto> { }
 }
+
+

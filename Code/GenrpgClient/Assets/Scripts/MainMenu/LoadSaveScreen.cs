@@ -1,5 +1,7 @@
-﻿
+
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.MainMenu;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Constants;
@@ -17,16 +19,15 @@ public class LoadSaveScreen : BaseScreen
     public GButton DeleteButton;
     public List<LoadSaveButton> LoadButtons = new List<LoadSaveButton>();
 
-    private IClientAppService _clientAppService;
-    private ICrawlerService _crawlerService;
+    private ICrawlerService _crawlerService = null;
 
-    private ILoadSaveService _loadSaveService;
+    private ILoadSaveService _loadSaveService = null;
 
     private int _currSlot = 0;
 
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
-        _screenService.Close(ScreenNames.Loading);
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
 
         _uiService.SetButton(LoadButton, GetName(), OnClickLoad);
         _uiService.SetButton(SaveButton, GetName(), OnClickSave);
@@ -97,11 +98,13 @@ public class LoadSaveScreen : BaseScreen
     {
         if (_screenService.GetScreen(_crawlerService.GetCrawlerScreenId()) == null)
         {
-            _screenService.Open(ScreenNames.CrawlerMainMenu);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerMainMenu));
         }
         base.OnStartClose();
     }
 
 
 }
+
+
 

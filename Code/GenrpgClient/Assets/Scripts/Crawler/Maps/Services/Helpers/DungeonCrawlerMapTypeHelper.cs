@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Crawler.Maps.Constants;
 
 namespace Assets.Scripts.Crawler.Maps.Services.Helpers
@@ -9,3 +9,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
         public override long HelperKey => CrawlerMapTypes.Dungeon;
     }
 }
+
+

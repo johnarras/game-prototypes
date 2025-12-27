@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
@@ -60,3 +60,5 @@ namespace Genrpg.MapServer.WhoList.MessageHandlers
         }
     }
 }
+
+

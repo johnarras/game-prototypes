@@ -2,5 +2,7 @@
   "Id": "screenname14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Spellbook"
+  "Name": "Spellbook",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Spells"
 }

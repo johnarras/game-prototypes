@@ -2,5 +2,7 @@
   "Id": "screenname10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "CharacterCreate"
+  "Name": "CharacterCreate",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Characters"
 }

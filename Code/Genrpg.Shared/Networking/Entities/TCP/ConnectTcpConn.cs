@@ -1,10 +1,10 @@
-﻿using System;
-using System.Net.Sockets;
-using System.Threading.Tasks;
-using System.Threading;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
+using System;
+using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Networking.Entities.TCP
 {
@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Networking.Entities.TCP
         int _port;
 
         public ConnectTcpConn(string host, long port,
-            MapApiMessageHandler handler, 
+            MapApiMessageHandler handler,
             ILogService logService,
             ISerializer serializer,
             ITaskService taskService,
@@ -54,3 +54,5 @@ namespace Genrpg.Shared.Networking.Entities.TCP
         }
     }
 }
+
+

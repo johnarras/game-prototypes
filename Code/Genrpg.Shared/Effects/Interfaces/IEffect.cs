@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Effects.Interfaces
+namespace Genrpg.Shared.Effects.Interfaces
 {
     public interface IEffect
     {
@@ -9,3 +9,5 @@
         public long EntityId { get; set; }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,3 +9,5 @@ namespace Genrpg.Shared.ProcGen.Settings.Locations.Constants
         public const int MinSize = 4;
     }
 }
+
+

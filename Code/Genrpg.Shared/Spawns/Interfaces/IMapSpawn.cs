@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 using System;
 using System.Collections.Generic;
@@ -26,3 +26,5 @@ namespace Genrpg.Shared.Spawns.Interfaces
         long GetAddonBits();
     }
 }
+
+

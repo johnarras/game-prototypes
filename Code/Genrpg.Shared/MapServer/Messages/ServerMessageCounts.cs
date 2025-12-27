@@ -21,3 +21,5 @@ namespace Genrpg.Shared.MapServer.Messages
         [Key(9)] public long PathfindingCount { get; set; }
     }
 }
+
+

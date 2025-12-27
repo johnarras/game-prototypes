@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 42,
   "Name": "TraderHUD",
-  "SaveTime": "2025-09-27T18:16:18.693Z"
+  "ScreenLayerId": 10,
+  "Subdirectory": "TraderHUD"
 }

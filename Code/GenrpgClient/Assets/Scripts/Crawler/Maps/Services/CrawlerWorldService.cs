@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Client.Core;
@@ -16,10 +16,10 @@ using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 {
     public class CrawlerWorldService : ICrawlerWorldService
     {
-        private IRepositoryService _repoService = null;
+        private IClientRepositoryService _repoService = null;
         private IGameData _gameData = null;
         private ICrawlerMapService _mapService = null;
         private ICrawlerMapGenService _mapGenService = null;
@@ -229,16 +229,14 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         public async Task SaveWorld(CrawlerWorld world)
         {
-            ClientRepositoryService clientRepoService = _repoService as ClientRepositoryService;
 
-            await clientRepoService.StringSave<CrawlerWorld>(world.Id, _serializer.SerializeToString(world));
+
+            await _repoService.StringSave<CrawlerWorld>(world.Id, _serializer.SerializeToString(world));
         }
 
         private async Task<CrawlerWorld> LoadWorld(long worldId)
         {
-            ClientRepositoryService clientRepoService = _repoService as ClientRepositoryService;
-
-            return await clientRepoService.LoadObjectFromString<CrawlerWorld>("World" + worldId);
+            return await _repoService.LoadObjectFromString<CrawlerWorld>("World" + worldId);
         }
 
         private async Task<CrawlerWorld> GenerateInternal(long worldId, CancellationToken token)
@@ -386,3 +384,5 @@ namespace Assets.Scripts.Crawler.Maps.Services
         }
     }
 }
+
+

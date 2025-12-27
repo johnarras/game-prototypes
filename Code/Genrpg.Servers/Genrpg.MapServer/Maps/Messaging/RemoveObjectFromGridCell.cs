@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.MapObjects.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,3 +14,5 @@ namespace Genrpg.MapServer.Maps.Messaging
         public MapObjectGridItem GridItem { get; set; }
     }
 }
+
+

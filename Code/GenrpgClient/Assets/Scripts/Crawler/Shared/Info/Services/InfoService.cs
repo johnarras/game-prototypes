@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Constants;
 using Genrpg.Shared.Crawler.Info.EffectHelpers;
@@ -40,8 +40,8 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
     public class InfoService : IInfoService
     {
-        private ITextService _textService;
-        private IEntityService _entityService;
+        private ITextService _textService = null;
+        private IEntityService _entityService = null;
         private IClientGameState _gs;
 
         private SetupDictionaryContainer<long, IInfoHelper> _infoHelperDict = new SetupDictionaryContainer<long, IInfoHelper>();
@@ -229,12 +229,12 @@ namespace Genrpg.Shared.Crawler.Info.Services
                         words[w] = StrUtils.NormalizeWord(words[w]);
                     }
 
-                    bool shouldListAll = words.Any(x => x == listAllText);
+                    bool shouldListAll = words.FastAny(x => x == listAllText);
 
                     overviewKeys = origWords.Where(x => x != pageBreak && !StrUtils.NormalizeWord(x).Contains(listAllText)).ToList();
 
                     // Set up overview + children link.
-                    if (words.Length >= 3 && words.Any(x => x == listAllText))
+                    if (words.Length >= 3 && words.FastAny(x => x == listAllText))
                     {
                         for (int w = 1; w < words.Length; w++)
                         {
@@ -324,3 +324,5 @@ namespace Genrpg.Shared.Crawler.Info.Services
         }
     }
 }
+
+

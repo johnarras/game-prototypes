@@ -2,5 +2,7 @@
   "Id": "screenname27default",
   "ParentId": "default",
   "IdKey": 27,
-  "Name": "CrawlerMap"
+  "Name": "CrawlerMap",
+  "ScreenLayerId": 20,
+  "Subdirectory": "CrawlerTilemaps"
 }

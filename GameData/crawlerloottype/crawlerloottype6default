@@ -6,6 +6,5 @@
   "Desc": "Resistant to different elements.",
   "EntityTypeId": 25,
   "ItemEnchantWeight": 0.01,
-  "ScalingPerLevel": 1.0,
-  "SaveTime": "2025-09-06T00:38:03.882Z"
+  "ScalingPerLevel": 1.0
 }

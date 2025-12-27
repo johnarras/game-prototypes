@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Units.Constants
 {
-    [MessagePackObject]
     public class UnitConstants
     {
         public const float ErrorDistance = 1000000;
@@ -21,3 +20,5 @@ namespace Genrpg.Shared.Units.Constants
 
     }
 }
+
+

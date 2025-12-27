@@ -9,7 +9,6 @@ namespace Genrpg.Shared.Crawler.Spells.Entities
     /// <summary>
     /// Contains data about what this unit will do this round during combat.
     /// </summary>
-    // MessagePackIgnore
     public class UnitAction
     {
 
@@ -37,3 +36,5 @@ namespace Genrpg.Shared.Crawler.Spells.Entities
 
     }
 }
+
+

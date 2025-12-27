@@ -7,11 +7,12 @@ using System.Text;
 
 namespace Genrpg.Shared.Accounts.PlayerData
 {
-    [MessagePackObject]
     public class PublicAccount : BaseAccountContentData
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public string Name { get; set; }
+        public override string Id { get; set; }
+        public string Name { get; set; }
 
     }
 }
+
+

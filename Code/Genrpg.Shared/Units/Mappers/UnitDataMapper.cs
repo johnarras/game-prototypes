@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.DataStores.Interfaces;
@@ -32,3 +32,5 @@ namespace Genrpg.Shared.Units.Mappers
 
     }
 }
+
+

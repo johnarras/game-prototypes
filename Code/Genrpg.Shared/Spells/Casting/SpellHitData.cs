@@ -4,7 +4,6 @@ using Genrpg.Shared.Spells.Messages;
 
 namespace Genrpg.Shared.Spells.Casting
 {
-    // MessagePackIgnore
     public class SpellHitData
     {
 
@@ -33,3 +32,5 @@ namespace Genrpg.Shared.Spells.Casting
         }
     }
 }
+
+

@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Crafting.Constants
 {
-    [MessagePackObject]
     public class CraftingConstants
     {
         public const int RecipeStartMaxLevel = 10;
@@ -31,3 +30,5 @@ namespace Genrpg.Shared.Crafting.Constants
 
     }
 }
+
+

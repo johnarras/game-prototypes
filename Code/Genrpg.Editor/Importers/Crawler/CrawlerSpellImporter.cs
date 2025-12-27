@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using System;
@@ -61,3 +61,4 @@ namespace Genrpg.Editor.Importers.Crawler
         }
     }
 }
+

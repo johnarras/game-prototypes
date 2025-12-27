@@ -1,11 +1,12 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Services;
 using Genrpg.Shared.CoreCurrencies.Settings;
-using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 
 namespace Genrpg.RequestServer.Resets.Services
@@ -14,7 +15,8 @@ namespace Genrpg.RequestServer.Resets.Services
     {
         private IGameData _gameData = null;
         private ICoreCurrencyService _coreCurrencyService = null;
-        public async Task CheckHourlyCurrencyUpdate(WebContext context)
+        private IWebRewardService _rewardService = null;
+        public async Task CheckHourlyCurrencyUpdate(WebContext context, bool onLogin)
         {
             CoreUserData userData = await context.GetAsync<CoreUserData>();
 
@@ -52,14 +54,20 @@ namespace Genrpg.RequestServer.Resets.Services
 
                 if (newRegen > 0)
                 {
-                    userData.Currencies.Add(ctype.IdKey, newRegen);
                     newRewards.Add(new Reward() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = ctype.IdKey, Quantity = newRegen });
                 }
             }
 
+
+            await _rewardService.GiveRewardsAsync(context, newRewards, new RewardParams());
             context.user.SetNextHourlyUpdate();
 
-            context.Responses.AddResponse(new UpdateCoreCurrenciesResponse() { Rewards = newRewards, NextHourlyUpdate = context.user.NextHourlyUpdate });
+            if (!onLogin)
+            {
+                context.AddResponse(new UpdateCoreCurrenciesResponse() { Rewards = newRewards, NextHourlyUpdate = context.user.NextHourlyUpdate });
+            }
         }
     }
 }
+
+

@@ -1,5 +1,6 @@
-﻿
-using Genrpg.Shared.Entities.Entities;
+
+using Genrpg.Shared.Entities.Assets;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
@@ -19,7 +20,8 @@ namespace Genrpg.Shared.Entities.Services
         IIdName Find(IFilteredObject obj, long entityType, long entityId);
         List<IIdName> GetChildList(IFilteredObject obj, long entityTypeId);
         List<IIdName> GetChildList(IFilteredObject obj, string tableName);
-        EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId);
+        EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId,
+            EEntityIconCategories category = EEntityIconCategories.Default);
         IEntityHelper GetEntityHelper(string typeName);
     }
 
@@ -27,7 +29,7 @@ namespace Genrpg.Shared.Entities.Services
     {
         private SetupDictionaryContainer<Type, IGameSettingsLoader> _loaders = new SetupDictionaryContainer<Type, IGameSettingsLoader>();
         private SetupDictionaryContainer<long, IEntityHelper> _entityHelpers = new SetupDictionaryContainer<long, IEntityHelper>();
-        protected IGameData _gameData;
+        protected IGameData _gameData = null;
 
         public IEntityHelper GetEntityHelper(long entityTypeId)
         {
@@ -88,7 +90,7 @@ namespace Genrpg.Shared.Entities.Services
             return new List<IIdName>();
         }
 
-        public EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId)
+        public EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId, EEntityIconCategories category = EEntityIconCategories.Default)
         {
             IEntityHelper helper = GetEntityHelper(entityTypeId);
 
@@ -103,7 +105,7 @@ namespace Genrpg.Shared.Entities.Services
             {
                 return new EntityAtlasIcon()
                 {
-                    AtlasName = helper.GetIconAtlasName(obj, entityId),
+                    AtlasName = helper.GetIconAtlasName(obj, entityId, category),
                     IconName = indexedItem.Icon,
                 };
             }
@@ -123,3 +125,5 @@ namespace Genrpg.Shared.Entities.Services
         }
     }
 }
+
+

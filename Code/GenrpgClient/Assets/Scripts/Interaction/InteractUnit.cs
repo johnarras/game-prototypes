@@ -1,21 +1,24 @@
-﻿
-using UnityEngine;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Factions.Services;
-using System.Threading;
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
+
+using Assets.Scripts.ClientEvents.UI;
 using Genrpg.Shared.Crafting.Settings.Crafters;
-using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Factions.Services;
+using Genrpg.Shared.Loot.Messages;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Trades.Messages;
-using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Units.Settings;
+using System.Threading;
+using UnityEngine;
 
 public class InteractUnit : InteractableObject
 {
-    protected ISharedFactionService _factionService;
+    protected ISharedFactionService _factionService = null;
+    protected IScreenService _screenService = null;
+
     protected string crafterMousePointer = "";
 
     public override void Init(MapObject worldObj, GameObject go, CancellationToken token)
@@ -36,7 +39,7 @@ public class InteractUnit : InteractableObject
         }
 
         if (unit.IsPlayer())
-        { 
+        {
             return;
         }
         else if (unit.AddonBits > 0)
@@ -55,13 +58,13 @@ public class InteractUnit : InteractableObject
                 return;
             }
         }
-        else 
+        else
         {
             if (unit.Stats.Curr(StatTypes.Health) > 0) // alive
             {
                 _cursorService.SetCursor(CursorNames.Fight);
             }
-            else if (unit.Loot != null && 
+            else if (unit.Loot != null &&
                 unit.Loot.Count > 0)
             {
                 _cursorService.SetCursor(CursorNames.Interact);
@@ -129,11 +132,11 @@ public class InteractUnit : InteractableObject
             return;
         }
 
-        if (_factionService.CanInteract(_gs.ch,unit.FactionTypeId))
+        if (_factionService.CanInteract(_gs.ch, unit.FactionTypeId))
         {
             if (unit.HasAddon(MapObjectAddonTypes.Vendor))
             {
-                _screenService.Open(ScreenNames.Quest, unit);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.Quest, unit));
             }
 
             return;
@@ -141,7 +144,7 @@ public class InteractUnit : InteractableObject
 
         if (unit.HasFlag(UnitFlags.IsDead))
         {
-            if (UnitUtils.AttackerInfoMatchesObject(unit.GetFirstAttacker(),_gs.ch))
+            if (UnitUtils.AttackerInfoMatchesObject(unit.GetFirstAttacker(), _gs.ch))
             {
                 if (unit.Loot != null && unit.Loot.Count > 0)
                 {
@@ -173,3 +176,5 @@ public class InteractUnit : InteractableObject
 
     }
 }
+
+

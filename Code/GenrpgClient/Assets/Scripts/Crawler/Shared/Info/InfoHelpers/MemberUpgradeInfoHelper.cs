@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Upgrades.Settings;
+using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Collections.Generic;
@@ -33,3 +33,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

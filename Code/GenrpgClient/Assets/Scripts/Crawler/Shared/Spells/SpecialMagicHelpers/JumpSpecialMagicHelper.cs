@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -99,3 +99,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
         }
     }
 }
+
+

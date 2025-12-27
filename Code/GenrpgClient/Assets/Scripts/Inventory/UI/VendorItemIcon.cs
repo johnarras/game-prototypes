@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine.EventSystems;
 using Genrpg.Shared.Utils;
 using System.Threading;
@@ -58,3 +58,5 @@ public class VendorItemIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandle
 
 
 }
+
+

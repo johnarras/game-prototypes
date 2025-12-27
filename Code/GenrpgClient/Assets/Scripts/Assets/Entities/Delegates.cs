@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Entities
@@ -10,3 +10,5 @@ namespace Assets.Scripts.Assets.Entities
     public delegate void SpriteListDelegate(object[] sprites);
 
 }
+
+

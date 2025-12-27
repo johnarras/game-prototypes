@@ -1,34 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Rewards.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Rewards.Entities;
-using System.Linq;
+using UnityEngine;
 
-public class LootPopup : BaseScreen
+public class LootPopup : TypedArgScreen<List<RewardList>>
 {
 
-    protected IIconService _iconService;
+    protected IIconService _iconService = null;
     public GameObject _itemAnchor;
-    
+
     public float _itemDelay = 0.5f;
 
 
     public override bool BlockMouse() { return false; }
 
-    protected override async Task OnStartOpen(object data, CancellationToken token)
+    protected override async Task OnStartOpen(List<RewardList> rewardLists, CancellationToken token)
     {
-        List<RewardList> rewardLists = data as List<RewardList>;
         if (rewardLists == null || rewardLists.Count < 1)
         {
             StartClose();
             return;
         }
 
-        List<Reward> rewards = rewardLists.SelectMany(x=>x.Rewards).ToList();   
-        
+        List<Reward> rewards = rewardLists.SelectMany(x => x.Rewards).ToList();
+
 
         _awaitableService.ForgetAwaitable(ShowRewards(rewards, token));
 
@@ -55,9 +54,9 @@ public class LootPopup : BaseScreen
                 Level = rew.Level,
                 Quality = rew.QualityTypeId,
             };
-            _iconService.InitItemIcon(iid, _itemAnchor,_assetService, token);
+            _iconService.InitItemIcon(iid, _itemAnchor, _assetService, token);
         }
-        
+
         while (true)
         {
             await Awaitable.WaitForSecondsAsync(_itemDelay, cancellationToken: token);
@@ -73,3 +72,4 @@ public class LootPopup : BaseScreen
     }
 
 }
+

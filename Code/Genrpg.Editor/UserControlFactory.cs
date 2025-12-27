@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Editor
@@ -34,3 +34,6 @@ namespace Genrpg.Editor
 
     }
 }
+
+
+

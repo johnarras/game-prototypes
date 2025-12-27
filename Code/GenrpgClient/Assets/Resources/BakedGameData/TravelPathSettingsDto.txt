@@ -1,0 +1,9 @@
+{
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "TravelPathSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2025-12-24T15:31:22.457Z"
+}

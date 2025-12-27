@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Messages;
 using Genrpg.Shared.Inventory.Services;
@@ -14,8 +14,8 @@ using UnityEngine;
 
 public class VendorScreen : ItemIconScreen
 {
-    protected IInventoryService _inventoryService;
-    protected IIconService _iconService;
+    protected IInventoryService _inventoryService = null;
+    protected IIconService _iconService = null;
     public const string VendorIconName = "VendorItemIcon";
 
     public InventoryPanel PlayerItems;
@@ -159,4 +159,6 @@ public class VendorScreen : ItemIconScreen
         _networkService.SendMapMessage(new SellItem() { ItemId = icon.GetDataItem().Id, UnitId = _unit.Id });
     }
 }
+
+
 

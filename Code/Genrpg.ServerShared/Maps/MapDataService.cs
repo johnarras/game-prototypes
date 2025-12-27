@@ -1,12 +1,11 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.Maps.Entities;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Quests.WorldData;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.WorldData;
 using System;
@@ -20,24 +19,34 @@ namespace Genrpg.ServerShared.Maps
     {
         Task<List<MapStub>> GetMapStubs();
         Task<Map> LoadMap(IRandom rand, string mapId);
-        Task SaveMap(IRepositoryService repoService, Map map);
+        Task SaveMap(IFullRepositoryService repoService, Map map);
         string GetMapOwnerId(string mapId, int mapVersion);
     }
 
     public class MapDataService : IMapDataService
     {
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         protected ILogService _logService = null;
         private ITextSerializer _serializer = null;
-        public async Task Initialize( CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            CreateIndexData data = new CreateIndexData();
+            CreateIndexData data = new CreateIndexData(typeof(QuestType));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestType.OwnerId) });
-            data.Configs.Add(new IndexConfig() { MemberName =  nameof(QuestType.MapId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestType.MapId) });
             List<Task> tasks = new List<Task>();
-            tasks.Add(_repoService.CreateIndex<QuestType>(data));
-            tasks.Add(_repoService.CreateIndex<QuestItem>(data));
-            tasks.Add(_repoService.CreateIndex<Zone>(data));
+            tasks.Add(_repoService.CreateIndexes(data));
+
+            data = new CreateIndexData(typeof(QuestItem));
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestItem.OwnerId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestItem.MapId) });
+            tasks.Add(_repoService.CreateIndexes(data));
+
+
+            data = new CreateIndexData(typeof(Zone));
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Zone.OwnerId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Zone.MapId) });
+            tasks.Add(_repoService.CreateIndexes(data));
+
             await Task.WhenAll(tasks);
             await Task.CompletedTask;
         }
@@ -87,7 +96,7 @@ namespace Genrpg.ServerShared.Maps
             return map;
         }
 
-        public async Task SaveMap(IRepositoryService repoService, Map map)
+        public async Task SaveMap(IFullRepositoryService repoService, Map map)
         {
 
             try
@@ -109,7 +118,7 @@ namespace Genrpg.ServerShared.Maps
             }
         }
 
-        protected async Task SaveMapDataList<T>(IRepositoryService repoService, List<T> list, string mapId, int mapVersion) where T : class, IMapOwnerId, IId
+        protected async Task SaveMapDataList<T>(IFullRepositoryService repoService, List<T> list, string mapId, int mapVersion) where T : class, IMapOwnerId, IId
         {
             await repoService.DeleteAll<T>(x => x.MapId == mapId);
             string ownerId = GetMapOwnerId(mapId, mapVersion);
@@ -143,3 +152,5 @@ namespace Genrpg.ServerShared.Maps
         }
     }
 }
+
+

@@ -6,10 +6,11 @@ using System.Text;
 
 namespace Genrpg.Shared.Zones.Settings
 {
-    [MessagePackObject]
     public class ZoneUnitSpawn : IWeightedItem
     {
-        [Key(0)] public long UnitTypeId { get; set; }
-        [Key(1)] public double Weight { get; set; }
+        public long UnitTypeId { get; set; }
+        public double Weight { get; set; }
     }
 }
+
+

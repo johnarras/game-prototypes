@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Buildings;
+using Assets.Scripts.Buildings;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
@@ -88,3 +88,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
     }
 }
+
+

@@ -1,19 +1,10 @@
-﻿using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.Interactions.Messages;
 using Genrpg.Shared.MapMods.MapObjects;
 using Genrpg.Shared.MapObjects.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.GroundObjects
 {
     public class MapModObject : InteractableObject
     {
-        private IRepositoryService _repoService;
         private OnSpawn _spawn;
         private MapMod _mod;
         public void Init(OnSpawn spawn)
@@ -32,7 +23,7 @@ namespace Assets.Scripts.GroundObjects
         {
             return _mod;
         }
-        
+
         protected override void _RightClick(float distance)
         {
             if (!CanInteract())
@@ -48,3 +39,5 @@ namespace Assets.Scripts.GroundObjects
         }
     }
 }
+
+

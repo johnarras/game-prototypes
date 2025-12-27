@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Settings;
 using System;
 using System.Collections.Generic;
@@ -34,3 +34,5 @@ namespace Genrpg.Shared.PlayerFiltering.Interfaces
         List<AllowedPlayer> AllowedPlayers { get; set; }
     }
 }
+
+

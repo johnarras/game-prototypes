@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
@@ -7,13 +7,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameObjects
 {
-    public interface ISingletonContainer : IInitializable
+    public interface ISingletonContainer : IInitializable, IClientResetCleanup
     {
         public GameObject GetSingleton(string name);
-        public GameObject GetChildSingleton(string childName, string parentName);
+        public GameObject GetAssetParent<T>() where T : class;
     }
-
-
 
     public class SingletonContainer : ISingletonContainer
     {
@@ -21,24 +19,12 @@ namespace Assets.Scripts.GameObjects
         private Dictionary<string, GameObject> _objectDict = new Dictionary<string, GameObject>();
 
         private IClientEntityService _clientEntityService = null;
-        private IInitClient _initClient = null;
         private IClientAppService _appService = null;
-
-        string containerName = "InitClient";
 
         public async Task Initialize(CancellationToken token)
         {
             token.Register(() => DestroyCreatedSingletons());
 
-            if (_root == null)
-            {
-                _root = (GameObject)_initClient.GetRootObject();
-
-                if (_root == null)
-                {
-                    _root = new GameObject() { name = containerName };
-                }
-            }
 
             await Task.CompletedTask;
         }
@@ -49,48 +35,48 @@ namespace Assets.Scripts.GameObjects
             {
                 _clientEntityService.Destroy(go);
             }
+            _objectDict.Clear();
+            _clientEntityService.DestroyAllChildren(_root);
         }
 
-
-        public GameObject GetSingleton(string name)
+        public GameObject GetAssetParent<T>() where T : class
         {
+            return GetSingleton(typeof(T).Name + "Parent");
+        }
 
+        public GameObject GetSingleton(string childName)
+        {
             if (!_appService.IsPlaying)
             {
                 return null;
             }
 
-            if (_objectDict.TryGetValue(name, out GameObject go))
+            if (_root == null)
             {
-                return go;
+                _root = new GameObject() { name = "SingletonParent" };
+                _objectDict[_root.name] = _root;
             }
 
-            go = new GameObject(name);
-            _clientEntityService.AddToParent(go, _root);
-            _objectDict[name] = go;
-            return go;
-        }
-
-        public GameObject GetChildSingleton(string childName, string parentName)
-        {
-
-            string fullName = childName + parentName;
+            string fullName = childName;
 
             if (_objectDict.TryGetValue(fullName, out GameObject go))
             {
                 return go;
             }
 
-            GameObject parent = GetSingleton(parentName);
+            GameObject newObj = new GameObject(childName);
+            _clientEntityService.AddToParent(newObj, _root);
+            _objectDict[fullName] = newObj;
 
-            GameObject newChild = new GameObject(childName);
+            return newObj;
+        }
 
-            _clientEntityService.AddToParent(newChild, parent);
-
-
-            _objectDict[fullName] = newChild;
-
-            return newChild;
+        public async Task OnReset(CancellationToken token)
+        {
+            DestroyCreatedSingletons();
+            await Task.CompletedTask;
         }
     }
 }
+
+

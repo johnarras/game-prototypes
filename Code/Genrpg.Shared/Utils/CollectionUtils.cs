@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

@@ -1,5 +1,3 @@
-﻿using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.PlayerData;
 using Genrpg.Shared.Units.Entities;
@@ -7,15 +5,11 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 
 namespace Genrpg.Shared.Spells.Services
 {
     public class CombatAbilityService : ICombatAbilityService
     {
-        private IRepositoryService _repoService = null;
-
         public void AddRank(Unit unit, long abilityCategoryId, long abilityTypeId, int points)
         {
             SetRank(unit, abilityCategoryId, points, GetRank(unit, abilityCategoryId, abilityTypeId) + points);
@@ -32,10 +26,6 @@ namespace Genrpg.Shared.Spells.Services
             CombatAbilityRank abilityRank = GetRankItem(unit, abilityCategoryId, abilityTypeId);
             long oldRank = abilityRank.Rank;
             abilityRank.Rank = Math.Max(1, rank);
-            if (abilityRank.Rank != oldRank)
-            {
-                _repoService.QueueSave(abilityRank);
-            }
         }
 
         protected CombatAbilityRank GetRankItem(Unit unit, long abilityCategoryId, long abilityTypeId)
@@ -62,7 +52,6 @@ namespace Genrpg.Shared.Spells.Services
                         List<CombatAbilityRank> ranks = abilityData.GetData().ToList();
                         ranks.Add(abilityRank);
                         abilityData.SetData(ranks);
-                        _repoService.QueueSave(abilityRank);
                     }
                 }
             }
@@ -70,3 +59,5 @@ namespace Genrpg.Shared.Spells.Services
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -13,3 +13,5 @@ namespace Assets.Editor.Builds
         }
     }
 }
+
+

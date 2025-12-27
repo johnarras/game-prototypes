@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.ProcGen.Settings.Names;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,3 +32,5 @@ namespace Genrpg.Shared.Riddles.Entities
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.Interfaces;
@@ -15,3 +15,5 @@ namespace Genrpg.RequestServer.PlayerData.Services
         Task<List<IUnitData>> LoadPlayerDataOnLogin(WebContext context, Character ch = null);
     }
 }
+
+

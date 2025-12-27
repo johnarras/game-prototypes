@@ -1,0 +1,13 @@
+{
+  "Id": "animaltype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Dromedary Camel",
+  "Desc": "The one-humped 'ship of the desert'. Unmatched endurance in hot, arid climates due to its ability to conserve water. The backbone of caravan trade in Africa and Arabia.",
+  "Icon": "DromedaryCamel",
+  "Art": "DromedaryCamel",
+  "Speed": 4,
+  "Capacity": 2,
+  "Supplies": 3,
+  "Cost": 48500
+}

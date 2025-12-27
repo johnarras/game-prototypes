@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Crawler.Quests.UI
         public void SetData(FullQuest fullQuest)
         {
             _fullQuest = fullQuest;
-            _uiService.SetButton(Button, GetType().Name,
+            _uiService.SetButton(Button, name,
                 () =>
                 {
                     _crawlerService.ChangeState(ECrawlerStates.QuestDetail, GetToken(), fullQuest);
@@ -74,3 +74,5 @@ namespace Assets.Scripts.Crawler.Quests.UI
     }
 
 }
+
+

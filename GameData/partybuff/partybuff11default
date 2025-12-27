@@ -1,0 +1,11 @@
+{
+  "Id": "partybuff11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "ApplyDoT",
+  "Desc": "Sometimes apply a DoT to enemies after damaging.",
+  "Icon": "ApplyDoT",
+  "Art": "ApplyDoT",
+  "ProcChanceScale": 2.0,
+  "EffectScale": 0.5
+}

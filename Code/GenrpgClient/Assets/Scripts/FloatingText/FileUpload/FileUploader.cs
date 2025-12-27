@@ -1,4 +1,4 @@
-﻿
+
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
@@ -40,3 +40,5 @@ public class FileUploader
         UnityEngine.Debug.Log(outputText + " Files Sent from " + fdata.LocalFolder + " to " + fdata.RemoteSubfolder);
     }
 }
+
+

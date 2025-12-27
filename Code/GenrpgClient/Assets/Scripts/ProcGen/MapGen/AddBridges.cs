@@ -16,7 +16,7 @@ using UnityEngine;
 public class AddBridges : BaseZoneGenerator
 {
 
-    private IAddPoolService _addPoolService;
+    private IAddPoolService _addPoolService = null;
     private List<WaterGenData> _waterGenData = new List<WaterGenData>();
 
 	public const string DefaultBridgeArtName = "Bridge";
@@ -897,4 +897,6 @@ public class AddBridges : BaseZoneGenerator
         }
     }
 }
+
+
 

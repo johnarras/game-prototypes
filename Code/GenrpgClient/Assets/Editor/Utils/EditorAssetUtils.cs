@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -88,3 +88,5 @@ public class EditorAssetUtils
         return false;
     }
 }
+
+

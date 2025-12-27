@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using System;
@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Spells.Services
         void AddRank(Unit unit, long abilityCategoryId, long abilityTypeId, int points);
     }
 }
+
+

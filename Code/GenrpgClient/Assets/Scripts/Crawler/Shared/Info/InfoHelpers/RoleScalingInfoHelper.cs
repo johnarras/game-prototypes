@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Roles.Settings;
+using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
@@ -32,3 +32,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

@@ -2,6 +2,5 @@
   "Id": "settingsname79default",
   "ParentId": "default",
   "IdKey": 79,
-  "Name": "RoleScalingTypeSettings",
-  "SaveTime": "2025-11-24T17:13:23.088Z"
+  "Name": "RoleScalingTypeSettings"
 }

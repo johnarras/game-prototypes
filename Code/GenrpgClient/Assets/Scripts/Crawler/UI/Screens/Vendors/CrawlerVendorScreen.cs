@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
@@ -52,7 +52,7 @@ public class CrawlerVendorScreen : ItemIconScreen
         await base.OnStartOpen(data, token);
 
         _party = _crawlerService.GetParty();
-        _member = _party.GetActiveParty().First();
+        _member = _party.ActiveParty.First();
         InitPanel();
         ShowVendorItems();
     }
@@ -217,4 +217,6 @@ public class CrawlerVendorScreen : ItemIconScreen
         base.OnStartClose();
     }
 }
+
+
 

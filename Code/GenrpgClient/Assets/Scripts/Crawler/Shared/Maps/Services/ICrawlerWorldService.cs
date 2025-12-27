@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
@@ -25,3 +25,5 @@ namespace Genrpg.Shared.Crawler.Maps.Services
         Task<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z);
     }
 }
+
+

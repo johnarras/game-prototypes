@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Shared.Crawler.Combat.Constants
 {
     public class CombatActions
@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
         public const long UseItem = 8;
     }
 }
+
+

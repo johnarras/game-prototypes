@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.Queues.Entities;
+using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.Core;
 using System;
 using System.Collections.Generic;
@@ -20,3 +20,5 @@ namespace Genrpg.MonsterServer.MessageHandlers
         }
     }
 }
+
+

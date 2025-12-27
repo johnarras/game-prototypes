@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -16,7 +16,7 @@ public interface IIconService : IInjectable
 
 public class IconService : IIconService
 {
-    private IClientEntityService _clientEntityService;
+    private IClientEntityService _clientEntityService = null;
 
     public const string DefaultItemIconName = "ItemIcon";
     public const string DefaultSpellIconName = "SpellIcon";
@@ -117,3 +117,5 @@ public class IconService : IIconService
     }
 
 }
+
+

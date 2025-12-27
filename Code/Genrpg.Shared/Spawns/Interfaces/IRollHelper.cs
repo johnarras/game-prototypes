@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Spawns.Settings;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Spawns.Interfaces
         List<RewardList> Roll<SI>(IRandom rand, RollLootArgs rollLootArgs, SI item) where SI : ISpawnItem;
     }
 }
+
+

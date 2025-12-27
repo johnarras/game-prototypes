@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Inventory.Messages
         [Key(1)] public Item Item { get; set; }
     }
 }
+
+

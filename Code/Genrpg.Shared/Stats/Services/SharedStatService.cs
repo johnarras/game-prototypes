@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Effects.Interfaces;
@@ -396,3 +396,5 @@ namespace Genrpg.Shared.Stats.Services
 
 
 }
+
+

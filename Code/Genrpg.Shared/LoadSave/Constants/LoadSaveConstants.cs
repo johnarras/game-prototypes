@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Shared.LoadSave.Constants
 {
     public class LoadSaveConstants
@@ -7,3 +7,5 @@ namespace Genrpg.Shared.LoadSave.Constants
         public const int MaxSlot = 10;
     }
 }
+
+

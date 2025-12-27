@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "tiletype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "TownHall",
       "Desc": "Main base",
@@ -41,8 +38,6 @@
       ]
     },
     {
-      "Id": "tiletype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Forest",
       "Desc": "Wood and Leather",
@@ -74,8 +69,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Hills",
       "Desc": "Iron and Leather",
@@ -107,8 +100,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Mountain",
       "Desc": "Iron and Stone",
@@ -140,8 +131,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Swamp",
       "Desc": "Wood and Food",
@@ -173,8 +162,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Plains",
       "Desc": "Food and Herbs",
@@ -206,8 +193,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Desert",
       "Desc": "Stone and Herbs",
@@ -239,8 +224,6 @@
       "UpgradeReagents": []
     },
     {
-      "Id": "tiletype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Tanner",
       "Desc": "Improves Leather",
@@ -284,8 +267,6 @@
       ]
     },
     {
-      "Id": "tiletype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Farm",
       "Desc": "Improves Food",
@@ -339,8 +320,6 @@
       ]
     },
     {
-      "Id": "tiletype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Lumbermill",
       "Desc": "Improves Wood",
@@ -394,8 +373,6 @@
       ]
     },
     {
-      "Id": "tiletype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Alchemist",
       "Desc": "Improves Herbs",
@@ -449,8 +426,6 @@
       ]
     },
     {
-      "Id": "tiletype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Stonemason",
       "Desc": "Improves Stone",
@@ -504,8 +479,6 @@
       ]
     },
     {
-      "Id": "tiletype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Smithy",
       "Desc": "Improves Iron",
@@ -559,8 +532,6 @@
       ]
     },
     {
-      "Id": "tiletype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Barracks",
       "Desc": "Adds Troops To Attack",
@@ -614,8 +585,6 @@
       ]
     },
     {
-      "Id": "tiletype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "GuardTower",
       "Desc": "Adds defenses to board",
@@ -653,8 +622,6 @@
       ]
     },
     {
-      "Id": "tiletype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Treasury",
       "Desc": "Lets you unlock chests.",
@@ -692,8 +659,6 @@
       ]
     },
     {
-      "Id": "tiletype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Adventure",
       "Desc": "Gives bonus round of rewards",
@@ -731,8 +696,6 @@
       ]
     },
     {
-      "Id": "tiletype18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Mage Tower",
       "Desc": "Improves defenses",
@@ -788,8 +751,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "TileTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "TileTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

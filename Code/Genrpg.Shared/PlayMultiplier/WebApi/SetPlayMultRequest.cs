@@ -6,9 +6,10 @@ using System.Text;
 
 namespace Genrpg.Shared.PlayMultiplier.WebApi
 {
-    [MessagePackObject]
     public class SetPlayMultRequest : IClientUserRequest
     {
-        [Key(0)] public long PlayMult { get; set; }
+        public long PlayMult { get; set; }
     }
 }
+
+

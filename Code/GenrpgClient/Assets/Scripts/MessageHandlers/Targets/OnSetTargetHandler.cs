@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.MapObjects.Entities;
 using System.Threading;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.MessageHandlers.Targets
         }
     }
 }
+
+

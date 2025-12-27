@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.MapObjects.Messages;
 
 namespace Assets.Scripts.Buildings
@@ -25,3 +25,5 @@ namespace Assets.Scripts.Buildings
         }
     }
 }
+
+

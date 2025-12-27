@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.ClientEvents.Entities
+namespace Assets.Scripts.ClientEvents.Entities
 {
     public class AddEntityQuantityVisual
     {
@@ -8,3 +8,5 @@
         public bool InstantUpdate { get; set; }
     }
 }
+
+

@@ -30,23 +30,23 @@
   ],
   "Animals": [
     {
-      "AnimalId": 1,
+      "AnimalTypeId": 1,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 11,
+      "AnimalTypeId": 11,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 4,
+      "AnimalTypeId": 4,
       "PriceScale": 1.0
     },
     {
-      "AnimalId": 3,
+      "AnimalTypeId": 3,
       "PriceScale": 10.0
     },
     {
-      "AnimalId": 5,
+      "AnimalTypeId": 5,
       "PriceScale": 10.0
     }
   ],
@@ -341,6 +341,5 @@
       161,
       714
     ]
-  },
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  }
 }

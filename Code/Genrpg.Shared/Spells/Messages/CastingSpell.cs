@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(3)] public DateTime EndCastingTime { get; set; }
     }
 }
+
+

@@ -1,33 +1,32 @@
+using MessagePack;
 
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using MessagePack;
 
 namespace Genrpg.Shared.Crawler.Training.Settings
 {
-    [MessagePackObject]
     public class CrawlerTrainingSettings : NoChildSettings // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public long LinearCostPerLevel { get; set; }
-        [Key(2)] public long QuadraticCostPerLevel { get; set; }
+        public override string Id { get; set; }
+        public long LinearCostPerLevel { get; set; }
+        public long QuadraticCostPerLevel { get; set; }
 
-        [Key(3)] public double StartKillsNeeded { get; set; }
-        [Key(4)] public double ExtraKillsNeededLinear { get; set; }
-        [Key(5)] public double ExtraKillsNeededQuadratic { get; set; }
+        public double StartKillsNeeded { get; set; }
+        public double ExtraKillsNeededLinear { get; set; }
+        public double ExtraKillsNeededQuadratic { get; set; }
 
-        [Key(6)] public double StartMonsterExp { get; set; }
-        [Key(7)] public double ExtraMonsterExp { get; set; }
+        public double StartMonsterExp { get; set; }
+        public double ExtraMonsterExp { get; set; }
 
-        [Key(8)] public long MaxScalingExpLevel { get; set; }
+        public long MaxScalingExpLevel { get; set; }
 
-        [Key(9)] public long NewClassGoldCostMult { get; set; }
+        public long NewClassGoldCostMult { get; set; }
 
-        [Key(10)] public bool AdvanceOneClassPerLevel { get; set; }
-        [Key(11)] public int MaxDistinctClasses { get; set; }
+        public bool AdvanceOneClassPerLevel { get; set; }
+        public int MaxDistinctClasses { get; set; }
 
-        [Key(12)] public int StatGainOnLevelMult { get; set; }
+        public int StatGainOnLevelMult { get; set; }
 
         public long GetMonsterExp(long currentLevel)
         {
@@ -42,7 +41,13 @@ namespace Genrpg.Shared.Crawler.Training.Settings
 
     public class CrawlerTrainingSettingsLoader : NoChildSettingsLoader<CrawlerTrainingSettings> { }
 
-    public class CrawlerTrainingSettingsDto : NoChildSettingsDto<CrawlerTrainingSettings> { }
+    public class CrawlerTrainingSettingsDto : NoChildSettingsDto<CrawlerTrainingSettings>
+    {
+        public override CrawlerTrainingSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class CrawlerTrainingSettingsMapper : NoChildSettingsMapper<CrawlerTrainingSettings, CrawlerTrainingSettingsDto> { }
 }
+
+

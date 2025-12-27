@@ -2,5 +2,7 @@
   "Id": "screenname8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Login"
+  "Name": "Login",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Login"
 }

@@ -537,7 +537,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -1391173332140436192, guid: 1d635af844f05bc42be8b9d338c0f26b,
+      objectReference: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
         type: 2}
     - target: {fileID: 6670838921872097358, guid: 8d667427024fbde45b6910f4f7b314cd,
         type: 3}
@@ -720,6 +720,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 1108368140389327434, guid: 92897845d86462543af85e862b075693,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126435820540230797, guid: 92897845d86462543af85e862b075693,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e914527a73a43eb4582f1b5d47242a64,
+        type: 3}
     - target: {fileID: 1248862597655437066, guid: 92897845d86462543af85e862b075693,
         type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1135,9 +1146,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4950084691146113075, guid: 5b79afc55b5d8114a9b93490ae3dfbbe,
         type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
+        type: 2}
+    - target: {fileID: 4950084691146113075, guid: 5b79afc55b5d8114a9b93490ae3dfbbe,
+        type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 5778115056750312638, guid: 5b79afc55b5d8114a9b93490ae3dfbbe,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
+        type: 2}
     - target: {fileID: 5778115056750312638, guid: 5b79afc55b5d8114a9b93490ae3dfbbe,
         type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1178,6 +1201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ComboBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108368140389327434, guid: 92897845d86462543af85e862b075693,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1126435820540230797, guid: 92897845d86462543af85e862b075693,
         type: 3}

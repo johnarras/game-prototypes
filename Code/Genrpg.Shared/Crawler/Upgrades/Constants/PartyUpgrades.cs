@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Upgrades.Constants
+namespace Genrpg.Shared.Crawler.Upgrades.Constants
 {
     public class PartyUpgrades
     {
@@ -18,3 +18,5 @@
         public const long ItemUsesPerCombat = 14;
     }
 }
+
+

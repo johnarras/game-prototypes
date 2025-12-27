@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -23,3 +23,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Purchasing.Entities;
+using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.Shared.Purchasing.Constants;
 
 namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
@@ -25,3 +25,5 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         }
     }
 }
+
+

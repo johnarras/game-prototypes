@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
@@ -26,3 +26,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
         }
     }
 }
+
+

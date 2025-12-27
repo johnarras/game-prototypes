@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.Shared.Crawler.Combat.Constants
 {
@@ -33,3 +33,5 @@ namespace Genrpg.Shared.Crawler.Combat.Constants
         public const int MinGroupSize = 1;
     }
 }
+
+

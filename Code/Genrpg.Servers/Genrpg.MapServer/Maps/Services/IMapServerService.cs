@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MainServer;
+using Genrpg.MapServer.MainServer;
 using Genrpg.MapServer.Maps;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Interfaces;
@@ -19,3 +19,5 @@ namespace Genrpg.MapServer.Maps.Services
         Task RestartMapsWithId(string mapId);
     }
 }
+
+

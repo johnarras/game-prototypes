@@ -1,14 +1,10 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -24,31 +20,6 @@ namespace Assets.Scripts.GameObjects
 #if UNITY_EDITOR
         private IClientAppService _clientAppService = null!;
 #endif
-        public object FullInstantiateAndSet(object obj)
-        {
-            if (!(obj is GameObject go))
-            {
-                return null;
-            }
-
-            GameObject dupe = (GameObject)FullInstantiate(go);
-
-            List<BaseBehaviour> allBehaviours = GetComponents<BaseBehaviour>(dupe);
-
-            foreach (BaseBehaviour behaviour in allBehaviours)
-            {
-                Type setType = behaviour.GetType().GetInterfaces()
-                    .FirstOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IInjectOnLoad<>));
-
-                if (setType != null)
-                {
-                    var setMethod = typeof(ServiceLocator).GetMethod("Set");
-                    var genericMethod = setMethod.MakeGenericMethod(setType.GenericTypeArguments[0]);
-                    genericMethod.Invoke(_loc, new object[] { behaviour });
-                }
-            }
-            return dupe;
-        }
 
 
         public C FullInstantiate<C>(C obj) where C : class
@@ -298,22 +269,44 @@ namespace Assets.Scripts.GameObjects
                 return null;
             }
 
-            if (go == null)
+            if (typeof(T).IsSubclassOf(typeof(Component)))
             {
-                return null;
-            }
-
-            if (!go.TryGetComponent<T>(out T comp))
-            {
-                Transform t = go.transform.parent;
-
-                while (t != null && comp == null)
+                if (!go.TryGetComponent<T>(out T comp))
                 {
-                    comp = t.gameObject.GetComponent<T>();
-                    t = t.parent;
+                    Transform t = go.transform.parent;
+
+                    while (t != null && comp == null)
+                    {
+                        comp = t.gameObject.GetComponent<T>();
+
+                        if (comp != null)
+                        {
+                            return comp;
+                        }
+                        t = t.parent;
+                    }
+                    return default(T);
                 }
             }
-            return (T)comp;
+            else
+            {
+                while (go != null)
+                {
+                    Component[] comps = go.GetComponents<Component>();
+                    foreach (Component comp in comps)
+                    {
+                        if (comp is T t)
+                        {
+                            return t;
+                        }
+                    }
+                    if (go.transform.parent != null)
+                    {
+                        go = go.transform.parent.gameObject;
+                    }
+                }
+            }
+            return default(T);
         }
 
         public void DestroyAllChildren(object obj)
@@ -472,3 +465,5 @@ namespace Assets.Scripts.GameObjects
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 public class CoreUnitUI : BaseBehaviour
 {
     public GText NameText;
@@ -10,3 +10,4 @@ public class CoreUnitUI : BaseBehaviour
         _uiService.SetText(LevelText, level.ToString());
     }
 }
+

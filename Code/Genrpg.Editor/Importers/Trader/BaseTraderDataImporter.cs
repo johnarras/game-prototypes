@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -199,3 +199,5 @@ namespace Genrpg.Editor.Importers.Trader
         }
     }
 }
+
+

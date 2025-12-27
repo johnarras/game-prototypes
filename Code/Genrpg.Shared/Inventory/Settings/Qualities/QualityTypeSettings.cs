@@ -1,58 +1,60 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Inventory.Settings.Qualities
 {
-    [MessagePackObject]
     public class QualityType : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
         // Scaling for generating items.
-        [Key(8)] public int ItemSpawnWeight { get; set; }
-        [Key(9)] public int ItemMinLevel { get; set; }
-        [Key(10)] public int ItemStatPct { get; set; }
-        [Key(11)] public int ItemCostPct { get; set; }
+        public int ItemSpawnWeight { get; set; }
+        public int ItemMinLevel { get; set; }
+        public int ItemStatPct { get; set; }
+        public int ItemCostPct { get; set; }
 
         // Scaling for generating monsters.
-        [Key(12)] public string UnitName { get; set; }
-        [Key(13)] public int UnitSpawnWeight { get; set; }
-        [Key(14)] public int UnitMinLevel { get; set; }
-        [Key(15)] public int UnitHealthPct { get; set; }
-        [Key(16)] public int UnitDamPct { get; set; }
+        public string UnitName { get; set; }
+        public int UnitSpawnWeight { get; set; }
+        public int UnitMinLevel { get; set; }
+        public int UnitHealthPct { get; set; }
+        public int UnitDamPct { get; set; }
     }
 
-    [MessagePackObject]
     public class QualityName
     {
-        [Key(0)] public long QualityTypeId { get; set; }
-        [Key(1)] public string Name { get; set; }
+        public long QualityTypeId { get; set; }
+        public string Name { get; set; }
     }
 
-    [MessagePackObject]
     public class QualityTypeSettings : ParentSettings<QualityType>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class QualityTypeSettingsDto : ParentSettingsDto<QualityTypeSettings, QualityType> { }
+    public class QualityTypeSettingsDto : ParentSettingsDto<QualityTypeSettings, QualityType>
+    {
+        public override List<QualityType> Children { get; set; }
+        public override QualityTypeSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class QualityTypeSettingsLoader : ParentSettingsLoader<QualityTypeSettings, QualityType> { }
 
     public class QualitySettingsMapper : ParentSettingsMapper<QualityTypeSettings, QualityType, QualityTypeSettingsDto> { }
 
 }
+
+

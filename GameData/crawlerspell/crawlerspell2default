@@ -11,6 +11,5 @@
   "RoleScalingTypeId": 4,
   "RoleScalingTier": 1,
   "Effects": [],
-  "Flags": 1,
-  "SaveTime": "2025-10-27T23:25:19.168Z"
+  "Flags": 1
 }

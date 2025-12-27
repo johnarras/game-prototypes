@@ -401,3 +401,4 @@ public class InputService : IInputService
         return _clientEntityService.GetComponent<GInputField>(EventSystem.current.currentSelectedGameObject) != null;
     }
 }
+

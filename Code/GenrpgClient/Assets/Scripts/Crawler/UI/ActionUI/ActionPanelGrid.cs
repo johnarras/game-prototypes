@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Abstractions;
+using Assets.Scripts.UI.Abstractions;
 
 namespace Assets.Scripts.Crawler.UI.ActionUI
 {
@@ -21,3 +21,5 @@ namespace Assets.Scripts.Crawler.UI.ActionUI
         }
     }
 }
+
+

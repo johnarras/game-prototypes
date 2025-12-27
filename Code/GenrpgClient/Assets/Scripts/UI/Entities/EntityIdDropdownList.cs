@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,4 +15,6 @@ namespace Assets.Scripts.UI.Entities
 
     }
 }
+
+
 

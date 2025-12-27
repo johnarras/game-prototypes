@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.GameSettings.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,3 +10,5 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
         public override ITopLevelSettings Unpack() { return this; }
     }
 }
+
+

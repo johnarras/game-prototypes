@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
@@ -369,3 +369,5 @@ public class TreeObjectLoader : BaseObjectLoader
 
     }
 }
+
+

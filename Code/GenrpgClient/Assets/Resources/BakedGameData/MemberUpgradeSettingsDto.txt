@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "memberupgrade1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Strength Bonus",
       "Desc": "More Melee Damage Per Hit",
@@ -14,8 +11,6 @@
       "EntityId": 11
     },
     {
-      "Id": "memberupgrade2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Intellect Bonus",
       "Desc": "More Spell Damage Per Hit",
@@ -26,8 +21,6 @@
       "EntityId": 12
     },
     {
-      "Id": "memberupgrade3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Devotion Bonus",
       "Desc": "More Healing Per Hit",
@@ -38,8 +31,6 @@
       "EntityId": 13
     },
     {
-      "Id": "memberupgrade4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Agility Bonus",
       "Desc": "More Ranged Damage Per Hit",
@@ -50,8 +41,6 @@
       "EntityId": 14
     },
     {
-      "Id": "memberupgrade5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Stamina Bonus",
       "Desc": "More Health Per Level",
@@ -62,8 +51,6 @@
       "EntityId": 15
     },
     {
-      "Id": "memberupgrade6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Luck Bonus",
       "Desc": "More Chance for Lucky Hits",
@@ -74,8 +61,6 @@
       "EntityId": 16
     },
     {
-      "Id": "memberupgrade7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Willpower Bonus",
       "Desc": "More Mana Per Level",
@@ -86,8 +71,6 @@
       "EntityId": 17
     },
     {
-      "Id": "memberupgrade8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Melee Scaling",
       "Desc": "More Melee Hits Per Level",
@@ -98,8 +81,6 @@
       "EntityId": 1
     },
     {
-      "Id": "memberupgrade9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Ranged Scaling",
       "Desc": "More Ranged Hits Per Level",
@@ -110,8 +91,6 @@
       "EntityId": 2
     },
     {
-      "Id": "memberupgrade10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "SpellDam Scaling",
       "Desc": "More Attack Spell Hits Per Level",
@@ -122,8 +101,6 @@
       "EntityId": 3
     },
     {
-      "Id": "memberupgrade11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Healing Scaling",
       "Desc": "More Healing Ticks Per Level",
@@ -134,8 +111,6 @@
       "EntityId": 4
     },
     {
-      "Id": "memberupgrade12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Summon Scaling",
       "Desc": "More Summoned Creatures Per Level",
@@ -146,8 +121,6 @@
       "EntityId": 5
     },
     {
-      "Id": "memberupgrade13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Utility Scaling",
       "Desc": "Better Utility Scaling Per Level",
@@ -158,8 +131,6 @@
       "EntityId": 6
     },
     {
-      "Id": "memberupgrade14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Defense Scaling",
       "Desc": "Better Defense Scaling Per Level",
@@ -175,8 +146,8 @@
     "Id": "default",
     "LevelsPerPoint": 5,
     "MaxTier": 5,
-    "Name": "MemberUpgradeSettings",
-    "SaveTime": "2025-08-29T11:13:02.593Z"
+    "Name": "MemberUpgradeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-08-29T11:13:02.593Z"
 }

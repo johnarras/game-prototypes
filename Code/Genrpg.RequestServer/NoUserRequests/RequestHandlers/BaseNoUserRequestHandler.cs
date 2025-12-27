@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Website.Messages.Error;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.RequestServer.Core;
@@ -24,8 +24,10 @@ namespace Genrpg.RequestServer.NoUserRequests.RequestHandlers
 
         protected void ShowError(WebContext context, string msg)
         {
-            context.Responses.AddResponse(new ErrorResponse() { Error = msg });
+            context.AddResponse(new ErrorResponse() { Error = msg });
         }
     }
 
 }
+
+

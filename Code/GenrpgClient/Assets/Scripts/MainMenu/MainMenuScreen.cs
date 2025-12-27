@@ -1,4 +1,5 @@
-﻿
+
+using Assets.Scripts.UI.ScreenSystem;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,8 +11,8 @@ public class MainMenuScreen : BaseScreen
     public GButton LogoutAccountButton;
     public GButton QuitGameButton;
 
-    protected IClientAuthService _loginService;
-    private IClientAppService _clientAppService;
+    protected IClientAuthService _loginService = null;
+    private IClientAppService _clientAppService = null;
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         _uiService.SetButton(LogoutAccountButton, GetName(), ClickLogout);
@@ -40,4 +41,6 @@ public class MainMenuScreen : BaseScreen
 
 
 }
+
+
 

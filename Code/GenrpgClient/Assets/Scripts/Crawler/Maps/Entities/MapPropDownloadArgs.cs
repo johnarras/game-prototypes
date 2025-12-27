@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Genrpg.Shared.Crawler.Maps.Entities;
 
 namespace Assets.Scripts.Crawler.Maps.Entities
@@ -12,3 +12,5 @@ namespace Assets.Scripts.Crawler.Maps.Entities
         public object Data { get; set; }
     }
 }
+
+

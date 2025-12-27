@@ -1,39 +1,33 @@
-﻿
+using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
-using Assets.Scripts.Core.Interfaces;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.UI.Constants;
 
-public interface IPopupManager : IInitializable, IInjectOnLoad<IPopupManager>
+public interface IPopupManager : IInitializable
 {
 }
 
-public class PopupManager : BaseBehaviour, IPopupManager
+public class PopupManager : IPopupManager
 {
+    protected IDispatcher _dispatcher = null;
 
-    public override void Init()
-    {
-        base.Init();
-        AddListener<ShowLootEvent>(OnLootPopup);
-
-    }
     public async Task Initialize(CancellationToken token)
     {
+        _dispatcher.AddListener<ShowLootEvent>(OnLootPopup, token);
         await Task.CompletedTask;
     }
 
-    private void OnLootPopup (ShowLootEvent ldata)
+    private void OnLootPopup(ShowLootEvent ldata)
     {
         if (ldata == null || ldata.Rewards == null || ldata.Rewards.Count < 1)
         {
             return;
         }
-
-        _screenService.Open(ScreenNames.Loot, ldata.Rewards);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loot, ldata.Rewards));
 
     }
-
-
 }
+

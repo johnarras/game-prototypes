@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Services;
 using System.Collections.Generic;
@@ -10,8 +10,8 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
     public class RolloverInfoRow : BaseBehaviour, IPointerMoveHandler
     {
         public GText MainText;
-        protected ITextService _textService;
-        protected IInfoService _infoService;
+        protected ITextService _textService = null;
+        protected IInfoService _infoService = null;
 
         protected string _currentLink = null;
         public override void Init()
@@ -52,3 +52,5 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         }
     }
 }
+
+

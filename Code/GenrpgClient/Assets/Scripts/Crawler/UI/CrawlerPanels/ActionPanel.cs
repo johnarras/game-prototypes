@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.UI.ActionUI;
 using Assets.Scripts.UI.Abstractions;
@@ -94,15 +94,8 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
             }
             ActionPanelGrid grid = null;
 
-            if (buttonActions.Count > 0)
-            {
-            }
-
             for (int a = 0; a < buttonActions.Count; a++)
             {
-
-
-
                 CrawlerStateAction action = buttonActions[a];
 
                 if (action.RowFiller)
@@ -113,13 +106,11 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
                 if (grid == null)
                 {
-
                     grid = _clientEntityService.FullInstantiate(PanelGrid);
                     _clientEntityService.AddToParent(grid, Content);
                     grid.SetData(stateData.UseSmallerButtons);
                     _subObjects.Add(grid);
                 }
-
 
                 CrawlerStateWithAction stateAction = new CrawlerStateWithAction()
                 {
@@ -199,3 +190,5 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         }
     }
 }
+
+

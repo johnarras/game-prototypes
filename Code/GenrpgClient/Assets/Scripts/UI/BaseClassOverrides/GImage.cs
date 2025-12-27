@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.UI.Interfaces;
 using UnityEngine;
 public class GImage : UnityEngine.UI.Image, IImage
@@ -47,3 +47,4 @@ public class GImage : UnityEngine.UI.Image, IImage
         color = new Color(r, g, b, a);
     }
 }
+

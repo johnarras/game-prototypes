@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Movement.Messages;
+using Genrpg.Shared.Movement.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,3 +16,5 @@ namespace Assets.Scripts.MessageHandlers.Movement
         }
     }
 }
+
+

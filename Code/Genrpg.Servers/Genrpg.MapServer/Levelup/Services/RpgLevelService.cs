@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
@@ -178,3 +178,5 @@ namespace Genrpg.MapServer.Levelup.Services
 
     }
 }
+
+

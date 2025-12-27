@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Genrpg.Shared.Utils
 {
-    [MessagePackObject]
     public class MathUtils
     {
         public static int Clamp(int min, int mid, int max)
@@ -350,3 +349,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

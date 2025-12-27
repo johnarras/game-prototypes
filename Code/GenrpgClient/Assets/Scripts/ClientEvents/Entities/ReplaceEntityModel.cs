@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.ClientEvents.Entities
+namespace Assets.Scripts.ClientEvents.Entities
 {
     public class ReplaceEntityModel
     {
@@ -6,3 +6,5 @@
         public long EntityId { get; set; }
     }
 }
+
+

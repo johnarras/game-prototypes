@@ -1,35 +1,38 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Bridges;
-using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Purchasing.Settings
 {
-    [MessagePackObject]
     public class StoreFeatureSettings : ParentSettings<StoreFeature>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class StoreFeatureSettingsDto : ParentSettingsDto<StoreFeatureSettings, StoreFeature> { }
+    public class StoreFeatureSettingsDto : ParentSettingsDto<StoreFeatureSettings, StoreFeature>
+    {
+        public override List<StoreFeature> Children { get; set; }
+        public override StoreFeatureSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class StoreFeatureSettingsLoader : ParentSettingsLoader<StoreFeatureSettings, StoreFeature> { }
 
     public class StoreFeatureSettingsMapper : ParentSettingsMapper<StoreFeatureSettings, StoreFeature, StoreFeatureSettingsDto> { }
 
 
 
-    [MessagePackObject]
     public class StoreFeature : ChildSettings, IIdName
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
     }
 }
+
+

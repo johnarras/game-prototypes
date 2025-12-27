@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Buffs.Constants;
@@ -105,3 +105,5 @@ namespace Assets.Scripts.Controllers
         }
     }
 }
+
+

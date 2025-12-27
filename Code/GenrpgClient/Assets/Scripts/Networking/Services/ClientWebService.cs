@@ -1,26 +1,24 @@
-﻿#define SHOW_SEND_RECEIVE_MESSAGES
+#define SHOW_SEND_RECEIVE_MESSAGES
 #undef SHOW_SEND_RECEIVE_MESSAGES
 
-using System;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils;
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.Login.Messages;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
-using System.Threading;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
-using Assets.Scripts.Login.Messages;
-using System.Linq;
-using System.Threading.Tasks;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.HelperClasses;
-using UnityEngine;
 using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Tokens;
-using Assets.Scripts.Awaitables;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Core.Constants;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public delegate void WebResultsHandler(string txt, List<FullWebRequest> requests, CancellationToken token);
 
@@ -71,7 +69,7 @@ public class ClientWebService : IClientWebService
         public IClientLoginResultHandler Handler { get; set; } = null;
     }
 
-    private Dictionary<string,WebRequestQueue> _queues = new Dictionary<string,WebRequestQueue>();
+    private Dictionary<string, WebRequestQueue> _queues = new Dictionary<string, WebRequestQueue>();
 
     private SetupDictionaryContainer<Type, IClientLoginResultHandler> _loginResultHandlers = new SetupDictionaryContainer<Type, IClientLoginResultHandler>();
 
@@ -116,7 +114,7 @@ public class ClientWebService : IClientWebService
 
 
         // Batch requests to fewer endpoints like in a realtime game.
-        _queues[AccountAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + AccountAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService,  this, _serializer, _gameData, null);
+        _queues[AccountAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + AccountAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, null);
         _queues[GameAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[AccountAuthEndpoint]);
         _queues[GameClientEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameClientEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[GameAuthEndpoint]);
         _queues[NoUserEndpoint] = new WebRequestQueue(_gs, token, webServerURL + NoUserEndpoint, 0, _showRequestLogs, _logService, this, _serializer, _gameData, null);
@@ -221,14 +219,14 @@ public class ClientWebService : IClientWebService
             _logService = logService;
             _serializer = serializer;
             _gameData = gameData;
-            _showRequestLogs =showRequestLogs;
+            _showRequestLogs = showRequestLogs;
             this._clientWebService = _clientWebService;
             if (_parentQueue != null)
             {
                 _parentQueue.AddChildQueue(this);
             }
             _delaySeconds = delaySeconds;
-            _token = token;         
+            _token = token;
             _fullEndpoint = fullEndpoint;
 
         }
@@ -354,7 +352,7 @@ public class ClientWebService : IClientWebService
     {
         SendRequest(GameClientEndpoint, userRequest, token);
     }
-    
+
     public async Awaitable<T> SendClientUserWebRequestAsync<T>(IClientUserRequest userRequest, CancellationToken token)
     {
         return await SendWebRequestAsync<T>(GameClientEndpoint, userRequest, token);
@@ -376,7 +374,7 @@ public class ClientWebService : IClientWebService
     {
         if (_queues.TryGetValue(endpoint, out WebRequestQueue queue))
         {
-           return queue.AddRequest(loginRequest, token, responseType);
+            return queue.AddRequest(loginRequest, token, responseType);
         }
         return null;
     }
@@ -395,3 +393,5 @@ public class ClientWebService : IClientWebService
 
 
 }
+
+

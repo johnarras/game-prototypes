@@ -1,6 +1,5 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Fences;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
@@ -11,7 +10,6 @@ using UnityEngine;
 public class FenceObjectLoader : BaseObjectLoader
 {
 
-    private ILogService _logService;
     public override bool LoadObject(PatchLoadData loadData, uint objectId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
@@ -61,3 +59,5 @@ public class FenceObjectLoader : BaseObjectLoader
         }
     }
 }
+
+

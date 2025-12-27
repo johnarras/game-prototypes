@@ -4,13 +4,14 @@ using System;
 
 namespace Genrpg.Shared.Accounts.WebApi.Login
 {
-    [MessagePackObject]
     public class GameAuthRequest : IGameAuthRequest
     {
-        [Key(0)] public string AccountId { get; set; }
-        [Key(1)] public string SessionId { get; set; }
-        [Key(2)] public string ClientVersion { get; set; }
-        [Key(3)] public DateTime ClientGameDataSaveTime { get; set; }
-        [Key(4)] public string ClientPlatformName { get; set; }
+        public string AccountId { get; set; }
+        public string SessionId { get; set; }
+        public string ClientVersion { get; set; }
+        public DateTime ClientGameDataSaveTime { get; set; }
+        public string ClientPlatformName { get; set; }
     }
 }
+
+

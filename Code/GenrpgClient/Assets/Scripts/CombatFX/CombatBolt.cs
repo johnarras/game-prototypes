@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Client.Assets.Constants;
 
 namespace Assets.Scripts.CombatFX
@@ -15,3 +15,5 @@ namespace Assets.Scripts.CombatFX
         }
     }
 }
+
+

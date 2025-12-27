@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
@@ -15,3 +15,5 @@ public class ItemIconScreen : DragItemScreen<Item,ItemIcon,ItemIconScreen,InitIt
 
     virtual public Unit GetUnit() { return _gs.ch; }
 }
+
+

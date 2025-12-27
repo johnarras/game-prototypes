@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,7 @@ public class CursorNames
 public class CursorService : ICursorService
 {
 
-    private ILocalLoadService _localLoadService;
+    private ILocalLoadService _localLoadService = null;
 
     private Dictionary<string, Texture2D> _cursorCache = new Dictionary<string, Texture2D>();
 
@@ -48,3 +48,5 @@ public class CursorService : ICursorService
     }
 
 }
+
+

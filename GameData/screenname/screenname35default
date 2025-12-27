@@ -2,5 +2,7 @@
   "Id": "screenname35default",
   "ParentId": "default",
   "IdKey": 35,
-  "Name": "DynamicUI"
+  "Name": "DynamicUI",
+  "ScreenLayerId": 50,
+  "Subdirectory": "DynamicUI"
 }

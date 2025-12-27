@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "stattype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Health",
       "Desc": "Your health before you die.",
@@ -11,8 +8,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Mana",
       "Desc": "Power used to cast spells.",
@@ -21,8 +16,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Energy",
       "Desc": "1->Fast Use/Fill",
@@ -30,8 +23,6 @@
       "RegenSeconds": 15
     },
     {
-      "Id": "stattype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Combo",
       "Desc": "Start Empty, filll",
@@ -39,8 +30,6 @@
       "RegenSeconds": -30
     },
     {
-      "Id": "stattype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Strength",
       "Abbrev": "",
@@ -53,8 +42,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Intellect",
       "Desc": "Increases attack spell damage.",
@@ -65,8 +52,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Devotion",
       "Desc": "Increases healing power.",
@@ -77,8 +62,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Agility",
       "Desc": "Increases ranged damage.",
@@ -89,8 +72,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Stamina",
       "Desc": "Adds to your health.",
@@ -101,8 +82,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Luck",
       "Desc": "Gives a chance to get extra attacks.",
@@ -113,8 +92,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Willpower",
       "Abbrev": "",
@@ -128,8 +105,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "DamagePower",
       "Desc": "Extra damage to all attacks.",
@@ -137,31 +112,23 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "AttackPower",
       "Desc": "Phys Power",
       "GenScalePct": 150
     },
     {
-      "Id": "stattype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "SpellPower",
       "Desc": "Magic Power",
       "GenScalePct": 150
     },
     {
-      "Id": "stattype30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Defense",
       "Desc": "All Defense"
     },
     {
-      "Id": "stattype31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Armor",
       "Desc": "Reduces physical damage.",
@@ -169,8 +136,6 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Resist",
       "Desc": "Reduces magical damage.",
@@ -178,92 +143,68 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "HealthRegen",
       "Desc": "Regenerates health.",
       "GenScalePct": 100
     },
     {
-      "Id": "stattype34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "ManaRegen",
       "Desc": "Mana Regen",
       "GenScalePct": 100
     },
     {
-      "Id": "stattype35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "RoleScalingPercent",
       "Abbrev": "",
       "Desc": "Percent modifier (divide this by 100) to role scaling for this unit."
     },
     {
-      "Id": "stattype36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "DetectHidden"
     },
     {
-      "Id": "stattype37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "SmartTarget"
     },
     {
-      "Id": "stattype40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "PowerMult",
       "Desc": "All Dam Mult",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "AttackMult",
       "Desc": "Phys Dam Mult",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "SpellMult",
       "Desc": "Spell Dam Mult",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "DefenseMult",
       "Desc": "All Dam Reduced",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "AttackDefMult",
       "Desc": "Phys Dam Reduced",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "SpellDefMult",
       "Desc": "Spell Dam Reduced",
       "GenScalePct": 10
     },
     {
-      "Id": "stattype61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "Crit",
       "Desc": "Chance to instantly kill a monster.",
@@ -271,16 +212,12 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "Haste",
       "Desc": "Attack faster.",
       "GenScalePct": 200
     },
     {
-      "Id": "stattype63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Speed",
       "Abbrev": "",
@@ -289,32 +226,24 @@
       "IsCrawlerStat": true
     },
     {
-      "Id": "stattype64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "Efficiency",
       "Desc": "Lower Cost",
       "GenScalePct": 200
     },
     {
-      "Id": "stattype65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "Cooldown",
       "Desc": "Lower Cooldown",
       "GenScalePct": 200
     },
     {
-      "Id": "stattype66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "CritDamage",
       "Desc": "More Crit Damage",
       "GenScalePct": 300
     },
     {
-      "Id": "stattype70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "Hit",
       "Desc": "Chance to Hit",
@@ -325,8 +254,8 @@
   "Parent": {
     "Id": "default",
     "StatConstantUnitMultiple": 10,
-    "Name": "StatSettings",
-    "SaveTime": "2025-07-16T02:22:20.598Z"
+    "Name": "StatSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-07-16T02:22:20.598Z"
 }

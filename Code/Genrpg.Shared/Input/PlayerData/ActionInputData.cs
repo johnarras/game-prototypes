@@ -1,14 +1,11 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Utils;
 using MessagePack;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.Shared.Input.PlayerData
 {
@@ -48,25 +45,34 @@ namespace Genrpg.Shared.Input.PlayerData
             return input;
         }
 
-        public void SetInput(int actionIndex, long spellTypeId, IRepositoryService repoService)
+        public ActionInput SetInput(int actionIndex, long spellTypeId)
         {
             ActionInput input = GetInput(actionIndex);
             if (input == null)
             {
-                return;
+                return null;
             }
 
             if (input.SpellId != spellTypeId)
             {
-                input.SpellId = spellTypeId;  
-                repoService.QueueSave(input);
+                input.SpellId = spellTypeId;
+                return input;
             }
+            return null;
         }
     }
-    public class ActionInputDto : OwnerDtoList<ActionInputData, ActionInput> { }
+    [MessagePackObject]
+    public class ActionInputDto : OwnerDtoList<ActionInputData, ActionInput>
+    {
+        [Key(0)] public override List<ActionInput> Children { get; set; }
+        [Key(1)] public override ActionInputData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
     public class ActionInputDataLoader : OwnerDataLoader<ActionInputData, ActionInput> { }
 
     public class ActionInputDataMapper : OwnerDataMapper<ActionInputData, ActionInput, ActionInputDto> { }
 
 }
+
+

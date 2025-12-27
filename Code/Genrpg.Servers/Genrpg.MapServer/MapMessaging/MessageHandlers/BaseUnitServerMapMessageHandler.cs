@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Units.Services;
+using Genrpg.MapServer.Units.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.GroundObjects.MapObjects;
 using Genrpg.Shared.MapMessages.Interfaces;
@@ -18,3 +18,5 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
         protected IServerUnitService _unitService = null;
     }
 }
+
+

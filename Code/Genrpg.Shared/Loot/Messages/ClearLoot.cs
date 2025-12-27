@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Loot.Messages
         [Key(0)] public string UnitId { get; set; }
     }
 }
+
+

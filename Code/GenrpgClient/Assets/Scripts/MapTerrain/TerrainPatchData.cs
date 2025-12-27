@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using System.Collections.Generic;
@@ -54,3 +54,5 @@ namespace Assets.Scripts.MapTerrain
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
@@ -148,3 +148,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
         }
     }
 }
+
+

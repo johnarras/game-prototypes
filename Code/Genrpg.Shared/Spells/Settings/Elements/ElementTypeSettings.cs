@@ -1,3 +1,4 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
@@ -6,46 +7,44 @@ using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Procs.Entities;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Genrpg.Shared.Spells.Settings.Elements
 {
-    [MessagePackObject]
     public class ElementType : ChildSettings, IIndexedGameItem
     {
 
         public const int SecondaryDebuffStatDiv = 10;
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
 
-        [Key(7)] public string Art { get; set; }
+        public string Art { get; set; }
 
-        [Key(8)] public string CasterActionName { get; set; }
-        [Key(9)] public string ObserverActionName { get; set; }
+        public string CasterActionName { get; set; }
+        public string ObserverActionName { get; set; }
 
-        [Key(10)] public string CastAnim { get; set; }
+        public string CastAnim { get; set; }
 
-        [Key(11)] public long VulnElementTypeId { get; set; }
+        public long VulnElementTypeId { get; set; }
 
-        [Key(12)] public long VulnDamagePercent { get; set; }
-        [Key(13)] public long VulnCritPercentMod { get; set; }
+        public long VulnDamagePercent { get; set; }
+        public long VulnCritPercentMod { get; set; }
 
-        [Key(14)] public long ResistDamagePercent { get; set; }
-        [Key(15)] public long ResistCritPercentMod { get; set; }
+        public long ResistDamagePercent { get; set; }
+        public long ResistCritPercentMod { get; set; }
 
-        [Key(16)] public string Color { get; set; }
+        public string Color { get; set; }
 
-        [Key(17)] public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
+        public List<ElementSkill> Skills { get; set; } = new List<ElementSkill>();
 
-        [Key(18)] public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
+        public List<SpellProc> Procs { get; set; } = new List<SpellProc>();
 
         public string ShowInfo()
         {
@@ -75,22 +74,21 @@ namespace Genrpg.Shared.Spells.Settings.Elements
     }
 
 
-    [MessagePackObject]
     public class ElementSkill
     {
-        [Key(0)] public long SkillTypeId { get; set; }
+        public long SkillTypeId { get; set; }
         /// <summary>
         /// Percent cost to use this skill with this element. 100 = normal
         /// </summary>
-        [Key(1)] public int CostPct { get; set; }
+        public int CostPct { get; set; }
         /// <summary>
         /// Percent damage/healing/statmodifier to use this skill with this element. 100 = normal
         /// </summary>
-        [Key(2)] public int ScalePct { get; set; }
+        public int ScalePct { get; set; }
 
-        [Key(3)] public long OverrideEntityTypeId { get; set; }
-        [Key(4)] public long OverrideEntityId { get; set; }
-        [Key(5)] public string Name { get; set; }
+        public long OverrideEntityTypeId { get; set; }
+        public long OverrideEntityId { get; set; }
+        public string Name { get; set; }
 
         public ElementSkill()
         {
@@ -100,13 +98,17 @@ namespace Genrpg.Shared.Spells.Settings.Elements
     }
 
 
-    [MessagePackObject]
     public class ElementTypeSettings : ParentConstantListSettings<ElementType, ElementTypes>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class ElementTypeSettingsDto : ParentSettingsDto<ElementTypeSettings, ElementType> { }
+    public class ElementTypeSettingsDto : ParentSettingsDto<ElementTypeSettings, ElementType>
+    {
+        public override List<ElementType> Children { get; set; }
+        public override ElementTypeSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class ElementTypeSettingsLoader : ParentSettingsLoader<ElementTypeSettings, ElementType> { }
 
     public class ElementTypeSettingsMapper : ParentSettingsMapper<ElementTypeSettings, ElementType, ElementTypeSettingsDto> { }
@@ -120,3 +122,5 @@ namespace Genrpg.Shared.Spells.Settings.Elements
 
 
 }
+
+

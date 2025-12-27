@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Genrpg.Shared.Players.Messages;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Units.Entities;
@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class LoadInitialData : BaseZoneGenerator
 {
-    protected IScreenService _screenService;
-    private IRealtimeNetworkService _networkService;
+    protected IScreenService _screenService = null;
+    private IRealtimeNetworkService _networkService = null;
     private IPlayerManager _playerManager;
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -75,3 +75,5 @@ public class LoadInitialData : BaseZoneGenerator
 
 
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Entities;
+using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.Ftue.Constants;
 using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Ftue.Settings.Steps;
@@ -128,3 +128,5 @@ namespace Assets.Scripts.UI.Blockers
         }
     }
 }
+
+

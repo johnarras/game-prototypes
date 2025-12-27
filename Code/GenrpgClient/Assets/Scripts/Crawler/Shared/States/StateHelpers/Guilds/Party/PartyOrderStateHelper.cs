@@ -1,9 +1,10 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
@@ -32,13 +33,13 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
             CrawlerStateData stateData = CreateStateData();
 
             PartyData party = _crawlerService.GetParty();
-            List<PartyMember> partyMembers = party.GetActiveParty();
+            List<PartyMember> partyMembers = party.ActiveParty;
 
             PartyArrangement arrangement = currentData.ExtraData as PartyArrangement;
 
             if (arrangement == null)
             {
-                arrangement = new PartyArrangement() { OldOrder = partyMembers };
+                arrangement = new PartyArrangement() { OldOrder = partyMembers.ToList() };
             }
 
             stateData.ExtraData = arrangement;
@@ -87,3 +88,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
         }
     }
 }
+
+

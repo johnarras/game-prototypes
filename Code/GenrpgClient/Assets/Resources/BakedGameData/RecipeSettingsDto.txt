@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "recipetype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Helm",
       "Desc": "",
@@ -17,8 +14,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Shoulder",
       "Desc": "",
@@ -32,8 +27,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Chest",
       "Desc": "",
@@ -47,8 +40,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Bracers",
       "Desc": "",
@@ -62,8 +53,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Gloves",
       "Desc": "",
@@ -77,8 +66,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Belt",
       "Desc": "",
@@ -92,8 +79,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Pants",
       "Desc": "",
@@ -107,8 +92,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Boots",
       "Desc": "",
@@ -122,8 +105,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Cloak",
       "Desc": "",
@@ -137,8 +118,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Shield",
       "Desc": "",
@@ -152,8 +131,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Offhand",
       "Desc": "",
@@ -167,8 +144,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Necklace",
       "Desc": "",
@@ -182,8 +157,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Ring",
       "Desc": "",
@@ -197,8 +170,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Trinket",
       "Desc": "",
@@ -212,8 +183,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Sword",
       "Desc": "",
@@ -227,8 +196,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Axe",
       "Desc": "",
@@ -242,8 +209,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Mace",
       "Desc": "",
@@ -257,8 +222,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Dagger",
       "Desc": "",
@@ -272,8 +235,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "2H Sword",
       "Desc": "",
@@ -287,8 +248,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "2H Axe",
       "Desc": "",
@@ -302,8 +261,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "2H Mace",
       "Desc": "",
@@ -317,8 +274,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "Staff",
       "Desc": "",
@@ -332,8 +287,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "Polearm",
       "Desc": "",
@@ -347,8 +300,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Ranged",
       "Desc": "",
@@ -362,8 +313,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Thrown",
       "Desc": "",
@@ -377,8 +326,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Wand",
       "Desc": "",
@@ -392,8 +339,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "Healing Potion",
       "Desc": "",
@@ -408,8 +353,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "Mana Potion",
       "Desc": "",
@@ -424,8 +367,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "Strength Elixir",
       "EntityId": 302,
@@ -437,8 +378,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "Intellect Elixir",
       "EntityId": 303,
@@ -450,8 +389,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "Wisdom Elixir",
       "EntityId": 304,
@@ -463,8 +400,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "Agility Elixir",
       "EntityId": 305,
@@ -476,8 +411,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "Stamina Elixir",
       "EntityId": 306,
@@ -489,8 +422,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "Spirit Elixir",
       "EntityId": 307,
@@ -502,8 +433,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "Enchant Strength",
       "Desc": "",
@@ -518,8 +447,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "Enchant Intellect",
       "Desc": "",
@@ -534,8 +461,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "Enchant Wisdom",
       "Desc": "",
@@ -550,8 +475,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "Enchant Agility",
       "Desc": "",
@@ -566,8 +489,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "Enchant Stamina",
       "Desc": "",
@@ -582,8 +503,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "Enchant Spirit",
       "Desc": "",
@@ -598,8 +517,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "PoisonVial",
       "Desc": "",
@@ -613,8 +530,6 @@
       "ExplicitReagents": []
     },
     {
-      "Id": "recipetype48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "Quiver",
       "Desc": "",
@@ -637,8 +552,8 @@
     "LevelsPerExtraEffect": 4,
     "MaxExtraEffects": 5,
     "ReagentQuantityPerPercent": 0.025,
-    "Name": "RecipeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "RecipeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

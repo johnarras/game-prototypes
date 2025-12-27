@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
@@ -155,3 +155,4 @@ public class FullItemTooltip : BaseTooltip
     }
 
 }
+

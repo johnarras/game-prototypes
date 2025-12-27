@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameSettings.Services;
+using Assets.Scripts.GameSettings.Services;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -16,7 +16,9 @@ public class EditorGameDataUtils
         _gs = null;
     }
 
+#pragma warning disable UDR0001 // Domain Reload Analyzer
     private static IClientGameState _gs = null;
+#pragma warning restore UDR0001 // Domain Reload Analyzer
 
     public static IClientGameState GetEditorGameState()
     {
@@ -52,12 +54,12 @@ public class EditorGameDataUtils
 
             InitClient initClient = initObject.GetComponent<InitClient>();
 
-            IClientGameState gs = await initClient.InitialSetup(false);
+            IClientGameState gs = await initClient.InitialSetup();
 
             IClientConfigContainer configContainer = gs.loc.Get<IClientConfigContainer>();
 
             IClientGameDataService _clientGameDataService = gs.loc.Get<IClientGameDataService>();
-            await _clientGameDataService.LoadCachedSettings(gs, true);
+            await _clientGameDataService.EditorLoadCachedSettings(gs);
 
             return gs;
         }
@@ -68,3 +70,5 @@ public class EditorGameDataUtils
         return null;
     }
 }
+
+

@@ -1,0 +1,26 @@
+{
+  "Id": "crawlerspell93default",
+  "ParentId": "default",
+  "IdKey": 93,
+  "Name": "Lifesteal",
+  "Desc": "Chance to get some health back when damaging enemies.",
+  "PowerCost": 20.0,
+  "PowerPerLevel": 2.0,
+  "StatBonusScaling": 1.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 6,
+  "RoleScalingTypeId": 4,
+  "RoleScalingTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 101,
+      "EntityId": 12,
+      "MinQuantity": 1,
+      "MaxQuantity": 1,
+      "ElementTypeId": 1,
+      "Chance": 1.0
+    }
+  ],
+  "ItemEnchantWeight": 0.1
+}

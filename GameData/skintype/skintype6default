@@ -1,0 +1,10 @@
+{
+  "Id": "skintype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Draft Horse",
+  "Icon": "DraftHorse",
+  "Art": "DraftHorse",
+  "AnimalTypeId": 6,
+  "IsDefault": true
+}

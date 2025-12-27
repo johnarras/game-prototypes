@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using System.Threading;
@@ -37,3 +37,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
         }
     }
 }
+
+

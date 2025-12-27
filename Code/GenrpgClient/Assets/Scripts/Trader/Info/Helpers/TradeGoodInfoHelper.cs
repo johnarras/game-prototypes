@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Info.InfoHelpers;
+using Genrpg.Shared.Crawler.Info.InfoHelpers;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
 using System.Collections.Generic;
@@ -19,3 +19,5 @@ namespace Assets.Scripts.Trader.Info.Helpers
         }
     }
 }
+
+

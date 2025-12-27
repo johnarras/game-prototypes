@@ -1,6 +1,6 @@
-﻿namespace Genrpg.Shared.Crawler.Parties.PlayerData
+using MessagePack;
+namespace Genrpg.Shared.Crawler.Parties.PlayerData
 {
-    // MessagePackIgnore
     public class UpgradeStatus
     {
         public long UpgradeReasonId { get; set; }
@@ -8,3 +8,5 @@
         public long GameLevel { get; set; }
     }
 }
+
+

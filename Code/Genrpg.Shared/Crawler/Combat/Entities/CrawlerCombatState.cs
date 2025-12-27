@@ -7,29 +7,26 @@ using System.Linq;
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
 
-    [MessagePackObject]
     public class InitialCombatState
     {
-        [Key(0)] public long Level { get; set; }
-        [Key(1)] public double Difficulty { get; set; } = 1.0f;
-        [Key(2)] public List<InitialCombatGroup> CombatGroups { get; set; } = new List<InitialCombatGroup>();
-        [Key(3)] public long WorldQuestItemId { get; set; }
+        public long Level { get; set; }
+        public double Difficulty { get; set; } = 1.0f;
+        public List<InitialCombatGroup> CombatGroups { get; set; } = new List<InitialCombatGroup>();
+        public long WorldQuestItemId { get; set; }
     }
 
 
-    [MessagePackObject]
     public class InitialCombatGroup
     {
-        [Key(0)] public long UnitTypeId { get; set; }
-        [Key(1)] public long Quantity { get; set; }
-        [Key(2)] public int Range { get; set; }
-        [Key(4)] public long Level { get; set; }
-        [Key(3)] public string BossName { get; set; }
-        [Key(5)] public long FactionTypeId { get; set; }
+        public long UnitTypeId { get; set; }
+        public long Quantity { get; set; }
+        public int Range { get; set; }
+        public long Level { get; set; }
+        public string BossName { get; set; }
+        public long FactionTypeId { get; set; }
     }
 
 
-    // MessagePackIgnore
     public class CrawlerCombatState
     {
         public int RoundsComplete { get; set; } = 0;
@@ -49,6 +46,8 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         public List<CrawlerUnit> AttackSequence { get; set; } = new List<CrawlerUnit>();
 
         public bool PartyWonCombat() { return Enemies.Count == 0; }
+
+        public double MaxDebuffTier { get; set; }
 
         public CombatGroup GetGroup(string combatGroupId)
         {
@@ -80,3 +79,5 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MainServer;
+using Genrpg.MapServer.MainServer;
 using Genrpg.Shared.Utils;
 
 namespace Tests.MapServerTests
@@ -20,9 +20,10 @@ namespace Tests.MapServerTests
                 MapIds = new List<string>(),
             };
 
-            await mapServer.Init(initServerData, parentObject, newSource.Token);
+            await mapServer.Init(newSource.Token, initServerData, parentObject);
 
             return mapServer;
         }
     }
 }
+

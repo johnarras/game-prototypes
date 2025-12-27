@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Entities;
+using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Assets.ObjectPools
 {
-    public interface IObjectPool : IInjectable, IClientResetCleanup, IInjectOnLoad<IObjectPool>
+    public interface IObjectPool : IInitializable, IClientResetCleanup
     {
         void CheckoutObject<T>(object parent, string assetCategory, string assetPath,
             AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null);
@@ -28,19 +28,27 @@ namespace Assets.Scripts.Assets.ObjectPools
         public GameObject Parent;
     }
 
-    public class ObjectPool : BaseBehaviour, IObjectPool
+    public class ObjectPool : IObjectPool
     {
-        protected ISingletonContainer _singletonContainer = null;
-        protected IAwaitableService _awaitableService = null;
-        protected GameObject _pooledObjectParent = null;
+        private ISingletonContainer _singletonContainer = null;
+        private IAwaitableService _awaitableService = null;
+        private IClientEntityService _clientEntityService = null;
 
-        protected Dictionary<string, PrefabCache> _cache = new Dictionary<string, PrefabCache>();
+        private GameObject _pooledObjectParent = null;
 
-        protected Dictionary<GameObject, PrefabCache> _activeMap = new Dictionary<GameObject, PrefabCache>();
+        private IAssetService _assetService = null;
 
-        public override void Init()
+        private Dictionary<string, PrefabCache> _cache = new Dictionary<string, PrefabCache>();
+
+        private Dictionary<GameObject, PrefabCache> _activeMap = new Dictionary<GameObject, PrefabCache>();
+
+        private CancellationToken _token;
+        public async Task Initialize(CancellationToken token)
         {
-            _pooledObjectParent = _singletonContainer.GetSingleton(AssetConstants.GlobalAssetParent);
+            _token = token;
+            _pooledObjectParent = _singletonContainer.GetAssetParent<ObjectPool>();
+            await Task.CompletedTask;
+
         }
 
         public void Clear()
@@ -105,7 +113,7 @@ namespace Assets.Scripts.Assets.ObjectPools
             {
                 currCache = new PrefabCache();
                 _cache[key] = currCache;
-                currCache.Parent = _singletonContainer.GetChildSingleton(key, AssetConstants.GlobalAssetParent);
+                currCache.Parent = _pooledObjectParent;
             }
             return currCache;
         }
@@ -192,3 +200,4 @@ namespace Assets.Scripts.Assets.ObjectPools
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Constants;
 using Genrpg.Shared.MobileGame.Constants;
@@ -22,22 +22,24 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
                 userData.Level = 1;
             }
 
-            long supplies = userData.Currencies.Get(CoreCurrencyTypes.Supplies);
+            long food = userData.Currencies.Get(CoreCurrencyTypes.Food);
 
-            List<PlayMult> validMults = _sharedPlayMultService.GetValidMults(context.user, level, supplies);
+            List<PlayMult> validMults = _sharedPlayMultService.GetValidMults(context.user, level, food);
 
             bool isOkMult = validMults.Any(x => x.Mult == newPlayMult);
 
             if (isOkMult == true)
             {
                 userData.Mult = newPlayMult;
-                context.Responses.AddResponse(new SetPlayMultResponse() { Success = true, NewPlayMult = newPlayMult });
+                context.AddResponse(new SetPlayMultResponse() { Success = true, NewPlayMult = newPlayMult });
             }
 
             PlayMult okMult = validMults.LastOrDefault(x => x.Mult < newPlayMult);
 
-            context.Responses.AddResponse(new SetPlayMultResponse() { Success = false, NewPlayMult = okMult?.Mult ?? MobileGameConstants.MinPlayMult });
+            context.AddResponse(new SetPlayMultResponse() { Success = false, NewPlayMult = okMult?.Mult ?? MobileGameConstants.MinPlayMult });
 
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 
@@ -144,3 +144,4 @@ public class AddEdgeMountains : BaseAddMountains
         await Task.CompletedTask;
     }
 }
+

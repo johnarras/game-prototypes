@@ -5,7 +5,8 @@
   "Name": "Autoheal",
   "Desc": "Sometimes heals allied units when they are attacked.",
   "AtlasPrefix": "",
+  "Icon": "Autoheal",
+  "Art": "AutoHeal",
   "ProcChanceScale": 5.0,
-  "EffectScale": 5.0,
-  "SaveTime": "2025-09-08T23:56:11.744Z"
+  "EffectScale": 5.0
 }

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Login.Messages.Core;
 using System.Threading;
 using UnityEngine;
 using Genrpg.Shared.Accounts.WebApi.Login;
@@ -8,7 +8,7 @@ namespace Assets.Scripts.Website.MessageHandlers
 {
     public class AccountLoginResponseHandler : BaseClientWebResponseHandler<AccountLoginResponse>
     {
-        private IClientAuthService _authService;
+        private IClientAuthService _authService = null;
         protected override void InnerProcess(AccountLoginResponse response, CancellationToken token)
         {
             _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
@@ -22,3 +22,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

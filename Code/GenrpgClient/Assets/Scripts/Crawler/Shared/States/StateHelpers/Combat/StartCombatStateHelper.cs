@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Constants;
+using Assets.Scripts.Crawler.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 {
     public class StartCombatStateHelper : BaseCombatStateHelper
     {
-        private IAudioService _audioService;
+        private IAudioService _audioService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.StartCombat;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -50,3 +50,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         }
     }
 }
+
+

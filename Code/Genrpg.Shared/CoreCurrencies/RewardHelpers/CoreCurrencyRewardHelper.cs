@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
@@ -21,3 +21,5 @@ namespace Genrpg.Shared.CoreCurrencies.RewardHelpers
         }
     }
 }
+
+

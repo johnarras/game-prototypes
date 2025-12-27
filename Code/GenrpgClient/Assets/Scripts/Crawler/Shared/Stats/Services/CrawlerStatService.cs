@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
@@ -59,12 +59,9 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
         public void CalcPartyStats(PartyData party, bool resetCurrStats)
         {
-            foreach (PartyMember member in party.Members)
+            foreach (PartyMember member in party.ActiveParty)
             {
-                if (member.PartySlot > 0)
-                {
-                    CalcUnitStats(party, member, resetCurrStats);
-                }
+                CalcUnitStats(party, member, resetCurrStats);
             }
             _partyService.UpdateItemBuffs(party);
         }
@@ -344,7 +341,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
         public void FullyRestParty(PartyData party)
         {
-            foreach (PartyMember member in party.Members)
+            foreach (PartyMember member in party.ActiveParty)
             {
                 member.Stats.SetCurr(StatTypes.Health, member.Stats.Max(StatTypes.Health));
                 member.Stats.SetCurr(StatTypes.Mana, member.Stats.Max(StatTypes.Mana));
@@ -355,3 +352,5 @@ namespace Genrpg.Shared.Crawler.Stats.Services
         }
     }
 }
+
+

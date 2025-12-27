@@ -1,7 +1,8 @@
-﻿using Genrpg.Shared.Crawler.Loot.Services;
+using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -11,6 +12,7 @@ using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
     public class ChooseNameHelper : BaseStateHelper
     {
         private ILootGenService _lootGenService = null;
+        private IPartyService _partyService = null;
+
         public override ECrawlerStates HelperKey => ECrawlerStates.ChooseName;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -59,8 +63,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                 if (!string.IsNullOrEmpty(text))
                 {
                     member.Name = text;
-                    party.Members.Add(member);
-
+                    _partyService.AddPartyMemberToGuild(party, member);
 
                     IReadOnlyList<ItemType> itemTypes = _gameData.Get<ItemTypeSettings>(_gs.ch).GetData();
 
@@ -141,7 +144,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
                     List<CrawlerSpell> spells = _crawlerSpellService.GetSpellsForMember(party, member);
 
-                    List<CrawlerSpell> summonSpells = spells.Where(x => x.Effects.Any(y => y.EntityTypeId == EntityTypes.Unit) &&
+                    List<CrawlerSpell> summonSpells = spells.Where(x => x.Effects.FastAny(y => y.EntityTypeId == EntityTypes.Unit) &&
                     x.RoleScalingTier == 1).ToList();
 
 
@@ -167,3 +170,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
         }
     }
 }
+
+

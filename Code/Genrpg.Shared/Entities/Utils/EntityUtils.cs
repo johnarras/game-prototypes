@@ -8,7 +8,6 @@ namespace Genrpg.Shared.Entities.Utils
     /// <summary>
     /// This is a list of some reflection utility functions.
     /// </summary>
-    // MessagePackIgnore  
     public static class EntityUtils
     {
 
@@ -519,3 +518,5 @@ namespace Genrpg.Shared.Entities.Utils
         }
     }
 }
+
+

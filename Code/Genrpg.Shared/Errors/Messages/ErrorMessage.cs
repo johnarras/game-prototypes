@@ -17,3 +17,5 @@ namespace Genrpg.Shared.Errors.Messages
         }
     }
 }
+
+

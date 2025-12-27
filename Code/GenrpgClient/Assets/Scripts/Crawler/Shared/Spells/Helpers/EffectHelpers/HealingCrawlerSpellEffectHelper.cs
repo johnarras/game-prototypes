@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -60,3 +60,5 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         }
     }
 }
+
+

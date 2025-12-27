@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.AuthRequests.Constants;
+using Genrpg.RequestServer.AuthRequests.Constants;
 using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
@@ -49,3 +49,5 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         }
     }
 }
+
+

@@ -4,7 +4,6 @@ using System;
 namespace Genrpg.Shared.DataStores.DataGroups
 {
     
-    // MessagePackIgnore
     public class DataGroup : Attribute
     {
         [IgnoreMember] public EDataCategories Category { get; set; }
@@ -18,3 +17,5 @@ namespace Genrpg.Shared.DataStores.DataGroups
     }
 
 }
+
+

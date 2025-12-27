@@ -18,7 +18,7 @@ public class AddOutcroppings : BaseZoneGenerator
     const int MaxGridIndex = 2;
     float[,,] grids = null;
 
-    protected ILineGenService _lineGenService;
+    protected ILineGenService _lineGenService = null;
 
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -380,3 +380,4 @@ public class AddOutcroppings : BaseZoneGenerator
         }
     }
 }
+

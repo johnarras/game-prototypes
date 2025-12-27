@@ -1,111 +1,124 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "partybuff1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Light",
       "Desc": "Allows you to see in dark places.",
+      "Icon": "Light",
+      "Art": "Light",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
     },
     {
-      "Id": "partybuff2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Danger Sense",
       "Desc": "Alerts you when bad things are ahead of you.",
       "AtlasPrefix": "",
+      "Icon": "DangerSense",
+      "Art": "DangerSense",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
     },
     {
-      "Id": "partybuff3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Magic Compass",
       "Desc": "Allows you to see your direction and map position.",
+      "Icon": "MagicCompass",
+      "Art": "MagicCompass",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
     },
     {
-      "Id": "partybuff4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Levitate",
       "Desc": "Allows you to float over traps and move a bit faster.",
+      "Icon": "Levitate",
+      "Art": "Levitate",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
     },
     {
-      "Id": "partybuff5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Mapping",
       "Desc": "Shows you the minimap and lets you see the level map.",
+      "Icon": "Mapping",
+      "Art": "Mapping",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
     },
     {
-      "Id": "partybuff6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Autoheal",
       "Desc": "Sometimes heals allied units when they are attacked.",
       "AtlasPrefix": "",
+      "Icon": "Autoheal",
+      "Art": "AutoHeal",
       "ProcChanceScale": 5.0,
       "EffectScale": 5.0
     },
     {
-      "Id": "partybuff7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Barrier",
       "Desc": "Sometimes you block incoming damage.",
+      "Icon": "Barrier",
+      "Art": "Barrier",
       "ProcChanceScale": 1.0,
       "EffectScale": 2.0
     },
     {
-      "Id": "partybuff8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Retaliate",
       "Desc": "Retaliate damage against enemies that attack you.",
       "AtlasPrefix": "",
-      "Icon": "",
-      "Art": "",
+      "Icon": "Retaliate",
+      "Art": "Retaliate",
       "ProcChanceScale": 10.0,
       "EffectScale": 0.2
     },
     {
-      "Id": "partybuff9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Cursed Arrows",
       "Desc": "Sometimes debuff enemies hit with your ranged attacks.",
       "AtlasPrefix": "",
+      "Icon": "CursedArrows",
+      "Art": "CursedArrows",
       "ProcChanceScale": 2.0,
       "EffectScale": 3.0
     },
     {
-      "Id": "partybuff10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Parry",
       "Desc": "Sometimes ignore incoming attacks.",
       "AtlasPrefix": "",
-      "Icon": "",
-      "Art": "",
+      "Icon": "Parry",
+      "Art": "Parry",
       "ProcChanceScale": 1.0,
       "EffectScale": 1.0
+    },
+    {
+      "IdKey": 11,
+      "Name": "ApplyDoT",
+      "Desc": "Sometimes apply a DoT to enemies after damaging.",
+      "Icon": "ApplyDoT",
+      "Art": "ApplyDoT",
+      "ProcChanceScale": 2.0,
+      "EffectScale": 0.5
+    },
+    {
+      "IdKey": 12,
+      "Name": "Lifesteal",
+      "Desc": "Sometimes drain life.",
+      "Icon": "Lifesteal",
+      "Art": "Lifesteal",
+      "ProcChanceScale": 3.0,
+      "EffectScale": 0.25
     }
   ],
   "Parent": {
     "Id": "default",
     "BuffPowerPerLevel": 0.25,
-    "Name": "PartyBuffSettings",
-    "SaveTime": "2025-09-10T22:14:38.869Z"
+    "Name": "PartyBuffSettings"
   },
-  "SaveTime": "2025-09-10T22:14:38.869Z"
+  "Id": "default",
+  "SaveTime": "2025-12-14T01:05:41.92Z"
 }

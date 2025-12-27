@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using System;
@@ -12,3 +12,5 @@ namespace Genrpg.MapServer.Maps.Filters
         List<MapObject> Filter(MapObject obj, List<MapObject> initialTargets);
     }
 }
+
+

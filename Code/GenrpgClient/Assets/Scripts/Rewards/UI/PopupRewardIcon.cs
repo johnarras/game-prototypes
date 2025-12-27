@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Entities.UI;
+using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Utils;
@@ -42,3 +42,5 @@ namespace Assets.Scripts.Rewards.UI
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Core.Entities;
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.MapServer.Entities
         void Process(IRandom rand, MapMessagePackage package);
     }
 }
+
+

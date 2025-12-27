@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.Interfaces;
 using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.Shared.DataStores.Entities;
@@ -19,3 +19,5 @@ namespace Genrpg.RequestServer.Rewards.RewardHelpers.Core
         public abstract Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
     }
 }
+
+

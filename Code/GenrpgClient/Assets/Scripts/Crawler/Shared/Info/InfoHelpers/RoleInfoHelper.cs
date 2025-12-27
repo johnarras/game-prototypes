@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Buffs.Settings;
+using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
@@ -161,3 +161,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

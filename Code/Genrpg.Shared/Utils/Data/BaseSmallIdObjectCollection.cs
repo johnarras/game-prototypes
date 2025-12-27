@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 using System;
 
 namespace Genrpg.Shared.Utils.Data
@@ -107,3 +107,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

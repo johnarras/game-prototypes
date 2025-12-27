@@ -1,6 +1,5 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.LoadUpdateHelpers;
-using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
@@ -14,7 +13,6 @@ namespace Genrpg.RequestServer.PlayerData.Services
         OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater> _characterLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater>();
         OrderedSetupDictionaryContainer<Type, IUserLoadUpdater> _userLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, IUserLoadUpdater>();
         private IPlayerDataService _playerDataService = null!;
-        private IServerPurchasingService _purchasingService = null!;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -23,9 +21,9 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         public async Task<List<IUnitData>> LoadPlayerDataOnLogin(WebContext context, Character ch = null)
         {
-            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.GetAllData(), ch);
+            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.AllData(), ch);
 
-            List<IUnitData> allData = context.GetAllData();
+            List<IUnitData> allData = context.AllData();
             foreach (IUnitData unitData in dataList)
             {
                 IUnitData existingData = allData.FirstOrDefault(x => x.GetType() == unitData.GetType());
@@ -71,3 +69,5 @@ namespace Genrpg.RequestServer.PlayerData.Services
         }
     }
 }
+
+

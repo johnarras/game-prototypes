@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.MapServer.Trades.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
@@ -23,3 +23,5 @@ namespace Genrpg.MapServer.Trades.MessageHandlers
         }
     }
 }
+
+

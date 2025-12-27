@@ -1,11 +1,5 @@
-﻿
-using Genrpg.Shared.Configs.Interfaces;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Genrpg.ServerShared.Config
 {
@@ -23,8 +17,8 @@ namespace Genrpg.ServerShared.Config
 
         string ContentRoot { get; set; }
 
-        string PublicIP { get; set; }    
-        
+        string PublicIP { get; set; }
+
         string PackageName { get; set; }
 
         string GooglePlayValidationURL { get; set; }
@@ -70,7 +64,7 @@ namespace Genrpg.ServerShared.Config
 
         public string GetSecret(string key)
         {
-            if (_secrets.TryGetValue(key, out var value))
+            if (_secrets.TryGetValue(key, out string value))
             {
                 return value;
             }
@@ -78,3 +72,5 @@ namespace Genrpg.ServerShared.Config
         }
     }
 }
+
+

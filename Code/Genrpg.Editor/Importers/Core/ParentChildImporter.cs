@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
@@ -24,7 +24,6 @@ namespace Genrpg.Editor.Importers.Core
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
             Dictionary<string, object> _contextObjects = new Dictionary<string, object>();
-
 
             TChild currentChild = null;
             for (int row = 0; row < lines.Count; row++)
@@ -79,3 +78,5 @@ namespace Genrpg.Editor.Importers.Core
         }
     }
 }
+
+

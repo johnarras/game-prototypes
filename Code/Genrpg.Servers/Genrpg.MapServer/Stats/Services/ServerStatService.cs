@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
@@ -156,3 +156,5 @@ namespace Genrpg.MapServer.Stats.Services
         }
     }
 }
+
+

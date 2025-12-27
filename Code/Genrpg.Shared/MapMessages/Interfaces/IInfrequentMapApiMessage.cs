@@ -1,4 +1,6 @@
+using Genrpg.Shared.Serialization.Attributes;
 using MessagePack;
+using Newtonsoft.Json;
 
 // The purpose behind this is to make the most frequent messages only use one byte,
 // and for less frequent messages we are forced to use at least 2 bytes to send
@@ -8,35 +10,37 @@ using MessagePack;
 
 namespace Genrpg.Shared.MapMessages.Interfaces
 {
-    [Union(0,typeof(Ftue.Messages.CompleteFtueStepMessage))]
-    [Union(1,typeof(GameSettings.Messages.UpdateGameSettings))]
-    [Union(2,typeof(Interactions.Messages.CompleteInteract))]
-    [Union(3,typeof(Interactions.Messages.InteractCommand))]
-    [Union(4,typeof(Inventory.Messages.BuyItem))]
-    [Union(5,typeof(Inventory.Messages.EquipItem))]
-    [Union(6,typeof(Inventory.Messages.OnAddItem))]
-    [Union(7,typeof(Inventory.Messages.OnEquipItem))]
-    [Union(8,typeof(Inventory.Messages.OnRemoveItem))]
-    [Union(9,typeof(Inventory.Messages.OnUnequipItem))]
-    [Union(10,typeof(Inventory.Messages.OnUpdateItem))]
-    [Union(11,typeof(Inventory.Messages.SellItem))]
-    [Union(12,typeof(Inventory.Messages.UnequipItem))]
-    [Union(13,typeof(SpellCrafting.Messages.CraftSpell))]
-    [Union(14,typeof(SpellCrafting.Messages.DeleteSpell))]
-    [Union(15,typeof(SpellCrafting.Messages.OnCraftSpell))]
-    [Union(16,typeof(SpellCrafting.Messages.OnDeleteSpell))]
-    [Union(17,typeof(SpellCrafting.Messages.OnRemoveActionBarItem))]
-    [Union(18,typeof(SpellCrafting.Messages.OnSetActionBarItem))]
-    [Union(19,typeof(SpellCrafting.Messages.RemoveActionBarItem))]
-    [Union(20,typeof(SpellCrafting.Messages.SetActionBarItem))]
-    [Union(21,typeof(Trades.Messages.AcceptTrade))]
-    [Union(22,typeof(Trades.Messages.CancelTrade))]
-    [Union(23,typeof(Trades.Messages.OnAcceptTrade))]
-    [Union(24,typeof(Trades.Messages.OnCancelTrade))]
-    [Union(25,typeof(Trades.Messages.OnStartTrade))]
-    [Union(26,typeof(Trades.Messages.OnUpdateTrade))]
-    [Union(27,typeof(Trades.Messages.StartTrade))]
-    [Union(28,typeof(Trades.Messages.UpdateTrade))]
+    [MessagePackInterface]
+
+    [Union(0 ,typeof(Genrpg.Shared.Trades.Messages.AcceptTrade))]
+    [Union(1 ,typeof(Genrpg.Shared.Trades.Messages.CancelTrade))]
+    [Union(2 ,typeof(Genrpg.Shared.Trades.Messages.OnAcceptTrade))]
+    [Union(3 ,typeof(Genrpg.Shared.Trades.Messages.OnCancelTrade))]
+    [Union(4 ,typeof(Genrpg.Shared.Trades.Messages.OnStartTrade))]
+    [Union(5 ,typeof(Genrpg.Shared.Trades.Messages.OnUpdateTrade))]
+    [Union(6 ,typeof(Genrpg.Shared.Trades.Messages.StartTrade))]
+    [Union(7 ,typeof(Genrpg.Shared.Trades.Messages.UpdateTrade))]
+    [Union(8 ,typeof(Genrpg.Shared.SpellCrafting.Messages.CraftSpell))]
+    [Union(9 ,typeof(Genrpg.Shared.SpellCrafting.Messages.DeleteSpell))]
+    [Union(10 ,typeof(Genrpg.Shared.SpellCrafting.Messages.OnCraftSpell))]
+    [Union(11 ,typeof(Genrpg.Shared.SpellCrafting.Messages.OnDeleteSpell))]
+    [Union(12 ,typeof(Genrpg.Shared.SpellCrafting.Messages.OnRemoveActionBarItem))]
+    [Union(13 ,typeof(Genrpg.Shared.SpellCrafting.Messages.OnSetActionBarItem))]
+    [Union(14 ,typeof(Genrpg.Shared.SpellCrafting.Messages.RemoveActionBarItem))]
+    [Union(15 ,typeof(Genrpg.Shared.SpellCrafting.Messages.SetActionBarItem))]
+    [Union(16 ,typeof(Genrpg.Shared.Inventory.Messages.BuyItem))]
+    [Union(17 ,typeof(Genrpg.Shared.Inventory.Messages.EquipItem))]
+    [Union(18 ,typeof(Genrpg.Shared.Inventory.Messages.OnAddItem))]
+    [Union(19 ,typeof(Genrpg.Shared.Inventory.Messages.OnEquipItem))]
+    [Union(20 ,typeof(Genrpg.Shared.Inventory.Messages.OnRemoveItem))]
+    [Union(21 ,typeof(Genrpg.Shared.Inventory.Messages.OnUnequipItem))]
+    [Union(22 ,typeof(Genrpg.Shared.Inventory.Messages.OnUpdateItem))]
+    [Union(23 ,typeof(Genrpg.Shared.Inventory.Messages.SellItem))]
+    [Union(24 ,typeof(Genrpg.Shared.Inventory.Messages.UnequipItem))]
+    [Union(25 ,typeof(Genrpg.Shared.Interactions.Messages.CompleteInteract))]
+    [Union(26 ,typeof(Genrpg.Shared.Interactions.Messages.InteractCommand))]
+    [Union(27 ,typeof(Genrpg.Shared.GameSettings.Messages.UpdateGameSettings))]
+    [Union(28 ,typeof(Genrpg.Shared.Ftue.Messages.CompleteFtueStepMessage))]
     public interface IInfrequentMapApiMessage : IMapApiMessage
     {
 
@@ -45,8 +49,11 @@ namespace Genrpg.Shared.MapMessages.Interfaces
     [MessagePackObject]
     public sealed class InfrequentMessageEnvelope : BaseMapApiMessage
     {
+        [JsonProperty(TypeNameHandling = TypeNameHandling.Auto)]
         [Key(0)] public IInfrequentMapApiMessage InfrequentApiMessage { get; set; }
     }
 
-     
+
 }
+
+

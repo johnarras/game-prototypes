@@ -2,5 +2,7 @@
   "Id": "screenname19default",
   "ParentId": "default",
   "IdKey": 19,
-  "Name": "Charm"
+  "Name": "Charm",
+  "ScreenLayerId": 40,
+  "Subdirectory": "Charms"
 }

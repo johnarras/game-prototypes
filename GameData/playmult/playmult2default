@@ -8,5 +8,6 @@
   "Art": "",
   "Mult": 2,
   "MinLevel": 2,
-  "MinEnergy": 9
+  "MinEnergy": 9,
+  "BonusDistancePerDie": 1
 }

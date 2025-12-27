@@ -1,0 +1,13 @@
+{
+  "Id": "animaltype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Ox",
+  "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
+  "Icon": "Ox",
+  "Art": "Ox",
+  "Speed": 3,
+  "Capacity": 5,
+  "Supplies": 4,
+  "Cost": 356000
+}

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
     public class UpgradePartyStateHelper : BaseStateHelper
     {
 
-        private ICrawlerUpgradeService _upgradeService;
+        private ICrawlerUpgradeService _upgradeService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.UpgradeParty;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -80,10 +80,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
                 stateData.Actions.Add(new CrawlerStateAction(sb.ToString(), Key.None, ECrawlerStates.UpgradeParty,
                     () =>
                     {
-                        if (party.Members.Count > 0)
-                        {
-
-                        }
                         _upgradeService.PayForPartyUpgrade(party, upgrade.IdKey);
 
                     }, errorText, null, (GameObject go) => ShowUpgradeTooltop(upgrade.IdKey)));
@@ -122,3 +118,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
         }
     }
 }
+
+

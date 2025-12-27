@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -21,3 +21,5 @@ public interface IStatService : IInjectable
 
     void RegenerateTick(IRandom rand, Unit unit, float regenTickTime = StatConstants.RegenTickSeconds);
 }
+
+

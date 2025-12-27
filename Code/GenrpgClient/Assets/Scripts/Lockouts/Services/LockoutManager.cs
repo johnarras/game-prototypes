@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Lockouts.Services
@@ -48,3 +48,5 @@ namespace Assets.Scripts.Lockouts.Services
 
     }
 }
+
+

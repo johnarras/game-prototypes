@@ -5,6 +5,5 @@
   "Name": "Obsidian",
   "Armor": 100,
   "Damage": 60,
-  "CostPct": 10000,
-  "SaveTime": "2025-10-26T21:40:57.784Z"
+  "CostPct": 10000
 }

@@ -1,0 +1,11 @@
+{
+  "Id": "partybuff12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Lifesteal",
+  "Desc": "Sometimes drain life.",
+  "Icon": "Lifesteal",
+  "Art": "Lifesteal",
+  "ProcChanceScale": 3.0,
+  "EffectScale": 0.25
+}

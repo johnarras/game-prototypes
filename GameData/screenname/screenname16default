@@ -2,5 +2,7 @@
   "Id": "screenname16default",
   "ParentId": "default",
   "IdKey": 16,
-  "Name": "Quest"
+  "Name": "Quest",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Quests"
 }

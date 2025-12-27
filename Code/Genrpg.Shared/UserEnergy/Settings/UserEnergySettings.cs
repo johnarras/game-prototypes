@@ -1,25 +1,24 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using MessagePack;
 using System;
 
 namespace Genrpg.Shared.UserEnergy.Settings
 {
-    [MessagePackObject]
     public class UserEnergySettings : NoChildSettings
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
 
-        [Key(1)] public double HourlyRegenPercent { get; set; } = 0.25;
+        public double HourlyRegenPercent { get; set; } = 0.25;
 
-        [Key(2)] public int StartStorage { get; set; } = 40;
+        public int StartStorage { get; set; } = 40;
 
-        [Key(3)] public int LevelsPerIncrement { get; set; } = 5;
+        public int LevelsPerIncrement { get; set; } = 5;
 
-        [Key(4)] public int IncrementQuantity { get; set; } = 5;
+        public int IncrementQuantity { get; set; } = 5;
 
-        [Key(5)] public int StorageCap { get; set; } = 80;
+        public int StorageCap { get; set; } = 80;
 
         public int GetMaxStorage(long level)
         {
@@ -34,7 +33,13 @@ namespace Genrpg.Shared.UserEnergy.Settings
     }
     public class UserEnergySettingsLoader : NoChildSettingsLoader<UserEnergySettings> { }
 
-    public class UserEnergySettingsDto : NoChildSettingsDto<UserEnergySettings> { }
+    public class UserEnergySettingsDto : NoChildSettingsDto<UserEnergySettings>
+    {
+        public override string Id { get; set; }
+        public override UserEnergySettings Parent { get; set; }
+    }
 
     public class UserEnergySettingsMapper : NoChildSettingsMapper<UserEnergySettings, UserEnergySettingsDto> { }
 }
+
+

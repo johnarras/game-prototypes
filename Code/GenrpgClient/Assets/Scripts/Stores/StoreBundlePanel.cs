@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Stores;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
@@ -63,3 +63,5 @@ namespace Assets.Scripts.UI.Stores
         }
     }
 }
+
+

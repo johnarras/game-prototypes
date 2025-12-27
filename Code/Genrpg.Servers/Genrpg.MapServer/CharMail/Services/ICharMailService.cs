@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,3 +13,5 @@ namespace Genrpg.MapServer.CharMail.Services
         Task ProcessMail(Character ch, string charLetterID);
     }
 }
+
+

@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis" Version="1.69.0" />
-    <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.69.0.3729" />
+    <PackageReference Include="Google.Apis" Version="1.73.0" />
+    <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.73.0.4001" />
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.68.0.1869" />
   </ItemGroup>
 

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "itemtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Helm",
       "Desc": "",
@@ -165,8 +162,6 @@
       ]
     },
     {
-      "Id": "itemtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Shoulder",
       "Desc": "",
@@ -293,8 +288,6 @@
       ]
     },
     {
-      "Id": "itemtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Chest",
       "Desc": "",
@@ -441,8 +434,6 @@
       ]
     },
     {
-      "Id": "itemtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Bracers",
       "Desc": "",
@@ -564,8 +555,6 @@
       ]
     },
     {
-      "Id": "itemtype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Belt",
       "Desc": "",
@@ -677,8 +666,6 @@
       ]
     },
     {
-      "Id": "itemtype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Pants",
       "Desc": "",
@@ -795,8 +782,6 @@
       ]
     },
     {
-      "Id": "itemtype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Boots",
       "Desc": "",
@@ -918,8 +903,6 @@
       ]
     },
     {
-      "Id": "itemtype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Cloak",
       "Desc": "",
@@ -1012,8 +995,6 @@
       ]
     },
     {
-      "Id": "itemtype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Shield",
       "Desc": "",
@@ -1111,8 +1092,6 @@
       ]
     },
     {
-      "Id": "itemtype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Offhand",
       "Desc": "",
@@ -1233,8 +1212,6 @@
       ]
     },
     {
-      "Id": "itemtype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Necklace",
       "Desc": "",
@@ -1340,8 +1317,6 @@
       ]
     },
     {
-      "Id": "itemtype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Ring",
       "Desc": "",
@@ -1432,8 +1407,6 @@
       ]
     },
     {
-      "Id": "itemtype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Trinket",
       "Desc": "",
@@ -1584,8 +1557,6 @@
       ]
     },
     {
-      "Id": "itemtype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Sword",
       "Desc": "",
@@ -1688,8 +1659,6 @@
       ]
     },
     {
-      "Id": "itemtype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Axe",
       "Desc": "",
@@ -1782,8 +1751,6 @@
       ]
     },
     {
-      "Id": "itemtype23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Mace",
       "Desc": "",
@@ -1906,8 +1873,6 @@
       ]
     },
     {
-      "Id": "itemtype24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Dagger",
       "Desc": "",
@@ -2010,8 +1975,6 @@
       ]
     },
     {
-      "Id": "itemtype25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "2HSword",
       "Desc": "",
@@ -2114,8 +2077,6 @@
       ]
     },
     {
-      "Id": "itemtype26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "2HAxe",
       "Desc": "",
@@ -2243,8 +2204,6 @@
       ]
     },
     {
-      "Id": "itemtype27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "2HMace",
       "Desc": "",
@@ -2367,8 +2326,6 @@
       ]
     },
     {
-      "Id": "itemtype28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "Staff",
       "Desc": "",
@@ -2466,8 +2423,6 @@
       ]
     },
     {
-      "Id": "itemtype29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "Polearm",
       "Desc": "",
@@ -2575,8 +2530,6 @@
       ]
     },
     {
-      "Id": "itemtype30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Ranged",
       "Desc": "",
@@ -2694,8 +2647,6 @@
       ]
     },
     {
-      "Id": "itemtype31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Thrown",
       "Desc": "",
@@ -2803,8 +2754,6 @@
       ]
     },
     {
-      "Id": "itemtype32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Wand",
       "Desc": "",
@@ -2897,8 +2846,6 @@
       ]
     },
     {
-      "Id": "itemtype50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "Recipe",
       "Desc": "",
@@ -2916,8 +2863,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype101default",
-      "ParentId": "default",
       "IdKey": 101,
       "Name": "Cloth",
       "Desc": "",
@@ -2993,8 +2938,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype102default",
-      "ParentId": "default",
       "IdKey": 102,
       "Name": "Leather",
       "Desc": "",
@@ -3070,8 +3013,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype103default",
-      "ParentId": "default",
       "IdKey": 103,
       "Name": "Wood",
       "Desc": "",
@@ -3152,8 +3093,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype104default",
-      "ParentId": "default",
       "IdKey": 104,
       "Name": "Ore",
       "Desc": "",
@@ -3227,8 +3166,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype105default",
-      "ParentId": "default",
       "IdKey": 105,
       "Name": "Stone",
       "Desc": "",
@@ -3309,8 +3246,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype106default",
-      "ParentId": "default",
       "IdKey": 106,
       "Name": "Nugget",
       "Desc": "",
@@ -3394,8 +3329,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype130default",
-      "ParentId": "default",
       "IdKey": 130,
       "Name": "Dust",
       "Desc": "",
@@ -3469,8 +3402,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype131default",
-      "ParentId": "default",
       "IdKey": 131,
       "Name": "Essence",
       "Desc": "",
@@ -3543,8 +3474,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype132default",
-      "ParentId": "default",
       "IdKey": 132,
       "Name": "Shard",
       "Icon": "MagicShard",
@@ -3616,8 +3545,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype133default",
-      "ParentId": "default",
       "IdKey": 133,
       "Name": "Shore Herb",
       "Icon": "HerbLily",
@@ -3688,8 +3615,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype134default",
-      "ParentId": "default",
       "IdKey": 134,
       "Name": "Tree Herb",
       "Icon": "HerbSticks",
@@ -3760,8 +3685,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype135default",
-      "ParentId": "default",
       "IdKey": 135,
       "Name": "Desert Herb",
       "Desc": "",
@@ -3834,8 +3757,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype136default",
-      "ParentId": "default",
       "IdKey": 136,
       "Name": "Ice Herb",
       "Icon": "HerbLight",
@@ -3906,8 +3827,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype137default",
-      "ParentId": "default",
       "IdKey": 137,
       "Name": "Hill Herb",
       "Icon": "HerbTuber",
@@ -3978,8 +3897,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype138default",
-      "ParentId": "default",
       "IdKey": 138,
       "Name": "Rare Herb",
       "Icon": "HerbDark",
@@ -4050,8 +3967,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype139default",
-      "ParentId": "default",
       "IdKey": 139,
       "Name": "Fire Herb",
       "Desc": "",
@@ -4124,8 +4039,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype140default",
-      "ParentId": "default",
       "IdKey": 140,
       "Name": "Building Herb",
       "Icon": "HerbRoots",
@@ -4196,8 +4109,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype141default",
-      "ParentId": "default",
       "IdKey": 141,
       "Name": "Bush Herb",
       "Desc": "",
@@ -4270,8 +4181,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype142default",
-      "ParentId": "default",
       "IdKey": 142,
       "Name": "Swamp Herb",
       "Icon": "HerbBlue",
@@ -4342,8 +4251,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype143default",
-      "ParentId": "default",
       "IdKey": 143,
       "Name": "Air",
       "Desc": "",
@@ -4417,8 +4324,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype144default",
-      "ParentId": "default",
       "IdKey": 144,
       "Name": "Earth",
       "Icon": "ElementEarth",
@@ -4495,8 +4400,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype145default",
-      "ParentId": "default",
       "IdKey": 145,
       "Name": "Fire",
       "Icon": "ElementFire",
@@ -4568,8 +4471,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype146default",
-      "ParentId": "default",
       "IdKey": 146,
       "Name": "Water",
       "Icon": "ElementWater",
@@ -4641,8 +4542,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype147default",
-      "ParentId": "default",
       "IdKey": 147,
       "Name": "Amethyst",
       "Icon": "GemAmethyst",
@@ -4715,8 +4614,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype148default",
-      "ParentId": "default",
       "IdKey": 148,
       "Name": "Diamond",
       "Icon": "GemDiamond",
@@ -4789,8 +4686,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype149default",
-      "ParentId": "default",
       "IdKey": 149,
       "Name": "Emerald",
       "Desc": "",
@@ -4865,8 +4760,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype150default",
-      "ParentId": "default",
       "IdKey": 150,
       "Name": "FireOpal",
       "Icon": "GemFireOpal",
@@ -4939,8 +4832,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype151default",
-      "ParentId": "default",
       "IdKey": 151,
       "Name": "Ruby",
       "Desc": "",
@@ -5020,8 +4911,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype152default",
-      "ParentId": "default",
       "IdKey": 152,
       "Name": "Sapphire",
       "Desc": "",
@@ -5101,8 +4990,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype153default",
-      "ParentId": "default",
       "IdKey": 153,
       "Name": "Topaz",
       "Icon": "GemTopaz",
@@ -5175,8 +5062,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype154default",
-      "ParentId": "default",
       "IdKey": 154,
       "Name": "Zircon",
       "Desc": "",
@@ -5251,8 +5136,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype155default",
-      "ParentId": "default",
       "IdKey": 155,
       "Name": "Peridot",
       "Icon": "GemPeridot",
@@ -5325,8 +5208,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype156default",
-      "ParentId": "default",
       "IdKey": 156,
       "Name": "Antlers",
       "Icon": "BodyAntlers",
@@ -5397,8 +5278,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype157default",
-      "ParentId": "default",
       "IdKey": 157,
       "Name": "Beak",
       "Desc": "",
@@ -5471,8 +5350,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype158default",
-      "ParentId": "default",
       "IdKey": 158,
       "Name": "Blue Blood",
       "Icon": "BloodBlue",
@@ -5545,8 +5422,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype159default",
-      "ParentId": "default",
       "IdKey": 159,
       "Name": "Green Blood",
       "Icon": "BloodGreen",
@@ -5619,8 +5494,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype160default",
-      "ParentId": "default",
       "IdKey": 160,
       "Name": "Purple Blood",
       "Desc": "",
@@ -5695,8 +5568,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype161default",
-      "ParentId": "default",
       "IdKey": 161,
       "Name": "Yellow Blood",
       "Icon": "BloodYellow",
@@ -5769,8 +5640,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype162default",
-      "ParentId": "default",
       "IdKey": 162,
       "Name": "Bone",
       "Desc": "",
@@ -5843,8 +5712,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype163default",
-      "ParentId": "default",
       "IdKey": 163,
       "Name": "Claws",
       "Icon": "BodyClaws",
@@ -5915,8 +5782,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype164default",
-      "ParentId": "default",
       "IdKey": 164,
       "Name": "Egg",
       "Icon": "BodyEgg",
@@ -5981,8 +5846,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype165default",
-      "ParentId": "default",
       "IdKey": 165,
       "Name": "Eye",
       "Icon": "BodyEye",
@@ -6053,8 +5916,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype166default",
-      "ParentId": "default",
       "IdKey": 166,
       "Name": "Feather",
       "Icon": "BodyFeather",
@@ -6125,8 +5986,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype167default",
-      "ParentId": "default",
       "IdKey": 167,
       "Name": "Hide",
       "Desc": "",
@@ -6199,8 +6058,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype168default",
-      "ParentId": "default",
       "IdKey": 168,
       "Name": "Horn",
       "Icon": "BodyHorn",
@@ -6271,8 +6128,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype169default",
-      "ParentId": "default",
       "IdKey": 169,
       "Name": "Blue Ichor",
       "Icon": "IchorBlue",
@@ -6350,8 +6205,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype170default",
-      "ParentId": "default",
       "IdKey": 170,
       "Name": "Green Ichor",
       "Icon": "IchorGreen",
@@ -6429,8 +6282,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype171default",
-      "ParentId": "default",
       "IdKey": 171,
       "Name": "Purple Ichor",
       "Icon": "IchorPurple",
@@ -6503,8 +6354,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype172default",
-      "ParentId": "default",
       "IdKey": 172,
       "Name": "Red Ichor",
       "Desc": "",
@@ -6579,8 +6428,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype173default",
-      "ParentId": "default",
       "IdKey": 173,
       "Name": "Yellow Ichor",
       "Icon": "IchorYellow",
@@ -6653,8 +6500,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype174default",
-      "ParentId": "default",
       "IdKey": 174,
       "Name": "Jaw",
       "Icon": "BodyJar",
@@ -6725,8 +6570,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype175default",
-      "ParentId": "default",
       "IdKey": 175,
       "Name": "Leg",
       "Desc": "",
@@ -6799,8 +6642,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype176default",
-      "ParentId": "default",
       "IdKey": 176,
       "Name": "Paw",
       "Icon": "BodyPaw",
@@ -6871,8 +6712,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype177default",
-      "ParentId": "default",
       "IdKey": 177,
       "Name": "Pearl",
       "Desc": "",
@@ -6950,8 +6789,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype178default",
-      "ParentId": "default",
       "IdKey": 178,
       "Name": "Skull",
       "Icon": "BodySkull",
@@ -7022,8 +6859,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype179default",
-      "ParentId": "default",
       "IdKey": 179,
       "Name": "Spine",
       "Icon": "BodySpine",
@@ -7094,8 +6929,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype180default",
-      "ParentId": "default",
       "IdKey": 180,
       "Name": "Tentacle",
       "Desc": "",
@@ -7168,8 +7001,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype181default",
-      "ParentId": "default",
       "IdKey": 181,
       "Name": "Tail",
       "Icon": "BodyTail",
@@ -7240,8 +7071,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype182default",
-      "ParentId": "default",
       "IdKey": 182,
       "Name": "Talon",
       "Icon": "BodyTalon",
@@ -7317,8 +7146,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype183default",
-      "ParentId": "default",
       "IdKey": 183,
       "Name": "Tongue",
       "Icon": "BodyTongue",
@@ -7389,8 +7216,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype184default",
-      "ParentId": "default",
       "IdKey": 184,
       "Name": "Tooth",
       "Icon": "BodyTooth",
@@ -7466,8 +7291,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype185default",
-      "ParentId": "default",
       "IdKey": 185,
       "Name": "Tusk",
       "Icon": "BodyTusk",
@@ -7538,8 +7361,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype186default",
-      "ParentId": "default",
       "IdKey": 186,
       "Name": "Wing",
       "Icon": "BodyWing",
@@ -7610,8 +7431,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype187default",
-      "ParentId": "default",
       "IdKey": 187,
       "Name": "Pincer",
       "Icon": "BodyPincer",
@@ -7682,8 +7501,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype188default",
-      "ParentId": "default",
       "IdKey": 188,
       "Name": "Stinger",
       "Desc": "",
@@ -7756,8 +7573,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype189default",
-      "ParentId": "default",
       "IdKey": 189,
       "Name": "Fang",
       "Icon": "BodyFang",
@@ -7833,8 +7648,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype190default",
-      "ParentId": "default",
       "IdKey": 190,
       "Name": "Brain",
       "Desc": "",
@@ -7907,8 +7720,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype191default",
-      "ParentId": "default",
       "IdKey": 191,
       "Name": "Carapice",
       "Desc": "",
@@ -7981,8 +7792,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype192default",
-      "ParentId": "default",
       "IdKey": 192,
       "Name": "Chitin",
       "Desc": "",
@@ -8055,8 +7864,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype193default",
-      "ParentId": "default",
       "IdKey": 193,
       "Name": "Bowels",
       "Icon": "BodyBowels",
@@ -8127,8 +7934,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype194default",
-      "ParentId": "default",
       "IdKey": 194,
       "Name": "Web",
       "Icon": "BodyWeb",
@@ -8199,8 +8004,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype300default",
-      "ParentId": "default",
       "IdKey": 300,
       "Name": "Healing Potion",
       "Icon": "HealingPotion",
@@ -8242,8 +8045,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype301default",
-      "ParentId": "default",
       "IdKey": 301,
       "Name": "Mana Potion",
       "Desc": "",
@@ -8287,8 +8088,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype302default",
-      "ParentId": "default",
       "IdKey": 302,
       "Name": "Strength Elixir",
       "Icon": "StrengthElixir",
@@ -8330,8 +8129,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype303default",
-      "ParentId": "default",
       "IdKey": 303,
       "Name": "Intellect Elixir",
       "Icon": "IntellectElixir",
@@ -8373,8 +8170,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype304default",
-      "ParentId": "default",
       "IdKey": 304,
       "Name": "Wisdom Elxiir",
       "Icon": "WisdomElixir",
@@ -8385,8 +8180,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype305default",
-      "ParentId": "default",
       "IdKey": 305,
       "Name": "Agility Elixir",
       "Desc": "",
@@ -8430,8 +8223,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype306default",
-      "ParentId": "default",
       "IdKey": 306,
       "Name": "Stamina Elixir",
       "Icon": "StaminaElixir",
@@ -8473,8 +8264,6 @@
       "Names": []
     },
     {
-      "Id": "itemtype307default",
-      "ParentId": "default",
       "IdKey": 307,
       "Name": "Spirit Elixir",
       "Icon": "SpiritElixir",
@@ -8520,8 +8309,8 @@
     "GenSameStatPercent": 20,
     "GenGlobalScalingPercent": 10,
     "Id": "default",
-    "Name": "ItemTypeSettings",
-    "SaveTime": "2025-10-25T14:51:39.919Z"
+    "Name": "ItemTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-25T14:51:39.919Z"
 }

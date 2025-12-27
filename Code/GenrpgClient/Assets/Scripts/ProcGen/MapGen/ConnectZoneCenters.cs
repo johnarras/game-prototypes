@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.ProcGen.Entities;
@@ -10,8 +10,8 @@ using UnityEngine;
 
 public class ConnectZoneCenters : BaseZoneGenerator
 {
-    protected ILineGenService _lineGenService;
-    private IAddRoadService _addRoadService;
+    protected ILineGenService _lineGenService = null;
+    private IAddRoadService _addRoadService = null;
 
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -70,6 +70,8 @@ public class ConnectZoneCenters : BaseZoneGenerator
         
     }
 }
+
+
 
 
 

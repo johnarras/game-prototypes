@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using System;
@@ -13,3 +13,5 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         Task Execute(WebContext context, IAccountAuthRequest request, CancellationToken token);
     }
 }
+
+

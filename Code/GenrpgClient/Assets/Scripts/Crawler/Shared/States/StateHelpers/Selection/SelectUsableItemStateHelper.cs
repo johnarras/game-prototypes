@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Items.Services;
+using Assets.Scripts.Crawler.Items.Services;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
 
             List<MemberItemSpell> drainedItems = new List<MemberItemSpell>();
 
-            foreach (PartyMember member in party.Members)
+            foreach (PartyMember member in party.ActiveParty)
             {
                 if (data != null && !string.IsNullOrEmpty(data.MemberId) && member.Id != data.MemberId)
                 {
@@ -115,3 +115,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
         }
     }
 }
+
+

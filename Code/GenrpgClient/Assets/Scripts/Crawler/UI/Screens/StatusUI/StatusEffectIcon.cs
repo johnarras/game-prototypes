@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Entities.UI;
+using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Entities.Constants;
 
 namespace Assets.Scripts.Crawler.UI.StatusUI
@@ -18,3 +18,5 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
         }
     }
 }
+
+

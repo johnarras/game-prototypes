@@ -4,6 +4,5 @@
   "IdKey": 9,
   "Name": "Party Upgrades",
   "Desc": "Have upgrade points and party upgrades.",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-09-23T00:02:58.853Z"
+  "DefaultForNewGame": true
 }

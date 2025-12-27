@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.CloudMessaging.Interfaces;
+using Genrpg.MapServer.CloudMessaging.Interfaces;
 using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Maps.Constants;
 using Genrpg.MapServer.Maps.Services;
@@ -44,3 +44,5 @@ namespace Genrpg.MapServer.MainServer
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Assets.Scripts.ClientEvents.UI
 {
@@ -8,3 +8,5 @@ namespace Assets.Scripts.ClientEvents.UI
         public string Text;
     }
 }
+
+

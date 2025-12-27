@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Riddles.Constants
+namespace Genrpg.Shared.Riddles.Constants
 {
     public class RiddleTypes
     {
@@ -11,3 +11,5 @@
         public const long Buttons = 7;
     }
 }
+
+

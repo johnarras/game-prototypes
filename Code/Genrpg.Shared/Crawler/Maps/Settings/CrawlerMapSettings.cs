@@ -1,102 +1,105 @@
+using MessagePack;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Maps.Settings
 {
-    [MessagePackObject]
     public class CrawlerMapSettings : ParentConstantListSettings<CrawlerMapType, CrawlerMapTypes>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public double CorridorDungeonSizeScale { get; set; }
-        [Key(2)] public int MinZoneUnitSpawns { get; set; }
-        [Key(3)] public int MaxZoneUnitSpawns { get; set; }
-        [Key(4)] public int RareSpawnCount { get; set; }
-        [Key(5)] public double QuestItemEntranceUnlockChance { get; set; }
-        [Key(6)] public double RiddleUnlockChance { get; set; }
-        [Key(7)] public double DrainHealthPercent { get; set; }
-        [Key(8)] public double DrainManaPercent { get; set; }
-        [Key(9)] public double TrapHitChance { get; set; }
-        [Key(10)] public double TrapDebuffChance { get; set; }
-        [Key(11)] public double TrapDebuffLevelScaling { get; set; }
-        [Key(12)] public int TrapMinDamPerLevel { get; set; }
-        [Key(13)] public int TrapMaxDamagePerLevel { get; set; }
-        [Key(14)] public int SharedZoneUnitCount { get; set; }
-        [Key(15)] public double ExtraTeleportChance { get; set; }
-        [Key(16)] public int MinTeleportQuantity { get; set; }
-        [Key(17)] public int MaxTeleportQuantity { get; set; }
-        [Key(18)] public double UnitKeywordChance { get; set; }
-        [Key(19)] public int MinQuestUnlockDungeonLevel { get; set; }
-        [Key(20)] public int MinQuestItemDungeonLevel { get; set; }
+        public override string Id { get; set; }
+        public double CorridorDungeonSizeScale { get; set; }
+        public int MinZoneUnitSpawns { get; set; }
+        public int MaxZoneUnitSpawns { get; set; }
+        public int RareSpawnCount { get; set; }
+        public double QuestItemEntranceUnlockChance { get; set; }
+        public double RiddleUnlockChance { get; set; }
+        public double DrainHealthPercent { get; set; }
+        public double DrainManaPercent { get; set; }
+        public double TrapHitChance { get; set; }
+        public double TrapDebuffChance { get; set; }
+        public double TrapDebuffLevelScaling { get; set; }
+        public int TrapMinDamPerLevel { get; set; }
+        public int TrapMaxDamagePerLevel { get; set; }
+        public int SharedZoneUnitCount { get; set; }
+        public double ExtraTeleportChance { get; set; }
+        public int MinTeleportQuantity { get; set; }
+        public int MaxTeleportQuantity { get; set; }
+        public double UnitKeywordChance { get; set; }
+        public int MinQuestUnlockDungeonLevel { get; set; }
+        public int MinQuestItemDungeonLevel { get; set; }
     }
 
-    [MessagePackObject]
     public class CrawlerMapType : ChildSettings, IIndexedGameItem
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public List<CrawlerMapGenType> GenTypes { get; set; } = new List<CrawlerMapGenType>();
-        [Key(9)] public double NpcChance { get; set; }
-        [Key(10)] public int MinNpcQuantity { get; set; }
-        [Key(11)] public int MaxNpcQuantity { get; set; }
-        [Key(12)] public int MinNpcSeparation { get; set; }
-        [Key(13)] public int MinDistanceToEntrance { get; set; }
-        [Key(14)] public double RoomIsDifferentZoneTypeChance { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public List<CrawlerMapGenType> GenTypes { get; set; } = new List<CrawlerMapGenType>();
+        public double NpcChance { get; set; }
+        public int MinNpcQuantity { get; set; }
+        public int MaxNpcQuantity { get; set; }
+        public int MinNpcSeparation { get; set; }
+        public int MinDistanceToEntrance { get; set; }
+        public double RoomIsDifferentZoneTypeChance { get; set; }
 
     }
 
-    [MessagePackObject]
     public class CrawlerMapGenType : IWeightedItem
     {
-        [Key(0)] public string Name { get; set; }
-        [Key(1)] public int MinWidth { get; set; } = 15;
-        [Key(2)] public int MaxWidth { get; set; } = 25;
-        [Key(3)] public int MinHeight { get; set; } = 15;
-        [Key(4)] public int MaxHeight { get; set; } = 25;
-        [Key(5)] public int MinFloors { get; set; } = 1;
-        [Key(6)] public int MaxFloors { get; set; } = 1;
-        [Key(7)] public double SpecialTileChance { get; set; }
-        [Key(8)] public double Weight { get; set; }
-        [Key(9)] public double RandomWallsChance { get; set; }
-        [Key(10)] public double LoopingChance { get; set; }
-        [Key(11)] public double MinWallChance { get; set; }
-        [Key(12)] public double MaxWallChance { get; set; }
-        [Key(13)] public double MinDoorChance { get; set; }
-        [Key(14)] public double MaxDoorChance { get; set; }
-        [Key(15)] public double TrapTileChance { get; set; }
-        [Key(16)] public double EffectTileChance { get; set; }
-        [Key(17)] public double MinCorridorDensity { get; set; }
-        [Key(18)] public double MaxCorridorDensity { get; set; }
-        [Key(19)] public double MinBuildingDensity { get; set; }
-        [Key(20)] public double MaxBuildingDensity { get; set; }
-        [Key(21)] public bool IsIndoors { get; set; }
-        [Key(22)] public bool NextLevelIsDown { get; set; }
-        [Key(23)] public List<WeightedZoneType> WeightedZones { get; set; } = new List<WeightedZoneType>();
+        public string Name { get; set; }
+        public int MinWidth { get; set; } = 15;
+        public int MaxWidth { get; set; } = 25;
+        public int MinHeight { get; set; } = 15;
+        public int MaxHeight { get; set; } = 25;
+        public int MinFloors { get; set; } = 1;
+        public int MaxFloors { get; set; } = 1;
+        public double SpecialTileChance { get; set; }
+        public double Weight { get; set; }
+        public double RandomWallsChance { get; set; }
+        public double LoopingChance { get; set; }
+        public double MinWallChance { get; set; }
+        public double MaxWallChance { get; set; }
+        public double MinDoorChance { get; set; }
+        public double MaxDoorChance { get; set; }
+        public double TrapTileChance { get; set; }
+        public double EffectTileChance { get; set; }
+        public double MinCorridorDensity { get; set; }
+        public double MaxCorridorDensity { get; set; }
+        public double MinBuildingDensity { get; set; }
+        public double MaxBuildingDensity { get; set; }
+        public bool IsIndoors { get; set; }
+        public bool NextLevelIsDown { get; set; }
+        public List<WeightedZoneType> WeightedZones { get; set; } = new List<WeightedZoneType>();
     }
 
-    [MessagePackObject]
     public class WeightedZoneType : IWeightedItem
     {
-        [Key(0)] public string Name { get; set; }
-        [Key(1)] public double Weight { get; set; }
-        [Key(2)] public long ZoneTypeId { get; set; }
+        public string Name { get; set; }
+        public double Weight { get; set; }
+        public long ZoneTypeId { get; set; }
     }
 
 
-    public class CrawlerMapSettingsDto : ParentSettingsDto<CrawlerMapSettings, CrawlerMapType> { }
+    public class CrawlerMapSettingsDto : ParentSettingsDto<CrawlerMapSettings, CrawlerMapType>
+    {
+        public override List<CrawlerMapType> Children { get; set; }
+        public override CrawlerMapSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class CrawlerMapSettingsLoader : ParentSettingsLoader<CrawlerMapSettings, CrawlerMapType> { }
 
     public class CrawlerMapSettingsMapper : ParentSettingsMapper<CrawlerMapSettings, CrawlerMapType, CrawlerMapSettingsDto> { }
 
 }
+
+

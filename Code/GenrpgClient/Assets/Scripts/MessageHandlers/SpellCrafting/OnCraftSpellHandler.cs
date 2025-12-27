@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.SpellCrafting.Messages;
+using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Threading;
 
@@ -15,3 +15,5 @@ namespace Assets.Scripts.MessageHandlers.SpellCrafting
         }
     }
 }
+
+

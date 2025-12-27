@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings.Messages;
+using Genrpg.Shared.GameSettings.Messages;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
 using System.Threading;
@@ -16,3 +16,5 @@ namespace Assets.Scripts.MessageHandlers.GameSettings
         }
     }
 }
+
+

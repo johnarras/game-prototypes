@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,3 +12,5 @@ namespace Assets.Scripts.Buildings
         public List<Color> ColorTargets = new List<Color>();
     }
 }
+
+

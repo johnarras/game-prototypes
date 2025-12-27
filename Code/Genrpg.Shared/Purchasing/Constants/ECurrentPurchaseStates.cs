@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Purchasing.Constants
+namespace Genrpg.Shared.Purchasing.Constants
 {
 
     public enum ECurrentPurchaseStates
@@ -10,3 +10,5 @@
         ClientValidated = 4,
     }
 }
+
+

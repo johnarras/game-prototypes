@@ -1,27 +1,17 @@
-﻿using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Trades.Services;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.DataStores.Constants;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Errors.Messages;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Items.Services
 {
     public class ServerInventoryService : InventoryService
     {
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         private IMapMessageService _messageService = null;
         private ITradeService _tradeService = null;
 
@@ -90,3 +80,5 @@ namespace Genrpg.MapServer.Items.Services
         }
     }
 }
+
+

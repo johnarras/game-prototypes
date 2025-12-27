@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Stats.Constants
+namespace Genrpg.Shared.Stats.Constants
 {
     public class ScalingTypes
     {
@@ -8,3 +8,5 @@
         public const int Metal = 4;
     }
 }
+
+

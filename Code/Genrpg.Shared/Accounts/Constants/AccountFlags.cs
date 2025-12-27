@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Accounts.Constants
 {
-    [MessagePackObject]
     public class AccountFlags
     {
         public const int Banned = 1 << 0;
@@ -14,4 +13,6 @@ namespace Genrpg.Shared.Accounts.Constants
 
 
 }
+
+
 

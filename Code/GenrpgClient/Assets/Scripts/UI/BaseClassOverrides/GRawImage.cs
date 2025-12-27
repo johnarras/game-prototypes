@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.UI.Interfaces;
 
 public class GRawImage : UnityEngine.UI.RawImage, IRawImage
@@ -9,3 +9,4 @@ public class GRawImage : UnityEngine.UI.RawImage, IRawImage
         base.OnDestroy();
     }
 }
+

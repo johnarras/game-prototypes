@@ -10,9 +10,10 @@ using System.Text;
 
 namespace Genrpg.Shared.Purchasing.WebApi.RefreshStores
 {
-    [MessagePackObject]
     public class RefreshStoresResponse : IWebResponse
     {
-        [Key(0)] public PlayerStoreOfferData Stores { get; set; }
+        public PlayerStoreOfferData Stores { get; set; }
     }
 }
+
+

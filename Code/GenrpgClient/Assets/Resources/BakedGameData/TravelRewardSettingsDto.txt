@@ -1,0 +1,51 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Coins",
+      "EntityTypeId": 200,
+      "EntityId": 1,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 85.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 2,
+      "Name": "Supplies",
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 4.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 3,
+      "Name": "Mana",
+      "EntityTypeId": 200,
+      "EntityId": 3,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 4,
+      "Name": "Food",
+      "EntityTypeId": 200,
+      "EntityId": 4,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 10.0,
+      "GroupId": 1
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "TravelRewardChance": 1.0,
+    "Name": "TravelRewardSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2025-12-26T20:59:24.867Z"
+}

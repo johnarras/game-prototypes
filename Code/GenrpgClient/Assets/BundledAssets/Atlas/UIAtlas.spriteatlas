@@ -26,7 +26,7 @@ SpriteAtlas:
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 0
+      m_TextureCompression: 2
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -36,7 +36,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 1
     packingSettings:
       serializedVersion: 2
-      padding: 2
+      padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -53,35 +53,27 @@ SpriteAtlas:
     - ba3e1e00e7fe1434299fcbd9c751ca89: 21300000
     - 93c293e073407b3459eb8a356c44e88c: 21300000
     - 5d4bdb01def68d045a6a50415852df13: 21300000
-    - e8d7fd4119f876e428bb8743f3f4b6dd: 21300000
-    - be0555923cbcb7e40b19f8af2371029c: 21300000
     - be9e24d2224bffe4f98b37171bb948c2: 21300000
     - 4049a503ed5dba440a5037262bf142b7: 21300000
     - 677a608307720de4e87a29160cfdb340: 21300000
     - 6221aed347a74ee4c8bcdfe6ab63f28c: 21300000
-    - 00010354f7b76664eb712ab7bf4a057a: 21300000
-    - e782ae4548cab91448f309a16a3e5219: 21300000
     - e2749ef5a4dffd348bba385cc66a3069: 21300000
     - 3b93955646ee594449cacf3dcb3b5a2d: 21300000
-    - 06e6f4661c1c3a7468078f7b507f0308: 21300000
     - f7fe0067a0a783a4ebabb0ccbc08d818: 21300000
     - 0c89b7a7aa6d0dc469dd72f3480bff3e: 21300000
+    - 693ea7c7fdc0ebb41899cdcf2d6f7395: 21300000
     - 8ab8b288fb666ef42bad8ee4a3c4daf1: 21300000
     - 216740a848a8d7241ae37162d0ae0d90: 21300000
     - 9be221998bc4e9b42a92f8a355d8e6b8: 21300000
     - 098ff2e989588f64e89bf458922f7f98: 21300000
     - 83c5051a44bdbc14e9aa11e5afc6a496: 21300000
-    - eed8725a14fa6564e86bca71b590ef61: 21300000
     - e914527a73a43eb4582f1b5d47242a64: 21300000
-    - a3c96cab84ee1094c9094328264fb8c1: 21300000
     - b00dc35c7367963439acd75592bdd560: 21300000
     - 85fa51bc325fdb245b388b69a1625b52: 21300000
     - ca1716ecefe071e4cab20fdc10aa0b7b: 21300000
     - b6621c4d997f57242a771f574911033b: 21300000
-    - b36d2ffdd05702742a76479b1687828c: 21300000
     - 463792be2da182b4989a404c9defdff9: 21300000
     - cdcab9ceeacc32e47baae13128dae9db: 21300000
-    - 70af501f3b623fd4da7706c68ce0ab35: 21300000
     - 4873131fddb19e649941d81224349f43: 21300000
     - 77536e3fd0000a34c958a18310ec9590: 21300000
   m_MasterAtlas: {fileID: 0}
@@ -89,70 +81,54 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ba3e1e00e7fe1434299fcbd9c751ca89, type: 3}
   - {fileID: 21300000, guid: 93c293e073407b3459eb8a356c44e88c, type: 3}
   - {fileID: 21300000, guid: 5d4bdb01def68d045a6a50415852df13, type: 3}
-  - {fileID: 21300000, guid: e8d7fd4119f876e428bb8743f3f4b6dd, type: 3}
-  - {fileID: 21300000, guid: be0555923cbcb7e40b19f8af2371029c, type: 3}
   - {fileID: 21300000, guid: be9e24d2224bffe4f98b37171bb948c2, type: 3}
   - {fileID: 21300000, guid: 4049a503ed5dba440a5037262bf142b7, type: 3}
   - {fileID: 21300000, guid: 677a608307720de4e87a29160cfdb340, type: 3}
   - {fileID: 21300000, guid: 6221aed347a74ee4c8bcdfe6ab63f28c, type: 3}
-  - {fileID: 21300000, guid: 00010354f7b76664eb712ab7bf4a057a, type: 3}
-  - {fileID: 21300000, guid: e782ae4548cab91448f309a16a3e5219, type: 3}
   - {fileID: 21300000, guid: e2749ef5a4dffd348bba385cc66a3069, type: 3}
   - {fileID: 21300000, guid: 3b93955646ee594449cacf3dcb3b5a2d, type: 3}
-  - {fileID: 21300000, guid: 06e6f4661c1c3a7468078f7b507f0308, type: 3}
   - {fileID: 21300000, guid: f7fe0067a0a783a4ebabb0ccbc08d818, type: 3}
   - {fileID: 21300000, guid: 0c89b7a7aa6d0dc469dd72f3480bff3e, type: 3}
+  - {fileID: 21300000, guid: 693ea7c7fdc0ebb41899cdcf2d6f7395, type: 3}
   - {fileID: 21300000, guid: 8ab8b288fb666ef42bad8ee4a3c4daf1, type: 3}
   - {fileID: 21300000, guid: 216740a848a8d7241ae37162d0ae0d90, type: 3}
   - {fileID: 21300000, guid: 9be221998bc4e9b42a92f8a355d8e6b8, type: 3}
   - {fileID: 21300000, guid: 098ff2e989588f64e89bf458922f7f98, type: 3}
   - {fileID: 21300000, guid: 83c5051a44bdbc14e9aa11e5afc6a496, type: 3}
-  - {fileID: 21300000, guid: eed8725a14fa6564e86bca71b590ef61, type: 3}
   - {fileID: 21300000, guid: e914527a73a43eb4582f1b5d47242a64, type: 3}
-  - {fileID: 21300000, guid: a3c96cab84ee1094c9094328264fb8c1, type: 3}
   - {fileID: 21300000, guid: b00dc35c7367963439acd75592bdd560, type: 3}
   - {fileID: 21300000, guid: 85fa51bc325fdb245b388b69a1625b52, type: 3}
   - {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b, type: 3}
   - {fileID: 21300000, guid: b6621c4d997f57242a771f574911033b, type: 3}
-  - {fileID: 21300000, guid: b36d2ffdd05702742a76479b1687828c, type: 3}
   - {fileID: 21300000, guid: 463792be2da182b4989a404c9defdff9, type: 3}
   - {fileID: 21300000, guid: cdcab9ceeacc32e47baae13128dae9db, type: 3}
-  - {fileID: 21300000, guid: 70af501f3b623fd4da7706c68ce0ab35, type: 3}
   - {fileID: 21300000, guid: 4873131fddb19e649941d81224349f43, type: 3}
   - {fileID: 21300000, guid: 77536e3fd0000a34c958a18310ec9590, type: 3}
   m_PackedSpriteNamesToIndex:
   - CityIcon
   - ButtonClose
   - BlackBar
-  - BGCircleBlue
-  - DirLeft
   - StarGolden
   - LevelUpArrow
   - CheckMark
   - BGButton
-  - DirUp
-  - ActionPanelBG
   - YellowBar
   - DropTarget
-  - DirRight
   - PurpleBar
   - StarSilver
+  - MMOPlayerArrow
   - ButtonInfo
   - WhiteBar
   - BlueBar
   - GreenBar
   - Silence
-  - BGCirclePurple
   - RedBar
-  - DirDown
   - MultiStars
   - SilverBar
   - Blank
   - Guardian
-  - BGPurple
   - CompassBG
   - WhiteCircle256
-  - BGPlayerStatusRow
   - NoMagic
   - BGScreen
   m_RenderDataMap: {}

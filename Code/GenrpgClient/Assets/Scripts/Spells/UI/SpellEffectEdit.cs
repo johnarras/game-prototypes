@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.SpellCrafting.Constants;
+using Genrpg.Shared.SpellCrafting.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Skills;
 using Genrpg.Shared.Spells.Settings.Spells;
@@ -67,3 +67,5 @@ namespace Assets.Scripts.UI.Spells
 
     }
 }
+
+

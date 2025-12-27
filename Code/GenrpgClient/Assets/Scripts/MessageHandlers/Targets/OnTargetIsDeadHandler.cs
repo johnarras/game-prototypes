@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.Targets.Messages;
 using Genrpg.Shared.Units.Constants;
@@ -26,3 +26,5 @@ namespace Assets.Scripts.MessageHandlers.Targets
         }
     }
 }
+
+

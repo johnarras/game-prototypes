@@ -19,3 +19,5 @@ namespace Genrpg.Shared.Quests.WorldData
 
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -117,3 +117,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
         }
     }
 }
+
+

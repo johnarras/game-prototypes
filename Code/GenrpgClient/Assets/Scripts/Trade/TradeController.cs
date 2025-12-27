@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.ClientEvents.UI;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trades.Messages;
 using Genrpg.Shared.UI.Constants;
@@ -12,18 +13,24 @@ namespace Assets.Scripts.Trade
         void HandleOnStartTrade(OnStartTrade onStartTrade);
     }
 
-    public class TradeController : BaseBehaviour, IInjectOnLoad<ITradeController>, ITradeController
+    public class TradeController : ITradeController
     {
 
+        private IDispatcher _dispatcher = null;
+
+        private CancellationToken _token;
         public async Task Initialize(CancellationToken token)
         {
-            AddListener<OnStartTrade>(HandleOnStartTrade);
+            _token = token;
+            _dispatcher.AddListener<OnStartTrade>(HandleOnStartTrade, _token);
             await Task.CompletedTask;
         }
 
         public void HandleOnStartTrade(OnStartTrade onStartTrade)
         {
-            _screenService.Open(ScreenNames.Trade, onStartTrade);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Trade, onStartTrade));
         }
     }
 }
+
+

@@ -1,9 +1,12 @@
-﻿using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
 using System.Threading;
@@ -18,9 +21,13 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
         protected ICrawlerMapService _mapService = null;
         protected IAssetService _assetService = null;
         protected IClientEntityService _clientEntityService = null;
+        protected ICrawlerService _crawlerService = null;
+        protected IClientRandom _rand = null;
 
         public abstract long HelperKey { get; }
         public abstract Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token);
+        public abstract Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token);
+
         protected abstract void AfterDownloadProp(GameObject prop, CrawlerObjectLoadData args);
 
         protected void LoadPropAtCell(CrawlerMapRoot mapRoot, ClientMapCell cell, string prefabName, int x, int z, object data, CancellationToken token)
@@ -42,3 +49,5 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
         }
     }
 }
+
+

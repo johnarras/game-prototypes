@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,3 +31,5 @@ namespace Genrpg.Shared.UnitEffects.Constants
 
     }
 }
+
+

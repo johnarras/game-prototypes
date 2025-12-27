@@ -1,0 +1,16 @@
+header skintype,IdKey,Name,Icon,Art,AnimalTypeId,IsDefault
+skintype,1,Donkey,Donkey,Donkey,donkey,TRUE
+skintype,2,Pony,Pony,Pony,pony,TRUE
+skintype,3,Mule,Mule,Mule,mule,TRUE
+skintype,4,Riding Horse,RidingHorse,RidingHorse,riding horse,TRUE
+skintype,5,Tamed Onager,TamedOnager,TamedOnager,tamed onager,TRUE
+skintype,6,Draft Horse,DraftHorse,DraftHorse,draft horse,TRUE
+skintype,7,Heavy Warhorse,HeavyWarhorse,HeavyWarhorse,heavy warhorse,TRUE
+skintype,8,Ox,Ox,Ox,ox,TRUE
+skintype,9,Zebu,Zebu,Zebu,zebu,TRUE
+skintype,10,Water Buffalo,WaterBuffalo,WaterBuffalo,water buffalo,TRUE
+skintype,11,Dromedary Camel,DromedaryCamel,DromedaryCamel,dromedary camel,TRUE
+skintype,12,Bactrian Camel,BactrianCamel,BactrianCamel,bactrian camel,TRUE
+skintype,13,Yak,Yak,Yak,yak,TRUE
+skintype,14,Reindeer,Reindeer,Reindeer,reindeer,TRUE
+skintype,15,Asian Elephant,AsianElephant,AsianElephant,asian elephant,TRUE

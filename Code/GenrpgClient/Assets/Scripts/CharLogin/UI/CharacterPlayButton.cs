@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.PlayerSearch;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.PlayerData;
@@ -11,8 +11,8 @@ public class CharacterPlayButton : BaseBehaviour
     public GButton PlayButton;
     public GText CharText;
 
-    protected IZoneGenService _zoneGenService;
-    protected IPlayerSearchService _playerSearchService;
+    protected IZoneGenService _zoneGenService = null;
+    protected IPlayerSearchService _playerSearchService = null;
     protected IClientConfigContainer _config;
 
     private string _mapId;
@@ -77,3 +77,5 @@ public class CharacterPlayButton : BaseBehaviour
         _zoneGenService.LoadMap(lwd);
     }
 }
+
+

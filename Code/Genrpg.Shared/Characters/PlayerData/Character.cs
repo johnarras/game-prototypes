@@ -1,6 +1,5 @@
 using Genrpg.Shared.Characters.Utils;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Networking.Interfaces;
@@ -9,11 +8,9 @@ using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Genrpg.Shared.Characters.PlayerData
 {
-    // MessagePackIgnore
     public class Character : Unit, ICoreCharacter
     {
         public string UserId { get; set; }
@@ -66,45 +63,19 @@ namespace Genrpg.Shared.Characters.PlayerData
 
         public override bool IsPlayer() { return true; }
 
-        public override void Delete<T>(IRepositoryService repoSystem)
+
+        public override List<IUnitData> GetAllData()
         {
-            T item = Get<T>();
-            if (item != null)
+            List<IUnitData> list = new List<IUnitData>();
+
+            foreach (IUnitData val in _dataDict.Values)
             {
-                if (_dataDict.ContainsKey(typeof(T)))
-                {
-                    _dataDict.Remove(typeof(T));
-                }
-                repoSystem.QueueDelete(item);
+                list.Add(val);
             }
+            return list;
         }
 
-        public override Dictionary<Type, IUnitData> GetAllData()
-        {
-            return new Dictionary<Type, IUnitData>(_dataDict);
-        }
-
-        public override void SaveData(IRepositoryService repoService, bool saveAll)
-        {
-
-            if (saveAll || IsDirty())
-            {
-                SetDirty(false);
-
-                UpdateTime = Core.UpdateTime;
-                CharacterUtils.CopyDataFromTo(this, Core);
-
-                repoService.QueueSave(Core);
-            }
-
-            if (saveAll)
-            {
-                List<IUnitData> allValues = new List<IUnitData>(_dataDict.Values.ToList());
-                foreach (IUnitData value in allValues)
-                {
-                    repoService.QueueSave(value);
-                }
-            }
-        }
     }
 }
+
+

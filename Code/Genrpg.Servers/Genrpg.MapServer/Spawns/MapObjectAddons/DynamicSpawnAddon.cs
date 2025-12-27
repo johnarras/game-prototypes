@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
+using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.Spawns.MapObjectAddons
         public string ParentId { get; set; }
     }
 }
+
+

@@ -13,3 +13,5 @@ namespace Genrpg.Shared.PlayerFiltering.Interfaces
         long Level { get; set; }
     }
 }
+
+

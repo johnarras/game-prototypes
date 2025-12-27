@@ -8,10 +8,11 @@ using Genrpg.Shared.Characters.PlayerData;
 
 namespace Genrpg.Shared.Networking.Entities
 {
-    // MessagePackIgnore
     public class ServerConnectionState
     {
         public IConnection conn { get; set; }
         public Character ch { get; set; }
     }
 }
+
+

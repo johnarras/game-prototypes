@@ -4,7 +4,6 @@ namespace Genrpg.Shared.Constants
     /// <summary>
     /// Rpg Constants
     /// </summary>
-    [MessagePackObject]
     public class RpgConstants
     {
 
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.Constants
 
     }
 }
+
+

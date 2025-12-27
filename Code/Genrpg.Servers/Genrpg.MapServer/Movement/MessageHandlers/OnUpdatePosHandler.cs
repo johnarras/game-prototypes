@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,3 +24,5 @@ namespace Genrpg.MapServer.Movement.MessageHandlers
         }
     }
 }
+
+

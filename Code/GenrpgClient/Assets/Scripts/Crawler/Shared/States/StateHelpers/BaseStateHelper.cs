@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
@@ -77,3 +77,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
         }
     }
 }
+
+

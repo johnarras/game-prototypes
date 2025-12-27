@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.UI.Constants
+namespace Genrpg.Shared.UI.Constants
 {
     public class ScreenNames
     {
@@ -42,7 +42,7 @@
         public const long TileUpgrade = 37;
         public const long Marker = 38;
         public const long CrawlerNewGameOptions = 39;
-        public const long Caravan = 40;
+        public const long TraderCaravan = 40;
         public const long TraderMap = 41;
         public const long TraderHUD = 42;
         public const long TraderTravel = 43;
@@ -52,7 +52,10 @@
         public const long TraderNPC = 47;
         public const long TraderInfo = 48;
         public const long ClientOptions = 49;
+        public const long TraderCityRoads = 50;
 
 
     }
 }
+
+

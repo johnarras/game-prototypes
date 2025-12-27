@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapObjects.Messages;
@@ -18,3 +18,5 @@ public class ProxyCharacterObjectLoader : UnitObjectLoader
         base.AfterLoadUnit(go, loadData, token);
     }
 }
+
+

@@ -1,36 +1,32 @@
+using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Spells.Casting;
+using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Stats.Entities;
+using Genrpg.Shared.Stats.Messages;
+using Genrpg.Shared.Units.Constants;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Stats.Messages;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Casting;
-using MessagePack;
-using Newtonsoft.Json;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Effects.Interfaces;
 
 namespace Genrpg.Shared.Units.Entities
 {
     /// <summary>
     /// Core effect
     /// </summary>
-    [MessagePackObject]
     public class UnitEffect : IEffect
     {
-        [Key(0)] public long EntityTypeId { get; set; }
+        public long EntityTypeId { get; set; }
 
-        [Key(1)] public long Quantity { get; set; }
+        public long Quantity { get; set; }
 
-        [Key(2)] public long EntityId { get; set; }
+        public long EntityId { get; set; }
     }
 
-    // MessagePackIgnore
     public class Unit : MapObject
     {
         public long BaseStatAmount { get; set; }
@@ -162,7 +158,6 @@ namespace Genrpg.Shared.Units.Entities
             {
                 proc = new CurrentProc() { SpellTypeId = spellTypeId, CooldownEnds = DateTime.UtcNow };
                 CurrentProcs.Add(proc);
-                SetDirty(true);
             }
             return proc;
         }
@@ -197,3 +192,5 @@ namespace Genrpg.Shared.Units.Entities
         }
     }
 }
+
+

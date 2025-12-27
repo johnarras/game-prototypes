@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.ProcGen.Settings.LineGen;
@@ -665,3 +665,5 @@ public class LineGenService : ILineGenService
         return points;
     }
 }
+
+

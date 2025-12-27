@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.IO;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Client.Core;
-using System.Linq;
 using Assets.Scripts.Assets.Bundles;
-using System.Text;
-using NUnit;
 using Genrpg.Shared.Constants;
+using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 public class CreateAssetBundles
 {
 
-   
+
     public static BundleVersions CreateBundles(string platformString, string env, bool rebuildBundles, bool uploadBundles)
     {
         DateTime startTime = DateTime.UtcNow;
@@ -106,7 +105,7 @@ public class CreateAssetBundles
             string hash = manifest.GetAssetBundleHash(bundle).ToString();
             string bundle2 = bundle.Replace(hash, "").Replace("_", "");
 
-            if (!versions.Versions.TryGetValue(bundle2, out var version))   
+            if (!versions.Versions.TryGetValue(bundle2, out var version))
             {
 
                 BundleInfo bitem = blist.Bundles.FirstOrDefault(x => x.BundleName == bundle2);
@@ -116,7 +115,7 @@ public class CreateAssetBundles
                     Debug.Log("Missing bundle list item for " + bundle2);
                 }
 
-                versions.Versions[bundle2] = new BundleVersion() { Name = bundle2,  IsLocal = bitem?.IsLocal ?? false };
+                versions.Versions[bundle2] = new BundleVersion() { Name = bundle2, IsLocal = bitem?.IsLocal ?? false };
             }
 
             List<string> dependencies = manifest.GetAllDependencies(bundle2).ToList();
@@ -180,7 +179,7 @@ public class CreateAssetBundles
 
         foreach (BundleInfo info in blist.Bundles)
         {
-            if (!bundles.Any(x=>x.ToLower() == info.BundleName.ToLower()))
+            if (!bundles.FastAny(x => x.ToLower() == info.BundleName.ToLower()))
             {
                 extraInfos.Add(info);
             }
@@ -188,13 +187,13 @@ public class CreateAssetBundles
 
         blist.Bundles = blist.Bundles.Except(extraInfos).ToList();
 
-        blist.Bundles = blist.Bundles.OrderBy(x=>x.BundleName).ToList();
+        blist.Bundles = blist.Bundles.OrderBy(x => x.BundleName).ToList();
 
         List<string> extraBundles = new List<string>();
 
         foreach (string bundleName in bundles)
         {
-            if (!blist.Bundles.Any(x=>x.BundleName.ToLower() == bundleName.ToLower()))
+            if (!blist.Bundles.FastAny(x => x.BundleName.ToLower() == bundleName.ToLower()))
             {
                 extraBundles.Add(bundleName);
             }
@@ -204,7 +203,7 @@ public class CreateAssetBundles
 
         foreach (BundleVersion version in versions.Versions.Values)
         {
-            BundleInfo info = blist.Bundles.FirstOrDefault(x=>x.BundleName.ToLower() == version.Name.ToLower());
+            BundleInfo info = blist.Bundles.FirstOrDefault(x => x.BundleName.ToLower() == version.Name.ToLower());
             if (info != null)
             {
                 version.IsLocal = info.IsLocal;
@@ -335,3 +334,5 @@ public class CreateAssetBundles
     }
 
 }
+
+

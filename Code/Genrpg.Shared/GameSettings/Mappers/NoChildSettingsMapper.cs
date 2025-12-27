@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
 using MessagePack;
@@ -25,3 +25,5 @@ namespace Genrpg.Shared.GameSettings.Mappers
 
     }
 }
+
+

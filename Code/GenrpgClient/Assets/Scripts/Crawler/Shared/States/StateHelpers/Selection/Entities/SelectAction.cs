@@ -5,12 +5,13 @@ using Genrpg.Shared.Crawler.States.Constants;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities
 {
-    [MessagePackObject]
     public class SelectAction
     {
-        [Key(0)] public PartyMember Member { get; set; }
-        [Key(1)] public UnitAction Action { get; set; }
-        [Key(2)] public ECrawlerStates ReturnState { get; set; }
-        [Key(3)] public ECrawlerStates NextState { get; set; }
+        public PartyMember Member { get; set; }
+        public UnitAction Action { get; set; }
+        public ECrawlerStates ReturnState { get; set; }
+        public ECrawlerStates NextState { get; set; }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Pings.Messages;
 using System.Threading;
 
@@ -9,3 +9,5 @@ public class PingHandler : BaseClientMapMessageHandler<Ping>
     {
     }
 }
+
+

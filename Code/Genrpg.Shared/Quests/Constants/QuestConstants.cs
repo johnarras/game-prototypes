@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Quests.Constants
 {
-    [MessagePackObject]
     public class QuestConstants
     {
 
@@ -11,7 +10,6 @@ namespace Genrpg.Shared.Quests.Constants
         public const float QuestKillMoneyMultiplier = 10;
     }
 
-    [MessagePackObject]
     public class QuestState
     {
         public const int NotAvailable = 0;
@@ -22,3 +20,5 @@ namespace Genrpg.Shared.Quests.Constants
         public const int AlreadyCompleted = 5;
     }
 }
+
+

@@ -1,22 +1,22 @@
-﻿using Genrpg.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
-using Genrpg.ServerShared.CloudComms.Queues.Entities;
-using Genrpg.ServerShared.CloudComms.PubSub.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.Secrets.Services;
 using Genrpg.ServerShared.CloudComms.Platforms;
-using System.Text;
-using System.Collections.Concurrent;
 using Genrpg.ServerShared.CloudComms.PubSub.Constants;
+using Genrpg.ServerShared.CloudComms.PubSub.Entities;
 using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin;
+using Genrpg.ServerShared.CloudComms.Queues.Entities;
+using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
+using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.OnlineResources.Interfaces;
+using Genrpg.ServerShared.Secrets.Services;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.CloudComms.Services
 {
@@ -78,7 +78,7 @@ namespace Genrpg.ServerShared.CloudComms.Services
         {
             Dictionary<Type, IQueueMessageHandler> newDict = new Dictionary<Type, IQueueMessageHandler>();
 
-            foreach (var handlerType in handlers.Keys)
+            foreach (Type handlerType in handlers.Keys)
             {
                 newDict[handlerType] = handlers[handlerType];
             }
@@ -86,7 +86,7 @@ namespace Genrpg.ServerShared.CloudComms.Services
         }
 
         public async Task ReceiveQueueMessages(QueueMessageEnvelope envelope, CancellationToken token)
-        {   
+        {
             foreach (IQueueMessage queueMessage in envelope.Messages)
             {
                 if (queueMessage is IResponseQueueMessage responseQueueMessage &&
@@ -166,3 +166,5 @@ namespace Genrpg.ServerShared.CloudComms.Services
 
     }
 }
+
+

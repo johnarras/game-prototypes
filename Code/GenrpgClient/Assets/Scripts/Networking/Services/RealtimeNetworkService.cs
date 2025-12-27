@@ -1,4 +1,4 @@
-﻿#define SHOW_SEND_RECEIVE_MESSAGES
+#define SHOW_SEND_RECEIVE_MESSAGES
 #undef SHOW_SEND_RECEIVE_MESSAGES
 
 using Assets.Scripts.Awaitables;
@@ -12,8 +12,8 @@ using Genrpg.Shared.Networking.Constants;
 using Genrpg.Shared.Networking.Entities.TCP;
 using Genrpg.Shared.Networking.Interfaces;
 using Genrpg.Shared.Networking.Messages;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -34,10 +34,10 @@ public interface IRealtimeNetworkService : IInitializable, IMapTokenService, ICl
 
 public class RealtimeNetworkService : IRealtimeNetworkService
 {
-    private ILogService _logService;
+    private ILogService _logService = null;
     protected IClientGameState _gs = null;
     protected IMapGenData _md;
-    private IAwaitableService _awaitableService;
+    private IAwaitableService _awaitableService = null;
     private ITextSerializer _textSerializer = null;
     private IBinarySerializer _binarySerializer = null;
     private ITaskService _taskService = null;
@@ -126,7 +126,7 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         sb.Append("Commands: ");
         foreach (IMessage message in messages)
         {
-            sb.Append(message.GetType().Name + " -- ");
+            sb.Append(message.name + " -- ");
         }
         _logService.Debug(sb.ToString());
 #endif
@@ -210,3 +210,5 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         CloseClient();
     }
 }
+
+

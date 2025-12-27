@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.MapTerrain;
+using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.Constants;
@@ -108,3 +108,5 @@ public class UnitObjectLoader : BaseMapObjectLoader
         }
     }
 }
+
+

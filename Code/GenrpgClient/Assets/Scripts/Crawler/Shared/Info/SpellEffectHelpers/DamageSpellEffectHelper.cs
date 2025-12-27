@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Roles.Constants;
+using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Entities.Constants;
 using System;
 using System.Collections.Generic;
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
         public override long HelperKey => EntityTypes.Damage;
     }
 }
+
+

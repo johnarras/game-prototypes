@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 namespace Assets.Scripts.Dungeons
 {
     public class DungeonAssets : BaseBehaviour
@@ -78,3 +78,5 @@ namespace Assets.Scripts.Dungeons
         }
     }
 }
+
+

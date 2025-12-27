@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Settings.Elements;
 using System.Collections.Generic;
 
@@ -29,3 +29,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

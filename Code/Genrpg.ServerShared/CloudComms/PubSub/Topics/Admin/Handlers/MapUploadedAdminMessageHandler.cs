@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities;
 using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.Core;
 using System;
@@ -20,3 +20,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers
         }
     }
 }
+
+

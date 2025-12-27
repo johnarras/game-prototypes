@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         {
             _entityTypeId = EntityTypes.PartyBuff;
             _entityId = PartyBuffId;
-            _updateService.AddUpdate(this, FrameUpdate, UpdateTypes.Regular, GetToken());
+            AddUpdate(FrameUpdate, UpdateTypes.Regular);
         }
 
         protected virtual void FrameUpdateInternal(PartyData party)
@@ -47,3 +47,5 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         }
     }
 }
+
+

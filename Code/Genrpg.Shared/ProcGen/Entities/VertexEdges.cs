@@ -3,16 +3,15 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.ProcGen.Entities
 {
-    [MessagePackObject]
     public class VertexEdges
     {
-        [Key(0)] public int Id { get; set; }
-        [Key(1)] public int PosId { get; set; }
-        [Key(2)] public int X { get; set; }
+        public int Id { get; set; }
+        public int PosId { get; set; }
+        public int X { get; set; }
 
-        [Key(3)] public int Y { get; set; }
+        public int Y { get; set; }
 
-        [Key(4)] public List<int> AdjacentVerts { get; set; }
+        public List<int> AdjacentVerts { get; set; }
 
         public VertexEdges()
         {
@@ -20,3 +19,5 @@ namespace Genrpg.Shared.ProcGen.Entities
         }
     }
 }
+
+

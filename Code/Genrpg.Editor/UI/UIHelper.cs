@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using CommunityToolkit.WinUI.UI.Controls;
 using System.Threading.Tasks;
@@ -317,3 +317,5 @@ namespace Genrpg.Editor.UI
         }
     }
 }
+
+

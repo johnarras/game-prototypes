@@ -1,4 +1,5 @@
-﻿
+
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.DataStores.Entities;
@@ -15,10 +16,10 @@ public class LoginScreen : ErrorMessageScreen
     public GButton SignupButton;
     public GText ErrorText;
 
-    protected IClientAuthService _loginService;
-    protected IRepositoryService _repoService;
-    protected IClientAppService _clientAppService;
-    protected IClientCryptoService _clientCryptoService;
+    protected IClientAuthService _loginService = null;
+    protected IRepositoryService _repoService = null;
+    protected IClientAppService _clientAppService = null;
+    protected IClientCryptoService _clientCryptoService = null;
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         _uiService.SetButton(LoginButton, GetName(), ClickLogin);
@@ -34,8 +35,8 @@ public class LoginScreen : ErrorMessageScreen
 
     public void ClickSignup()
     {
-        _screenService.Open(ScreenNames.Signup);
-        _screenService.Close(ScreenNames.Login);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Signup));
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.Login));
     }
 
     public void ClickLogin()
@@ -62,4 +63,6 @@ public class LoginScreen : ErrorMessageScreen
         _loginService.SendAccountLogin(loginRequest, GetToken());
     }
 }
+
+
 

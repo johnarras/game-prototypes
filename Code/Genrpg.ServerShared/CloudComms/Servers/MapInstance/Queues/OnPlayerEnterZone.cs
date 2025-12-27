@@ -1,4 +1,5 @@
-﻿
+using MessagePack;
+
 namespace Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues
 {
     public class OnPlayerEnterZone : IMapInstanceQueueMessage
@@ -8,3 +9,5 @@ namespace Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues
         public long ZoneId { get; set; }
     }
 }
+
+

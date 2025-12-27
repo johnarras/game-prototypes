@@ -1,4 +1,4 @@
-﻿
+
 
 using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Locations;
@@ -45,4 +45,6 @@ public class SetMapSpawnPoint : BaseZoneGenerator
 
     }
 }
+
+
 

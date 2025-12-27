@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.Queues.Entities;
+using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,3 +13,5 @@ namespace Genrpg.ServerShared.CloudComms.Queues.Requests.Entities
         public string FromServerId { get; set; }
     }
 }
+
+

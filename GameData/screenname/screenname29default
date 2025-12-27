@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 29,
   "Name": "CrawlerSettings",
-  "SaveTime": "2025-09-27T18:12:40.607Z"
+  "ScreenLayerId": 10,
+  "Subdirectory": "Crawler"
 }

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Entities;
+using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.CoreCurrencies.Settings;
 
 namespace Assets.Scripts.Trader.UI.Currencies
@@ -11,3 +11,5 @@ namespace Assets.Scripts.Trader.UI.Currencies
         }
     }
 }
+
+

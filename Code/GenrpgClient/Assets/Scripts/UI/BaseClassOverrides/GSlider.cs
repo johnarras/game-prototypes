@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Abstractions
 {
@@ -6,3 +6,5 @@ namespace Assets.Scripts.UI.Abstractions
     {
     }
 }
+
+

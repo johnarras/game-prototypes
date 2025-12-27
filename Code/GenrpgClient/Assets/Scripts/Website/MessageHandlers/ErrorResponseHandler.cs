@@ -1,20 +1,21 @@
-﻿using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Website.Messages.Error;
 using System.Collections.Generic;
 using System.Threading;
-using Assets.Scripts.UI.Entities;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
     public class ErrorResponseHandler : BaseClientWebResponseHandler<ErrorResponse>
     {
-        private IScreenService _screenService;
+        private IScreenService _screenService = null;
         protected override void InnerProcess(ErrorResponse result, CancellationToken token)
         {
+
 
             List<ActiveScreen> screens = _screenService.GetAllScreens();
 
@@ -34,8 +35,8 @@ namespace Assets.Scripts.Website.MessageHandlers
                 return;
             }
 
-            _screenService.CloseAll();
-            _screenService.Open(ScreenNames.Login);
+            _dispatcher.Dispatch(new CloseAllScreens());
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
 
             _dispatcher.Dispatch(new ShowFloatingText(result.Error, EFloatingTextArt.Error));
 
@@ -43,3 +44,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

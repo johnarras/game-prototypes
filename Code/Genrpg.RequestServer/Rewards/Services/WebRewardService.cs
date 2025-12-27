@@ -1,23 +1,14 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.Interfaces;
-using Genrpg.Shared.DataStores.Categories.PlayerData;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.RequestServer.Rewards.Services
 {
     public class WebRewardService : IWebRewardService
     {
 
-        private SetupDictionaryContainer<long,IAsyncRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IAsyncRewardHelper> ();
+        private SetupDictionaryContainer<long, IAsyncRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IAsyncRewardHelper>();
         public async Task Initialize(CancellationToken token)
         {
             await Task.CompletedTask;
@@ -34,6 +25,10 @@ namespace Genrpg.RequestServer.Rewards.Services
 
         public async Task GiveRewardsAsync(WebContext context, List<Reward> rewards, RewardParams rp)
         {
+            if (rp == null)
+            {
+                rp = new RewardParams();
+            }
             foreach (Reward reward in rewards)
             {
                 IAsyncRewardHelper helper = GetRewardHelper(reward.EntityTypeId);
@@ -41,17 +36,6 @@ namespace Genrpg.RequestServer.Rewards.Services
                 {
                     await helper.GiveRewardsAsync(context, reward.EntityId, reward.Quantity, reward.EntityId, rp);
                 }
-            }
-        }
-
-        public async Task AddQuantity<TChild>(WebContext context, long entityId, long quantity, RewardParams rp) where TChild : class, IOwnerQuantityChild, new()
-        {
-            TChild child = await context.GetAsync<TChild>(entityId);
-
-            child.Quantity += quantity;
-            if (child.Quantity < 0)
-            {
-                child.Quantity = 0;
             }
         }
 
@@ -64,3 +48,5 @@ namespace Genrpg.RequestServer.Rewards.Services
         }
     }
 }
+
+

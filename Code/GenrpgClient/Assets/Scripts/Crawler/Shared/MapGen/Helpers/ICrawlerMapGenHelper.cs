@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -17,3 +17,5 @@ namespace Genrpg.Shared.Crawler.MapGen.Helpers
         NpcQuestMaps GetQuestMapsForNpc(PartyData party, CrawlerWorld world, CrawlerMap map, MapCellDetail npcDetail, IRandom rand);
     }
 }
+
+

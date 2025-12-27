@@ -1,4 +1,4 @@
-﻿
+
 public class LayerUtils
 {
     public static int GetMask(params string[] args)
@@ -12,3 +12,4 @@ public class LayerUtils
     }
 
 }
+

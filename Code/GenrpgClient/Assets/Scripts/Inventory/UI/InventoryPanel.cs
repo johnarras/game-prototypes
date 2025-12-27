@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Genrpg.Shared.Utils;
@@ -11,7 +11,7 @@ using Genrpg.Shared.Units.Entities;
 public class InventoryPanel : BaseBehaviour
 {
 
-    protected IIconService _iconService;
+    protected IIconService _iconService = null;
     public GameObject _iconParent;
 
     private int _category = 0;
@@ -101,3 +101,4 @@ public class InventoryPanel : BaseBehaviour
     }
 
 }
+

@@ -10,3 +10,5 @@ namespace Genrpg.Shared.RpgLevels.Messages
         [Key(1)] public long Level { get; set; }
     }
 }
+
+

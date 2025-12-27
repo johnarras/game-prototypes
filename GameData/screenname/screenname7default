@@ -2,5 +2,7 @@
   "Id": "screenname7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "MainMenu"
+  "Name": "MainMenu",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Login"
 }

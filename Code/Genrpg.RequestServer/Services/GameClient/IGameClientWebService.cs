@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Interfaces;
 
 namespace Genrpg.RequestServer.Services.GameClient
@@ -8,3 +8,5 @@ namespace Genrpg.RequestServer.Services.GameClient
         Task HandleUserClientRequest(WebContext context, string postData, CancellationToken token);
     }
 }
+
+

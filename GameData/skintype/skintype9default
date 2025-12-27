@@ -1,0 +1,10 @@
+{
+  "Id": "skintype9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Zebu",
+  "Icon": "Zebu",
+  "Art": "Zebu",
+  "AnimalTypeId": 9,
+  "IsDefault": true
+}

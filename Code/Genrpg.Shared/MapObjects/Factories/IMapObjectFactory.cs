@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Core.Entities;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.MapObjects.Factories
 
     }
 }
+
+

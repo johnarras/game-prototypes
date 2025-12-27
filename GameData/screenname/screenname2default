@@ -2,5 +2,7 @@
   "Id": "screenname2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Loading"
+  "Name": "Loading",
+  "ScreenLayerId": 90,
+  "Subdirectory": "Loading"
 }

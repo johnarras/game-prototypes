@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
 
 namespace Genrpg.Shared.MapMessages.Interfaces
 {
@@ -12,3 +10,5 @@ namespace Genrpg.Shared.MapMessages.Interfaces
         void SetCancelled(bool val);
     }
 }
+
+

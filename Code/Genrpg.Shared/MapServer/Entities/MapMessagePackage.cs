@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Errors.Messages;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
@@ -31,3 +31,5 @@ namespace Genrpg.Shared.MapServer.Entities
         }
     }
 }
+
+

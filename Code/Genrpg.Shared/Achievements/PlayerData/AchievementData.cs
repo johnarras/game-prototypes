@@ -1,8 +1,8 @@
 using MessagePack;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Achievements.PlayerData
 {
@@ -31,9 +31,17 @@ namespace Genrpg.Shared.Achievements.PlayerData
 
     }
 
-    public class AchievementDto : OwnerDtoList<AchievementData, AchievementStatus> { }
+    [MessagePackObject]
+    public class AchievementDto : OwnerDtoList<AchievementData, AchievementStatus>
+    {
+        [Key(0)] public override List<AchievementStatus> Children { get; set; }
+        [Key(1)] public override AchievementData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
     public class AchievementDataLoader : OwnerIdDataLoader<AchievementData, AchievementStatus> { }
 
 
     public class AchievementDataMapper : OwnerDataMapper<AchievementData, AchievementStatus, AchievementDto> { }
 }
+
+

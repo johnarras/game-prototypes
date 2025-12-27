@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Crawler.Currencies.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
@@ -30,3 +30,5 @@ namespace Assets.Scripts.Crawler.UI.Currencies
         }
     }
 }
+
+

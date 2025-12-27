@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -36,3 +36,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         public abstract Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token);
     }
 }
+
+

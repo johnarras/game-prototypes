@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.EncounterHelpers;
+using Assets.Scripts.Crawler.Maps.EncounterHelpers;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -34,3 +34,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
         }
     }
 }
+
+

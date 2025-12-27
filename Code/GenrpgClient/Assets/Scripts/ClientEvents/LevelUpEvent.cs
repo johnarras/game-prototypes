@@ -1,4 +1,4 @@
-﻿namespace ClientEvents
+namespace ClientEvents
 {
     public class LevelUpEvent
     {
@@ -7,3 +7,5 @@
         public long Exp { get; set; }
     }
 }
+
+

@@ -1,8 +1,8 @@
-﻿using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Settings;
-using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Trader.Stats.PlayerData;
 
 namespace Genrpg.Shared.CoreCurrencies.Services
 {
@@ -40,3 +40,5 @@ namespace Genrpg.Shared.CoreCurrencies.Services
         }
     }
 }
+
+

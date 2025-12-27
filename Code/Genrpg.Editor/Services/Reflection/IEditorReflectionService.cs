@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
@@ -46,3 +46,5 @@ namespace Genrpg.Editor.Services.Reflection
     }
 
 }
+
+

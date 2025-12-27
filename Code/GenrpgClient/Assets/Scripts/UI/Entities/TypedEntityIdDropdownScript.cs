@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -17,3 +17,5 @@ namespace Assets.Scripts.UI.Entities
         }
     }
 }
+
+

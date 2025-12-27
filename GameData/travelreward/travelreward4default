@@ -1,0 +1,12 @@
+{
+  "Id": "travelreward4default",
+  "IdKey": 4,
+  "Name": "Food",
+  "ParentId": "default",
+  "EntityTypeId": 200,
+  "EntityId": 4,
+  "MinQuantity": 1,
+  "MaxQuantity": 2,
+  "Weight": 10.0,
+  "GroupId": 1
+}

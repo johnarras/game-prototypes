@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.WorldData;
+using Genrpg.Shared.DataStores.Categories.WorldData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using System;
@@ -37,3 +37,5 @@ namespace Genrpg.ServerShared.Maps.Entities
 
     }
 }
+
+

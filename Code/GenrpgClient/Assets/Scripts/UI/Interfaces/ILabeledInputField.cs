@@ -1,8 +1,6 @@
-﻿using Genrpg.Shared.MVC.Interfaces;
-
 namespace Genrpg.Shared.UI.Interfaces
 {
-    public interface ILabeledInputField : IViewElement
+    public interface ILabeledInputField
     {
         void SetLabel(string text);
         void SetPlaceholder(string text);
@@ -10,3 +8,5 @@ namespace Genrpg.Shared.UI.Interfaces
         string GetInputText();
     }
 }
+
+

@@ -6,6 +6,5 @@
   "Desc": "Adds a percent to the final value of all party buffs cast.",
   "MaxTier": 5,
   "BonusPerTier": 0.1,
-  "BasePointCost": 5,
-  "SaveTime": "2025-09-11T17:51:14.346Z"
+  "BasePointCost": 5
 }

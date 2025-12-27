@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.MapGen.Entities;
+using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
@@ -397,7 +397,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 foreach (ConnectPointData pt in connectPoints)
                 {
-                    if (!newPaths.Any(x => (x.Point1.X == pt.X && x.Point1.Z == pt.Z) ||
+                    if (!newPaths.FastAny(x => (x.Point1.X == pt.X && x.Point1.Z == pt.Z) ||
                     (x.Point2.X == pt.X && x.Point2.Z == pt.Z)))
                     {
                         _logService.Info("Missing point: " + pt.X + " " + pt.Z);
@@ -989,7 +989,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         }
                     }
 
-                    if (canBeTeleport && !map.Details.Any(d => d.X == x && d.Z == z))
+                    if (canBeTeleport && !map.Details.FastAny(d => d.X == x && d.Z == z))
                     {
                         teleportEntryPoints.Add(new PointXZ(x, z));
                     }
@@ -1004,7 +1004,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 for (int z = 0; z < map.Height; z++)
                 {
                     if (map.IsValidEmptyCell(x, z) &&
-                        !teleportEntryPoints.Any(t => t.X == x && t.Z == z)
+                        !teleportEntryPoints.FastAny(t => t.X == x && t.Z == z)
                         )
                     {
                         teleportExitPoints.Add(new PointXZ((int)x, (int)z));
@@ -1450,3 +1450,4 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         }
     }
 }
+

@@ -1,16 +1,11 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "lootrank1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Armor": 1,
       "CostPct": 100
     },
     {
-      "Id": "lootrank2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Copper",
       "Armor": 2,
@@ -18,8 +13,6 @@
       "CostPct": 200
     },
     {
-      "Id": "lootrank3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Brass",
       "Armor": 4,
@@ -27,8 +20,6 @@
       "CostPct": 300
     },
     {
-      "Id": "lootrank4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Bronze",
       "Armor": 7,
@@ -36,8 +27,6 @@
       "CostPct": 400
     },
     {
-      "Id": "lootrank5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Jade",
       "Armor": 10,
@@ -45,8 +34,6 @@
       "CostPct": 500
     },
     {
-      "Id": "lootrank6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Iron",
       "Armor": 13,
@@ -54,8 +41,6 @@
       "CostPct": 600
     },
     {
-      "Id": "lootrank7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Steel",
       "Armor": 17,
@@ -63,8 +48,6 @@
       "CostPct": 750
     },
     {
-      "Id": "lootrank8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Silver",
       "Armor": 21,
@@ -72,8 +55,6 @@
       "CostPct": 1000
     },
     {
-      "Id": "lootrank9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Gold",
       "Armor": 25,
@@ -81,8 +62,6 @@
       "CostPct": 1250
     },
     {
-      "Id": "lootrank10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Platinum",
       "Armor": 30,
@@ -90,8 +69,6 @@
       "CostPct": 1500
     },
     {
-      "Id": "lootrank11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Mithril",
       "Armor": 35,
@@ -99,8 +76,6 @@
       "CostPct": 2000
     },
     {
-      "Id": "lootrank12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Adamantite",
       "Armor": 40,
@@ -108,8 +83,6 @@
       "CostPct": 2500
     },
     {
-      "Id": "lootrank13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Ruby",
       "Armor": 45,
@@ -117,8 +90,6 @@
       "CostPct": 3000
     },
     {
-      "Id": "lootrank14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Emerald",
       "Armor": 50,
@@ -126,8 +97,6 @@
       "CostPct": 4000
     },
     {
-      "Id": "lootrank15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Sapphire",
       "Armor": 60,
@@ -135,8 +104,6 @@
       "CostPct": 5000
     },
     {
-      "Id": "lootrank16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Diamond",
       "Armor": 75,
@@ -144,8 +111,6 @@
       "CostPct": 7500
     },
     {
-      "Id": "lootrank17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Obsidian",
       "Armor": 100,
@@ -158,8 +123,8 @@
     "LevelsPerQuality": 5.0,
     "ExtraQualityChance": 0.25,
     "ArmorChance": 0.8,
-    "Name": "LootRankSettings",
-    "SaveTime": "2025-10-26T21:40:57.784Z"
+    "Name": "LootRankSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-26T21:40:57.784Z"
 }

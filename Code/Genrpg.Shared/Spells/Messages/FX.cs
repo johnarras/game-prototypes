@@ -1,8 +1,5 @@
 using Genrpg.Shared.MapMessages;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Messages
 {
@@ -16,3 +13,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(4)] public float Speed { get; set; }
     }
 }
+
+

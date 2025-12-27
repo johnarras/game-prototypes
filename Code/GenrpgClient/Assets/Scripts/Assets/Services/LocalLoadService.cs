@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets
@@ -17,3 +17,5 @@ namespace Assets.Scripts.Assets
         }
     }
 }
+
+

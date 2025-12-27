@@ -1,0 +1,10 @@
+{
+  "Id": "skintype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Asian Elephant",
+  "Icon": "AsianElephant",
+  "Art": "AsianElephant",
+  "AnimalTypeId": 15,
+  "IsDefault": true
+}

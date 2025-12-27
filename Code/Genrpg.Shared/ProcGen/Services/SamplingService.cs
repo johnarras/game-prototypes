@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
@@ -106,3 +106,5 @@ namespace Genrpg.Shared.ProcGen.Services
         }
     }
 }
+
+

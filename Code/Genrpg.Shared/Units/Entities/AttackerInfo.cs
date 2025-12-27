@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Units.Entities
         [Key(1)] public string GroupId { get; set; }
     }
 }
+
+

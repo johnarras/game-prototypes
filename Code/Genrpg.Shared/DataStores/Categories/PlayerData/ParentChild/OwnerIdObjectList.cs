@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Concurrent;
@@ -78,3 +78,5 @@ namespace Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild
         }
     }
 }
+
+

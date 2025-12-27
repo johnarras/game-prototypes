@@ -2,5 +2,7 @@
   "Id": "screenname12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "Character"
+  "Name": "Character",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Items"
 }

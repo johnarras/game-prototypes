@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.MapTerrain;
+using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.DataStores.Entities;
@@ -52,14 +52,16 @@ public interface IZoneGenService : IInitializable
     void LoadMap(LoadIntoMapRequest loadData);
     void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token);
     Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token);
+
+    string LoadedMapId { get; set; }
 }
 
 public class ZoneGenService : IZoneGenService, IGameTokenService
 {
-    protected IUnitGenService _unitGenService;
-    protected INameGenService _nameGenService;
-    protected ILogService _logService;
-    protected IRepositoryService _repoService;
+    protected IUnitGenService _unitGenService = null;
+    protected INameGenService _nameGenService = null;
+    protected ILogService _logService = null;
+    protected IRepositoryService _repoService = null;
     protected IDispatcher _dispatcher;
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
@@ -67,6 +69,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
     protected IClientRandom _rand;
     protected IMapGenData _md;
 
+    public string LoadedMapId { get; set; }
     public async Task Initialize(CancellationToken token)
     {
         await Task.CompletedTask;
@@ -794,3 +797,5 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         return name;
     }
 }
+
+

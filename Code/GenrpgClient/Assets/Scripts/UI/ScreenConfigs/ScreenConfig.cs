@@ -1,12 +1,9 @@
-﻿
-using Assets.Scripts.UI.Constants;
+
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.UI.Settings;
 using System;
 using UnityEditor;
-using UnityEngine;
 
 namespace Assets.Scripts.UI.Config
 {
@@ -26,3 +23,4 @@ namespace Assets.Scripts.UI.Config
 #endif
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.DataStores.DataGroups;
 
 namespace Genrpg.ServerShared.DataStores.Entities
 {
@@ -9,3 +9,5 @@ namespace Genrpg.ServerShared.DataStores.Entities
         public string Env { get; set; }
     }
 }
+
+

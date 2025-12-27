@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Achievements.Messages;
+using Genrpg.Shared.Achievements.Messages;
 using Genrpg.Shared.Achievements.PlayerData;
 using System.Threading;
 
@@ -12,3 +12,5 @@ namespace Assets.Scripts.MessageHandlers.Achievements
         }
     }
 }
+
+

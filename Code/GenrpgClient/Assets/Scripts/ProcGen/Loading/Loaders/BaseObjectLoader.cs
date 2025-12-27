@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Core;
@@ -14,14 +14,14 @@ using UnityEngine;
 
 public abstract class BaseObjectLoader : IInjectable
 {
-    protected IAssetService _assetService;
+    protected IAssetService _assetService = null;
     protected IMapTerrainManager _terrainManager;
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
     protected IClientRandom _rand;
     protected IMapGenData _md;
-    protected IClientEntityService _clientEntityService;
+    protected IClientEntityService _clientEntityService = null;
 
     public abstract bool LoadObject(PatchLoadData loadData, uint objectId, int x, int y,
         Zone currZone, ZoneType currZoneType, CancellationToken token);
@@ -113,3 +113,5 @@ public abstract class BaseObjectLoader : IInjectable
 
 
 }
+
+

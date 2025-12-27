@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.UserAbilities.Settings;
 using System.Threading;
@@ -29,3 +29,5 @@ namespace Genrpg.Shared.UserAbilities.Services
 
     }
 }
+
+

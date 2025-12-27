@@ -20,7 +20,7 @@ namespace Genrpg.Shared.Core.PlayerData
     /// Core data about the board user
     /// </summary>
     [MessagePackObject]
-    public class CoreUserData : NoChildPlayerData, IUserData, IFilteredObject
+    public class CoreUserData : UniquePersonalUserData, IUserData, IFilteredObject
     {
         [Key(0)] public override string Id { get; set; }
 
@@ -44,43 +44,44 @@ namespace Genrpg.Shared.Core.PlayerData
         [Key(14)] public long Cost { get; set; }
         [Key(15)] public long Foraging { get; set; }
         [Key(16)] public long Guards { get; set; }
-        [Key(20)] public long OverloadCount { get; set; }
+        [Key(17)] public long OverloadCount { get; set; }
 
 
         /// <summary>
         /// If this is 0, we are in CityId, otherwise we are on the road toward CityId.
         /// </summary>
-        [Key(17)] public long RoadId { get; set; }
+        [Key(18)] public long RoadId { get; set; }
         /// <summary>
         /// This should always be nonzero, if RoadId is nonzero, this is the target city
         /// </summary>
-        [Key(18)] public long CityId { get; set; }
+        [Key(19)] public long CityId { get; set; }
         /// <summary>
         /// Distance gone along the road.
         /// </summary>
-        [Key(19)] public long Dist { get; set; }
+        [Key(20)] public long Dist { get; set; }
+
+        [Key(21)] public long Day { get; set; }
 
         public CaravanPosition GetPosition()
         {
             CaravanPosition pos = new CaravanPosition()
             {
-                CurrentRoadId = RoadId,
+                RoadId = RoadId,
                 DistanceTravelled = Dist,
             };
 
             if (RoadId > 0)
             {
-                pos.CurrentCityId = 0;
+                pos.CityId = 0;
                 pos.TargetCityId = CityId;
-                pos.OnRoad = true;
             }
             else
             {
-                pos.CurrentCityId = CityId;
-                pos.CurrentRoadId = 0;
-                pos.OnRoad = false;
+                pos.CityId = CityId;
+                pos.RoadId = 0;
                 pos.DistanceTravelled = 0;
             }
+
             return pos;
         }
 
@@ -89,14 +90,20 @@ namespace Genrpg.Shared.Core.PlayerData
             DateTime nowTime = DateTime.UtcNow;
             NextHourlyUpdate = nowTime.Date.AddHours(nowTime.Hour + 1);
         }
-
     }
 
     public class CoreUserDataLoader : UnitDataLoader<CoreUserData> { }
 
 
-    public class CoreUserDto : NoChildPlayerDataDto<CoreUserData> { }
+    [MessagePackObject]
+    public class CoreUserDto : NoChildPlayerDataDto<CoreUserData>
+    {
+        [Key(0)] public override CoreUserData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
 
 
     public class CoreUserDataMapper : NoChildUnitDataMapper<CoreUserData, CoreUserDto> { }
 }
+
+

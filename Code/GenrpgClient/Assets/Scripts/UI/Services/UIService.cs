@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Animations;
 using Assets.Scripts.UI.Constants;
@@ -326,7 +326,7 @@ namespace Assets.Scripts.UI.Services
 
         public void ScrollToBottom(object scrollRectObj)
         {
-            if (scrollRectObj is ScrollRect scrollRect)
+            if (scrollRectObj is GScrollRect scrollRect)
             {
                 scrollRect.normalizedPosition = new Vector2(0, 0);
             }
@@ -437,3 +437,5 @@ namespace Assets.Scripts.UI.Services
         }
     }
 }
+
+

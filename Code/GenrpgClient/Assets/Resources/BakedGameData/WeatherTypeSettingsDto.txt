@@ -2,8 +2,6 @@
   "Id": "default",
   "Children": [
     {
-      "Id": "weathertype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Field",
       "Desc": "",
@@ -50,8 +48,6 @@
       "Particles": "dust leaves"
     },
     {
-      "Id": "weathertype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Forest",
       "Desc": "",
@@ -98,8 +94,6 @@
       "Particles": "dust leaves mist"
     },
     {
-      "Id": "weathertype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Hills",
       "Desc": "",
@@ -147,8 +141,6 @@
       "Particles": "pineneedles leaves mist"
     },
     {
-      "Id": "weathertype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Swamp",
       "Desc": "",
@@ -195,8 +187,6 @@
       "Particles": "mist"
     },
     {
-      "Id": "weathertype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Badlands",
       "Desc": "",
@@ -243,8 +233,6 @@
       "Particles": "dust"
     },
     {
-      "Id": "weathertype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Desert",
       "Desc": "",
@@ -291,8 +279,6 @@
       "Particles": "dust"
     },
     {
-      "Id": "weathertype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "DarkForest",
       "Desc": "",
@@ -339,8 +325,6 @@
       "Particles": "mist"
     },
     {
-      "Id": "weathertype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Savannah",
       "Desc": "",
@@ -387,8 +371,6 @@
       "Particles": "leaves"
     },
     {
-      "Id": "weathertype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "CrawlerOutdoors",
       "Desc": "",
@@ -435,8 +417,6 @@
       "Particles": "dust leaves"
     },
     {
-      "Id": "weathertype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "CrawlerCity",
       "Desc": "",
@@ -483,8 +463,6 @@
       "Particles": "dust leaves"
     },
     {
-      "Id": "weathertype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "CrawlerDungeon",
       "Desc": "",
@@ -514,8 +492,6 @@
       "Particles": "dust leaves"
     },
     {
-      "Id": "weathertype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "CrawlerNatural",
       "Desc": "",
@@ -564,8 +540,7 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "WeatherTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "WeatherTypeSettings"
   },
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

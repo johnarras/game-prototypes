@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.MapServer.Spawns.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Entities.Constants;
@@ -126,3 +126,5 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
         }
     }
 }
+
+

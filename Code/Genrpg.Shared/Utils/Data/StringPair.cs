@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Genrpg.Shared.Utils.Data
 {
-    [MessagePackObject]
     public class StringPair
     {
-        [Key(0)] public string First { get; set; }
-        [Key(1)] public string Second { get; set; }
+        public string First { get; set; }
+        public string Second { get; set; }
     }
 }
+
+

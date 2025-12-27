@@ -21,3 +21,5 @@ namespace Genrpg.Shared.Vendors.MapObjectAddons
 
     }
 }
+
+

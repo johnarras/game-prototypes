@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UI.Screens;
+using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Accounts.Constants;
 using Genrpg.Shared.Accounts.WebApi.Signup;
 using Genrpg.Shared.DataStores.Entities;
@@ -21,10 +22,10 @@ public class SignupScreen : ErrorMessageScreen
     public GButton SignupButton;
     public GText ErrorText;
 
-    protected IClientAuthService _authService;
-    protected IRepositoryService _repoService;
-    protected IClientAppService _clientAppService;
-    protected IClientCryptoService _clientCryptoService;
+    protected IClientAuthService _authService = null;
+    protected IRepositoryService _repoService = null;
+    protected IClientAppService _clientAppService = null;
+    protected IClientCryptoService _clientCryptoService = null;
 
     public override void ShowError(string errorMessage)
     {
@@ -40,8 +41,8 @@ public class SignupScreen : ErrorMessageScreen
 
     public void ClickLogin()
     {
-        _screenService.Open(ScreenNames.Login);
-        _screenService.Close(ScreenNames.Signup);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.Signup));
     }
 
     public void ClickSignup()
@@ -136,4 +137,6 @@ public class SignupScreen : ErrorMessageScreen
 
     }
 }
+
+
 

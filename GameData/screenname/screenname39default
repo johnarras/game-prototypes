@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 39,
   "Name": "CrawlerNewGameOptions",
-  "SaveTime": "2025-09-23T00:24:06.772Z"
+  "ScreenLayerId": 30,
+  "Subdirectory": "CrawlerScreens"
 }

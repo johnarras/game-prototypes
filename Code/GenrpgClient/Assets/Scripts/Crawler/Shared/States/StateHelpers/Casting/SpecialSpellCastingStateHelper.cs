@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
 using System.Linq;
@@ -45,3 +45,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
+using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Items.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
@@ -115,9 +115,10 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             IReadOnlyList<StatusEffect> statusEffects = _gameData.Get<StatusEffectSettings>(_gs.ch).GetData();
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 member.CombatActions.Clear();
+                member.DoTDamage = 0;
                 foreach (StatusEffect effect in statusEffects)
                 {
                     if (effect.RemoveAtEndOfCombat)
@@ -166,13 +167,17 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             CrawlerCombatState combatState = new CrawlerCombatState() { Level = initialState.Level };
 
-            List<PartyMember> members = party.GetActiveParty();
+            List<PartyMember> members = party.ActiveParty;
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 
             StartCombatSettings startSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
 
             CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
+
+            CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
+
+            combatState.MaxDebuffTier = combatSettings.DebuffTiersPerUnitLevel * initialState.Level;
 
             List<InitialCombatGroup> partySummons = new List<InitialCombatGroup>();
 
@@ -527,7 +532,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 retval.BonusCount++;
             }
 
-            bool isGuardian = spells.Any(x => x.EntityTypeId == EntityTypes.CrawlerSpell && defendSpellIds.Contains(x.EntityId));
+            bool isGuardian = spells.FastAny(x => x.EntityTypeId == EntityTypes.CrawlerSpell && defendSpellIds.Contains(x.EntityId));
             if (isGuardian)
             {
                 retval.BonusCount++;
@@ -696,7 +701,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public async Task<ECombatStepResults> EndCombatRound(PartyData party, CancellationToken token)
         {
-
+            await _crawlerSpellService.UpdateAtEndOfCombatRound(party, token);
             try
             {
                 if (party.Combat == null || !ReadyForCombat(party))
@@ -759,7 +764,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public void RemoveEndOfCombatEffects(PartyData party)
         {
-            foreach (PartyMember member in party.Members)
+            foreach (PartyMember member in party.ActiveParty)
             {
                 List<IDisplayEffect> expiredEffects = member.Effects.Where(x => x.EntityTypeId == EntityTypes.StatusEffect &&
                     x.MaxDuration > 0).ToList();
@@ -793,12 +798,12 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 }
                 else
                 {
-                    newAction.FinalTargets = new List<CrawlerUnit>(party.GetActiveParty());
+                    newAction.FinalTargets = new List<CrawlerUnit>(party.ActiveParty);
                 }
             }
             else if (spell.TargetTypeId == TargetTypes.Ally)
             {
-                newAction.PossibleTargetUnits = new List<CrawlerUnit>(party.GetActiveParty());
+                newAction.PossibleTargetUnits = new List<CrawlerUnit>(party.ActiveParty);
             }
             else if (spell.TargetTypeId == TargetTypes.Self)
             {
@@ -1134,7 +1139,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 totalActions++;
             }
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 member.CombatActions.Clear();
                 if (!IsDisabled(member))
@@ -1155,3 +1160,5 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         }
     }
 }
+
+

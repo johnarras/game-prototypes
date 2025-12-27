@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.Services;
@@ -74,3 +74,5 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
         }
     }
 }
+
+

@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.PlayMultiplier.WebApi;
+using Assets.Scripts.ClientEvents.UI;
+using Genrpg.Shared.PlayMultiplier.WebApi;
 using Genrpg.Shared.UI.Constants;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
@@ -7,6 +8,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
     {
 
         protected IClientWebService _webService = null;
+        protected IScreenService _screenService = null;
 
         public GButton StoreButton;
         public GButton MultButton;
@@ -18,7 +20,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
         private void ClickStoreButton()
         {
-            _screenService.Open(ScreenNames.Store);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Store));
         }
 
         private void ClickMultButton()
@@ -27,3 +29,5 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         }
     }
 }
+
+

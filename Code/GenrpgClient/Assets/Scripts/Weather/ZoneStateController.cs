@@ -1,12 +1,13 @@
-﻿using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Entities;
 using ClientEvents;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Players.Messages;
@@ -52,69 +53,69 @@ public class WeatherEffectContainer
     public WeatherType Weather;
 }
 
-public interface IZoneStateController : IInjectable, IInjectOnLoad<IZoneStateController>
+public interface IZoneStateController : IInitializable
 {
     Zone GetCurrentZone();
-    Camera GetMainCamera();
-    Light GetSun();
+    long GetCurrentZoneShown();
+
+    Light SunLight { get; }
 }
 
-public class ZoneStateController : BaseBehaviour, IZoneStateController
+public class ZoneStateController : IZoneStateController
 {
     private ICameraController _cameraController = null;
     private IMapTerrainManager _terrainManager = null;
-    private IPlayerManager _playerManager;
-    private IMapProvider _mapProvider;
-    protected IAudioService _audioService;
-    private IModTextureService _modTextureService;
-    private ICrawlerService _crawlerService;
-    private ICrawlerWorldService _worldService;
+    private IPlayerManager _playerManager = null;
+    private IMapProvider _mapProvider = null;
+    private IAudioService _audioService = null;
+    private IModTextureService _modTextureService = null;
+    private ICrawlerService _crawlerService = null;
+    private ICrawlerWorldService _worldService = null;
+    private IDispatcher _dispatcher = null;
+    private IClientUpdateService _updateService = null;
+    private IClientGameState _gs = null;
+    private IGameData _gameData = null;
+    private IScreenService _screenService = null;
+    private IClientRandom _rand = null;
+    private IInitClient _initClient = null;
 
-    public Camera MainCamera;
-    public Light SunLight;
-    public WindZone Wind;
-    public Light Sun;
-    public Material SkyboxMaterial;
+
+    private CancellationToken _token;
+
+    private CoreClientData _coreData = null;
 
     public async Task Initialize(CancellationToken token)
     {
+        _token = token;
+        _coreData = _initClient.GetCoreClientData();
+        RenderSettings.sun = _coreData.SunLight;
+        _updateService.AddUpdate(this, ZoneUpdate, UpdateTypes.Regular, _token);
+        _dispatcher.AddListener<OnFinishLoadPlayer>(OnFinishLoadingPlayer, _token);
+        ResetColors();
         await Task.CompletedTask;
     }
 
-    public override void Init()
-    {
-        base.Init();
-        RenderSettings.sun = Sun;
-        AddUpdate(ZoneUpdate, UpdateTypes.Regular);
-        AddListener<OnFinishLoadPlayer>(OnFinishLoadingPlayer);
-        ResetColors();
-    }
-
-    public Camera GetMainCamera()
-    {
-        return MainCamera;
-    }
-
-    public Light GetSun()
-    {
-        return Sun;
-    }
-
-
-    public static float AmbientScale = 1.0f;
-    public static float SunlightScale = 1.0f;
-    public static float FogScale = 1.0f;
+    private float AmbientScale = 1.0f;
+    private float SunlightScale = 1.0f;
 
     public const float BaseFogStart = 150;
     public const float BaseFogEnd = 300;
-    public static float FogDistScale = 1.0f;
+    private float FogDistScale = 1.0f;
 
-    public static long CurrentZoneShown = -1;
+
     public bool PauseUpdates = false;
     public const int MaxTicksBetweenZoneUpdates = 3;
 
 
     public float LinearFogEnd = 300;
+
+    private long _currentZoneShown = 0;
+    public long GetCurrentZoneShown()
+    {
+        return _currentZoneShown;
+    }
+
+    public Light SunLight => _coreData.SunLight;
 
 
     DateTime windBurstEnd = DateTime.UtcNow;
@@ -122,7 +123,6 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
 
 
     public const float WeatherTransitionTime = 20.0f;
-    WeatherType Weather;
     private WeatherType _dataWeather = null;
 
     public DateTime NextWeatherTransition = DateTime.UtcNow.AddSeconds(1000000);
@@ -185,7 +185,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
 
     public void SetupSkybox()
     {
-        RenderSettings.skybox = SkyboxMaterial;
+        RenderSettings.skybox = _coreData.SkyboxMaterial;
         if (RenderSettings.skybox != null)
         {
             RenderSettings.skybox.SetColor("_Tint", UnityEngine.Color.white * 2);
@@ -266,7 +266,7 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
                             return;
                         }
                         _currentZone = zone;
-                        CurrentZoneShown = zone.IdKey;
+                        _currentZoneShown = zone.IdKey;
                         _gs.ch.ZoneId = zone.IdKey;
                         _currentZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(_currentZone.ZoneTypeId);
                         _dataWeather = _gameData.Get<WeatherTypeSettings>(_gs.ch).Get(_currentZoneType.WeatherTypeId);
@@ -392,10 +392,10 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
         RenderSettings.fogStartDistance = FogStart.Current;
         RenderSettings.fogEndDistance = FogEnd.Current;
 
-        if (Sun != null)
+        if (_coreData.SunLight != null)
         {
-            Sun.intensity = SunlightIntensity.Current * SunlightScale * SunlightIntensityMultiplier;
-            Sun.color = SunlightColor.Current;
+            _coreData.SunLight.intensity = SunlightIntensity.Current * SunlightScale * SunlightIntensityMultiplier;
+            _coreData.SunLight.color = SunlightColor.Current;
 
         }
 
@@ -410,20 +410,22 @@ public class ZoneStateController : BaseBehaviour, IZoneStateController
 
     private void UpdateWind()
     {
-        if (Wind == null)
+        if (_coreData.Wind == null)
         {
             return;
         }
 
-        if (windBurstEnd < DateTime.UtcNow && Wind.windMain > 0)
+        if (windBurstEnd < DateTime.UtcNow && _coreData.Wind.windMain > 0)
         {
-            Wind.windMain = 0.13f * Wind.windMain * WindScale.Current;
+            _coreData.Wind.windMain = 0.13f * _coreData.Wind.windMain * WindScale.Current;
         }
         if (nextWindBurst < DateTime.UtcNow)
         {
-            Wind.windMain = MathUtils.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
+            _coreData.Wind.windMain = MathUtils.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
             windBurstEnd = DateTime.UtcNow.AddSeconds(MathUtils.FloatRange(4.0f, 7.0f, _rand));
             nextWindBurst = DateTime.UtcNow.AddSeconds(MathUtils.FloatRange(12.0f, 22.0f, _rand));
         }
     }
 }
+
+

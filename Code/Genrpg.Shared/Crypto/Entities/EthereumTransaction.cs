@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Genrpg.Shared.Crypto.Entities
 {
-    [MessagePackObject]
     public class EthereumTransaction
     {
-        [Key(0)] public string hash { get; set; }
-        [Key(1)] public string from { get; set; }
-        [Key(2)] public string to { get; set; }
-        [Key(3)] public int isError { get; set; }
+        public string hash { get; set; }
+        public string from { get; set; }
+        public string to { get; set; }
+        public int isError { get; set; }
     }
 }
+
+

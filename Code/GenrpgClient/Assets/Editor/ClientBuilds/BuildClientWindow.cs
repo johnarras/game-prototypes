@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Constants;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace Assets.Editor.Builds
 
         private bool _selfContainedClient = true;
         private bool _rebuildBundles = true;
-
+        private bool _developmentBuild = false;
         private void OnGUI()
         {
             GUILayout.Label("Build Options:");
@@ -55,6 +55,8 @@ namespace Assets.Editor.Builds
 
             _rebuildBundles = EditorGUILayout.Toggle("Rebuild Bundles:", _rebuildBundles);
 
+            _developmentBuild = EditorGUILayout.Toggle("Development Build:", _developmentBuild);
+
             if (GUILayout.Button("Build Clients"))
             {
                 BuildClients.BuildClient(
@@ -62,8 +64,11 @@ namespace Assets.Editor.Builds
                     _gameModes[_selectedGameMode],
                     _platformNames[_selectedPlatform],
                     _selfContainedClient,
-                    _rebuildBundles);
+                    _rebuildBundles,
+                    _developmentBuild);
             }
         }
     }
 }
+
+

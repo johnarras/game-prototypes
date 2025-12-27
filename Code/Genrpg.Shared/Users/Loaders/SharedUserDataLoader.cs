@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using MessagePack;
 using System;
@@ -32,3 +32,5 @@ namespace Genrpg.Shared.Users.Loaders
         }
     }
 }
+
+

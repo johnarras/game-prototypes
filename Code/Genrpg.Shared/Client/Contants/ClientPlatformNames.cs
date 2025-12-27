@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Client.Contants
+namespace Genrpg.Shared.Client.Contants
 {
     public class ClientPlatformNames
     {
@@ -9,3 +9,5 @@
         public const string iOS = "ios";
     }
 }
+
+

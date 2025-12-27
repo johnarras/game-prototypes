@@ -1,15 +1,15 @@
-using System.Collections.Generic;
-
-using System.Threading;
 using Assets.Scripts.MapTerrain;
-using System;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SaveMap : BaseZoneGenerator
 {
 
-    private IClientAppService _clientAppService;
+    private IClientAppService _clientAppService = null;
     private ITextSerializer _serializer;
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -156,7 +156,7 @@ public class SaveMap : BaseZoneGenerator
             {
                 float val = MathUtils.Clamp(0, Math.Abs(_md.overrideZoneScales[x + startX, y + startY]), 1);
 
-                bytes[index++] = (byte)(val*MapConstants.OverrideZoneScaleMax);
+                bytes[index++] = (byte)(val * MapConstants.OverrideZoneScaleMax);
             }
         }
 
@@ -177,4 +177,6 @@ public class SaveMap : BaseZoneGenerator
 
     }
 }
-	
+
+
+

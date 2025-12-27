@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Units.Entities;
@@ -16,3 +16,5 @@ namespace Genrpg.MapServer.Units.Services
         bool IsOkUnit(Unit unit, bool playersOk);
     }
 }
+
+

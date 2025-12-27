@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Abstractions;
+using Assets.Scripts.UI.Abstractions;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
@@ -46,3 +46,5 @@ namespace Assets.Scripts.UI.Interfaces
         void SetSlider(GSlider slider, float minValueIn, float maxValueIn, float currValue, UnityAction<float> valueChangedEvent);
     }
 }
+
+

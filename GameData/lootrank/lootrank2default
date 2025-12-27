@@ -5,6 +5,5 @@
   "Name": "Copper",
   "Armor": 2,
   "Damage": 1,
-  "CostPct": 200,
-  "SaveTime": "2025-10-26T21:40:57.784Z"
+  "CostPct": 200
 }

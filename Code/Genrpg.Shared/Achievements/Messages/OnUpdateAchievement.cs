@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Achievements.Messages
         [Key(1)] public long Quantity { get; set; }
     }
 }
+
+

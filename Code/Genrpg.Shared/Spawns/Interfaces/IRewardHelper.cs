@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
@@ -24,3 +24,5 @@ namespace Genrpg.Shared.Spawns.Interfaces
         long Get(MapObject obj, long entityId);
     }
 }
+
+

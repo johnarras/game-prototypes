@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -94,3 +94,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
     }
 }
+
+

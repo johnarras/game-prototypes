@@ -2,5 +2,7 @@
   "Id": "screenname5default",
   "ParentId": "default",
   "IdKey": 5,
-  "Name": "Map"
+  "Name": "Map",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Maps"
 }

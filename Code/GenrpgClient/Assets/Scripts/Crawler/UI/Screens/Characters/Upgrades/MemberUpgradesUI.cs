@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.Entities.Constants;
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
     {
 
 
-        protected ICrawlerUpgradeService _upgradeService;
+        protected ICrawlerUpgradeService _upgradeService = null;
 
         public MemberUpgradeRow RowPrefab;
 
@@ -43,3 +43,5 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
         }
     }
 }
+
+

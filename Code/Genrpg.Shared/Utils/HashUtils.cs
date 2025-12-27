@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Utils
 {
-    [MessagePackObject]
     public class HashUtils
     {
         public static string NewUUId()
@@ -50,3 +49,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

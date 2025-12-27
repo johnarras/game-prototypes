@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "tribetype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Humanoid",
       "Desc": "",
@@ -23,8 +20,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Beast",
       "Desc": "",
@@ -51,8 +46,6 @@
       "LootCrafterTypeId": 3
     },
     {
-      "Id": "tribetype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Undead",
       "Desc": "",
@@ -72,8 +65,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Elemental",
       "Desc": "",
@@ -93,8 +84,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Dragonkin",
       "Desc": "",
@@ -114,8 +103,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Vermin",
       "Desc": "",
@@ -125,8 +112,6 @@
       "InteractLootItems": []
     },
     {
-      "Id": "tribetype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Giant",
       "Desc": "",
@@ -145,8 +130,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Mythological",
       "Desc": "",
@@ -173,8 +156,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Wooden",
       "Desc": "",
@@ -193,8 +174,6 @@
       "LootCrafterTypeId": 2
     },
     {
-      "Id": "tribetype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Barbaric",
       "Desc": "",
@@ -214,8 +193,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Warrior",
       "Desc": "",
@@ -235,8 +212,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Mage",
       "Desc": "",
@@ -256,8 +231,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Priest",
       "Desc": "",
@@ -277,8 +250,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Thief",
       "Desc": "",
@@ -298,8 +269,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Demon",
       "Desc": "",
@@ -326,8 +295,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Dragon",
       "Desc": "",
@@ -354,8 +321,6 @@
       "HasRangedAttacks": true
     },
     {
-      "Id": "tribetype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Golem",
       "Desc": "",
@@ -383,8 +348,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "TribeSettings",
-    "SaveTime": "2025-09-09T14:20:57.443Z"
+    "Name": "TribeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-09T14:20:57.443Z"
 }

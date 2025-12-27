@@ -288,6 +288,5 @@
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,
-  "ZoneCategoryId": 1,
-  "SaveTime": "2025-09-07T18:12:51.204Z"
+  "ZoneCategoryId": 1
 }

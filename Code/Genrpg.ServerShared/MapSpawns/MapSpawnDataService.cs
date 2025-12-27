@@ -1,49 +1,41 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.Maps;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Quests.Entities;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ZstdSharp.Unsafe;
 
 namespace Genrpg.ServerShared.MapSpawns
 {
 
     public interface IMapSpawnDataService : IInitializable
     {
-        Task SaveMapSpawnData(IRepositoryService repoService, MapSpawnData data, string mapId, int mapVersion);
-        Task<MapSpawnData> LoadMapSpawnData(IRepositoryService repoService, string mapId, int mapVersion);
+        Task SaveMapSpawnData(IFullRepositoryService repoService, MapSpawnData data, string mapId, int mapVersion);
+        Task<MapSpawnData> LoadMapSpawnData(IFullRepositoryService repoService, string mapId, int mapVersion);
     }
 
     public class MapSpawnDataService : IMapSpawnDataService
     {
-        private IRepositoryService _repoService = null;
+        private IFullRepositoryService _repoService = null;
         private IMapDataService _mapDataService = null;
         private ITextSerializer _serializer = null;
         public async Task Initialize(CancellationToken token)
         {
-            CreateIndexData data = new CreateIndexData();
+            CreateIndexData data = new CreateIndexData(typeof(UnitStatus));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(UnitStatus.MapId) });
             List<Task> tasks = new List<Task>();
-            tasks.Add(_repoService.CreateIndex<UnitStatus>(data));
-            tasks.Add(_repoService.CreateIndex<MapSpawn>(data));
-            await Task.WhenAll(tasks); 
+            tasks.Add(_repoService.CreateIndexes(data));
+            data = new CreateIndexData(typeof(MapSpawn));
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(MapSpawn.MapId) });
+            tasks.Add(_repoService.CreateIndexes(data));
+            await Task.WhenAll(tasks);
         }
-        public async Task SaveMapSpawnData(IRepositoryService repoService, MapSpawnData data, string mapId, int mapVersion)
+        public async Task SaveMapSpawnData(IFullRepositoryService repoService, MapSpawnData data, string mapId, int mapVersion)
         {
             await repoService.DeleteAll<MapSpawn>(x => x.MapId == mapId);
             string ownerId = _mapDataService.GetMapOwnerId(mapId, mapVersion);
@@ -63,7 +55,7 @@ namespace Genrpg.ServerShared.MapSpawns
 
         }
 
-        public async Task<MapSpawnData> LoadMapSpawnData(IRepositoryService repoService, string mapId, int mapVersion)
+        public async Task<MapSpawnData> LoadMapSpawnData(IFullRepositoryService repoService, string mapId, int mapVersion)
         {
             MapSpawnData spawnData = new MapSpawnData();
 
@@ -86,3 +78,5 @@ namespace Genrpg.ServerShared.MapSpawns
 
     }
 }
+
+

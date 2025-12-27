@@ -5,14 +5,14 @@ using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Utils.Data;
 using MessagePack;
 
-namespace Genrpg.Shared.Currencies.PlayerData
+namespace Genrpg.Shared.Trader.Stats.PlayerData
 {
     /// <summary>
     /// Used to contain a list of currencies on objects that need it (like user and character)
     /// </summary>
 
     [MessagePackObject]
-    public class TraderStatData : NoChildPlayerData, IUserData
+    public class TraderStatData : UniquePersonalUserData, IUserData
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public TraderStatCollection Stats { get; set; } = new TraderStatCollection();
@@ -52,8 +52,15 @@ namespace Genrpg.Shared.Currencies.PlayerData
     public class TraderStatDataLoader : UnitDataLoader<TraderStatData> { }
 
 
-    public class TraderStatDto : NoChildPlayerDataDto<TraderStatData> { }
+    [MessagePackObject]
+    public class TraderStatDto : NoChildPlayerDataDto<TraderStatData>
+    {
+        [Key(0)] public override TraderStatData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
 
 
     public class TraderStatDataMapper : NoChildUnitDataMapper<TraderStatData, TraderStatDto> { }
 }
+
+

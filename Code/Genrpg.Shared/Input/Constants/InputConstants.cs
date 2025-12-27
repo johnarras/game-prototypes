@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Input.Constants
 {
-    [MessagePackObject]
     public class InputConstants
     {
         public const int MinActionIndex = 1;
@@ -16,3 +15,5 @@ namespace Genrpg.Shared.Input.Constants
         }
     }
 }
+
+

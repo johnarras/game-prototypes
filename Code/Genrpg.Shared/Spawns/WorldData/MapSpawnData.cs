@@ -18,13 +18,12 @@ namespace Genrpg.Shared.Spawns.WorldData
 
 
 
-    [MessagePackObject]
     public class MapSpawnData : BaseWorldData, IStringOwnerId
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public string OwnerId { get; set; }
-        [Key(2)] public List<MapSpawn> Data { get; set; } = new List<MapSpawn>();
-        [Key(3)] public int MaxId { get; set; } = 12345;
+        public override string Id { get; set; }
+        public string OwnerId { get; set; }
+        public List<MapSpawn> Data { get; set; } = new List<MapSpawn>();
+        public int MaxId { get; set; } = 12345;
 
         public override void Delete(IRepositoryService repoSystem) { repoSystem.Delete(this); }
 
@@ -61,3 +60,5 @@ namespace Genrpg.Shared.Spawns.WorldData
         }
     }
 }
+
+

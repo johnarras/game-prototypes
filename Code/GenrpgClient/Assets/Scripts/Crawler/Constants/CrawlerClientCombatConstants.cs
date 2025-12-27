@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Crawler.Constants
+namespace Assets.Scripts.Crawler.Constants
 {
     public class CrawlerClientCombatConstants
     {
@@ -7,3 +7,5 @@
         public const float CombatDooberFlyTime = 0.3f;
     }
 }
+
+

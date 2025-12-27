@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Rewards.Messages
         [Key(3)] public long Quantity { get; set; }
     }
 }
+
+

@@ -5,7 +5,8 @@
   "Name": "Cursed Arrows",
   "Desc": "Sometimes debuff enemies hit with your ranged attacks.",
   "AtlasPrefix": "",
+  "Icon": "CursedArrows",
+  "Art": "CursedArrows",
   "ProcChanceScale": 2.0,
-  "EffectScale": 3.0,
-  "SaveTime": "2025-09-10T22:14:38.869Z"
+  "EffectScale": 3.0
 }

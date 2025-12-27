@@ -1,24 +1,19 @@
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Names.Settings
 {
-    [MessagePackObject]
     public class WeightedName : IWeightedItem
     {
-        [Key(0)] public double Weight { get; set; }
-        [Key(1)] public bool Ignore { get; set; }
-        [Key(2)] public string Name { get; set; }
-        [Key(3)] public string Desc { get; set; }
+        public double Weight { get; set; }
+        public bool Ignore { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
 
         public WeightedName()
         {
@@ -28,10 +23,9 @@ namespace Genrpg.Shared.Names.Settings
             Desc = "";
         }
     }
-    [MessagePackObject]
     public class NameSettings : ParentSettings<NameList>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
 
 
 
@@ -56,20 +50,26 @@ namespace Genrpg.Shared.Names.Settings
 
 
 
-    [MessagePackObject]
     public class NameList : ChildSettings
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public override string Name { get; set; }
-        [Key(3)] public string ListName { get; set; }
-        [Key(4)] public List<WeightedName> Names { get; set; } = new List<WeightedName>();
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public override string Name { get; set; }
+        public string ListName { get; set; }
+        public List<WeightedName> Names { get; set; } = new List<WeightedName>();
 
     }
 
-    public class NameSettingsDto : ParentSettingsDto<NameSettings, NameList> { }
+    public class NameSettingsDto : ParentSettingsDto<NameSettings, NameList>
+    {
+        public override List<NameList> Children { get; set; }
+        public override NameSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class NameSettingsLoader : ParentSettingsLoader<NameSettings, NameList> { }
 
     public class ItemSettingsMapper : ParentSettingsMapper<NameSettings, NameList, NameSettingsDto> { }
 
 }
+
+

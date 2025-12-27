@@ -1,0 +1,13 @@
+{
+  "Id": "corecurrencytype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Food",
+  "PluralName": "",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "Food",
+  "Art": "Food",
+  "RegenTraderStatId": 13,
+  "StorageTraderStatId": 14
+}

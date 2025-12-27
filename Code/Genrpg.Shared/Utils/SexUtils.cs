@@ -5,7 +5,6 @@ namespace Genrpg.Shared.Utils
     ///  This contains some simple functions for converting a sex into
     ///  him/her/he/she and so forth.
     /// </summary>
-    [MessagePackObject]
     public class SexUtils
     {
         public static string HimHer(string sex)
@@ -77,3 +76,5 @@ namespace Genrpg.Shared.Utils
 
     }
 }
+
+

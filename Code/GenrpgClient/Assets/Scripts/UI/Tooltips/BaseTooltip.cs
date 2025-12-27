@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 
 public class InitTooltipData
 {
@@ -13,3 +13,4 @@ public abstract class BaseTooltip : BaseBehaviour
         _token = token;
     }
 }
+

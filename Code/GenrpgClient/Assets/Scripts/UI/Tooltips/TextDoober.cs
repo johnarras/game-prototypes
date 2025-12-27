@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
 
 namespace Assets.Scripts.UI.Tooltips
@@ -42,3 +42,5 @@ namespace Assets.Scripts.UI.Tooltips
         }
     }
 }
+
+

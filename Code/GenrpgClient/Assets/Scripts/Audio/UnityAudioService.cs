@@ -1,9 +1,10 @@
+using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.Options.Services;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
@@ -22,42 +23,40 @@ public interface IAudioService : IInitializable, IAssetSubsystem
     void SetVolume(EAudioCategories category, float volume);
     float GetVolume(EAudioCategories category);
 }
-public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService, IInjectOnLoad<IAudioService>, IInitOnResolve
+public class UnityAudioService : IAudioService
 {
 
-    protected IClientOptionsService _clientOptionsService = null;
+    private IClientOptionsService _clientOptionsService = null;
+    private IClientUpdateService _updateService = null;
+    private IAssetService _assetService = null;
+    private IClientEntityService _clientEntityService = null;
+    private ISingletonContainer _singletons = null;
+    private IClientRandom _rand = null;
 
-    public List<MusicChannel> MusicChannels;
+    private Dictionary<EAudioCategories, AudioChannel> _channels = new Dictionary<EAudioCategories, AudioChannel>();
 
-    Dictionary<EAudioCategories, float> _volumes = new Dictionary<EAudioCategories, float>();
+    private GameObject _audioParent = null;
 
+    private CancellationToken _token;
     public async Task Initialize(CancellationToken token)
     {
+        _token = token;
+        _audioParent = _singletons.GetAssetParent<AudioClip>();
         foreach (EAudioCategories category in Enum.GetValues(typeof(EAudioCategories)))
         {
-            _volumes[category] = _clientOptionsService.GetOptions().GetVolume(category);
+            _channels[category] = new AudioChannel()
+            {
+                Category = category,
+                Volume = _clientOptionsService.GetOptions().GetVolume(category),
+                Looping = category == EAudioCategories.Music,
+            };
         }
+
+        _updateService.AddUpdate(this, AudioUpdate, UpdateTypes.Regular, _token);
         await Task.CompletedTask;
     }
 
     private Dictionary<string, AudioClipList> _audioCache = new Dictionary<string, AudioClipList>();
-
-    protected CancellationToken _token;
-
-    public void SetGameToken(CancellationToken token)
-    {
-        _token = token;
-    }
-
-    public override void Init()
-    {
-        base.Init();
-        AddUpdate(AudioUpdate, UpdateTypes.Regular);
-        if (MusicChannels == null)
-        {
-            MusicChannels = new List<MusicChannel>();
-        }
-    }
 
     void AudioUpdate()
     {
@@ -76,26 +75,26 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     {
         volume = MathUtils.Clamp(AudioConstants.MinVolume, volume, AudioConstants.MaxVolume);
         _clientOptionsService.GetOptions().SetVolume(category, volume);
-        _volumes[category] = volume;
+        _channels[category].Volume = volume;
         UpdateVolumes();
     }
 
     public float GetVolume(EAudioCategories category)
     {
-        return _volumes[category];
+        return _channels[category].Volume;
     }
 
     private void UpdateVolumes()
     {
         foreach (AudioClipList acl in _audioCache.Values)
         {
-            acl.UpdateVolume(_volumes);
+            acl.UpdateVolume(_channels);
         }
     }
 
     public void PlaySound(string soundName, object parent = null, float volume = AudioConstants.MaxVolume)
     {
-        if (_volumes[EAudioCategories.Sound] <= AudioConstants.MinVolume)
+        if (_channels[EAudioCategories.Sound].Volume <= AudioConstants.MinVolume)
         {
             return;
         }
@@ -103,7 +102,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
         PlayAudioData playData = new PlayAudioData()
         {
             audioName = soundName,
-            volume = volume * _volumes[EAudioCategories.Sound],
+            volume = volume * _channels[EAudioCategories.Sound].Volume,
             parent = parent as GameObject,
             category = EAudioCategories.Sound,
             looping = false,
@@ -118,19 +117,19 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
             return;
         }
 
-        if (_volumes[playData.category] <= AudioConstants.MinVolume)
+        if (_channels[playData.category].Volume <= AudioConstants.MinVolume)
         {
             return;
         }
 
-        if (_audioCache.ContainsKey(name))
+        if (_audioCache.ContainsKey(playData.audioName))
         {
-            AudioClipList cont = _audioCache[name];
+            AudioClipList cont = _audioCache[playData.audioName];
             PlayLoadedAudio(cont, playData);
             return;
         }
 
-        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.audioName, OnDownloadAudio, entity, _token, playData);
+        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.audioName, OnDownloadAudio, _audioParent, _token, playData);
     }
 
     private void OnDownloadAudio(GameObject go, PlayAudioData playData, CancellationToken token)
@@ -174,7 +173,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
 
         if (playData.musicData != null)
         {
-            MusicChannel categoryCont = GetMusicChannel(playData.category);
+            AudioChannel categoryCont = GetMusicChannel(playData.category);
             CurrentMusic musicCont = new CurrentMusic()
             {
                 playData = playData,
@@ -189,17 +188,14 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
 
     #region Music
 
-    protected MusicChannel GetMusicChannel(EAudioCategories cat)
+    protected AudioChannel GetMusicChannel(EAudioCategories cat)
     {
-        return MusicChannels.FirstOrDefault(x => x.category == cat);
+        return _channels.Values.FirstOrDefault(x => x.Category == cat);
     }
 
 
 
-    /// <summary>
-    /// Keep list of default Ids for channels to be read in from a music region.
-    /// </summary>
-    private Dictionary<EAudioCategories, long> _channelIds = new Dictionary<EAudioCategories, long>();
+
 
     public void PlayMusic(IMusicRegion region)
     {
@@ -277,7 +273,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
 
     private void FadeOutMusic(EAudioCategories cat)
     {
-        MusicChannel cont = GetMusicChannel(cat);
+        AudioChannel cont = GetMusicChannel(cat);
         if (cont == null)
         {
             return;
@@ -299,7 +295,7 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
             return;
         }
 
-        MusicChannel catCont = GetMusicChannel(musicCont.playData.category);
+        AudioChannel catCont = GetMusicChannel(musicCont.playData.category);
 
         if (catCont == null)
         {
@@ -352,31 +348,30 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
 
     int fadeFrames = 50;
     List<CurrentMusic> removeList = null;
-    private MusicChannel cont = null;
+    private AudioChannel cont = null;
     private CurrentMusic prevMusic = null;
     private void UpdateMusic()
     {
-        for (int m = 0; m < MusicChannels.Count; m++)
+        foreach (AudioChannel channel in _channels.Values)
         {
-            cont = MusicChannels[m];
             removeList = null;
-            if (cont.curr != null)
+            if (channel.curr != null)
             {
-                if (_volumes[cont.category] <= AudioConstants.MinVolume)
+                if (channel.Volume <= AudioConstants.MinVolume)
                 {
                     if (removeList == null)
                     {
                         removeList = new List<CurrentMusic>();
                     }
-                    removeList.Add(cont.curr);
+                    removeList.Add(channel.curr);
                 }
 
-                FadeSourceTo(cont.curr.source, _volumes[cont.category], fadeFrames);
-                FadeSourceTo(cont.curr.prevSource, AudioConstants.MinVolume, fadeFrames);
+                FadeSourceTo(channel.curr.source, channel.Volume, fadeFrames);
+                FadeSourceTo(channel.curr.prevSource, AudioConstants.MinVolume, fadeFrames);
             }
-            for (int mp = 0; mp < cont.prevList.Count; mp++)
+            for (int mp = 0; mp < channel.prevList.Count; mp++)
             {
-                prevMusic = cont.prevList[mp];
+                prevMusic = channel.prevList[mp];
                 float volume = FadeSourceTo(prevMusic.source, AudioConstants.MinVolume, fadeFrames);
                 FadeSourceTo(prevMusic.prevSource, AudioConstants.MinVolume, fadeFrames);
                 if (volume <= 0)
@@ -390,12 +385,12 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
                 }
             }
 
-            if (cont.curr != null &&
-                (removeList == null || !removeList.Contains(cont.curr)) &&
-                cont.curr.GetRandomIzeSeconds() > 0 &&
-                DateTime.UtcNow > cont.curr.NextRandomizeTime)
+            if (channel.curr != null &&
+                (removeList == null || !removeList.Contains(channel.curr)) &&
+                channel.curr.GetRandomIzeSeconds() > 0 &&
+                DateTime.UtcNow > channel.curr.NextRandomizeTime)
             {
-                cont.ChooseNewRandomSound(_rand);
+                channel.ChooseNewRandomSound(_rand);
             }
         }
 
@@ -488,4 +483,6 @@ public class UnityAudioService : BaseBehaviour, IAudioService, IGameTokenService
     #endregion
 
 }
+
+
 

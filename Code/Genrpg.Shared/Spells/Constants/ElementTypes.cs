@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Spells.Constants
+namespace Genrpg.Shared.Spells.Constants
 {
     public class ElementTypes
     {
@@ -15,3 +15,5 @@
         public const long Ranged = 11;
     }
 }
+
+

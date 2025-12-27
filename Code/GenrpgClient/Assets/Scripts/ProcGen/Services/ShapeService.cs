@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
 using System;
@@ -45,3 +45,5 @@ public class ShapeService : IShapeService
         return list;
     }
 }
+
+

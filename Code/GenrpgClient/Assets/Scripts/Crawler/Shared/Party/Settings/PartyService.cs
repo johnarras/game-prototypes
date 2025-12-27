@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
@@ -31,9 +31,10 @@ namespace Genrpg.Shared.Crawler.Party.Services
     public interface IPartyService : IInjectable
     {
         long GetMaxPartySize(PartyData party);
-        void AddPartyMember(PartyData party, PartyMember member);
-        void RemovePartyMember(PartyData party, PartyMember member);
-        void DeletePartyMember(PartyData party, PartyMember member);
+        void AddActivePartyMember(PartyData party, PartyMember member);
+        void RemoveActivePartyMember(PartyData party, PartyMember member);
+        void AddPartyMemberToGuild(PartyData party, PartyMember member);
+        void DeletePartyMemberFromGuild(PartyData party, PartyMember member);
         void FullReset(PartyData party);
         void ResetMaps(PartyData party);
         void OnEnterMap(PartyData party);
@@ -74,63 +75,61 @@ namespace Genrpg.Shared.Crawler.Party.Services
             return settings.MaxPartySize;
         }
 
-        public void AddPartyMember(PartyData party, PartyMember member)
+        public void AddPartyMemberToGuild(PartyData party, PartyMember member)
         {
-            bool didAdd = false;
-            for (int i = 1; i <= GetMaxPartySize(party); i++)
+            party.InGuild.Add(member);
+        }
+
+        public void AddActivePartyMember(PartyData party, PartyMember member)
+        {
+            if (party.ActiveParty.Contains(member))
             {
-                if (party.GetMemberInSlot(i) == null)
-                {
-                    member.PartySlot = i;
-                    didAdd = true;
-                    break;
-                }
+                return;
             }
 
-
-            FixPartySlots(party);
-
-            if (!didAdd)
+            if (party.ActiveParty.Count < GetMaxPartySize(party))
+            {
+                party.ActiveParty.Add(member);
+                party.InGuild.Remove(member);
+            }
+            else
             {
                 _dispatcher.Dispatch(new ShowFloatingText("Party is limited to " + GetMaxPartySize(party) + " members!", EFloatingTextArt.Error));
             }
 
-        }
-
-        public void RemovePartyMember(PartyData party, PartyMember member)
-        {
-            member.PartySlot = 0;
             FixPartySlots(party);
         }
 
-        public void DeletePartyMember(PartyData party, PartyMember member)
+        public void RemoveActivePartyMember(PartyData party, PartyMember member)
         {
-            if (member.PartySlot > 0)
+            member.PartySlot = 0;
+            party.ActiveParty.Remove(member);
+            party.InGuild.Add(member);
+            FixPartySlots(party);
+        }
+
+        public void DeletePartyMemberFromGuild(PartyData party, PartyMember member)
+        {
+            if (party.ActiveParty.Contains(member))
             {
                 return;
             }
-            party.Members.Remove(member);
+            party.InGuild.Remove(member);
             FixPartySlots(party);
         }
 
         public void FixPartySlots(PartyData party)
         {
-            List<PartyMember> currentMembers = party.Members.Where(x => x.PartySlot > 0).OrderBy(x => x.PartySlot).ToList();
 
-            for (int i = 0; i < currentMembers.Count; i++)
+            for (int i = 0; i < party.ActiveParty.Count; i++)
             {
-                if (i < GetMaxPartySize(party))
-                {
-                    currentMembers[i].PartySlot = i + 1;
-                }
-                else
-                {
-                    currentMembers[i].PartySlot = 0;
-                }
+                party.ActiveParty[i].PartySlot = i + 1;
             }
-            List<PartyMember> inParty = party.Members.Where(x => x.PartySlot > 0).OrderBy(x => x.PartySlot).ToList();
-            List<PartyMember> outOfParty = party.Members.Where(x => x.PartySlot == 0).ToList();
-            party.Members = inParty.Concat(outOfParty).ToList();
+
+            foreach (PartyMember member in party.InGuild)
+            {
+                member.PartySlot = 0;
+            }
             _dispatcher.Dispatch(new RefreshPartyStatus());
         }
 
@@ -179,7 +178,8 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
             party.RemoveFlags(-1);
             party.DaysPlayed = 0;
-            party.Members.Clear();
+            party.ActiveParty.Clear();
+            party.InGuild.Clear();
             foreach (UpgradeStatus status in party.UpgradeStatuses)
             {
                 status.RunLevel = 0;
@@ -213,21 +213,18 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
         public void RearrangePartySlots(PartyData party, List<PartyMember> newPartyArrangement)
         {
-            List<PartyMember> activeMembers = party.GetActiveParty();
 
-            List<PartyMember> missingActives = activeMembers.Except(newPartyArrangement).ToList();
+            List<PartyMember> addedMembers = newPartyArrangement.Except(party.ActiveParty).ToList();
 
-            List<PartyMember> addedActives = newPartyArrangement.Except(activeMembers).ToList();
+            List<PartyMember> missingMembers = party.ActiveParty.Except(newPartyArrangement).ToList();
 
-            if (missingActives.Count > 0 || addedActives.Count > 0)
+            if (addedMembers.Count > 0 || missingMembers.Count > 0)
             {
                 return;
             }
 
-            for (int i = 0; i < newPartyArrangement.Count; i++)
-            {
-                newPartyArrangement[i].PartySlot = i + 1;
-            }
+            party.ActiveParty = newPartyArrangement.ToList();
+
             FixPartySlots(party);
         }
 
@@ -235,7 +232,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         {
             party.ItemBuffs.Clear();
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 foreach (Item item in member.Equipment)
                 {
@@ -342,3 +339,5 @@ namespace Genrpg.Shared.Crawler.Party.Services
         }
     }
 }
+
+

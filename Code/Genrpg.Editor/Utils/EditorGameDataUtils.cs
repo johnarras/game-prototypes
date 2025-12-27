@@ -1,9 +1,10 @@
-﻿using Genrpg.Editor.Entities.Copying;
+using Genrpg.Editor.Entities.Copying;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Setup;
 using Genrpg.Editor.UI.Interfaces;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.Config;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.Setup;
 using Genrpg.Shared.Constants;
@@ -16,9 +17,10 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Settings.Settings;
+using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Serialization.Utils;
+using Genrpg.Shared.SettingsNames.Settings;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.UI.Settings;
 using Genrpg.Shared.Utils;
@@ -26,7 +28,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,8 +41,8 @@ namespace Genrpg.Editor.Utils
 
             FullGameDataCopy dataCopy = new FullGameDataCopy();
 
-            IGameDataService gameDataService = gs.loc.Get<IGameDataService>();
-            IRepositoryService repoService = gs.loc.Get<IRepositoryService>();
+            IServerGameDataService gameDataService = gs.loc.Get<IServerGameDataService>();
+            IFullRepositoryService repoService = gs.loc.Get<IFullRepositoryService>();
             List<IGameSettingsLoader> allLoaders = gameDataService.GetAllLoaders();
 
             foreach (IGameSettingsLoader loader in allLoaders)
@@ -76,12 +77,9 @@ namespace Genrpg.Editor.Utils
                 {
                     settings.SetupForEditor(gs.LookedAtObjects);
                 }
-                if (settings is BaseGameSettings baseSettings)
+                if (settings.SaveTime == DateTime.MinValue)
                 {
-                    if (baseSettings.SaveTime == DateTime.MinValue)
-                    {
-                        gs.LookedAtObjects.Add(baseSettings);
-                    }
+                    gs.LookedAtObjects.Add(settings);
                 }
             }
 
@@ -120,9 +118,9 @@ namespace Genrpg.Editor.Utils
             }
         }
 
-        public static void InitMessages()
+        public static void InitSerialization()
         {
-            MapMessageInit.InitMapMessages(GetCodeFolderPath());
+            SerializationInitializer.Init(GetCodeFolderPath());
         }
 
         static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\"; }
@@ -130,11 +128,9 @@ namespace Genrpg.Editor.Utils
         const string GitOffsetPath = "..\\GameData";
         public static void WriteGameDataToDisk(FullGameDataCopy dataCopy, ITextSerializer serializer)
         {
-
             string dirName = GetCodeFolderPath();
 
             dirName += GitOffsetPath;
-
 
             if (Directory.Exists(dirName))
             {
@@ -149,13 +145,14 @@ namespace Genrpg.Editor.Utils
                 File.Delete(file);
             }
 
+            DateTime saveTime = DateTime.UtcNow;
             foreach (IGameSettings data in dataCopy.Data)
             {
-                WriteGameDataText(dirName, data, serializer);
+                WriteGameDataText(dirName, data, serializer, saveTime);
 
                 foreach (IGameSettings child in data.GetChildren())
                 {
-                    WriteGameDataText(dirName, child, serializer);
+                    WriteGameDataText(dirName, child, serializer, saveTime);
                 }
                 RemoveDeletedFiles(dirName, data.GetChildren());
             }
@@ -217,13 +214,34 @@ namespace Genrpg.Editor.Utils
             }
         }
 
-        private static void WriteGameDataText(string parentPath, object objectToSave, ITextSerializer serializer)
+        private static void WriteGameDataText(string parentPath, object objectToSave, ITextSerializer serializer,
+            DateTime saveTime)
         {
             IStringId idObj = objectToSave as IStringId;
 
             if (idObj == null)
             {
                 return;
+            }
+
+            BaseGameSettings baseSettings = idObj as BaseGameSettings;
+
+            if (baseSettings != null)
+            {
+
+                ITopLevelSettings topLevel = idObj as ITopLevelSettings;
+
+                if (topLevel == null)
+                {
+                    baseSettings.SaveTime = DateTime.MinValue;
+                }
+                else
+                {
+                    if (MainWindow.UpdateSaveTime)
+                    {
+                        baseSettings.SaveTime = saveTime;
+                    }
+                }
             }
 
             string subpath = objectToSave.GetType().Name.ToLower();
@@ -303,7 +321,6 @@ namespace Genrpg.Editor.Utils
 
                     foreach (string fileData in allFiles)
                     {
-                        byte[] bytes = Encoding.UTF8.GetBytes(fileData);
                         dataCopy.Data.Add((IGameSettings)serializer.DeserializeWithType(fileData, currType));
                     }
                 }
@@ -463,3 +480,5 @@ namespace Genrpg.Editor.Utils
         }
     }
 }
+
+

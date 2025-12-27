@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crafting.Constants;
 using Genrpg.Shared.Crafting.PlayerData.Crafting;
@@ -106,3 +106,5 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
         }
     }
 }
+
+

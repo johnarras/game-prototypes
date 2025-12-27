@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -61,3 +61,5 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         }
     }
 }
+
+

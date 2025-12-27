@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using System;
 
@@ -20,3 +20,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Buildings
         }
     }
 }
+
+

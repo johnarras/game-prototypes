@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.UI.Interfaces
         CancellationToken GetToken();
     }
 }
+
+

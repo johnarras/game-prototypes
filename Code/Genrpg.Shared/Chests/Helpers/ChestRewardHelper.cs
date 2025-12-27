@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Helpers;
 using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Spawns.Interfaces;
@@ -20,3 +20,5 @@ namespace Genrpg.Shared.Chests.Helpers
         }
     }
 }
+
+

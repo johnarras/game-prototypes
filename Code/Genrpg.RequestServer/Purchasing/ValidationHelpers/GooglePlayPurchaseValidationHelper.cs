@@ -1,7 +1,7 @@
-﻿using Genrpg.RequestServer.Purchasing.Entities;
+using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.Config.Constants;
 using Genrpg.ServerShared.Secrets.Services;
+using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Purchasing.Constants;
 using Google.Apis.AndroidPublisher.v3;
@@ -25,7 +25,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         {
 
             _packageName = _serverConfig.PackageName;
-            GoogleCredential credential = GoogleCredential.FromStream(new MemoryStream(Encoding.ASCII.GetBytes(await _secretsProvider.GetSecret(ServerConfigKeys.GooglePlaySecret))));
+            GoogleCredential credential = GoogleCredential.FromStream(new MemoryStream(Encoding.ASCII.GetBytes(await _secretsProvider.GetSecret(AppConfigKeys.GooglePlaySecret))));
             _publisherService = new AndroidPublisherService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -39,7 +39,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
 
             try
             {
-                var purchase = await _publisherService.Purchases.Products.Get(_packageName, productId, purchaseToken).ExecuteAsync();
+                Google.Apis.AndroidPublisher.v3.Data.ProductPurchase purchase = await _publisherService.Purchases.Products.Get(_packageName, productId, purchaseToken).ExecuteAsync();
                 if (purchase.PurchaseState == 0)
                 {
                     return new PurchaseValidationResult()
@@ -79,3 +79,4 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         }
     }
 }
+

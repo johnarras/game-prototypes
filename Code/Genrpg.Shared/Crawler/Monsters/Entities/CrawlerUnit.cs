@@ -9,7 +9,6 @@ using System.Collections.Generic;
 namespace Genrpg.Shared.Crawler.Monsters.Entities
 {
 
-    // MessagePackIgnore
     public class CrawlerUnit : Unit
     {
         public long UnitTypeId { get; set; }
@@ -44,6 +43,8 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
         [JsonIgnore]
         public long ActionsThisRound { get; set; }
 
+        [JsonIgnore]
+        public long DoTDamage { get; set; }
 
         public List<UnitKeyword> ExtraKeywords { get; set; } = new List<UnitKeyword>();
 
@@ -55,3 +56,5 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
         }
     }
 }
+
+

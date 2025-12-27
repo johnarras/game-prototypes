@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
@@ -11,8 +11,8 @@ public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler 
 
     protected IClientMapObjectManager _objectManager;
     protected IMapTerrainManager _terrainManager;
-    protected IRepositoryService _repoService;
-    protected ILogService _logService;
+    protected IRepositoryService _repoService = null;
+    protected ILogService _logService = null;
     protected IDispatcher _dispatcher;
     protected CancellationToken _token;
     protected IClientGameState _gs;
@@ -25,4 +25,6 @@ public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler 
         InnerProcess(msg as T, token);
     }
 }
+
+
 

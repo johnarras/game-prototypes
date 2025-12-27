@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.Time.Settings;
@@ -28,3 +28,5 @@ namespace Genrpg.Shared.Time.Services
         }
     }
 }
+
+

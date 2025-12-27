@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Genrpg.ServerShared.CloudComms.Constants
 {
@@ -10,3 +10,5 @@ namespace Genrpg.ServerShared.CloudComms.Constants
         public static double MessageTtlSeconds = 5.0f;
     }
 }
+
+

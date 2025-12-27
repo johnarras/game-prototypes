@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Shared.Crawler.Maps.Constants
 {
     public class MapEncounters
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Crawler.Maps.Constants
         public const int LevelMap = 6;
     }
 }
+
+

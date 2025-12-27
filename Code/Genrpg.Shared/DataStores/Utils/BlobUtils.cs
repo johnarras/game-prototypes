@@ -1,7 +1,5 @@
-﻿using Genrpg.Shared.DataStores.DataGroups;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Constants;
+using Genrpg.Shared.DataStores.DataGroups;
 
 namespace Genrpg.Shared.DataStores.Utils
 {
@@ -13,7 +11,13 @@ namespace Genrpg.Shared.DataStores.Utils
             {
                 return "accounts";
             }
+            if (env == EnvNames.Local.ToLower())
+            {
+                env = EnvNames.Dev.ToLower();
+            }
             return (gamePrefix + env).ToLower();
         }
     }
 }
+
+

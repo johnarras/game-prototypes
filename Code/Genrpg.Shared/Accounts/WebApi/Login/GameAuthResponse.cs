@@ -10,15 +10,16 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.Accounts.WebApi.Login
 {
-    [MessagePackObject]
     public class GameAuthResponse : IWebResponse
     {
-        [Key(0)] public GameAccount GameAccount { get; set; }
-        [Key(1)] public List<CharacterStub> CharacterStubs { get; set; } = new List<CharacterStub>();
-        [Key(2)] public List<MapStub> MapStubs { get; set; } = new List<MapStub>();
+        public GameAccount GameAccount { get; set; }
+        public List<CharacterStub> CharacterStubs { get; set; } = new List<CharacterStub>();
+        public List<MapStub> MapStubs { get; set; } = new List<MapStub>();
+        public string LoginToken { get; set; }
         [JsonProperty(TypeNameHandling = TypeNameHandling.Auto)]
-        [Key(3)] public string LoginToken { get; set; }
-        [Key(4)] public List<IUnitData> UserData { get; set; } = new List<IUnitData>();
-        [Key(5)] public PlayerStoreOfferData OfferData { get; set; }
+        public List<IUnitData> UserData { get; set; } = new List<IUnitData>();
+        public PlayerStoreOfferData OfferData { get; set; }
     }
 }
+
+

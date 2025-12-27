@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using System.Threading;
 using UnityEngine;
@@ -15,8 +15,9 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
     public const string InteractGlow = "InteractGlow";
     protected GameObject GlowItem = null;
     CancellationToken _token;
-    protected IPlayerManager _playerManager;
-    protected ICursorService _cursorService;
+    protected IPlayerManager _playerManager = null;
+    protected ICursorService _cursorService = null;
+    protected IRealtimeNetworkService _networkService = null;
 
     public virtual void Init(MapObject worldObj, GameObject go, CancellationToken token)
     {
@@ -185,3 +186,4 @@ public class InteractableObject : BaseBehaviour, IPointerEnterHandler, IPointerE
 
 
 }
+

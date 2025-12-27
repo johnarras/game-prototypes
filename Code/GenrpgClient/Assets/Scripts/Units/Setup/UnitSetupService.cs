@@ -26,14 +26,14 @@ public interface IUnitSetupService : IInitializable, IMapTokenService
 public class UnitSetupService : IUnitSetupService
 {
     protected IClientMapObjectManager _objectManager;
-    protected IStatService _statService;
-    protected IAssetService _assetService;
-    protected ILogService _logService;
+    protected IStatService _statService = null;
+    protected IAssetService _assetService = null;
+    protected ILogService _logService = null;
     protected IDispatcher _dispatcher;
     protected IGameData _gameData;
     protected IPlayerManager _playerManager;
     protected IClientGameState _gs;
-    protected IClientEntityService _clientEntityService;
+    protected IClientEntityService _clientEntityService = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -277,4 +277,6 @@ public class UnitSetupService : IUnitSetupService
 
     }
 }
+
+
 

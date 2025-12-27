@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Spells;
+using Assets.Scripts.UI.Spells;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.SpellCrafting.Constants;
@@ -15,8 +15,8 @@ using UnityEngine;
 
 public class SpellbookScreen : SpellIconScreen
 {
-    protected ISharedSpellCraftService _spellCraftService;
-    protected IRepositoryService _repoService;
+    protected ISharedSpellCraftService _spellCraftService = null;
+    protected IRepositoryService _repoService = null;
 
     protected string SpellEffectEditPrefabName = "SpellEffectEdit";
 
@@ -196,9 +196,10 @@ public class SpellbookScreen : SpellIconScreen
             edit.CopyFromUIToEffect();
         }
 
-        if (_spellCraftService.ValidateSpellData(_gs.ch, _editSpell))
+        Spell newSpell = _spellCraftService.CreateNewSpellData(_gs.ch, _editSpell);
+        if (newSpell != null)
         {
-            CopyFromSpellToUI(_editSpell);
+            CopyFromSpellToUI(newSpell);
             return true;
         }
         _logService.Error("Spell could not be validated!");
@@ -277,4 +278,6 @@ public class SpellbookScreen : SpellIconScreen
 
     }
 }
+
+
 

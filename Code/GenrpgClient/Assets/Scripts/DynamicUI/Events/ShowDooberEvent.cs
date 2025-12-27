@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Assets.Scripts.Doobers.Events
 {
@@ -20,3 +20,5 @@ namespace Assets.Scripts.Doobers.Events
 
     }
 }
+
+

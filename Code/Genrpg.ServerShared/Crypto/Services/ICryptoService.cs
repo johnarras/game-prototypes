@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Crypto.Entities;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -18,3 +18,5 @@ namespace Genrpg.ServerShared.Crypto.Services
         string SlowHash(string txt);
     }
 }
+
+

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BundleList
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Assets.Bundles.BundleList
   Bundles:
+  - BundleName: atlasanimalicons
+    IsLocal: 0
   - BundleName: atlascorecurrencytypeicons
     IsLocal: 0
   - BundleName: atlascrawlercombat
@@ -30,6 +32,8 @@ MonoBehaviour:
   - BundleName: atlasskillicons
     IsLocal: 0
   - BundleName: atlasstatuseffecticons
+    IsLocal: 0
+  - BundleName: atlastradegoodicons
     IsLocal: 0
   - BundleName: atlasui
     IsLocal: 0
@@ -323,6 +327,14 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: magicfireshield
     IsLocal: 0
+  - BundleName: magiciceblast
+    IsLocal: 0
+  - BundleName: magiciceprojectile
+    IsLocal: 0
+  - BundleName: magiclightblast
+    IsLocal: 0
+  - BundleName: magiclightprojectile
+    IsLocal: 0
   - BundleName: magicmagicaura
     IsLocal: 0
   - BundleName: magicmagicblast
@@ -342,6 +354,10 @@ MonoBehaviour:
   - BundleName: magicmagicprojectile
     IsLocal: 0
   - BundleName: magicmagicshield
+    IsLocal: 0
+  - BundleName: magicmeleeblast
+    IsLocal: 0
+  - BundleName: magicmeleeprojectile
     IsLocal: 0
   - BundleName: magicnatureaura
     IsLocal: 0
@@ -368,6 +384,8 @@ MonoBehaviour:
   - BundleName: magicramgedblast
     IsLocal: 0
   - BundleName: magicramgedexplosion
+    IsLocal: 0
+  - BundleName: magicrangedblast
     IsLocal: 0
   - BundleName: magicrangedenchant
     IsLocal: 0
@@ -961,6 +979,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: texturelistsairelemental
     IsLocal: 0
+  - BundleName: texturelistsapplydot
+    IsLocal: 0
   - BundleName: texturelistsarcane
     IsLocal: 0
   - BundleName: texturelistsassassin
@@ -1100,6 +1120,8 @@ MonoBehaviour:
   - BundleName: texturelistslava
     IsLocal: 0
   - BundleName: texturelistslich
+    IsLocal: 0
+  - BundleName: texturelistslifesteal
     IsLocal: 0
   - BundleName: texturelistslion
     IsLocal: 0
@@ -1361,8 +1383,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uiblockers
     IsLocal: 0
-  - BundleName: uicaravan
-    IsLocal: 0
   - BundleName: uicharacters
     IsLocal: 0
   - BundleName: uicharms
@@ -1437,6 +1457,10 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uitrader
     IsLocal: 0
+  - BundleName: uitradercaravan
+    IsLocal: 0
+  - BundleName: uitradercity
+    IsLocal: 0
   - BundleName: uitraderhud
     IsLocal: 0
   - BundleName: uitraderinfo
@@ -1446,4 +1470,64 @@ MonoBehaviour:
   - BundleName: uiunits
     IsLocal: 0
   - BundleName: uizones
+    IsLocal: 0
+  - BundleName: animalsasianelephant
+    IsLocal: 0
+  - BundleName: animalsbactriancamel
+    IsLocal: 0
+  - BundleName: animalsdonkey
+    IsLocal: 0
+  - BundleName: animalsdrafthorse
+    IsLocal: 0
+  - BundleName: animalsdromedarycamel
+    IsLocal: 0
+  - BundleName: animalsheavywarhorse
+    IsLocal: 0
+  - BundleName: animalsmule
+    IsLocal: 0
+  - BundleName: animalsox
+    IsLocal: 0
+  - BundleName: animalspony
+    IsLocal: 0
+  - BundleName: animalsreindeer
+    IsLocal: 0
+  - BundleName: animalsridinghorse
+    IsLocal: 0
+  - BundleName: animalstamedonager
+    IsLocal: 0
+  - BundleName: animalswaterbuffalo
+    IsLocal: 0
+  - BundleName: animalsyak
+    IsLocal: 0
+  - BundleName: animalszebu
+    IsLocal: 0
+  - BundleName: animalskinsasianelephant
+    IsLocal: 0
+  - BundleName: animalskinsbactriancamel
+    IsLocal: 0
+  - BundleName: animalskinsdonkey
+    IsLocal: 0
+  - BundleName: animalskinsdrafthorse
+    IsLocal: 0
+  - BundleName: animalskinsdromedarycamel
+    IsLocal: 0
+  - BundleName: animalskinsheavywarhorse
+    IsLocal: 0
+  - BundleName: animalskinsmule
+    IsLocal: 0
+  - BundleName: animalskinsox
+    IsLocal: 0
+  - BundleName: animalskinspony
+    IsLocal: 0
+  - BundleName: animalskinsreindeer
+    IsLocal: 0
+  - BundleName: animalskinsridinghorse
+    IsLocal: 0
+  - BundleName: animalskinstamedonager
+    IsLocal: 0
+  - BundleName: animalskinswaterbuffalo
+    IsLocal: 0
+  - BundleName: animalskinsyak
+    IsLocal: 0
+  - BundleName: animalskinszebu
     IsLocal: 0

@@ -6,9 +6,10 @@ using System.Text;
 
 namespace Genrpg.Shared.Website.Messages.Error
 {
-    [MessagePackObject]
     public class ErrorResponse : IWebResponse
     {
-        [Key(0)] public string Error { get; set; }
+        public string Error { get; set; }
     }
 }
+
+

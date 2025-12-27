@@ -9,7 +9,6 @@ namespace Genrpg.Shared.Utils
     /// <summary>
     /// List of geometric utils.
     /// </summary>
-    [MessagePackObject]
     public class GeomUtils
     {
         public const float Epsilon = 0.0001f;
@@ -133,3 +132,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

@@ -5,65 +5,64 @@ using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Trader.Cities.Settings
 {
-    [MessagePackObject]
     public class CitySettings : ParentSettings<City>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    [MessagePackObject]
     public class CityTradeGood
     {
-        [Key(0)] public long TradeGoodId { get; set; }
-        [Key(1)] public double ProductionScale { get; set; }
-        [Key(2)] public double PriceScale { get; set; }
+        public long TradeGoodId { get; set; }
+        public double ProductionScale { get; set; }
+        public double PriceScale { get; set; }
     }
 
-    [MessagePackObject]
     public class CityAnimal
     {
-        [Key(0)] public long AnimalId { get; set; }
-        [Key(1)] public double PriceScale { get; set; }
+        public long AnimalTypeId { get; set; }
+        public double PriceScale { get; set; }
     }
 
-    [MessagePackObject]
     public class CityRoad
     {
-        [Key(0)] public long OtherCityId { get; set; }
-        [Key(1)] public double Distance { get; set; }
-        [Key(2)] public long RoadId { get; set; }
+        public long OtherCityId { get; set; }
+        public double Distance { get; set; }
+        public long RoadId { get; set; }
     }
 
 
-    [MessagePackObject]
     public class City : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public string AncientName { get; set; }
-        [Key(9)] public long Population { get; set; }
-        [Key(10)] public int MapPixelX { get; set; }
-        [Key(11)] public int MapPixelY { get; set; }
-        [Key(12)] public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
-        [Key(13)] public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
-        [Key(14)] public List<CityRoad> Roads { get; set; } = new List<CityRoad>();
-        [Key(15)] public SmallIdLongCollection CityDistances { get; set; } = new SmallIdLongCollection();
-        [Key(16)] public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public string AncientName { get; set; }
+        public long Population { get; set; }
+        public int MapPixelX { get; set; }
+        public int MapPixelY { get; set; }
+        public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
+        public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
+        public List<CityRoad> Roads { get; set; } = new List<CityRoad>();
+        public SmallIdLongCollection CityDistances { get; set; } = new SmallIdLongCollection();
+        public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
     }
 
-    public class CitySettingsDto : ParentSettingsDto<CitySettings, City> { }
+    public class CitySettingsDto : ParentSettingsDto<CitySettings, City>
+    {
+        public override List<City> Children { get; set; }
+        public override CitySettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class CitySettingsLoader : ParentSettingsLoader<CitySettings, City> { }
 
@@ -74,3 +73,5 @@ namespace Genrpg.Shared.Trader.Cities.Settings
         public override long HelperKey => EntityTypes.City;
     }
 }
+
+

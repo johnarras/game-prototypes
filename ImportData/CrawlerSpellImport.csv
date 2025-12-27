@@ -86,6 +86,10 @@ spell,90,Cursed Arrows,Chance to debuff enemies with ranged attacks.,3,,,20,2,ra
 effect,partybuff,Cursed Arrows,1,,1,ranged,,1,,,,,,,,,,,
 spell,91,Parry,Gives a chance to use your weapon to deflect an attack.,4,,,20,2,melee,,,,,cast,world,0,0,1,0.1
 effect,partybuff,parry,1,,1,melee,,1,,,,,,,,,,,
+spell,92,Apply Dot,Chance to apply a DoT to enemies when damaging them.,3,,,20,2,spelldam,,,,,cast,world,0,0,1,0.1
+effect,partybuff,ApplyDot,1,,1,ranged,,1,,,,,,,,,,,
+spell,93,Lifesteal,Chance to get some health back when damaging enemies.,4,,,20,2,healing,,,,,cast,world,0,0,1,0.1
+effect,partybuff,lifesteal,1,,1,melee,,1,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Summons,,,,,,,,,,,,,,,,,,,
 spell,130,Call Bear,Summon a bear.,1,,,9,0,summon,0,100,0,0,cast,self,0,0,1,0.1

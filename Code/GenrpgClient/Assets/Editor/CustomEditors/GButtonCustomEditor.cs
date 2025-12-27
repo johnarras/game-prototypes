@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEditor.UI;
 
 namespace Assets.Editor.CustomEditors
@@ -15,3 +15,5 @@ namespace Assets.Editor.CustomEditors
 
     }
 }
+
+

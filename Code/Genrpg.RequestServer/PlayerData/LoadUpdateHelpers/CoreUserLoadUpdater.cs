@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Trader.NewPlayer;
@@ -30,7 +30,9 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 
             await _newPlayerService.UpdatePlayerOnLogin(context, true);
 
-            await _periodicUpdateService.CheckHourlyCurrencyUpdate(context);
+            await _periodicUpdateService.CheckHourlyCurrencyUpdate(context, true);
         }
     }
 }
+
+

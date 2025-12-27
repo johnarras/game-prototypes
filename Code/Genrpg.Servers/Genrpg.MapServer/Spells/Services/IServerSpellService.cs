@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,3 +42,5 @@ namespace Genrpg.MapServer.Spells.Services
         void ApplyOneEffect(IRandom rand, ActiveSpellEffect eff);
     }
 }
+
+

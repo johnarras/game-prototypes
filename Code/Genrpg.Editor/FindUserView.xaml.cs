@@ -1,21 +1,20 @@
-using System;
-using System.Threading.Tasks;
-
-using System.Reflection;
-using Genrpg.Shared.Accounts.PlayerData;
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Utils;
-using Genrpg.Editor.UI;
-using Genrpg.Shared.DataStores.Entities;
-using System.Collections.Generic;
 using Genrpg.Editor.Constants;
+using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.UI;
 using Genrpg.Editor.UI.Interfaces;
+using Genrpg.Editor.Utils;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.Shared.Accounts.PlayerData;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Genrpg.Editor
 {
     public partial class FindUserView : UserControlBase, IUICanvas
     {
-        private IRepositoryService _repoService = null;
+        private IFullRepositoryService _repoService = null;
         private EditorGameState _gs = null;
         private DataWindow _win = null;
         private TextBoxBase _queryInput = null;
@@ -40,7 +39,7 @@ namespace Genrpg.Editor
                 _win.AddChildView(this);
                 _win.ViewStack.Add(this);
             }
-            ShowComponents();        
+            ShowComponents();
         }
 
         public void ShowComponents()
@@ -90,7 +89,7 @@ namespace Genrpg.Editor
         }
         private void OnClickClear(object sender, object e)
         {
-            
+
             Grid.ItemsSource = null;
         }
 
@@ -172,7 +171,7 @@ namespace Genrpg.Editor
 
             List<Account> list = await _repoService.Search<Account>(x => x.Id == val);
 
-           
+
             DispatcherQueue.TryEnqueue(() =>
             {
                 Grid.ItemsSource = list;
@@ -192,3 +191,6 @@ namespace Genrpg.Editor
 
     }
 }
+
+
+

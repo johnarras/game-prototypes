@@ -97,6 +97,12 @@
       32163
     ]
   },
-  "ProducerCities": [],
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  "ProducerCities": [
+    {
+      "CityId": 4
+    },
+    {
+      "CityId": 58
+    }
+  ]
 }

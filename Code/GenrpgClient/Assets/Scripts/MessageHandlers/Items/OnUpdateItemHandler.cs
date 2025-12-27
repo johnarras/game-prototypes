@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Messages;
 using System.Threading;
 using Genrpg.Shared.Inventory.Services;
@@ -7,7 +7,7 @@ namespace Assets.Scripts.MessageHandlers.Items
 {
     public class OnUpdateItemHandler : BaseClientMapMessageHandler<OnUpdateItem>
     {
-        protected ISharedItemService _sharedItemService;
+        protected ISharedItemService _sharedItemService = null;
         protected override void InnerProcess(OnUpdateItem msg, CancellationToken token)
         {
 
@@ -27,3 +27,5 @@ namespace Assets.Scripts.MessageHandlers.Items
         }
     }
 }
+
+

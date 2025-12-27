@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Spells.Interfaces;
@@ -18,3 +18,5 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
         List<double> GetValidValues(MapObject obj);
     }
 }
+
+

@@ -1,12 +1,11 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Constants;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings.Interfaces;
 using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +15,9 @@ namespace Genrpg.Shared.GameSettings.Loaders
     {
         public virtual Type GetChildType() { return typeof(TServer); }
         public virtual bool SendToClient() { return true; }
-        [IgnoreMember] public virtual Type HelperKey => typeof(TServer); 
+        [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
+
+        public virtual List<CreateIndexData> GetIndexes() { return new List<CreateIndexData>(); }
         public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
 
         public virtual async Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing)
@@ -35,11 +36,13 @@ namespace Genrpg.Shared.GameSettings.Loaders
                 }
                 else
                 {
-                    throw new Exception("Missing NoChildSettings: " + typeof(TServer).FullName);    
+                    throw new Exception("Missing NoChildSettings: " + typeof(TServer).FullName);
                 }
             }
-         
+
             return list;
         }
     }
 }
+
+

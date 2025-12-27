@@ -1,13 +1,13 @@
-﻿using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Trader.Stats.Constants;
+using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.Utils;
 
-namespace Genrpg.Shared.Currencies.Helpers
+namespace Genrpg.Shared.Trader.Stats.Helpers
 {
     public class BonusTraderRewardHelper : IRewardHelper
     {
@@ -30,3 +30,5 @@ namespace Genrpg.Shared.Currencies.Helpers
         }
     }
 }
+
+

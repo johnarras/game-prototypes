@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Bundles;
+using Assets.Scripts.Assets.Bundles;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,3 +41,5 @@ public class BundleListEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+

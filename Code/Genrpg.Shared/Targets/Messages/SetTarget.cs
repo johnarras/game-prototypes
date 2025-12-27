@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Targets.Messages
         [Key(0)] public string TargetId { get; set; }
     }
 }
+
+

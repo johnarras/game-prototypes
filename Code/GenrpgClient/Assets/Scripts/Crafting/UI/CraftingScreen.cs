@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crafting.PlayerData.Recipes;
 using Genrpg.Shared.Crafting.Settings.Recipes;
 using Genrpg.Shared.Inventory.Constants;
@@ -124,4 +124,6 @@ public class CraftingScreen : ItemIconScreen
         _currentRecipe = row;
     }
 }
+
+
 

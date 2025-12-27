@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.MapObjects.Entities;
@@ -20,3 +20,5 @@ namespace Genrpg.Shared.Inventory.Services
         bool CanEquipItem(MapObject obj, Item item);
     }
 }
+
+

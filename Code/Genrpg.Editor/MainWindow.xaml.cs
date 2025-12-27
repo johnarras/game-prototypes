@@ -10,7 +10,7 @@ using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,12 +27,14 @@ namespace Genrpg.Editor
     /// </summary>
     public partial class MainWindow : WindowBase, IUICanvas
     {
+        public const bool UpdateSaveTime = false;
+
         const int _topPadding = 50;
 
         private EditorGameState _gs = null;
         private string _prefix;
 
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
         private ICloudCommsService _cloudCommsService = null;
         private ITextSerializer _serializer = null;
 
@@ -54,7 +56,7 @@ namespace Genrpg.Editor
             buttonCount++;
 
             string[] envWords = { "dev" };
-            string[] actionWords = "Data Importer CopyToGit CopyToClient CopyToServers MessageSetup Users  CopyToTest Maps CopyToDB TestAccountSetup".Split(' ');
+            string[] actionWords = "Data Importer CopyToGit CopyToClient CopyToServers SerializeSetup Users  CopyToTest Maps CopyToDB TestAccountSetup".Split(' ');
             int column = 0;
             for (int e = 0; e < envWords.Length; e++)
             {
@@ -308,9 +310,9 @@ namespace Genrpg.Editor
                 return;
             }
 
-            if (action == "MessageSetup")
+            if (action == "SerializeSetup")
             {
-                EditorGameDataUtils.InitMessages();
+                EditorGameDataUtils.InitSerialization();
                 return;
             }
 
@@ -394,6 +396,7 @@ namespace Genrpg.Editor
 
             try
             {
+                DateTime saveTime = DateTime.UtcNow;
                 FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
 
                 Dictionary<Type, IGameSettingsMapper> mapperDict = _gameDataService.GetAllMappers();
@@ -403,6 +406,10 @@ namespace Genrpg.Editor
                 {
                     if (gameSettings is ITopLevelSettings topLevelSettings)
                     {
+                        if (MainWindow.UpdateSaveTime)
+                        {
+                            gameSettings.SaveTime = saveTime;
+                        }
                         if (mapperDict.TryGetValue(topLevelSettings.GetType(), out IGameSettingsMapper mapper))
                         {
                             if (mapper.SendToClient())
@@ -424,4 +431,7 @@ namespace Genrpg.Editor
         }
     }
 }
+
+
+
 

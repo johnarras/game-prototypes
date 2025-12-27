@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,3 +16,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
         public override ECrawlerStates GetNextState() { return ECrawlerStates.TrainingLevelMember; }
     }
 }
+
+

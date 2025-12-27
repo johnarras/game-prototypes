@@ -1,15 +1,12 @@
-using MessagePack;
-using Genrpg.Shared.Characters.PlayerData;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Core;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
+using MessagePack;
+using System;
 
 namespace Genrpg.Shared.Purchasing.PlayerData
 {
     [MessagePackObject]
-    public class CompletedPurchaseData : NoChildPlayerData
+    public class CompletedPurchaseData : NoChildIndexedUserData, IUserData
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public string UserId { get; set; }
@@ -18,3 +15,5 @@ namespace Genrpg.Shared.Purchasing.PlayerData
         [Key(4)] public string ReceiptData { get; set; }
     }
 }
+
+

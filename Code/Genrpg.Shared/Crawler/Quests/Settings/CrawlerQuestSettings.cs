@@ -1,48 +1,54 @@
+using MessagePack;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Quests.Settings
 {
-    [MessagePackObject]
     public class CrawlerQuestSettings : ParentConstantListSettings<CrawlerQuestType, CrawlerQuestTypes>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public double MaxDistanceFromQuestGiverToTargetMap { get; set; }
-        [Key(2)] public int MinQuestsPerNpc { get; set; }
-        [Key(3)] public int MaxQuestsPerNpc { get; set; }
-        [Key(4)] public double ExtraQuestChance { get; set; }
-        [Key(5)] public double ItemDropChance { get; set; }
-        [Key(6)] public double BaseLootMult { get; set; }
-        [Key(7)] public double ForceUnitInCombatChance { get; set; }
-        [Key(8)] public double ExpLootMult { get; set; }
-        [Key(9)] public double GoldLootMult { get; set; }
-        [Key(10)] public double ItemLootMult { get; set; }
+        public override string Id { get; set; }
+        public double MaxDistanceFromQuestGiverToTargetMap { get; set; }
+        public int MinQuestsPerNpc { get; set; }
+        public int MaxQuestsPerNpc { get; set; }
+        public double ExtraQuestChance { get; set; }
+        public double ItemDropChance { get; set; }
+        public double BaseLootMult { get; set; }
+        public double ForceUnitInCombatChance { get; set; }
+        public double ExpLootMult { get; set; }
+        public double GoldLootMult { get; set; }
+        public double ItemLootMult { get; set; }
     }
 
-    [MessagePackObject]
     public class CrawlerQuestType : ChildSettings, IIndexedGameItem, IWeightedItem
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public double Weight { get; set; }
-        [Key(9)] public double MonsterGroupSizeScale { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public double Weight { get; set; }
+        public double MonsterGroupSizeScale { get; set; }
 
     }
 
-    public class CrawlerQuestSettingsDto : ParentSettingsDto<CrawlerQuestSettings, CrawlerQuestType> { }
+    public class CrawlerQuestSettingsDto : ParentSettingsDto<CrawlerQuestSettings, CrawlerQuestType>
+    {
+        public override List<CrawlerQuestType> Children { get; set; }
+        public override CrawlerQuestSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class CrawlerQuestSettingsLoader : ParentSettingsLoader<CrawlerQuestSettings, CrawlerQuestType> { }
 
     public class CrawlerQuestSettingsMapper : ParentSettingsMapper<CrawlerQuestSettings, CrawlerQuestType, CrawlerQuestSettingsDto> { }
 
 }
+
+

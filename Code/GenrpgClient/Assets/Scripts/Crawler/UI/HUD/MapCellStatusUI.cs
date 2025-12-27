@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -10,8 +10,8 @@ namespace Assets.Scripts.Crawler.UI.HUD
     public class MapCellStatusUI : BaseBehaviour
     {
 
-        private ICrawlerService _crawlerService;
-        private ICrawlerMapService _crawlerMapService;
+        private ICrawlerService _crawlerService = null;
+        private ICrawlerMapService _crawlerMapService = null;
 
 
         public GImage NoMagicImage;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Crawler.UI.HUD
         {
             base.Init();
             _dispatcher.AddListener<UpdateCrawlerUI>(OnUpdateWorldUI, GetToken());
-            _updateService.AddUpdate(gameObject, OnLateUpdate, UpdateTypes.Late, GetToken());
+            AddUpdate(OnLateUpdate, UpdateTypes.Late);
         }
 
 
@@ -49,3 +49,5 @@ namespace Assets.Scripts.Crawler.UI.HUD
         }
     }
 }
+
+

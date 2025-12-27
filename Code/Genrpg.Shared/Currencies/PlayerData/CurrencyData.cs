@@ -1,7 +1,8 @@
 using MessagePack;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Currencies.PlayerData
 {
@@ -30,7 +31,13 @@ namespace Genrpg.Shared.Currencies.PlayerData
 
     }
 
-    public class CurrencyDto : OwnerDtoList<CurrencyData, CurrencyStatus> { }
+    [MessagePackObject]
+    public class CurrencyDto : OwnerDtoList<CurrencyData, CurrencyStatus>
+    {
+        [Key(0)] public override List<CurrencyStatus> Children { get; set; }
+        [Key(1)] public override CurrencyData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
     public class CurrencyDataLoader : OwnerIdDataLoader<CurrencyData, CurrencyStatus> { }
 
@@ -38,3 +45,5 @@ namespace Genrpg.Shared.Currencies.PlayerData
 
     public class CurrencyDataMapper : OwnerDataMapper<CurrencyData, CurrencyStatus, CurrencyDto> { }
 }
+
+

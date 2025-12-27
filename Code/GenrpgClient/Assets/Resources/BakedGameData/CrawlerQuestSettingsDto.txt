@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawlerquesttype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "KillMonsters",
       "Desc": "",
@@ -13,8 +10,6 @@
       "MonsterGroupSizeScale": 2.0
     },
     {
-      "Id": "crawlerquesttype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "LootItems",
       "Desc": "",
@@ -24,8 +19,6 @@
       "MonsterGroupSizeScale": 1.0
     },
     {
-      "Id": "crawlerquesttype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "ExploreMap",
       "Desc": "",
@@ -34,8 +27,6 @@
       "Weight": 0.25
     },
     {
-      "Id": "crawlerquesttype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "TravelToNpc",
       "Desc": "",
@@ -56,8 +47,8 @@
     "ExpLootMult": 4.0,
     "GoldLootMult": 2.5,
     "ItemLootMult": 0.5,
-    "Name": "CrawlerQuestSettings",
-    "SaveTime": "2025-09-16T12:17:52.303Z"
+    "Name": "CrawlerQuestSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-16T12:17:52.303Z"
 }

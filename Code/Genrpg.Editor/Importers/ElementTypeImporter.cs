@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Spells.Procs.Entities;
@@ -21,3 +21,5 @@ namespace Genrpg.Editor.Importers
         }
     }
 }
+
+

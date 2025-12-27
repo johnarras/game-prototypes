@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Crawler.Maps.ClientEvents;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
         public override void Init()
         {
 
-            _updateService.AddUpdate(gameObject, OnUpdate, UpdateTypes.Regular, GetToken());
+            AddUpdate(OnUpdate, UpdateTypes.Regular);
 
             _dispatcher.AddListener<RedrawMapCell>(OnRedrawMapCell, GetToken());
 
@@ -75,3 +75,5 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
     }
 }
+
+

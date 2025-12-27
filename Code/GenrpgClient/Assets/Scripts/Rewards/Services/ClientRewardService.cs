@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.ClientEvents.Entities;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
@@ -20,3 +20,5 @@ namespace Assets.Scripts.Rewards.Services
         }
     }
 }
+
+

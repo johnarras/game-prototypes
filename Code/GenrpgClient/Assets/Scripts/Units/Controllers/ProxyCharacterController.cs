@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Input.PlayerData;
+using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Utils;
 using System;
@@ -148,3 +148,5 @@ public class ProxyCharacterController : MonsterController
 
     }
 }
+
+

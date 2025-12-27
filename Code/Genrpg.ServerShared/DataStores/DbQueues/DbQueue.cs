@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.DataStores.DbQueues.Actions;
+using Genrpg.ServerShared.DataStores.DbQueues.Actions;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Tasks.Services;
 using System;
@@ -52,3 +52,5 @@ namespace Genrpg.ServerShared.DataStores.DbQueues
         }
     }
 }
+
+

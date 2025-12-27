@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.UI.Units;
 using Genrpg.Shared.Crawler.GameEvents;
@@ -9,8 +9,8 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Crawler.StatusUI
@@ -49,8 +49,8 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
         public override void Init()
         {
-            _updateService.AddUpdate(this, OnLateUpdate, UpdateTypes.Late, GetToken());
-            _uiService.SetButton(Button, GetType().Name, ClickPartyMember);
+            AddUpdate(OnLateUpdate, UpdateTypes.Late);
+            _uiService.SetButton(Button, name, ClickPartyMember);
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
             UpdateData();
         }
@@ -141,7 +141,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
                 List<Role> userRoles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(_partyMember.Roles);
 
-                _clientEntityService.SetActive(GuardianImage, userRoles.Any(x => x.Guardian));
+                _clientEntityService.SetActive(GuardianImage, userRoles.FastAny(x => x.Guardian));
 
             }
         }
@@ -152,3 +152,5 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
         }
     }
 }
+
+

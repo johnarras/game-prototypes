@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
@@ -43,8 +43,8 @@ public class MapGenService : IMapGenService
         await Task.CompletedTask;
     }
 
-    protected IZoneGenService _zoneGenService;
-    protected ILogService _logService;
+    protected IZoneGenService _zoneGenService = null;
+    protected ILogService _logService = null;
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
@@ -720,3 +720,5 @@ public class MapGenService : IMapGenService
         adjacentZones.Add(zoneIds[x, z]);
     }
 }
+
+

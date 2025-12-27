@@ -1,4 +1,4 @@
-﻿using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Input.Interfaces
 {
@@ -8,3 +8,5 @@ namespace Assets.Scripts.Input.Interfaces
         void OnKeyRelease(Key key);
     }
 }
+
+

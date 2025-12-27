@@ -1,11 +1,8 @@
-﻿
+
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Constants;
-using Genrpg.Shared.Utils;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +10,7 @@ using System.Threading.Tasks;
 public class ClientLogService : ILogService
 {
 
+    const string LogPrefix = "UnityLog";
     public async Task Initialize(CancellationToken token)
     {
         await Task.CompletedTask;
@@ -20,11 +18,9 @@ public class ClientLogService : ILogService
 
     private ClientConfig _config = null;
     private IDispatcher _dispatcher = null;
-    private ITextSerializer _serializer = null;
-    public ClientLogService(ClientConfig config, ITextSerializer serializer)
+    public ClientLogService(ClientConfig config)
     {
         _config = config;
-        _serializer = serializer;
     }
 
     public async Task PrioritySetup(CancellationToken token)
@@ -37,13 +33,13 @@ public class ClientLogService : ILogService
 
     public void Debug(string txt)
     {
-        UnityEngine.Debug.Log(txt);
+        UnityEngine.Debug.Log(LogPrefix + "Log: " + txt);
     }
 
     public void Error(string txt)
     {
         _dispatcher.Dispatch(new ShowFloatingText(txt, EFloatingTextArt.Error));
-        UnityEngine.Debug.LogError(txt);
+        UnityEngine.Debug.LogError(LogPrefix + "Error: " + txt);
     }
 
     public void Exception(Exception e, string txt)
@@ -53,23 +49,25 @@ public class ClientLogService : ILogService
             return;
         }
         _dispatcher.Dispatch(new ShowFloatingText(txt + " " + e.Message + " " + e.StackTrace, EFloatingTextArt.Error));
-        UnityEngine.Debug.LogError(txt + " " + e.GetType().Name + " -- " + e.Message + " " + e.StackTrace);
+        UnityEngine.Debug.LogError(LogPrefix + "Exc: " + txt + " -- " + e.Message + " " + e.StackTrace);
     }
 
 
     public void Info(string txt)
     {
-        UnityEngine.Debug.Log(txt);
+        UnityEngine.Debug.Log(LogPrefix + "Info: " + txt);
     }
 
     public void Message(string txt)
     {
         _dispatcher.Dispatch(new ShowFloatingText(txt, EFloatingTextArt.Message));
-        UnityEngine.Debug.Log(txt);
+        UnityEngine.Debug.Log(LogPrefix + "Message: " + txt);
     }
 
     public void Warning(string txt)
     {
-        UnityEngine.Debug.LogWarning(txt);
+        UnityEngine.Debug.LogWarning(LogPrefix + "Warning: " + txt);
     }
 }
+
+

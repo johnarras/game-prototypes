@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Crawler.ActionUI;
@@ -99,3 +99,5 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
         }
     }
 }
+
+

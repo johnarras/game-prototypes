@@ -1,12 +1,9 @@
-﻿using System;
+using Genrpg.Shared.Client.Core;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using UnityEngine;
 
 
 public class Dispatcher : IDispatcher
@@ -20,10 +17,9 @@ public class Dispatcher : IDispatcher
 
     public void AddListener<T>(GameAction<T> action, CancellationToken token) where T : class
     {
-        token.Register(() => { 
-            
+        token.Register(() =>
+        {
             RemoveListener(action);
-
         });
 
         if (!_dict.ContainsKey(typeof(T)))
@@ -32,7 +28,7 @@ public class Dispatcher : IDispatcher
         }
 
         List<GameAction<T>> list = (List<GameAction<T>>)_dict[typeof(T)];
-        if (!list.Contains(action))
+        if (!list.Any(x => x.Target == action.Target))
         {
             list.Add(action);
         }
@@ -71,3 +67,5 @@ public class Dispatcher : IDispatcher
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.Networking.Messages;
 using System;
 using System.Collections.Generic;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Networking.Interfaces
         void Shutdown(Exception e, string message);
     }
 }
+
+

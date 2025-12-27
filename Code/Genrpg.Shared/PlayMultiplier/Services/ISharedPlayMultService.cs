@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.PlayMultiplier.Settings;
 using System.Collections.Generic;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.PlayMultiplier.Services
         List<PlayMult> GetValidMults(IFilteredObject obj, long level, long energy);
     }
 }
+
+

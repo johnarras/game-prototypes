@@ -10,15 +10,16 @@ namespace Genrpg.Shared.Quests.Entities
     }
 
 
-    [MessagePackObject]
     public class AlterQuestStateData
     {
-        [Key(0)] public long AlterTypeId { get; set; }
-        [Key(1)] public long QuestTypeId { get; set; }
-        [Key(2)] public string MapId { get; set; }
+        public long AlterTypeId { get; set; }
+        public long QuestTypeId { get; set; }
+        public string MapId { get; set; }
 
-        [Key(3)] public int MapVersion { get; set; }
-        [Key(4)] public string QuestGiverId { get; set; }
+        public int MapVersion { get; set; }
+        public string QuestGiverId { get; set; }
 
     }
 }
+
+

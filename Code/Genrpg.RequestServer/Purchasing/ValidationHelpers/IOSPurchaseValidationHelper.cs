@@ -1,12 +1,12 @@
-﻿using Genrpg.RequestServer.Purchasing.Entities;
+using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.Shared.Purchasing.Constants;
-using Genrpg.Shared.Utils;
 
 namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
 {
     using Genrpg.ServerShared.Config;
-    using Genrpg.ServerShared.Config.Constants;
     using Genrpg.ServerShared.Secrets.Services;
+    using Genrpg.Shared.Config.Constants;
+    using Genrpg.Shared.Serialization.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -83,7 +83,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         private string _sandboxURL;
         public async Task Initialize(CancellationToken token)
         {
-            _iosSecret = await _secretsProvider.GetSecret(ServerConfigKeys.IOSSecret);
+            _iosSecret = await _secretsProvider.GetSecret(AppConfigKeys.IOSSecret);
             _packageName = _serverConfig.PackageName;
             _buyURL = _serverConfig.IOSBuyValidationURL;
             _sandboxURL = _serverConfig.IOSSandboxValidationURL;
@@ -101,7 +101,7 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
                     password = _iosSecret
                 };
 
-                var content = new StringContent(_serializer.SerializeToString(requestPayload));
+                StringContent content = new StringContent(_serializer.SerializeToString(requestPayload));
 
                 HttpResponseMessage httpResponse = await client.PostAsync(AppleValidationURL, content);
 
@@ -135,3 +135,5 @@ namespace Genrpg.RequestServer.Purchasing.ValidationHelpers
         }
     }
 }
+
+

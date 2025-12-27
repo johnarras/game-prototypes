@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Temples.Settings;
@@ -115,3 +115,5 @@ namespace Genrpg.Shared.Crawler.Temples.Services
         }
     }
 }
+
+

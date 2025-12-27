@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using System.Threading;
@@ -18,14 +18,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 
             PartyData party = _crawlerService.GetParty();
 
-            for (int m = 0; m < party.Members.Count; m++)
+            for (int m = 0; m < party.InGuild.Count; m++)
             {
-                PartyMember member = party.Members[m];
+                PartyMember member = party.InGuild[m];
 
-                if (member.PartySlot > 0)
-                {
-                    continue;
-                }
                 stateData.Actions.Add(new CrawlerStateAction(member.Name, Key.None, ECrawlerStates.DeleteConfirm, null,
                     member, member.PortraitName));
 
@@ -39,3 +35,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
         }
     }
 }
+
+

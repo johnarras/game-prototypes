@@ -1,9 +1,4 @@
-﻿using Assets.Scripts.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.UI.Interfaces;
 
 public class CloseButton : BaseBehaviour
 {
@@ -12,7 +7,7 @@ public class CloseButton : BaseBehaviour
     public override void Init()
     {
         base.Init();
-        BaseScreen screen = _clientEntityService.FindInParents<BaseScreen>(gameObject);
+        IScreen screen = _clientEntityService.FindInParents<IScreen>(gameObject);
 
         if (screen != null)
         {
@@ -20,3 +15,5 @@ public class CloseButton : BaseBehaviour
         }
     }
 }
+
+

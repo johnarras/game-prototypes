@@ -1,5 +1,4 @@
-﻿using MessagePack;
-using System;
+using MessagePack;
 
 namespace Genrpg.Shared.Utils.Data
 {
@@ -8,9 +7,9 @@ namespace Genrpg.Shared.Utils.Data
     /// Used for things like stats, currencies and tiles that should have most small integers
     /// used at most times.
     /// </summary>
-    [MessagePackObject]
     public class SmallIdShortCollection : BaseSmallIdQuantityCollection<short>
     {
+        public override short[] Data { get; set; } = new short[4];
         protected override short InternalAdd(short first, short second)
         {
             return (short)(first + second);
@@ -22,3 +21,4 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+

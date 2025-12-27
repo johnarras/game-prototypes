@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -22,11 +22,11 @@ using UnityEngine;
 
 public class TestAssetDownloads : IInjectable
 {
-    private ILogService _logService;
-    private IAssetService _assetService;
-    private IScreenService _screenService;
+    private ILogService _logService = null;
+    private IAssetService _assetService = null;
+    private IScreenService _screenService = null;
     private IGameData _gameData;
-    protected IClientEntityService _clientEntityService;
+    protected IClientEntityService _clientEntityService = null;
     public async Awaitable RunTests(IClientGameState gs, CancellationToken token)
     {
         gs.loc.Resolve(this);
@@ -159,3 +159,5 @@ public class TestAssetDownloads : IInjectable
 
     }
 }
+
+

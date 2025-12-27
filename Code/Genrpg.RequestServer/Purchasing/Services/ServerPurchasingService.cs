@@ -1,9 +1,9 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Entities;
 using Genrpg.RequestServer.Purchasing.ValidationHelpers;
 using Genrpg.ServerShared.Crypto.Services;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -32,9 +32,9 @@ namespace Genrpg.RequestServer.Purchasing.Services
     }
     public class ServerPurchasingService : IServerPurchasingService
     {
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         private IGameData _gameData = null;
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
         private ICryptoService _cryptoService = null;
         private ITimeService _timeService = null;
         private IPurchasingService _purchasingService = null;
@@ -45,9 +45,9 @@ namespace Genrpg.RequestServer.Purchasing.Services
         public async Task Initialize(CancellationToken token)
         {
 
-            CreateIndexData data = new CreateIndexData();
+            CreateIndexData data = new CreateIndexData(typeof(CompletedPurchaseData));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(CompletedPurchaseData.ReceiptHash) });
-            await _repoService.CreateIndex<CompletedPurchaseData>(data);
+            await _repoService.CreateIndexes(data);
         }
 
         #region GetStores
@@ -241,7 +241,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
         private void CreatePurchaseIntentSuccessResponse(WebContext context, CurrentPurchaseData purchaseData)
         {
-            context.Responses.AddResponse(new InitiatePurchaseResponse()
+            context.AddResponse(new InitiatePurchaseResponse()
             {
                 State = EInitiatePurchaseStates.Success,
                 OfferId = purchaseData.OfferId,
@@ -254,7 +254,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
         private void CreatePurchaseIntentErrorResponse(WebContext context, InitiatePurchaseRequest request, EInitiatePurchaseStates response)
         {
-            context.Responses.AddResponse(new InitiatePurchaseResponse()
+            context.AddResponse(new InitiatePurchaseResponse()
             {
                 State = response,
                 UniqueId = request.UniqueId,
@@ -295,14 +295,14 @@ namespace Genrpg.RequestServer.Purchasing.Services
             purchaseData.State = ECurrentPurchaseStates.FailedValidation;
             purchaseData.FailedValidationTimes++;
 
-            context.Responses.AddResponse(new ValidatePurchaseResponse() { ErrorMessage = errorMessage, State = state });
+            context.AddResponse(new ValidatePurchaseResponse() { ErrorMessage = errorMessage, State = state });
         }
 
         private void CreateValidationSuccessResponse(WebContext context, CurrentPurchaseData purchaseData)
         {
             purchaseData.State = ECurrentPurchaseStates.Validated;
             purchaseData.FailedValidationTimes = 0;
-            context.Responses.AddResponse(new ValidatePurchaseResponse() { State = EPurchaseValidationStates.Success });
+            context.AddResponse(new ValidatePurchaseResponse() { State = EPurchaseValidationStates.Success });
         }
         private bool AllDataIsOk(string offerId, string bundleId, string uniqueId, string productId)
         {
@@ -491,3 +491,5 @@ namespace Genrpg.RequestServer.Purchasing.Services
         #endregion
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.TimeOfDay.Constants;
 using Genrpg.Shared.Crawler.TimeOfDay.Services;
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
     {
         public override int Order => 700;
 
-        private ITimeOfDayService _timeService;
+        private ITimeOfDayService _timeService = null;
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
             if (status.MovedPosition)
@@ -21,3 +21,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         }
     }
 }
+
+

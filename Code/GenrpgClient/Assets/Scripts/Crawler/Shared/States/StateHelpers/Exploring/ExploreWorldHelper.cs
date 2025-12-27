@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -157,7 +156,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 {
                     if (_screenService.GetLayerScreen(ScreenLayers.Screens) == null)
                     {
-                        _screenService.Open(ScreenNames.CrawlerMainMenu);
+                        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerMainMenu));
                     }
                 }, hideText: true));
 
@@ -167,3 +166,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         }
     }
 }
+
+

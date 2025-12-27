@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "partyupgrade1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "ClassCount",
       "Desc": "Allows more classes per character.",
@@ -12,8 +9,6 @@
       "BasePointCost": 100
     },
     {
-      "Id": "partyupgrade2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "ActionCount",
       "Desc": "Allows more actions per combat round.",
@@ -22,8 +17,6 @@
       "BasePointCost": 100
     },
     {
-      "Id": "partyupgrade3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "StatPercent",
       "Desc": "Increases stats by a percent.",
@@ -32,8 +25,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "RoleScaling",
       "Desc": "Scales role attributes such as melee or healing faster.",
@@ -42,8 +33,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "StatBonusIncrease",
       "Desc": "Increases the bonus players receive from their stats.",
@@ -52,8 +41,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "VendorQuality",
       "Desc": "Increases quality of vendor items",
@@ -62,8 +49,6 @@
       "BasePointCost": 10
     },
     {
-      "Id": "partyupgrade7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "LootQuality",
       "Desc": "Increases quality and quantity of loot.",
@@ -72,8 +57,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "SummonQuality",
       "Desc": "Increases the Damage and Health of Summons by this Percent",
@@ -84,8 +67,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "PartyBuffPower",
       "Desc": "Adds a percent to the final value of all party buffs cast.",
@@ -94,8 +75,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "ExpPercent",
       "Desc": "Adds exp",
@@ -104,8 +83,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "InventorySize",
       "Desc": "Adds more inventory size",
@@ -114,8 +91,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "GoldPercent",
       "Desc": "Adds percent gold bonus",
@@ -124,8 +99,6 @@
       "BasePointCost": 5
     },
     {
-      "Id": "partyupgrade13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "MemberTalentPoints",
       "Desc": "Increases the number of member talent points players receive.",
@@ -136,8 +109,6 @@
       "BasePointCost": 4
     },
     {
-      "Id": "partyupgrade14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "ItemUsesPerCombat",
       "Desc": "Increases the number of items can be used between combat starts.",
@@ -151,8 +122,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "PartyUpgradeSettings",
-    "SaveTime": "2025-10-24T22:59:08.69Z"
+    "Name": "PartyUpgradeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-24T22:59:08.69Z"
 }

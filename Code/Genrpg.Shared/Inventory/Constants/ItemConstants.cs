@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Inventory.Constants
 {
-    [MessagePackObject]
     public class ItemConstants
     {
 
@@ -9,3 +8,5 @@ namespace Genrpg.Shared.Inventory.Constants
     }
 
 }
+
+

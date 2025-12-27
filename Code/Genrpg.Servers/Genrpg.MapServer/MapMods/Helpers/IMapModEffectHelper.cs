@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Core;
+using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapMods.MapObjectAddons;
 using Genrpg.Shared.MapMods.MapObjects;
@@ -15,3 +15,5 @@ namespace Genrpg.MapServer.MapMods.Helpers
         void Process(IRandom rand, MapMod mapMod, MapModAddon addon, MapModEffect effect);
     }
 }
+
+

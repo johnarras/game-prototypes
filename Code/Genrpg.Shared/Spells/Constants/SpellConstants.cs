@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Spells.Constants
 {
-    [MessagePackObject]
     public class SpellConstants
     {
 
@@ -54,3 +53,5 @@ namespace Genrpg.Shared.Spells.Constants
 
     }
 }
+
+

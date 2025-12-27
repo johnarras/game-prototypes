@@ -1,17 +1,12 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "combataction1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Attack",
       "WeaponDamageScale": 1.0,
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Defend",
       "Desc": "",
@@ -21,16 +16,12 @@
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Shoot",
       "WeaponDamageScale": 1.0,
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Cast",
       "WeaponDamageScale": 0.5,
@@ -39,16 +30,12 @@
       "BaseBonusHits": 1.0
     },
     {
-      "Id": "combataction5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Hide",
       "WeaponDamageScale": 1.0,
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Recast",
       "Desc": "",
@@ -56,8 +43,6 @@
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Disabled",
       "Desc": "",
@@ -65,8 +50,6 @@
       "StatBonusDamageScale": 1.0
     },
     {
-      "Id": "combataction8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Use Item",
       "WeaponDamageScale": 1.0,
@@ -75,8 +58,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CombatActionSettings",
-    "SaveTime": "2025-10-31T12:44:59.835Z"
+    "Name": "CombatActionSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-10-31T12:44:59.835Z"
 }

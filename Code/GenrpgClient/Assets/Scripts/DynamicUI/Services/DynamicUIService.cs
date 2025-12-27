@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
-using Assets.Scripts.UI.Interfaces;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -36,7 +35,7 @@ namespace Assets.Scripts.DynamicUI.Services
 
         public const string DooberPrefabName = "Doober";
 
-        private DynamicUIScreen _dooberScreen = null;
+        private DynamicUIScreen _dynamicUIScreen = null;
         private IScreenService _screenService = null;
         private IDispatcher _dispatcher = null;
         private ILogService _logService = null;
@@ -114,9 +113,9 @@ namespace Assets.Scripts.DynamicUI.Services
 
         private Vector2 GetDooberTarget(long entityTypeId, long entityId)
         {
-            if (_dooberScreen == null)
+            if (_dynamicUIScreen == null)
             {
-                _dooberScreen = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
+                _dynamicUIScreen = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
             }
 
             string key = entityTypeId + "." + entityId;
@@ -137,6 +136,7 @@ namespace Assets.Scripts.DynamicUI.Services
             {
                 DynamicUIScreen dynamicUI = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
 
+                _dynamicUIScreen = dynamicUI;
                 _worldSpaceAnchor = dynamicUI.WorldSpaceAnchor;
                 _screenSpaceAnchor = dynamicUI.ScreenSpaceAnchor;
                 _token = CancellationTokenSource.CreateLinkedTokenSource(_token, dynamicUI.GetToken()).Token;
@@ -152,7 +152,7 @@ namespace Assets.Scripts.DynamicUI.Services
 
             if (startPosition == Vector3.zero)
             {
-                startPosition = _dooberScreen.ScreenSpaceAnchor.transform.position;
+                startPosition = _dynamicUIScreen.ScreenSpaceAnchor.transform.position;
             }
 
             Vector2 endPos = Vector2.zero;
@@ -300,3 +300,5 @@ namespace Assets.Scripts.DynamicUI.Services
         }
     }
 }
+
+

@@ -2,8 +2,7 @@
   "Id": "newplayerbonus13default",
   "ParentId": "default",
   "IdKey": 13,
-  "EntityTypeId": 200,
-  "EntityId": 2,
-  "Quantity": 120,
-  "SaveTime": "2025-12-06T22:15:16.206Z"
+  "EntityTypeId": 202,
+  "EntityId": 10,
+  "Quantity": 1
 }

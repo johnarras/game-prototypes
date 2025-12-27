@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using System;
@@ -12,3 +12,5 @@ namespace Genrpg.Shared.UnitEffects.Services
         public string ShowStatusEffects(Unit unit, bool showAbbreviations);
     }
 }
+
+

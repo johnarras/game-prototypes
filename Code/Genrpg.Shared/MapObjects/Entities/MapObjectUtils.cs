@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
-    [MessagePackObject]
     public class MapObjectUtils
     {
         public static float DistanceBetween(MapObject obj1, MapObject obj2)
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.MapObjects.Entities
         }
     }
 }
+
+

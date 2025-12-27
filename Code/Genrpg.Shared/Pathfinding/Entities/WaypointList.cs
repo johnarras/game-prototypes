@@ -7,11 +7,10 @@ using System.Text;
 
 namespace Genrpg.Shared.Pathfinding.Entities
 {
-    [MessagePackObject]
     public class WaypointList
     {
-        [Key(0)] public string RetvalType { get; set; }
-        [Key(1)] public List<Waypoint> Waypoints { get; set; } = new List<Waypoint>();
+        public string RetvalType { get; set; }
+        public List<Waypoint> Waypoints { get; set; } = new List<Waypoint>();
 
         public void RemoveWaypointAt(int index)
         {
@@ -51,3 +50,5 @@ namespace Genrpg.Shared.Pathfinding.Entities
 
     }
 }
+
+

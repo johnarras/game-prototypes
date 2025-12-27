@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Buildings;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -51,6 +51,8 @@ public class BuildingObjectLoader : BaseMapObjectLoader
         FinalPlaceObject(go, loadData, LayerNames.ObjectLayer);
     }
 }
+
+
 
 
 

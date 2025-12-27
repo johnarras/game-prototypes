@@ -1,9 +1,10 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Utils;
-using MessagePack;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Genrpg.Shared.Input.PlayerData
@@ -91,9 +92,17 @@ namespace Genrpg.Shared.Input.PlayerData
         }
     }
     public class KeyCommDataLoader : OwnerIdDataLoader<KeyCommData, KeyComm> { }
-    public class KeyCommDto : OwnerDtoList<KeyCommData, KeyComm> { }
+    [MessagePackObject]
+    public class KeyCommDto : OwnerDtoList<KeyCommData, KeyComm>
+    {
+        [Key(0)] public override List<KeyComm> Children { get; set; }
+        [Key(1)] public override KeyCommData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
 
 
     public class KeyCommDataMapper : OwnerDataMapper<KeyCommData, KeyComm, KeyCommDto> { }
 }
+
+

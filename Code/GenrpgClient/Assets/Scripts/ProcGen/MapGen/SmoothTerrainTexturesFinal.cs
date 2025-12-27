@@ -81,3 +81,4 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
         _md.alphas = alphas2;
     }
 }
+

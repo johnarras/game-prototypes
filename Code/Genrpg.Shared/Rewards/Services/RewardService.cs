@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Rewards.Services
     public class RewardService : IRewardService
     {
 
-        protected IRepositoryService _repoService;
+        protected IRepositoryService _repoService = null;
 
         private SetupDictionaryContainer<long, IRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IRewardHelper>();
         protected IRewardHelper GetRewardHelper(long entityTypeId)
@@ -97,3 +97,5 @@ namespace Genrpg.Shared.Rewards.Services
         }
     }
 }
+
+

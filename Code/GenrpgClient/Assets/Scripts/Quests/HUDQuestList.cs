@@ -1,4 +1,4 @@
-﻿
+
 public class HUDQuestList : QuestScreen
 {
     protected override string GetQuestRowPrefab()
@@ -8,3 +8,4 @@ public class HUDQuestList : QuestScreen
 
 
 }
+

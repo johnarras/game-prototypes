@@ -9,7 +9,6 @@ using Genrpg.Shared.Utils;
 
 namespace Genrpg.Shared.Spells.Utils
 {
-    [MessagePackObject]
     public class SpellUtils
     {
         public static bool IsValidTarget(Unit target, long casterFactionId, long targetTypeId)
@@ -39,3 +38,5 @@ namespace Genrpg.Shared.Spells.Utils
         }
     }
 }
+
+

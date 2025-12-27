@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Quests.Entities;
 using Genrpg.Shared.Quests.WorldData;
 
@@ -38,3 +38,4 @@ public class QuestTaskUI : BaseBehaviour
     }
 
 }
+

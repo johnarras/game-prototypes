@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Purchasing.Constants;
+using Genrpg.Shared.Purchasing.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,3 +15,5 @@ namespace Genrpg.RequestServer.Purchasing.Entities
 
     }
 }
+
+

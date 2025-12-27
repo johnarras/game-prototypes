@@ -1,16 +1,15 @@
-﻿
-using Genrpg.Shared.Settings.Settings;
 using MessagePack;
-using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Genrpg.Shared.GameSettings.Interfaces
 {
-    [Union(0, typeof(SettingsNameSettings))]
     public interface ITopLevelSettings : IGameSettings
     {
-        DateTime SaveTime { get; set; }
         ITopLevelSettings Unpack();
         void SetupForEditor(List<object> saveList);
     }
 }
+
+

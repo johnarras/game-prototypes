@@ -5,7 +5,8 @@
   "Name": "Danger Sense",
   "Desc": "Alerts you when bad things are ahead of you.",
   "AtlasPrefix": "",
+  "Icon": "DangerSense",
+  "Art": "DangerSense",
   "ProcChanceScale": 1.0,
-  "EffectScale": 1.0,
-  "SaveTime": "2025-08-29T11:03:51.37Z"
+  "EffectScale": 1.0
 }

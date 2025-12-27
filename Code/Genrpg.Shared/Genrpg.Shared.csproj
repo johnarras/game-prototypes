@@ -2,34 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Compile Remove="Currencies\Messages\**" />
-    <Compile Remove="MapMessages\Messages\**" />
-    <Compile Remove="Spells\Loaders\**" />
-    <Compile Remove="Trader\Caravans\Settings\**" />
-    <EmbeddedResource Remove="Currencies\Messages\**" />
-    <EmbeddedResource Remove="MapMessages\Messages\**" />
-    <EmbeddedResource Remove="Spells\Loaders\**" />
-    <EmbeddedResource Remove="Trader\Caravans\Settings\**" />
-    <None Remove="Currencies\Messages\**" />
-    <None Remove="MapMessages\Messages\**" />
-    <None Remove="Spells\Loaders\**" />
-    <None Remove="Trader\Caravans\Settings\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MessagePack" Version="3.0.308" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Chests\Constants\" />
-    <Folder Include="Chests\Services\" />
-    <Folder Include="Inventory\Settings\Slots\" />
-    <Folder Include="TimedEvents\NewFolder\" />
-    <Folder Include="UserAbilities\Constants\" />
+    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
+    <PackageReference Include="MessagePack" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.Text.Json" Version="10.0.1" />
   </ItemGroup>
 
 </Project>

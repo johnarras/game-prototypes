@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 
@@ -9,3 +9,5 @@ namespace Genrpg.ServerShared.Achievements
         void UpdateAchievement(MapObject mapObject, long achievementTypeId, long quantity);
     }
 }
+
+

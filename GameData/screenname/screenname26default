@@ -2,5 +2,7 @@
   "Id": "screenname26default",
   "ParentId": "default",
   "IdKey": 26,
-  "Name": "Trade"
+  "Name": "Trade",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Trade"
 }

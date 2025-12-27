@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.MapMods.Helpers;
+using Genrpg.MapServer.MapMods.Helpers;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.HelperClasses;
@@ -48,3 +48,5 @@ namespace Genrpg.MapServer.MapMods.Services
         }
     }
 }
+
+

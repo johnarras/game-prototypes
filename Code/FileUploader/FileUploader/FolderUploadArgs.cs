@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 public class FolderUploadArgs
 {
@@ -9,3 +9,4 @@ public class FolderUploadArgs
     public bool IsWorldData; 
     public List<string> OverwriteIfExistsFiles = new List<string>();
 }
+

@@ -4,6 +4,5 @@
   "IdKey": 7,
   "Name": "Puzzles",
   "Desc": "Have puzzles and riddles guarding entrances to some levels.",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-09-23T00:02:58.853Z"
+  "DefaultForNewGame": true
 }

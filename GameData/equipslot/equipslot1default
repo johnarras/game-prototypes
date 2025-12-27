@@ -9,6 +9,5 @@
   "Active": true,
   "IsCrawlerSlot": true,
   "BaseBonusStatTypeId": 31,
-  "BonusStatScale": 1.25,
-  "SaveTime": "2025-10-31T12:54:21.863Z"
+  "BonusStatScale": 1.25
 }

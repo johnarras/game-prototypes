@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Purchasing.Constants
+namespace Genrpg.Shared.Purchasing.Constants
 {
     public enum EPurchaseValidationStates
     {
@@ -13,3 +13,5 @@
         NoReceipt = 11,
     }
 }
+
+

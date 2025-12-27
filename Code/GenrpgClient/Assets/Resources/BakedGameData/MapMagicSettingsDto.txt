@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "mapmagictype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Darkness",
       "Weight": 0.1,
@@ -13,8 +10,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "mapmagictype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Spinner",
       "Weight": 0.2,
@@ -24,8 +19,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "mapmagictype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Drain",
       "Weight": 0.3,
@@ -35,8 +28,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "mapmagictype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "NoMagic",
       "Weight": 0.4,
@@ -46,8 +37,6 @@
       "ItemEnchantWeight": 1.0
     },
     {
-      "Id": "mapmagictype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Silence",
       "Desc": "",
@@ -63,8 +52,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "MapMagicSettings",
-    "SaveTime": "2025-09-03T12:05:26.88Z"
+    "Name": "MapMagicSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-03T12:05:26.88Z"
 }

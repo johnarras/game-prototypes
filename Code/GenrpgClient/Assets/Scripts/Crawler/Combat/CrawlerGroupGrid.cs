@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.UnitEffects.Constants;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -35,14 +36,14 @@ namespace Assets.Scripts.Crawler.Combat
             foreach (CombatGroup group in groups)
             {
 
-                if (group.Units.Any(x => x is PartyMember member))
+                if (group.Units.FastAny(x => x is PartyMember member))
                 {
                     continue;
                 }
 
                 CrawlerCombatIcon icon = Icons.FirstOrDefault(x => x.Group.Id == group.Id);
 
-                if (!group.Units.Any(x => !x.StatusEffects.HasBit(StatusEffects.Dead)))
+                if (!group.Units.FastAny(x => !x.StatusEffects.HasBit(StatusEffects.Dead)))
                 {
                     if (icon != null)
                     {
@@ -91,3 +92,5 @@ namespace Assets.Scripts.Crawler.Combat
         }
     }
 }
+
+

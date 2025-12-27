@@ -1,14 +1,12 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Stats.Constants;
-using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Settings.Skills
 {
@@ -20,7 +18,6 @@ namespace Genrpg.Shared.Spells.Settings.Skills
     /// <summary>
     /// This class is for the overall skills the user can learn in broad categories.
     /// </summary>
-    [MessagePackObject]
     public class SkillType : ChildSettings, IIndexedGameItem
     {
 
@@ -33,34 +30,34 @@ namespace Genrpg.Shared.Spells.Settings.Skills
 
         public const long DefaultCostPercent = 50;
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
 
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
         /// <summary>
         /// Enemy, Ally or None.
         /// </summary>
-        [Key(8)] public long TargetTypeId { get; set; }
+        public long TargetTypeId { get; set; }
 
-        [Key(9)] public long ManaCostPercent { get; set; }
-        [Key(10)] public long EnergyCostPercent { get; set; }
-        [Key(11)] public long ComboCostPercent { get; set; }
+        public long ManaCostPercent { get; set; }
+        public long EnergyCostPercent { get; set; }
+        public long ComboCostPercent { get; set; }
 
-        [Key(12)] public long ScalingStatTypeId { get; set; }
+        public long ScalingStatTypeId { get; set; }
 
         /// <summary>
         /// Overall scaling percent of the final stat+mult calculated above.
         /// In the case of non heal/dam spells this is ignored.
         /// </summary>
-        [Key(13)] public int StatScalePercent { get; set; }
+        public int StatScalePercent { get; set; }
 
-        [Key(14)] public long EffectEntityTypeId { get; set; }
+        public long EffectEntityTypeId { get; set; }
 
         public SkillType()
         {
@@ -90,15 +87,21 @@ namespace Genrpg.Shared.Spells.Settings.Skills
         }
     }
 
-    [MessagePackObject]
-    public class SkillTypeSettings : ParentConstantListSettings<SkillType,SkillTypes>
+    public class SkillTypeSettings : ParentConstantListSettings<SkillType, SkillTypes>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class SkillTypeSettingsDto : ParentSettingsDto<SkillTypeSettings, SkillType> { }
+    public class SkillTypeSettingsDto : ParentSettingsDto<SkillTypeSettings, SkillType>
+    {
+        public override List<SkillType> Children { get; set; }
+        public override SkillTypeSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class SkillTypeSettingsLoader : ParentSettingsLoader<SkillTypeSettings, SkillType> { }
 
     public class SkillTypeSettingsMapper : ParentSettingsMapper<SkillTypeSettings, SkillType, SkillTypeSettingsDto> { }
 
 }
+
+

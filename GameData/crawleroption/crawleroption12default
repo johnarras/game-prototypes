@@ -4,6 +4,5 @@
   "IdKey": 12,
   "Name": "Random Chests",
   "Desc": "Are there random chests in the world?",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:00:22.246Z"
+  "DefaultForNewGame": true
 }

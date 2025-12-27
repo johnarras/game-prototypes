@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.UI;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -10,6 +10,7 @@ using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Stats.Settings.Stats;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -186,9 +187,11 @@ namespace Genrpg.Editor.Importers.Crawler
             }
             try
             {
+                string normalizedWord = StrUtils.NormalizeWord(words[0].Replace(removeSuffix, ""));
+
                 List<IIdName> children = gameData.Get<T>(null).GetChildren().Cast<IIdName>().ToList();
 
-                IIdName child = children.FirstOrDefault(x => x.Name == words[0].Replace(removeSuffix, ""));
+                IIdName child = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == normalizedWord);
 
                 if (child != null)
                 {
@@ -217,9 +220,11 @@ namespace Genrpg.Editor.Importers.Crawler
 
             try
             {
+
+                string normalizedWord = StrUtils.NormalizeWord(words[0]);
                 List<IIdName> children = gameData.Get<T>(null).GetChildren().Cast<IIdName>().ToList();
 
-                IIdName child = children.FirstOrDefault(x => x.Name == words[0]);
+                IIdName child = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == normalizedWord);
 
                 if (child != null)
                 {
@@ -241,3 +246,5 @@ namespace Genrpg.Editor.Importers.Crawler
         }
     }
 }
+
+

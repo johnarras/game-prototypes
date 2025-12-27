@@ -1,10 +1,9 @@
-﻿
+
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -23,8 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
     public class CombatFightRunStateHelper : BaseCombatStateHelper
     {
 
-        private ICrawlerMoveService _moveService;
-        private IInfoService _infoService;
+        private ICrawlerMoveService _moveService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.CombatFightRun;
 
@@ -125,10 +123,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (minRange > CrawlerCombatConstants.MinRange)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Advance", Key.A, ECrawlerStates.CombatConfirm,
+                stateData.Actions.Add(new CrawlerStateAction("Charge", Key.C, ECrawlerStates.CombatConfirm,
                onClickAction: delegate ()
                {
-                   party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Advance;
+                   party.Combat.PartyGroup.CombatGroupAction = ECombatGroupActions.Charge;
                }));
             }
 
@@ -140,3 +138,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         }
     }
 }
+
+

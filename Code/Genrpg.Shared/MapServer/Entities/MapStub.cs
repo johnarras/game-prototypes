@@ -4,20 +4,19 @@ using System;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
-    [MessagePackObject]
     public class MapStub : IStringId, IName
     { 
-        [Key(0)] public string Id { get; set; }
-        [Key(1)] public string Name { get; set; }
-        [Key(2)] public string Desc { get; set; }
-        [Key(3)] public string Icon { get; set; }
-        [Key(4)] public string Art { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
 
-        [Key(5)] public int MinLevel { get; set; }
-        [Key(6)] public int MaxLevel { get; set; }
+        public int MinLevel { get; set; }
+        public int MaxLevel { get; set; }
 
-        [Key(7)] public int BlockCount { get; set; }
-        [Key(8)] public float ZoneSize { get; set; }
+        public int BlockCount { get; set; }
+        public float ZoneSize { get; set; }
 
         public MapStub()
         {
@@ -41,3 +40,5 @@ namespace Genrpg.Shared.MapServer.Entities
         }
     }
 }
+
+

@@ -20,15 +20,14 @@ namespace Genrpg.Shared.Crawler.Items.Entities
 
     }
 
-    [MessagePackObject]
     public class CrawlerSaveItem
     {
-        [Key(0)] public string Id { get; set; }
-        [Key(1)] public string Name { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
 
-        [Key(2)] public string Dat { get; set; }
+        public string Dat { get; set; }
 
-        [Key(3)] public List<ItemEffect> Effects { get; set; } = new List<ItemEffect>();
+        public List<ItemEffect> Effects { get; set; } = new List<ItemEffect>();
 
         private long[] _dat = null;
 
@@ -84,3 +83,5 @@ namespace Genrpg.Shared.Crawler.Items.Entities
 
 
 }
+
+

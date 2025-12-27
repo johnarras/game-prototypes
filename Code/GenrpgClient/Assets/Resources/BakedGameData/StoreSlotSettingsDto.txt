@@ -1,29 +1,22 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "storeslot1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Mana Store"
     },
     {
-      "Id": "storeslot2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Supplies Store"
     },
     {
-      "Id": "storeslot3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Bundle Store"
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "StoreSlotSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "StoreSlotSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

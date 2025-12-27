@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.CharMail.PlayerData;
 using System;
@@ -25,3 +25,5 @@ namespace Genrpg.MapServer.CharMail.Services
         }
     }
 }
+
+

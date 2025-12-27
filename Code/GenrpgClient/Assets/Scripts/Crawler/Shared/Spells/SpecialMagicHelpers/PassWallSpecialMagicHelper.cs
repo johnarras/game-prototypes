@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Utils.Data;
@@ -59,3 +59,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
         }
     }
 }
+
+

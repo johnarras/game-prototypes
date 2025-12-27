@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Buildings;
+using Assets.Scripts.Buildings;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -277,3 +277,5 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
     }
 }
+
+

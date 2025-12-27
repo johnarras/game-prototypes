@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Entities;
+using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using System.Threading;
@@ -54,3 +54,5 @@ namespace Assets.Scripts.WorldCanvas.GameEvents
         }
     }
 }
+
+

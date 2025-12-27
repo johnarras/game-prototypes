@@ -1,29 +1,35 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Charms.Settings
 {
-    [MessagePackObject]
     public class CharmUse : ChildSettings, IIdName
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string Icon { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string Icon { get; set; }
     }
-    [MessagePackObject]
     public class CharmUseSettings : ParentSettings<CharmUse>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class CharmUseSettingsDto : ParentSettingsDto<CharmUseSettings, CharmUse> { }
+    public class CharmUseSettingsDto : ParentSettingsDto<CharmUseSettings, CharmUse>
+    {
+        public override List<CharmUse> Children { get; set; }
+        public override CharmUseSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class CharmUseSettingsLoader : ParentSettingsLoader<CharmUseSettings, CharmUse> { }
 
     public class CharmUseSettingsMapper : ParentSettingsMapper<CharmUseSettings, CharmUse, CharmUseSettingsDto> { }
 }
+
+

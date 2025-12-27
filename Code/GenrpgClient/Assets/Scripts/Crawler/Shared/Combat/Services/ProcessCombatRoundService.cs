@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Crawler.Shared.Combat.Services;
 using Genrpg.Shared.Client.Core;
@@ -136,7 +136,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         private async Task<ECombatStepResults> AdvanceGroups(PartyData party, CancellationToken token)
         {
-            if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Advance)
+            if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Charge)
             {
                 CrawlerSpell chargeSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Name == "Charge");
 
@@ -149,7 +149,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                     int chargeCharacters = 0;
 
-                    List<PartyMember> activeParty = party.GetActiveParty();
+                    List<PartyMember> activeParty = party.ActiveParty;
 
                     foreach (PartyMember member in activeParty)
                     {
@@ -172,18 +172,18 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         group.Range = Math.Max(CrawlerCombatConstants.MinRange, group.Range - advanceRange);
                     }
                 }
-                _dispatcher.Dispatch(new AddActionPanelText($"You Advance. {advanceRange}'."));
+                _dispatcher.Dispatch(new AddActionPanelText($"You Charge Forward {advanceRange}'."));
             }
 
             foreach (CombatGroup group in party.Combat.Enemies)
             {
-                if (group.CombatGroupAction == ECombatGroupActions.Advance)
+                if (group.CombatGroupAction == ECombatGroupActions.Charge)
                 {
                     if (group.Range > CrawlerCombatConstants.MinRange)
                     {
                         group.Range -= CrawlerCombatConstants.RangeDelta;
                     }
-                    _dispatcher.Dispatch(new AddActionPanelText($"Group of {group.PluralName} Advances {CrawlerCombatConstants.MinRange}"));
+                    _dispatcher.Dispatch(new AddActionPanelText($"Group of {group.PluralName} Charges Forward {CrawlerCombatConstants.MinRange}"));
                     _dispatcher.Dispatch(new AddActionPanelText(_combatService.ShowGroupStatus(group)));
                 }
             }
@@ -248,8 +248,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (CrawlerUnit unit in party.Combat.PartyGroup.Units)
             {
-                if (party.Combat.PartyGroup.Units.Any(x => x.CombatActions.Count < x.ActionsThisRound ||
-                !unit.CombatActions.Any(x => x.DidCast)))
+                if (party.Combat.PartyGroup.Units.FastAny(x => x.CombatActions.Count < x.ActionsThisRound ||
+                !unit.CombatActions.FastAny(x => x.DidCast)))
                 {
                     continue;
                 }
@@ -267,7 +267,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     }
                 }
 
-                if (unit.CombatActions.Any(x => x.CombatActionId == CombatActions.Defend))
+                if (unit.CombatActions.FastAny(x => x.CombatActionId == CombatActions.Defend))
                 {
                     if (unit.DefendRank == EDefendRanks.Guardian)
                     {
@@ -278,7 +278,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         unit.DefendRank = EDefendRanks.Defend;
                     }
                 }
-                else if (unit.CombatActions.Any(x => x.CombatActionId == CombatActions.Hide))
+                else if (unit.CombatActions.FastAny(x => x.CombatActionId == CombatActions.Hide))
                 {
                     unit.HideExtraRange += CrawlerCombatConstants.RangeDelta;
                 }
@@ -305,3 +305,5 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         }
     }
 }
+
+

@@ -1,7 +1,4 @@
-﻿using Genrpg.Shared.Effects.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Effects.Interfaces;
 
 namespace Genrpg.Shared.Spells.Interfaces
 {
@@ -14,3 +11,5 @@ namespace Genrpg.Shared.Spells.Interfaces
         bool MatchesOther(IDisplayEffect other);
     }
 }
+
+

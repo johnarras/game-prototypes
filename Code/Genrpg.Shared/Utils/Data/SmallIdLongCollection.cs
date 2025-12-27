@@ -1,5 +1,4 @@
 using MessagePack;
-using System;
 
 namespace Genrpg.Shared.Utils.Data
 {
@@ -11,6 +10,7 @@ namespace Genrpg.Shared.Utils.Data
     [MessagePackObject]
     public class SmallIdLongCollection : BaseSmallIdQuantityCollection<long>
     {
+        [Key(0)] public override long[] Data { get; set; } = new long[4];
         protected override long InternalAdd(long first, long second)
         {
             return first + second;
@@ -22,3 +22,4 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+

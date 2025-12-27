@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Genrpg.ServerShared.Config;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Constants;
-using Genrpg.Shared.Utils;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.Logging
 {
@@ -14,22 +11,20 @@ namespace Genrpg.ServerShared.Logging
     {
 
         private IServerConfig _config;
-        private ITextSerializer _serializer;
 
         public async Task PrioritySetup(CancellationToken token)
         {
             await Task.CompletedTask;
         }
 
-        public async Task Initialize( CancellationToken toke)
+        public async Task Initialize(CancellationToken toke)
         {
             await Task.CompletedTask;
         }
 
-        public ServerLogService(IServerConfig config, ITextSerializer serializer)
+        public ServerLogService(IServerConfig config)
         {
             _config = config;
-            _serializer = serializer;   
         }
 
         public int SetupPriorityAscending() { return SetupPriorities.Logging; }
@@ -62,3 +57,5 @@ namespace Genrpg.ServerShared.Logging
         }
     }
 }
+
+

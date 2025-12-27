@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -10,8 +10,8 @@ namespace Assets.Scripts.Crawler.UI.HUD
 {
     public class CrawlerHUDStatusText : BaseBehaviour
     {
-        private ICrawlerService _crawlerService;
-        private ICrawlerWorldService _worldService;
+        private ICrawlerService _crawlerService = null;
+        private ICrawlerWorldService _worldService = null;
 
 
         public GText MapNameText;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.UI.HUD
         private UpdateCrawlerUI _update = null;
         public override void Init()
         {
-            _updateService.AddUpdate(this, OnLateUpdate, UpdateTypes.Late, GetToken());
+            AddUpdate(OnLateUpdate, UpdateTypes.Late);
             _dispatcher.AddListener<UpdateCrawlerUI>(OnUIUpdate, GetToken());
         }
 
@@ -70,3 +70,5 @@ namespace Assets.Scripts.Crawler.UI.HUD
         }
     }
 }
+
+

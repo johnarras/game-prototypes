@@ -1,4 +1,4 @@
-﻿using Genrpg.PlayerServer.Entities;
+using Genrpg.PlayerServer.Entities;
 using Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.ServerShared.CloudComms.Services;
@@ -188,3 +188,5 @@ namespace Genrpg.PlayerServer.Managers
         }
     }
 }
+
+

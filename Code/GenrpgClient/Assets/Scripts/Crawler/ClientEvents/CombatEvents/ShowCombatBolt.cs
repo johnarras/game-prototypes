@@ -1,4 +1,4 @@
-﻿
+
 namespace Assets.Scripts.Crawler.ClientEvents.CombatEvents
 {
     public class ShowCombatBolt
@@ -11,3 +11,5 @@ namespace Assets.Scripts.Crawler.ClientEvents.CombatEvents
         public double SizeScale { get; set; }
     }
 }
+
+

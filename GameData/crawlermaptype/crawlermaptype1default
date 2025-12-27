@@ -116,6 +116,5 @@
   "MaxNpcQuantity": 1,
   "MinNpcSeparation": 3,
   "MinDistanceToEntrance": 3,
-  "RoomIsDifferentZoneTypeChance": 0.25,
-  "SaveTime": "2025-08-26T15:13:23.578Z"
+  "RoomIsDifferentZoneTypeChance": 0.25
 }

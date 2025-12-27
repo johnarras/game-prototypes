@@ -4,6 +4,5 @@
   "IdKey": 3,
   "Name": "Full World",
   "Desc": "Is there a full world of many cities or one city with one random dungeon?",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:10:58.211Z"
+  "DefaultForNewGame": true
 }

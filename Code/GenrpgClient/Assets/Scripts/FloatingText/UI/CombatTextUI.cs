@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Messages;
@@ -122,3 +122,4 @@ public class CombatTextUI : BaseBehaviour
     }
 
 }
+

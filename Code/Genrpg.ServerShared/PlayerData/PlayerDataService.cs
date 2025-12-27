@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Entities;
@@ -22,7 +23,7 @@ namespace Genrpg.ServerShared.PlayerData
     public class PlayerDataService : IPlayerDataService
     {
         protected IServiceLocator _loc;
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         protected ITaskService _taskService = null;
 
         SetupDictionaryContainer<Type, IUnitDataLoader> _loaderObjects = new SetupDictionaryContainer<Type, IUnitDataLoader>();
@@ -31,11 +32,26 @@ namespace Genrpg.ServerShared.PlayerData
 
         public async Task Initialize(CancellationToken token)
         {
-            List<Task> loaderTasks = new List<Task>();
-            CreateIndexData data = new CreateIndexData();
-            // data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(CoreCharacter.UserId), Unique = false });
-            // await _repoService.CreateIndex<CoreCharacter>(data);
-            await Task.CompletedTask;
+            List<IUnitDataLoader> allLoaders = GetLoaders().Values.ToList();
+
+            List<Task> indexTasks = new List<Task>();
+
+            foreach (IUnitDataLoader loader in allLoaders)
+            {
+                List<CreateIndexData> indexedFields = loader.GetIndexes();
+
+                foreach (CreateIndexData indexedField in indexedFields)
+                {
+                    indexTasks.Add(_repoService.CreateIndexes(indexedField));
+                }
+                await Task.WhenAll(indexTasks);
+            }
+
+            CreateIndexData data = new CreateIndexData(typeof(CoreCharacter));
+            data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(CoreCharacter.UserId), Unique = false });
+            indexTasks.Add(_repoService.CreateIndexes(data));
+
+            await Task.WhenAll(indexTasks);
         }
 
         public Dictionary<Type, IUnitDataLoader> GetLoaders()
@@ -52,9 +68,16 @@ namespace Genrpg.ServerShared.PlayerData
             return null;
         }
 
-        public void SavePlayerData(Character ch, bool saveAll)
+        public void SavePlayerData(Character ch)
         {
-            ch?.SaveData(_repoService, saveAll);
+            _repoService.QueueSave(ch);
+
+            List<IUnitData> allData = ch.GetAllData();
+
+            foreach (IUnitData unitData in allData)
+            {
+                _repoService.QueueSave(unitData);
+            }
         }
 
         public async Task<List<IUnitData>> MapToClientDto(IFilteredObject obj, List<IUnitData> serverDataList)
@@ -72,10 +95,6 @@ namespace Genrpg.ServerShared.PlayerData
                     {
                         retval.Add(mapper.MapToAPI(serverData));
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Missing mapper: " + serverData.GetType().Name);
                 }
             }
             await Task.CompletedTask;
@@ -118,6 +137,11 @@ namespace Genrpg.ServerShared.PlayerData
             List<Task<IUnitData>> allTasks = new List<Task<IUnitData>>();
             foreach (IUnitDataLoader loader in _loaderObjects.GetDict().Values)
             {
+                if (loader.IsClientOnlyData())
+                {
+                    continue;
+                }
+
                 if (haveCharacter || loader.IsUserData())
                 {
                     if (existingData.Any(x => x.GetType() == loader.GetServerType()))
@@ -169,3 +193,5 @@ namespace Genrpg.ServerShared.PlayerData
 
     }
 }
+
+

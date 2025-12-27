@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Crawler.Combat
             }
         }
 
-        private static bool _didShowBolt = false;
+        private bool _didShowBolt = false;
         private void OnShowCombatBolt(ShowCombatBolt showCombatBolt)
         {
             if (showCombatBolt.CasterId == showCombatBolt.TargetId)
@@ -109,3 +109,5 @@ namespace Assets.Scripts.Crawler.Combat
         }
     }
 }
+
+

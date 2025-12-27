@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.UI.Interfaces;
+using Genrpg.Shared.UI.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,3 +32,5 @@ namespace Assets.Scripts.UI.Abstractions
         }
     }
 }
+
+

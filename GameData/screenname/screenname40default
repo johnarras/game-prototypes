@@ -2,6 +2,7 @@
   "Id": "screenname40default",
   "ParentId": "default",
   "IdKey": 40,
-  "Name": "Caravan",
-  "SaveTime": "2025-09-25T20:05:51.027Z"
+  "Name": "TraderCaravan",
+  "ScreenLayerId": 20,
+  "Subdirectory": "TraderCaravan"
 }

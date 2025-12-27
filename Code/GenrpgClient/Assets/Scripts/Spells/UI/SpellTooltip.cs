@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Collections.Generic;
 using System.Threading;
@@ -87,3 +87,4 @@ public class SpellTooltip : BaseTooltip
         entity.SetActive(false);
     }
 }
+

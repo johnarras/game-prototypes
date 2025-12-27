@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Info.Services;
@@ -26,9 +26,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
     public class TrainingLevelMemberHelper : BuildingStateHelper
     {
 
-        ICrawlerUpgradeService _upgradeService;
-        ITrainingService _trainingService = null;
-        IInfoService _infoService = null;
+        private ICrawlerUpgradeService _upgradeService = null;
+        private ITrainingService _trainingService = null;
+        private IInfoService _infoService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.TrainingLevelMember;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -129,7 +129,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
                 stateData.AddText($"You need {info.ExpLeft} more Exp before you can level up.");
             }
 
-            foreach (PartyMember pm in party.GetActiveParty())
+            foreach (PartyMember pm in party.ActiveParty)
             {
                 if (pm != member)
                 {
@@ -147,3 +147,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
         }
     }
 }
+
+

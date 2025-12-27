@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Genrpg.Shared.Utils;
 using System.Threading;
@@ -115,4 +115,6 @@ public class AddSecondaryLocations : BaseZoneGenerator
 
 
 }
+
+
 

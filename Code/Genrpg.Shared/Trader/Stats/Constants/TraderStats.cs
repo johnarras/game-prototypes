@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Trader.Stats.Constants
+namespace Genrpg.Shared.Trader.Stats.Constants
 {
     public class TraderStats
     {
@@ -13,6 +13,9 @@
         public const long SuppliesRegen = 9;
         public const long Foraging = 10;
         public const long Guards = 11;
+        public const long CaravanTradeGoods = 12;
 
     }
 }
+
+

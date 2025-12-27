@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Utils;
 using System.Threading;
 using UnityEngine;
@@ -19,3 +19,4 @@ public class SetupMountainDecayPower : BaseZoneGenerator
         
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Achievements.Constants;
+using Genrpg.Shared.Achievements.Constants;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
@@ -53,3 +53,5 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
         }
     }
 }
+
+

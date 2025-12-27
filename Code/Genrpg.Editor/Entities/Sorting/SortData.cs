@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Editor.Entities.Sorting
+namespace Genrpg.Editor.Entities.Sorting
 {
     public class SortHelper
     {
@@ -6,3 +6,5 @@
         public object SortVal;
     }
 }
+
+

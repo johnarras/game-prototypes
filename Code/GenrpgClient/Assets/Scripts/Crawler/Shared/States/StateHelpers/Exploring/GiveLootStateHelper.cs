@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Constants;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Currencies.Constants;
@@ -22,7 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
     {
 
         private ILootGenService _lootService = null;
-        private IAudioService _audioService;
+        private IAudioService _audioService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.GiveLoot;
 
@@ -122,3 +122,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         }
     }
 }
+
+

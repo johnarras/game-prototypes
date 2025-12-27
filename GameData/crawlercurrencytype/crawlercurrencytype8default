@@ -5,6 +5,5 @@
   "Name": "Stone",
   "Icon": "StoneIcon",
   "Art": "StoneArt",
-  "CraftingStatTypeId": 15,
-  "SaveTime": "2025-11-18T03:04:02.688Z"
+  "CraftingStatTypeId": 15
 }

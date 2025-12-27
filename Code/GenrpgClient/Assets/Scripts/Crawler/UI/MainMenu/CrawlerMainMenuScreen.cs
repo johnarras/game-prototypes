@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Assets.Scripts.ClientEvents.UI;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.UI.Constants;
@@ -47,14 +48,14 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
             if (_inputService.ContinueKeyIsDown() &&
                 _screenService.GetScreen(ScreenNames.Crawler) != null)
             {
-                _screenService.Close(ScreenNames.CrawlerMainMenu);
+                _dispatcher.Dispatch(new CloseScreen(ScreenNames.CrawlerMainMenu));
             }
         }
 
         private void ClickNewCrawler()
         {
             StartClose();
-            _screenService.Open(ScreenNames.CrawlerNewGameOptions);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
         }
 
         private void ClickContinue()
@@ -64,8 +65,8 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
 
         private void ClickLoadGame()
         {
-            _screenService.CloseAll();
-            _screenService.Open(ScreenNames.LoadSave);
+            _dispatcher.Dispatch(new CloseAllScreens());
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.LoadSave));
         }
 
         private void ClickQuit()
@@ -74,3 +75,5 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         }
     }
 }
+
+

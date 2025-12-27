@@ -1,24 +1,16 @@
-﻿using Genrpg.MapServer.MainServer;
+using Genrpg.MapServer.MainServer;
 using Genrpg.MapServer.Maps.Constants;
-using Genrpg.MapServer.Maps;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
+using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Maps;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Networking.Constants;
-using MongoDB.Driver.Core.Servers;
-using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.Core;
-using Genrpg.Shared.Utils;
-using System.Collections.Concurrent;
-using System.Formats.Asn1;
 
 namespace Genrpg.MapServer.Maps.Services
 {
@@ -88,7 +80,7 @@ namespace Genrpg.MapServer.Maps.Services
                 SerializerType = EMapApiSerializers.MessagePack,
             };
 
-            await mapInstance.Init(initData, mapInstance, serverToken);
+            await mapInstance.Init(serverToken, initData, mapInstance);
 
             _instances[mapInstance.GetInstanceId()] = mapInstance;
 
@@ -153,3 +145,5 @@ namespace Genrpg.MapServer.Maps.Services
         }
     }
 }
+
+

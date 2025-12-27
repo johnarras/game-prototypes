@@ -16,7 +16,6 @@ public class CrawlerInputData
 }
 
 
-// MessagePackIgnore
 public class CrawlerStateData
 {
     public CrawlerStateData(ECrawlerStates state, bool forceNextState = false)
@@ -83,3 +82,5 @@ public class CrawlerStateData
         }
     }
 }
+
+

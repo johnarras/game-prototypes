@@ -1,4 +1,4 @@
-﻿using Genrpg.InstanceServer.Entities;
+using Genrpg.InstanceServer.Entities;
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
 using Genrpg.ServerShared.CloudComms.Services.Admin;
 using Genrpg.ServerShared.Core;
@@ -97,3 +97,5 @@ namespace Genrpg.InstanceServer.Managers
         }
     }
 }
+
+

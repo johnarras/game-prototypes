@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.CloudComms.Queues.Entities
 {
@@ -15,3 +11,5 @@ namespace Genrpg.ServerShared.CloudComms.Queues.Entities
         public List<IQueueMessage> Messages { get; set; } = new List<IQueueMessage>();
     }
 }
+
+

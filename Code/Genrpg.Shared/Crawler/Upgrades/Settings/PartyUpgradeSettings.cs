@@ -1,3 +1,4 @@
+using MessagePack;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
@@ -5,37 +6,40 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Upgrades.Settings
 {
-    [MessagePackObject]
     public class PartyUpgradeSettings : ParentConstantListSettings<PartyUpgrade, PartyUpgrades>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    [MessagePackObject]
     public class PartyUpgrade : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public long MaxTier { get; set; }
-        [Key(9)] public double BonusPerTier { get; set; }
-        [Key(10)] public long BasePointCost { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public long MaxTier { get; set; }
+        public double BonusPerTier { get; set; }
+        public long BasePointCost { get; set; }
 
 
     }
 
 
-    public class PartyUpgradeSettingsDto : ParentSettingsDto<PartyUpgradeSettings, PartyUpgrade> { }
+    public class PartyUpgradeSettingsDto : ParentSettingsDto<PartyUpgradeSettings, PartyUpgrade>
+    {
+        public override List<PartyUpgrade> Children { get; set; }
+        public override PartyUpgradeSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class PartyUpgradeSettingsLoader : ParentSettingsLoader<PartyUpgradeSettings, PartyUpgrade> { }
 
     public class PartyUpgradeSettingsMapper : ParentSettingsMapper<PartyUpgradeSettings, PartyUpgrade, PartyUpgradeSettingsDto> { }
@@ -47,3 +51,5 @@ namespace Genrpg.Shared.Crawler.Upgrades.Settings
         public override long HelperKey => EntityTypes.PartyUpgrades;
     }
 }
+
+

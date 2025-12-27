@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 
@@ -20,3 +20,5 @@ namespace Genrpg.Shared.Crawler.Options.Services
         }
     }
 }
+
+

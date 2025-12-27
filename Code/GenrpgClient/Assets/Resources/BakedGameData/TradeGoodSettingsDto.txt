@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "tradegood1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Wheat",
       "Desc": "A staple food grain, forming the basis of bread and sustenance.",
@@ -100,11 +97,64 @@
           107
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 3
+        },
+        {
+          "CityId": 4
+        },
+        {
+          "CityId": 9
+        },
+        {
+          "CityId": 16
+        },
+        {
+          "CityId": 17
+        },
+        {
+          "CityId": 24
+        },
+        {
+          "CityId": 26
+        },
+        {
+          "CityId": 29
+        },
+        {
+          "CityId": 30
+        },
+        {
+          "CityId": 38
+        },
+        {
+          "CityId": 49
+        },
+        {
+          "CityId": 51
+        },
+        {
+          "CityId": 52
+        },
+        {
+          "CityId": 61
+        },
+        {
+          "CityId": 63
+        },
+        {
+          "CityId": 66
+        },
+        {
+          "CityId": 70
+        },
+        {
+          "CityId": 71
+        }
+      ]
     },
     {
-      "Id": "tradegood2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Barley",
       "Desc": "A hardy grain used for animal fodder, beer, and as a food source for soldiers.",
@@ -201,11 +251,31 @@
           79
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 7
+        },
+        {
+          "CityId": 20
+        },
+        {
+          "CityId": 33
+        },
+        {
+          "CityId": 44
+        },
+        {
+          "CityId": 47
+        },
+        {
+          "CityId": 50
+        },
+        {
+          "CityId": 66
+        }
+      ]
     },
     {
-      "Id": "tradegood3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Rice",
       "Desc": "A staple grain from the East, imported as a luxury food item.",
@@ -302,11 +372,22 @@
           300
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 57
+        },
+        {
+          "CityId": 72
+        },
+        {
+          "CityId": 73
+        },
+        {
+          "CityId": 80
+        }
+      ]
     },
     {
-      "Id": "tradegood4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Olive Oil",
       "Desc": "A cornerstone of Mediterranean life, used for cooking, lighting, and cleansing.",
@@ -403,11 +484,40 @@
           181
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 1
+        },
+        {
+          "CityId": 2
+        },
+        {
+          "CityId": 11
+        },
+        {
+          "CityId": 16
+        },
+        {
+          "CityId": 27
+        },
+        {
+          "CityId": 28
+        },
+        {
+          "CityId": 35
+        },
+        {
+          "CityId": 40
+        },
+        {
+          "CityId": 51
+        },
+        {
+          "CityId": 71
+        }
+      ]
     },
     {
-      "Id": "tradegood5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Wine",
       "Desc": "A standard alcoholic beverage and vital part of social and religious life.",
@@ -504,11 +614,52 @@
           144
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 1
+        },
+        {
+          "CityId": 7
+        },
+        {
+          "CityId": 11
+        },
+        {
+          "CityId": 13
+        },
+        {
+          "CityId": 23
+        },
+        {
+          "CityId": 24
+        },
+        {
+          "CityId": 28
+        },
+        {
+          "CityId": 31
+        },
+        {
+          "CityId": 34
+        },
+        {
+          "CityId": 36
+        },
+        {
+          "CityId": 40
+        },
+        {
+          "CityId": 62
+        },
+        {
+          "CityId": 64
+        },
+        {
+          "CityId": 71
+        }
+      ]
     },
     {
-      "Id": "tradegood6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Regional Wine",
       "Desc": "High-quality wine from a specific, well-regarded region, prized by connoisseurs.",
@@ -605,11 +756,13 @@
           441
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 25
+        }
+      ]
     },
     {
-      "Id": "tradegood7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Date Palm Wine",
       "Desc": "A sweet, potent wine made from fermented dates, common in Mesopotamia.",
@@ -709,8 +862,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Beer",
       "Desc": "A grain-based beverage, popular in regions like Egypt and Northern Europe.",
@@ -807,11 +958,13 @@
           86
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 26
+        }
+      ]
     },
     {
-      "Id": "tradegood9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Salted Fish",
       "Desc": "A crucial source of preserved protein, especially for inland populations.",
@@ -908,11 +1061,34 @@
           102
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 3
+        },
+        {
+          "CityId": 9
+        },
+        {
+          "CityId": 10
+        },
+        {
+          "CityId": 41
+        },
+        {
+          "CityId": 52
+        },
+        {
+          "CityId": 65
+        },
+        {
+          "CityId": 68
+        },
+        {
+          "CityId": 83
+        }
+      ]
     },
     {
-      "Id": "tradegood10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Garum",
       "Desc": "A highly prized fermented fish sauce, used as a powerful condiment.",
@@ -1009,11 +1185,19 @@
           1922
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 10
+        },
+        {
+          "CityId": 27
+        },
+        {
+          "CityId": 51
+        }
+      ]
     },
     {
-      "Id": "tradegood11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Honey",
       "Desc": "The primary sweetener of the ancient world, also used in medicine.",
@@ -1110,11 +1294,19 @@
           772
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 2
+        },
+        {
+          "CityId": 17
+        },
+        {
+          "CityId": 77
+        }
+      ]
     },
     {
-      "Id": "tradegood12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Cured Hams",
       "Desc": "A Gallic specialty, this preserved meat was a delicacy enjoyed by Romans.",
@@ -1211,11 +1403,13 @@
           574
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 24
+        }
+      ]
     },
     {
-      "Id": "tradegood13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Dried Figs",
       "Desc": "An energy-rich and easily transportable food source popular in the Mediterranean.",
@@ -1312,11 +1506,13 @@
           339
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 36
+        }
+      ]
     },
     {
-      "Id": "tradegood14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Dried Apricots",
       "Desc": "A sweet dried fruit, a specialty of caravan cities like Damascus.",
@@ -1413,11 +1609,13 @@
           393
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 39
+        }
+      ]
     },
     {
-      "Id": "tradegood15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Peaches",
       "Desc": "A desirable fruit that spread from Persia and Central Asia.",
@@ -1514,11 +1712,13 @@
           732
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 53
+        }
+      ]
     },
     {
-      "Id": "tradegood16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Melons",
       "Desc": "Large, sweet fruits grown in the hot climates of Central Asia and Persia.",
@@ -1615,11 +1815,16 @@
           299
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 54
+        },
+        {
+          "CityId": 55
+        }
+      ]
     },
     {
-      "Id": "tradegood17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Oysters",
       "Desc": "A coastal delicacy, often preserved and shipped inland.",
@@ -1716,11 +1921,19 @@
           201
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 22
+        },
+        {
+          "CityId": 62
+        },
+        {
+          "CityId": 64
+        }
+      ]
     },
     {
-      "Id": "tradegood18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Salt",
       "Desc": "An essential mineral for preserving food and seasoning.",
@@ -1817,11 +2030,19 @@
           104
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 11
+        },
+        {
+          "CityId": 30
+        },
+        {
+          "CityId": 65
+        }
+      ]
     },
     {
-      "Id": "tradegood19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "Rock Salt",
       "Desc": "Salt mined from the earth in solid form, often considered pure.",
@@ -1918,11 +2139,13 @@
           116
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 60
+        }
+      ]
     },
     {
-      "Id": "tradegood20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Raw Wool",
       "Desc": "Unprocessed fleece from sheep, the foundational material for common textiles.",
@@ -2019,11 +2242,16 @@
           286
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 7
+        },
+        {
+          "CityId": 50
+        }
+      ]
     },
     {
-      "Id": "tradegood21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Fine Wool",
       "Desc": "Exceptionally soft wool from specific breeds, used for luxury garments.",
@@ -2120,11 +2348,13 @@
           506
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 64
+        }
+      ]
     },
     {
-      "Id": "tradegood22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Raw Cotton",
       "Desc": "A soft fiber from India and Egypt, spun into a light, breathable cloth.",
@@ -2221,11 +2451,19 @@
           407
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 19
+        },
+        {
+          "CityId": 54
+        },
+        {
+          "CityId": 56
+        }
+      ]
     },
     {
-      "Id": "tradegood23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Fine Cotton",
       "Desc": "High-grade cotton, such as that used for Muslin fabric in India.",
@@ -2322,11 +2560,13 @@
           880
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 69
+        }
+      ]
     },
     {
-      "Id": "tradegood24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Raw Flax",
       "Desc": "The plant fiber used to produce linen, a major industry in Egypt.",
@@ -2423,11 +2663,13 @@
           426
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 28
+        }
+      ]
     },
     {
-      "Id": "tradegood25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "Linen",
       "Desc": "A strong, absorbent cloth from flax, valued for its coolness in hot climates.",
@@ -2524,11 +2766,25 @@
           2016
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 3
+        },
+        {
+          "CityId": 4
+        },
+        {
+          "CityId": 8
+        },
+        {
+          "CityId": 38
+        },
+        {
+          "CityId": 49
+        }
+      ]
     },
     {
-      "Id": "tradegood26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "Fine Linen",
       "Desc": "Linen of the highest quality, almost translucent, primarily from Egypt.",
@@ -2625,11 +2881,13 @@
           3582
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 6
+        }
+      ]
     },
     {
-      "Id": "tradegood27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "Woolen Textiles",
       "Desc": "The most common fabric of Europe, used for everything from rough tunics to fine cloaks.",
@@ -2726,11 +2984,28 @@
           1864
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 13
+        },
+        {
+          "CityId": 20
+        },
+        {
+          "CityId": 22
+        },
+        {
+          "CityId": 25
+        },
+        {
+          "CityId": 35
+        },
+        {
+          "CityId": 63
+        }
+      ]
     },
     {
-      "Id": "tradegood28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "Goat-hair Cloth",
       "Desc": "A coarse, durable, water-resistant fabric used for making tents and sacks.",
@@ -2827,11 +3102,13 @@
           1512
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 38
+        }
+      ]
     },
     {
-      "Id": "tradegood29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "Silk Fabric",
       "Desc": "The ultimate luxury fabric, its production a secret in China. Price is for a single bolt.",
@@ -2928,11 +3205,31 @@
           34516
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 5
+        },
+        {
+          "CityId": 9
+        },
+        {
+          "CityId": 14
+        },
+        {
+          "CityId": 21
+        },
+        {
+          "CityId": 47
+        },
+        {
+          "CityId": 55
+        },
+        {
+          "CityId": 79
+        }
+      ]
     },
     {
-      "Id": "tradegood30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Muslin",
       "Desc": "An extremely fine, lightweight cotton cloth originating from India.",
@@ -3029,11 +3326,13 @@
           15000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 57
+        }
+      ]
     },
     {
-      "Id": "tradegood31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Tapestries",
       "Desc": "Intricate woven wall hangings depicting scenes and patterns, a luxury item.",
@@ -3130,11 +3429,13 @@
           17028
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 34
+        }
+      ]
     },
     {
-      "Id": "tradegood32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Woven Carpets",
       "Desc": "High-quality, decorated textiles from Persia and the East, used as floor coverings.",
@@ -3231,11 +3532,22 @@
           6626
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 37
+        },
+        {
+          "CityId": 46
+        },
+        {
+          "CityId": 54
+        },
+        {
+          "CityId": 67
+        }
+      ]
     },
     {
-      "Id": "tradegood33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "Cedar Timber",
       "Desc": "Prized timber from Lebanon, valued for its resistance to rot and pleasant scent.",
@@ -3332,11 +3644,25 @@
           3407
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 6
+        },
+        {
+          "CityId": 41
+        },
+        {
+          "CityId": 42
+        },
+        {
+          "CityId": 52
+        },
+        {
+          "CityId": 70
+        }
+      ]
     },
     {
-      "Id": "tradegood34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "Pine Timber",
       "Desc": "Common, versatile timber used for general construction and shipbuilding.",
@@ -3433,11 +3759,13 @@
           2785
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 30
+        }
+      ]
     },
     {
-      "Id": "tradegood35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "Ebony",
       "Desc": "A dense, dark, valuable hardwood from Nubia and India, used for fine furniture.",
@@ -3534,11 +3862,13 @@
           7028
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 18
+        }
+      ]
     },
     {
-      "Id": "tradegood36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "Limestone",
       "Desc": "A common and easily worked stone used for the bulk of construction.",
@@ -3635,11 +3965,19 @@
           1166
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 8
+        },
+        {
+          "CityId": 28
+        },
+        {
+          "CityId": 71
+        }
+      ]
     },
     {
-      "Id": "tradegood37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "Sandstone",
       "Desc": "A durable sedimentary rock used for temples and monuments, especially in Egypt.",
@@ -3736,11 +4074,13 @@
           1551
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 49
+        }
+      ]
     },
     {
-      "Id": "tradegood38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "Marble",
       "Desc": "A luxury building material, prized for its beauty in sculpture and architecture.",
@@ -3837,11 +4177,19 @@
           7428
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 2
+        },
+        {
+          "CityId": 52
+        },
+        {
+          "CityId": 70
+        }
+      ]
     },
     {
-      "Id": "tradegood39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "Granite",
       "Desc": "An extremely hard and durable stone, used for high-status construction.",
@@ -3938,11 +4286,13 @@
           5247
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 8
+        }
+      ]
     },
     {
-      "Id": "tradegood40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "Polished Stonework",
       "Desc": "Finished and polished slabs or blocks of stone, ready for use in luxury construction.",
@@ -4039,11 +4389,16 @@
           13117
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 45
+        },
+        {
+          "CityId": 57
+        }
+      ]
     },
     {
-      "Id": "tradegood41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "Iron Ingot",
       "Desc": "The backbone of the ancient world's tools and weapons, traded in bulk.",
@@ -4140,11 +4495,13 @@
           773
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 18
+        }
+      ]
     },
     {
-      "Id": "tradegood42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "Copper Ingot",
       "Desc": "A metal used for tools, plumbing, and as a key component in bronze.",
@@ -4241,11 +4598,19 @@
           514
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 15
+        },
+        {
+          "CityId": 19
+        },
+        {
+          "CityId": 20
+        }
+      ]
     },
     {
-      "Id": "tradegood43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "Tin Ingot",
       "Desc": "A relatively rare metal, essential for creating bronze. A key import from Britannia.",
@@ -4342,11 +4707,22 @@
           1029
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 10
+        },
+        {
+          "CityId": 11
+        },
+        {
+          "CityId": 22
+        },
+        {
+          "CityId": 62
+        }
+      ]
     },
     {
-      "Id": "tradegood44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "Lead Ingots",
       "Desc": "A heavy, soft metal used for pipes, construction, and sling bullets.",
@@ -4443,11 +4819,16 @@
           528
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 22
+        },
+        {
+          "CityId": 63
+        }
+      ]
     },
     {
-      "Id": "tradegood45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "Silver Bullion",
       "Desc": "The standard precious metal for high-value coinage and trade.",
@@ -4544,11 +4925,22 @@
           1994
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 3
+        },
+        {
+          "CityId": 10
+        },
+        {
+          "CityId": 29
+        },
+        {
+          "CityId": 84
+        }
+      ]
     },
     {
-      "Id": "tradegood46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "Gold Bullion",
       "Desc": "The ultimate store of wealth and material for luxury items.",
@@ -4645,11 +5037,22 @@
           93078
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 18
+        },
+        {
+          "CityId": 29
+        },
+        {
+          "CityId": 49
+        },
+        {
+          "CityId": 59
+        }
+      ]
     },
     {
-      "Id": "tradegood47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "Silver Coins",
       "Desc": "Official currency. While the silver has value, the stamp increases its acceptability.",
@@ -4746,11 +5149,28 @@
           8194
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 2
+        },
+        {
+          "CityId": 17
+        },
+        {
+          "CityId": 23
+        },
+        {
+          "CityId": 34
+        },
+        {
+          "CityId": 47
+        },
+        {
+          "CityId": 66
+        }
+      ]
     },
     {
-      "Id": "tradegood48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "Electrum Coins",
       "Desc": "Coins made from a natural gold-silver alloy, an early form of currency from Lydia.",
@@ -4847,11 +5267,13 @@
           11817
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 37
+        }
+      ]
     },
     {
-      "Id": "tradegood49default",
-      "ParentId": "default",
       "IdKey": 49,
       "Name": "Common Pottery",
       "Desc": "Everyday earthenware vessels, such as amphorae and cooking pots.",
@@ -4948,11 +5370,13 @@
           173
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 24
+        }
+      ]
     },
     {
-      "Id": "tradegood50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "Fine Pottery",
       "Desc": "High-quality, decorated tableware like Greek red-figure or Roman Samian ware.",
@@ -5049,11 +5473,31 @@
           3006
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 1
+        },
+        {
+          "CityId": 2
+        },
+        {
+          "CityId": 12
+        },
+        {
+          "CityId": 23
+        },
+        {
+          "CityId": 25
+        },
+        {
+          "CityId": 26
+        },
+        {
+          "CityId": 32
+        }
+      ]
     },
     {
-      "Id": "tradegood51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "Red Slip Ware",
       "Desc": "A mass-produced, glossy red pottery from North Africa, widely traded.",
@@ -5150,11 +5594,13 @@
           1132
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 16
+        }
+      ]
     },
     {
-      "Id": "tradegood52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "Glazed Pottery",
       "Desc": "Pottery with a vitreous glaze, common in the East, known for its durability.",
@@ -5251,11 +5697,13 @@
           983
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 55
+        }
+      ]
     },
     {
-      "Id": "tradegood53default",
-      "ParentId": "default",
       "IdKey": 53,
       "Name": "Glazed Bricks",
       "Desc": "Colorful, weather-resistant bricks used for monumental architecture in Mesopotamia.",
@@ -5352,11 +5800,16 @@
           531
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 44
+        },
+        {
+          "CityId": 46
+        }
+      ]
     },
     {
-      "Id": "tradegood54default",
-      "ParentId": "default",
       "IdKey": 54,
       "Name": "Terracotta Statues",
       "Desc": "Small statues made from baked clay, often used as household decorations.",
@@ -5453,11 +5906,13 @@
           1219
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 12
+        }
+      ]
     },
     {
-      "Id": "tradegood55default",
-      "ParentId": "default",
       "IdKey": 55,
       "Name": "Common Glassware",
       "Desc": "Utilitarian glass bottles, jars, and cups made possible by glassblowing.",
@@ -5557,8 +6012,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood56default",
-      "ParentId": "default",
       "IdKey": 56,
       "Name": "Fine Glassware",
       "Desc": "Luxurious and intricate glass items, such as cage cups, demonstrating incredible skill.",
@@ -5655,11 +6108,19 @@
           26072
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 26
+        },
+        {
+          "CityId": 47
+        },
+        {
+          "CityId": 61
+        }
+      ]
     },
     {
-      "Id": "tradegood57default",
-      "ParentId": "default",
       "IdKey": 57,
       "Name": "Gallic Glass",
       "Desc": "High-quality glassware from Gaul, known for its unique styles and colors.",
@@ -5756,11 +6217,13 @@
           2667
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 23
+        }
+      ]
     },
     {
-      "Id": "tradegood58default",
-      "ParentId": "default",
       "IdKey": 58,
       "Name": "Papyrus",
       "Desc": "The primary writing material of the Mediterranean, produced almost exclusively in Egypt.",
@@ -5857,11 +6320,25 @@
           11358
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 4
+        },
+        {
+          "CityId": 8
+        },
+        {
+          "CityId": 17
+        },
+        {
+          "CityId": 42
+        },
+        {
+          "CityId": 49
+        }
+      ]
     },
     {
-      "Id": "tradegood59default",
-      "ParentId": "default",
       "IdKey": 59,
       "Name": "Parchment",
       "Desc": "A writing surface from animal skin, more durable than papyrus.",
@@ -5958,11 +6435,13 @@
           18163
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 34
+        }
+      ]
     },
     {
-      "Id": "tradegood60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "Sogdian Paper",
       "Desc": "An early form of paper spreading west along the Silk Road, prized for being lightweight.",
@@ -6059,11 +6538,13 @@
           33296
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 53
+        }
+      ]
     },
     {
-      "Id": "tradegood61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "Hides",
       "Desc": "Raw, unprocessed animal skins, the base material for leather production.",
@@ -6160,11 +6641,19 @@
           457
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 9
+        },
+        {
+          "CityId": 22
+        },
+        {
+          "CityId": 65
+        }
+      ]
     },
     {
-      "Id": "tradegood62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "Tanned Leather",
       "Desc": "Processed hides, used for making armor, shoes, shields, and other goods.",
@@ -6261,11 +6750,13 @@
           1250
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 27
+        }
+      ]
     },
     {
-      "Id": "tradegood63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Naval Supplies",
       "Desc": "Materials for shipbuilding and repair, such as caulking pitch, rope, and sailcloth.",
@@ -6362,11 +6853,13 @@
           603
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 64
+        }
+      ]
     },
     {
-      "Id": "tradegood64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "Iron Weapons",
       "Desc": "Standard-issue military and civilian arms, such as swords and spearheads.",
@@ -6463,11 +6956,16 @@
           13145
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 31
+        },
+        {
+          "CityId": 61
+        }
+      ]
     },
     {
-      "Id": "tradegood65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "Steel Swords",
       "Desc": "Superior quality swords, known for their strength and sharpness.",
@@ -6564,11 +7062,13 @@
           40000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 57
+        }
+      ]
     },
     {
-      "Id": "tradegood66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "Damascus Steel",
       "Desc": "Ingots of high-carbon steel from the East, famous for creating patterned, durable blades.",
@@ -6665,11 +7165,13 @@
           14296
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 39
+        }
+      ]
     },
     {
-      "Id": "tradegood67default",
-      "ParentId": "default",
       "IdKey": 67,
       "Name": "Watered Steel",
       "Desc": "A precursor to Damascus steel, a type of crucible steel with a distinctive wavy pattern.",
@@ -6766,11 +7268,13 @@
           13771
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 55
+        }
+      ]
     },
     {
-      "Id": "tradegood68default",
-      "ParentId": "default",
       "IdKey": 68,
       "Name": "Bronze Armor",
       "Desc": "Classic armor of the Greek hoplite and early Romans, heavy but effective.",
@@ -6867,11 +7371,19 @@
           4546
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 12
+        },
+        {
+          "CityId": 33
+        },
+        {
+          "CityId": 43
+        }
+      ]
     },
     {
-      "Id": "tradegood69default",
-      "ParentId": "default",
       "IdKey": 69,
       "Name": "Imperial Armor",
       "Desc": "Advanced Roman segmented plate armor, providing excellent protection.",
@@ -6968,11 +7480,13 @@
           7085
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 61
+        }
+      ]
     },
     {
-      "Id": "tradegood70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "Bronze Figurines",
       "Desc": "Small bronze statues of gods, people, or animals. A common trade good.",
@@ -7069,11 +7583,13 @@
           6544
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 32
+        }
+      ]
     },
     {
-      "Id": "tradegood71default",
-      "ParentId": "default",
       "IdKey": 71,
       "Name": "Bronze Mirrors",
       "Desc": "Polished bronze discs used as mirrors, often with ornate backing.",
@@ -7170,11 +7686,13 @@
           7000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 21
+        }
+      ]
     },
     {
-      "Id": "tradegood72default",
-      "ParentId": "default",
       "IdKey": 72,
       "Name": "Brass Lamps",
       "Desc": "Ornately designed oil lamps made from brass, a specialty of eastern cities.",
@@ -7271,11 +7789,13 @@
           4893
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 54
+        }
+      ]
     },
     {
-      "Id": "tradegood73default",
-      "ParentId": "default",
       "IdKey": 73,
       "Name": "Silverware",
       "Desc": "Luxury eating utensils, plates, and cups made from silver.",
@@ -7372,11 +7892,16 @@
           20709
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 5
+        },
+        {
+          "CityId": 67
+        }
+      ]
     },
     {
-      "Id": "tradegood74default",
-      "ParentId": "default",
       "IdKey": 74,
       "Name": "Gold Jewelry",
       "Desc": "Ornate personal adornments made from gold, demonstrating wealth.",
@@ -7473,11 +7998,16 @@
           65602
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 37
+        },
+        {
+          "CityId": 48
+        }
+      ]
     },
     {
-      "Id": "tradegood75default",
-      "ParentId": "default",
       "IdKey": 75,
       "Name": "Gold Rhytons",
       "Desc": "Horn-shaped drinking vessels made of gold, a symbol of extreme Persian luxury.",
@@ -7574,11 +8104,13 @@
           122973
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 45
+        }
+      ]
     },
     {
-      "Id": "tradegood76default",
-      "ParentId": "default",
       "IdKey": 76,
       "Name": "Inlaid Wood Box",
       "Desc": "A decorative box made from fine wood, inlaid with ivory, bone, or metal.",
@@ -7675,11 +8207,13 @@
           12866
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 39
+        }
+      ]
     },
     {
-      "Id": "tradegood77default",
-      "ParentId": "default",
       "IdKey": 77,
       "Name": "Tyrian Purple Dye",
       "Desc": "An incredibly expensive purple-red dye from murex snails, reserved for royalty.",
@@ -7776,11 +8310,22 @@
           142754
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 3
+        },
+        {
+          "CityId": 6
+        },
+        {
+          "CityId": 41
+        },
+        {
+          "CityId": 46
+        }
+      ]
     },
     {
-      "Id": "tradegood78default",
-      "ParentId": "default",
       "IdKey": 78,
       "Name": "Murex Dye",
       "Desc": "A general term for dyes from sea snails, including shades of blue and purple.",
@@ -7877,11 +8422,19 @@
           110793
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 35
+        },
+        {
+          "CityId": 37
+        },
+        {
+          "CityId": 65
+        }
+      ]
     },
     {
-      "Id": "tradegood79default",
-      "ParentId": "default",
       "IdKey": 79,
       "Name": "Black Pepper",
       "Desc": "A valuable spice from India, highly sought after in Roman cuisine and medicine.",
@@ -7978,11 +8531,16 @@
           32163
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 4
+        },
+        {
+          "CityId": 58
+        }
+      ]
     },
     {
-      "Id": "tradegood80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "Cinnamon",
       "Desc": "A highly-prized aromatic spice from the East, used in perfumes and incense.",
@@ -8079,11 +8637,13 @@
           42885
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 4
+        }
+      ]
     },
     {
-      "Id": "tradegood81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "Malabathron",
       "Desc": "The aromatic leaves of a tree from the Malabar coast, used as a spice and perfume.",
@@ -8180,11 +8740,13 @@
           140000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 58
+        }
+      ]
     },
     {
-      "Id": "tradegood82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "Frankincense",
       "Desc": "An aromatic resin from Southern Arabia, burned as incense in religious ceremonies.",
@@ -8281,11 +8843,25 @@
           24161
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 5
+        },
+        {
+          "CityId": 13
+        },
+        {
+          "CityId": 14
+        },
+        {
+          "CityId": 15
+        },
+        {
+          "CityId": 60
+        }
+      ]
     },
     {
-      "Id": "tradegood83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "Myrrh",
       "Desc": "A bitter resin from Arabia and Africa, used in incense, perfumes, and embalming.",
@@ -8382,11 +8958,22 @@
           21360
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 14
+        },
+        {
+          "CityId": 15
+        },
+        {
+          "CityId": 59
+        },
+        {
+          "CityId": 60
+        }
+      ]
     },
     {
-      "Id": "tradegood84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "Amber",
       "Desc": "Fossilized tree resin from the Baltic, traded south and valued for jewelry.",
@@ -8483,11 +9070,16 @@
           41078
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 11
+        },
+        {
+          "CityId": 31
+        }
+      ]
     },
     {
-      "Id": "tradegood85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "Pine Resin",
       "Desc": "A sticky sap from pine trees, used for waterproofing, incense, and medicine.",
@@ -8584,11 +9176,13 @@
           709
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 42
+        }
+      ]
     },
     {
-      "Id": "tradegood86default",
-      "ParentId": "default",
       "IdKey": 86,
       "Name": "Bitumen",
       "Desc": "A natural asphalt from Mesopotamia, used as a sealant for waterproofing.",
@@ -8685,11 +9279,22 @@
           283
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 7
+        },
+        {
+          "CityId": 15
+        },
+        {
+          "CityId": 46
+        },
+        {
+          "CityId": 66
+        }
+      ]
     },
     {
-      "Id": "tradegood87default",
-      "ParentId": "default",
       "IdKey": 87,
       "Name": "Naphtha",
       "Desc": "A volatile liquid petroleum used as a component in incendiary weapons.",
@@ -8786,11 +9391,13 @@
           754
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 68
+        }
+      ]
     },
     {
-      "Id": "tradegood88default",
-      "ParentId": "default",
       "IdKey": 88,
       "Name": "Arsenic",
       "Desc": "A toxic metalloid used in small quantities to harden bronze and in pigments.",
@@ -8887,11 +9494,13 @@
           9052
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 68
+        }
+      ]
     },
     {
-      "Id": "tradegood89default",
-      "ParentId": "default",
       "IdKey": 89,
       "Name": "Perfumed Oils",
       "Desc": "Olive oil infused with flowers and herbs, used as a perfume and cosmetic.",
@@ -8988,11 +9597,16 @@
           10911
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 12
+        },
+        {
+          "CityId": 43
+        }
+      ]
     },
     {
-      "Id": "tradegood90default",
-      "ParentId": "default",
       "IdKey": 90,
       "Name": "Balsam Oil",
       "Desc": "A rare and fragrant medicinal oil from Judea, prized for its healing properties.",
@@ -9089,11 +9703,13 @@
           21740
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 40
+        }
+      ]
     },
     {
-      "Id": "tradegood91default",
-      "ParentId": "default",
       "IdKey": 91,
       "Name": "Spikenard",
       "Desc": "An expensive aromatic ointment from the Himalayas, a luxury perfume.",
@@ -9190,11 +9806,13 @@
           36000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 69
+        }
+      ]
     },
     {
-      "Id": "tradegood92default",
-      "ParentId": "default",
       "IdKey": 92,
       "Name": "Ivory",
       "Desc": "Elephant tusks sourced from India and Africa, carved into luxury objects.",
@@ -9291,11 +9909,19 @@
           30749
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 18
+        },
+        {
+          "CityId": 19
+        },
+        {
+          "CityId": 58
+        }
+      ]
     },
     {
-      "Id": "tradegood93default",
-      "ParentId": "default",
       "IdKey": 93,
       "Name": "Ostrich Feathers",
       "Desc": "Large, decorative feathers from African ostriches, used in military standards and fashion.",
@@ -9392,11 +10018,13 @@
           52713
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 18
+        }
+      ]
     },
     {
-      "Id": "tradegood94default",
-      "ParentId": "default",
       "IdKey": 94,
       "Name": "Sea Sponges",
       "Desc": "Natural sponges harvested from the Mediterranean, used for bathing and cleaning.",
@@ -9493,11 +10121,13 @@
           9425
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 36
+        }
+      ]
     },
     {
-      "Id": "tradegood95default",
-      "ParentId": "default",
       "IdKey": 95,
       "Name": "Jet Pendants",
       "Desc": "A black gemstone from fossilized wood, popular in Roman Britain for jewelry.",
@@ -9594,11 +10224,13 @@
           48414
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 63
+        }
+      ]
     },
     {
-      "Id": "tradegood96default",
-      "ParentId": "default",
       "IdKey": 96,
       "Name": "Pearls",
       "Desc": "Precious gems from oysters in the Persian Gulf and Indian Ocean.",
@@ -9695,11 +10327,16 @@
           200000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 58
+        },
+        {
+          "CityId": 81
+        }
+      ]
     },
     {
-      "Id": "tradegood97default",
-      "ParentId": "default",
       "IdKey": 97,
       "Name": "Agate Beads",
       "Desc": "Colorful semi-precious stone beads from India, widely traded.",
@@ -9796,11 +10433,16 @@
           70000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 19
+        },
+        {
+          "CityId": 69
+        }
+      ]
     },
     {
-      "Id": "tradegood98default",
-      "ParentId": "default",
       "IdKey": 98,
       "Name": "Carnelian Beads",
       "Desc": "A reddish-brown semi-precious stone bead, very popular in the ancient world.",
@@ -9897,11 +10539,16 @@
           70000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 19
+        },
+        {
+          "CityId": 69
+        }
+      ]
     },
     {
-      "Id": "tradegood99default",
-      "ParentId": "default",
       "IdKey": 99,
       "Name": "Jade Carvings",
       "Desc": "A hard, green gemstone from Central Asia, highly prized in China.",
@@ -9998,11 +10645,16 @@
           180000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 21
+        },
+        {
+          "CityId": 79
+        }
+      ]
     },
     {
-      "Id": "tradegood100default",
-      "ParentId": "default",
       "IdKey": 100,
       "Name": "Lapis Lazuli",
       "Desc": "A deep blue stone from Afghanistan, used for jewelry and ultramarine pigment.",
@@ -10099,11 +10751,13 @@
           181883
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 56
+        }
+      ]
     },
     {
-      "Id": "tradegood101default",
-      "ParentId": "default",
       "IdKey": 101,
       "Name": "Turquoise",
       "Desc": "An opaque, blue-to-green gemstone from Persia, used in protective amulets.",
@@ -10200,11 +10854,13 @@
           159148
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 56
+        }
+      ]
     },
     {
-      "Id": "tradegood102default",
-      "ParentId": "default",
       "IdKey": 102,
       "Name": "Beryl",
       "Desc": "A valuable gemstone, often green (emerald) or blue (aquamarine).",
@@ -10301,11 +10957,13 @@
           225000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 58
+        }
+      ]
     },
     {
-      "Id": "tradegood103default",
-      "ParentId": "default",
       "IdKey": 103,
       "Name": "Lacquerware",
       "Desc": "Decorative objects from China coated with tree sap, known for its glossy finish.",
@@ -10402,11 +11060,16 @@
           22000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 21
+        },
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood104default",
-      "ParentId": "default",
       "IdKey": 104,
       "Name": "Marble Statues",
       "Desc": "Finished works of art, ranging from small devotional figures to life-sized statues.",
@@ -10503,11 +11166,16 @@
           21715
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 13
+        },
+        {
+          "CityId": 36
+        }
+      ]
     },
     {
-      "Id": "tradegood105default",
-      "ParentId": "default",
       "IdKey": 105,
       "Name": "Limestone Statues",
       "Desc": "Large-scale statues carved from common limestone, less prestigious than marble.",
@@ -10604,11 +11272,13 @@
           3936
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 48
+        }
+      ]
     },
     {
-      "Id": "tradegood106default",
-      "ParentId": "default",
       "IdKey": 106,
       "Name": "Scholarly Scroll",
       "Desc": "A scroll containing valuable knowledge on philosophy, science, or literature.",
@@ -10705,11 +11375,13 @@
           37281
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 35
+        }
+      ]
     },
     {
-      "Id": "tradegood107default",
-      "ParentId": "default",
       "IdKey": 107,
       "Name": "Cuneiform Tablets",
       "Desc": "Baked clay tablets inscribed with cuneiform script, the records of Mesopotamia.",
@@ -10806,11 +11478,16 @@
           3322
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 20
+        },
+        {
+          "CityId": 44
+        }
+      ]
     },
     {
-      "Id": "tradegood108default",
-      "ParentId": "default",
       "IdKey": 108,
       "Name": "Religious Trinkets",
       "Desc": "Small amulets, icons, or souvenirs for pilgrims and the devout.",
@@ -10907,11 +11584,13 @@
           5435
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 40
+        }
+      ]
     },
     {
-      "Id": "tradegood109default",
-      "ParentId": "default",
       "IdKey": 109,
       "Name": "Byzantine Mosaics",
       "Desc": "Kits of colored glass tiles (tesserae) for creating intricate mosaics.",
@@ -11008,11 +11687,13 @@
           26117
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 30
+        }
+      ]
     },
     {
-      "Id": "tradegood110default",
-      "ParentId": "default",
       "IdKey": 110,
       "Name": "Chariots",
       "Desc": "Light, two-wheeled vehicles used in warfare, racing, and processions.",
@@ -11109,11 +11790,16 @@
           16427
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 33
+        },
+        {
+          "CityId": 82
+        }
+      ]
     },
     {
-      "Id": "tradegood111default",
-      "ParentId": "default",
       "IdKey": 111,
       "Name": "Silphium",
       "Desc": "A rare, now-extinct plant from Cyrene, valued as a seasoning and powerful medicine.",
@@ -11210,11 +11896,13 @@
           78825
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 50
+        }
+      ]
     },
     {
-      "Id": "tradegood112default",
-      "ParentId": "default",
       "IdKey": 112,
       "Name": "Bricks",
       "Desc": "A durable sedimentary rock used for temples and monuments, especially in Egypt.",
@@ -11311,11 +11999,13 @@
           1764
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 25
+        }
+      ]
     },
     {
-      "Id": "tradegood113default",
-      "ParentId": "default",
       "IdKey": 113,
       "Name": "Rubies",
       "Desc": "A red stone of immense value, often from India or Sri Lanka.",
@@ -11412,11 +12102,13 @@
           166484
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 53
+        }
+      ]
     },
     {
-      "Id": "tradegood114default",
-      "ParentId": "default",
       "IdKey": 114,
       "Name": "Sapphires",
       "Desc": "A blue stone of immense value, often from India or Sri Lanka.",
@@ -11516,8 +12208,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood115default",
-      "ParentId": "default",
       "IdKey": 115,
       "Name": "Emeralds",
       "Desc": "A green stone of immense value, from mines in Egypt and India.",
@@ -11617,8 +12307,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood116default",
-      "ParentId": "default",
       "IdKey": 116,
       "Name": "Diamonds",
       "Desc": "A clear stone of immense value, prized for its hardness and brilliance.",
@@ -11718,8 +12406,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood117default",
-      "ParentId": "default",
       "IdKey": 117,
       "Name": "Fruit Preserves",
       "Desc": "Fruits that have been prepared to last longer.",
@@ -11816,11 +12502,13 @@
           607
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 5
+        }
+      ]
     },
     {
-      "Id": "tradegood118default",
-      "ParentId": "default",
       "IdKey": 118,
       "Name": "Dates",
       "Desc": "An energy-rich and easily transportable food source popular in the Mediterranean.",
@@ -11917,11 +12605,16 @@
           339
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 7
+        },
+        {
+          "CityId": 60
+        }
+      ]
     },
     {
-      "Id": "tradegood119default",
-      "ParentId": "default",
       "IdKey": 119,
       "Name": "Spices",
       "Desc": "General regional spices.",
@@ -12018,11 +12711,31 @@
           41419
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 5
+        },
+        {
+          "CityId": 9
+        },
+        {
+          "CityId": 14
+        },
+        {
+          "CityId": 59
+        },
+        {
+          "CityId": 74
+        },
+        {
+          "CityId": 76
+        },
+        {
+          "CityId": 81
+        }
+      ]
     },
     {
-      "Id": "tradegood120default",
-      "ParentId": "default",
       "IdKey": 120,
       "Name": "Cured Meats",
       "Desc": "Preserved meats.",
@@ -12119,11 +12832,13 @@
           624
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 29
+        }
+      ]
     },
     {
-      "Id": "tradegood121default",
-      "ParentId": "default",
       "IdKey": 121,
       "Name": "Textiles",
       "Desc": "General cloth goods.",
@@ -12220,11 +12935,16 @@
           1818
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 43
+        },
+        {
+          "CityId": 74
+        }
+      ]
     },
     {
-      "Id": "tradegood122default",
-      "ParentId": "default",
       "IdKey": 122,
       "Name": "Fur",
       "Desc": "Soft, valuable pelts from wild animals like sable, fox, and ermine, a major trade good of the northern forests.",
@@ -12321,11 +13041,13 @@
           2574
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 77
+        }
+      ]
     },
     {
-      "Id": "tradegood123default",
-      "ParentId": "default",
       "IdKey": 123,
       "Name": "Sable Fur",
       "Desc": "The most prized of all furs, known for its incredible softness and dark color, highly sought after by royalty and the wealthy.",
@@ -12422,11 +13144,13 @@
           50000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 84
+        }
+      ]
     },
     {
-      "Id": "tradegood124default",
-      "ParentId": "default",
       "IdKey": 124,
       "Name": "Reindeer Antlers",
       "Desc": "The antlers of domesticated reindeer, used for carving and tool making by northern peoples.",
@@ -12526,8 +13250,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood125default",
-      "ParentId": "default",
       "IdKey": 125,
       "Name": "Horse",
       "Desc": "A single riding horse, a vital component for warfare, travel, and communication, especially on the steppes.",
@@ -12627,8 +13349,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood126default",
-      "ParentId": "default",
       "IdKey": 126,
       "Name": "Camel",
       "Desc": "A single camel, the pack animal of choice for the deserts and steppes, capable of carrying heavy loads for long distances with minimal water.",
@@ -12728,8 +13448,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood127default",
-      "ParentId": "default",
       "IdKey": 127,
       "Name": "Jade",
       "Desc": "The rough, uncarved stone itself, a precious and highly valued material in China.",
@@ -12829,8 +13547,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood128default",
-      "ParentId": "default",
       "IdKey": 128,
       "Name": "Brocade Silk",
       "Desc": "A heavy, intricately woven silk fabric, often with gold or silver threads, reserved for the highest class of clothing.",
@@ -12927,11 +13643,13 @@
           100000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 80
+        }
+      ]
     },
     {
-      "Id": "tradegood129default",
-      "ParentId": "default",
       "IdKey": 129,
       "Name": "Nankeen Cloth",
       "Desc": "A coarse, durable, yellow-brown cotton cloth from Nanjing, used for workwear and common garments.",
@@ -13028,11 +13746,13 @@
           4000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 80
+        }
+      ]
     },
     {
-      "Id": "tradegood130default",
-      "ParentId": "default",
       "IdKey": 130,
       "Name": "Tea",
       "Desc": "The dried leaves of the tea plant, a popular and valuable beverage originating in China.",
@@ -13129,11 +13849,13 @@
           20000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 81
+        }
+      ]
     },
     {
-      "Id": "tradegood131default",
-      "ParentId": "default",
       "IdKey": 131,
       "Name": "Porcelain",
       "Desc": "A fine, translucent ceramic from China, highly prized and sought after throughout the world.",
@@ -13230,11 +13952,19 @@
           20000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        },
+        {
+          "CityId": 79
+        },
+        {
+          "CityId": 80
+        }
+      ]
     },
     {
-      "Id": "tradegood132default",
-      "ParentId": "default",
       "IdKey": 132,
       "Name": "Sappanwood",
       "Desc": "A wood from Southeast Asia used to create a red dye, often used in textiles.",
@@ -13331,11 +14061,13 @@
           3750
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood133default",
-      "ParentId": "default",
       "IdKey": 133,
       "Name": "Benzoin",
       "Desc": "An aromatic resin from Southeast Asia, used for incense, perfumes, and medicine.",
@@ -13432,11 +14164,13 @@
           25000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood134default",
-      "ParentId": "default",
       "IdKey": 134,
       "Name": "Sandalwood",
       "Desc": "An aromatic wood from India and Southeast Asia, used for incense, carving, and furniture.",
@@ -13533,11 +14267,13 @@
           9000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 75
+        }
+      ]
     },
     {
-      "Id": "tradegood135default",
-      "ParentId": "default",
       "IdKey": 135,
       "Name": "Aloeswood",
       "Desc": "A resinous, fragrant heartwood used for incense and perfumes, one of the most expensive woods in the world.",
@@ -13634,11 +14370,13 @@
           12000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 75
+        }
+      ]
     },
     {
-      "Id": "tradegood136default",
-      "ParentId": "default",
       "IdKey": 136,
       "Name": "Gambier",
       "Desc": "An extract from a plant used as a dye and in tanning leather, common in Southeast Asia.",
@@ -13738,8 +14476,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood137default",
-      "ParentId": "default",
       "IdKey": 137,
       "Name": "Tortoise Shells",
       "Desc": "The shells of sea turtles, used for carving into decorative boxes and other luxury items.",
@@ -13836,11 +14572,13 @@
           50000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 75
+        }
+      ]
     },
     {
-      "Id": "tradegood138default",
-      "ParentId": "default",
       "IdKey": 138,
       "Name": "Cloves",
       "Desc": "Dried flower buds from a tree native to the Spice Islands, a pungent and valuable spice.",
@@ -13937,11 +14675,16 @@
           80000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        },
+        {
+          "CityId": 75
+        }
+      ]
     },
     {
-      "Id": "tradegood139default",
-      "ParentId": "default",
       "IdKey": 139,
       "Name": "Nutmeg",
       "Desc": "The seed of a tree from the Spice Islands, used as a spice and for its medicinal properties.",
@@ -14038,11 +14781,13 @@
           75000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        }
+      ]
     },
     {
-      "Id": "tradegood140default",
-      "ParentId": "default",
       "IdKey": 140,
       "Name": "Mace",
       "Desc": "The lacy outer coating of the nutmeg seed, an aromatic and valuable spice.",
@@ -14139,11 +14884,13 @@
           75000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        }
+      ]
     },
     {
-      "Id": "tradegood141default",
-      "ParentId": "default",
       "IdKey": 141,
       "Name": "Sugar",
       "Desc": "A highly-valued sweetener produced from sugarcane, a luxury good imported from the East.",
@@ -14240,11 +14987,13 @@
           6250
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood142default",
-      "ParentId": "default",
       "IdKey": 142,
       "Name": "Ginger",
       "Desc": "A pungent and aromatic rhizome used as a spice, common throughout Asia.",
@@ -14344,8 +15093,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood143default",
-      "ParentId": "default",
       "IdKey": 143,
       "Name": "Iron Tools",
       "Desc": "A collection of basic iron tools for a variety of tasks.",
@@ -14445,8 +15192,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood144default",
-      "ParentId": "default",
       "IdKey": 144,
       "Name": "Timber",
       "Desc": "General timber and lumber, used for construction and other purposes.",
@@ -14543,11 +15288,13 @@
           2000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 72
+        }
+      ]
     },
     {
-      "Id": "tradegood145default",
-      "ParentId": "default",
       "IdKey": 145,
       "Name": "Raw Silk",
       "Desc": "The unprocessed thread spun by silkworms, used for making luxury textiles.",
@@ -14647,8 +15394,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood146default",
-      "ParentId": "default",
       "IdKey": 146,
       "Name": "Lacquer",
       "Desc": "The raw sap from the lacquer tree, a base material for decorative finishes.",
@@ -14745,11 +15490,13 @@
           15000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 72
+        }
+      ]
     },
     {
-      "Id": "tradegood147default",
-      "ParentId": "default",
       "IdKey": 147,
       "Name": "Chinese Ceramics",
       "Desc": "High-quality, decorated ceramic vessels, a major export of China.",
@@ -14846,11 +15593,13 @@
           12500
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 72
+        }
+      ]
     },
     {
-      "Id": "tradegood148default",
-      "ParentId": "default",
       "IdKey": 148,
       "Name": "Gilded Bronze",
       "Desc": "Bronze decorated with a thin layer of gold, a luxury good from Damascus.",
@@ -14950,8 +15699,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood149default",
-      "ParentId": "default",
       "IdKey": 149,
       "Name": "Elephants",
       "Desc": "A highly valuable and exotic trade animal, used for warfare and labor.",
@@ -15051,8 +15798,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood150default",
-      "ParentId": "default",
       "IdKey": 150,
       "Name": "Spinel",
       "Desc": "A vibrant red gemstone from Southeast Asia, often confused with rubies.",
@@ -15152,8 +15897,6 @@
       "ProducerCities": []
     },
     {
-      "Id": "tradegood151default",
-      "ParentId": "default",
       "IdKey": 151,
       "Name": "Blown Glass",
       "Desc": "A luxury good, highly valued for its craftsmanship and clarity, often used for vessels and ornamental objects.",
@@ -15250,11 +15993,28 @@
           71
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 1
+        },
+        {
+          "CityId": 4
+        },
+        {
+          "CityId": 6
+        },
+        {
+          "CityId": 31
+        },
+        {
+          "CityId": 39
+        },
+        {
+          "CityId": 41
+        }
+      ]
     },
     {
-      "Id": "tradegood152default",
-      "ParentId": "default",
       "IdKey": 152,
       "Name": "Faience Beads",
       "Desc": "Small, decorative beads made from a glassy paste, traded as both currency and jewelry.",
@@ -15351,11 +16111,13 @@
           7
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 8
+        }
+      ]
     },
     {
-      "Id": "tradegood153default",
-      "ParentId": "default",
       "IdKey": 153,
       "Name": "Gemstones",
       "Desc": "Precious stones such as rubies and sapphires, highly valued for jewelry and status.",
@@ -15452,11 +16214,13 @@
           41670
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 72
+        }
+      ]
     },
     {
-      "Id": "tradegood154default",
-      "ParentId": "default",
       "IdKey": 154,
       "Name": "Silks",
       "Desc": "Fine woven textiles imported from the East, a high-value luxury item for the elite.",
@@ -15553,11 +16317,13 @@
           630
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 72
+        }
+      ]
     },
     {
-      "Id": "tradegood155default",
-      "ParentId": "default",
       "IdKey": 155,
       "Name": "Deerskins",
       "Desc": "The tanned hide of a deer, used for clothing, pouches, and other leather goods.",
@@ -15654,11 +16420,13 @@
           1200
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood156default",
-      "ParentId": "default",
       "IdKey": 156,
       "Name": "Tin",
       "Desc": "A key metal used for alloying with copper to make bronze, heavily traded.",
@@ -15755,11 +16523,13 @@
           100
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood157default",
-      "ParentId": "default",
       "IdKey": 157,
       "Name": "Gold",
       "Desc": "The most precious of metals, used for currency, jewelry, and high-status objects.",
@@ -15856,11 +16626,13 @@
           50000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood158default",
-      "ParentId": "default",
       "IdKey": 158,
       "Name": "Silver",
       "Desc": "A precious metal used for coinage and luxury goods, second only to gold in value.",
@@ -15957,11 +16729,13 @@
           1000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 73
+        }
+      ]
     },
     {
-      "Id": "tradegood159default",
-      "ParentId": "default",
       "IdKey": 159,
       "Name": "Silk",
       "Desc": "Raw silk thread used for weaving into fine clothing and tapestries.",
@@ -16058,11 +16832,13 @@
           1000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        }
+      ]
     },
     {
-      "Id": "tradegood160default",
-      "ParentId": "default",
       "IdKey": 160,
       "Name": "Camphor",
       "Desc": "An aromatic substance used in perfumes, incense, and medicine.",
@@ -16159,11 +16935,16 @@
           200
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 74
+        },
+        {
+          "CityId": 75
+        }
+      ]
     },
     {
-      "Id": "tradegood161default",
-      "ParentId": "default",
       "IdKey": 161,
       "Name": "Jewelry",
       "Desc": "Elaborate ornaments made from precious metals and gems, a sign of wealth.",
@@ -16260,11 +17041,13 @@
           2000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 76
+        }
+      ]
     },
     {
-      "Id": "tradegood162default",
-      "ParentId": "default",
       "IdKey": 162,
       "Name": "Pottery",
       "Desc": "Common and functional clay vessels for storing and transporting goods, widely traded.",
@@ -16361,11 +17144,16 @@
           81
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 76
+        },
+        {
+          "CityId": 83
+        }
+      ]
     },
     {
-      "Id": "tradegood163default",
-      "ParentId": "default",
       "IdKey": 163,
       "Name": "Glass Beads",
       "Desc": "Small, colored glass beads used for trade with less-developed regions and for decoration.",
@@ -16462,11 +17250,13 @@
           130
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 76
+        }
+      ]
     },
     {
-      "Id": "tradegood164default",
-      "ParentId": "default",
       "IdKey": 164,
       "Name": "Leather Goods",
       "Desc": "Durable goods made from animal hides, including shoes, belts, and armor.",
@@ -16563,11 +17353,13 @@
           77
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 77
+        }
+      ]
     },
     {
-      "Id": "tradegood165default",
-      "ParentId": "default",
       "IdKey": 165,
       "Name": "Grain",
       "Desc": "Staple food, such as wheat or barley, essential for feeding armies and large populations.",
@@ -16664,11 +17456,22 @@
           102
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 77
+        },
+        {
+          "CityId": 78
+        },
+        {
+          "CityId": 79
+        },
+        {
+          "CityId": 83
+        }
+      ]
     },
     {
-      "Id": "tradegood166default",
-      "ParentId": "default",
       "IdKey": 166,
       "Name": "Wax",
       "Desc": "Used for sealing documents, creating candles, and other crafts.",
@@ -16765,11 +17568,13 @@
           61
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 77
+        }
+      ]
     },
     {
-      "Id": "tradegood167default",
-      "ParentId": "default",
       "IdKey": 167,
       "Name": "Tribute Silver",
       "Desc": "Silver collected as a form of tribute from conquered territories.",
@@ -16866,11 +17671,13 @@
           10000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 78
+        }
+      ]
     },
     {
-      "Id": "tradegood168default",
-      "ParentId": "default",
       "IdKey": 168,
       "Name": "Woven Textiles",
       "Desc": "Finished cloth made from wool, linen, or other fibers, used for clothing and household goods.",
@@ -16967,11 +17774,13 @@
           50
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 78
+        }
+      ]
     },
     {
-      "Id": "tradegood169default",
-      "ParentId": "default",
       "IdKey": 169,
       "Name": "Livestock",
       "Desc": "Domesticated animals such as sheep or goats, a source of food, wool, and labor.",
@@ -17068,11 +17877,16 @@
           91
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 78
+        },
+        {
+          "CityId": 82
+        }
+      ]
     },
     {
-      "Id": "tradegood170default",
-      "ParentId": "default",
       "IdKey": 170,
       "Name": "Fine Crafts",
       "Desc": "Objects of superior artistic and technical quality, prized by the wealthy.",
@@ -17169,11 +17983,13 @@
           680
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 79
+        }
+      ]
     },
     {
-      "Id": "tradegood171default",
-      "ParentId": "default",
       "IdKey": 171,
       "Name": "Export Silk",
       "Desc": "High-quality silk designated for international trade along routes like the Silk Road.",
@@ -17270,11 +18086,13 @@
           2000
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 81
+        }
+      ]
     },
     {
-      "Id": "tradegood172default",
-      "ParentId": "default",
       "IdKey": 172,
       "Name": "Export Porcelain",
       "Desc": "Finely crafted porcelain pottery, a highly valued luxury export from the East.",
@@ -17371,11 +18189,13 @@
           250
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 81
+        }
+      ]
     },
     {
-      "Id": "tradegood173default",
-      "ParentId": "default",
       "IdKey": 173,
       "Name": "Bronze Tools",
       "Desc": "Tools made from bronze, known for their durability and sharp edge, a common item of trade.",
@@ -17472,11 +18292,13 @@
           41
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 82
+        }
+      ]
     },
     {
-      "Id": "tradegood174default",
-      "ParentId": "default",
       "IdKey": 174,
       "Name": "Copper Ore",
       "Desc": "Raw copper ore, a valuable resource for blacksmiths and metalworkers.",
@@ -17573,11 +18395,13 @@
           684
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 82
+        }
+      ]
     },
     {
-      "Id": "tradegood175default",
-      "ParentId": "default",
       "IdKey": 175,
       "Name": "Leather",
       "Desc": "Tanned hides used for making a variety of goods, including armor and clothing.",
@@ -17674,11 +18498,13 @@
           183
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 83
+        }
+      ]
     },
     {
-      "Id": "tradegood176default",
-      "ParentId": "default",
       "IdKey": 176,
       "Name": "Walrus Ivory",
       "Desc": "Ivory from walrus tusks, traded for its hardness and fine grain, used for carvings and decorative items.",
@@ -17775,13 +18601,17 @@
           100
         ]
       },
-      "ProducerCities": []
+      "ProducerCities": [
+        {
+          "CityId": 84
+        }
+      ]
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "TradeGoodSettings",
-    "SaveTime": "2025-09-28T21:39:17.22Z"
+    "Name": "TradeGoodSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-28T21:39:17.22Z"
 }

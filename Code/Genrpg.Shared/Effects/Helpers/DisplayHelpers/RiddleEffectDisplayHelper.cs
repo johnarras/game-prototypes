@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Effects.Helpers.DisplayHelpers
         }
     }
 }
+
+

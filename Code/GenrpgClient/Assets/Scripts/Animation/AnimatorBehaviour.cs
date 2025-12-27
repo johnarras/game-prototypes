@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Genrpg.Shared.Interfaces;
 
 using System.Threading;
@@ -63,3 +63,5 @@ public class AnimatorBehaviour : BaseBehaviour
         AddDelayedUpdate(action, delay);
     }
 }
+
+

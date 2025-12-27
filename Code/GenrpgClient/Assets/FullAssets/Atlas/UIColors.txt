@@ -1,0 +1,10 @@
+
+
+Basic UI colors since they use the cloud effect to make random gradients:
+
+
+BGScreen 64 to 128 clouds gradient, border rounded rectangle black 2 width, corner size 8
+
+BGButton 32 to 64 clouds gradeint, border rounded rectangle 4 width, corner size 8
+
+use new ImageButton to overlay images on the base button bg

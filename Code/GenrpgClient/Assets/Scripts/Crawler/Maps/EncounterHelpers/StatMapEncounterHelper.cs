@@ -1,8 +1,10 @@
-﻿using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -34,8 +36,17 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             await Task.CompletedTask;
         }
 
+        public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        {
+            _crawlerService.ChangeState(ECrawlerStates.GainStats, token);
+            moveStatus.MoveIsComplete = true;
+            await Task.CompletedTask;
+        }
+
         protected override void AfterDownloadProp(GameObject prop, CrawlerObjectLoadData args)
         {
         }
     }
 }
+
+

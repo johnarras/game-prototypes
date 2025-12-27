@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using System.Threading;
 using UnityEngine;
 
@@ -45,3 +45,5 @@ namespace Assets.Scripts.Assets.Entities
     }
 
 }
+
+

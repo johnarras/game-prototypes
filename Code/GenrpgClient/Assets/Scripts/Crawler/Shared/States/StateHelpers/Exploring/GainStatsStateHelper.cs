@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
             long statAdded = 5 + 5 * (map.Level / 10);
 
-            List<PartyMember> members = party.GetActiveParty();
+            List<PartyMember> members = party.ActiveParty;
 
             for (int p = 0; p < members.Count; p++)
             {
@@ -82,3 +82,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
         }
     }
 }
+
+

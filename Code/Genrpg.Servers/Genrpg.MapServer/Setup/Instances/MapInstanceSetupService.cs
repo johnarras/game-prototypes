@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.AI.Services;
+using Genrpg.MapServer.AI.Services;
 using Genrpg.MapServer.Crafting.Services;
 using Genrpg.MapServer.Items.Services;
 using Genrpg.MapServer.Levelup.Services;
@@ -34,3 +34,5 @@ namespace Genrpg.MapServer.Setup.Instances
     {
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public class CurrentMusic
@@ -29,3 +29,4 @@ public class CurrentMusic
         clipList.IsActiveMusic = false;
     }
 }
+

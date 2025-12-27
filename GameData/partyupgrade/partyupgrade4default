@@ -6,6 +6,5 @@
   "Desc": "Scales role attributes such as melee or healing faster.",
   "MaxTier": 5,
   "BonusPerTier": 0.05,
-  "BasePointCost": 5,
-  "SaveTime": "2025-09-11T17:51:14.346Z"
+  "BasePointCost": 5
 }

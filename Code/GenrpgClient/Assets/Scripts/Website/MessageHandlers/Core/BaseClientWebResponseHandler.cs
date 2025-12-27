@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.DataStores.Entities;
@@ -30,3 +30,5 @@ namespace Assets.Scripts.Login.Messages.Core
         }
     }
 }
+
+

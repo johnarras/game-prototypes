@@ -1,9 +1,9 @@
-using MessagePack;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
-using Genrpg.Shared.Purchasing.PlayerData;
+using Genrpg.Shared.Utils.Data;
+using MessagePack;
 
 namespace Genrpg.Shared.Ftue.PlayerData
 {
@@ -12,7 +12,7 @@ namespace Genrpg.Shared.Ftue.PlayerData
     /// </summary>
 
     [MessagePackObject]
-    public class FtueData : NoChildPlayerData
+    public class FtueData : UniquePersonalUserData, IUserData
     {
         [Key(0)] public override string Id { get; set; }
 
@@ -32,8 +32,15 @@ namespace Genrpg.Shared.Ftue.PlayerData
     }
     public class FtueDataLoader : UnitDataLoader<FtueData> { }
 
-    public class FtueDto : NoChildPlayerDataDto<FtueData> { }
+    [MessagePackObject]
+    public class FtueDto : NoChildPlayerDataDto<FtueData>
+    {
+        [Key(0)] public override FtueData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
 
 
     public class FtueDataMapper : NoChildUnitDataMapper<FtueData, FtueDto> { }
 }
+
+

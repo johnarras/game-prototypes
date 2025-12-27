@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Services;
-using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 using Genrpg.Shared.Utils;
 using System;
@@ -69,3 +69,5 @@ namespace Assets.Scripts.Trader.UI.Currencies
         }
     }
 }
+
+

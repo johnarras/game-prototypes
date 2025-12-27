@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.MapServer.AI.Services;
 using Genrpg.MapServer.MapMessaging.Interfaces;
 using Genrpg.MapServer.Maps;
@@ -914,3 +914,5 @@ namespace Genrpg.MapServer.Spells.Services
         }
     }
 }
+
+

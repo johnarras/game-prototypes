@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.Ftue.Constants
         public const long NoWindow = 2;
     }
 }
+
+

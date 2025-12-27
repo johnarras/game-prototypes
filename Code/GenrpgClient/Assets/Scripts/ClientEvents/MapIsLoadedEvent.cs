@@ -1,6 +1,8 @@
-﻿namespace ClientEvents
+namespace ClientEvents
 {
     public class MapIsLoadedEvent
     {
     }
 }
+
+

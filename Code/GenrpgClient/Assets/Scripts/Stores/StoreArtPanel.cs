@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.Settings;
@@ -65,3 +65,5 @@ namespace Assets.Scripts.UI.Stores
         }
     }
 }
+
+

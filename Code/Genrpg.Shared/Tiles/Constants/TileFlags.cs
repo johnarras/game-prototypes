@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,3 +9,5 @@ namespace Genrpg.Shared.Tiles.Constants
         public const int CanUpgrade = (1 << 0);
     }
 }
+
+

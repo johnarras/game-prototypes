@@ -8,7 +8,7 @@ using System.Linq;
 namespace Genrpg.Shared.Characters.PlayerData
 {
     [MessagePackObject]
-    public class CoreCharacter : NoChildPlayerData, ICoreCharacter
+    public class CoreCharacter : NoChildIndexedUserData, ICoreCharacter
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public string Name { get; set; }
@@ -55,3 +55,5 @@ namespace Genrpg.Shared.Characters.PlayerData
         }
     }
 }
+
+

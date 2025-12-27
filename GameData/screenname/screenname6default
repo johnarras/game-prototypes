@@ -2,5 +2,7 @@
   "Id": "screenname6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "PlayerInfo"
+  "Name": "PlayerInfo",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Units"
 }

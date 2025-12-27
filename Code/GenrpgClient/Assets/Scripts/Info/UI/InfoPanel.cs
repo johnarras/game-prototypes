@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
@@ -45,13 +45,6 @@ namespace Assets.Scripts.Info.UI
                 _objectPool.ReturnObject(row);
             }
             _rows.Clear();
-        }
-
-
-        protected override void OnDestroy()
-        {
-            ClearInfo();
-            base.OnDestroy();
         }
 
         public void ShowLines(List<string> lines)
@@ -153,3 +146,5 @@ namespace Assets.Scripts.Info.UI
         }
     }
 }
+
+

@@ -1,0 +1,10 @@
+{
+  "Id": "traderstat13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Food Regen",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "FoodRegen",
+  "Art": "FoodRegen"
+}

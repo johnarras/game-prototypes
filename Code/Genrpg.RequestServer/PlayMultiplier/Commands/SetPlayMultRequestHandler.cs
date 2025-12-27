@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.WebApi;
@@ -14,3 +14,5 @@ namespace Genrpg.RequestServer.PlayMultiplier.Commands
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Buffs.Services;
+using Assets.Scripts.Crawler.Buffs.Services;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Services;
@@ -32,3 +32,5 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         public abstract Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token);
     }
 }
+
+

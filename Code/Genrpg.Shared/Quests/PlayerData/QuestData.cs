@@ -1,9 +1,8 @@
-using Genrpg.Shared.Charms.PlayerData;
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Quests.WorldData;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -97,10 +96,18 @@ namespace Genrpg.Shared.Quests.PlayerData
 
     }
 
-    public class QuestDto : OwnerDtoList<QuestData, QuestStatus> { }
-    
+    [MessagePackObject]
+    public class QuestDto : OwnerDtoList<QuestData, QuestStatus>
+    {
+        [Key(0)] public override List<QuestStatus> Children { get; set; }
+        [Key(1)] public override QuestData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
+
     public class QuestDataLoader : OwnerDataLoader<QuestData, QuestStatus> { }
 
 
     public class QuestDataMapper : OwnerDataMapper<QuestData, QuestStatus, QuestDto> { }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Website.Interfaces;
+using Genrpg.Shared.Website.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Website.Messages
     }
 
 }
+
+

@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Input.Interfaces;
-using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Entities;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Input.Constants;
@@ -14,6 +13,7 @@ using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Spells.Settings.Skills;
 using Genrpg.Shared.Spells.Utils;
+using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Units.Entities;
 using System;
 using System.Collections.Generic;
@@ -87,7 +87,7 @@ namespace Assets.Scripts.Input
                 screens = _screenService.GetAllScreens();
                 if (screens != null && screens.Count > 0)
                 {
-                    _screenService.CloseAll();
+                    _dispatcher.Dispatch(new CloseAllScreens());
                     if (_playerManager.GetPlayerGameObject() != null)
                     {
                         return;
@@ -117,7 +117,7 @@ namespace Assets.Scripts.Input
 
                         if (_screenService.GetFullScreenNameFromId(ssi.ScreenId) == container.Command.KeyCommand)
                         {
-                            _screenService.Close(ssi.ScreenId);
+                            _dispatcher.Dispatch(new CloseScreen(ssi.ScreenId));
                             screenIsShowing = true;
                             break;
                         }
@@ -125,7 +125,7 @@ namespace Assets.Scripts.Input
 
                     if (!screenIsShowing)
                     {
-                        _screenService.StringOpen(container.Command.KeyCommand.Replace("Screen", ""));
+                        _dispatcher.Dispatch(new OpenScreen(_screenService.GetScreenIdFromName(container.Command.KeyCommand)));
                     }
                 }
             }
@@ -366,3 +366,5 @@ namespace Assets.Scripts.Input
         }
     }
 }
+
+

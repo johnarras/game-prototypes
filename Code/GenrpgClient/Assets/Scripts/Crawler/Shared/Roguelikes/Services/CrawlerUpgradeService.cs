@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
@@ -49,9 +49,9 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
 
         private IGameData _gameData;
         private IClientGameState _gs;
-        private ICrawlerStatService _statService;
+        private ICrawlerStatService _statService = null;
         private IDispatcher _dispatcher;
-        private ITextService _textService;
+        private ITextService _textService = null;
 
         public double GetPartyBonus(PartyData party, long upgradeId, int tierOverride = 0)
         {
@@ -208,7 +208,8 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 
-            foreach (PartyMember member in party.Members)
+
+            foreach (PartyMember member in party.GetAllMembers())
             {
                 List<Role> roles = roleSettings.GetRoles(member.Roles);
 
@@ -238,3 +239,5 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
         }
     }
 }
+
+

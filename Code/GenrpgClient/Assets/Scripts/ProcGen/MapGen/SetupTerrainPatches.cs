@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using System.Threading;
 using Genrpg.Shared.MapServer.Constants;
@@ -89,3 +89,5 @@ public class SetupTerrainPatches : BaseZoneGenerator
         }
     }
 }
+
+

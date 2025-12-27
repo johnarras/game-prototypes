@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Loot.Messages
         [Key(1)] public List<RewardList> Rewards { get; set; }
     }
 }
+
+

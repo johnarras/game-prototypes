@@ -1,11 +1,11 @@
-﻿using Genrpg.Shared.Constants;
+using Genrpg.Shared.Constants;
 using System.Threading;
 using UnityEngine;
 
 public class MapProjectile : BaseBehaviour
 {
     protected IClientMapObjectManager _objectManager;
-    private IInputService _inputService;
+    private IInputService _inputService = null;
 
     protected FullFX _full;
 
@@ -101,3 +101,5 @@ public class MapProjectile : BaseBehaviour
         }
     }
 }
+
+

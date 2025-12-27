@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapServer.Constants;
+using Genrpg.Shared.MapServer.Constants;
 using Genrpg.Shared.MapServer.Entities;
 
 public class MapConstants : SharedMapConstants
@@ -144,3 +144,4 @@ public class MapConstants : SharedMapConstants
     public const string FullMinimapWaterName = "MinimapWaterFull";
     public const string KillColliderName = "KillCollider";
 }
+

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Entities;
+using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -122,3 +122,5 @@ namespace Genrpg.Shared.Crawler.Tavern.Services
         }
     }
 }
+
+

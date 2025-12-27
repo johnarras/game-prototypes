@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Loot.Settings;
+using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
@@ -30,3 +30,5 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
         }
     }
 }
+
+

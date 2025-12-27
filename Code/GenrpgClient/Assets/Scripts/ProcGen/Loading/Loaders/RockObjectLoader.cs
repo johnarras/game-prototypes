@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Rocks;
 using Genrpg.Shared.Utils;
@@ -97,3 +97,4 @@ public class RockObjectLoader : BaseObjectLoader
         //go.transform.position = Gnew Vector3(dlo.x, go.transform.position.y, dlo.y);
     }
 }
+

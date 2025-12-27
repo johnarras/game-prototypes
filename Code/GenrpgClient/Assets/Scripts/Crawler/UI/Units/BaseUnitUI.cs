@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Combat;
+using Assets.Scripts.Crawler.Combat;
 using Assets.Scripts.Crawler.UI.StatusUI;
 using Assets.Scripts.UI.CombatTexts;
 using UnityEngine;
@@ -21,3 +21,5 @@ namespace Assets.Scripts.Crawler.UI.Units
         }
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "groundobjtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Art": "Chest01",
       "GroupId": "chest",
@@ -16,8 +13,6 @@
       "OneTimeOnly": true
     },
     {
-      "Id": "groundobjtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Art": "Chest02",
       "GroupId": "chest",
@@ -30,8 +25,6 @@
       "OneTimeOnly": true
     },
     {
-      "Id": "groundobjtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Art": "Chest03",
       "GroupId": "chest",
@@ -44,8 +37,6 @@
       "OneTimeOnly": true
     },
     {
-      "Id": "groundobjtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Art": "Chest04",
       "GroupId": "chest",
@@ -58,8 +49,6 @@
       "OneTimeOnly": true
     },
     {
-      "Id": "groundobjtype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "",
       "Desc": "",
@@ -74,8 +63,6 @@
       "QualityTypeId": 1
     },
     {
-      "Id": "groundobjtype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Art": "HerbNode",
       "GroupId": "herb",
@@ -87,8 +74,6 @@
       "QualityTypeId": 1
     },
     {
-      "Id": "groundobjtype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Art": "StoneNode",
       "GroupId": "stone",
@@ -100,8 +85,6 @@
       "QualityTypeId": 1
     },
     {
-      "Id": "groundobjtype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Art": "WoodNode",
       "GroupId": "wood",
@@ -115,8 +98,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "GroundObjTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "GroundObjTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

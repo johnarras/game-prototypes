@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "qualitytype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Common",
       "Icon": "BGCommon",
@@ -15,8 +12,6 @@
       "UnitDamPct": 100
     },
     {
-      "Id": "qualitytype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Uncommon",
       "Icon": "BGUncommon",
@@ -29,8 +24,6 @@
       "UnitDamPct": 125
     },
     {
-      "Id": "qualitytype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Rare",
       "Icon": "BGRare",
@@ -44,8 +37,6 @@
       "UnitDamPct": 150
     },
     {
-      "Id": "qualitytype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Epic",
       "Icon": "BGEpic",
@@ -59,8 +50,6 @@
       "UnitDamPct": 200
     },
     {
-      "Id": "qualitytype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Legendary",
       "Icon": "BGLegendary",
@@ -74,8 +63,6 @@
       "UnitDamPct": 300
     },
     {
-      "Id": "qualitytype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Set",
       "Icon": "BGSet",
@@ -91,8 +78,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "QualityTypeSettings",
-    "SaveTime": "2025-11-24T17:13:23.088Z"
+    "Name": "QualityTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-24T17:13:23.088Z"
 }

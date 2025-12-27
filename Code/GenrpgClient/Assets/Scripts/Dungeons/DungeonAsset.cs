@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Constants;
+using Assets.Scripts.Crawler.Constants;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ namespace Assets.Scripts.Dungeons
     [Serializable]
     public class DungeonAsset : BaseBehaviour
     {
-        private IAudioService _audioService;
+        private IAudioService _audioService = null;
         public Animator Animator;
 
         public List<MeshRenderer> Renderers = new List<MeshRenderer>();
@@ -46,3 +46,5 @@ namespace Assets.Scripts.Dungeons
         }
     }
 }
+
+

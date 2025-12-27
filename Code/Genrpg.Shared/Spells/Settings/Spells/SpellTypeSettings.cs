@@ -1,48 +1,43 @@
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
+using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Spells.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Spells.Settings.Spells
 {
-    [MessagePackObject]
     public class SpellType : ChildSettings, ISpell
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
 
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public long ElementTypeId { get; set; }
-        [Key(9)] public long PowerStatTypeId { get; set; }
-        [Key(10)] public int PowerCost { get; set; }
-        [Key(11)] public int Cooldown { get; set; }
-        [Key(12)] public float CastTime { get; set; }
-        [Key(13)] public int MinRange { get; set; } = SpellConstants.MinRange;
-        [Key(14)] public int MaxRange { get; set; } = SpellConstants.MaxRange;
-        [Key(15)] public int MaxCharges { get; set; }
-        [Key(16)] public int Shots { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public long ElementTypeId { get; set; }
+        public long PowerStatTypeId { get; set; }
+        public int PowerCost { get; set; }
+        public int Cooldown { get; set; }
+        public float CastTime { get; set; }
+        public int MinRange { get; set; } = SpellConstants.MinRange;
+        public int MaxRange { get; set; } = SpellConstants.MaxRange;
+        public int MaxCharges { get; set; }
+        public int Shots { get; set; }
 
-        [Key(17)] public int Flags { get; set; }
+        public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
-        [Key(18)] public List<SpellEffect> Effects { get; set; } = new List<SpellEffect>();
+        public List<SpellEffect> Effects { get; set; } = new List<SpellEffect>();
 
         public SpellType()
         {
@@ -68,13 +63,17 @@ namespace Genrpg.Shared.Spells.Settings.Spells
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
     }
 
-    [MessagePackObject]
     public class SpellTypeSettings : ParentSettings<SpellType>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class SpellTypeSettingsDto : ParentSettingsDto<SpellTypeSettings, SpellType> { }
+    public class SpellTypeSettingsDto : ParentSettingsDto<SpellTypeSettings, SpellType>
+    {
+        public override List<SpellType> Children { get; set; }
+        public override SpellTypeSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class SpellTypeSettingsLoader : ParentSettingsLoader<SpellTypeSettings, SpellType> { }
 
     public class SpellTypeSettingsMapper : ParentSettingsMapper<SpellTypeSettings, SpellType, SpellTypeSettingsDto> { }
@@ -86,3 +85,5 @@ namespace Genrpg.Shared.Spells.Settings.Spells
         public override long HelperKey => EntityTypes.Spell;
     }
 }
+
+

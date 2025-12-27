@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -322,7 +322,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                         ErrorText = nextMaps[0].EntranceRiddle.Error,
                                     };
 
-                                    foreach (PartyMember member in party.GetActiveParty())
+                                    foreach (PartyMember member in party.ActiveParty)
                                     {
                                         member.Stats.SetCurr(StatTypes.Health, member.Stats.Curr(StatTypes.Health) / 2);
                                     }
@@ -376,7 +376,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                         ErrorText = nextMaps[0].EntranceRiddle.Error,
                                     };
 
-                                    foreach (PartyMember member in party.GetActiveParty())
+                                    foreach (PartyMember member in party.ActiveParty)
                                     {
                                         member.Stats.SetCurr(StatTypes.Health, member.Stats.Curr(StatTypes.Health) / 2);
                                     }
@@ -503,3 +503,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         }
     }
 }
+
+

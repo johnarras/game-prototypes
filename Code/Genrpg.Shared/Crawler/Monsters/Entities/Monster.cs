@@ -8,7 +8,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Crawler.Monsters.Entities
 {
-    // MessagePackIgnore
     public class Monster : CrawlerUnit
     {
         public long MinDam { get; set; }
@@ -19,3 +18,5 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
 
     }
 }
+
+

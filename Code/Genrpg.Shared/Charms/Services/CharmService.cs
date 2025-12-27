@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Charms.Constants;
+using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Settings;
 using Genrpg.Shared.Core.Entities;
@@ -164,3 +164,5 @@ namespace Genrpg.Shared.Charms.Services
         }
     }
 }
+
+

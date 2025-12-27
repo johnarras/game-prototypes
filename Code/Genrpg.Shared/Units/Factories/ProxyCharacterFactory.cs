@@ -15,7 +15,6 @@ using Genrpg.Shared.Utils;
 
 namespace Genrpg.Shared.Units.Factories
 {
-    [MessagePackObject]
     public class ProxyCharacterFactory : UnitFactory
     {
         public override long HelperKey => EntityTypes.ProxyCharacter;
@@ -56,3 +55,5 @@ namespace Genrpg.Shared.Units.Factories
         }
     }
 }
+
+

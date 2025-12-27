@@ -6,10 +6,11 @@ using System.Text;
 
 namespace Genrpg.Shared.PlayMultiplier.WebApi
 {
-    [MessagePackObject]
     public class SetPlayMultResponse : IWebResponse
     {
-        [Key(0)] public bool Success { get; set; }
-        [Key(1)] public long NewPlayMult { get; set; }
+        public bool Success { get; set; }
+        public long NewPlayMult { get; set; }
     }
 }
+
+

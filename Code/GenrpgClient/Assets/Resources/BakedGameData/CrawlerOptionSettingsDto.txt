@@ -1,81 +1,60 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "crawleroption1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Whole Party",
       "Desc": "Whole party or one character with 2 classes and 2 actions per combat round?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Permadeath",
       "Desc": "The game resets when the entire party dies.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Full World",
       "Desc": "Is there a full world of many cities or one city with one random dungeon?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Random Monsters",
       "Desc": "Random monster encounters vs more frequent quick locations.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Roll Stats",
       "Desc": "Roll player stats when they are created.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "All Equipment Slots",
       "Desc": "Do we use all equipment slots or a more limited subset?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Puzzles",
       "Desc": "Have puzzles and riddles guarding entrances to some levels.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Quests",
       "Desc": "Have quests that grant rewards.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Party Upgrades",
       "Desc": "Have upgrade points and party upgrades.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Member Upgrades",
       "Desc": "Each party member has upgrades.",
@@ -83,48 +62,36 @@
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Monsters Get Stronger",
       "Desc": "Monsters get stronger each day.",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Random Chests",
       "Desc": "Are there random chests in the world?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Stat Upgrade Objects",
       "Desc": "Are there stat upgrade objects in the world?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Camping",
       "Desc": "Can players camp to regain stats. (Chance of encounter.)",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Auto Level Up",
       "Desc": "Do characters level up if possible after gaining Exp?",
       "DefaultForNewGame": true
     },
     {
-      "Id": "crawleroption16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Drop Gives Money",
       "Desc": "Dropping an item in your character screen gives the vendor money.",
@@ -133,8 +100,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CrawlerOptionSettings",
-    "SaveTime": "2025-11-01T20:10:58.211Z"
+    "Name": "CrawlerOptionSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-01T20:10:58.211Z"
 }

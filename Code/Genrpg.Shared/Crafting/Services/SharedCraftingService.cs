@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Crafting.Constants;
@@ -532,3 +532,5 @@ namespace Genrpg.Shared.Crafting.Services
 
     }
 }
+
+

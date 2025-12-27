@@ -1,0 +1,10 @@
+{
+  "Id": "skintype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Donkey",
+  "Icon": "Donkey",
+  "Art": "Donkey",
+  "AnimalTypeId": 1,
+  "IsDefault": true
+}

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "road1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Via Appia",
       "Desc": "The 'Queen of Roads', this vital artery connects Rome to the southern ports of Italy, paved with large stones and lined with tombs.",
@@ -18,11 +15,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 545.0
+      "Distance": 545
     },
     {
-      "Id": "road2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Via Flaminia & Aemilia",
       "Desc": "A major route heading north from Rome, crossing the Apennines and traversing the flat, fertile Po Valley.",
@@ -37,11 +32,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 580.0
+      "Distance": 580
     },
     {
-      "Id": "road3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Via Flaminia Minor",
       "Desc": "A branch of the Via Flaminia leading to the strategic Adriatic port of Ravenna.",
@@ -56,11 +49,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 400.0
+      "Distance": 400
     },
     {
-      "Id": "road4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Via Popilia & Rhegium Ferry Path",
       "Desc": "The land route through southern Italy to the Strait of Messina, the primary path to the crucial province of Sicily.",
@@ -75,11 +66,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 710.0
+      "Distance": 710
     },
     {
-      "Id": "road5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Via Postumia",
       "Desc": "A major road across northern Italy, connecting the administrative center of Milan with the great northern port of Aquileia.",
@@ -94,11 +83,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 415.0
+      "Distance": 415
     },
     {
-      "Id": "road6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Passage of the Alps",
       "Desc": "A treacherous and winding series of passes through the high Alps, connecting Italy to Gaul. Often impassable due to snow in winter.",
@@ -112,11 +99,9 @@
       "SummerRain": 4.0,
       "SummerHeat": 3.0,
       "WinterRain": 6.0,
-      "Distance": 550.0
+      "Distance": 550
     },
     {
-      "Id": "road7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Via Agrippa",
       "Desc": "The main artery connecting the capital of Gaul, Lugdunum, to the ancient Mediterranean port of Massilia.",
@@ -131,11 +116,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 315.0
+      "Distance": 315
     },
     {
-      "Id": "road8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Gallic Aquitania Road",
       "Desc": "A major route across Gaul, linking the Rhone valley to the Atlantic coast and the wine-producing region of Burdigala.",
@@ -150,11 +133,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 560.0
+      "Distance": 560
     },
     {
-      "Id": "road9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Via Agrippa Lingonum",
       "Desc": "The primary Roman road heading north from Lugdunum towards the Seine and the northern Gallic interior.",
@@ -169,11 +150,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 465.0
+      "Distance": 465
     },
     {
-      "Id": "road10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Gallic Belgica Road",
       "Desc": "A route through the dense forests of northern Gaul, connecting the Seine basin to the Rhine frontier and the imperial city of Trier.",
@@ -188,11 +167,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 430.0
+      "Distance": 430
     },
     {
-      "Id": "road11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Eastern Gallic Network",
       "Desc": "A strategic military road linking the capital of Gaul directly with the frontier capital on the Moselle River.",
@@ -207,11 +184,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 540.0
+      "Distance": 540
     },
     {
-      "Id": "road12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Mosel & Rhine Valley Road",
       "Desc": "A vital road along the rivers, linking two of the most important Roman cities in Germania and supporting the Rhine frontier.",
@@ -226,11 +201,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 200.0
+      "Distance": 200
     },
     {
-      "Id": "road13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Fretum Gallicum Trail",
       "Desc": "The combined land and sea route connecting Gaul to Britannia, crossing the choppy waters of the English Channel.",
@@ -245,11 +218,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Distance": 460.0
+      "Distance": 460
     },
     {
-      "Id": "road14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Ermine Street",
       "Desc": "A major Roman road in Britain, running north from the port of Londinium to the legionary fortress of Eburacum.",
@@ -264,11 +235,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 340.0
+      "Distance": 340
     },
     {
-      "Id": "road15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Via Domitia",
       "Desc": "The first Roman road built in Gaul, linking Italy to Hispania along the sunny Mediterranean coast.",
@@ -283,11 +252,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 510.0
+      "Distance": 510
     },
     {
-      "Id": "road16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Central Hispanian Road",
       "Desc": "A long road crossing the high, arid plains of central Hispania, connecting the coast to the grand veteran's colony of Emerita Augusta.",
@@ -302,11 +269,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 890.0
+      "Distance": 890
     },
     {
-      "Id": "road17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Via Augusta (South)",
       "Desc": "The southern leg of the great road that followed the Spanish coast, linking the interior to the rich ports of Baetica.",
@@ -321,11 +286,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 390.0
+      "Distance": 390
     },
     {
-      "Id": "road18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Corduba Connector",
       "Desc": "A well-travelled road through southern Hispania, linking the administrative center of Mérida to the olive oil capital of Corduba.",
@@ -340,11 +303,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 205.0
+      "Distance": 205
     },
     {
-      "Id": "road19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "Hispanian Interior Road",
       "Desc": "An inland route connecting the rich agricultural lands of Baetica with the major port and capital of Tarraco on the eastern coast.",
@@ -359,11 +320,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 815.0
+      "Distance": 815
     },
     {
-      "Id": "road20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Via de la Plata & Pyrenees Path",
       "Desc": "The 'Silver Route' heading north through western Hispania and crossing the rugged Pyrenees mountains into Gaul.",
@@ -378,11 +337,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 910.0
+      "Distance": 910
     },
     {
-      "Id": "road21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Mauretanian Coastal Road",
       "Desc": "The road connecting the inland capital of Volubilis to the strategic port of Tingis on the Strait of Gibraltar.",
@@ -397,11 +354,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 280.0
+      "Distance": 280
     },
     {
-      "Id": "road22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Dalmatian Coastal Road",
       "Desc": "A winding coastal road along the rugged Adriatic, connecting Italy to the province of Dalmatia.",
@@ -416,11 +371,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 425.0
+      "Distance": 425
     },
     {
-      "Id": "road23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Via Militaris",
       "Desc": "A leg of the great military road to the East, crossing the difficult terrain of the Balkan interior.",
@@ -435,11 +388,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 700.0
+      "Distance": 700
     },
     {
-      "Id": "road24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Via Militaris",
       "Desc": "The final, well-maintained stretch of the military road, descending from the Thracian plains to the strategic city of Byzantium.",
@@ -454,11 +405,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 240.0
+      "Distance": 240
     },
     {
-      "Id": "road25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "Via Egnatia",
       "Desc": "The great Roman road linking the Adriatic to Byzantium, crossing the mountainous regions of Macedonia and Thrace.",
@@ -473,11 +422,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Distance": 1120.0
+      "Distance": 1120
     },
     {
-      "Id": "road26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "Via Egnatia (South Branch)",
       "Desc": "A secondary route linking the classical heartland of Athens to the main Via Egnatia and the road to the East.",
@@ -492,11 +439,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 1080.0
+      "Distance": 1080
     },
     {
-      "Id": "road27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "Anatolian Coastal Road",
       "Desc": "A major road connecting the capital on the Bosphorus to the wealthy cities of western Anatolia, including the port of Ephesus.",
@@ -511,11 +456,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 670.0
+      "Distance": 670
     },
     {
-      "Id": "road28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "Northern Anatolian Route",
       "Desc": "A difficult and dangerous road crossing the high, cold plateau of northern Anatolia towards the mountainous kingdom of Armenia.",
@@ -529,11 +472,9 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Distance": 1750.0
+      "Distance": 1750
     },
     {
-      "Id": "road29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "Ionian Road",
       "Desc": "A short but important road connecting two of the greatest Hellenistic cities in western Anatolia.",
@@ -548,11 +489,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 160.0
+      "Distance": 160
     },
     {
-      "Id": "road30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Lydian Royal Road",
       "Desc": "A stretch of the ancient Persian Royal Road, linking the coast at Ephesus to the old Lydian capital of Sardis.",
@@ -567,11 +506,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 100.0
+      "Distance": 100
     },
     {
-      "Id": "road31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Meander Valley Path",
       "Desc": "A local path following the Meander River valley, connecting Ephesus with the ancient intellectual center of Miletus.",
@@ -586,11 +523,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 80.0
+      "Distance": 80
     },
     {
-      "Id": "road32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Carian Coast Trail",
       "Desc": "A minor coastal trail through the rugged region of Caria.",
@@ -605,11 +540,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 120.0
+      "Distance": 120
     },
     {
-      "Id": "road33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "Lycian-Pamphylian Coastal Path",
       "Desc": "A long and arduous coastal path crossing the rugged mountains and river valleys of southern Anatolia.",
@@ -624,11 +557,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 1050.0
+      "Distance": 1050
     },
     {
-      "Id": "road34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "Persian Royal Road (Taurus Section)",
       "Desc": "The great Royal Road crossing the high plains of central Anatolia before descending through the formidable Taurus Mountains.",
@@ -643,11 +574,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 950.0
+      "Distance": 950
     },
     {
-      "Id": "road35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "Cilician Gates Road",
       "Desc": "A strategic road passing through the 'Cilician Gates', a narrow pass in the Taurus Mountains, linking Anatolia to Syria.",
@@ -662,11 +591,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 260.0
+      "Distance": 260
     },
     {
-      "Id": "road36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "Armenian Highlands Trail",
       "Desc": "An extremely challenging mountain trail connecting Cilicia to the Armenian highlands, used by traders and armies alike.",
@@ -680,11 +607,9 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Distance": 980.0
+      "Distance": 980
     },
     {
-      "Id": "road37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "Strata Diocletiana",
       "Desc": "A major Roman road linking the metropolis of Antioch with the ancient oasis city of Damascus.",
@@ -698,11 +623,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 350.0
+      "Distance": 350
     },
     {
-      "Id": "road38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "Syrian Caravan Route",
       "Desc": "The primary caravan route leading from the Roman trade hub of Antioch into the Syrian desert towards the oasis of Palmyra.",
@@ -716,11 +639,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 310.0
+      "Distance": 310
     },
     {
-      "Id": "road39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "King's Highway",
       "Desc": "An ancient trade route running through the arid highlands east of the Jordan River, connecting Damascus to the Red Sea via Petra.",
@@ -734,11 +655,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 450.0
+      "Distance": 450
     },
     {
-      "Id": "road40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "Strata Diocletiana (East)",
       "Desc": "A desert military road and patrol route connecting Damascus with the Roman fortress on the Euphrates.",
@@ -752,11 +671,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 475.0
+      "Distance": 475
     },
     {
-      "Id": "road41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "Phoenician Inland Route",
       "Desc": "An important route crossing the mountains of Lebanon to connect the inland oasis of Damascus with the ports of Phoenicia.",
@@ -770,11 +687,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 140.0
+      "Distance": 140
     },
     {
-      "Id": "road42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "Phoenician Coastal Road",
       "Desc": "A short, busy coastal road linking the two great rival Phoenician cities.",
@@ -788,11 +703,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 40.0
+      "Distance": 40
     },
     {
-      "Id": "road43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "Phoenician Coastal Road",
       "Desc": "The ancient road along the Phoenician coast, linking some of the oldest ports in the world.",
@@ -806,11 +719,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 55.0
+      "Distance": 55
     },
     {
-      "Id": "road44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "Coastal Levant Road",
       "Desc": "The main coastal highway of the northern Levant, a region dotted with ancient cities and ports.",
@@ -824,11 +735,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 280.0
+      "Distance": 280
     },
     {
-      "Id": "road45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "Incense Route",
       "Desc": "The primary artery of the Incense Route, a desert trail through the canyons and plains of Arabia, traveled by spice caravans.",
@@ -842,11 +751,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 3.0,
-      "Distance": 480.0
+      "Distance": 480
     },
     {
-      "Id": "road46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "Euphrates Desert Trail",
       "Desc": "A dangerous desert track following the Euphrates River, connecting the two great caravan cities of the Syrian frontier.",
@@ -860,11 +767,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 220.0
+      "Distance": 220
     },
     {
-      "Id": "road47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "Middle Euphrates Trail",
       "Desc": "A route following the river south into the heart of Mesopotamia, passing through numerous small towns and agricultural lands.",
@@ -878,11 +783,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 390.0
+      "Distance": 390
     },
     {
-      "Id": "road48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "Assyrian Plains Road",
       "Desc": "A dusty track across the semi-arid plains of northern Mesopotamia, linking the ancient Assyrian capital with the desert trade city of Hatra.",
@@ -896,11 +799,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 120.0
+      "Distance": 120
     },
     {
-      "Id": "road49default",
-      "ParentId": "default",
       "IdKey": 49,
       "Name": "Zagros Mountain Path",
       "Desc": "A perilous and rarely used track heading north from the desert plains into the formidable Zagros and Armenian mountains.",
@@ -913,11 +814,9 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
-      "Distance": 750.0
+      "Distance": 750
     },
     {
-      "Id": "road50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "Great Khorasan Road (West)",
       "Desc": "The westernmost leg of the Silk Road, crossing the Zagros mountains to link Mesopotamia with the high plateau of Persia.",
@@ -932,11 +831,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Distance": 600.0
+      "Distance": 600
     },
     {
-      "Id": "road51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "Canal Path",
       "Desc": "A short road running through the dense network of canals and irrigated fields between two of Mesopotamia's greatest cities.",
@@ -950,11 +847,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 90.0
+      "Distance": 90
     },
     {
-      "Id": "road52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "Tigris River Road",
       "Desc": "The busy road connecting the adjacent Hellenistic and Persian capitals on opposite sides of the Tigris River.",
@@ -968,11 +863,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 40.0
+      "Distance": 40
     },
     {
-      "Id": "road53default",
-      "ParentId": "default",
       "IdKey": 53,
       "Name": "Great Khorasan Road (Central)",
       "Desc": "The central leg of the Silk Road through Persia, climbing from the lowlands of Mesopotamia onto the Iranian plateau.",
@@ -987,11 +880,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Distance": 550.0
+      "Distance": 550
     },
     {
-      "Id": "road54default",
-      "ParentId": "default",
       "IdKey": 54,
       "Name": "Great Khorasan Road (East)",
       "Desc": "The long journey across the arid Iranian plateau and desert towards the great oasis city of Merv.",
@@ -1005,11 +896,9 @@
       "SummerRain": 2.0,
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
-      "Distance": 1150.0
+      "Distance": 1150
     },
     {
-      "Id": "road55default",
-      "ParentId": "default",
       "IdKey": 55,
       "Name": "Silk Road (Transoxiana)",
       "Desc": "The 'Land Beyond the River' route, a desert path linking the oases of Merv and Bukhara in the heart of Central Asia.",
@@ -1024,11 +913,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 410.0
+      "Distance": 410
     },
     {
-      "Id": "road56default",
-      "ParentId": "default",
       "IdKey": 56,
       "Name": "Silk Road (Sogdian Trail)",
       "Desc": "A well-traveled road through the fertile heartland of Sogdiana, connecting two of the most famous cities on the Silk Road.",
@@ -1043,11 +930,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 240.0
+      "Distance": 240
     },
     {
-      "Id": "road57default",
-      "ParentId": "default",
       "IdKey": 57,
       "Name": "Silk Road (High Route)",
       "Desc": "An arduous and extremely long network of trails crossing the Pamir Mountains and Taklamakan Desert, the primary route for silk from China.",
@@ -1061,11 +946,9 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
-      "Distance": 3900.0
+      "Distance": 3900
     },
     {
-      "Id": "road58default",
-      "ParentId": "default",
       "IdKey": 58,
       "Name": "Hindu Kush Pass",
       "Desc": "A treacherous path leading south from Central Asia, crossing the formidable Hindu Kush mountains into India.",
@@ -1079,11 +962,9 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
-      "Distance": 1100.0
+      "Distance": 1100
     },
     {
-      "Id": "road59default",
-      "ParentId": "default",
       "IdKey": 59,
       "Name": "Uttarapatha (Northern Road)",
       "Desc": "The great northern highway of India, a grand trunk road connecting the northwestern frontier with the Gangetic plain.",
@@ -1098,11 +979,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 4.0,
-      "Distance": 1550.0
+      "Distance": 1550
     },
     {
-      "Id": "road60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "Indus Valley Route",
       "Desc": "A long route following the Indus River valley south to the coastal ports of Gujarat, a major artery for Indian trade.",
@@ -1117,11 +996,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 4.0,
-      "Distance": 1350.0
+      "Distance": 1350
     },
     {
-      "Id": "road61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "Gujarat Coastal Trail",
       "Desc": "A local coastal road through the hot and humid region of Gujarat, linking major ports.",
@@ -1135,11 +1012,9 @@
       "SummerRain": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 5.0,
-      "Distance": 140.0
+      "Distance": 140
     },
     {
-      "Id": "road62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "Malabar Coastal Trail",
       "Desc": "A long, winding coastal trail connecting the ports of Gujarat with the spice-rich Malabar Coast, often plagued by monsoons.",
@@ -1154,11 +1029,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 5.0,
-      "Distance": 1250.0
+      "Distance": 1250
     },
     {
-      "Id": "road63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Nile River Path",
       "Desc": "The busy road paralleling the Nile, connecting the main port of Alexandria with the ancient capital of Memphis.",
@@ -1171,11 +1044,9 @@
       "Danger": 2.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 200.0
+      "Distance": 200
     },
     {
-      "Id": "road64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "Nile River Path",
       "Desc": "The long road south through Upper Egypt, following the life-giving river through a narrow strip of fertile land surrounded by desert.",
@@ -1188,11 +1059,9 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 670.0
+      "Distance": 670
     },
     {
-      "Id": "road65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "Nubian Desert Trail",
       "Desc": "A difficult desert trail that bypasses the great bend of the Nile, a dangerous but necessary shortcut for trade with the Kingdom of Kush.",
@@ -1205,11 +1074,9 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 1470.0
+      "Distance": 1470
     },
     {
-      "Id": "road66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "Eastern Desert Road",
       "Desc": "A harsh, dry road crossing the Eastern Desert to connect the Nile valley with the Red Sea ports and the trade from the East.",
@@ -1222,11 +1089,9 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 370.0
+      "Distance": 370
     },
     {
-      "Id": "road67default",
-      "ParentId": "default",
       "IdKey": 67,
       "Name": "Via Balbia",
       "Desc": "A long coastal road linking Egypt with the province of Cyrenaica, often threatened by desert raiders.",
@@ -1240,11 +1105,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1050.0
+      "Distance": 1050
     },
     {
-      "Id": "road68default",
-      "ParentId": "default",
       "IdKey": 68,
       "Name": "Syrtican Coastal Trail",
       "Desc": "A dangerous and poorly maintained trail along the Gulf of Sirte, a lawless region of burning sands and treacherous coastline.",
@@ -1258,11 +1121,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 900.0
+      "Distance": 900
     },
     {
-      "Id": "road69default",
-      "ParentId": "default",
       "IdKey": 69,
       "Name": "Limes Tripolitanus",
       "Desc": "A road following the Roman frontier fortifications (limes) in Tripolitania, linking the major cities of Roman Africa.",
@@ -1277,11 +1138,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 760.0
+      "Distance": 760
     },
     {
-      "Id": "road70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "Coastal Africa Road",
       "Desc": "The main Roman highway along the fertile North African coast, connecting the region's prosperous cities.",
@@ -1296,11 +1155,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 700.0
+      "Distance": 700
     },
     {
-      "Id": "road71default",
-      "ParentId": "default",
       "IdKey": 71,
       "Name": "Mauretanian Route",
       "Desc": "An inland road connecting the coastal capital of Caesarea with the frontier city of Volubilis.",
@@ -1315,11 +1172,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 550.0
+      "Distance": 550
     },
     {
-      "Id": "road72default",
-      "ParentId": "default",
       "IdKey": 72,
       "Name": "Persian Royal Road (South)",
       "Desc": "The southern stretch of the Royal Road, crossing the rugged Zagros mountains to link the administrative capital of Susa with ceremonial heart of Persepolis.",
@@ -1333,11 +1188,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 650.0
+      "Distance": 650
     },
     {
-      "Id": "road73default",
-      "ParentId": "default",
       "IdKey": 73,
       "Name": "Tigris Lowlands Path",
       "Desc": "A path across the flat, hot plains of southern Mesopotamia, linking the Persian city of Susa with the great metropolis of Seleucia.",
@@ -1351,11 +1204,9 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 380.0
+      "Distance": 380
     },
     {
-      "Id": "road74default",
-      "ParentId": "default",
       "IdKey": 74,
       "Name": "Attican Road",
       "Desc": "A well-traveled road connecting the two most powerful (and often rival) cities of classical mainland Greece.",
@@ -1370,11 +1221,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 70.0
+      "Distance": 70
     },
     {
-      "Id": "road75default",
-      "ParentId": "default",
       "IdKey": 75,
       "Name": "Boeotian Path",
       "Desc": "A route connecting the plains of Boeotia with the strategic trade hub of Corinth on the isthmus.",
@@ -1389,11 +1238,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 90.0
+      "Distance": 90
     },
     {
-      "Id": "road76default",
-      "ParentId": "default",
       "IdKey": 76,
       "Name": "Great Libyan Desert Route",
       "Desc": "A theoretical and extremely dangerous direct crossing of the deep Sahara, attempted only by the most desperate or well-prepared caravans.",
@@ -1405,11 +1252,9 @@
       "Danger": 6.0,
       "SummerHeat": 6.0,
       "WinterHeat": 3.0,
-      "Distance": 2340.0
+      "Distance": 2340
     },
     {
-      "Id": "road77default",
-      "ParentId": "default",
       "IdKey": 77,
       "Name": "Pillars of Hercules Trail",
       "Desc": "The combined land and sea route crossing the Strait of Gibraltar, the mythical Pillars of Hercules that separate the Mediterranean from the Atlantic.",
@@ -1424,11 +1269,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 160.0
+      "Distance": 160
     },
     {
-      "Id": "road78default",
-      "ParentId": "default",
       "IdKey": 78,
       "Name": "Sicily-Carthage Sea Route (Sim.)",
       "Desc": "A major trans-Mediterranean sea lane essential for trade and imperial conflict.",
@@ -1443,11 +1286,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 445.0
+      "Distance": 445
     },
     {
-      "Id": "road79default",
-      "ParentId": "default",
       "IdKey": 79,
       "Name": "Silk Road (Palmyra-Chang'an)",
       "Desc": "The most famous overland route connecting the Mediterranean to the Chinese Empire, traversing deserts and mountains.",
@@ -1462,11 +1303,9 @@
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
       "WinterHeat": 1.0,
-      "Distance": 426.0
+      "Distance": 426
     },
     {
-      "Id": "road80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "Nile-Red Sea Trade Route",
       "Desc": "A crucial trade route following the Nile River and desert paths for goods from Nubia and the Red Sea.",
@@ -1479,11 +1318,9 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 609.0
+      "Distance": 609
     },
     {
-      "Id": "road81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "Southern Silk Road (Samarkand-Guangzhou)",
       "Desc": "An arduous but essential segment of the Southern Silk Road, connecting Central Asia with the maritime port of Guangzhou.",
@@ -1498,11 +1335,9 @@
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 5705.0
+      "Distance": 5705
     },
     {
-      "Id": "road82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "Via Domitia (Simulated Extension)",
       "Desc": "A simulated Roman extension facilitating movement of troops and trade between Italy and Gaul (France).",
@@ -1517,11 +1352,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 666.0
+      "Distance": 666
     },
     {
-      "Id": "road83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "Regional Path of Corinth and Sparta",
       "Desc": "A simple path connecting Corinth  and Sparta.",
@@ -1536,11 +1369,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 75.0
+      "Distance": 75
     },
     {
-      "Id": "road84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "Regional Path of Tyre and Jerusalem",
       "Desc": "A simple path connecting Tyre  and Jerusalem.",
@@ -1555,11 +1386,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 116.0
+      "Distance": 116
     },
     {
-      "Id": "road85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "Regional Path of Susa and Ur",
       "Desc": "A simple path connecting Susa  and Ur.",
@@ -1574,11 +1403,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 142.0
+      "Distance": 142
     },
     {
-      "Id": "road86default",
-      "ParentId": "default",
       "IdKey": 86,
       "Name": "Regional Path of Angkor and Oc Eo",
       "Desc": "A simple path connecting Angkor  and Oc Eo.",
@@ -1593,11 +1420,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 267.0
+      "Distance": 267
     },
     {
-      "Id": "road87default",
-      "ParentId": "default",
       "IdKey": 87,
       "Name": "Regional Path of Angkor and Ayutthaya",
       "Desc": "A simple path connecting Angkor  and Ayutthaya.",
@@ -1612,11 +1437,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 276.0
+      "Distance": 276
     },
     {
-      "Id": "road88default",
-      "ParentId": "default",
       "IdKey": 88,
       "Name": "Regional Path of Bolghar and Ukek",
       "Desc": "A simple path connecting Bolghar  and Ukek.",
@@ -1631,11 +1454,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 360.0
+      "Distance": 360
     },
     {
-      "Id": "road89default",
-      "ParentId": "default",
       "IdKey": 89,
       "Name": "Regional Path of Malacca and Palembang",
       "Desc": "A simple path connecting Malacca  and Palembang.",
@@ -1650,11 +1471,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 483.0
+      "Distance": 483
     },
     {
-      "Id": "road90default",
-      "ParentId": "default",
       "IdKey": 90,
       "Name": "Ancient Trade Road of Beijing and Nanjing",
       "Desc": "A vital road connecting Beijing and Nanjing.",
@@ -1669,11 +1488,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 656.0
+      "Distance": 656
     },
     {
-      "Id": "road91default",
-      "ParentId": "default",
       "IdKey": 91,
       "Name": "Ancient Trade Road of Malacca and Oc Eo",
       "Desc": "A vital road connecting Malacca and Oc Eo.",
@@ -1688,11 +1505,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 656.0
+      "Distance": 656
     },
     {
-      "Id": "road92default",
-      "ParentId": "default",
       "IdKey": 92,
       "Name": "Ancient Trade Road of Xi'an and Beijing",
       "Desc": "A vital road connecting Xi'an and Beijing.",
@@ -1707,11 +1522,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 753.0
+      "Distance": 753
     },
     {
-      "Id": "road93default",
-      "ParentId": "default",
       "IdKey": 93,
       "Name": "Ancient Trade Road of Bolghar and Arkaim",
       "Desc": "A vital road connecting Bolghar and Arkaim.",
@@ -1726,11 +1539,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 836.0
+      "Distance": 836
     },
     {
-      "Id": "road94default",
-      "ParentId": "default",
       "IdKey": 94,
       "Name": "Ancient Trade Road of Artaxata and Ukek",
       "Desc": "A vital road connecting Artaxata and Ukek.",
@@ -1745,11 +1556,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 907.0
+      "Distance": 907
     },
     {
-      "Id": "road95default",
-      "ParentId": "default",
       "IdKey": 95,
       "Name": "Great Silk Trail (Segment 95)",
       "Desc": "A massive, trans-continental trade trail connecting  Guangzhou and Angkor.",
@@ -1764,11 +1573,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1140.0
+      "Distance": 1140
     },
     {
-      "Id": "road96default",
-      "ParentId": "default",
       "IdKey": 96,
       "Name": "Great Silk Trail (Segment 96)",
       "Desc": "A massive, trans-continental trade trail connecting  Xi'an and Karakorum.",
@@ -1783,11 +1590,9 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1184.0
+      "Distance": 1184
     },
     {
-      "Id": "road97default",
-      "ParentId": "default",
       "IdKey": 97,
       "Name": "Great Silk Trail (Segment 97)",
       "Desc": "A massive, trans-continental trade trail connecting Arkaim and Mangazeya.",
@@ -1802,13 +1607,13 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 2233.0
+      "Distance": 2233
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "RoadSettings",
-    "SaveTime": "2025-09-27T20:35:07.749Z"
+    "Name": "RoadSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-27T20:35:07.749Z"
 }

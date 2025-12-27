@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
@@ -556,4 +556,6 @@ public class CharacterScreen : ItemIconScreen
     }
 
 }
+
+
 

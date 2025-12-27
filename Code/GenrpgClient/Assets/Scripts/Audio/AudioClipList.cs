@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Audio.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,13 +58,13 @@ public class AudioClipList : BaseBehaviour
         _unloadTime = DateTime.UtcNow.AddSeconds(TtlSeconds);
     }
 
-    public void UpdateVolume(Dictionary<EAudioCategories, float> volumes)
+    public void UpdateVolume(Dictionary<EAudioCategories, AudioChannel> channels)
     {
         List<FullAudioSource> sources = _sources.ToList();
 
         foreach (FullAudioSource source in sources)
         {
-            float currVolume = volumes[source.PlayData.category];
+            float currVolume = channels[source.PlayData.category].Volume;
 
             if (currVolume == 0)
             {
@@ -222,3 +222,4 @@ public class AudioClipList : BaseBehaviour
         return false;
     }
 }
+

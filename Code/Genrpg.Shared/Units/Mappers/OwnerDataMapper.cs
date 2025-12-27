@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using System;
 using System.Linq;
@@ -23,3 +23,5 @@ namespace Genrpg.Shared.Units.Mappers
         }
     }
 }
+
+

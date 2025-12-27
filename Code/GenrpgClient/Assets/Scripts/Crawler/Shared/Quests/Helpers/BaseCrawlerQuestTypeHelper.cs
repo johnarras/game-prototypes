@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
@@ -127,3 +127,5 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
         }
     }
 }
+
+

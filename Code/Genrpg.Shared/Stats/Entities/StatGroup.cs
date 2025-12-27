@@ -1,11 +1,6 @@
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
-using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Xml;
 
 namespace Genrpg.Shared.Stats.Entities
 {
@@ -19,8 +14,8 @@ namespace Genrpg.Shared.Stats.Entities
         }
 
         public int Get(long statTypeId, int statCategory)
-            {
-                return _stats[statCategory, statTypeId - _cacheLineOffset];
+        {
+            return _stats[statCategory, statTypeId - _cacheLineOffset];
         }
         public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
         public int Pct(long statTypeId) { return Get(statTypeId, StatCategories.Pct); }
@@ -41,7 +36,6 @@ namespace Genrpg.Shared.Stats.Entities
     }
 
 
-    // MessagePackIgnore  
     public class StatGroup
     {
         private int[,] _stats = null;
@@ -55,7 +49,7 @@ namespace Genrpg.Shared.Stats.Entities
         public void ResetAll()
         {
             // Offset = 1 to make the mutable stats all be in one cache line I hope
-            _stats = new int[StatCategories.Size, StatConstants.MaxStatType-_cacheLineOffset];
+            _stats = new int[StatCategories.Size, StatConstants.MaxStatType - _cacheLineOffset];
         }
 
         public int[,] GetStats()
@@ -65,12 +59,12 @@ namespace Genrpg.Shared.Stats.Entities
 
         public int Get(long statTypeId, int statCategory)
         {
-            return _stats[statCategory,statTypeId-_cacheLineOffset];
+            return _stats[statCategory, statTypeId - _cacheLineOffset];
         }
 
         public void Set(long statTypeId, long statCategory, long val)
         {
-            _stats[statCategory,statTypeId-_cacheLineOffset] = (int)val;
+            _stats[statCategory, statTypeId - _cacheLineOffset] = (int)val;
         }
 
         public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
@@ -148,3 +142,5 @@ namespace Genrpg.Shared.Stats.Entities
 
     }
 }
+
+

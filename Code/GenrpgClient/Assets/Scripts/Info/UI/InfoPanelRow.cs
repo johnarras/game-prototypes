@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Interfaces;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Crawler.Info.Constants;
 using Genrpg.Shared.Crawler.Info.Services;
 
@@ -7,8 +7,8 @@ namespace Assets.Scripts.Info.UI
     public class InfoPanelRow : BaseBehaviour
     {
 
-        private IInfoService _infoService;
-        private ITextService _textService;
+        private IInfoService _infoService = null;
+        private ITextService _textService = null;
         public GText Text;
         public GButton Button;
 
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Info.UI
 
             if (_text.IndexOf(InfoConstants.LinkPrefix) > 0 && _text.LastIndexOf(InfoConstants.LinkMiddle) > _text.IndexOf(InfoConstants.LinkPrefix))
             {
-                _uiService.SetButton(Button, GetType().Name, OnClickText);
+                _uiService.SetButton(Button, name, OnClickText);
             }
         }
 
@@ -53,3 +53,5 @@ namespace Assets.Scripts.Info.UI
         }
     }
 }
+
+

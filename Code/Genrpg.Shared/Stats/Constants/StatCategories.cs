@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Stats.Constants
         public const int Size = 4;
     }
 }
+
+

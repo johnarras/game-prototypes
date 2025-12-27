@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Ftue.Settings.Steps;
 using Genrpg.Shared.Interfaces;
@@ -18,3 +18,5 @@ namespace Genrpg.Shared.Ftue.Services
         void CompleteStep(IRandom rand, Character ch, long ftueStepId);
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
@@ -42,3 +42,5 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.Interfaces;
 
@@ -9,3 +9,5 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         Task Update(WebContext context, List<IUnitData> unitData);
     }
 }
+
+

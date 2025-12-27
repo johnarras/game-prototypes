@@ -30,7 +30,6 @@ namespace Genrpg.Shared.Utils
         double ItemEnchantWeight { get; }
     }
 
-    [MessagePackObject]
     public class MyRandom : IRandom
     {
 
@@ -115,3 +114,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

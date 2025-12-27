@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,3 +9,4 @@ public interface IMessageTarget
 {
     MapObject GetMessageTarget();
 }
+

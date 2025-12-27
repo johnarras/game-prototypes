@@ -1,11 +1,10 @@
 using MessagePack;
 namespace Genrpg.Shared.Utils.Data
 {
-    [MessagePackObject]
     public class MyPoint
     {
-        [Key(0)] public int X { get; set; }
-        [Key(1)] public int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public MyPoint()
         {
@@ -19,11 +18,10 @@ namespace Genrpg.Shared.Utils.Data
     }
 
 
-    [MessagePackObject]
     public class PointXZ
     {
-        [Key(0)] public int X { get; set; }
-        [Key(1)] public int Z { get; set; }
+        public int X { get; set; }
+        public int Z { get; set; }
 
         public PointXZ()
         {
@@ -36,11 +34,10 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 
-    [MessagePackObject]
     public class MyPoint2
     {
-        [Key(0)] public float X { get; set; }
-        [Key(1)] public float Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
 
         public MyPoint2()
         {
@@ -67,12 +64,11 @@ namespace Genrpg.Shared.Utils.Data
 
     }
 
-    [MessagePackObject]
     public class MyPointF
     {
-        [Key(0)] public float X { get; set; }
-        [Key(1)] public float Y { get; set; }
-        [Key(2)] public float Z { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
 
         public MyPointF()
         {
@@ -98,13 +94,12 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 
-    [MessagePackObject]
     public class MyRect
     {
-        [Key(0)] public float X { get; set; }
-        [Key(1)] public float Y { get; set; }
-        [Key(2)] public float Width { get; set; }
-        [Key(3)] public float Height { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
 
         public MyRect()
         {
@@ -119,11 +114,12 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 
-    [MessagePackObject]
     public class MySize
     {
-        [Key(0)] public float Width { get; set; }
-        [Key(1)] public float Height { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
 
     }
 }
+
+

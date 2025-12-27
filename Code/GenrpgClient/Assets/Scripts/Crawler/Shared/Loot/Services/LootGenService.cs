@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crafting.Entities;
@@ -450,7 +450,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
         public async Task<LootGenData> GenerateCombatLoot(PartyData party, CancellationToken token)
         {
-            if (party.Combat == null || party.GetActiveParty().Count < 1)
+            if (party.Combat == null || party.ActiveParty.Count < 1)
             {
                 return new LootGenData();
             }
@@ -499,7 +499,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 itemCount++;
             }
 
-            long maxLevel = party.GetActiveParty().Max(x => x.Level);
+            long maxLevel = party.ActiveParty.Max(x => x.Level);
 
             long levelDifference = Math.Max(0, (maxLevel - party.Combat.Level) - lootSettings.LevelDiffBeforeLootLoss);
 
@@ -631,9 +631,9 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 }
 
                 genData.Exp = (long)(genData.Exp * (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.ExpPercent) / 100.0f));
-                loot.Exp = (long)genData.Exp / party.GetActiveParty().Count;
+                loot.Exp = (long)genData.Exp / party.ActiveParty.Count;
 
-                foreach (PartyMember member in party.GetActiveParty())
+                foreach (PartyMember member in party.ActiveParty)
                 {
                     long oldLevel = member.Level;
                     _partyService.AddExp(party, member, loot.Exp);
@@ -685,7 +685,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(_gs.ch);
             long inventoryPerPlayer = lootSettings.InventoryPerPartyMember + (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.InventorySize);
 
-            long count = party.GetActiveParty().Count;
+            long count = party.ActiveParty.Count;
             if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
                 count = 5;
@@ -729,3 +729,5 @@ namespace Genrpg.Shared.Crawler.Loot.Services
         }
     }
 }
+
+

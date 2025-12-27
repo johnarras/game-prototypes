@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.Doobers.Events;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Crafting.Settings;
 using Genrpg.Shared.Crawler.Currencies.Settings;
@@ -93,3 +93,5 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
         }
     }
 }
+
+

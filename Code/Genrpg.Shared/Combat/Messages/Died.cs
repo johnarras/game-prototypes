@@ -17,3 +17,5 @@ namespace Genrpg.Shared.Combat.Messages
         [Key(3)] public AttackerInfo FirstAttacker { get; set; }
     }
 }
+
+

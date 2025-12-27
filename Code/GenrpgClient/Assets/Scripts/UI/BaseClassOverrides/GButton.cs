@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Assets.ObjectPools;
 using Genrpg.Shared.UI.Interfaces;
 using System;
@@ -30,3 +30,4 @@ public class GButton : UnityEngine.UI.Button, IButton, IDestroyCallback
         _ctRegistration.Dispose();
     }
 }
+

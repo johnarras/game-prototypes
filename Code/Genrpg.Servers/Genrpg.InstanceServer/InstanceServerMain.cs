@@ -1,4 +1,4 @@
-﻿using Genrpg.InstanceServer.MessageHandlers;
+using Genrpg.InstanceServer.MessageHandlers;
 using Genrpg.InstanceServer.Setup;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.Core;
@@ -15,3 +15,4 @@ namespace Genrpg.InstanceServer
         }
     }
 }
+

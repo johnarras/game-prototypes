@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.TimedEvents.Interfaces
 {
@@ -7,3 +7,5 @@ namespace Genrpg.Shared.TimedEvents.Interfaces
         ITimedEventTierList GetTierList(long id);
     }
 }
+
+

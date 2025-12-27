@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.RewardHelpers.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
@@ -26,3 +26,5 @@ namespace Genrpg.RequestServer.CoreCurrencies.RewardHelpers
         }
     }
 }
+
+

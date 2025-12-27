@@ -1,27 +1,18 @@
-﻿using Genrpg.Shared.Achievements.Constants;
+using Genrpg.ServerShared.DataStores;
+using Genrpg.Shared.Achievements.Constants;
 using Genrpg.Shared.Achievements.Messages;
 using Genrpg.Shared.Achievements.PlayerData;
 using Genrpg.Shared.Achievements.Settings;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.Achievements
 {
     public class AchievementService : IAchievementService
     {
         private IGameData _gameData = null;
-        private IRepositoryService _repoService = null;
+        private IFullRepositoryService _repoService = null;
 
         public void UpdateAchievement(MapObject mapObject, long achievementTypeId, long quantity)
         {
@@ -54,3 +45,5 @@ namespace Genrpg.ServerShared.Achievements
         }
     }
 }
+
+

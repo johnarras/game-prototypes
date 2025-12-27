@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
@@ -11,7 +11,6 @@ using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages.Error;
 
@@ -33,7 +32,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             if (clientVersion < requiredVersion)
             {
-                context.Responses.AddResponse(new NewVersionResponse() { MinNewClientVersion = authSettings.MinClientVersion });
+                context.AddResponse(new NewVersionResponse() { MinNewClientVersion = authSettings.MinClientVersion });
                 return;
             }
 
@@ -41,16 +40,15 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             if (sessionData == null)
             {
-                context.Responses.AddResponse(new ErrorResponse() { Error = "Unknown account." });
+                context.AddResponse(new ErrorResponse() { Error = "Unknown account." });
                 return;
             }
 
             if (sessionData.SessionId != request.SessionId)
             {
-                context.Responses.AddResponse(new ErrorResponse() { Error = "Session Id must be refreshed." });
+                context.AddResponse(new ErrorResponse() { Error = "Session Id must be refreshed." });
                 return;
             }
-            CaravanData caravanData = null;
 
             context.acct = (await _serverRepoService.Search<GameAccount>(x => x.AccountId == request.AccountId && !x.Deleted)).FirstOrDefault();
 
@@ -64,10 +62,10 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 };
             }
 
+            context.Set(context.acct);
             context.acct.SessionId = HashUtils.NewUUId();
             context.acct.ClientVersion = request.ClientVersion;
             context.acct.ClientPlatformName = request.ClientPlatformName;
-            context.Set(context.acct);
 
             context.user = await context.GetAsync<CoreUserData>();
             context.user.DataOverrides.GameDataCheckTime = request.ClientGameDataSaveTime;
@@ -77,9 +75,9 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 
-            _gameDataService.GetClientSettings(context.Responses, context.user, true);
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, true));
 
-            UpdatePublicUser(sessionData, context.acct);
+            await UpdatePublicUser(sessionData, context.acct);
 
             _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = context.acct.Id, Name = "User" + context.acct.Id });
 
@@ -95,18 +93,19 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 UserData = await _playerDataService.MapToClientDto(context.user, allUserData),
                 OfferData = offerData,
             };
-            context.Responses.AddFront(response);
+            context.AddFront(response);
         }
 
-        private void UpdatePublicUser(AccountSessionData account, GameAccount user)
+        private async Task UpdatePublicUser(AccountSessionData account, GameAccount user)
         {
             // Just always make new files and save them.
 
             PublicUser publicUser = new PublicUser() { Id = user.Id };
             publicUser.Name = account.ShareId;
-            _serverRepoService.QueueSave(publicUser);
+            await _serverRepoService.Save(publicUser);
 
         }
-
     }
 }
+
+

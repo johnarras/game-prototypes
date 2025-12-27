@@ -1,9 +1,10 @@
-﻿using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
+using MessagePack;
+using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
 using Genrpg.Shared.Networking.Constants;
 
 namespace Genrpg.ServerShared.CloudComms.Servers.WebServer
 {
-    public class GetInstanceQueueResponse : ILoginQueueMessage, IResponseQueueMessage
+    public class GetInstanceQueueResponse : IWebsiteQueueMessage, IResponseQueueMessage
     {
         public string RequestId { get; set; }
         public string ErrorText { get; set; }
@@ -14,3 +15,5 @@ namespace Genrpg.ServerShared.CloudComms.Servers.WebServer
         public EMapApiSerializers SerializerType { get; set; }
     }
 }
+
+

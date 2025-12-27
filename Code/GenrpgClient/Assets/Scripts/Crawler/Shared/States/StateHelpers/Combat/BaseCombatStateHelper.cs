@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
@@ -25,3 +25,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         }
     }
 }
+
+

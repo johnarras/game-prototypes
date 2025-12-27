@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Info.InfoHelpers;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Services;
@@ -74,3 +74,5 @@ namespace Genrpg.Shared.Crawler.Info.Helpers
         }
     }
 }
+
+

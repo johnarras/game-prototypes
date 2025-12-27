@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -132,3 +132,5 @@ namespace Assets.Scripts.Crawler.Quests.UI
         }
     }
 }
+
+

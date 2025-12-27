@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Inventory.Messages
         [Key(1)] public long EquipSlot { get; set; }
     }
 }
+
+

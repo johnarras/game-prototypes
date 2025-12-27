@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(3)] public string AnimName { get; set; }
     }
 }
+
+

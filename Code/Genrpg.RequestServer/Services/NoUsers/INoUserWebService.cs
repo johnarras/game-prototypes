@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,3 +12,5 @@ namespace Genrpg.RequestServer.Services.NoUsers
         Task HandleNoUserRequest(WebContext context, string postData, CancellationToken token);
     }
 }
+
+

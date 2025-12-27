@@ -9,6 +9,5 @@
   "Art": "",
   "MaxTier": 2,
   "BonusPerTier": 1.0,
-  "BasePointCost": 20,
-  "SaveTime": "2025-09-03T02:00:39.198Z"
+  "BasePointCost": 20
 }

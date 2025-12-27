@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Units.Settings;
@@ -23,3 +23,5 @@ namespace Genrpg.Shared.Units.Services
     }
 
 }
+
+

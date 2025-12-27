@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Settings.Spells;
 using MessagePack;
 using System;
@@ -23,3 +23,5 @@ namespace Genrpg.Shared.Spells.Interfaces
 
     }
 }
+
+

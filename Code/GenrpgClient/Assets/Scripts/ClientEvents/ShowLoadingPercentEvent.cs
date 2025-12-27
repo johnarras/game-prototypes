@@ -1,4 +1,4 @@
-﻿namespace ClientEvents
+namespace ClientEvents
 {
     public class ShowLoadingPercentEvent
     {
@@ -6,3 +6,5 @@
         public int TotalSteps;
     }
 }
+
+

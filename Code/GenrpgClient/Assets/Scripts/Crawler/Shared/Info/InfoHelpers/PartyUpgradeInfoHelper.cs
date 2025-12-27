@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
@@ -56,3 +56,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
     }
 }
+
+

@@ -1,4 +1,5 @@
-﻿using ClientEvents;
+using Assets.Scripts.ClientEvents.UI;
+using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
 using Genrpg.Shared.Quests.Constants;
@@ -128,8 +129,8 @@ public class QuestScreen : ItemIconScreen
     {
         if (_unit.HasAddon(MapObjectAddonTypes.Vendor))
         {
-            _screenService.Open(ScreenNames.Vendor, _unit);
-            _screenService.Close(ScreenId);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Vendor, _unit));
+            _dispatcher.Dispatch(new CloseScreen(ScreenId));
         }
     }
 
@@ -195,3 +196,4 @@ public class QuestScreen : ItemIconScreen
         questUI.Init(qindex.qtype, qindex.index, this, null, token);
     }
 }
+

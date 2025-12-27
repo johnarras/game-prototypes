@@ -5,6 +5,5 @@
   "Name": "Gems",
   "Icon": "GemsIcon",
   "Art": "GemsArt",
-  "CraftingStatTypeId": 16,
-  "SaveTime": "2025-11-18T03:04:02.688Z"
+  "CraftingStatTypeId": 16
 }

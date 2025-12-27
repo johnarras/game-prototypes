@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
 using MessagePack;
@@ -23,7 +23,6 @@ namespace Genrpg.Shared.GameSettings.Mappers
         {
             if (settings is TParent tparent)
             {
-
                 TDto api = new TDto()
                 {
                     Parent = tparent,
@@ -31,12 +30,18 @@ namespace Genrpg.Shared.GameSettings.Mappers
                     Id = tparent.Id,
                     SaveTime = tparent.SaveTime,
                 };
+                if (simplify)
+                {
+                    tparent.SaveTime = DateTime.MinValue;
+                }
 
                 if (simplify)
                 {
                     foreach (TChild child in tparent.GetData())
                     {
                         child.SaveTime = DateTime.MinValue;
+                        child.Id = null;
+                        child.ParentId = null;
                     }
                 }
 
@@ -46,3 +51,5 @@ namespace Genrpg.Shared.GameSettings.Mappers
         }
     }
 }
+
+

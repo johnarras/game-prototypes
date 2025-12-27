@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Editor.UI.Interfaces
 {
     public interface IUICanvas
@@ -8,3 +8,5 @@ namespace Genrpg.Editor.UI.Interfaces
         bool Contains(object elem);
     }
 }
+
+

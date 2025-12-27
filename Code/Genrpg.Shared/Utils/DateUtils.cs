@@ -6,7 +6,6 @@ namespace Genrpg.Shared.Utils
     /// <summary>
     /// This contains utilities used with the DateTime object
     /// </summary>
-    [MessagePackObject]
     public class DateUtils
     {
         /// <summary>
@@ -71,3 +70,5 @@ namespace Genrpg.Shared.Utils
 
     }
 }
+
+

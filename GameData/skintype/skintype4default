@@ -1,0 +1,10 @@
+{
+  "Id": "skintype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Riding Horse",
+  "Icon": "RidingHorse",
+  "Art": "RidingHorse",
+  "AnimalTypeId": 4,
+  "IsDefault": true
+}

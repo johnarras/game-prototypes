@@ -1,4 +1,4 @@
-﻿
+
 
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Spawns.WorldData;
@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GenerateMap : BaseZoneGenerator
 {
-    protected IMapGenService _mapGenService;
+    protected IMapGenService _mapGenService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -16,3 +16,5 @@ public class GenerateMap : BaseZoneGenerator
         
     }
 }
+
+

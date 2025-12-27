@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
 
@@ -32,3 +32,4 @@ public class LocalClientOptions : IStringId
         AudioVolumes.Set((int)category, volume);
     }
 }
+

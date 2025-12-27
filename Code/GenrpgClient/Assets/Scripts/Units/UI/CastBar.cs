@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Spells.Messages;
@@ -100,3 +100,4 @@ public class CastBar : BaseBehaviour
 
 
 }
+

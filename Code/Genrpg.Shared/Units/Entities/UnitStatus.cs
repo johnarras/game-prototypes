@@ -11,17 +11,18 @@ using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 namespace Genrpg.Shared.Units.Entities
 {
 
-    [MessagePackObject]
     public class UnitStatus : BaseWorldData, IId, IStringOwnerId
     {
         public override void Delete(IRepositoryService repoSystem) { repoSystem.Delete(this); }
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public string OwnerId { get; set; }
-        [Key(2)] public string ObjId { get; set; }
-        [Key(3)] public long IdKey { get; set; }
-        [Key(4)] public string MapId { get; set; }
+        public override string Id { get; set; }
+        public string OwnerId { get; set; }
+        public string ObjId { get; set; }
+        public long IdKey { get; set; }
+        public string MapId { get; set; }
 
-        [Key(5)] public List<IMapObjectAddon> Addons { get; set; } = new List<IMapObjectAddon>();
+        public List<IMapObjectAddon> Addons { get; set; } = new List<IMapObjectAddon>();
 
     }
 }
+
+

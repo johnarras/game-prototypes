@@ -1,11 +1,9 @@
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.CharMail.Constants;
-using Genrpg.Shared.Interfaces;
+using MessagePack;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using MessagePack;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.CharMail.PlayerData
 {
@@ -23,9 +21,17 @@ namespace Genrpg.Shared.CharMail.PlayerData
     {
         [Key(0)] public override string Id { get; set; }
     }
-    public class CharMailDto : OwnerDtoList<CharMailData, CharLetter> { }
+    [MessagePackObject]
+    public class CharMailDto : OwnerDtoList<CharMailData, CharLetter>
+    {
+        [Key(0)] public override List<CharLetter> Children { get; set; }
+        [Key(1)] public override CharMailData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
     public class CrafterDataLoader : OwnerDataLoader<CharMailData, CharLetter> { }
 
 
     public class CrafterDataMapper : OwnerDataMapper<CharMailData, CharLetter, CharMailDto> { }
 }
+
+

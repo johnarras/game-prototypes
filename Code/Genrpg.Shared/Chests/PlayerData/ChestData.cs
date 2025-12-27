@@ -1,9 +1,10 @@
 using MessagePack;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using System;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Chests.PlayerData
 {
@@ -29,10 +30,18 @@ namespace Genrpg.Shared.Chests.PlayerData
 
     }
 
-    public class ChestDto : OwnerDtoList<ChestData, ChestStatus> { }
+    [MessagePackObject]
+    public class ChestDto : OwnerDtoList<ChestData, ChestStatus>
+    {
+        [Key(0)] public override List<ChestStatus> Children { get; set; }
+        [Key(1)] public override ChestData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
     public class ChestDataLoader : OwnerIdDataLoader<ChestData, ChestStatus> { }
 
 
     public class ChestDataMapper : OwnerDataMapper<ChestData, ChestStatus, ChestDto> { }
 }
+
+

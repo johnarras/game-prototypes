@@ -6,20 +6,21 @@ using MessagePack;
 
 namespace Genrpg.Shared.Spells.Messages
 {
-    [MessagePackObject]
     public sealed class SendSpell : BaseMapMessage
     {
 
-        [Key(0)] public string CasterId { get; set; }
-        [Key(1)] public string CasterGroupId { get; set; }
-        [Key(2)] public long CasterLevel { get; set; }
-        [Key(3)] public long CasterFactionId { get; set; }
+        public string CasterId { get; set; }
+        public string CasterGroupId { get; set; }
+        public long CasterLevel { get; set; }
+        public long CasterFactionId { get; set; }
         [IgnoreMember] public ReadOnlyStatGroup CasterStats { get; set; }
-        [Key(4)] public Spell Spell { get; set; }
-        [Key(5)] public ElementType ElementType { get; set; }
+        public Spell Spell { get; set; }
+        public ElementType ElementType { get; set; }
 
         public SendSpell()
         {
         }
     }
 }
+
+

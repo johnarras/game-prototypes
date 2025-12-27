@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "elementtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Melee",
       "Desc": "Basic element.",
@@ -33,8 +30,6 @@
       ]
     },
     {
-      "Id": "elementtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Fire",
       "Desc": "Burn enemies.",
@@ -64,8 +59,6 @@
       ]
     },
     {
-      "Id": "elementtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Ice",
       "Desc": "Freeze enemies.",
@@ -95,8 +88,6 @@
       ]
     },
     {
-      "Id": "elementtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Electric",
       "Desc": "Zap enemies.",
@@ -126,8 +117,6 @@
       ]
     },
     {
-      "Id": "elementtype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Earth",
       "Desc": "Blast enemies.",
@@ -157,8 +146,6 @@
       ]
     },
     {
-      "Id": "elementtype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Shadow",
       "Desc": "The power of darkness and evil.",
@@ -188,8 +175,6 @@
       ]
     },
     {
-      "Id": "elementtype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Light",
       "Desc": "Use holy power againt enemies.",
@@ -219,8 +204,6 @@
       ]
     },
     {
-      "Id": "elementtype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Nature",
       "Desc": "The power of nature.",
@@ -250,8 +233,6 @@
       ]
     },
     {
-      "Id": "elementtype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Arcane",
       "Desc": "Pure magic power.",
@@ -281,8 +262,6 @@
       ]
     },
     {
-      "Id": "elementtype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Acid",
       "Desc": "Corrosive power.",
@@ -312,8 +291,6 @@
       ]
     },
     {
-      "Id": "elementtype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Ranged",
       "Desc": "Basic element.",
@@ -345,8 +322,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "ElementTypeSettings",
-    "SaveTime": "2025-09-09T01:42:03.03Z"
+    "Name": "ElementTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-09T01:42:03.03Z"
 }

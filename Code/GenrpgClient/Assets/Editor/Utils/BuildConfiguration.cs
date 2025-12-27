@@ -1,12 +1,14 @@
-﻿using Genrpg.Shared.Client.Contants;
+using Genrpg.Shared.Client.Contants;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.Build;
 
 public class PlatformBuildData
 {
     public BuildTarget Target;
+    public NamedBuildTarget NamedTarget;
     public string FilePath;
     public string ClientPlatform;
     public string ApplicationSuffix;
@@ -37,6 +39,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.StandaloneWindows,
+            NamedTarget = NamedBuildTarget.Standalone,
             FilePath = ClientPlatformNames.Win,
             ClientPlatform = ClientPlatformNames.Win,
             ApplicationSuffix = ".exe",
@@ -45,6 +48,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.Android,
+            NamedTarget = NamedBuildTarget.Android,
             FilePath = ClientPlatformNames.Android,
             ClientPlatform = ClientPlatformNames.Android,
             ApplicationSuffix = ".apk",
@@ -53,6 +57,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.iOS,
+            NamedTarget = NamedBuildTarget.iOS,
             FilePath = ClientPlatformNames.iOS,
             ClientPlatform = ClientPlatformNames.iOS,
             ApplicationSuffix = ".app",
@@ -61,6 +66,7 @@ public class BuildConfiguration
         list.Add(new PlatformBuildData()
         {
             Target = BuildTarget.StandaloneLinux64,
+            NamedTarget = NamedBuildTarget.Standalone,
             FilePath = ClientPlatformNames.Linux,
             ClientPlatform = ClientPlatformNames.Linux,
             ApplicationSuffix = ".app",
@@ -69,3 +75,5 @@ public class BuildConfiguration
         return list;
     }
 }
+
+

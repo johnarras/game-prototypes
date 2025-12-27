@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.PlayMultiplier.Settings;
 using System.Collections.Generic;
@@ -22,3 +22,5 @@ namespace Genrpg.Shared.PlayMultiplier.Services
         }
     }
 }
+
+

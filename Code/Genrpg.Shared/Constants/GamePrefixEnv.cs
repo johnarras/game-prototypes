@@ -2,14 +2,12 @@ using MessagePack;
 namespace Genrpg.Shared.Constants
 {
 
-    [MessagePackObject]
     public class Game
     {
         public const string Prefix = "Genrpg";
         public const string DefaultPrefix = "Genrpg";
     }
 
-    [MessagePackObject]
     public class EnvNames
     {
         public const string Local = "local";
@@ -18,3 +16,5 @@ namespace Genrpg.Shared.Constants
         public const string Prod = "prod";
     }   
 }
+
+

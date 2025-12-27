@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Core.Constants
+namespace Genrpg.Shared.Core.Constants
 {
 
     public enum EGameModes
@@ -23,3 +23,5 @@
     }
 
 }
+
+

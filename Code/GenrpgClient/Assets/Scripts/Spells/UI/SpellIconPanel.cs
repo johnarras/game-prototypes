@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Threading;
@@ -6,7 +6,7 @@ using System.Threading;
 public class SpellIconPanel : BaseBehaviour
 {
 
-    protected IIconService _iconService;
+    protected IIconService _iconService = null;
     public GameObject _iconParent;
 
     protected SpellIconScreen _screen = null;
@@ -44,3 +44,4 @@ public class SpellIconPanel : BaseBehaviour
     }
 
 }
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
@@ -26,3 +26,5 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         }
     }
 }
+
+

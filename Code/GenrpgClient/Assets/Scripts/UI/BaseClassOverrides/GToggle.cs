@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 
 
 public class GToggle : BaseBehaviour
@@ -23,3 +23,5 @@ public class GToggle : BaseBehaviour
         Toggle.isOn = isOn;
     }
 }
+
+

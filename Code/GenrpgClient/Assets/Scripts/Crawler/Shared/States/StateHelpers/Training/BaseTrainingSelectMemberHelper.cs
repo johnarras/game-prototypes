@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
 
             stateData.AddText(GetMainMessage());
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
 
                 ECrawlerStates nextState = GetNextState();
@@ -47,3 +47,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
         }
     }
 }
+
+

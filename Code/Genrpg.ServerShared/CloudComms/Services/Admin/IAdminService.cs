@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers;
+using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Handlers;
 using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Interfaces;
@@ -17,3 +17,5 @@ namespace Genrpg.ServerShared.CloudComms.Services.Admin
         Task OnMapUploaded(MapUploadedAdminMessage message);
     }
 }
+
+

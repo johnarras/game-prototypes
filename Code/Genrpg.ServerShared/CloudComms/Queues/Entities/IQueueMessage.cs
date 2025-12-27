@@ -1,8 +1,7 @@
-﻿using System;
+using MessagePack;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Genrpg.ServerShared.CloudComms.Queues.Entities
 {
@@ -10,3 +9,5 @@ namespace Genrpg.ServerShared.CloudComms.Queues.Entities
     {
     }
 }
+
+

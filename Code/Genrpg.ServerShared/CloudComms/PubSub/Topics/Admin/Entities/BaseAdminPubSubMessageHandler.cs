@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.CloudComms.PubSub.Entities;
+using Genrpg.ServerShared.CloudComms.PubSub.Entities;
 using Genrpg.ServerShared.CloudComms.Services.Admin;
 using Genrpg.ServerShared.Core;
 using Genrpg.Shared.Logging.Interfaces;
@@ -13,3 +13,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Entities
         protected ILogService _logService = null;
     }
 }
+
+

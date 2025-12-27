@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
@@ -12,10 +13,10 @@ namespace Assets.Scripts.Info.UI
 {
     public abstract class BaseInfoScreen : BaseScreen
     {
-        protected IInfoService _infoService;
-        protected IEntityService _entityService;
-        protected IInputService _inputService;
-        protected ILocalLoadService _localLoadService;
+        protected IInfoService _infoService = null;
+        protected IEntityService _entityService = null;
+        protected IInputService _inputService = null;
+        protected ILocalLoadService _localLoadService = null;
 
         public GameObject ListAnchor;
         public InfoPanel InfoPanel;
@@ -118,3 +119,5 @@ namespace Assets.Scripts.Info.UI
         }
     }
 }
+
+

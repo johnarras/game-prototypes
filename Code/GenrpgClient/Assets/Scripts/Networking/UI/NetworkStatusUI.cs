@@ -1,20 +1,19 @@
-﻿using Genrpg.Shared.Client.Assets;
-using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.Entities;
 using Genrpg.Shared.MapServer.Messages;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Networking.Messages;
 using Genrpg.Shared.Utils;
 using System.Text;
 using System.Threading;
-using Assets.Scripts.Assets.Entities;
 
 namespace Assets.Scripts.UI
 {
     public class NetworkStatusUI : BaseBehaviour
     {
 
-        private IMapTerrainManager _terrainManager;
-        protected IMapProvider _mapProvider;
+        private IMapTerrainManager _terrainManager = null;
+        protected IMapProvider _mapProvider = null;
+        protected IRealtimeNetworkService _networkService = null;
         public GText Text;
 
         private CancellationToken _token;
@@ -24,12 +23,12 @@ namespace Assets.Scripts.UI
             AddListener<ServerMessageCounts>(OnServerMessageCounts);
         }
 
-        protected void OnServerMessageCounts (ServerMessageCounts data)
+        protected void OnServerMessageCounts(ServerMessageCounts data)
         {
             if (Text == null)
             {
                 return;
-            }           
+            }
 
             StringBuilder sb = new StringBuilder();
 
@@ -37,15 +36,15 @@ namespace Assets.Scripts.UI
             sb.Append("Uptime: " + DateUtils.PrintTime(data.Seconds) + " - ");
             sb.Append("TotMsg: " + StrUtils.PrintCommaValue(data.TotalMessages) + "\n");
             sb.Append("PerSec: " + StrUtils.PrintCommaValue(data.MessagesPerSecond) + " -");
-            sb.Append(" Hour: " + StrUtils.PrintCommaValue(3600*data.TotalMessages / data.Seconds) + " - ");
-            sb.Append(" Day: " + StrUtils.PrintCommaValue(3600*24 * data.TotalMessages / data.Seconds) + "\n");
-            sb.Append("MsgMin/Max: " + StrUtils.PrintCommaValue(data.MinMessages) + "/" 
+            sb.Append(" Hour: " + StrUtils.PrintCommaValue(3600 * data.TotalMessages / data.Seconds) + " - ");
+            sb.Append(" Day: " + StrUtils.PrintCommaValue(3600 * 24 * data.TotalMessages / data.Seconds) + "\n");
+            sb.Append("MsgMin/Max: " + StrUtils.PrintCommaValue(data.MinMessages) + "/"
                 + StrUtils.PrintCommaValue(data.MaxMessages) + "\n");
             sb.Append("Spl: " + StrUtils.PrintCommaValue(data.TotalSpells) + " PerSec: " + (data.TotalSpells / data.Seconds) + " - ");
             sb.Append("Upd: " + StrUtils.PrintCommaValue(data.TotalUpdates) + " PerSec: " + (data.TotalUpdates / data.Seconds) + "\n");
 
             if (data.MapCounts != null)
-            {               
+            {
                 MapObjectCounts mapCounts = data.MapCounts;
                 if (mapCounts.TotalGridLocks > 0)
                 {
@@ -105,7 +104,7 @@ namespace Assets.Scripts.UI
         protected void ShowClientVals(StringBuilder sb, string prefix, long added, long removed, long seconds)
         {
             long curr = added - removed;
-            float perSecond = 1.0f*curr / seconds;
+            float perSecond = 1.0f * curr / seconds;
             string perSecondText = "";
             if (perSecond > 10)
             {
@@ -115,12 +114,14 @@ namespace Assets.Scripts.UI
             {
                 perSecondText = perSecond.ToString("F2");
             }
-            sb.Append(prefix 
-                + " Loaded: " + added 
-                + " Unloaded: " + removed 
+            sb.Append(prefix
+                + " Loaded: " + added
+                + " Unloaded: " + removed
                 + " Curr: " + curr
                 + " PerSec: " + perSecondText + "\n");
         }
 
     }
 }
+
+

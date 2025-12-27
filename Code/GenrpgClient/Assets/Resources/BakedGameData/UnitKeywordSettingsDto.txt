@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "unitkeyword1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Humanoid",
       "PluralName": "Humanoids",
@@ -12,8 +9,6 @@
       "Effects": []
     },
     {
-      "Id": "unitkeyword2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Barbaric",
       "PluralName": "Barbarics",
@@ -43,8 +38,6 @@
       ]
     },
     {
-      "Id": "unitkeyword3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Warrior",
       "PluralName": "Warriors",
@@ -74,8 +67,6 @@
       ]
     },
     {
-      "Id": "unitkeyword4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Mage",
       "PluralName": "Mages",
@@ -122,8 +113,6 @@
       "Tier": 1
     },
     {
-      "Id": "unitkeyword5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Mythological",
       "PluralName": "Mythologicals",
@@ -153,8 +142,6 @@
       ]
     },
     {
-      "Id": "unitkeyword6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Lord",
       "PluralName": "Lords",
@@ -181,8 +168,6 @@
       "Tier": 1
     },
     {
-      "Id": "unitkeyword7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Beast",
       "PluralName": "Beasts",
@@ -202,8 +187,6 @@
       ]
     },
     {
-      "Id": "unitkeyword8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Undead",
       "PluralName": "Undead",
@@ -238,8 +221,6 @@
       ]
     },
     {
-      "Id": "unitkeyword9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Thief",
       "PluralName": "Thieves",
@@ -264,8 +245,6 @@
       ]
     },
     {
-      "Id": "unitkeyword10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Dragon",
       "PluralName": "Dragons",
@@ -306,8 +285,6 @@
       ]
     },
     {
-      "Id": "unitkeyword11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Golem",
       "PluralName": "Golems",
@@ -342,8 +319,6 @@
       ]
     },
     {
-      "Id": "unitkeyword12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Vermin",
       "PluralName": "Vermins",
@@ -363,8 +338,6 @@
       ]
     },
     {
-      "Id": "unitkeyword13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Giant",
       "PluralName": "Giants",
@@ -394,8 +367,6 @@
       ]
     },
     {
-      "Id": "unitkeyword14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Archer",
       "PluralName": "Archers",
@@ -418,8 +389,6 @@
       "Tier": 1
     },
     {
-      "Id": "unitkeyword15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Lieutenant",
       "PluralName": "Lieutenants",
@@ -430,8 +399,6 @@
       "Tier": 3
     },
     {
-      "Id": "unitkeyword16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Chieftain",
       "PluralName": "Chieftains",
@@ -448,8 +415,6 @@
       "Tier": 4
     },
     {
-      "Id": "unitkeyword17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Shaman",
       "PluralName": "Shamans",
@@ -481,8 +446,6 @@
       "Tier": 2
     },
     {
-      "Id": "unitkeyword18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Priest",
       "PluralName": "Priests",
@@ -509,8 +472,6 @@
       "Tier": 1
     },
     {
-      "Id": "unitkeyword19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "Demon",
       "PluralName": "Demons",
@@ -550,8 +511,6 @@
       ]
     },
     {
-      "Id": "unitkeyword20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Air",
       "PluralName": "Airs",
@@ -591,8 +550,6 @@
       ]
     },
     {
-      "Id": "unitkeyword21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Fire",
       "PluralName": "Fires",
@@ -632,8 +589,6 @@
       ]
     },
     {
-      "Id": "unitkeyword22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Water",
       "PluralName": "Waters",
@@ -675,8 +630,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "UnitKeywordSettings",
-    "SaveTime": "2025-09-07T18:11:42.348Z"
+    "Name": "UnitKeywordSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-07T18:11:42.348Z"
 }

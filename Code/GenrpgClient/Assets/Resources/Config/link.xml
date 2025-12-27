@@ -1,0 +1,9 @@
+<linker>
+  <assembly fullname="Genrpg.Shared" preserve="all"/>
+  <assembly fullname="Assembly-CSharp" preserve="all"/>
+  <assembly fullname="System.Text.Json" preserve="all"/>
+  <assembly fullname="System.Text.Encodings.Web" preserve="all"/>
+  <assembly fullname="Microsoft.Bcl.AsyncInterfaces" preserve="all"/>
+  <assembly fullname="CommunityToolkit.HighPerformance" preserve="all"/>
+  <assembly fullname="System.IO.Pipelines" preserve="all"/>
+</linker>

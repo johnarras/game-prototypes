@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Maps;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
@@ -27,3 +27,5 @@ namespace Genrpg.MapServer.Trades.Services
         void SafeModifyObject(MapObject obj, Action modifyFunc);
     }
 }
+
+

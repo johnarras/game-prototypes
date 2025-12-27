@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Logging.Interfaces;
@@ -363,7 +363,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
             for (int i = 0; i < length; i++)
             {
-                if (!okPoints.Any(p => p.X == cx && p.Z == cz))
+                if (!okPoints.FastAny(p => p.X == cx && p.Z == cz))
                 {
                     return false;
                 }
@@ -396,3 +396,5 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
         }
     }
 }
+
+

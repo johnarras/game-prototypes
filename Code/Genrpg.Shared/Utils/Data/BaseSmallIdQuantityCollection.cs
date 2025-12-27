@@ -1,4 +1,3 @@
-﻿using MessagePack;
 using System;
 
 namespace Genrpg.Shared.Utils.Data
@@ -8,12 +7,12 @@ namespace Genrpg.Shared.Utils.Data
     /// Used for things like stats, currencies and tiles that should have most small integers
     /// used at most times.
     /// </summary>
-    [MessagePackObject]
     public abstract class BaseSmallIdQuantityCollection<T>
     {
 
         protected const int MaxSize = 256;
-        [Key(0)] public T[] Data { get; set; } = new T[4];
+        [MessagePack.IgnoreMember]
+        public abstract T[] Data { get; set; }
 
 
         protected abstract T InternalAdd(T first, T second);
@@ -96,3 +95,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

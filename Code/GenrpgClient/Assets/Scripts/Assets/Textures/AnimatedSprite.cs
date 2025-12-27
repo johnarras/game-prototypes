@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.TextureLists.Services;
+using Assets.Scripts.TextureLists.Services;
 using Genrpg.Shared.Crawler.TextureLists.Services;
 using Genrpg.Shared.Utils;
 using UnityEngine;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Assets.Textures
 
         public override void Init()
         {
-            _updateService.AddUpdate(this, LateUpdatePicture, UpdateTypes.Late, GetToken());
+            AddUpdate(LateUpdateImage, UpdateTypes.Late);
         }
 
         protected override void OnDestroy()
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Assets.Textures
             }
         }
 
-        private void LateUpdatePicture()
+        private void LateUpdateImage()
         {
 
             string spriteName = _newSpriteName;
@@ -183,3 +183,5 @@ namespace Assets.Scripts.Assets.Textures
         }
     }
 }
+
+

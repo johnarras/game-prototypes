@@ -9,7 +9,6 @@ using System.Linq;
 
 namespace Genrpg.Shared.GameSettings.Settings
 {
-    // MessagePackIgnore
     public abstract class BaseDataOverrideSettings<TChild> : ParentSettings<TChild> where TChild : ChildSettings, IPlayerFilter, new()
     {
         // Temp internal data to make updating configs cheaper.
@@ -87,4 +86,6 @@ namespace Genrpg.Shared.GameSettings.Settings
         }
     }
 }
+
+
 

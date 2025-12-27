@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
 using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -239,3 +239,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
     }
 }
+
+

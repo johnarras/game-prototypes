@@ -1,16 +1,16 @@
-using System;
-using System.Threading;
-using Genrpg.Shared.Movement.Messages;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Movement.Messages;
+using System;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerController : UnitController
 {
 
     private ICameraController _cameraController = null;
-    protected IMapProvider _mapProvider;
-    protected IMapGenData _md;
+    protected IMapProvider _mapProvider = null;
+    protected IMapGenData _md = null;
 
     public const float SlopeLimit = 60f;
     public const float StepOffset = 1.0f;
@@ -32,9 +32,9 @@ public class PlayerController : UnitController
         _sendUpdates = true;
     }
 
-    public override bool AlwaysShowHealthBar() 
-    { 
-        return true; 
+    public override bool AlwaysShowHealthBar()
+    {
+        return true;
     }
 
 
@@ -50,16 +50,16 @@ public class PlayerController : UnitController
 
     TimeSpan timeSinceLastUpdateSent;
 
-    public const float TimeBetweenPlayerUpdates = 1/10.0f;
+    public const float TimeBetweenPlayerUpdates = 1 / 10.0f;
     private const float PlayerUpdateMaxDistance = 0.1f;
     private int _keysDown = 0;
     public override void OnUpdate(CancellationToken token)
     {
-           
+
         _cameraController.BeforeMoveUpdate();
 
-        _unit.X =entity.transform.position.x;
-        _unit.Z =entity.transform.position.z;
+        _unit.X = entity.transform.position.x;
+        _unit.Z = entity.transform.position.z;
 
         if (CanMoveNow())
         {
@@ -90,12 +90,12 @@ public class PlayerController : UnitController
                 _unit.Y = pos.y;
                 _unit.Z = pos.z;
                 int keysDown = GetKeysDown();
-                if ((((diff.magnitude >= PlayerUpdateMaxDistance) ||  oldRot != _unit.Rot) &&
-                    timeSinceLastUpdateSent.TotalSeconds >= TimeBetweenPlayerUpdates) 
+                if ((((diff.magnitude >= PlayerUpdateMaxDistance) || oldRot != _unit.Rot) &&
+                    timeSinceLastUpdateSent.TotalSeconds >= TimeBetweenPlayerUpdates)
                     || keysDown != _keysDown)
                 {
                     _keysDown = keysDown;
-                    float moveSpeed = (GetKeyPercent(KeyComm.Forward) - GetKeyPercent(KeyComm.Backward))*_unit.Speed;
+                    float moveSpeed = (GetKeyPercent(KeyComm.Forward) - GetKeyPercent(KeyComm.Backward)) * _unit.Speed;
                     moveSpeed = _unit.Speed;
 
 
@@ -113,10 +113,10 @@ public class PlayerController : UnitController
                         extraDist = (pos - lastSendPos) * 0.1f;
                     }
 
-                    _unit.Rot =entity.transform.eulerAngles.y;
-                    posMessage.SetX(pos.x+extraDist.x);
-                    posMessage.SetY(pos.y+extraDist.y);
-                    posMessage.SetZ(pos.z+extraDist.z);
+                    _unit.Rot = entity.transform.eulerAngles.y;
+                    posMessage.SetX(pos.x + extraDist.x);
+                    posMessage.SetY(pos.y + extraDist.y);
+                    posMessage.SetZ(pos.z + extraDist.z);
                     posMessage.SetRot(_unit.Rot);
                     posMessage.SetKeysDown(_keysDown);
                     posMessage.SetSpeed(moveSpeed);
@@ -129,5 +129,7 @@ public class PlayerController : UnitController
         }
     }
 }
+
+
 
 

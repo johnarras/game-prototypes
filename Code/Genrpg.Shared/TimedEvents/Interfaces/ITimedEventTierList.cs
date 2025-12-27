@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.TimedEvents.Entities;
+using Genrpg.Shared.TimedEvents.Entities;
 using MessagePack;
 using System;
 using System.Collections.Generic;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.TimedEvents.Interfaces
         long BonusQuantity { get; set; }
     }
 }
+
+

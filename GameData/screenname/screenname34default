@@ -2,5 +2,7 @@
   "Id": "screenname34default",
   "ParentId": "default",
   "IdKey": 34,
-  "Name": "NewCrawlerGame"
+  "Name": "NewCrawlerGame",
+  "ScreenLayerId": 40,
+  "Subdirectory": "Crawler"
 }

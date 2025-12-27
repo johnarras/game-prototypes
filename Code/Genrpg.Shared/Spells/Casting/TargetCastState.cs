@@ -6,10 +6,11 @@ using System.Text;
 
 namespace Genrpg.Shared.Spells.Casting
 {
-    // MessagePackIgnore
     public class TargetCastState
     {
         public Unit Target { get; set; }
         public TryCastState State { get; set; }
     }
 }
+
+

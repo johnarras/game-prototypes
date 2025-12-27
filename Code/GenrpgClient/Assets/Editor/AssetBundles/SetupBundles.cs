@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Bundles;
 using System.IO;
 using UnityEditor;
@@ -68,10 +68,12 @@ public class SetupBundles
 
         }
 
-        BundleSetupUtils.BundleFilesInDirectory(blist, "", "");
+        BundleSetupUtils.BundleFilesInDirectory(blist, gs.loc.Get<IAssetService>(), "", "");
         EditorUtility.SetDirty(blist);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         return blist;
     }
 }
+
+

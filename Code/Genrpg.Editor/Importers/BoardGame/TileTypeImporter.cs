@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Spawns.Settings;
@@ -46,3 +46,5 @@ namespace Genrpg.Editor.Importers.BoardGame
         }
     }
 }
+
+

@@ -1,9 +1,6 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
@@ -13,15 +10,15 @@ namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
     {
 
         private List<T> _items { get; set; } = new List<T>();
-        private IRepositoryService _repoSystem { get; set; }
+        private IFullRepositoryService _repoSystem { get; set; }
 
-        public SaveAction(T item, IRepositoryService repoSystem)
+        public SaveAction(T item, IFullRepositoryService repoSystem)
         {
             _repoSystem = repoSystem;
             _items.Add(item);
         }
 
-        public SaveAction(List<T> items, IRepositoryService repoSystem)
+        public SaveAction(List<T> items, IFullRepositoryService repoSystem)
         {
             _repoSystem = repoSystem;
             _items = new List<T>(items);
@@ -33,3 +30,5 @@ namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
         }
     }
 }
+
+

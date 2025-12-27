@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "treetype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Cedar",
       "Art": "Cedar",
@@ -11,8 +8,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "CedarYoung",
       "Art": "CedarYoung",
@@ -20,8 +15,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Elm",
       "Art": "Elm",
@@ -29,8 +22,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Broadleaf",
       "Art": "Broadleaf",
@@ -38,8 +29,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Conifer",
       "Art": "Conifer",
@@ -47,8 +36,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Palm",
       "Art": "Palm",
@@ -56,8 +43,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Spruce",
       "Art": "Spruce",
@@ -65,8 +50,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "DouglasFir",
       "Art": "DouglasFir",
@@ -74,8 +57,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Birch",
       "Art": "Birch",
@@ -83,8 +64,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "LondonPlane",
       "Art": "LondonPlane",
@@ -92,8 +71,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "RedMaple",
       "Art": "RedMaple",
@@ -101,8 +78,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "ScotsPine",
       "Art": "ScotsPine",
@@ -110,8 +85,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "WhiteOak",
       "Art": "WhiteOak",
@@ -119,8 +92,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "WhiteOakYoung",
       "Art": "WhiteOakYoung",
@@ -128,8 +99,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Cactus",
       "Art": "Cactus",
@@ -137,8 +106,6 @@
       "VariationCount": 4
     },
     {
-      "Id": "treetype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Azalea",
       "Art": "Azalea",
@@ -147,8 +114,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "AzaleaPink",
       "Art": "AzaleaPink",
@@ -157,8 +122,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Azalea",
       "Art": "Azalea",
@@ -167,8 +130,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "AzaleaWhite",
       "Art": "AzaleaWhite",
@@ -177,8 +138,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "CactusCylinder",
       "Art": "CactusCylinder",
@@ -187,8 +146,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "CactusSphere",
       "Art": "CactusSphere",
@@ -197,8 +154,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Cattail",
       "Art": "Cattail",
@@ -207,8 +162,6 @@
       "Flags": 3
     },
     {
-      "Id": "treetype23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "ElephantGrass",
       "Art": "ElephantGrass",
@@ -217,8 +170,6 @@
       "Flags": 3
     },
     {
-      "Id": "treetype24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Juniper",
       "Art": "Juniper",
@@ -226,8 +177,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "Knapweed",
       "Art": "Knapweed",
@@ -236,8 +185,6 @@
       "Flags": 3
     },
     {
-      "Id": "treetype26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "Snakeweed",
       "Art": "Snakeweed",
@@ -246,8 +193,6 @@
       "Flags": 3
     },
     {
-      "Id": "treetype27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "SnakeweedYellow",
       "Art": "SnakeweedYellow",
@@ -256,8 +201,6 @@
       "Flags": 3
     },
     {
-      "Id": "treetype28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "SwordFern",
       "Art": "SwordFern",
@@ -266,8 +209,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "LeafFern",
       "Art": "LeafFern",
@@ -276,8 +217,6 @@
       "Flags": 1
     },
     {
-      "Id": "treetype30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "BroadleafSmall",
       "Art": "BroadleafSmall",
@@ -285,8 +224,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "CedarBare",
       "Art": "CedarBare",
@@ -294,8 +231,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "ElmFall",
       "Art": "ElmFall",
@@ -303,8 +238,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "SpruceBare",
       "Art": "SpruceBare",
@@ -312,8 +245,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "SpruceWinter",
       "Art": "SpruceWinter",
@@ -321,8 +252,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "DouglasFirBare",
       "Art": "DouglasFirBare",
@@ -330,8 +259,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "DouglasFirPyramid",
       "Desc": "",
@@ -341,8 +268,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "BirchFall",
       "Art": "BirchFall",
@@ -350,8 +275,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "BirchWinter",
       "Art": "BirchWinter",
@@ -359,8 +282,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "RedMapleYoung",
       "Art": "RedMapleYoung",
@@ -368,8 +289,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "RedMapleFall",
       "Art": "RedMapleFall",
@@ -377,8 +296,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "RedMapleFallYoung",
       "Art": "RedMapleFallYoung",
@@ -386,8 +303,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "RedMapleWinter",
       "Art": "RedMapleWinter",
@@ -395,8 +310,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "RedMapleWinterYoung",
       "Art": "RedMapleWinterYoung",
@@ -404,8 +317,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "LondonPlaneFall",
       "Art": "LondonPlaneFall",
@@ -413,8 +324,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "LondonPlaneWinter",
       "Art": "LondonPlaneWinter",
@@ -422,8 +331,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "ScotsPineBare",
       "Art": "ScotsPineBare",
@@ -431,8 +338,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "ScotsPineWinter",
       "Art": "ScotsPineWinter",
@@ -440,8 +345,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "WhiteOakFall",
       "Art": "WhiteOakFall",
@@ -449,8 +352,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype49default",
-      "ParentId": "default",
       "IdKey": 49,
       "Name": "WhiteOakWinter",
       "Art": "WhiteOakWinter",
@@ -458,8 +359,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "WhiteOakFallYoung",
       "Art": "WhiteOakFallYoung",
@@ -467,8 +366,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "WhiteOakWinterYoung",
       "Art": "WhiteOakWinterYoung",
@@ -476,8 +373,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "JuniperBare",
       "Art": "JuniperBare",
@@ -485,8 +380,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype53default",
-      "ParentId": "default",
       "IdKey": 53,
       "Name": "Baobab",
       "Art": "Baobab",
@@ -494,8 +387,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype54default",
-      "ParentId": "default",
       "IdKey": 54,
       "Name": "BaobabSmall",
       "Art": "BaobabSmall",
@@ -503,8 +394,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype55default",
-      "ParentId": "default",
       "IdKey": 55,
       "Name": "AmurCork",
       "Art": "AmurCork",
@@ -512,8 +401,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype56default",
-      "ParentId": "default",
       "IdKey": 56,
       "Name": "AmurCorkFall",
       "Art": "AmurCorkFall",
@@ -521,8 +408,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype57default",
-      "ParentId": "default",
       "IdKey": 57,
       "Name": "AmurCorkBare",
       "Art": "AmurCorkBare",
@@ -530,8 +415,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype58default",
-      "ParentId": "default",
       "IdKey": 58,
       "Name": "CypressFull",
       "Art": "CypressFull",
@@ -539,8 +422,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype59default",
-      "ParentId": "default",
       "IdKey": 59,
       "Name": "CypressThin",
       "Art": "CypressThin",
@@ -548,8 +429,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "CypressGold",
       "Art": "CypressGold",
@@ -557,8 +436,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "BanyanThin",
       "Art": "BanyanThin",
@@ -566,8 +443,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "BanyanThick",
       "Art": "BanyanThick",
@@ -575,8 +450,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Aspen",
       "Art": "Aspen",
@@ -584,8 +457,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "AspenFall",
       "Art": "AspenFall",
@@ -593,8 +464,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "AspenBare",
       "Art": "AspenBare",
@@ -602,8 +471,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "JapaneseMaple",
       "Art": "JapaneseMaple",
@@ -611,8 +478,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype67default",
-      "ParentId": "default",
       "IdKey": 67,
       "Name": "JapaneseMapleYoung",
       "Art": "JapaneseMapleYoung",
@@ -620,8 +485,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype68default",
-      "ParentId": "default",
       "IdKey": 68,
       "Name": "JapaneseMapleFall",
       "Art": "JapaneseMapleFall",
@@ -629,8 +492,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype69default",
-      "ParentId": "default",
       "IdKey": 69,
       "Name": "JapaneseMapleFallYoung",
       "Art": "JapaneseMapleFallYoung",
@@ -638,8 +499,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "Apple",
       "Art": "Apple",
@@ -647,8 +506,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype71default",
-      "ParentId": "default",
       "IdKey": 71,
       "Name": "AppleFall",
       "Art": "AppleFall",
@@ -656,8 +513,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype72default",
-      "ParentId": "default",
       "IdKey": 72,
       "Name": "AppleBare",
       "Art": "AppleBare",
@@ -665,8 +520,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype73default",
-      "ParentId": "default",
       "IdKey": 73,
       "Name": "RiverBirch",
       "Art": "RiverBirch",
@@ -674,8 +527,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype74default",
-      "ParentId": "default",
       "IdKey": 74,
       "Name": "RiverBirchFall",
       "Art": "RiverBirchFall",
@@ -683,8 +534,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype75default",
-      "ParentId": "default",
       "IdKey": 75,
       "Name": "RiverBirchBare",
       "Art": "RiverBirchBare",
@@ -692,8 +541,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype76default",
-      "ParentId": "default",
       "IdKey": 76,
       "Name": "Magnolia",
       "Art": "Magnolia",
@@ -701,8 +548,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype77default",
-      "ParentId": "default",
       "IdKey": 77,
       "Name": "MagnoliaPink",
       "Art": "MagnoliaPink",
@@ -710,8 +555,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype78default",
-      "ParentId": "default",
       "IdKey": 78,
       "Name": "MagnoliaWhite",
       "Art": "MagnoliaWhite",
@@ -719,8 +562,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype79default",
-      "ParentId": "default",
       "IdKey": 79,
       "Name": "MagnoliaBare",
       "Art": "MagnoliaBare",
@@ -728,8 +569,6 @@
       "VariationCount": 2
     },
     {
-      "Id": "treetype80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "Buttercup",
       "Art": "Buttercup",
@@ -738,8 +577,6 @@
       "Flags": 13
     },
     {
-      "Id": "treetype81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "Daisy",
       "Art": "Daisy",
@@ -748,8 +585,6 @@
       "Flags": 13
     },
     {
-      "Id": "treetype82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "Dandelion",
       "Art": "Dandelion",
@@ -758,8 +593,6 @@
       "Flags": 13
     },
     {
-      "Id": "treetype83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "Fern",
       "Art": "Fern",
@@ -768,8 +601,6 @@
       "Flags": 9
     },
     {
-      "Id": "treetype84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "Foxglove",
       "Art": "Foxglove",
@@ -778,8 +609,6 @@
       "Flags": 13
     },
     {
-      "Id": "treetype85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "Poppy",
       "Art": "Poppy",
@@ -788,8 +617,6 @@
       "Flags": 13
     },
     {
-      "Id": "treetype86default",
-      "ParentId": "default",
       "IdKey": 86,
       "Name": "Thistle",
       "Art": "Thistle",
@@ -802,8 +629,8 @@
     "Id": "default",
     "TallChance": 0.5,
     "TreeDirtRadius": 9.0,
-    "Name": "TreeTypeSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "TreeTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

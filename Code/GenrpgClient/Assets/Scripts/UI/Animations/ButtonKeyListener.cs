@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.ClientEvents;
 using System;
 using System.Threading;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.Animations
         public Key Key;
 
         private Action _action;
-
+        public bool SuppressAction = false;
         public override void Init()
         {
             base.Init();
@@ -44,7 +44,7 @@ namespace Assets.Scripts.UI.Animations
         private async Awaitable OnClickKeyAsync(CancellationToken token)
         {
 
-            if (_action != null)
+            if (_action != null && !SuppressAction)
             {
                 _action();
             }
@@ -54,3 +54,5 @@ namespace Assets.Scripts.UI.Animations
         }
     }
 }
+
+

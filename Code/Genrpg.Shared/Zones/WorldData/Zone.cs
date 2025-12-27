@@ -11,40 +11,39 @@ using System.Linq;
 namespace Genrpg.Shared.Zones.WorldData
 {
 
-    [MessagePackObject]
     public class Zone : BaseWorldData, IIndexedGameItem, IMapOwnerId
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public string OwnerId { get; set; }
-        [Key(2)] public string MapId { get; set; }
-        [Key(3)] public long IdKey { get; set; }
-        [Key(4)] public long ZoneTypeId { get; set; }
+        public override string Id { get; set; }
+        public string OwnerId { get; set; }
+        public string MapId { get; set; }
+        public long IdKey { get; set; }
+        public long ZoneTypeId { get; set; }
 
 
-        [Key(5)] public string Name { get; set; }
-        [Key(6)] public string Desc { get; set; }
-        [Key(7)] public string AtlasPrefix { get; set; }
-        [Key(8)] public string Icon { get; set; }
-        [Key(9)] public long Seed { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public long Seed { get; set; }
 
 
-        [Key(10)] public long BaseTextureTypeId { get; set; }
-        [Key(11)] public long DirtTextureTypeId { get; set; }
-        [Key(12)] public long RockTextureTypeId { get; set; }
-        [Key(13)] public long RoadTextureTypeId { get; set; }
+        public long BaseTextureTypeId { get; set; }
+        public long DirtTextureTypeId { get; set; }
+        public long RockTextureTypeId { get; set; }
+        public long RoadTextureTypeId { get; set; }
 
-        [Key(14)] public long Level { get; set; }
+        public long Level { get; set; }
 
-        [Key(15)] public string Art { get; set; }
+        public string Art { get; set; }
 
-        [Key(16)] public int XMin { get; set; }
-        [Key(17)] public int ZMin { get; set; }
-        [Key(18)] public int XMax { get; set; }
-        [Key(19)] public int ZMax { get; set; }
+        public int XMin { get; set; }
+        public int ZMin { get; set; }
+        public int XMax { get; set; }
+        public int ZMax { get; set; }
 
-        [Key(20)] public List<Location> Locations { get; set; }
-        [Key(21)] public List<ZoneUnitStatus> Units { get; set; }
-        [Key(22)] public List<ZonePlantType> PlantTypes { get; set; }
+        public List<Location> Locations { get; set; }
+        public List<ZoneUnitStatus> Units { get; set; }
+        public List<ZonePlantType> PlantTypes { get; set; }
 
         public override void Delete(IRepositoryService repoSystem) { repoSystem.Delete(this); }
         public Zone()
@@ -174,3 +173,5 @@ namespace Genrpg.Shared.Zones.WorldData
         }
     }
 }
+
+

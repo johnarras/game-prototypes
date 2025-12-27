@@ -1,27 +1,27 @@
-﻿
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.MapObjects.Entities;
-using System.Collections.Generic;
-using UnityEngine;
+
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Characters.PlayerData;
-using System;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.MapObjects.Factories;
-using System.Threading;
-using Genrpg.Shared.MapObjects.Messages;
-using System.Threading.Tasks;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Factories;
+using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Client.Tokens;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Awaitables;
+using Genrpg.Shared.Movement.Messages;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils.Data;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public interface IClientMapObjectManager : IInitializable, IMapTokenService
 {
@@ -43,17 +43,13 @@ public interface IClientMapObjectManager : IInitializable, IMapTokenService
 
 public class ClientMapObjectManager : IClientMapObjectManager
 {
-    private IRealtimeNetworkService _networkService;
-    private IPlayerManager _playerManager;
-    protected IClientRandom _rand;
-    protected IMapProvider _mapProvider;
-    private ILogService _logService;
-    private ISingletonContainer _singletonContainer;
-    protected IClientEntityService _clientEntityService;
-    protected IAwaitableService _awaitableService;
-
-    private const string FXParentName = "FXParent";
-
+    private IRealtimeNetworkService _networkService = null;
+    private IPlayerManager _playerManager = null;
+    protected IClientRandom _rand = null;
+    protected IMapProvider _mapProvider = null;
+    private ISingletonContainer _singletonContainer = null;
+    protected IClientEntityService _clientEntityService = null;
+    protected IAwaitableService _awaitableService = null;
 
     private List<UnitController> _controllers = new List<UnitController>();
     private SetupDictionaryContainer<long, IMapObjectFactory> _factories = new SetupDictionaryContainer<long, IMapObjectFactory>();
@@ -62,7 +58,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
     private Dictionary<string, ClientMapObjectGridItem> _gridItems = new Dictionary<string, ClientMapObjectGridItem>();
 
 
-    protected IClientUpdateService _updateService;
+    protected IClientUpdateService _updateService = null;
     protected List<string> _olderSpawns = new List<string>();
     protected List<string> _recentlyLoadedSpawns = new List<string>();
     List<UnitController> _removeUnitList = new List<UnitController>();
@@ -113,7 +109,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
         }
         if (Application.isPlaying)
         {
-            _fxParent = _singletonContainer.GetSingleton("FXParent");
+            _fxParent = _singletonContainer.GetAssetParent<FX>();
         }
 
         await Task.CompletedTask;
@@ -130,7 +126,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
     }
 
 
-    public bool GetUnit (string id, out Unit unit, bool downloadIfNotExist = true)
+    public bool GetUnit(string id, out Unit unit, bool downloadIfNotExist = true)
     {
         unit = null;
         if (GetMapObject(id, out MapObject obj, downloadIfNotExist))
@@ -197,7 +193,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
     {
         _removeUnitList.Clear();
         if (_playerManager.GetPlayerGameObject() == null)
-        {        
+        {
             return;
         }
         Vector3 playerPos = _playerManager.GetPlayerGameObject().transform.position;
@@ -213,8 +209,8 @@ public class ClientMapObjectManager : IClientMapObjectManager
                 else
                 {
                     Vector3 pos = controller.transform.position;
-                    if (Math.Abs(pos.x - playerPos.x) >= MessageConstants.DefaultGridDistance * 3/2 ||
-                        Math.Abs(pos.z - playerPos.z) >= MessageConstants.DefaultGridDistance * 3/2)
+                    if (Math.Abs(pos.x - playerPos.x) >= MessageConstants.DefaultGridDistance * 3 / 2 ||
+                        Math.Abs(pos.z - playerPos.z) >= MessageConstants.DefaultGridDistance * 3 / 2)
                     {
                         _removeUnitList.Add(controller);
                     }
@@ -304,7 +300,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
         _clientEntityService.Destroy(go);
     }
 
-    public bool GetController (string unitId, out UnitController controller)
+    public bool GetController(string unitId, out UnitController controller)
     {
         if (!GetGridItem(unitId, out ClientMapObjectGridItem gridItem))
         {
@@ -323,7 +319,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
         {
             return currObj;
         }
-        
+
         if (!_factories.TryGetValue(spawn.EntityTypeId, out IMapObjectFactory fact))
         {
             return null;
@@ -353,7 +349,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
             {
                 float dx = t.X - x;
                 float dz = t.Z - z;
-                if (Math.Sqrt(dx*dx+dz*dz) <= radius)
+                if (Math.Sqrt(dx * dx + dz * dz) <= radius)
                 {
                     retval.Add(t);
                 }
@@ -370,7 +366,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
         }
 
         int minX = onAddToGrid.GridX - UnitConstants.PlayerObjectVisRadius;
-        int maxX = onAddToGrid.GridX + UnitConstants.PlayerObjectVisRadius; 
+        int maxX = onAddToGrid.GridX + UnitConstants.PlayerObjectVisRadius;
         int minZ = onAddToGrid.GridZ - UnitConstants.PlayerObjectVisRadius;
         int maxZ = onAddToGrid.GridZ + UnitConstants.PlayerObjectVisRadius;
 
@@ -396,3 +392,5 @@ public class ClientMapObjectManager : IClientMapObjectManager
         _removeGridItems.Clear();
     }
 }
+
+

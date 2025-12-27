@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Assets.Scripts.Assets.ObjectPools
 {
@@ -8,3 +8,5 @@ namespace Assets.Scripts.Assets.ObjectPools
         void SetDestroyCallback(Action action);
     }
 }
+
+

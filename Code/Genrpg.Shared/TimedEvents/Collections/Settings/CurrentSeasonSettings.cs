@@ -7,16 +7,15 @@ using System;
 
 namespace Genrpg.Shared.TimedEvents.Collections.Settings
 {
-    [MessagePackObject]
     public class CurrentCollectionSettings : NoChildSettings, ICurrentTimedEventSettings
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public DateTime StarTime { get; set; }
-        [Key(2)] public DateTime EndTime { get; set; }
-        [Key(3)] public bool Enabled { get; set; }
-        [Key(4)] public long CollectionThemeId { get; set; }
-        [Key(5)] public long CollectionTierListId { get; set; }
-        [Key(6)] public string InstanceId { get; set; }
+        public override string Id { get; set; }
+        public DateTime StarTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public bool Enabled { get; set; }
+        public long CollectionThemeId { get; set; }
+        public long CollectionTierListId { get; set; }
+        public string InstanceId { get; set; }
 
         public long GetActivityTypeId() { return TimedEventTypes.Collection; }
         public long GetThemeEntityTypeId() { return EntityTypes.CollectionTheme; }
@@ -28,3 +27,5 @@ namespace Genrpg.Shared.TimedEvents.Collections.Settings
 
     }
 }
+
+

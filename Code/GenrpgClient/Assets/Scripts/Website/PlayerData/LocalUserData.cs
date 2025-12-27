@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 
 
 public class LocalUserData : IStringId
@@ -8,3 +8,4 @@ public class LocalUserData : IStringId
     public string LoginToken { get; set; }
     public bool IsFullScreen { get; set; }
 }
+

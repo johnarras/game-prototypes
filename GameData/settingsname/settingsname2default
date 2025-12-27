@@ -2,6 +2,5 @@
   "Id": "settingsname2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "AISettings",
-  "SaveTime": "2025-11-24T17:13:23.088Z"
+  "Name": "AISettings"
 }

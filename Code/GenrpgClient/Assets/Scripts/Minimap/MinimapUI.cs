@@ -1,4 +1,5 @@
 
+using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
@@ -24,6 +25,7 @@ public class MinimapUI : BaseBehaviour
         _token = token;
         AddListener<EnableMinimapEvent>(OnEnableMinimap);
         AddListener<DisableMinimapEvent>(OnDisableMinimap);
+        AddListener<SetMinimapTexture>(OnSetMinimapTexture);
         OnDisableMinimap(null);
         AddUpdate(MinimapUpdate, UpdateTypes.Regular);
         if (ArrowParent != null)
@@ -49,24 +51,15 @@ public class MinimapUI : BaseBehaviour
     }
 
 
-    private static Texture2D _mapTexture = null;
-    public static void SetTexture(Texture2D tex)
-    {
-        if (tex == null && _mapTexture != null)
-        {
-            Destroy(_mapTexture);
-        }
+    private Texture2D _mapTexture = null;
 
-        _mapTexture = tex;
+    private void OnSetMinimapTexture(SetMinimapTexture setTexture)
+    {
+        _mapTexture = setTexture.Texture;
         if (_mapTexture != null)
         {
             _mapTexture.wrapMode = TextureWrapMode.Clamp;
         }
-    }
-
-    public static Texture2D GetTexture()
-    {
-        return _mapTexture;
     }
 
     private void OnLoadArrow(GameObject obj, object data, CancellationToken token)
@@ -126,4 +119,6 @@ public class MinimapUI : BaseBehaviour
 
 
 }
+
+
 

@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Inventory.Messages
         [Key(0)] public string ItemId { get; set; }
     }
 }
+
+

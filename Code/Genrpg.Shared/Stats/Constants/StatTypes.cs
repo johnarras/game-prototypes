@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
@@ -58,3 +58,5 @@ namespace Genrpg.Shared.Stats.Constants
         // Update StatConstants.MaxStatType to be the max value + 1 in this file.
     }
 }
+
+

@@ -66,3 +66,5 @@ namespace Genrpg.Shared.Spells.Settings.Effects
         }
     }
 }
+
+

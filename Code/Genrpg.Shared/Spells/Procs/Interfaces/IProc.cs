@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Spells.Procs.Interfaces
         double Chance { get; set; }
     }
 }
+
+

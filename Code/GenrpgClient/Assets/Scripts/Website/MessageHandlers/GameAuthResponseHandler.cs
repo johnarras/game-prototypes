@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Purchasing.Services;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Constants;
@@ -45,10 +44,10 @@ namespace Assets.Scripts.Website.MessageHandlers
 
             if (response == null || response.GameAccount == null)
             {
-                _screenService.CloseAll(keepOpenScreens);
+                _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
                 if (keepOpenScreens.Count < 1)
                 {
-                    _screenService.Open(ScreenNames.Login);
+                    _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
                 }
                 return;
             }
@@ -94,9 +93,9 @@ namespace Assets.Scripts.Website.MessageHandlers
                 try
                 {
                     await _screenService.OpenAsync(ScreenNames.Loading, null, token);
-                    _screenService.CloseAll(new List<long>() { ScreenNames.Loading });
+                    _dispatcher.Dispatch(new CloseAllScreens(new List<long>() { ScreenNames.Loading }));
                     keepOpenScreens.Add(ScreenNames.CharacterSelect);
-                    _screenService.Close(ScreenNames.HUD);
+                    _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
                     var screen = await _screenService.OpenAsync(ScreenNames.CharacterSelect, null, token);
                     _logService.Info("Screen: " + screen);
                 }
@@ -106,7 +105,7 @@ namespace Assets.Scripts.Website.MessageHandlers
                 }
             }
             await _purchasingService.RetryPurchaseAfterLogin(token);
-            _screenService.CloseAll(keepOpenScreens);
+            _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
         }
 
         public async Awaitable RetryUploadMap(CancellationToken token)
@@ -124,3 +123,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

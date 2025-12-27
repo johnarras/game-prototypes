@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Maps.Constants
+namespace Genrpg.Shared.Crawler.Maps.Constants
 {
     public class MapMagics
     {
@@ -9,3 +9,5 @@
         public const int Silence = 5;
     }
 }
+
+

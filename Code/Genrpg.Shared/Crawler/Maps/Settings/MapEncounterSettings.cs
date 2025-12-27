@@ -1,41 +1,43 @@
-using Genrpg.Shared.Characters.PlayerData;
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Dungeons.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Maps.Settings
 {
-    [MessagePackObject]
     public class MapEncounterSettings : ParentSettings<MapEncounterType>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public double EncounterChance { get; set; }
+        public override string Id { get; set; }
+        public double EncounterChance { get; set; }
     }
 
-    [MessagePackObject]
     public class MapEncounterType : ChildSettings, IIndexedGameItem, IWeightedItem
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public string Art { get; set; }
-        [Key(8)] public double Weight { get; set; }
-        [Key(9)] public bool CanRepeat { get; set; }
-        [Key(10)] public bool CanBeCleansed { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public string Art { get; set; }
+        public double Weight { get; set; }
+        public bool CanRepeat { get; set; }
+        public bool CanBeCleansed { get; set; }
 
     }
 
-    public class MapEncounterSettingsDto : ParentSettingsDto<MapEncounterSettings, MapEncounterType> { }
+    public class MapEncounterSettingsDto : ParentSettingsDto<MapEncounterSettings, MapEncounterType>
+    {
+        public override List<MapEncounterType> Children { get; set; }
+        public override MapEncounterSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class MapEncounterSettingsLoader : ParentSettingsLoader<MapEncounterSettings, MapEncounterType> { }
 
     public class MapEncounterSettingsMapper : ParentSettingsMapper<MapEncounterSettings, MapEncounterType, MapEncounterSettingsDto> { }
@@ -45,3 +47,5 @@ namespace Genrpg.Shared.Crawler.Maps.Settings
         public override long HelperKey => EntityTypes.MapEncounter;
     }
 }
+
+

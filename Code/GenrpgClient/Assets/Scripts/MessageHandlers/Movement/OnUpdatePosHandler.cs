@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Pathfinding.Utils;
+using Assets.Scripts.Pathfinding.Utils;
 using Genrpg.Shared.Client.Core;
 
 using Genrpg.Shared.Characters.PlayerData;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
     public class OnUpdatePosHandler : BaseClientMapMessageHandler<OnUpdatePos>
     {
 
-        private IPathfindingService _pathfindingService;
+        private IPathfindingService _pathfindingService = null;
         private IClientPathfindingUtils _pathfindingUtils;
         private IPlayerManager _playerManager;
 
@@ -98,3 +98,5 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
         }
     }
 }
+
+

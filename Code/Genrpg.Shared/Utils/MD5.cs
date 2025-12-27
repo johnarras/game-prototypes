@@ -14,7 +14,6 @@ namespace Genrpg.Shared.Utils
     /// <summary>
     /// Represent digest with ABCD
     /// </summary>
-    // MessagePackIgnore  
     public class Digest
     {
         public uint A;
@@ -76,7 +75,6 @@ namespace Genrpg.Shared.Utils
         }
     }
 
-    [MessagePackObject]
     public class MD5Hash
     {
         /***********************VARIABLES************************************/
@@ -354,3 +352,5 @@ namespace Genrpg.Shared.Utils
 
 
 }
+
+

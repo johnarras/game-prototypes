@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Rewards.Entities;
@@ -17,8 +17,6 @@ namespace Assets.Scripts.Rewards.UI
     }
     public class PopupRewardContainer : BaseBehaviour
     {
-        private IInputService _inputService;
-
         public float DistancePerSecond;
         public float DisplayTime;
 
@@ -61,3 +59,5 @@ namespace Assets.Scripts.Rewards.UI
         }
     }
 }
+
+

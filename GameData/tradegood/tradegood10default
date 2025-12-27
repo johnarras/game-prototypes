@@ -97,6 +97,15 @@
       1922
     ]
   },
-  "ProducerCities": [],
-  "SaveTime": "2025-09-29T01:31:48.97Z"
+  "ProducerCities": [
+    {
+      "CityId": 10
+    },
+    {
+      "CityId": 27
+    },
+    {
+      "CityId": 51
+    }
+  ]
 }

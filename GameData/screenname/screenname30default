@@ -2,5 +2,6 @@
   "Id": "screenname30default",
   "ParentId": "default",
   "IdKey": 30,
-  "Name": "Settings"
+  "Name": "Settings",
+  "ScreenLayerId": 20
 }

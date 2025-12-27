@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "buildingtype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Clothing Store",
       "Icon": "ClothingStore",
@@ -13,8 +10,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Woodworking Shop",
       "Icon": "WoodworkingShop",
@@ -24,8 +19,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Tannery",
       "Icon": "Tannery",
@@ -35,8 +28,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "The Smithy",
       "Icon": "Smithy",
@@ -46,8 +37,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Stonecarver's",
       "Icon": "Stonecarver",
@@ -57,8 +46,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Jewelry Shop",
       "Icon": "JewelryShop",
@@ -68,8 +55,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Alchemy Lab",
       "Icon": "AlchemyLab",
@@ -79,8 +64,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Enchanter's Hut",
       "Icon": "EnchantersHut",
@@ -90,8 +73,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Thieves' Guild",
       "Icon": "ThievesGuild",
@@ -101,8 +82,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "House",
       "Icon": "House",
@@ -112,8 +91,6 @@
       "VariationCount": 4
     },
     {
-      "Id": "buildingtype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Guard Tower",
       "Icon": "GuardTower",
@@ -123,8 +100,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Guild",
       "Icon": "Guild",
@@ -135,8 +110,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Equipment",
       "Icon": "Equipment",
@@ -147,8 +120,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Temple",
       "Icon": "Temple",
@@ -159,8 +130,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Trainer",
       "Icon": "Trainer",
@@ -171,8 +140,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Regen",
       "Icon": "Regen",
@@ -183,8 +150,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Tavern",
       "Icon": "Tavern",
@@ -195,8 +160,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Cave",
       "Desc": "",
@@ -207,8 +170,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "Dungeon",
       "Desc": "",
@@ -219,8 +180,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Tower",
       "Desc": "",
@@ -231,8 +190,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "City",
       "Desc": "",
@@ -243,8 +200,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Natural",
       "Desc": "",
@@ -255,8 +210,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Lava",
       "Desc": "",
@@ -267,8 +220,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Unholy",
       "Desc": "",
@@ -279,8 +230,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "Arcane",
       "Desc": "",
@@ -291,8 +240,6 @@
       "ShowNameplate": true
     },
     {
-      "Id": "buildingtype26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "Npc",
       "Desc": "",
@@ -305,8 +252,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "BuildingSettings",
-    "SaveTime": "2025-08-26T15:14:36.351Z"
+    "Name": "BuildingSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-08-26T15:14:36.351Z"
 }

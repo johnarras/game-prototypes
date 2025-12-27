@@ -1,10 +1,8 @@
-using MessagePack;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Trades.Constants;
-using System;
+using MessagePack;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Trades.Entities
 {
@@ -18,15 +16,14 @@ namespace Genrpg.Shared.Trades.Entities
         [Key(4)] public long Money { get; set; }
     }
 
-    // MessagePackIgnore
     public class FullTradeObject
-    {    
+    {
         public List<Character> OrderedCharacters { get; set; } = new List<Character>();
         public TradeObject TradeObject { get; set; }
         public string ErrorMessage { get; set; }
         public bool IsOkToUpdate()
         {
-            if (OrderedCharacters == null || 
+            if (OrderedCharacters == null ||
                 OrderedCharacters.Count != 2)
             {
                 return false;
@@ -37,7 +34,7 @@ namespace Genrpg.Shared.Trades.Entities
                 return false;
             }
 
-            return true;         
+            return true;
         }
     }
 
@@ -65,3 +62,5 @@ namespace Genrpg.Shared.Trades.Entities
         }
     }
 }
+
+

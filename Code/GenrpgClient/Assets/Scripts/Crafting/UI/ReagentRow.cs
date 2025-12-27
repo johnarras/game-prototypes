@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ReagentRow : BaseBehaviour
@@ -7,3 +7,5 @@ public class ReagentRow : BaseBehaviour
     public GameObject IconParent;
     public List<CraftSlotIcon> Icons;
 }
+
+

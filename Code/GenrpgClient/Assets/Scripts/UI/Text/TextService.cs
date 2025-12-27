@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
@@ -8,7 +8,7 @@ namespace Assets.Scripts.UI.Services
 {
     public class TextService : ITextService
     {
-        private IInputService _inputService;
+        private IInputService _inputService = null;
 
         public string GetLinkUnderMouse(IText text)
         {
@@ -46,3 +46,5 @@ namespace Assets.Scripts.UI.Services
 
     }
 }
+
+

@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Quests.Messages
         [Key(1)] public List<QuestType> Quests { get; set; }
     }
 }
+
+

@@ -1,15 +1,15 @@
-﻿using Genrpg.RequestServer.AuthRequests.Constants;
+using Genrpg.RequestServer.AuthRequests.Constants;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.Accounts.Services;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Crypto.Services;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Interfaces;
@@ -24,9 +24,9 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         protected IPlayerDataService _playerDataService = null!;
         protected ILoginPlayerDataService _loginPlayerDataService = null!;
         protected ILogService _logService = null!;
-        protected IRepositoryService _repoService = null!;
+        protected IFullRepositoryService _repoService = null!;
         protected IWebServerService _loginServerService = null!;
-        protected IGameDataService _gameDataService = null!;
+        protected IServerGameDataService _gameDataService = null!;
         protected ICloudCommsService _cloudCommsService = null!;
         protected IWebServerService _webServerService = null!;
         protected IAccountService _accountService = null!;
@@ -47,7 +47,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         }
         protected void ShowError(WebContext context, string msg)
         {
-            context.Responses.AddResponse(new ErrorResponse() { Error = msg });
+            context.AddResponse(new ErrorResponse() { Error = msg });
         }
 
         protected async Task AfterAuthSuccess(WebContext context, Account account, IAccountAuthRequest request, EAuthResponse authResponse)
@@ -104,22 +104,21 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 
             _accountService.AddAccountToProductGraph(account, request.ProductId, request.ReferrerId);
 
-            UpdatePublicAccount(account);
+            await UpdatePublicAccount(account);
 
-            context.Responses.AddResponse(response);
+            context.AddResponse(response);
 
         }
 
 
-        private void UpdatePublicAccount(Account account)
+        private async Task UpdatePublicAccount(Account account)
         {
             // Just always make new files and save them.
 
             PublicAccount publicAccount = new PublicAccount() { Id = account.Id };
 
             publicAccount.Name = account.ShareId;
-            _repoService.QueueSave(publicAccount);
-
+            await _repoService.Save(publicAccount);
         }
 
         protected EAuthResponse ExistingPasswordIsOk(Account account, IAccountAuthRequest request)
@@ -151,3 +150,5 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         }
     }
 }
+
+

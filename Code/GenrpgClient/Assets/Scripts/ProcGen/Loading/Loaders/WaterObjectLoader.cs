@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Utils.Data;
@@ -81,3 +81,4 @@ public class WaterObjectLoader : BaseObjectLoader
 
     }
 }
+

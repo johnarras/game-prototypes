@@ -8,11 +8,12 @@ namespace Genrpg.Shared.Stats.Entities
         int Percent { get; set; }
     }
 
-    [MessagePackObject]
     public class StatPct : IStatPct
     {
-        [Key(0)] public long StatTypeId { get; set; }
-        [Key(1)] public int Percent { get; set; }
-        [Key(2)] public string Name { get; set; }
+        public long StatTypeId { get; set; }
+        public int Percent { get; set; }
+        public string Name { get; set; }
     }
 }
+
+

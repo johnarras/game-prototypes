@@ -17,3 +17,5 @@ namespace Genrpg.Shared.MapMods.MapObjectAddons
         [Key(6)] public string Name { get; set; }
     }
 }
+
+

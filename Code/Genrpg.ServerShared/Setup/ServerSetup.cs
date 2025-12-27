@@ -1,10 +1,9 @@
-﻿
+
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Setup.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,12 +32,7 @@ namespace Genrpg.ServerShared.Setup
 
                 GS gs = (GS)Activator.CreateInstance(typeof(GS), new object[] { config });
                 TSetupService setupService = (TSetupService)Activator.CreateInstance(typeof(TSetupService));
-                await setupService.SetupGame(gs.loc, token);
-
-                gs.loc.Resolve(currentObject);
-
-                IGameDataService gameDataService = gs.loc.Get<IGameDataService>();
-                IGameData gameData = await gameDataService.LoadGameData(setupService.CreateMissingGameData());
+                await setupService.SetupGame(gs, new List<object> { currentObject }, token);
 
                 return gs;
             }
@@ -50,3 +44,5 @@ namespace Genrpg.ServerShared.Setup
         }
     }
 }
+
+

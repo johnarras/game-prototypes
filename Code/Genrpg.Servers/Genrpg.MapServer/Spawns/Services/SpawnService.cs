@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
@@ -181,3 +181,5 @@ namespace Genrpg.MapServer.Spawns.Services
 
     }
 }
+
+

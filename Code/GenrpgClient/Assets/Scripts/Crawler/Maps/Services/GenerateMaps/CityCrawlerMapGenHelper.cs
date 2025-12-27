@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Crawler.MapGen.Entities;
@@ -443,3 +443,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using MessagePack.Formatters;
 using System;
 using System.Collections.Generic;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Crawler.Maps.Constants
         public const long Outdoors = 3;
     }
 }
+
+

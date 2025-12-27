@@ -1,10 +1,13 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Repository;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.GameSettings.Services;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -15,15 +18,23 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSettings.Services
 {
+    public interface IClientGameDataService : IGameDataService, IInitializable
+    {
+        Awaitable SaveSettings(IGameSettings settings);
+
+        Awaitable EditorLoadCachedSettings(IClientGameState gs);
+
+    }
     public class ClientGameDataService : IClientGameDataService
     {
 
-        private IRepositoryService _repoService = null!;
+        private IClientRepositoryService _repoService = null!;
         protected IGameData _gameData = null!;
         private IClientAppService _clientAppService = null!;
         private IClientConfigContainer _configContainer = null!;
         private ILocalLoadService _localLoadService = null!;
         private ITextSerializer _serializer = null!;
+        private IClientGameState _gs = null;
 
         private Dictionary<Type, IGameSettingsMapper> _loaderObjects = null;
 
@@ -47,14 +58,22 @@ namespace Assets.Scripts.GameSettings.Services
             _loaderObjects = newList;
             await Task.CompletedTask;
         }
-#if UNITY_EDITOR
 
-#endif
+        public async Task<IGameData> LoadGameData()
+        {
+            await LoadCachedSettingsInternal(_gs, false);
+            return _gameData;
+        }
+
+        public async Awaitable EditorLoadCachedSettings(IClientGameState gs)
+        {
+            await LoadCachedSettingsInternal(gs, true);
+        }
+
         const string BakedGameDataPathSuffix = "BakedGameData/";
-        public async Awaitable LoadCachedSettings(IClientGameState gs, bool useBakedSettings)
+        public async Awaitable LoadCachedSettingsInternal(IClientGameState gs, bool useBakedSettings)
         {
             GameData gameData = new ClientGameData();
-            ClientRepositoryService repo = _repoService as ClientRepositoryService;
 
             List<ITopLevelSettings> allSettings = new List<ITopLevelSettings>();
             foreach (IGameSettingsMapper loader in _loaderObjects.Values)
@@ -75,7 +94,7 @@ namespace Assets.Scripts.GameSettings.Services
                 {
                     List<ITopLevelSettings> settingsChoices = new List<ITopLevelSettings>();
 
-                    object obj = await repo.LoadWithType(loader.GetClientType(), GameDataConstants.DefaultFilename);
+                    object obj = await _repoService.LoadWithType(loader.GetClientType(), GameDataConstants.DefaultFilename);
 
                     ITopLevelSettings downloadedSettings = obj as ITopLevelSettings;
 
@@ -84,7 +103,7 @@ namespace Assets.Scripts.GameSettings.Services
                         (downloadedSettings == null || (downloadedSettings.SaveTime < bakedSettings.SaveTime)))
 
                     {
-                        await repo.Save(bakedSettings, true);
+                        await _repoService.Save(bakedSettings, new RepoSaveArgs() { Verbose = true });
                     }
 
                     // If baked settings are newer than the cached downloaded settings, use the new baked data in place of the cached.
@@ -138,3 +157,5 @@ namespace Assets.Scripts.GameSettings.Services
         }
     }
 }
+
+

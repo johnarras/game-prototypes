@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using System.Threading.Tasks;
 
@@ -21,3 +21,5 @@ namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
         }
     }
 }
+
+

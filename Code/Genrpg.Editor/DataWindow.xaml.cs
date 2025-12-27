@@ -10,7 +10,7 @@ using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Settings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Settings.Settings;
+using Genrpg.Shared.SettingsNames.Settings;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Versions.Settings;
 using System;
@@ -173,7 +173,7 @@ namespace Genrpg.Editor
                     }
                 }
 
-                IGameDataService gds = gs.loc.Get<IGameDataService>();
+                IServerGameDataService gds = gs.loc.Get<IServerGameDataService>();
 
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -494,3 +494,6 @@ namespace Genrpg.Editor
 
     }
 }
+
+
+

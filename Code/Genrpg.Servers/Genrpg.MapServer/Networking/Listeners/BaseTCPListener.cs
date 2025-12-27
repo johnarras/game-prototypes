@@ -1,14 +1,11 @@
-﻿using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapMessages.Interfaces;
-using Genrpg.Shared.Networking.Constants;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Networking.Entities;
 using Genrpg.Shared.Networking.Entities.TCP;
 using Genrpg.Shared.Networking.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
@@ -45,11 +42,11 @@ namespace Genrpg.MapServer.Networking.Listeners
             }
         }
 
-        public BaseTcpListener (string host, int port,
+        public BaseTcpListener(string host, int port,
             ILogService logService,
             ISerializer serializer,
             ITaskService taskService,
-            Action<ServerConnectionState> addConnection, 
+            Action<ServerConnectionState> addConnection,
             MapApiMessageHandler receiveMessages,
             CancellationToken token)
         {
@@ -75,7 +72,7 @@ namespace Genrpg.MapServer.Networking.Listeners
 
         protected IConnection CreateTCPConnection(TcpClient client, ServerConnectionState connState, ILogService logService, ISerializer serializer, ITaskService taskService)
         {
-            return new AcceptTcpConn(client, 
+            return new AcceptTcpConn(client,
                 _messageHandler,
             logService,
             serializer,
@@ -123,4 +120,6 @@ namespace Genrpg.MapServer.Networking.Listeners
         }
     }
 }
+
+
 

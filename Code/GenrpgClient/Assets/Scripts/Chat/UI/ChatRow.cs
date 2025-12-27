@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Chat.Messages;
+using Genrpg.Shared.Chat.Messages;
 using Genrpg.Shared.Chat.Settings;
 
 namespace Assets.Scripts.UI.Chat
@@ -25,3 +25,5 @@ namespace Assets.Scripts.UI.Chat
         }
     }
 }
+
+

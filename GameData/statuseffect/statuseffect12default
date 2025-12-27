@@ -10,6 +10,5 @@
   "ElementTypeId": 5,
   "CombatActionId": 1,
   "Amount": 100,
-  "RemoveAtEndOfCombat": true,
-  "SaveTime": "2025-06-07T13:51:14.392Z"
+  "RemoveAtEndOfCombat": true
 }

@@ -1,10 +1,9 @@
-
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.MapTerrain;
-using Assets.Scripts.UI.Interfaces;
+using Assets.Scripts.Minimap.Services;
 using ClientEvents;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.Utils;
@@ -12,6 +11,7 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
@@ -27,22 +27,21 @@ public class UnityZoneGenService : ZoneGenService
 {
     public const string LoadMapURLSuffix = "/LoadMap";
 
-    public static string LoadedMapId = "";
-
     public const float ObjectScale = 1.0f;
 
-    protected IScreenService _screenService;
-    protected IMapTerrainManager _terrainManager;
-    private IClientWebService _webNetworkService;
-    private IRealtimeNetworkService _networkService;
-    protected ITextSerializer _serializer;
+    protected IScreenService _screenService = null;
+    protected IMapTerrainManager _terrainManager = null;
+    private IClientWebService _webNetworkService = null;
+    private IRealtimeNetworkService _networkService = null;
+    protected ITextSerializer _serializer = null;
 
-    private CancellationTokenSource _mapTokenSource;
+    private CancellationTokenSource _mapTokenSource = null;
     private CancellationToken _mapToken;
     private CancellationToken _gameToken;
-    private IAssetService _assetService;
-    private IPlayerManager _playerManager;
-    private IAwaitableService _awaitableService;
+    private IAssetService _assetService = null;
+    private IPlayerManager _playerManager = null;
+    private IAwaitableService _awaitableService = null;
+    private IMinimapService _minimapService = null;
 
     public override void SetGameToken(CancellationToken token)
     {
@@ -74,8 +73,8 @@ public class UnityZoneGenService : ZoneGenService
             return;
         }
 
-        _screenService.CloseAll();
-        _screenService.Open(ScreenNames.Loading);
+        _dispatcher.Dispatch(new CloseAllScreens());
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
         await Awaitable.WaitForSecondsAsync(0.1f, cancellationToken: token);
         _md.GeneratingMap = true;
         RenderSettings.fog = false;
@@ -731,11 +730,11 @@ public class UnityZoneGenService : ZoneGenService
         if (loadData.GenerateMap)
         {
             _logService.Info("Generating map " + loadData.MapId);
-            UnityZoneGenService.LoadedMapId = "";
+            LoadedMapId = "";
         }
         else
         {
-            UnityZoneGenService.LoadedMapId = loadData.MapId;
+            LoadedMapId = loadData.MapId;
             _logService.Info("Loading map " + loadData.MapId);
         }
 
@@ -753,15 +752,15 @@ public class UnityZoneGenService : ZoneGenService
             CharacterUtils.CopyDataFromTo(data.Char, _gs.ch);
             _assetService.SetWorldAssetEnv(data.WorldDataEnv);
             _networkService.SetRealtimeEndpoint(data.Host, data.Port, data.Serializer);
-            _screenService.CloseAll();
+            _dispatcher.Dispatch(new CloseAllScreens());
             _terrainManager.ClearPatches();
             _terrainManager.ClearMapObjects();
 
-            MinimapUI.SetTexture(null);
+            _minimapService.SetTexture(null);
 
             if (data == null || data.Map == null || data.Char == null)
             {
-                _screenService.Open(ScreenNames.CharacterSelect);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
                 return;
             }
 
@@ -769,7 +768,7 @@ public class UnityZoneGenService : ZoneGenService
 
             if (!data.Generating && (data.Map.Zones == null || data.Map.Zones.Count < 1))
             {
-                _screenService.Open(ScreenNames.CharacterSelect);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
                 return;
             }
 
@@ -789,7 +788,7 @@ public class UnityZoneGenService : ZoneGenService
 #if UNITY_EDITOR
 
             InitClient initComp = InitClient.EditorInstance;
-            if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId))
+            if (string.IsNullOrEmpty(LoadedMapId))
             {
                 if (initComp.BlockCount >= 3)
                 {
@@ -807,7 +806,7 @@ public class UnityZoneGenService : ZoneGenService
             }
 #endif
 
-            if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId) && !fixSeeds)
+            if (string.IsNullOrEmpty(LoadedMapId) && !fixSeeds)
             {
                 _mapProvider.GetMap().Seed = (int)(DateTime.UtcNow.Ticks % 2000000000);
                 foreach (Zone item in _mapProvider.GetMap().Zones)
@@ -827,8 +826,8 @@ public class UnityZoneGenService : ZoneGenService
 
             if (_mapProvider.GetMap() == null)
             {
-                _screenService.CloseAll();
-                _screenService.Open(ScreenNames.CharacterSelect);
+                _dispatcher.Dispatch(new CloseAllScreens());
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
                 _logService.Message("Map failed to download");
                 return;
             }
@@ -891,3 +890,4 @@ public class UnityZoneGenService : ZoneGenService
         }
     }
 }
+

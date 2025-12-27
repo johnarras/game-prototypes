@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Options.Constants;
+using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -7,6 +7,7 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -45,7 +46,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                     continue;
                 }
 
-                if (member.Roles.Any(x => x.RoleId == role.IdKey))
+                if (member.Roles.FastAny(x => x.RoleId == role.IdKey))
                 {
                     continue;
                 }
@@ -83,3 +84,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.Trader.Cities.Settings;
@@ -21,13 +21,13 @@ namespace Genrpg.Shared.Trader.Travel.Services
         List<CityPath> GetPathFrom(IFilteredObject obj, long startCityId, long endCityId);
 
         double GetDistanceBetween(IFilteredObject obj, long startCityId, long endCityId);
+
     }
 
 
     public class TravelService : ITravelService
     {
         private IGameData _gameData = null;
-
 
         public double GetDistanceBetween(IFilteredObject obj, long startCityId, long endCityId)
         {
@@ -136,3 +136,5 @@ namespace Genrpg.Shared.Trader.Travel.Services
         }
     }
 }
+
+

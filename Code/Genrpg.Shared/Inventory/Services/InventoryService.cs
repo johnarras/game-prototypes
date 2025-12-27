@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.DataStores.Constants;
@@ -339,3 +339,5 @@ namespace Genrpg.Shared.Inventory.Services
         }
     }
 }
+
+

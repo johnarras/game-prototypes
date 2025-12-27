@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Crawler.Shared.Combat.Constants
+namespace Assets.Scripts.Crawler.Shared.Combat.Constants
 {
     public enum ECombatStepResults
     {
@@ -6,3 +6,5 @@
         End = 1,
     }
 }
+
+

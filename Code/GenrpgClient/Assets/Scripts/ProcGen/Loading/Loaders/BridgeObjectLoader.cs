@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Bridges;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
@@ -56,3 +56,5 @@ public class BridgeObjectLoader : BaseObjectLoader
         }
     }
 }
+
+

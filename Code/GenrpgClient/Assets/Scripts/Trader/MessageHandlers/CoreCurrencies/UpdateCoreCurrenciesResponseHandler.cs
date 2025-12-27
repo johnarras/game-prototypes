@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.PlayerData;
@@ -33,3 +33,5 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
         }
     }
 }
+
+

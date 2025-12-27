@@ -7,6 +7,8 @@ namespace Assets.Scripts.ClientEvents
     {
         public long EntityTypeId { get; set; }
         public long EntityId { get; set; }
-        [Key(0)] public List<string> Lines { get; set; } = new List<string>();
+        public List<string> Lines { get; set; } = new List<string>();
     }
 }
+
+

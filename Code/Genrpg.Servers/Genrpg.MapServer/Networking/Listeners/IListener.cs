@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.Networking.Constants;
 using Genrpg.Shared.Networking.Entities;
 using System;
@@ -12,3 +12,5 @@ namespace Genrpg.MapServer.Networking.Listeners
     {
     }
 }
+
+

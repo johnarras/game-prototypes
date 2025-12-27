@@ -5,12 +5,12 @@ using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapObjects.Interfaces;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
 using MessagePack;
 using System;
 using System.Collections.Generic;
@@ -120,3 +120,5 @@ namespace Genrpg.Shared.MapObjects.Messages
         }
     }
 }
+
+

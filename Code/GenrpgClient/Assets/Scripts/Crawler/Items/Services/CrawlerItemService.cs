@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Crawlers.Services;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Items.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -89,3 +89,5 @@ namespace Assets.Scripts.Crawler.Items.Services
         }
     }
 }
+
+

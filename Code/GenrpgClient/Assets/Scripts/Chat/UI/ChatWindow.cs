@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Chat;
+using Assets.Scripts.UI.Chat;
 using Genrpg.Shared.Chat.Constants;
 using Genrpg.Shared.Chat.Messages;
 using Genrpg.Shared.Chat.Settings;
@@ -14,6 +14,7 @@ namespace UI
     public class ChatWindow : BaseBehaviour
     {
 
+        protected IRealtimeNetworkService _networkService = null;
         protected IInputService _inputService = null;
 
         public GameObject ChatParent;
@@ -238,3 +239,5 @@ namespace UI
         }
     }
 }
+
+

@@ -1,17 +1,12 @@
-﻿using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
 {
@@ -41,10 +36,16 @@ namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
             foreach (ActionInput removeInput in removeInputs)
             {
                 ch.AddMessage(new OnRemoveActionBarItem() { Index = removeInput.Index });
-                actionData.SetInput(removeInput.Index, 0, _repoService);
-             
+                ActionInput input = actionData.SetInput(removeInput.Index, 0);
+                if (input != null)
+                {
+                    _repoService.QueueSave(input);
+                }
+
             }
 
         }
     }
 }
+
+

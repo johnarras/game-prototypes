@@ -5,11 +5,10 @@ using System.Linq;
 namespace Genrpg.Shared.Utils.Data
 {
 
-    [MessagePackObject]
     public class BitList
     {
         const int BitsPerItem = 32;
-        [Key(0)] public List<int[]> Dat { get; set; } = new List<int[]>();
+        public List<int[]> Dat { get; set; } = new List<int[]>();
 
         public bool HasBit(long index)
         {
@@ -77,3 +76,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

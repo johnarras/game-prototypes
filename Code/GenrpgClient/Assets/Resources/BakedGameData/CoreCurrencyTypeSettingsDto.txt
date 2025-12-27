@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "corecurrencytype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Coins",
       "Icon": "Coins",
@@ -12,8 +9,6 @@
       "StorageTraderStatId": 5
     },
     {
-      "Id": "corecurrencytype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Supplies",
       "Icon": "Supplies",
@@ -22,20 +17,29 @@
       "StorageTraderStatId": 8
     },
     {
-      "Id": "corecurrencytype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Mana",
       "Icon": "Mana",
       "Art": "Mana",
       "RegenTraderStatId": 6,
       "StorageTraderStatId": 7
+    },
+    {
+      "IdKey": 4,
+      "Name": "Food",
+      "PluralName": "",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "Food",
+      "Art": "Food",
+      "RegenTraderStatId": 13,
+      "StorageTraderStatId": 14
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CoreCurrencyTypeSettings",
-    "SaveTime": "2025-12-02T01:17:13.917Z"
+    "Name": "CoreCurrencyTypeSettings"
   },
-  "SaveTime": "2025-12-02T01:17:13.917Z"
+  "Id": "default",
+  "SaveTime": "2025-12-21T20:53:58.694Z"
 }

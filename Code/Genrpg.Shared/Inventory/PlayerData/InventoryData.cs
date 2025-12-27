@@ -1,18 +1,9 @@
 using MessagePack;
-
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Categories;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils.Data;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Inventory.PlayerData
 {
@@ -112,9 +103,13 @@ namespace Genrpg.Shared.Inventory.PlayerData
     public class InventoryDto : OwnerDtoList<InventoryData, Item>
     {
         [Key(0)] public List<Item> AllItems { get; set; } = new List<Item>();
-
+        [Key(1)] public override List<Item> Children { get; set; }
+        [Key(2)] public override InventoryData Parent { get; set; }
+        [Key(3)] public override string Id { get; set; }
     }
     public class InventoryDataLoader : OwnerDataLoader<InventoryData, Item> { }
 
     public class InventoryDataMapper : OwnerDataMapper<InventoryData, Item, InventoryDto> { }
 }
+
+

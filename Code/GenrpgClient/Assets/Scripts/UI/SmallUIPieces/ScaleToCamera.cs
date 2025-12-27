@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 
 public class ScaleToCamera : BaseBehaviour
@@ -63,3 +63,5 @@ public class ScaleToCamera : BaseBehaviour
         }
     }
 }
+
+

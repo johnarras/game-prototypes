@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
@@ -30,8 +30,8 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
     public class TrainingClassMemberHelper : BuildingStateHelper
     {
 
-        ITrainingService _trainingService = null;
-        ICrawlerUpgradeService _upgradeService = null;
+        private ITrainingService _trainingService = null;
+        private ICrawlerUpgradeService _upgradeService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.TrainingClassMember;
 
@@ -106,7 +106,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             }
 
 
-            foreach (PartyMember pm in party.GetActiveParty())
+            foreach (PartyMember pm in party.ActiveParty)
             {
                 if (pm != member)
                 {
@@ -122,3 +122,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
         }
     }
 }
+
+

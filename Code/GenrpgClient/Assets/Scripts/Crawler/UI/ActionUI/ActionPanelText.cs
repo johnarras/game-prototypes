@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 
 namespace Assets.Scripts.UI.Crawler.ActionUI
 {
@@ -27,3 +27,5 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
         }
     }
 }
+
+

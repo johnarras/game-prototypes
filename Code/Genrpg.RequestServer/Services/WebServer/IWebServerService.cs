@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers;
+using Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers;
 using Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers;
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Maps;
@@ -19,3 +19,5 @@ namespace Genrpg.RequestServer.Services.WebServer
         MapStubList GetMapStubs();
     }
 }
+
+

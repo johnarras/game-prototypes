@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,3 +13,5 @@ namespace Genrpg.RequestServer.UserMail.Services
         Task ProcessMail(WebContext context);
     }
 }
+
+

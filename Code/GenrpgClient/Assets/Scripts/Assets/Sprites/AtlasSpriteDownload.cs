@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Assets.Entities
+namespace Assets.Scripts.Assets.Entities
 {
     public class AtlasSpriteDownload
     {
@@ -9,3 +9,5 @@
     }
 
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
@@ -109,3 +109,5 @@ public class EntityTypeWithIdUIEditor : Editor
         }
     }
 }
+
+

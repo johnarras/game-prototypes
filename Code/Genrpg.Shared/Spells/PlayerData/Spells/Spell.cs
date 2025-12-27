@@ -100,3 +100,5 @@ namespace Genrpg.Shared.Spells.PlayerData.Spells
         }
     }
 }
+
+

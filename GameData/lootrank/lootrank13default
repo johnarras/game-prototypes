@@ -5,6 +5,5 @@
   "Name": "Ruby",
   "Armor": 45,
   "Damage": 40,
-  "CostPct": 3000,
-  "SaveTime": "2025-10-26T21:40:57.784Z"
+  "CostPct": 3000
 }

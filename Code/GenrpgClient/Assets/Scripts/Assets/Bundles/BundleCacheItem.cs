@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Assets.Scripts.Assets.Bundles
 {
@@ -6,3 +6,5 @@ namespace Assets.Scripts.Assets.Bundles
     {
     }
 }
+
+

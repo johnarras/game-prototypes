@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Trade;
+using Assets.Scripts.UI.Trade;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Trades.Entities;
 using System.Collections.Generic;
@@ -112,3 +112,5 @@ public class TradeCharUI : BaseBehaviour
         }
     }
 }
+
+

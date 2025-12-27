@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "spellmodifier1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Cooldown",
       "Desc": "",
@@ -16,8 +13,6 @@
       "ValueDelta": 6.0
     },
     {
-      "Id": "spellmodifier2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Range",
       "Desc": "",
@@ -30,8 +25,6 @@
       "ValueDelta": 5.0
     },
     {
-      "Id": "spellmodifier3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Extra Targets",
       "Desc": "",
@@ -44,8 +37,6 @@
       "ValueDelta": 1.0
     },
     {
-      "Id": "spellmodifier4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Radius",
       "Desc": "",
@@ -58,8 +49,6 @@
       "ValueDelta": 3.0
     },
     {
-      "Id": "spellmodifier5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Scale",
       "Desc": "",
@@ -74,8 +63,6 @@
       "DefaultValue": 100.0
     },
     {
-      "Id": "spellmodifier6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Ticks",
       "Desc": "",
@@ -88,8 +75,6 @@
       "ValueDelta": 1.0
     },
     {
-      "Id": "spellmodifier7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Shots",
       "Desc": "",
@@ -102,8 +87,6 @@
       "ValueDelta": 1.0
     },
     {
-      "Id": "spellmodifier8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Charges",
       "Desc": "",
@@ -116,8 +99,6 @@
       "ValueDelta": 1.0
     },
     {
-      "Id": "spellmodifier9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Cast Time",
       "Desc": "",
@@ -132,8 +113,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "SpellModifierSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "SpellModifierSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Services
@@ -8,3 +8,5 @@ namespace Assets.Scripts.Assets.Services
         Awaitable UpdateAssets(CancellationToken token);
     }
 }
+
+

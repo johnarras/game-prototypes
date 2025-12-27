@@ -3,11 +3,12 @@ using MessagePack;
 
 namespace Genrpg.Shared.Spells.Casting
 {
-    [MessagePackObject]
     public class FullProc
     {
-        [Key(0)] public SpellHit SpellHit { get; set; }
-        [Key(1)] public OldSpellProc Proc { get; set; }
-        [Key(2)] public CurrentProc Current { get; set; }
+        public SpellHit SpellHit { get; set; }
+        public OldSpellProc Proc { get; set; }
+        public CurrentProc Current { get; set; }
     }
 }
+
+

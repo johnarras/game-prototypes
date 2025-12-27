@@ -1,8 +1,9 @@
-﻿
+
 using Assets.Scripts.Options.Services;
 using Genrpg.Shared.Client.Contants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.Profiling.Memory;
@@ -143,7 +144,7 @@ public class ClientAppService : IClientAppService
     {
         Debug.Log("Snapshot1");
 
-        MemoryProfiler.TakeTempSnapshot(OnTakeSnapshot);
+        MemoryProfiler.TakeSnapshot(Path.Combine(PersistentDataPath, "Snapshots/MemSnapshot.snap"), OnTakeSnapshot);
 
         Debug.Log("Snapshot2");
 
@@ -190,6 +191,8 @@ public class ClientAppService : IClientAppService
         _optionsService.SaveOptions();
     }
 }
+
+
 
 
 

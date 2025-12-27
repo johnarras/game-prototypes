@@ -1,7 +1,8 @@
-﻿
+
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
@@ -36,8 +37,10 @@ namespace Assets.Scripts.UI.Crawler
         {
             if (_screenService.GetScreen(ScreenNames.CrawlerCharacter) == null)
             {
-                _screenService.Open(ScreenNames.CrawlerCharacter, data);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerCharacter, data));
             }
         }
     }
 }
+
+

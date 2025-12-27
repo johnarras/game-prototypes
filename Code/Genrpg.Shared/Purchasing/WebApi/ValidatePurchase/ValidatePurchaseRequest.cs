@@ -4,14 +4,15 @@ using MessagePack;
 
 namespace Genrpg.Shared.Purchasing.WebApi.ValidatePurchase
 {
-    [MessagePackObject]
     public class ValidatePurchaseRequest : IClientUserRequest
     {
-        [Key(0)] public string OfferId { get; set; }
-        [Key(1)] public string BundleId { get; set; }
-        [Key(2)] public string UniqueId { get; set; }
-        [Key(3)] public string ReceiptData { get; set; }
-        [Key(4)] public EPurchasePlatforms Platform { get; set; }
+        public string OfferId { get; set; }
+        public string BundleId { get; set; }
+        public string UniqueId { get; set; }
+        public string ReceiptData { get; set; }
+        public EPurchasePlatforms Platform { get; set; }
 
     }
 }
+
+

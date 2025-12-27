@@ -1,19 +1,17 @@
 
+using Assets.Scripts.Repository.Constants;
+using Genrpg.Shared.MapServer.Entities;
 using System;
 using System.IO;
-
-
-using Genrpg.Shared.MapServer.Entities;
 using System.Threading;
-using UnityEngine; // Needed
 using System.Threading.Tasks;
-using Assets.Scripts.Repository.Constants;
+using UnityEngine; // Needed
 
 public class ClearMapData : BaseZoneGenerator
 {
     private IPlayerManager _playerManager;
-    private IClientAppService _clientAppService;
-    public override async Awaitable Generate (CancellationToken token)
+    private IClientAppService _clientAppService = null;
+    public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
 
@@ -41,7 +39,7 @@ public class ClearMapData : BaseZoneGenerator
             return;
         }
 
-        if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId))
+        if (string.IsNullOrEmpty(_zoneGenService.LoadedMapId))
         {
             return;
         }
@@ -105,3 +103,4 @@ public class ClearMapData : BaseZoneGenerator
         }
     }
 }
+

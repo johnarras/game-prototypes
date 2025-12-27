@@ -12,3 +12,5 @@ namespace Genrpg.Shared.SpellCrafting.Messages
         [Key(0)] public int Index { get; set; }
     }
 }
+
+

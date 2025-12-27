@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CollapsableScrollView : BaseBehaviour
 {
-    private IClientAppService _clientAppService;
+    private IClientAppService _clientAppService = null;
     public float ExpandTime = 0.2f;
 
     protected float _minScrollViewSize = 20;
@@ -140,3 +140,4 @@ public class CollapsableScrollView : BaseBehaviour
         return _currentScrollViewSize;
     }
 }
+

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CreateConnectedZones : BaseAddMountains
 {
-    protected IMapGenService _mapGenService;
+    protected IMapGenService _mapGenService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         _mapGenService.CreateZones(_gs);
@@ -26,3 +26,4 @@ public class CreateConnectedZones : BaseAddMountains
         return;
     }
 }
+

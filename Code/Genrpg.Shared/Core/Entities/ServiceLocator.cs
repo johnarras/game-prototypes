@@ -1,8 +1,6 @@
-using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -17,7 +15,6 @@ namespace Genrpg.Shared.Core.Entities
     /// multiple environments open)
     /// </summary>
 
-    // MessagePackIgnore
     public class ServiceLocator : IServiceLocator
     {
 
@@ -36,13 +33,10 @@ namespace Genrpg.Shared.Core.Entities
             public bool InitOnResolve { get; set; }
         }
 
-        public ServiceLocator(ITextSerializer serializer, ILogService logService, IAnalyticsService analyticsService, IGameData gameData)
+        public ServiceLocator(ILogService logService, IGameData gameData)
         {
             _logService = logService;
-
-            Set(serializer);
             Set(logService);
-            Set(analyticsService);
             Set(gameData);
         }
 
@@ -307,3 +301,5 @@ namespace Genrpg.Shared.Core.Entities
 
     }
 }
+
+

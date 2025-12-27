@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Genrpg.Shared.Utils;
@@ -136,6 +136,8 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
         
     }
 }
+
+
 
 
 

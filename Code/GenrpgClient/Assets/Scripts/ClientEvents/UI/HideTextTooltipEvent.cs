@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.ClientEvents.UI
+namespace Assets.Scripts.ClientEvents.UI
 {
     public class HideTextTooltipEvent
     {
     }
 }
+
+

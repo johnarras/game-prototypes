@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
 
@@ -17,3 +17,5 @@ namespace Assets.Scripts.MessageHandlers.Spells
         }
     }
 }
+
+

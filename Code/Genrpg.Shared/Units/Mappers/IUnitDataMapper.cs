@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -15,3 +15,5 @@ namespace Genrpg.Shared.Units.Mappers
         bool SendToClient();
     }
 }
+
+

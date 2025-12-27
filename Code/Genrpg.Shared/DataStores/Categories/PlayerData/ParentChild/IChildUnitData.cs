@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 
 namespace Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild
 {
@@ -6,3 +6,5 @@ namespace Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild
     {
     }
 }
+
+

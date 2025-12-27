@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -38,6 +38,7 @@ using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.MapServer.AI.Constants;
 using System.Runtime.Serialization;
+using Genrpg.Shared.Serialization.Interfaces;
 
 namespace Genrpg.MapServer.Maps
 {
@@ -823,3 +824,5 @@ namespace Genrpg.MapServer.Maps
         }
     }
 }
+
+

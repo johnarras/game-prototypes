@@ -1,4 +1,4 @@
-﻿
+
 using System;
 
 namespace Genrpg.ServerShared.CloudComms.Queues.Requests.Entities
@@ -13,3 +13,5 @@ namespace Genrpg.ServerShared.CloudComms.Queues.Requests.Entities
         public DateTime SendTime { get; set; } = DateTime.UtcNow;
     }
 }
+
+

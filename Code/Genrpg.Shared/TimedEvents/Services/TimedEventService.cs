@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.TimedEvents.Services
 
     }
 }
+
+

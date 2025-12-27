@@ -5,6 +5,5 @@
   "Name": "Emerald",
   "Armor": 50,
   "Damage": 45,
-  "CostPct": 4000,
-  "SaveTime": "2025-10-26T21:40:57.784Z"
+  "CostPct": 4000
 }

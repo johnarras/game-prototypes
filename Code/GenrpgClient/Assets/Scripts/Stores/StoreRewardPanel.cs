@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Rewards.Entities;
 using System.Threading;
 
@@ -23,3 +23,5 @@ namespace Assets.Scripts.UI.Stores
         }
     }
 }
+
+

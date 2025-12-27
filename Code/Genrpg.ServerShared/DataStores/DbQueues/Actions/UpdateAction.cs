@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,16 +10,16 @@ namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
     {
         private string _docId;
         private Dictionary<string, object> _fieldUpdates = new Dictionary<string, object>();
-        private IRepositoryService _repoSystem { get; set; }
+        private IFullRepositoryService _repoSystem { get; set; }
         private Action<T> _updateAction;
 
-        public UpdateAction(string docId, Dictionary<string,object> fieldUpdates, IRepositoryService repoSystem)
+        public UpdateAction(string docId, Dictionary<string, object> fieldUpdates, IFullRepositoryService repoSystem)
         {
             _docId = docId;
             _fieldUpdates = fieldUpdates;
             _repoSystem = repoSystem;
         }
-        public UpdateAction(string docId, Action<T> action, IRepositoryService repoSystem)
+        public UpdateAction(string docId, Action<T> action, IFullRepositoryService repoSystem)
         {
             _docId = docId;
             _updateAction = action;
@@ -39,3 +39,5 @@ namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
         }
     }
 }
+
+

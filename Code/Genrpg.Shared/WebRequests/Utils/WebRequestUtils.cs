@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.WebRequests.Utils
 {
-    [MessagePackObject]
     public class WebRequestUtils
     {
         public static async Task<byte[]> DownloadBytes(string fullURL)
@@ -41,3 +40,5 @@ namespace Genrpg.Shared.WebRequests.Utils
         }
     }
 }
+
+

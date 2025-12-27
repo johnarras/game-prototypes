@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Threading;
@@ -30,7 +30,7 @@ public abstract class DragItem<TData, TDragItem, TScreen, TInitData> : BaseBehav
 
     public GButton SelfButton;
 
-    protected IInputService _inputService;
+    protected IInputService _inputService = null;
 
     protected TInitData _initData;
     protected CancellationToken _token;
@@ -218,3 +218,5 @@ public abstract class DragItem<TData, TDragItem, TScreen, TInitData> : BaseBehav
 
 
 }
+
+

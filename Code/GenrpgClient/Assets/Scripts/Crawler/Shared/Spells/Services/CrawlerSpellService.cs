@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Constants;
@@ -51,10 +51,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using static Genrpg.Shared.Crawler.Spells.Services.CrawlerSpellService;
 
 namespace Genrpg.Shared.Crawler.Spells.Services
 {
+    public class ActionListItem
+    {
+        public long ElementTypeId { get; set; }
+        public long TotalQuantity { get; set; }
+        public long TotalHits { get; set; }
+        public long ExtraMessageBits { get; set; }
+        public bool IsRegularHit { get; set; }
+        public ECombatTextTypes TextType { get; set; }
+        public CrawlerUnit Caster { get; set; }
+        public CrawlerUnit Target { get; set; }
+    }
+
     public interface ICrawlerSpellService : IInjectable
     {
         List<CrawlerSpell> GetAbilitiesForMember(PartyData party, PartyMember member, bool chooseSpells);
@@ -75,6 +86,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
         string RolesThatCanCastString(long crawlerSpellId);
         void ShowCombatLogText(string text);
         void AddToActionDict(Dictionary<string, ActionListItem> dict, CrawlerUnit caster, CrawlerUnit target, string actionName, long quantity, long extraMessageBits, bool regularHit, ECombatTextTypes textType, long elementTypeId);
+        Awaitable UpdateAtEndOfCombatRound(PartyData party, CancellationToken token);
     }
 
 
@@ -184,7 +196,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 if (!roleSettings.HasBonus(member.Roles, EntityTypes.CrawlerSpell, spell.IdKey))
                 {
                     if (_optionsService.HasOption(party, CrawlerOptions.WholeParty) ||
-                        !spell.Effects.Any(x => x.EntityTypeId == EntityTypes.SpecialMagic && x.EntityId == SpecialMagics.TownPortal))
+                        !spell.Effects.FastAny(x => x.EntityTypeId == EntityTypes.SpecialMagic && x.EntityId == SpecialMagics.TownPortal))
                     {
                         continue;
                     }
@@ -197,7 +209,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         continue;
                     }
 
-                    if (spell.Effects.Any(x => x.EntityTypeId == EntityTypes.Stat || x.EntityTypeId == EntityTypes.Unit))
+                    if (spell.Effects.FastAny(x => x.EntityTypeId == EntityTypes.Stat || x.EntityTypeId == EntityTypes.Unit))
                     {
                         continue;
                     }
@@ -323,6 +335,15 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     foreach (SpellProc proc in etype.Procs)
                     {
+
+                        if (party.Combat != null && !caster.IsPlayer())
+                        {
+                            if (proc.EntityTypeId == EntityTypes.StatusEffect && proc.EntityId > party.Combat.MaxDebuffTier)
+                            {
+                                continue;
+                            }
+                        }
+
                         endFullEffectList.Add(CreateFullEffectFromProc(proc));
                     }
                 }
@@ -786,7 +807,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 if (action.Caster.FactionTypeId != FactionTypes.Player &&
                     _rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
                 {
-                    List<PartyMember> targets = party.GetActiveParty().Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
+                    List<PartyMember> targets = party.ActiveParty.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
 
                     if (targets.Count > 0)
                     {
@@ -911,18 +932,6 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
         }
 
-        public class ActionListItem
-        {
-            public long ElementTypeId { get; set; }
-            public long TotalQuantity { get; set; }
-            public long TotalHits { get; set; }
-            public long ExtraMessageBits { get; set; }
-            public bool IsRegularHit { get; set; }
-            public ECombatTextTypes TextType { get; set; }
-            public CrawlerUnit Caster { get; set; }
-            public CrawlerUnit Target { get; set; }
-        }
-
         public async Awaitable CastSpellOnUnit(PartyData party, CrawlerUnit caster, FullSpell spell, CrawlerUnit target, CancellationToken token)
         {
             if (IsGroupTarget(spell.Spell.TargetTypeId))
@@ -949,7 +958,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             args.AfterInitialTextTime = Mathf.Max(0, args.DelayTime - CrawlerClientCombatConstants.CombatDooberFlyTime);
             args.CritChanceScaling = 1.0f;
 
-            bool haveMultiHitEffect = spell.Effects.Any(x =>
+            bool haveMultiHitEffect = spell.Effects.FastAny(x =>
             x.Effect.EntityTypeId == EntityTypes.Damage ||
             x.Effect.EntityTypeId == EntityTypes.Healing ||
             x.Effect.EntityTypeId == EntityTypes.Attack ||
@@ -1053,6 +1062,36 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                             AddToActionDict(args.ActionList, target, caster, "Retaliates Against", thornsDamage, 0, false, ECombatTextTypes.Thorns, ElementTypes.Earth);
 
+                        }
+                    }
+
+
+                    if (caster is PartyMember member)
+                    {
+                        if (args.TotalDamage > 0)
+                        {
+                            double lifeStealValue = party.Buffs.Get(PartyBuffs.Lifesteal);
+                            if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
+                            {
+                                long totalLifesteal = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.Lifesteal));
+
+                                if (totalLifesteal > 0)
+                                {
+                                    _crawlerStatService.Add(party, caster, StatTypes.Health, StatCategories.Curr, totalLifesteal);
+                                    AddToActionDict(args.ActionList, caster, target, "Steals Life From", totalLifesteal, 0, false, ECombatTextTypes.Healing, ElementTypes.Shadow);
+                                }
+                            }
+
+                            double dotValue = party.Buffs.Get(PartyBuffs.ApplyDoT);
+                            if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
+                            {
+                                long totalDot = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.ApplyDoT));
+
+                                if (totalDot > 0)
+                                {
+                                    target.DoTDamage += totalDot;
+                                }
+                            }
                         }
                     }
 
@@ -1212,7 +1251,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
         public long GetSummonQuantity(PartyData party, PartyMember member, UnitType unitType)
         {
-            CrawlerSpell summonSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Effects.Any(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId == unitType.IdKey));
+            CrawlerSpell summonSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Effects.FastAny(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId == unitType.IdKey));
 
             double quantity = 1;
             if (summonSpell != null)
@@ -1283,7 +1322,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
         public List<Role> RolesThatCanCast(long crawlerSpellId)
         {
-            return _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.BinaryBonuses.Any(b => b.EntityTypeId == EntityTypes.CrawlerSpell && b.EntityId == crawlerSpellId)).ToList();
+            return _gameData.Get<RoleSettings>(_gs.ch).GetData().Where(x => x.BinaryBonuses.FastAny(b => b.EntityTypeId == EntityTypes.CrawlerSpell && b.EntityId == crawlerSpellId)).ToList();
         }
 
         public string RolesThatCanCastString(long crawlerSpellId)
@@ -1309,5 +1348,28 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 targetTypeId == TargetTypes.OneEnemyGroup;
 
         }
+
+        public async Awaitable UpdateAtEndOfCombatRound(PartyData party, CancellationToken token)
+        {
+            if (party.Combat == null)
+            {
+                return;
+            }
+
+            List<CrawlerUnit> units = party.Combat.GetAllUnits();
+            foreach (CrawlerUnit unit in units)
+            {
+                if (unit.DoTDamage > 0)
+                {
+                    _crawlerStatService.Add(party, unit, StatTypes.Health, StatCategories.Curr, -unit.DoTDamage);
+                    ShowFloatingCombatText(unit, unit, (-unit.DoTDamage).ToString(), ECombatTextTypes.Damage, ElementTypes.Melee);
+
+                    await CheckHandleUnitDeath(party, unit, unit, 0, token);
+                    await Awaitable.NextFrameAsync(token);
+                }
+            }
+        }
     }
 }
+
+

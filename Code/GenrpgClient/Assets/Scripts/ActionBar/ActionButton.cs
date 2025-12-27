@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;
@@ -35,7 +35,7 @@ public class ActionButton : SpellIcon
         {
             return;
         }
-        name = GetType().Name + initData.actionIndex;
+        name = name + initData.actionIndex;
         _uiService.SetButton(SelfButton, spellIconData.Screen.GetName(), ClickButton);
         base.Init(spellIconData, token);
         if (_gs.ch == null)
@@ -181,3 +181,4 @@ public class ActionButton : SpellIcon
 
     }
 }
+

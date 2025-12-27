@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Messages;
@@ -22,3 +22,5 @@ namespace Assets.Scripts.MessageHandlers.Currency
         }
     }
 }
+
+

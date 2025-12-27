@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 public class BaseAddMountains : BaseZoneGenerator
 {
-    protected ILineGenService _lineGenService;
+    protected ILineGenService _lineGenService = null;
 
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -224,3 +224,4 @@ public class BaseAddMountains : BaseZoneGenerator
         }
     }
 }
+

@@ -6,6 +6,7 @@ using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.LoadSave.Constants;
+using Genrpg.Shared.Serialization.Attributes;
 using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
@@ -23,11 +24,11 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
     /// Used to contain a list of party members
     /// </summary>
 
-    // MessagePackIgnore
-    public class PartyData : NoChildPlayerData, IUserData, INamedUpdateData
+    [MessagePackIgnoreType]
+    public class PartyData : NoChildIndexedUserData, IUserData, INamedUpdateData
     {
         public override string Id { get; set; }
-        public string MainMessage => "Yes, it's pretty print JSON. You're welcome.";
+        [MessagePack.IgnoreMember] public string MainMessage => "Yes, it's pretty print JSON. You're welcome.";
         public string Name { get; set; }
 
         public int Flags { get; set; }
@@ -108,7 +109,12 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public InitialCombatState InitialCombat { get; set; }
 
-        public List<PartyMember> Members { get; set; } = new List<PartyMember>();
+        // This is for backwards compat only. [Obsolete]
+        [IgnoreMember] public List<PartyMember> Members { get; set; } = new List<PartyMember>();
+
+        [IgnoreMember] public List<PartyMember> ActiveParty { get; set; } = new List<PartyMember>();
+
+        public List<PartyMember> InGuild { get; set; } = new List<PartyMember>();
 
         public List<string> ItemsUsed { get; set; } = new List<string>();
 
@@ -159,13 +165,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public PartyMember GetMemberInSlot(int slot)
         {
-            return Members.FirstOrDefault(x => x.PartySlot == slot);
-        }
-
-        public List<PartyMember> GetActiveParty()
-        {
-
-            return Members.Where(x => x.PartySlot > 0).ToList();
+            return ActiveParty.FirstOrDefault(x => x.PartySlot == slot);
         }
 
         public EActionCategories GetActionCategory()
@@ -184,13 +184,17 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public bool PartyIsDead()
         {
 
-            if (GetActiveParty().Count < 1)
+            if (ActiveParty.Count < 1)
             {
                 return false;
             }
 
-            return !(GetActiveParty().Any(x => !x.StatusEffects.HasBit(StatusEffects.Dead)));
+            return !(ActiveParty.Any(x => !x.StatusEffects.HasBit(StatusEffects.Dead)));
+        }
 
+        public List<PartyMember> GetAllMembers()
+        {
+            return ActiveParty.Concat(InGuild).ToList();
         }
 
         public long GetUpgradePointsLevel(long upgradeReasonId, bool gameUpgrade)
@@ -240,15 +244,24 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         }
     }
 
-    [MessagePackObject]
     public class PartyDataLoader : UnitDataLoader<PartyData>
     {
+        public override bool IsClientOnlyData()
+        {
+            return true;
+        }
     }
 
-    public class PartyDto : NoChildPlayerDataDto<PartyData> { }
-
-
     [MessagePackObject]
+    public class PartyDto : NoChildPlayerDataDto<PartyData>
+    {
+        [Key(0)] public override PartyData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
+
+
     public class PartyDataMapper : NoChildUnitDataMapper<PartyData, PartyDto> { }
 
 }
+
+

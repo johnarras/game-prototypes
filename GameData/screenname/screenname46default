@@ -3,5 +3,6 @@
   "ParentId": "default",
   "IdKey": 46,
   "Name": "TraderQuests",
-  "SaveTime": "2025-09-27T18:16:18.693Z"
+  "ScreenLayerId": 20,
+  "Subdirectory": "TraderQuests"
 }

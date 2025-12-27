@@ -1,0 +1,10 @@
+{
+  "Id": "skintype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Bactrian Camel",
+  "Icon": "BactrianCamel",
+  "Art": "BactrianCamel",
+  "AnimalTypeId": 12,
+  "IsDefault": true
+}

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Stats.Constants;
 
 namespace Genrpg.Shared.Crawler.Loot.Constants
 {
@@ -7,3 +7,5 @@ namespace Genrpg.Shared.Crawler.Loot.Constants
         public const int MaxArmorScalingType = ScalingTypes.Metal;
     }
 }
+
+

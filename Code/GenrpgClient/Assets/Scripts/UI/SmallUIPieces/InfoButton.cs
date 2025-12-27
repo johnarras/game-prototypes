@@ -1,22 +1,20 @@
-﻿using Assets.Scripts.UI.Services;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Ftue.Constants;
-using Genrpg.Shared.Ftue.PlayerData;
 using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Ftue.Settings.Steps;
-using Genrpg.Shared.Logging.Interfaces;
 
 public class InfoButton : BaseBehaviour
 {
     private IFtueService _ftueService = null;
-    protected IRepositoryService _repoService;
+    protected IRepositoryService _repoService = null;
     public GButton Button;
 
     private string _screenName = null;
     public override void Init()
     {
         base.Init();
-        BaseScreen screen = _clientEntityService.FindInParents<BaseScreen>(gameObject);
+        IScreen screen = _clientEntityService.FindInParents<IScreen>(gameObject);
 
         if (screen != null)
         {
@@ -27,7 +25,7 @@ public class InfoButton : BaseBehaviour
 
     private void ClickInfoButton()
     {
-       // if (_ftueService.GetCurrentStep(_gs,_gs.ch) == null)
+        // if (_ftueService.GetCurrentStep(_gs,_gs.ch) == null)
         {
             FtueStep step = _gameData.Get<FtueStepSettings>(_gs.ch).FindFtueStep(FtueTriggers.InfoButton, _screenName);
 
@@ -41,3 +39,5 @@ public class InfoButton : BaseBehaviour
         }
     }
 }
+
+

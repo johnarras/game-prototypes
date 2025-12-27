@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.WorldCanvas.Interfaces;
+using Assets.Scripts.WorldCanvas.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.CombatTexts
@@ -52,3 +52,5 @@ namespace Assets.Scripts.UI.CombatTexts
         }
     }
 }
+
+

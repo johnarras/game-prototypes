@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 
 namespace Genrpg.Shared.Characters.Utils
 {
@@ -29,3 +29,5 @@ namespace Genrpg.Shared.Characters.Utils
         }
     }
 }
+
+

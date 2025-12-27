@@ -1,64 +1,43 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "specialmagic1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Town Portal"
     },
     {
-      "Id": "specialmagic2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Pass Wall"
     },
     {
-      "Id": "specialmagic3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Identify Monster"
     },
     {
-      "Id": "specialmagic4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Identify Item"
     },
     {
-      "Id": "specialmagic5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Jump"
     },
     {
-      "Id": "specialmagic6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Teleport"
     },
     {
-      "Id": "specialmagic7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Cleanse Area"
     },
     {
-      "Id": "specialmagic8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Reveal Area"
     },
     {
-      "Id": "specialmagic9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Beacon",
       "Desc": ""
     },
     {
-      "Id": "specialmagic10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Pick Lock",
       "Desc": ""
@@ -66,8 +45,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "SpecialMagicSettings",
-    "SaveTime": "2025-09-13T18:33:13.799Z"
+    "Name": "SpecialMagicSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-09-13T18:33:13.799Z"
 }

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Spawns.Helpers;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -176,3 +176,5 @@ namespace Genrpg.RequestServer.Spawns.Services
 
     }
 }
+
+

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Utils
 {
-    [MessagePackObject]
     public class ReflectionUtils
     {
 
@@ -183,7 +182,6 @@ namespace Genrpg.Shared.Utils
 
         public static async Task InitializeServiceList(IServiceLocator loc, List<IInjectable> services, CancellationToken token)
         {
-
             List<IInitializable> setupServices = new List<IInitializable>();
 
             List<IPriorityInitializable> priorityServices = new List<IPriorityInitializable>();
@@ -270,3 +268,5 @@ namespace Genrpg.Shared.Utils
         }
     }
 }
+
+

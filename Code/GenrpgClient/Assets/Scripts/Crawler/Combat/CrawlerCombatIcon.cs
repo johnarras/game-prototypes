@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.UI.CombatTexts;
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Crawler.Combat
             base.Init();
             _dispatcher.AddListener<SetCombatGroupAction>(OnSetCombatGroupAction, GetToken());
             _dispatcher.AddListener<ClearCombatGroupActions>(OnClearCombatGroupActions, GetToken());
-            _uiService.SetButton(Button, GetType().Name, OnClickButton);
+            _uiService.SetButton(Button, name, OnClickButton);
 
         }
 
@@ -108,3 +108,5 @@ namespace Assets.Scripts.Crawler.Combat
         }
     }
 }
+
+

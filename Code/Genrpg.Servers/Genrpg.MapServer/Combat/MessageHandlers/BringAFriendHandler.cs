@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.AI.Services;
+using Genrpg.MapServer.AI.Services;
 using Genrpg.MapServer.Combat.Messages;
 using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Core.Entities;
@@ -41,3 +41,5 @@ namespace Genrpg.MapServer.Combat.MessageHandlers
         }
     }
 }
+
+

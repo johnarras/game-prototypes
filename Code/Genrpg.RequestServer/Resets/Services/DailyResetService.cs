@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Interfaces;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.GameSettings;
@@ -47,3 +47,5 @@ namespace Genrpg.RequestServer.Resets.Services
         }
     }
 }
+
+

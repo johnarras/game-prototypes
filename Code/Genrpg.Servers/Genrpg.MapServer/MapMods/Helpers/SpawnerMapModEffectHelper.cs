@@ -1,7 +1,6 @@
-﻿using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Spawns.MapObjectAddons;
-using Genrpg.ServerShared.Core;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.MapMods.Constants;
 using Genrpg.Shared.MapMods.MapObjectAddons;
 using Genrpg.Shared.MapMods.MapObjects;
@@ -12,8 +11,6 @@ using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Genrpg.MapServer.MapMods.Helpers
 {
@@ -21,7 +18,7 @@ namespace Genrpg.MapServer.MapMods.Helpers
     {
         private IMapObjectManager _objectManager = null;
         private IPathfindingService _pathfindingService = null;
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
 
         const int MinSeparation = 5;
 
@@ -105,3 +102,5 @@ namespace Genrpg.MapServer.MapMods.Helpers
         }
     }
 }
+
+

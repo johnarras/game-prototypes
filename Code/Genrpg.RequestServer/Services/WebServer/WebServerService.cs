@@ -1,4 +1,4 @@
-﻿using Genrpg.ServerShared.Maps;
+using Genrpg.ServerShared.Maps;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.RequestServer.Maps;
 using Genrpg.RequestServer.NoUserRequests.RequestHandlers;
@@ -83,3 +83,5 @@ namespace Genrpg.RequestServer.Services.WebServer
         }
     }
 }
+
+

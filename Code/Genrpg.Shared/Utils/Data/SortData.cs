@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Utils.Data
+namespace Genrpg.Shared.Utils.Data
 {
     public class SortData
     {
@@ -6,3 +6,5 @@
         public object SortVal;
     }
 }
+
+

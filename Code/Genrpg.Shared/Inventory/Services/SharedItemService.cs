@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Constants;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.Crafting.Settings.Recipes;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
@@ -296,3 +296,5 @@ namespace Genrpg.Shared.Inventory.Services
         }
     }
 }
+
+

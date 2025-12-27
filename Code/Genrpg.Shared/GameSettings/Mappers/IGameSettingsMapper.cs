@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System;
 
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.GameSettings.Mappers
         ITopLevelSettings MapToDto(ITopLevelSettings settings, bool simplify);
     }
 }
+
+

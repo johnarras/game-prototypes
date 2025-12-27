@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 
 namespace Genrpg.Shared.MapObjects.Interfaces
@@ -17,7 +17,7 @@ namespace Genrpg.Shared.MapObjects.Interfaces
         string LocationId { get; set; }
         string LocationPlaceId { get; set; }
         long AddonBits { get; set; }
-        bool IsDirty();
-        void SetDirty(bool val);
     }
 }
+
+

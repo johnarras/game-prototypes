@@ -5,6 +5,5 @@
   "Name": "Pedestals",
   "Art": "Pedestal",
   "Weight": 1.0,
-  "IsToggle": true,
-  "SaveTime": "2025-08-10T19:31:24.954Z"
+  "IsToggle": true
 }

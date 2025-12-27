@@ -1,54 +1,59 @@
-using Genrpg.Shared.Achievements.Settings;
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Charms.Settings
 {
-    [MessagePackObject]
     public class CharmBonus : ChildSettings, IIdName
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string NameId { get; set; }
-        [Key(5)] public string Desc { get; set; }
-        [Key(6)] public string Icon { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string NameId { get; set; }
+        public string Desc { get; set; }
+        public string Icon { get; set; }
 
-        [Key(7)] public long EntityTypeId { get; set; }
-        [Key(8)] public long EntityId { get; set; }
+        public long EntityTypeId { get; set; }
+        public long EntityId { get; set; }
 
-        [Key(9)] public long CharmUseId { get; set; }
+        public long CharmUseId { get; set; }
 
-        [Key(10)] public bool CheckBitValue { get; set; }
-        [Key(11)] public long CheckBitCount { get; set; }
-        [Key(12)] public long CheckBitsMatchTarget { get; set; }
+        public bool CheckBitValue { get; set; }
+        public long CheckBitCount { get; set; }
+        public long CheckBitsMatchTarget { get; set; }
 
-        [Key(13)] public long CheckBitStartIndex { get; set; }
-        [Key(14)] public long CheckBitSkip { get; set; }
+        public long CheckBitStartIndex { get; set; }
+        public long CheckBitSkip { get; set; }
 
-        [Key(15)] public long BonusQuantityStart { get; set; }
-        [Key(16)] public long BonusQuantitySkip { get; set; }
+        public long BonusQuantityStart { get; set; }
+        public long BonusQuantitySkip { get; set; }
 
-        [Key(17)] public long QuantityBitsCount { get; set; }
-        [Key(18)] public long QuantityMod { get; set; }
+        public long QuantityBitsCount { get; set; }
+        public long QuantityMod { get; set; }
 
-        [Key(19)] public long QuantityBitSkip { get; set; }
-        [Key(20)] public long QuantityStartBit { get; set; }
-        [Key(21)] public long QuantityBonusType { get; set; }
+        public long QuantityBitSkip { get; set; }
+        public long QuantityStartBit { get; set; }
+        public long QuantityBonusType { get; set; }
 
     }
-    [MessagePackObject]
     public class CharmBonusSettings : ParentSettings<CharmBonus>
     {
-        [Key(0)] public override string Id { get; set; }
+        public override string Id { get; set; }
     }
 
-    public class CharmBonusSettingsDto : ParentSettingsDto<CharmBonusSettings, CharmBonus> { }
+    public class CharmBonusSettingsDto : ParentSettingsDto<CharmBonusSettings, CharmBonus>
+    {
+        public override List<CharmBonus> Children { get; set; }
+        public override CharmBonusSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
     public class CharmBonusSettingsLoader : ParentSettingsLoader<CharmBonusSettings, CharmBonus> { }
 
     public class CharmBonusSettingsMapper : ParentSettingsMapper<CharmBonusSettings, CharmBonus, CharmBonusSettingsDto> { }
 }
+
+

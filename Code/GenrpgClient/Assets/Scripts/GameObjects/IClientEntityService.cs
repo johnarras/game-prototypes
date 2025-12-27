@@ -1,11 +1,10 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
 public interface IClientEntityService : IInjectable
 {
-    object FullInstantiateAndSet(object obj);
     C FullInstantiate<C>(C c) where C : class;
     object FullInstantiate(object obj);
     void InitializeHierarchy(object obj);
@@ -26,3 +25,5 @@ public interface IClientEntityService : IInjectable
     void RegisterDestroyCallback(object obj, Action action);
 
 }
+
+

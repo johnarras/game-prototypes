@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 namespace Genrpg.Shared.UserAbilities.Services
 {
@@ -7,3 +7,5 @@ namespace Genrpg.Shared.UserAbilities.Services
         long GetAbilityTotal(IFilteredObject obj, long userAbilityId, long upgradeLevel);
     }
 }
+
+

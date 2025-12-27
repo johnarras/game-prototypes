@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Riddles.Settings;
 
@@ -40,3 +40,5 @@ namespace Assets.Scripts.Crawler.Maps.Props
         }
     }
 }
+
+

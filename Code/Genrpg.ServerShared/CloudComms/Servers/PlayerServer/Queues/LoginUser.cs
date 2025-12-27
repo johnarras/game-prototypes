@@ -1,4 +1,5 @@
-﻿
+using MessagePack;
+
 namespace Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues
 {
     public class LoginUser : IPlayerQueueMessage
@@ -7,3 +8,5 @@ namespace Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues
         public string Name { get; set; }
     }
 }
+
+

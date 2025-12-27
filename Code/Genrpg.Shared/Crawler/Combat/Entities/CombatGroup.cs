@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities
 {
-    // MessagePackIgnore
     public class CombatGroup
     {
         public string Id { get; set; }
@@ -26,3 +25,5 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
         }
     }
 }
+
+

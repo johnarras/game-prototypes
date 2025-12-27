@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.TimedEvents.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,3 +11,5 @@ namespace Genrpg.Shared.TimedEvents.Interfaces
         List<TimedEventCustomReward> CustomRewards { get; set; }
     }
 }
+
+

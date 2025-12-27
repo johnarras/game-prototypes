@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.ClientEvents.DataUpdates
+namespace Assets.Scripts.ClientEvents.DataUpdates
 {
     public class OnNewGameData
     {
     }
 }
+
+

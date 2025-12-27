@@ -1,10 +1,9 @@
 {
-  "Id": "default",
   "Children": [],
   "Parent": {
     "Id": "default",
-    "Name": "TimedEventTypeSettings",
-    "SaveTime": "2025-06-12T17:38:11.611Z"
+    "Name": "TimedEventTypeSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-06-12T17:38:11.611Z"
 }

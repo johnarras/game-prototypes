@@ -1,12 +1,12 @@
-﻿
+
+using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.NoUserRequests.RequestHandlers;
+using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.RequestServer.Services.WebServer;
-using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.NoUserRequests.RequestHandlers;
 
 namespace Genrpg.RequestServer.Services.NoUsers
 {
@@ -34,7 +34,7 @@ namespace Genrpg.RequestServer.Services.NoUsers
 
                 List<IWebResponse> errors = new List<IWebResponse>();
 
-                foreach (IWebResponse response in context.Responses.GetResponses())
+                foreach (IWebResponse response in context.GetResponseList())
                 {
                     if (response is ErrorResponse error)
                     {
@@ -44,8 +44,8 @@ namespace Genrpg.RequestServer.Services.NoUsers
 
                 if (errors.Count > 0)
                 {
-                    context.Responses.  Clear();
-                    context.Responses.AddRange(errors);
+                    context.ClearResponses();
+                    context.AddResponseRange(errors);
                     return;
                 }
 
@@ -61,3 +61,5 @@ namespace Genrpg.RequestServer.Services.NoUsers
         }
     }
 }
+
+

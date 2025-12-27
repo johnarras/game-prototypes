@@ -1,8 +1,10 @@
-﻿using System;
+using System.Text.Json;
+using System;
+using Genrpg.Shared.Serialization.Attributes;
+using MessagePack;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Genrpg.ServerShared.CloudComms.PubSub.Entities
 {
@@ -10,3 +12,5 @@ namespace Genrpg.ServerShared.CloudComms.PubSub.Entities
     {
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Units.Interfaces
         List<UnitEffect> Effects { get; set; }
     }
 }
+
+

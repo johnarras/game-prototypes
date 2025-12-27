@@ -1,99 +1,96 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "traderstat1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Caravan Animals",
       "Icon": "CaravanAnimals",
       "Art": "CaravanAnimals"
     },
     {
-      "Id": "traderstat2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Holdings Animals",
       "Icon": "HoldingsAnimals",
       "Art": "HoldingsAnimals"
     },
     {
-      "Id": "traderstat3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Holdings TradeGoods",
       "Icon": "HoldingsTradeGoods",
       "Art": "HoldingsTradeGoods"
     },
     {
-      "Id": "traderstat4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Coins Regen",
       "Icon": "CoinsRegen",
       "Art": "CoinsRegen"
     },
     {
-      "Id": "traderstat5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Coins Storage",
       "Icon": "CoinsStorage",
       "Art": "CoinsStorage"
     },
     {
-      "Id": "traderstat6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Mana Regen",
       "Icon": "ManaRegen",
       "Art": "ManaRegen"
     },
     {
-      "Id": "traderstat7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Mana Storage",
       "Icon": "ManaStorage",
       "Art": "ManaStorage"
     },
     {
-      "Id": "traderstat8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Supplies Storage",
       "Icon": "SuppliesStorage",
       "Art": "SuppliesStorage"
     },
     {
-      "Id": "traderstat9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Supplies Regen",
       "Icon": "SuppliesRegen",
       "Art": "SuppliesRegen"
     },
     {
-      "Id": "traderstat10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Foraging",
       "Icon": "Foraging",
       "Art": "Foraging"
     },
     {
-      "Id": "traderstat11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Guards",
       "Icon": "Guards",
       "Art": "Guards"
+    },
+    {
+      "IdKey": 12,
+      "Name": "CaravanTradeGoods",
+      "Icon": "CaravanTradeGoods",
+      "Art": "CaravanTradeGoods"
+    },
+    {
+      "IdKey": 13,
+      "Name": "Food Regen",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "FoodRegen",
+      "Art": "FoodRegen"
+    },
+    {
+      "IdKey": 14,
+      "Name": "Food Storage",
+      "Icon": "FoodStorage",
+      "Art": "FoodStorage"
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "TraderStatSettings",
-    "SaveTime": "2025-12-02T01:21:01.955Z"
+    "Name": "TraderStatSettings"
   },
-  "SaveTime": "2025-12-02T01:21:01.955Z"
+  "Id": "default",
+  "SaveTime": "2025-12-21T20:52:57.784Z"
 }

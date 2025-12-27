@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.Zones.WorldData;
@@ -9,3 +9,5 @@ namespace Genrpg.Shared.Zones.Helpers
         public override long HelperKey => EntityTypes.Zone;
     }
 }
+
+

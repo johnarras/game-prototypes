@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.TimedEvents.Entities;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.TimedEvents.Interfaces
         ITimedEventTheme GetTheme(IFilteredObject obj);
     }
 }
+
+

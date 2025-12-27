@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Accounts.Constants
 {
-    [MessagePackObject]
     public class AccountSearch
     {
         public const string Id = "Id";
@@ -13,4 +12,6 @@ namespace Genrpg.Shared.Accounts.Constants
         public const string Name = "Name";
     }
 }
+
+
 

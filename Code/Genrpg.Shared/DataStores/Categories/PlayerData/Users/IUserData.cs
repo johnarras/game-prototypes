@@ -1,7 +1,8 @@
-﻿namespace Genrpg.Shared.DataStores.Categories.PlayerData.Users
+namespace Genrpg.Shared.DataStores.Categories.PlayerData.Users
 {
     public interface IUserData
     {
     }
-
 }
+
+

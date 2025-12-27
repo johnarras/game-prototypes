@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -40,14 +40,14 @@ public interface ITerrainTextureManager : IInjectable
 public class TerrainTextureManager : ITerrainTextureManager
 {
 
-    private ILogService _logService;
+    private ILogService _logService = null;
     private IGameData _gameData;
-    private IAssetService _assetService;
+    private IAssetService _assetService = null;
     private IMapTerrainManager _terrainManager;
     private IMapProvider _mapProvider;
     protected IClientGameState _gs;
     protected IMapGenData _md;
-    protected IClientEntityService _clientEntityService;
+    protected IClientEntityService _clientEntityService = null;
 
     public async Awaitable SetOneTerrainPatchLayers(TerrainPatchData patch, CancellationToken token, bool allAtOnce = false)
     {
@@ -305,4 +305,6 @@ public class TerrainTextureManager : ITerrainTextureManager
         _terrainManager.AddToTerrainTextureCache(ddata.TexType.Name, tdata);
     }
 }
+
+
 

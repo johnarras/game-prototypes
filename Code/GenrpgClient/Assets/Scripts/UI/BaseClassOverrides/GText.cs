@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.UI.Interfaces;
 
 public class GText : TMPro.TextMeshProUGUI, IText
@@ -11,3 +11,5 @@ public class GText : TMPro.TextMeshProUGUI, IText
         base.OnDestroy();
     }
 }
+
+

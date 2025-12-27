@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Genrpg.Shared.TimedEvents.Interfaces
 {
@@ -18,3 +18,5 @@ namespace Genrpg.Shared.TimedEvents.Interfaces
         long GetTierListId();
     }
 }
+
+

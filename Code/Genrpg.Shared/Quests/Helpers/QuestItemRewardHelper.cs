@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
@@ -22,3 +22,5 @@ namespace Genrpg.Shared.Quests.Helpers
 
     }
 }
+
+

@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "dataoverridegroup1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "None",
       "Enabled": true,
@@ -23,8 +20,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "DataOverrideSettings",
-    "SaveTime": "2025-12-02T21:45:24.986Z"
+    "Name": "DataOverrideSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-12-02T21:45:24.986Z"
 }

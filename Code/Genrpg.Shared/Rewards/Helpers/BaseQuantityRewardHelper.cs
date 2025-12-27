@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Settings.Qualities;
@@ -56,3 +56,5 @@ namespace Genrpg.Shared.Rewards.Helpers
         }
     }
 }
+
+

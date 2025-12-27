@@ -2,28 +2,28 @@
   "Id": "default",
   "TieredCurrencyLoot": [
     {
+      "Name": "",
       "EntityTypeId": 200,
       "EntityId": 1,
       "MinQuantity": 5,
       "MaxQuantity": 15,
-      "Weight": 100.0,
-      "Name": ""
+      "Weight": 100.0
     },
     {
+      "Name": "",
       "EntityTypeId": 200,
       "EntityId": 3,
       "MinQuantity": 5,
       "MaxQuantity": 15,
-      "Weight": 100.0,
-      "Name": ""
+      "Weight": 100.0
     },
     {
+      "Name": "",
       "EntityTypeId": 200,
       "EntityId": 2,
       "MinQuantity": 5,
       "MaxQuantity": 15,
-      "Weight": 100.0,
-      "Name": ""
+      "Weight": 100.0
     }
   ],
   "Name": "ChestSettings",

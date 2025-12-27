@@ -2,5 +2,7 @@
   "Id": "screenname36default",
   "ParentId": "default",
   "IdKey": 36,
-  "Name": "Tile"
+  "Name": "Tile",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Tiles"
 }

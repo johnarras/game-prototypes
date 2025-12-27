@@ -1,11 +1,11 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Purchasing.Services;
 using Genrpg.Shared.Purchasing.Settings;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -60,3 +60,5 @@ namespace Genrpg.Editor.Importers.Purchasing
         }
     }
 }
+
+

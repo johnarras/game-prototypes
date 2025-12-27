@@ -1,4 +1,4 @@
-﻿
+
 namespace Genrpg.Shared.DataStores.Interfaces
 {
     public interface IServerOnlyData
@@ -6,3 +6,5 @@ namespace Genrpg.Shared.DataStores.Interfaces
 
     }
 }
+
+

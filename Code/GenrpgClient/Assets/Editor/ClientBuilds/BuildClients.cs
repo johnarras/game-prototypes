@@ -1,7 +1,11 @@
-﻿using Genrpg.Shared.Analytics.Services;
+using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Client.Contants;
+using Genrpg.Shared.Config.Constants;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Setup.Services;
 using Genrpg.Shared.Utils;
 using System;
@@ -15,8 +19,10 @@ using UnityEngine;
 
 public class BuildClients
 {
+
+
     public static void BuildClient(string env, string gameModeStr, string platformName,
-        bool selfContainedClient, bool rebuildBundles)
+        bool selfContainedClient, bool rebuildBundles, bool developmentBuild)
     {
         IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
@@ -48,18 +54,35 @@ public class BuildClients
         IAnalyticsService analyicsService = gs.loc.Get<IAnalyticsService>();
         IClientAppService appService = gs.loc.Get<IClientAppService>();
 
-        string oldEnv = _configContainer.Config.Env;
+        // Feel free to change this to something else you use in your jenkins or whatever build.
+        Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(appService.DataPath + "/../../../AppConfig/App.config");
+
         EGameModes oldGameMode = _configContainer.Config.GameMode;
+        string oldEnv = _configContainer.Config.Env;
         bool oldPlayerContainsAllAssets = _configContainer.Config.SelfContainedClient;
+
         _configContainer.Config.Env = env;
         _configContainer.Config.SelfContainedClient = selfContainedClient;
         _configContainer.Config.GameMode = gameMode;
+        _configContainer.Config.BaseWebEndpoint = kvDict[AppConfigKeys.WebServerURL];
+        _configContainer.Config.ContentEndpoint = kvDict[AppConfigKeys.ContentRoot];
+        string iosSecret = kvDict[AppConfigKeys.IOSSecret];
+        string googlePlaySecret = kvDict[AppConfigKeys.GooglePlaySecret];
+
+        string packageName = kvDict[AppConfigKeys.PackageName];
+
+        packageName = packageName.Replace("XXXX", gameModeStr);
+
+        PlayerSettings.SetApplicationIdentifier(buildData.NamedTarget, packageName);
+
+        _configContainer.Config.WorldsEnv = GetEnvName(kvDict[EDataCategories.Worlds.ToString() + AppConfigKeys.EnvSuffix], env);
+
+        _configContainer.Config.AssetsEnv = GetEnvName(kvDict[EDataCategories.Assets.ToString() + AppConfigKeys.EnvSuffix], env);
+
         string gamePrefix = gameMode.ToString();
         string lowerPrefix = gamePrefix.ToLower();
         EditorUtility.SetDirty(_configContainer.Config);
         AssetDatabase.SaveAssets();
-
-        Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(appService.DataPath + "/../../../AppConfig/App.config");
 
         BundleVersions currentBundleVersions = CreateAssetBundles.CreateBundles(buildData.ClientPlatform, env, rebuildBundles,
             true);
@@ -118,13 +141,18 @@ public class BuildClients
         }
         BuildOptions options = BuildOptions.CompressWithLz4HC;
 
+
+        if (developmentBuild)
+        {
+            options |= BuildOptions.Development;
+        }
+
         if (Directory.Exists(appService.StreamingAssetsPath))
         {
             Directory.Delete(appService.StreamingAssetsPath, true);
         }
         string bundleOutputPath = buildData.GetBundleOutputPath();
         string[] files = Directory.GetFiles(bundleOutputPath);
-
 
         string versionFilePath = outputZipFolder + PatcherUtils.GetPatchVersionFilename();
         File.WriteAllText(versionFilePath, String.Empty);
@@ -171,12 +199,24 @@ public class BuildClients
         AssetDatabase.SaveAssets();
 
         Debug.Log("Version: " + version);
-        foreach (string key in kvDict.Keys)
-        {
-            Debug.Log("KV: " + key + " -- " + kvDict[key]);
-        }
 
         Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient} RB: {rebuildBundles}");
 
     }
+
+    private static string GetEnvName(string envName, string defaultEnvName)
+    {
+        if (string.IsNullOrEmpty(envName) || envName == AppConfigKeys.Default)
+        {
+            return defaultEnvName;
+        }
+
+        if (envName == EnvNames.Local)
+        {
+            envName = EnvNames.Dev.ToLower();
+        }
+        return envName;
+    }
 }
+
+

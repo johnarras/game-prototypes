@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Bundles;
+using Assets.Scripts.Assets.Bundles;
 using Genrpg.Shared.Constants;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,3 +66,5 @@ namespace Assets.Editor.Builds
         }
     }
 }
+
+

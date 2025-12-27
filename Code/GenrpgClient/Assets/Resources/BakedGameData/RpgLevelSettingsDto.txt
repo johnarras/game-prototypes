@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "rpglevel1default",
-      "ParentId": "default",
       "IdKey": 1,
       "RewardList": [],
       "CurrExp": 780,
@@ -16,8 +13,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel2default",
-      "ParentId": "default",
       "IdKey": 2,
       "RewardList": [],
       "CurrExp": 1200,
@@ -30,8 +25,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel3default",
-      "ParentId": "default",
       "IdKey": 3,
       "RewardList": [],
       "CurrExp": 1750,
@@ -44,8 +37,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel4default",
-      "ParentId": "default",
       "IdKey": 4,
       "RewardList": [],
       "CurrExp": 2400,
@@ -58,8 +49,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel5default",
-      "ParentId": "default",
       "IdKey": 5,
       "RewardList": [],
       "CurrExp": 3150,
@@ -72,8 +61,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel6default",
-      "ParentId": "default",
       "IdKey": 6,
       "RewardList": [],
       "CurrExp": 3950,
@@ -87,8 +74,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel7default",
-      "ParentId": "default",
       "IdKey": 7,
       "RewardList": [],
       "CurrExp": 4900,
@@ -102,8 +87,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel8default",
-      "ParentId": "default",
       "IdKey": 8,
       "RewardList": [],
       "CurrExp": 5950,
@@ -117,8 +100,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel9default",
-      "ParentId": "default",
       "IdKey": 9,
       "RewardList": [],
       "CurrExp": 7100,
@@ -132,8 +113,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel10default",
-      "ParentId": "default",
       "IdKey": 10,
       "RewardList": [],
       "CurrExp": 8350,
@@ -147,8 +126,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel11default",
-      "ParentId": "default",
       "IdKey": 11,
       "RewardList": [],
       "CurrExp": 9700,
@@ -162,8 +139,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel12default",
-      "ParentId": "default",
       "IdKey": 12,
       "RewardList": [],
       "CurrExp": 11000,
@@ -177,8 +152,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel13default",
-      "ParentId": "default",
       "IdKey": 13,
       "RewardList": [],
       "CurrExp": 12500,
@@ -192,8 +165,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel14default",
-      "ParentId": "default",
       "IdKey": 14,
       "RewardList": [],
       "CurrExp": 14500,
@@ -207,8 +178,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel15default",
-      "ParentId": "default",
       "IdKey": 15,
       "RewardList": [],
       "CurrExp": 16500,
@@ -222,8 +191,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel16default",
-      "ParentId": "default",
       "IdKey": 16,
       "RewardList": [],
       "CurrExp": 18000,
@@ -237,8 +204,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel17default",
-      "ParentId": "default",
       "IdKey": 17,
       "RewardList": [],
       "CurrExp": 20000,
@@ -252,8 +217,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel18default",
-      "ParentId": "default",
       "IdKey": 18,
       "RewardList": [],
       "CurrExp": 22500,
@@ -267,8 +230,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel19default",
-      "ParentId": "default",
       "IdKey": 19,
       "RewardList": [],
       "CurrExp": 24500,
@@ -282,8 +243,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel20default",
-      "ParentId": "default",
       "IdKey": 20,
       "RewardList": [],
       "CurrExp": 27000,
@@ -297,8 +256,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel21default",
-      "ParentId": "default",
       "IdKey": 21,
       "RewardList": [],
       "CurrExp": 29500,
@@ -312,8 +269,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel22default",
-      "ParentId": "default",
       "IdKey": 22,
       "RewardList": [],
       "CurrExp": 32000,
@@ -327,8 +282,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel23default",
-      "ParentId": "default",
       "IdKey": 23,
       "RewardList": [],
       "CurrExp": 35000,
@@ -342,8 +295,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel24default",
-      "ParentId": "default",
       "IdKey": 24,
       "RewardList": [],
       "CurrExp": 38000,
@@ -357,8 +308,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel25default",
-      "ParentId": "default",
       "IdKey": 25,
       "RewardList": [],
       "CurrExp": 41000,
@@ -372,8 +321,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel26default",
-      "ParentId": "default",
       "IdKey": 26,
       "RewardList": [],
       "CurrExp": 44000,
@@ -387,8 +334,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel27default",
-      "ParentId": "default",
       "IdKey": 27,
       "RewardList": [],
       "CurrExp": 47500,
@@ -402,8 +347,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel28default",
-      "ParentId": "default",
       "IdKey": 28,
       "RewardList": [],
       "CurrExp": 50500,
@@ -417,8 +360,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel29default",
-      "ParentId": "default",
       "IdKey": 29,
       "RewardList": [],
       "CurrExp": 54000,
@@ -432,8 +373,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel30default",
-      "ParentId": "default",
       "IdKey": 30,
       "RewardList": [],
       "CurrExp": 58000,
@@ -447,8 +386,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel31default",
-      "ParentId": "default",
       "IdKey": 31,
       "RewardList": [],
       "CurrExp": 61500,
@@ -462,8 +399,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel32default",
-      "ParentId": "default",
       "IdKey": 32,
       "RewardList": [],
       "CurrExp": 65500,
@@ -477,8 +412,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel33default",
-      "ParentId": "default",
       "IdKey": 33,
       "RewardList": [],
       "CurrExp": 69500,
@@ -492,8 +425,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel34default",
-      "ParentId": "default",
       "IdKey": 34,
       "RewardList": [],
       "CurrExp": 74000,
@@ -507,8 +438,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel35default",
-      "ParentId": "default",
       "IdKey": 35,
       "RewardList": [],
       "CurrExp": 78000,
@@ -522,8 +451,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel36default",
-      "ParentId": "default",
       "IdKey": 36,
       "RewardList": [],
       "CurrExp": 82500,
@@ -537,8 +464,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel37default",
-      "ParentId": "default",
       "IdKey": 37,
       "RewardList": [],
       "CurrExp": 87000,
@@ -552,8 +477,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel38default",
-      "ParentId": "default",
       "IdKey": 38,
       "RewardList": [],
       "CurrExp": 92000,
@@ -567,8 +490,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel39default",
-      "ParentId": "default",
       "IdKey": 39,
       "RewardList": [],
       "CurrExp": 96500,
@@ -582,8 +503,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel40default",
-      "ParentId": "default",
       "IdKey": 40,
       "RewardList": [],
       "CurrExp": 100000,
@@ -597,8 +516,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel41default",
-      "ParentId": "default",
       "IdKey": 41,
       "RewardList": [],
       "CurrExp": 105000,
@@ -612,8 +529,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel42default",
-      "ParentId": "default",
       "IdKey": 42,
       "RewardList": [],
       "CurrExp": 110000,
@@ -627,8 +542,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel43default",
-      "ParentId": "default",
       "IdKey": 43,
       "RewardList": [],
       "CurrExp": 115000,
@@ -642,8 +555,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel44default",
-      "ParentId": "default",
       "IdKey": 44,
       "RewardList": [],
       "CurrExp": 125000,
@@ -657,8 +568,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel45default",
-      "ParentId": "default",
       "IdKey": 45,
       "RewardList": [],
       "CurrExp": 130000,
@@ -672,8 +581,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel46default",
-      "ParentId": "default",
       "IdKey": 46,
       "RewardList": [],
       "CurrExp": 135000,
@@ -687,8 +594,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel47default",
-      "ParentId": "default",
       "IdKey": 47,
       "RewardList": [],
       "CurrExp": 140000,
@@ -702,8 +607,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel48default",
-      "ParentId": "default",
       "IdKey": 48,
       "RewardList": [],
       "CurrExp": 145000,
@@ -717,8 +620,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel49default",
-      "ParentId": "default",
       "IdKey": 49,
       "RewardList": [],
       "CurrExp": 150000,
@@ -732,8 +633,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel50default",
-      "ParentId": "default",
       "IdKey": 50,
       "RewardList": [],
       "CurrExp": 160000,
@@ -747,8 +646,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel51default",
-      "ParentId": "default",
       "IdKey": 51,
       "RewardList": [],
       "CurrExp": 165000,
@@ -762,8 +659,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel52default",
-      "ParentId": "default",
       "IdKey": 52,
       "RewardList": [],
       "CurrExp": 170000,
@@ -777,8 +672,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel53default",
-      "ParentId": "default",
       "IdKey": 53,
       "RewardList": [],
       "CurrExp": 180000,
@@ -792,8 +685,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel54default",
-      "ParentId": "default",
       "IdKey": 54,
       "RewardList": [],
       "CurrExp": 185000,
@@ -807,8 +698,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel55default",
-      "ParentId": "default",
       "IdKey": 55,
       "RewardList": [],
       "CurrExp": 195000,
@@ -822,8 +711,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel56default",
-      "ParentId": "default",
       "IdKey": 56,
       "RewardList": [],
       "CurrExp": 200000,
@@ -837,8 +724,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel57default",
-      "ParentId": "default",
       "IdKey": 57,
       "RewardList": [],
       "CurrExp": 210000,
@@ -852,8 +737,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel58default",
-      "ParentId": "default",
       "IdKey": 58,
       "RewardList": [],
       "CurrExp": 215000,
@@ -867,8 +750,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel59default",
-      "ParentId": "default",
       "IdKey": 59,
       "RewardList": [],
       "CurrExp": 225000,
@@ -882,8 +763,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel60default",
-      "ParentId": "default",
       "IdKey": 60,
       "RewardList": [],
       "CurrExp": 230000,
@@ -897,8 +776,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel61default",
-      "ParentId": "default",
       "IdKey": 61,
       "RewardList": [],
       "CurrExp": 240000,
@@ -912,8 +789,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel62default",
-      "ParentId": "default",
       "IdKey": 62,
       "RewardList": [],
       "CurrExp": 245000,
@@ -927,8 +802,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel63default",
-      "ParentId": "default",
       "IdKey": 63,
       "RewardList": [],
       "CurrExp": 255000,
@@ -942,8 +815,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel64default",
-      "ParentId": "default",
       "IdKey": 64,
       "RewardList": [],
       "CurrExp": 265000,
@@ -957,8 +828,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel65default",
-      "ParentId": "default",
       "IdKey": 65,
       "RewardList": [],
       "CurrExp": 275000,
@@ -972,8 +841,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel66default",
-      "ParentId": "default",
       "IdKey": 66,
       "RewardList": [],
       "CurrExp": 280000,
@@ -987,8 +854,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel67default",
-      "ParentId": "default",
       "IdKey": 67,
       "RewardList": [],
       "CurrExp": 290000,
@@ -1002,8 +867,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel68default",
-      "ParentId": "default",
       "IdKey": 68,
       "RewardList": [],
       "CurrExp": 300000,
@@ -1017,8 +880,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel69default",
-      "ParentId": "default",
       "IdKey": 69,
       "RewardList": [],
       "CurrExp": 310000,
@@ -1032,8 +893,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel70default",
-      "ParentId": "default",
       "IdKey": 70,
       "RewardList": [],
       "CurrExp": 320000,
@@ -1047,8 +906,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel71default",
-      "ParentId": "default",
       "IdKey": 71,
       "RewardList": [],
       "CurrExp": 330000,
@@ -1062,8 +919,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel72default",
-      "ParentId": "default",
       "IdKey": 72,
       "RewardList": [],
       "CurrExp": 340000,
@@ -1077,8 +932,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel73default",
-      "ParentId": "default",
       "IdKey": 73,
       "RewardList": [],
       "CurrExp": 350000,
@@ -1092,8 +945,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel74default",
-      "ParentId": "default",
       "IdKey": 74,
       "RewardList": [],
       "CurrExp": 360000,
@@ -1107,8 +958,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel75default",
-      "ParentId": "default",
       "IdKey": 75,
       "RewardList": [],
       "CurrExp": 370000,
@@ -1122,8 +971,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel76default",
-      "ParentId": "default",
       "IdKey": 76,
       "RewardList": [],
       "CurrExp": 380000,
@@ -1137,8 +984,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel77default",
-      "ParentId": "default",
       "IdKey": 77,
       "RewardList": [],
       "CurrExp": 390000,
@@ -1152,8 +997,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel78default",
-      "ParentId": "default",
       "IdKey": 78,
       "RewardList": [],
       "CurrExp": 400000,
@@ -1167,8 +1010,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel79default",
-      "ParentId": "default",
       "IdKey": 79,
       "RewardList": [],
       "CurrExp": 410000,
@@ -1182,8 +1023,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel80default",
-      "ParentId": "default",
       "IdKey": 80,
       "RewardList": [],
       "CurrExp": 420000,
@@ -1197,8 +1036,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel81default",
-      "ParentId": "default",
       "IdKey": 81,
       "RewardList": [],
       "CurrExp": 435000,
@@ -1212,8 +1049,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel82default",
-      "ParentId": "default",
       "IdKey": 82,
       "RewardList": [],
       "CurrExp": 445000,
@@ -1227,8 +1062,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel83default",
-      "ParentId": "default",
       "IdKey": 83,
       "RewardList": [],
       "CurrExp": 455000,
@@ -1242,8 +1075,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel84default",
-      "ParentId": "default",
       "IdKey": 84,
       "RewardList": [],
       "CurrExp": 465000,
@@ -1257,8 +1088,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel85default",
-      "ParentId": "default",
       "IdKey": 85,
       "RewardList": [],
       "CurrExp": 480000,
@@ -1272,8 +1101,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel86default",
-      "ParentId": "default",
       "IdKey": 86,
       "RewardList": [],
       "CurrExp": 490000,
@@ -1287,8 +1114,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel87default",
-      "ParentId": "default",
       "IdKey": 87,
       "RewardList": [],
       "CurrExp": 505000,
@@ -1302,8 +1127,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel88default",
-      "ParentId": "default",
       "IdKey": 88,
       "RewardList": [],
       "CurrExp": 515000,
@@ -1317,8 +1140,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel89default",
-      "ParentId": "default",
       "IdKey": 89,
       "RewardList": [],
       "CurrExp": 530000,
@@ -1332,8 +1153,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel90default",
-      "ParentId": "default",
       "IdKey": 90,
       "RewardList": [],
       "CurrExp": 540000,
@@ -1347,8 +1166,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel91default",
-      "ParentId": "default",
       "IdKey": 91,
       "RewardList": [],
       "CurrExp": 555000,
@@ -1362,8 +1179,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel92default",
-      "ParentId": "default",
       "IdKey": 92,
       "RewardList": [],
       "CurrExp": 565000,
@@ -1377,8 +1192,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel93default",
-      "ParentId": "default",
       "IdKey": 93,
       "RewardList": [],
       "CurrExp": 580000,
@@ -1392,8 +1205,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel94default",
-      "ParentId": "default",
       "IdKey": 94,
       "RewardList": [],
       "CurrExp": 595000,
@@ -1407,8 +1218,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel95default",
-      "ParentId": "default",
       "IdKey": 95,
       "RewardList": [],
       "CurrExp": 605000,
@@ -1422,8 +1231,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel96default",
-      "ParentId": "default",
       "IdKey": 96,
       "RewardList": [],
       "CurrExp": 620000,
@@ -1437,8 +1244,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel97default",
-      "ParentId": "default",
       "IdKey": 97,
       "RewardList": [],
       "CurrExp": 635000,
@@ -1452,8 +1257,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel98default",
-      "ParentId": "default",
       "IdKey": 98,
       "RewardList": [],
       "CurrExp": 650000,
@@ -1467,8 +1270,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel99default",
-      "ParentId": "default",
       "IdKey": 99,
       "RewardList": [],
       "CurrExp": 665000,
@@ -1482,8 +1283,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel100default",
-      "ParentId": "default",
       "IdKey": 100,
       "RewardList": [],
       "CurrExp": 675000,
@@ -1497,8 +1296,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel101default",
-      "ParentId": "default",
       "IdKey": 101,
       "RewardList": [],
       "CurrExp": 690000,
@@ -1512,8 +1309,6 @@
       "AbilityPoints": 5
     },
     {
-      "Id": "rpglevel102default",
-      "ParentId": "default",
       "IdKey": 102,
       "RewardList": [],
       "CurrExp": 705000,
@@ -1527,8 +1322,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel103default",
-      "ParentId": "default",
       "IdKey": 103,
       "RewardList": [],
       "CurrExp": 720000,
@@ -1542,8 +1335,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel104default",
-      "ParentId": "default",
       "IdKey": 104,
       "RewardList": [],
       "CurrExp": 735000,
@@ -1557,8 +1348,6 @@
       "AbilityPoints": 3
     },
     {
-      "Id": "rpglevel105default",
-      "ParentId": "default",
       "IdKey": 105,
       "RewardList": [],
       "CurrExp": 750000,
@@ -1575,8 +1364,8 @@
   "Parent": {
     "Id": "default",
     "MaxLevel": 105,
-    "Name": "RpgLevelSettings",
-    "SaveTime": "2025-11-24T17:13:23.088Z"
+    "Name": "RpgLevelSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-11-24T17:13:23.088Z"
 }

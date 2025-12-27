@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.Worlds.Entities
 {
-    [MessagePackObject]
     public class WorldQuestItem : IIdName
     {
-        [Key(0)] public long IdKey { get; set; }
-        [Key(1)] public string Name { get; set; }
-        [Key(2)] public long FoundInMapId { get; set; }
-        [Key(3)] public long UnlocksMapId { get; set; }
-        [Key(4)] public string GuardName { get; set; }
-        [Key(5)] public long GuardUnitTypeId { get; set; }
+        public long IdKey { get; set; }
+        public string Name { get; set; }
+        public long FoundInMapId { get; set; }
+        public long UnlocksMapId { get; set; }
+        public string GuardName { get; set; }
+        public long GuardUnitTypeId { get; set; }
     }
 }
+
+

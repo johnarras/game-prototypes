@@ -20,44 +20,39 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b7497f44862b96247b1af7592e6dfd1d, type: 3}
-    bindAsDefault: 1
+    bindAsDefault: 0
     isAtlasV2: 0
     cachedData: {fileID: 0}
-    packedSpriteRenderDataKeys:
-    - 3dc801133c198a147b7870213681985f: 21300000
-    - 3d732bb4d9e45604097a11a6d9212c1a: 21300000
-    - 99432718fe106254fbe7a3cf3110198a: 21300000
-    - 31e447e8b50b51549bd043774ede0db3: 21300000
-    - e75681facc54ec749a6e66d74da0994a: 21300000
-    - 41bc74de10d50f3498410b7dce446313: 21300000
+    packedSpriteRenderDataKeys: []
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: 3dc801133c198a147b7870213681985f, type: 3}
-  - {fileID: 21300000, guid: 3d732bb4d9e45604097a11a6d9212c1a, type: 3}
-  - {fileID: 21300000, guid: 99432718fe106254fbe7a3cf3110198a, type: 3}
-  - {fileID: 21300000, guid: 31e447e8b50b51549bd043774ede0db3, type: 3}
-  - {fileID: 21300000, guid: e75681facc54ec749a6e66d74da0994a, type: 3}
-  - {fileID: 21300000, guid: 41bc74de10d50f3498410b7dce446313, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - StrafeLeftButton
-  - ForwardButton
-  - BackButton
-  - StrafeRightButton
-  - TurnRightButton
-  - TurnLeftButton
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: CrawlerUI
   m_IsVariant: 0

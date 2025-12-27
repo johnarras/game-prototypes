@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 using Genrpg.Shared.Constants;
 
 public class PatcherUtils
@@ -42,3 +42,5 @@ public class PatcherUtils
         return gamePrefix.ToLower() + gameSuffix;
     }
 }
+
+

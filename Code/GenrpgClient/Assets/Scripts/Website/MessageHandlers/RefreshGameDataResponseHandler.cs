@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.ClientEvents.DataUpdates;
 using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 using System.Threading;
@@ -21,3 +21,5 @@ namespace Assets.Scripts.Website.MessageHandlers
         }
     }
 }
+
+

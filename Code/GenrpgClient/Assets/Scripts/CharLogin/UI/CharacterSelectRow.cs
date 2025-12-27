@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.WebApi.DeleteChar;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -65,15 +65,17 @@ public class CharacterSelectRow : BaseBehaviour
     {
         if (stub == null)
         {
-            Destroy(go);
+            _clientEntityService.Destroy(go);
         }
 
         CharacterPlayButton button = go.GetComponent<CharacterPlayButton>();
         if (button == null)
         {
-            Destroy(go);
+            _clientEntityService.Destroy(go);
         }
 
         button.Init(_characterStub.Id, stub.Id, _screen);
     }
 }
+
+

@@ -51,3 +51,5 @@ namespace Genrpg.Shared.Stats.Messages
         public long GetMax() { return Dat[Max]; }
     }
 }
+
+

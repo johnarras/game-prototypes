@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Options.Services
         IClientAppService clientAppService,
         ITextSerializer textSerializer)
         {
-            _logService = logService;
+            _logService = logService = null;
             _clientAppService = clientAppService;
             _textSerializer = textSerializer;
         }
@@ -82,3 +82,5 @@ namespace Assets.Scripts.Options.Services
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -29,9 +29,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Party is not in combat." };
             }
 
-            if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Advance)
+            if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Charge)
             {
-                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to advance?", Key.None, ECrawlerStates.None));
+                stateData.Actions.Add(new CrawlerStateAction("Are you sure you wish to charge the ranged units?", Key.None, ECrawlerStates.None));
             }
             else if (party.Combat.PartyGroup.CombatGroupAction == ECombatGroupActions.Run)
             {
@@ -71,3 +71,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
         }
     }
 }
+
+

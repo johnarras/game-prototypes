@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Buildings;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Controllers;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
@@ -12,7 +12,6 @@ using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Crawler.Tilemaps;
 using Assets.Scripts.Dungeons;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Core;
@@ -173,7 +172,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public async Awaitable EnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
         {
-            _screenService.Open(ScreenNames.Loading);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
 
             while (_screenService.GetScreen(ScreenNames.Loading) == null)
             {
@@ -243,7 +242,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 await Awaitable.NextFrameAsync(token);
             }
 
-            _screenService.Close(ScreenNames.Loading);
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
         }
 
         private async Task LoadDungeonAssets(CrawlerMapRoot mapRoot, CancellationToken token)
@@ -953,7 +952,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             party.Maps.Clear();
 
 
-            if (world.Maps.Any(X => X.IdKey != 1 && X.IdKey != currMap.IdKey))
+            if (world.Maps.FastAny(X => X.IdKey != 1 && X.IdKey != currMap.IdKey))
             {
                 world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == currMap.IdKey).ToList();
 
@@ -1006,3 +1005,4 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         }
     }
 }
+

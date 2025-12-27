@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;
@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class TradeScreen : ItemIconScreen
 {
-    private IInventoryService _inventoryService;
+    private IInventoryService _inventoryService = null;
 
     public List<TradeCharUI> TradeChars;
     public InventoryPanel Items;
@@ -226,3 +226,4 @@ public class TradeScreen : ItemIconScreen
         _networkService.SendMapMessage(new AcceptTrade() { CharId = _gs.ch.Id });
     }
 }
+

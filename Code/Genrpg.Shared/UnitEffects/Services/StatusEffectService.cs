@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using System;
@@ -52,3 +52,5 @@ namespace Genrpg.Shared.UnitEffects.Services
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
@@ -42,9 +42,9 @@ public class InitItemIconData : DragItemInitData<Item, ItemIcon, ItemIconScreen,
 public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconData>
 {
 
-    protected ISharedItemService _sharedItemService;
-    protected IEntityService _entityService;
-    protected IIconService _iconService;
+    protected ISharedItemService _sharedItemService = null;
+    protected IEntityService _entityService = null;
+    protected IIconService _iconService = null;
 
     public GImage Background;
     public GImage Frame;
@@ -156,3 +156,5 @@ public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconDat
         _clientEntityService.SetActive(_initData.Screen.ToolTip, false);
     }
 }
+
+

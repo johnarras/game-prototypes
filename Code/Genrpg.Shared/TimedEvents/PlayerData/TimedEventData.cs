@@ -6,10 +6,9 @@ using System.Text;
 
 namespace Genrpg.Shared.TimedEvents.PlayerData
 {
-    [MessagePackObject]
     public class TimedEventData
     {
-        [Key(0)] public List<TimedEventStatus> Data { get; set; } = new List<TimedEventStatus>();
+        public List<TimedEventStatus> Data { get; set; } = new List<TimedEventStatus>();
 
         public TimedEventStatus GetStatus(long timedEventTypeId)
         {
@@ -26,3 +25,5 @@ namespace Genrpg.Shared.TimedEvents.PlayerData
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Utils;
@@ -16,3 +16,5 @@ namespace Genrpg.Shared.Rewards.Services
         void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, IStringId;
     }
 }
+
+

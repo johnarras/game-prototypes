@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Buffs.Settings;
+using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
@@ -49,3 +49,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
     }
 }
+
+

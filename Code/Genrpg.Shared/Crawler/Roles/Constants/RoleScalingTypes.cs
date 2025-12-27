@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Roles.Constants
+namespace Genrpg.Shared.Crawler.Roles.Constants
 {
     public class RoleScalingTypes
     {
@@ -11,3 +11,5 @@
         public const long Defense = 7;
     }
 }
+
+

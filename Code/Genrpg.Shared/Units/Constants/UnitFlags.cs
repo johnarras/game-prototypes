@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Genrpg.Shared.Units.Constants
 {
-    [MessagePackObject]
     public class UnitFlags
     {
         public const int IsDead = 1 << 0;
@@ -20,3 +19,5 @@ namespace Genrpg.Shared.Units.Constants
     }
 
 }
+
+

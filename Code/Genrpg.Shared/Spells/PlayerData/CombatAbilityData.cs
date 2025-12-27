@@ -1,15 +1,9 @@
 using MessagePack;
-
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using System;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Spells.PlayerData
 {
@@ -31,8 +25,16 @@ namespace Genrpg.Shared.Spells.PlayerData
 
     public class CombatAbilityDataLoader : OwnerDataLoader<CombatAbilityData, CombatAbilityRank> { }
 
-    public class CombatAbilityDto : OwnerDtoList<CombatAbilityData, CombatAbilityRank> { }
+    [MessagePackObject]
+    public class CombatAbilityDto : OwnerDtoList<CombatAbilityData, CombatAbilityRank>
+    {
+        [Key(0)] public override List<CombatAbilityRank> Children { get; set; }
+        [Key(1)] public override CombatAbilityData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
     public class CombatAbilityDataMapper : OwnerDataMapper<CombatAbilityData, CombatAbilityRank, CombatAbilityDto> { }
 
 }
+
+

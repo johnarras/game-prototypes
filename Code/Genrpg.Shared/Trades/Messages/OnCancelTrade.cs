@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Trades.Messages
         [Key(1)] public string ErrorMessage { get; set; }
     }
 }
+
+

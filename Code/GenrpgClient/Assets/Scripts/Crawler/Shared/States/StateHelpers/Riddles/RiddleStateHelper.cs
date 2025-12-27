@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.ClientEvents;
+using Assets.Scripts.Crawler.Maps.ClientEvents;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -100,3 +100,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
         }
     }
 }
+
+

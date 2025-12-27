@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 {
     public class DeleteConfirmHelper : BaseStateHelper
     {
-        private IPartyService _partyService;
+        private IPartyService _partyService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.DeleteConfirm;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
@@ -32,7 +32,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
 
                     PartyData party = _crawlerService.GetParty();
 
-                    _partyService.DeletePartyMember(party, member);
+                    _partyService.DeletePartyMemberFromGuild(party, member);
 
                     _crawlerService.SaveGame();
 
@@ -45,3 +45,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.DeleteMember
         }
     }
 }
+
+

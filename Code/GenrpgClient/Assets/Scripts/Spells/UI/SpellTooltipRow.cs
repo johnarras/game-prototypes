@@ -1,4 +1,4 @@
-﻿
+
 public class SpellTooltipRow : BaseBehaviour
 {
     public GText TextRow;
@@ -15,3 +15,5 @@ public class SpellTooltipRow : BaseBehaviour
 
     }
 }
+
+

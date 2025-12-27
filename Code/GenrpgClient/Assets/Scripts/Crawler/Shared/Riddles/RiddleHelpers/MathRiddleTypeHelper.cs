@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Maps.Entities;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Riddles.Constants;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Utils;
@@ -66,3 +66,5 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Purchasing.Services;
 using Genrpg.Shared.Characters.PlayerData;
@@ -24,9 +24,11 @@ namespace Genrpg.RequestServer.Purchasing.RequestHandlers
 
             if (response != null)
             {
-                context.Responses.AddResponse(response);
+                context.AddResponse(response);
             }
 
         }
     }
 }
+
+

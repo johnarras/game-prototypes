@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 using Genrpg.Shared.Purchasing.PlayerData;
@@ -84,3 +84,5 @@ namespace Genrpg.Shared.Purchasing.Services
         }
     }
 }
+
+

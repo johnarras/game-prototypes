@@ -21,3 +21,5 @@ namespace Genrpg.Shared.GameSettings.PlayerData
         [Key(3)] public DateTime LastTimeSet { get; set; } = DateTime.MinValue;
     }
 }
+
+

@@ -1,8 +1,6 @@
-﻿
-using Genrpg.Shared.Client.Core;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Core
 {
@@ -17,20 +15,19 @@ namespace Assets.Scripts.Core
 
         private bool _didInit = false;
 
-        private IInitClient _initClient = null;
-        public void Show(IInitClient client, string message = null, bool showResetButton = false, string header = null)
+        public void Show(UnityAction resetGameAction, string message = null, bool showResetButton = false, string header = null)
         {
             try
             {
                 InfoParent.SetActive(!string.IsNullOrEmpty(message));
-                _initClient = client;
                 Message.text = message;
                 Header.text = header;
                 ResetButton.gameObject.SetActive(showResetButton);
 
                 if (!_didInit)
                 {
-                    ResetButton.onClick.AddListener(ResetGame);
+                    ResetButton.onClick.RemoveAllListeners();
+                    ResetButton.onClick.AddListener(resetGameAction);
                 }
             }
             catch (Exception e)
@@ -38,10 +35,7 @@ namespace Assets.Scripts.Core
                 Debug.Log("EXC: " + e.Message);
             }
         }
-
-        private void ResetGame()
-        {
-            _initClient.FullResetGame();
-        }
     }
 }
+
+

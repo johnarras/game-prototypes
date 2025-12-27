@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Entities.Core;
+using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -264,3 +264,5 @@ namespace Genrpg.Editor.Importers.Crawler
 
     }
 }
+
+

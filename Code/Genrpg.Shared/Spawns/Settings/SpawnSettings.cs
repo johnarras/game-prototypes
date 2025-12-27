@@ -5,7 +5,6 @@ using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Spawns.Settings
@@ -22,56 +21,60 @@ namespace Genrpg.Shared.Spawns.Settings
     }
 
 
-    [MessagePackObject]
     public class SpawnItem : ISpawnItem
     {
-        [Key(0)] public long EntityTypeId { get; set; }
-        [Key(1)] public long EntityId { get; set; }
-        [Key(2)] public long MinQuantity { get; set; } = 1;
-        [Key(3)] public long MaxQuantity { get; set; } = 1;
-        [Key(4)] public double Weight { get; set; } = 100;
-        [Key(5)] public int GroupId { get; set; }
-        [Key(6)] public string Name { get; set; }
-        [Key(7)] public long MinLevel { get; set; }
+        public string Name { get; set; }
+        public long EntityTypeId { get; set; }
+        public long EntityId { get; set; }
+        public long MinQuantity { get; set; }
+        public long MaxQuantity { get; set; }
+        public double Weight { get; set; }
+        public int GroupId { get; set; }
+        public long MinLevel { get; set; }
 
     }
-    [MessagePackObject]
     public class SpawnSettings : ParentSettings<SpawnTable>
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public float MapSpawnChance { get; set; }
-        [Key(2)] public long MonsterLootSpawnTableId { get; set; }
+        public override string Id { get; set; }
+        public float MapSpawnChance { get; set; }
+        public long MonsterLootSpawnTableId { get; set; }
     }
-    [MessagePackObject]
     public class SpawnTable : ChildSettings, IIndexedGameItem
     {
 
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string ParentId { get; set; }
-        [Key(2)] public long IdKey { get; set; }
-        [Key(3)] public override string Name { get; set; }
-        [Key(4)] public string Desc { get; set; }
-        [Key(5)] public string AtlasPrefix { get; set; }
-        [Key(6)] public string Icon { get; set; }
-        [Key(7)] public List<SpawnItem> Items { get; set; }
-        [Key(8)] public string Art { get; set; }
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public long IdKey { get; set; }
+        public override string Name { get; set; }
+        public string Desc { get; set; }
+        public string AtlasPrefix { get; set; }
+        public string Icon { get; set; }
+        public List<SpawnItem> Items { get; set; }
+        public string Art { get; set; }
 
         public SpawnTable()
         {
             Items = new List<SpawnItem>();
         }
 
-        public class SpawnSettingsDto : ParentSettingsDto<SpawnSettings, SpawnTable> { }
-        public class SpawnSettingsLoader : ParentSettingsLoader<SpawnSettings, SpawnTable> { }
-
-        public class SpawnSettingsMapper : ParentSettingsMapper<SpawnSettings, SpawnTable, SpawnSettingsDto> { }
-
-
-        public class SpawnHelper : BaseEntityHelper<SpawnSettings, SpawnTable>
-        {
-            public override long HelperKey => EntityTypes.Spawn;
-        }
-
-
     }
+    public class SpawnSettingsDto : ParentSettingsDto<SpawnSettings, SpawnTable>
+    {
+        public override List<SpawnTable> Children { get; set; }
+        public override SpawnSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
+    public class SpawnSettingsLoader : ParentSettingsLoader<SpawnSettings, SpawnTable> { }
+
+    public class SpawnSettingsMapper : ParentSettingsMapper<SpawnSettings, SpawnTable, SpawnSettingsDto> { }
+
+
+    public class SpawnHelper : BaseEntityHelper<SpawnSettings, SpawnTable>
+    {
+        public override long HelperKey => EntityTypes.Spawn;
+    }
+
+
 }
+
+

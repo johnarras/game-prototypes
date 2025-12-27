@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
 namespace Scripts.Assets.Audio.Constants
 {
     public class AudioList
@@ -15,3 +9,5 @@ namespace Scripts.Assets.Audio.Constants
 
     }
 }
+
+

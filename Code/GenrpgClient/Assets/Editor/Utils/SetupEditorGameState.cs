@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using Genrpg.Shared.Setup.Services;
 using System.Threading;
@@ -16,3 +16,5 @@ public class SetupEditorUnityGameState
 {
  
 }
+
+

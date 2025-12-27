@@ -1,13 +1,11 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -28,8 +26,20 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             await Task.CompletedTask;
         }
 
+        public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        {
+            if (!party.CompletedMaps.HasBit(party.CurrPos.MapId))
+            {
+                _crawlerService.ChangeState(ECrawlerStates.LevelMap, token);
+                moveStatus.MoveIsComplete = true;
+            }
+            await Task.CompletedTask;
+        }
+
         protected override void AfterDownloadProp(GameObject prop, CrawlerObjectLoadData args)
         {
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.MapServer.Crafting.Services;
+using Genrpg.MapServer.Crafting.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
@@ -34,3 +34,5 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
         }
     }
 }
+
+

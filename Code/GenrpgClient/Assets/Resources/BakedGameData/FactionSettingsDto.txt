@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "factiontype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Player",
       "StartRepLevelId": 4
@@ -11,8 +8,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "FactionSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "FactionSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

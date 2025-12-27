@@ -1,7 +1,7 @@
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.IO;
 
@@ -188,3 +188,5 @@ public class BinaryFileRepository : IBinaryFileRepository
         return _serializer.Deserialize<T>(LoadText(fileName));
     }
 }
+
+

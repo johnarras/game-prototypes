@@ -1,11 +1,11 @@
-﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.RewardHelpers.Core;
-using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Trader.Stats.Constants;
+using Genrpg.Shared.Trader.Stats.PlayerData;
 
-namespace Genrpg.RequestServer.CoreCurrencies.RewardHelpers
+namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
 {
 
     // These are all in the same file since they are so closely linked, I want to be
@@ -32,3 +32,5 @@ namespace Genrpg.RequestServer.CoreCurrencies.RewardHelpers
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Units.Settings;
@@ -8,7 +8,7 @@ using UnityEngine;
 class AddPlayerToMap : BaseZoneGenerator
 {
 
-    protected IUnitSetupService _unitSetupService;
+    protected IUnitSetupService _unitSetupService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -44,3 +44,5 @@ class AddPlayerToMap : BaseZoneGenerator
 
     }
 }
+
+

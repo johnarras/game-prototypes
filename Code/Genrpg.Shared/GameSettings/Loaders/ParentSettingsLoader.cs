@@ -1,7 +1,4 @@
-﻿using Genrpg.Shared.Charms.Settings;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings.Interfaces;
@@ -9,8 +6,6 @@ using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,17 +16,23 @@ namespace Genrpg.Shared.GameSettings.Loaders
         where TChild : ChildSettings, new()
     {
 
-        protected IRepositoryService _repoService;
+        protected IRepositoryService _repoService = null;
 
         [IgnoreMember]
         public virtual Type HelperKey => typeof(TParent);
         public virtual Type GetChildType() { return typeof(TChild); }
 
+        public virtual List<CreateIndexData> GetIndexes()
+        {
+            CreateIndexData indexData = new CreateIndexData(typeof(TChild));
+            indexData.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(ChildSettings.ParentId) });
+
+            return new List<CreateIndexData>() { indexData };
+        }
+
         public virtual async Task Initialize(CancellationToken token)
         {
-            CreateIndexData data = new CreateIndexData();
-            data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(ChildSettings.ParentId) });
-            await _repoService?.CreateIndex<TChild>(data);
+            await Task.CompletedTask;
         }
 
         public virtual async Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing)
@@ -39,7 +40,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
 
             Task<List<TParent>> loadParentsTask = repoSystem.Search<TParent>(x => true);
 
-            Task <List<TChild>> loadChildrenTask = repoSystem.Search<TChild>(x => true);
+            Task<List<TChild>> loadChildrenTask = repoSystem.Search<TChild>(x => true);
 
             await Task.WhenAll(loadParentsTask, loadChildrenTask).ConfigureAwait(false);
 
@@ -69,3 +70,5 @@ namespace Genrpg.Shared.GameSettings.Loaders
         }
     }
 }
+
+

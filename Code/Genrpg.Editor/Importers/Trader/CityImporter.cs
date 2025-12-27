@@ -1,5 +1,6 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Trader.Animals.Settings;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
@@ -52,7 +53,7 @@ namespace Genrpg.Editor.Importers.Trader
 
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
-            IReadOnlyList<Animal> animals = gs.data.Get<AnimalSettings>(null).GetData();
+            IReadOnlyList<AnimalType> animals = gs.data.Get<AnimalTypeSettings>(null).GetData();
             IReadOnlyList<TradeGood> tradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
 
             List<string> badTradeGoods = new List<string>();
@@ -117,7 +118,7 @@ namespace Genrpg.Editor.Importers.Trader
                     {
                         foreach (string animalName in animalNameLists[i])
                         {
-                            Animal animal = animals.FirstOrDefault(x => StrUtils.NormalizeWord(animalName) == StrUtils.NormalizeWord(x.Name));
+                            AnimalType animal = animals.FirstOrDefault(x => StrUtils.NormalizeWord(animalName) == StrUtils.NormalizeWord(x.Name));
 
                             if (animal == null)
                             {
@@ -128,7 +129,7 @@ namespace Genrpg.Editor.Importers.Trader
                                 continue;
                             }
 
-                            currentChild.Animals.Add(new CityAnimal() { AnimalId = animal.IdKey, PriceScale = (i == 0 ? 1 : 10) });
+                            currentChild.Animals.Add(new CityAnimal() { AnimalTypeId = animal.IdKey, PriceScale = (i == 0 ? 1 : 10) });
                         }
                     }
                 }
@@ -179,3 +180,5 @@ namespace Genrpg.Editor.Importers.Trader
         }
     }
 }
+
+

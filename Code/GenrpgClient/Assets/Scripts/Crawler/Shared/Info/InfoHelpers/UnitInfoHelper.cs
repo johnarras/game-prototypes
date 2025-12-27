@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -118,3 +118,5 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
     }
 }
+
+

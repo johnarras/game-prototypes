@@ -1,0 +1,10 @@
+{
+  "Id": "skintype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Reindeer",
+  "Icon": "Reindeer",
+  "Art": "Reindeer",
+  "AnimalTypeId": 14,
+  "IsDefault": true
+}

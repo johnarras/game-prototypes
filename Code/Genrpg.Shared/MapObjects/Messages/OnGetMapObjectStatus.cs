@@ -15,3 +15,5 @@ namespace Genrpg.Shared.MapObjects.Messages
         [Key(1)] public List<IMapObjectAddon> Addons { get; set; } = new List<IMapObjectAddon>();
     }
 }
+
+

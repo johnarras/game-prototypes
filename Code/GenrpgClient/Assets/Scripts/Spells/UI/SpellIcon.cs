@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Threading;
@@ -92,3 +92,5 @@ public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIc
 
 
 }
+
+

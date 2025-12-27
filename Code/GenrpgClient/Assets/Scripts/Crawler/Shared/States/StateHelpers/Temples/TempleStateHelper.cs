@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Currencies.Constants;
@@ -40,7 +40,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
 
             stateData.AddText("Party Gold: " + party.Currencies.Get(CrawlerCurrencyTypes.Gold));
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 long cost = _templeService.GetHealingCostForMember(party, member);
                 if (cost > 0)
@@ -62,3 +62,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
         }
     }
 }
+
+

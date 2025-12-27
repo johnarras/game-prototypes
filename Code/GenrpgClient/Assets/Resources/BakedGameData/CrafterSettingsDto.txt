@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "craftertype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Tailoring",
       "MousePointer": "Shop",
@@ -14,8 +11,6 @@
       "CraftActionName": "Sewing"
     },
     {
-      "Id": "craftertype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Carpentry",
       "MousePointer": "Lumberjack",
@@ -26,8 +21,6 @@
       "CraftActionName": "Building"
     },
     {
-      "Id": "craftertype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Leatherworking",
       "MousePointer": "Fight",
@@ -38,8 +31,6 @@
       "CraftActionName": "Assembling"
     },
     {
-      "Id": "craftertype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Blacksmithing",
       "MousePointer": "Mining",
@@ -50,8 +41,6 @@
       "CraftActionName": "Smithing"
     },
     {
-      "Id": "craftertype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Masonry",
       "MousePointer": "Mining",
@@ -62,8 +51,6 @@
       "CraftActionName": "Building"
     },
     {
-      "Id": "craftertype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Jewelcrafting",
       "MousePointer": "Shop",
@@ -74,8 +61,6 @@
       "CraftActionName": "Crafting"
     },
     {
-      "Id": "craftertype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Alchemy",
       "MousePointer": "Herbalism",
@@ -86,8 +71,6 @@
       "CraftActionName": "Brewing"
     },
     {
-      "Id": "craftertype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Enchanting",
       "MousePointer": "Shop",
@@ -98,8 +81,6 @@
       "CraftActionName": "Enchanting"
     },
     {
-      "Id": "craftertype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Lockpicking",
       "MousePointer": "Shop",
@@ -118,8 +99,8 @@
     "ExtraCraftLevelsAllowed": 5,
     "LevelsPerExtraEffect": 4,
     "MaxExtraEffects": 5,
-    "Name": "CraftingSettings",
-    "SaveTime": "2025-05-31T10:32:08.35Z"
+    "Name": "CraftingSettings"
   },
+  "Id": "default",
   "SaveTime": "2025-05-31T10:32:08.35Z"
 }

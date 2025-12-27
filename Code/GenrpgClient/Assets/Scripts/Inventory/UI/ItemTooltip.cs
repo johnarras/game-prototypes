@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Effects.Services;
 using Genrpg.Shared.Entities.Constants;
@@ -243,3 +243,4 @@ public class ItemTooltip : BaseTooltip
         }
     }
 }
+

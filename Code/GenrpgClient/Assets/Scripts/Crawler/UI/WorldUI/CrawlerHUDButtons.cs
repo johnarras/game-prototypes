@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Assets.Scripts.Crawler.Tilemaps;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         private IBuffService _buffService = null;
         private ICrawlerOptionsService _optionsService = null;
         private IClientAppService _appService = null;
+        protected IScreenService _screenService = null;
 
         public GButton MapButton;
         public GButton SafetyButton;
@@ -38,20 +40,20 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
         public override void Init()
         {
-            _uiService.SetButton(MapButton, GetType().Name, ClickMapScreen);
-            _uiService.SetButton(MapButton, GetType().Name, ClickMapScreen);
-            _uiService.SetButton(SafetyButton, GetType().Name, ClickSafety);
-            _uiService.SetButton(InfoButton, GetType().Name, ClickInfo);
-            _uiService.SetButton(CampingButton, GetType().Name, ClickCamping);
-            _uiService.SetButton(CastButton, GetType().Name, ClickCastSpell);
-            _uiService.SetButton(QuestLogButton, GetType().Name, ClickQuestLog);
-            _uiService.SetButton(PartyOrderButton, GetType().Name, ClickPartyOrder);
-            _uiService.SetButton(CastPartyBuffsButton, GetType().Name, CastAllPartyBuffs);
-            _uiService.SetButton(UseItemButton, GetType().Name, ClickUseItem);
-            _uiService.SetButton(TraderMapButton, GetType().Name, ClickTraderMap);
-            _uiService.SetButton(TraderInfoButton, GetType().Name, ClickTraderInfo);
-            _uiService.SetButton(SnapshotButton, GetType().Name, ClickTakeSnapshot);
-            _uiService.SetButton(OptionsButton, GetType().Name, ClickOptions);
+            _uiService.SetButton(MapButton, name, ClickMapScreen);
+            _uiService.SetButton(MapButton, name, ClickMapScreen);
+            _uiService.SetButton(SafetyButton, name, ClickSafety);
+            _uiService.SetButton(InfoButton, name, ClickInfo);
+            _uiService.SetButton(CampingButton, name, ClickCamping);
+            _uiService.SetButton(CastButton, name, ClickCastSpell);
+            _uiService.SetButton(QuestLogButton, name, ClickQuestLog);
+            _uiService.SetButton(PartyOrderButton, name, ClickPartyOrder);
+            _uiService.SetButton(CastPartyBuffsButton, name, CastAllPartyBuffs);
+            _uiService.SetButton(UseItemButton, name, ClickUseItem);
+            _uiService.SetButton(TraderMapButton, name, ClickTraderMap);
+            _uiService.SetButton(TraderInfoButton, name, ClickTraderInfo);
+            _uiService.SetButton(SnapshotButton, name, ClickTakeSnapshot);
+            _uiService.SetButton(OptionsButton, name, ClickOptions);
 
             PartyData party = _crawlerService.GetParty();
             if (!_optionsService.HasOption(party, CrawlerOptions.Camping))
@@ -72,11 +74,11 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
             if (_screenService.GetScreen(ScreenNames.CrawlerMap) == null)
             {
-                _screenService.Open(ScreenNames.CrawlerMap);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerMap));
             }
             else
             {
-                _screenService.Close(ScreenNames.CrawlerMap);
+                _dispatcher.Dispatch(new CloseScreen(ScreenNames.CrawlerMap));
             }
         }
 
@@ -90,15 +92,15 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
         private void ClickInfo()
         {
-            _screenService.Open(ScreenNames.CrawlerInfo);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerInfo));
         }
         private void ClickTraderInfo()
         {
-            _screenService.Open(ScreenNames.TraderInfo);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderInfo));
         }
         private void ClickOptions()
         {
-            _screenService.Open(ScreenNames.ClientOptions);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.ClientOptions));
         }
 
         private void ClickSafety()
@@ -155,7 +157,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
         private void ClickTraderMap()
         {
-            _screenService.Open(ScreenNames.TraderMap);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderMap));
         }
 
         private void ClickTakeSnapshot()
@@ -164,3 +166,5 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         }
     }
 }
+
+

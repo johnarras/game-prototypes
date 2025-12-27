@@ -1,15 +1,9 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Units.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,11 +19,17 @@ namespace Genrpg.Shared.Units.Loaders
         where TParent : OwnerObjectList<TChild>, new()
         where TChild : OwnerPlayerData, IChildUnitData
     {
+
+        public override List<CreateIndexData> GetIndexes()
+        {
+            CreateIndexData cid = new CreateIndexData(typeof(TChild));
+            cid.Configs.Add(new IndexConfig() { MemberName = nameof(OwnerPlayerData.OwnerId) });
+
+            return new List<CreateIndexData>() { cid };
+        }
         public override async Task Initialize(CancellationToken token)
         {
-            CreateIndexData data = new CreateIndexData();
-            data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(OwnerPlayerData.OwnerId) });
-            await _repoService.CreateIndex<TChild>(data);
+            await Task.CompletedTask;
         }
 
         public override async Task<ITopLevelUnitData> LoadFullData(Unit unit)
@@ -48,35 +48,14 @@ namespace Genrpg.Shared.Units.Loaders
 
             TParent parent = await parentTask;
             List<TChild> items = await childTask;
-            if (parent != null) 
-            {                
+            if (parent != null)
+            {
                 parent.SetData(items);
             }
             return parent;
         }
 
-        public override async Task<IChildUnitData> LoadChildByIdkey(Unit unit, long idkey)
-        {
-            await Task.CompletedTask;
-            return default;
-        }
-
-        public override async Task<IChildUnitData> LoadChildById(Unit unit, string id)
-        {
-            TParent parentObj = (TParent)await LoadTopLevelData(unit);
-
-            TChild child = parentObj.GetData().FirstOrDefault(x => x.Id == id);
-
-            if (child != null)
-            {
-                List<TChild> currList = parentObj.GetData().ToList();
-                currList.Add(child);
-                parentObj.SetData(currList);
-
-            }
-
-            return child;
-        }
-
     }
 }
+
+

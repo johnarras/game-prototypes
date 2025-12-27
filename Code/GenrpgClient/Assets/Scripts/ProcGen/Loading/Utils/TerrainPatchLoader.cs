@@ -1,19 +1,17 @@
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils.Data;
-using System.Threading;
-using Genrpg.Shared.MapServer.Constants;
 using Assets.Scripts.MapTerrain;
-using UnityEngine; // Needed
-using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.DataStores.Categories;
-using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapServer.Constants;
+using Genrpg.Shared.Pathfinding.Constants;
+using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UnityEngine; // Needed
 
 public interface ITerrainPatchLoader : IInitializable
 {
@@ -26,11 +24,11 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
     private IPlantAssetLoader _plantAssetLoader;
     private ITerrainTextureManager _terrainTextureManager;
     private IPlayerManager _playerManager;
-    private IClientAppService _clientAppService;
+    private IClientAppService _clientAppService = null;
     private ITextSerializer _serializer;
 
     public override async Awaitable Generate(CancellationToken token)
-    { 
+    {
         await base.Generate(token);
     }
 
@@ -471,10 +469,12 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
         string filePath = patch.GetFilePath();
 
         ClientRepositoryCollection<TerrainPatchData> repo = new ClientRepositoryCollection<TerrainPatchData>(_logService, _clientAppService, _serializer);
-       
+
         repo.SaveBytes(filePath, bytes);
         patch.DataBytes = bytes;
         LoadOneTerrainPatch(patch.X, patch.Y, _playerManager.GetPlayerGameObject() == null, _token);
     }
 }
-	
+
+
+

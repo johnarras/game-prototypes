@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Spawns.WorldData;
 using System;
 using System.Collections.Generic;
@@ -44,3 +44,5 @@ namespace Genrpg.Shared.MapServer.Services
         }
     }
 }
+
+

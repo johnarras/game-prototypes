@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.Services.Entities;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -12,3 +12,5 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token);
     }
 }
+
+

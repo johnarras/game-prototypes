@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Networking.Constants;
+using Genrpg.Shared.Networking.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,3 +18,5 @@ namespace Genrpg.InstanceServer.Entities
         public EMapApiSerializers SerializerType { get; set; }
     }
 }
+
+

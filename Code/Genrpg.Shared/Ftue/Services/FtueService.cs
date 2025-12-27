@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Ftue.PlayerData;
 using Genrpg.Shared.Ftue.Settings.Steps;
@@ -68,3 +68,5 @@ namespace Genrpg.Shared.Ftue.Services
         }
     }
 }
+
+

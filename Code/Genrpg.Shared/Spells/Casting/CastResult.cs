@@ -1,7 +1,6 @@
 using MessagePack;
 namespace Genrpg.Shared.Spells.Casting
 {
-    // MessagePackIgnore  
     public class CastResult
     {
         public string Message = "";
@@ -12,3 +11,5 @@ namespace Genrpg.Shared.Spells.Casting
         }
     }
 }
+
+

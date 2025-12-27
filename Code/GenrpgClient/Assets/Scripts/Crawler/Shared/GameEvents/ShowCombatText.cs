@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Crawler.GameEvents
         public long ElementTypeId { get; set; }
     }
 }
+
+

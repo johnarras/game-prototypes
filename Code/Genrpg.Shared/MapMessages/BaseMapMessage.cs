@@ -7,7 +7,6 @@ using System.Text;
 
 namespace Genrpg.Shared.MapMessages
 {
-    [MessagePackObject]
     public class BaseMapMessage : IMapMessage
     {
         private DateTime _lastExecuteTime { get; set; } = DateTime.UtcNow;
@@ -38,3 +37,5 @@ namespace Genrpg.Shared.MapMessages
         }
     }
 }
+
+

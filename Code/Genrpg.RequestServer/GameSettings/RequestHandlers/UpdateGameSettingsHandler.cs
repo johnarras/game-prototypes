@@ -1,4 +1,4 @@
-﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Characters.PlayerData;
@@ -8,14 +8,16 @@ namespace Genrpg.RequestServer.GameSettings.RequestHandlers
 {
     public class UpdateGameSettingsHandler : BaseClientUserRequestHandler<UpdateGameSettingsRequest>
     {
-        private IGameDataService _gameDataService = null;
+        private IServerGameDataService _gameDataService = null;
 
         protected override async Task InnerHandleMessage(WebContext context, UpdateGameSettingsRequest request, CancellationToken token)
         {
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
-            _gameDataService.GetClientSettings(context.Responses, context.user, false);
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, false));
 
             await Task.CompletedTask;
         }
     }
 }
+
+

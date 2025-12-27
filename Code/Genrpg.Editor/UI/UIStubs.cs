@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.UI.Interfaces;
+using Genrpg.Editor.UI.Interfaces;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -98,3 +98,5 @@ namespace Genrpg.Editor.UI
         Secondary=2,
     }
 }
+
+

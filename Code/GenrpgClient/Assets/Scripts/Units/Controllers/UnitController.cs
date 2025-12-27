@@ -24,6 +24,7 @@ public class UnitController : BaseBehaviour
     protected IPlayerManager _playerManager = null;
     protected IClientAppService _clientAppService = null;
     protected IKeyboardService _keyboardService = null;
+    protected IRealtimeNetworkService _networkService = null;
 
     public const int IdleState = 0;
     public const int CombatState = 1;
@@ -353,7 +354,7 @@ public class UnitController : BaseBehaviour
             _unit.Loot = new List<RewardList>();
             _unit.SkillLoot = new List<RewardList>();
         }
-        _updateService.AddDelayedUpdate(this, ShowDeathAnim, 0.1f, token);
+        AddDelayedUpdate(ShowDeathAnim, 0.1f);
     }
 
     private void ShowDeathAnim(CancellationToken token)
@@ -421,4 +422,6 @@ public class UnitController : BaseBehaviour
         ui.Init(text);
     }
 }
+
+
 

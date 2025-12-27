@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Items.Services;
+using Assets.Scripts.Crawler.Items.Services;
 using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Crawlers.Services;
@@ -18,6 +18,7 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +78,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
             List<long> roleIds = new List<long>();
 
-            foreach (PartyMember member in party.GetActiveParty())
+            foreach (PartyMember member in party.ActiveParty)
             {
                 roleIds.AddRange(member.Roles.Select(x => x.RoleId));
             }
@@ -96,7 +97,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
             {
                 List<Role> buffRoles = RolesThatCanBuff(partyBuff.IdKey);
 
-                if (!buffRoles.Any(r => partyRoleIds.Contains(r.IdKey)))
+                if (!buffRoles.FastAny(r => partyRoleIds.Contains(r.IdKey)))
                 {
                     missingBuffs.Add(partyBuff);
                 }
@@ -137,7 +138,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
             Dictionary<PartyMember, List<CrawlerSpell>> spellDict = new Dictionary<PartyMember, List<CrawlerSpell>>();
 
-            List<PartyMember> members = party.GetActiveParty();
+            List<PartyMember> members = party.ActiveParty;
 
             members.Reverse();
 
@@ -168,7 +169,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
                 BuffCaster currCaster = null;
 
-                foreach (PartyMember member in party.GetActiveParty())
+                foreach (PartyMember member in party.ActiveParty)
                 {
                     currCaster = new BuffCaster()
                     {
@@ -178,7 +179,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
                     casters.Add(currCaster);
 
-                    if (spellDict[member].Any(x => x.IdKey == spell.IdKey))
+                    if (spellDict[member].FastAny(x => x.IdKey == spell.IdKey))
                     {
                         long cost = _spellService.GetPowerCost(party, member, spell);
 
@@ -235,12 +236,12 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
         public float GetPartyBuffPower(PartyData party, long partyBuffId)
         {
-            if (party.GetActiveParty().Count < 1)
+            if (party.ActiveParty.Count < 1)
             {
                 return 1;
             }
 
-            long maxLevel = party.GetActiveParty().Max(x => x.Level);
+            long maxLevel = party.ActiveParty.Max(x => x.Level);
 
             float baseValue = (float)Math.Sqrt(1 + maxLevel);
 
@@ -250,3 +251,5 @@ namespace Assets.Scripts.Crawler.Buffs.Services
         }
     }
 }
+
+

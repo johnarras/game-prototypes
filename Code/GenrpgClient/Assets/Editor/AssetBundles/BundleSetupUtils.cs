@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets.Bundles;
+using Assets.Scripts.Assets.Bundles;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +10,6 @@ public delegate bool ExtraPrefabSetupStep(GameObject go);
 
 public class BundleSetupUtils
 {
-    protected static UnityAssetService _assetService;
     public const bool MakeStaticObjects = false;
 
     public const int BundleFiles = 0;
@@ -20,14 +19,9 @@ public class BundleSetupUtils
     /// Use this function to 
     /// </summary>
     /// <param name="path"></param>
-    public static void BundleFilesInDirectory(BundleList list, string assetPathSuffix, string assetBundleName)
+    public static void BundleFilesInDirectory(BundleList list, IAssetService assetService, string assetPathSuffix, string assetBundleName)
     {
-        if (_assetService == null)
-        {
-            _assetService = new UnityAssetService();
-        }
-
-        string endOfPath = _assetService.GetAssetPath(assetPathSuffix);
+        string endOfPath = assetService.GetAssetPath(assetPathSuffix);
 
         string pathWithoutSlash = endOfPath.Replace("/", "");
 
@@ -39,7 +33,7 @@ public class BundleSetupUtils
 
         foreach (string fileName in files)
         {
-            SetupFileAtPath(list, assetPathSuffix, fileName, false, assetBundleName);
+            SetupFileAtPath(list, assetService, assetPathSuffix, fileName, false, assetBundleName);
         }
 
         foreach (string path in paths)
@@ -59,22 +53,22 @@ public class BundleSetupUtils
 
             if (string.IsNullOrEmpty(assetPathSuffix))
             {
-                BundleFilesInDirectory(list, newSuffix, assetBundleName);
+                BundleFilesInDirectory(list, assetService, newSuffix, assetBundleName);
             }
             else
             {
-                string newBundleName = SetupFileAtPath(list, assetPathSuffix, directory, true);
+                string newBundleName = SetupFileAtPath(list, assetService, assetPathSuffix, directory, true);
 
                 if (!string.IsNullOrWhiteSpace(newBundleName))
                 {
-                    BundleFilesInDirectory(list, newSuffix, newBundleName);
+                    BundleFilesInDirectory(list, assetService, newSuffix, newBundleName);
                 }
             }
         }
     }
 
 
-    private static string SetupFileAtPath(BundleList list, string assetPathSuffix, string item, bool allowDirectories, string assetBundleName = null)
+    private static string SetupFileAtPath(BundleList list, IAssetService assetService, string assetPathSuffix, string item, bool allowDirectories, string assetBundleName = null)
     {
         if (!allowDirectories && EditorAssetUtils.IsNotPrefabName(item))
         {
@@ -86,7 +80,7 @@ public class BundleSetupUtils
             return "";
         }
 
-        string fileName = _assetService.StripPathPrefix(item);
+        string fileName = assetService.StripPathPrefix(item);
 
         string bundleName = assetBundleName;
 
@@ -98,7 +92,7 @@ public class BundleSetupUtils
 
             if (string.IsNullOrEmpty(bundleName))
             {
-                bundleName = _assetService.GetBundleNameForCategoryAndAsset(assetPathSuffix, shortFilename);
+                bundleName = assetService.GetBundleNameForCategoryAndAsset(assetPathSuffix, shortFilename);
             }
 
             string oldBundleName = importer.assetBundleName;
@@ -125,4 +119,6 @@ public class BundleSetupUtils
 
 
 }
+
+
 

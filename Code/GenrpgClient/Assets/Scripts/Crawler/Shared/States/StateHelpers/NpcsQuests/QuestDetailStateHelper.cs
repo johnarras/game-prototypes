@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Quests.Entities;
 using Genrpg.Shared.Crawler.Quests.Services;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -58,3 +58,5 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
         }
     }
 }
+
+

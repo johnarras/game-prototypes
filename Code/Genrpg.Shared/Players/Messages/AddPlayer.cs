@@ -14,3 +14,5 @@ namespace Genrpg.Shared.Players.Messages
         [Key(2)] public string SessionId { get; set; }
     }
 }
+
+

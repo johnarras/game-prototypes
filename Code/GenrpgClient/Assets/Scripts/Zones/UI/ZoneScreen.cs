@@ -1,4 +1,6 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
+using Assets.Scripts.Minimap.Services;
+using Assets.Scripts.UI.ScreenSystem;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.WorldData;
@@ -15,8 +17,10 @@ public class ZoneScreen : BaseScreen
     public GameObject ArrowParent;
 
     protected GameObject ArrowObject;
-    private IPlayerManager _playerManager;
-    private IMapProvider _mapProvider;
+    private IPlayerManager _playerManager = null;
+    private IMapProvider _mapProvider = null;
+    private IZoneStateController _zoneStateController = null;
+    private IMinimapService _minimapService = null;
 
 
     protected override async Task OnStartOpen(object data, CancellationToken token)
@@ -30,7 +34,7 @@ public class ZoneScreen : BaseScreen
     {
         _assetService.LoadAssetInto(ArrowParent, AssetCategoryNames.UI, "PlayerArrow", OnLoadArrow, GetToken(), default(object), "Maps");
 
-        _uiService.SetImageTexture(MapImage, MinimapUI.GetTexture());
+        _uiService.SetImageTexture(MapImage, _minimapService.GetTexture());
         ShowPlayer();
 
     }
@@ -90,7 +94,7 @@ public class ZoneScreen : BaseScreen
 
         float minPercentSize = 1.0f * minZonePixelSize / mapSize;
 
-        Zone currZone = _mapProvider.GetMap().Get<Zone>(ZoneStateController.CurrentZoneShown);
+        Zone currZone = _mapProvider.GetMap().Get<Zone>(_zoneStateController.GetCurrentZoneShown());
 
         float oldminx = 0;
         float oldminy = 0;
@@ -213,4 +217,6 @@ public class ZoneScreen : BaseScreen
     }
 
 }
+
+
 

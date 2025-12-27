@@ -1,4 +1,4 @@
-﻿
+
 
 using Assets.Scripts.CombatFX;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
@@ -22,8 +22,8 @@ namespace Assets.Scripts.Crawler.Combat
 
         const string CombatHitPrefabSuffix = "CombatHit";
 
-        private IAudioService _audioService;
-        private ICrawlerService _crawlerService;
+        private IAudioService _audioService = null;
+        private ICrawlerService _crawlerService = null;
 
         public GImage MainImage;
         public GameObject MainImageParent;
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             _dispatcher.AddListener<ShowCombatBolt>(OnShowCombatBolt, GetToken());
 
-            _updateService.AddUpdate(this, OnUpdate, UpdateTypes.Regular, GetToken());
+            AddUpdate(OnUpdate, UpdateTypes.Regular);
 
             _clientEntityService.SetActive(HitImage, false);
 
@@ -302,3 +302,5 @@ namespace Assets.Scripts.Crawler.Combat
         }
     }
 }
+
+

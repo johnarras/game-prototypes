@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Buildings.Constants;
+using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -618,8 +618,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                     for (int i = dungeonIndex - 1; i >= 0 && dungeonIndex - i <= lookbackDistance + 1; i--)
                     {
-                        if (dungeonMapGroups[i].Any(x => x.Level >= entranceMap.Level) ||
-                            !dungeonMapGroups[i].Any(x => x.Level >= mapSettings.MinQuestItemDungeonLevel))
+                        if (dungeonMapGroups[i].FastAny(x => x.Level >= entranceMap.Level) ||
+                            !dungeonMapGroups[i].FastAny(x => x.Level >= mapSettings.MinQuestItemDungeonLevel))
                         {
                             continue;
                         }
@@ -1129,3 +1129,5 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         }
     }
 }
+
+

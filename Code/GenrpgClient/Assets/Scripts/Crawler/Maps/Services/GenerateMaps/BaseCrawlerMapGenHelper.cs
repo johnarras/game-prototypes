@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Assets;
+using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Buildings.Constants;
@@ -180,7 +180,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
-            okPoints = okPoints.Where(x => !blockedEntrances.Any(e =>
+            okPoints = okPoints.Where(x => !blockedEntrances.FastAny(e =>
             MathUtils.PythagoreanDistance(x.X - e.X, x.Z - e.Z)
             <= genData.MapType.MinDistanceToEntrance)).ToList();
 
@@ -248,3 +248,4 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         }
     }
 }
+

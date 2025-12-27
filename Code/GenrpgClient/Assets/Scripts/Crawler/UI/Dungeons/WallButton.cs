@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Props;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Dungeons;
@@ -50,3 +50,5 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
         }
     }
 }
+
+

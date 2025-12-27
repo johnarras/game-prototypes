@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Genrpg.Editor.Importers.PlayerFiltering
 {
@@ -24,3 +24,5 @@ namespace Genrpg.Editor.Importers.PlayerFiltering
         public Version MaxClientVersion { get; set; }
     }
 }
+
+

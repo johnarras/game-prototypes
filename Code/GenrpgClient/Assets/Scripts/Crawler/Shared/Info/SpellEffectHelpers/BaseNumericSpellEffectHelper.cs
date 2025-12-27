@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Info.EffectHelpers;
+using Genrpg.Shared.Crawler.Info.EffectHelpers;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Settings;
@@ -51,3 +51,5 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
         }
     }
 }
+
+

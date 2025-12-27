@@ -12,7 +12,7 @@ namespace Genrpg.Shared.Purchasing.PlayerData
 
 
     [MessagePackObject]
-    public class CurrentPurchaseData : NoChildPlayerData, IUserData, IServerOnlyData
+    public class CurrentPurchaseData : UniquePersonalUserData, IUserData, IServerOnlyData
     {
 
         [Key(0)] public override string Id { get; set; }
@@ -62,3 +62,5 @@ namespace Genrpg.Shared.Purchasing.PlayerData
 
     public class CurrentPurchaseLoader : UnitDataLoader<CurrentPurchaseData> { }
 }
+
+

@@ -6,9 +6,10 @@ using System.Text;
 
 namespace Genrpg.Shared.Users.WebApi
 {
-    [MessagePackObject]
     public class UpdateClientUserResponse : IWebResponse
     {
-        [Key(0)] public long Level { get; set; }
+        public long Level { get; set; }
     }
 }
+
+

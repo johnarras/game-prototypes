@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.SpellCrafting.Settings;
@@ -82,3 +82,5 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
         }
     }
 }
+
+

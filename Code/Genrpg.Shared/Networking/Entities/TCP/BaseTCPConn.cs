@@ -1,12 +1,14 @@
-﻿using Genrpg.Shared.Logging.Interfaces;
+using CommunityToolkit.HighPerformance.Buffers;
+using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
 using Genrpg.Shared.Networking.Constants;
 using Genrpg.Shared.Networking.Interfaces;
 using Genrpg.Shared.Networking.Messages;
 using Genrpg.Shared.Pings.Messages;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.Utils;
 using System;
+using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -26,17 +28,20 @@ namespace Genrpg.Shared.Networking.Entities.TCP
         private CancellationToken _token;
         protected ILogService _logService = null;
         private ISerializer _serializer = null;
+
         private MapApiMessageHandler _messageHandler = null;
         protected ITaskService _taskService = null;
 
         private TcpClient _client { get; set; }
         private NetworkStream _stream { get; set; }
-        private byte[] _readBuffer { get; set; }
 
         private ConnMessageCounts _counts = new ConnMessageCounts();
 
         private DateTime _lastMessage = DateTime.UtcNow;
         private DateTime _startTime = DateTime.UtcNow;
+
+        private byte[] _readBuffer = null;
+        private ArrayPoolBufferWriter<byte> _writer = null;
 
         protected object _extraData = null;
 
@@ -45,7 +50,7 @@ namespace Genrpg.Shared.Networking.Entities.TCP
 
         // Could replace this IConnection implementation with SocketAsyncEventArgs if scaling is needed
         public BaseTcpConn(MapApiMessageHandler messageHandler, ILogService logService, ISerializer serializer, ITaskService taskService, CancellationToken token, object extraData)
-         
+
         {
             _logService = logService;
             _serializer = serializer;
@@ -79,14 +84,13 @@ namespace Genrpg.Shared.Networking.Entities.TCP
             _client.ReceiveTimeout = ConnectionConstants.TimeoutMS;
             _client.SendBufferSize = ConnectionConstants.StartBufSize;
             _client.ReceiveBufferSize = ConnectionConstants.StartBufSize;
-            _readBuffer = new byte[ConnectionConstants.StartBufSize];
             _removeMe = false;
             _counts = new ConnMessageCounts();
             _startTime = DateTime.UtcNow;
 
-            _taskService.ForgetTask(WriteLoop(_token),true);
-            _taskService.ForgetTask(ReadLoop(_token),true);
-            _taskService.ForgetTask(PollOtherEnd(_token),true);
+            _taskService.ForgetTask(WriteLoop(_token), true);
+            _taskService.ForgetTask(ReadLoop(_token), true);
+            _taskService.ForgetTask(PollOtherEnd(_token), true);
         }
 
         protected virtual async Task PollOtherEnd(CancellationToken token)
@@ -110,7 +114,7 @@ namespace Genrpg.Shared.Networking.Entities.TCP
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                _logService.Exception(e, "BaseTCPConn.Write");
             }
         }
 
@@ -127,7 +131,13 @@ namespace Genrpg.Shared.Networking.Entities.TCP
             _client.Close();
             _client.Dispose();
             _client = null;
-
+            if (_readBuffer != null)
+            {
+                ArrayPool<byte>.Shared.Return(_readBuffer);
+                _readBuffer = null;
+            }
+            _serializer.ReturnBuffer(_writer);
+            _writer = null;
             if (e != null)
             {
                 throw e;
@@ -149,6 +159,8 @@ namespace Genrpg.Shared.Networking.Entities.TCP
             List<IMapApiMessage> messages = new List<IMapApiMessage>();
             List<IMapApiMessage> prevMessages = new List<IMapApiMessage>();
             List<IMapApiMessage> tempMessages = null;
+
+            _writer = _serializer.GetBuffer();
             while (true)
             {
                 try
@@ -179,18 +191,18 @@ namespace Genrpg.Shared.Networking.Entities.TCP
                         await Task.Delay(1, token).ConfigureAwait(false);
                         continue;
                     }
-
-                    byte[] messageBytes = _serializer.SerializeToBytes(messages);
-
-                    int totalLength = messageBytes.Length + 4;
+                    _serializer.BinarySerialize(messages, _writer);
+                    int messageLength = _writer.WrittenSpan.Length;
+                    int totalLength = _writer.WrittenSpan.Length + 4;
 
                     // Add header to buffer.
-                    byte[] headerBytes = BitConverter.GetBytes(messageBytes.Length);
+                    byte[] headerBytes = BitConverter.GetBytes(messageLength);
                     _stream.Write(headerBytes, 0, headerBytes.Length);
                     _counts.BytesSent += totalLength;
                     // Get remaining bytes we can send now.
-                    _stream.Write(messageBytes, 0, messageBytes.Length);
-                    _counts.BytesSent += messageBytes.Length;
+                    _stream.Write(_writer.WrittenSpan);
+                    _counts.BytesSent += messageLength;
+
                     await _stream.FlushAsync(_token).ConfigureAwait(false);
 
                     _lastMessage = DateTime.UtcNow;
@@ -198,6 +210,11 @@ namespace Genrpg.Shared.Networking.Entities.TCP
                 catch (Exception e)
                 {
                     Shutdown(e, "WriteLoop");
+                }
+                finally
+                {
+                    _serializer.ReturnBuffer(_writer);
+                    _writer = null;
                 }
             }
         }
@@ -207,8 +224,12 @@ namespace Genrpg.Shared.Networking.Entities.TCP
 
             byte[] header = new byte[ConnectionConstants.HeaderSize];
 
+            _readBuffer = ArrayPool<byte>.Shared.Rent(ConnectionConstants.StartBufSize);
+
+            byte[] headerBuffer = new byte[4];
             try
             {
+
                 while (true)
                 {
                     if (_removeMe)
@@ -216,63 +237,62 @@ namespace Genrpg.Shared.Networking.Entities.TCP
                         break;
                     }
 
-                    _readBuffer[0] = 0;
+                    int headerBytesRead = await _stream.ReadAsync(headerBuffer, 0, ConnectionConstants.HeaderSize, token);
 
-                    while (true)
+                    if (headerBytesRead != ConnectionConstants.HeaderSize)
                     {
-                        if (_removeMe)
-                        {
-                            break;
-                        }
-
-                        int headerBytesRead = await _stream.ReadAsync(_readBuffer, 0, ConnectionConstants.HeaderSize, token);
-                       
-                        if (headerBytesRead != ConnectionConstants.HeaderSize)
-                        {
-                            Shutdown(null, "Failed to read header bytes: " + headerBytesRead);
-                            break;
-                        }
-
-                        Buffer.BlockCopy(_readBuffer, 0, header, 0, ConnectionConstants.HeaderSize);
-
-                        int newMessageLength = BitConverter.ToInt32(header, 0);
-
-                        if (_readBuffer.Length < newMessageLength)
-                        {
-                            int newLength = _readBuffer.Length;
-                            while (newLength < newMessageLength)
-                            {
-                                newLength *= 2;
-                            }
-                            _readBuffer = new byte[newLength];
-                        }
-
-                        int totalBytesRead = 0;
-
-                        while (totalBytesRead < newMessageLength)
-                        {
-                            int currBytesRead = await _stream.ReadAsync(_readBuffer, totalBytesRead, newMessageLength - totalBytesRead, token).ConfigureAwait(false);
-                           
-                            totalBytesRead += currBytesRead;
-                        }
-
-                        _counts.BytesReceived += totalBytesRead + ConnectionConstants.HeaderSize;
-
-                        if (totalBytesRead != newMessageLength)
-                        {
-                            _logService.Info("Different bytes read: " + totalBytesRead + " vs " + newMessageLength);
-                        }
-                        else
-                        {
-                            OnReceiveBytes(_readBuffer, newMessageLength);
-                        }
-                        _lastMessage = DateTime.UtcNow;
+                        Shutdown(null, "Failed to read header bytes: " + headerBytesRead);
+                        break;
                     }
+
+                    Buffer.BlockCopy(headerBuffer, 0, header, 0, ConnectionConstants.HeaderSize);
+
+                    int newMessageLength = BitConverter.ToInt32(header, 0);
+
+                    if (_readBuffer.Length < newMessageLength)
+                    {
+                        int newLength = _readBuffer.Length;
+                        while (newLength < newMessageLength)
+                        {
+                            newLength *= 2;
+                        }
+                        ArrayPool<byte>.Shared.Return(_readBuffer);
+                        _readBuffer = ArrayPool<byte>.Shared.Rent(newLength);
+                    }
+
+                    int totalBytesRead = 0;
+
+                    while (totalBytesRead < newMessageLength)
+                    {
+                        int currBytesRead = await _stream.ReadAsync(_readBuffer, totalBytesRead, newMessageLength - totalBytesRead, token).ConfigureAwait(false);
+
+                        totalBytesRead += currBytesRead;
+                    }
+
+                    _counts.BytesReceived += totalBytesRead + ConnectionConstants.HeaderSize;
+
+                    if (totalBytesRead != newMessageLength)
+                    {
+                        _logService.Info("Different bytes read: " + totalBytesRead + " vs " + newMessageLength);
+                    }
+                    else
+                    {
+                        OnReceiveBytes(_readBuffer, newMessageLength);
+                    }
+                    _lastMessage = DateTime.UtcNow;
                 }
             }
             catch (Exception e)
             {
                 Shutdown(e, "readLoop");
+            }
+            finally
+            {
+                if (_readBuffer != null)
+                {
+                    ArrayPool<byte>.Shared.Return(_readBuffer);
+                    _readBuffer = null;
+                }
             }
         }
 
@@ -288,7 +308,7 @@ namespace Genrpg.Shared.Networking.Entities.TCP
                 AppendOutput(message);
             }
         }
-       
+
         protected virtual void OnReceiveBytes(byte[] receivedBytes, int byteCount)
         {
             List<IMapApiMessage> messageList = _serializer.Deserialize<List<IMapApiMessage>>(receivedBytes, byteCount);
@@ -297,3 +317,4 @@ namespace Genrpg.Shared.Networking.Entities.TCP
         }
     }
 }
+

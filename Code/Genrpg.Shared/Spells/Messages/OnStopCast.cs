@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(0)] public string CasterId { get; set; }
     }
 }
+
+

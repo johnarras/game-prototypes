@@ -2,7 +2,6 @@ using MessagePack;
 
 namespace Genrpg.Shared.Stats.Constants
 {
-    [MessagePackObject]
     public class StatConstants
     {
         public const long MinBaseStat = 10;
@@ -34,3 +33,5 @@ namespace Genrpg.Shared.Stats.Constants
 
     }
 }
+
+

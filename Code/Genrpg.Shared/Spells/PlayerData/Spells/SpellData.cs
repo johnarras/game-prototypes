@@ -1,13 +1,10 @@
 using MessagePack;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
+using Genrpg.Shared.Units.Loaders;
+using Genrpg.Shared.Units.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Genrpg.Shared.Units.Loaders;
-using Genrpg.Shared.Units.Mappers;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 
 namespace Genrpg.Shared.Spells.PlayerData.Spells
 {
@@ -32,10 +29,18 @@ namespace Genrpg.Shared.Spells.PlayerData.Spells
     }
 
 
-    public class SpellDto : OwnerDtoList<SpellData, Spell> { }
+    [MessagePackObject]
+    public class SpellDto : OwnerDtoList<SpellData, Spell>
+    {
+        [Key(0)] public override List<Spell> Children { get; set; }
+        [Key(1)] public override SpellData Parent { get; set; }
+        [Key(2)] public override string Id { get; set; }
+    }
 
 
     public class SpellDataLoader : OwnerIdDataLoader<SpellData, Spell> { }
 
     public class SpellDataMapper : OwnerDataMapper<SpellData, Spell, SpellDto> { }
 }
+
+

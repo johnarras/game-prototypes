@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.States.Constants
+namespace Genrpg.Shared.Crawler.States.Constants
 {
     public enum ECrawlerStates
     {
@@ -85,3 +85,5 @@
         CombatDeath,
     }
 }
+
+

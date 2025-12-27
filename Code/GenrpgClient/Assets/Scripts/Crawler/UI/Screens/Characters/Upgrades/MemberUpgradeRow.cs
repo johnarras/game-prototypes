@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.UI.WorldUI;
+using Assets.Scripts.Crawler.UI.WorldUI;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
 
 namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
@@ -15,3 +15,5 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
         }
     }
 }
+
+

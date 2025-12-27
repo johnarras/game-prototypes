@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
@@ -115,3 +115,5 @@ namespace Genrpg.Shared.Quests.Services
         }
     }
 }
+
+

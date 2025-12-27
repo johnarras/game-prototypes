@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Crawler.Buffs.Constants
+namespace Genrpg.Shared.Crawler.Buffs.Constants
 {
     public class PartyBuffs
     {
@@ -12,6 +12,10 @@
         public const long Retaliate = 8;
         public const long CursedArrows = 9;
         public const long Parry = 10;
+        public const long ApplyDoT = 11;
+        public const long Lifesteal = 12;
 
     }
 }
+
+

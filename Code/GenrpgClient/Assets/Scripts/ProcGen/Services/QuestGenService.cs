@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
@@ -27,7 +27,7 @@ public interface IQuestGenService : IInitializable
 public class QuestGenService : IQuestGenService
 {
 
-    protected IMapGenService _mapGenService;
+    protected IMapGenService _mapGenService = null;
     protected IGameData _gameData;
     private IMapProvider _mapProvider;
     protected IClientGameState _gs;
@@ -278,3 +278,5 @@ public class QuestGenService : IQuestGenService
         return desiredUnits;
     }
 }
+
+

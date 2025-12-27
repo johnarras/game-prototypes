@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
-    [MessagePackObject]
     public class GetMapObjectParams
     {
     }
 }
+
+

@@ -2,5 +2,7 @@
   "Id": "screenname37default",
   "ParentId": "default",
   "IdKey": 37,
-  "Name": "TileUpgrade"
+  "Name": "TileUpgrade",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Tiles"
 }

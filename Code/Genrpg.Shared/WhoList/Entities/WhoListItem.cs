@@ -14,3 +14,5 @@ namespace Genrpg.Shared.WhoList.Entities
         [Key(3)] public long Level { get; set; }
     }
 }
+
+

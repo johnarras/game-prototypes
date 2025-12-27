@@ -1,21 +1,23 @@
-﻿
+
+using Assets.Scripts.GameObjects;
+using Assets.Scripts.Updates;
+using Genrpg.Shared.Client.Tokens;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Tokens;
-using Genrpg.Shared.Client.Updates;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 
-public interface IClientUpdateService : IInitializable, IMapTokenService, IGameTokenService, IGlobalUpdater
+public interface IClientUpdateService : IInitializable, IMapTokenService, IGameTokenService
 {
     void AddUpdate(object obj, Action funcIn, int updateType, CancellationToken token);
     void AddTokenUpdate(object obj, Action<CancellationToken> funcIn, int updateType, CancellationToken token);
     void AddDelayedUpdate(object obj, Action<CancellationToken> funcIn, float delaySeconds, CancellationToken token);
     void RunOnMainThread(Action funcIn);
+    void OnUpdate();
+    void OnLateUpdate();
 }
 public class UpdateTypes
 {
@@ -84,11 +86,19 @@ public class ClientUpdateService : IClientUpdateService
     private List<IUpdateObject> _toRemoveList { get; set; } = new List<IUpdateObject>();
     private ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
-    private IInitClient _initClient = null;
+
+    private GlobalUpdateObject _globalUpdater = null;
+    private ISingletonContainer _singletonContainer = null;
+    private IClientEntityService _entityService = null;
     public async Task Initialize(CancellationToken token)
     {
         _mapToken = token;
-        _initClient.SetGlobalUpdater(this);
+
+        if (_globalUpdater == null)
+        {
+            _globalUpdater = _entityService.GetOrAddComponent<GlobalUpdateObject>(_singletonContainer.GetAssetParent<GlobalUpdateObject>());
+        }
+
         await Task.CompletedTask;
     }
 
@@ -296,7 +306,7 @@ public class ClientUpdateService : IClientUpdateService
 
     internal class DelayedUpdate
     {
-        public Object Obj;
+        public object Obj;
         public CancellationToken Token;
         public DateTime EndTime;
         public Action<CancellationToken> Function;
@@ -351,3 +361,4 @@ public class ClientUpdateService : IClientUpdateService
     }
 
 }
+

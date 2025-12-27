@@ -1,4 +1,4 @@
-﻿using Genrpg.Editor.Constants;
+using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Inventory.Settings.Ranks;
@@ -16,3 +16,5 @@ namespace Genrpg.Editor.Importers
         }
     }
 }
+
+

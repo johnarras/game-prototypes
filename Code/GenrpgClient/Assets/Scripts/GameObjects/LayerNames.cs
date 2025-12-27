@@ -1,4 +1,4 @@
-﻿namespace Genrpg.Shared.Constants
+namespace Genrpg.Shared.Constants
 {
     public class LayerNames
     {
@@ -11,4 +11,6 @@
         public const string UnitLayer = "UnitLayer";
     }
 }
+
+
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -26,3 +26,5 @@ namespace Assets.Scripts.UI.Pointers
         }
     }
 }
+
+

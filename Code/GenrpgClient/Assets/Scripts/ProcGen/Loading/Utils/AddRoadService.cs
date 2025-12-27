@@ -19,7 +19,7 @@ public interface IAddRoadService : IInjectable
 
 public class AddRoadService : IAddRoadService
 {
-    protected ILineGenService _lineGenService;
+    protected ILineGenService _lineGenService = null;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
     protected IMapGenData _md;
@@ -498,4 +498,6 @@ public class AddRoadService : IAddRoadService
         }
     }
 }
+
+
 

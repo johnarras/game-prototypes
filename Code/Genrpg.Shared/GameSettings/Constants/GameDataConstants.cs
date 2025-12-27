@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,3 +11,5 @@ public class GameDataConstants
 
     public const string DefaultFilename = "default";
 }
+
+

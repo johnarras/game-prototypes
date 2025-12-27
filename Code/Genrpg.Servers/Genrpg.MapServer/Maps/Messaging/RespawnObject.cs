@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Spawns.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,3 +11,4 @@ namespace Genrpg.MapServer.Maps.Messaging
         public IMapSpawn Spawn { get; set; }
     }
 }
+

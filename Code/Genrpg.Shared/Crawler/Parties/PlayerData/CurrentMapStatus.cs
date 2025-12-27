@@ -6,11 +6,10 @@ using System.Text;
 
 namespace Genrpg.Shared.Crawler.Parties.PlayerData
 {
-    [MessagePackObject]
     public class CurrentMapStatus
     {
-        [Key(0)] public SmallIndexBitList Visited { get; set; } = new SmallIndexBitList();
-        [Key(1)] public SmallIndexBitList Cleansed { get; set; } = new SmallIndexBitList();
+        public SmallIndexBitList Visited { get; set; } = new SmallIndexBitList();
+        public SmallIndexBitList Cleansed { get; set; } = new SmallIndexBitList();
 
 
         public void Clear()
@@ -20,3 +19,5 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         }
     }
 }
+
+

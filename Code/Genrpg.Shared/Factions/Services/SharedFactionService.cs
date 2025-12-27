@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Factions.Constants;
+using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.GameSettings;
@@ -90,3 +90,5 @@ namespace Genrpg.Shared.Factions.Services
         }
     }
 }
+
+

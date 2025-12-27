@@ -1,4 +1,3 @@
-using UnityEngine.U2D;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System;
@@ -13,8 +12,6 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.MVC.Interfaces;
-using Assets.Scripts.MVC;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Assets;
 using System.Collections.Concurrent;
@@ -22,6 +19,12 @@ using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Bundles;
 using Assets.Scripts.Assets.Services;
+using Genrpg.Shared.Interfaces;
+
+using Assets.Scripts.Core.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
+
+
 
 
 
@@ -30,6 +33,26 @@ using Assets.Scripts.Assets.Services;
 using UnityEditor;
 #endif
 
+public interface IAssetService : IInitializable, IClientResetCleanup
+{
+    bool IsInitialized();
+    void LoadAssetInto<T>(object parent, string assetCategory, string assetPath, AssetDownloadHandler<T> handler, CancellationToken token, T data = default(T), string subdirectory = null);
+    void LoadAsset<T>(string assetCategory, string assetPath, AssetDownloadHandler<T> handler, object parent, CancellationToken token, T data = default(T), string subdirectory = null);
+    Task<T> LoadAssetAsync<T>(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null) where T : class;
+    Task<object> LoadAssetAsync(string assetCategory, string assetPath, object parent, CancellationToken token, string subdirectory = null);
+    string GetBundleNameForCategoryAndAsset(string assetCategory, string assetPath);
+    ClientAssetCounts GetAssetCounts();
+    string StripPathPrefix(string path);
+    void SetWorldAssetEnv(string worldAssetEnv);
+    string GetContentRootURL(EDataCategories category);
+    bool IsDownloading();
+    string GetWorldDataEnv();
+    void UnloadAsset(object obj);
+    Awaitable UnloadUnusedAssetsAsync();
+    string GetAssetPath(string assetCategoryName);
+    void SetLoadSpeed(ELoadSpeed speed);
+
+}
 public class UnityAssetService : IAssetService, IAssetSubsystem
 {
     private ILogService _logService = null;
@@ -40,7 +63,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
     private IClientConfigContainer _config = null;
     private IClientAppService _clientAppService = null;
     private IBinaryFileRepository _binaryFileRepo = null;
-    private IInitClient _initClient = null;
     private ITextSerializer _serializer = null;
 
     private IAwaitableService _awaitableService = null;
@@ -134,15 +156,11 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
             return;
         }
 
-
         _token = token;
+        _contentRootUrl = _config.Config.ContentEndpoint;
+        SetAssetEnv(EDataCategories.Assets, _config.Config.AssetsEnv);
+        SetAssetEnv(EDataCategories.Worlds, _config.Config.WorldsEnv);
 
-        _contentRootUrl = _config.Config.GetContentRoot();
-        SetAssetEnv(EDataCategories.Assets, _config.Config.GetAssetDataEnv());
-        SetAssetEnv(EDataCategories.Worlds, _config.Config.GetWorldDataEnv());
-
-        SpriteAtlasManager.atlasRequested += DummyRequestAtlas;
-        SpriteAtlasManager.atlasRegistered += DummyRegisterAtlas;
         string persPath = _clientAppService.PersistentDataPath;
         _downloadQueues = new ConcurrentQueue<IBundleDownload>[_maxConcurrentDownloads];
 
@@ -154,7 +172,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
         _awaitableService.ForgetAwaitable(UpdateAssetSubsystems(_token));
 
-        if (_initClient.IsSelfContainedClient())
+        if (_config.Config.SelfContainedClient)
         {
             LoadLocalBundleInit();
         }
@@ -213,22 +231,12 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
     public bool IsDownloading()
     {
 
-        if (_downloadQueues.Any(x => !x.IsEmpty))
+        if (_downloadQueues.FastAny(x => !x.IsEmpty))
         {
             return true;
         }
 
         return false;
-    }
-
-    private void DummyRequestAtlas(string tag, System.Action<SpriteAtlas> callback)
-    {
-
-    }
-
-    private void DummyRegisterAtlas(SpriteAtlas callback)
-    {
-
     }
 
     public async Task OnReset(CancellationToken token)
@@ -295,7 +303,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
                         continue;
                     }
 
-                    if (bundle.Instances.Any(x => x.Equals(null)))
+                    if (bundle.Instances.FastAny(x => x.Equals(null)))
                     {
                         bundle.Instances = bundle.Instances.Where(x => !x.Equals(null)).ToList();
                     }
@@ -427,7 +435,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         {
             assetPathSuffix += "/" + subdirectory;
         }
-        if (_initClient.IsSelfContainedClient())
+        if (_config.Config.SelfContainedClient)
         {
             string categoryPath = GetAssetPath(assetPathSuffix);
             string fullAssetName = categoryPath + assetName;
@@ -947,7 +955,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         for (int i = 0; i < _retryTimes; i++)
         {
 
-            if (!_initClient.IsSelfContainedClient() && !bad.isLocal)
+            if (!_config.Config.SelfContainedClient && !bad.isLocal)
             {
                 string bundleHash = GetBundleHash(bad.bundleName);
                 if (string.IsNullOrEmpty(bundleHash))
@@ -1189,77 +1197,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         {
             Resources.UnloadAsset(uobj);
         }
-    }
-
-    public List<T> LoadAllResources<T>(string path)
-    {
-        UnityEngine.Object[] objs = Resources.LoadAll(path);
-        List<T> retval = new List<T>();
-
-        foreach (UnityEngine.Object obj in objs)
-        {
-            if (obj is T t)
-            {
-                retval.Add(t);
-            }
-        }
-        return retval;
-
-
-
-    }
-
-    public async Task<VC> CreateAsync<VC, TModel>(TModel model, string assetCategoryName, string assetPath, object parent, CancellationToken token, string subdirectory) where VC : class, IViewController<TModel, IView>, new()
-    {
-        IView view = await LoadAssetAsync<IView>(assetCategoryName, assetPath, parent, token, subdirectory);
-        if (view != null)
-        {
-            return await InitViewControllerInternal<VC, TModel>(model, view, parent, token, false);
-        }
-        return default(VC);
-    }
-
-    public async Task<VC> InitViewController<VC, TModel>(TModel model, object viewObj, object parent, CancellationToken token) where VC : class, IViewController<TModel, IView>, new()
-    {
-        return await InitViewControllerInternal<VC, TModel>(model, viewObj, parent, token, true);
-    }
-
-    private async Task<VC> InitViewControllerInternal<VC, TModel>(TModel model, object viewObj, object parent, CancellationToken token, bool dupeObject) where VC : class, IViewController<TModel, IView>, new()
-    {
-        if (dupeObject)
-        {
-            viewObj = _clientEntityService.FullInstantiate(viewObj);
-        }
-        if (viewObj is BaseView viewDupe)
-        {
-            VC viewController = new VC();
-            _gs.loc.Resolve(viewController);
-            await viewController.Init(model, viewDupe, token);
-            _clientEntityService.AddToParent(viewDupe.gameObject, parent);
-            _clientEntityService.SetActive(viewDupe.gameObject, true);
-            if (!dupeObject)
-            {
-                _clientEntityService.InitializeHierarchy(viewDupe.gameObject);
-            }
-            return viewController;
-        }
-        return default(VC);
-    }
-
-    public void Create<VC, TModel>(TModel model, string assetCategoryName, string assetPath, object parent, Action<VC, CancellationToken> handler, CancellationToken token, string subdirectory) where VC : class, IViewController<TModel, IView>, new()
-    {
-        LoadAssetInto(parent, assetCategoryName, assetPath,
-            (obj, data, token) =>
-            {
-                _awaitableService.ForgetAwaitable(OnLoadView(model, obj, data, parent, handler, token));
-            },
-             token, model, subdirectory);
-    }
-
-    private async Awaitable OnLoadView<VC, TModel>(TModel model, object obj, object data, object parent, Action<VC, CancellationToken> handler, CancellationToken token) where VC : class, IViewController<TModel, IView>, new()
-    {
-        VC vc = await InitViewController<VC, TModel>(model, obj, parent, token);
-        handler?.Invoke(vc, token);
     }
 }
 

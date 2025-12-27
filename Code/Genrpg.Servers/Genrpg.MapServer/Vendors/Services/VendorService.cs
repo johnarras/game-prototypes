@@ -1,13 +1,13 @@
-﻿
+
 
 using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Trades.Services;
 using Genrpg.ServerShared.Achievements;
+using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Achievements.Constants;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Errors.Messages;
 using Genrpg.Shared.GameSettings;
@@ -19,6 +19,7 @@ using Genrpg.Shared.Inventory.Services;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Vendors.MapObjectAddons;
@@ -49,7 +50,7 @@ namespace Genrpg.MapServer.Vendors.Services
         private IMapProvider _mapProvider = null!;
 
         private IItemGenService _itemGenService = null;
-        protected IRepositoryService _repoService = null;
+        protected IFullRepositoryService _repoService = null;
         protected ITextSerializer _serializer = null;
         private IGameData _gameData = null!;
 
@@ -242,3 +243,5 @@ namespace Genrpg.MapServer.Vendors.Services
         }
     }
 }
+
+

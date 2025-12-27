@@ -1,17 +1,17 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameSettings.Services;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Versions.Settings;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
@@ -38,24 +38,23 @@ public class ClientAuthService : IClientAuthService
 {
     private const string LocalUserFilename = "LocalUser";
 
-    private IClientWebService _clientWebService;
-    private IRealtimeNetworkService _realtimeNetworkService;
-    private IScreenService _screenService;
-    private IMapTerrainManager _mapManager;
-    private IClientMapObjectManager _objectManager;
-    private IZoneGenService _zoneGenService;
-    private IClientGameDataService _gameDataService;
-    private IRepositoryService _repoService;
-    private ILogService _logService;
-    protected IGameData _gameData;
-    protected IPlayerManager _playerManager;
-    protected IMapProvider _mapProvider;
-    protected IClientGameState _gs;
-    private IClientConfigContainer _config;
-    private IClientCryptoService _clientCryptoService;
-    private IClientAppService _clientAppService;
-    protected IAwaitableService _awaitableService;
-    private ITextSerializer _serializer;
+    private IClientWebService _clientWebService = null;
+    private IRealtimeNetworkService _realtimeNetworkService = null;
+    private IMapTerrainManager _mapManager = null;
+    private IClientMapObjectManager _objectManager = null;
+    private IZoneGenService _zoneGenService = null;
+    private IRepositoryService _repoService = null;
+    private ILogService _logService = null;
+    protected IGameData _gameData = null;
+    protected IPlayerManager _playerManager = null;
+    protected IMapProvider _mapProvider = null;
+    protected IClientGameState _gs = null;
+    private IClientConfigContainer _config = null;
+    private IClientCryptoService _clientCryptoService = null;
+    private IClientAppService _clientAppService = null;
+    protected IAwaitableService _awaitableService = null;
+    private ITextSerializer _serializer = null;
+    private IDispatcher _dispatcher = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -93,14 +92,14 @@ public class ClientAuthService : IClientAuthService
             };
 
             _awaitableService.ForgetAwaitable(SendAccountLogin(LoginRequest, token));
-            _screenService.Open(ScreenNames.Loading, true);
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading, true));
             return;
         }
 
         // Otherwise we either had no local login or we had no valid online login, and in this case
         // show the login screen.      
-        _screenService.Open(ScreenNames.Login, true);
-        _screenService.Close(ScreenNames.Loading);
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login, true));
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
 
     }
 
@@ -109,18 +108,18 @@ public class ClientAuthService : IClientAuthService
         _logService.Info("Logging out");
         ExitMMOMap();
         _gs.acct = null;
-        _screenService.CloseAll();
-        _screenService.Close(ScreenNames.HUD);
-        _screenService.Open(ScreenNames.Login);
+        _dispatcher.Dispatch(new CloseAllScreens());
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
     }
 
     public void ExitMap()
     {
         _logService.Info("Exiting Map");
         ExitMMOMap();
-        _screenService.CloseAll();
-        _screenService.Close(ScreenNames.HUD);
-        _screenService.Open(ScreenNames.CharacterSelect);
+        _dispatcher.Dispatch(new CloseAllScreens());
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
     }
 
     private void ExitMMOMap()
@@ -130,7 +129,7 @@ public class ClientAuthService : IClientAuthService
         _realtimeNetworkService.CloseClient();
         _mapManager.Clear();
         _objectManager.Reset();
-        UnityZoneGenService.LoadedMapId = null;
+        _zoneGenService.LoadedMapId = null;
         _mapProvider.SetMap(null);
         _mapProvider.SetSpawns(null);
         _gs.ch = null;
@@ -204,3 +203,4 @@ public class ClientAuthService : IClientAuthService
 
     }
 }
+

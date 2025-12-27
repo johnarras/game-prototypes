@@ -1,9 +1,6 @@
 {
-  "Id": "default",
   "Children": [
     {
-      "Id": "unittype1default",
-      "ParentId": "default",
       "IdKey": 1,
       "Name": "Human",
       "PluralName": "Humans",
@@ -23,8 +20,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype2default",
-      "ParentId": "default",
       "IdKey": 2,
       "Name": "Elf",
       "PluralName": "Elves",
@@ -51,8 +46,6 @@
       ]
     },
     {
-      "Id": "unittype3default",
-      "ParentId": "default",
       "IdKey": 3,
       "Name": "Dwarf",
       "PluralName": "Dwarves",
@@ -82,8 +75,6 @@
       ]
     },
     {
-      "Id": "unittype4default",
-      "ParentId": "default",
       "IdKey": 4,
       "Name": "Mongrel",
       "PluralName": "Mongrels",
@@ -110,8 +101,6 @@
       ]
     },
     {
-      "Id": "unittype5default",
-      "ParentId": "default",
       "IdKey": 5,
       "Name": "Gnome",
       "PluralName": "Gnomes",
@@ -138,8 +127,6 @@
       ]
     },
     {
-      "Id": "unittype6default",
-      "ParentId": "default",
       "IdKey": 6,
       "Name": "Halfling",
       "PluralName": "Halflings",
@@ -166,8 +153,6 @@
       ]
     },
     {
-      "Id": "unittype7default",
-      "ParentId": "default",
       "IdKey": 7,
       "Name": "Goblin",
       "PluralName": "Goblins",
@@ -200,8 +185,6 @@
       ]
     },
     {
-      "Id": "unittype8default",
-      "ParentId": "default",
       "IdKey": 8,
       "Name": "Hobgoblin",
       "PluralName": "Hobgoblins",
@@ -234,8 +217,6 @@
       ]
     },
     {
-      "Id": "unittype9default",
-      "ParentId": "default",
       "IdKey": 9,
       "Name": "Warrior",
       "PluralName": "Warriors",
@@ -255,8 +236,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype10default",
-      "ParentId": "default",
       "IdKey": 10,
       "Name": "Fighter",
       "PluralName": "Fighters",
@@ -282,8 +261,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype11default",
-      "ParentId": "default",
       "IdKey": 11,
       "Name": "Bladesman",
       "PluralName": "Bladesmen",
@@ -314,8 +291,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype12default",
-      "ParentId": "default",
       "IdKey": 12,
       "Name": "Swordsman",
       "PluralName": "Swordsman",
@@ -346,8 +321,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype13default",
-      "ParentId": "default",
       "IdKey": 13,
       "Name": "Scrapper",
       "PluralName": "Scrappers",
@@ -378,8 +351,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype14default",
-      "ParentId": "default",
       "IdKey": 14,
       "Name": "Monk",
       "PluralName": "Monks",
@@ -399,8 +370,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype15default",
-      "ParentId": "default",
       "IdKey": 15,
       "Name": "Barbarian",
       "PluralName": "Barbarians",
@@ -431,8 +400,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype16default",
-      "ParentId": "default",
       "IdKey": 16,
       "Name": "Mage",
       "PluralName": "Mages",
@@ -468,8 +435,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype17default",
-      "ParentId": "default",
       "IdKey": 17,
       "Name": "Magician",
       "PluralName": "Magicians",
@@ -505,8 +470,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype18default",
-      "ParentId": "default",
       "IdKey": 18,
       "Name": "Conjurer",
       "PluralName": "Conjurers",
@@ -542,8 +505,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype19default",
-      "ParentId": "default",
       "IdKey": 19,
       "Name": "Sorcerer",
       "PluralName": "Sorcerers",
@@ -579,8 +540,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype20default",
-      "ParentId": "default",
       "IdKey": 20,
       "Name": "Wizard",
       "PluralName": "Wizards",
@@ -621,8 +580,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype21default",
-      "ParentId": "default",
       "IdKey": 21,
       "Name": "Faerie",
       "PluralName": "Faeries",
@@ -648,8 +605,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype22default",
-      "ParentId": "default",
       "IdKey": 22,
       "Name": "Cleric",
       "PluralName": "Clerics",
@@ -685,8 +640,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype23default",
-      "ParentId": "default",
       "IdKey": 23,
       "Name": "Medusa",
       "PluralName": "Medusae",
@@ -722,8 +675,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype24default",
-      "ParentId": "default",
       "IdKey": 24,
       "Name": "Dog",
       "PluralName": "Dogs",
@@ -749,8 +700,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype25default",
-      "ParentId": "default",
       "IdKey": 25,
       "Name": "Hound",
       "PluralName": "Hounds",
@@ -776,8 +725,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype26default",
-      "ParentId": "default",
       "IdKey": 26,
       "Name": "Wolf",
       "PluralName": "Wolves",
@@ -803,8 +750,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype27default",
-      "ParentId": "default",
       "IdKey": 27,
       "Name": "Coyote",
       "PluralName": "Coyotes",
@@ -830,8 +775,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype28default",
-      "ParentId": "default",
       "IdKey": 28,
       "Name": "Cat",
       "PluralName": "Cats",
@@ -857,8 +800,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype29default",
-      "ParentId": "default",
       "IdKey": 29,
       "Name": "Tiger",
       "PluralName": "Tigers",
@@ -884,8 +825,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype30default",
-      "ParentId": "default",
       "IdKey": 30,
       "Name": "Lion",
       "PluralName": "Lions",
@@ -911,8 +850,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype31default",
-      "ParentId": "default",
       "IdKey": 31,
       "Name": "Skeleton",
       "PluralName": "Skeletons",
@@ -943,8 +880,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype32default",
-      "ParentId": "default",
       "IdKey": 32,
       "Name": "Zombie",
       "PluralName": "Zombies",
@@ -975,8 +910,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype33default",
-      "ParentId": "default",
       "IdKey": 33,
       "Name": "Ghoul",
       "PluralName": "Ghouls",
@@ -1017,8 +950,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype34default",
-      "ParentId": "default",
       "IdKey": 34,
       "Name": "Wight",
       "PluralName": "Wights",
@@ -1059,8 +990,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype35default",
-      "ParentId": "default",
       "IdKey": 35,
       "Name": "Wraith",
       "PluralName": "Wraiths",
@@ -1096,8 +1025,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype36default",
-      "ParentId": "default",
       "IdKey": 36,
       "Name": "Ghost",
       "PluralName": "Ghosts",
@@ -1143,8 +1070,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype37default",
-      "ParentId": "default",
       "IdKey": 37,
       "Name": "Spectre",
       "PluralName": "Spectres",
@@ -1195,8 +1120,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype38default",
-      "ParentId": "default",
       "IdKey": 38,
       "Name": "Lich",
       "PluralName": "Liches",
@@ -1232,8 +1155,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype39default",
-      "ParentId": "default",
       "IdKey": 39,
       "Name": "Thief",
       "PluralName": "Thieves",
@@ -1259,8 +1180,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype40default",
-      "ParentId": "default",
       "IdKey": 40,
       "Name": "Rogue",
       "PluralName": "Rogues",
@@ -1286,8 +1205,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype41default",
-      "ParentId": "default",
       "IdKey": 41,
       "Name": "Assassin",
       "PluralName": "Assassins",
@@ -1307,8 +1224,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype42default",
-      "ParentId": "default",
       "IdKey": 42,
       "Name": "Demon",
       "PluralName": "Demons",
@@ -1344,8 +1259,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype43default",
-      "ParentId": "default",
       "IdKey": 43,
       "Name": "Blue Dragon",
       "PluralName": "Blue Dragons",
@@ -1376,8 +1289,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype44default",
-      "ParentId": "default",
       "IdKey": 44,
       "Name": "Red Dragon",
       "PluralName": "Red Dragons",
@@ -1408,8 +1319,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype45default",
-      "ParentId": "default",
       "IdKey": 45,
       "Name": "White Dragon",
       "PluralName": "White Dragons",
@@ -1440,8 +1349,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype46default",
-      "ParentId": "default",
       "IdKey": 46,
       "Name": "Black Dragon",
       "PluralName": "Black Dragons",
@@ -1477,8 +1384,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype47default",
-      "ParentId": "default",
       "IdKey": 47,
       "Name": "Green Dragon",
       "PluralName": "Green Dragons",
@@ -1509,8 +1414,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype48default",
-      "ParentId": "default",
       "IdKey": 48,
       "Name": "Stone Golem",
       "PluralName": "Stone Golems",
@@ -1541,8 +1444,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype49default",
-      "ParentId": "default",
       "IdKey": 49,
       "Name": "Iron Golem",
       "PluralName": "Iron Golems",
@@ -1573,8 +1474,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype50default",
-      "ParentId": "default",
       "IdKey": 50,
       "Name": "Flesh Golem",
       "PluralName": "Flesh Golems",
@@ -1605,8 +1504,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype51default",
-      "ParentId": "default",
       "IdKey": 51,
       "Name": "Air Elemental",
       "PluralName": "Air Elementals",
@@ -1637,8 +1534,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype52default",
-      "ParentId": "default",
       "IdKey": 52,
       "Name": "Earth Elemental",
       "PluralName": "Earth Elementals",
@@ -1669,8 +1564,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype53default",
-      "ParentId": "default",
       "IdKey": 53,
       "Name": "Fire Elemental",
       "PluralName": "Fire Elementals",
@@ -1701,8 +1594,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype54default",
-      "ParentId": "default",
       "IdKey": 54,
       "Name": "Water Elemental",
       "PluralName": "Water Elementals",
@@ -1733,8 +1624,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype55default",
-      "ParentId": "default",
       "IdKey": 55,
       "Name": "Bear",
       "PluralName": "Bears",
@@ -1754,8 +1643,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype56default",
-      "ParentId": "default",
       "IdKey": 56,
       "Name": "Slime",
       "PluralName": "Slimes",
@@ -1775,8 +1662,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype57default",
-      "ParentId": "default",
       "IdKey": 57,
       "Name": "Spider",
       "PluralName": "Spiders",
@@ -1796,8 +1681,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype58default",
-      "ParentId": "default",
       "IdKey": 58,
       "Name": "Scorpion",
       "PluralName": "Scorpions",
@@ -1817,8 +1700,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype59default",
-      "ParentId": "default",
       "IdKey": 59,
       "Name": "Chimera",
       "PluralName": "Chimera",
@@ -1838,8 +1719,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype60default",
-      "ParentId": "default",
       "IdKey": 60,
       "Name": "Orc",
       "PluralName": "Orcs",
@@ -1872,8 +1751,6 @@
       ]
     },
     {
-      "Id": "unittype61default",
-      "ParentId": "default",
       "IdKey": 61,
       "Name": "Ogre",
       "PluralName": "Ogres",
@@ -1906,8 +1783,6 @@
       ]
     },
     {
-      "Id": "unittype62default",
-      "ParentId": "default",
       "IdKey": 62,
       "Name": "Rat",
       "PluralName": "Rats",
@@ -1927,8 +1802,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype63default",
-      "ParentId": "default",
       "IdKey": 63,
       "Name": "Bat",
       "PluralName": "Bats",
@@ -1948,8 +1821,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype64default",
-      "ParentId": "default",
       "IdKey": 64,
       "Name": "Salamander",
       "PluralName": "Salamanders",
@@ -1975,8 +1846,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype65default",
-      "ParentId": "default",
       "IdKey": 65,
       "Name": "Wyvern",
       "PluralName": "Wyverns",
@@ -2012,8 +1881,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype66default",
-      "ParentId": "default",
       "IdKey": 66,
       "Name": "Frog",
       "PluralName": "Frogs",
@@ -2033,8 +1900,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype67default",
-      "ParentId": "default",
       "IdKey": 67,
       "Name": "Lizardman",
       "PluralName": "Lizardmen",
@@ -2054,8 +1919,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype68default",
-      "ParentId": "default",
       "IdKey": 68,
       "Name": "Werewolf",
       "PluralName": "Werewolves",
@@ -2075,8 +1938,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype69default",
-      "ParentId": "default",
       "IdKey": 69,
       "Name": "Troll",
       "PluralName": "Trolls",
@@ -2115,8 +1976,6 @@
       ]
     },
     {
-      "Id": "unittype70default",
-      "ParentId": "default",
       "IdKey": 70,
       "Name": "Vampire",
       "PluralName": "Vampires",
@@ -2162,8 +2021,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype71default",
-      "ParentId": "default",
       "IdKey": 71,
       "Name": "Mummy",
       "PluralName": "Mummies",
@@ -2209,8 +2066,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype72default",
-      "ParentId": "default",
       "IdKey": 72,
       "Name": "Harpy",
       "PluralName": "Harpies",
@@ -2241,8 +2096,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype73default",
-      "ParentId": "default",
       "IdKey": 73,
       "Name": "Griffon",
       "PluralName": "Griffons",
@@ -2273,8 +2126,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype74default",
-      "ParentId": "default",
       "IdKey": 74,
       "Name": "Manticore",
       "PluralName": "Manticores",
@@ -2310,8 +2161,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype75default",
-      "ParentId": "default",
       "IdKey": 75,
       "Name": "Snake",
       "PluralName": "Snakes",
@@ -2337,8 +2186,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype76default",
-      "ParentId": "default",
       "IdKey": 76,
       "Name": "Steed",
       "PluralName": "Steeds",
@@ -2358,8 +2205,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype77default",
-      "ParentId": "default",
       "IdKey": 77,
       "Name": "Basilisk",
       "PluralName": "Basilisks",
@@ -2400,8 +2245,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype78default",
-      "ParentId": "default",
       "IdKey": 78,
       "Name": "Giant",
       "PluralName": "Giants",
@@ -2421,8 +2264,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype79default",
-      "ParentId": "default",
       "IdKey": 79,
       "Name": "Guard",
       "PluralName": "Guards",
@@ -2448,8 +2289,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype80default",
-      "ParentId": "default",
       "IdKey": 80,
       "Name": "Gnoll",
       "PluralName": "Gnolls",
@@ -2469,8 +2308,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype81default",
-      "ParentId": "default",
       "IdKey": 81,
       "Name": "Frog",
       "PluralName": "Frogs",
@@ -2490,8 +2327,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype82default",
-      "ParentId": "default",
       "IdKey": 82,
       "Name": "Buck",
       "PluralName": "Bucks",
@@ -2511,8 +2346,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype83default",
-      "ParentId": "default",
       "IdKey": 83,
       "Name": "Crab",
       "PluralName": "Crabs",
@@ -2532,8 +2365,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype84default",
-      "ParentId": "default",
       "IdKey": 84,
       "Name": "Crocodile",
       "PluralName": "Crocodiles",
@@ -2553,8 +2384,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype85default",
-      "ParentId": "default",
       "IdKey": 85,
       "Name": "Snail",
       "PluralName": "Snails",
@@ -2574,8 +2403,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype86default",
-      "ParentId": "default",
       "IdKey": 86,
       "Name": "Treant",
       "PluralName": "Treants",
@@ -2611,8 +2438,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype87default",
-      "ParentId": "default",
       "IdKey": 87,
       "Name": "Kobold",
       "PluralName": "Kobolds",
@@ -2651,8 +2476,6 @@
       ]
     },
     {
-      "Id": "unittype88default",
-      "ParentId": "default",
       "IdKey": 88,
       "Name": "Cyclops",
       "PluralName": "Cyclops",
@@ -2685,8 +2508,6 @@
       ]
     },
     {
-      "Id": "unittype89default",
-      "ParentId": "default",
       "IdKey": 89,
       "Name": "Hydra",
       "PluralName": "Hydras",
@@ -2722,8 +2543,6 @@
       "Keywords": []
     },
     {
-      "Id": "unittype90default",
-      "ParentId": "default",
       "IdKey": 90,
       "Name": "Bull",
       "PluralName": "Bulls",
@@ -2745,8 +2564,8 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "UnitTypeSettings",
-    "SaveTime": "2025-10-27T23:25:19.168Z"
+    "Name": "UnitTypeSettings"
   },
-  "SaveTime": "2025-10-27T23:25:19.168Z"
+  "Id": "default",
+  "SaveTime": "2025-12-14T01:45:07.052Z"
 }

@@ -6,6 +6,5 @@
   "Desc": "Ignore map magic.",
   "EntityTypeId": 51,
   "ItemEnchantWeight": 0.09,
-  "ScalingPerLevel": 1.0,
-  "SaveTime": "2025-09-03T01:01:47.726Z"
+  "ScalingPerLevel": 1.0
 }

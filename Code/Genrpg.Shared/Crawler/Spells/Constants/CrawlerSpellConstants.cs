@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,3 +22,5 @@ namespace Genrpg.Shared.Crawler.Spells.Constants
         public const long MaxPlaceholderSpellId = 39999;
     }
 }
+
+

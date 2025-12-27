@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
@@ -35,3 +35,5 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
         }
     }
 }
+
+

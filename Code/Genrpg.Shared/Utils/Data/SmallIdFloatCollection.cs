@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using MessagePack;
 
 namespace Genrpg.Shared.Utils.Data
 {
     public class SmallIdFloatCollection : BaseSmallIdQuantityCollection<float>
     {
+        public override float[] Data { get; set; } = new float[4];
         protected override float InternalAdd(float first, float second)
         {
             return first + second;
@@ -17,3 +16,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

@@ -1,8 +1,9 @@
-﻿
+
 using Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Services.WebServer;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 
@@ -12,6 +13,7 @@ namespace Genrpg.RequestServer.Services.GameAuth
     {
         private IWebServerService _webServerService = null;
         private ITextSerializer _serializer = null;
+        private ILogService _logService = null;
 
         public async Task HandleGameAuthRequest(WebContext context, string postData, CancellationToken token)
         {
@@ -28,13 +30,15 @@ namespace Genrpg.RequestServer.Services.GameAuth
                         await handler.Execute(context, authCommand, token);
                     }
                 }
-                await context.SaveAll();
+                await context.SaveAllOneTime();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logService.Exception(ex, "GameAuth.HandleRequest");
             }
         }
     }
 }
+
+
 

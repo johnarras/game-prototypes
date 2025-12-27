@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,3 +18,5 @@ public class ClientUnitUtils
         }
     }
 }
+
+

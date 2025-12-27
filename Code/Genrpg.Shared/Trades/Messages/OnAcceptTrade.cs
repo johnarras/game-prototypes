@@ -12,3 +12,5 @@ namespace Genrpg.Shared.Trades.Messages
         [Key(0)] public string CharId { get; set; }
     }
 }
+
+

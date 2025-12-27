@@ -1,24 +1,24 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using UnityEngine;
-
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Utils;
-using System.Threading;
+using Assets.Scripts.Assets;
+using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using System.Threading.Tasks;
+using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Assets;
-using Genrpg.Shared.GameSettings;
-using Assets.Scripts.GameObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class PatchLoadData
 {
@@ -103,8 +103,6 @@ public class MapTerrainManager : IMapTerrainManager
     private const int MaxLoadUnloadCheckTicks = 13;
     private const int MaxPatchLoadTicks = 23;
 
-    private const string PrototypeParent = "PrototypeParent";
-
     private const int LoadObjectCountBeforePause = 20;
 
     // Used to move world objects out of the way when we enter a dungeon.
@@ -116,19 +114,19 @@ public class MapTerrainManager : IMapTerrainManager
 
 
     private GameObject _prototypeParent = null;
-    private GameObject _terrainTextureParent = null;
+    private GameObject _textureListParent = null;
 
-    protected IZoneGenService _zoneGenService;
+    protected IZoneGenService _zoneGenService = null;
     private ITerrainPatchLoader _patchLoader;
     private IPlayerManager _playerManager;
     protected IMapProvider _mapProvider;
     protected IMapGenData _md;
-    private IClientUpdateService _updateService;
+    private IClientUpdateService _updateService = null;
     private IClientGameState _gs;
-    private IAssetService _assetService;
+    private IAssetService _assetService = null;
     private IGameData _gameData;
     private IClientRandom _rand;
-    private IClientEntityService _clientEntityService;
+    private IClientEntityService _clientEntityService = null;
     private ISingletonContainer _singletonContainer;
 
 
@@ -143,8 +141,8 @@ public class MapTerrainManager : IMapTerrainManager
     public async Task Initialize(CancellationToken token)
     {
         _updateService.AddTokenUpdate(this, TerrainUpdate, UpdateTypes.Regular, token);
-        _prototypeParent = _singletonContainer.GetSingleton(PrototypeParent);
-        _terrainTextureParent = _singletonContainer.GetSingleton(MapConstants.TerrainTextureRoot);
+        _prototypeParent = _singletonContainer.GetAssetParent<ObjectPrototype>();
+        _textureListParent = _singletonContainer.GetAssetParent<TextureList>();
         SetupLoaders();
 
         await Task.CompletedTask;
@@ -165,7 +163,7 @@ public class MapTerrainManager : IMapTerrainManager
         return _patchesAdded;
     }
 
-    public long GetPatchesRemoved() 
+    public long GetPatchesRemoved()
     {
         return _patchesRemoved;
     }
@@ -179,7 +177,7 @@ public class MapTerrainManager : IMapTerrainManager
 
     public GameObject GetTerrainTextureParent()
     {
-        return _terrainTextureParent;
+        return _textureListParent;
     }
 
     public GameObject GetTerrainProtoObject(string name)
@@ -212,7 +210,7 @@ public class MapTerrainManager : IMapTerrainManager
         }
     }
 
-    public void AddTerrainProtoPatch (string name, int gx, int gy)
+    public void AddTerrainProtoPatch(string name, int gx, int gy)
     {
         int index = GetProtoPatchIndex(gx, gy);
 
@@ -266,7 +264,7 @@ public class MapTerrainManager : IMapTerrainManager
         return null;
     }
 
-    public void AddToTerrainTextureCache (string textureName, TerrainTextureData data)
+    public void AddToTerrainTextureCache(string textureName, TerrainTextureData data)
     {
         if (!_terrainTextureCache.ContainsKey(textureName))
         {
@@ -286,7 +284,7 @@ public class MapTerrainManager : IMapTerrainManager
     {
         _terrainProtoObjectData = new Dictionary<string, TerrainProtoObject>();
         _clientEntityService.DestroyAllChildren(_prototypeParent);
-        _clientEntityService.DestroyAllChildren(_terrainTextureParent);
+        _clientEntityService.DestroyAllChildren(_textureListParent);
         _terrainTextureCache.Clear();
 
         _loadingPatchList = new List<MyPoint>();
@@ -414,9 +412,9 @@ public class MapTerrainManager : IMapTerrainManager
     }
 
 
-    public bool AddingPatches ()
+    public bool AddingPatches()
     {
-        if (_addPatchList.Count > 0 || 
+        if (_addPatchList.Count > 0 ||
             _loadingPatchList.Count > 0 ||
             _removePatchList.Count > 0)
         {
@@ -586,11 +584,11 @@ public class MapTerrainManager : IMapTerrainManager
                     firstItem = _addPatchList[0];
                     _addPatchList.RemoveAt(0);
                     _loadingPatchList.Add(firstItem);
-                    
+
                     _patchLoader.LoadOneTerrainPatch(firstItem.X, firstItem.Y, _fastLoading, token);
                 }
             }
-            
+
             if (_removePatchList.Count > 0)
             {
                 firstItem = _removePatchList[0];
@@ -605,16 +603,16 @@ public class MapTerrainManager : IMapTerrainManager
                 terr = patch.terrain as Terrain;
 
                 if (terr != null)
-                {                   
+                {
                     if (terr.terrainData != null && terr.terrainData.terrainLayers != null)
-                    {                       
+                    {
                         terr.terrainData.treeInstances = new TreeInstance[0];
 
                         terr.terrainData.treePrototypes = new TreePrototype[0];
                         terr.terrainData.RefreshPrototypes();
 
                         RemovePatchFromPrototypes(firstItem.X, firstItem.Y);
-                        
+
                         for (layerIdx = 0; layerIdx < terr.terrainData.terrainLayers.Length; layerIdx++)
                         {
                             layer = terr.terrainData.terrainLayers[layerIdx];
@@ -661,11 +659,11 @@ public class MapTerrainManager : IMapTerrainManager
         {
             _fastLoading = false;
         }
-	}
+    }
 
 
     public void ClearPatches()
-    {      
+    {
         if (_terrainPatches == null)
         {
             return;
@@ -686,7 +684,7 @@ public class MapTerrainManager : IMapTerrainManager
             }
         }
         _terrainPatches = new TerrainPatchData[MapConstants.MaxTerrainGridSize, MapConstants.MaxTerrainGridSize];
-                
+
     }
 
     public async Awaitable SetupOneTerrainPatch(int gx, int gy, CancellationToken token)
@@ -722,22 +720,22 @@ public class MapTerrainManager : IMapTerrainManager
         int alphaPatchSize = patchSize * MapConstants.AlphaMapsPerTerrainCell;
         float[,,] patchAlphas = new float[alphaPatchSize, alphaPatchSize, MapConstants.MaxTerrainIndex];
 
-        Vector3 offsetPos = new Vector3 (gx * (MapConstants.TerrainPatchSize-1), 0, gy * (MapConstants.TerrainPatchSize-1));
+        Vector3 offsetPos = new Vector3(gx * (MapConstants.TerrainPatchSize - 1), 0, gy * (MapConstants.TerrainPatchSize - 1));
         string terrainName = "Terrain" + gx + "_" + gy;
 
 
         GameObject terrObj2 = (GameObject)(await _assetService.LoadAssetAsync(AssetCategoryNames.Prefabs, "TerrainMaterialPlaceholder", null, token));
-        terrObj2.name = terrainName;    
+        terrObj2.name = terrainName;
 
         terrObj2.transform.localPosition = offsetPos;
         Terrain terr2 = terrObj2.GetComponent<Terrain>();
         terr2.terrainData.detailPrototypes = new DetailPrototype[0];
         terr2.terrainData.treePrototypes = new TreePrototype[0];
         terr2.terrainData = GameObject.Instantiate<TerrainData>(terr2.terrainData);
-        TerrainCollider coll = _clientEntityService.GetOrAddComponent<TerrainCollider>(terrObj2); 
+        TerrainCollider coll = _clientEntityService.GetOrAddComponent<TerrainCollider>(terrObj2);
         coll.terrainData = terr2.terrainData;
 
-            
+
         patch.terrain = terr2;
         patch.terrainData = terr2.terrainData;
 
@@ -767,7 +765,7 @@ public class MapTerrainManager : IMapTerrainManager
 
         float maxHeight = MapConstants.MapHeight;
         terr2.terrainData.heightmapResolution = patchSize;
-        terr2.terrainData.size = new Vector3(patchSize-1, maxHeight, patchSize-1);
+        terr2.terrainData.size = new Vector3(patchSize - 1, maxHeight, patchSize - 1);
         terr2.terrainData.alphamapResolution = patchSize * MapConstants.AlphaMapsPerTerrainCell;
         terr2.Flush();
     }
@@ -784,7 +782,7 @@ public class MapTerrainManager : IMapTerrainManager
         {
             for (int y = 0; y < _terrainPatches.GetLength(1); y++)
             {
-                if (_terrainPatches[x,y] != null)
+                if (_terrainPatches[x, y] != null)
                 {
                     Terrain terr = _terrainPatches[x, y].terrain as Terrain;
                     if (terr != null)
@@ -853,7 +851,7 @@ public class MapTerrainManager : IMapTerrainManager
         }
 
         int addTimes = 0;
-       
+
         int currZoneId = -1;
         Zone currZone = null;
         ZoneType currZoneType = null;
@@ -1005,7 +1003,7 @@ public class MapTerrainManager : IMapTerrainManager
     public TerrainPatchData GetPatchFromMapPos(float worldx, float worldy)
     {
         gridPosX = (int)(worldx / (MapConstants.TerrainPatchSize - 1));
-        gridPosY = (int)(worldy / (MapConstants.TerrainPatchSize - 1));    
+        gridPosY = (int)(worldy / (MapConstants.TerrainPatchSize - 1));
         return GetMapGrid(gridPosX, gridPosY);
     }
 
@@ -1308,7 +1306,7 @@ public class MapTerrainManager : IMapTerrainManager
         }
 
         tl.diffuseTexture = diffuse;
-        tl.normalMapTexture = normal;      
+        tl.normalMapTexture = normal;
         SetTerrainLayerData(tl);
         return tl;
     }
@@ -1329,7 +1327,7 @@ public class MapTerrainManager : IMapTerrainManager
 
     public TerrainPatchData GetTerrainPatch(int gx, int gy, bool createIfNotThere = true)
     {
-        if (gx < 0 || gy < 0 || 
+        if (gx < 0 || gy < 0 ||
             _terrainPatches == null ||
             gx >= MapConstants.MaxTerrainGridSize ||
             gy >= MapConstants.MaxTerrainGridSize)
@@ -1385,3 +1383,5 @@ public class MapTerrainManager : IMapTerrainManager
     }
 
 }
+
+

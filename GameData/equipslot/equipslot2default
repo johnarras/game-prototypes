@@ -5,6 +5,5 @@
   "Name": "Neck",
   "Active": true,
   "BaseBonusStatTypeId": 32,
-  "BonusStatScale": 0.5,
-  "SaveTime": "2025-10-31T12:54:21.863Z"
+  "BonusStatScale": 0.5
 }

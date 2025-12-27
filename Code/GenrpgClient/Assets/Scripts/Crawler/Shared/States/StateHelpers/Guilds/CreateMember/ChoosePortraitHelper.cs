@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
+using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -53,3 +53,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
         }
     }
 }
+
+

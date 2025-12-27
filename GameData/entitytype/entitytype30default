@@ -2,6 +2,5 @@
   "Id": "entitytype30default",
   "ParentId": "default",
   "IdKey": 30,
-  "Name": "TimedEvent",
-  "SaveTime": "2025-06-12T17:38:11.611Z"
+  "Name": "TimedEvent"
 }

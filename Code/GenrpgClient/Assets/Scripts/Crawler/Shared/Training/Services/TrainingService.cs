@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
@@ -367,7 +367,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 return;
             }
 
-            if (member.Roles.Any(x => x.RoleId == classId))
+            if (member.Roles.FastAny(x => x.RoleId == classId))
             {
                 _dispatcher.Dispatch(new ShowFloatingText("You're already a member of this class", EFloatingTextArt.Error));
                 return;
@@ -410,3 +410,5 @@ namespace Genrpg.Shared.Crawler.Training.Services
         }
     }
 }
+
+

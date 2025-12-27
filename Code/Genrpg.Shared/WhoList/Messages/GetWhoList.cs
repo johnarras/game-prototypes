@@ -12,3 +12,5 @@ namespace Genrpg.Shared.WhoList.Messages
         [Key(0)] public string Args { get; set; }
     }
 }
+
+

@@ -1,23 +1,17 @@
-
-
-using Genrpg.Shared.Constants;
+using Genrpg.Shared.Buildings.Settings;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.Pathfinding.Services;
-using System.Threading;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.ProcGen.Settings.Trees;
 using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Utils;
 using System;
-using Genrpg.Shared.Buildings.Settings;
+using System.Threading;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class CreatePathfindingData : BaseZoneGenerator
 {
-    private IClientAppService _clientAppService;
-    private IBinaryFileRepository _binaryFileRepo;
+    private IBinaryFileRepository _binaryFileRepo = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -32,22 +26,22 @@ public class CreatePathfindingData : BaseZoneGenerator
 
             for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
             {
-                if (x < MapConstants.MapEdgeSize || x >= _mapProvider.GetMap().GetHwid()-MapConstants.MapEdgeSize-1)
+                if (x < MapConstants.MapEdgeSize || x >= _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize - 1)
                 {
                     continue;
                 }
-                int px = (x+1) / blockSize;
+                int px = (x + 1) / blockSize;
                 if (px < 0 || px >= pxsize)
                 {
                     continue;
                 }
                 for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
                 {
-                    if (z < MapConstants.MapEdgeSize || z >= _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize-1)
+                    if (z < MapConstants.MapEdgeSize || z >= _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize - 1)
                     {
                         continue;
                     }
-                    int pz = (z+1) / blockSize;
+                    int pz = (z + 1) / blockSize;
                     if (pz < 0 || pz >= pzsize)
                     {
                         continue;
@@ -73,8 +67,8 @@ public class CreatePathfindingData : BaseZoneGenerator
                             TreeType ttype = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(treeTypeId);
                             if (ttype != null && !ttype.HasFlag(TreeFlags.IsBush))
                             {
-                                blockedCells[pz,px] = true;
-                            }                           
+                                blockedCells[pz, px] = true;
+                            }
                         }
                         else
                         {
@@ -93,14 +87,14 @@ public class CreatePathfindingData : BaseZoneGenerator
                     if (btype != null)
                     {
                         int buildingRadius = Math.Max(1, (btype.Radius + 1) / 2);
-                        for (int x = (int)spawn.X - buildingRadius+1; x <= spawn.X + buildingRadius; x++)
+                        for (int x = (int)spawn.X - buildingRadius + 1; x <= spawn.X + buildingRadius; x++)
                         {
                             int px = x / blockSize;
                             if (px < 0 || px >= pxsize)
                             {
                                 continue;
                             }
-                            for (int z = (int)spawn.Z - buildingRadius+1; z <= spawn.Z + buildingRadius; z++)
+                            for (int z = (int)spawn.Z - buildingRadius + 1; z <= spawn.Z + buildingRadius; z++)
                             {
                                 int pz = z / blockSize;
                                 if (pz < 0 || pz >= pzsize)
@@ -119,7 +113,7 @@ public class CreatePathfindingData : BaseZoneGenerator
             {
                 for (int z = 0; z < pzsize; z++)
                 {
-                    if (blockedCells[x,z]
+                    if (blockedCells[x, z]
                         //|| (x > 0 && blockedCells[x - 1, z]) 
                         // || (x < pxsize-1 && blockedCells[x + 1, z]) 
                         //|| (z > 0 && blockedCells[x, z - 1])
@@ -144,7 +138,7 @@ public class CreatePathfindingData : BaseZoneGenerator
 
             string localPath = _binaryFileRepo.GetPath(filename);
             string remotePath = filename;
-            
+
         }
         catch (Exception e)
         {
@@ -152,3 +146,5 @@ public class CreatePathfindingData : BaseZoneGenerator
         }
     }
 }
+
+

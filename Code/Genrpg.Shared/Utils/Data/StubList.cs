@@ -106,3 +106,5 @@ namespace Genrpg.Shared.Utils.Data
         }
     }
 }
+
+

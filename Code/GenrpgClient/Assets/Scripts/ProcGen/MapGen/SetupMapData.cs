@@ -1,8 +1,8 @@
 
-using System.Collections.Generic;
-using System.Threading;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Utils.Data;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SetupMapData : BaseZoneGenerator
@@ -26,7 +26,7 @@ public class SetupMapData : BaseZoneGenerator
             _mapProvider.SetSpawns(new MapSpawnData() { Id = _mapProvider.GetMap().Id.ToString() });
         }
 
-     
+
 
         int mapSize = _mapProvider.GetMap().GetHwid();
 
@@ -35,7 +35,7 @@ public class SetupMapData : BaseZoneGenerator
         _md.ahgt = mapSize;
         _md.awid = mapSize;
 
-        if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId))
+        if (string.IsNullOrEmpty(_zoneGenService.LoadedMapId))
         {
             for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
             {
@@ -46,7 +46,7 @@ public class SetupMapData : BaseZoneGenerator
             }
         }
 
-        if (string.IsNullOrEmpty(UnityZoneGenService.LoadedMapId))
+        if (string.IsNullOrEmpty(_zoneGenService.LoadedMapId))
         {
             _md.grassAmounts = new byte[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt(), MapConstants.MaxGrass];
 
@@ -70,9 +70,9 @@ public class SetupMapData : BaseZoneGenerator
             _md.mountainCenterDist = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
             _md.flags = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
             _md.roadDistances = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            
+
             _md.mapObjects = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-         
+
             for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
             {
                 for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
@@ -106,3 +106,4 @@ public class SetupMapData : BaseZoneGenerator
         }
     }
 }
+

@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Repository.Constants;
+using Assets.Scripts.Repository.Constants;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 public interface IClientRepositoryCollection
 {
-    Task<bool> Save(object t, bool verbose = false);
+    Task<bool> Save(object t, RepoSaveArgs args = null);
     Task<object> LoadWithType(Type t, string id);
 }
 
@@ -79,7 +80,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
     /// <param name="id">Id to save (key)</param>
     /// <param name="data">Data to save (value)</param>
     /// <returns>Were the parameters ok? Not checking actual save success here.</returns>
-    public async Task<bool> StringSave(string id, string data, bool verboseSave = false)
+    public async Task<bool> StringSave(string id, string data, RepoSaveArgs args = null)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -91,12 +92,12 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         return true;
     }
 
-    public async Task<bool> Save(object t, bool verbose = false)
+    public async Task<bool> Save(object t, RepoSaveArgs args = null)
     {
-        return await SaveInternal(t, verbose);
+        return await SaveInternal(t, args);
     }
 
-    private async Task<bool> SaveInternal(object t, bool verbose)
+    private async Task<bool> SaveInternal(object t, RepoSaveArgs args = null)
     {
         if (t == null)
         {
@@ -115,7 +116,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
                 return false;
             }
             string key = GetKeyFromId(id);
-            string val = (verbose ? _serializer.PrettyPrint(t) : _serializer.SerializeToString(t));
+            string val = ((args?.Verbose ?? false) ? _serializer.PrettyPrint(t) : _serializer.SerializeToString(t));
 
             SaveString(key, val);
         }
@@ -354,3 +355,5 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
 
     }
 }
+
+

@@ -1,9 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using System;
+using MessagePack;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.MapMods.MapObjectAddons
 {
@@ -21,3 +19,5 @@ namespace Genrpg.Shared.MapMods.MapObjectAddons
         [Key(5)] public string Name { get; set; }
     }
 }
+
+

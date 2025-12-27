@@ -2,6 +2,5 @@
   "Id": "specialmagic4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Identify Item",
-  "SaveTime": "2025-09-13T18:23:01.315Z"
+  "Name": "Identify Item"
 }

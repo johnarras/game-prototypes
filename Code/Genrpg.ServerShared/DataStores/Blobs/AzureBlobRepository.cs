@@ -1,23 +1,22 @@
-﻿using Genrpg.ServerShared.Config;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.DataStores.Utils;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 using System.IO;
+using System.Linq.Expressions;
 using System.Text;
-using Genrpg.ServerShared.DataStores.Entities;
-using Genrpg.Shared.Analytics.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.Blobs
 {
@@ -26,13 +25,13 @@ namespace Genrpg.ServerShared.DataStores.Blobs
         class BlobConnection
         {
             public string ConnectionString { get; set; }
-            public BlobServiceClient Client { get;set;}
-            public ConcurrentDictionary<string, BlobContainerClient> Containers { get; set; }= new ConcurrentDictionary<string, BlobContainerClient>();
+            public BlobServiceClient Client { get; set; }
+            public ConcurrentDictionary<string, BlobContainerClient> Containers { get; set; } = new ConcurrentDictionary<string, BlobContainerClient>();
         }
 
         private BlobContainerClient _container = null;
 
-        private static ConcurrentDictionary<string, BlobConnection> _connections { get; set; }= new ConcurrentDictionary<string, BlobConnection>();
+        private static ConcurrentDictionary<string, BlobConnection> _connections { get; set; } = new ConcurrentDictionary<string, BlobConnection>();
 
         private IAnalyticsService _analyticsService = null;
         private ILogService _logService = null;
@@ -40,16 +39,19 @@ namespace Genrpg.ServerShared.DataStores.Blobs
 
         private InitRepoArgs _args = null;
 
-        public async Task Init(InitRepoArgs args, 
+        CancellationToken _token;
+
+        public async Task Init(InitRepoArgs args,
             string connectionString,
-            ILogService logService, 
+            ILogService logService,
             IAnalyticsService analyticsService,
-            ITextSerializer serializer)
+            ITextSerializer serializer, CancellationToken token)
         {
+            _token = token;
             _logService = logService;
             _serializer = serializer;
             _analyticsService = analyticsService;
-            _args = args;   
+            _args = args;
 
             if (!_connections.TryGetValue(connectionString, out BlobConnection connection))
             {
@@ -96,7 +98,7 @@ namespace Genrpg.ServerShared.DataStores.Blobs
         /// <param name="t"></param>
         /// <param name="verbose">This does nothing here.</param>
         /// <returns></returns>
-        public async Task<bool> Save<T>(T t, bool verbose = false) where  T : class, IStringId
+        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : class, IStringId
         {
             string data = _serializer.SerializeToString(t);
 
@@ -108,8 +110,8 @@ namespace Genrpg.ServerShared.DataStores.Blobs
             {
                 try
                 {
-                    using MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(data)); 
-                    await blob.UploadAsync(stream, overwrite:true).ConfigureAwait(false);
+                    using MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                    await blob.UploadAsync(stream, overwrite: true).ConfigureAwait(false);
                     success = true;
                     break;
                 }
@@ -124,21 +126,6 @@ namespace Genrpg.ServerShared.DataStores.Blobs
             }
             return success;
         }
-
-        public async Task<bool> SaveAll<T>(List<T> tlist) where T : class, IStringId
-        {
-            bool allOk = true;
-            foreach (T t in tlist)
-            {
-                if (!await Save(t))
-                {
-                    allOk = false;
-                    break;
-                }
-            }
-            return allOk;
-        }
-
 
         #endregion
 
@@ -168,13 +155,6 @@ namespace Genrpg.ServerShared.DataStores.Blobs
                 }
             }
             return success;
-        }
-
-
-        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId
-        {
-            await Task.CompletedTask;
-            return false;
         }
 
 
@@ -228,48 +208,23 @@ namespace Genrpg.ServerShared.DataStores.Blobs
 
             return obj;
         }
-        #endregion
 
-        #region Search
-        // Breaks LSP
+        /// <summary>
+        /// This violates the LSP, but given the tradeoffs of having to do a lot of fiddly stuff 
+        /// it exists for now.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="func"></param>
+        /// <param name="quantity"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity, int skip) where T : class, IStringId
         {
-            await Task.CompletedTask;
             throw new NotImplementedException();
         }
-        // Breaks LSP
-        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId
-        {
-            return await SaveAll<T>(list);
-        }
-
-        public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
-        {
-            T doc = (T)await Load<T>(docId);
-
-            if (doc != null)
-            {
-                foreach (string key in fieldNameUpdates.Keys)
-                {
-                    EntityUtils.SetObjectValue(doc, key, fieldNameUpdates[key]);
-                }
-                return await Save(doc);
-            }
-            return false;
-        }
-
-        public async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
-        {
-            T doc = (T)await Load<T>(docId);
-
-            if (doc != null)
-            {
-                action(doc);
-                return await Save(doc);
-            }
-            return false;
-        }
-
         #endregion
     }
 }
+
+

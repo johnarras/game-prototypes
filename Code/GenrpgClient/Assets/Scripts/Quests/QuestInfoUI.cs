@@ -1,4 +1,4 @@
-﻿using ClientEvents;
+using ClientEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
@@ -19,8 +19,8 @@ using UnityEngine;
 public class QuestInfoUI : BaseBehaviour
 {
 
-    protected ISharedQuestService _questService;
-    protected IIconService _iconService;
+    protected ISharedQuestService _questService = null;
+    protected IIconService _iconService = null;
 
     public const string ScreenTaskPrefab = "QuestScreenTaskRow";
     public const string HUDTaskPrefab = "QuestHUDTaskRow";
@@ -278,3 +278,4 @@ public class QuestInfoUI : BaseBehaviour
         }
     }
 }
+

@@ -1,31 +1,36 @@
+using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
-using MessagePack;
 
 namespace Genrpg.Shared.AI.Settings
 {
-    [MessagePackObject]
     public class AISettings : NoChildSettings // No List
     {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public float UpdateSeconds { get; set; } = 1.5f;
+        public override string Id { get; set; }
+        public float UpdateSeconds { get; set; } = 1.5f;
 
-        [Key(2)] public float IdleWanderChance { get; set; } = 0.25f;
+        public float IdleWanderChance { get; set; } = 0.25f;
 
-        [Key(3)] public float EnemyScanDistance { get; set; } = 20.0f;
+        public float EnemyScanDistance { get; set; } = 20.0f;
 
-        [Key(4)] public float LeashDistance { get; set; } = 60.0f;
+        public float LeashDistance { get; set; } = 60.0f;
 
-        [Key(5)] public float BaseUnitSpeed { get; set; } = 5.0f;
+        public float BaseUnitSpeed { get; set; } = 5.0f;
 
-        [Key(6)] public float BringAFriendRadius { get; set; } = 20.0f;
+        public float BringAFriendRadius { get; set; } = 20.0f;
     }
 
 
     public class AISettingsLoader : NoChildSettingsLoader<AISettings> { }
 
-    public class AISettingsDto : NoChildSettingsDto<AISettings> { }
+    public class AISettingsDto : NoChildSettingsDto<AISettings>
+    {
+        public override AISettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
 
     public class AISettingsMapper : NoChildSettingsMapper<AISettings, AISettingsDto> { }
 }
+
+

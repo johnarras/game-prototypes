@@ -1,4 +1,4 @@
-﻿
+
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Entities.Constants;
@@ -67,6 +67,8 @@ public class GroundObjectLoader : BaseMapObjectLoader
         FinalPlaceObject(go, loadData, LayerNames.ObjectLayer);
     }
 }
+
+
 
 
 

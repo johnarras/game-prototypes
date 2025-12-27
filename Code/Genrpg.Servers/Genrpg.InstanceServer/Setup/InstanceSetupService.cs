@@ -1,4 +1,4 @@
-﻿using Genrpg.InstanceServer.Admin;
+using Genrpg.InstanceServer.Admin;
 using Genrpg.InstanceServer.Managers;
 using Genrpg.ServerShared.CloudComms.Services.Admin;
 using Genrpg.ServerShared.Setup;
@@ -18,3 +18,5 @@ namespace Genrpg.InstanceServer.Setup
     {
     }
 }
+
+

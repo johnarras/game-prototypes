@@ -13,3 +13,5 @@ namespace Genrpg.Shared.Spells.Messages
         [Key(1)] public long Id { get; set; }
     }
 }
+
+

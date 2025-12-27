@@ -4,6 +4,5 @@
   "IdKey": 15,
   "Name": "Auto Level Up",
   "Desc": "Do characters level up if possible after gaining Exp?",
-  "DefaultForNewGame": true,
-  "SaveTime": "2025-11-01T20:07:16.693Z"
+  "DefaultForNewGame": true
 }

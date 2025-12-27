@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
@@ -26,7 +26,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             CrawlerStateData stateData = CreateStateData();
 
             PartyData party = _crawlerService.GetParty();
-            List<PartyMember> partyMembers = party.GetActiveParty();
+            List<PartyMember> partyMembers = party.ActiveParty;
 
             SelectSpellAction spellAction = new SelectSpellAction();
 
@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < partyMembers.Count; m++)
             {
                 PartyMember partyMember = partyMembers[m];
-                char c = (char)(Key.A + m);
+                char c = (char)('A' + m);
 
                 SelectAction selectAction = new SelectAction()
                 {
@@ -66,3 +66,5 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
         }
     }
 }
+
+
