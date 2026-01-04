@@ -219,7 +219,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
                     float newTier = GetPartyBuffPower(party, pbuff.IdKey);
 
-                    if (party.Buffs.Get(pbuff.IdKey) > newTier - 0.001f)
+                    if (party.Buffs[pbuff.IdKey] > newTier - 0.001f)
                     {
                         continue;
                     }

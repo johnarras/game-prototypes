@@ -14,7 +14,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
     public interface IGameSettingsLoader : ISetupDictionaryItem<Type>, IInitializable
     {
         Type GetChildType();
-        Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing);
+        Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing);
         List<CreateIndexData> GetIndexes();
     }
 }

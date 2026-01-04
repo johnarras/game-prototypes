@@ -10,8 +10,8 @@ namespace Genrpg.Shared.Trader.Animals.Services
 
     public interface IAnimalService : IInjectable
     {
-        void AddAnimalToHoldings(CoreUserData userData, HoldingsData holdings, long animalTypeId);
-        void AddSkinToHoldings(CoreUserData userData, HoldingsData holdings, long skinTypeId);
+        void AddAnimalToHoldings(CoreData coreData, HoldingsData holdings, long animalTypeId);
+        void AddSkinToHoldings(CoreData coreData, HoldingsData holdings, long skinTypeId);
     }
 
     public class AnimalService : IAnimalService
@@ -19,23 +19,23 @@ namespace Genrpg.Shared.Trader.Animals.Services
 
         private IGameData _gameData = null;
 
-        public void AddAnimalToHoldings(CoreUserData userData, HoldingsData holdings, long animalTypeId)
+        public void AddAnimalToHoldings(CoreData coreData, HoldingsData holdings, long animalTypeId)
         {
             if (!holdings.AnimalsOwned.HasBit(animalTypeId))
             {
                 holdings.AnimalsOwned.SetBit(animalTypeId);
             }
 
-            SkinType skinType = _gameData.Get<SkinTypeSettings>(userData).GetData().FirstOrDefault(x => x.AnimalTypeId == animalTypeId && x.IsDefault);
+            SkinType skinType = _gameData.Get<SkinTypeSettings>(coreData).GetData().FirstOrDefault(x => x.AnimalTypeId == animalTypeId && x.IsDefault);
             if (skinType != null)
             {
-                AddSkinToHoldings(userData, holdings, skinType.IdKey);
+                AddSkinToHoldings(coreData, holdings, skinType.IdKey);
             }
         }
 
-        public void AddSkinToHoldings(CoreUserData userData, HoldingsData holdings, long skinTypeId)
+        public void AddSkinToHoldings(CoreData coreData, HoldingsData holdings, long skinTypeId)
         {
-            SkinType skinType = _gameData.Get<SkinTypeSettings>(userData).Get(skinTypeId);
+            SkinType skinType = _gameData.Get<SkinTypeSettings>(coreData).Get(skinTypeId);
 
             if (skinType == null)
             {

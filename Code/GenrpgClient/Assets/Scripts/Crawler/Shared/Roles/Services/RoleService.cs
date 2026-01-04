@@ -95,7 +95,6 @@ namespace Genrpg.Shared.Crawler.Roles.Services
             totalPartyMemberScaling += combatSettings.BasePlayerRoleScalingTier;
 
 
-
             return (int)(100 * totalPartyMemberScaling) / 100.0;
         }
 

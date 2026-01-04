@@ -4,7 +4,6 @@ using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
 using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -29,7 +28,7 @@ public interface IClientAuthService : IInitializable, IClientResetCleanup
     void ExitMap();
     Awaitable SendAccountLogin(AccountLoginRequest request, CancellationToken token);
     Awaitable SendSignupRequest(AccountSignupRequest request, CancellationToken token);
-    Awaitable SaveLocalUserData(string email, string loginToken);
+    Awaitable SaveLocalUserData(string accountId, string gameUserId, string loginToken);
     Awaitable StartNoUser(CancellationToken token);
     Awaitable OnAccountLogin(AccountLoginResponse response, CancellationToken token);
 }
@@ -55,6 +54,7 @@ public class ClientAuthService : IClientAuthService
     protected IAwaitableService _awaitableService = null;
     private ITextSerializer _serializer = null;
     private IDispatcher _dispatcher = null;
+    private IClientConfigContainer _configContainer = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -65,7 +65,8 @@ public class ClientAuthService : IClientAuthService
     {
         LocalUserData localData = _repoService.Load<LocalUserData>(LocalUserFilename).Result;
 
-        string userid = "";
+        string accountId = "";
+        string userId = "";
         string email = "";
         string password = "";
 
@@ -73,7 +74,8 @@ public class ClientAuthService : IClientAuthService
         {
             try
             {
-                userid = localData.UserId;
+                accountId = localData.AccountId;
+                userId = localData.UserId;
                 password = _clientCryptoService.DecryptString(localData.LoginToken);
             }
             catch (Exception ex)
@@ -81,11 +83,11 @@ public class ClientAuthService : IClientAuthService
                 _logService.Exception(ex, "StartLogin");
             }
         }
-        if ((!string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(userid)) && !string.IsNullOrEmpty(password))
+        if ((!string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(accountId)) && !string.IsNullOrEmpty(password))
         {
             AccountLoginRequest LoginRequest = new AccountLoginRequest()
             {
-                UserId = userid,
+                AccountId = accountId,
                 Email = email,
                 Password = password,
                 DeviceId = _clientCryptoService.GetDeviceId(),
@@ -107,7 +109,8 @@ public class ClientAuthService : IClientAuthService
     {
         _logService.Info("Logging out");
         ExitMMOMap();
-        _gs.acct = null;
+        _gs.GameUserId = null;
+        _gs.SessionId = null;
         _dispatcher.Dispatch(new CloseAllScreens());
         _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
         _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
@@ -135,12 +138,13 @@ public class ClientAuthService : IClientAuthService
         _gs.ch = null;
 
     }
-    public async Awaitable SaveLocalUserData(string userId, string loginToken)
+    public async Awaitable SaveLocalUserData(string accountId, string gameUserId, string loginToken)
     {
         LocalUserData localUserData = new LocalUserData()
         {
             Id = LocalUserFilename,
-            UserId = userId,
+            AccountId = accountId,
+            UserId = gameUserId,
             LoginToken = _clientCryptoService.EncryptString(loginToken),
         };
 
@@ -161,7 +165,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable StartNoUser(CancellationToken token)
     {
-        GameAuthResponse result = new GameAuthResponse() { GameAccount = new GameAccount() { Id = "Local" } };
+        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SessionId = "Local" };
 
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
@@ -185,18 +189,26 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable OnAccountLogin(AccountLoginResponse response, CancellationToken token)
     {
-        if (!string.IsNullOrEmpty(response.AccountId) && !string.IsNullOrEmpty(response.LoginToken))
+        if (!string.IsNullOrEmpty(response.AccountId) && !string.IsNullOrEmpty(response.LoginToken) && !string.IsNullOrEmpty(response.GameUserId))
         {
-            await SaveLocalUserData(response.AccountId, response.LoginToken);
+            await SaveLocalUserData(response.AccountId, response.GameUserId, response.LoginToken);
+        }
+        else
+        {
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
+            return;
         }
 
         GameAuthRequest request = new GameAuthRequest()
         {
             AccountId = response.AccountId,
             SessionId = response.SessionId,
+            GameUserId = response.GameUserId,
             ClientVersion = _clientAppService.Version,
             ClientPlatformName = _clientAppService.GetPlatformName(),
             ClientGameDataSaveTime = _gameData.Get<VersionSettings>(null).SaveTime,
+            GameName = _gs.GameMode.ToString(),
         };
 
         _clientWebService.SendGameAuthWebRequest(request, token);

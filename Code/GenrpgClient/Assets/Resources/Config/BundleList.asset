@@ -1531,3 +1531,5 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: animalskinszebu
     IsLocal: 0
+  - BundleName: atlasdiceicons
+    IsLocal: 0

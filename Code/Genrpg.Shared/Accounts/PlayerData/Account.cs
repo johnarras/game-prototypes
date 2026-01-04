@@ -1,4 +1,3 @@
-using MessagePack;
 using System;
 using System.Collections.Generic;
 
@@ -38,7 +37,6 @@ namespace Genrpg.Shared.Accounts.PlayerData
         public string TokenHash { get; set; }
         public string TokenSalt { get; set; }
         public string DeviceId { get; set; }
-        public DateTime TokenExpiry { get; set; }
     }
 
     public class ProductRecord

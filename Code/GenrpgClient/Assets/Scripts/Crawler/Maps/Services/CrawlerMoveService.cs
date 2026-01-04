@@ -91,7 +91,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         private CancellationToken _token;
 
-        const float _movesPerSecond = 5.0f;
+        const float _movesPerSecond = 4.5f;
+        const float _turnsPerSecond = 6.0f;
 
         private PartyData _party = null;
         private CrawlerWorld _world = null;
@@ -118,8 +119,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 new MovementKeyCode(Key.W, MovementKeyNames.Forward, 0, 1, 0),
                 new MovementKeyCode(Key.UpArrow, MovementKeyNames.Forward, 0, 1, 0),
 
-                new MovementKeyCode(Key.S, MovementKeyNames.Backward, 0, -1, 0),
-                new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,0, -1, 0),
+                new MovementKeyCode(Key.S, MovementKeyNames.Backward, 2, 0, 0),
+                new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,2, 0, 0),
 
                 new MovementKeyCode(Key.A, MovementKeyNames.TurnLeft, -1, 0, 0),
                 new MovementKeyCode(Key.LeftArrow, MovementKeyNames.TurnLeft, -1, 0, 0),
@@ -377,7 +378,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             float endRot = _party.CurrPos.Rot + delta * 90;
 
             float deltaRot = endRot - startRot;
-            int moveFrames = (int)(_appService.TargetFrameRate / _movesPerSecond);
+            int moveFrames = (int)(_appService.TargetFrameRate / _turnsPerSecond);
             int frames = moveFrames * 1;
 
             if (fastRotate)

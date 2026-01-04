@@ -1,11 +1,4 @@
 using Genrpg.Shared.Interfaces;
-using Assets.Scripts.UI.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.UI.MainMenu
 {
@@ -21,7 +14,6 @@ namespace Assets.Scripts.UI.MainMenu
 
         private int _slot = 0;
         private string _saveName;
-        private DateTime _updateTime = DateTime.MinValue;
 
         private LoadSaveScreen _screen;
 
@@ -33,14 +25,13 @@ namespace Assets.Scripts.UI.MainMenu
             if (data != null)
             {
                 _saveName = data.Name;
-                _updateTime = data.UpdateTime;
             }
 
             _uiService.SetText(Slot, _slot.ToString() + ".");
 
             _uiService.SetText(Name, !string.IsNullOrEmpty(_saveName) ? _saveName : " -- ");
 
-            _uiService.SetText(UpdateTime, _updateTime > DateTime.MinValue ? _updateTime.ToString() : " -- ");
+            _uiService.SetText(UpdateTime, "");
 
             _uiService.SetButton(Button, _screen.GetName(), OnClickButton);
 

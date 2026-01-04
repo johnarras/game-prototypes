@@ -8,6 +8,6 @@
   "Art": "Ox",
   "Speed": 3,
   "Capacity": 5,
-  "Supplies": 4,
-  "Cost": 356000
+  "Upkeep": 4,
+  "Price": 356000
 }

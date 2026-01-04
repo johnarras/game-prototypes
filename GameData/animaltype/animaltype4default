@@ -8,6 +8,6 @@
   "Art": "RidingHorse",
   "Speed": 6,
   "Capacity": 1,
-  "Supplies": 2,
-  "Cost": 58250
+  "Upkeep": 2,
+  "Price": 58250
 }

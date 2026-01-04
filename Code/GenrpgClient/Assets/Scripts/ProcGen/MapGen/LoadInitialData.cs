@@ -1,7 +1,6 @@
-using System.Threading;
 using Genrpg.Shared.Players.Messages;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Units.Entities;
+using System.Threading;
 using UnityEngine;
 
 
@@ -57,8 +56,8 @@ public class LoadInitialData : BaseZoneGenerator
         }
         _networkService.SendMapMessage(new AddPlayer()
         {
-            UserId = _gs.acct.Id,
-            SessionId = _gs.acct.SessionId,
+            GameUserId = _gs.GameUserId,
+            SessionId = _gs.SessionId,
             CharacterId = _gs.ch.Id,
         });
 
@@ -68,8 +67,8 @@ public class LoadInitialData : BaseZoneGenerator
             controller.StartUpdates();
         }
 
-        _logService.Debug("LOADINTOMAP START " + _gs.acct.SessionId);
-        
+        _logService.Debug("LOADINTOMAP START " + _gs.GameUserId);
+
     }
 
 

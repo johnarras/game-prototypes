@@ -8,7 +8,7 @@ namespace Genrpg.RequestServer.Trader.Roads.RequestHandlers
 {
     public class EnterRoadRequestHandler : BaseClientUserRequestHandler<EnterRoadRequest>
     {
-        protected ICaravanPositionService _positionService = null;
+        protected IServerCaravanService _positionService = null;
         protected override async Task InnerHandleMessage(WebContext context, EnterRoadRequest request, CancellationToken token)
         {
             EnterRoadArgs args = new EnterRoadArgs()

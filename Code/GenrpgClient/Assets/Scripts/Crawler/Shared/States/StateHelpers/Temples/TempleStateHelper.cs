@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
                 stateData.Actions.Add(new CrawlerStateAction(_textService.HighlightText(result.Message, color)));
             }
 
-            stateData.AddText("Party Gold: " + party.Currencies.Get(CrawlerCurrencyTypes.Gold));
+            stateData.AddText("Party Gold: " + party.Currencies[CrawlerCurrencyTypes.Gold]);
 
             foreach (PartyMember member in party.ActiveParty)
             {

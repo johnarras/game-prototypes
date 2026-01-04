@@ -1,6 +1,6 @@
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -33,7 +33,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
     }
 
 
-    public class MongoRepositoryCollection<T> : INoSQLCollection where T : class, IStringId
+    public class MongoRepositoryCollection<T> : INoSQLCollection where T : class, ISearchableItem
     {
         protected IMongoCollection<T> _collection = null;
         protected ILogService _logService = null;

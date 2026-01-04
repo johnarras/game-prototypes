@@ -2,7 +2,6 @@ using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.RewardHelpers.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Trader.Stats.Constants;
 using Genrpg.Shared.Trader.Stats.PlayerData;
 
 namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
@@ -23,13 +22,10 @@ namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
         {
             TraderStatData statData = await context.GetAsync<TraderStatData>();
 
-            statData.Stats.Get(entityId).RaiseBaseToValue(quantity);
-
-            if (entityId == TraderStats.Foraging)
+            if (statData.Stats[entityId].Base < quantity)
             {
-                context.user.Foraging = statData.Stats.Get(entityId).Max();
+                statData.Stats[entityId].Base = quantity;
             }
-
         }
     }
 }

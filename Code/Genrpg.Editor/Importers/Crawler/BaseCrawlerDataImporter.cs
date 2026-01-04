@@ -113,6 +113,18 @@ namespace Genrpg.Editor.Importers.Crawler
                     gs.LookedAtObjects.Add(role);
                 }
             }
+            foreach (CrawlerSpell spell in newSpells)
+            {
+                spell.RolesKnowingThis = new List<RoleKnown>();
+
+                List<Role> rolesKnowingThis = roles.Where(x => x.BinaryBonuses.Any(y => y.EntityTypeId == EntityTypes.CrawlerSpell && y.EntityId == spell.IdKey)).ToList();
+
+                foreach (Role role in rolesKnowingThis)
+                {
+                    spell.RolesKnowingThis.Add(new RoleKnown() { RoleId = role.IdKey });
+                }
+            }
+
 
             UnitTypeSettings unitTypeSettings = gs.data.Get<UnitTypeSettings>(null);
 

@@ -543,6 +543,10 @@
     {
       "IdKey": 136,
       "Name": "TravelRewardSettings"
+    },
+    {
+      "IdKey": 137,
+      "Name": "CampingSettings"
     }
   ],
   "Parent": {

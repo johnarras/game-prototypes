@@ -9,13 +9,13 @@
       "IdKey": 2,
       "Name": "Treasure",
       "Icon": "Treasure",
-      "Weight": 0.1
+      "Weight": 0.01
     },
     {
       "IdKey": 3,
       "Name": "Monsters",
       "Icon": "Monsters",
-      "Weight": 0.4,
+      "Weight": 0.9,
       "CanRepeat": true
     },
     {
@@ -23,7 +23,7 @@
       "Name": "Trap",
       "Icon": "Trap",
       "Art": "",
-      "Weight": 0.3,
+      "Weight": 0.08,
       "CanRepeat": true,
       "CanBeCleansed": true
     },
@@ -32,7 +32,7 @@
       "Name": "Stats",
       "Desc": "",
       "Icon": "Stats",
-      "Weight": 0.2
+      "Weight": 0.01
     },
     {
       "IdKey": 6,
@@ -45,9 +45,9 @@
   ],
   "Parent": {
     "Id": "default",
-    "EncounterChance": 0.08,
+    "EncounterChance": 0.3,
     "Name": "MapEncounterSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-11-01T21:17:05.928Z"
+  "SaveTime": "2026-01-01T20:37:52.265Z"
 }

@@ -8,6 +8,6 @@
   "Art": "HeavyWarhorse",
   "Speed": 5,
   "Capacity": 2,
-  "Supplies": 4,
-  "Cost": 78250
+  "Upkeep": 4,
+  "Price": 78250
 }

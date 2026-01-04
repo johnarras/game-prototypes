@@ -2,6 +2,7 @@ using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Indexes;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using System.Collections.Generic;
 using System.Threading;
@@ -16,8 +17,8 @@ namespace Genrpg.Shared.Units.Loaders
     /// <typeparam name="TChild">Child type object (think Items)</typeparam>
     /// <typeparam name="TDto">Type used to send the parent data to the client (since the Parent has no public list.</typeparam>
     public abstract class OwnerDataLoader<TParent, TChild> : UnitDataLoader<TParent>
-        where TParent : OwnerObjectList<TChild>, new()
-        where TChild : OwnerPlayerData, IChildUnitData
+        where TParent : OwnerObjectList<TChild>, ISearchableItem, new()
+        where TChild : OwnerPlayerData, ISearchableItem, IChildUnitData
     {
 
         public override List<CreateIndexData> GetIndexes()

@@ -71,7 +71,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                 }
                 else
                 {
-                    List<Account> existingAccounts = await _repoService.Search<Account>(x => true);
+                    List<Account> existingAccounts = await _repoService.Search<Account>(x => true, 10);
 
                     if (existingAccounts.Count > 0)
                     {

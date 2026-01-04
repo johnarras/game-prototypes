@@ -1,9 +1,13 @@
+using Assets.Scripts.Awaitables;
 using Genrpg.Shared.Utils;
 using System;
 using UnityEngine;
 
 public class ProgressBar : BaseBehaviour
 {
+
+    private IAwaitableService _awaitableService = null;
+
     public enum ShowTextOption
     {
         Hide = 0,
@@ -75,8 +79,8 @@ public class ProgressBar : BaseBehaviour
         _currValue = currValue;
         _targetValue = currValue;
         _oldValue = Math.Min(-1, _currValue - 1);
+        _didShowAfterInit = false;
         ShowBar();
-
     }
 
     /// <summary>
@@ -107,7 +111,7 @@ public class ProgressBar : BaseBehaviour
     }
 
     private double _currPct = -1;
-    private bool _didInit = false;
+    private bool _didShowAfterInit = false;
     private void ShowOneBar(RectTransform rect, long value)
     {
         if (rect == null || BGRect == null)
@@ -124,12 +128,12 @@ public class ProgressBar : BaseBehaviour
 
         currPct = MathUtils.Clamp(0, currPct, 1);
 
-        if (_currPct == currPct && _didInit)
+        if (_currPct == currPct && _didShowAfterInit)
         {
             return;
         }
         _currPct = currPct;
-        _didInit = true;
+        _didShowAfterInit = true;
         if (currPct <= 0 && rect.gameObject.activeSelf)
         {
             _clientEntityService.SetActive(rect.gameObject, false);
@@ -141,6 +145,10 @@ public class ProgressBar : BaseBehaviour
         if (MaxBarWidth <= MinBarWidth)
         {
             MaxBarWidth = BGRect.rect.width;
+            if (MaxBarWidth == 0)
+            {
+                _awaitableService.ForgetAwaitable(WaitForBarToResize());
+            }
         }
         if (currPct >= 0)
         {
@@ -150,6 +158,16 @@ public class ProgressBar : BaseBehaviour
 
             rect.sizeDelta = new UnityEngine.Vector2(barWidth, rect.sizeDelta.y);
         }
+    }
+
+    private async Awaitable WaitForBarToResize()
+    {
+        while (BGRect.rect.width == 0)
+        {
+            await Awaitable.NextFrameAsync(GetToken());
+        }
+        _didShowAfterInit = false;
+        ShowBar();
     }
 
     private void ShowText()

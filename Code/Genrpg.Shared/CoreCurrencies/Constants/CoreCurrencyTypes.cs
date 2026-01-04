@@ -6,7 +6,7 @@ namespace Genrpg.Shared.CoreCurrencies.Constants
         public const long Coins = 1;
         public const long Supplies = 2;
         public const long Mana = 3;
-        public const long Food = 4;
+        public const long Rations = 4;
     }
 }
 

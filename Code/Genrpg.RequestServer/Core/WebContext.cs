@@ -1,11 +1,11 @@
 using CommunityToolkit.HighPerformance.Buffers;
+using Genrpg.RequestServer.Core.Services;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
-using Genrpg.ServerShared.DataStores;
-using Genrpg.ServerShared.DataStores.CosmosNoSQL;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
@@ -19,17 +19,22 @@ namespace Genrpg.RequestServer.Core
 
     public class WebContext : ServerGameState, IDisposable
     {
-        public GameAccount acct { get; set; }
 
-        public CoreUserData user { get; set; }
+
+        public string GameUserId => _gameUserId;
+        private string _gameUserId { get; set; }
+
+        public CoreData core { get; set; }
 
         public MyRandom rand { get; set; } = new MyRandom();
 
         protected WebResponseList Responses { get; set; } = new WebResponseList();
 
-        protected IFullRepositoryService _repoService = null;
+        protected IRepositoryService _repoService = null;
 
         protected IBinarySerializer _binarySerializer = null;
+
+        protected IPartitionedDataSaveService _partitionedSaveService = null;
 
         public WebContext(IServerConfig config) : base(config)
         {
@@ -51,11 +56,6 @@ namespace Genrpg.RequestServer.Core
             return Responses.GetResponses();
         }
 
-        public IFullRepositoryService GetRepositoryService()
-        {
-            return _repoService;
-        }
-
         public void ClearResponses()
         {
             Responses.Clear();
@@ -66,22 +66,16 @@ namespace Genrpg.RequestServer.Core
             Responses.AddRange(responses);
         }
 
-        public WebContext(IServerConfig config, IServiceLocator locIn, IFullRepositoryService repoService, IBinarySerializer binarySerializer) : base(config)
+        public WebContext(IServerConfig config, IServiceLocator locIn, IRepositoryService repoService, IBinarySerializer binarySerializer,
+            IPartitionedDataSaveService partitionedSaveService) : base(config)
         {
             _loc = locIn;
             rand = new MyRandom();
             _repoService = repoService;
             _binarySerializer = binarySerializer;
+            _partitionedSaveService = partitionedSaveService;
         }
 
-        public async Task<GameAccount> LoadUser(string userId)
-        {
-            if (acct == null)
-            {
-                acct = await _repoService.Load<GameAccount>(userId);
-            }
-            return acct;
-        }
 
         protected class UnitDataSnapShotMustDispose : IDisposable
         {
@@ -115,6 +109,12 @@ namespace Genrpg.RequestServer.Core
 
         public List<IUnitData> AllData() { return _unitData.Values.Select(x => x.UnitData).ToList(); }
 
+        public void SetAccount(GameAccount acct)
+        {
+            _gameUserId = acct.GameUserId;
+            Set(acct);
+        }
+
         public void Set(IUnitData doc)
         {
             string id = doc.Id;
@@ -142,22 +142,12 @@ namespace Genrpg.RequestServer.Core
             }
         }
 
-        public async Task<T> GetAsync<T>(string id = null) where T : class, IUnitData, new()
+        public async Task<T> GetAsync<T>() where T : class, IUnitData, new()
         {
-            if (string.IsNullOrEmpty(id))
+
+            if (string.IsNullOrEmpty(_gameUserId))
             {
-                if (typeof(IUserData).IsAssignableFrom(typeof(T)))
-                {
-                    id = acct.Id;
-                }
-                else if (!string.IsNullOrEmpty(acct.CurrCharId))
-                {
-                    id = acct.CurrCharId;
-                }
-                else
-                {
-                    return default;
-                }
+                throw new Exception("GameAccount was not set!");
             }
 
             if (_unitData.TryGetValue(typeof(T), out UnitDataSnapShotMustDispose snapshot))
@@ -165,13 +155,14 @@ namespace Genrpg.RequestServer.Core
                 return (T)snapshot.UnitData;
             }
 
-            T item = await _repoService.Load<T>(id);
+            T item = await _repoService.Load<T>(_gameUserId);
 
             if (item == null)
             {
-                item = new T() { Id = id };
+                item = new T() { Id = _gameUserId };
             }
             Set(item);
+
             return item;
         }
 
@@ -189,6 +180,10 @@ namespace Genrpg.RequestServer.Core
         /// <returns></returns>
         public async Task SaveAllOneTime()
         {
+            if (_didSave)
+            {
+                return;
+            }
 
             List<Task> saveTasks = new List<Task>();
 
@@ -201,16 +196,16 @@ namespace Genrpg.RequestServer.Core
             {
                 _binarySerializer.BinarySerialize(snapshot.UnitData, tempBufferMustDispose);
 
-                if (!MemoryExtensions.SequenceEqual(snapshot.WrittenSpan, tempBufferMustDispose.WrittenSpan))
+                if (snapshot.UnitData is IUniquePersonalUserData pd)
                 {
-                    if (snapshot.UnitData is IUniquePersonalUserData pd)
+                    if (string.IsNullOrEmpty(pd._etag) || !MemoryExtensions.SequenceEqual(snapshot.WrittenSpan, tempBufferMustDispose.WrittenSpan))
                     {
                         partitionedData.Add(pd);
                     }
-                    else
-                    {
-                        saveTasks.Add(_repoService.Save(snapshot.UnitData));
-                    }
+                }
+                else if (!MemoryExtensions.SequenceEqual(snapshot.WrittenSpan, tempBufferMustDispose.WrittenSpan))
+                {
+                    saveTasks.Add(_repoService.Save(snapshot.UnitData));
                 }
 
                 snapshot.Dispose();
@@ -219,7 +214,7 @@ namespace Genrpg.RequestServer.Core
             // Now dispose all. Cannot call this again.
             tempBufferMustDispose.Dispose();
 
-            AddCosmosSaveTask(saveTasks, partitionedData);
+            saveTasks.Add(_partitionedSaveService.SavePartitionedList(partitionedData, _repoService));
 
             await Task.WhenAll(saveTasks);
 
@@ -239,19 +234,6 @@ namespace Genrpg.RequestServer.Core
             }
         }
 
-        protected void AddCosmosSaveTask(List<Task> saveTasks, List<IUniquePersonalUserData> coreData)
-        {
-            if (coreData.Count < 1)
-            {
-                return;
-            }
-
-            FullRepositoryService fullService = _repoService as FullRepositoryService;
-
-            CosmosNoSQLRepository cosmosRepo = fullService.FindRepo(coreData[0].GetType()) as CosmosNoSQLRepository;
-
-            saveTasks.Add(cosmosRepo.TransactionSave(coreData));
-        }
     }
 }
 

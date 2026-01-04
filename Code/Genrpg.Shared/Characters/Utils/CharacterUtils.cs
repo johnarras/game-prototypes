@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Characters.Utils
             to.Version = from.Version;
             to.UserId = from.UserId;
             to.CreationDate = from.CreationDate;
-            to.UpdateTime = from.UpdateTime;
+            to._etag = from._etag;
             to.Level = from.Level;
             to.ZoneId = from.ZoneId;
             to.EntityId = from.EntityId;

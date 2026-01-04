@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.UI.Currencies
             {
                 CrawlerCurrencyIcon icon = _clientEntityService.FullInstantiate(IconPrefab);
                 _clientEntityService.AddToParent(icon, IconAnchor);
-                icon.SetEntityData(EntityTypes.CrawlerCurrency, ctype.IdKey, party.Currencies.Get(ctype.IdKey), 0);
+                icon.SetEntityData(EntityTypes.CrawlerCurrency, ctype.IdKey, party.Currencies[ctype.IdKey], 0);
             }
         }
     }

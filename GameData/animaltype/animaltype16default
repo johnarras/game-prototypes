@@ -1,0 +1,13 @@
+{
+  "Id": "animaltype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Dragon",
+  "Desc": "Powerful",
+  "Icon": "Dragon",
+  "Art": "Dragon",
+  "Speed": 8,
+  "Capacity": 8,
+  "Upkeep": 3,
+  "Price": 3181457250
+}

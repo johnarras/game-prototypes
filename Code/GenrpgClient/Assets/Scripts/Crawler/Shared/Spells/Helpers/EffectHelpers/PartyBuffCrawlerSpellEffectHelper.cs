@@ -22,7 +22,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             double tier = _roleService.GetRoleScalingLevel(party, caster, RoleScalingTypes.Utility);
 
-            party.Buffs.Set(fullEffect.Effect.EntityId, _buffService.GetPartyBuffPower(party, fullEffect.Effect.EntityId)); ;
+            party.Buffs[fullEffect.Effect.EntityId] = _buffService.GetPartyBuffPower(party, fullEffect.Effect.EntityId);
             _dispatcher.Dispatch(new UpdateCrawlerUI());
             _dispatcher.Dispatch(new ShowPartyMinimap() { Party = party });
 

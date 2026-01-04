@@ -8,6 +8,6 @@
   "Art": "Yak",
   "Speed": 5,
   "Capacity": 3,
-  "Supplies": 3,
-  "Cost": 1406250
+  "Upkeep": 3,
+  "Price": 1406250
 }

@@ -71,9 +71,9 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
                     traversalScale = zoneType.TraveralTimeScale;
                 }
 
-                if (timeSettings.LevitateSpeedup > 1 && party.Buffs.Get(PartyBuffs.Levitate) > 0)
+                if (timeSettings.LevitateSpeedup > 1 && party.Buffs[PartyBuffs.Levitate] > 0)
                 {
-                    traversalScale /= (timeSettings.LevitateSpeedup * party.Buffs.Get(PartyBuffs.Levitate));
+                    traversalScale /= (timeSettings.LevitateSpeedup * party.Buffs[PartyBuffs.Levitate]);
                 }
                 long overloadedInventoryCount = Math.Max(0, party.Inventory.Count - _lootService.GetPartyInventorySize(party));
 

@@ -1,9 +1,0 @@
-{
-  "Id": "playmult5default",
-  "ParentId": "default",
-  "IdKey": 5,
-  "Name": "",
-  "Mult": 20,
-  "MinLevel": 8,
-  "BonusDistancePerDie": 4
-}

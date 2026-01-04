@@ -5,11 +5,11 @@ using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.Accounts.Services;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Crypto.Services;
-using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.PlayerData;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Interfaces;
@@ -24,7 +24,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         protected IPlayerDataService _playerDataService = null!;
         protected ILoginPlayerDataService _loginPlayerDataService = null!;
         protected ILogService _logService = null!;
-        protected IFullRepositoryService _repoService = null!;
+        protected ISearchRepositoryService _repoService = null!;
         protected IWebServerService _loginServerService = null!;
         protected IServerGameDataService _gameDataService = null!;
         protected ICloudCommsService _cloudCommsService = null!;
@@ -72,22 +72,17 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
             AuthRecord authRecord = account.AuthRecords.FirstOrDefault(x => x.DeviceId == request.DeviceId);
 
             string clientLoginToken = null;
-            if (authRecord == null || authRecord.TokenExpiry < DateTime.UtcNow || authResponse == EAuthResponse.UsedPassword)
+            if (authRecord == null)
             {
-                if (authRecord == null)
+                authRecord = new AuthRecord()
                 {
-                    authRecord = new AuthRecord()
-                    {
-                        DeviceId = request.DeviceId,
-                    };
-                    account.AuthRecords.Add(authRecord);
-                }
-                clientLoginToken = _cryptoService.GetRandomBytes();
-                authRecord.TokenSalt = _cryptoService.GetRandomBytes();
-                authRecord.TokenHash = _cryptoService.GetPasswordHash(authRecord.TokenSalt, clientLoginToken);
-                authRecord.TokenExpiry = DateTime.UtcNow.AddDays(7);
+                    DeviceId = request.DeviceId,
+                };
+                account.AuthRecords.Add(authRecord);
             }
-
+            clientLoginToken = _cryptoService.GetRandomBytes();
+            authRecord.TokenSalt = _cryptoService.GetRandomBytes();
+            authRecord.TokenHash = _cryptoService.GetPasswordHash(authRecord.TokenSalt, clientLoginToken);
 
             List<Task> allTasks = new List<Task>();
             allTasks.Add(_repoService.Save(sessionData));
@@ -100,6 +95,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                 AccountId = account.Id,
                 LoginToken = clientLoginToken,
                 SessionId = sessionData.SessionId,
+                GameUserId = account.Id, // This can be different.
             };
 
             _accountService.AddAccountToProductGraph(account, request.ProductId, request.ReferrerId);

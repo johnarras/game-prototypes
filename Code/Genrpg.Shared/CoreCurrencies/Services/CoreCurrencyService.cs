@@ -8,8 +8,8 @@ namespace Genrpg.Shared.CoreCurrencies.Services
 {
     public interface ICoreCurrencyService : IInjectable
     {
-        long GetStorage(long coreCurrencyId, CoreUserData userData, TraderStatData statData);
-        long GetRegen(long coreCurrencyId, CoreUserData userData, TraderStatData statData);
+        long GetStorage(long coreCurrencyId, CoreData coreData, TraderStatData statData);
+        long GetRegen(long coreCurrencyId, CoreData coreData, TraderStatData statData);
     }
 
     public class CoreCurrencyService : ICoreCurrencyService
@@ -17,24 +17,24 @@ namespace Genrpg.Shared.CoreCurrencies.Services
         private IGameData _gameData = null;
 
 
-        public long GetRegen(long coreCurrencyId, CoreUserData userData, TraderStatData statData)
+        public long GetRegen(long coreCurrencyId, CoreData coreData, TraderStatData statData)
         {
-            CoreCurrencyType ctype = _gameData.Get<CoreCurrencyTypeSettings>(userData).Get(coreCurrencyId);
+            CoreCurrencyType ctype = _gameData.Get<CoreCurrencyTypeSettings>(coreData).Get(coreCurrencyId);
 
             if (ctype != null)
             {
-                return statData.Stats.Get(ctype.RegenTraderStatId).Max();
+                return statData.Stats[ctype.RegenTraderStatId].Max();
             }
             return 0;
         }
 
-        public long GetStorage(long coreCurrencyId, CoreUserData userData, TraderStatData statData)
+        public long GetStorage(long coreCurrencyId, CoreData coreData, TraderStatData statData)
         {
-            CoreCurrencyType ctype = _gameData.Get<CoreCurrencyTypeSettings>(userData).Get(coreCurrencyId);
+            CoreCurrencyType ctype = _gameData.Get<CoreCurrencyTypeSettings>(coreData).Get(coreCurrencyId);
 
             if (ctype != null)
             {
-                return statData.Stats.Get(ctype.StorageTraderStatId).Max();
+                return statData.Stats[ctype.StorageTraderStatId].Max();
             }
             return 0;
         }

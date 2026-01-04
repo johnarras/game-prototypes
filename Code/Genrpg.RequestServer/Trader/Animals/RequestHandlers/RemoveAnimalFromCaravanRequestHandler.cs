@@ -15,12 +15,12 @@ namespace Genrpg.RequestServer.Trader.Animals.RequestHandlers
         protected override async Task InnerHandleMessage(WebContext context, RemoveAnimalFromCaravanRequest request, CancellationToken token)
         {
 
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
             CaravanData caravanData = await context.GetAsync<CaravanData>();
             HoldingsData holdingsData = await context.GetAsync<HoldingsData>();
             TraderStatData statData = await context.GetAsync<TraderStatData>();
 
-            context.AddResponse(_caravanService.RemoveAnimalFromCaravan(userData, caravanData, statData, request.AnimalTypeId));
+            context.AddResponse(_caravanService.RemoveAnimalFromCaravan(coreData, caravanData, statData, request.AnimalTypeId));
 
         }
     }

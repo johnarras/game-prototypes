@@ -35,7 +35,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
             await Task.CompletedTask;
         }
 
-        public virtual async Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing)
+        public virtual async Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing)
         {
 
             Task<List<TParent>> loadParentsTask = repoSystem.Search<TParent>(x => true);

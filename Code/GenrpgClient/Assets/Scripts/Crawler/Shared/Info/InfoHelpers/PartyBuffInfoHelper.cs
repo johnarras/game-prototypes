@@ -31,7 +31,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             if (buff != null)
             {
-                lines.Add($"\nCurrent Power: {party.Buffs.Get(entityId).ToString("F2")}");
+                lines.Add($"\nCurrent Power: {party.Buffs[entityId].ToString("F2")}");
                 lines.Add($"Power scales with the Sqrt of the party's max level.");
                 lines.Add($"This is independent of role scaling to avoid forcing");
                 lines.Add("Players to specialize to max their buffs.");

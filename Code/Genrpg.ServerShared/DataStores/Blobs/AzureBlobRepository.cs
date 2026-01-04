@@ -11,9 +11,7 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -209,20 +207,6 @@ namespace Genrpg.ServerShared.DataStores.Blobs
             return obj;
         }
 
-        /// <summary>
-        /// This violates the LSP, but given the tradeoffs of having to do a lot of fiddly stuff 
-        /// it exists for now.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="func"></param>
-        /// <param name="quantity"></param>
-        /// <param name="skip"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity, int skip) where T : class, IStringId
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }

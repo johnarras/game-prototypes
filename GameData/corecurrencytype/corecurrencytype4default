@@ -2,12 +2,12 @@
   "Id": "corecurrencytype4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Food",
+  "Name": "Rations",
   "PluralName": "",
   "Desc": "",
   "AtlasPrefix": "",
-  "Icon": "Food",
-  "Art": "Food",
+  "Icon": "Rations",
+  "Art": "Rations",
   "RegenTraderStatId": 13,
   "StorageTraderStatId": 14
 }

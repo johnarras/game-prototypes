@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Units.Loaders
     public class UnitDataLoader<TServer> : IUnitDataLoader where TServer : class, ITopLevelUnitData, new()
     {
 
-        protected IRepositoryService _repoService = null;
+        protected ISearchRepositoryService _repoService = null;
 
         [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
         public bool IsUserData() { return typeof(IUserData).IsAssignableFrom(typeof(TServer)); }

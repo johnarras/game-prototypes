@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Trader.Animals.RewardHelpers
         public async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
         {
 
-            _animalService.AddAnimalToHoldings(context.user, await context.GetAsync<HoldingsData>(), entityId);
+            _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), entityId);
         }
     }
 }

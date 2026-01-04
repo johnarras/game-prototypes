@@ -9,7 +9,7 @@ namespace Genrpg.Shared.Utils.Data
     /// </summary>
     public class SmallIdShortCollection : BaseSmallIdQuantityCollection<short>
     {
-        public override short[] Data { get; set; } = new short[4];
+        [Key(0)] public short[] Data { get => _data; set => _data = value; }
         protected override short InternalAdd(short first, short second)
         {
             return (short)(first + second);

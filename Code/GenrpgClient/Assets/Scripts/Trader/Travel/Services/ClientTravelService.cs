@@ -2,6 +2,8 @@
 using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.Trader.ClientEvents;
+using Assets.Scripts.Trader.HUD.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
@@ -14,6 +16,8 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Caravans.Entities;
+using Genrpg.Shared.Trader.Caravans.Services;
+using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Roads.Settings;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Trader.Travel.Services;
@@ -45,6 +49,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IRewardService _rewardService = null;
         private IClientRandom _rand = null;
         private ILogService _logService = null;
+        private ICaravanService _caravanService = null;
 
         private CancellationToken _token;
 
@@ -61,8 +66,8 @@ namespace Assets.Scripts.Trader.Travel.Services
             {
                 return;
             }
-            CoreUserData userData = _gs.ch.Get<CoreUserData>();
-            CaravanPosition pos = userData.GetPosition();
+            CoreData coreData = _gs.ch.Get<CoreData>();
+            CaravanPosition pos = _caravanService.GetPosition(coreData);
 
             if (pos.CityId > 0)
             {
@@ -74,7 +79,7 @@ namespace Assets.Scripts.Trader.Travel.Services
             {
                 Road road = _gameData.Get<RoadSettings>(_gs.ch).Get(pos.RoadId);
 
-                if (userData.Dist >= road.Distance)
+                if (coreData.Vars[TraderVars.DistanceAlongRoad] >= road.Distance)
                 {
                     TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.TargetCityId, CanEnterCity = true };
 
@@ -106,31 +111,37 @@ namespace Assets.Scripts.Trader.Travel.Services
         {
             try
             {
-                CoreUserData userData = _gs.ch.Get<CoreUserData>();
+                CoreData coreData = _gs.ch.Get<CoreData>();
                 if (response.TotalCost > 0)
                 {
-                    _rewardService.GiveReward(_rand, _gs.ch, EntityTypes.CoreCurrency, CoreCurrencyTypes.Food, -response.TotalCost, null, new RewardParams());
-                    _dispatcher.Dispatch(new ReplaceEntityModel() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = CoreCurrencyTypes.Food });
+                    _rewardService.GiveReward(_rand, _gs.ch, EntityTypes.CoreCurrency, CoreCurrencyTypes.Rations, -response.TotalCost, null, new RewardParams());
+                    _dispatcher.Dispatch(new ReplaceEntityModel() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = CoreCurrencyTypes.Rations });
                 }
 
+                RewardParams rp = new RewardParams();
                 for (int d = 0; d < response.Days.Count; d++)
                 {
                     TravelDay td = response.Days[d];
+                    _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = td.RolledDistances, BonusDistance = td.BonusDistance, TotalDistance = td.TotalDistance });
                     for (int r = 0; r < td.TravelRewards.Count; r++)
                     {
                         Reward rew = td.TravelRewards[r];
                         for (int q = 0; q < rew.Quantity; q++)
                         {
                             _dispatcher.Dispatch(new ShowDooberEvent() { EntityTypeId = rew.EntityTypeId, EntityId = rew.EntityId, Quantity = 1, StartsInUI = true });
-                            await Awaitable.NextFrameAsync(token);
+                            await Awaitable.WaitForSecondsAsync(0.1f, token);
                         }
-                        _rewardService.GiveReward(_rand, _gs.ch, rew, new RewardParams());
+                        _rewardService.GiveReward(_rand, _gs.ch, rew, rp);
                     }
+
+                    coreData.Vars[TraderVars.DaysPlayed] = td.Day;
+                    coreData.Vars[TraderVars.DistanceAlongRoad] = td.EndDistance;
+                    _dispatcher.Dispatch(new UpdateTraderStatusUI());
+                    await Awaitable.WaitForSecondsAsync(1.0f, token);
                 }
 
-                userData.Dist = response.DistanceAlongRoad;
-                userData.Day = response.EndDay;
-                _logService.Info("NewDist: " + userData.Dist + " Left: " + response.DistanceLeft + " Went: " + response.TotalDistanceTravelled);
+                coreData.Vars[TraderVars.DistanceAlongRoad] = response.DistanceAlongRoad;
+                coreData.Vars[TraderVars.DaysPlayed] = response.EndDay;
 
                 foreach (string msg in response.Messages)
                 {

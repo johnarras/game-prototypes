@@ -1,3 +1,4 @@
+using Assets.Scripts.PlayerSearch;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
@@ -5,7 +6,7 @@ using Genrpg.Shared.DataStores.DataGroups;
 using System;
 using System.Threading;
 
-namespace Assets.Scripts.PlayerSearch
+namespace Assets.Scripts.PlayerSearches
 {
     public class PlayerSearchService : IPlayerSearchService
     {
@@ -26,11 +27,9 @@ namespace Assets.Scripts.PlayerSearch
             PlayerSearch(userId, handler, EDataCategories.Players, token);
         }
 
-
         void PlayerSearch<T>(string Id, Action<T> handler, EDataCategories category, CancellationToken token) where T : class
         {
             _downloadService.DownloadTypedFile<T>(Id, handler, category, token);
-
         }
     }
 }

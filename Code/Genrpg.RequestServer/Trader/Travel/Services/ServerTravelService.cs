@@ -8,6 +8,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
+using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Roads.Settings;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Trader.Travel.Settings;
@@ -31,9 +32,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
         {
             TravelResponse response = new TravelResponse();
 
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
 
-            CaravanPosition position = userData.GetPosition();
+            CaravanPosition position = _caravanService.GetPosition(coreData);
 
             if (position.CityId > 0)
             {
@@ -41,7 +42,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 return response;
             }
 
-            Road road = _gameData.Get<RoadSettings>(context.user).Get(position.RoadId);
+            Road road = _gameData.Get<RoadSettings>(context.core).Get(position.RoadId);
 
             if (road == null)
             {
@@ -49,17 +50,17 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 return response;
             }
 
-            if (userData.Dist >= road.Distance)
+            if (coreData.Vars[TraderVars.DistanceAlongRoad] >= road.Distance)
             {
                 response.ErrorMessage = "You are at the next city!";
                 return response;
             }
 
-            CaravanTravelInfo travelInfo = _caravanService.GetTravelInfo(userData);
+            CaravanTravelInfo travelInfo = _caravanService.GetTravelInfo(coreData);
 
             TravelStatus status = new TravelStatus()
             {
-                CurrentDistanceAlongRoad = userData.Dist,
+                CurrentDistanceAlongRoad = coreData.Vars[TraderVars.DistanceAlongRoad],
                 RoadDistance = road.Distance,
                 TotalDistanceTravelled = 0,
                 TravelInfo = travelInfo,
@@ -69,9 +70,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             };
 
 
-            if (!args.IsFree && travelInfo.TotalCost > userData.Currencies.Get(CoreCurrencyTypes.Food))
+            if (!args.IsFree && travelInfo.TotalCost > coreData.Currencies[CoreCurrencyTypes.Rations])
             {
-                response.ErrorMessage = "You don't have enough food to travel this far!";
+                response.ErrorMessage = "You don't have enough rations to travel this far!";
                 return response;
             }
             for (int d = 0; d < travelInfo.Days; d++)
@@ -89,15 +90,15 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 await _rewardService.GiveRewardsAsync(context, tday.TravelRewards, rp);
             }
 
-            userData.Day += status.TravelDays;
-            userData.Dist = status.CurrentDistanceAlongRoad;
+            coreData.Vars.Add(TraderVars.DaysPlayed, status.TravelDays);
+            coreData.Vars[TraderVars.DistanceAlongRoad] = status.CurrentDistanceAlongRoad;
             response.RoadId = road.IdKey;
             response.TargetCityId = position.TargetCityId;
             response.TotalCost = travelInfo.TotalCost;
             response.TotalDistanceTravelled = status.TotalDistanceTravelled;
             response.DistanceAlongRoad = status.CurrentDistanceAlongRoad;
             response.DistanceLeft = status.RoadDistance - status.CurrentDistanceAlongRoad;
-            response.EndDay = userData.Day;
+            response.EndDay = coreData.Vars[TraderVars.DaysPlayed];
 
             return response;
         }
@@ -112,16 +113,16 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 return false;
             }
 
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
 
             if (!status.IsFree)
             {
-                if (userData.Currencies.Get(CoreCurrencyTypes.Food) < status.TravelInfo.CostPerDay)
+                if (coreData.Currencies[CoreCurrencyTypes.Rations] < status.TravelInfo.CostPerDay)
                 {
-                    status.Response.Messages.Add("You ran out of food.");
+                    status.Response.Messages.Add("You ran out of rations.");
                     return false;
                 }
-                userData.Currencies.Add(CoreCurrencyTypes.Food, -status.TravelInfo.CostPerDay);
+                coreData.Currencies.Add(CoreCurrencyTypes.Rations, -status.TravelInfo.CostPerDay);
             }
 
             TravelDay day = new TravelDay();
@@ -145,10 +146,11 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             day.TotalDistance = distanceToday;
             day.EndDistance = endDistance;
             status.TravelDays++;
+            day.Day = coreData.Vars[TraderVars.DaysPlayed] + status.TravelDays;
             status.TotalDistanceTravelled += distanceToday;
             status.CurrentDistanceAlongRoad = endDistance;
 
-            TravelRewardSettings rewardSettings = _gameData.Get<TravelRewardSettings>(context.user);
+            TravelRewardSettings rewardSettings = _gameData.Get<TravelRewardSettings>(context.core);
 
             IReadOnlyList<TravelReward> travelRewards = rewardSettings.GetData();
 

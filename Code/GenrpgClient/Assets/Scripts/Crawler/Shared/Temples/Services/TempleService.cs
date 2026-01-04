@@ -85,7 +85,7 @@ namespace Genrpg.Shared.Crawler.Temples.Services
                 return;
             }
 
-            if (result.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold))
+            if (result.Cost > party.Currencies[CrawlerCurrencyTypes.Gold])
             {
                 result.Message = "You need " + result.Cost + " Gold to heal " + member.Name;
                 return;

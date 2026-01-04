@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Assets.Scripts.Login.Messages.Core
 {
-    public abstract class BaseClientWebResponseHandler<T> : IClientLoginResultHandler where T : class, IWebResponse
+    public abstract class BaseClientWebResponseHandler<T> : IClientWebResponseHandler where T : class, IWebResponse
     {
         protected ILogService _logService = null;
         protected IRepositoryService _repoService = null;

@@ -10,7 +10,6 @@ using Genrpg.ServerShared.Setup;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Settings;
 using Genrpg.Shared.GameSettings;
@@ -404,12 +403,9 @@ namespace Genrpg.Editor.Utils
                             }
                             foreach (IGameSettings childSetting in setting.GetChildren())
                             {
-                                if (childSetting is IUpdateData updateChild)
+                                if (childSetting.SaveTime == DateTime.MinValue)
                                 {
-                                    if (updateChild.UpdateTime == DateTime.MinValue)
-                                    {
-                                        gs.LookedAtObjects.Add(updateChild);
-                                    }
+                                    gs.LookedAtObjects.Add(childSetting);
                                 }
                             }
                         }

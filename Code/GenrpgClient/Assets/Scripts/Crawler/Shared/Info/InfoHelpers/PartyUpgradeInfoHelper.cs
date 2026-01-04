@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class PartyUpgradeInfoHelper : BaseInfoHelper<PartyUpgradeSettings,PartyUpgrade>
+    public class PartyUpgradeInfoHelper : BaseInfoHelper<PartyUpgradeSettings, PartyUpgrade>
     {
 
         private ICrawlerUpgradeService _upgradeService = null;
@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             PartyUpgrade upgrade = _gameData.Get<PartyUpgradeSettings>(_gs.ch).Get(entityId);
 
-            int currTier = party.Upgrades.Get(upgrade.IdKey);
+            int currTier = party.Upgrades[upgrade.IdKey];
             int nextTier = currTier + 1;
 
             List<string> lines = new List<string>();
@@ -39,7 +39,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             lines.Add("Max Tier: " + upgrade.MaxTier);
 
-            lines.Add("Tier: " + party.Upgrades.Get(upgrade.IdKey));
+            lines.Add("Tier: " + party.Upgrades[upgrade.IdKey]);
 
             lines.Add("Bonus: " + _upgradeService.GetPartyBonus(party, upgrade.IdKey));
             long nextUpgradeCost = _upgradeService.GetPartyUpgradeCost(upgrade.IdKey, nextTier);

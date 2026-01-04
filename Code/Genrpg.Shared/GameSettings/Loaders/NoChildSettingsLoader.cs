@@ -20,7 +20,7 @@ namespace Genrpg.Shared.GameSettings.Loaders
         public virtual List<CreateIndexData> GetIndexes() { return new List<CreateIndexData>(); }
         public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
 
-        public virtual async Task<List<ITopLevelSettings>> LoadAll(IRepositoryService repoSystem, bool createDefaultIfMissing)
+        public virtual async Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing)
         {
 
             List<ITopLevelSettings> list = (await repoSystem.Search<TServer>(x => true)).Cast<ITopLevelSettings>().ToList();

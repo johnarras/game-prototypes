@@ -22,5 +22,31 @@
       "Chance": 1.0
     }
   ],
+  "RolesKnowingThis": [
+    {
+      "RoleId": 1
+    },
+    {
+      "RoleId": 2
+    },
+    {
+      "RoleId": 3
+    },
+    {
+      "RoleId": 4
+    },
+    {
+      "RoleId": 5
+    },
+    {
+      "RoleId": 6
+    },
+    {
+      "RoleId": 10
+    },
+    {
+      "RoleId": 11
+    }
+  ],
   "ItemEnchantWeight": 1.0
 }

@@ -147,7 +147,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
         _logService.Info("GAME MODE: " + GameMode.ToString());
         // Initial app appearance.
-        _clientAppService.TargetFrameRate = 30;
+        _clientAppService.TargetFrameRate = 60;
         _dispatcher.AddListener<NewVersionResponse>(OnNewVersion, GetGameToken());
         _dispatcher.AddListener<FullResetGame>(OnFullResetGame, GetGameToken());
 

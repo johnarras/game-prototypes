@@ -34,7 +34,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         {
             PartyData party = _crawlerService.GetParty();
 
-            if (party == null || party.Buffs.Get(PartyBuffId) == 0)
+            if (party == null || party.Buffs[PartyBuffId] == 0)
             {
                 _clientEntityService.SetActive(ContentRoot, false);
             }

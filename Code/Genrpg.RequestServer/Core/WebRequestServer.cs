@@ -1,4 +1,5 @@
 
+using Genrpg.RequestServer.Core.Services;
 using Genrpg.RequestServer.RequestHandlers;
 using Genrpg.RequestServer.Services.AccountAuth;
 using Genrpg.RequestServer.Services.GameAuth;
@@ -7,11 +8,11 @@ using Genrpg.RequestServer.Services.NoUsers;
 using Genrpg.RequestServer.Setup;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.Crypto.Services;
-using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Services;
 using Genrpg.Shared.Crypto.Entities;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages;
@@ -30,11 +31,12 @@ namespace Genrpg.RequestServer.Core
         protected ICryptoService _cryptoService { get; private set; }
         protected ICharmService _charmService { get; private set; }
         protected INoUserWebService _noUserWebService { get; private set; }
-        protected IFullRepositoryService _repositoryService { get; private set; }
+        protected IRepositoryService _repositoryService { get; private set; }
         protected ITextSerializer _textSerializer { get; private set; }
         protected IBinarySerializer _binarySerializer { get; private set; }
         private CancellationTokenSource _serverSource = new CancellationTokenSource();
         protected CancellationToken _token => _serverSource.Token;
+        protected IPartitionedDataSaveService _saveService { get; private set; }
 
         public WebRequestServer()
         {
@@ -45,7 +47,7 @@ namespace Genrpg.RequestServer.Core
 
         protected WebContext SetupContext()
         {
-            return new WebContext(_config, _context.loc, _repositoryService, _binarySerializer);
+            return new WebContext(_config, _context.loc, _repositoryService, _binarySerializer, _saveService);
         }
 
         protected string _serverInstanceId = CloudServerNames.Login + HashUtils.NewUUId().ToString().ToLowerInvariant();

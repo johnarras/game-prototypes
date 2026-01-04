@@ -1,11 +1,10 @@
-using Genrpg.Shared.Editors.Interfaces;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.DataStores.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.GameSettings.Interfaces
 {
-    public interface IGameSettings : IStringId, IEditorMetaDataTarget
+    public interface IGameSettings : ISearchableItem
     {
         void SetInternalIds();
         void ClearIndex();

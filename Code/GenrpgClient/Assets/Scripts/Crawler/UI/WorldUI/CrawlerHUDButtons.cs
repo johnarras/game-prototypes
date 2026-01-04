@@ -66,7 +66,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         {
             PartyData party = _crawlerService.GetParty();
 
-            if (CrawlerTilemap.RequireMapping && party.Buffs.Get(PartyBuffs.Mapping) == 0)
+            if (CrawlerTilemap.RequireMapping && party.Buffs[PartyBuffs.Mapping] == 0)
             {
                 _dispatcher.Dispatch(new ShowFloatingText("You can only look at maps when mapping is active.", EFloatingTextArt.Error));
                 return;

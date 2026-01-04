@@ -60,7 +60,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
 
                 foreach (MemberUpgrade upgrade in upgrades)
                 {
-                    int tier = member.Upgrades.Get(upgrade.IdKey);
+                    int tier = member.Upgrades[upgrade.IdKey];
                     double bonus = _upgradeService.GetUnitBonus(member, upgrade.EntityTypeId, upgrade.EntityId);
                     stateData.Actions.Add(new CrawlerStateAction($"{upgrade.Name} Tier: {tier}/{upgradeSettings.MaxTier} Bonus:{bonus} ({upgrade.BonusPerTier}/tier)", Key.None, ECrawlerStates.TrainingUpgradeMember,
                     onClickAction: delegate ()

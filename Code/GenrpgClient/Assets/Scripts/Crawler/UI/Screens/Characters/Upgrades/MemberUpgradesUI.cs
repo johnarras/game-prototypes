@@ -36,7 +36,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
 
                 _clientEntityService.AddToParent(row, ContentRoot);
 
-                row.InitData(upgrade, member.Upgrades.Get(upgrade.IdKey), _upgradeService.GetUnitBonus(member, EntityTypes.MemberUpgrades, upgrade.IdKey));
+                row.InitData(upgrade, member.Upgrades[upgrade.IdKey], _upgradeService.GetUnitBonus(member, EntityTypes.MemberUpgrades, upgrade.IdKey));
 
             }
 

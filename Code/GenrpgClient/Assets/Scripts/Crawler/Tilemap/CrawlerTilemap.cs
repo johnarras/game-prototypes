@@ -383,7 +383,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 return;
             }
 
-            if (CrawlerTilemap.RequireMapping && _party.Buffs.Get(PartyBuffs.Mapping) == 0)
+            if (CrawlerTilemap.RequireMapping && _party.Buffs[PartyBuffs.Mapping] == 0)
             {
                 _clientEntityService.SetActive(ContentRoot, false);
             }

@@ -125,7 +125,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _iconService.InitItemIcon(idata, VendorItems, _assetService, GetToken());
         }
 
-        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies.Get(CrawlerCurrencyTypes.Gold)));
+        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies[CrawlerCurrencyTypes.Gold]));
     }
 
     // Blank
@@ -168,7 +168,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             return;
         }
 
-        if (vendorItem.BuyCost > _party.Currencies.Get(CrawlerCurrencyTypes.Gold))
+        if (vendorItem.BuyCost > _party.Currencies[CrawlerCurrencyTypes.Gold])
         {
             _dispatcher.Dispatch(new ShowFloatingText("You need more gold to buy this!", EFloatingTextArt.Error));
             return;

@@ -6,6 +6,7 @@ using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.Settings;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.NewVersions;
+using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings;
@@ -36,7 +37,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 return;
             }
 
-            AccountSessionData sessionData = await _serverRepoService.Load<AccountSessionData>(request.AccountId);
+            AccountSessionData sessionData = await _repoService.Load<AccountSessionData>(request.AccountId);
 
             if (sessionData == null)
             {
@@ -50,59 +51,78 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 return;
             }
 
-            context.acct = (await _serverRepoService.Search<GameAccount>(x => x.AccountId == request.AccountId && !x.Deleted)).FirstOrDefault();
+            // Must explicitly load for GameAccount so a stub doc isn't created. 
+            GameAccount gameAcct = await _repoService.Load<GameAccount>(request.GameUserId);
 
-            if (context.acct == null)
+            if (gameAcct == null)
             {
-                context.acct = new GameAccount()
+                gameAcct = new GameAccount()
                 {
-                    Id = sessionData.Id, // Not good idea if we want to have different users per account (for deletion)
+                    Id = request.GameUserId,
                     AccountId = request.AccountId,
                     CreationDate = DateTime.UtcNow,
+                    GameUserId = request.GameUserId,
                 };
             }
 
-            context.Set(context.acct);
-            context.acct.SessionId = HashUtils.NewUUId();
-            context.acct.ClientVersion = request.ClientVersion;
-            context.acct.ClientPlatformName = request.ClientPlatformName;
 
-            context.user = await context.GetAsync<CoreUserData>();
-            context.user.DataOverrides.GameDataCheckTime = request.ClientGameDataSaveTime;
-            context.user.ClientVersion = context.acct.ClientVersion;
+            // Must explicitly do this on game auth in case this doc doesn't exist.
+            context.SetAccount(gameAcct);
+
+            if (gameAcct.AccountId != request.AccountId ||
+                gameAcct.Deleted)
+            {
+                context.AddResponse(new ErrorResponse() { Error = "Internal account error." });
+                return;
+            }
+
+            gameAcct.SessionId = HashUtils.NewUUId();
+            gameAcct.ClientVersion = request.ClientVersion;
+            gameAcct.ClientPlatformName = request.ClientPlatformName;
+
+            context.core = await context.GetAsync<CoreData>();
+            context.core.DataOverrides.GameDataCheckTime = request.ClientGameDataSaveTime;
+            context.core.ClientVersion = gameAcct.ClientVersion;
 
             List<IUnitData> allUserData = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, null);
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, true));
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, true));
 
-            await UpdatePublicUser(sessionData, context.acct);
+            await UpdatePublicUser(sessionData, gameAcct);
 
-            _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = context.acct.Id, Name = "User" + context.acct.Id });
+            _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = gameAcct.Id, Name = "User" + context.GameUserId });
 
             await _purchasingService.RetryFailedValidation(context, token);
 
-            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, context.user, true, token);
+            PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, context.core, true, token);
 
             GameAuthResponse response = new GameAuthResponse()
             {
-                GameAccount = _serializer.ConvertType<GameAccount, GameAccount>(context.acct),
-                CharacterStubs = await _playerDataService.LoadCharacterStubs(context.acct.Id),
-                MapStubs = _webServerService.GetMapStubs().Stubs,
-                UserData = await _playerDataService.MapToClientDto(context.user, allUserData),
+                GameUserId = gameAcct.GameUserId,
+                SessionId = gameAcct.SessionId,
+                UserData = await _playerDataService.MapToClientDto(context.core, allUserData),
                 OfferData = offerData,
             };
+
+            // Don't do this for anything other than the MMO game.
+            if (request.GameName == EGameModes.MMO.ToString())
+            {
+                response.CharacterStubs = await _playerDataService.LoadCharacterStubs(context.GameUserId);
+                response.MapStubs = _webServerService.GetMapStubs().Stubs;
+            }
+
             context.AddFront(response);
         }
 
-        private async Task UpdatePublicUser(AccountSessionData account, GameAccount user)
+        private async Task UpdatePublicUser(AccountSessionData account, GameAccount gameAccount)
         {
             // Just always make new files and save them.
 
-            PublicUser publicUser = new PublicUser() { Id = user.Id };
+            PublicUser publicUser = new PublicUser() { Id = gameAccount.GameUserId };
             publicUser.Name = account.ShareId;
-            await _serverRepoService.Save(publicUser);
+            await _repoService.Save(publicUser);
 
         }
     }

@@ -250,7 +250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1868369924487327713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f1ada9d84e15542839399f836be88b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c46bae240d05d24487f4fa5f8bec563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.UI.Cities.TraderRoadRowUI
   InfoText: {fileID: 570196643085059962}

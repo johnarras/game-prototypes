@@ -20,9 +20,9 @@ namespace Genrpg.RequestServer.CoreCurrencies.RewardHelpers
 
         public override async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
         {
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
 
-            userData.Currencies.Add(entityId, quantity);
+            coreData.Currencies.Add(entityId, quantity);
         }
     }
 }

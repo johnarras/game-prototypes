@@ -8,6 +8,6 @@
   "Art": "Zebu",
   "Speed": 4,
   "Capacity": 3,
-  "Supplies": 3,
-  "Cost": 368750
+  "Upkeep": 3,
+  "Price": 368750
 }

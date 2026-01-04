@@ -4,6 +4,7 @@ using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Utils.Data;
 using MessagePack;
+using System;
 
 namespace Genrpg.Shared.Trader.Stats.PlayerData
 {
@@ -19,9 +20,18 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
     }
 
     [MessagePackObject]
-    public class TraderStatCollection : BaseSmallIdObjectCollection<TraderStatStatus>
+    public class TraderStatCollection : BaseSmallIdQuantityCollection<TraderStatStatus>
     {
-        [Key(0)] public override TraderStatStatus[] Data { get; set; } = new TraderStatStatus[4];
+
+        protected override TraderStatStatus InternalAdd(TraderStatStatus first, TraderStatStatus second)
+        {
+            throw new NotImplementedException("Cannot add two TraderStatStatuses together");
+        }
+
+        protected override bool IsDefault(TraderStatStatus t)
+        {
+            return t == default(TraderStatStatus);
+        }
     }
 
     [MessagePackObject]
@@ -32,21 +42,6 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
 
         public long Max() { return Base + Bonus; }
 
-        public void RaiseBaseToValue(long newBase)
-        {
-            if (Base < newBase)
-            {
-                Base = newBase;
-            }
-        }
-
-        public void AddBonusValue(long bonus)
-        {
-            if (bonus > 0)
-            {
-                Bonus += bonus;
-            }
-        }
     }
 
     public class TraderStatDataLoader : UnitDataLoader<TraderStatData> { }

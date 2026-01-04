@@ -4,7 +4,6 @@ using Assets.Scripts.Options.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
@@ -15,7 +14,8 @@ using System.Collections.Generic;
 
 public interface IClientGameState : IGameState, IInjectable, IExplicitInject
 {
-    GameAccount acct { get; set; }
+    string GameUserId { get; set; }
+    string SessionId { get; set; }
     Character ch { get; set; }
     List<CharacterStub> characterStubs { get; set; }
     List<MapStub> mapStubs { get; set; }
@@ -25,7 +25,8 @@ public interface IClientGameState : IGameState, IInjectable, IExplicitInject
 public class ClientGameState : GameState, IInjectable, IClientGameState
 {
     public IMapGenData md { get; set; } = null;
-    public GameAccount acct { get; set; }
+    public string GameUserId { get; set; }
+    public string SessionId { get; set; }
     public Character ch { get; set; }
     public List<CharacterStub> characterStubs { get; set; } = new List<CharacterStub>();
     public List<MapStub> mapStubs { get; set; } = new List<MapStub>();

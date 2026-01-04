@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.DataStores.Categories.PlayerData.Units
 {
-    public interface ITopLevelUnitData : IUnitData, IUpdateData
+    public interface ITopLevelUnitData : IUnitData, IVersionedData
     {
         List<IUnitData> GetChildren();
     }

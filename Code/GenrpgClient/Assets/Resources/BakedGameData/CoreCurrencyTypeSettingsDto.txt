@@ -26,12 +26,12 @@
     },
     {
       "IdKey": 4,
-      "Name": "Food",
+      "Name": "Rations",
       "PluralName": "",
       "Desc": "",
       "AtlasPrefix": "",
-      "Icon": "Food",
-      "Art": "Food",
+      "Icon": "Rations",
+      "Art": "Rations",
       "RegenTraderStatId": 13,
       "StorageTraderStatId": 14
     }
@@ -41,5 +41,5 @@
     "Name": "CoreCurrencyTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-21T20:53:58.694Z"
+  "SaveTime": "2025-12-28T20:19:33.847Z"
 }

@@ -42,7 +42,7 @@ namespace Genrpg.Shared.UI.Constants
         public const long TileUpgrade = 37;
         public const long Marker = 38;
         public const long CrawlerNewGameOptions = 39;
-        public const long TraderCaravan = 40;
+        public const long Animals = 40;
         public const long TraderMap = 41;
         public const long TraderHUD = 42;
         public const long TraderTravel = 43;
@@ -53,7 +53,7 @@ namespace Genrpg.Shared.UI.Constants
         public const long TraderInfo = 48;
         public const long ClientOptions = 49;
         public const long TraderCityRoads = 50;
-
+        public const long TradeGoods = 51;
 
     }
 }

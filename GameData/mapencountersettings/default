@@ -1,6 +1,6 @@
 {
   "Id": "default",
-  "EncounterChance": 0.08,
+  "EncounterChance": 0.3,
   "Name": "MapEncounterSettings",
-  "SaveTime": "2025-11-01T21:17:05.928Z"
+  "SaveTime": "2026-01-01T20:37:52.265Z"
 }

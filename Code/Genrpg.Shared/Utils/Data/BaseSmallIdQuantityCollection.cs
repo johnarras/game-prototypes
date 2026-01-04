@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Utils.Data
 {
@@ -7,91 +8,120 @@ namespace Genrpg.Shared.Utils.Data
     /// Used for things like stats, currencies and tiles that should have most small integers
     /// used at most times.
     /// </summary>
+    /// 
+
+
+    public abstract class BaseSmallIdObjectCollection<T> : BaseSmallIdQuantityCollection<T> where T : class, new()
+    {
+        protected override bool CreatedAtIndex(long index)
+        {
+            if (index > _data.Length || IsDefault(_data[index]))
+            {
+                this[index] = new T();
+            }
+            return false;
+        }
+
+        protected override bool IsDefault(T t)
+        {
+            return t == default(T);
+        }
+    }
+
     public abstract class BaseSmallIdQuantityCollection<T>
     {
 
         protected const int MaxSize = 256;
+
+        protected T[] _data { get; set; } = new T[4];
+
+        protected virtual bool CreatedAtIndex(long index)
+        {
+            return index >= 0 && index < _data.Length;
+        }
+
         [MessagePack.IgnoreMember]
-        public abstract T[] Data { get; set; }
+        public T this[long index]
+        {
 
+            get
+            {
+                if (index < 0 || index >= MaxSize)
+                {
+                    return default;
+                }
 
+                if (CreatedAtIndex(index))
+                {
+                    return _data[index];
+                }
+                return default;
+            }
+            set
+            {
+                if (index < 0 || index >= MaxSize)
+                {
+                    throw new IndexOutOfRangeException($"The index must be between 0 and {MaxSize - 1}");
+                }
+
+                if (_data.Length <= index)
+                {
+                    int size = Math.Max(2, _data.Length);
+                    while (size <= index)
+                    {
+                        size *= 2;
+                    }
+                    T[] newData = new T[size];
+
+                    for (int i = 0; i < _data.Length; i++)
+                    {
+                        newData[i] = _data[i];
+                    }
+                    _data = newData;
+                }
+
+                _data[index] = value;
+
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_data).GetEnumerator();
         protected abstract T InternalAdd(T first, T second);
         protected abstract bool IsDefault(T t);
 
 
         public void Clear()
         {
-            Data = new T[4];
-        }
-
-        public int GetLength()
-        {
-            return Data.Length;
+            _data = new T[4];
         }
 
         public void Trim()
         {
             int maxNonzeroIndex = 0;
 
-            for (int i = 0; i < Data.Length; i++)
+            for (int i = _data.Length - 1; i >= 0; i--)
             {
-                if (!IsDefault(Data[i]))
+                if (!IsDefault(_data[i]))
                 {
                     maxNonzeroIndex = i;
+                    break;
                 }
             }
 
-            T[] newData = new T[Math.Max(4, maxNonzeroIndex + 1)];
-            for (int i = 0; i < maxNonzeroIndex + 1; i++)
+            if (maxNonzeroIndex != _data.Length - 1)
             {
-                newData[i] = Data[i];
+                T[] newData = new T[Math.Max(4, maxNonzeroIndex + 1)];
+                for (int i = 0; i < maxNonzeroIndex + 1; i++)
+                {
+                    newData[i] = _data[i];
+                }
+                _data = newData;
             }
-            Data = newData;
-        }
-
-        public T Get(long id)
-        {
-            if (id >= Data.Length)
-            {
-                return default(T);
-            }
-            return Data[id];
-        }
-
-        public void Set(long id, T val)
-        {
-            if (id >= MaxSize)
-            {
-                throw new Exception($"CollectionContainer is capped at size {MaxSize - 1} to keep it small.");
-            }
-
-            int length = Data.Length;
-
-            while (length <= id)
-            {
-                length *= 2;
-            }
-
-            T[] newData = new T[length];
-
-            for (int i = 0; i < Data.Length; i++)
-            {
-                newData[i] = Data[i];
-            }
-
-            Data = newData;
-
-            Data[id] = val;
         }
 
         public void Add(long id, T val)
         {
-            Set(id, InternalAdd(Get(id), val));
-        }
-
-        public bool Has(long id)
-        {
-            return !IsDefault(Get(id));
+            this[id] = InternalAdd(this[id], val);
         }
     }
 }

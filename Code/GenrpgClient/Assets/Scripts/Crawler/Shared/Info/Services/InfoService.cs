@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
 namespace Genrpg.Shared.Crawler.Info.Services
 {
@@ -42,7 +41,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
     {
         private ITextService _textService = null;
         private IEntityService _entityService = null;
-        private IClientGameState _gs;
+        private IClientGameState _gs = null;
 
         private SetupDictionaryContainer<long, IInfoHelper> _infoHelperDict = new SetupDictionaryContainer<long, IInfoHelper>();
         private SetupDictionaryContainer<long, ISpellEffectHelper> _spellEffectDict = new SetupDictionaryContainer<long, ISpellEffectHelper>();
@@ -71,7 +70,6 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 {
                     if (lines[l] == null)
                     {
-                        Debug.Log("Null line?");
                         continue;
                     }
                     if (lines[l].IndexOf(InfoConstants.LinkPrefix) == 0)

@@ -541,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 4158968660959809465, guid: 11f55c1e9750576469e5f04ec3cd3cfe,
         type: 3}
       propertyPath: m_Name
-      value: TextScrollSpeed
+      value: TextScrollDelay
       objectReference: {fileID: 0}
     - target: {fileID: 6009337915381598975, guid: 11f55c1e9750576469e5f04ec3cd3cfe,
         type: 3}
@@ -571,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 7659945188925234078, guid: 11f55c1e9750576469e5f04ec3cd3cfe,
         type: 3}
       propertyPath: m_text
-      value: Text Scroll Speed
+      value: Text Scroll Delay
       objectReference: {fileID: 0}
     - target: {fileID: 7659945188925234078, guid: 11f55c1e9750576469e5f04ec3cd3cfe,
         type: 3}

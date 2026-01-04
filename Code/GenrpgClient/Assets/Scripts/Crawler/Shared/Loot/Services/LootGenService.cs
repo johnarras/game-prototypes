@@ -531,7 +531,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 NextStateData = null,
             };
 
-            allLootGenData.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)gold);
+            allLootGenData.Currencies[CrawlerCurrencyTypes.Gold] = (long)gold;
 
             if (reagentCount > 0)
             {
@@ -615,8 +615,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 loot.Items = items;
 
-                loot.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)(genData.Currencies.Get(CrawlerCurrencyTypes.Gold) *
-                    (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.GoldPercent) / 100.0f)));
+                loot.Currencies[CrawlerCurrencyTypes.Gold] = (long)(genData.Currencies[CrawlerCurrencyTypes.Gold] *
+                    (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.GoldPercent) / 100.0f));
 
 
                 IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
@@ -624,9 +624,9 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 foreach (CrawlerCurrencyType ctype in ctypes)
                 {
 
-                    if (loot.Currencies.Get(ctype.IdKey) > 0)
+                    if (loot.Currencies[ctype.IdKey] > 0)
                     {
-                        _partyService.AddCurrency(party, ctype.IdKey, loot.Currencies.Get(ctype.IdKey));
+                        _partyService.AddCurrency(party, ctype.IdKey, loot.Currencies[ctype.IdKey]);
                     }
                 }
 
@@ -717,8 +717,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 Level = level,
             };
 
-            genData.Currencies.Set(CrawlerCurrencyTypes.Gold, (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
-                MathUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand)));
+            genData.Currencies[CrawlerCurrencyTypes.Gold] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
+                MathUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
 
             if (!string.IsNullOrEmpty(topMessage))
             {

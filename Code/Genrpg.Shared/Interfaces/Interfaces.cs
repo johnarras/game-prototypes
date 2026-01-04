@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Interfaces
         string Id { get; set; }
     }
 
-    public interface IStringOwnerId : IStringId
+    public interface IStringOwnerId : ISearchableItem
     {
         string OwnerId { get; set; }
     }
@@ -53,7 +53,7 @@ namespace Genrpg.Shared.Interfaces
     }
 
 
-    public interface INamedUpdateData : IName, IUpdateData
+    public interface INamedUpdateData : IName, IVersionedData
     {
 
     }

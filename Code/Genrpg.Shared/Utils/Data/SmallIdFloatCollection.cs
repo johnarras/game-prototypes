@@ -4,7 +4,7 @@ namespace Genrpg.Shared.Utils.Data
 {
     public class SmallIdFloatCollection : BaseSmallIdQuantityCollection<float>
     {
-        public override float[] Data { get; set; } = new float[4];
+        [Key(0)] public float[] Data { get => _data; set => _data = value; }
         protected override float InternalAdd(float first, float second)
         {
             return first + second;

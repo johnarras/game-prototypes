@@ -62,7 +62,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                 return 0;
             }
 
-            long finalTier = (tierOverride == 0 ? party.Upgrades.Get(upgradeId) : tierOverride);
+            long finalTier = (tierOverride == 0 ? party.Upgrades[upgradeId] : tierOverride);
 
             return upgradeSetting.BonusPerTier * finalTier;
         }
@@ -92,7 +92,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
 
         public bool PayForPartyUpgrade(PartyData party, long upgradeId)
         {
-            int currTier = party.Upgrades.Get(upgradeId);
+            int currTier = party.Upgrades[upgradeId];
 
             int nextTier = currTier + 1;
 
@@ -111,7 +111,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             party.UpgradePoints -= newCost;
             _dispatcher.Dispatch(new UpdateCrawlerUI());
 
-            party.Upgrades.Set(upgradeId, nextTier);
+            party.Upgrades[upgradeId] = nextTier;
 
             _statService.CalcPartyStats(party, false);
 
@@ -232,7 +232,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                 MemberUpgrade upgrade = _gameData.Get<MemberUpgradeSettings>(_gs.ch).Get(entityTypeId, entityId);
                 if (upgrade != null)
                 {
-                    return member.Upgrades.Get(upgrade.IdKey) * upgrade.BonusPerTier;
+                    return member.Upgrades[upgrade.IdKey] * upgrade.BonusPerTier;
                 }
             }
             return 0;

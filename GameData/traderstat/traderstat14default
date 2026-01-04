@@ -2,7 +2,9 @@
   "Id": "traderstat14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Food Storage",
-  "Icon": "FoodStorage",
-  "Art": "FoodStorage"
+  "Name": "Rations Storage",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "RationsStorage",
+  "Art": "RationsStorage"
 }

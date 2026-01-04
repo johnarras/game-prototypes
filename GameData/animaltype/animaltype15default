@@ -8,6 +8,6 @@
   "Art": "AsianElephant",
   "Speed": 4,
   "Capacity": 6,
-  "Supplies": 6,
-  "Cost": 1474500
+  "Upkeep": 6,
+  "Price": 1474500
 }

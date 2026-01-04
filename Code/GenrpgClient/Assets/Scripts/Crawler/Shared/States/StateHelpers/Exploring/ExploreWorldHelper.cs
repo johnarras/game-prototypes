@@ -154,7 +154,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld,
                 () =>
                 {
-                    if (_screenService.GetLayerScreen(ScreenLayers.Screens) == null)
+                    if (!_screenService.ShowingLayerScreen(ScreenLayers.Screens))
                     {
                         _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerMainMenu));
                     }

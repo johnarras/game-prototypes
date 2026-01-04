@@ -11,13 +11,15 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
     {
         protected override async Task InnerHandleMessage(WebContext context, CreateCharRequest request, CancellationToken token)
         {
-            List<CharacterStub> charStubs = await _playerDataService.LoadCharacterStubs(context.acct.Id);
+
+
+            List<CharacterStub> charStubs = await _playerDataService.LoadCharacterStubs(context.GameUserId);
 
             int nextId = 1;
 
             while (true)
             {
-                if (charStubs.FirstOrDefault(x => x.Id == context.user.Id + "." + nextId) == null)
+                if (charStubs.FirstOrDefault(x => x.Id == context.core.Id + "." + nextId) == null)
                 {
                     break;
                 }
@@ -26,9 +28,9 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
             CoreCharacter coreCh = new CoreCharacter()
             {
-                Id = context.acct.Id + "." + nextId,
+                Id = context.GameUserId + "." + nextId,
                 Name = request.Name,
-                UserId = context.acct.Id,
+                UserId = context.GameUserId,
                 Level = 1,
                 EntityTypeId = EntityTypes.Unit,
                 EntityId = request.UnitTypeId,

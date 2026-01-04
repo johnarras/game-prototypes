@@ -29,7 +29,7 @@ public class CharacterPlayButton : BaseBehaviour
 
     public void ClickPlay()
     {
-        _playerSearchService.AccountSearch(_gs.acct.Id,
+        _playerSearchService.AccountSearch(_gs.GameUserId,
            (PublicAccount acct) =>
            {
                if (acct != null)
@@ -43,7 +43,7 @@ public class CharacterPlayButton : BaseBehaviour
            },
            GetToken());
 
-        _playerSearchService.UserSearch(_gs.acct.Id,
+        _playerSearchService.UserSearch(_gs.GameUserId,
               (PublicUser user) =>
               {
                   if (user != null)

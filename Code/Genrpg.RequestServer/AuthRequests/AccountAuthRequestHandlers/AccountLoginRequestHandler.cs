@@ -10,9 +10,9 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
         protected override async Task HandleRequestInternal(WebContext context, AccountLoginRequest request, CancellationToken token)
         {
             Account account = null;
-            if (!string.IsNullOrEmpty(request.UserId))
+            if (!string.IsNullOrEmpty(request.AccountId))
             {
-                account = await _repoService.Load<Account>(request.UserId);
+                account = await _repoService.Load<Account>(request.AccountId);
                 if (account == null)
                 {
                     context.ShowError("That account doesn't exist.");

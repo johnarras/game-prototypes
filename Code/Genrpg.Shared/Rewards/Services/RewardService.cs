@@ -1,7 +1,7 @@
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
@@ -92,7 +92,7 @@ namespace Genrpg.Shared.Rewards.Services
             return false;
         }
 
-        public virtual void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, IStringId
+        public virtual void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, ISearchableItem
         {
         }
     }

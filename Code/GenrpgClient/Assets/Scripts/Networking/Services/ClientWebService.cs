@@ -66,12 +66,12 @@ public class ClientWebService : IClientWebService
     private class ResultHandlerPair
     {
         public IWebResponse Result { get; set; } = null;
-        public IClientLoginResultHandler Handler { get; set; } = null;
+        public IClientWebResponseHandler Handler { get; set; } = null;
     }
 
     private Dictionary<string, WebRequestQueue> _queues = new Dictionary<string, WebRequestQueue>();
 
-    private SetupDictionaryContainer<Type, IClientLoginResultHandler> _loginResultHandlers = new SetupDictionaryContainer<Type, IClientLoginResultHandler>();
+    private SetupDictionaryContainer<Type, IClientWebResponseHandler> _loginResponseHandlers = new SetupDictionaryContainer<Type, IClientWebResponseHandler>();
 
     protected IServiceLocator _loc = null;
     protected IClientGameState _gs = null;
@@ -154,7 +154,7 @@ public class ClientWebService : IClientWebService
                         foundAsyncRequest = true;
                     }
                 }
-                if (_loginResultHandlers.TryGetValue(response.GetType(), out IClientLoginResultHandler handler))
+                if (_loginResponseHandlers.TryGetValue(response.GetType(), out IClientWebResponseHandler handler))
                 {
                     responsePairs.Add(new ResultHandlerPair()
                     {
@@ -280,8 +280,8 @@ public class ClientWebService : IClientWebService
 
             WebServerRequestSet requestSet = new WebServerRequestSet()
             {
-                UserId = _gs?.acct?.Id ?? null,
-                SessionId = _gs?.acct?.SessionId ?? null,
+                GameUserId = _gs.GameUserId,
+                SessionId = _gs.SessionId,
             };
 
             List<CancellationToken> allTokens = _pending.Select(x => x.Token).Distinct().ToList();

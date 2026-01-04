@@ -21,5 +21,19 @@
       "Chance": 0.25
     }
   ],
+  "RolesKnowingThis": [
+    {
+      "RoleId": 5
+    },
+    {
+      "RoleId": 6
+    },
+    {
+      "RoleId": 8
+    },
+    {
+      "RoleId": 9
+    }
+  ],
   "ItemEnchantWeight": 0.1
 }

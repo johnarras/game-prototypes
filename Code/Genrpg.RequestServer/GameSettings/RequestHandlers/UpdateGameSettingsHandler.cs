@@ -13,7 +13,7 @@ namespace Genrpg.RequestServer.GameSettings.RequestHandlers
         protected override async Task InnerHandleMessage(WebContext context, UpdateGameSettingsRequest request, CancellationToken token)
         {
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, false));
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, false));
 
             await Task.CompletedTask;
         }

@@ -5,6 +5,7 @@ using Assets.Scripts.Purchasing.Services;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
@@ -42,7 +43,8 @@ namespace Assets.Scripts.Website.MessageHandlers
                 keepOpenScreens.Add(ScreenNames.Login);
             }
 
-            if (response == null || response.GameAccount == null)
+            if (response == null || string.IsNullOrEmpty(response.GameUserId) ||
+                string.IsNullOrEmpty(response.SessionId))
             {
                 _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
                 if (keepOpenScreens.Count < 1)
@@ -53,13 +55,19 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             keepOpenScreens.Clear();
-            _gs.acct = response.GameAccount;
+            _gs.GameUserId = response.GameUserId;
+            _gs.SessionId = response.SessionId;
             _gs.characterStubs = response.CharacterStubs;
             _gs.mapStubs = response.MapStubs;
-            _gs.ch = new Character(new CoreCharacter()) { Id = _gs.acct.Id, UserId = _gs.acct.Id, Name = "StubCharacter" };
+            _gs.ch = new Character(new CoreCharacter()) { Id = _gs.GameUserId, UserId = _gs.GameUserId, Name = "StubCharacter" };
 
             foreach (IUnitData unitData in response.UserData)
             {
+                unitData.Id = Guid.NewGuid().ToString();
+                if (unitData is CoreDataDto dto)
+                {
+                    _gs.ch.DataOverrides = dto.Parent.DataOverrides;
+                }
                 _gs.ch.Set(unitData);
             }
 

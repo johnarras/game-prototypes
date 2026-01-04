@@ -26,10 +26,20 @@ namespace Genrpg.Shared.Trader.Animals.Settings
         public string Art { get; set; }
         public long Speed { get; set; }
         public long Capacity { get; set; }
-        public long Supplies { get; set; }
-        public long Cost { get; set; }
+        public long Upkeep { get; set; }
+        public long Price { get; set; }
         public bool StartsUnlocked { get; set; }
     }
+
+
+    public class AnimalSettingsLoader :
+        ParentSettingsLoader<AnimalTypeSettings, AnimalType>
+    { }
+
+
+    public class AnimalSettingsMapper :
+        ParentSettingsMapper<AnimalTypeSettings, AnimalType, AnimalSettingsDto>
+    { }
 
     public class AnimalSettingsDto : ParentSettingsDto<AnimalTypeSettings, AnimalType>
     {
@@ -38,9 +48,6 @@ namespace Genrpg.Shared.Trader.Animals.Settings
         public override string Id { get; set; }
     }
 
-    public class AnimalSettingsLoader : ParentSettingsLoader<AnimalTypeSettings, AnimalType> { }
-
-    public class AnimalSettingsMapper : ParentSettingsMapper<AnimalTypeSettings, AnimalType, AnimalSettingsDto> { }
 
     public class AnimalEntityHelper : BaseEntityHelper<AnimalTypeSettings, AnimalType>
     {

@@ -1,12 +1,11 @@
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.DataStores.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
 {
-    public class UpdateAction<T> : IDbAction where T : class, IStringId
+    public class UpdateAction<T> : IDbAction where T : class, ISearchableItem
     {
         private string _docId;
         private Dictionary<string, object> _fieldUpdates = new Dictionary<string, object>();

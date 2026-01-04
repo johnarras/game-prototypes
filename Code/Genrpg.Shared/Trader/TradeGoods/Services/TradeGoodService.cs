@@ -15,10 +15,10 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 {
     public interface ITradeGoodService : IInjectable
     {
-        AddTradeGoodToCaravanResult BuyTradeGood(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
-        RemoveTradeGoodFromCaravanResult SellTradeGood(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
-        AddTradeGoodToCaravanResult AddTradeGoodToCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
-        RemoveTradeGoodFromCaravanResult RemoveTradeGoodFromCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
+        AddTradeGoodToCaravanResult BuyTradeGood(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
+        RemoveTradeGoodFromCaravanResult SellTradeGood(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
+        AddTradeGoodToCaravanResult AddTradeGoodToCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
+        RemoveTradeGoodFromCaravanResult RemoveTradeGoodFromCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId);
     }
 
 
@@ -27,17 +27,17 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
         private IGameData _gameData = null;
         private ICaravanService _caravanService = null;
 
-        public AddTradeGoodToCaravanResult BuyTradeGood(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
+        public AddTradeGoodToCaravanResult BuyTradeGood(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
         {
             AddTradeGoodToCaravanResult result = new AddTradeGoodToCaravanResult()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(userData),
+                Travel = _caravanService.GetTravelInfo(coreData),
             };
 
-            CaravanPosition position = userData.GetPosition();
+            CaravanPosition position = _caravanService.GetPosition(coreData);
 
-            City city = _gameData.Get<CitySettings>(userData).Get(position.CityId);
+            City city = _gameData.Get<CitySettings>(coreData).Get(position.CityId);
 
             if (city == null)
             {
@@ -53,7 +53,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
                 return result;
             }
 
-            long buyCost = city.TradeGoodBuyCosts.Get(tradeGoodId);
+            long buyCost = city.TradeGoodBuyCosts[tradeGoodId];
 
 
             if (buyCost == 0)
@@ -62,7 +62,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
                 return result;
             }
 
-            if (buyCost > userData.Currencies.Get(CoreCurrencyTypes.Coins))
+            if (buyCost > coreData.Currencies[CoreCurrencyTypes.Coins])
             {
                 result.ErrorMessage = "You don't have enough money to buy this.";
                 return result;
@@ -70,45 +70,45 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             result.BuyCost = buyCost;
 
-            userData.Currencies.Add(CoreCurrencyTypes.Coins, -buyCost);
+            coreData.Currencies.Add(CoreCurrencyTypes.Coins, -buyCost);
 
-            result = AddTradeGoodToCaravan(userData, caravanData, statData, tradeGoodId);
+            result = AddTradeGoodToCaravan(coreData, caravanData, statData, tradeGoodId);
             result.BuyCost = buyCost;
             return result;
         }
 
-        public AddTradeGoodToCaravanResult AddTradeGoodToCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
+        public AddTradeGoodToCaravanResult AddTradeGoodToCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
         {
 
             AddTradeGoodToCaravanResult result = new AddTradeGoodToCaravanResult()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(userData),
+                Travel = _caravanService.GetTravelInfo(coreData),
             };
             caravanData.TradeGoods.Add(new CaravanTradeGood() { TradeGoodId = tradeGoodId });
 
-            _caravanService.UpdateCoreStatsFromCaravan(userData, caravanData, statData);
+            _caravanService.UpdateCoreStatsFromCaravan(coreData, caravanData, statData);
 
             result.TradeGoodId = tradeGoodId;
-            result.Travel = _caravanService.GetTravelInfo(userData);
+            result.Travel = _caravanService.GetTravelInfo(coreData);
 
             result.Success = true;
 
             return result;
         }
 
-        public RemoveTradeGoodFromCaravanResult SellTradeGood(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
+        public RemoveTradeGoodFromCaravanResult SellTradeGood(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
         {
             RemoveTradeGoodFromCaravanResult result = new RemoveTradeGoodFromCaravanResult()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(userData),
+                Travel = _caravanService.GetTravelInfo(coreData),
             };
 
 
-            CaravanPosition position = userData.GetPosition();
+            CaravanPosition position = _caravanService.GetPosition(coreData);
 
-            City city = _gameData.Get<CitySettings>(userData).Get(position.CityId);
+            City city = _gameData.Get<CitySettings>(coreData).Get(position.CityId);
 
             if (city == null)
             {
@@ -124,15 +124,15 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
                 return result;
             }
 
-            TradeEconomySettings econSettings = _gameData.Get<TradeEconomySettings>(userData);
+            TradeEconomySettings econSettings = _gameData.Get<TradeEconomySettings>(coreData);
 
-            long sellValue = (long)(city.TradeGoodBuyCosts.Get(tradeGoodId) * econSettings.SellPricePercent);
-
-
-            userData.Currencies.Add(CoreCurrencyTypes.Coins, sellValue);
+            long sellValue = (long)(city.TradeGoodBuyCosts[tradeGoodId] * econSettings.SellPricePercent);
 
 
-            result = RemoveTradeGoodFromCaravan(userData, caravanData, statData, tradeGoodId);
+            coreData.Currencies.Add(CoreCurrencyTypes.Coins, sellValue);
+
+
+            result = RemoveTradeGoodFromCaravan(coreData, caravanData, statData, tradeGoodId);
 
             result.SellValue = sellValue;
             return result;
@@ -140,12 +140,12 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
         }
 
 
-        public RemoveTradeGoodFromCaravanResult RemoveTradeGoodFromCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
+        public RemoveTradeGoodFromCaravanResult RemoveTradeGoodFromCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData, long tradeGoodId)
         {
             RemoveTradeGoodFromCaravanResult result = new RemoveTradeGoodFromCaravanResult()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(userData),
+                Travel = _caravanService.GetTravelInfo(coreData),
             };
 
             CaravanTradeGood tradeGood = caravanData.TradeGoods.FirstOrDefault(x => x.TradeGoodId == tradeGoodId);
@@ -159,10 +159,10 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             caravanData.TradeGoods.Remove(tradeGood);
 
-            _caravanService.UpdateCoreStatsFromCaravan(userData, caravanData, statData);
+            _caravanService.UpdateCoreStatsFromCaravan(coreData, caravanData, statData);
 
             result.TradeGoodId = tradeGoodId;
-            result.Travel = _caravanService.GetTravelInfo(userData);
+            result.Travel = _caravanService.GetTravelInfo(coreData);
 
             result.Success = true;
 

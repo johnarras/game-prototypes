@@ -16,6 +16,7 @@ using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
+using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Holdings.PlayerData;
 using Genrpg.Shared.Trader.Roads.Settings;
 using Genrpg.Shared.Trader.Stats.PlayerData;
@@ -37,21 +38,21 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
         private ICaravanService _caravanService = null;
         private ITradeGoodService _tradeGoodService = null;
         private IAnimalService _animalService = null;
-        private ICaravanPositionService _positionService = null;
+        private IServerCaravanService _serverCaravanService = null;
 
         public async Task UpdatePlayerOnLogin(WebContext context, bool onLogin)
         {
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData CoreData = await context.GetAsync<CoreData>();
 
             List<Reward> newRewards = new List<Reward>();
 
-            CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(context.user);
+            CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(context.core);
 
-            NewPlayerBonusSettings newPlayerSettings = _gameData.Get<NewPlayerBonusSettings>(context.user);
+            NewPlayerBonusSettings newPlayerSettings = _gameData.Get<NewPlayerBonusSettings>(context.core);
 
-            List<LevelTrackReward> levelRewards = _gameData.Get<LevelTrackRewardSettings>(context.user).GetData().Where(x => x.Level <= userData.Level).ToList();
+            List<LevelTrackReward> levelRewards = _gameData.Get<LevelTrackRewardSettings>(context.core).GetData().Where(x => x.Level <= CoreData.Level).ToList();
 
-            TraderStatSettings statSettings = _gameData.Get<TraderStatSettings>(context.user);
+            TraderStatSettings statSettings = _gameData.Get<TraderStatSettings>(context.core);
 
             TraderStatData statData = await context.GetAsync<TraderStatData>();
 
@@ -63,15 +64,18 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
             {
                 if (rew.EntityTypeId == EntityTypes.BaseTraderStat)
                 {
-                    statData.Stats.Get(rew.EntityId).RaiseBaseToValue(rew.Quantity);
+                    if (statData.Stats[rew.EntityId].Base < rew.Quantity)
+                    {
+                        statData.Stats[rew.EntityId].Base = rew.Quantity;
+                    }
                 }
-                else if (userData.Level < 1 && rew.EntityTypeId == EntityTypes.CoreCurrency)
+                else if (CoreData.Level < 1 && rew.EntityTypeId == EntityTypes.CoreCurrency)
                 {
-                    userData.Currencies.Set(rew.EntityId, rew.Quantity);
+                    CoreData.Currencies[rew.EntityId] = rew.Quantity;
                 }
                 else if (rew.EntityTypeId == EntityTypes.Animal)
                 {
-                    _animalService.AddAnimalToHoldings(context.user, await context.GetAsync<HoldingsData>(), rew.EntityId);
+                    _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), rew.EntityId);
                 }
 
             }
@@ -80,31 +84,34 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
             {
                 if (rew.EntityTypeId == EntityTypes.BaseTraderStat)
                 {
-                    statData.Stats.Get(rew.EntityId).RaiseBaseToValue(rew.Quantity);
+                    if (statData.Stats[rew.EntityId].Base < rew.Quantity)
+                    {
+                        statData.Stats[rew.EntityId].Base = rew.Quantity;
+                    }
                 }
                 else if (rew.EntityTypeId == EntityTypes.Animal)
                 {
-                    _animalService.AddAnimalToHoldings(context.user, await context.GetAsync<HoldingsData>(), rew.EntityId);
+                    _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), rew.EntityId);
                 }
             }
-            if (context.user.Level < 1)
+            if (context.core.Level < 1)
             {
-                context.user.Level = 1;
-                context.user.Exp = 0;
-                context.user.SetNextHourlyUpdate();
+                context.core.Level = 1;
+                context.core.Vars[TraderVars.Exp] = 0;
+                context.core.SetNextHourlyUpdate();
 
                 List<NewPlayerBonus> startTradeGoods = newPlayerSettings.GetData().Where(x => x.EntityTypeId == EntityTypes.TradeGood).ToList();
 
                 foreach (IReward rew in startTradeGoods)
                 {
-                    _tradeGoodService.AddTradeGoodToCaravan(userData, caravanData, statData, rew.EntityId);
+                    _tradeGoodService.AddTradeGoodToCaravan(CoreData, caravanData, statData, rew.EntityId);
                 }
             }
 
             if (caravanData.Animals.Count < 1)
             {
 
-                IReadOnlyList<AnimalType> animals = _gameData.Get<AnimalTypeSettings>(context.user).GetData();
+                IReadOnlyList<AnimalType> animals = _gameData.Get<AnimalTypeSettings>(context.core).GetData();
 
                 List<AnimalType> ownedAnimals = new List<AnimalType>();
 
@@ -119,22 +126,22 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 AnimalType chosenAnimal = null;
                 if (ownedAnimals.Count < 1)
                 {
-                    chosenAnimal = animals.OrderBy(x => x.Cost).FirstOrDefault();
+                    chosenAnimal = animals.OrderBy(x => x.Price).FirstOrDefault();
                 }
                 else
                 {
-                    chosenAnimal = ownedAnimals.OrderBy(x => x.Cost).FirstOrDefault();
+                    chosenAnimal = ownedAnimals.OrderBy(x => x.Price).FirstOrDefault();
                 }
 
-                _caravanService.AddAnimalToCaravan(userData, caravanData, holdings, statData, chosenAnimal.IdKey, true);
+                _caravanService.AddAnimalToCaravan(CoreData, caravanData, holdings, statData, chosenAnimal.IdKey, true);
             }
 
 
 
-            CaravanPosition pos = context.user.GetPosition();
+            CaravanPosition pos = _caravanService.GetPosition(context.core);
 
-            City city = _gameData.Get<CitySettings>(context.user).Get(pos.CityId);
-            Road road = _gameData.Get<RoadSettings>(context.user).Get(pos.RoadId);
+            City city = _gameData.Get<CitySettings>(context.core).Get(pos.CityId);
+            Road road = _gameData.Get<RoadSettings>(context.core).Get(pos.RoadId);
 
             if (road == null && city == null)
             {
@@ -143,15 +150,15 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                     CityId = newPlayerSettings.StartCityId,
                     Force = true,
                 };
-                await _positionService.EnterCity(context, args);
+                await _serverCaravanService.EnterCity(context, args);
             }
 
-            if (userData.Mult < PlayMultConstants.MinMult)
+            if (CoreData.Vars[TraderVars.Mult] < PlayMultConstants.MinMult)
             {
-                userData.Mult = PlayMultConstants.MinMult;
+                CoreData.Vars[TraderVars.Mult] = PlayMultConstants.MinMult;
             }
 
-            _caravanService.UpdateCoreStatsFromCaravan(userData, caravanData, statData);
+            _caravanService.UpdateCoreStatsFromCaravan(CoreData, caravanData, statData);
         }
     }
 }

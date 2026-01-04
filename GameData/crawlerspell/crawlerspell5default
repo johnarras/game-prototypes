@@ -19,5 +19,13 @@
       "ElementTypeId": 11,
       "Chance": 1.0
     }
+  ],
+  "RolesKnowingThis": [
+    {
+      "RoleId": 3
+    },
+    {
+      "RoleId": 7
+    }
   ]
 }

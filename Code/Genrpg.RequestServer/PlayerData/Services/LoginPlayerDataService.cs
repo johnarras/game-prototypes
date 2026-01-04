@@ -21,7 +21,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         public async Task<List<IUnitData>> LoadPlayerDataOnLogin(WebContext context, Character ch = null)
         {
-            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.AllData(), ch);
+            List<IUnitData> dataList = await _playerDataService.LoadAllPlayerData(context.rand, context.GameUserId, context.AllData(), ch);
 
             List<IUnitData> allData = context.AllData();
             foreach (IUnitData unitData in dataList)

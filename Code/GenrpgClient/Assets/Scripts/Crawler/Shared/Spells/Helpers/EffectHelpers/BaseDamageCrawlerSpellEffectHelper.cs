@@ -141,7 +141,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                     args.NewQuantity = Math.Max(1, args.NewQuantity);
                 }
 
-                double barrierValue = party.Buffs.Get(PartyBuffs.Barrier);
+                double barrierValue = party.Buffs[PartyBuffs.Barrier];
                 if (target.FactionTypeId == FactionTypes.Player && _rand.NextDouble() * 100 < barrierValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Barrier))
                 {
                     long removedQuantity = Math.Min(args.NewQuantity, (long)(args.NewQuantity * barrierValue * args.BuffSettings.GetEffectScale(PartyBuffs.Barrier) / 100.0));
@@ -166,7 +166,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, -args.NewQuantity, fullEffect.Effect.ElementTypeId);
 
 
-            double cursedArrowsValue = party.Buffs.Get(PartyBuffs.CursedArrows);
+            double cursedArrowsValue = party.Buffs[PartyBuffs.CursedArrows];
             // Sharpshooter do some extra damage.
             if (args.CurrHitTimes == 0 && args.NewQuantity > 0 && fullEffect.Effect.EntityTypeId == EntityTypes.Shoot && caster.IsPlayer() &&
                 _rand.NextDouble() < cursedArrowsValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.CursedArrows))

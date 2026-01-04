@@ -8,6 +8,6 @@
   "Art": "DromedaryCamel",
   "Speed": 4,
   "Capacity": 2,
-  "Supplies": 3,
-  "Cost": 48500
+  "Upkeep": 3,
+  "Price": 48500
 }

@@ -24,6 +24,7 @@ using Genrpg.Shared.Crawler.Spells.Entities;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
 using Genrpg.Shared.Crawler.Stats.Services;
+using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.GameSettings;
@@ -42,6 +43,7 @@ using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.Settings.Targets;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System;
@@ -153,6 +155,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             List<CrawlerSpell> okSpells = new List<CrawlerSpell>();
 
+            CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 
@@ -170,6 +173,15 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 return okSpells;
             }
 
+            List<Role> myRoles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(member.Roles);
+
+            Dictionary<long, long> roleLevels = new Dictionary<long, long>();
+
+            foreach (UnitRole urole in member.Roles)
+            {
+                roleLevels[urole.RoleId] = urole.Level;
+            }
+
             foreach (CrawlerSpell spell in castSpells)
             {
                 if (spell.IdKey < 1)
@@ -177,15 +189,39 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     continue;
                 }
 
-                if (!roleScalingTiers.ContainsKey(spell.RoleScalingTypeId))
+                if (!trainingSettings.AdvanceOneClassPerLevel)
                 {
-                    _logService.Info("Bad RoleScalingType on " + spell.Name + ": " + spell.RoleScalingTypeId);
-                    continue;
-                }
 
-                if (spell.RoleScalingTier > roleScalingTiers[spell.RoleScalingTypeId])
+                    if (!roleScalingTiers.ContainsKey(spell.RoleScalingTypeId))
+                    {
+                        _logService.Info("Bad RoleScalingType on " + spell.Name + ": " + spell.RoleScalingTypeId);
+                        continue;
+                    }
+
+                    if (spell.RoleScalingTier > roleScalingTiers[spell.RoleScalingTypeId])
+                    {
+                        continue;
+                    }
+                }
+                else
                 {
-                    continue;
+
+                    bool roleKnowsThis = false;
+
+                    foreach (UnitRole role in member.Roles)
+                    {
+                        // if a player role knows this and is high enough level, add it to the list.
+                        if (spell.RolesKnowingThis.Any(x => x.RoleId == role.RoleId))
+                        {
+                            roleKnowsThis = true;
+                            break;
+                        }
+                    }
+
+                    if (!roleKnowsThis)
+                    {
+                        continue;
+                    }
                 }
 
                 if (_combatService.IsActionBlocked(party, member, spell.CombatActionId))
@@ -952,10 +988,10 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 return;
             }
 
-            args.DelayTime = (CrawlerCombatConstants.GetScrollingFrames(party.ScrollFramesIndex) * 1.0f) / _appService.TargetFrameRate;
+            args.DelayTime = (CrawlerCombatConstants.GetScrollingFrames(party.ScrollFramesIndex) * 1.0f) / 30.0f;
 
             args.BuffSettings = _gameData.Get<PartyBuffSettings>(_gs.ch);
-            args.AfterInitialTextTime = Mathf.Max(0, args.DelayTime - CrawlerClientCombatConstants.CombatDooberFlyTime);
+            args.AfterInitialTextTime = Mathf.Max(0.034f, args.DelayTime - CrawlerClientCombatConstants.CombatDooberFlyTime);
             args.CritChanceScaling = 1.0f;
 
             bool haveMultiHitEffect = spell.Effects.FastAny(x =>
@@ -973,7 +1009,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             {
                 if (args.IsEnemyTarget)
                 {
-                    double parryValue = party.Buffs.Get(PartyBuffs.Parry);
+                    double parryValue = party.Buffs[PartyBuffs.Parry];
                     if (args.IsEnemyTarget && target.IsPlayer() &&
                         _rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
                     {
@@ -1016,7 +1052,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                 if (target.FactionTypeId == FactionTypes.Player)
                 {
-                    double autoHealValue = party.Buffs.Get(PartyBuffs.Autoheal);
+                    double autoHealValue = party.Buffs[PartyBuffs.Autoheal];
                     if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
                     {
                         double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
@@ -1047,7 +1083,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 bool casterIsDead = false;
                 if (spell.HitsLeft < 1 || isDead)
                 {
-                    double retaliateValue = party.Buffs.Get(PartyBuffs.Retaliate);
+                    double retaliateValue = party.Buffs[PartyBuffs.Retaliate];
                     if (target.FactionTypeId == FactionTypes.Player && args.TotalDamage > 0 && retaliateValue > 0)
                     {
                         long thornsDamage = (long)(args.TotalDamage * retaliateValue * args.BuffSettings.GetEffectScale(PartyBuffs.Retaliate));
@@ -1070,7 +1106,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     {
                         if (args.TotalDamage > 0)
                         {
-                            double lifeStealValue = party.Buffs.Get(PartyBuffs.Lifesteal);
+                            double lifeStealValue = party.Buffs[PartyBuffs.Lifesteal];
                             if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
                             {
                                 long totalLifesteal = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.Lifesteal));
@@ -1082,7 +1118,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                                 }
                             }
 
-                            double dotValue = party.Buffs.Get(PartyBuffs.ApplyDoT);
+                            double dotValue = party.Buffs[PartyBuffs.ApplyDoT];
                             if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
                             {
                                 long totalDot = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.ApplyDoT));

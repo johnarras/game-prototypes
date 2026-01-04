@@ -8,7 +8,7 @@
   "Art": "Donkey",
   "Speed": 2,
   "Capacity": 1,
-  "Supplies": 1,
-  "Cost": 750,
+  "Upkeep": 1,
+  "Price": 750,
   "StartsUnlocked": true
 }

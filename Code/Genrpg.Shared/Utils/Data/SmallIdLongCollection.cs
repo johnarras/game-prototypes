@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Utils.Data
     [MessagePackObject]
     public class SmallIdLongCollection : BaseSmallIdQuantityCollection<long>
     {
-        [Key(0)] public override long[] Data { get; set; } = new long[4];
+        [Key(0)] public long[] Data { get => _data; set => _data = value; }
         protected override long InternalAdd(long first, long second)
         {
             return first + second;

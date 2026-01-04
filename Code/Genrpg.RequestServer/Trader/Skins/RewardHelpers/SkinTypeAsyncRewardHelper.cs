@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Trader.Skins.RewardHelpers
         public async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
         {
 
-            _animalService.AddSkinToHoldings(context.user, await context.GetAsync<HoldingsData>(), entityId);
+            _animalService.AddSkinToHoldings(context.core, await context.GetAsync<HoldingsData>(), entityId);
         }
     }
 }

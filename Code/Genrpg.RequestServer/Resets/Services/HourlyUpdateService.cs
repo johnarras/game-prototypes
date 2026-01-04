@@ -1,4 +1,5 @@
 using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Resets.Entities;
 using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Services;
@@ -6,6 +7,8 @@ using Genrpg.Shared.CoreCurrencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Trader.Camping.Settings.Genrpg.Shared.Trader.Camping.Settings;
+using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 
@@ -16,21 +19,29 @@ namespace Genrpg.RequestServer.Resets.Services
         private IGameData _gameData = null;
         private ICoreCurrencyService _coreCurrencyService = null;
         private IWebRewardService _rewardService = null;
-        public async Task CheckHourlyCurrencyUpdate(WebContext context, bool onLogin)
+        public async Task CheckHourlyCurrencyUpdate(WebContext context, HourlyResetArgs args)
         {
-            CoreUserData userData = await context.GetAsync<CoreUserData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
 
-
-            DateTime nowTime = DateTime.UtcNow;
-            if (userData.NextHourlyUpdate > nowTime)
+            long resetHours = 0;
+            if (!args.IsCamping)
             {
-                return;
+                DateTime nowTime = DateTime.UtcNow;
+                if (coreData.NextHourlyUpdate > nowTime)
+                {
+                    return;
+                }
+
+                resetHours = (int)(nowTime - coreData.NextHourlyUpdate).TotalHours + 1;
+            }
+            else
+            {
+                CampingSettings campingSettings = _gameData.Get<CampingSettings>(context.core);
+
+                resetHours = (args.InCity ? campingSettings.CityRegenHours : campingSettings.RoadRegenHours);
             }
 
-            int resetHours = (int)(nowTime - userData.NextHourlyUpdate).TotalHours + 1;
-
-
-            IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(context.user).GetData();
+            IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(context.core).GetData();
 
             TraderStatData statData = await context.GetAsync<TraderStatData>();
 
@@ -38,10 +49,10 @@ namespace Genrpg.RequestServer.Resets.Services
 
             foreach (CoreCurrencyType ctype in currencies)
             {
-                long regenVal = _coreCurrencyService.GetRegen(ctype.IdKey, userData, statData);
-                long storageVal = _coreCurrencyService.GetStorage(ctype.IdKey, userData, statData);
+                long regenVal = _coreCurrencyService.GetRegen(ctype.IdKey, coreData, statData);
+                long storageVal = _coreCurrencyService.GetStorage(ctype.IdKey, coreData, statData);
 
-                long currVal = userData.Currencies.Get(ctype.IdKey);
+                long currVal = coreData.Currencies[ctype.IdKey];
 
                 if (currVal >= storageVal)
                 {
@@ -60,11 +71,25 @@ namespace Genrpg.RequestServer.Resets.Services
 
 
             await _rewardService.GiveRewardsAsync(context, newRewards, new RewardParams());
-            context.user.SetNextHourlyUpdate();
 
-            if (!onLogin)
+            if (!args.IsCamping)
             {
-                context.AddResponse(new UpdateCoreCurrenciesResponse() { Rewards = newRewards, NextHourlyUpdate = context.user.NextHourlyUpdate });
+                context.core.SetNextHourlyUpdate();
+            }
+            else
+            {
+                coreData.Vars.Add(TraderVars.DaysPlayed, 1);
+            }
+
+
+            if (!args.OnLogin)
+            {
+                context.AddResponse(new HourlyUpdateResponse()
+                {
+                    Rewards = newRewards,
+                    NextHourlyUpdate = context.core.NextHourlyUpdate,
+                    Day = coreData.Vars[TraderVars.DaysPlayed],
+                });
             }
         }
     }

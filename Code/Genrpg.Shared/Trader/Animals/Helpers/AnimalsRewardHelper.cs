@@ -17,7 +17,7 @@ namespace Genrpg.Shared.Trader.Animals.Helpers
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
-            _animalService.AddAnimalToHoldings(obj.Get<CoreUserData>(), obj.Get<HoldingsData>(), entityId);
+            _animalService.AddAnimalToHoldings(obj.Get<CoreData>(), obj.Get<HoldingsData>(), entityId);
             HoldingsData holdings = obj.Get<HoldingsData>();
 
             return true;

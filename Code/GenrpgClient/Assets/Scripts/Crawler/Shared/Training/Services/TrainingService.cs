@@ -182,7 +182,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 Cost = cost,
                 TotalExp = exp,
                 ExpLeft = Math.Max(0, exp - member.Exp),
-                PartyGold = party.Currencies.Get(CrawlerCurrencyTypes.Gold),
+                PartyGold = party.Currencies[CrawlerCurrencyTypes.Gold],
                 NextLevel = member.Level + 1,
             };
 
@@ -207,7 +207,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
 
             IReadOnlyList<Role> allRoles = _gameData.Get<RoleSettings>(_gs.ch).GetData();
 
-            if (info.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold) || info.TotalExp > member.Exp)
+            if (info.Cost > party.Currencies[CrawlerCurrencyTypes.Gold] || info.TotalExp > member.Exp)
             {
                 return result;
             }
@@ -331,7 +331,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 return;
             }
 
-            int currVal = member.Upgrades.Get(memberUpgradeTypeId);
+            int currVal = member.Upgrades[memberUpgradeTypeId];
 
             if (currVal >= settings.MaxTier)
             {
@@ -352,7 +352,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             long cost = GetNewClassTrainingCost(member);
 
-            if (party.Currencies.Get(CrawlerCurrencyTypes.Gold) < cost)
+            if (party.Currencies[CrawlerCurrencyTypes.Gold] < cost)
             {
                 _dispatcher.Dispatch(new ShowFloatingText("Not enough gold!", EFloatingTextArt.Error));
                 return;
@@ -384,7 +384,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             TrainingInfo info = GetTrainingInfo(party, member);
 
-            if (info.Cost > party.Currencies.Get(CrawlerCurrencyTypes.Gold) || member.Exp < info.TotalExp)
+            if (info.Cost > party.Currencies[CrawlerCurrencyTypes.Gold] || member.Exp < info.TotalExp)
             {
                 return;
             }

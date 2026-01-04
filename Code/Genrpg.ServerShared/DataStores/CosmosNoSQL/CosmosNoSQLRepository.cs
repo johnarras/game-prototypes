@@ -14,7 +14,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading;
@@ -238,12 +237,6 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
                 _logService.Exception(e, "CosmosNoSQl.Delete");
             }
             return false;
-        }
-
-        public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity, int skip) where T : class, IStringId
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
         }
 
         public async Task TransactionSave<T>(List<T> items) where T : IPartitionedData

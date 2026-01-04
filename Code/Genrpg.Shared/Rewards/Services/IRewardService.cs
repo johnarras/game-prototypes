@@ -1,3 +1,4 @@
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
@@ -13,7 +14,7 @@ namespace Genrpg.Shared.Rewards.Services
         bool GiveReward(IRandom rand, MapObject obj, long entityType, long entityId, long quantity, object extraData, RewardParams rp);
         bool Add(MapObject obj, long entityTypeId, long entityId, long quantity, RewardParams rp);
         bool Set(MapObject obj, long entityTypeId, long entityId, long quantity, RewardParams rp);
-        void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, IStringId;
+        void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, ISearchableItem;
     }
 }
 

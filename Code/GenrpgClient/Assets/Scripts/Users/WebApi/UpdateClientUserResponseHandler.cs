@@ -9,8 +9,8 @@ namespace Assets.Scripts.Users.WebApi
     {
         protected override void InnerProcess(UpdateClientUserResponse result, CancellationToken token)
         {
-            CoreUserData userData = _gs.ch.Get<CoreUserData>();
-            userData.Level = result.Level;
+            CoreData coreData = _gs.ch.Get<CoreData>();
+            coreData.Level = result.Level;
         }
     }
 }

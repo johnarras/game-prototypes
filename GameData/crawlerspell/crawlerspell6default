@@ -10,5 +10,16 @@
   "TargetTypeId": 9,
   "RoleScalingTypeId": 6,
   "RoleScalingTier": 3,
-  "Effects": []
+  "Effects": [],
+  "RolesKnowingThis": [
+    {
+      "RoleId": 2
+    },
+    {
+      "RoleId": 7
+    },
+    {
+      "RoleId": 8
+    }
+  ]
 }

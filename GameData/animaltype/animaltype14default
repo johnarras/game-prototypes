@@ -8,6 +8,6 @@
   "Art": "Reindeer",
   "Speed": 5,
   "Capacity": 1,
-  "Supplies": 2,
-  "Cost": 19500
+  "Upkeep": 2,
+  "Price": 19500
 }

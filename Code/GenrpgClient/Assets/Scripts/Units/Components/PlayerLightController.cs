@@ -65,7 +65,7 @@ namespace Assets.Scripts.Controllers
 
             if (_crawlerMapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Darkness, true))
             {
-                party.Buffs.Set(PartyBuffs.Light, 0);
+                party.Buffs[PartyBuffs.Light] = 0;
                 Headlight.intensity = 0;
                 return;
             }
@@ -94,7 +94,7 @@ namespace Assets.Scripts.Controllers
 
             if (Headlight != null)
             {
-                float lightTarget = party.Buffs.Get(PartyBuffs.Light);
+                float lightTarget = party.Buffs[PartyBuffs.Light];
                 if (lightTarget > 1)
                 {
                     lightTarget = 1 + (lightTarget - 1) / 3;

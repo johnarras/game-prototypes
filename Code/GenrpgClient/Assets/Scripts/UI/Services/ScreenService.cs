@@ -23,6 +23,7 @@ public interface IScreenService : IInitializable, IClientQuitCleanup
 {
     ActiveScreen GetScreen(long screenId);
     ActiveScreen GetLayerScreen(long layerId);
+    public bool ShowingLayerScreen(long layerId);
     List<ActiveScreen> GetScreensNamed(long screenId);
     public ActiveScreen GetScreen(string screenName);
     List<ActiveScreen> GetAllScreens();
@@ -140,6 +141,9 @@ public class ScreenService : IScreenService
     {
         foreach (ClientScreenLayer layer in _layers)
         {
+
+            layer.JustClosedScreen = false;
+
             if (layer.CurrentScreen != null || layer.CurrentLoading != null)
             {
                 continue;
@@ -148,7 +152,6 @@ public class ScreenService : IScreenService
             {
                 continue;
             }
-
             ActiveScreen nextItem = layer.ScreenQueue[0];
             layer.CurrentLoading = nextItem;
             layer.ScreenQueue.RemoveAt(0);
@@ -353,6 +356,7 @@ public class ScreenService : IScreenService
                 }
                 _analyticsService.Send(AnalyticsEvents.CloseScreen, baseScreen.GetName());
                 layer.CurrentScreen = null;
+                layer.JustClosedScreen = true;
                 ClearAllScreensList();
                 break;
             }
@@ -365,6 +369,17 @@ public class ScreenService : IScreenService
         ClientScreenLayer layer = _layers.FirstOrDefault(x => x.Layer.IdKey == layerId);
 
         return layer?.CurrentScreen ?? null;
+    }
+
+    public bool ShowingLayerScreen(long layerId)
+    {
+        ClientScreenLayer layer = _layers.FirstOrDefault(x => x.Layer.IdKey == layerId);
+
+        if (layer != null && (layer.CurrentScreen != null || layer.JustClosedScreen))
+        {
+            return true;
+        }
+        return false;
     }
 
     public ActiveScreen GetScreen(long screenId)

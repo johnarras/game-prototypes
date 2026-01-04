@@ -8,6 +8,6 @@
   "Art": "TamedOnager",
   "Speed": 4,
   "Capacity": 2,
-  "Supplies": 2,
-  "Cost": 163750
+  "Upkeep": 2,
+  "Price": 163750
 }

@@ -2,7 +2,7 @@
   "ClientPlatform": "win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2025-12-27T00:27:26.8539718Z"
+    "UpdateTime": "2026-01-01T21:34:15.919367Z"
   },
   "Versions": {
     "animalskinsasianelephant": {
@@ -82,62 +82,67 @@
     },
     "atlasanimalicons": {
       "Name": "atlasanimalicons",
-      "Hash": "487e6bedd471a696501e3aef09dcd9af",
+      "Hash": "cac5aea2af4362dfff84c9b45fda9306",
       "ChildDependencies": []
     },
     "atlascorecurrencytypeicons": {
       "Name": "atlascorecurrencytypeicons",
-      "Hash": "5f1d098f85911ac5463be748857d51d4",
+      "Hash": "5318c7d7c24c131ada5ad90688ae4efb",
       "ChildDependencies": []
     },
     "atlascrawlercombat": {
       "Name": "atlascrawlercombat",
-      "Hash": "08fd9904626c71d6504b761349cc1b23",
+      "Hash": "fc82c778d716fce80c9bd3e462b0310a",
       "ChildDependencies": []
     },
     "atlascrawlercurrencytypeicons": {
       "Name": "atlascrawlercurrencytypeicons",
-      "Hash": "c6e45a5a69acfa63ac6328f9fcee08e5",
+      "Hash": "f28f800482e38f1ee2016e99a6b12266",
       "ChildDependencies": []
     },
     "atlascrawlerminimap": {
       "Name": "atlascrawlerminimap",
-      "Hash": "f1735a2fd6a89b61eb9edf124731b253",
+      "Hash": "fe42392dd936fd4dbeb98f1ac0d7f4e8",
       "ChildDependencies": []
     },
     "atlascrawlerui": {
       "Name": "atlascrawlerui",
-      "Hash": "129c312878b3f1e9bd9bc639d355c6de",
+      "Hash": "5bd9d7720fbd1be53375597457eb73a5",
       "ChildDependencies": []
     },
     "atlascurrencytypeicons": {
       "Name": "atlascurrencytypeicons",
-      "Hash": "4023ac60d236cc436cdb09d869c4babd",
+      "Hash": "2e33fd2a9738bde64b17c5f73ee4ab58",
+      "ChildDependencies": []
+    },
+    "atlasdiceicons": {
+      "Name": "atlasdiceicons",
+      "Hash": "736944aeb7eb31539ed5bc8a0bd24908",
       "ChildDependencies": []
     },
     "atlasicons": {
       "Name": "atlasicons",
-      "Hash": "3866acb99b2197a2662dd2b5375851f0",
+      "Hash": "68e7b9d6bc0670339ddc244ee74b3efe",
       "ChildDependencies": []
     },
     "atlasskillicons": {
       "Name": "atlasskillicons",
-      "Hash": "ea9ab12a30fcc135510325c8aa76b176",
+      "Hash": "5f5f4d36a0c223b62d4a576fbb537663",
       "ChildDependencies": []
     },
     "atlasstatuseffecticons": {
       "Name": "atlasstatuseffecticons",
-      "Hash": "9b33c52be47cfbbc15135eb92c1c94be",
+      "Hash": "b0ff7254250f6e0b2212718d664c4ccb",
       "ChildDependencies": []
     },
     "atlastradegoodicons": {
       "Name": "atlastradegoodicons",
-      "Hash": "8d55bfc3a3064bdf7c0646bcecc53fde",
+      "Hash": "138fef8bd98a5b8945e0993c2a4aa0b7",
       "ChildDependencies": []
     },
     "atlasui": {
       "Name": "atlasui",
-      "Hash": "544c92c0eb255b29101e1253d5f9926d",
+      "Hash": "8cdfee344a3904649e0d4b3f029f4eed",
       "ChildDependencies": []
     },
     "audioacidhit": {
@@ -3570,7 +3575,7 @@
     },
     "uicore": {
       "Name": "uicore",
-      "Hash": "5d5dec3711243d453534a7c04ef060a5",
+      "Hash": "d35ecabf3e2b7c07c559eae36e63c115",
       "ChildDependencies": []
     },
     "uicrafting": {
@@ -3701,14 +3706,9 @@
       "Hash": "f47b44907c66e68a3a90ea6d9dff0122",
       "ChildDependencies": []
     },
-    "uimarkers": {
-      "Name": "uimarkers",
-      "Hash": "2acf082204871acaab250c20719554fc",
-      "ChildDependencies": []
-    },
     "uioptions": {
       "Name": "uioptions",
-      "Hash": "0929ccc87f10a11fad5f220b22739b55",
+      "Hash": "0eba8ca9f26b4a7b15b0a5e3975bfe20",
       "ChildDependencies": []
     },
     "uiquests": {
@@ -3743,22 +3743,22 @@
     },
     "uitrader": {
       "Name": "uitrader",
-      "Hash": "4272b08bc5ae20cd14135d416157be2f",
+      "Hash": "fbec5ab0f223f8da4028acde0f136491",
       "ChildDependencies": []
     },
     "uitradercaravan": {
       "Name": "uitradercaravan",
-      "Hash": "93aa40c1b71732d8ed7f95a71b6770e9",
+      "Hash": "6423da4990eca23e4b61a13beb1db8b9",
       "ChildDependencies": []
     },
     "uitradercity": {
       "Name": "uitradercity",
-      "Hash": "5bc31f768048ee5e0f0ce555e689532d",
+      "Hash": "56b7ab67715c7f44e29a01189331d71a",
       "ChildDependencies": []
     },
     "uitraderhud": {
       "Name": "uitraderhud",
-      "Hash": "746d2daebb4c2653f004a1b516b068f2",
+      "Hash": "415ff19505ad93181949e9af5e80563e",
       "ChildDependencies": []
     },
     "uitraderinfo": {

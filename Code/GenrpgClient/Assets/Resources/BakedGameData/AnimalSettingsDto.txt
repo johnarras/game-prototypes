@@ -8,8 +8,8 @@
       "Art": "Donkey",
       "Speed": 2,
       "Capacity": 1,
-      "Supplies": 1,
-      "Cost": 750,
+      "Upkeep": 1,
+      "Price": 750,
       "StartsUnlocked": true
     },
     {
@@ -20,8 +20,8 @@
       "Art": "Pony",
       "Speed": 4,
       "Capacity": 1,
-      "Supplies": 1,
-      "Cost": 41000
+      "Upkeep": 1,
+      "Price": 41000
     },
     {
       "IdKey": 3,
@@ -31,8 +31,8 @@
       "Art": "Mule",
       "Speed": 3,
       "Capacity": 2,
-      "Supplies": 2,
-      "Cost": 29250
+      "Upkeep": 2,
+      "Price": 29250
     },
     {
       "IdKey": 4,
@@ -42,8 +42,8 @@
       "Art": "RidingHorse",
       "Speed": 6,
       "Capacity": 1,
-      "Supplies": 2,
-      "Cost": 58250
+      "Upkeep": 2,
+      "Price": 58250
     },
     {
       "IdKey": 5,
@@ -53,8 +53,8 @@
       "Art": "TamedOnager",
       "Speed": 4,
       "Capacity": 2,
-      "Supplies": 2,
-      "Cost": 163750
+      "Upkeep": 2,
+      "Price": 163750
     },
     {
       "IdKey": 6,
@@ -64,8 +64,8 @@
       "Art": "DraftHorse",
       "Speed": 4,
       "Capacity": 3,
-      "Supplies": 4,
-      "Cost": 155500
+      "Upkeep": 4,
+      "Price": 155500
     },
     {
       "IdKey": 7,
@@ -75,8 +75,8 @@
       "Art": "HeavyWarhorse",
       "Speed": 5,
       "Capacity": 2,
-      "Supplies": 4,
-      "Cost": 78250
+      "Upkeep": 4,
+      "Price": 78250
     },
     {
       "IdKey": 8,
@@ -86,8 +86,8 @@
       "Art": "Ox",
       "Speed": 3,
       "Capacity": 5,
-      "Supplies": 4,
-      "Cost": 356000
+      "Upkeep": 4,
+      "Price": 356000
     },
     {
       "IdKey": 9,
@@ -97,8 +97,8 @@
       "Art": "Zebu",
       "Speed": 4,
       "Capacity": 3,
-      "Supplies": 3,
-      "Cost": 368750
+      "Upkeep": 3,
+      "Price": 368750
     },
     {
       "IdKey": 10,
@@ -108,8 +108,8 @@
       "Art": "WaterBuffalo",
       "Speed": 3,
       "Capacity": 4,
-      "Supplies": 3,
-      "Cost": 276500
+      "Upkeep": 3,
+      "Price": 276500
     },
     {
       "IdKey": 11,
@@ -119,8 +119,8 @@
       "Art": "DromedaryCamel",
       "Speed": 4,
       "Capacity": 2,
-      "Supplies": 3,
-      "Cost": 48500
+      "Upkeep": 3,
+      "Price": 48500
     },
     {
       "IdKey": 12,
@@ -130,8 +130,8 @@
       "Art": "BactrianCamel",
       "Speed": 5,
       "Capacity": 2,
-      "Supplies": 3,
-      "Cost": 185250
+      "Upkeep": 3,
+      "Price": 185250
     },
     {
       "IdKey": 13,
@@ -141,8 +141,8 @@
       "Art": "Yak",
       "Speed": 5,
       "Capacity": 3,
-      "Supplies": 3,
-      "Cost": 1406250
+      "Upkeep": 3,
+      "Price": 1406250
     },
     {
       "IdKey": 14,
@@ -152,8 +152,8 @@
       "Art": "Reindeer",
       "Speed": 5,
       "Capacity": 1,
-      "Supplies": 2,
-      "Cost": 19500
+      "Upkeep": 2,
+      "Price": 19500
     },
     {
       "IdKey": 15,
@@ -163,8 +163,19 @@
       "Art": "AsianElephant",
       "Speed": 4,
       "Capacity": 6,
-      "Supplies": 6,
-      "Cost": 1474500
+      "Upkeep": 6,
+      "Price": 1474500
+    },
+    {
+      "IdKey": 16,
+      "Name": "Dragon",
+      "Desc": "Powerful",
+      "Icon": "Dragon",
+      "Art": "Dragon",
+      "Speed": 8,
+      "Capacity": 8,
+      "Upkeep": 3,
+      "Price": 3181457250
     }
   ],
   "Parent": {
@@ -172,5 +183,5 @@
     "Name": "AnimalTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-23T21:38:00.331Z"
+  "SaveTime": "2025-12-31T19:17:48.486Z"
 }

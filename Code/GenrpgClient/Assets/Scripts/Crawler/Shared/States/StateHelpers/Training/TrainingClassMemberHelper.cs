@@ -84,7 +84,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             long trainingCost = _trainingService.GetNewClassTrainingCost(member);
 
 
-            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Currencies.Get(CrawlerCurrencyTypes.Gold)}");
+            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Currencies[CrawlerCurrencyTypes.Gold]}");
 
             for (int i = 0; i < possibleRoles.Count; i++)
             {

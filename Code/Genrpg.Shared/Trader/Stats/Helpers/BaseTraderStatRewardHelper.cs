@@ -3,7 +3,6 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Trader.Stats.Constants;
 using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.Utils;
 
@@ -17,14 +16,9 @@ namespace Genrpg.Shared.Trader.Stats.Helpers
         {
             TraderStatData statData = obj.Get<TraderStatData>();
 
-            statData.Stats.Get(entityId).Base = quantity;
+            statData.Stats[entityId].Base = quantity;
 
-            CoreUserData userData = obj.Get<CoreUserData>();
-
-            if (entityId == TraderStats.Foraging)
-            {
-                userData.Foraging = statData.Stats.Get(entityId).Max();
-            }
+            CoreData coreData = obj.Get<CoreData>();
 
             return true;
         }

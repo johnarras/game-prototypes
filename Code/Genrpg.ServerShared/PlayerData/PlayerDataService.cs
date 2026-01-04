@@ -1,9 +1,9 @@
 using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
@@ -74,9 +74,24 @@ namespace Genrpg.ServerShared.PlayerData
 
             List<IUnitData> allData = ch.GetAllData();
 
+            List<IUnitData> nonSearchables = new List<IUnitData>();
             foreach (IUnitData unitData in allData)
             {
-                _repoService.QueueSave(unitData);
+                if (unitData is ISearchableItem searchable)
+                {
+                    _repoService.QueueSave(searchable);
+                }
+                else
+                {
+                    nonSearchables.Add(unitData);
+                }
+            }
+
+
+
+            if (nonSearchables.Count > 0)
+            {
+
             }
         }
 
@@ -112,27 +127,27 @@ namespace Genrpg.ServerShared.PlayerData
             return default;
         }
 
-        private async Task CreateDefaultSharedUserData(GameAccount acct)
+        private async Task CreateDefaultSharedUserData(string gameUserId)
         {
             List<Task> tasks = new List<Task>();
             foreach (ISharedUserDataLoader loader in _sharedObjectLoaders.GetDict().Values)
             {
-                tasks.Add(loader.CreateDefaultData(acct.Id));
+                tasks.Add(loader.CreateDefaultData(gameUserId));
             }
 
             await Task.WhenAll(tasks);
         }
 
-        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, GameAccount acct, List<IUnitData> existingData, Character ch = null)
+        public async Task<List<IUnitData>> LoadAllPlayerData(IRandom rand, string gameUserId, List<IUnitData> existingData, Character ch = null)
         {
             bool haveCharacter = ch != null;
 
             if (!haveCharacter)
             {
-                ch = new Character(new CoreCharacter()) { Id = acct.Id, UserId = acct.Id };
+                ch = new Character(new CoreCharacter()) { Id = gameUserId, UserId = gameUserId };
             }
 
-            _taskService.ForgetTask(CreateDefaultSharedUserData(acct), false);
+            _taskService.ForgetTask(CreateDefaultSharedUserData(gameUserId), false);
 
             List<Task<IUnitData>> allTasks = new List<Task<IUnitData>>();
             foreach (IUnitDataLoader loader in _loaderObjects.GetDict().Values)

@@ -1,9 +1,11 @@
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.Resets.Entities;
 using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
@@ -20,12 +22,17 @@ namespace Genrpg.RequestServer.Services.GameClient
         private IWebServerService _loginServerService = null;
         private IHourlyUpdateService _hourlyUpdateService = null;
         private ITextSerializer _serializer = null;
+        private IRepositoryService _repoService = null;
 
         public async Task HandleUserClientRequest(WebContext context, string postData, CancellationToken token)
         {
             WebServerRequestSet commandSet = _serializer.Deserialize<WebServerRequestSet>(postData);
 
-            await LoadLoggedInPlayer(context, commandSet.UserId, commandSet.SessionId);
+            if (!await LoadLoggedInPlayer(context, commandSet.GameUserId, commandSet.SessionId))
+            {
+                context.ShowError("Failed to load logged in user.");
+                return;
+            }
 
             try
             {
@@ -73,20 +80,22 @@ namespace Genrpg.RequestServer.Services.GameClient
             return;
         }
 
-        private async Task LoadLoggedInPlayer(WebContext context, string userId, string sessionId)
+        private async Task<bool> LoadLoggedInPlayer(WebContext context, string userId, string sessionId)
         {
-            await context.LoadUser(userId);
+            GameAccount acct = await _repoService.Load<GameAccount>(userId);
 
-            if (context.acct == null || context.acct.SessionId != sessionId)
+            if (acct == null || acct.SessionId != sessionId)
             {
-                return;
+                return false;
             }
 
-            context.user = await context.GetAsync<CoreUserData>();
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.user, false));
-            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, false);
+            context.SetAccount(acct);
 
-            return;
+            context.core = await context.GetAsync<CoreData>();
+            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, false));
+            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs() { OnLogin = false });
+
+            return true;
         }
 
     }

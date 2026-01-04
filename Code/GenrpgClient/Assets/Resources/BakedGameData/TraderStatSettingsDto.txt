@@ -74,17 +74,19 @@
     },
     {
       "IdKey": 13,
-      "Name": "Food Regen",
+      "Name": "Rations Regen",
       "Desc": "",
       "AtlasPrefix": "",
-      "Icon": "FoodRegen",
-      "Art": "FoodRegen"
+      "Icon": "RationsRegen",
+      "Art": "RationsRegen"
     },
     {
       "IdKey": 14,
-      "Name": "Food Storage",
-      "Icon": "FoodStorage",
-      "Art": "FoodStorage"
+      "Name": "Rations Storage",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "RationsStorage",
+      "Art": "RationsStorage"
     }
   ],
   "Parent": {
@@ -92,5 +94,5 @@
     "Name": "TraderStatSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-21T20:52:57.784Z"
+  "SaveTime": "2025-12-28T20:17:50.679Z"
 }

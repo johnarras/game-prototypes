@@ -131,18 +131,9 @@ public class RealtimeNetworkService : IRealtimeNetworkService
         _logService.Debug(sb.ToString());
 #endif
 
-        string userid = "";
-        string sessionid = "";
-
         if (_md.GeneratingMap)
         {
             return;
-        }
-
-        if (_gs.acct != null)
-        {
-            userid = _gs.acct.Id;
-            sessionid = _gs.acct.SessionId;
         }
 
         if (_clientConn == null || _clientConn.RemoveMe())

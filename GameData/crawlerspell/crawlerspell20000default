@@ -17,5 +17,6 @@
       "MaxQuantity": 1,
       "ElementTypeId": 9
     }
-  ]
+  ],
+  "RolesKnowingThis": []
 }

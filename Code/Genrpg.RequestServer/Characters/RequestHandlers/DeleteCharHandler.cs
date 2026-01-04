@@ -12,18 +12,18 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
         {
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
 
-            if (coreCh != null && coreCh.UserId == context.user.Id)
+            if (coreCh != null && coreCh.UserId == context.core.Id)
             {
                 Character ch = new Character(coreCh);
 
-                await _playerDataService.LoadAllPlayerData(context.rand, context.acct, context.AllData(), ch);
+                await _playerDataService.LoadAllPlayerData(context.rand, context.GameUserId, context.AllData(), ch);
                 await _repoService.Delete(coreCh);
 
                 foreach (IUnitData data in ch.GetAllData())
                 {
-                    if (data.Id != context.user.Id) // Do not delete user data
+                    if (data.Id != context.core.Id) // Do not delete user data
                     {
-                        _repoService.QueueDelete(data);
+                        await _repoService.Delete(data);
                     }
                 }
                 coreCh = null;
@@ -31,7 +31,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
             DeleteCharResponse response = new DeleteCharResponse()
             {
-                AllCharacters = await _playerDataService.LoadCharacterStubs(context.acct.Id),
+                AllCharacters = await _playerDataService.LoadCharacterStubs(context.GameUserId),
             };
 
             context.AddResponse(response);

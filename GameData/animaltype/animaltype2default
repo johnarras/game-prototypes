@@ -8,6 +8,6 @@
   "Art": "Pony",
   "Speed": 4,
   "Capacity": 1,
-  "Supplies": 1,
-  "Cost": 41000
+  "Upkeep": 1,
+  "Price": 41000
 }

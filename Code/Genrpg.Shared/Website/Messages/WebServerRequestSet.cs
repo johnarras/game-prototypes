@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Website.Messages
 {
     public class WebServerRequestSet
     {
-        public string UserId { get; set; }
+        public string GameUserId { get; set; }
         public string SessionId { get; set; }
         [JsonProperty(TypeNameHandling = TypeNameHandling.Auto)]
         public List<IWebRequest> Requests { get; set; } = new List<IWebRequest>();

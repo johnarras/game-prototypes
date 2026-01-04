@@ -8,7 +8,7 @@ namespace Genrpg.RequestServer.Trader.Cities.RequestHandlers
 {
     public class EnterCityRequestHandler : BaseClientUserRequestHandler<EnterCityRequest>
     {
-        protected ICaravanPositionService _positionService = null;
+        protected IServerCaravanService _caravanService = null;
         protected override async Task InnerHandleMessage(WebContext context, EnterCityRequest request, CancellationToken token)
         {
             EnterCityArgs args = new EnterCityArgs()
@@ -16,7 +16,7 @@ namespace Genrpg.RequestServer.Trader.Cities.RequestHandlers
                 CityId = request.CityId,
             };
 
-            context.AddResponse(await _positionService.EnterCity(context, args));
+            context.AddResponse(await _caravanService.EnterCity(context, args));
 
         }
     }

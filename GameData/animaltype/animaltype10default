@@ -8,6 +8,6 @@
   "Art": "WaterBuffalo",
   "Speed": 3,
   "Capacity": 4,
-  "Supplies": 3,
-  "Cost": 276500
+  "Upkeep": 3,
+  "Price": 276500
 }

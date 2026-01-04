@@ -8,6 +8,7 @@ using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Characters.PlayerData
 {
@@ -16,7 +17,7 @@ namespace Genrpg.Shared.Characters.PlayerData
         public string UserId { get; set; }
         public int Version { get; set; }
 
-        public DateTime UpdateTime { get; set; }
+        public string _etag { get; set; }
 
         public int AbilityPoints { get; set; }
         public string MapId { get; set; }
@@ -66,13 +67,7 @@ namespace Genrpg.Shared.Characters.PlayerData
 
         public override List<IUnitData> GetAllData()
         {
-            List<IUnitData> list = new List<IUnitData>();
-
-            foreach (IUnitData val in _dataDict.Values)
-            {
-                list.Add(val);
-            }
-            return list;
+            return _dataDict.Values.ToList();
         }
 
     }

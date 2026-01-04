@@ -3,6 +3,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Genrpg.Shared.Core.Entities
@@ -234,6 +235,11 @@ namespace Genrpg.Shared.Core.Entities
                     }
 
                     Type fieldType = field.FieldType;
+
+                    if (tfi.Fields.Any(x => x.Field.FieldType == fieldType))
+                    {
+                        continue;
+                    }
 
                     TypeField tf = new TypeField()
                     {

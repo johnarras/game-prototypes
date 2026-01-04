@@ -66,8 +66,9 @@ namespace Assets.Scripts.GameObjects
             SetActive(go, true);
             List<MonoBehaviour> allBehaviours = GetComponents<MonoBehaviour>(go);
 
-            foreach (MonoBehaviour behaviour in allBehaviours)
+            for (int b = allBehaviours.Count - 1; b >= 0; b--)
             {
+                MonoBehaviour behaviour = allBehaviours[b];
                 if (behaviour is BaseBehaviour baseBehaviour)
                 {
                     try

@@ -316,7 +316,7 @@ namespace Genrpg.MapServer.Maps
                     return;
                 }
 
-                GameAccount gameAcct = await _repoService.Load<GameAccount>(add.UserId);
+                GameAccount gameAcct = await _repoService.Load<GameAccount>(add.GameUserId);
 
                 if (gameAcct == null)
                 {
@@ -350,7 +350,7 @@ namespace Genrpg.MapServer.Maps
 
                     ch.NearbyGridsSeen = new List<PointXZ>();
                     connState.ch = ch;
-                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct, new List<IUnitData>(), ch);
+                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct.GameUserId, new List<IUnitData>(), ch);
                     foreach (IUnitData unitData in allUnitData)
                     {
                         ch.Set(unitData);

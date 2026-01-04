@@ -8,6 +8,6 @@
   "Art": "Mule",
   "Speed": 3,
   "Capacity": 2,
-  "Supplies": 2,
-  "Cost": 29250
+  "Upkeep": 2,
+  "Price": 29250
 }

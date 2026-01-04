@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TtlSeconds: 5
-  Atlas: {fileID: 4343727234628468602, guid: 74a7cbd8e314f964980f288d9a9eee56, type: 2}
+  Atlas: {fileID: 100100200, guid: 72d767f3ca7e08f41b2a935e4c928954, type: 3}

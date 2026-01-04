@@ -7,7 +7,7 @@ using System;
 namespace Genrpg.Shared.Core.PlayerData
 {
     [MessagePackObject]
-    public class GameAccount : NoChildIndexedUserData, IUserData
+    public class GameAccount : UniquePersonalUserData, IUserData
     {
         /// <summary>
         /// Used for the id found in the relational database
@@ -21,6 +21,7 @@ namespace Genrpg.Shared.Core.PlayerData
         [Key(5)] public string AccountId { get; set; }
         [Key(6)] public bool Deleted { get; set; }
         [Key(7)] public string ClientPlatformName { get; set; }
+        [Key(8)] public string GameUserId { get; set; }
     }
 }
 

@@ -24,7 +24,7 @@ namespace Genrpg.RequestServer.Entities.Helpers
         {
             List<Reward> rewards = new List<Reward>();
 
-            List<IIdName> childObjects = _entityService.GetChildList(context.user, si.EntityId);
+            List<IIdName> childObjects = _entityService.GetChildList(context.core, si.EntityId);
 
             if (childObjects.Count < 1)
             {

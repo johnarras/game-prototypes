@@ -17,5 +17,16 @@
       "MinQuantity": 1,
       "MaxQuantity": 1
     }
+  ],
+  "RolesKnowingThis": [
+    {
+      "RoleId": 4
+    },
+    {
+      "RoleId": 8
+    },
+    {
+      "RoleId": 11
+    }
   ]
 }

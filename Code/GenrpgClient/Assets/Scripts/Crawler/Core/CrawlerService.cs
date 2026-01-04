@@ -393,6 +393,8 @@ namespace Assets.Scripts.Crawler.Services
                 member.ConvertDataAfterLoad();
             }
 
+
+            party.ActiveParty = party.ActiveParty.OrderBy(x => x.PartySlot).ToList();
             foreach (PartyMember member in party.ActiveParty)
             {
                 _spellService.SetupCombatData(party, member);

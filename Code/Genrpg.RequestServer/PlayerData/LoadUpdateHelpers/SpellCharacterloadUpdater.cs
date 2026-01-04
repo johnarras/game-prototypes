@@ -1,6 +1,6 @@
 using Genrpg.RequestServer.Core;
-using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Serialization.Interfaces;
@@ -17,7 +17,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         private IGameData _gameData = null;
         private ITextSerializer _serializer = null;
 
-        protected IFullRepositoryService _repoService = null;
+        protected IRepositoryService _repoService = null;
         public override int Order => 2;
 
         public override async Task Update(WebContext context, Character ch)
@@ -42,13 +42,13 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
                     ActionInput newInput = adata.SetInput(i, i);
                     if (newInput != null)
                     {
-                        _repoService.QueueSave(newInput);
+                        await _repoService.Save(newInput);
                     }
                 }
                 else
                 {
                     ai.Index = i;
-                    _repoService.QueueSave(ai);
+                    await _repoService.Save(ai);
                 }
             }
 

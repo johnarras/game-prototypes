@@ -1,9 +1,9 @@
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
-using System;
 
 namespace Genrpg.Shared.Characters.PlayerData
 {
-    public interface ICoreCharacter : IFilteredObject
+    public interface ICoreCharacter : IFilteredObject, IVersionedData
     {
         string Name { get; set; }
         string UserId { get; set; }
@@ -19,7 +19,6 @@ namespace Genrpg.Shared.Characters.PlayerData
         long EntityTypeId { get; set; }
         long EntityId { get; set; }
         long SexTypeId { get; set; }
-        DateTime UpdateTime { get; set; }
 
     }
 

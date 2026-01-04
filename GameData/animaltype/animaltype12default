@@ -8,6 +8,6 @@
   "Art": "BactrianCamel",
   "Speed": 5,
   "Capacity": 2,
-  "Supplies": 3,
-  "Cost": 185250
+  "Upkeep": 3,
+  "Price": 185250
 }

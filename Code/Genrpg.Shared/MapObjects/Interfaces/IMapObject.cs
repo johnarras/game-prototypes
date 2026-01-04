@@ -1,9 +1,9 @@
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 
 namespace Genrpg.Shared.MapObjects.Interfaces
 {
-    public interface IMapObject : IFilteredObject, IStringId
+    public interface IMapObject : IFilteredObject, ISearchableItem
     {
         string Name { get; set; }
         long EntityTypeId { get; set; }

@@ -1218,6 +1218,11 @@ namespace Genrpg.Editor
 
         public void DeleteItem()
         {
+            _taskService.ForgetTask(DeleteItemAsync(), false);
+        }
+
+        private async Task DeleteItemAsync()
+        {
             List<IGameSettings> deleteItems = new List<IGameSettings>();
             try
             {
@@ -1247,6 +1252,8 @@ namespace Genrpg.Editor
                 {
                     return;
                 }
+
+                List<Task> deleteTasks = new List<Task>();
 
                 object row = selected[0];
                 object item = row;
@@ -1279,7 +1286,7 @@ namespace Genrpg.Editor
 
                 if (item is IUnitData unitData)
                 {
-                    _repoService.QueueDelete(unitData);
+                    deleteTasks.Add(_repoService.Delete(unitData));
                     _gs.LookedAtObjects.Remove(unitData);
                 }
 
@@ -1289,6 +1296,7 @@ namespace Genrpg.Editor
                     Obj = obj2;
                 }
 
+                await Task.WhenAll(deleteTasks);
                 SetSelectedRow(_multiGrid, oldSelectedRow);
             }
             catch (Exception ex)

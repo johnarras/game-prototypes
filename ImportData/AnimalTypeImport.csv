@@ -1,4 +1,4 @@
-header animaltype,IdKey,Name,Icon,Art,Speed,Capacity,Supplies,ThroughputPerFood,Cost,StartsUnlocked,Desc
+header animaltype,IdKey,Name,Icon,Art,Speed,Capacity,Upkeep,ThroughputPerUpkeep,Price,StartsUnlocked,Desc
 animaltype,1,Donkey,Donkey,Donkey,2,1,1,2,750,TRUE,"The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person."
 animaltype,2,Pony,Pony,Pony,4,1,1,4,41000,FALSE,"A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances."
 animaltype,3,Mule,Mule,Mule,3,2,2,3,29250,FALSE,"A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal."
@@ -20,6 +20,6 @@ animaltype,15,Asian Elephant,AsianElephant,AsianElephant,4,6,6,4,1474500,FALSE,A
 ,,,,,,,,Scale,0.1,,
 ,,,,,,,,Speed,3,,
 ,,,,,,,,Capacity,2.5,,
-,,,,,,,,Food,1.5,,
+,,,,,,,,Upkeep,1.5,,
 ,,,,,,,,OverallPower,2,,
 ,,,,,,,,RoundingDivisor,250,,

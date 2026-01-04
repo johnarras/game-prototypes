@@ -96,12 +96,6 @@ namespace Assets.Scripts.Repository
             return await repo.LoadObjectFromString(id);
         }
 
-        public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity = 1000, int skip = 0) where T : class, IStringId
-        {
-            ClientRepositoryCollection<T> repo = GetRepository<T>();
-            return await repo.Search(func);
-        }
-
         private Dictionary<Type, object> _repoCache = new Dictionary<Type, object>();
         public IClientRepositoryCollection GetRepositoryFromType(Type t)
         {

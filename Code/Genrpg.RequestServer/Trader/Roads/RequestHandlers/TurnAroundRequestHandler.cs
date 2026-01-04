@@ -8,14 +8,14 @@ namespace Genrpg.RequestServer.Trader.Roads.RequestHandlers
 {
     public class TurnAroundRequestHandler : BaseClientUserRequestHandler<TurnAroundRequest>
     {
-        protected ICaravanPositionService _positionService = null;
+        protected IServerCaravanService _caravanService = null;
         protected override async Task InnerHandleMessage(WebContext context, TurnAroundRequest request, CancellationToken token)
         {
             TurnAroundArgs args = new TurnAroundArgs()
             {
             };
 
-            context.AddResponse(await _positionService.TurnAround(context, args));
+            context.AddResponse(await _caravanService.TurnAround(context, args));
 
         }
     }

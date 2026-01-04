@@ -95,7 +95,7 @@ namespace Genrpg.Editor.Importers.Trader
                         _logService.Info("Weird no path");
                     }
 
-                    startCity.CityDistances.Set(endCity.IdKey, newDistance);
+                    startCity.CityDistances[endCity.IdKey] = newDistance;
 
                 }
 
@@ -157,8 +157,8 @@ namespace Genrpg.Editor.Importers.Trader
 
                             tg.PriceScale = priceScale;
 
-                            city.TradeGoodBuyCosts.Set(tradeGood.IdKey, (long)(tradeGood.Price * priceScale));
-                            tradeGood.CityBuyCosts.Set(city.IdKey, city.TradeGoodBuyCosts.Get(tradeGood.IdKey));
+                            city.TradeGoodBuyCosts[tradeGood.IdKey] = (long)(tradeGood.Price * priceScale);
+                            tradeGood.CityBuyCosts[city.IdKey] = city.TradeGoodBuyCosts[tradeGood.IdKey];
                         }
                     }
                 }
@@ -169,7 +169,7 @@ namespace Genrpg.Editor.Importers.Trader
 
                     foreach (City producerCity in producerCities)
                     {
-                        double dist = city.CityDistances.Get(producerCity.IdKey);
+                        double dist = city.CityDistances[producerCity.IdKey];
 
                         if (dist < minDistanceToProducer)
                         {
@@ -181,8 +181,8 @@ namespace Genrpg.Editor.Importers.Trader
 
                     double costScale = econ.MinConsumerPriceScale * (1 - distancePct) + econ.MaxConsumerPriceScale * (distancePct);
 
-                    city.TradeGoodBuyCosts.Set(tradeGood.IdKey, (long)(costScale * tradeGood.Price));
-                    tradeGood.CityBuyCosts.Set(city.IdKey, city.TradeGoodBuyCosts.Get(tradeGood.IdKey));
+                    city.TradeGoodBuyCosts[tradeGood.IdKey] = (long)(costScale * tradeGood.Price);
+                    tradeGood.CityBuyCosts[city.IdKey] = city.TradeGoodBuyCosts[tradeGood.IdKey];
                 }
             }
 

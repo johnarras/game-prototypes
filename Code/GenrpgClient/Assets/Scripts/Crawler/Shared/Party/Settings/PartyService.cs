@@ -185,7 +185,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 status.RunLevel = 0;
             }
 
-            AddGold(party, -party.Currencies.Get(CrawlerCurrencyTypes.Gold));
+            AddGold(party, -party.Currencies[CrawlerCurrencyTypes.Gold]);
             party.HourOfDay = 0;
             party.Combat = null;
             party.InitialCombat = null;
@@ -276,7 +276,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
         public void SetCurrencyQuantity(PartyData party, long entityId, long quantity)
         {
-            party.Currencies.Set(entityId, quantity);
+            party.Currencies[entityId] = quantity;
 
             _dispatcher.Dispatch(new SetEntityQuantityVisual()
             {

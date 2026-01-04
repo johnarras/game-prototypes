@@ -24,12 +24,12 @@ public class LocalClientOptions : IStringId
 
     public float GetVolume(EAudioCategories category)
     {
-        return AudioVolumes.Get((int)category);
+        return AudioVolumes[(int)category];
     }
 
     public void SetVolume(EAudioCategories category, float volume)
     {
-        AudioVolumes.Set((int)category, volume);
+        AudioVolumes[(int)category] = volume;
     }
 }
 

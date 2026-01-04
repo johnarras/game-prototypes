@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
@@ -38,6 +37,9 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
 
         public List<CrawlerSpellEffect> Effects { get; set; } = new List<CrawlerSpellEffect>();
 
+        public List<RoleKnown> RolesKnowingThis { get; set; } = new List<RoleKnown>();
+
+
         public double ItemEnchantWeight { get; set; }
 
         public int Flags { get; set; }
@@ -62,6 +64,11 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
         public string Name { get; set; }
         public double Chance { get; set; }
 
+    }
+
+    public class RoleKnown
+    {
+        public long RoleId { get; set; }
     }
 
     public class CrawlerSpellSettings : ParentSettings<CrawlerSpell>

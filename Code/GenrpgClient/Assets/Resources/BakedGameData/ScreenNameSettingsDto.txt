@@ -232,7 +232,7 @@
     },
     {
       "IdKey": 40,
-      "Name": "TraderCaravan",
+      "Name": "Animals",
       "ScreenLayerId": 20,
       "Subdirectory": "TraderCaravan"
     },
@@ -295,6 +295,12 @@
       "Name": "TraderCityRoads",
       "ScreenLayerId": 20,
       "Subdirectory": "TraderCity"
+    },
+    {
+      "IdKey": 51,
+      "Name": "TradeGoods",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderCaravan"
     }
   ],
   "Parent": {
@@ -302,5 +308,5 @@
     "Name": "ScreenNameSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-26T20:34:25.557Z"
+  "SaveTime": "2025-12-28T20:40:51.028Z"
 }

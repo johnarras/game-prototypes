@@ -1,7 +1,6 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.Core;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using MessagePack;
-using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.DataStores.Categories.PlayerData.NoChild
@@ -10,7 +9,7 @@ namespace Genrpg.Shared.DataStores.Categories.PlayerData.NoChild
     public abstract class NoChildPlayerData : BasePlayerData, ITopLevelUnitData
     {
         public override IUnitData Unpack() { return this; }
-        [IgnoreMember] public DateTime UpdateTime { get; set; }
+        [IgnoreMember] public string _etag { get; set; }
 
         public List<IUnitData> GetChildren() { return new List<IUnitData>(); }
 

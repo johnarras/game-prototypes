@@ -83,7 +83,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             await Task.CompletedTask;
         }
 
-        public async Task CopyBetweenCollections<T>(string startSuffix, string endSuffix) where T : IStringId, new()
+        public async Task CopyBetweenCollections<T>(string startSuffix, string endSuffix) where T : ISearchableItem, new()
         {
             string startName = (typeof(T).Name + startSuffix).ToLower();
             string endName = (typeof(T).Name + endSuffix).ToLower();
@@ -155,7 +155,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
 
             // This uses reflection here to avoid having generic scaffolding classes
             // grow throughout the program
-            Type baseCollectionType = t.GetInterface(nameof(IUpdateData)) != null ?
+            Type baseCollectionType = t.GetInterface(nameof(IVersionedData)) != null ?
                 typeof(VersionedMongoCollection<>) :
                 typeof(MongoRepositoryCollection<>);
             Type genericType = baseCollectionType.MakeGenericType(t);
@@ -188,28 +188,34 @@ namespace Genrpg.ServerShared.DataStores.Mongo
 
         }
 
-        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId
+        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.DeleteAll(func);
         }
 
-        public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity, int skip) where T : class, IStringId
+        public async Task<List<T>> Search<T>(object funcObj, int quantity, int skip) where T : class, ISearchableItem
         {
-            INoSQLCollection collection = GetCollection(typeof(T));
 
-            List<object> objects = await collection.Search(func, quantity, skip);
+            if (funcObj is Expression<Func<T, bool>> func)
 
-            List<T> retval = new List<T>();
-
-            foreach (object o in objects)
             {
-                if (o is T t)
+                INoSQLCollection collection = GetCollection(typeof(T));
+
+                List<object> objects = await collection.Search(func, quantity, skip);
+
+                List<T> retval = new List<T>();
+
+                foreach (object o in objects)
                 {
-                    retval.Add(t);
+                    if (o is T t)
+                    {
+                        retval.Add(t);
+                    }
                 }
+                return retval;
             }
-            return retval;
+            return new List<T>();
         }
 
         /// <summary>
@@ -233,13 +239,13 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <returns></returns>
-        public async Task<bool> SaveAll<T>(List<T> items) where T : class, IStringId
+        public async Task<bool> SaveAll<T>(List<T> items) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.SaveAll(items);
         }
 
-        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId
+        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem
         {
 
             if (true)
@@ -294,21 +300,21 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             }
         }
 
-        public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
+        public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
 
             return await collection.UpdateDict(docId, fieldNameUpdates);
         }
 
-        public virtual async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
+        public virtual async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
 
             return await collection.UpdateAction(docId, action);
         }
 
-        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId
+        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
 
@@ -316,7 +322,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         }
 
 
-        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId
+        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
 
@@ -324,7 +330,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         }
 
 
-        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId
+        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
 

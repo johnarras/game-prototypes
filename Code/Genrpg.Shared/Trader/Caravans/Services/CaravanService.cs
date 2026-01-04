@@ -1,14 +1,18 @@
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MobileGame.Constants;
 using Genrpg.Shared.PlayMultiplier.Settings;
 using Genrpg.Shared.Trader.Animals.Settings;
 using Genrpg.Shared.Trader.Animals.WebApi;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
+using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Holdings.PlayerData;
+using Genrpg.Shared.Trader.Roads.Settings;
 using Genrpg.Shared.Trader.Stats.Constants;
 using Genrpg.Shared.Trader.Stats.PlayerData;
+using Genrpg.Shared.Utils;
 using System;
 using System.Linq;
 
@@ -16,18 +20,18 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 {
     public interface ICaravanService : IInjectable
     {
-        void UpdateCoreStatsFromCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData);
+        void UpdateCoreStatsFromCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData);
 
-        CaravanTravelInfo GetTravelInfo(CoreUserData userData);
+        CaravanTravelInfo GetTravelInfo(CoreData coreData);
 
-        AddAnimalToCaravanResult AddAnimalToCaravan(CoreUserData userData, CaravanData caravanData, HoldingsData holdings,
+        AddAnimalToCaravanResult AddAnimalToCaravan(CoreData coreData, CaravanData caravanData, HoldingsData holdings,
             TraderStatData statData,
             long animalTypeId, bool force);
 
-        RemoveAnimalFromCaravanResult RemoveAnimalFromCaravan(CoreUserData userData,
+        RemoveAnimalFromCaravanResult RemoveAnimalFromCaravan(CoreData coreData,
             CaravanData caravanData, TraderStatData statsData, long animalTypeId);
 
-
+        CaravanPosition GetPosition(CoreData coreData);
     }
 
     public class CaravanService : ICaravanService
@@ -35,26 +39,23 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
         private IGameData _gameData = null;
 
-        public void UpdateCoreStatsFromCaravan(CoreUserData userData, CaravanData caravanData, TraderStatData statData)
+        public void UpdateCoreStatsFromCaravan(CoreData coreData, CaravanData caravanData, TraderStatData statData)
         {
-            PlayMult mult = _gameData.Get<PlayMultSettings>(userData).Get(userData.Mult);
 
-            if (mult == null)
-            {
-                mult = _gameData.Get<PlayMultSettings>(userData).GetData().First();
-                userData.Mult = mult.Mult;
-            }
+            PlayMultSettings multSettings = _gameData.Get<PlayMultSettings>(coreData);
 
-            AnimalTypeSettings animalSettings = _gameData.Get<AnimalTypeSettings>(userData);
+            coreData.Vars[TraderVars.Mult] = MathUtils.Clamp(MobileGameConstants.MinPlayMult, coreData.Vars[TraderVars.Mult], multSettings.MaxPlayMult);
+
+            AnimalTypeSettings animalSettings = _gameData.Get<AnimalTypeSettings>(coreData);
 
             long baseSpeed = 0;
             long currSpeed = 0;
 
-            long suppliesCost = 0;
+            long rationsCost = 0;
 
             int animalCount = 0;
 
-            long totalCapacity = statData.Stats.Get(TraderStats.CaravanTradeGoods).Max();
+            long totalCapacity = statData.Stats[TraderStats.CaravanTradeGoods].Max();
 
             foreach (CaravanAnimal caravanAnimal in caravanData.Animals)
             {
@@ -64,14 +65,14 @@ namespace Genrpg.Shared.Trader.Caravans.Services
                 {
                     baseSpeed = animal.Speed;
                 }
-                suppliesCost += animal.Supplies;
+                rationsCost += animal.Upkeep;
                 totalCapacity += animal.Capacity;
                 animalCount++;
             }
 
             currSpeed = baseSpeed;
 
-            if (userData.FastMove)
+            if (coreData.Flags.HasBit(TraderFlags.FastMove))
             {
                 currSpeed++;
 
@@ -81,7 +82,7 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
                     if (animal.Speed < currSpeed)
                     {
-                        suppliesCost += animal.Cost;
+                        rationsCost += animal.Price;
                     }
                 }
             }
@@ -90,11 +91,11 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             if (overburden == 1)
             {
-                suppliesCost *= 2;
+                rationsCost *= 2;
             }
             else if (overburden > 0)
             {
-                suppliesCost = 1000;
+                rationsCost = 1000;
                 baseSpeed = 0;
                 currSpeed = 0;
             }
@@ -102,26 +103,30 @@ namespace Genrpg.Shared.Trader.Caravans.Services
             // Now maybe modify stuff here based on user bonuses.
 
 
-            userData.Dice = currSpeed;
-            userData.Cost = suppliesCost;
-            userData.Bonus = mult.BonusDistancePerDie * currSpeed;
+            long totalCost = currSpeed * coreData.Vars[TraderVars.Mult];
+
+            double bonusDice = Math.Ceiling(multSettings.ExtraDailyDistPerTotalDice * totalCost);
+
+            coreData.Vars[TraderVars.DiceSpeed] = currSpeed;
+            coreData.Vars[TraderVars.RationsCost] = rationsCost;
+            coreData.Vars[TraderVars.BonusSpeed] = (long)bonusDice;
 
         }
-        public CaravanTravelInfo GetTravelInfo(CoreUserData userData)
+        public CaravanTravelInfo GetTravelInfo(CoreData coreData)
         {
             CaravanTravelInfo info = new CaravanTravelInfo()
             {
-                Days = userData.Mult,
-                BonusDistancePerDay = userData.Bonus,
-                CostPerDay = userData.Cost,
-                DiceDistancePerDay = userData.Dice,
-                TotalCost = userData.Cost * userData.Mult,
+                Days = coreData.Vars[TraderVars.Mult],
+                BonusDistancePerDay = coreData.Vars[TraderVars.BonusSpeed],
+                CostPerDay = coreData.Vars[TraderVars.RationsCost],
+                DiceDistancePerDay = coreData.Vars[TraderVars.DiceSpeed],
+                TotalCost = coreData.Vars[TraderVars.RationsCost] * coreData.Vars[TraderVars.Mult]
             };
 
             return info;
         }
 
-        public AddAnimalToCaravanResult AddAnimalToCaravan(CoreUserData userData,
+        public AddAnimalToCaravanResult AddAnimalToCaravan(CoreData coreData,
             CaravanData caravanData,
             HoldingsData holdings,
             TraderStatData statsData,
@@ -131,10 +136,10 @@ namespace Genrpg.Shared.Trader.Caravans.Services
             AddAnimalToCaravanResult result = new AddAnimalToCaravanResult()
             {
                 Success = false,
-                Travel = GetTravelInfo(userData),
+                Travel = GetTravelInfo(coreData),
             };
 
-            CaravanPosition position = userData.GetPosition();
+            CaravanPosition position = GetPosition(coreData);
 
             if (position.CityId == 0 && !force)
             {
@@ -142,7 +147,7 @@ namespace Genrpg.Shared.Trader.Caravans.Services
                 return result;
             }
 
-            AnimalType animal = _gameData.Get<AnimalTypeSettings>(userData).Get(animalTypeId);
+            AnimalType animal = _gameData.Get<AnimalTypeSettings>(coreData).Get(animalTypeId);
 
             if (animal == null)
             {
@@ -162,7 +167,7 @@ namespace Genrpg.Shared.Trader.Caravans.Services
                 return result;
             }
 
-            if (statsData.Stats.Get(TraderStats.CaravanAnimals).Max() <= caravanData.Animals.Count)
+            if (statsData.Stats[TraderStats.CaravanAnimals].Max() <= caravanData.Animals.Count)
             {
                 result.ErrorMessage = "You can't add any more animals to your caravan.";
                 return result;
@@ -172,24 +177,24 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             result.Success = true;
 
-            UpdateCoreStatsFromCaravan(userData, caravanData, statsData);
+            UpdateCoreStatsFromCaravan(coreData, caravanData, statsData);
 
-            result.Travel = GetTravelInfo(userData);
+            result.Travel = GetTravelInfo(coreData);
 
             return result;
 
         }
 
-        public RemoveAnimalFromCaravanResult RemoveAnimalFromCaravan(CoreUserData userData,
+        public RemoveAnimalFromCaravanResult RemoveAnimalFromCaravan(CoreData coreData,
             CaravanData caravanData, TraderStatData statsData, long animalId)
         {
             RemoveAnimalFromCaravanResult result = new RemoveAnimalFromCaravanResult()
             {
                 Success = false,
-                Travel = GetTravelInfo(userData),
+                Travel = GetTravelInfo(coreData),
             };
 
-            CaravanPosition position = userData.GetPosition();
+            CaravanPosition position = GetPosition(coreData);
 
             if (position.CityId == 0)
             {
@@ -209,13 +214,45 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             result.Success = true;
 
-            UpdateCoreStatsFromCaravan(userData, caravanData, statsData);
+            UpdateCoreStatsFromCaravan(coreData, caravanData, statsData);
 
-            result.Travel = GetTravelInfo(userData);
+            result.Travel = GetTravelInfo(coreData);
 
             return result;
 
         }
+
+        public CaravanPosition GetPosition(CoreData coreData)
+        {
+            CaravanPosition pos = new CaravanPosition();
+
+            Road road = _gameData.Get<RoadSettings>(coreData).Get(coreData.Vars[TraderVars.RoadId]);
+
+            if (road != null)
+            {
+                pos.RoadId = road.IdKey;
+
+                pos.TargetCityId = coreData.Vars[TraderVars.CityId];
+
+                pos.DistanceTravelled = coreData.Vars[TraderVars.DistanceAlongRoad];
+
+                if (coreData.Vars[TraderVars.DistanceAlongRoad] >= road.Distance)
+                {
+                    pos.OutsideOfCityId = pos.TargetCityId;
+                }
+                else if (coreData.Vars[TraderVars.DistanceAlongRoad] == 0)
+                {
+                    pos.OutsideOfCityId = road.GetCityIdOnOtherEnd(pos.TargetCityId);
+                }
+            }
+            else if (coreData.Vars[TraderVars.CityId] > 0)
+            {
+                pos.CityId = coreData.Vars[TraderVars.CityId];
+            }
+
+            return pos;
+        }
+
     }
 }
 

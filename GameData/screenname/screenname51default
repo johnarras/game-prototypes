@@ -1,0 +1,8 @@
+{
+  "Id": "screenname51default",
+  "ParentId": "default",
+  "IdKey": 51,
+  "Name": "TradeGoods",
+  "ScreenLayerId": 20,
+  "Subdirectory": "TraderCaravan"
+}

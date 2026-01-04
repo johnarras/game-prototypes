@@ -121,13 +121,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422677596323492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e9d7d10a668720458d9f142e5f2a310, type: 3}
+  m_Script: {fileID: 11500000, guid: 0896ddbb37c75d94b9284c4b96a57963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.UI.Cities.TraderChooseRoadScreen
   MainAnimator: {fileID: 0}
   IntroTime: 0
   OutroTime: 0
-  HeaderText: {fileID: 5110312188696345037}
+  HeaderText: {fileID: 0}
   RoadRowAnchor: {fileID: 3938799052119789790}
   RowPrefab: {fileID: 2342270437850198901, guid: f1df2738008b8c447970a16a2a56b546,
     type: 3}
@@ -1229,15 +1229,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6609210895607065223}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5110312188696345037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2113274091566060362, guid: 517fb6f7ff92c5e48a64aa94193d0b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6609210895607065223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ec29f826410a84792259cf40e7d3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -64,9 +64,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             foreach (CrawlerCurrencyType ctype in ctypes)
             {
-                if (loot.Currencies.Get(ctype.IdKey) > 0)
+                if (loot.Currencies[ctype.IdKey] > 0)
                 {
-                    stateData.AddText(loot.Currencies.Get(CrawlerCurrencyTypes.Gold) + " " + ctype.Name + "!");
+                    stateData.AddText(loot.Currencies[CrawlerCurrencyTypes.Gold] + " " + ctype.Name + "!");
                 }
             }
 

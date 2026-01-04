@@ -1,5 +1,7 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
+using Genrpg.Shared.Units.Loaders;
+using Genrpg.Shared.Units.Mappers;
 using MessagePack;
 using System.Collections.Generic;
 
@@ -33,6 +35,20 @@ namespace Genrpg.Shared.Trader.Caravans.PlayerData
     {
         [Key(0)] public long TradeGoodId { get; set; }
     }
+
+
+    public class CaravanDataLoader : UnitDataLoader<CaravanData> { }
+
+
+    [MessagePackObject]
+    public class CaravanDto : NoChildPlayerDataDto<CaravanData>
+    {
+        [Key(0)] public override CaravanData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
+    }
+
+
+    public class CaravanDataMapper : NoChildUnitDataMapper<CaravanData, CaravanDto> { }
 }
 
 

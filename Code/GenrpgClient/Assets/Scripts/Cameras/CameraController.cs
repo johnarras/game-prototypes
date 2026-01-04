@@ -217,7 +217,7 @@ public class CameraController : ICameraController
             _onStairsTicks--;
         }
 
-        if (_gs.acct == null)
+        if (string.IsNullOrEmpty(_gs.GameUserId))
         {
             return;
         }

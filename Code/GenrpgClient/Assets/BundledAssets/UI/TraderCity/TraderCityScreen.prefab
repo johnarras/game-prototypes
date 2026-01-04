@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422677596323492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e9e1524920bfb4290f2f6ffba65052, type: 3}
+  m_Script: {fileID: 11500000, guid: e3cd5fff22c3a16439c4daf91cfcab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.UI.Cities.CityScreen
   MainAnimator: {fileID: 0}

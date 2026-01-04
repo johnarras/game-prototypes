@@ -64,10 +64,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
             {
                 sb.Clear();
 
-                int currTier = party.Upgrades.Get(upgrade.IdKey);
+                int currTier = party.Upgrades[upgrade.IdKey];
                 int nextTier = currTier + 1;
 
-                sb.Append(upgrade.Name + "[T" + party.Upgrades.Get(upgrade.IdKey) + " +" + _upgradeService.GetPartyBonus(party, upgrade.IdKey) + "]");
+                sb.Append(upgrade.Name + "[T" + party.Upgrades[upgrade.IdKey] + " +" + _upgradeService.GetPartyBonus(party, upgrade.IdKey) + "]");
 
                 long nextUpgradeCost = _upgradeService.GetPartyUpgradeCost(upgrade.IdKey, nextTier);
 

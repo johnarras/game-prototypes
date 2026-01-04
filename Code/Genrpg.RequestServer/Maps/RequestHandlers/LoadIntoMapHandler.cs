@@ -8,6 +8,7 @@ using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.Maps;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.GameSettings.Loaders;
@@ -62,7 +63,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                 return;
             }
 
-            if (coreCh.UserId != context.user.Id)
+            if (coreCh.UserId != context.core.Id)
             {
                 ShowError(context, "You don't own this character");
                 return;
@@ -80,7 +81,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
             PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, ch, true, token);
 
-            List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(context.user, serverDataList);
+            List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(context.core, serverDataList);
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 
@@ -107,8 +108,8 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                     Stores = offerData,
                 };
 
-                context.Set(context.acct);
-                context.acct.CurrCharId = coreCh.Id;
+                GameAccount acct = await context.GetAsync<GameAccount>();
+                acct.CurrCharId = coreCh.Id;
 
                 context.AddResponse(loadResponse);
 
