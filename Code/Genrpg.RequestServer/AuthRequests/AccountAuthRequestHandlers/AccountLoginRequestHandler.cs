@@ -15,7 +15,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
                 account = await _repoService.Load<Account>(request.AccountId);
                 if (account == null)
                 {
-                    context.ShowError("That account doesn't exist.");
+                    context.ShowError("Invalid login.");
                     return;
                 }
             }
@@ -25,13 +25,13 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 
                 if (account == null)
                 {
-                    context.ShowError("That email isn't linked to an account.");
+                    context.ShowError("Invalid login.");
                     return;
                 }
             }
             else
             {
-                context.ShowError("You must specify a UserId or an email to log in.");
+                context.ShowError("Invalid login.");
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
 
             if (response == EAuthResponse.Failure)
             {
-                context.ShowError("Login information is incorrect.");
+                context.ShowError("Invalid login.");
                 return;
             }
 

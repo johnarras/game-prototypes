@@ -13,13 +13,14 @@ namespace Genrpg.Shared.Utils.Data
 
     public abstract class BaseSmallIdObjectCollection<T> : BaseSmallIdQuantityCollection<T> where T : class, new()
     {
-        protected override bool CreatedAtIndex(long index)
+        protected override bool ExistsAtIndex(long index)
         {
-            if (index > _data.Length || IsDefault(_data[index]))
+            if (index >= _data.Length || IsDefault(_data[index]))
             {
+                // The creation will throw the exception if the index is too big.
                 this[index] = new T();
             }
-            return false;
+            return true;
         }
 
         protected override bool IsDefault(T t)
@@ -35,7 +36,7 @@ namespace Genrpg.Shared.Utils.Data
 
         protected T[] _data { get; set; } = new T[4];
 
-        protected virtual bool CreatedAtIndex(long index)
+        protected virtual bool ExistsAtIndex(long index)
         {
             return index >= 0 && index < _data.Length;
         }
@@ -51,7 +52,7 @@ namespace Genrpg.Shared.Utils.Data
                     return default;
                 }
 
-                if (CreatedAtIndex(index))
+                if (ExistsAtIndex(index))
                 {
                     return _data[index];
                 }

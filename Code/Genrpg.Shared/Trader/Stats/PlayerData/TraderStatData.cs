@@ -20,9 +20,9 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
     }
 
     [MessagePackObject]
-    public class TraderStatCollection : BaseSmallIdQuantityCollection<TraderStatStatus>
+    public class TraderStatCollection : BaseSmallIdObjectCollection<TraderStatStatus>
     {
-
+        [Key(0)] public TraderStatStatus[] Data { get => _data; set => _data = value; }
         protected override TraderStatStatus InternalAdd(TraderStatStatus first, TraderStatStatus second)
         {
             throw new NotImplementedException("Cannot add two TraderStatStatuses together");
