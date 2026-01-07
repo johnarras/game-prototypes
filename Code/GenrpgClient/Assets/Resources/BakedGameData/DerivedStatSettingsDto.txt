@@ -2,15 +2,9 @@
   "Children": [
     {
       "Name": "DerivedStat",
-      "FromStatTypeId": 13,
-      "ToStatTypeId": 22,
-      "Percent": 200
-    },
-    {
-      "Name": "DerivedStat",
-      "FromStatTypeId": 12,
-      "ToStatTypeId": 22,
-      "Percent": 200
+      "FromStatTypeId": 11,
+      "ToStatTypeId": 21,
+      "Percent": 100
     },
     {
       "Name": "DerivedStat",
@@ -20,20 +14,32 @@
     },
     {
       "Name": "DerivedStat",
-      "FromStatTypeId": 11,
-      "ToStatTypeId": 21,
-      "Percent": 100
-    },
-    {
-      "Name": "DerivedStat",
-      "FromStatTypeId": 14,
-      "ToStatTypeId": 21,
-      "Percent": 100
-    },
-    {
-      "Name": "DerivedStat",
       "FromStatTypeId": 14,
       "ToStatTypeId": 22,
+      "Percent": 100
+    },
+    {
+      "Name": "DerivedStat",
+      "FromStatTypeId": 12,
+      "ToStatTypeId": 22,
+      "Percent": 200
+    },
+    {
+      "Name": "DerivedStat",
+      "FromStatTypeId": 15,
+      "ToStatTypeId": 1,
+      "Percent": 1000
+    },
+    {
+      "Name": "DerivedStat",
+      "FromStatTypeId": 13,
+      "ToStatTypeId": 22,
+      "Percent": 200
+    },
+    {
+      "Name": "DerivedStat",
+      "FromStatTypeId": 14,
+      "ToStatTypeId": 21,
       "Percent": 100
     },
     {
@@ -41,12 +47,6 @@
       "FromStatTypeId": 15,
       "ToStatTypeId": 31,
       "Percent": 100
-    },
-    {
-      "Name": "DerivedStat",
-      "FromStatTypeId": 15,
-      "ToStatTypeId": 1,
-      "Percent": 1000
     }
   ],
   "Parent": {

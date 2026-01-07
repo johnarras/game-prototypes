@@ -3,6 +3,7 @@ using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
@@ -37,7 +38,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             IAnalyticsService analyticsService,
             ITextSerializer serializer)
         {
-            string databaseName = (args.Env + args.Category.ToString()).ToLower();
+            string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
             _logService = logService;
             try
             {

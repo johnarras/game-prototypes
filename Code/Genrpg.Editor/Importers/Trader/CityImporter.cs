@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Trader.Animals.Settings;
@@ -34,12 +33,7 @@ namespace Genrpg.Editor.Importers.Trader
 
     public class CityImporter : BaseTraderDataImporter<CitySettings, City>
     {
-
         private ITextSerializer _textSerializer = null;
-
-        public override string ImportDataFilename => "CitiesImport.csv";
-
-        public override EImportTypes HelperKey => EImportTypes.Cities;
 
         protected override void ImportChildSubObject(EditorGameState gs, City current, int row, string firstColumn, string[] headers, string[] rowWords)
         {

@@ -59,7 +59,7 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
             CancellationToken token)
         {
             _token = token;
-            string databaseName = (args.Env + args.Category.ToString()).ToLower();
+            string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
             _logService = logService;
             _serializer = serializer;
             try

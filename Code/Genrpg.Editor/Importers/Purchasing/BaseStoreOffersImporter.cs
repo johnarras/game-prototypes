@@ -14,7 +14,7 @@ namespace Genrpg.Editor.Importers.Purchasing
     /// <summary>
     /// Used to import an entire set of default stores for the player (needs ab test id)
     /// </summary>
-    public abstract class BaseStoreOfferImporter<TParent, TChild> : ParentChildImporter<TParent, TChild> where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
+    public abstract class BaseStoreOfferImporter<TParent, TChild> : ParentChildImporter<TParent, TChild> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
     {
         protected override bool IsIncrementalImporter()
         {

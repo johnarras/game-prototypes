@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Riddles.Settings;
@@ -8,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers
 {
-    public class AphorismImporter : BaseDataImporter
+    public class AphorismSettingsImporter : BaseDataImporter<AphorismSettings>
     {
-        public override string ImportDataFilename => "Aphorisms.txt";
-
-        public override EImportTypes HelperKey => EImportTypes.Aphorisms;
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)
         {

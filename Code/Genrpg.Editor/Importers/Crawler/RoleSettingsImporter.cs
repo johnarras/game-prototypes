@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.UI;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -19,12 +18,8 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers.Crawler
 {
-    public class CrawlerRoleImporter : BaseCrawlerDataImporter
+    public class RoleSettingsImporter : BaseCrawlerDataImporter<RoleSettings>
     {
-        public override string ImportDataFilename => "CrawlerRoleImport.csv";
-
-        public override EImportTypes HelperKey => EImportTypes.CrawlerRoles;
-
         const int MaxRoles = 100;
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)

@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Importing;
 using Genrpg.Shared.DataStores.Entities;
@@ -17,16 +16,16 @@ using Windows.UI.Popups;
 
 namespace Genrpg.Editor.Importers.Core
 {
-    public abstract class BaseDataImporter : IDataImporter
+    public abstract class BaseDataImporter<TParent> : IDataImporter where TParent : class, ITopLevelSettings, new()
     {
 
         protected ILogService _logService;
         protected IRepositoryService _repoService;
         protected IImportService _importService;
 
-        public abstract string ImportDataFilename { get; }
+        public string ImportDataFilename => typeof(TParent).Name + "Import.csv";
 
-        public abstract EImportTypes HelperKey { get; }
+        public Type HelperKey => typeof(TParent);
 
         protected abstract Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines);
 

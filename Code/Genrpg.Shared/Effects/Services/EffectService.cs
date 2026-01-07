@@ -19,7 +19,6 @@ namespace Genrpg.Shared.Effects.Services
 
         private SetupDictionaryContainer<long, IEffectDisplayHelper> _displayHelpers = new SetupDictionaryContainer<long, IEffectDisplayHelper>();
 
-
         public string DisplayEffect(IFilteredObject obj, IEffect effect)
         {
             if (_displayHelpers.TryGetValue(effect.EntityTypeId, out IEffectDisplayHelper helper))

@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Riddles.Settings;
@@ -10,13 +9,8 @@ using System.Threading.Tasks;
 namespace Genrpg.Editor.Importers.Crawler
 {
 
-    public class RiddleImporter : BaseDataImporter
+    public class RiddleSettingsImporter : BaseDataImporter<RiddleSettings>
     {
-        public override string ImportDataFilename => "Riddles.txt";
-
-        public override EImportTypes HelperKey => EImportTypes.Riddles;
-
-
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)
         {

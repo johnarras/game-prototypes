@@ -8,5 +8,6 @@ namespace Genrpg.Shared.DataStores.Utils
         {
             return "_" + t.Name;
         }
+
     }
 }

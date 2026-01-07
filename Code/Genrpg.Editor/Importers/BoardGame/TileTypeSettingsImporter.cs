@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.Spawns.Settings;
@@ -6,7 +5,7 @@ using Genrpg.Shared.Tiles.Settings;
 
 namespace Genrpg.Editor.Importers.BoardGame
 {
-    public class TileTypeImporter : ParentChildImporter<TileTypeSettings, TileType>
+    public class TileTypeSettingsImporter : ParentChildImporter<TileTypeSettings, TileType>
     {
         class TileReagentRow
         {
@@ -18,11 +17,6 @@ namespace Genrpg.Editor.Importers.BoardGame
             public long Leather { get; set; }
             public long Sum { get; set; }
         }
-
-
-        public override string ImportDataFilename => "TileTypeImport.csv";
-
-        public override EImportTypes HelperKey => EImportTypes.TileTypes;
 
         protected override void ImportChildSubObject(EditorGameState gs, TileType current, int line, string firstColumn, string[] headers, string[] rowWords)
         {

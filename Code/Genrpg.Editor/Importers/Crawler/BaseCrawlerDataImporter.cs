@@ -6,6 +6,7 @@ using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -19,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers.Crawler
 {
-    public abstract class BaseCrawlerDataImporter : BaseDataImporter
+    public abstract class BaseCrawlerDataImporter<TParent> : BaseDataImporter<TParent> where TParent : class, ITopLevelSettings, new()
     {
         protected override async Task<bool> UpdateAfterImport(WindowBase win, EditorGameState gs)
         {

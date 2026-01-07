@@ -1,0 +1,8 @@
+{
+  "Id": "abtest",
+  "LevelsPerQuality": 4.0,
+  "ExtraQualityChance": 0.3,
+  "ArmorChance": 0.7,
+  "Name": "LootRankSettings",
+  "SaveTime": "2026-01-06T22:43:03.07Z"
+}

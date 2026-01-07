@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Rewards.Entities;
@@ -18,12 +17,8 @@ namespace Genrpg.Editor.Importers.Purchasing
     /// <summary>
     /// Used for importing sets of bundles for the user.
     /// </summary>
-    public class BundleSetImporter : BaseStoreOfferImporter<StoreBundleSetSettings, StoreBundleSet>
+    public class StoreBundleSetSettingsImporter : BaseStoreOfferImporter<StoreBundleSetSettings, StoreBundleSet>
     {
-        public override string ImportDataFilename => "StoreBundleSetImport.csv";
-
-        public override EImportTypes HelperKey => EImportTypes.StoreBundles;
-
         protected override void ImportChildSubObject(EditorGameState gs, StoreBundleSet current, int line, string firstColumn, string[] headers, string[] rowWords)
         {
 

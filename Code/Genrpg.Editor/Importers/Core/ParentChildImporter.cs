@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers.Core
 {
-    public abstract class ParentChildImporter<TParent, TChild> : BaseDataImporter where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
+    public abstract class ParentChildImporter<TParent, TChild> : BaseDataImporter<TParent> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
     {
         protected abstract void ImportChildSubObject(EditorGameState gs, TChild current, int row, string firstColumn, string[] headers, string[] rowWords);
 
@@ -15,11 +15,12 @@ namespace Genrpg.Editor.Importers.Core
 
         protected override async Task<bool> ParseInputFromLines(WindowBase window, EditorGameState gs, List<string[]> lines)
         {
-            TParent settings = gs.data.Get<TParent>(null);
+            TParent currParent = null;
 
-            List<TChild> fullList = settings.GetData().ToList();
-            List<TChild> newList = new List<TChild>();
+            List<TChild> fullChildList = new List<TChild>();
+            List<TChild> newChildList = new List<TChild>();
 
+            string parentTypeName = typeof(TParent).Name.ToLower();
             string childTypeName = typeof(TChild).Name.ToLower();
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
@@ -45,20 +46,41 @@ namespace Genrpg.Editor.Importers.Core
                     continue;
                 }
 
-                if (rowWords[0] == childTypeName)
+                if (rowWords[0] == parentTypeName)
                 {
+                    if (currParent != null)
+                    {
+                        currParent.SetData(fullChildList);
+                        gs.LookedAtObjects.AddRange(newChildList);
+                        gs.LookedAtObjects.Add(currParent);
+                        gs.data.Set(currParent);
+                        currParent = null;
+                        newChildList = new List<TChild>();
+                        fullChildList = new List<TChild>();
+                    }
+                    currParent = _importService.ImportLine<TParent>(gs, row, rowWords, headers[parentTypeName]);
+                    fullChildList = currParent.GetData().ToList();
+                }
+                else if (rowWords[0] == childTypeName)
+                {
+                    if (currParent == null)
+                    {
+                        currParent = gs.data.Get<TParent>(null);
+                        fullChildList = currParent.GetData().ToList();
+                    }
+
                     currentChild = _importService.ImportLine<TChild>(gs, row, rowWords, headers[childTypeName]);
 
-                    TChild existingChild = fullList.FirstOrDefault(x => x.IdKey == currentChild.IdKey);
+                    TChild existingChild = fullChildList.FirstOrDefault(x => x.IdKey == currentChild.IdKey);
 
                     if (existingChild != null)
                     {
-                        fullList.Remove(existingChild);
+                        fullChildList.Remove(existingChild);
                     }
 
-                    fullList.Add(currentChild);
-                    newList.Add(currentChild);
-                    settings.SetData(fullList);
+                    fullChildList.Add(currentChild);
+                    newChildList.Add(currentChild);
+                    currParent.SetData(fullChildList);
                 }
                 else
                 {
@@ -68,15 +90,15 @@ namespace Genrpg.Editor.Importers.Core
                     }
                 }
             }
-
-
-            settings.SetData(fullList);
-            gs.LookedAtObjects.AddRange(newList);
-            gs.LookedAtObjects.Add(settings);
+            if (currParent != null)
+            {
+                currParent.SetData(fullChildList);
+                gs.LookedAtObjects.AddRange(newChildList);
+                gs.LookedAtObjects.Add(currParent);
+                gs.data.Set(currParent);
+            }
             await Task.CompletedTask;
             return true;
         }
     }
 }
-
-

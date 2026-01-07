@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Editor.Importers.Trader
 {
-    public abstract class BaseTraderDataImporter<TParent, TChild> : ParentChildImporter<TParent, TChild> where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
+    public abstract class BaseTraderDataImporter<TParent, TChild> : ParentChildImporter<TParent, TChild> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
     {
 
         protected ITravelService _travelService = null;

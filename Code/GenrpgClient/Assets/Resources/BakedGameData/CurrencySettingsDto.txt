@@ -48,9 +48,9 @@
     }
   ],
   "Parent": {
-    "Id": "abtest",
+    "Id": "default",
     "Name": "CurrencySettings"
   },
-  "Id": "abtest",
+  "Id": "default",
   "SaveTime": "2025-12-02T21:51:19.282Z"
 }

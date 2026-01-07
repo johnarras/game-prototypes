@@ -5,8 +5,11 @@ using Genrpg.Editor.UI;
 using Genrpg.Editor.UI.Interfaces;
 using Genrpg.Editor.Utils;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Entities.Utils;
+using Genrpg.Shared.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -23,13 +26,20 @@ namespace Genrpg.Editor
 
         private string _prefix;
 
-        private SetupDictionaryContainer<EImportTypes, IDataImporter> _importers = new();
+        private List<IDataImporter> _importers = null;
 
         private CanvasBase _canvas = new CanvasBase();
         public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
         public void Remove(object cont) { _canvas.Remove(cont); }
         public bool Contains(object cont) { return _canvas.Contains(cont); }
 
+
+        private ComboBoxBase _comboBox = null;
+        class ImporterName
+        {
+            public IDataImporter Importer { get; set; }
+            public string Name { get; set; }
+        }
 
         public ImportWindow()
         {
@@ -44,40 +54,52 @@ namespace Genrpg.Editor
 
             string[] envWords = { "Import" };
 
-            string[] actionWords = Enum.GetNames(typeof(EImportTypes));
+            List<Type> importTypes = ReflectionUtils.GetTypesImplementing(typeof(IDataImporter));
 
-            int column = 0;
-            for (int e = 0; e < envWords.Length; e++)
+            _importers = new List<IDataImporter>();
+            foreach (Type importType in importTypes)
             {
-                string env = envWords[e];
-
-                for (int a = 0; a < actionWords.Length; a++)
-                {
-                    string action = actionWords[a];
-                    if (action == "None")
-                    {
-                        continue;
-                    }
-
-                    UIHelper.CreateButton(this,
-                        EButtonTypes.Default,
-                        env + " " + action,
-                        env + " " + action,
-                        getButtonWidth(),
-                        getButtonHeight(),
-                        getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
-                        getTotalHeight(buttonCount),
-                        OnClickButton);
-                    buttonCount++;
-                }
+                _importers.Add((IDataImporter)EntityUtils.DefaultConstructor(importType));
             }
 
-            UIHelper.SetWindowRect(this, 100, 100,
-                 2 * getLeftRightPadding() + 1 * (getButtonWidth() + getButtonGap() * 2) + 500,
-            getTotalHeight(buttonCount) + getTopBottomPadding() + _topPadding);
+            _importers = _importers.OrderBy(x => x.HelperKey.Name).ToList();
 
+            List<ImporterName> importNames = new List<ImporterName>();
+
+            importNames.Add(new ImporterName() { Importer = null, Name = "None" });
+            foreach (IDataImporter imp in _importers)
+            {
+                importNames.Add(new ImporterName()
+                {
+                    Importer = imp,
+                    Name = "Import " + imp.HelperKey.Name,
+                });
+            }
+
+            int startx = 100;
+            int starty = 100;
+            int cx = startx;
+            int cy = starty;
+
+            _comboBox = UIHelper.CreateComboBoxBase(this, "ImportDropdown", getButtonWidth(), getButtonHeight(), cx, cy);
+
+            cy += getButtonHeight() + getButtonGap();
+
+            _comboBox.ItemsSource = importNames;
+            _comboBox.DisplayMemberPath = nameof(ImporterName.Name);
+            _comboBox.SelectedValuePath = nameof(ImporterName.Importer);
+
+
+
+            UIHelper.CreateButton(this,
+            EButtonTypes.Default,
+            "ImportButton", "Import Data", getButtonWidth(), getButtonHeight(), cx, cy, OnClickButton);
+
+            cy += getButtonHeight() + getButtonGap();
+
+            UIHelper.SetWindowRect(this, startx, starty, startx + getButtonWidth() + 500, cy + getButtonHeight() + 200);
         }
-        private int getButtonWidth() { return 150; }
+        private int getButtonWidth() { return 250; }
 
         private int getButtonHeight() { return 40; }
 
@@ -92,45 +114,35 @@ namespace Genrpg.Editor
             return (getButtonHeight() + getButtonGap()) * numButtons + getTopBottomPadding();
         }
 
+
+
         private void OnClickButton(object sender, object e)
         {
-            ButtonBase but = sender as ButtonBase;
-            if (but == null)
+
+            if (_comboBox == null)
             {
                 return;
             }
 
-            String txt = but.Name;
-            if (String.IsNullOrEmpty(txt))
-            {
-                return;
-            }
-            string[] words = txt.Split(' ');
-            if (words.Length < 2)
-            {
-                return;
-            }
+            ImporterName selectedImporter = _comboBox.SelectedItem as ImporterName;
 
-            if (string.IsNullOrEmpty(_prefix))
+            if (selectedImporter == null || selectedImporter.Importer == null)
             {
                 return;
             }
-
-            String env = words[0];
-            String action = words[1];
 
             Action<EditorGameState> afterAction = null;
 
 
-            string[] actionWords = Enum.GetNames(typeof(EImportTypes));
+            IDataImporter importer = selectedImporter.Importer;
+            string action = "";
+            if (importer != null)
+            {
+                afterAction = (gs) => { ImportData(gs, importer); };
+                action = "Data";
 
-            EImportTypes importType = Enum.Parse<EImportTypes>(action);
-
-            afterAction = (gs) => { ImportData(gs, importType); };
-            action = "Data";
-
-
-            Task.Run(() => OnClickButtonAsync(action, env, afterAction));
+                Task.Run(() => OnClickButtonAsync(action, "Import", afterAction));
+            }
         }
 
 
@@ -139,23 +151,20 @@ namespace Genrpg.Editor
             await EditorGameDataUtils.SetupForEditing(this, action, env, afterAction);
         }
 
-        private void ImportData(EditorGameState gs, EImportTypes importType)
+        private void ImportData(EditorGameState gs, IDataImporter importer)
         {
 
-            _ = Task.Run(() => ImportDataAsync(gs, importType));
+            _ = Task.Run(() => ImportDataAsync(gs, importer));
         }
 
 
-        private async Task ImportDataAsync(EditorGameState gs, EImportTypes importType)
+        private async Task ImportDataAsync(EditorGameState gs, IDataImporter importer)
         {
-            gs.loc.Resolve(_importers);
+            gs.loc.Resolve(importer);
 
             try
             {
-                if (_importers.TryGetValue(importType, out IDataImporter importer))
-                {
-                    await importer.ImportData(this, gs);
-                }
+                await importer.ImportData(this, gs);
             }
             catch (Exception ex)
             {

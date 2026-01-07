@@ -15,7 +15,7 @@ namespace Genrpg.Shared.DataStores.Utils
             {
                 env = EnvNames.Dev.ToLower();
             }
-            return (gamePrefix + env).ToLower();
+            return (gamePrefix + "-" + env).ToLower();
         }
     }
 }

@@ -103,11 +103,11 @@ namespace Genrpg.Editor.Utils
                 {
                     saveTasks.Add(repoService.Save(dataCopy.Data[i]));
 
-                    if (i % 10 == 9 || i == dataCopy.Data.Count - 1)
+                    if (i % 20 == 9 || i == dataCopy.Data.Count - 1)
                     {
                         await Task.WhenAll(saveTasks);
                         saveTasks = new List<Task>();
-                        await Task.Delay(1000);
+                        await Task.Delay(250);
                     }
                 }
             }

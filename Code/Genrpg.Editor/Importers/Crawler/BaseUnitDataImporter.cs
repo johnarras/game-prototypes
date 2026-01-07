@@ -1,4 +1,3 @@
-using Genrpg.Editor.Constants;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Reflection;
 using Genrpg.Shared.Crawler.Spells.Constants;
@@ -56,15 +55,11 @@ namespace Genrpg.Editor.Importers.Crawler
         public string Summons { get; set; }
     }
 
-    public abstract class BaseUnitDataImporter<TParent, TChild> : BaseCrawlerDataImporter where TParent : ParentSettings<TChild> where TChild : ChildSettings, IUnitRole, new()
+    public abstract class BaseUnitDataImporter<TParent, TChild> : BaseCrawlerDataImporter<TParent> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IUnitRole, new()
     {
 
         IEditorReflectionService _reflectionService = null;
         protected ITextSerializer _serializer = null;
-
-        public abstract override string ImportDataFilename { get; }
-
-        public abstract override EImportTypes HelperKey { get; }
 
         public abstract long GetEntityTypeId();
 

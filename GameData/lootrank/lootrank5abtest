@@ -1,0 +1,9 @@
+{
+  "Id": "lootrank5abtest",
+  "ParentId": "abtest",
+  "IdKey": 5,
+  "Name": "Jadex",
+  "Armor": 10,
+  "Damage": 7,
+  "CostPct": 500
+}
