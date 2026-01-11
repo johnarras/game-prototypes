@@ -82,14 +82,14 @@ namespace Genrpg.RequestServer.Services.GameClient
 
         private async Task<bool> LoadLoggedInPlayer(WebContext context, string userId, string sessionId)
         {
-            GameAccount acct = await _repoService.Load<GameAccount>(userId);
+            GameSessionData sessionData = await _repoService.Load<GameSessionData>(userId);
 
-            if (acct == null || acct.SessionId != sessionId)
+            if (sessionData == null || sessionData.SessionId != sessionId)
             {
                 return false;
             }
 
-            context.SetAccount(acct);
+            context.Set(sessionData);
 
             context.core = await context.GetAsync<CoreData>();
             context.AddResponseRange(_gameDataService.GetClientSettings(context.core, false));

@@ -37,15 +37,15 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 return;
             }
 
-            AccountSessionData sessionData = await _repoService.Load<AccountSessionData>(request.AccountId);
+            AccountSessionData accountSessionData = await _repoService.Load<AccountSessionData>(request.AccountId);
 
-            if (sessionData == null)
+            if (accountSessionData == null)
             {
                 context.AddResponse(new ErrorResponse() { Error = "Unknown account." });
                 return;
             }
 
-            if (sessionData.SessionId != request.SessionId)
+            if (accountSessionData.SessionId != request.SessionId)
             {
                 context.AddResponse(new ErrorResponse() { Error = "Session Id must be refreshed." });
                 return;
@@ -61,13 +61,22 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                     Id = request.GameUserId,
                     AccountId = request.AccountId,
                     CreationDate = DateTime.UtcNow,
-                    GameUserId = request.GameUserId,
                 };
             }
 
+            GameSessionData gameSessionData = await _repoService.Load<GameSessionData>(request.GameUserId);
+
+            if (gameSessionData == null)
+            {
+                gameSessionData = new GameSessionData()
+                {
+                    Id = request.GameUserId,
+                };
+            }
 
             // Must explicitly do this on game auth in case this doc doesn't exist.
-            context.SetAccount(gameAcct);
+            context.SetSessionData(gameSessionData);
+            context.Set(gameAcct);
 
             if (gameAcct.AccountId != request.AccountId ||
                 gameAcct.Deleted)
@@ -76,7 +85,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
                 return;
             }
 
-            gameAcct.SessionId = HashUtils.NewUUId();
+            gameSessionData.SessionId = HashUtils.NewUUId();
             gameAcct.ClientVersion = request.ClientVersion;
             gameAcct.ClientPlatformName = request.ClientPlatformName;
 
@@ -90,7 +99,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             context.AddResponseRange(_gameDataService.GetClientSettings(context.core, true));
 
-            await UpdatePublicUser(sessionData, gameAcct);
+            await UpdatePublicUser(accountSessionData, gameAcct);
 
             _cloudCommsService.SendQueueMessage(CloudServerNames.Player, new LoginUser() { Id = gameAcct.Id, Name = "User" + context.GameUserId });
 
@@ -100,8 +109,8 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
 
             GameAuthResponse response = new GameAuthResponse()
             {
-                GameUserId = gameAcct.GameUserId,
-                SessionId = gameAcct.SessionId,
+                GameUserId = gameAcct.Id,
+                SessionId = gameSessionData.SessionId,
                 UserData = await _playerDataService.MapToClientDto(context.core, allUserData),
                 OfferData = offerData,
             };
@@ -120,7 +129,7 @@ namespace Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers
         {
             // Just always make new files and save them.
 
-            PublicUser publicUser = new PublicUser() { Id = gameAccount.GameUserId };
+            PublicUser publicUser = new PublicUser() { Id = gameAccount.Id };
             publicUser.Name = account.ShareId;
             await _repoService.Save(publicUser);
 

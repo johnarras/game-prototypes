@@ -317,13 +317,14 @@ namespace Genrpg.MapServer.Maps
                 }
 
                 GameAccount gameAcct = await _repoService.Load<GameAccount>(add.GameUserId);
+                GameSessionData sessionData = await _repoService.Load<GameSessionData>(add.GameUserId);
 
                 if (gameAcct == null)
                 {
                     connState.conn.AddMessage(new ErrorMessage("User does not exist"));
                     return;
                 }
-                if (gameAcct.SessionId != add.SessionId)
+                if (sessionData.SessionId != add.SessionId)
                 {
                     connState.conn.AddMessage(new ErrorMessage("Invalid session id"));
                     return;
@@ -350,7 +351,7 @@ namespace Genrpg.MapServer.Maps
 
                     ch.NearbyGridsSeen = new List<PointXZ>();
                     connState.ch = ch;
-                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct.GameUserId, new List<IUnitData>(), ch);
+                    List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct.Id, new List<IUnitData>(), ch);
                     foreach (IUnitData unitData in allUnitData)
                     {
                         ch.Set(unitData);

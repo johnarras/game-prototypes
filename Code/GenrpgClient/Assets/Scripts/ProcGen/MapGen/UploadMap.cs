@@ -1,11 +1,7 @@
-using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.MapServer.WebApi.UploadMap;
-using NUnit;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -22,7 +18,9 @@ public class UploadMap : BaseZoneGenerator
 
         string subfolder = MapUtils.GetMapFolder(map.Id, map.MapVersion);
         string localPath = _appService.PersistentDataPath + ClientRepositoryConstants.GetDataPathPrefix() + "/" + subfolder;
-       
+
+
+
         FolderUploadArgs uploadData = new FolderUploadArgs()
         {
             LocalFolder = localPath,
@@ -32,7 +30,7 @@ public class UploadMap : BaseZoneGenerator
             GamePrefix = Game.Prefix,
         };
 
-        FileUploader.UploadFolder(uploadData);
+        FileUploader.UploadFolder(uploadData, "MapMap.jpg");
 
         await DelaySendMapSizes(token);
     }
@@ -56,9 +54,9 @@ public class UploadMap : BaseZoneGenerator
         await _repoService.Save(_mapProvider.GetSpawns());
         _mapProvider.GetSpawns().Id = oldMapId;
         _webNetworkService.SendClientUserWebRequest(update, _token);
-        
+
     }
 }
-	
+
 
 

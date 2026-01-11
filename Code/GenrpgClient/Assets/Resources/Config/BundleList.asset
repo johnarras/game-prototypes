@@ -13,6 +13,36 @@ MonoBehaviour:
   m_Name: BundleList
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Assets.Bundles.BundleList
   Bundles:
+  - BundleName: animalskinsasianelephant
+    IsLocal: 0
+  - BundleName: animalskinsbactriancamel
+    IsLocal: 0
+  - BundleName: animalskinsdonkey
+    IsLocal: 0
+  - BundleName: animalskinsdrafthorse
+    IsLocal: 0
+  - BundleName: animalskinsdromedarycamel
+    IsLocal: 0
+  - BundleName: animalskinsheavywarhorse
+    IsLocal: 0
+  - BundleName: animalskinsmule
+    IsLocal: 0
+  - BundleName: animalskinsox
+    IsLocal: 0
+  - BundleName: animalskinspony
+    IsLocal: 0
+  - BundleName: animalskinsreindeer
+    IsLocal: 0
+  - BundleName: animalskinsridinghorse
+    IsLocal: 0
+  - BundleName: animalskinstamedonager
+    IsLocal: 0
+  - BundleName: animalskinswaterbuffalo
+    IsLocal: 0
+  - BundleName: animalskinsyak
+    IsLocal: 0
+  - BundleName: animalskinszebu
+    IsLocal: 0
   - BundleName: atlasanimalicons
     IsLocal: 0
   - BundleName: atlascorecurrencytypeicons
@@ -26,6 +56,8 @@ MonoBehaviour:
   - BundleName: atlascrawlerui
     IsLocal: 0
   - BundleName: atlascurrencytypeicons
+    IsLocal: 0
+  - BundleName: atlasdiceicons
     IsLocal: 0
   - BundleName: atlasicons
     IsLocal: 0
@@ -1439,8 +1471,6 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uimaps
     IsLocal: 0
-  - BundleName: uimarkers
-    IsLocal: 0
   - BundleName: uioptions
     IsLocal: 0
   - BundleName: uiquests
@@ -1471,65 +1501,5 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uizones
     IsLocal: 0
-  - BundleName: animalsasianelephant
-    IsLocal: 0
-  - BundleName: animalsbactriancamel
-    IsLocal: 0
-  - BundleName: animalsdonkey
-    IsLocal: 0
-  - BundleName: animalsdrafthorse
-    IsLocal: 0
-  - BundleName: animalsdromedarycamel
-    IsLocal: 0
-  - BundleName: animalsheavywarhorse
-    IsLocal: 0
-  - BundleName: animalsmule
-    IsLocal: 0
-  - BundleName: animalsox
-    IsLocal: 0
-  - BundleName: animalspony
-    IsLocal: 0
-  - BundleName: animalsreindeer
-    IsLocal: 0
-  - BundleName: animalsridinghorse
-    IsLocal: 0
-  - BundleName: animalstamedonager
-    IsLocal: 0
-  - BundleName: animalswaterbuffalo
-    IsLocal: 0
-  - BundleName: animalsyak
-    IsLocal: 0
-  - BundleName: animalszebu
-    IsLocal: 0
-  - BundleName: animalskinsasianelephant
-    IsLocal: 0
-  - BundleName: animalskinsbactriancamel
-    IsLocal: 0
-  - BundleName: animalskinsdonkey
-    IsLocal: 0
-  - BundleName: animalskinsdrafthorse
-    IsLocal: 0
-  - BundleName: animalskinsdromedarycamel
-    IsLocal: 0
-  - BundleName: animalskinsheavywarhorse
-    IsLocal: 0
-  - BundleName: animalskinsmule
-    IsLocal: 0
-  - BundleName: animalskinsox
-    IsLocal: 0
-  - BundleName: animalskinspony
-    IsLocal: 0
-  - BundleName: animalskinsreindeer
-    IsLocal: 0
-  - BundleName: animalskinsridinghorse
-    IsLocal: 0
-  - BundleName: animalskinstamedonager
-    IsLocal: 0
-  - BundleName: animalskinswaterbuffalo
-    IsLocal: 0
-  - BundleName: animalskinsyak
-    IsLocal: 0
-  - BundleName: animalskinszebu
-    IsLocal: 0
-  - BundleName: atlasdiceicons
+  - BundleName: uimarkers
     IsLocal: 0

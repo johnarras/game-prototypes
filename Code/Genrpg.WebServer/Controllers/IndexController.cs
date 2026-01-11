@@ -1,6 +1,6 @@
 using Genrpg.RequestServer.Core;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.WebServer.Controllers
@@ -10,44 +10,42 @@ namespace Genrpg.WebServer.Controllers
     public class IndexController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "Index" };
+            return GetContent("[Index]");
         }
 
         [HttpPost]
         [Route("/account-auth")]
-        public async Task<string> PostAccountAuth(WebRequestServer webServer, [FromForm] string Data)
+        public async Task<IActionResult> PostAccountAuth(WebRequestServer webServer, [FromForm] string Data)
         {
-            return await webServer.HandleAccountAuth(Data);
+            return GetContent(await webServer.HandleAccountAuth(Data));
         }
 
         [HttpPost]
         [Route("/game-auth")]
-        public async Task<string> PostGameAuth(WebRequestServer webServer, [FromForm] string Data)
+        public async Task<IActionResult> PostGameAuth(WebRequestServer webServer, [FromForm] string Data)
         {
-            return await webServer.HandleGameAuth(Data);
+            return GetContent(await webServer.HandleGameAuth(Data));
         }
 
         [HttpPost]
         [Route("/game-client")]
-        public async Task<string> PostClient(WebRequestServer webServer, [FromForm] string Data)
+        public async Task<IActionResult> PostClient(WebRequestServer webServer, [FromForm] string Data)
         {
-            return await webServer.HandleUserClient(Data);
+            return GetContent(await webServer.HandleUserClient(Data));
         }
 
         [HttpPost]
         [Route("/nouser")]
-        public async Task<string> PostNoUser(WebRequestServer webServer, [FromForm] string Data)
+        public async Task<IActionResult> PostNoUser(WebRequestServer webServer, [FromForm] string Data)
         {
-            return await webServer.HandleNoUser(Data);
+            return GetContent(await webServer.HandleNoUser(Data));
         }
 
-        [HttpGet]
-        [Route("/txlist")]
-        public async Task<string> PostTxList(WebRequestServer webServer, string address)
+        protected IActionResult GetContent(string data)
         {
-            return await webServer.HandleTxList(address);
+            return Content(data, "application/json", Encoding.UTF8);
         }
     }
 }

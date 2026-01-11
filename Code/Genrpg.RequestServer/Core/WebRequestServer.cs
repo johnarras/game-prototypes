@@ -9,14 +9,11 @@ using Genrpg.RequestServer.Setup;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.MainServer;
-using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Crypto.Entities;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Website.Messages;
-using System.Text;
 
 namespace Genrpg.RequestServer.Core
 {
@@ -94,39 +91,6 @@ namespace Genrpg.RequestServer.Core
             return txt;
         }
 
-        public async Task<string> HandleTxList(string address)
-        {
-            MyRandom rand = new MyRandom();
-            EthereumTransactionList normalList = await _cryptoService.GetTransactionsFromWallet(address, false);
-
-            EthereumTransactionList internalList = await _cryptoService.GetTransactionsFromWallet(address, true);
-
-            List<EthereumTransaction> allTransactions = new List<EthereumTransaction>(normalList.result);
-            allTransactions.AddRange(internalList.result);
-
-            StringBuilder retval = new StringBuilder();
-            retval.Append("EXAMPLE CONVERTING TRANSACTIONS INTO STAT BONUSES: NOT FINAL TUNING\n\n");
-
-            foreach (EthereumTransaction trans in allTransactions)
-            {
-                retval.Append("TX: " + trans.hash + "\n");
-
-                List<PlayerCharmBonusList> list = _charmService.CalcBonuses(trans.hash);
-
-                foreach (PlayerCharmBonusList blist in list)
-                {
-
-                    List<string> bonusTexts = _charmService.PrintBonuses(blist);
-
-                    foreach (string btext in bonusTexts)
-                    {
-                        retval.AppendLine("    " + btext);
-                    }
-                }
-            }
-
-            return retval.ToString();
-        }
     }
 }
 

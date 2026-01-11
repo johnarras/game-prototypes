@@ -1,7 +1,8 @@
 using Assets.Scripts.Assets.Bundles;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Serialization.Services;
 using Genrpg.Shared.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,12 +18,8 @@ public class CreateAssetBundles
     public static BundleVersions CreateBundles(string platformString, string env, bool rebuildBundles, bool uploadBundles)
     {
         DateTime startTime = DateTime.UtcNow;
-        IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
-        IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
-        ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
-
-        List<PlatformBuildData> targets = BuildConfiguration.GetbuildConfigs(gs);
+        List<PlatformBuildData> targets = BuildConfiguration.GetbuildConfigs();
 
         PlatformBuildData target = targets.FirstOrDefault(x => x.ClientPlatform == platformString);
 
@@ -36,7 +33,7 @@ public class CreateAssetBundles
         string textFilePath = target.GetTextFileOutputPath();
         string bundleVersionPath = textFilePath + "/" + AssetConstants.BundleVersionsFile;
         string bundleUploadTimePath = textFilePath + "/" + AssetConstants.BundleUpdateTimeFile;
-        string localBundleVersionsPath = clientAppService.DataPath + "/Resources/Config/" + AssetConstants.BundleVersionsFile;
+        string localBundleVersionsPath = Application.dataPath + "/Resources/Config/" + AssetConstants.BundleVersionsFile;
         if (!Directory.Exists(basePath))
         {
             Directory.CreateDirectory(basePath);
@@ -48,7 +45,7 @@ public class CreateAssetBundles
             try
             {
                 string bundleVersionText = File.ReadAllText(bundleVersionPath);
-                BundleVersions existingVersions = serializer.Deserialize<BundleVersions>(bundleVersionText);
+                BundleVersions existingVersions = JsonConvert.DeserializeObject<BundleVersions>(bundleVersionText);
                 if (existingVersions != null)
                 {
                     return existingVersions;
@@ -62,11 +59,11 @@ public class CreateAssetBundles
             rebuildBundles = true;
         }
 
-        BundleList blist = SetupBundles.SetupAll(gs);
+        BundleList blist = SetupBundles.SetupAll();
 
         DirectoryInfo di = new DirectoryInfo(basePath);
 
-        BundleUpdateInfo updateData = new BundleUpdateInfo() { ClientVersion = clientAppService.Version, UpdateTime = DateTime.UtcNow };
+        BundleUpdateInfo updateData = new BundleUpdateInfo() { ClientVersion = Application.version, UpdateTime = DateTime.UtcNow };
 
         BundleVersions versions = new BundleVersions() { UpdateInfo = updateData, ClientPlatform = target.ClientPlatform };
 
@@ -212,6 +209,7 @@ public class CreateAssetBundles
 
         try
         {
+            NewtonsoftTextSerializer serializer = new NewtonsoftTextSerializer();
             File.WriteAllText(bundleVersionPath, serializer.PrettyPrint(versions));
             File.WriteAllText(bundleUploadTimePath, serializer.SerializeToString(updateData));
             File.WriteAllText(localBundleVersionsPath, serializer.PrettyPrint(versions));
@@ -267,21 +265,15 @@ public class CreateAssetBundles
         }
 
 
-        IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
-        InnerUploadFiles(gs, platformName, env);
+        InnerUploadFiles(platformName, env);
     }
 
 
-    private static void InnerUploadFiles(IClientGameState gs, string platformName, string env)
+    private static void InnerUploadFiles(string platformName, string env)
     {
 
-        gs = EditorGameDataUtils.GetEditorGameState();
 
-        IClientAppService appService = gs.loc.Get<IClientAppService>();
-        IBinaryFileRepository localRepo = gs.loc.Get<IBinaryFileRepository>();
-        IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
-
-        List<PlatformBuildData> targets = BuildConfiguration.GetbuildConfigs(gs);
+        List<PlatformBuildData> targets = BuildConfiguration.GetbuildConfigs();
 
         for (int t = 0; t < targets.Count; t++)
         {
@@ -290,14 +282,18 @@ public class CreateAssetBundles
                 continue;
             }
 
+            string pathRoot = targets[t].GetTextFileOutputPath();
+
             string bundleVersionPath = targets[t].GetTextFileOutputPath() + "/" + AssetConstants.BundleVersionsFile;
 
-            BundleVersions currentData = localRepo.LoadObject<BundleVersions>(bundleVersionPath);
+            string txt = File.ReadAllText(bundleVersionPath);
+
+            BundleVersions currentData = JsonConvert.DeserializeObject<BundleVersions>(txt);
 
             FolderUploadArgs uploadData = new FolderUploadArgs()
             {
-                LocalFolder = appService.DataPath + "/../" + BuildConfiguration.AssetBundleRoot + targets[t].FilePath + "/",
-                RemoteSubfolder = appService.Version + "/" + targets[t].FilePath + "/",
+                LocalFolder = Application.dataPath + "/../" + BuildConfiguration.AssetBundleRoot + targets[t].FilePath + "/",
+                RemoteSubfolder = Application.version + "/" + targets[t].FilePath,
                 IsWorldData = false,
                 Env = env,
                 GamePrefix = Game.Prefix,
@@ -306,7 +302,8 @@ public class CreateAssetBundles
             uploadData.OverwriteIfExistsFiles.Add(AssetConstants.BundleVersionsFile);
             uploadData.OverwriteIfExistsFiles.Add(AssetConstants.BundleUpdateTimeFile);
 
-            FileUploader.UploadFolder(uploadData);
+            FileUploader.UploadFolder(uploadData, AssetConstants.BundleUpdateTimeFile);
+
         }
     }
 

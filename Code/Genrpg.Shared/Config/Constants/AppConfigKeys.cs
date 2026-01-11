@@ -8,6 +8,8 @@ namespace Genrpg.Shared.Config.Constants
         public const string ContentRoot = "ContentRoot";
         public const string EtherscanKey = "EtherscanKey";
         public const string PublicIP = "PublicIP";
+        public const string BlobUploadURL = "BlobUploadURL";
+        public const string PlaceholderString = "XXXXX";
 
         public const string GooglePlaySecret = "GooglePlaySecret";
         public const string IOSSecret = "IOSSecret";
@@ -24,6 +26,19 @@ namespace Genrpg.Shared.Config.Constants
 
         public const string WebServerURL = "WebServerURL";
 
+        public const string UnityCloudBuildMainURL = "UnityCloudBuildMainURL";
+
+        public const string UnityCloudBuildApiKey = "UnityCloudBuildApiKey";
+
+        public const string UnityCloudBuildEnvVarsSuffix = "envvars";
+
+        public const string UnityCouldBuildBuildSuffix = "builds";
+
+        public const string UnityOrgId = "UnityOrgId";
+
+        public const string UnityProjectId = "UnityProjectId";
+
+        public const string UnityTargetId = "UnityTargetId";
     }
 }
 

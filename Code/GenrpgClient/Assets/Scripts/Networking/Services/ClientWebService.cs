@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public delegate void WebResultsHandler(string txt, List<FullWebRequest> requests, CancellationToken token);
 
@@ -55,6 +56,8 @@ public interface IClientWebService : IInitializable, IGameTokenService
     Awaitable<T> SendNoUserWebRequestAsync<T>(INoUserRequest userRequest, CancellationToken token);
 
     void HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token);
+
+    Awaitable<string> DownloadTextFile(string url);
 }
 
 
@@ -391,7 +394,41 @@ public class ClientWebService : IClientWebService
         return (T)fullRequest.ResponseObject;
     }
 
+    public async Awaitable<string> DownloadTextFile(string url)
+    {
+        try
+        {
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
+            {
+                UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
+                while (!asyncOp.isDone)
+                {
+                    try
+                    {
+                        await Awaitable.NextFrameAsync();
+                    }
+                    catch (OperationCanceledException ce)
+                    {
+                        _logService.Info("Op was cancelled " + ce.Message);
+                        break;
+                    }
 
+                }
+                DownloadHandler handler = request.downloadHandler;
+                if (!string.IsNullOrEmpty(request.downloadHandler.error))
+                {
+                    _logService.Info("Download error: " + request.downloadHandler.error);
+                    return null;
+                }
+                return handler.text;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logService.Exception(ex, "DownloadTextFile: " + url);
+        }
+        return null;
+    }
 }
 
 

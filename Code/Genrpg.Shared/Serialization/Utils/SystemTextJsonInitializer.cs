@@ -1,3 +1,4 @@
+using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.Serialization.Attributes;
 using Genrpg.Shared.Setup.Services;
 using Genrpg.Shared.Utils;
@@ -31,8 +32,6 @@ namespace Genrpg.Shared.Serialization.Utils
 
         const string StartWhitespace = "    ";
 
-        const string TypePlaceholderString = "XXXXXX";
-
         const string TypePathPrefix = "Genrpg.";
 
         static readonly List<string> _neededUsings = new List<string>()
@@ -49,19 +48,19 @@ namespace Genrpg.Shared.Serialization.Utils
         {
             "#region SourceGen",
             "[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata)]",
-            "[JsonSerializable(typeof(XXXXXX))]",
-            "[JsonSerializable(typeof(List<XXXXXX>))]",
-            "public partial class XXXXXXJsonGenerationContext : JsonSerializerContext",
+            "[JsonSerializable(typeof(XXXXX))]",
+            "[JsonSerializable(typeof(List<XXXXX>))]",
+            "public partial class XXXXXJsonGenerationContext : JsonSerializerContext",
             "{",
-            //"    public XXXXXXJsonGenerationContext(JsonSerializerOptions? options) : base(options) { }",
+            //"    public XXXXXJsonGenerationContext(JsonSerializerOptions? options) : base(options) { }",
             //"",
             //"    protected override JsonSerializerOptions GeneratedSerializerOptions => JsonSerializerOptions.Default;",
             //"",
             //"    public override JsonTypeInfo GetTypeInfo(Type type)",
             //"    {",
-            //"        if (type == typeof(XXXXXX))",
+            //"        if (type == typeof(XXXXX))",
             //"        {",
-            //"            return JsonTypeInfo.CreateJsonTypeInfo<XXXXXX>(GeneratedSerializerOptions);",
+            //"            return JsonTypeInfo.CreateJsonTypeInfo<XXXXX>(GeneratedSerializerOptions);",
             //"        }",
             //"",
             //"        return null;",
@@ -341,7 +340,7 @@ namespace Genrpg.Shared.Serialization.Utils
                 for (int l = 0; l < _sourceGenLines.Count; l++)
                 {
                     // Cannot use this yet.
-                    lines.Insert(lastCurlyBraceLine + l, StartWhitespace + _sourceGenLines[l].Replace(TypePlaceholderString, itype.Name));
+                    lines.Insert(lastCurlyBraceLine + l, StartWhitespace + _sourceGenLines[l].Replace(AppConfigKeys.PlaceholderString, itype.Name));
                 }
 
 

@@ -33,7 +33,6 @@ namespace Assets.Editor.Builds
         private List<PlatformBuildData> _platformData = null;
 
         private bool _selfContainedClient = true;
-        private bool _rebuildBundles = true;
         private bool _developmentBuild = false;
         private void OnGUI()
         {
@@ -41,7 +40,7 @@ namespace Assets.Editor.Builds
 
             if (_platformNames == null)
             {
-                _platformData = BuildConfiguration.GetbuildConfigs(null);
+                _platformData = BuildConfiguration.GetbuildConfigs();
                 _platformNames = _platformData.Select(x => x.ClientPlatform).ToArray();
             }
 
@@ -53,18 +52,32 @@ namespace Assets.Editor.Builds
 
             _selfContainedClient = EditorGUILayout.Toggle("Self-Contained:", _selfContainedClient);
 
-            _rebuildBundles = EditorGUILayout.Toggle("Rebuild Bundles:", _rebuildBundles);
-
             _developmentBuild = EditorGUILayout.Toggle("Development Build:", _developmentBuild);
 
-            if (GUILayout.Button("Build Clients"))
+            if (GUILayout.Button("Build Local"))
             {
-                BuildClients.BuildClient(
+                RunBuilds.PlayerBuilder.BuildWithArgs(
                     _envNames[_selectedEnv],
                     _gameModes[_selectedGameMode],
                     _platformNames[_selectedPlatform],
                     _selfContainedClient,
-                    _rebuildBundles,
+                    false,
+                    _developmentBuild);
+            }
+
+            if (GUILayout.Button("Default Build"))
+            {
+                RunBuilds.PlayerBuilder.DefaultBuild();
+            }
+
+            if (GUILayout.Button("Cloud Build"))
+            {
+                RunBuilds.PlayerBuilder.BuildWithArgs(
+                    _envNames[_selectedEnv],
+                    _gameModes[_selectedGameMode],
+                    _platformNames[_selectedPlatform],
+                    _selfContainedClient,
+                    true,
                     _developmentBuild);
             }
         }

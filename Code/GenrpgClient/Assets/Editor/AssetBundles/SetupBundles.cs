@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Bundles;
 using System.IO;
 using UnityEditor;
@@ -53,22 +52,18 @@ public class SetupBundles
     }
 
 
-    public static BundleList SetupAll(IClientGameState gs)
+    public static BundleList SetupAll()
     {
-        gs = EditorGameDataUtils.GetEditorGameState();
-
-        ILocalLoadService _localLoadService = gs.loc.Get<ILocalLoadService>();
-
-        BundleList blist = _localLoadService.LocalLoad<BundleList>("Config/BundleList");
+        BundleList blist = ScriptableObjectUtils.LoadDefault<BundleList>();
 
         if (blist == null)
         {
             BundleList.Create();
-            blist = _localLoadService.LocalLoad<BundleList>("Config/BundleList");
+            blist = ScriptableObjectUtils.LoadDefault<BundleList>();
 
         }
 
-        BundleSetupUtils.BundleFilesInDirectory(blist, gs.loc.Get<IAssetService>(), "", "");
+        BundleSetupUtils.BundleFilesInDirectory(blist, new UnityAssetService(), "", "");
         EditorUtility.SetDirty(blist);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();

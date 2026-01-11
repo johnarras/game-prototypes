@@ -109,10 +109,11 @@ namespace Genrpg.RequestServer.Core
 
         public List<IUnitData> AllData() { return _unitData.Values.Select(x => x.UnitData).ToList(); }
 
-        public void SetAccount(GameAccount acct)
+        // SessionData id has the 
+        public void SetSessionData(GameSessionData sessionData)
         {
-            _gameUserId = acct.GameUserId;
-            Set(acct);
+            _gameUserId = sessionData.Id;
+            Set(sessionData);
         }
 
         public void Set(IUnitData doc)

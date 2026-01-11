@@ -2,7 +2,6 @@ using Genrpg.Shared.Constants;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
-using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -226,6 +225,34 @@ namespace Genrpg.Shared.Utils
 
             await Task.WhenAll(setupTasks);
 
+        }
+
+        public static List<KeyValue> GetStringConstants(Type t)
+        {
+
+            List<KeyValue> retval = new List<KeyValue>();
+
+            List<FieldInfo> fields = t.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+            .Where(f => f.IsLiteral && !f.IsInitOnly) // Ensuring only constants
+            .Where(f => f.FieldType == typeof(string)).ToList(); // Filtering for numeric types
+
+            foreach (FieldInfo field in fields)
+            {
+                try
+                {
+                    retval.Add(new KeyValue()
+                    {
+
+                        Key = field.Name,
+                        Val = (string)field.GetValue(null)
+                    });
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
+            return retval;
         }
 
         public static List<NameValue> GetNumericConstants(Type t)

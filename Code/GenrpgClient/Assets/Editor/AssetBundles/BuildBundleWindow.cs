@@ -37,7 +37,7 @@ namespace Assets.Editor.Builds
 
             if (_platformNames == null)
             {
-                _platformData = BuildConfiguration.GetbuildConfigs(null);
+                _platformData = BuildConfiguration.GetbuildConfigs();
                 _platformNames = _platformData.Select(x => x.ClientPlatform).ToArray();
             }
 

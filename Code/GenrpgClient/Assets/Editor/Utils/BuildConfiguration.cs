@@ -32,7 +32,7 @@ public class BuildConfiguration
     public const string AssetBundleRoot = "AssetBundles/";
 
 
-    public static List<PlatformBuildData> GetbuildConfigs(IClientGameState gs)
+    public static List<PlatformBuildData> GetbuildConfigs()
     {
         List<PlatformBuildData> list = new List<PlatformBuildData>();
 
