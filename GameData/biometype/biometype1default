@@ -1,0 +1,8 @@
+{
+  "Id": "biometype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Mediterranean",
+  "Icon": "Mediterranean",
+  "Art": "Mediterranean"
+}

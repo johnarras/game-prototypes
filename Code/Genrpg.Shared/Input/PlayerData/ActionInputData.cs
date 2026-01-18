@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Input.PlayerData
                 {
                     Index = actionIndex,
                     OwnerId = Id,
-                    Id = HashUtils.NewUUId(),
+                    Id = HashUtils.NewGuid(),
                 };
                 _data.Add(input);
             }

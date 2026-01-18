@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Chinese",
+  "Icon": "Chinese",
+  "Art": "Chinese"
+}

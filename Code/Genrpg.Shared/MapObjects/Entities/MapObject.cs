@@ -26,6 +26,7 @@ namespace Genrpg.Shared.MapObjects.Entities
     public class MapObject : IMapObject, IDisposable
     {
         public string Id { get; set; }
+        public string GetId() { return Id; }
         public string Name { get; set; }
         public long EntityTypeId { get; set; }
         public long EntityId { get; set; }

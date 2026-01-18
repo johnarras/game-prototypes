@@ -46,7 +46,7 @@ namespace Genrpg.Shared.Purchasing.Settings
         public string Desc { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public string OfferId { get; set; } = HashUtils.NewUUId();
+        public string OfferId { get; set; } = HashUtils.NewGuid();
 
         public long StoreSlotId { get; set; }
         public long StoreFeatureId { get; set; }
@@ -77,7 +77,7 @@ namespace Genrpg.Shared.Purchasing.Settings
         public bool IsDefaultOffer { get; set; }
         public void DeepCopyFrom(IComplexCopy from, ISerializer serializer)
         {
-            OfferId = HashUtils.NewUUId();
+            OfferId = HashUtils.NewGuid();
         }
 
         public void OrderSelf()

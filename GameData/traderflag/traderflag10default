@@ -1,0 +1,10 @@
+{
+  "Id": "traderflag10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Hungry",
+  "Icon": "Hungry",
+  "Art": "Hungry",
+  "IsBad": true,
+  "RationsCost": 2
+}

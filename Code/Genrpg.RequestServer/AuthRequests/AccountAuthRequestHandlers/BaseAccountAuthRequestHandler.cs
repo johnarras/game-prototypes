@@ -65,7 +65,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
             AccountSessionData sessionData = new AccountSessionData()
             {
                 Id = account.Id,
-                SessionId = HashUtils.NewUUId(),
+                SessionToken = HashUtils.NewGuid(),
                 ShareId = account.ShareId,
             };
 
@@ -94,7 +94,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
             {
                 AccountId = account.Id,
                 LoginToken = clientLoginToken,
-                SessionId = sessionData.SessionId,
+                SessionToken = sessionData.SessionToken,
                 GameUserId = account.Id, // This can be different.
             };
 

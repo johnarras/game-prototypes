@@ -385,6 +385,19 @@ namespace Genrpg.Shared.Utils
             return txt;
         }
 
+        public static string GetAlNumSubstring(string txt)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int t = 0; t < txt.Length; t++)
+            {
+                if (IsAlNum(txt[t]))
+                {
+                    sb.Append(txt[t]);
+                }
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         /// This shows the a double without having to remember format strings
         /// </summary>

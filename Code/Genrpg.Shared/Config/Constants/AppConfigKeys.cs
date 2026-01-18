@@ -11,6 +11,8 @@ namespace Genrpg.Shared.Config.Constants
         public const string BlobUploadURL = "BlobUploadURL";
         public const string PlaceholderString = "XXXXX";
 
+        public const string SessionCacheDbConnectionString = "NoSQLDefaultConnection";
+
         public const string GooglePlaySecret = "GooglePlaySecret";
         public const string IOSSecret = "IOSSecret";
         public const string PackageName = "PackageName";
@@ -26,13 +28,15 @@ namespace Genrpg.Shared.Config.Constants
 
         public const string WebServerURL = "WebServerURL";
 
+        public const string TokenSecret = "TokenSecret";
+
         public const string UnityCloudBuildMainURL = "UnityCloudBuildMainURL";
 
         public const string UnityCloudBuildApiKey = "UnityCloudBuildApiKey";
 
-        public const string UnityCloudBuildEnvVarsSuffix = "envvars";
+        public const string UnityCloudEnvVarsSuffix = "envvars";
 
-        public const string UnityCouldBuildBuildSuffix = "builds";
+        public const string UnityCloudBuildSuffix = "builds";
 
         public const string UnityOrgId = "UnityOrgId";
 

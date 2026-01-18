@@ -1,12 +1,13 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Purchasing.Services;
 using Assets.Scripts.Resets.ClientEvents;
-using Genrpg.Shared.Accounts.WebApi.NewVersions;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.GameAuth.WebApi.NewVersions;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
@@ -92,7 +93,7 @@ public class InitClient : BaseBehaviour, IInitClient
         _splashOverlay.gameObject.SetActive(false);
     }
 
-    public void ShowSplashScreen(string message = null, bool showResetButton = false)
+    private void ShowSplashScreenInternal(string message = null, bool showResetButton = false)
     {
         _dispatcher.Dispatch(new CloseAllScreens());
         _splashOverlay.gameObject.SetActive(true);
@@ -101,7 +102,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
     private async Awaitable CleanupGameAsync()
     {
-        ShowSplashScreen();
+        ShowSplashScreenInternal();
         foreach (IClientResetCleanup cleanup in _gs.loc.GetVals<IClientResetCleanup>())
         {
             await cleanup.OnReset(GetGameToken());
@@ -150,6 +151,7 @@ public class InitClient : BaseBehaviour, IInitClient
         _clientAppService.TargetFrameRate = 60;
         _dispatcher.AddListener<NewVersionResponse>(OnNewVersion, GetGameToken());
         _dispatcher.AddListener<FullResetGame>(OnFullResetGame, GetGameToken());
+        _dispatcher.AddListener<ShowSplashScreen>(OnShowSplashScreen, GetGameToken());
 
         while (!_assetService.IsInitialized() ||
             !_screenService.IsInitialized())
@@ -181,7 +183,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
     void OnApplicationQuit()
     {
-        ShowSplashScreen();
+        ShowSplashScreenInternal();
         _gameTokenSource.Cancel();
         _gameTokenSource.Dispose();
         _gameTokenSource = null;
@@ -204,9 +206,14 @@ public class InitClient : BaseBehaviour, IInitClient
         HideSplashScreen();
     }
 
+    private void OnShowSplashScreen(ShowSplashScreen showSplashScreen)
+    {
+        ShowSplashScreenInternal(showSplashScreen.Message, showSplashScreen.ShowResetButton);
+    }
+
     private void OnNewVersion(NewVersionResponse newVersion)
     {
-        ShowSplashScreen("New Version Available", false);
+        ShowSplashScreenInternal("New Version Available", false);
     }
 
     protected override void OnDestroy()

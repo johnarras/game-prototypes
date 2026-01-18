@@ -16,8 +16,8 @@ namespace Genrpg.Shared.DataStores.Interfaces
     [JsonDerivedType(typeof(Genrpg.Shared.Purchasing.PlayerData.PurchaseHistoryData), nameof(Genrpg.Shared.Purchasing.PlayerData.PurchaseHistoryData))]
     [JsonDerivedType(typeof(Genrpg.Shared.LoadSave.PlayerData.SaveSlotData), nameof(Genrpg.Shared.LoadSave.PlayerData.SaveSlotData))]
     [JsonDerivedType(typeof(Genrpg.Shared.Ftue.PlayerData.FtueData), nameof(Genrpg.Shared.Ftue.PlayerData.FtueData))]
-    [JsonDerivedType(typeof(Genrpg.Shared.Crawler.Parties.PlayerData.PartyData), nameof(Genrpg.Shared.Crawler.Parties.PlayerData.PartyData))]
     [JsonDerivedType(typeof(Genrpg.Shared.Core.PlayerData.CoreData), nameof(Genrpg.Shared.Core.PlayerData.CoreData))]
+    [JsonDerivedType(typeof(Genrpg.Shared.Core.PlayerData.GameAccount), nameof(Genrpg.Shared.Core.PlayerData.GameAccount))]
     public interface IPartitionedData : IStringId, IVersionedData
     {
         string pk { get; }

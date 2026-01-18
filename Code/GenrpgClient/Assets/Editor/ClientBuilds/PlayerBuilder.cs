@@ -5,12 +5,13 @@ using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Serialization.Services;
 using Genrpg.Shared.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -18,7 +19,6 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Networking;
 
 
 namespace RunBuilds
@@ -63,60 +63,55 @@ namespace RunBuilds
             public int delay { get; set; }
             public string commit { get; set; }
             public string scmBranch { get; set; }
-            public Dictionary<string, string> environmentVariables { get; set; } = new Dictionary<string, string>();
+            public Dictionary<string, string> env { get; set; } = new Dictionary<string, string>();
             public string scriptDefineSymbols { get; set; }
+            public string comment { get; set; }
+        }
+
+        private static async Awaitable<string> SendDevOpsRequest(string requestSuffix, HttpMethod method, string target, object requestData)
+        {
+
+            await Awaitable.MainThreadAsync();
+            Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+
+            string apiKey = kvDict[AppConfigKeys.UnityCloudBuildApiKey];
+
+            string mainURL = kvDict[AppConfigKeys.UnityCloudBuildMainURL];
+            mainURL = mainURL.Replace(AppConfigKeys.UnityOrgId, kvDict[AppConfigKeys.UnityOrgId]);
+            mainURL = mainURL.Replace(AppConfigKeys.UnityProjectId, kvDict[AppConfigKeys.UnityProjectId]);
+            mainURL = mainURL.Replace(AppConfigKeys.UnityTargetId, target);
+
+            mainURL += requestSuffix;
+
+            string authString = System.Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey + ":"));
+
+            ClientWebService webService = new ClientWebService();
+
+            SecurityData security = new SecurityData()
+            {
+                BasicAuthToken = authString,
+            };
+
+            return await webService.SendRequest<string>(mainURL, method, requestData, security);
         }
 
         private static async Awaitable CloudBuildWithEnvVars(Dictionary<string, string> envVars)
         {
             await Awaitable.MainThreadAsync();
-            try
+
+            string target = envVars[ClientBuildVars.GAME_MODE].ToLower();
+
+            await SendDevOpsRequest(AppConfigKeys.UnityCloudEnvVarsSuffix, HttpMethod.Put, target, envVars);
+
+            CloudBuildArgs buildArgs = new CloudBuildArgs()
             {
-                Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+                clean = false,
+                delay = 0,
+            };
 
-                string url = kvDict[AppConfigKeys.UnityCloudBuildMainURL] + AppConfigKeys.UnityCouldBuildBuildSuffix;
-
-                string apiKey = kvDict[AppConfigKeys.UnityCloudBuildApiKey];
-
-                string target = envVars[ClientBuildVars.GAME_MODE].ToLower();
-
-                url = url.Replace(AppConfigKeys.UnityOrgId, kvDict[AppConfigKeys.UnityOrgId]);
-                url = url.Replace(AppConfigKeys.UnityProjectId, kvDict[AppConfigKeys.UnityProjectId]);
-                url = url.Replace(AppConfigKeys.UnityTargetId, target);
-
-                CloudBuildArgs buildArgs = new CloudBuildArgs()
-                {
-                    clean = false,
-                    delay = 0,
-                    environmentVariables = envVars,
-                };
-
-                NewtonsoftTextSerializer serializer = new NewtonsoftTextSerializer();
-                string jsonPayload = serializer.SerializeToString(buildArgs);
-                using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
-                {
-                    byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonPayload);
-                    request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                    request.downloadHandler = new DownloadHandlerBuffer();
-                    request.SetRequestHeader("Content-Type", "application/json");
-                    request.SetRequestHeader("Authorization", "Basic " + System.Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey + ":")));
-
-                    var operation = request.SendWebRequest();
-                    while (!operation.isDone) await System.Threading.Tasks.Task.Yield();
-
-                    if (request.result == UnityWebRequest.Result.Success)
-                    {
-                        Debug.Log("Successfully updated Cloud Build variables!");
-                    }
-                    else
-                        Debug.LogError($"Error: {request.error} - {request.downloadHandler.text}");
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-            }
+            await SendDevOpsRequest(AppConfigKeys.UnityCloudBuildSuffix, HttpMethod.Post, target, buildArgs);
         }
+
 
 
         public static Dictionary<string, string> SetupEnvironmentVariableDictionary(string env, string gameModeStr, string platformName,
@@ -225,7 +220,32 @@ namespace RunBuilds
 
             if (string.IsNullOrEmpty(env))
             {
-                SetupBuildFromConfig();
+                string comment = GetVar(ClientBuildVars.UNITY_BUILD_COMMENT);
+
+                Debug.Log("Comment: " + comment);
+                if (!String.IsNullOrEmpty(comment))
+                {
+                    try
+                    {
+                        Dictionary<string, string> envVars = JsonConvert.DeserializeObject<Dictionary<string, string>>(comment);
+
+                        if (envVars.Count > 0)
+                        {
+                            SetBuildEnvironmentVariables(envVars);
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        Debug.Log("Build Comment was not env values");
+                    }
+                }
+
+                env = GetVar(ClientBuildVars.ENV);
+                if (string.IsNullOrEmpty(env))
+                {
+                    Debug.Log("PreExport: NeedInit");
+                    SetupBuildFromConfig();
+                }
             }
 
             string gameModeStr = GetVar(ClientBuildVars.GAME_MODE);
@@ -265,8 +285,6 @@ namespace RunBuilds
             config.AssetsEnv = GetVar(ClientBuildVars.ASSETS_ENV);
             EditorUtility.SetDirty(config);
 
-            AssetDatabase.SaveAssets();
-
             string clientPlatform = GetVar(ClientBuildVars.CLIENT_PLATFORM);
 
             BundleVersions currentBundleVersions = CreateAssetBundles.CreateBundles(clientPlatform, env, true,
@@ -299,6 +317,9 @@ namespace RunBuilds
             {
                 EditorSceneManager.SaveScene(EditorSceneManager.GetSceneAt(i));
             }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
             Debug.Log("PreExport 99");
         }
 
@@ -408,6 +429,7 @@ namespace RunBuilds
 
         private static string GetVar(string key)
         {
+            Debug.Log("GetEnvVar: " + key + " Val: " + System.Environment.GetEnvironmentVariable(key));
             return Environment.GetEnvironmentVariable(key);
         }
 

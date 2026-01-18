@@ -1,0 +1,8 @@
+{
+  "Id": "biometype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Coastal Arid",
+  "Icon": "CoastalArid",
+  "Art": "CoastalArid"
+}

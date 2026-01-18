@@ -15,7 +15,7 @@ namespace Tests.MapServerTests
             {
                 MapServerCount = 1,
                 MapServerIndex = 1,
-                MapServerId = HashUtils.NewUUId(),
+                MapServerId = HashUtils.NewGuid(),
                 StartPort = 4000,
                 MapIds = new List<string>(),
             };

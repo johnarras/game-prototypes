@@ -1,0 +1,10 @@
+{
+  "Id": "traderflag13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Overloaded",
+  "Icon": "Overloaded",
+  "Art": "Overloaded",
+  "BonusSpeed": -3,
+  "RationsCost": 3
+}

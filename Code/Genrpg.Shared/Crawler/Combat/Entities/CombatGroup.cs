@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Combat.Entities
 
         public CombatGroup()
         {
-            Id = HashUtils.NewUUId();
+            Id = HashUtils.NewGuid();
         }
     }
 }

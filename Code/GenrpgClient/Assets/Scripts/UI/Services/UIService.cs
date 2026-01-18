@@ -217,16 +217,16 @@ namespace Assets.Scripts.UI.Services
 
         }
 
-        private bool _canClickButton = true;
+        private int _blockButtonCount = 0;
         private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Task> awaitableAction, Dictionary<string, string> extraData = null)
         {
-            if (!_canClickButton)
+            if (_blockButtonCount > 0)
             {
                 return;
             }
             try
             {
-                _canClickButton = false;
+                IncrementButtonBlock();
                 if (button != null)
                 {
                     button.interactable = false;
@@ -281,8 +281,26 @@ namespace Assets.Scripts.UI.Services
                 {
                     button.interactable = true;
                 }
-                _canClickButton = true;
+                DecrementButtonBlock();
             }
+        }
+
+        public void IncrementButtonBlock()
+        {
+            _blockButtonCount++;
+        }
+
+        public void DecrementButtonBlock()
+        {
+            if (_blockButtonCount > 0)
+            {
+                _blockButtonCount--;
+            }
+        }
+
+        public void ClearButtonBlock()
+        {
+            _blockButtonCount = 0;
         }
 
         public void SetAlpha(IText text, float alpha)

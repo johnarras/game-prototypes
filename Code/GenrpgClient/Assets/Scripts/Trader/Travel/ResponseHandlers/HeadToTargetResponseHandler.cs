@@ -1,0 +1,50 @@
+﻿using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Trader.ClientEvents;
+using Assets.Scripts.Trader.Travel.ClientEvents;
+using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.Trader.Caravans.Services;
+using Genrpg.Shared.Trader.Constants;
+using Genrpg.Shared.Trader.Travel.WebApi;
+using Genrpg.Shared.UI.Constants;
+using System.Threading;
+
+namespace Assets.Scripts.Trader.MessageHandlers.Travelling
+{
+    public class HeadToTargetResponseHandler : BaseClientWebResponseHandler<HeadToTargetResponse>
+    {
+        private ICaravanService _caravanService = null;
+        protected override void InnerProcess(HeadToTargetResponse response, CancellationToken token)
+        {
+            if (!string.IsNullOrEmpty(response.ErrorMessage))
+            {
+                _dispatcher.Dispatch(new ShowFloatingText(response.ErrorMessage, EFloatingTextArt.Error));
+                return;
+            }
+
+            CoreData coreData = _gs.ch.Get<CoreData>();
+
+            coreData.Vars[TraderVars.FromX] = response.FromX;
+            coreData.Vars[TraderVars.FromY] = response.FromY;
+            coreData.Vars[TraderVars.ToX] = response.ToX;
+            coreData.Vars[TraderVars.ToY] = response.ToY;
+            coreData.Vars[TraderVars.CityId] = response.ToCityId;
+            coreData.Vars[TraderVars.DistanceGone] = 0;
+            coreData.Vars[TraderVars.DistanceToTarget] = response.DistanceToTarget;
+
+            long oldFlags = coreData.Vars[TraderVars.Flags];
+            coreData.Vars[TraderVars.Flags] = response.NewTraderFlags;
+
+            if (oldFlags != response.NewTraderFlags)
+            {
+                coreData.Vars[TraderVars.Flags] = response.NewTraderFlags;
+                _caravanService.UpdateTravelStats(coreData);
+            }
+
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.TraderCityRoads));
+            _dispatcher.Dispatch(new UpdateTraderStatusUI());
+            _dispatcher.Dispatch(new UpdateTraderMapAngle());
+        }
+    }
+}

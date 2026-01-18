@@ -1,10 +1,9 @@
-using Genrpg.ServerShared.Maps;
-using Genrpg.Shared.HelperClasses;
+using Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers;
+using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Maps;
 using Genrpg.RequestServer.NoUserRequests.RequestHandlers;
-using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
-using Genrpg.RequestServer.AuthRequests.GameAuthRequestHandlers;
-using Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers;
+using Genrpg.ServerShared.Maps;
+using Genrpg.Shared.HelperClasses;
 
 namespace Genrpg.RequestServer.Services.WebServer
 {
@@ -17,7 +16,6 @@ namespace Genrpg.RequestServer.Services.WebServer
         private SetupDictionaryContainer<Type, IGameClientRequestHandler> _clientCommandHandlers = new SetupDictionaryContainer<Type, IGameClientRequestHandler>();
         private SetupDictionaryContainer<Type, INoUserRequestHandler> _noUserCommandHandlers = new SetupDictionaryContainer<Type, INoUserRequestHandler>();
         private SetupDictionaryContainer<Type, IAccountAuthRequestHandler> _accountAuthCommandHandlers = new SetupDictionaryContainer<Type, IAccountAuthRequestHandler>();
-        private SetupDictionaryContainer<Type, IGameAuthRequestHandler> _gameAuthCommandHandlers = new SetupDictionaryContainer<Type, IGameAuthRequestHandler>();
 
 
         public async Task Initialize(CancellationToken token)
@@ -34,15 +32,6 @@ namespace Genrpg.RequestServer.Services.WebServer
         public IAccountAuthRequestHandler GetAccountAuthRquestHandler(Type type)
         {
             if (_accountAuthCommandHandlers.TryGetValue(type, out IAccountAuthRequestHandler handler))
-            {
-                return handler;
-            }
-            return null;
-        }
-
-        public IGameAuthRequestHandler GetGameAuthRequestHandler(Type type)
-        {
-            if (_gameAuthCommandHandlers.TryGetValue(type, out IGameAuthRequestHandler handler))
             {
                 return handler;
             }

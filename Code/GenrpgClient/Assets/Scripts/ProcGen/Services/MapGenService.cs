@@ -497,7 +497,7 @@ public class MapGenService : IMapGenService
             return;
         }
 
-        List<ZoneTypeGenData> randomizedZoneTypes = zoneGenList.OrderBy(x => HashUtils.NewUUId()).ToList();
+        List<ZoneTypeGenData> randomizedZoneTypes = zoneGenList.OrderBy(x => HashUtils.NewGuid()).ToList();
 
         for (int i = 0; i < randomizedZoneTypes.Count; i++)
         {

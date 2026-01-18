@@ -5,6 +5,7 @@ using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameAuth.WebApi.Auth;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -110,7 +111,7 @@ public class ClientAuthService : IClientAuthService
         _logService.Info("Logging out");
         ExitMMOMap();
         _gs.GameUserId = null;
-        _gs.SessionId = null;
+        _gs.SessionState = new StubSessionState();
         _dispatcher.Dispatch(new CloseAllScreens());
         _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
         _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
@@ -165,7 +166,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable StartNoUser(CancellationToken token)
     {
-        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SessionId = "Local" };
+        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SessionToken = "Local" };
 
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
@@ -203,7 +204,7 @@ public class ClientAuthService : IClientAuthService
         GameAuthRequest request = new GameAuthRequest()
         {
             AccountId = response.AccountId,
-            SessionId = response.SessionId,
+            SessionToken = response.SessionToken,
             GameUserId = response.GameUserId,
             ClientVersion = _clientAppService.Version,
             ClientPlatformName = _clientAppService.GetPlatformName(),

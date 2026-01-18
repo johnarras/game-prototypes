@@ -49,7 +49,7 @@ namespace Genrpg.Shared.Inventory.Services
             if (genData.oldItem != null)
             {
                 item = new Item();
-                item.Id = HashUtils.NewUUId();
+                item.Id = HashUtils.NewGuid();
                 item.ItemTypeId = genData.oldItem.ItemTypeId;
                 item.QualityTypeId = genData.oldItem.QualityTypeId;
                 item.Quantity = genData.oldItem.Quantity;
@@ -107,7 +107,7 @@ namespace Genrpg.Shared.Inventory.Services
 
 
             Item item = new Item();
-            item.Id = HashUtils.NewUUId();
+            item.Id = HashUtils.NewGuid();
             item.ItemTypeId = itype.IdKey;
             item.QualityTypeId = gd.QualityTypeId;
             item.Quantity = gd.Quantity;
@@ -513,7 +513,7 @@ namespace Genrpg.Shared.Inventory.Services
 
             Item item = null;
             item = new Item();
-            item.Id = HashUtils.NewUUId();
+            item.Id = HashUtils.NewGuid();
             item.ItemTypeId = itype.IdKey;
             item.QualityTypeId = genData.QualityTypeId;
             item.Level = genData.Level;

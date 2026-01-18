@@ -1,0 +1,12 @@
+{
+  "Id": "traderflag8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Lucky",
+  "Icon": "Lucky",
+  "Art": "Lucky",
+  "IsBuff": true,
+  "ForageChance": 5.0,
+  "GoodEventChance": 0.1,
+  "BadEventChance": -0.1
+}

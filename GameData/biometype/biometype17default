@@ -1,0 +1,8 @@
+{
+  "Id": "biometype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Continental / Steppe",
+  "Icon": "ContinentalSteppe",
+  "Art": "ContinentalSteppe"
+}

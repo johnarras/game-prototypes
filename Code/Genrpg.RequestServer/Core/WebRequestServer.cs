@@ -47,27 +47,33 @@ namespace Genrpg.RequestServer.Core
             return new WebContext(_config, _context.loc, _repositoryService, _binarySerializer, _saveService);
         }
 
-        protected string _serverInstanceId = CloudServerNames.Login + HashUtils.NewUUId().ToString().ToLowerInvariant();
+        protected string _serverInstanceId = CloudServerNames.Login + HashUtils.NewGuid().ToString().ToLowerInvariant();
         protected override string GetServerId(object data)
         {
             return _serverInstanceId;
         }
 
-        public async Task<string> HandleUserClient(string postData)
+        public async Task<string> HandleUserClient(WebServerRequestSet postData, string sessionUserId)
         {
             WebContext context = SetupContext();
             await _gameClientWebService.HandleUserClientRequest(context, postData, _token);
             return PackageResponses(context);
         }
+        public async Task<string> HandleRefreshToken(WebServerRequestSet postData)
+        {
+            WebContext context = SetupContext();
+            await _gameAuthWebService.HandleRefreshTokenRequest(context, postData, _token);
+            return PackageResponses(context);
+        }
 
-        public async Task<string> HandleNoUser(string postData)
+        public async Task<string> HandleNoUser(WebServerRequestSet postData)
         {
             WebContext context = SetupContext();
             await _noUserWebService.HandleNoUserRequest(context, postData, _token);
             return PackageResponses(context);
         }
 
-        public async Task<string> HandleAccountAuth(string postData)
+        public async Task<string> HandleAccountAuth(WebServerRequestSet postData)
         {
             WebContext context = SetupContext();
             await _accountAuthWebService.HandleAccountAuthRequest(context, postData, _token);
@@ -75,7 +81,7 @@ namespace Genrpg.RequestServer.Core
         }
 
 
-        public async Task<string> HandleGameAuth(string postData)
+        public async Task<string> HandleGameAuth(WebServerRequestSet postData)
         {
             WebContext context = SetupContext();
             await _gameAuthWebService.HandleGameAuthRequest(context, postData, _token);

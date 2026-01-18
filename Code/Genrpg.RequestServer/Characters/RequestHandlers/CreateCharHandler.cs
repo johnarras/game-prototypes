@@ -19,7 +19,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
             while (true)
             {
-                if (charStubs.FirstOrDefault(x => x.Id == context.core.Id + "." + nextId) == null)
+                if (charStubs.FirstOrDefault(x => x.Id == context.GameUserId + "." + nextId) == null)
                 {
                     break;
                 }

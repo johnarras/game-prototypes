@@ -168,7 +168,7 @@ namespace Genrpg.Shared.Quests.WorldData
             QuestStatus questStatus = new QuestStatus()
             {
                 Quest = this,
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
                 OwnerId = questData.Id,
             };
             if (Tasks != null)

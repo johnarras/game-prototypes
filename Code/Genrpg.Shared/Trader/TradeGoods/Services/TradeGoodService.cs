@@ -37,15 +37,13 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             CaravanPosition position = _caravanService.GetPosition(coreData);
 
-            City city = _gameData.Get<CitySettings>(coreData).Get(position.CityId);
-
-            if (city == null)
+            if (position.GetCurrentCity() == null)
             {
                 result.ErrorMessage = "You can only buy trade goods in cities.";
                 return result;
             }
 
-            CityTradeGood tradeGood = city.TradeGoodsProduced.FirstOrDefault(x => x.TradeGoodId == tradeGoodId);
+            CityTradeGood tradeGood = position.GetCurrentCity().TradeGoodsProduced.FirstOrDefault(x => x.TradeGoodId == tradeGoodId);
 
             if (tradeGood == null)
             {
@@ -53,7 +51,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
                 return result;
             }
 
-            long buyCost = city.TradeGoodBuyCosts[tradeGoodId];
+            long buyCost = position.GetCurrentCity().TradeGoodBuyCosts[tradeGoodId];
 
 
             if (buyCost == 0)
@@ -87,7 +85,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
             };
             caravanData.TradeGoods.Add(new CaravanTradeGood() { TradeGoodId = tradeGoodId });
 
-            _caravanService.UpdateCoreStatsFromCaravan(coreData, caravanData, statData);
+            _caravanService.UpdateTravelStatsFromCaravan(coreData, caravanData, statData);
 
             result.TradeGoodId = tradeGoodId;
             result.Travel = _caravanService.GetTravelInfo(coreData);
@@ -108,9 +106,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             CaravanPosition position = _caravanService.GetPosition(coreData);
 
-            City city = _gameData.Get<CitySettings>(coreData).Get(position.CityId);
-
-            if (city == null)
+            if (position.GetCurrentCity() == null)
             {
                 result.ErrorMessage = "You can only sell trade goods in cities.";
                 return result;
@@ -126,11 +122,9 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             TradeEconomySettings econSettings = _gameData.Get<TradeEconomySettings>(coreData);
 
-            long sellValue = (long)(city.TradeGoodBuyCosts[tradeGoodId] * econSettings.SellPricePercent);
-
+            long sellValue = (long)(position.GetCurrentCity().TradeGoodBuyCosts[tradeGoodId] * econSettings.SellPricePercent);
 
             coreData.Currencies.Add(CoreCurrencyTypes.Coins, sellValue);
-
 
             result = RemoveTradeGoodFromCaravan(coreData, caravanData, statData, tradeGoodId);
 
@@ -159,7 +153,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             caravanData.TradeGoods.Remove(tradeGood);
 
-            _caravanService.UpdateCoreStatsFromCaravan(coreData, caravanData, statData);
+            _caravanService.UpdateTravelStatsFromCaravan(coreData, caravanData, statData);
 
             result.TradeGoodId = tradeGoodId;
             result.Travel = _caravanService.GetTravelInfo(coreData);

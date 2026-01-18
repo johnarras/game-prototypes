@@ -1,0 +1,8 @@
+{
+  "Id": "traderstat18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "BadLuckEvents",
+  "Icon": "BadLuckEvents",
+  "Art": "BadLuckEvents"
+}

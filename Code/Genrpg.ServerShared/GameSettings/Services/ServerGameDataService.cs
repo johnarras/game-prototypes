@@ -1,4 +1,3 @@
-using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.Utils;
@@ -47,7 +46,6 @@ namespace Genrpg.ServerShared.GameSettings.Services
 
         protected IFullRepositoryService _repoService = null;
         private IGameData _gameData = null;
-        private ICryptoService _cryptoService = null;
         protected ITextSerializer _serializer = null;
         private ITimeService _timeService = null;
 
@@ -216,7 +214,7 @@ namespace Genrpg.ServerShared.GameSettings.Services
                 versionSettings.SaveTime.Ticks.ToString() + "." +
                 dataOverrideSettings.GetPrevUpdateTime(currentTime).Ticks.ToString();
 
-            obj.DataOverrides.Hash = _cryptoService.QuickHash(fullString);
+            obj.DataOverrides.Hash = HashUtils.QuickHash(fullString);
 
             if (obj is CoreCharacter coreChar)
             {

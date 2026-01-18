@@ -14,7 +14,7 @@ namespace Genrpg.RequestServer.UserMail.Services
 
         public async Task ProcessMail(WebContext context)
         {
-            List<UserLetter> letters = await _repoService.Search<UserLetter>(x => x.OwnerId == context.core.Id);
+            List<UserLetter> letters = await _repoService.Search<UserLetter>(x => x.OwnerId == context.GameUserId);
 
             List<Task> deleteTasks = new List<Task>();
             foreach (UserLetter letter in letters)

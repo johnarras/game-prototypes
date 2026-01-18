@@ -4,7 +4,9 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.HUD.ClientEvents;
+using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
+using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Core.PlayerData;
@@ -18,11 +20,12 @@ using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Roads.Settings;
+using Genrpg.Shared.Trader.Maps.Services;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Trader.Travel.Services;
 using Genrpg.Shared.Trader.Travel.WebApi;
 using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Utils.Data;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,6 +53,8 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IClientRandom _rand = null;
         private ILogService _logService = null;
         private ICaravanService _caravanService = null;
+        private IUIService _uiService = null;
+        private ITraderMapService _traderMapService = null;
 
         private CancellationToken _token;
 
@@ -59,38 +64,31 @@ namespace Assets.Scripts.Trader.Travel.Services
             _dispatcher.AddListener<TravelResponse>(OnTravelResponse, token);
         }
 
-        private bool _travellingNow = false;
         public void ClickTravelButton()
         {
-            if (_travellingNow)
-            {
-                return;
-            }
             CoreData coreData = _gs.ch.Get<CoreData>();
             CaravanPosition pos = _caravanService.GetPosition(coreData);
 
-            if (pos.CityId > 0)
+            if (pos.GetCurrentCity() != null)
             {
-                TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.CityId };
+                TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.GetCurrentCity().IdKey };
 
                 _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCityRoads, args));
             }
             else
             {
-                Road road = _gameData.Get<RoadSettings>(_gs.ch).Get(pos.RoadId);
-
-                if (coreData.Vars[TraderVars.DistanceAlongRoad] >= road.Distance)
+                if (coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.DistanceToTarget])
                 {
-                    TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.TargetCityId, CanEnterCity = true };
+                    TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.GetTargetCityId(), CanEnterCity = true };
 
                     _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCityRoads, args));
+
                 }
                 else
                 {
-
-                    _travellingNow = true;
                     TravelRequest req = new TravelRequest();
 
+                    _uiService.IncrementButtonBlock();
                     _webService.SendClientUserWebRequest(req, _token);
                 }
             }
@@ -98,12 +96,6 @@ namespace Assets.Scripts.Trader.Travel.Services
 
         private void OnTravelResponse(TravelResponse response)
         {
-            if (!_travellingNow)
-            {
-                return;
-            }
-
-
             _awaitableService.ForgetAwaitable(ShowTravelNow(response, _token));
         }
 
@@ -118,10 +110,22 @@ namespace Assets.Scripts.Trader.Travel.Services
                     _dispatcher.Dispatch(new ReplaceEntityModel() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = CoreCurrencyTypes.Rations });
                 }
 
+                CaravanPosition pos = _caravanService.GetPosition(coreData);
+
+                if (pos.DistanceToTarget < 1)
+                {
+                    pos.DistanceToTarget = 1;
+                }
+
+                long startDist = pos.DistanceGone;
                 RewardParams rp = new RewardParams();
                 for (int d = 0; d < response.Days.Count; d++)
                 {
                     TravelDay td = response.Days[d];
+                    long endDist = td.EndDistance;
+
+                    long distGone = td.EndDistance - startDist;
+                    long currDist = startDist;
                     _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = td.RolledDistances, BonusDistance = td.BonusDistance, TotalDistance = td.TotalDistance });
                     for (int r = 0; r < td.TravelRewards.Count; r++)
                     {
@@ -129,19 +133,43 @@ namespace Assets.Scripts.Trader.Travel.Services
                         for (int q = 0; q < rew.Quantity; q++)
                         {
                             _dispatcher.Dispatch(new ShowDooberEvent() { EntityTypeId = rew.EntityTypeId, EntityId = rew.EntityId, Quantity = 1, StartsInUI = true });
-                            await Awaitable.WaitForSecondsAsync(0.1f, token);
+
                         }
                         _rewardService.GiveReward(_rand, _gs.ch, rew, rp);
                     }
 
-                    coreData.Vars[TraderVars.DaysPlayed] = td.Day;
-                    coreData.Vars[TraderVars.DistanceAlongRoad] = td.EndDistance;
+                    float x = 0;
+                    float y = 0;
+                    for (int i = 0; i < distGone; i++)
+                    {
+                        currDist++;
+                        float distPct = 1.0f * currDist / pos.DistanceToTarget;
+
+                        MyPointF mapCoord = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, currDist, pos.DistanceToTarget);
+
+                        x = mapCoord.X;
+                        y = mapCoord.Y;
+
+                        _dispatcher.Dispatch(new ShowTraderMapPosition() { X = x, Y = y });
+                        await Awaitable.NextFrameAsync(token);
+                    }
+
+                    coreData.Vars[TraderVars.PlayCount] = td.Day;
+                    coreData.Vars[TraderVars.DistanceGone] = td.EndDistance;
+
+                    if (td.EndFlags != coreData.Vars[TraderVars.Flags])
+                    {
+                        coreData.Vars[TraderVars.Flags] = td.EndFlags;
+                        _caravanService.UpdateTravelStats(coreData);
+                    }
                     _dispatcher.Dispatch(new UpdateTraderStatusUI());
-                    await Awaitable.WaitForSecondsAsync(1.0f, token);
+                    bool isWater = _travelService.IsWater(x, y);
+
+                    startDist = td.EndDistance;
                 }
 
-                coreData.Vars[TraderVars.DistanceAlongRoad] = response.DistanceAlongRoad;
-                coreData.Vars[TraderVars.DaysPlayed] = response.EndDay;
+                coreData.Vars[TraderVars.DistanceGone] = response.DistanceAlongRoad;
+                coreData.Vars[TraderVars.PlayCount] = response.EndDay;
 
                 foreach (string msg in response.Messages)
                 {
@@ -152,7 +180,10 @@ namespace Assets.Scripts.Trader.Travel.Services
             {
                 _logService.Exception(e, "ShowTravel");
             }
-            _travellingNow = false;
+            finally
+            {
+                _uiService.DecrementButtonBlock();
+            }
         }
     }
 }

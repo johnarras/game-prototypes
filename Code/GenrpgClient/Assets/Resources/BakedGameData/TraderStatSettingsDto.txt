@@ -87,6 +87,30 @@
       "AtlasPrefix": "",
       "Icon": "RationsStorage",
       "Art": "RationsStorage"
+    },
+    {
+      "IdKey": 15,
+      "Name": "CaravanBonusSpeed",
+      "Icon": "CaravanBonusSpeed",
+      "Art": "CaravanBonusSpeed"
+    },
+    {
+      "IdKey": 16,
+      "Name": "CaravanRationsCost",
+      "Icon": "CaravanRationsCost",
+      "Art": "CaravanRationsCost"
+    },
+    {
+      "IdKey": 17,
+      "Name": "GoodLuckEvents",
+      "Icon": "GoodLuckEvents",
+      "Art": "GoodLuckEvents"
+    },
+    {
+      "IdKey": 18,
+      "Name": "BadLuckEvents",
+      "Icon": "BadLuckEvents",
+      "Art": "BadLuckEvents"
     }
   ],
   "Parent": {
@@ -94,5 +118,5 @@
     "Name": "TraderStatSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-28T20:17:50.679Z"
+  "SaveTime": "2026-01-18T21:32:36.476Z"
 }

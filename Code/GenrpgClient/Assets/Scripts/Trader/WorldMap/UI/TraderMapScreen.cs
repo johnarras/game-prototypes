@@ -1,10 +1,7 @@
 using Assets.Scripts.Trader.UI.TraderMapUI;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Travel.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -87,32 +84,6 @@ namespace Assets.Scripts.Trader.UI.TradeMapUI
             if (_cityIdsClicked.Count != 2)
             {
                 return;
-            }
-
-
-            List<CityPath> roads = _travelService.GetPathFrom(_gs.ch, _cityIdsClicked[0], _cityIdsClicked[1]);
-
-
-            if (roads == null || roads.Count < 1)
-            {
-                _logService.Info("No path");
-            }
-            else
-            {
-
-                StringBuilder sb = new StringBuilder();
-
-                sb.Append("Path from " + roads.First().City.Name + " to " + roads.Last().City.Name + "\n");
-                foreach (CityPath path in roads)
-                {
-                    if (path.PrevCityPath != null)
-                    {
-                        sb.Append("Take " + path.Road.Name + " from " + path.City.Name + " to " + path.PrevCityPath.City.Name + "(" + path.Road.Distance + "lg)\n");
-                    }
-                }
-
-                _logService.Info(sb.ToString());
-
             }
         }
     }

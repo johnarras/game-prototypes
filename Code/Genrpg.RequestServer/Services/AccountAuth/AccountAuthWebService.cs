@@ -15,13 +15,12 @@ namespace Genrpg.RequestServer.Services.AccountAuth
         private ITextSerializer _serializer = null;
         private ILogService _logService = null;
 
-        public async Task HandleAccountAuthRequest(WebContext context, string postData, CancellationToken token)
+        public async Task HandleAccountAuthRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {
             try
             {
-                WebServerRequestSet commandSet = _serializer.Deserialize<WebServerRequestSet>(postData);
 
-                foreach (IAccountAuthRequest authCommand in commandSet.Requests)
+                foreach (IAccountAuthRequest authCommand in requestSet.Requests)
                 {
                     IAccountAuthRequestHandler handler = _webServerService.GetAccountAuthRquestHandler(authCommand.GetType());
 

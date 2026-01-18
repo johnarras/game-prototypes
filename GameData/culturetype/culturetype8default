@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Byzantine/Greek",
+  "Icon": "ByzantineGreek",
+  "Art": "ByzantineGreek"
+}

@@ -25,8 +25,9 @@ Toplevel folders:
 		
 	Old -- contains genmud, an old MUD in C that I made 20-25 years go. It's also available
 		on SourceForge.
+	
 
-There are 4 gmae projects of various kinds using a lot of shared code.
+There are 3 gmae projects of various kinds using a lot of shared code.
 The parts of the projects are all in one repo, and that makes it easier
 for one person or a really small team to work faster, but you probably
 will want to split things up if you grow to a large team.
@@ -38,16 +39,15 @@ The games:
 	InitClient and then ClientConfig and then change the GameMode to Crawler
 	and immedately play the game (assuming no bugs) without any other setup.
 
-2. BoardGame - a boardgame where you roll around a loop and gather resources
-				and spend on upgrades to get more resources. Client/server
-				meant for mobile.
 
-3. MMO - a procedurally generated MMO where all monsters are simple, but active
+2. MMO - a procedurally generated MMO where all monsters are simple, but active
 			all the time. Realtime multiplayer client/server.
 
-4. Trader - a game about being a caravan trader traveling the spice road.
+3. Trader - a game about being a caravan trader traveling the spice road.
 		Meant to be a mobile game.
 
+There was a board game, but I decided to remove it. The code is back somewhere
+in the git history though.
 
 All of these can be played using the same client, and the game you enter can
 be picked by clicking on the InitClient object, then the ClientConfig and
@@ -59,6 +59,7 @@ For everything else besides the Crawler game, there are some more setup steps.
 	a. Blob Storage
 	b. Cosmos with the Mongo API (currently the serverless tier)
 	c. Service Bus (with PubSub...currently $10 tier for that)
+	d. Azure Cosmos NoSQL API
 
 2. Look in the AppConfig/App.Config file. At a minimum you will need to set up:
 
@@ -70,11 +71,13 @@ For everything else besides the Crawler game, there are some more setup steps.
 	e. The EtherscanKey was from a smaller prototype involving using Ethereum transaction 
 		hashes as random seeds for NFTs where the stats are based on the hash. 
 		Totally optional. Interesting idea, never went anywhere.
-		
-3. You will now need to build the FileUploader. There is no CI/CD for uploading assets,
-	and I don't want any connection strings/keys in the client. So navigate into FileUploader
-	and open the solution and build it. It will output to the folder that the client looks
-	for when building bundles or proecdurally generating a map for the MMO.
+	f. The Azure Cosmos NoSQL Key.
+	g. There are a handful of strings you can use for UnityCloudBuild. I've
+		been experimenting with that, and it has done a nice job of making my
+		clean up my build process.
+			
+3. Asset Bundles are uploaded during the bundle build process using AzCopy (since 
+	I am using Azure.) 
 	
 4. The implementations for the Azure code are found in the AzureOnlineResourceProvider 
 	that implements IOnlineResourceProvider so if you want to use another cloud service 
@@ -88,7 +91,7 @@ For everything else besides the Crawler game, there are some more setup steps.
 			particular the Genrpg.Shared dll gets copied into the client when Genrpg.GameServer
 			is rebuilt.
 		
-	b. 	Genrpg.WebServer -- Used for auth for the MMO and for the web server component for BoardGame and Trader.
+	b. 	Genrpg.WebServer -- Used for auth for the MMO and for the web server component for Trader.
 	
 	c. 	Genrpg.Editor -- Procedurally generated editor that has CSV importer funcitonality. You will need to copy
 		data to the database the first time you use this. 
@@ -138,7 +141,9 @@ index things automatically.
 
 	a. There is a basic dependency injection system that adds things implementing IInjectable to a hidden service
 	locator during the startup process by walking the assembly dependency graph from the executing assembly through
-	all assemblies prefixed with Genrpg.
+	all assemblies prefixed with Genrpg. There isn't the scoped/transient stuff you see in webdev, because I separate
+	the code into code classes and data classes, and the code classes are created during initialization and stick
+	around for the duration of the program's lifetime.
 	
 	b. The Strategy pattern is used a lot. The root interface for this is: ISetupDictionaryItem<K,V> where K is the keyspace
 		and V is the value space (usually some other interface).
@@ -147,9 +152,9 @@ index things automatically.
 	
 	c. To create an in-memory database of game settings, the IEntityHelper interface is implemented whenever 
 		it makes sense to have a list of objects of a certain type. (By default extend BaseEntityHelper)
-		These helpers are used in the server editor to dynamically generate dropdowns (GetDropdownList), and in the client in the 
-		EntityIdDropdown and EntityTypeWithIdUI classes. Since I do things this way, I can avoid using 
-		enums everywhere, even though enums are easier to use to make dropdowns.
+		These helpers are used in the server editor to dynamically generate dropdowns (GetDropdownList), and in 
+		the client in the EntityIdDropdown and EntityTypeWithIdUI classes. Since I do things this way, 
+		I can avoid using enums everywhere, even though enums are easier to use to make dropdowns.
 		
 	d. Adding game settings or player data requires implementing a handful of small classes that get woven into
 		existing core systmes at startup using reflection. Look at CurrencyData and CurrencySettings for examples
@@ -239,5 +244,83 @@ There are certain patterns I use that allow me to keep adding stuff. Let's use C
 		    public class CurrencyDataMapper : OwnerDataMapper<CurrencyData, CurrencyStatus, CurrencyDto> { }
 		
 		    
-	c. 
+	c.   [MessagePackObject]
+		  public class CurrencySettings : ParentSettings<CurrencyType>
+		  {
+		      [Key(0)] public override string Id { get; set; }
+		  }
 		
+		  [MessagePackObject]
+		  public class CurrencyType : ChildSettings, IIndexedGameItem
+		  {
+		
+		      [Key(0)] public override string Id { get; set; }
+		      [Key(1)] public override string ParentId { get; set; }
+		      [Key(2)] public long IdKey { get; set; }
+		      [Key(3)] public override string Name { get; set; }
+		      [Key(4)] public string PluralName { get; set; }
+		      [Key(5)] public string Desc { get; set; }
+		      [Key(6)] public string AtlasPrefix { get; set; }
+		      [Key(7)] public string Icon { get; set; }
+		      [Key(8)] public string Art { get; set; }
+		
+		  }
+		
+		  public class CurrencySettingsDto : ParentSettingsDto<CurrencySettings, CurrencyType> { }
+		
+		  public class CurrencySettingsLoader : ParentSettingsLoader<CurrencySettings, CurrencyType> { }
+		
+		  public class CurrencySettingsMapper : ParentSettingsMapper<CurrencySettings, CurrencyType, CurrencySettingsDto> { }
+		
+		
+		  public class CurrencyHelper : BaseEntityHelper<CurrencySettings, CurrencyType>
+		  {
+		      public override long HelperKey => EntityTypes.Currency;
+		  }
+
+
+	d.	  The code for player data and game data/settings are similar and involve creating
+		  a handful of small tightly-focused classes that allow me to move data around and
+		  work with it within the programs.
+		 
+		  Some of the common classes include:
+		  
+		  	- The XXXSettings or XXXData class which is the parent class for the data
+		 		used within the various programes. Think of this as a contaier for a single list of
+		 		child objects.
+		 
+		 	- The XXXStatus or XXXType class which is a child object of the parent class,
+		 		where there will be one XXXType for each type of that class you want, and
+		 		eventually one XXXStatus tracking quantities once the player has some of them.
+		 		
+		 	- The XXXLoader class is used to load the data from the database/datastore and to
+		 		save it.
+		 		
+		 	- The XXXDto class is used to transfer this data between client and server.
+		 	
+		 	- The XXXMapper class is used to create Dtos from internal data and convert it back
+		 		on the other end. Currently the XXXSettings/XXXData classes hide the internal list
+		 		of XXXStatus/XXXType objects so this sets them as public members that can then
+		 		be serialized.
+		 		
+		 	- The XXXEntityHelper is used within the program only, and allows for an in-memoery
+		 		database of items. I load all game settings whenever a program starts up (client/
+		 		editor/various servers) and keep it in memory. This data does not have a TTL, but
+		 		the server(s) listen for a pubsub message that the editor can send telling them to
+		 		reload their game data, and the client checks for data updates when it sends commands
+		 		to the server, so it can get data dynamically updated.
+		 		
+	I tend to copy/paste a simple file like the Currency examples above and rename Currency to whatever new
+	type I have and sync namespaces when adding new player or game data. It almost never has issue just
+	integrating into the existing codebase, so I can add new features without having to do things in
+	too many places.
+	
+	This is because adding new features means adding a bunch of new small classes that are tightly focused,
+	and which weave themselves automatically into the core systems in the game. Since they are small, they
+	shouldn't broken implementations, and the small classes just don't have to get written if they don't make
+	sense. There are settings that don't have a Mapper or Dto since they never go the client, and many
+	pieces of data aren't considered Entities that are numerically indexed, so they don't get the EntityHelper.
+	This also allows for custom implementations to be made easier since there's a smaller interface footprint
+	that has to be implemented, and finally late binding of things like the repository system (using NoSQL or
+	blob or KV or SQL in the server vs flat files in the client) means I can reuse a lot of code all over the
+	project.

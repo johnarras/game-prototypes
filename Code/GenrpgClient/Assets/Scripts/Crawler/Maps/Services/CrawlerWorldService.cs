@@ -177,7 +177,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         map.ZoneUnits.Add(spawn);
                     }
 
-                    map.ZoneUnits = map.ZoneUnits.OrderBy(x => HashUtils.NewUUId()).ToList();
+                    map.ZoneUnits = map.ZoneUnits.OrderBy(x => HashUtils.NewGuid()).ToList();
 
                     if (map.ZoneUnits.Count > 0 && genData.SharedUnits.Count < 1)
                     {

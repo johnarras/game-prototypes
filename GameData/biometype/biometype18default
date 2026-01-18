@@ -1,0 +1,8 @@
+{
+  "Id": "biometype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Steppe",
+  "Icon": "Steppe",
+  "Art": "Steppe"
+}

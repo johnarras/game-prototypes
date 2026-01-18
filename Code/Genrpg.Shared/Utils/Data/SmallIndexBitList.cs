@@ -1,7 +1,5 @@
 using MessagePack;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Genrpg.Shared.Utils.Data
 {
@@ -52,7 +50,7 @@ namespace Genrpg.Shared.Utils.Data
                 Bits = newItems;
             }
 
-            Bits[subIndex] |= (1 << bitRemainder);  
+            Bits[subIndex] |= (1 << bitRemainder);
         }
 
         public void RemoveBit(long index)
@@ -81,14 +79,7 @@ namespace Genrpg.Shared.Utils.Data
 
         public bool HasAnyBits()
         {
-            for (int b = 0; b < Bits.Length; b++)
-            {
-                if (Bits[b] != 0)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Bits.Any(x => x != 0);
         }
     }
 }

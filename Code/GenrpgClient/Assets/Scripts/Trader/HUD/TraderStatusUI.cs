@@ -39,7 +39,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
             if (coreData != null)
             {
-                _uiService.SetText(DateText, _calendarService.PrintDay(coreData.Vars[TraderVars.DaysPlayed]));
+                _uiService.SetText(DateText, _calendarService.PrintDay(coreData.Vars[TraderVars.PlayCount]));
                 _uiService.SetText(PositionText, _infoService.GetHUDStatus(coreData));
             }
         }

@@ -250,7 +250,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
 
 
-            Item item = new Item() { Id = HashUtils.NewUUId().ToString() };
+            Item item = new Item() { Id = HashUtils.NewGuid().ToString() };
 
             item.ItemTypeId = itemType.IdKey;
 

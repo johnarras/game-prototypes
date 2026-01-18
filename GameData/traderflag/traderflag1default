@@ -1,0 +1,11 @@
+{
+  "Id": "traderflag1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "FastMove",
+  "Icon": "FastMove",
+  "Art": "FastMove",
+  "BonusSpeed": 2,
+  "ForageChance": -0.03,
+  "RationsCost": 1
+}

@@ -36,6 +36,7 @@ namespace Genrpg.RequestServer.Core
 
         protected IPartitionedDataSaveService _partitionedSaveService = null;
 
+
         public WebContext(IServerConfig config) : base(config)
         {
 
@@ -109,11 +110,9 @@ namespace Genrpg.RequestServer.Core
 
         public List<IUnitData> AllData() { return _unitData.Values.Select(x => x.UnitData).ToList(); }
 
-        // SessionData id has the 
-        public void SetSessionData(GameSessionData sessionData)
+        public void SetGameUserId(string gameUserId)
         {
-            _gameUserId = sessionData.Id;
-            Set(sessionData);
+            _gameUserId = gameUserId;
         }
 
         public void Set(IUnitData doc)

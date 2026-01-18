@@ -10,7 +10,6 @@ namespace Genrpg.Shared.Trader.Travel.Settings
     public class TravelRewardSettings : ParentSettings<TravelReward>
     {
         public override string Id { get; set; }
-        public double TravelRewardChance { get; set; }
     }
 
     public class TravelReward : ChildSettings, ISpawnItem, IIdName

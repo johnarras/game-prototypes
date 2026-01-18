@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype63default",
+  "ParentId": "default",
+  "IdKey": 63,
+  "Name": "TraderFlag",
+  "Icon": "TraderFlag",
+  "Art": "TraderFlag"
+}

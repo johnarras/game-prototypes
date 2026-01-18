@@ -10,6 +10,10 @@ namespace Genrpg.Shared.Trader.Travel.Entities
         public long TotalDistance { get; set; }
         public long EndDistance { get; set; }
         public long Day { get; set; }
+        public long EndFlags { get; set; }
+        public long EndDiceSpeed { get; set; }
+        public long EndBonusSpeed { get; set; }
+        public long RationsCost { get; set; }
         public List<Reward> TravelRewards { get; set; } = new List<Reward>();
     }
 }

@@ -1,0 +1,130 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Mediterranean",
+      "Icon": "Mediterranean",
+      "Art": "Mediterranean"
+    },
+    {
+      "IdKey": 2,
+      "Name": "Coastal Arid",
+      "Icon": "CoastalArid",
+      "Art": "CoastalArid"
+    },
+    {
+      "IdKey": 3,
+      "Name": "Riverine Desert",
+      "Icon": "RiverineDesert",
+      "Art": "RiverineDesert"
+    },
+    {
+      "IdKey": 4,
+      "Name": "Mediterranean / Temperate",
+      "Icon": "MediterraneanTemperate",
+      "Art": "MediterraneanTemperate"
+    },
+    {
+      "IdKey": 5,
+      "Name": "Mediterranean / Arid",
+      "Icon": "MediterraneanArid",
+      "Art": "MediterraneanArid"
+    },
+    {
+      "IdKey": 6,
+      "Name": "Temperate Forest",
+      "Icon": "TemperateForest",
+      "Art": "TemperateForest"
+    },
+    {
+      "IdKey": 7,
+      "Name": "Highland Mediterranean",
+      "Icon": "HighlandMediterranean",
+      "Art": "HighlandMediterranean"
+    },
+    {
+      "IdKey": 8,
+      "Name": "Desert",
+      "Icon": "Desert",
+      "Art": "Desert"
+    },
+    {
+      "IdKey": 9,
+      "Name": "Riverine Arid",
+      "Icon": "RiverineArid",
+      "Art": "RiverineArid"
+    },
+    {
+      "IdKey": 10,
+      "Name": "Temperate",
+      "Icon": "Temperate",
+      "Art": "Temperate"
+    },
+    {
+      "IdKey": 11,
+      "Name": "Temperate Maritime",
+      "Icon": "TemperateMaritime",
+      "Art": "TemperateMaritime"
+    },
+    {
+      "IdKey": 12,
+      "Name": "Highland Arid",
+      "Icon": "HighlandArid",
+      "Art": "HighlandArid"
+    },
+    {
+      "IdKey": 13,
+      "Name": "Steppe / Arid",
+      "Icon": "SteppeArid",
+      "Art": "SteppeArid"
+    },
+    {
+      "IdKey": 14,
+      "Name": "Tropical / Subtropical",
+      "Icon": "TropicalSubtropical",
+      "Art": "TropicalSubtropical"
+    },
+    {
+      "IdKey": 15,
+      "Name": "Mountainous",
+      "Icon": "Mountainous",
+      "Art": "Mountainous"
+    },
+    {
+      "IdKey": 16,
+      "Name": "Tropical Rainforest",
+      "Icon": "TropicalRainforest",
+      "Art": "TropicalRainforest"
+    },
+    {
+      "IdKey": 17,
+      "Name": "Continental / Steppe",
+      "Icon": "ContinentalSteppe",
+      "Art": "ContinentalSteppe"
+    },
+    {
+      "IdKey": 18,
+      "Name": "Steppe",
+      "Icon": "Steppe",
+      "Art": "Steppe"
+    },
+    {
+      "IdKey": 19,
+      "Name": "Subtropical",
+      "Icon": "Subtropical",
+      "Art": "Subtropical"
+    },
+    {
+      "IdKey": 20,
+      "Name": "Boreal",
+      "Icon": "Boreal",
+      "Art": "Boreal"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "BiomeTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-16T00:17:47.587Z"
+}

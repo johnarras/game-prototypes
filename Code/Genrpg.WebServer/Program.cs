@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Genrpg.RequestServer.Core;
+using Genrpg.Shared.Config.Constants;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO;
 
 namespace Genrpg.WebServer
 {
@@ -13,22 +14,43 @@ namespace Genrpg.WebServer
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
 
-        // This should be ok for all games.
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            IHostBuilder builder = Host.CreateDefaultBuilder(args);
+            builder.Configuration.AddXmlFile(Path.Combine(builder.Environment.ContentRootPath, "../../AppConfig/App.config"), false, false);
 
-            builder.ConfigureWebHostDefaults(webBuilder =>
-            webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
+            string cacheConnString = System.Configuration.ConfigurationManager.AppSettings[AppConfigKeys.SessionCacheDbConnectionString];
+
+            Console.Write(cacheConnString);
+
+            builder.Services.AddAuthentication("DefaultBearer")
+            .AddScheme<CustomSessionOptions, CustomSessionHandler>("DefaultBearer", options =>
             {
-                IConfigurationRoot settings = config.Build();
-            }).UseStartup<Startup>());
+                options.TokenSecret = System.Configuration.ConfigurationManager.AppSettings[AppConfigKeys.TokenSecret];
+            });
+            builder.Services.AddAuthorization();
 
-            return builder;
+            builder.Services.AddControllers();
+            builder.Services.Add(new ServiceDescriptor(typeof(WebRequestServer), new WebRequestServer()));
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.KeyLengthLimit = int.MaxValue;
+                options.ValueCountLimit = int.MaxValue;
+                options.ValueLengthLimit = int.MaxValue;
+                options.MultipartHeadersLengthLimit = int.MaxValue;
+            });
+
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Limits.MaxRequestBodySize = int.MaxValue;
+            });
+
+            WebApplication app = builder.Build();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.MapControllers();
+            app.Run();
         }
     }
 }

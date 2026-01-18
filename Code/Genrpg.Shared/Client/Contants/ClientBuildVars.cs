@@ -25,6 +25,7 @@
         public const string BUILD_TARGET = "BUILD_TARGET";
         public const string APPLICATION_SUFFIX = "APPLICATION_SUFFIX";
         public const string BUNDLE_OUTPUT_PATH = "BUNDLE_OUTPUT_PATH";
+        public const string UNITY_BUILD_COMMENT = "UNITY_BUILD_COMMENT";
 
 
     }

@@ -2,22 +2,29 @@
 #undef SHOW_SEND_RECEIVE_MESSAGES
 
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Login.Messages;
+using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.GameAuth.WebApi.RefreshToken;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Serialization.Services;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -28,6 +35,13 @@ public enum EWebRequestState
 {
     Pending,
     Complete,
+}
+
+
+public class SecurityData
+{
+    public string BasicAuthToken { get; set; }
+    public string SessionToken { get; set; }
 }
 
 public class FullWebRequest
@@ -57,7 +71,9 @@ public interface IClientWebService : IInitializable, IGameTokenService
 
     void HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token);
 
-    Awaitable<string> DownloadTextFile(string url);
+    Awaitable<TResponseType> SendRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null)
+        where TResponseType : class;
+
 }
 
 
@@ -74,6 +90,8 @@ public class ClientWebService : IClientWebService
 
     private Dictionary<string, WebRequestQueue> _queues = new Dictionary<string, WebRequestQueue>();
 
+    private NewtonsoftTextSerializer textSerializer { get; set; } = new NewtonsoftTextSerializer();
+
     private SetupDictionaryContainer<Type, IClientWebResponseHandler> _loginResponseHandlers = new SetupDictionaryContainer<Type, IClientWebResponseHandler>();
 
     protected IServiceLocator _loc = null;
@@ -83,6 +101,7 @@ public class ClientWebService : IClientWebService
     protected ILogService _logService = null;
     private ITextSerializer _serializer = null;
     private IClientConfigContainer _configContainer = null;
+    private IDispatcher _dispatcher = null;
 
     public ClientWebService()
     {
@@ -93,6 +112,7 @@ public class ClientWebService : IClientWebService
     public const string AccountAuthEndpoint = "/account-auth";
     public const string GameAuthEndpoint = "/game-auth";
     public const string NoUserEndpoint = "/nouser";
+    public const string RefreshTokenEndpoint = "/refresh-token";
 
     CancellationTokenSource _webTokenSource = null;
     private CancellationToken _token;
@@ -121,7 +141,6 @@ public class ClientWebService : IClientWebService
         _queues[GameAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[AccountAuthEndpoint]);
         _queues[GameClientEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameClientEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[GameAuthEndpoint]);
         _queues[NoUserEndpoint] = new WebRequestQueue(_gs, token, webServerURL + NoUserEndpoint, 0, _showRequestLogs, _logService, this, _serializer, _gameData, null);
-
         foreach (var queue in _queues.Values)
         {
             _loc.Resolve(queue);
@@ -284,7 +303,6 @@ public class ClientWebService : IClientWebService
             WebServerRequestSet requestSet = new WebServerRequestSet()
             {
                 GameUserId = _gs.GameUserId,
-                SessionId = _gs.SessionId,
             };
 
             List<CancellationToken> allTokens = _pending.Select(x => x.Token).Distinct().ToList();
@@ -302,9 +320,22 @@ public class ClientWebService : IClientWebService
                 }
             }
 
-            string requestText = _serializer.SerializeToString(requestSet);
+            WebServerRequestEnvelope envelope = new WebServerRequestEnvelope()
+            {
+                Json = _serializer.SerializeToString(requestSet)
+            };
 
-            _awaitableService.ForgetAwaitable(req.SendRequest(_logService, _fullEndpoint, requestText, _pending.ToList(), HandleResults, fullRequestSource.Token));
+            SecurityData security = null;
+
+            if (requestSet.Requests.Any(x => x is ISessionRequest sreq))
+            {
+                security = new SecurityData()
+                {
+                    SessionToken = _gs.SessionState.SessionToken,
+                };
+            }
+
+            _awaitableService.ForgetAwaitable(req.SendRequest(_logService, _clientWebService, _fullEndpoint, envelope, _pending.ToList(), HandleResults, security, fullRequestSource.Token));
         }
 
         public void HandleResults(string txt, List<FullWebRequest> requests, CancellationToken token)
@@ -362,7 +393,6 @@ public class ClientWebService : IClientWebService
     }
 
 
-
     public void SendNoUserWebRequest(INoUserRequest noUserRequest, CancellationToken token)
     {
         SendRequest(NoUserEndpoint, noUserRequest, token);
@@ -394,40 +424,105 @@ public class ClientWebService : IClientWebService
         return (T)fullRequest.ResponseObject;
     }
 
-    public async Awaitable<string> DownloadTextFile(string url)
+    public async Awaitable<TResponseType> SendRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null) where TResponseType : class
     {
-        try
-        {
-            using (UnityWebRequest request = UnityWebRequest.Get(url))
-            {
-                UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
-                while (!asyncOp.isDone)
-                {
-                    try
-                    {
-                        await Awaitable.NextFrameAsync();
-                    }
-                    catch (OperationCanceledException ce)
-                    {
-                        _logService.Info("Op was cancelled " + ce.Message);
-                        break;
-                    }
 
-                }
-                DownloadHandler handler = request.downloadHandler;
-                if (!string.IsNullOrEmpty(request.downloadHandler.error))
+        using (UnityWebRequest request = new UnityWebRequest(url, method.ToString()))
+        {
+            if (requestData != null)
+            {
+                string jsonPayload = textSerializer.SerializeToString(requestData);
+                byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonPayload);
+                request.uploadHandler = new UploadHandlerRaw(bodyRaw); ;
+                request.SetRequestHeader("Content-Type", "application/json");
+            }
+            if (security != null)
+            {
+                if (!string.IsNullOrEmpty(security.BasicAuthToken))
                 {
-                    _logService.Info("Download error: " + request.downloadHandler.error);
-                    return null;
+                    request.SetRequestHeader("Authorization", "Basic " + security.BasicAuthToken);
                 }
-                return handler.text;
+                if (!string.IsNullOrEmpty(security.SessionToken))
+                {
+                    request.SetRequestHeader("Authorization", "Bearer " + security.SessionToken);
+                }
+            }
+
+
+            request.downloadHandler = new DownloadHandlerBuffer();
+            UnityWebRequestAsyncOperation operation = request.SendWebRequest();
+            while (!operation.isDone) await System.Threading.Tasks.Task.Yield();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                if (typeof(TResponseType) == typeof(string) ||
+                    typeof(TResponseType) == typeof(object))
+                {
+                    return request.downloadHandler.text as TResponseType;
+                }
+                else
+                {
+                    TResponseType response = textSerializer.Deserialize<TResponseType>(request.downloadHandler.text);
+                    return response;
+                }
+            }
+            else if (security != null && !string.IsNullOrEmpty(security.SessionToken) &&
+                request.error.Contains("401 Unauthorized"))
+            {
+
+                if (await RefreshSessionTokenAsync(_token))
+                {
+                    security.SessionToken = _gs.SessionState.SessionToken;
+                    return await SendRequest<TResponseType>(url, method, requestData, security);
+                }
+                else
+                {
+
+
+                    Debug.Log("Failed to refresh session token.");
+                    return default(TResponseType);
+                }
+            }
+            else
+            {
+                Debug.LogError($"Error: {request.error} - {request.downloadHandler.text}");
+                return default(TResponseType);
             }
         }
-        catch (Exception ex)
+    }
+
+    public async Awaitable<bool> RefreshSessionTokenAsync(CancellationToken token)
+    {
+
+        WebServerRequestSet set = new WebServerRequestSet();
+        set.Requests.Add(new RefreshGameTokenRequest()
         {
-            _logService.Exception(ex, "DownloadTextFile: " + url);
+            RefreshToken = _gs.SessionState.RefreshToken,
+            GameUserId = _gs.GameUserId,
+        });
+
+        WebServerRequestEnvelope envelope = new WebServerRequestEnvelope()
+        {
+            Json = _serializer.SerializeToString(set),
+        };
+
+        WebServerResponseSet responseSet = await SendRequest<WebServerResponseSet>(_configContainer.Config.GetWebEndpoint() + RefreshTokenEndpoint, HttpMethod.Post, envelope);
+
+        if (responseSet != null)
+        {
+            RefreshGameTokenResponse response = (RefreshGameTokenResponse)responseSet.Responses.FirstOrDefault(x => x.GetType() == typeof(RefreshGameTokenResponse));
+
+            if (response != null && !string.IsNullOrEmpty(response.SessionToken) && !string.IsNullOrEmpty(response.RefreshToken))
+            {
+                _gs.SessionState = response;
+                return true;
+            }
         }
-        return null;
+
+        _dispatcher.Dispatch(new ShowSplashScreen() { Message = "Error Connecting to Server", ShowResetButton = true });
+        // Need to Login again.
+        return false;
+
     }
 }
 

@@ -27,14 +27,6 @@ namespace Genrpg.Shared.Trader.Cities.Settings
         public double PriceScale { get; set; }
     }
 
-    public class CityRoad
-    {
-        public long OtherCityId { get; set; }
-        public double Distance { get; set; }
-        public long RoadId { get; set; }
-    }
-
-
     public class City : ChildSettings, IIndexedGameItem
     {
 
@@ -50,10 +42,10 @@ namespace Genrpg.Shared.Trader.Cities.Settings
         public long Population { get; set; }
         public int MapPixelX { get; set; }
         public int MapPixelY { get; set; }
+        public long BiomeTypeId { get; set; }
+        public long CultureTypeId { get; set; }
         public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
         public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
-        public List<CityRoad> Roads { get; set; } = new List<CityRoad>();
-        public SmallIdLongCollection CityDistances { get; set; } = new SmallIdLongCollection();
         public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
     }
 

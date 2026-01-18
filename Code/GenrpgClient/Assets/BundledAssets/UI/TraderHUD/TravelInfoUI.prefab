@@ -106,6 +106,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
         type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b0a5f3f7f32b3f448777510a97c8e77,
+        type: 2}
+    - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 32
       objectReference: {fileID: 0}
@@ -462,6 +468,12 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b0a5f3f7f32b3f448777510a97c8e77,
+        type: 2}
     - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
         type: 3}
       propertyPath: m_fontSizeBase

@@ -26,7 +26,7 @@ namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
             startSpell.OwnerId = ch.Id;
             if (string.IsNullOrEmpty(startSpell.Id))
             {
-                startSpell.Id = HashUtils.NewUUId();
+                startSpell.Id = HashUtils.NewGuid();
             }
 
             Spell newSpell = _spellCraftService.CreateNewSpellData(ch, startSpell);

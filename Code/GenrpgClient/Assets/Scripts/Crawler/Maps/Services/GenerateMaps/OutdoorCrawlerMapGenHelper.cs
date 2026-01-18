@@ -697,7 +697,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                         if (questItemMap.ZoneUnits.Count > 0)
                         {
-                            questItemMap.ZoneUnits = questItemMap.ZoneUnits.OrderBy(x => HashUtils.NewUUId()).ToList();
+                            questItemMap.ZoneUnits = questItemMap.ZoneUnits.OrderBy(x => HashUtils.NewGuid()).ToList();
                             questItemMap.ZoneUnits = questItemMap.ZoneUnits.OrderBy(x => x.Weight).ToList();
 
                             ZoneUnitSpawn firstUnit = questItemMap.ZoneUnits.First();

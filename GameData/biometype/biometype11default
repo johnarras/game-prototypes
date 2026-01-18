@@ -1,0 +1,8 @@
+{
+  "Id": "biometype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Temperate Maritime",
+  "Icon": "TemperateMaritime",
+  "Art": "TemperateMaritime"
+}

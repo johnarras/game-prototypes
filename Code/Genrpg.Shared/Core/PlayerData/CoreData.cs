@@ -1,3 +1,4 @@
+using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.DataStores.Constants;
@@ -23,6 +24,8 @@ namespace Genrpg.Shared.Core.PlayerData
     {
         [Key(0)] public override string Id { get; set; }
 
+        public string GetId() { return pk; }
+
         [Key(1)] public DateTime CreationDate { get; set; }
         [Key(2)] public string ClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
         [Key(3)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
@@ -31,14 +34,13 @@ namespace Genrpg.Shared.Core.PlayerData
 
         [Key(6)] public long Level { get; set; }
 
-
         [Key(7)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
 
         [Key(8)] public SmallIdLongCollection Vars { get; set; } = new SmallIdLongCollection();
 
-        [Key(9)] public SmallIndexBitList Flags { get; set; } = new SmallIndexBitList();
-
-
+        public bool HasFlag(long flagIndex) { return (Vars[CoreVars.Flags] & (1 << (int)flagIndex)) != 0; }
+        public void AddFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] | (long)(1 << (int)flagIndex); }
+        public void RemoveFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] & ~(1 << (int)flagIndex); }
 
         public void SetNextHourlyUpdate()
         {

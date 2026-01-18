@@ -547,6 +547,18 @@
     {
       "IdKey": 137,
       "Name": "CampingSettings"
+    },
+    {
+      "IdKey": 138,
+      "Name": "BiomeTypeSettings"
+    },
+    {
+      "IdKey": 139,
+      "Name": "CultureTypeSettings"
+    },
+    {
+      "IdKey": 140,
+      "Name": "TraderFlagSettings"
     }
   ],
   "Parent": {

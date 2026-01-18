@@ -43,7 +43,6 @@
   ],
   "Parent": {
     "Id": "default",
-    "TravelRewardChance": 1.0,
     "Name": "TravelRewardSettings"
   },
   "Id": "default",

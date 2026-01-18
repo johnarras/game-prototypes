@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Punic/Berber",
+  "Icon": "PunicBerber",
+  "Art": "PunicBerber"
+}

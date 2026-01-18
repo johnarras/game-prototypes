@@ -1,0 +1,10 @@
+{
+  "Id": "traderflag9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Speedy",
+  "Icon": "Speedy",
+  "Art": "Speedy",
+  "IsBuff": true,
+  "BonusSpeed": 2
+}

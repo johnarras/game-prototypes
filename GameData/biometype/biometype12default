@@ -1,0 +1,8 @@
+{
+  "Id": "biometype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Highland Arid",
+  "Icon": "HighlandArid",
+  "Art": "HighlandArid"
+}

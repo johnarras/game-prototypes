@@ -1,11 +1,8 @@
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Settings;
 using Genrpg.Shared.Trader.Camping.WebApi;
-using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Roads.WebApi;
 using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UI.Constants;
 using System.Collections.Generic;
@@ -22,14 +19,16 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         public GButton AnimalsButton;
         public GButton TradeGoodsButton;
         public GButton CampButton;
-        public GButton TurnAroundButton;
+        public GButton ChangeHeadingButton;
+        public GButton MapButton;
 
         public override void Init()
         {
             _uiService.SetButton(AnimalsButton, GetName(), () => { OpenScreenNamed(ScreenNames.Animals); });
             _uiService.SetButton(TradeGoodsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TradeGoods); });
             _uiService.SetButton(CampButton, GetName(), ClickCamp);
-            _uiService.SetButton(TurnAroundButton, GetName(), ClickTurnAround);
+            _uiService.SetButton(ChangeHeadingButton, GetName(), ClickChangeHeading);
+            _uiService.SetButton(MapButton, GetName(), ClickMapButton);
         }
 
         private void OpenScreenNamed(long screenName)
@@ -49,18 +48,16 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
         }
 
-        private void ClickTurnAround()
+        private void ClickChangeHeading()
         {
-            CaravanPosition position = _caravanService.GetPosition(_gs.ch.Get<CoreData>());
-
-            if (position.CityId > 0)
-            {
-                _dispatcher.Dispatch(new ShowFloatingText("You are in a city!", EFloatingTextArt.Error));
-            }
-
-            _webService.SendClientUserWebRequest(new TurnAroundRequest(), GetToken());
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCityRoads));
         }
 
+
+        private void ClickMapButton()
+        {
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderMap));
+        }
 
     }
 }

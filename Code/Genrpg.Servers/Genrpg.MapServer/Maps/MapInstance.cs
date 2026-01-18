@@ -138,7 +138,7 @@ namespace Genrpg.MapServer.Maps
         {
             InitMapInstanceData initData = data as InitMapInstanceData;
             _mapId = initData.MapId;
-            _instanceId = HashUtils.NewUUId();
+            _instanceId = HashUtils.NewGuid();
             _serverId = GetServerId(null);
             await Task.CompletedTask;
         }
@@ -317,16 +317,15 @@ namespace Genrpg.MapServer.Maps
                 }
 
                 GameAccount gameAcct = await _repoService.Load<GameAccount>(add.GameUserId);
-                GameSessionData sessionData = await _repoService.Load<GameSessionData>(add.GameUserId);
 
                 if (gameAcct == null)
                 {
                     connState.conn.AddMessage(new ErrorMessage("User does not exist"));
                     return;
                 }
-                if (sessionData.SessionId != add.SessionId)
+                if (gameAcct.SessionToken != add.SessionToken)
                 {
-                    connState.conn.AddMessage(new ErrorMessage("Invalid session id"));
+                    connState.conn.AddMessage(new ErrorMessage("Invalid session token"));
                     return;
                 }
                 bool didLoad = false;

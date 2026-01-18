@@ -156,7 +156,7 @@ namespace Genrpg.ServerShared.Accounts.Services
 
             ConnectionCount myCount = new ConnectionCount()
             {
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
                 AccountId = accountId,
                 DirectCount = 0,
                 ViralCount = 0,
@@ -169,7 +169,7 @@ namespace Genrpg.ServerShared.Accounts.Services
             // Save my connection.
             AccountConnection myConn = new AccountConnection()
             {
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
                 AccountId = accountId,
                 ReferrerId = referrerAccountId,
                 Depth = 1,
@@ -196,7 +196,7 @@ namespace Genrpg.ServerShared.Accounts.Services
             {
                 AccountConnection newConn = new AccountConnection()
                 {
-                    Id = HashUtils.NewUUId(),
+                    Id = HashUtils.NewGuid(),
                     AccountId = accountId,
                     ReferrerId = connection.ReferrerId,
                     ProductId = productId,

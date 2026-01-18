@@ -16,13 +16,12 @@ namespace Genrpg.RequestServer.Services.NoUsers
         private IWebServerService _loginServerService = null;
         private ITextSerializer _serializer = null;
 
-        public async Task HandleNoUserRequest(WebContext context, string postData, CancellationToken token)
+        public async Task HandleNoUserRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {
-            WebServerRequestSet commandSet = _serializer.Deserialize<WebServerRequestSet>(postData);
 
             try
             {
-                foreach (INoUserRequest comm in commandSet.Requests)
+                foreach (INoUserRequest comm in requestSet.Requests)
                 {
                     INoUserRequestHandler handler = _loginServerService.GetNoUserCommandHandler(comm.GetType());
 
@@ -52,7 +51,7 @@ namespace Genrpg.RequestServer.Services.NoUsers
             }
             catch (Exception e)
             {
-                string errorMessage = "HandleLoginCommand." + commandSet.Requests.Select(x => x.GetType().Name + " ").ToList();
+                string errorMessage = "HandleLoginCommand." + requestSet.Requests.Select(x => x.GetType().Name + " ").ToList();
                 _logService.Exception(e, errorMessage);
                 context.ShowError(errorMessage);
             }

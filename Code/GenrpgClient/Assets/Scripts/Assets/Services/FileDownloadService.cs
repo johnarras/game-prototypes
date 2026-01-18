@@ -43,7 +43,14 @@ public class FileDownloadService : IFileDownloadService
     private IClientAppService _appService = null;
     private IModTextureService _modTextureService = null;
     protected IAwaitableService _awaitableService = null;
-    private ITextSerializer _serializer;
+    private ITextSerializer _serializer = null;
+
+    private ILogService _logService = null;
+    private IAssetService _assetService = null;
+    private IBinaryFileRepository _binaryFileRepo = null;
+    private IClientWebService _webService = null;
+
+
     public async Task Initialize(CancellationToken token)
     {
         if (!_appService.IsPlaying)
@@ -72,10 +79,6 @@ public class FileDownloadService : IFileDownloadService
         }
 
     }
-
-    private ILogService _logService = null;
-    private IAssetService _assetService = null;
-    private IBinaryFileRepository _binaryFileRepo = null;
 
     private int _fileDownloadingCount = 0;
 

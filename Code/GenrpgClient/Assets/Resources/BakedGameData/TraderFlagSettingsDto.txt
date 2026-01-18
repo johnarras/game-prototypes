@@ -1,0 +1,153 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "FastMove",
+      "Icon": "FastMove",
+      "Art": "FastMove",
+      "BonusSpeed": 2,
+      "ForageChance": -0.03,
+      "RationsCost": 1
+    },
+    {
+      "IdKey": 2,
+      "Name": "Searching",
+      "Icon": "Searching",
+      "Art": "Searching",
+      "BonusSpeed": -1,
+      "ForageChance": 0.05,
+      "GoodEventChance": 0.02
+    },
+    {
+      "IdKey": 3,
+      "Name": "On Road",
+      "Icon": "OnRoad",
+      "Art": "OnRoad",
+      "BonusSpeed": 2
+    },
+    {
+      "IdKey": 4,
+      "Name": "At Sea",
+      "Icon": "AtSea",
+      "Art": "AtSea",
+      "BonusSpeed": 3,
+      "BadEventChance": 0.2
+    },
+    {
+      "IdKey": 5,
+      "Name": "Broken",
+      "Icon": "Broken",
+      "Art": "Broken",
+      "IsBad": true,
+      "BonusSpeed": -1,
+      "Capacity": -1
+    },
+    {
+      "IdKey": 6,
+      "Name": "Sick",
+      "Icon": "Sick",
+      "Art": "Sick",
+      "IsBad": true,
+      "BonusSpeed": -1,
+      "RationsCost": 1
+    },
+    {
+      "IdKey": 7,
+      "Name": "Cursed",
+      "Icon": "Cursed",
+      "Art": "Cursed",
+      "IsBad": true,
+      "ForageChance": -0.05,
+      "GoodEventChance": -0.1,
+      "BadEventChance": 0.1
+    },
+    {
+      "IdKey": 8,
+      "Name": "Lucky",
+      "Icon": "Lucky",
+      "Art": "Lucky",
+      "IsBuff": true,
+      "ForageChance": 5.0,
+      "GoodEventChance": 0.1,
+      "BadEventChance": -0.1
+    },
+    {
+      "IdKey": 9,
+      "Name": "Speedy",
+      "Icon": "Speedy",
+      "Art": "Speedy",
+      "IsBuff": true,
+      "BonusSpeed": 2
+    },
+    {
+      "IdKey": 10,
+      "Name": "Hungry",
+      "Icon": "Hungry",
+      "Art": "Hungry",
+      "IsBad": true,
+      "RationsCost": 2
+    },
+    {
+      "IdKey": 11,
+      "Name": "Weak",
+      "Icon": "Weak",
+      "Art": "Weak",
+      "IsBad": true
+    },
+    {
+      "IdKey": 12,
+      "Name": "Satiated",
+      "Icon": "Satiated",
+      "Art": "Satiated",
+      "IsBuff": true,
+      "RationsCost": -1
+    },
+    {
+      "IdKey": 13,
+      "Name": "Overloaded",
+      "Icon": "Overloaded",
+      "Art": "Overloaded",
+      "BonusSpeed": -3,
+      "RationsCost": 3
+    },
+    {
+      "IdKey": 14,
+      "Name": "Perception",
+      "Icon": "Perception",
+      "Art": "Perception",
+      "IsBuff": true,
+      "ForageChance": 0.1
+    },
+    {
+      "IdKey": 15,
+      "Name": "Lost",
+      "Icon": "Lost",
+      "Art": "Lost",
+      "IsBad": true,
+      "BonusSpeed": -2,
+      "BadEventChance": 0.05
+    },
+    {
+      "IdKey": 16,
+      "Name": "Shrunken",
+      "Icon": "Shrunken",
+      "Art": "Shrunken",
+      "IsBad": true,
+      "Capacity": -2
+    },
+    {
+      "IdKey": 17,
+      "Name": "Embiggened",
+      "Icon": "Embiggened",
+      "Art": "Embiggened",
+      "IsBuff": true,
+      "Capacity": 2
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TraderFlagSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-18T19:23:21.005Z"
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Anatolian/Greek",
+  "Icon": "AnatolianGreek",
+  "Art": "AnatolianGreek"
+}

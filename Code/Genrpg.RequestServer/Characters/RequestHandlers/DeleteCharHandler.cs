@@ -21,7 +21,7 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
 
                 foreach (IUnitData data in ch.GetAllData())
                 {
-                    if (data.Id != context.core.Id) // Do not delete user data
+                    if (data.Id != context.GameUserId) // Do not delete user data
                     {
                         await _repoService.Delete(data);
                     }

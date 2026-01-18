@@ -24,11 +24,10 @@ namespace Genrpg.RequestServer.Services.GameClient
         private ITextSerializer _serializer = null;
         private IRepositoryService _repoService = null;
 
-        public async Task HandleUserClientRequest(WebContext context, string postData, CancellationToken token)
+        public async Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {
-            WebServerRequestSet commandSet = _serializer.Deserialize<WebServerRequestSet>(postData);
 
-            if (!await LoadLoggedInPlayer(context, commandSet.GameUserId, commandSet.SessionId))
+            if (!await LoadLoggedInPlayer(context, requestSet.GameUserId, requestSet.GameUserId))
             {
                 context.ShowError("Failed to load logged in user.");
                 return;
@@ -36,7 +35,7 @@ namespace Genrpg.RequestServer.Services.GameClient
 
             try
             {
-                foreach (IWebRequest comm in commandSet.Requests)
+                foreach (IWebRequest comm in requestSet.Requests)
                 {
                     IGameClientRequestHandler handler = _loginServerService.GetGameClientRequestHandler(comm.GetType());
                     if (handler != null)
@@ -67,7 +66,7 @@ namespace Genrpg.RequestServer.Services.GameClient
             catch (Exception e)
             {
                 StringBuilder sb = new StringBuilder();
-                foreach (IWebRequest req in commandSet.Requests)
+                foreach (IWebRequest req in requestSet.Requests)
                 {
                     sb.Append(req.GetType().Name + " ");
                 }
@@ -80,16 +79,14 @@ namespace Genrpg.RequestServer.Services.GameClient
             return;
         }
 
-        private async Task<bool> LoadLoggedInPlayer(WebContext context, string userId, string sessionId)
+        private async Task<bool> LoadLoggedInPlayer(WebContext context, string tokenUserId, string requestListUserId)
         {
-            GameSessionData sessionData = await _repoService.Load<GameSessionData>(userId);
-
-            if (sessionData == null || sessionData.SessionId != sessionId)
+            if (tokenUserId != requestListUserId)
             {
                 return false;
             }
 
-            context.Set(sessionData);
+            context.SetGameUserId(tokenUserId);
 
             context.core = await context.GetAsync<CoreData>();
             context.AddResponseRange(_gameDataService.GetClientSettings(context.core, false));

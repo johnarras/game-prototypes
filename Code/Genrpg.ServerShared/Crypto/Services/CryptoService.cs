@@ -1,14 +1,8 @@
 using Genrpg.ServerShared.Secrets.Services;
-using Genrpg.Shared.Config.Constants;
-using Genrpg.Shared.Crypto.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.WebRequests.Utils;
-using MongoDB.Driver;
 using System;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.Crypto.Services
 {
@@ -19,40 +13,6 @@ namespace Genrpg.ServerShared.Crypto.Services
         private ISecretsProvider _secretsProvider = null;
         private ITextSerializer _serializer = null;
         private ILogService _logService = null;
-
-        public async Task<EthereumTransactionList> GetTransactionsFromWallet(string address, bool internalTransactions)
-        {
-            if (string.IsNullOrEmpty(address))
-            {
-                return new EthereumTransactionList();
-            }
-
-            string action = (internalTransactions ? "txlistinternal" : "txlist");
-
-            string myapikey = await _secretsProvider.GetSecret(AppConfigKeys.EtherscanKey);
-
-            string url = "https://api.etherscan.io/api?module=account&action=" + action + "&address=" + address;
-            url += "&sort=desc&apikey=" + myapikey;
-
-            try
-            {
-
-                byte[] response = await WebRequestUtils.DownloadBytes(url);
-
-                EthereumTransactionList list = _serializer.Deserialize<EthereumTransactionList>(System.Text.UTF8Encoding.UTF8.GetString(response));
-
-                list.result = list.result.Where(x => x.isError == 0).ToList();
-
-                list.WalletAddress = address;
-                return list;
-            }
-            catch (Exception ex)
-            {
-                _logService.Exception(ex, "CtyptoService.GetWalletTransactions");
-            }
-            return new EthereumTransactionList();
-
-        }
 
         public string GetPasswordHash(string salt, string passwordOrToken)
         {
@@ -72,13 +32,6 @@ namespace Genrpg.ServerShared.Crypto.Services
             return Convert.ToBase64String(buff);
         }
 
-        public string QuickHash(string txt)
-        {
-            MD5 algo = MD5.Create();
-            byte[] arr = System.Text.Encoding.UTF8.GetBytes(txt);
-            byte[] arr2 = algo.ComputeHash(arr);
-            return Convert.ToBase64String(arr2);
-        }
 
         public string SlowHash(string txt)
         {

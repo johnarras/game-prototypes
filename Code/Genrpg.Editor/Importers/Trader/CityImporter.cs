@@ -1,7 +1,9 @@
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Trader.Animals.Settings;
+using Genrpg.Shared.Trader.Biomes.Settings;
 using Genrpg.Shared.Trader.Cities.Settings;
+using Genrpg.Shared.Trader.Cultures.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
 using Genrpg.Shared.Utils;
 using System;
@@ -26,6 +28,8 @@ namespace Genrpg.Editor.Importers.Trader
         public double Longitude { get; set; }
         public int MapPixelX { get; set; }
         public int MapPixelY { get; set; }
+        public string BiomeName { get; set; }
+        public string CultureName { get; set; }
         public string PrimaryProducts { get; set; }
         public string CommonlyAvailableAnimals { get; set; }
         public string UncommonlyAvailableAnimals { get; set; }
@@ -49,6 +53,13 @@ namespace Genrpg.Editor.Importers.Trader
 
             IReadOnlyList<AnimalType> animals = gs.data.Get<AnimalTypeSettings>(null).GetData();
             IReadOnlyList<TradeGood> tradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
+
+            BiomeTypeSettings biomeSettings = gs.data.Get<BiomeTypeSettings>(null);
+            CultureTypeSettings cultureSettings = gs.data.Get<CultureTypeSettings>(null);
+
+            List<BiomeType> biomeTypes = biomeSettings.GetData().ToList();
+            List<CultureType> cultureTypes = cultureSettings.GetData().ToList();
+
 
             List<string> badTradeGoods = new List<string>();
             List<string> badAnimals = new List<string>();
@@ -78,6 +89,9 @@ namespace Genrpg.Editor.Importers.Trader
                     CityImportRow importRow = _importService.ImportLine<CityImportRow>(gs, row, rowWords, headers[childTypeName]);
 
                     currentChild = _textSerializer.ConvertType<CityImportRow, City>(importRow);
+
+                    currentChild.BiomeTypeId = _importService.GetOrAddMissingEntity<BiomeTypeSettings, BiomeType>(gs, importRow.BiomeName);
+                    currentChild.CultureTypeId = _importService.GetOrAddMissingEntity<CultureTypeSettings, CultureType>(gs, importRow.CultureName);
 
                     newList.Add(currentChild);
 

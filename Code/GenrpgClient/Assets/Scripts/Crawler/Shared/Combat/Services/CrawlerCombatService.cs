@@ -266,7 +266,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 List<UnitType> unitTypes = await _questService.GetKillQuestTargets(party);
 
-                unitTypes = unitTypes.OrderBy(x => HashUtils.NewUUId()).ToList();
+                unitTypes = unitTypes.OrderBy(x => HashUtils.NewGuid()).ToList();
 
                 unitTypes = unitTypes.OrderBy(x => x.MinRange).ToList();
 

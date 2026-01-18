@@ -65,7 +65,7 @@ namespace Genrpg.Shared.Purchasing.Services
                     {
                         Index = p,
                         ProductSkuId = sku.IdKey,
-                        UniqueId = HashUtils.NewUUId(),
+                        UniqueId = HashUtils.NewGuid(),
                         BundleId = storeBundle.BundleId
                     };
 

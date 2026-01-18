@@ -1024,7 +1024,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
 
             int teleportQuantity = 0;
-            teleportEntryPoints = teleportEntryPoints.OrderBy(x => HashUtils.NewUUId()).ToList();
+            teleportEntryPoints = teleportEntryPoints.OrderBy(x => HashUtils.NewGuid()).ToList();
 
             List<List<PointXZ>> allCheckLists = new List<List<PointXZ>>() { teleportEntryPoints, teleportExitPoints };
 

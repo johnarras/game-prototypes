@@ -43,7 +43,7 @@ namespace Genrpg.Shared.Spells.Services
                     {
                         abilityRank = new CombatAbilityRank()
                         {
-                            Id = HashUtils.NewUUId(),
+                            Id = HashUtils.NewGuid(),
                             OwnerId = unit.Id,
                             AbilityCategoryId = abilityCategoryId,
                             AbilityTypeId = abilityTypeId,

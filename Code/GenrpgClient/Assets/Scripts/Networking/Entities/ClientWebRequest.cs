@@ -1,9 +1,8 @@
 using Genrpg.Shared.Logging.Interfaces;
-using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class ClientWebRequest
 {
@@ -12,57 +11,26 @@ public class ClientWebRequest
     private string _postData;
     private WebResultsHandler _handler = null;
     private ILogService _logService = null;
+    private IClientWebService _clientWebService = null;
     const int MaxTimes = 3;
-    public async Awaitable SendRequest(ILogService logService, string uri, string postData, List<FullWebRequest> commands, WebResultsHandler handler, CancellationToken token)
+    public async Awaitable SendRequest(ILogService logService, IClientWebService webService, string uri, object postData, List<FullWebRequest> commands, WebResultsHandler handler, SecurityData security, CancellationToken token)
     {
         _logService = logService;
+        _clientWebService = webService;
         _uri = uri;
-        _postData = postData != null ? postData : "";
 
         _handler = handler;
-        WWWForm form = new WWWForm();
-        form.AddField("Data", _postData);
         for (int times = 0; times < MaxTimes; times++)
         {
-            using (UnityWebRequest request = UnityWebRequest.Post(_uri, form))
+            string text = await _clientWebService.SendRequest<string>(_uri, HttpMethod.Post, postData, security);
+            if (!string.IsNullOrEmpty(text))
             {
-                UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
-                while (!asyncOp.isDone)
-                {
-                    try
-                    {
-                        await Awaitable.NextFrameAsync(cancellationToken: token);
-                    }
-                    catch (OperationCanceledException ce)
-                    {
-                        _logService.Info("Op was cancelled " + ce.Message);
-                        break;
-                    }
-                }
-
-                if (!String.IsNullOrEmpty(request.error))
-                {
-                    _logService.Info("HTTP Post Error: " + request.error + " URI: " + _uri);
-                    await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
-                    continue;
-                }
-
-                string text = request.downloadHandler.text;
-                request.Dispose();
-
-                if (!string.IsNullOrEmpty(text))
-                {
-                    if (handler != null)
-                    {
-                        handler(text, commands, token);
-                    }
-                }
-                else
-                {
-                    await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
-                    continue;
-                }
+                handler(text, commands, token);
                 break;
+            }
+            else
+            {
+                await Awaitable.WaitForSecondsAsync(0.3f, token);
             }
         }
     }

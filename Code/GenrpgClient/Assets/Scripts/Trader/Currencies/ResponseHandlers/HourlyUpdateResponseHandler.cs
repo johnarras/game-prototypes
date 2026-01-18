@@ -19,7 +19,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
             coreData.NextHourlyUpdate = response.NextHourlyUpdate;
-            coreData.Vars[TraderVars.DaysPlayed] = response.Day;
+            coreData.Vars[TraderVars.PlayCount] = response.Day;
             RewardParams rp = new RewardParams()
             {
                 SkipVisualUpdate = true,

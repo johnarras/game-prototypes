@@ -1,13 +1,13 @@
-using MessagePack;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Genrpg.Shared.Utils
 {
     public class HashUtils
     {
-        public static string NewUUId()
+        public static string NewGuid()
         {
             return Guid.NewGuid().ToString(); // only spot we should use this method
         }
@@ -46,6 +46,24 @@ namespace Genrpg.Shared.Utils
                 idval /= idChars.Length;
             }
             return sb.ToString();
+        }
+
+        public static string QuickHash(string txt)
+        {
+            MD5 algo = MD5.Create();
+            byte[] arr = System.Text.Encoding.UTF8.GetBytes(txt);
+            byte[] arr2 = algo.ComputeHash(arr);
+            return ToHexString(arr2);
+        }
+
+        public static string ToHexString(byte[] bytes)
+        {
+            StringBuilder hex = new StringBuilder(bytes.Length * 2);
+            foreach (byte b in bytes)
+            {
+                hex.Append(b.ToString("X2"));
+            }
+            return hex.ToString();
         }
     }
 }

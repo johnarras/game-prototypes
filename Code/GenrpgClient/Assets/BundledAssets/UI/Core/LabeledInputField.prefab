@@ -33,10 +33,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7921855890685124001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7924676468337289557
 CanvasRenderer:
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
-  m_sharedMaterial: {fileID: -1391173332140436192, guid: 1d635af844f05bc42be8b9d338c0f26b,
+  m_sharedMaterial: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
-  m_sharedMaterial: {fileID: -1391173332140436192, guid: 1d635af844f05bc42be8b9d338c0f26b,
+  m_sharedMaterial: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -325,10 +327,10 @@ RectTransform:
   - {fileID: 7922221208027048867}
   m_Father: {fileID: 7921855890685124001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69.5, y: 30}
-  m_SizeDelta: {x: 250, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7924887567882219489
 CanvasRenderer:
@@ -479,6 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7921855890685124001}
   - component: {fileID: 6959582924704007968}
+  - component: {fileID: 7651392033754555228}
   m_Layer: 5
   m_Name: LabeledInputField
   m_TagString: Untagged
@@ -504,8 +507,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6959582924704007968
 MonoBehaviour:
@@ -523,6 +526,32 @@ MonoBehaviour:
   Input: {fileID: 3837487834357899324}
   Placeholder: {fileID: 417293187494746144}
   Text: {fileID: 5897899869798178409}
+--- !u!114 &7651392033754555228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992565626655183183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &7992659937420956461
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +620,7 @@ MonoBehaviour:
   m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
-  m_sharedMaterial: {fileID: -1391173332140436192, guid: 1d635af844f05bc42be8b9d338c0f26b,
+  m_sharedMaterial: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -627,6 +656,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

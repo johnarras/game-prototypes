@@ -1,0 +1,10 @@
+{
+  "Id": "traderflag17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Embiggened",
+  "Icon": "Embiggened",
+  "Art": "Embiggened",
+  "IsBuff": true,
+  "Capacity": 2
+}

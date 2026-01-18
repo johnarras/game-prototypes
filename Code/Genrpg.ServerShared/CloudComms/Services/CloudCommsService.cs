@@ -113,7 +113,7 @@ namespace Genrpg.ServerShared.CloudComms.Services
                 FromServerId = _serverId,
                 SendTime = DateTime.UtcNow,
                 Request = requestMessage,
-                RequestId = HashUtils.NewUUId().ToString(),
+                RequestId = HashUtils.NewGuid().ToString(),
             };
             _pendingRequests[pendingQueueRequest.RequestId] = pendingQueueRequest;
             requestMessage.RequestId = pendingQueueRequest.RequestId;

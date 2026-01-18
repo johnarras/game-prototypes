@@ -86,7 +86,7 @@ namespace Genrpg.Shared.Input.PlayerData
                 KeyCommand = keyCommand,
                 KeyPress = keyPress,
                 OwnerId = Id,
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
             };
             _data.Add(keyComm);
         }

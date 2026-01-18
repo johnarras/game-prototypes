@@ -1,0 +1,11 @@
+{
+  "Id": "traderflag15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Lost",
+  "Icon": "Lost",
+  "Art": "Lost",
+  "IsBad": true,
+  "BonusSpeed": -2,
+  "BadEventChance": 0.05
+}

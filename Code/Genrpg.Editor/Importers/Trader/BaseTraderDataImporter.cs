@@ -2,11 +2,13 @@ using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Importers.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Roads.Settings;
+using Genrpg.Shared.Trader.Maps.Services;
 using Genrpg.Shared.Trader.TradeEconomy.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
 using Genrpg.Shared.Trader.Travel.Services;
+using Genrpg.Shared.Trader.Travel.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,37 +20,17 @@ namespace Genrpg.Editor.Importers.Trader
     {
 
         protected ITravelService _travelService = null;
+        protected ICaravanService _caravanService = null;
+        protected ITraderMapService _traderMapService = null;
 
         protected override async Task<bool> UpdateAfterImport(WindowBase win, EditorGameState gs)
         {
 
             IReadOnlyList<City> allCities = gs.data.Get<CitySettings>(null).GetData();
 
-            IReadOnlyList<Road> allRoads = gs.data.Get<RoadSettings>(null).GetData();
-
             IReadOnlyList<TradeGood> allTradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
 
-            foreach (City city in allCities)
-            {
-                city.Roads.Clear();
-                List<Road> currRoads = allRoads.Where(x => x.StartCityId == city.IdKey || x.EndCityId == city.IdKey).ToList();
-
-
-
-                foreach (Road road in currRoads)
-                {
-                    long otherCityId = (road.StartCityId == city.IdKey ? road.EndCityId : road.StartCityId);
-
-                    city.Roads.Add(new CityRoad() { OtherCityId = otherCityId, Distance = road.Distance, RoadId = road.IdKey });
-                }
-            }
-
-
-            FindDistancesBetweenAllCities(allCities, allRoads);
-
-
-            CalculateTradeGoodCosts(gs, allCities, allRoads, allTradeGoods);
-
+            CalculateTradeGoodCosts(gs, allCities, allTradeGoods);
 
             foreach (City city in allCities)
             {
@@ -70,41 +52,7 @@ namespace Genrpg.Editor.Importers.Trader
             return true;
         }
 
-        private void FindDistancesBetweenAllCities(IReadOnlyList<City> cities, IReadOnlyList<Road> roads)
-        {
-
-            for (int c1 = 0; c1 < cities.Count; c1++)
-            {
-                City startCity = cities[c1];
-                startCity.CityDistances.Clear();
-
-                for (int c2 = 0; c2 < cities.Count; c2++)
-                {
-                    City endCity = cities[c2];
-
-                    if (startCity == endCity)
-                    {
-                        continue;
-                    }
-
-
-                    long newDistance = (long)_travelService.GetDistanceBetween(null, startCity.IdKey, endCity.IdKey);
-
-                    if (newDistance == 0)
-                    {
-                        _logService.Info("Weird no path");
-                    }
-
-                    startCity.CityDistances[endCity.IdKey] = newDistance;
-
-                }
-
-                startCity.CityDistances.Trim();
-            }
-
-        }
-
-        private void CalculateTradeGoodCosts(EditorGameState gs, IReadOnlyList<City> cities, IReadOnlyList<Road> roads, IReadOnlyList<TradeGood> tradeGoods)
+        private void CalculateTradeGoodCosts(EditorGameState gs, IReadOnlyList<City> cities, IReadOnlyList<TradeGood> tradeGoods)
         {
 
             TradeEconomySettings econ = gs.data.Get<TradeEconomySettings>(null);
@@ -119,7 +67,6 @@ namespace Genrpg.Editor.Importers.Trader
             {
                 tradeGood.ProducerCities.Clear();
                 List<City> producerCities = new List<City>();
-
 
                 List<City> consumerCities = new List<City>();
                 foreach (City city in cities)
@@ -169,7 +116,8 @@ namespace Genrpg.Editor.Importers.Trader
 
                     foreach (City producerCity in producerCities)
                     {
-                        double dist = city.CityDistances[producerCity.IdKey];
+                        double dist = _traderMapService.GetDistanceBetweenPoints(gs.data.Get<TravelSettings>(null), city.MapPixelX, city.MapPixelY, producerCity.MapPixelX, producerCity.MapPixelY);
+
 
                         if (dist < minDistanceToProducer)
                         {

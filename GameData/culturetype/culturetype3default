@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Punic",
+  "Icon": "Punic",
+  "Art": "Punic"
+}

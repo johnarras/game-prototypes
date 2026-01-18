@@ -469,7 +469,7 @@ namespace Genrpg.Shared.Serialization.Utils
                                 }
                             }
 
-                            if (trimmedLine.Contains("public") && trimmedLine.Contains("get; set;"))
+                            if (trimmedLine.Contains("public") && trimmedLine.Contains("get") && trimmedLine.Contains("set"))
                             {
                                 lines[l] = lines[l].Replace("public ", MpKeyPrefix + keyIndex++ + MpKeySuffix + " public ");
                             }

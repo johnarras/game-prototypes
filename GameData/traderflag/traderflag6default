@@ -1,0 +1,11 @@
+{
+  "Id": "traderflag6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Sick",
+  "Icon": "Sick",
+  "Art": "Sick",
+  "IsBad": true,
+  "BonusSpeed": -1,
+  "RationsCost": 1
+}

@@ -78,7 +78,7 @@ namespace Genrpg.RequestServer.Resets.Services
             }
             else
             {
-                coreData.Vars.Add(TraderVars.DaysPlayed, 1);
+                coreData.Vars.Add(TraderVars.PlayCount, 1);
             }
 
 
@@ -88,7 +88,7 @@ namespace Genrpg.RequestServer.Resets.Services
                 {
                     Rewards = newRewards,
                     NextHourlyUpdate = context.core.NextHourlyUpdate,
-                    Day = coreData.Vars[TraderVars.DaysPlayed],
+                    Day = coreData.Vars[TraderVars.PlayCount],
                 });
             }
         }

@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Celto-Roman",
+  "Icon": "CeltoRoman",
+  "Art": "CeltoRoman"
+}

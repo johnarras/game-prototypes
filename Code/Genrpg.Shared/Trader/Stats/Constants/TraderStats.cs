@@ -13,9 +13,13 @@ namespace Genrpg.Shared.Trader.Stats.Constants
         public const long SuppliesRegen = 9;
         public const long Foraging = 10;
         public const long Guards = 11;
-        public const long CaravanTradeGoods = 12;
+        public const long CaravanCapacity = 12;
         public const long RationsRegen = 13;
         public const long RationsStorage = 14;
+        public const long CaravanBonusSpeed = 15;
+        public const long CaravanRationsCost = 16;
+        public const long GoodLuckEvents = 17;
+        public const long BadLuckEvents = 18;
 
     }
 }

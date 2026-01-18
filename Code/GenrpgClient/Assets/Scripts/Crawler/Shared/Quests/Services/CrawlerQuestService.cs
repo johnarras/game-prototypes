@@ -106,8 +106,8 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 List<MapLink> allMaps = new List<MapLink>();
 
-                allMaps.AddRange(maps.PrimaryMaps.OrderBy(x => HashUtils.NewUUId()));
-                allMaps.AddRange(maps.SecondaryMaps.OrderBy(x => HashUtils.NewUUId()));
+                allMaps.AddRange(maps.PrimaryMaps.OrderBy(x => HashUtils.NewGuid()));
+                allMaps.AddRange(maps.SecondaryMaps.OrderBy(x => HashUtils.NewGuid()));
 
                 allMaps = allMaps.Where(x => x.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon).ToList();
 
@@ -365,7 +365,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 }
             }
 
-            List<CrawlerQuest> startItemQuests = allQuests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.LootItems).OrderBy(x => HashUtils.NewUUId()).ToList();
+            List<CrawlerQuest> startItemQuests = allQuests.Where(x => x.CrawlerQuestTypeId == CrawlerQuestTypes.LootItems).OrderBy(x => HashUtils.NewGuid()).ToList();
 
             List<CrawlerQuest> finalItemQuests = new List<CrawlerQuest>();
             foreach (CrawlerQuest itemQuest in startItemQuests)

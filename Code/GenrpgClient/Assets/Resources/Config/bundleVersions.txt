@@ -2,7 +2,7 @@
   "ClientPlatform": "win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2026-01-10T22:54:49.6081348Z"
+    "UpdateTime": "2026-01-13T00:23:23.1820983Z"
   },
   "Versions": {
     "animalskinsasianelephant": {
@@ -3560,7 +3560,7 @@
     },
     "uicharacters": {
       "Name": "uicharacters",
-      "Hash": "02fc725acee058ca5a2b49cc19eb0e31",
+      "Hash": "6fcf30c3f3ef5093c0a6e4702782e597",
       "ChildDependencies": []
     },
     "uicharms": {
@@ -3575,7 +3575,7 @@
     },
     "uicore": {
       "Name": "uicore",
-      "Hash": "d35ecabf3e2b7c07c559eae36e63c115",
+      "Hash": "ea15b9ee71fa95b0da98024b834bd53f",
       "ChildDependencies": []
     },
     "uicrafting": {
@@ -3585,19 +3585,19 @@
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "cf32cce9a9d0f00591173e381f818dd6",
+      "Hash": "5e5b5b9d7316c52826669a60896d39d8",
       "ChildDependencies": [
         "uicrawleraction"
       ]
     },
     "uicrawleraction": {
       "Name": "uicrawleraction",
-      "Hash": "38d68d1c58b9256c80592f80a35afb96",
+      "Hash": "ad50600592bc756b1a22452d24b9fa2a",
       "ChildDependencies": []
     },
     "uicrawlerbuffs": {
       "Name": "uicrawlerbuffs",
-      "Hash": "1ee7a7559da3cf1581ca72c0f64dc599",
+      "Hash": "cb4928e42718db4aa9dfa9dce0c08899",
       "ChildDependencies": []
     },
     "uicrawlercombat": {
@@ -3607,7 +3607,7 @@
     },
     "uicrawlerhud": {
       "Name": "uicrawlerhud",
-      "Hash": "372604e30e0b755cd8ecf4a8784158bd",
+      "Hash": "f8985d26907121879c58f2d16695d2ea",
       "ChildDependencies": [
         "uicrawleraction",
         "uicrawlerparty",
@@ -3617,7 +3617,7 @@
     },
     "uicrawlerinfo": {
       "Name": "uicrawlerinfo",
-      "Hash": "c7e1217060074dd58fd9e5bfb2aa0f09",
+      "Hash": "35c80adb5b778200e02b45cd8e8d6ab1",
       "ChildDependencies": []
     },
     "uicrawleritems": {
@@ -3632,12 +3632,12 @@
     },
     "uicrawlerparty": {
       "Name": "uicrawlerparty",
-      "Hash": "742f674d0487570491db2bbb930b5f17",
+      "Hash": "2505d7680cb6085afaa52fb930e69450",
       "ChildDependencies": []
     },
     "uicrawlerquests": {
       "Name": "uicrawlerquests",
-      "Hash": "afb6e4f4b0ac944ab865e903f9c7599a",
+      "Hash": "794b23202386f9afbe26efdc361b8bdc",
       "ChildDependencies": []
     },
     "uicrawlerscreens": {
@@ -3647,7 +3647,7 @@
     },
     "uicrawlertilemaps": {
       "Name": "uicrawlertilemaps",
-      "Hash": "86b0f2fe9e28d2b30f14fbd8f8ff5492",
+      "Hash": "7278f646f0832d1d81acc736371366dd",
       "ChildDependencies": []
     },
     "uicurrencies": {
@@ -3693,7 +3693,7 @@
     },
     "uilogin": {
       "Name": "uilogin",
-      "Hash": "1c2af6849dca741411044d9a66b99339",
+      "Hash": "3530a7cc4850a773c5c20f30a709136f",
       "ChildDependencies": []
     },
     "uiloot": {
@@ -3775,7 +3775,7 @@
     },
     "uiunits": {
       "Name": "uiunits",
-      "Hash": "6d261705292bd1972ae86edcd2433b6b",
+      "Hash": "ffcb8842191b2913d1bd842603f63b52",
       "ChildDependencies": []
     },
     "uizones": {

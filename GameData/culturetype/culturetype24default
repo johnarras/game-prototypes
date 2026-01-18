@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype24default",
+  "ParentId": "default",
+  "IdKey": 24,
+  "Name": "Khmer/Malay",
+  "Icon": "KhmerMalay",
+  "Art": "KhmerMalay"
+}

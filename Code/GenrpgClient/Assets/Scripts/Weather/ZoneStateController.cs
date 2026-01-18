@@ -178,9 +178,14 @@ public class ZoneStateController : IZoneStateController
         SunlightColor.Set(Color.white);
         AmbientColor.Set(Color.white);
         FogColor.Set(Color.gray);
-        RenderSettings.fog = true;
+        TurnOnFogIfValid();
         SetupSkybox();
 
+    }
+
+    private void TurnOnFogIfValid()
+    {
+        RenderSettings.fog = false;
     }
 
     public void SetupSkybox()

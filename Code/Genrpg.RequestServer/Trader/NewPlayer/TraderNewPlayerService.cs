@@ -1,5 +1,4 @@
 using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.Trader.Travel.Entities;
 using Genrpg.RequestServer.Trader.Travel.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Settings;
@@ -15,10 +14,8 @@ using Genrpg.Shared.Trader.Animals.Settings;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Holdings.PlayerData;
-using Genrpg.Shared.Trader.Roads.Settings;
 using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.Trader.Stats.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Services;
@@ -59,6 +56,19 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
             HoldingsData holdings = await context.GetAsync<HoldingsData>();
 
             CaravanData caravanData = await context.GetAsync<CaravanData>();
+
+            CaravanPosition pos = _caravanService.GetPosition(context.core);
+
+            if (!pos.OnRoad() && pos.GetCurrentCity() == null)
+            {
+
+                await _serverCaravanService.EnterCity(context, newPlayerSettings.StartCityId, true);
+            }
+
+            if (CoreData.Vars[TraderVars.Mult] < PlayMultConstants.MinMult)
+            {
+                CoreData.Vars[TraderVars.Mult] = PlayMultConstants.MinMult;
+            }
 
             foreach (IReward rew in newPlayerSettings.GetData())
             {
@@ -136,29 +146,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 _caravanService.AddAnimalToCaravan(CoreData, caravanData, holdings, statData, chosenAnimal.IdKey, true);
             }
 
-
-
-            CaravanPosition pos = _caravanService.GetPosition(context.core);
-
-            City city = _gameData.Get<CitySettings>(context.core).Get(pos.CityId);
-            Road road = _gameData.Get<RoadSettings>(context.core).Get(pos.RoadId);
-
-            if (road == null && city == null)
-            {
-                EnterCityArgs args = new EnterCityArgs()
-                {
-                    CityId = newPlayerSettings.StartCityId,
-                    Force = true,
-                };
-                await _serverCaravanService.EnterCity(context, args);
-            }
-
-            if (CoreData.Vars[TraderVars.Mult] < PlayMultConstants.MinMult)
-            {
-                CoreData.Vars[TraderVars.Mult] = PlayMultConstants.MinMult;
-            }
-
-            _caravanService.UpdateCoreStatsFromCaravan(CoreData, caravanData, statData);
+            _caravanService.UpdateTravelStatsFromCaravan(CoreData, caravanData, statData);
         }
     }
 }

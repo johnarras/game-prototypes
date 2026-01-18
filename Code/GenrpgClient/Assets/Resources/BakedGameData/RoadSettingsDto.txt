@@ -15,7 +15,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 545
+      "Distance": 638
     },
     {
       "IdKey": 2,
@@ -32,7 +32,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 580
+      "Distance": 623
     },
     {
       "IdKey": 3,
@@ -49,7 +49,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 400
+      "Distance": 280
     },
     {
       "IdKey": 4,
@@ -66,7 +66,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 710
+      "Distance": 637
     },
     {
       "IdKey": 5,
@@ -83,7 +83,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 415
+      "Distance": 582
     },
     {
       "IdKey": 6,
@@ -99,7 +99,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 3.0,
       "WinterRain": 6.0,
-      "Distance": 550
+      "Distance": 406
     },
     {
       "IdKey": 7,
@@ -116,7 +116,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 315
+      "Distance": 296
     },
     {
       "IdKey": 8,
@@ -133,7 +133,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 560
+      "Distance": 617
     },
     {
       "IdKey": 9,
@@ -150,7 +150,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 465
+      "Distance": 443
     },
     {
       "IdKey": 10,
@@ -167,7 +167,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 430
+      "Distance": 506
     },
     {
       "IdKey": 11,
@@ -184,7 +184,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 540
+      "Distance": 513
     },
     {
       "IdKey": 12,
@@ -201,7 +201,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 1.0,
-      "Distance": 200
+      "Distance": 131
     },
     {
       "IdKey": 13,
@@ -218,7 +218,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Distance": 460
+      "Distance": 421
     },
     {
       "IdKey": 14,
@@ -235,7 +235,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 340
+      "Distance": 301
     },
     {
       "IdKey": 15,
@@ -252,7 +252,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 510
+      "Distance": 535
     },
     {
       "IdKey": 16,
@@ -269,7 +269,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 890
+      "Distance": 915
     },
     {
       "IdKey": 17,
@@ -286,7 +286,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 390
+      "Distance": 271
     },
     {
       "IdKey": 18,
@@ -303,7 +303,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 205
+      "Distance": 218
     },
     {
       "IdKey": 19,
@@ -320,7 +320,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 815
+      "Distance": 781
     },
     {
       "IdKey": 20,
@@ -337,7 +337,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 910
+      "Distance": 950
     },
     {
       "IdKey": 21,
@@ -354,7 +354,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 280
+      "Distance": 194
     },
     {
       "IdKey": 22,
@@ -371,7 +371,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 425
+      "Distance": 423
     },
     {
       "IdKey": 23,
@@ -388,7 +388,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 700
+      "Distance": 964
     },
     {
       "IdKey": 24,
@@ -405,7 +405,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 240
+      "Distance": 492
     },
     {
       "IdKey": 25,
@@ -422,7 +422,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 5.0,
       "WinterHeat": 2.0,
-      "Distance": 1120
+      "Distance": 1263
     },
     {
       "IdKey": 26,
@@ -439,7 +439,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 1080
+      "Distance": 688
     },
     {
       "IdKey": 27,
@@ -456,7 +456,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 670
+      "Distance": 406
     },
     {
       "IdKey": 28,
@@ -472,7 +472,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Distance": 1750
+      "Distance": 1806
     },
     {
       "IdKey": 29,
@@ -489,7 +489,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 160
+      "Distance": 153
     },
     {
       "IdKey": 30,
@@ -506,7 +506,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 100
+      "Distance": 129
     },
     {
       "IdKey": 31,
@@ -523,7 +523,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 80
+      "Distance": 64
     },
     {
       "IdKey": 32,
@@ -540,7 +540,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 120
+      "Distance": 42
     },
     {
       "IdKey": 33,
@@ -557,7 +557,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 1050
+      "Distance": 862
     },
     {
       "IdKey": 34,
@@ -574,7 +574,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 950
+      "Distance": 763
     },
     {
       "IdKey": 35,
@@ -591,7 +591,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 260
+      "Distance": 183
     },
     {
       "IdKey": 36,
@@ -607,7 +607,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
-      "Distance": 980
+      "Distance": 1161
     },
     {
       "IdKey": 37,
@@ -623,7 +623,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 350
+      "Distance": 296
     },
     {
       "IdKey": 38,
@@ -639,7 +639,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 310
+      "Distance": 314
     },
     {
       "IdKey": 39,
@@ -655,7 +655,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 450
+      "Distance": 378
     },
     {
       "IdKey": 40,
@@ -671,7 +671,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 475
+      "Distance": 506
     },
     {
       "IdKey": 41,
@@ -687,7 +687,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 140
+      "Distance": 124
     },
     {
       "IdKey": 42,
@@ -719,7 +719,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 55
+      "Distance": 68
     },
     {
       "IdKey": 44,
@@ -735,7 +735,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 280
+      "Distance": 243
     },
     {
       "IdKey": 45,
@@ -751,7 +751,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 3.0,
-      "Distance": 480
+      "Distance": 610
     },
     {
       "IdKey": 46,
@@ -767,7 +767,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 220
+      "Distance": 257
     },
     {
       "IdKey": 47,
@@ -783,7 +783,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 390
+      "Distance": 502
     },
     {
       "IdKey": 48,
@@ -799,7 +799,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 2.0,
-      "Distance": 120
+      "Distance": 79
     },
     {
       "IdKey": 49,
@@ -814,7 +814,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
-      "Distance": 750
+      "Distance": 527
     },
     {
       "IdKey": 50,
@@ -831,7 +831,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Distance": 600
+      "Distance": 626
     },
     {
       "IdKey": 51,
@@ -847,7 +847,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 90
+      "Distance": 79
     },
     {
       "IdKey": 52,
@@ -863,7 +863,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 40
+      "Distance": 10
     },
     {
       "IdKey": 53,
@@ -880,7 +880,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 1.0,
-      "Distance": 550
+      "Distance": 477
     },
     {
       "IdKey": 54,
@@ -896,7 +896,7 @@
       "SummerRain": 2.0,
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
-      "Distance": 1150
+      "Distance": 1578
     },
     {
       "IdKey": 55,
@@ -913,7 +913,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 410
+      "Distance": 377
     },
     {
       "IdKey": 56,
@@ -930,7 +930,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 240
+      "Distance": 258
     },
     {
       "IdKey": 57,
@@ -946,7 +946,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
-      "Distance": 3900
+      "Distance": 4866
     },
     {
       "IdKey": 58,
@@ -962,7 +962,7 @@
       "SummerRain": 3.0,
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
-      "Distance": 1100
+      "Distance": 985
     },
     {
       "IdKey": 59,
@@ -979,7 +979,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 1.0,
       "WinterHeat": 4.0,
-      "Distance": 1550
+      "Distance": 1716
     },
     {
       "IdKey": 60,
@@ -996,7 +996,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 4.0,
-      "Distance": 1350
+      "Distance": 1390
     },
     {
       "IdKey": 61,
@@ -1012,7 +1012,7 @@
       "SummerRain": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 5.0,
-      "Distance": 140
+      "Distance": 152
     },
     {
       "IdKey": 62,
@@ -1029,7 +1029,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 5.0,
-      "Distance": 1250
+      "Distance": 1386
     },
     {
       "IdKey": 63,
@@ -1044,7 +1044,7 @@
       "Danger": 2.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 200
+      "Distance": 220
     },
     {
       "IdKey": 64,
@@ -1059,7 +1059,7 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 670
+      "Distance": 511
     },
     {
       "IdKey": 65,
@@ -1074,7 +1074,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 1470
+      "Distance": 1025
     },
     {
       "IdKey": 66,
@@ -1089,7 +1089,7 @@
       "Danger": 4.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 370
+      "Distance": 410
     },
     {
       "IdKey": 67,
@@ -1105,7 +1105,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1050
+      "Distance": 927
     },
     {
       "IdKey": 68,
@@ -1121,7 +1121,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 900
+      "Distance": 829
     },
     {
       "IdKey": 69,
@@ -1138,7 +1138,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 760
+      "Distance": 675
     },
     {
       "IdKey": 70,
@@ -1155,7 +1155,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 700
+      "Distance": 920
     },
     {
       "IdKey": 71,
@@ -1172,7 +1172,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 550
+      "Distance": 935
     },
     {
       "IdKey": 72,
@@ -1188,7 +1188,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 650
+      "Distance": 561
     },
     {
       "IdKey": 73,
@@ -1204,7 +1204,7 @@
       "SummerHeat": 6.0,
       "WinterRain": 2.0,
       "WinterHeat": 3.0,
-      "Distance": 380
+      "Distance": 456
     },
     {
       "IdKey": 74,
@@ -1221,7 +1221,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 70
+      "Distance": 68
     },
     {
       "IdKey": 75,
@@ -1238,7 +1238,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 90
+      "Distance": 81
     },
     {
       "IdKey": 76,
@@ -1252,7 +1252,7 @@
       "Danger": 6.0,
       "SummerHeat": 6.0,
       "WinterHeat": 3.0,
-      "Distance": 2340
+      "Distance": 2320
     },
     {
       "IdKey": 77,
@@ -1269,7 +1269,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 4.0,
       "WinterHeat": 3.0,
-      "Distance": 160
+      "Distance": 91
     },
     {
       "IdKey": 78,
@@ -1286,7 +1286,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 5.0,
       "WinterHeat": 3.0,
-      "Distance": 445
+      "Distance": 637
     },
     {
       "IdKey": 79,
@@ -1303,7 +1303,7 @@
       "SummerHeat": 5.0,
       "WinterRain": 2.0,
       "WinterHeat": 1.0,
-      "Distance": 426
+      "Distance": 614
     },
     {
       "IdKey": 80,
@@ -1318,7 +1318,7 @@
       "Danger": 3.0,
       "SummerHeat": 6.0,
       "WinterHeat": 4.0,
-      "Distance": 609
+      "Distance": 883
     },
     {
       "IdKey": 81,
@@ -1335,7 +1335,7 @@
       "SummerHeat": 4.0,
       "WinterRain": 2.0,
       "WinterHeat": 2.0,
-      "Distance": 5705
+      "Distance": 8448
     },
     {
       "IdKey": 82,
@@ -1352,7 +1352,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 4.0,
       "WinterHeat": 2.0,
-      "Distance": 666
+      "Distance": 956
     },
     {
       "IdKey": 83,
@@ -1369,7 +1369,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 75
+      "Distance": 113
     },
     {
       "IdKey": 84,
@@ -1386,7 +1386,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 116
+      "Distance": 155
     },
     {
       "IdKey": 85,
@@ -1403,7 +1403,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 142
+      "Distance": 201
     },
     {
       "IdKey": 86,
@@ -1420,7 +1420,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 267
+      "Distance": 385
     },
     {
       "IdKey": 87,
@@ -1437,7 +1437,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 276
+      "Distance": 392
     },
     {
       "IdKey": 88,
@@ -1454,7 +1454,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 360
+      "Distance": 520
     },
     {
       "IdKey": 89,
@@ -1471,7 +1471,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 483
+      "Distance": 660
     },
     {
       "IdKey": 90,
@@ -1488,7 +1488,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 656
+      "Distance": 937
     },
     {
       "IdKey": 91,
@@ -1505,7 +1505,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 656
+      "Distance": 973
     },
     {
       "IdKey": 92,
@@ -1522,7 +1522,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 753
+      "Distance": 1061
     },
     {
       "IdKey": 93,
@@ -1539,7 +1539,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 836
+      "Distance": 1234
     },
     {
       "IdKey": 94,
@@ -1556,7 +1556,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 907
+      "Distance": 1359
     },
     {
       "IdKey": 95,
@@ -1573,7 +1573,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1140
+      "Distance": 1558
     },
     {
       "IdKey": 96,
@@ -1590,7 +1590,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 1184
+      "Distance": 1646
     },
     {
       "IdKey": 97,
@@ -1607,7 +1607,7 @@
       "SummerHeat": 3.0,
       "WinterRain": 3.0,
       "WinterHeat": 3.0,
-      "Distance": 2233
+      "Distance": 3042
     }
   ],
   "Parent": {

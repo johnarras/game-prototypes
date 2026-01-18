@@ -11,6 +11,8 @@ namespace Genrpg.Shared.PlayerFiltering.Interfaces
         string ClientVersion { get; set; }
         GameDataOverrideList DataOverrides { get; set; }
         long Level { get; set; }
+
+        string GetId();
     }
 }
 

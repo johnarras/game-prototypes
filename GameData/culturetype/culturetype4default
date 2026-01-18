@@ -1,0 +1,8 @@
+{
+  "Id": "culturetype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Hellenistic Egyptian",
+  "Icon": "HellenisticEgyptian",
+  "Art": "HellenisticEgyptian"
+}

@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_fontSize
-      value: 18
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
@@ -52,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 18
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
@@ -128,12 +128,12 @@ PrefabInstance:
     - target: {fileID: 7782033818799144501, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 380
+      value: 530
       objectReference: {fileID: 0}
     - target: {fileID: 7782033818799144501, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7782033818799144501, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
@@ -284,4 +284,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  Tooltip: {fileID: 0}

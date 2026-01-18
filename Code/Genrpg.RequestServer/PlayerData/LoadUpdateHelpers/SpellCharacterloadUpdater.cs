@@ -29,7 +29,7 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
                 if (mySpell == null)
                 {
                     Spell newSpell = _serializer.ConvertType<SpellType, Spell>(_gameData.Get<SpellTypeSettings>(ch).Get(i));
-                    newSpell.Id = HashUtils.NewUUId();
+                    newSpell.Id = HashUtils.NewGuid();
                     newSpell.OwnerId = ch.Id;
                     spellData.Add(newSpell);
                 }

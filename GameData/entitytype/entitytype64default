@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype64default",
+  "ParentId": "default",
+  "IdKey": 64,
+  "Name": "TraderSkill",
+  "Icon": "TraderSkill",
+  "Art": "TraderSkill"
+}

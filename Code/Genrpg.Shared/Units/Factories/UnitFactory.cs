@@ -85,7 +85,7 @@ namespace Genrpg.Shared.Units.Factories
             IReadOnlyList<ElementType> etypes = _gameData.Get<ElementTypeSettings>(unit).GetData();
 
             spell.ElementTypeId = etypes[(rand.Next() % (etypes.Count - 1) + 1)].IdKey;
-            spell.Id = HashUtils.NewUUId();
+            spell.Id = HashUtils.NewGuid();
             SpellData spellData = unit.Get<SpellData>();
             spellData.Add(spell);
 

@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Trader.Travel.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.CoreCurrencies.Settings;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 
@@ -17,30 +19,36 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         public override void Init()
         {
-            _dispatcher.AddListener<OnUpdateVisualPlayMult>(UpdatedVisualPlayMult, GetToken());
+            _dispatcher.AddListener<VisualUpdateTravelStats>(OnUpdateVisualTravelStats, GetToken());
             base.Init();
             ShowData();
         }
 
 
-        private void UpdatedVisualPlayMult(OnUpdateVisualPlayMult response)
+        private void OnUpdateVisualTravelStats(VisualUpdateTravelStats response)
         {
             ShowData();
         }
 
+
+        string rationsSpriteString = null;
         private void ShowData()
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
             CaravanTravelInfo info = _caravanService.GetTravelInfo(coreData);
 
 
+            if (string.IsNullOrEmpty(rationsSpriteString))
+            {
+                rationsSpriteString = "<sprite name=\"" + _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).Get(CoreCurrencyTypes.Rations).Name + "\"> ";
+            }
 
-            _uiService.SetText(DistanceText, "Speed/Day: " + info.DiceDistancePerDay + " <sprite name=\"Die5\">" +
-                (info.BonusDistancePerDay > 0 ? " + " + info.BonusDistancePerDay : ""));
+            _uiService.SetText(DistanceText, "Speed/Day: " + info.DiceSpeed + " <sprite name=\"Die5\">" +
+                (info.BonusSpeed > 0 ? " + " + info.BonusSpeed : ""));
 
-            _uiService.SetText(CostPerDayText, "Cost/Day: <sprite name=\"Food\"> " + info.CostPerDay);
+            _uiService.SetText(CostPerDayText, "Cost/Day: " + rationsSpriteString + info.CostPerDay);
 
-            _uiService.SetText(TotalCostText, "Total Cost: <sprite name=\"Food\"> " + info.TotalCost);
+            _uiService.SetText(TotalCostText, "Total Cost:" + rationsSpriteString + info.TotalCost);
 
         }
     }

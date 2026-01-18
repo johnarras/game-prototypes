@@ -52,7 +52,7 @@ namespace Genrpg.Shared.Inventory.Services
 
             if (string.IsNullOrEmpty(item.Id))
             {
-                item.Id = HashUtils.NewUUId();
+                item.Id = HashUtils.NewGuid();
             }
             ItemType itype = _gameData.Get<ItemTypeSettings>(unit).Get(item.ItemTypeId);
             if (itype == null)

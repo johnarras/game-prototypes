@@ -97,9 +97,9 @@ namespace Assets.Scripts.Trader.Travel.UI
             PlayMultBG?.SetColor(coreData.Vars[TraderVars.Mult] < maxMult ? LowerTierColor : MaxTierColor);
 
 
-            _caravanService.UpdateCoreStatsFromCaravan(coreData, _gs.ch.Get<CaravanData>(), _gs.ch.Get<TraderStatData>());
+            _caravanService.UpdateTravelStatsFromCaravan(coreData, _gs.ch.Get<CaravanData>(), _gs.ch.Get<TraderStatData>());
 
-            _dispatcher.Dispatch(new OnUpdateVisualPlayMult());
+            _dispatcher.Dispatch(new VisualUpdateTravelStats());
         }
     }
 }

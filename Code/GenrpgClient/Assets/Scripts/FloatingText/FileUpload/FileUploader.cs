@@ -7,6 +7,7 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -67,7 +68,7 @@ public class FileUploader
             uploadURL = uploadURL.Replace("&amp;", "&");
 
             ClientWebService webService = new ClientWebService();
-            string txt = (webService.DownloadTextFile(uploadPrefix + "/" + expectedFilename)).ToString();
+            string txt = (webService.SendRequest<string>(uploadPrefix + "/" + expectedFilename, HttpMethod.Get).ToString());
 
             string command = ((string.IsNullOrEmpty(txt) || txt.Contains("BlobNotFound")) ? "copy" : "sync");
 

@@ -244,8 +244,8 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                     }
                 }
 
-                goodExampleWords = goodExampleWords.OrderBy(x => HashUtils.NewUUId()).ToList();
-                badExampleWords = badExampleWords.OrderBy(x => HashUtils.NewUUId()).ToList();
+                goodExampleWords = goodExampleWords.OrderBy(x => HashUtils.NewGuid()).ToList();
+                badExampleWords = badExampleWords.OrderBy(x => HashUtils.NewGuid()).ToList();
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("I like these things:\n");

@@ -40,7 +40,7 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
         [Key(0)] public long Base { get; set; }
         [Key(1)] public long Bonus { get; set; }
 
-        public long Max() { return Base + Bonus; }
+        public long Total() { return Base + Bonus; }
 
     }
 

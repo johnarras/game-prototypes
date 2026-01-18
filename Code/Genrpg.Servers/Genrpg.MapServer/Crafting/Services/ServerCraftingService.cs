@@ -138,7 +138,7 @@ namespace Genrpg.MapServer.Crafting.Services
 
             Item item = new Item()
             {
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
                 Level = stats.Level,
                 QualityTypeId = stats.QualityTypeId,
                 ItemTypeId = stats.EntityId,

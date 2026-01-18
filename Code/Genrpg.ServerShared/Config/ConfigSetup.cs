@@ -75,6 +75,8 @@ namespace Genrpg.ServerShared.Config
                 }
             }
 
+            serverConfig.SetSecret(AppConfigKeys.TokenSecret, ConfigurationManager.AppSettings[AppConfigKeys.TokenSecret]);
+
             await Task.CompletedTask;
             return serverConfig;
         }

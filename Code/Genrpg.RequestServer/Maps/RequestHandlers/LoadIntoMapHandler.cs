@@ -63,7 +63,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                 return;
             }
 
-            if (coreCh.UserId != context.core.Id)
+            if (coreCh.UserId != context.GameUserId)
             {
                 ShowError(context, "You don't own this character");
                 return;

@@ -169,7 +169,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.oxdeadbeefgames.Trader
-    Standalone: com.oxdeadbeefgames.crawler
+    Standalone: com.oxdeadbeefgames.trader
     iPhone: com.Oxdeadbeef-Games.The-Mighty-Wizard-s-Tale
   buildNumber:
     Bratwurst: 0

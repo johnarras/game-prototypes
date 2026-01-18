@@ -44,6 +44,9 @@ namespace Assets.Scripts.UI.Interfaces
         void SetAsRaycastTarget(object obj, bool isRaycastTarget);
         void SetToggle(GToggle toggle, UnityAction<bool> listener);
         void SetSlider(GSlider slider, float minValueIn, float maxValueIn, float currValue, UnityAction<float> valueChangedEvent);
+        void IncrementButtonBlock();
+        void DecrementButtonBlock();
+        void ClearButtonBlock();
     }
 }
 

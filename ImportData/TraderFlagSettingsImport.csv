@@ -1,0 +1,18 @@
+header traderflag,IdKey,Name,Icon,Art,IsBad,IsBuff,BonusSpeed,ForageChance,RationsCost,BadEventChance,GoodEventChance,Capacity
+traderflag,1,FastMove,FastMove,FastMove,FALSE,FALSE,2,-0.03,1,0,0,0
+traderflag,2,Searching,Searching,Searching,FALSE,FALSE,-1,0.05,0,0,0.02,0
+traderflag,3,On Road,OnRoad,OnRoad,FALSE,FALSE,2,0,0,0,0,0
+traderflag,4,At Sea,AtSea,AtSea,FALSE,FALSE,3,0,0,0.2,0,0
+traderflag,5,Broken,Broken,Broken,TRUE,FALSE,-1,0,0,0,0,-1
+traderflag,6,Sick,Sick,Sick,TRUE,FALSE,-1,0,1,0,0,0
+traderflag,7,Cursed,Cursed,Cursed,TRUE,FALSE,0,-0.05,0,0.1,-0.1,0
+traderflag,8,Lucky,Lucky,Lucky,FALSE,TRUE,0,5,0,-0.1,0.1,0
+traderflag,9,Speedy,Speedy,Speedy,FALSE,TRUE,2,0,0,0,0,0
+traderflag,10,Hungry,Hungry,Hungry,TRUE,FALSE,0,0,2,0,0,0
+traderflag,11,Weak,Weak,Weak,TRUE,FALSE,0,0,0,0,0,0
+traderflag,12,Satiated,Satiated,Satiated,FALSE,TRUE,0,0,-1,0,0,0
+traderflag,13,Overloaded,Overloaded,Overloaded,FALSE,FALSE,-3,0,3,0,0,0
+traderflag,14,Perception,Perception,Perception,FALSE,TRUE,0,0.1,0,0,0,0
+traderflag,15,Lost,Lost,Lost,TRUE,FALSE,-2,0,0,0.05,0,0
+traderflag,16,Shrunken,Shrunken,Shrunken,TRUE,FALSE,0,0,0,0,0,-2
+traderflag,17,Embiggened,Embiggened,Embiggened,FALSE,TRUE,0,0,0,0,0,2

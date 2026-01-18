@@ -1,0 +1,8 @@
+{
+  "Id": "biometype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Temperate Forest",
+  "Icon": "TemperateForest",
+  "Art": "TemperateForest"
+}

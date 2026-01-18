@@ -1,9 +1,13 @@
 {
-  "Children": [],
   "Parent": {
     "Id": "default",
-    "Name": "TravelSettings"
-  },
-  "Id": "default",
-  "SaveTime": "2025-09-09T14:19:58.411Z"
+    "DistancePerMapUnit": 2.200000047683716,
+    "MaxDistanceToTarget": 2000,
+    "MaxNearbyCitiesShown": 6,
+    "BaseForageChance": 0.1,
+    "BaseGoodEventChance": 0.1,
+    "BaseBadEventChance": 0.5,
+    "Name": "TravelSettings",
+    "SaveTime": "2026-01-18T20:03:55.163Z"
+  }
 }

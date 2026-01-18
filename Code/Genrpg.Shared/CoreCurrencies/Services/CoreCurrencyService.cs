@@ -23,7 +23,7 @@ namespace Genrpg.Shared.CoreCurrencies.Services
 
             if (ctype != null)
             {
-                return statData.Stats[ctype.RegenTraderStatId].Max();
+                return statData.Stats[ctype.RegenTraderStatId].Total();
             }
             return 0;
         }
@@ -34,7 +34,7 @@ namespace Genrpg.Shared.CoreCurrencies.Services
 
             if (ctype != null)
             {
-                return statData.Stats[ctype.StorageTraderStatId].Max();
+                return statData.Stats[ctype.StorageTraderStatId].Total();
             }
             return 0;
         }

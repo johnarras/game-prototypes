@@ -74,7 +74,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
                 }
                 else if (string.IsNullOrEmpty(childId))
                 {
-                    childId = child.GetType().Name + HashUtils.NewUUId().ToString();
+                    childId = child.GetType().Name + HashUtils.NewGuid().ToString();
                 }
                 childId = childId.ToLower();
                 child.Id = childId;

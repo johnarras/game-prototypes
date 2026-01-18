@@ -70,7 +70,7 @@ namespace Genrpg.Shared.Crafting.PlayerData.Recipes
             RecipeStatus status = new RecipeStatus()
             {
                 IdKey = recipeTypeId,
-                Id = HashUtils.NewUUId(),
+                Id = HashUtils.NewGuid(),
                 OwnerId = Id,
             };
         }

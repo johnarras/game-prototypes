@@ -1,0 +1,8 @@
+{
+  "Id": "biometype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Riverine Desert",
+  "Icon": "RiverineDesert",
+  "Art": "RiverineDesert"
+}

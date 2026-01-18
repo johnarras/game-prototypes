@@ -1,0 +1,8 @@
+{
+  "Id": "biometype14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Tropical / Subtropical",
+  "Icon": "TropicalSubtropical",
+  "Art": "TropicalSubtropical"
+}

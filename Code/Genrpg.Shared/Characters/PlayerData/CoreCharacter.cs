@@ -30,6 +30,7 @@ namespace Genrpg.Shared.Characters.PlayerData
         [Key(17)] public long AddonBits { get; set; }
         [Key(18)] public long SexTypeId { get; set; }
         [Key(19)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
+        public string GetId() { return Id; }
 
         public string GetDocName(long settingsNameId)
         {

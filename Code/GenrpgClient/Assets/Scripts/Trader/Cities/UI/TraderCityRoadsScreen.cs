@@ -3,9 +3,10 @@ using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Cities.WebApi;
-using Genrpg.Shared.Trader.Roads.Settings;
+using Genrpg.Shared.Trader.Maps.Services;
+using Genrpg.Shared.Trader.Travel.Settings;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -17,125 +18,121 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         private IClientWebService _webService = null;
         private ICaravanService _caravanService = null;
+        private ITraderMapService _traderMapService = null;
 
         public GText HeaderText;
         public GameObject RoadRowAnchor;
-        public TraderRoadRowUI RowPrefab;
+        public TraderPathUI RowPrefab;
 
-        public GameObject EnterCityParent;
-        public GText EnterCityText;
-        public GButton EnterCityButton;
+        public GameObject CompassParent;
+        public GImage CompassImage;
 
-        private List<TraderRoadRowUI> _roads = new List<TraderRoadRowUI>();
+
+        private List<TraderPathUI> _roads = new List<TraderPathUI>();
 
         private City _city = null;
+
+        public class CityDistance
+        {
+            public double Distance { get; set; }
+            public City City { get; set; }
+        }
+
         protected override async Task OnStartOpen(TraderCityRoadsScreenArgs data, CancellationToken token)
         {
 
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-            _uiService.SetButton(EnterCityButton, GetName(), ClickEnterCity);
+            CaravanPosition pos = _caravanService.GetPosition(coreData);
 
-            bool canEnterCity = false;
-            long cityId = 0;
+            IReadOnlyList<City> allCities = _gameData.Get<CitySettings>(_gs.ch).GetData();
 
-            if (data != null)
+            List<CityDistance> distances = new List<CityDistance>();
+
+            TravelSettings settings = _gameData.Get<TravelSettings>(_gs.ch);
+
+            foreach (City city in allCities)
             {
-                cityId = data.CityId;
-                canEnterCity = data.CanEnterCity;
+                if (city.IdKey == pos.GetTargetCityId())
+                {
+                    continue;
+                }
+
+                double distanceToCity = _traderMapService.GetDistanceBetweenPoints(settings, pos.CurrX, pos.CurrY, city.MapPixelX, city.MapPixelY);
+
+                if (distanceToCity == 0 || distanceToCity > settings.MaxDistanceToTarget)
+                {
+                    continue;
+                }
+
+
+
+                distances.Add(new CityDistance()
+                {
+                    City = city,
+                    Distance = distanceToCity,
+                });
+            }
+
+            distances = distances.OrderBy(x => x.Distance).ToList();
+
+            List<CityDistance> forcedDistances = distances.Where(x => x.Distance < settings.MaxDistanceToTarget / 3).ToList();
+
+            List<CityDistance> otherDistances = distances.Except(forcedDistances).ToList();
+
+            distances = forcedDistances;
+
+            while (distances.Count < settings.MaxNearbyCitiesShown && otherDistances.Count > 0)
+            {
+                distances.Add(otherDistances[0]);
+                otherDistances.RemoveAt(0);
+            }
+
+            if (pos.GetCurrentCity() != null)
+            {
+                _uiService.SetText(HeaderText, "In " + pos.GetCurrentCity().Name);
+                _clientEntityService.SetActive(CompassParent, false);
+            }
+            else if (pos.TargetCity != null)
+            {
+                _uiService.SetText(HeaderText, "Travelling to " + pos.TargetCity.Name);
+                if (CompassImage != null)
+                {
+                    _clientEntityService.SetActive(CompassParent, true);
+                    CompassImage.transform.eulerAngles = new Vector3(0, 0, -pos.Angle);
+                }
             }
             else
             {
-                CaravanPosition position = _caravanService.GetPosition(coreData);
-                if (position.CityId < 1)
-                {
-                    StartClose();
-                    return;
-                }
-                cityId = position.CityId;
-                if (cityId < 1)
-                {
-                    cityId = position.OutsideOfCityId;
-                }
+                _uiService.SetText(HeaderText, "Travel");
+                _clientEntityService.SetActive(CompassParent, false);
             }
-
-            _city = _gameData.Get<CitySettings>(_gs.ch).Get(cityId);
-
-            if (_city == null)
-            {
-                StartClose();
-                return;
-            }
-
-            _uiService.SetText(HeaderText, _city.Name);
-
-            ShowRoads(_city);
-
-            ShowEnterCity(_city, canEnterCity);
+            ShowNearbyCities(pos, distances);
 
             await Task.CompletedTask;
         }
 
-        private void ShowEnterCity(City city, bool canEnterCity)
+        private void ShowNearbyCities(CaravanPosition pos, List<CityDistance> distances)
         {
-            _clientEntityService.SetActive(EnterCityParent, canEnterCity);
-
-            if (canEnterCity)
-            {
-                _uiService.SetText(EnterCityText, "You have arrived at " + city.Name);
-            }
-        }
-
-        private void ClickEnterCity()
-        {
-            if (_city != null)
-            {
-                _webService.SendClientUserWebRequest(new EnterCityRequest() { CityId = _city.IdKey }, GetToken());
-            }
-        }
-
-        private void ShowRoads(City city)
-        {
-            if (city == null)
-            {
-                StartClose();
-                return;
-            }
-
-            RoadSettings roadSettings = _gameData.Get<RoadSettings>(_gs.ch);
-
-            List<Road> roads = new List<Road>();
-
-            foreach (CityRoad cr in city.Roads)
-            {
-                Road road = roadSettings.Get(cr.RoadId);
-
-                if (road != null)
-                {
-                    roads.Add(road);
-                }
-            }
-
-            if (roads.Count < 1)
-            {
-                StartClose();
-                return;
-            }
 
             _clientEntityService.DestroyAllChildren(RoadRowAnchor);
             _roads.Clear();
 
-            foreach (Road road in roads)
-            {
 
+
+            foreach (CityDistance distance in distances)
+            {
                 TraderRoadArgs args = new TraderRoadArgs()
                 {
-                    CanTravel = true,
-                    FromCityId = city.IdKey,
-                    Road = road,
+                    DistanceToTarget = (long)distance.Distance,
+                    TargetCity = distance.City,
+                    TargetX = distance.City.MapPixelX,
+                    TargetY = distance.City.MapPixelY,
+                    Angle = _traderMapService.GetAngle(pos.CurrX, pos.CurrY, distance.City.MapPixelX, distance.City.MapPixelY),
                 };
 
-                TraderRoadRowUI ui = _clientEntityService.FullInstantiate(RowPrefab);
+
+                TraderPathUI ui = _clientEntityService.FullInstantiate(RowPrefab);
 
                 _clientEntityService.AddToParent(ui, RoadRowAnchor);
 

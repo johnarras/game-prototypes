@@ -24,6 +24,9 @@ namespace Genrpg.Editor.Services.Importing
         void AddEffectList<TImport, TParent, TChild, TEffect>(EditorGameState gs, int row, string headerWord, long entityTypeId, List<TEffect> effects, string data) where TEffect : IEffect, new()
             where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new();
 
+
+        long GetOrAddMissingEntity<TParent, TChild>(EditorGameState gs, string name) where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIndexedGameItem, new();
+
         Task CleanOldObjects<T>(List<T> newObjects) where T : ChildSettings, IIndexedGameItem;
         string WriteCSVRow(object obj);
     }
@@ -274,6 +277,48 @@ namespace Genrpg.Editor.Services.Importing
             }
             sb.Append('\n');
             return sb.ToString();
+        }
+
+        public long GetOrAddMissingEntity<TParent, TChild>(EditorGameState gs, string name) where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIndexedGameItem, new()
+        {
+            TParent parent = gs.data.Get<TParent>(null);
+
+            if (parent == null)
+            {
+                return 0;
+            }
+
+            List<TChild> children = parent.GetData().ToList();
+
+            string normalizedName = StrUtils.NormalizeWord(name);
+
+
+            TChild currChild = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == normalizedName);
+
+            if (currChild != null)
+            {
+                return currChild.IdKey;
+            }
+            long newId = (children.Count > 0 ? children.Max(x => x.IdKey) : 0) + 1;
+
+
+            string assetName = StrUtils.GetAlNumSubstring(name);
+            currChild = new TChild()
+            {
+                IdKey = newId,
+                Name = name,
+
+            };
+            currChild.Icon = assetName;
+            currChild.Art = assetName;
+
+            children.Add(currChild);
+
+            gs.LookedAtObjects.Add(currChild);
+            parent.SetData(children);
+
+            return newId;
+
         }
     }
 }

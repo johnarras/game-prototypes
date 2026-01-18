@@ -259,6 +259,18 @@
       "Art": "Skin"
     },
     {
+      "IdKey": 63,
+      "Name": "TraderFlag",
+      "Icon": "TraderFlag",
+      "Art": "TraderFlag"
+    },
+    {
+      "IdKey": 64,
+      "Name": "TraderSkill",
+      "Icon": "TraderSkill",
+      "Art": "TraderSkill"
+    },
+    {
       "IdKey": 100,
       "Name": "CrawlerSpell"
     },

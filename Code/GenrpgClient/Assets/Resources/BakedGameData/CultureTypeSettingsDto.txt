@@ -1,0 +1,178 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Roman",
+      "Icon": "Roman",
+      "Art": "Roman"
+    },
+    {
+      "IdKey": 2,
+      "Name": "Greek",
+      "Icon": "Greek",
+      "Art": "Greek"
+    },
+    {
+      "IdKey": 3,
+      "Name": "Punic",
+      "Icon": "Punic",
+      "Art": "Punic"
+    },
+    {
+      "IdKey": 4,
+      "Name": "Hellenistic Egyptian",
+      "Icon": "HellenisticEgyptian",
+      "Art": "HellenisticEgyptian"
+    },
+    {
+      "IdKey": 5,
+      "Name": "Levantine",
+      "Icon": "Levantine",
+      "Art": "Levantine"
+    },
+    {
+      "IdKey": 6,
+      "Name": "Mesopotamian",
+      "Icon": "Mesopotamian",
+      "Art": "Mesopotamian"
+    },
+    {
+      "IdKey": 7,
+      "Name": "Egyptian",
+      "Icon": "Egyptian",
+      "Art": "Egyptian"
+    },
+    {
+      "IdKey": 8,
+      "Name": "Byzantine/Greek",
+      "Icon": "ByzantineGreek",
+      "Art": "ByzantineGreek"
+    },
+    {
+      "IdKey": 9,
+      "Name": "Ibero-Roman",
+      "Icon": "IberoRoman",
+      "Art": "IberoRoman"
+    },
+    {
+      "IdKey": 10,
+      "Name": "Gallo-Roman",
+      "Icon": "GalloRoman",
+      "Art": "GalloRoman"
+    },
+    {
+      "IdKey": 11,
+      "Name": "Anatolian/Greek",
+      "Icon": "AnatolianGreek",
+      "Art": "AnatolianGreek"
+    },
+    {
+      "IdKey": 12,
+      "Name": "Nabataean/Arab",
+      "Icon": "NabataeanArab",
+      "Art": "NabataeanArab"
+    },
+    {
+      "IdKey": 13,
+      "Name": "Punic/Berber",
+      "Icon": "PunicBerber",
+      "Art": "PunicBerber"
+    },
+    {
+      "IdKey": 14,
+      "Name": "Indian",
+      "Icon": "Indian",
+      "Art": "Indian"
+    },
+    {
+      "IdKey": 15,
+      "Name": "Chinese",
+      "Icon": "Chinese",
+      "Art": "Chinese"
+    },
+    {
+      "IdKey": 16,
+      "Name": "Celto-Roman",
+      "Icon": "CeltoRoman",
+      "Art": "CeltoRoman"
+    },
+    {
+      "IdKey": 17,
+      "Name": "Germanic",
+      "Icon": "Germanic",
+      "Art": "Germanic"
+    },
+    {
+      "IdKey": 18,
+      "Name": "Persian",
+      "Icon": "Persian",
+      "Art": "Persian"
+    },
+    {
+      "IdKey": 19,
+      "Name": "Sogdian",
+      "Icon": "Sogdian",
+      "Art": "Sogdian"
+    },
+    {
+      "IdKey": 20,
+      "Name": "Arab",
+      "Icon": "Arab",
+      "Art": "Arab"
+    },
+    {
+      "IdKey": 21,
+      "Name": "Armenian",
+      "Icon": "Armenian",
+      "Art": "Armenian"
+    },
+    {
+      "IdKey": 22,
+      "Name": "Thracian",
+      "Icon": "Thracian",
+      "Art": "Thracian"
+    },
+    {
+      "IdKey": 23,
+      "Name": "Illyrian/Roman",
+      "Icon": "IllyrianRoman",
+      "Art": "IllyrianRoman"
+    },
+    {
+      "IdKey": 24,
+      "Name": "Khmer/Malay",
+      "Icon": "KhmerMalay",
+      "Art": "KhmerMalay"
+    },
+    {
+      "IdKey": 25,
+      "Name": "Slavic/Horde",
+      "Icon": "SlavicHorde",
+      "Art": "SlavicHorde"
+    },
+    {
+      "IdKey": 26,
+      "Name": "Mongol",
+      "Icon": "Mongol",
+      "Art": "Mongol"
+    },
+    {
+      "IdKey": 27,
+      "Name": "Indo-Iranian",
+      "Icon": "IndoIranian",
+      "Art": "IndoIranian"
+    },
+    {
+      "IdKey": 28,
+      "Name": "Siberian",
+      "Icon": "Siberian",
+      "Art": "Siberian"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CultureTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-16T00:17:47.587Z"
+}

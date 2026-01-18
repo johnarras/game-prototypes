@@ -433,7 +433,7 @@ namespace Genrpg.MapServer.Spells.Services
                 newTargets = newTargets
                     .Except(primaryTargets)
                     .Distinct()
-                    .OrderBy(x => HashUtils.NewUUId())
+                    .OrderBy(x => HashUtils.NewGuid())
                     .Take(effect.ExtraTargets)
                     .ToList();
 

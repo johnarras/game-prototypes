@@ -1,0 +1,8 @@
+{
+  "Id": "biometype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Desert",
+  "Icon": "Desert",
+  "Art": "Desert"
+}
