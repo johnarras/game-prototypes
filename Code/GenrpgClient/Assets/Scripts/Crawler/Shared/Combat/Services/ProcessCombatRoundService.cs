@@ -223,7 +223,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)
             {
-                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * MathUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
+                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * MathUtil.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
             }
 
             allUnits = allUnits.OrderBy(x => x.CombatPriority).ToList();

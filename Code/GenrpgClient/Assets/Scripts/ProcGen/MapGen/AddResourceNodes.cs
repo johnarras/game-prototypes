@@ -136,7 +136,7 @@ public class AddResourceNodes : BaseZoneGenerator
             zdata.Objects = categoryObjects;
             zdata.SpawnWeightSum = categoryObjects.Sum(x => x.SpawnWeight);
             zdata.CurrNum = 0;
-            zdata.Density = MathUtils.FloatRange(0.0f, 2.0f, rand) * rdata.Density;
+            zdata.Density = MathUtil.FloatRange(0.0f, 2.0f, rand) * rdata.Density;
             zdata.MaxNum = (int)(area * zdata.Density);
 
             totalPlacements += zdata.MaxNum;
@@ -174,8 +174,8 @@ public class AddResourceNodes : BaseZoneGenerator
                 }
             }
 
-            int x = MathUtils.IntRange(startx, endx, rand);
-            int y = MathUtils.IntRange(starty, endy, rand);
+            int x = MathUtil.IntRange(startx, endx, rand);
+            int y = MathUtil.IntRange(starty, endy, rand);
 
             int cx = x + (int)(x / (MapConstants.TerrainPatchSize - 1));
             int cy = y + (int)(y / (MapConstants.TerrainPatchSize - 1));

@@ -2,7 +2,7 @@ namespace Genrpg.Shared.MobileGame.Constants
 {
     public class MobileGameConstants
     {
-        public const long MinPlayMult = 1;
+        public const int MinPlayMult = 1;
     }
 }
 

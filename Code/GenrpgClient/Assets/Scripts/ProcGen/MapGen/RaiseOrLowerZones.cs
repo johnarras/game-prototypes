@@ -73,10 +73,10 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         MyRandom rand = new MyRandom(seed);
 
 
-        extraWidth = MathUtils.IntRange(extraWidth * 4 / 5, extraWidth * 5 / 4, rand);
+        extraWidth = MathUtil.IntRange(extraWidth * 4 / 5, extraWidth * 5 / 4, rand);
 
 
-        float heightOffset = MathUtils.FloatRange(0.7f,0.9f,rand)*extraWidth / MapConstants.MapHeight;
+        float heightOffset = MathUtil.FloatRange(0.7f,0.9f,rand)*extraWidth / MapConstants.MapHeight;
 
 
         float waterScaledHeight = 1.0f * MapConstants.MinLandHeight / MapConstants.MapHeight;
@@ -165,16 +165,16 @@ public class RaiseOrLowerZones : BaseZoneGenerator
             heightOffset = -heightOffset;
         }
 
-        float centerAmp = MathUtils.FloatRange(powerSpread,powerSpread*2, rand);
-        float centerFreq = MathUtils.FloatRange(size / 40, size / 10, rand);
-        float centerPers = MathUtils.FloatRange(0.1f, 0.4f, rand);
+        float centerAmp = MathUtil.FloatRange(powerSpread,powerSpread*2, rand);
+        float centerFreq = MathUtil.FloatRange(size / 40, size / 10, rand);
+        float centerPers = MathUtil.FloatRange(0.1f, 0.4f, rand);
         int centerOctaves = 2;
 
         float[,] centers = _noiseService.Generate(centerPers, centerFreq, centerAmp, centerOctaves, rand.Next(), distx, disty);
 
-        float powerAmp = MathUtils.FloatRange(centerSpread,centerSpread*2, rand);
-        float powerFreq = MathUtils.FloatRange(size / 40, size / 10, rand);
-        float powerPers = MathUtils.FloatRange(0.1f, 0.3f, rand);
+        float powerAmp = MathUtil.FloatRange(centerSpread,centerSpread*2, rand);
+        float powerFreq = MathUtil.FloatRange(size / 40, size / 10, rand);
+        float powerPers = MathUtil.FloatRange(0.1f, 0.3f, rand);
         int powerOctaves = 2;
 
         float[,] powers = _noiseService.Generate(powerPers, powerFreq, powerAmp,powerOctaves, rand.Next(), distx, disty);
@@ -375,8 +375,8 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                         }
                     }
                 }
-                nx = MathUtils.Clamp(0, x + (int)(xroadDelta / deltaDiv), xsize - 1);
-                ny = MathUtils.Clamp(0, y + (int)(yroadDelta / deltaDiv), ysize - 1);
+                nx = MathUtil.Clamp(0, x + (int)(xroadDelta / deltaDiv), xsize - 1);
+                ny = MathUtil.Clamp(0, y + (int)(yroadDelta / deltaDiv), ysize - 1);
 
 
 
@@ -392,7 +392,7 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                     }
                 }
 
-                currDist = MathUtils.Clamp(-extraWidth, currDist, extraWidth);
+                currDist = MathUtil.Clamp(-extraWidth, currDist, extraWidth);
 
                 float heightDistPct = 0.0f;
 
@@ -406,7 +406,7 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                     // start at middleHeightPercent at 0, up to 1 at extraWidth
                     heightDistPct = middleHeightPct + currDist * (1 - middleHeightPct) / extraWidth;
                 }
-                float power = MathUtils.Clamp(minPower, 1.0f + powers[x, y], maxPower);
+                float power = MathUtil.Clamp(minPower, 1.0f + powers[x, y], maxPower);
 
 
 

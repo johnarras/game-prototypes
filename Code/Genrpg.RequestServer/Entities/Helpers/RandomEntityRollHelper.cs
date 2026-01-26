@@ -60,7 +60,7 @@ namespace Genrpg.RequestServer.Entities.Helpers
                             EntityId = origItem.IdKey,
                             QualityTypeId = rollLootArgs.QualityTypeId,
                             Level = rollLootArgs.Level,
-                            Quantity = MathUtils.LongRange(si.MinQuantity * quantityMult, si.MaxQuantity * quantityMult, context.rand),
+                            Quantity = MathUtil.LongRange(si.MinQuantity * quantityMult, si.MaxQuantity * quantityMult, context.rand),
                         });
                         break;
                     }

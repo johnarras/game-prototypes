@@ -29,7 +29,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             {
                 return;
             }
-            args.NewQuantity += MathUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+            args.NewQuantity += MathUtil.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
 
             long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
 

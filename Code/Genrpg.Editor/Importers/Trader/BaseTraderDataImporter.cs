@@ -133,17 +133,6 @@ namespace Genrpg.Editor.Importers.Trader
                     tradeGood.CityBuyCosts[city.IdKey] = city.TradeGoodBuyCosts[tradeGood.IdKey];
                 }
             }
-
-            foreach (TradeGood tradeGood in tradeGoods)
-            {
-                tradeGood.CityBuyCosts.Trim();
-            }
-
-
-            foreach (City city in cities)
-            {
-                city.TradeGoodBuyCosts.Trim();
-            }
         }
     }
 }

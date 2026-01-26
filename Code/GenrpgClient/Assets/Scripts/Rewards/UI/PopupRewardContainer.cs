@@ -38,7 +38,7 @@ namespace Assets.Scripts.Rewards.UI
                 StartPosition = gameObject.transform.position,
                 LerpTime = 1.5f,
                 Accelerate = true,
-                StartOffsetSize = MathUtils.FloatRange(0, 100, _rand)
+                StartOffsetSize = MathUtil.FloatRange(0, 100, _rand)
 
             });
         }

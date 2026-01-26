@@ -67,11 +67,19 @@ namespace Genrpg.Shared.Utils.Data
 
                 if (_data.Length <= index)
                 {
-                    int size = Math.Max(2, _data.Length);
-                    while (size <= index)
+                    if (IsDefault(value))
                     {
-                        size *= 2;
+                        return;
                     }
+
+                    // Set this new size to exactly the size needed since these objects
+                    // will be used in player data where we randomly add nonzero elements up to
+                    // some small index amount, and then load and save the objects over and over,
+                    // without changing the number of elements, so it's best to keep these 
+                    // arrays as small as possible, even if there's a bit of extra copying
+                    // the first time the array is being filled.
+                    int size = (int)index + 1;
+
                     T[] newData = new T[size];
 
                     for (int i = 0; i < _data.Length; i++)
@@ -95,31 +103,6 @@ namespace Genrpg.Shared.Utils.Data
         {
             _data = new T[4];
         }
-
-        public void Trim()
-        {
-            int maxNonzeroIndex = 0;
-
-            for (int i = _data.Length - 1; i >= 0; i--)
-            {
-                if (!IsDefault(_data[i]))
-                {
-                    maxNonzeroIndex = i;
-                    break;
-                }
-            }
-
-            if (maxNonzeroIndex != _data.Length - 1)
-            {
-                T[] newData = new T[Math.Max(4, maxNonzeroIndex + 1)];
-                for (int i = 0; i < maxNonzeroIndex + 1; i++)
-                {
-                    newData[i] = _data[i];
-                }
-                _data = newData;
-            }
-        }
-
         public void Add(long id, T val)
         {
             this[id] = InternalAdd(this[id], val);

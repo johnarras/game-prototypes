@@ -133,7 +133,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
         float distPct = (float)Math.Sqrt(ddx * ddx + ddz * ddz);
 
-        return MathUtils.Clamp(0, distPct - 1, 1);
+        return MathUtil.Clamp(0, distPct - 1, 1);
     }
 
     public Location FindMapLocation(int cx, int cz, float borderSize)
@@ -292,19 +292,19 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
         float densityDelta = 0.10f;
-        genZone.DetailAmp = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.DetailFreq = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.GrassDensity = 1.0f; MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.TreeDensity = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.RockDensity = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.RoadDipScale = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.BushDensity = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.TreeFreq = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.GrassFreq = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.BushFreq = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
-        genZone.RoadDirtScale = MathUtils.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.DetailAmp = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.DetailFreq = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.GrassDensity = 1.0f; MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.TreeDensity = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.RockDensity = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.RoadDipScale = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.BushDensity = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.TreeFreq = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.GrassFreq = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.BushFreq = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
+        genZone.RoadDirtScale = MathUtil.FloatRange(1 - densityDelta, 1 + densityDelta, rand);
 
-        genZone.SpreadChance = MathUtils.FloatRange(0.04f, 0.07f, rand);
+        genZone.SpreadChance = MathUtil.FloatRange(0.04f, 0.07f, rand);
 
         if (zt.Textures != null)
         {
@@ -440,7 +440,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
         foreach (int pid in plantChoices)
         {
-            ZonePlantType currentPlant = new ZonePlantType() { PlantTypeId = pid, Density = MathUtils.FloatRange(0.2f, 1.8f, ztRand) };
+            ZonePlantType currentPlant = new ZonePlantType() { PlantTypeId = pid, Density = MathUtil.FloatRange(0.2f, 1.8f, ztRand) };
             zone.PlantTypes.Add(currentPlant);
         }
 
@@ -513,7 +513,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             ZoneRockType rt2 = new ZoneRockType();
             rt2.RockTypeId = rt.RockTypeId;
 
-            rt2.Weight = MathUtils.FloatRange(0.3f, 2f, rand);
+            rt2.Weight = MathUtil.FloatRange(0.3f, 2f, rand);
 
             genZone.RockTypes.Add(rt2);
         }
@@ -578,7 +578,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             {
                 ZoneTreeType tt2 = new ZoneTreeType();
                 tt2.TreeTypeId = tt.TreeTypeId;
-                tt2.PopulationScale = MathUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
+                tt2.PopulationScale = MathUtil.FloatRange(minPopulationScale, maxPopulationScale, rand);
                 newList.Add(tt2);
             }
             int maxNum = i == 0 ? maxNumTrees : maxNumBushes;
@@ -643,15 +643,15 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
             double chance = spawnItem.Weight;
 
-            chance = MathUtils.FloatRange(chance / 2, chance * 2, rand);
+            chance = MathUtil.FloatRange(chance / 2, chance * 2, rand);
 
             if (rand.NextDouble() < 0.1f)
             {
-                chance *= MathUtils.FloatRange(1, 5, rand);
+                chance *= MathUtil.FloatRange(1, 5, rand);
             }
             if (rand.NextDouble() < 0.3f)
             {
-                chance *= MathUtils.FloatRange(0.1f, 0.2f, rand);
+                chance *= MathUtil.FloatRange(0.1f, 0.2f, rand);
             }
 
             int newPop = Math.Max(3, (int)(basePopMult * chance));

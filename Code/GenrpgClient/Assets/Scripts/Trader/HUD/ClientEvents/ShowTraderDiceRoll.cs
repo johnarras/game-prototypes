@@ -4,8 +4,8 @@ namespace Assets.Scripts.Trader.HUD.ClientEvents
 {
     public class ShowTraderDiceRoll
     {
-        public List<long> RolledDistances { get; set; } = new List<long>();
-        public long BonusDistance { get; set; }
-        public long TotalDistance { get; set; }
+        public List<int> RolledDistances { get; set; } = new List<int>();
+        public int BonusDistance { get; set; }
+        public int TotalDistance { get; set; }
     }
 }

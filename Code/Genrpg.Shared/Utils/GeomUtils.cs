@@ -59,7 +59,7 @@ namespace Genrpg.Shared.Utils
 
             float u = ((px - sx) * lx + (pz - sy) * ly) / segmentLength;
 
-            u = MathUtils.Clamp(0, u, 1);
+            u = MathUtil.Clamp(0, u, 1);
 
             float x = sx + u * lx;
             float z = sy + u * ly;
@@ -103,7 +103,7 @@ namespace Genrpg.Shared.Utils
             MyPoint2 closestPoint = null;
             foreach (MyPoint2 pt in points)
             {
-                double dist = MathUtils.LPNorm(p, pt.X-newPoint.X, pt.Y-newPoint.Y);
+                double dist = MathUtil.LPNorm(p, pt.X-newPoint.X, pt.Y-newPoint.Y);
 
                 if (dist < minDist)
                 {
@@ -126,7 +126,7 @@ namespace Genrpg.Shared.Utils
                 return MaxDistance;
             }
 
-            return MathUtils.LPNorm(p, closestPt.X-newPoint.X, closestPt.Y-newPoint.Y);
+            return MathUtil.LPNorm(p, closestPt.X-newPoint.X, closestPt.Y-newPoint.Y);
 
 
         }

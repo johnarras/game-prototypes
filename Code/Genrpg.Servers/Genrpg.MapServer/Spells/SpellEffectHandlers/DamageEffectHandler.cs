@@ -45,7 +45,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 
             int variancePct = 20;
             
-                amount = MathUtils.LongRange(startAmount * (100 - variancePct) / 100,
+                amount = MathUtil.LongRange(startAmount * (100 - variancePct) / 100,
                     startAmount * (100 + variancePct) / 100, rand);
 
             long absorbAmount = 0;

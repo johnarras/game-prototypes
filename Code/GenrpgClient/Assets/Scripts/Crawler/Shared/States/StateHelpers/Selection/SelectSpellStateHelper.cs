@@ -54,12 +54,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
                     PowerCost = powerCost,
                 };
 
-                string spellText = spell.Name + " (" + selectSpell.PowerCost + " Mana) [Power: " + spellLevel + "]";
+                string spellText = spell.Name + " (" + selectSpell.PowerCost + " Mn) [X" + spellLevel + "]";
                 ECrawlerStates nextState = ECrawlerStates.OnSelectSpell;
                 object extra = selectSpell;
                 if (selectSpell.PowerCost > currMana)
                 {
-                    spellText = spell.Name + "    <color=red>(" + selectSpell.PowerCost + " Mana)</color>";
+                    spellText = spell.Name + "    <color=red>(" + selectSpell.PowerCost + " Mn)</color>";
                     nextState = ECrawlerStates.None;
                     extra = null;
                 }

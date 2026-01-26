@@ -21,13 +21,13 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
 
         for (int times = 0; times < 3; times++)
         {
-            float amp = MathUtils.FloatRange(1.2f, 1.8f, rand)*1.4f;
+            float amp = MathUtil.FloatRange(1.2f, 1.8f, rand)*1.4f;
 
-            float freq = wid * MathUtils.FloatRange(0.015f, 0.025f, rand) * 1.0f;
+            float freq = wid * MathUtil.FloatRange(0.015f, 0.025f, rand) * 1.0f;
 
             int octaves = 3;
 
-            float pers = MathUtils.FloatRange(0.35f, 0.45f, rand);
+            float pers = MathUtil.FloatRange(0.35f, 0.45f, rand);
 
             int pseed = rand.Next();
 
@@ -46,7 +46,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         {
             for (int z = 0; z < hgt; z++)
             {
-                _md.subZonePercents[x, z] = MathUtils.Clamp(0, 2*(_md.subZonePercents[x, z]-0.5f), 1);
+                _md.subZonePercents[x, z] = MathUtil.Clamp(0, 2*(_md.subZonePercents[x, z]-0.5f), 1);
             }
         }
 

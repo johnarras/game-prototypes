@@ -23,6 +23,7 @@ namespace Genrpg.Shared.Crawler.States.Constants
         PartyOrder,
 
         Options,
+        NewGame,
         SaveGame,
         QuitGame,
         Help,

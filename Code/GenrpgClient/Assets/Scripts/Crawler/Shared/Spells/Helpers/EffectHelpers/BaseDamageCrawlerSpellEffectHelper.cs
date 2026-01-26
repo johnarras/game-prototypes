@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(null);
 
                 long defenseStatId = StatTypes.Armor;
-                args.NewQuantity = MathUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+                args.NewQuantity = MathUtil.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
                 if (fullEffect.Effect.EntityTypeId == EntityTypes.Damage)
                 {
                     defenseStatId = StatTypes.Resist;
@@ -123,7 +123,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
                 if (casterHit < defenseStat && !didMiss)
                 {
-                    double ratio = MathUtils.Clamp(combatSettings.MinHitToDefenseRatio
+                    double ratio = MathUtil.Clamp(combatSettings.MinHitToDefenseRatio
                         , 1.0 * casterHit / defenseStat,
                         combatSettings.MaxHitToDefenseRatio);
 

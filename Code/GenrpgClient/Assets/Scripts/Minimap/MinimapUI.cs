@@ -86,7 +86,7 @@ public class MinimapUI : BaseBehaviour
         if (MapImage.texture != null)
         {
             float sizePct = 256.0f / _mapProvider.GetMap().GetHwid();
-            sizePct = MathUtils.Clamp(0.02f, sizePct, 0.15f);
+            sizePct = MathUtil.Clamp(0.02f, sizePct, 0.15f);
             float xminpct = xpct - sizePct / 2;
             float yminpct = ypct - sizePct / 2;
             MapImage.uvRect = new Rect(new Vector2(xminpct, yminpct), new Vector2(sizePct, sizePct));

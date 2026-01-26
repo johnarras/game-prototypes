@@ -175,7 +175,7 @@ public class ActionButton : SpellIcon
         }
 
         float oldFillAmount = Tint.fillAmount;
-        float pctComplete = MathUtils.Clamp(0, (float)((DateTime.UtcNow - cooldownStart).TotalSeconds / totalSeconds), 1);
+        float pctComplete = MathUtil.Clamp(0, (float)((DateTime.UtcNow - cooldownStart).TotalSeconds / totalSeconds), 1);
         Tint.FillAmount = 1 - pctComplete;
         _lastFillAmount = 1 - pctComplete;
 

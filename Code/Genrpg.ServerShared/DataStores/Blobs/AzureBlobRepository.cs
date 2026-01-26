@@ -96,7 +96,7 @@ namespace Genrpg.ServerShared.DataStores.Blobs
         /// <param name="t"></param>
         /// <param name="verbose">This does nothing here.</param>
         /// <returns></returns>
-        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : class, IStringId
+        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : IStringId
         {
             string data = _serializer.SerializeToString(t);
 

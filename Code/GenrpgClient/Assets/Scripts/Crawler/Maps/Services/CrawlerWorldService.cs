@@ -4,7 +4,6 @@ using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -140,7 +139,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 {
                     CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-                    int spawnCount = MathUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand);
+                    int spawnCount = MathUtil.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand);
 
                     int sharedZoneSpawnCount = mapSettings.SharedZoneUnitCount;
 

@@ -99,7 +99,7 @@ namespace Genrpg.MapServer.MapMessaging.Entities
                             DateTime nextExecuteTime = item.message.GetLastExecuteTime().AddSeconds(item.delaySeconds);
                             double messageTimeDiff = Math.Max(0, (nextExecuteTime - DateTime.UtcNow).TotalSeconds);
                             int messageTimeTicks = (int)(messageTimeDiff /= MessageConstants.DelayedMessageTimeGranularity);
-                            int offset = MathUtils.Clamp(1, messageTimeTicks, DelayedMessageBufferSize - 1);
+                            int offset = MathUtil.Clamp(1, messageTimeTicks, DelayedMessageBufferSize - 1);
                             int index = (currentTick + offset) % DelayedMessageBufferSize;
                             item.message.SetLastExecuteTime(nextExecuteTime);
                             _delayedMessages[index].Add(item);

@@ -14,6 +14,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading;
@@ -191,31 +192,48 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
         }
 
 
-        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : class, IStringId
+        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId
         {
-
-            string suffix = NoSqlUtils.GetDocIdSuffix(obj.GetType());
-            if (obj.Id.IndexOf(suffix) < 0)
+            if (obj is IPartitionedData pd)
             {
-                obj.Id += suffix;
-            }
-
-            try
-            {
-                if (obj is IPartitionedData pd)
+                string suffix = NoSqlUtils.GetDocIdSuffix(obj.GetType());
+                if (obj.Id.IndexOf(suffix) < 0)
                 {
-                    ItemResponse<T> response = await _container.UpsertItemAsync(obj, new PartitionKey(pd.pk), _requestOptions, _token);
+                    obj.Id += suffix;
+                }
+                ArrayPoolBufferWriter<byte> bufferWriter = _serializer.GetBuffer();
 
-                    return response.StatusCode == System.Net.HttpStatusCode.OK;
-                }
-                else
+                using (Utf8JsonWriter jsonWriter = new Utf8JsonWriter(bufferWriter))
                 {
-                    throw new NotImplementedException();
+                    JsonSerializer.Serialize(jsonWriter, obj, obj.GetType(), _serializerOptions);
                 }
-            }
-            catch (Exception e)
-            {
-                _logService.Exception(e, "CosmosNoSQL.Save");
+
+                Stream stream = bufferWriter.WrittenMemory.AsStream();
+
+                ItemRequestOptions saveOptions = new ItemRequestOptions()
+                {
+                    PriorityLevel = _requestOptions.PriorityLevel,
+                    IndexingDirective = _requestOptions.IndexingDirective,
+                    EnableContentResponseOnWrite = _requestOptions.EnableContentResponseOnWrite,
+                    ConsistencyLevel = _requestOptions.ConsistencyLevel,
+                    IfMatchEtag = pd._etag,
+                };
+
+                PartitionKey pk = new PartitionKey(pd.pk);
+
+                ResponseMessage message = await _container.ReplaceItemStreamAsync(stream, pd.Id, pk, saveOptions, _token);
+
+                if (message.StatusCode == HttpStatusCode.NotFound)
+                {
+                    message = await _container.CreateItemStreamAsync(stream, pk, saveOptions, _token);
+                }
+
+
+                bufferWriter?.Dispose();
+                stream?.Dispose();
+
+                return message.StatusCode == HttpStatusCode.Created;
+
             }
             return false;
         }
@@ -228,7 +246,7 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
                 if (obj is IPartitionedData pd)
                 {
                     pk = pd.pk;
-                    await _container.DeleteItemAsync<T>(GetDocId(obj.Id, typeof(T)), new PartitionKey(obj.Id), _requestOptions, _token);
+                    await _container.DeleteItemAsync<T>(GetDocId(obj.Id, obj.GetType()), new PartitionKey(obj.Id), _requestOptions, _token);
                     return true;
                 }
             }
@@ -239,7 +257,7 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
             return false;
         }
 
-        public async Task TransactionSave<T>(List<T> items) where T : IPartitionedData
+        public async Task<bool> TransactionSave<T>(List<T> items, RepoSaveArgs args = null) where T : IPartitionedData
         {
             List<ArrayPoolBufferWriter<byte>> bufferWriters = new List<ArrayPoolBufferWriter<byte>>();
             List<Stream> streams = new List<Stream>();
@@ -255,6 +273,13 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
 
                 foreach (IGrouping<string, T> group in groups)
                 {
+
+                    if (group.Count() == 1)
+                    {
+                        return await Save(group.First(), null);
+                    }
+
+
                     // 2. Initialize the batch for this specific Partition Key
                     PartitionKey partitionKey = new PartitionKey(group.Key);
                     TransactionalBatch batch = _container.CreateTransactionalBatch(partitionKey);
@@ -304,10 +329,12 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
                         }
                     }
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 _logService.Exception(ex, "Cosmos.TransactionSave");
+                return false;
             }
             finally
             {

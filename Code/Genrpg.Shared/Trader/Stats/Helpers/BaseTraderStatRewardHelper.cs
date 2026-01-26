@@ -16,7 +16,7 @@ namespace Genrpg.Shared.Trader.Stats.Helpers
         {
             TraderStatData statData = obj.Get<TraderStatData>();
 
-            statData.Stats[entityId].Base = quantity;
+            statData.Stats[entityId].Base = (int)quantity;
 
             CoreData coreData = obj.Get<CoreData>();
 

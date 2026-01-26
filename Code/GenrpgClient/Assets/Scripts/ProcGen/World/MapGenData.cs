@@ -383,8 +383,8 @@ public class MapGenData : IMapGenData
         {
             zone.Locations.Add(loc);
 
-            int gx = MathUtils.Clamp(0, loc.CenterX / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
-            int gy = MathUtils.Clamp(0, loc.CenterZ / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
+            int gx = MathUtil.Clamp(0, loc.CenterX / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
+            int gy = MathUtil.Clamp(0, loc.CenterZ / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
 
             locationGrid[gx, gy].Add(loc);
 
@@ -400,7 +400,7 @@ public class MapGenData : IMapGenData
         }
 
         float zoneSize = map.ZoneSize * MapConstants.TerrainPatchSize;
-        return MathUtils.Clamp(MapConstants.MinMountainWidth, zoneSize / MapConstants.MountainWidthDivisor, MapConstants.MaxMountainWidth);
+        return MathUtil.Clamp(MapConstants.MinMountainWidth, zoneSize / MapConstants.MountainWidthDivisor, MapConstants.MaxMountainWidth);
     }
 
 }

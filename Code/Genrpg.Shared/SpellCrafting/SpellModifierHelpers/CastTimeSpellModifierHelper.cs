@@ -18,7 +18,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
         {
             value = GetValidValue(obj, value);
 
-            return MathUtils.Clamp(0.25, 1.0f - value * 0.1f, 1);
+            return MathUtil.Clamp(0.25, 1.0f - value * 0.1f, 1);
         }
     }
 }

@@ -1,11 +1,10 @@
 using Genrpg.Shared.Crawler.Upgrades.Settings;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class MemberUpgradeInfoHelper : BaseInfoHelper<MemberUpgradeSettings,MemberUpgrade>
+    public class MemberUpgradeInfoHelper : BaseInfoHelper<MemberUpgradeSettings, MemberUpgrade>
     {
 
         public override long HelperKey => EntityTypes.MemberUpgrades;
@@ -23,8 +22,8 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
             {
                 lines.Add("Invalid Member Upgrade Type.");
                 return lines;
-            } 
-            lines.Add(_infoService.CreateHeaderLine(upgrade.Name));
+            }
+            lines.Add(_infoService.CreateHeaderLine(upgrade.Name, false));
             lines.Add(upgrade.Desc);
             lines.Add("+" + upgrade.BonusPerTier + " bonus per tier.");
             lines.Add("You receive an upgrade point every " + settings.LevelsPerPoint);

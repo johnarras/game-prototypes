@@ -54,10 +54,10 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
 
 
-            long baseDiceSpeed = 0;
-            long baseCapacity = statData.Stats[TraderStats.CaravanCapacity].Total();
-            long baseRationsCost = statData.Stats[TraderStats.CaravanRationsCost].Total();
-            long baseBonusSpeed = statData.Stats[TraderStats.CaravanBonusSpeed].Total();
+            int baseDiceSpeed = 0;
+            int baseCapacity = statData.Stats[TraderStats.CaravanCapacity].Total();
+            int baseRationsCost = statData.Stats[TraderStats.CaravanRationsCost].Total();
+            int baseBonusSpeed = statData.Stats[TraderStats.CaravanBonusSpeed].Total();
             foreach (CaravanAnimal caravanAnimal in caravanData.Animals)
             {
                 AnimalType animal = animalSettings.Get(caravanAnimal.AnimalTypeId);
@@ -86,7 +86,7 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             PlayMultSettings multSettings = _gameData.Get<PlayMultSettings>(coreData);
 
-            coreData.Vars[TraderVars.Mult] = MathUtils.Clamp(MobileGameConstants.MinPlayMult, coreData.Vars[TraderVars.Mult], multSettings.MaxPlayMult);
+            coreData.Vars[TraderVars.Mult] = MathUtil.Clamp(MobileGameConstants.MinPlayMult, coreData.Vars[TraderVars.Mult], multSettings.MaxPlayMult);
 
             AnimalTypeSettings animalSettings = _gameData.Get<AnimalTypeSettings>(coreData);
 
@@ -115,14 +115,14 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             long totalCost = statusBlock.DiceSpeed * coreData.Vars[TraderVars.Mult];
 
-            statusBlock.BonusSpeed += (long)Math.Ceiling(multSettings.ExtraDailyDistPerTotalDice * totalCost);
+            statusBlock.BonusSpeed += (int)Math.Ceiling(multSettings.ExtraDailyDistPerTotalDice * totalCost);
 
             coreData.Vars[TraderVars.DiceSpeed] = statusBlock.DiceSpeed;
             coreData.Vars[TraderVars.RationsCost] = statusBlock.RationsCost;
             coreData.Vars[TraderVars.BonusSpeed] = statusBlock.BonusSpeed;
-            coreData.Vars[TraderVars.ForageChance] = (long)(100 * statusBlock.ForageChance);
-            coreData.Vars[TraderVars.BadEventChance] = (long)(100 * statusBlock.BadEventChance);
-            coreData.Vars[TraderVars.GoodEventChance] = (long)(100 * statusBlock.GoodEventChance);
+            coreData.Vars[TraderVars.ForageChance] = (int)(100 * statusBlock.ForageChance);
+            coreData.Vars[TraderVars.BadEventChance] = (int)(100 * statusBlock.BadEventChance);
+            coreData.Vars[TraderVars.GoodEventChance] = (int)(100 * statusBlock.GoodEventChance);
             coreData.Vars[TraderVars.MaxCapacity] = statusBlock.Capacity;
 
             bool changedSomething = false;
@@ -281,8 +281,8 @@ namespace Genrpg.Shared.Trader.Caravans.Services
 
             MyPointF currPos = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, pos.DistanceGone, pos.DistanceToTarget);
 
-            pos.CurrX = (long)currPos.X;
-            pos.CurrY = (long)currPos.Y;
+            pos.CurrX = (int)currPos.X;
+            pos.CurrY = (int)currPos.Y;
 
 
             return pos;

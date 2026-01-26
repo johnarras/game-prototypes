@@ -32,7 +32,7 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
 
             RewardList rewardList = new RewardList();
             retval.Add(rewardList);
-            long quantity = MathUtils.LongRange(spawnItem.MinQuantity, spawnItem.MaxQuantity, rand);
+            long quantity = MathUtil.LongRange(spawnItem.MinQuantity, spawnItem.MaxQuantity, rand);
 
             ItemGenArgs igd = new ItemGenArgs()
             {

@@ -184,7 +184,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             int frameDelta = Math.Abs(midFrame - _currFrame);
 
-            float midPercent = MathUtils.Clamp(0, 1.0f - frameDelta * 1.0f / midFrame, 1);
+            float midPercent = MathUtil.Clamp(0, 1.0f - frameDelta * 1.0f / midFrame, 1);
 
             MainImage.color = _startColor * (1 - midPercent) + _targetColor * (midPercent);
 
@@ -264,9 +264,9 @@ namespace Assets.Scripts.Crawler.Combat
             _hitImageFrame = 0;
             RectTransform rectTransform = HitImage.GetComponent<RectTransform>();
 
-            float dx = MathUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dx = MathUtil.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
 
-            float dy = MathUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dy = MathUtil.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
 
             float angle = 0;
 
@@ -274,22 +274,22 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 if (dy < 0)
                 {
-                    angle = MathUtils.FloatRange(0, 90, _rand);
+                    angle = MathUtil.FloatRange(0, 90, _rand);
                 }
                 else
                 {
-                    angle = MathUtils.FloatRange(-90, 0, _rand);
+                    angle = MathUtil.FloatRange(-90, 0, _rand);
                 }
             }
             else
             {
                 if (dy < 0)
                 {
-                    angle = MathUtils.FloatRange(90, 180, _rand);
+                    angle = MathUtil.FloatRange(90, 180, _rand);
                 }
                 else
                 {
-                    angle = MathUtils.FloatRange(180, 270, _rand);
+                    angle = MathUtil.FloatRange(180, 270, _rand);
                 }
             }
 
@@ -298,7 +298,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             rectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
-            rectTransform.localScale = Vector3.one * MathUtils.FloatRange(1, 1 + HitImageSizeDelta, _rand);
+            rectTransform.localScale = Vector3.one * MathUtil.FloatRange(1, 1 + HitImageSizeDelta, _rand);
         }
     }
 }

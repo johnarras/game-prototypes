@@ -1,8 +1,9 @@
 using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Options.Services;
 using Assets.Scripts.UI.Abstractions;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,6 +19,7 @@ namespace Assets.Scripts.Options
         protected IClientAppService _appService = null;
 
         public GToggle FullScreenToggle;
+        public GToggle PauseAtEndOfCombatToggle;
 
         public GSlider MusicVolumeSlider;
         public GSlider SoundVolumeSlider;
@@ -52,6 +54,18 @@ namespace Assets.Scripts.Options
             FullScreenToggle?.SetIsOn(_appService.IsFullScreen());
             _uiService.SetToggle(FullScreenToggle, ToggleFullScreen);
 
+            PartyData party = _crawlerService.GetParty();
+            if (party == null)
+            {
+                _clientEntityService.SetActive(PauseAtEndOfCombatToggle, false);
+            }
+            else
+            {
+                _clientEntityService.SetActive(PauseAtEndOfCombatToggle, true);
+                PauseAtEndOfCombatToggle?.SetIsOn(party.HasFlag(PartyFlags.PauseAtEndOfCombat));
+                _uiService.SetToggle(PauseAtEndOfCombatToggle, TogglePauseAtEndOfCombat);
+            }
+
             await Task.CompletedTask;
         }
 
@@ -59,6 +73,23 @@ namespace Assets.Scripts.Options
         {
             _optionsService.SaveOptions();
             base.OnStartClose();
+        }
+
+        private void TogglePauseAtEndOfCombat(bool isOn)
+        {
+
+            PartyData party = _crawlerService.GetParty();
+            if (party != null)
+            {
+                if (isOn)
+                {
+                    party.AddFlags(PartyFlags.PauseAtEndOfCombat);
+                }
+                else
+                {
+                    party.RemoveFlags(PartyFlags.PauseAtEndOfCombat);
+                }
+            }
         }
 
         private void ToggleFullScreen(bool isOn)

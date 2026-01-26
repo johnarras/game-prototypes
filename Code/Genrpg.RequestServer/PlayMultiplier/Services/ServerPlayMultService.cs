@@ -13,7 +13,7 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
     {
         private ISharedPlayMultService _sharedPlayMultService = null;
         private ICaravanService _caravanService = null;
-        public async Task SetPlayMult(WebContext context, long newPlayMult)
+        public async Task SetPlayMult(WebContext context, int newPlayMult)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 
@@ -24,7 +24,7 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
                 coreData.Level = 1;
             }
 
-            newPlayMult = MathUtils.Clamp(MobileGameConstants.MinPlayMult, newPlayMult, _sharedPlayMultService.GetMaxMult(coreData));
+            newPlayMult = MathUtil.Clamp(MobileGameConstants.MinPlayMult, newPlayMult, _sharedPlayMultService.GetMaxMult(coreData));
 
             coreData.Vars[TraderVars.Mult] = newPlayMult;
 

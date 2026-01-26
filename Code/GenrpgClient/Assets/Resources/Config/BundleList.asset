@@ -115,6 +115,12 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: audiotreasure
     IsLocal: 0
+  - BundleName: biomescitymarker
+    IsLocal: 0
+  - BundleName: biomestraderterrain
+    IsLocal: 0
+  - BundleName: biomestraderterrainpatch
+    IsLocal: 0
   - BundleName: buildingsdefault
     IsLocal: 0
   - BundleName: bushesazalea
@@ -182,6 +188,32 @@ MonoBehaviour:
   - BundleName: combatrangedcombathit
     IsLocal: 0
   - BundleName: combatshadowcombathit
+    IsLocal: 0
+  - BundleName: culturesarab
+    IsLocal: 0
+  - BundleName: cultureschinese
+    IsLocal: 0
+  - BundleName: culturesegyptian
+    IsLocal: 0
+  - BundleName: culturesgermanic
+    IsLocal: 0
+  - BundleName: culturesgreek
+    IsLocal: 0
+  - BundleName: culturesindian
+    IsLocal: 0
+  - BundleName: cultureskhmer
+    IsLocal: 0
+  - BundleName: cultureslevantine
+    IsLocal: 0
+  - BundleName: culturesmesopotamian
+    IsLocal: 0
+  - BundleName: culturesmongol
+    IsLocal: 0
+  - BundleName: culturespersian
+    IsLocal: 0
+  - BundleName: culturespunic
+    IsLocal: 0
+  - BundleName: culturesroman
     IsLocal: 0
   - BundleName: dungeonsarcane
     IsLocal: 0
@@ -1500,6 +1532,4 @@ MonoBehaviour:
   - BundleName: uiunits
     IsLocal: 0
   - BundleName: uizones
-    IsLocal: 0
-  - BundleName: uimarkers
     IsLocal: 0

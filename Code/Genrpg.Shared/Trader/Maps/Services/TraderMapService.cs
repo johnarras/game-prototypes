@@ -12,17 +12,17 @@ namespace Genrpg.Shared.Trader.Maps.Services
         float GetAngle(long fromX, long fromY, long toX, long toY);
 
 
-        long GetDistanceBetweenPoints(TravelSettings settings, long x, long y, long toX, long toY);
+        int GetDistanceBetweenPoints(TravelSettings settings, long x, long y, long toX, long toY);
     }
 
     public class TraderMapService : ITraderMapService
     {
-        public long GetDistanceBetweenPoints(TravelSettings settings, long x, long y, long toX, long toY)
+        public int GetDistanceBetweenPoints(TravelSettings settings, long x, long y, long toX, long toY)
         {
             long dx = x - toX;
             long dy = y - toY;
 
-            return (long)(Math.Sqrt(dx * dx + dy * dy) * settings.DistancePerMapUnit);
+            return (int)(Math.Sqrt(dx * dx + dy * dy) * settings.DistancePerMapUnit);
         }
         public MyPointF GetMapCoordinate(long fromX, long fromY, long toX, long toY, double distanceGone, double totalDistance)
         {

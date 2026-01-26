@@ -28,8 +28,8 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
                 maxRank = StatusEffects.Dead - 1;
             }
 
-            long rank = Math.Min(MathUtils.LongRange(0, maxRank - 1, _rand),
-                MathUtils.LongRange(0, maxRank - 1, _rand));
+            long rank = Math.Min(MathUtil.LongRange(0, maxRank - 1, _rand),
+                MathUtil.LongRange(0, maxRank - 1, _rand));
 
             item.Effects.Add(new ItemEffect()
             {

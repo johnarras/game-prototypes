@@ -15,7 +15,7 @@ public class SaveMap : BaseZoneGenerator
     {
         await base.Generate(token);
 
-        _mapProvider.GetMap().OverrideZonePercent = 0; // MathUtils.IntRange(20, 80, _rand);
+        _mapProvider.GetMap().OverrideZonePercent = 0; // MathUtil.IntRange(20, 80, _rand);
 
         for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
         {
@@ -154,7 +154,7 @@ public class SaveMap : BaseZoneGenerator
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
-                float val = MathUtils.Clamp(0, Math.Abs(_md.overrideZoneScales[x + startX, y + startY]), 1);
+                float val = MathUtil.Clamp(0, Math.Abs(_md.overrideZoneScales[x + startX, y + startY]), 1);
 
                 bytes[index++] = (byte)(val * MapConstants.OverrideZoneScaleMax);
             }

@@ -10,9 +10,9 @@ namespace Assets.Scripts.Trader.UI.Cities
     public class TraderRoadArgs
     {
         public City TargetCity { get; set; }
-        public long TargetX { get; set; }
-        public long TargetY { get; set; }
-        public long DistanceToTarget { get; set; }
+        public int TargetX { get; set; }
+        public int TargetY { get; set; }
+        public int DistanceToTarget { get; set; }
         public float Angle { get; set; }
     }
 
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         private void OnClickButton()
         {
-            _webService.SendClientUserWebRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToY = _args.TargetY, ToCityId = _args.TargetCity?.IdKey ?? 0 }, GetToken());
+            _webService.SendClientUserWebRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToY = _args.TargetY, ToCityId = (int)(_args.TargetCity?.IdKey ?? 0) }, GetToken());
         }
     }
 }

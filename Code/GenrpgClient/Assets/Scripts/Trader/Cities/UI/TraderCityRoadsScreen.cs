@@ -1,10 +1,12 @@
-﻿using Assets.Scripts.UI.ScreenSystem;
+﻿using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Maps.Services;
 using Genrpg.Shared.Trader.Travel.Settings;
+using Genrpg.Shared.UI.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -27,6 +29,8 @@ namespace Assets.Scripts.Trader.UI.Cities
         public GameObject CompassParent;
         public GImage CompassImage;
 
+        public GButton EnterCityButton;
+        public GameObject EnterCityButtonParent;
 
         private List<TraderPathUI> _roads = new List<TraderPathUI>();
 
@@ -44,6 +48,9 @@ namespace Assets.Scripts.Trader.UI.Cities
             CoreData coreData = _gs.ch.Get<CoreData>();
 
             CaravanPosition pos = _caravanService.GetPosition(coreData);
+
+            _clientEntityService.SetActive(EnterCityButtonParent, pos.GetCurrentCity() != null);
+            _uiService.SetButton(EnterCityButton, GetName(), ShowCity);
 
             IReadOnlyList<City> allCities = _gameData.Get<CitySettings>(_gs.ch).GetData();
 
@@ -64,8 +71,6 @@ namespace Assets.Scripts.Trader.UI.Cities
                 {
                     continue;
                 }
-
-
 
                 distances.Add(new CityDistance()
                 {
@@ -118,13 +123,11 @@ namespace Assets.Scripts.Trader.UI.Cities
             _clientEntityService.DestroyAllChildren(RoadRowAnchor);
             _roads.Clear();
 
-
-
             foreach (CityDistance distance in distances)
             {
                 TraderRoadArgs args = new TraderRoadArgs()
                 {
-                    DistanceToTarget = (long)distance.Distance,
+                    DistanceToTarget = (int)distance.Distance,
                     TargetCity = distance.City,
                     TargetX = distance.City.MapPixelX,
                     TargetY = distance.City.MapPixelY,
@@ -137,6 +140,19 @@ namespace Assets.Scripts.Trader.UI.Cities
                 _clientEntityService.AddToParent(ui, RoadRowAnchor);
 
                 ui.SetData(args);
+            }
+        }
+
+        private void ShowCity()
+        {
+            CoreData coreData = _gs.ch.Get<CoreData>();
+
+            CaravanPosition pos = _caravanService.GetPosition(coreData);
+
+            if (pos.GetCurrentCity() != null)
+            {
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCity, new TraderCityScreenArgs() { CityId = pos.GetCurrentCity().IdKey }));
+                StartClose();
             }
         }
     }

@@ -22,7 +22,7 @@ namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
         {
             TraderStatData statData = await context.GetAsync<TraderStatData>();
 
-            statData.Stats[entityId].Bonus += quantity;
+            statData.Stats[entityId].Bonus += (int)quantity;
 
         }
     }

@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_SizeDelta: {x: -4, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6279716878490006174
 CanvasRenderer:
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -149,7 +150,6 @@ GameObject:
   - component: {fileID: 6279923500905690770}
   - component: {fileID: 3676471800264198039}
   - component: {fileID: 4487435691555664320}
-  - component: {fileID: 5818116719160212546}
   m_Layer: 5
   m_Name: CrawlerButton
   m_TagString: Untagged
@@ -259,20 +259,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  TooltipText: 
-  Tooltip: {fileID: 0}
---- !u!114 &5818116719160212546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6068116055585206064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37b16fc73c462446bf1673f9fae86ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Tooltips.TextTooltip
-  TooltipText: 
-  Text: {fileID: 0}
-  Parent: {fileID: 0}

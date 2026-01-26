@@ -1,11 +1,11 @@
 {
   "Id": "default",
-  "MinStartValue": 11,
-  "MaxStartValue": 17,
+  "MinStartValue": 7,
+  "MaxStartValue": 13,
   "BaseBuffStatValue": 10,
   "BonusScalingMult": 1.0,
   "BonusScalingPower": 0.55,
   "BonusScalingStartVal": 13.0,
   "Name": "CrawlerStatSettings",
-  "SaveTime": "2025-10-04T19:38:43.789Z"
+  "SaveTime": "2026-01-25T16:03:57.099Z"
 }

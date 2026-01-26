@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Config.Constants;
+
 
 
 
@@ -51,7 +53,7 @@ public class ClientConfig : ScriptableObject
         {
             return "http://localhost:5000";
         }
-        return BaseWebEndpoint.Replace("XXXX", Env.ToLower());
+        return BaseWebEndpoint.Replace(AppConfigKeys.PlaceholderString, Env.ToLower());
     }
 
 #if UNITY_EDITOR

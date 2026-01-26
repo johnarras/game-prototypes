@@ -365,7 +365,7 @@ public class MapTerrainManager : IMapTerrainManager
 
     public void SetVisibilityRadiusScale(float scale)
     {
-        scale = MathUtils.Clamp(0.1f, scale, 1);
+        scale = MathUtil.Clamp(0.1f, scale, 1);
         _currVisibilityRadus = _baseVisibilityRadius * scale;
         if (_currVisibilityRadus < 1.4f)
         {
@@ -1091,8 +1091,8 @@ public class MapTerrainManager : IMapTerrainManager
         {
             return Vector3.up;
         }
-        x = MathUtils.Clamp(NormalEdgePct, x / (divSize), 1 - NormalEdgePct);
-        y = MathUtils.Clamp(NormalEdgePct, y / (divSize), 1 - NormalEdgePct);
+        x = MathUtil.Clamp(NormalEdgePct, x / (divSize), 1 - NormalEdgePct);
+        y = MathUtil.Clamp(NormalEdgePct, y / (divSize), 1 - NormalEdgePct);
         Vector3 norm = normalTerrainData.GetInterpolatedNormal(x, y);
 
         return norm;
@@ -1130,8 +1130,8 @@ public class MapTerrainManager : IMapTerrainManager
         }
 
         float endDelta = 0.2f;
-        localx = MathUtils.Clamp(endDelta, localx, MapConstants.TerrainPatchSize - 1 - endDelta);
-        localy = MathUtils.Clamp(endDelta, localy, MapConstants.TerrainPatchSize - 1 - endDelta);
+        localx = MathUtil.Clamp(endDelta, localx, MapConstants.TerrainPatchSize - 1 - endDelta);
+        localy = MathUtil.Clamp(endDelta, localy, MapConstants.TerrainPatchSize - 1 - endDelta);
 
         return tdata2.GetSteepness((localx + 0.0f) / (MapConstants.TerrainPatchSize - 1), (localy + 0.0f) / (MapConstants.TerrainPatchSize - 1));
     }
@@ -1171,8 +1171,8 @@ public class MapTerrainManager : IMapTerrainManager
         }
 
 
-        interpLocalX = MathUtils.Clamp(0.01f, interpLocalX, MapConstants.TerrainPatchSize - 1.01f);
-        interpLocalY = MathUtils.Clamp(0.01f, interpLocalY, MapConstants.TerrainPatchSize - 1.01f);
+        interpLocalX = MathUtil.Clamp(0.01f, interpLocalX, MapConstants.TerrainPatchSize - 1.01f);
+        interpLocalY = MathUtil.Clamp(0.01f, interpLocalY, MapConstants.TerrainPatchSize - 1.01f);
 
         return normalTerrainData.GetInterpolatedHeight((interpLocalX + 0.0f) / MapConstants.TerrainPatchSize, (interpLocalY + 0.0f) / MapConstants.TerrainPatchSize);
     }

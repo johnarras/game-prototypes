@@ -15,11 +15,8 @@ namespace Assets.Scripts.Crawler.UI.HUD
 
 
         public GText MapNameText;
-        public GText LevelText;
-        public GText MapPositionText;
+        public GText PosLevelText;
         public GText TimeOfDayText;
-        public GText CompleteText;
-        public GText UpgradePointsText;
 
 
         private UpdateCrawlerUI _update = null;
@@ -47,21 +44,14 @@ namespace Assets.Scripts.Crawler.UI.HUD
 
             if (map == null || party.HasFlag(PartyFlags.InGuildHall))
             {
-                _uiService.SetText(MapPositionText, "");
                 _uiService.SetText(MapNameText, "");
-                _uiService.SetText(LevelText, "");
-                _uiService.SetText(CompleteText, "");
+                _uiService.SetText(PosLevelText, "");
             }
             else
             {
-                _uiService.SetText(MapPositionText, "(" + party.CurrPos.X + "," + party.CurrPos.Z + ")");
                 _uiService.SetText(MapNameText, map.GetName(party.CurrPos.X, party.CurrPos.Z));
-                _uiService.SetText(LevelText, "Level: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z));
-                _uiService.SetText(CompleteText, party.CompletedMaps.HasBit(map.IdKey) ? "Complete!" : "");
+                _uiService.SetText(PosLevelText, "Lev: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z) + " @(" + party.CurrPos.X + "," + party.CurrPos.Z + ")");
             }
-
-            _uiService.SetText(UpgradePointsText, $"Upgrade Points: {party.UpgradePoints}");
-
         }
 
         private void OnUIUpdate(UpdateCrawlerUI update)

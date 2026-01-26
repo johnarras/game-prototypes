@@ -52,7 +52,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
                 ActiveSpellEffect eff = new ActiveSpellEffect(hitData);
                 eff.EntityTypeId = EntityTypes.StatPct;
                 eff.EntityId = proc.EntityId;
-                eff.Quantity = MathUtils.LongRange(proc.MinQuantity, proc.MaxQuantity, rand);
+                eff.Quantity = MathUtil.LongRange(proc.MinQuantity, proc.MaxQuantity, rand);
                 retval.Add(eff);
             }
             return retval;

@@ -76,9 +76,9 @@ public class AddFences : BaseZoneGenerator
         int xsize = endx - startx + 1;
         int ysize = endy - starty + 1;
 
-        float amp = MathUtils.FloatRange(0.0f, 0.3f, chanceRand);
-        float freq = MathUtils.FloatRange(0.02f, 0.1f, chanceRand) * (xsize+ysize) / 2;
-        float pers = MathUtils.FloatRange(0.2f, 0.45f, chanceRand);
+        float amp = MathUtil.FloatRange(0.0f, 0.3f, chanceRand);
+        float freq = MathUtil.FloatRange(0.02f, 0.1f, chanceRand) * (xsize+ysize) / 2;
+        float pers = MathUtil.FloatRange(0.2f, 0.45f, chanceRand);
         int octaves = 2;
 
         float[,] fenceChances = _noiseService.Generate(pers, freq, amp, octaves, chanceRand.Next(), xsize,ysize);

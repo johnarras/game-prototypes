@@ -1,6 +1,6 @@
+using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Options.Constants;
@@ -68,14 +68,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             {
                 if (detail.EntityId > 1)
                 {
-
                     world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == currMap.IdKey).ToList();
                     world.ClearCache();
 
                     List<long> mapIds = new List<long>();
 
                     mapIds.Add(detail.EntityId);
-
 
                     if (detail.EntityId == 2 && currMap.IdKey == 1)
                     {
@@ -100,7 +98,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         }
                     }
 
-                    mapIds = mapIds.OrderBy(x => x).ToList();
+                    mapIds = mapIds.Where(x => x > 1).OrderBy(x => x).ToList();
 
                     foreach (long mapId in mapIds)
                     {
@@ -116,21 +114,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             enterZ = detail.Z;
                         }
 
-                        CrawlerMapGenData genData = new CrawlerMapGenData()
-                        {
-                            FromMapId = mapId - 1,
-                            CurrFloor = mapId - 1,
-                            MaxFloor = mapId,
-                            Level = mapId - 1,
-                            LevelDelta = 0,
-                            MapTypeId = CrawlerMapTypes.Dungeon,
-                            World = world,
-                            FromMapX = enterX,
-                            FromMapZ = enterZ,
-                            ForcedIdKey = mapId,
-                        };
 
-                        currNextMap = await _mapGenService.Generate(party, world, genData, token);
+                        currNextMap = await _mapGenService.GenerateRoguelikeDungeonLevel(party, world, mapId, enterX, enterZ, token);
+
                         nextMaps.Add(currNextMap);
                         currNextMap.IdKey = mapId;
 
@@ -156,7 +142,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 }
                 else
                 {
-
                     MapCellDetail targetDetail = currNextMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId == 2);
                     if (targetDetail != null)
                     {
@@ -189,6 +174,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             {
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "No such map exists." };
             }
+
+            nextMaps = nextMaps.OrderBy(x => x.IdKey).ToList();
+
             stateData.BGImageOnly = true;
 
             ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(nextMaps[0].ZoneTypeId);
@@ -268,7 +256,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             {
                                 if (!nextMaps[0].HasFlag(CrawlerMapFlags.ShowFullRiddleText))
                                 {
-                                    stateData.AddText(descLines[d].Substring(0, (int)MathUtils.Min(descLines[d].Length, 6)) + "...");
+                                    stateData.AddText(descLines[d].Substring(0, (int)MathUtil.Min(descLines[d].Length, 6)) + "...");
                                 }
                                 else
                                 {
@@ -456,6 +444,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             for (int m = 0; m < nextMaps.Count; m++)
             {
                 Key enterCode = FromChar((char)(m + 'A'));
+
+                if (nextMaps.Count == 1)
+                {
+                    enterCode = Key.Y;
+                }
 
                 CrawlerMap nmap = nextMaps[m];
 

@@ -61,7 +61,7 @@ namespace Genrpg.Shared.Spells.PlayerData.Spells
 
         public int GetRange()
         {
-            return MathUtils.Clamp(SkillType.MinRange, SkillType.MinRange + MaxRange * SkillType.RangePointDistance, SkillType.MaxRange);
+            return MathUtil.Clamp(SkillType.MinRange, SkillType.MinRange + MaxRange * SkillType.RangePointDistance, SkillType.MaxRange);
         }
 
         public bool UsesProjectile()

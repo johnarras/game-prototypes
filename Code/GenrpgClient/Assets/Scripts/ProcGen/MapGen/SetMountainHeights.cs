@@ -14,27 +14,27 @@ public class SetMountainHeights : BaseAddMountains
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 1000000000 + 3323292);
 
-        float pers = MathUtils.FloatRange(0.15f, 0.25f, rand);
+        float pers = MathUtil.FloatRange(0.15f, 0.25f, rand);
         int octaves = 2;
-        float amp = MathUtils.FloatRange(0.30f, 0.45f, rand);
-        float freq = MathUtils.FloatRange(0.04f, 0.09f, rand) * _mapProvider.GetMap().GetHwid();
+        float amp = MathUtil.FloatRange(0.30f, 0.45f, rand);
+        float freq = MathUtil.FloatRange(0.04f, 0.09f, rand) * _mapProvider.GetMap().GetHwid();
 
-        float powerpers = MathUtils.FloatRange(0.10f, 0.20f, rand);
+        float powerpers = MathUtil.FloatRange(0.10f, 0.20f, rand);
         int poweroctaves = 2;
-        float poweramp = MathUtils.FloatRange(0.14f, 0.25f, rand);
-        float powerfreq = MathUtils.FloatRange(0.06f, 0.10f, rand) * _mapProvider.GetMap().GetHwid();
+        float poweramp = MathUtil.FloatRange(0.14f, 0.25f, rand);
+        float powerfreq = MathUtil.FloatRange(0.06f, 0.10f, rand) * _mapProvider.GetMap().GetHwid();
 
 
-        float edgepers = MathUtils.FloatRange(0.20f, 0.30f, rand);
+        float edgepers = MathUtil.FloatRange(0.20f, 0.30f, rand);
         int edgeoctaves = 2;
-        float edgeamp = MathUtils.FloatRange(0.40f, 0.70f, rand);
-        float edgefreq = MathUtils.FloatRange(0.03f, 0.05f, rand) * _mapProvider.GetMap().GetHwid();
+        float edgeamp = MathUtil.FloatRange(0.40f, 0.70f, rand);
+        float edgefreq = MathUtil.FloatRange(0.03f, 0.05f, rand) * _mapProvider.GetMap().GetHwid();
 
 
-        float edgePowPers = MathUtils.FloatRange(0.20f, 0.30f, rand);
+        float edgePowPers = MathUtil.FloatRange(0.20f, 0.30f, rand);
         int edgePowoctaves = 2;
-        float edgePowamp = MathUtils.FloatRange(0.30f, 0.50f, rand);
-        float edgePowfreq = MathUtils.FloatRange(0.03f, 0.06f, rand) * _mapProvider.GetMap().GetHwid();
+        float edgePowamp = MathUtil.FloatRange(0.30f, 0.50f, rand);
+        float edgePowfreq = MathUtil.FloatRange(0.03f, 0.06f, rand) * _mapProvider.GetMap().GetHwid();
 
 
 
@@ -43,7 +43,7 @@ public class SetMountainHeights : BaseAddMountains
         float[,] edgeNoise = _noiseService.Generate(edgepers, edgefreq, edgeamp, edgeoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         float[,] edgePowNoise = _noiseService.Generate(edgePowPers, edgePowfreq, edgePowamp, edgePowoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         
-        float mountainDefaultHeight = _md.GetMountainDefaultSize(_mapProvider.GetMap()) * MathUtils.FloatRange(0.8f, 1.0f, rand);
+        float mountainDefaultHeight = _md.GetMountainDefaultSize(_mapProvider.GetMap()) * MathUtil.FloatRange(0.8f, 1.0f, rand);
 
         float minDistPctCutoff = 0.9f;
 
@@ -69,19 +69,19 @@ public class SetMountainHeights : BaseAddMountains
                 {
                     float rpct = roadDist / roadCheckDistance;
                     rpct = (float)(Math.Pow(rpct, 1.6f));
-                    float edgeDist = MathUtils.Clamp(0.10f, 0.30f + edgeNoise[x, y], 0.70f);
+                    float edgeDist = MathUtil.Clamp(0.10f, 0.30f + edgeNoise[x, y], 0.70f);
                     float edgeAmt = (float)(Math.Pow(edgeDist, 1.7f + edgePowNoise[x, y]));
                     
                     float currAmt = rpct * rpct;
                     float noiseVal = noise[x, y];
                     float noiseMinDist = MapConstants.RoadBaseHillScaleDistance * (1 + noiseVal);
-                    noiseMinDist = MathUtils.Clamp(minNoiseDistance, noiseMinDist, roadCheckDistance);
+                    noiseMinDist = MathUtil.Clamp(minNoiseDistance, noiseMinDist, roadCheckDistance);
 
                     noiseMinDist = 20.0f;
                     if (_md.roadDistances[x, y] < noiseMinDist)
                     {
                         float currPower = 1.8f;
-                        currPower *= MathUtils.Clamp(1.0f, (1.0f + powernoise[x, y]), 2.0f);
+                        currPower *= MathUtil.Clamp(1.0f, (1.0f + powernoise[x, y]), 2.0f);
                         noiseScale *= (float)(Math.Pow(roadDist / noiseMinDist, currPower));
                     }
                     if (rpct <= edgeDist)

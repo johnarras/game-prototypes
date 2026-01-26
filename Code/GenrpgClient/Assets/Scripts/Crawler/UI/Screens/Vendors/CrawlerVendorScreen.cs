@@ -86,7 +86,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _party.LastVendorRefresh = DateTime.UtcNow;
 
 
-            int quantity = MathUtils.IntRange(4, 10, _rand);
+            int quantity = MathUtil.IntRange(4, 10, _rand);
 
             long level = await _crawlerWorldService.GetMapLevelAtParty(_party);
 

@@ -2,107 +2,107 @@
   "ClientPlatform": "win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2026-01-13T00:23:23.1820983Z"
+    "UpdateTime": "2026-01-26T01:02:29.1448551Z"
   },
   "Versions": {
     "animalskinsasianelephant": {
       "Name": "animalskinsasianelephant",
-      "Hash": "89b4bb28eb93dd1520470e2d01e8ef18",
+      "Hash": "eb83fc4e558cd6df56e1bf99528317b1",
       "ChildDependencies": []
     },
     "animalskinsbactriancamel": {
       "Name": "animalskinsbactriancamel",
-      "Hash": "2c789acd60e3b924d379e155d4eadc15",
+      "Hash": "78b0481a0f9386d704328d81bb5d8354",
       "ChildDependencies": []
     },
     "animalskinsdonkey": {
       "Name": "animalskinsdonkey",
-      "Hash": "fdefc840eeba5d3a3cef7db3f698168c",
+      "Hash": "17e3b11d322d6bf4e47a67587f8f7094",
       "ChildDependencies": []
     },
     "animalskinsdrafthorse": {
       "Name": "animalskinsdrafthorse",
-      "Hash": "e9955d49255ca18209a1bb01eb5ca79f",
+      "Hash": "4a8f54434dbc3cccb8b9758bd68a73f5",
       "ChildDependencies": []
     },
     "animalskinsdromedarycamel": {
       "Name": "animalskinsdromedarycamel",
-      "Hash": "951f7b5c49c5bd9fe191dec185f6f6ff",
+      "Hash": "9913bdd55676be6f291889e79eb631c2",
       "ChildDependencies": []
     },
     "animalskinsheavywarhorse": {
       "Name": "animalskinsheavywarhorse",
-      "Hash": "58175c34b455687fcfea0c2aefa8965d",
+      "Hash": "ec620b54328c2c450ece0966d9812e01",
       "ChildDependencies": []
     },
     "animalskinsmule": {
       "Name": "animalskinsmule",
-      "Hash": "d50cae122518864175a18810eb62a499",
+      "Hash": "f708100e77b840cb13e057a8410917af",
       "ChildDependencies": []
     },
     "animalskinsox": {
       "Name": "animalskinsox",
-      "Hash": "cdd6c288a54162d63be2b0151aec06aa",
+      "Hash": "b3c62913828b80a87b4b8ee7fa917bd3",
       "ChildDependencies": []
     },
     "animalskinspony": {
       "Name": "animalskinspony",
-      "Hash": "cd7c389d548fcabd7b2dbf47b7c60f3f",
+      "Hash": "40169db7d6219ba59531cdb2b2a8abcb",
       "ChildDependencies": []
     },
     "animalskinsreindeer": {
       "Name": "animalskinsreindeer",
-      "Hash": "0ab00f3bb3128f074cb84dbbe3ebb235",
+      "Hash": "cabc88e719c4055c8632458dfb76026e",
       "ChildDependencies": []
     },
     "animalskinsridinghorse": {
       "Name": "animalskinsridinghorse",
-      "Hash": "5f835169fe2ab130a6e49b92a6b19425",
+      "Hash": "e471af8e3127d85444114003bb460750",
       "ChildDependencies": []
     },
     "animalskinstamedonager": {
       "Name": "animalskinstamedonager",
-      "Hash": "4744000481d7356549c45d88aed71cca",
+      "Hash": "df719452a086e96027ecbda800648ffe",
       "ChildDependencies": []
     },
     "animalskinswaterbuffalo": {
       "Name": "animalskinswaterbuffalo",
-      "Hash": "3503b76bb04c7a9cdae654eede0be7bd",
+      "Hash": "30bbd12258ca920da70aa355a21a51ad",
       "ChildDependencies": []
     },
     "animalskinsyak": {
       "Name": "animalskinsyak",
-      "Hash": "4ce3608fb393b13dce93c3e0e57ff6f8",
+      "Hash": "0e6b6b45053d00638270c04319c58725",
       "ChildDependencies": []
     },
     "animalskinszebu": {
       "Name": "animalskinszebu",
-      "Hash": "04ccb4ae6fab44dbfaad707d425a5ec5",
+      "Hash": "be5abb67702984139400df5eb2dd87f3",
       "ChildDependencies": []
     },
     "atlasanimalicons": {
       "Name": "atlasanimalicons",
-      "Hash": "cac5aea2af4362dfff84c9b45fda9306",
+      "Hash": "9a52be384786651ee7c0962230caba66",
       "ChildDependencies": []
     },
     "atlascorecurrencytypeicons": {
       "Name": "atlascorecurrencytypeicons",
-      "Hash": "5318c7d7c24c131ada5ad90688ae4efb",
+      "Hash": "198936865631a071aa7a4765c90dc12e",
       "ChildDependencies": []
     },
     "atlascrawlercombat": {
       "Name": "atlascrawlercombat",
-      "Hash": "fc82c778d716fce80c9bd3e462b0310a",
+      "Hash": "ed97053a5171dbc413d05a9c975172a3",
       "ChildDependencies": []
     },
     "atlascrawlercurrencytypeicons": {
       "Name": "atlascrawlercurrencytypeicons",
-      "Hash": "f28f800482e38f1ee2016e99a6b12266",
+      "Hash": "1ebfb179c1e73267017389f3b2bbdd08",
       "ChildDependencies": []
     },
     "atlascrawlerminimap": {
       "Name": "atlascrawlerminimap",
-      "Hash": "fe42392dd936fd4dbeb98f1ac0d7f4e8",
+      "Hash": "4c58cbdc59bdf8aa36f969718a9bb67a",
       "ChildDependencies": []
     },
     "atlascrawlerui": {
@@ -112,12 +112,12 @@
     },
     "atlascurrencytypeicons": {
       "Name": "atlascurrencytypeicons",
-      "Hash": "2e33fd2a9738bde64b17c5f73ee4ab58",
+      "Hash": "963d88a93351ba3503a4d39358596ff3",
       "ChildDependencies": []
     },
     "atlasdiceicons": {
       "Name": "atlasdiceicons",
-      "Hash": "736944aeb7eb31539ed5bc8a0bd24908",
+      "Hash": "c674f227503203e2ebae317eef23adcb",
       "ChildDependencies": []
     },
     "atlasicons": {
@@ -260,9 +260,27 @@
       "Hash": "3d3f43d1a8011f6d404991ab8500b3aa",
       "ChildDependencies": []
     },
+    "biomescitymarker": {
+      "Name": "biomescitymarker",
+      "Hash": "39efc25f3b1e1d4fc8ea5fc891c3cd66",
+      "ChildDependencies": []
+    },
+    "biomestraderterrain": {
+      "Name": "biomestraderterrain",
+      "Hash": "52b37d661f7873a8911aaaad27cdac0b",
+      "ChildDependencies": [
+        "biomescitymarker",
+        "biomestraderterrainpatch"
+      ]
+    },
+    "biomestraderterrainpatch": {
+      "Name": "biomestraderterrainpatch",
+      "Hash": "49c618e5d9c3e7b7c5ad9a7dd0c7c63a",
+      "ChildDependencies": []
+    },
     "buildingsdefault": {
       "Name": "buildingsdefault",
-      "Hash": "e02f2e091c62568cadc6f833ce73a2e2",
+      "Hash": "e5e2286743bfbcbca0ffcbdd3455be4a",
       "ChildDependencies": []
     },
     "bushesazalea": {
@@ -430,6 +448,71 @@
       "Hash": "a44405c4e4417fb511b4a96db45146a8",
       "ChildDependencies": []
     },
+    "culturesarab": {
+      "Name": "culturesarab",
+      "Hash": "680b21d84b0da97b5e2b838a179e06f4",
+      "ChildDependencies": []
+    },
+    "cultureschinese": {
+      "Name": "cultureschinese",
+      "Hash": "e6b7e6f50e31b6e5fb1a2ff4dd9c7a47",
+      "ChildDependencies": []
+    },
+    "culturesegyptian": {
+      "Name": "culturesegyptian",
+      "Hash": "7104ffc1dea7cb0a8cb5347324603306",
+      "ChildDependencies": []
+    },
+    "culturesgermanic": {
+      "Name": "culturesgermanic",
+      "Hash": "bd36c8b011f71106397c9c90ce2ca3fa",
+      "ChildDependencies": []
+    },
+    "culturesgreek": {
+      "Name": "culturesgreek",
+      "Hash": "3a92df80a163d0a10b4f3d25e1e621dd",
+      "ChildDependencies": []
+    },
+    "culturesindian": {
+      "Name": "culturesindian",
+      "Hash": "7c5ddc3cf7e82e6cf9712befcda23772",
+      "ChildDependencies": []
+    },
+    "cultureskhmer": {
+      "Name": "cultureskhmer",
+      "Hash": "0e7aa01e5aa3d469eed8670da21d28d6",
+      "ChildDependencies": []
+    },
+    "cultureslevantine": {
+      "Name": "cultureslevantine",
+      "Hash": "f7f48790591354a58333dec96afc28c2",
+      "ChildDependencies": []
+    },
+    "culturesmesopotamian": {
+      "Name": "culturesmesopotamian",
+      "Hash": "4c60d880f6770bf4afa0b77ce38bb3fc",
+      "ChildDependencies": []
+    },
+    "culturesmongol": {
+      "Name": "culturesmongol",
+      "Hash": "efe48809d8de1173a1b80aa9825aef54",
+      "ChildDependencies": []
+    },
+    "culturespersian": {
+      "Name": "culturespersian",
+      "Hash": "bcc376340f2e93e9dde41d1e3355104e",
+      "ChildDependencies": []
+    },
+    "culturespunic": {
+      "Name": "culturespunic",
+      "Hash": "e25f53f8fcae4f63f82bdeb6b58618dd",
+      "ChildDependencies": []
+    },
+    "culturesroman": {
+      "Name": "culturesroman",
+      "Hash": "ef4b8b74a80cf3f9b450471f8403320e",
+      "ChildDependencies": []
+    },
     "dungeonsarcane": {
       "Name": "dungeonsarcane",
       "Hash": "9ecd25b703a5dd65c6e1e47577d3aef2",
@@ -559,7 +642,7 @@
     },
     "dungeonsterrainfloor": {
       "Name": "dungeonsterrainfloor",
-      "Hash": "01e9f7ea306579049c7f1990309d8e43",
+      "Hash": "0395b575de447722e47a0ac3b55f7265",
       "ChildDependencies": []
     },
     "dungeonstower": {
@@ -1985,17 +2068,17 @@
     },
     "storesdefaultstoreartpanel": {
       "Name": "storesdefaultstoreartpanel",
-      "Hash": "d3cb8ebbd6b096379ceb0f649dfa696f",
+      "Hash": "a7073904e6fff985b7552d61b7ad871e",
       "ChildDependencies": []
     },
     "storesmanastoreartpanel": {
       "Name": "storesmanastoreartpanel",
-      "Hash": "0064d1df1b0de67f7d6fe7803bf02d35",
+      "Hash": "56a0a8992adcc43901415f157d216bd8",
       "ChildDependencies": []
     },
     "storessuppliesstoreartpanel": {
       "Name": "storessuppliesstoreartpanel",
-      "Hash": "df6fd1f7d702571e017d770ea20a3fd0",
+      "Hash": "6bc347f2b81e36f1e7df3124c595889b",
       "ChildDependencies": []
     },
     "terraintexcobblea": {
@@ -3125,7 +3208,7 @@
     },
     "textureliststraderworldmap": {
       "Name": "textureliststraderworldmap",
-      "Hash": "7f9b60f012cb6efd9d7d875edb0e0447",
+      "Hash": "9fc63352f42b9b717793aa9c651fd638",
       "ChildDependencies": []
     },
     "textureliststrainerbuilding": {
@@ -3550,7 +3633,7 @@
     },
     "uiactionbars": {
       "Name": "uiactionbars",
-      "Hash": "9b144d60cbff99eac7c89aed6540d63a",
+      "Hash": "4b1047f22479372ea839b0aa68d67042",
       "ChildDependencies": []
     },
     "uiblockers": {
@@ -3560,39 +3643,39 @@
     },
     "uicharacters": {
       "Name": "uicharacters",
-      "Hash": "6fcf30c3f3ef5093c0a6e4702782e597",
+      "Hash": "6b9ca4ff69703766177e0d034b99c925",
       "ChildDependencies": []
     },
     "uicharms": {
       "Name": "uicharms",
-      "Hash": "ed7b4c3ee4c47406178d99b24cdbf291",
+      "Hash": "20f7bf31f8c642fde2960ecd3f196dfe",
       "ChildDependencies": []
     },
     "uichat": {
       "Name": "uichat",
-      "Hash": "58e0d067cff92d06b6f132137f595898",
+      "Hash": "b2ec64d097b5f74efffdefb6b9aa05fc",
       "ChildDependencies": []
     },
     "uicore": {
       "Name": "uicore",
-      "Hash": "ea15b9ee71fa95b0da98024b834bd53f",
+      "Hash": "80f387da53fc7ef9f8b104727363610c",
       "ChildDependencies": []
     },
     "uicrafting": {
       "Name": "uicrafting",
-      "Hash": "59fee5a6b0f406894ca4185b9b6081c3",
+      "Hash": "73db88d87b60931c1bc01d1f9102eb75",
       "ChildDependencies": []
     },
     "uicrawler": {
       "Name": "uicrawler",
-      "Hash": "5e5b5b9d7316c52826669a60896d39d8",
+      "Hash": "60434d5a29c340a62794a16058ca35d6",
       "ChildDependencies": [
         "uicrawleraction"
       ]
     },
     "uicrawleraction": {
       "Name": "uicrawleraction",
-      "Hash": "ad50600592bc756b1a22452d24b9fa2a",
+      "Hash": "a336de7b455db37087db1cbf3f35dc82",
       "ChildDependencies": []
     },
     "uicrawlerbuffs": {
@@ -3602,12 +3685,12 @@
     },
     "uicrawlercombat": {
       "Name": "uicrawlercombat",
-      "Hash": "e51b2fac2db5d29721cfc60b77c48474",
+      "Hash": "f67ff9c65fa67e8b940ada7d2288c92f",
       "ChildDependencies": []
     },
     "uicrawlerhud": {
       "Name": "uicrawlerhud",
-      "Hash": "f8985d26907121879c58f2d16695d2ea",
+      "Hash": "137299445d9afb8523a28115a4e43b5a",
       "ChildDependencies": [
         "uicrawleraction",
         "uicrawlerparty",
@@ -3617,83 +3700,83 @@
     },
     "uicrawlerinfo": {
       "Name": "uicrawlerinfo",
-      "Hash": "35c80adb5b778200e02b45cd8e8d6ab1",
+      "Hash": "06f783807820c7b6dbbdfe7f6a5b12c7",
       "ChildDependencies": []
     },
     "uicrawleritems": {
       "Name": "uicrawleritems",
-      "Hash": "f6a0ebb9a0c21323289fd3309acc1dee",
+      "Hash": "8562702ad64ab60b0c5f647bfe969984",
       "ChildDependencies": []
     },
     "uicrawlermembers": {
       "Name": "uicrawlermembers",
-      "Hash": "c5c3c53ee382020723101b1ed48f206c",
+      "Hash": "3ea721fce482522a81e945dd107078e5",
       "ChildDependencies": []
     },
     "uicrawlerparty": {
       "Name": "uicrawlerparty",
-      "Hash": "2505d7680cb6085afaa52fb930e69450",
+      "Hash": "72646d7d6e60a7ce05926b84541196bf",
       "ChildDependencies": []
     },
     "uicrawlerquests": {
       "Name": "uicrawlerquests",
-      "Hash": "794b23202386f9afbe26efdc361b8bdc",
+      "Hash": "6d9e8b7483207371d66c79697dae4983",
       "ChildDependencies": []
     },
     "uicrawlerscreens": {
       "Name": "uicrawlerscreens",
-      "Hash": "fd40dbb7aac7fa6487e32cfb66ce99e6",
+      "Hash": "75801b8c2f919275ca6165fdc2d6235c",
       "ChildDependencies": []
     },
     "uicrawlertilemaps": {
       "Name": "uicrawlertilemaps",
-      "Hash": "7278f646f0832d1d81acc736371366dd",
+      "Hash": "847b03a35cd51418044e2947d13baad6",
       "ChildDependencies": []
     },
     "uicurrencies": {
       "Name": "uicurrencies",
-      "Hash": "6825cb1c004e69ebf788d41d1ae1469d",
+      "Hash": "0b1a1b938c50cd15209288405794e4ab",
       "ChildDependencies": []
     },
     "uidynamicui": {
       "Name": "uidynamicui",
-      "Hash": "05a871bf36e902a7f600c76d81a8aad8",
+      "Hash": "12b9f7598a4fceb312ebea4d00b45942",
       "ChildDependencies": []
     },
     "uientities": {
       "Name": "uientities",
-      "Hash": "77dee622733ca95aa1a309dcf6d7d598",
+      "Hash": "cd04c0cdbb5a1ceb2b98a5675cba9850",
       "ChildDependencies": []
     },
     "uifloatingtext": {
       "Name": "uifloatingtext",
-      "Hash": "aa9fd2489b9b14e0c8c5dfc8c651be86",
+      "Hash": "9f68f8538418edb5676f91b7996a53da",
       "ChildDependencies": []
     },
     "uiftue": {
       "Name": "uiftue",
-      "Hash": "a83c357e05ca2cd475f5929a5d5a68a2",
+      "Hash": "e7879e33b22c7b180e7497e120d7c9d2",
       "ChildDependencies": []
     },
     "uihud": {
       "Name": "uihud",
-      "Hash": "a84077764693ca5dab94ad913511fc4e",
+      "Hash": "40884c25ade892d4d49f31acd059f6e6",
       "ChildDependencies": []
     },
     "uiitems": {
       "Name": "uiitems",
-      "Hash": "fc05eaa38bc64ebaaea0928171831a95",
+      "Hash": "cf5298fbdf9cd714b8ec4146ef5692ee",
       "ChildDependencies": []
     },
     "uiloading": {
       "IsLocal": true,
       "Name": "uiloading",
-      "Hash": "8339db26a5a3ea11a90ca91abfb827f6",
+      "Hash": "55632e388deb33abb7ea3412df88fca5",
       "ChildDependencies": []
     },
     "uilogin": {
       "Name": "uilogin",
-      "Hash": "3530a7cc4850a773c5c20f30a709136f",
+      "Hash": "a52eb5dcbfd5d96429247ce92c1666f5",
       "ChildDependencies": []
     },
     "uiloot": {
@@ -3703,32 +3786,32 @@
     },
     "uimaps": {
       "Name": "uimaps",
-      "Hash": "cdf96220791a7f907c4e15fdabb75086",
+      "Hash": "331f924ff4e3222b2538250f280228c3",
       "ChildDependencies": []
     },
     "uioptions": {
       "Name": "uioptions",
-      "Hash": "0eba8ca9f26b4a7b15b0a5e3975bfe20",
+      "Hash": "1f07f1bcb36cb4e3626d48fea2ebd8ec",
       "ChildDependencies": []
     },
     "uiquests": {
       "Name": "uiquests",
-      "Hash": "97f25e47b238e99f0a818f748d331681",
+      "Hash": "f78909daf2765f5743c5c292ac2adb44",
       "ChildDependencies": []
     },
     "uirewards": {
       "Name": "uirewards",
-      "Hash": "715aa6e6c12cfcae357a65c0e53d9d14",
+      "Hash": "485e752415a7638f901dc0d6a898e03b",
       "ChildDependencies": []
     },
     "uispells": {
       "Name": "uispells",
-      "Hash": "b317ab814881625eda9d13c2af336082",
+      "Hash": "088a600926ba06125920cebb22581926",
       "ChildDependencies": []
     },
     "uistores": {
       "Name": "uistores",
-      "Hash": "fa132ab2cd28b0d8fed29c57016e3929",
+      "Hash": "1c8f968a7b931c228edea3663be79e5f",
       "ChildDependencies": []
     },
     "uitexturelists": {
@@ -3738,49 +3821,49 @@
     },
     "uitrade": {
       "Name": "uitrade",
-      "Hash": "e4a1fa7a700404013aeabd064e870219",
+      "Hash": "4562a7393bf2e22197622685e7dfaab2",
       "ChildDependencies": []
     },
     "uitrader": {
       "Name": "uitrader",
-      "Hash": "fbec5ab0f223f8da4028acde0f136491",
+      "Hash": "ef591171fc2423de87ead54e14e36569",
       "ChildDependencies": []
     },
     "uitradercaravan": {
       "Name": "uitradercaravan",
-      "Hash": "6423da4990eca23e4b61a13beb1db8b9",
+      "Hash": "a65818faf037fdb44da05ef1d1da7261",
       "ChildDependencies": []
     },
     "uitradercity": {
       "Name": "uitradercity",
-      "Hash": "56b7ab67715c7f44e29a01189331d71a",
+      "Hash": "ac4beb70289bc6889370cef5fbde453e",
       "ChildDependencies": []
     },
     "uitraderhud": {
       "Name": "uitraderhud",
-      "Hash": "415ff19505ad93181949e9af5e80563e",
+      "Hash": "0963b5be4e5f263f09c38fcb4e105a5d",
       "ChildDependencies": []
     },
     "uitraderinfo": {
       "Name": "uitraderinfo",
-      "Hash": "ee82c55071c5253a4a032967175b3d3d",
+      "Hash": "6d8436ed6e9310f2c3cb2f9e9821c652",
       "ChildDependencies": [
         "uicrawlerinfo"
       ]
     },
     "uitradermap": {
       "Name": "uitradermap",
-      "Hash": "18863e5da9b7af2295016b5e4279fbed",
+      "Hash": "f826d8c953cf550e1247e305a626203e",
       "ChildDependencies": []
     },
     "uiunits": {
       "Name": "uiunits",
-      "Hash": "ffcb8842191b2913d1bd842603f63b52",
+      "Hash": "bc32879e6849dc220e8b3196cfb3c27a",
       "ChildDependencies": []
     },
     "uizones": {
       "Name": "uizones",
-      "Hash": "55a593f811deca9d2e4eae10b3089fa9",
+      "Hash": "b2a57dd1b59cd07b6984716b276de968",
       "ChildDependencies": []
     },
     "unifiedraytracing": {

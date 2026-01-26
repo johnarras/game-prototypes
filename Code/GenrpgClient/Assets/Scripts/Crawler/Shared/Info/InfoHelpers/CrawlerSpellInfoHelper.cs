@@ -31,7 +31,7 @@ namespace Genrpg.Shared.Crawler.Info.Helpers
 
             RoleScalingType scalingType = _gameData.Get<RoleScalingTypeSettings>(_gs.ch).Get(spell.RoleScalingTypeId);
 
-            allLines.Add(_infoService.CreateHeaderLine(spell.Name));
+            allLines.Add(_infoService.CreateHeaderLine(spell.Name, false));
             allLines.Add("Tier " + spell.RoleScalingTier + " " + _infoService.CreateInfoLink(scalingType) + " Scaling");
             if (spell.PowerPerLevel == 0)
             {

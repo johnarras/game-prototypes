@@ -58,6 +58,8 @@ namespace Assets.Scripts.Trader.Travel.Services
 
         private CancellationToken _token;
 
+        protected int _ticksPerDistance = 5;
+
         public async Task Initialize(CancellationToken token)
         {
             _token = token;
@@ -125,7 +127,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                     long endDist = td.EndDistance;
 
                     long distGone = td.EndDistance - startDist;
-                    long currDist = startDist;
+                    double currDist = startDist;
                     _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = td.RolledDistances, BonusDistance = td.BonusDistance, TotalDistance = td.TotalDistance });
                     for (int r = 0; r < td.TravelRewards.Count; r++)
                     {
@@ -142,16 +144,19 @@ namespace Assets.Scripts.Trader.Travel.Services
                     float y = 0;
                     for (int i = 0; i < distGone; i++)
                     {
-                        currDist++;
-                        float distPct = 1.0f * currDist / pos.DistanceToTarget;
+                        double viewDist = currDist;
+                        for (int viewTicks = 0; viewTicks < _ticksPerDistance; viewTicks++)
+                        {
+                            viewDist = currDist + ((viewTicks + 1) * 1.0f / _ticksPerDistance);
+                            MyPointF mapCoord = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, viewDist, pos.DistanceToTarget);
 
-                        MyPointF mapCoord = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, currDist, pos.DistanceToTarget);
+                            x = mapCoord.X;
+                            y = mapCoord.Y;
 
-                        x = mapCoord.X;
-                        y = mapCoord.Y;
-
-                        _dispatcher.Dispatch(new ShowTraderMapPosition() { X = x, Y = y });
-                        await Awaitable.NextFrameAsync(token);
+                            _dispatcher.Dispatch(new ShowTraderMapPosition() { X = x, Y = y });
+                            await Awaitable.NextFrameAsync(token);
+                        }
+                        currDist = viewDist;
                     }
 
                     coreData.Vars[TraderVars.PlayCount] = td.Day;

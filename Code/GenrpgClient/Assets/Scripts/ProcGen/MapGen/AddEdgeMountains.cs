@@ -126,7 +126,7 @@ public class AddEdgeMountains : BaseAddMountains
                     }
                     _md.flags[x, y] |= MapGenFlags.IsEdgeWall;
 
-                    float currPower = MathUtils.Clamp(0.5f, 1.7f, 1.0f + _md.mountainDecayPower[x, y]);
+                    float currPower = MathUtil.Clamp(0.5f, 1.7f, 1.0f + _md.mountainDecayPower[x, y]);
                     float newPct = _md.mountainHeights[cx, cz] * (float)(1.0f - Math.Pow(distPct, currPower));
 
                     if (newPct != 0 && _md.mountainHeights[x, y] == 0)

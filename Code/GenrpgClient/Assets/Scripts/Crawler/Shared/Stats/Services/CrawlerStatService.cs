@@ -269,7 +269,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 for (int t = 0; t < healthCalcTimes; t++)
                 {
 
-                    startHealth += MathUtils.LongRange(minHealth, maxHealth, _rand);
+                    startHealth += MathUtil.LongRange(minHealth, maxHealth, _rand);
                 }
 
                 startHealth /= healthCalcTimes;

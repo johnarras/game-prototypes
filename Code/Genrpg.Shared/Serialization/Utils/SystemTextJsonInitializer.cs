@@ -238,7 +238,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
                 string txt = File.ReadAllText(fullPath);
 
-                List<string> lines = txt.Split('\n').ToList();
+                List<string> lines = StrUtils.SplitIntoLines(txt);
 
 
                 foreach (string usingType in _neededUsings)
@@ -401,7 +401,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
                 string fileText = File.ReadAllText(fullPath);
 
-                List<string> startLines = fileText.Split('\n').ToList();
+                List<string> startLines = StrUtils.SplitIntoLines(fileText);
 
                 List<string> midLines = new List<string>(startLines);
 

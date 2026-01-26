@@ -39,7 +39,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
             eff.CurrQuantity = eff.Quantity;
 
             int variancePct = 20;
-                eff.CurrQuantity = MathUtils.LongRange(eff.Quantity * (100 - variancePct) / 100,
+                eff.CurrQuantity = MathUtil.LongRange(eff.Quantity * (100 - variancePct) / 100,
                     eff.Quantity * (100 + variancePct) / 100, rand);
 
             if (eff.Quantity != 0 && _objectManager.GetChar(eff.CasterId, out Character ch))

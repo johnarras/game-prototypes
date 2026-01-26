@@ -54,7 +54,7 @@ namespace Assets.Editor.Builds
 
             _developmentBuild = EditorGUILayout.Toggle("Development Build:", _developmentBuild);
 
-            if (GUILayout.Button("Build Local"))
+            if (GUILayout.Button("Build In Editor"))
             {
                 RunBuilds.PlayerBuilder.BuildWithArgs(
                     _envNames[_selectedEnv],
@@ -63,11 +63,6 @@ namespace Assets.Editor.Builds
                     _selfContainedClient,
                     false,
                     _developmentBuild);
-            }
-
-            if (GUILayout.Button("Default Build"))
-            {
-                RunBuilds.PlayerBuilder.DefaultBuild();
             }
 
             if (GUILayout.Button("Cloud Build"))

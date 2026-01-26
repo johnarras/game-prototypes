@@ -221,8 +221,8 @@ public class TreeObjectLoader : BaseObjectLoader
 
         int wx = gx * (MapConstants.TerrainPatchSize - 1) + x;
         int wy = gy * (MapConstants.TerrainPatchSize - 1) + y;
-        float ddx = MathUtils.SeedFloatRange(placementSeed * 13, 143, -0.5f, 0.5f, 101);
-        float ddy = MathUtils.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101);
+        float ddx = MathUtil.SeedFloatRange(placementSeed * 13, 143, -0.5f, 0.5f, 101);
+        float ddy = MathUtil.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101);
         float height = _terrainManager.SampleHeight(wx, wy);
 
         TreeInstance ti = new TreeInstance();

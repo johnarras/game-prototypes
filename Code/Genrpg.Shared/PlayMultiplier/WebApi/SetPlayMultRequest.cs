@@ -8,7 +8,7 @@ namespace Genrpg.Shared.PlayMultiplier.WebApi
 {
     public class SetPlayMultRequest : IClientUserRequest
     {
-        public long PlayMult { get; set; }
+        public int PlayMult { get; set; }
     }
 }
 

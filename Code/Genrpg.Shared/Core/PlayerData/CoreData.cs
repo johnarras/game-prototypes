@@ -36,10 +36,10 @@ namespace Genrpg.Shared.Core.PlayerData
 
         [Key(7)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
 
-        [Key(8)] public SmallIdLongCollection Vars { get; set; } = new SmallIdLongCollection();
+        [Key(8)] public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
 
         public bool HasFlag(long flagIndex) { return (Vars[CoreVars.Flags] & (1 << (int)flagIndex)) != 0; }
-        public void AddFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] | (long)(1 << (int)flagIndex); }
+        public void AddFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] | (int)(1 << (int)flagIndex); }
         public void RemoveFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] & ~(1 << (int)flagIndex); }
 
         public void SetNextHourlyUpdate()

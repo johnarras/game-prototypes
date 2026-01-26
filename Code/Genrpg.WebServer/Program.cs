@@ -3,10 +3,7 @@ using Genrpg.Shared.Config.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
 
 namespace Genrpg.WebServer
 {
@@ -16,12 +13,6 @@ namespace Genrpg.WebServer
         {
 
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
-            builder.Configuration.AddXmlFile(Path.Combine(builder.Environment.ContentRootPath, "../../AppConfig/App.config"), false, false);
-
-            string cacheConnString = System.Configuration.ConfigurationManager.AppSettings[AppConfigKeys.SessionCacheDbConnectionString];
-
-            Console.Write(cacheConnString);
 
             builder.Services.AddAuthentication("DefaultBearer")
             .AddScheme<CustomSessionOptions, CustomSessionHandler>("DefaultBearer", options =>

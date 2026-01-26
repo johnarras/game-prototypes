@@ -51,8 +51,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
     public class CrawlerTilemap : BaseBehaviour
     {
-        public const bool RequireMapping = true;
-        public const bool UseFogOfWar = true;
+        public const bool RequireMapping = false;
+        public const bool UseFogOfWar = false;
 
 
         public GImage PartyImage;
@@ -574,7 +574,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                         if (!didSetObject)
                         {
-                            long encounterId = _crawlerMapService.GetEncounterAtCell(_party, _map, x, z);
+                            long encounterId = _crawlerMapService.GetCurrentEncounterAtCell(_party, _map, x, z, false);
 
                             if (encounterId == MapEncounters.Monsters)
                             {
@@ -617,8 +617,11 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         {
                             if (_spriteCache.TryGetValue(image.RefImage.Filename + image.RotAngle, out Sprite wallSprite))
                             {
+                                if (ix == 11 && iz == 1)
+                                {
+                                    _logService.Info("Getting currpos");
+                                }
                                 _tiles[ix, iz, TilemapIndexes.Walls].SetSingleSprite(wallSprite);
-
 
                                 RectTransform rectTransform = _tiles[ix, iz, TilemapIndexes.Walls].GetComponent<RectTransform>();
                                 if (rectTransform != null)

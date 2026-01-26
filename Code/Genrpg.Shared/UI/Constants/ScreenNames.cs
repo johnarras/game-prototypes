@@ -42,18 +42,20 @@ namespace Genrpg.Shared.UI.Constants
         public const long TileUpgrade = 37;
         public const long Marker = 38;
         public const long CrawlerNewGameOptions = 39;
-        public const long Animals = 40;
+        public const long Animals = 40; // Your animals and in city buy?
         public const long TraderMap = 41;
         public const long TraderHUD = 42;
         public const long TraderTravel = 43;
         public const long TraderVendor = 44;
         public const long TraderCity = 45;
         public const long TraderQuests = 46;
-        public const long TraderNPC = 47;
+        public const long TraderNPC = 47; // Quests
         public const long TraderInfo = 48;
         public const long ClientOptions = 49;
         public const long TraderCityRoads = 50;
-        public const long TradeGoods = 51;
+        public const long TradeGoods = 51; // your inventory? and in city list of items to buy/sell?
+        public const long TraderSupplies = 52; // Gold -> other currencies
+
 
     }
 }

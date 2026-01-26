@@ -131,7 +131,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             int expectedOffset = (int)(level / Math.Max(1, rankSettings.LevelsPerQuality));
 
-            expectedOffset = MathUtils.Clamp(1, expectedOffset, ranks.Count - 2);
+            expectedOffset = MathUtil.Clamp(1, expectedOffset, ranks.Count - 2);
 
             List<LootRank> okRanks = new List<LootRank>();
 
@@ -233,7 +233,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             if (isArmor || lootSettings.AllowAllWeaponTypes)
             {
-                scalingTypeId = MathUtils.IntRange(1, LootConstants.MaxArmorScalingType, _rand);
+                scalingTypeId = MathUtil.IntRange(1, LootConstants.MaxArmorScalingType, _rand);
                 scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
             }
 
@@ -362,7 +362,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                     foreach (long statTypeId in usedStatTypeIds)
                     {
 
-                        double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * (1 + MathUtils.FloatRange(-lootSettings.StatBonusVariance, lootSettings.StatBonusVariance, _rand))));
+                        double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * (1 + MathUtil.FloatRange(-lootSettings.StatBonusVariance, lootSettings.StatBonusVariance, _rand))));
 
 
                         ItemEffect itemEffect = new ItemEffect()
@@ -481,7 +481,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             {
                 double lootScale = (1 + crawlerUnit.BonusCount * extraScalePerBonus);
                 exp += expPerMonster * lootScale;
-                gold += MathUtils.LongRange(minGold, maxGold, _rand) * lootScale;
+                gold += MathUtil.LongRange(minGold, maxGold, _rand) * lootScale;
 
                 if (_rand.NextDouble() < itemChance * lootScale)
                 {
@@ -710,7 +710,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             LootGenData genData = new LootGenData()
             {
-                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * MathUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
+                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * MathUtil.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
                 ItemCount = itemCount,
                 NextState = nextState,
                 NextStateData = nextStateData,
@@ -718,7 +718,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             };
 
             genData.Currencies[CrawlerCurrencyTypes.Gold] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
-                MathUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
+                MathUtil.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
 
             if (!string.IsNullOrEmpty(topMessage))
             {

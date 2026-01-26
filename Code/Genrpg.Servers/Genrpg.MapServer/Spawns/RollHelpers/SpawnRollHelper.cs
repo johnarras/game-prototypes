@@ -19,7 +19,7 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
         public List<RewardList> Roll<SI>(IRandom rand, RollLootArgs rollLootArgs, SI item) where SI : ISpawnItem
         {
             List<RewardList> retval = new List<RewardList>();
-            long quantity = MathUtils.LongRange(item.MinQuantity, item.MaxQuantity, rand);
+            long quantity = MathUtil.LongRange(item.MinQuantity, item.MaxQuantity, rand);
 
             SpawnTable st = _gameData.Get<SpawnSettings>(null).Get(item.EntityId);
             if (st != null)

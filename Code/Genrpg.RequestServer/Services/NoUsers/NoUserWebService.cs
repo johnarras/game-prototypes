@@ -3,7 +3,6 @@ using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.NoUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
@@ -14,7 +13,6 @@ namespace Genrpg.RequestServer.Services.NoUsers
     {
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
-        private ITextSerializer _serializer = null;
 
         public async Task HandleNoUserRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {

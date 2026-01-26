@@ -24,7 +24,7 @@ namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
 
             if (statData.Stats[entityId].Base < quantity)
             {
-                statData.Stats[entityId].Base = quantity;
+                statData.Stats[entityId].Base = (int)quantity;
             }
         }
     }

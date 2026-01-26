@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Genrpg.Shared.Utils
 {
@@ -10,7 +9,7 @@ namespace Genrpg.Shared.Utils
         {
             string txt = File.ReadAllText(path);
 
-            List<string> lines = txt.Split('\n').ToList();
+            List<string> lines = StrUtils.SplitIntoLines(txt);
 
             Dictionary<string, string> kvDict = new Dictionary<string, string>();
 

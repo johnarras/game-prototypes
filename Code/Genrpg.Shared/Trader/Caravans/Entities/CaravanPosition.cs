@@ -4,29 +4,34 @@ namespace Genrpg.Shared.Trader.Caravans.Entities
 {
     public class CaravanPosition
     {
-        public long FromX { get; set; }
-        public long FromY { get; set; }
-        public long ToX { get; set; }
-        public long ToY { get; set; }
-        public long CurrX { get; set; }
-        public long CurrY { get; set; }
-        public long DistanceToTarget { get; set; }
-        public long DistanceGone { get; set; }
+        public int FromX { get; set; }
+        public int FromY { get; set; }
+        public int ToX { get; set; }
+        public int ToY { get; set; }
+        public int CurrX { get; set; }
+        public int CurrY { get; set; }
+        public int DistanceToTarget { get; set; }
+        public int DistanceGone { get; set; }
         public City TargetCity { get; set; }
         public float Angle { get; set; }
 
         public City GetCurrentCity()
         {
-            return (!OnRoad() ? TargetCity : null);
+            if (TargetCity == null)
+            {
+                return null;
+            }
+            if (CurrX == TargetCity.MapPixelX && CurrY == TargetCity.MapPixelY)
+            {
+                return TargetCity;
+            }
+            return null;
         }
 
-        public long GetTargetCityId()
+        public int GetTargetCityId()
         {
-            return TargetCity?.IdKey ?? 0;
+            return (int)(TargetCity?.IdKey ?? 0);
         }
-
-
-
 
         public bool OnRoad()
         {

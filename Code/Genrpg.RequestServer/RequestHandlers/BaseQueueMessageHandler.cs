@@ -3,7 +3,7 @@ using Genrpg.ServerShared.CloudComms.Servers.WebServer;
 
 namespace Genrpg.RequestServer.RequestHandlers
 {
-    public abstract class BaseQueueMessageHandler<T> : IQueueMessageHandler where T : IWebsiteQueueMessage
+    public abstract class BaseQueueMessageHandler<T> : IWebsiteQueueMessageHandler where T : IWebsiteQueueMessage
     {
 
         protected abstract Task InnerHandleMessage(T message);

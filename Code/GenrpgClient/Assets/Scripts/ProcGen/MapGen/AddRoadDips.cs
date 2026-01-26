@@ -45,9 +45,9 @@ public class AddRoadDips : BaseZoneGenerator
 
         for (int i = 0; i < noiseTimes; i++)
         {
-            float freq = MathUtils.FloatRange(0.03f, 0.10f, rand) * maxSize * 1.5f;
-            float amp = MathUtils.FloatRange(0.1f, 0.3f, rand) * 4;
-            float pers = MathUtils.FloatRange(0.2f, 0.5f, rand);
+            float freq = MathUtil.FloatRange(0.03f, 0.10f, rand) * maxSize * 1.5f;
+            float amp = MathUtil.FloatRange(0.1f, 0.3f, rand) * 4;
+            float pers = MathUtil.FloatRange(0.2f, 0.5f, rand);
             int octaves = 2;
 
             float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), dx, dy);
@@ -56,7 +56,7 @@ public class AddRoadDips : BaseZoneGenerator
 
         int zoneRad = 3;
 
-		int maxDist = MathUtils.IntRange(6, 11, rand);
+		int maxDist = MathUtil.IntRange(6, 11, rand);
 
 		dipScale *= 1.0f * maxDist / 6.0f;
 
@@ -76,7 +76,7 @@ public class AddRoadDips : BaseZoneGenerator
                 float hx = 1.0f * x / _mapProvider.GetMap().GetHwid();
                 float hy = 1.0f * y / _mapProvider.GetMap().GetHhgt();
            
-                float wallDistScale = MathUtils.Clamp(0, _md.mountainDistPercent[x,y], 1);
+                float wallDistScale = MathUtil.Clamp(0, _md.mountainDistPercent[x,y], 1);
 
                 if (_md.mapZoneIds[x,y] != zone.IdKey)
                 {
@@ -119,7 +119,7 @@ public class AddRoadDips : BaseZoneGenerator
 
 				if (distToRoad > 0)
 				{
-					pct = MathUtils.Clamp(0, 1-distToRoad/maxDist, 1);
+					pct = MathUtil.Clamp(0, 1-distToRoad/maxDist, 1);
                 }
                 if (closestOtherZoneDist < zoneRad)
                 {

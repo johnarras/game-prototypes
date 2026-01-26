@@ -54,11 +54,11 @@ namespace Genrpg.Shared.MapServer.Entities
         {
             if (!useCeiling)
             {
-                return MathUtils.Clamp(0, (int)(mapPos / SharedMapConstants.MapObjectGridSize), gridSize - 1);
+                return MathUtil.Clamp(0, (int)(mapPos / SharedMapConstants.MapObjectGridSize), gridSize - 1);
             }
             else
             {
-                return MathUtils.Clamp(0, (int)Math.Ceiling(mapPos / SharedMapConstants.MapObjectGridSize), gridSize - 1);
+                return MathUtil.Clamp(0, (int)Math.Ceiling(mapPos / SharedMapConstants.MapObjectGridSize), gridSize - 1);
             }
         }
 

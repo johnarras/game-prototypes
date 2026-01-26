@@ -90,7 +90,7 @@ namespace Genrpg.MapServer.Units.Services
                     {
                         EntityTypeId = EntityTypes.Currency,
                         EntityId = CurrencyTypes.Money,
-                        Quantity = MathUtils.LongRange(levelData.KillMoney / 2, levelData.KillMoney * 3 / 2, rand),
+                        Quantity = MathUtil.LongRange(levelData.KillMoney / 2, levelData.KillMoney * 3 / 2, rand),
                     });
                 }
 

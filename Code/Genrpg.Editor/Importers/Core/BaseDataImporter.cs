@@ -47,9 +47,9 @@ namespace Genrpg.Editor.Importers.Core
 
             string text = File.ReadAllText(fullFilePath);
 
-            string[] lines = text.Split('\n');
+            List<string> lines = StrUtils.SplitIntoLines(text);
 
-            for (int l = 0; l < lines.Length; l++)
+            for (int l = 0; l < lines.Count; l++)
             {
 
                 lines[l] = StrUtils.SanitizeSingleEnglishLine(lines[l].Trim());
@@ -57,7 +57,7 @@ namespace Genrpg.Editor.Importers.Core
 
             List<string[]> retval = new List<string[]>();
 
-            for (int l = 0; l < lines.Length; l++)
+            for (int l = 0; l < lines.Count; l++)
             {
                 string[] words = StrUtils.SafeSplitCommaLine(lines[l]);
                 retval.Add(words);

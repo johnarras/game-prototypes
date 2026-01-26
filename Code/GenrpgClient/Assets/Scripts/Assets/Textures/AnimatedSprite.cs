@@ -123,7 +123,7 @@ namespace Assets.Scripts.Assets.Textures
 
                     if (_currentImageFrame == 0 && _rand.NextDouble() < ChangeToBaseFrameChance)
                     {
-                        ShowTextureFrame(MathUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand));
+                        ShowTextureFrame(MathUtil.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand));
                         return;
                     }
                 }

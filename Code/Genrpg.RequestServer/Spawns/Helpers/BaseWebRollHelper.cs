@@ -13,7 +13,7 @@ namespace Genrpg.RequestServer.Spawns.Helpers
         {
             long mult = await GetQuantityMult(context, rollLootArgs, si.EntityId);
 
-            long quantity = MathUtils.LongRange(si.MinQuantity * mult, si.MaxQuantity * mult, context.rand);
+            long quantity = MathUtil.LongRange(si.MinQuantity * mult, si.MaxQuantity * mult, context.rand);
 
             List<Reward> retval = new List<Reward>();
 

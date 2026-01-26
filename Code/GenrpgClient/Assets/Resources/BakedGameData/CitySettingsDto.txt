@@ -1689,7 +1689,7 @@
       "MapPixelX": 2620,
       "MapPixelY": 2737,
       "BiomeTypeId": 3,
-      "CultureTypeId": 7,
+      "CultureTypeId": 4,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 58,
@@ -1919,7 +1919,7 @@
       "MapPixelX": 2512,
       "MapPixelY": 2225,
       "BiomeTypeId": 4,
-      "CultureTypeId": 8,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 9,
@@ -2169,7 +2169,7 @@
       "MapPixelX": 900,
       "MapPixelY": 2433,
       "BiomeTypeId": 5,
-      "CultureTypeId": 9,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 9,
@@ -2399,7 +2399,7 @@
       "MapPixelX": 1436,
       "MapPixelY": 2125,
       "BiomeTypeId": 6,
-      "CultureTypeId": 10,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 5,
@@ -2863,7 +2863,7 @@
       "MapPixelX": 2440,
       "MapPixelY": 2369,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 104,
@@ -3097,7 +3097,7 @@
       "MapPixelX": 2940,
       "MapPixelY": 2533,
       "BiomeTypeId": 8,
-      "CultureTypeId": 12,
+      "CultureTypeId": 7,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 82,
@@ -3331,7 +3331,7 @@
       "MapPixelX": 2812,
       "MapPixelY": 2721,
       "BiomeTypeId": 8,
-      "CultureTypeId": 12,
+      "CultureTypeId": 7,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 82,
@@ -3557,7 +3557,7 @@
       "MapPixelX": 1856,
       "MapPixelY": 2605,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 7,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 4,
@@ -4005,7 +4005,7 @@
       "MapPixelX": 2736,
       "MapPixelY": 3341,
       "BiomeTypeId": 3,
-      "CultureTypeId": 7,
+      "CultureTypeId": 4,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 41,
@@ -4235,7 +4235,7 @@
       "MapPixelX": 4476,
       "MapPixelY": 3069,
       "BiomeTypeId": 9,
-      "CultureTypeId": 14,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 98,
@@ -4699,7 +4699,7 @@
       "MapPixelX": 6176,
       "MapPixelY": 2537,
       "BiomeTypeId": 10,
-      "CultureTypeId": 15,
+      "CultureTypeId": 9,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 29,
@@ -4933,7 +4933,7 @@
       "MapPixelX": 1180,
       "MapPixelY": 1749,
       "BiomeTypeId": 11,
-      "CultureTypeId": 16,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 44,
@@ -5171,7 +5171,7 @@
       "MapPixelX": 1404,
       "MapPixelY": 2009,
       "BiomeTypeId": 6,
-      "CultureTypeId": 10,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 50,
@@ -5405,7 +5405,7 @@
       "MapPixelX": 1296,
       "MapPixelY": 1869,
       "BiomeTypeId": 6,
-      "CultureTypeId": 10,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -5635,7 +5635,7 @@
       "MapPixelX": 1492,
       "MapPixelY": 1825,
       "BiomeTypeId": 6,
-      "CultureTypeId": 17,
+      "CultureTypeId": 10,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 5,
@@ -5869,7 +5869,7 @@
       "MapPixelX": 1504,
       "MapPixelY": 1773,
       "BiomeTypeId": 6,
-      "CultureTypeId": 17,
+      "CultureTypeId": 10,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 56,
@@ -6103,7 +6103,7 @@
       "MapPixelX": 968,
       "MapPixelY": 2369,
       "BiomeTypeId": 5,
-      "CultureTypeId": 9,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 4,
@@ -6333,7 +6333,7 @@
       "MapPixelX": 1244,
       "MapPixelY": 2221,
       "BiomeTypeId": 5,
-      "CultureTypeId": 9,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 24,
@@ -6563,7 +6563,7 @@
       "MapPixelX": 892,
       "MapPixelY": 2325,
       "BiomeTypeId": 5,
-      "CultureTypeId": 9,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -7709,7 +7709,7 @@
       "MapPixelX": 2428,
       "MapPixelY": 2309,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 59,
@@ -7943,7 +7943,7 @@
       "MapPixelX": 2440,
       "MapPixelY": 2393,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 27,
@@ -8173,7 +8173,7 @@
       "MapPixelX": 2448,
       "MapPixelY": 2409,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 13,
@@ -8403,7 +8403,7 @@
       "MapPixelX": 2488,
       "MapPixelY": 2345,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 48,
@@ -8641,7 +8641,7 @@
       "MapPixelX": 2784,
       "MapPixelY": 2413,
       "BiomeTypeId": 7,
-      "CultureTypeId": 11,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 28,
@@ -10243,7 +10243,7 @@
       "MapPixelX": 3600,
       "MapPixelY": 2737,
       "BiomeTypeId": 12,
-      "CultureTypeId": 18,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 40,
@@ -10469,7 +10469,7 @@
       "MapPixelX": 3400,
       "MapPixelY": 2633,
       "BiomeTypeId": 12,
-      "CultureTypeId": 18,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 32,
@@ -11171,7 +11171,7 @@
       "MapPixelX": 2684,
       "MapPixelY": 2933,
       "BiomeTypeId": 3,
-      "CultureTypeId": 7,
+      "CultureTypeId": 4,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -11405,7 +11405,7 @@
       "MapPixelX": 2188,
       "MapPixelY": 2601,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 3,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 111,
@@ -11631,7 +11631,7 @@
       "MapPixelX": 932,
       "MapPixelY": 2541,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 3,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -11857,7 +11857,7 @@
       "MapPixelX": 1292,
       "MapPixelY": 2437,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 3,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -12083,7 +12083,7 @@
       "MapPixelX": 4244,
       "MapPixelY": 2285,
       "BiomeTypeId": 13,
-      "CultureTypeId": 19,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 60,
@@ -12317,7 +12317,7 @@
       "MapPixelX": 4140,
       "MapPixelY": 2285,
       "BiomeTypeId": 13,
-      "CultureTypeId": 19,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 22,
@@ -12551,7 +12551,7 @@
       "MapPixelX": 4020,
       "MapPixelY": 2377,
       "BiomeTypeId": 13,
-      "CultureTypeId": 19,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 67,
@@ -12785,7 +12785,7 @@
       "MapPixelX": 4528,
       "MapPixelY": 2557,
       "BiomeTypeId": 14,
-      "CultureTypeId": 14,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 100,
@@ -13023,7 +13023,7 @@
       "MapPixelX": 5104,
       "MapPixelY": 2933,
       "BiomeTypeId": 14,
-      "CultureTypeId": 14,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 30,
@@ -13253,7 +13253,7 @@
       "MapPixelX": 4680,
       "MapPixelY": 3641,
       "BiomeTypeId": 14,
-      "CultureTypeId": 14,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 79,
@@ -13483,7 +13483,7 @@
       "MapPixelX": 2828,
       "MapPixelY": 3013,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 3,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 46,
@@ -13705,7 +13705,7 @@
       "MapPixelX": 2984,
       "MapPixelY": 2897,
       "BiomeTypeId": 8,
-      "CultureTypeId": 20,
+      "CultureTypeId": 7,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 82,
@@ -14169,7 +14169,7 @@
       "MapPixelX": 1160,
       "MapPixelY": 2053,
       "BiomeTypeId": 6,
-      "CultureTypeId": 10,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 5,
@@ -14395,7 +14395,7 @@
       "MapPixelX": 1140,
       "MapPixelY": 1637,
       "BiomeTypeId": 11,
-      "CultureTypeId": 16,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 95,
@@ -14855,7 +14855,7 @@
       "MapPixelX": 920,
       "MapPixelY": 2465,
       "BiomeTypeId": 2,
-      "CultureTypeId": 13,
+      "CultureTypeId": 3,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 78,
@@ -15327,7 +15327,7 @@
       "MapPixelX": 3404,
       "MapPixelY": 2513,
       "BiomeTypeId": 12,
-      "CultureTypeId": 18,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 73,
@@ -15553,7 +15553,7 @@
       "MapPixelX": 3232,
       "MapPixelY": 2285,
       "BiomeTypeId": 15,
-      "CultureTypeId": 21,
+      "CultureTypeId": 11,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 87,
@@ -15783,7 +15783,7 @@
       "MapPixelX": 4516,
       "MapPixelY": 3113,
       "BiomeTypeId": 14,
-      "CultureTypeId": 14,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 97,
@@ -16013,7 +16013,7 @@
       "MapPixelX": 2320,
       "MapPixelY": 2177,
       "BiomeTypeId": 10,
-      "CultureTypeId": 22,
+      "CultureTypeId": 2,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -16243,7 +16243,7 @@
       "MapPixelX": 1940,
       "MapPixelY": 2109,
       "BiomeTypeId": 1,
-      "CultureTypeId": 23,
+      "CultureTypeId": 1,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 1,
@@ -16473,7 +16473,7 @@
       "MapPixelX": 5944,
       "MapPixelY": 3493,
       "BiomeTypeId": 16,
-      "CultureTypeId": 24,
+      "CultureTypeId": 12,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 3,
@@ -16707,7 +16707,7 @@
       "MapPixelX": 5792,
       "MapPixelY": 3449,
       "BiomeTypeId": 16,
-      "CultureTypeId": 24,
+      "CultureTypeId": 12,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 3,
@@ -16953,7 +16953,7 @@
       "MapPixelX": 5868,
       "MapPixelY": 4005,
       "BiomeTypeId": 16,
-      "CultureTypeId": 24,
+      "CultureTypeId": 12,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 119,
@@ -17191,7 +17191,7 @@
       "MapPixelX": 5984,
       "MapPixelY": 4241,
       "BiomeTypeId": 16,
-      "CultureTypeId": 24,
+      "CultureTypeId": 12,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 135,
@@ -17417,7 +17417,7 @@
       "MapPixelX": 6000,
       "MapPixelY": 3637,
       "BiomeTypeId": 16,
-      "CultureTypeId": 24,
+      "CultureTypeId": 12,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 161,
@@ -17643,7 +17643,7 @@
       "MapPixelX": 3432,
       "MapPixelY": 1589,
       "BiomeTypeId": 17,
-      "CultureTypeId": 25,
+      "CultureTypeId": 13,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 122,
@@ -17881,7 +17881,7 @@
       "MapPixelX": 5896,
       "MapPixelY": 1941,
       "BiomeTypeId": 18,
-      "CultureTypeId": 26,
+      "CultureTypeId": 13,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 167,
@@ -18115,7 +18115,7 @@
       "MapPixelX": 6516,
       "MapPixelY": 2281,
       "BiomeTypeId": 10,
-      "CultureTypeId": 15,
+      "CultureTypeId": 9,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 131,
@@ -18353,7 +18353,7 @@
       "MapPixelX": 6628,
       "MapPixelY": 2637,
       "BiomeTypeId": 10,
-      "CultureTypeId": 15,
+      "CultureTypeId": 9,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 128,
@@ -18579,7 +18579,7 @@
       "MapPixelX": 6376,
       "MapPixelY": 3045,
       "BiomeTypeId": 19,
-      "CultureTypeId": 15,
+      "CultureTypeId": 9,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 171,
@@ -18805,7 +18805,7 @@
       "MapPixelX": 3916,
       "MapPixelY": 1693,
       "BiomeTypeId": 18,
-      "CultureTypeId": 27,
+      "CultureTypeId": 8,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 173,
@@ -19031,7 +19031,7 @@
       "MapPixelX": 3296,
       "MapPixelY": 1745,
       "BiomeTypeId": 17,
-      "CultureTypeId": 25,
+      "CultureTypeId": 13,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 162,
@@ -19265,7 +19265,7 @@
       "MapPixelX": 4952,
       "MapPixelY": 1053,
       "BiomeTypeId": 20,
-      "CultureTypeId": 28,
+      "CultureTypeId": 13,
       "TradeGoodsProduced": [
         {
           "TradeGoodId": 123,
@@ -19482,5 +19482,5 @@
     "Name": "CitySettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-18T00:09:11.069Z"
+  "SaveTime": "2026-01-20T14:52:23.251Z"
 }

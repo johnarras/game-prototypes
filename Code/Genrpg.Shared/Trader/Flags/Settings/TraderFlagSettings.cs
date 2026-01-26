@@ -28,12 +28,12 @@ namespace Genrpg.Shared.Trader.Flags.Settings
         public string Art { get; set; }
         public bool IsBad { get; set; }
         public bool IsBuff { get; set; }
-        public long BonusSpeed { get; set; }
+        public int BonusSpeed { get; set; }
+        public int RationsCost { get; set; }
+        public int Capacity { get; set; }
         public double ForageChance { get; set; }
-        public long RationsCost { get; set; }
         public double GoodEventChance { get; set; }
         public double BadEventChance { get; set; }
-        public long Capacity { get; set; }
     }
 
     public class TraderFlagSettingsDto : ParentSettingsDto<TraderFlagSettings, TraderFlag>

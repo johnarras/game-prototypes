@@ -28,12 +28,12 @@ public class AddMonsterSpawns : BaseZoneGenerator
             return;
         }
 
-        startx = MathUtils.Clamp(MapConstants.MapEdgeSize, startx, _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize);
-        starty = MathUtils.Clamp(MapConstants.MapEdgeSize, starty, _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize);
+        startx = MathUtil.Clamp(MapConstants.MapEdgeSize, startx, _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize);
+        starty = MathUtil.Clamp(MapConstants.MapEdgeSize, starty, _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize);
 
 
-        endx = MathUtils.Clamp(MapConstants.MapEdgeSize, endx, _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize);
-        endy = MathUtils.Clamp(MapConstants.MapEdgeSize, endy, _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize);
+        endx = MathUtil.Clamp(MapConstants.MapEdgeSize, endx, _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize);
+        endy = MathUtil.Clamp(MapConstants.MapEdgeSize, endy, _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize);
 
         MyRandom rand = new MyRandom(zone.Seed + 1);
 
@@ -46,8 +46,8 @@ public class AddMonsterSpawns : BaseZoneGenerator
         {
             for (int y = starty; y <= endy; y += MapConstants.MonsterSpawnSkipSize)
             {
-                int cx = x + MathUtils.IntRange(-offsetSize, offsetSize, rand);
-                int cy = y + MathUtils.IntRange(-offsetSize, offsetSize, rand);
+                int cx = x + MathUtil.IntRange(-offsetSize, offsetSize, rand);
+                int cy = y + MathUtil.IntRange(-offsetSize, offsetSize, rand);
 
                 if (cx < 0 || cy < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy >= _mapProvider.GetMap().GetHhgt())
                 {

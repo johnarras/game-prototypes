@@ -37,7 +37,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
         private ITraderMapService _traderMapService = null;
         public async Task Initialize(CancellationToken token)
         {
-            _travelService.SetWaterMask(File.ReadAllBytes("AppData/WaterMask.bytes"));
+            _travelService.SetTerrainMap(File.ReadAllBytes("AppData/WorldMapColorIndexes.bytes"));
             await Task.CompletedTask;
         }
 
@@ -112,7 +112,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
         private async Task<bool> TravelOneDay(WebContext context, CoreData coreData, TravelStatus status, TraderFlagSettings flagSettings)
         {
-            long distanceLeft = status.DistanceToTarget - status.DistanceGone;
+            int distanceLeft = status.DistanceToTarget - status.DistanceGone;
 
             if (distanceLeft < 1)
             {
@@ -123,7 +123,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             TravelDay day = new TravelDay();
             if (!status.IsFree)
             {
-                long rationsCost = Math.Max(1, coreData.Vars[TraderVars.RationsCost]);
+                int rationsCost = Math.Max(1, coreData.Vars[TraderVars.RationsCost]);
                 if (coreData.Currencies[CoreCurrencyTypes.Rations] < rationsCost)
                 {
                     status.Response.Messages.Add("You ran out of rations.");
@@ -136,11 +136,11 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             status.Response.Days.Add(day);
             for (int i = 0; i < coreData.Vars[TraderVars.DiceSpeed]; i++)
             {
-                day.RolledDistances.Add(MathUtils.IntRange(1, 6, context.rand));
+                day.RolledDistances.Add(MathUtil.IntRange(1, 6, context.rand));
             }
             day.BonusDistance = coreData.Vars[TraderVars.BonusSpeed];
 
-            long distanceToday = day.RolledDistances.Sum(x => x) + day.BonusDistance;
+            int distanceToday = day.RolledDistances.Sum(x => x) + day.BonusDistance;
 
             if (distanceToday > distanceLeft)
             {
@@ -152,7 +152,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 distanceToday = 1;
             }
 
-            long endDistance = status.DistanceGone + distanceToday;
+            int endDistance = status.DistanceGone + distanceToday;
 
             day.TotalDistance = distanceToday;
             day.EndDistance = endDistance;
@@ -190,7 +190,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                     {
                         rew = new Reward() { EntityTypeId = chosenReward.EntityTypeId, EntityId = chosenReward.EntityId };
                         day.TravelRewards.Add(rew);
-                        rew.Quantity += MathUtils.LongRange(chosenReward.MinQuantity, chosenReward.MaxQuantity, context.rand);
+                        rew.Quantity += MathUtil.LongRange(chosenReward.MinQuantity, chosenReward.MaxQuantity, context.rand);
                     }
                 }
             }
@@ -222,6 +222,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             day.EndDiceSpeed = coreData.Vars[TraderVars.DiceSpeed];
             day.EndBonusSpeed = coreData.Vars[TraderVars.BonusSpeed];
             day.EndFlags = coreData.Vars[TraderVars.Flags];
+            await Task.CompletedTask;
             return true;
         }
     }

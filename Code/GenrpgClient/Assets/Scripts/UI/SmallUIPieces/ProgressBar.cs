@@ -126,7 +126,7 @@ public class ProgressBar : BaseBehaviour
             currPct = (1.0 * (value - _minValue) / (_maxValue - _minValue));
         }
 
-        currPct = MathUtils.Clamp(0, currPct, 1);
+        currPct = MathUtil.Clamp(0, currPct, 1);
 
         if (_currPct == currPct && _didShowAfterInit)
         {

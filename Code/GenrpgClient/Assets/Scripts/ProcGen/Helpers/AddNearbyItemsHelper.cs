@@ -46,11 +46,11 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 
         int maxNumPlants = maxPlaceQuantity;
 
-        int bushesToAdd = MathUtils.IntRange(maxNumPlants / 2, maxNumPlants, rand);
+        int bushesToAdd = MathUtil.IntRange(maxNumPlants / 2, maxNumPlants, rand);
 
         if (rand.NextDouble() < 0.3f)
         {
-            bushesToAdd += MathUtils.IntRange(1, maxNumPlants, rand);
+            bushesToAdd += MathUtil.IntRange(1, maxNumPlants, rand);
         }
 
         int treesToAdd = bushesToAdd / 10;
@@ -141,8 +141,8 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             int numPlaced = 0;
             for (int tries = 0; tries < numToPlace * 30 && numPlaced < numToPlace; tries++)
             {
-                int plantx = (int)(MathUtils.FloatRange(x - offset, x + offset, rand)+0.5f);
-                int planty = (int)(MathUtils.FloatRange(y - offset, y + offset, rand) + 0.5f);
+                int plantx = (int)(MathUtil.FloatRange(x - offset, x + offset, rand)+0.5f);
+                int planty = (int)(MathUtil.FloatRange(y - offset, y + offset, rand) + 0.5f);
 
 
 
@@ -196,7 +196,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
         {
             if (rand.Next() % 5 > newItemTimes)
             {
-                nearbyItemsCount += MathUtils.IntRange(0, 2, rand);
+                nearbyItemsCount += MathUtil.IntRange(0, 2, rand);
             }
         }
 
@@ -210,7 +210,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             nearbyItemsCount = nearbyItemsCount * 3 / 2;
         }
 
-        nearbyItemsCount = MathUtils.IntRange(nearbyItemsCount * 3 / 4, nearbyItemsCount * 5 / 4, rand);
+        nearbyItemsCount = MathUtil.IntRange(nearbyItemsCount * 3 / 4, nearbyItemsCount * 5 / 4, rand);
 
 
         return nearbyItemsCount;

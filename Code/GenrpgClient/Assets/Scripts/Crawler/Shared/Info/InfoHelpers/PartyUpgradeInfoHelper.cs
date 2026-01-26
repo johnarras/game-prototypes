@@ -31,7 +31,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
             lines.Add("You receive points every time you complete a dungeon level.");
 
 
-            lines.Add(_infoService.CreateHeaderLine(upgrade.Name));
+            lines.Add(_infoService.CreateHeaderLine(upgrade.Name, false));
 
             lines.Add(upgrade.Desc);
 

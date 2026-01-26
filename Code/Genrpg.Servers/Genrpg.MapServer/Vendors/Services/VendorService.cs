@@ -76,7 +76,7 @@ namespace Genrpg.MapServer.Vendors.Services
                 return;
             }
 
-            int currItemCount = MathUtils.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
+            int currItemCount = MathUtil.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
             long level = mapObject.Level;
             Zone zone = _mapProvider.GetMap().Get<Zone>(mapObject.ZoneId);
 

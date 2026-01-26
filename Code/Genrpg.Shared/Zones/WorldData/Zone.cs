@@ -149,7 +149,7 @@ namespace Genrpg.Shared.Zones.WorldData
                 float maxPct = 1 - minPct;
 
                 int levelOffset = (int)(4 * (maxPct - minPct) + rand.Next(-1, 1));
-                return MathUtils.Clamp(1, startLevel + levelOffset, mapMaxLevel);
+                return MathUtil.Clamp(1, startLevel + levelOffset, mapMaxLevel);
             }
             return 1;
         }

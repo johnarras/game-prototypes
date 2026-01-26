@@ -13,22 +13,22 @@ namespace Genrpg.Shared.PlayMultiplier.Services
     public class SharedPlayMultService : ISharedPlayMultService
     {
         private IGameData _gameData = null;
-        public long GetMaxMult(CoreData coreData)
+        public int GetMaxMult(CoreData coreData)
         {
             return GetValidMults(coreData).Last();
         }
 
-        public List<long> GetValidMults(CoreData coreData)
+        public List<int> GetValidMults(CoreData coreData)
         {
             PlayMultSettings settings = _gameData.Get<PlayMultSettings>(coreData);
 
             long totalEnergy = coreData.Currencies[CoreCurrencyTypes.Rations];
 
-            long maxMult = (long)Math.Floor(settings.MaxMultAsPercentOfCurrentDice * totalEnergy);
+            int maxMult = (int)Math.Floor(settings.MaxMultAsPercentOfCurrentDice * totalEnergy);
 
-            maxMult = MathUtils.Clamp(MobileGameConstants.MinPlayMult, maxMult, settings.MaxPlayMult);
+            maxMult = MathUtil.Clamp(MobileGameConstants.MinPlayMult, maxMult, settings.MaxPlayMult);
 
-            List<long> result = new List<long>();
+            List<int> result = new List<int>();
 
             for (int i = 1; i <= maxMult; i++)
             {

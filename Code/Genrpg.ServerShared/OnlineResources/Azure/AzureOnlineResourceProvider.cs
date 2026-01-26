@@ -43,25 +43,27 @@ namespace Genrpg.ServerShared.OnlineResources.Azure
             string secretId = repoStr + categoryStr;
             string connectionString = await _secretsProvider.GetSecret(repoStr + categoryStr);
 
-            if (args.RepoType == ERepoTypes.Mongo)
+            if (!string.IsNullOrEmpty(connectionString))
             {
-                MongoRepository repo = new MongoRepository();
-                await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer);
-                return repo;
+                if (args.RepoType == ERepoTypes.Mongo)
+                {
+                    MongoRepository repo = new MongoRepository();
+                    await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer);
+                    return repo;
+                }
+                else if (args.RepoType == ERepoTypes.Blob)
+                {
+                    AzureBlobRepository repo = new AzureBlobRepository();
+                    await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer, token);
+                    return repo;
+                }
+                else if (args.RepoType == ERepoTypes.NoSQL)
+                {
+                    CosmosNoSQLRepository repo = new CosmosNoSQLRepository();
+                    await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer, token);
+                    return repo;
+                }
             }
-            else if (args.RepoType == ERepoTypes.Blob)
-            {
-                AzureBlobRepository repo = new AzureBlobRepository();
-                await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer, token);
-                return repo;
-            }
-            else if (args.RepoType == ERepoTypes.NoSQL)
-            {
-                CosmosNoSQLRepository repo = new CosmosNoSQLRepository();
-                await repo.Init(args, connectionString, _logService, _analyticsService, _textSerializer, token);
-                return repo;
-            }
-
             return null;
         }
 

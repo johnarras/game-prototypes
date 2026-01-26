@@ -16,14 +16,14 @@ public class AddZoneNoise : BaseZoneGenerator
     {
         int noiseSize = _mapProvider.GetMap().GetHwid();
         float ampDelta = 0.05f;
-        float zoneAmp = MathUtils.FloatRange(_amplitude * (1 - ampDelta), _amplitude * (1 + ampDelta), _rand);
+        float zoneAmp = MathUtil.FloatRange(_amplitude * (1 - ampDelta), _amplitude * (1 + ampDelta), _rand);
         float denomDelta = 0.05f;
-        float zoneDenom = MathUtils.FloatRange(_freqDiv * (1 - denomDelta), _freqDiv * (1 + denomDelta), _rand);
+        float zoneDenom = MathUtil.FloatRange(_freqDiv * (1 - denomDelta), _freqDiv * (1 + denomDelta), _rand);
         float persDelta = 0.05f;
-        float pers = MathUtils.FloatRange(_persistence * (1 - persDelta), _persistence * (1 + persDelta), _rand);
+        float pers = MathUtil.FloatRange(_persistence * (1 - persDelta), _persistence * (1 + persDelta), _rand);
         float freq = noiseSize / zoneDenom;
         float lacDelta = 0.05f;
-        float lac = MathUtils.FloatRange(_lacunarity * (1 - lacDelta), _lacunarity * (1 + pers), _rand);
+        float lac = MathUtil.FloatRange(_lacunarity * (1 - lacDelta), _lacunarity * (1 + pers), _rand);
 
         int seed = _rand.Next();
         float[,] heights = _noiseService.Generate(pers, noiseSize / zoneDenom, zoneAmp, 2, seed, noiseSize, noiseSize, 0.5f);
@@ -35,7 +35,7 @@ public class AddZoneNoise : BaseZoneGenerator
                 // Do 1-heights here since most heights are near 0, and few are near 1, we want
                 // few near 0 and many near 1 so when the pct is low, very few pieces of
                 // terrain will be affected.
-                _md.overrideZoneScales[x, y] = 1-MathUtils.Clamp(0, Math.Abs(heights[x, y]), 1);
+                _md.overrideZoneScales[x, y] = 1-MathUtil.Clamp(0, Math.Abs(heights[x, y]), 1);
             }
         }
 

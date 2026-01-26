@@ -106,7 +106,7 @@ public class UnitController : BaseBehaviour
         {
             _downKeys[commandName] = 0.0f;
         }
-        return MathUtils.Clamp(0, _downKeys[commandName], 1);
+        return MathUtil.Clamp(0, _downKeys[commandName], 1);
     }
 
     public virtual void SetInputValues(int keysDown, float rot)

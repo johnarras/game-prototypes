@@ -55,7 +55,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         private void ClickNewCrawler()
         {
             StartClose();
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.NewCrawlerGame));
         }
 
         private void ClickContinue()

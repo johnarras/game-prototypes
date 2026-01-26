@@ -57,7 +57,7 @@ public class UnitStatBar : BaseBehaviour
         }
         else
         {
-            curr = MathUtils.Clamp(0, curr, _max);
+            curr = MathUtil.Clamp(0, curr, _max);
             _progressBar.SetValue(curr);
         }
         _curr = curr;

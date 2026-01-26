@@ -5,6 +5,7 @@ using Assets.Scripts.Controllers;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
+using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.EncounterHelpers;
 using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Maps.GameObjects;
@@ -71,7 +72,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         bool HasMagicBit(int x, int z, long bit, bool modifyWithPartyBuffs);
         string GetMapName(PartyData party, long mapId, int x, int z);
         int GetMapCellHash(long mapId, int x, int z, long extraData);
-        long GetEncounterAtCell(PartyData party, CrawlerMap map, int x, int z);
+        long GetCurrentEncounterAtCell(PartyData party, CrawlerMap map, int x, int z, bool onlyIfCanTriggerNow);
         void ClearCellObject(int x, int z);
         void SetMapComplete(PartyData party, CrawlerWorld world, long mapId);
         EntranceMapData GetEntranceMap(PartyData party, CrawlerWorld world, long mapId);
@@ -95,6 +96,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private ICrawlerQuestService _questService = null;
         private IPartyService _partyService = null;
         private ICrawlerOptionsService _optionsService = null;
+        private ICrawlerMapGenService _mapGenService = null;
 
         CrawlerMapRoot _crawlerMapRoot = null;
         private CancellationToken _token;
@@ -487,7 +489,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             _party.CurrentMap.Cleansed.SetBit(map.GetIndex(x, z));
 
-            MapEncounterType encounterType = _gameData.Get<MapEncounterSettings>(_gs.ch).Get(GetEncounterAtCell(_party, map, x, z));
+            MapEncounterType encounterType = _gameData.Get<MapEncounterSettings>(_gs.ch).Get(GetCurrentEncounterAtCell(_party, map, x, z, true));
 
             if (encounterType != null && encounterType.CanBeCleansed)
             {
@@ -600,8 +602,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             {
                 return false;
             }
-            x = MathUtils.ModClamp(x, map.Width);
-            z = MathUtils.ModClamp(z, map.Height);
+            x = MathUtil.ModClamp(x, map.Width);
+            z = MathUtil.ModClamp(z, map.Height);
 
             if (x < 0 || x >= map.Width || z < 0 || z >= map.Height)
             {
@@ -638,8 +640,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            x = MathUtils.Clamp(0, x, _crawlerMapRoot.Map.Width - 1);
-            z = MathUtils.Clamp(0, z, _crawlerMapRoot.Map.Height - 1);
+            x = MathUtil.Clamp(0, x, _crawlerMapRoot.Map.Width - 1);
+            z = MathUtil.Clamp(0, z, _crawlerMapRoot.Map.Height - 1);
 
             _crawlerMapRoot.DrawX = x * CrawlerMapConstants.XZBlockSize;
             _crawlerMapRoot.DrawZ = z * CrawlerMapConstants.XZBlockSize;
@@ -732,7 +734,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                             continue;
                         }
 
-                        TileImages[i] = new FullWallTileImage() { Index = i, WallIds = vals, RefImage = wti, RotAngle = ((4 - rot) % 4) * 90, };
+                        TileImages[i] = new FullWallTileImage() { Index = i, Filename = wti.Filename, RefImage = wti, RotAngle = ((4 - rot) % 4) * 90, };
 
                         didFindRefImage = true;
                         break;
@@ -750,21 +752,10 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     }
 
                     wti.Filename = sb.ToString() + SpriteNameCategories.Wall;
-                    TileImages[i] = new FullWallTileImage() { Index = i, WallIds = vals, RefImage = wti };
+                    TileImages[i] = new FullWallTileImage() { Index = i, Filename = wti.Filename, RefImage = wti };
                 }
             }
 
-            StringBuilder outputSb = new StringBuilder();
-
-            for (int i = 0; i < TileImages.Length; i++)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                for (int w = 0; w < TileImageConstants.WallCount; w++)
-                {
-                    sb.Append(_wallLetterList[TileImages[i].WallIds[w]]);
-                }
-            }
         }
 
         public bool InDungeonMap()
@@ -848,7 +839,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             return (int)(mapId * 13 + x * 23 + z * 41 + extraData * 59);
         }
 
-        virtual public long GetEncounterAtCell(PartyData party, CrawlerMap map, int x, int z)
+        virtual public long GetCurrentEncounterAtCell(PartyData party, CrawlerMap map, int x, int z, bool onlyIfCanTriggerNow)
         {
             int encounterTypeId = map.GetEntityId(x, z, EntityTypes.MapEncounter);
 
@@ -900,13 +891,20 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             else // Can repeat, just check if we've been here this run.
             {
 
-                bool didVisitThisRun = PartyHasVisited(map.IdKey, x, z, true);
-
-                if (didVisitThisRun)
+                if (onlyIfCanTriggerNow)
                 {
-                    return 0;
+                    if (PartyHasVisited(map.IdKey, x, z, true))
+                    {
+                        return 0;
+                    }
                 }
-
+                else
+                {
+                    if (!PartyHasVisited(map.IdKey, x, z, false))
+                    {
+                        return 0;
+                    }
+                }
             }
 
             // Return true last so we can add other conditions here later if needed.
@@ -951,11 +949,19 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             party.CompletedMaps.SetBit(1);
             party.Maps.Clear();
 
-
-            if (world.Maps.FastAny(X => X.IdKey != 1 && X.IdKey != currMap.IdKey))
+            if (currMap.IdKey == 1 && world.GetMap(2) == null)
             {
-                world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == currMap.IdKey).ToList();
+                MapCellDetail exitDetail = cityMap.Details.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Map && x.EntityId == 2);
+                world.AddMap(await _mapGenService.GenerateRoguelikeDungeonLevel(party, world, 2, exitDetail.X, exitDetail.Z, token));
+            }
 
+            int mapCount = world.Maps.Count;
+
+            world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == 2 || x.IdKey == currMap.IdKey).ToList();
+            world.ClearCache();
+
+            if (world.Maps.Count != mapCount)
+            {
                 await _worldService.SaveWorld(world);
             }
         }

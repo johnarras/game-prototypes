@@ -25,9 +25,6 @@ namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
         {
             CoreData coreData = context.core;
 
-            coreData.Currencies.Trim();
-            coreData.Vars.Trim();
-
             NewPlayerBonusSettings newPlayerSettings = _gameData.Get<NewPlayerBonusSettings>(context.core);
 
             CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(context.core);

@@ -110,11 +110,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int sx = startPoint.X;
                 int sz = startPoint.Z;
 
-                int dx = MathUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
-                int dz = MathUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dx = MathUtil.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dz = MathUtil.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
 
-                int ex = MathUtils.Clamp(edgeSize, sx + dx, map.Width - edgeSize - 1);
-                int ez = MathUtils.Clamp(edgeSize, sz + dz, map.Height - edgeSize - 1);
+                int ex = MathUtil.Clamp(edgeSize, sx + dx, map.Width - edgeSize - 1);
+                int ez = MathUtil.Clamp(edgeSize, sz + dz, map.Height - edgeSize - 1);
 
 
                 bool xFirst = true;
@@ -181,12 +181,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             }
 
             okPoints = okPoints.Where(x => !blockedEntrances.FastAny(e =>
-            MathUtils.PythagoreanDistance(x.X - e.X, x.Z - e.Z)
+            MathUtil.PythagoreanDistance(x.X - e.X, x.Z - e.Z)
             <= genData.MapType.MinDistanceToEntrance)).ToList();
 
             int minDistanceBetweenNpcs = Math.Max(3, genData.MapType.MinNpcSeparation);
 
-            int npcQuantity = MathUtils.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
+            int npcQuantity = MathUtil.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
 
             if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld) && npcQuantity > 1)
             {
@@ -221,7 +221,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 okPoints.Remove(chosenPoint);
 
-                okPoints = okPoints.Where(pt => MathUtils.PythagoreanDistance(pt.X - chosenPoint.X, pt.Z - chosenPoint.Z)
+                okPoints = okPoints.Where(pt => MathUtil.PythagoreanDistance(pt.X - chosenPoint.X, pt.Z - chosenPoint.Z)
                 >= minDistanceBetweenNpcs).ToList();
 
                 UnitType unitType = okUnitTypes[rand.Next() % okUnitTypes.Count];

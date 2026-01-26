@@ -111,7 +111,7 @@ public class ItemTooltip : BaseTooltip
                 ItemTooltipRowData rowData = new ItemTooltipRowData()
                 {
                     text = "Dam: " + _data.MainItemType.MinVal + "-" + _data.MainItemType.MaxVal + (lootRank != null && lootRank.Damage > 0 ? " (+" + lootRank.Damage + ")" : ""),
-                    isCurrent = false,
+                    isCurrent = true,
                     change = 0,
                     starsToShow = 0
                 };

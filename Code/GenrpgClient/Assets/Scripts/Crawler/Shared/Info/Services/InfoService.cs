@@ -167,7 +167,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 return;
             }
 
-            string[] lines = overviewText.Split('\n');
+            List<string> lines = StrUtils.SplitIntoLines(overviewText);
 
             List<string> currPageLines = new List<string>();
 
@@ -175,9 +175,9 @@ namespace Genrpg.Shared.Crawler.Info.Services
             List<string> overviewChildText = new List<string>();
             string overviewHeader = "";
 
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
-                if (lines[i].IndexOf(pageBreak) == -1 && i != lines.Length - 1)
+                if (lines[i].IndexOf(pageBreak) == -1 && i != lines.Count - 1)
                 {
                     currPageLines.Add(lines[i]);
                 }

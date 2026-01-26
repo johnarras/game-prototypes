@@ -1,0 +1,8 @@
+{
+  "Id": "screenname52default",
+  "ParentId": "default",
+  "IdKey": 52,
+  "Name": "TraderSupplies",
+  "ScreenLayerId": 20,
+  "Subdirectory": "TraderCity"
+}

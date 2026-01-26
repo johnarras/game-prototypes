@@ -78,7 +78,7 @@ namespace Assets.Scripts.Controllers
 
             if (_currIntensity != _targetIntensity)
             {
-                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, MathUtils.FloatRange(0, IntensityDelta * 2, _rand));
+                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, MathUtil.FloatRange(0, IntensityDelta * 2, _rand));
             }
 
             if (_currIntensity == _targetIntensity)
@@ -87,8 +87,8 @@ namespace Assets.Scripts.Controllers
 
                 if (_stableTicksLeft <= 0)
                 {
-                    _targetIntensity = MathUtils.FloatRange(_startMaxIntensity * 2 / 3, _startMaxIntensity, _rand);
-                    _stableTicksLeft = MathUtils.IntRange(0, _maxStableTicks, _rand);
+                    _targetIntensity = MathUtil.FloatRange(_startMaxIntensity * 2 / 3, _startMaxIntensity, _rand);
+                    _stableTicksLeft = MathUtil.IntRange(0, _maxStableTicks, _rand);
                 }
             }
 

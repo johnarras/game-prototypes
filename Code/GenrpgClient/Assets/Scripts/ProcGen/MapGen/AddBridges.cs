@@ -177,7 +177,7 @@ public class AddBridges : BaseZoneGenerator
 
 			// Not to close to road end
 			centerpt = null;
-			cval = MathUtils.IntRange (bridgeDistanceFromStart,road.Count-bridgeDistanceFromEnd,rand);
+			cval = MathUtil.IntRange (bridgeDistanceFromStart,road.Count-bridgeDistanceFromEnd,rand);
 
 			if (cval < halfBridgeLength || cval >= road.Count-halfBridgeLength)
             {
@@ -199,8 +199,8 @@ public class AddBridges : BaseZoneGenerator
             int avgRadius = 3; // Average points down the road, with 2*this+1 points being used.
 
             int numCellsChecked = 2 * avgRadius + 1;
-            int startIndex = MathUtils.Clamp(avgRadius, cval - halfBridgeLength, road.Count - 1-avgRadius);
-            int endIndex = MathUtils.Clamp(avgRadius, cval + halfBridgeLength, road.Count -1 -avgRadius);
+            int startIndex = MathUtil.Clamp(avgRadius, cval - halfBridgeLength, road.Count - 1-avgRadius);
+            int endIndex = MathUtil.Clamp(avgRadius, cval + halfBridgeLength, road.Count -1 -avgRadius);
 
             float fsx = 0;
             float fsy = 0;
@@ -219,10 +219,10 @@ public class AddBridges : BaseZoneGenerator
             }
 
 			
-			int ex = MathUtils.Clamp (0,(int)(fex),_mapProvider.GetMap().GetHwid());
-			int ez = MathUtils.Clamp (0,(int)(fey),_mapProvider.GetMap().GetHhgt());
-			int sx = MathUtils.Clamp (0,(int)(fsx),_mapProvider.GetMap().GetHwid());
-			int sz = MathUtils.Clamp (0,(int)(fsy),_mapProvider.GetMap().GetHhgt());
+			int ex = MathUtil.Clamp (0,(int)(fex),_mapProvider.GetMap().GetHwid());
+			int ez = MathUtil.Clamp (0,(int)(fey),_mapProvider.GetMap().GetHhgt());
+			int sx = MathUtil.Clamp (0,(int)(fsx),_mapProvider.GetMap().GetHwid());
+			int sz = MathUtil.Clamp (0,(int)(fsy),_mapProvider.GetMap().GetHhgt());
 
 
             int shrinkMod = rand.Next() % 2;
@@ -232,7 +232,7 @@ public class AddBridges : BaseZoneGenerator
 			{
 				float lx = ex-sx;
 				float lz = ez-sz;
-				float len = MathUtils.Sqrt (lx*lx+lz*lz);
+				float len = MathUtil.Sqrt (lx*lx+lz*lz);
 				if (len <= bridgeLength+1)
                 {
                     break;
@@ -332,7 +332,7 @@ public class AddBridges : BaseZoneGenerator
 
             float startHeightDiff = maxHeight - minHeight;
 
-            cy = minHeight + MathUtils.FloatRange(0.0f, 0.25f, rand) * startHeightDiff;
+            cy = minHeight + MathUtil.FloatRange(0.0f, 0.25f, rand) * startHeightDiff;
 
 			float cyscale = cy/MapConstants.MapHeight;
 			
@@ -388,10 +388,10 @@ public class AddBridges : BaseZoneGenerator
 
             // Now dig out the middle.
 
-            float bdist = MathUtils.Sqrt ((ex-sx)*(ex-sx)+(ez-sz)*(ez-sz));
+            float bdist = MathUtil.Sqrt ((ex-sx)*(ex-sx)+(ez-sz)*(ez-sz));
 
 
-			int fullcl = MathUtils.IntRange(8*halfBridgeLength,22*halfBridgeLength,rand);
+			int fullcl = MathUtil.IntRange(8*halfBridgeLength,22*halfBridgeLength,rand);
 
 
             List<int> xvals = new List<int>();
@@ -452,23 +452,23 @@ public class AddBridges : BaseZoneGenerator
             // is a mreasurement of how obtuse this triangle can be.
 
 
-            float endDistScale = MathUtils.FloatRange (1.5f, 4.0f,rand);
-			float edgeDistScale = MathUtils.FloatRange (3.0f,7.0f,rand);
+            float endDistScale = MathUtil.FloatRange (1.5f, 4.0f,rand);
+			float edgeDistScale = MathUtil.FloatRange (3.0f,7.0f,rand);
 			
-			float baseObtuseness = MathUtils.FloatRange(0.95f,1.40f, rand);
+			float baseObtuseness = MathUtil.FloatRange(0.95f,1.40f, rand);
 			// The obtuseness allowed for the dug out area increases as we
 			// move toward the edge of the region, but randomize how much
 			// it can increase so some walls don't curve out so much
 			// 1.0f was the original value here.
-			float obtusnessIncreaseNearEdgesScale = MathUtils.FloatRange(1.2f,2.0f,rand);
+			float obtusnessIncreaseNearEdgesScale = MathUtil.FloatRange(1.2f,2.0f,rand);
 
 			// Normally the walls stop after the obtuse triangle gets too big.
 			// 0.7f was the original value here
-			//float maxExtraObtusenessAllowed = MathUtils.FloatRange (0.6f,0.85f,rand);
-			float maxExtraObtusenessAllowed = MathUtils.FloatRange(0.5f, 0.7f, rand);
+			//float maxExtraObtusenessAllowed = MathUtil.FloatRange (0.6f,0.85f,rand);
+			float maxExtraObtusenessAllowed = MathUtil.FloatRange(0.5f, 0.7f, rand);
 
 
-			float holeDepthScale = MathUtils.FloatRange(1.2f, 1.6f, rand) * (float)Math.Sqrt(lengthMult);
+			float holeDepthScale = MathUtil.FloatRange(1.2f, 1.6f, rand) * (float)Math.Sqrt(lengthMult);
 
 			
 			// Used for scaling how far up the ends of the roads go to make them
@@ -490,9 +490,9 @@ public class AddBridges : BaseZoneGenerator
 			int noiseSize = fullcl * 2 + 1;
 			for (int n = 0; n < numNoises; n++)
 			{
-                float freq = MathUtils.FloatRange(0.02f, 0.05f, rand) * noiseSize;
-                float amp = MathUtils.FloatRange(0.4f, 0.8f, rand);
-                float pers = MathUtils.FloatRange(0.2f, 0.5f, rand);
+                float freq = MathUtil.FloatRange(0.02f, 0.05f, rand) * noiseSize;
+                float amp = MathUtil.FloatRange(0.4f, 0.8f, rand);
+                float pers = MathUtil.FloatRange(0.2f, 0.5f, rand);
                 int octaves = 2;
 
                 float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), noiseSize, noiseSize);
@@ -524,9 +524,9 @@ public class AddBridges : BaseZoneGenerator
 					{
 						continue;
 					}
-					float cdist = MathUtils.Sqrt ((x-cx)*(x-cx)+(z-cz)*(z-cz));
-					float sdist = MathUtils.Sqrt ((x-sx)*(x-sx)+(z-sz)*(z-sz));
-					float edist = MathUtils.Sqrt ((x-ex)*(x-ex)+(z-ez)*(z-ez));
+					float cdist = MathUtil.Sqrt ((x-cx)*(x-cx)+(z-cz)*(z-cz));
+					float sdist = MathUtil.Sqrt ((x-sx)*(x-sx)+(z-sz)*(z-sz));
+					float edist = MathUtil.Sqrt ((x-ex)*(x-ex)+(z-ez)*(z-ez));
 					
 					int ax = (int)(1.0f*x/_mapProvider.GetMap().GetHwid()*_md.awid);
 					int az = (int)(1.0f*z/_mapProvider.GetMap().GetHhgt()*_md.ahgt);
@@ -534,7 +534,7 @@ public class AddBridges : BaseZoneGenerator
 
                     // Get length of hypotenuse and legs of the b e s triangle.
 
-                    float legSum = MathUtils.Sqrt (edist*edist+sdist*sdist);
+                    float legSum = MathUtil.Sqrt (edist*edist+sdist*sdist);
 
                     bool closeToMid = false;
                     if (false && Math.Max(edist, sdist) < bridgeLength + 2.0f)
@@ -558,7 +558,7 @@ public class AddBridges : BaseZoneGenerator
                         {
                             float backDist = Math.Max(0, Math.Max(sdist, edist) - bdist);
                             float delta = bridgeEndRoadSmoothScale * backDist / MapConstants.MapHeight;
-                            _md.heights[x, z] = MathUtils.Clamp(heightAtEnds, _md.heights[x, z],
+                            _md.heights[x, z] = MathUtil.Clamp(heightAtEnds, _md.heights[x, z],
                                                          heightAtEnds + delta);
                             if (!closeToMid)
                             {
@@ -677,7 +677,7 @@ public class AddBridges : BaseZoneGenerator
 
 							foreach (MyPointF rd in road)
 							{
-								float currDist = MathUtils.Sqrt((x - rd.X) * (x - rd.X) +
+								float currDist = MathUtil.Sqrt((x - rd.X) * (x - rd.X) +
 															 (z - rd.Y) * (z - rd.Y));
 								if (currDist < minDist)
 								{
@@ -713,7 +713,7 @@ public class AddBridges : BaseZoneGenerator
 
 					foreach (float[,] noise in noises)
 					{
-						noiseDepthScale *= (1 + MathUtils.Clamp(-1, noise[x - (cx - fullcl), z - (cz - fullcl)], 1));
+						noiseDepthScale *= (1 + MathUtil.Clamp(-1, noise[x - (cx - fullcl), z - (cz - fullcl)], 1));
 					}
 
 					holeDepth *= noiseDepthScale;
@@ -774,8 +774,8 @@ public class AddBridges : BaseZoneGenerator
 
 
 
-                    int poolx = ipx + MathUtils.IntRange(-maxDelta, maxDelta, rand);
-                    int poolz = ipz + MathUtils.IntRange(-maxDelta, maxDelta, rand);
+                    int poolx = ipx + MathUtil.IntRange(-maxDelta, maxDelta, rand);
+                    int poolz = ipz + MathUtil.IntRange(-maxDelta, maxDelta, rand);
 
                     WaterGenData wgd = new WaterGenData()
                     {

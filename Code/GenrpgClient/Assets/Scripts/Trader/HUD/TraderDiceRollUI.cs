@@ -23,7 +23,7 @@ namespace Assets.Scripts.Trader.HUD
 
             for (int r = 0; r < diceRoll.RolledDistances.Count; r++)
             {
-                long diceVal = MathUtils.Clamp(1, diceRoll.RolledDistances[r], 6);
+                long diceVal = MathUtil.Clamp(1, diceRoll.RolledDistances[r], 6);
                 sb.Append($"<sprite name=\"Die{diceVal}\">");
                 if (r < diceRoll.RolledDistances.Count - 1)
                 {

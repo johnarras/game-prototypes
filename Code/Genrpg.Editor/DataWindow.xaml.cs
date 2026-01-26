@@ -195,6 +195,7 @@ namespace Genrpg.Editor
                     settings.SetInternalIds();
                 }
 
+
                 foreach (IGrouping<Type, ITopLevelSettings> group in groups)
                 {
                     List<ITopLevelSettings> items = group.ToList();

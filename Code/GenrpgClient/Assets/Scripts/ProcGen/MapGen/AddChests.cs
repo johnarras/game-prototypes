@@ -73,8 +73,8 @@ public class AddChests : BaseZoneGenerator
                 for (int times = 0; times < 20; times++)
                 {
 
-                    int cx = x + MathUtils.IntRange(-skipSize / 3, skipSize / 3, placeRand);
-                    int cy = y + MathUtils.IntRange(-skipSize / 3, skipSize / 3, placeRand);
+                    int cx = x + MathUtil.IntRange(-skipSize / 3, skipSize / 3, placeRand);
+                    int cy = y + MathUtil.IntRange(-skipSize / 3, skipSize / 3, placeRand);
 
                     bool haveNearbyItem = false;
 

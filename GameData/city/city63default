@@ -11,7 +11,7 @@
   "MapPixelX": 1140,
   "MapPixelY": 1637,
   "BiomeTypeId": 11,
-  "CultureTypeId": 16,
+  "CultureTypeId": 1,
   "TradeGoodsProduced": [
     {
       "TradeGoodId": 95,

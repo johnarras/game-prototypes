@@ -146,16 +146,56 @@ PrefabInstance:
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_text
-      value: "Welcome to the World of Orathia. \n\nAs you adventure and explore the
-        world,\n\nyou will earn points you can use to\n\npermanently upgrade your
-        characters.\n\nYou cannot flee from combat, and if your\n\nentire party dies,
-        you lose everything\n\nexcept the upgrades you've earned.\n\nThen you go
-        again.\n"
+      value: 'Welcome to the Mighty Wizard''s Tale.
+
+
+        This is an homage to
+        old-school blobbers
+
+
+        like The Bard''s Tale, Might and Magic and
+
+
+        Wizardry.
+        There are many options that
+
+
+        allow you to customize features to
+
+
+        your
+        liking, allowing you to try anything
+
+
+        from a party-based, world-based
+        game
+
+
+        to a single character in an endless dungeon
+
+
+        in one
+        city.'
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
       propertyPath: m_fontSize
       value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.9803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.9803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}
@@ -172,6 +212,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294638335
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}

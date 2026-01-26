@@ -56,7 +56,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                 obj.Moving = true;
                 obj.TargetId = pos.TargetId;
 
-                double distOffset = MathUtils.LPNorm(2, currX - pos.GetX(), currZ - pos.GetZ());
+                double distOffset = MathUtil.LPNorm(2, currX - pos.GetX(), currZ - pos.GetZ());
 
                 if (distOffset > 2*obj.Speed)
                 {

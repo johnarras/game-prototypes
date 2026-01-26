@@ -64,7 +64,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                         continue;
                     }
 
-                    long damage = MathUtils.LongRange(minDam, maxDam, _rand);
+                    long damage = MathUtil.LongRange(minDam, maxDam, _rand);
                     _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -damage, ElementTypes.Melee);
 
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
@@ -75,7 +75,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
                     if (_rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
                     {
-                        long tier = Math.Min(MathUtils.LongRange(1, maxStatusEffectTier, _rand), MathUtils.LongRange(1, maxStatusEffectTier, _rand));
+                        long tier = Math.Min(MathUtil.LongRange(1, maxStatusEffectTier, _rand), MathUtil.LongRange(1, maxStatusEffectTier, _rand));
 
 
                         StatusEffect effect = effects.FirstOrDefault(x => x.IdKey == tier);

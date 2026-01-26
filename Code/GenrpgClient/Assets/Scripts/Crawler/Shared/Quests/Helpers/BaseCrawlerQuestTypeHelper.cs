@@ -50,7 +50,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             }
 
             long maxGroupSize = _combatService.GetMaxGroupSize(party, npcLevel);
-            return MathUtils.LongRange(maxGroupSize / 2 + 1, maxGroupSize * 3 / 2 + 1, rand);
+            return MathUtil.LongRange(maxGroupSize / 2 + 1, maxGroupSize * 3 / 2 + 1, rand);
         }
 
         public virtual async Task<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentStatus, bool showNPC)

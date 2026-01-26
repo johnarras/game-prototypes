@@ -1,6 +1,7 @@
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -63,21 +64,21 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
         private void OnLoadTerrainFloor(GameObject go, TextureType ttype, CancellationToken token)
         {
-            SpriteRenderer renderer = _clientEntityService.GetComponent<SpriteRenderer>(go);
-            if (renderer == null || ttype == null)
+            TerrainImage tImage = _clientEntityService.GetComponent<TerrainImage>(go);
+            if (tImage == null || tImage.SpriteRenderer == null)
             {
                 _clientEntityService.Destroy(go);
                 return;
             }
 
-            _assetService.LoadAsset(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, renderer.gameObject, token, renderer);
+            _assetService.LoadAsset(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, tImage.gameObject, token, tImage);
 
         }
 
-        private void OnDownloadTerrainTexture(GameObject go, SpriteRenderer renderer, CancellationToken token)
+        private void OnDownloadTerrainTexture(GameObject go, TerrainImage tImage, CancellationToken token)
         {
 
-            if (renderer == null)
+            if (tImage == null || tImage.SpriteRenderer == null)
             {
                 _clientEntityService.Destroy(go);
                 return;
@@ -91,13 +92,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 return;
             }
 
-            _clientEntityService.AddToParent(go, renderer.gameObject);
+            _clientEntityService.AddToParent(go, tImage.gameObject);
 
-            renderer.gameObject.transform.localPosition = new Vector3(-CrawlerMapConstants.XZBlockSize / 2, 0, -CrawlerMapConstants.XZBlockSize / 2);
+            tImage.gameObject.transform.localPosition = new Vector3(-CrawlerMapConstants.XZBlockSize / 2, 0, -CrawlerMapConstants.XZBlockSize / 2);
             Sprite spr = Sprite.Create(tlist.Textures[0], new Rect(0, 0, tlist.Textures[0].width, tlist.Textures[0].height), Vector2.zero,
                 tlist.Textures[0].width / CrawlerMapConstants.XZBlockSize);
 
-            renderer.sprite = spr;
+            tImage.SpriteRenderer.sprite = spr;
         }
 
 

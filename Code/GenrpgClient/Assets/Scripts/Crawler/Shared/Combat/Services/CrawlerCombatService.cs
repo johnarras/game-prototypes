@@ -214,7 +214,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 int groupCount = CrawlerCombatConstants.MinGroupCount;
 
-                double groupCountIncreaseChance = MathUtils.Clamp(startSettings.BaseGroupCountIncreaseChance,
+                double groupCountIncreaseChance = MathUtil.Clamp(startSettings.BaseGroupCountIncreaseChance,
                     startSettings.BaseGroupCountIncreaseChance + startSettings.GroupCountIncreaseChancePerLevel * difficulty,
                     startSettings.MaxGroupCountIncreaseChance);
 
@@ -312,7 +312,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = MathUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
+                    long quantity = MathUtil.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -344,7 +344,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     UnitTypeId = wqi.GuardUnitTypeId,
                     Range = CrawlerCombatConstants.MaxRange,
-                    Quantity = MathUtils.IntRange(5, 10, _rand),
+                    Quantity = MathUtil.IntRange(5, 10, _rand),
                     Level = combatState.Level,
                     FactionTypeId = FactionTypes.Faction1,
                 });

@@ -141,7 +141,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
                 if (child is IKeywordList ikl && !string.IsNullOrEmpty(importRow.KeywordNames))
                 {
-                    string[] names = importRow.KeywordNames.Split(',');
+                    string[] names = StrUtils.SafeSplitCommaLine(importRow.KeywordNames);
 
                     foreach (string name in names)
                     {
@@ -180,7 +180,7 @@ namespace Genrpg.Editor.Importers.Crawler
 
                 if (importRow.Summons != null)
                 {
-                    List<string> summonList = importRow.Summons.Split(',').ToList();
+                    string[] summonList = StrUtils.SafeSplitCommaLine(importRow.Summons);
 
                     foreach (string summon in summonList)
                     {

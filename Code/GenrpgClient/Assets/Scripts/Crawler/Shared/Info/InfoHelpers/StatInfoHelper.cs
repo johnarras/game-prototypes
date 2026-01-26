@@ -29,7 +29,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
                 return lines;
             }
 
-            lines.Add(_infoService.CreateHeaderLine(stype.Name));
+            lines.Add(_infoService.CreateHeaderLine(stype.Name, false));
 
             lines.Add("");
             lines.Add(stype.Desc);

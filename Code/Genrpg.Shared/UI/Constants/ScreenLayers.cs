@@ -1,12 +1,8 @@
-using Genrpg.Shared.Characters.PlayerData;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.UI.Constants
 {
     public class ScreenLayers
     {
+        public const long BackScreen = 5;
         public const long HUD = 10;
         public const long Screens = 20;
         public const long Popups = 30;

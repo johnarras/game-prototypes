@@ -32,12 +32,12 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
             Riddle riddle = riddles[rand.Next(riddles.Count)];
 
-            string[] lines = riddle.Desc.Split('\n');
+            List<string> lines = StrUtils.SplitIntoLines(riddle.Desc);
 
             List<int> startIndexes = new List<int>();
 
             int nonEmptyLineCount = 0;
-            for (int l = 0; l < lines.Length; l++)
+            for (int l = 0; l < lines.Count; l++)
             {
 
                 if (!string.IsNullOrEmpty(lines[l]))
@@ -57,7 +57,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
             }
 
             int nonEmptyIndex = 0;
-            for (int l = 0; l < lines.Length; l++)
+            for (int l = 0; l < lines.Count; l++)
             {
                 if (!String.IsNullOrEmpty(lines[l]))
                 {
@@ -85,7 +85,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                     PointXZ openPoint = openPoints[rand.Next(openPoints.Count)];
                     openPoints.Remove(openPoint);
                     prevFloor.SetEntity(openPoint.X, openPoint.Z, EntityTypes.Riddle, l + 1);
-                    prevFloor.RiddleHints.Hints.Add(new RiddleHint() { Index = l+1, Text = clueText.ToString() });
+                    prevFloor.RiddleHints.Hints.Add(new RiddleHint() { Index = l + 1, Text = clueText.ToString() });
                 }
             }
 

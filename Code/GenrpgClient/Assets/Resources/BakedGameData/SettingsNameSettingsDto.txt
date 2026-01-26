@@ -559,6 +559,14 @@
     {
       "IdKey": 140,
       "Name": "TraderFlagSettings"
+    },
+    {
+      "IdKey": 141,
+      "Name": "IndexedColorSettings"
+    },
+    {
+      "IdKey": 142,
+      "Name": "MapTextureSettings"
     }
   ],
   "Parent": {

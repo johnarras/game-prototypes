@@ -58,11 +58,11 @@ namespace Assets.Scripts.Doobers.UI
 
             if (_elapsedTime == 0)
             {
-                _offsetAngle = MathUtils.FloatRange(0, 360, _rand);
+                _offsetAngle = MathUtil.FloatRange(0, 360, _rand);
             }
             _elapsedTime += deltaTime;
 
-            float percentDone = MathUtils.Clamp(0, _elapsedTime / _showDoober.LerpTime, 1);
+            float percentDone = MathUtil.Clamp(0, _elapsedTime / _showDoober.LerpTime, 1);
 
             if (_showDoober.StartOffsetSize > 0)
             {
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Doobers.UI
                 percentDone *= percentDone;
             }
 
-            percentDone = MathUtils.Clamp(0, percentDone, 1);
+            percentDone = MathUtil.Clamp(0, percentDone, 1);
 
             _rectTransform.position = Vector2.Lerp(_startPos, _endPos, percentDone);
 

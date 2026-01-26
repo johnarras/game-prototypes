@@ -41,9 +41,9 @@ public class DirtyRoads : BaseZoneGenerator
 
         float globalScale = 1.25f;
 
-        float amp = MathUtils.FloatRange(0.6f, 1.3f, rand)*globalScale;
-        float freq = MathUtils.FloatRange(0.2f, 0.3f, rand) * size*globalScale;
-        float pers = MathUtils.FloatRange(0.4f, 0.7f, rand)*globalScale;
+        float amp = MathUtil.FloatRange(0.6f, 1.3f, rand)*globalScale;
+        float freq = MathUtil.FloatRange(0.2f, 0.3f, rand) * size*globalScale;
+        float pers = MathUtil.FloatRange(0.4f, 0.7f, rand)*globalScale;
 		int octaves = 2;
 
         float[,] dirtHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizey);
@@ -52,18 +52,18 @@ public class DirtyRoads : BaseZoneGenerator
 
 		float maxOtherPercent = 0.80f;
 
-        amp = MathUtils.FloatRange(0.6f, 1.3f, rand)*globalScale;
-        freq = MathUtils.FloatRange(0.15f, 0.25f, rand) * size * globalScale;
-        pers = MathUtils.FloatRange(0.4f, 0.7f, rand) * globalScale;
+        amp = MathUtil.FloatRange(0.6f, 1.3f, rand)*globalScale;
+        freq = MathUtil.FloatRange(0.15f, 0.25f, rand) * size * globalScale;
+        pers = MathUtil.FloatRange(0.4f, 0.7f, rand) * globalScale;
         octaves = 2;
         float[,] baseHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizey);
 
 
         float startMaxPct = 0.85f;
 
-        float pctamp = MathUtils.FloatRange(0.2f,0.3f, rand)* globalScale;
-        float pctfreq = MathUtils.FloatRange(0.1f, 0.2f, rand) * size * globalScale;
-        float pctpers = MathUtils.FloatRange(0.0f, 0.4f, rand) * globalScale;
+        float pctamp = MathUtil.FloatRange(0.2f,0.3f, rand)* globalScale;
+        float pctfreq = MathUtil.FloatRange(0.1f, 0.2f, rand) * size * globalScale;
+        float pctpers = MathUtil.FloatRange(0.0f, 0.4f, rand) * globalScale;
         int pctoctaves = 2;
         float[,] maxPcts = _noiseService.Generate(pctpers, pctfreq, pctamp, pctoctaves, rand.Next(), sizex, sizey);
 
@@ -97,8 +97,8 @@ public class DirtyRoads : BaseZoneGenerator
 				// Get height > 0
 				//float dirtPct = Math.Abs (dirtHeights[x,z]);
 				//float basePct = Math.Abs (baseHeights[x,z]);
-				float dirtPct = MathUtils.Clamp(0,dirtHeights[x-minx,z-miny]+MathUtils.FloatRange(-generalPerturb,generalPerturb,rand),maxOtherPercent);
-				float basePct = MathUtils.Clamp(0,baseHeights[x-minx,z-miny]+MathUtils.FloatRange(-generalPerturb,generalPerturb,rand),maxOtherPercent);
+				float dirtPct = MathUtil.Clamp(0,dirtHeights[x-minx,z-miny]+MathUtil.FloatRange(-generalPerturb,generalPerturb,rand),maxOtherPercent);
+				float basePct = MathUtil.Clamp(0,baseHeights[x-minx,z-miny]+MathUtil.FloatRange(-generalPerturb,generalPerturb,rand),maxOtherPercent);
 
                 
 

@@ -1,0 +1,9 @@
+{
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "MapTextureSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-24T16:26:55.424Z"
+}

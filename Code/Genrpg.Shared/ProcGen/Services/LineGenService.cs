@@ -33,10 +33,10 @@ public class LineGenService : ILineGenService
         }
 
 
-        start.X = MathUtils.Clamp(lg.XMin, start.X, lg.XMax);
-        start.Y = MathUtils.Clamp(lg.YMin, start.Y, lg.YMax);
-        end.X = MathUtils.Clamp(lg.XMin, end.X, lg.XMax);
-        end.Y = MathUtils.Clamp(lg.YMin, end.Y, lg.YMax);
+        start.X = MathUtil.Clamp(lg.XMin, start.X, lg.XMax);
+        start.Y = MathUtil.Clamp(lg.YMin, start.Y, lg.YMax);
+        end.X = MathUtil.Clamp(lg.XMin, end.X, lg.XMax);
+        end.Y = MathUtil.Clamp(lg.YMin, end.Y, lg.YMax);
 
         MyRandom rand = new MyRandom(lg.Seed);
 
@@ -104,10 +104,10 @@ public class LineGenService : ILineGenService
 
         if (lg.LinePathNoiseScale > 0)
         {
-            float freq = MathUtils.FloatRange(0.0150f, 0.020f, rand) * length * 0.3f;
+            float freq = MathUtil.FloatRange(0.0150f, 0.020f, rand) * length * 0.3f;
             if (rand.NextDouble() < 0.2f)
             {
-                freq *= MathUtils.FloatRange(0.8f, 1.2f, rand);
+                freq *= MathUtil.FloatRange(0.8f, 1.2f, rand);
 
             }
 
@@ -116,9 +116,9 @@ public class LineGenService : ILineGenService
                 freq *= lg.LinePathNoiseScale;
             }
 
-            float amp = MathUtils.FloatRange(0.3f, 0.4f, rand);
+            float amp = MathUtil.FloatRange(0.3f, 0.4f, rand);
             int octaves = 2;
-            float pers = MathUtils.FloatRange(0.3f, 0.4f, rand);
+            float pers = MathUtil.FloatRange(0.3f, 0.4f, rand);
             float[,] offsets2 = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), length + 1, length + 1);
             if (offsets2 != null && offsets2.Length > length)
             {
@@ -130,14 +130,14 @@ public class LineGenService : ILineGenService
                     int newOffset = (int)offsets2[x, x];
                     if (x > 0)
                     {
-                        offsets[x] = MathUtils.Clamp(offsets[x - 1] - 1, newOffset, offsets[x - 1] + 1);
+                        offsets[x] = MathUtil.Clamp(offsets[x - 1] - 1, newOffset, offsets[x - 1] + 1);
                     }
                     else
                     {
                         offsets[x] = newOffset;
                     }
-                    offsets[x] = MathUtils.Clamp(-x, offsets[x], x);
-                    offsets[x] = MathUtils.Clamp(-(length + 1 - x), offsets[x], length + 1 - x);
+                    offsets[x] = MathUtil.Clamp(-x, offsets[x], x);
+                    offsets[x] = MathUtil.Clamp(-(length + 1 - x), offsets[x], length + 1 - x);
                 }
             }
         }
@@ -242,7 +242,7 @@ public class LineGenService : ILineGenService
             {
                 int size = Math.Max(1, lg.WidthSizeChangeAmount);
                 int delta = rand.Next(-size, size + 1);
-                pathWidth = MathUtils.Clamp(lg.MinWidthSize, pathWidth + delta, lg.MaxWidthSize);
+                pathWidth = MathUtil.Clamp(lg.MinWidthSize, pathWidth + delta, lg.MaxWidthSize);
             }
 
             // Now make path return to its normal size slowly.
@@ -512,7 +512,7 @@ public class LineGenService : ILineGenService
         }
         int midRoadsToAdd = (int)(finalConnections.Count * extraConnectionPct);
 
-        int maxRoadsToAdd = MathUtils.IntRange(midRoadsToAdd / 2, midRoadsToAdd * 3 / 2, rand);
+        int maxRoadsToAdd = MathUtil.IntRange(midRoadsToAdd / 2, midRoadsToAdd * 3 / 2, rand);
 
         for (int i = 0; i < maxRoadsToAdd; i++)
         {

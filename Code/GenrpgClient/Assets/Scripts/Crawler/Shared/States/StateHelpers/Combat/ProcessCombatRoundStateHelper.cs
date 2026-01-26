@@ -2,6 +2,7 @@ using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Constants;
 using Genrpg.Shared.Crawler.Combat.Services;
+using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
@@ -87,9 +88,22 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
                 {
                     if (party.Combat.PartyWonCombat())
                     {
+                        if (party.HasFlag(PartyFlags.PauseAtEndOfCombat))
+                        {
+                            _canEndCombatRound = false;
+
+                            while (!_canEndCombatRound)
+                            {
+                                await Task.Delay(10, token);
+                            }
+                        }
+                        else
+                        {
+                            await Awaitable.WaitForSecondsAsync(CrawlerClientCombatConstants.GiveCombatLootDelaySeconds, token);
+                        }
+
                         LootGenData lootGenData = await _lootGenService.GenerateCombatLoot(party, token);
                         _combatService.EndCombat(party);
-                        await Awaitable.WaitForSecondsAsync(CrawlerClientCombatConstants.GiveCombatLootDelaySeconds, token);
                         _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
                     }
                     else if (!(await _partyService.CheckIfPartyIsDead(party, token)))
@@ -110,6 +124,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
             {
                 _canEndCombatRound = true;
             }
+
         }
     }
 }

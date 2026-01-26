@@ -165,7 +165,7 @@ namespace Genrpg.MapServer.Spawns.Services
 
             RewardList rewardList = new RewardList();
             retval.Add(rewardList);
-            long quantity = MathUtils.LongRange(si.MinQuantity, si.MaxQuantity, rand);
+            long quantity = MathUtil.LongRange(si.MinQuantity, si.MaxQuantity, rand);
 
             Reward rew = new Reward();
             rew.EntityId = si.EntityId;

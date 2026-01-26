@@ -60,7 +60,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
             if (toCity != null)
             {
-                coreData.Vars[TraderVars.CityId] = toCity.IdKey;
+                coreData.Vars[TraderVars.CityId] = (int)toCity.IdKey;
 
                 City currCity = _gameData.Get<CitySettings>(coreData).GetData().FirstOrDefault(x => x.MapPixelX == position.CurrX &&
                 x.MapPixelY == position.CurrY);
@@ -121,7 +121,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             coreData.Vars[TraderVars.ToY] = city.MapPixelY;
             coreData.Vars[TraderVars.DistanceGone] = 0;
             coreData.Vars[TraderVars.DistanceToTarget] = 0;
-            coreData.Vars[TraderVars.CityId] = cityId;
+            coreData.Vars[TraderVars.CityId] = (int)cityId;
 
         }
     }

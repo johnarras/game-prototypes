@@ -138,17 +138,17 @@ public class AddCrevices : BaseZoneGenerator
 
         int perlinSize = Math.Max(cdata.xSize + 40, cdata.ySize + 40);
 
-        float depthFreq = 5.0f * MathUtils.FloatRange(0.8f, 1.2f, rand);
-        float depthAmp = 0.05f * MathUtils.FloatRange(0.8f, 1.2f, rand);
+        float depthFreq = 5.0f * MathUtil.FloatRange(0.8f, 1.2f, rand);
+        float depthAmp = 0.05f * MathUtil.FloatRange(0.8f, 1.2f, rand);
         int depthOctaves = 2;
-        float depthPer = 0.3f * MathUtils.FloatRange(0.8f, 1.2f, rand);
+        float depthPer = 0.3f * MathUtil.FloatRange(0.8f, 1.2f, rand);
 
         float[,] depthOffsets = _noiseService.Generate(depthPer, depthFreq, depthAmp, depthOctaves, rand.Next() + 1234, perlinSize, perlinSize);
 
-        float smoothFreq = 5.0f * MathUtils.FloatRange(0.8f, 1.2f, rand);
-        float smoothAmp = 0.1f * MathUtils.FloatRange(0.8f, 1.2f, rand);
+        float smoothFreq = 5.0f * MathUtil.FloatRange(0.8f, 1.2f, rand);
+        float smoothAmp = 0.1f * MathUtil.FloatRange(0.8f, 1.2f, rand);
         int smoothOctaves = 2;
-        float smoothPer = 0.3f * MathUtils.FloatRange(0.8f, 1.2f, rand);
+        float smoothPer = 0.3f * MathUtil.FloatRange(0.8f, 1.2f, rand);
 
         float[,] smoothOffsets = _noiseService.Generate(smoothPer, smoothFreq, smoothAmp, smoothOctaves, rand.Next() % 2345, perlinSize, perlinSize);
 
@@ -162,7 +162,7 @@ public class AddCrevices : BaseZoneGenerator
             maxCrevices *= zoneType.CreviceCountScale;
         }
 
-        int numCrevices = (int)(MathUtils.FloatRange(minCrevices, maxCrevices, rand));
+        int numCrevices = (int)(MathUtil.FloatRange(minCrevices, maxCrevices, rand));
 
 
         for (int c = 0; c < numCrevices; c++)
@@ -201,10 +201,10 @@ public class AddCrevices : BaseZoneGenerator
         while (++times < 100)
         {
 
-            sx = MathUtils.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
-            sy = MathUtils.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
-            ex = MathUtils.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
-            ey = MathUtils.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
+            sx = MathUtil.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
+            sy = MathUtil.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
+            ex = MathUtil.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
+            ey = MathUtil.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
 
             int dx = Math.Abs(sx - ex);
             int dy = Math.Abs(sy - ey);
@@ -250,8 +250,8 @@ public class AddCrevices : BaseZoneGenerator
             _md.creviceBridges = new List<MyPointF>();
         }
 
-        float overallDepthMult = (MathUtils.FloatRange(0.5f, 1.2f, rand) +
-                           MathUtils.FloatRange(0.5f,1.2f, rand)) *0.6f;
+        float overallDepthMult = (MathUtil.FloatRange(0.5f, 1.2f, rand) +
+                           MathUtil.FloatRange(0.5f,1.2f, rand)) *0.6f;
 
         if (zoneType.CreviceDepthScale > 0)
         {
@@ -311,10 +311,10 @@ public class AddCrevices : BaseZoneGenerator
 
         List<MyPointF> sideCenterPoints = new List<MyPointF>();
 
-        int nextCreviceStart = MathUtils.IntRange(50, 90, rand);
-        int nextCreviceMod = MathUtils.IntRange(40, 65, rand);
+        int nextCreviceStart = MathUtil.IntRange(50, 90, rand);
+        int nextCreviceMod = MathUtil.IntRange(40, 65, rand);
 
-        float sideDepthMult = overallDepthMult * MathUtils.FloatRange(0.5f, 1.0f, rand);
+        float sideDepthMult = overallDepthMult * MathUtil.FloatRange(0.5f, 1.0f, rand);
 
         int nextCreviceDist = nextCreviceStart + crossRand.Next() % nextCreviceMod;
         int pointsSinceLastCrevice = nextCreviceStart + crossRand.Next() % nextCreviceMod;
@@ -333,7 +333,7 @@ public class AddCrevices : BaseZoneGenerator
             int cdy = -(sp.X - ep.X);
 
 
-            float origSize = MathUtils.Sqrt(cdx * cdx + cdy * cdy);
+            float origSize = MathUtil.Sqrt(cdx * cdx + cdy * cdy);
             if (origSize < 1)
             {
                 continue;
@@ -345,10 +345,10 @@ public class AddCrevices : BaseZoneGenerator
 
             int maxdx = (int)(len * 1.0f);
 
-            int csx = cp.X + newdx + MathUtils.IntRange(-maxdx, maxdx, crossRand);
-            int csy = cp.Y - newdy + MathUtils.IntRange(-maxdx, maxdx, crossRand);
-            int cex = cp.X + newdx + MathUtils.IntRange(-maxdx, maxdx, crossRand);
-            int cey = cp.Y + newdy + MathUtils.IntRange(-maxdx, maxdx, crossRand);
+            int csx = cp.X + newdx + MathUtil.IntRange(-maxdx, maxdx, crossRand);
+            int csy = cp.Y - newdy + MathUtil.IntRange(-maxdx, maxdx, crossRand);
+            int cex = cp.X + newdx + MathUtil.IntRange(-maxdx, maxdx, crossRand);
+            int cey = cp.Y + newdy + MathUtil.IntRange(-maxdx, maxdx, crossRand);
 
             MyPoint csp = new MyPoint(csx, csy);
             MyPoint cep = new MyPoint(cex, cey);
@@ -440,7 +440,7 @@ public class AddCrevices : BaseZoneGenerator
 
         if (depth > 0)
         {
-            startWidth -= MathUtils.IntRange(startWidth / 4, startWidth * 2 / 3, rand);
+            startWidth -= MathUtil.IntRange(startWidth / 4, startWidth * 2 / 3, rand);
         }
 
         ld.MinWidthSize = startWidth / 3;
@@ -448,20 +448,20 @@ public class AddCrevices : BaseZoneGenerator
         ld.MaxWidthSize = startWidth * 3;
 
 
-        ld.WidthSizeChangeAmount = MathUtils.IntRange(2, 12, rand);
+        ld.WidthSizeChangeAmount = MathUtil.IntRange(2, 12, rand);
 
-        ld.WidthSizeChangeChance = MathUtils.FloatRange(0.1, 0.3, rand);
+        ld.WidthSizeChangeChance = MathUtil.FloatRange(0.1, 0.3, rand);
 
-        ld.WidthPosShiftChance = MathUtils.FloatRange(0.1f, 0.3f, rand);
+        ld.WidthPosShiftChance = MathUtil.FloatRange(0.1f, 0.3f, rand);
 
 
-        ld.WidthPosShiftSize = MathUtils.IntRange(2, 4, rand);
+        ld.WidthPosShiftSize = MathUtil.IntRange(2, 4, rand);
 
-        ld.InitialNoPosShiftLength = MathUtils.IntRange(4, 8, rand);
+        ld.InitialNoPosShiftLength = MathUtil.IntRange(4, 8, rand);
 
-        ld.MaxWidthPosDrift = MathUtils.FloatRange(0.2f, 0.8f, rand);
+        ld.MaxWidthPosDrift = MathUtil.FloatRange(0.2f, 0.8f, rand);
 
-        ld.LinePathNoiseScale = MathUtils.FloatRange(0.0f, 1.1f, rand);
+        ld.LinePathNoiseScale = MathUtil.FloatRange(0.0f, 1.1f, rand);
         ld.Seed = rand.Next();
         return ld;
 
@@ -479,8 +479,8 @@ public class AddCrevices : BaseZoneGenerator
         float startSmoothRadius = SmoothRadiusDefault;
         float startRadiusDelta = SmoothRadiusDelta;
 
-        startSmoothRadius *= MathUtils.FloatRange(0.8f, 1.3f, smoothRand);
-        startRadiusDelta *= MathUtils.FloatRange(0.8f, 1.3f, smoothRand);
+        startSmoothRadius *= MathUtil.FloatRange(0.8f, 1.3f, smoothRand);
+        startRadiusDelta *= MathUtil.FloatRange(0.8f, 1.3f, smoothRand);
 
         // Loop through all points and make the depths approach 0 based on how far they are from the points in the line.
         // Use min of currval, smooth val to keep the crevices in place.
@@ -511,7 +511,7 @@ public class AddCrevices : BaseZoneGenerator
                 {
                     smoothRadius += smoothChanges[dx, dy] * startSmoothRadius;
                 }
-                smoothRadius = MathUtils.Clamp(startSmoothRadius / 2, smoothRadius, startSmoothRadius * 2);
+                smoothRadius = MathUtil.Clamp(startSmoothRadius / 2, smoothRadius, startSmoothRadius * 2);
             }
 
             int smoothRadiusInt = (int)(smoothRadius);

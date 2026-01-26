@@ -188,7 +188,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
                 MyRandom rand = new MyRandom(genData.x * 31 + genData.z * 71);
 
-                float plantChance = MathUtils.FloatRange(0, 1, rand);
+                float plantChance = MathUtil.FloatRange(0, 1, rand);
 
                 for (int xx = cx - xSizeMaxHeight - extraEdge; xx <= cx + xSizeMaxHeight + extraEdge; xx++)
                 {

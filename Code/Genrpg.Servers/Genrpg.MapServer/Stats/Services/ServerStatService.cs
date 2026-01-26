@@ -130,7 +130,7 @@ namespace Genrpg.MapServer.Stats.Services
                 if (currRegen != 0)
                 {
                     long oldCurr = unit.Stats.Curr(st.IdKey);
-                    long newCurr = MathUtils.Clamp(0, unit.Stats.Curr(st.IdKey) + currRegen, maxVal);
+                    long newCurr = MathUtil.Clamp(0, unit.Stats.Curr(st.IdKey) + currRegen, maxVal);
                     if (oldCurr != newCurr)
                     {
                         Set(unit, st.IdKey, StatCategories.Curr, newCurr);

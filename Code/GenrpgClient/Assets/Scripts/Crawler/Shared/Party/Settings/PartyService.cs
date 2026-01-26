@@ -4,6 +4,7 @@ using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Constants;
+using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
@@ -15,6 +16,7 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
+using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -61,18 +63,22 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private ICrawlerOptionsService _optionsService = null;
         private ITrainingService _trainingService = null;
         private IInputService _inputService = null;
+        ICrawlerUpgradeService _upgradeService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
 
+            long upgradeBonus = (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.PartySize);
+
             if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
-                return 1;
+                return 1 + upgradeBonus;
             }
 
             CrawlerSettings settings = _gameData.Get<CrawlerSettings>(_gs.ch);
 
-            return settings.MaxPartySize;
+
+            return settings.MaxPartySize + upgradeBonus;
         }
 
         public void AddPartyMemberToGuild(PartyData party, PartyMember member)

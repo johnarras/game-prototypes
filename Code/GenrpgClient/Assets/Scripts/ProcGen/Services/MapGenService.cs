@@ -91,8 +91,8 @@ public class MapGenService : IMapGenService
         float totalSize = _mapProvider.GetMap().GetHwid();
         float midPt = totalSize / 2;
 
-        double xNearCenterPt = MathUtils.Clamp(0, 1 - Math.Abs(x - midPt) / midPt, 1);
-        double yNearCenterPt = MathUtils.Clamp(0, 1 - Math.Abs(y - midPt) / midPt, 1);
+        double xNearCenterPt = MathUtil.Clamp(0, 1 - Math.Abs(x - midPt) / midPt, 1);
+        double yNearCenterPt = MathUtil.Clamp(0, 1 - Math.Abs(y - midPt) / midPt, 1);
 
         double totalChance = 0;
 
@@ -538,11 +538,11 @@ public class MapGenService : IMapGenService
 
             Location finalCenter = new Location()
             {
-                CenterX = (int)center.X + MathUtils.IntRange(-zonedelta, zonedelta, rand),
-                CenterZ = (int)center.Y + MathUtils.IntRange(-zonedelta, zonedelta, rand),
+                CenterX = (int)center.X + MathUtil.IntRange(-zonedelta, zonedelta, rand),
+                CenterZ = (int)center.Y + MathUtil.IntRange(-zonedelta, zonedelta, rand),
                 LocationTypeId = LocationTypes.ZoneCenter,
-                XSize = MathUtils.IntRange(minRad, maxRad, rand),
-                ZSize = MathUtils.IntRange(minRad, maxRad, rand),
+                XSize = MathUtil.IntRange(minRad, maxRad, rand),
+                ZSize = MathUtil.IntRange(minRad, maxRad, rand),
             };
 
             _mapProvider.GetMap().Zones.Add(zone);
@@ -617,21 +617,21 @@ public class MapGenService : IMapGenService
                     }
                     int minSize = (int)(_mapProvider.GetMap().ZoneSize * MapConstants.TerrainPatchSize / 30);
                     int maxSize = minSize * 2;
-                    sizes[0] = MathUtils.IntRange(minSize, maxSize, rand);
+                    sizes[0] = MathUtil.IntRange(minSize, maxSize, rand);
                     sizes[1] = sizes[0];
                     for (int i = 0; i < 2; i++)
                     {
-                        sizes[i] += MathUtils.IntRange(0, sizes[i] / 3, rand);
+                        sizes[i] += MathUtil.IntRange(0, sizes[i] / 3, rand);
                         if (rand.NextDouble() < 0.2f)
                         {
-                            sizes[i] += MathUtils.IntRange(0, sizes[i] / 2, rand);
+                            sizes[i] += MathUtil.IntRange(0, sizes[i] / 2, rand);
                         }
-                        shift[i] = MathUtils.IntRange(-sizes[i] / 2, sizes[i] / 2, rand);
+                        shift[i] = MathUtil.IntRange(-sizes[i] / 2, sizes[i] / 2, rand);
                     }
 
 
-                    float currentPower = MathUtils.FloatRange(2.0f, 2.7f, rand);
-                    float rot = MathUtils.FloatRange(0, (float)Math.PI / 2, rand);
+                    float currentPower = MathUtil.FloatRange(2.0f, 2.7f, rand);
+                    float rot = MathUtil.FloatRange(0, (float)Math.PI / 2, rand);
                     float sin = (float)Math.Sin(rot);
                     float cos = (float)Math.Cos(rot);
                     for (float xx = x - sizes[0] + shift[0]; xx < x + sizes[0] + shift[0]; xx += 0.5f)

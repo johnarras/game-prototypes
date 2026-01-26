@@ -26,15 +26,6 @@ namespace RunBuilds
     public class PlayerBuilder
     {
 
-        public static void DefaultBuild()
-        {
-            ClearBuildEnvironmentVariables();
-            PreExport();
-            LocalBuildPlayer();
-            PostExport();
-        }
-
-
         public static void BuildWithArgs(string env, string gameModeStr, string platformName,
             bool selfContainedClient, bool isCloudBuild, bool developmentBuild)
         {

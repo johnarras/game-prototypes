@@ -3,7 +3,6 @@ using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Settings;
@@ -14,6 +13,7 @@ using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
@@ -31,6 +31,13 @@ using UnityEngine;
 namespace Assets.Scripts.Crawler.Maps
 {
 
+    public interface ICrawlerMapGenService : IInitializable
+    {
+        ICrawlerMapGenHelper GetGenHelper(long mapType);
+        Task<CrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token);
+        void OneWayLink(CrawlerWorld world, long fromMapId, int fromX, int fromZ, long toMapId, int toX, int toZ);
+        Task<CrawlerMap> GenerateRoguelikeDungeonLevel(PartyData party, CrawlerWorld world, long mapId, int enterX, int enterZ, CancellationToken token);
+    }
 
     public class CrawlerMapGenService : ICrawlerMapGenService
     {
@@ -311,6 +318,31 @@ namespace Assets.Scripts.Crawler.Maps
             return 0;
         }
 
+        public async Task<CrawlerMap> GenerateRoguelikeDungeonLevel(PartyData party, CrawlerWorld world, long mapId, int enterX, int enterZ, CancellationToken token)
+        {
+
+            // Failsafe never regenerate city in roguelike game.
+            if (mapId == 1)
+            {
+                return world.GetMap(1);
+            }
+
+            CrawlerMapGenData genData = new CrawlerMapGenData()
+            {
+                FromMapId = mapId - 1,
+                CurrFloor = mapId - 1,
+                MaxFloor = mapId,
+                Level = mapId - 1,
+                LevelDelta = 0,
+                MapTypeId = CrawlerMapTypes.Dungeon,
+                World = world,
+                FromMapX = enterX,
+                FromMapZ = enterZ,
+                ForcedIdKey = mapId,
+            };
+
+            return await Generate(party, world, genData, token);
+        }
     }
 }
 

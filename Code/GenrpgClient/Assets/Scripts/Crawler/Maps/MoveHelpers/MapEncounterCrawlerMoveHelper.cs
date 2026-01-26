@@ -21,7 +21,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             CrawlerMap map = moveStatus.MapRoot.Map;
 
-            long encounterTypeId = _mapService.GetEncounterAtCell(party, map, party.CurrPos.X, party.CurrPos.Z);
+            long encounterTypeId = _mapService.GetCurrentEncounterAtCell(party, map, party.CurrPos.X, party.CurrPos.Z, true);
 
             IClientMapEncounterHelper encounterHelper = _mapService.GetEncounterHelper(encounterTypeId);
 

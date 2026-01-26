@@ -73,7 +73,7 @@ public class UnityAudioService : IAudioService
 
     public void SetVolume(EAudioCategories category, float volume)
     {
-        volume = MathUtils.Clamp(AudioConstants.MinVolume, volume, AudioConstants.MaxVolume);
+        volume = MathUtil.Clamp(AudioConstants.MinVolume, volume, AudioConstants.MaxVolume);
         _clientOptionsService.GetOptions().SetVolume(category, volume);
         _channels[category].Volume = volume;
         UpdateVolumes();
@@ -341,7 +341,7 @@ public class UnityAudioService : IAudioService
         if (catCont.curr != null && catCont.curr.GetRandomIzeSeconds() > 0)
         {
             float randTime = catCont.curr.GetRandomIzeSeconds();
-            float newRandTime = MathUtils.FloatRange(randTime / 2, randTime * 3 / 2, _rand);
+            float newRandTime = MathUtil.FloatRange(randTime / 2, randTime * 3 / 2, _rand);
             catCont.curr.NextRandomizeTime = DateTime.UtcNow.AddSeconds(newRandTime);
         }
     }

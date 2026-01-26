@@ -1,3 +1,4 @@
+using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Genrpg.Shared.Client.Core;
@@ -5,7 +6,6 @@ using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.MapGen.Services;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -219,7 +219,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
 
-            lootGenData.ItemCount += (int)MathUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
+            lootGenData.ItemCount += (int)MathUtil.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBit(fullQuest.Quest.IdKey);
 
@@ -416,7 +416,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 {
                     if (_rand.NextDouble() < lootChance)
                     {
-                        long indexChosen = MathUtils.LongRange(0, totalQuantity, _rand);
+                        long indexChosen = MathUtil.LongRange(0, totalQuantity, _rand);
 
                         for (int q = 0; q < finalItemQuests.Count; q++)
                         {
@@ -601,6 +601,46 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             List<CrawlerQuest> completedQuests = new List<CrawlerQuest>();
 
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
+            {
+                foreach (CrawlerQuest quest in allQuests)
+                {
+                    if (party.CompletedQuests.HasBit(quest.IdKey))
+                    {
+                        completedQuests.Add(quest);
+                        continue;
+                    }
+                }
+
+                foreach (CrawlerQuest completedQuest in completedQuests)
+                {
+                    world.Quests.Remove(completedQuest);
+                    party.Quests = party.Quests.Where(x => x.CrawlerQuestId != completedQuest.IdKey).ToList();
+                    party.CompletedQuests.RemoveBit(completedQuest.IdKey);
+                }
+
+                int totalQuests = availableQuests.Count + currentQuests.Count;
+
+                int quantityToAdd = 4 - totalQuests;
+
+                if (quantityToAdd > 0)
+                {
+                    CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
+                    CrawlerMap cityMap = world.GetMap(1);
+
+                    int startQuestCount = world.Quests.Count;
+                    await SetupQuestsForMap(party, world, cityMap, _rand, token);
+                    int endQuestCount = world.Quests.Count;
+
+                    if (endQuestCount > startQuestCount)
+                    {
+                        await _worldService.SaveWorld(world);
+                    }
+                }
+            }
+
+
+            completedQuests.Clear();
             foreach (CrawlerQuest quest in allQuests)
             {
                 if (party.CompletedQuests.HasBit(quest.IdKey))
@@ -628,32 +668,6 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             }
 
 
-            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
-            {
-                foreach (CrawlerQuest completedQuest in completedQuests)
-                {
-                    world.Quests.Remove(completedQuest);
-                }
-
-                int totalQuests = availableQuests.Count + currentQuests.Count;
-
-                int quantityToAdd = 4 - totalQuests;
-
-                if (quantityToAdd > 0)
-                {
-                    CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
-                    CrawlerMap cityMap = world.GetMap(1);
-
-                    int startQuestCount = world.Quests.Count;
-                    await SetupQuestsForMap(party, world, cityMap, _rand, token);
-                    int endQuestCount = world.Quests.Count;
-
-                    if (endQuestCount > startQuestCount)
-                    {
-                        await _worldService.SaveWorld(world);
-                    }
-                }
-            }
 
             NPCQuestStatus questStatus = new NPCQuestStatus()
             {

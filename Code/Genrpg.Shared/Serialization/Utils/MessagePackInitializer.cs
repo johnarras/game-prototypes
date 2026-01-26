@@ -287,7 +287,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
                 string txt = File.ReadAllText(fullPath);
 
-                List<string> lines = txt.Split('\n').ToList();
+                List<string> lines = StrUtils.SplitIntoLines(txt);
 
                 string lookFor = "public interface " + itype.Name;
 
@@ -404,7 +404,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
                 string fileText = File.ReadAllText(fullPath);
 
-                List<string> lines = fileText.Split('\n').ToList();
+                List<string> lines = StrUtils.SplitIntoLines(fileText);
 
                 bool changedSomething = false;
 
@@ -528,7 +528,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
                 string fileText = File.ReadAllText(fullPath);
 
-                List<string> startLines = fileText.Split('\n').ToList();
+                List<string> startLines = StrUtils.SplitIntoLines(fileText);
 
                 List<string> midLines = new List<string>(startLines);
 

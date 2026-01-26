@@ -36,7 +36,7 @@ public class AddRoadService : IAddRoadService
 
 		foreach (MyPoint item in list)
 		{
-			float dist = MathUtils.Sqrt((item.X-sx)*(item.X-sx)+
+			float dist = MathUtil.Sqrt((item.X-sx)*(item.X-sx)+
 			                        (item.Y-sy)*(item.Y-sy));
 			if (dist < minDist)
 			{
@@ -174,7 +174,7 @@ public class AddRoadService : IAddRoadService
 		ld.WidthPosShiftChance = 0.03f + 0.05f*(float)(rand.NextDouble ());
 		ld.WidthPosShiftSize = 1;
 
-        ld.LinePathNoiseScale = MathUtils.FloatRange(0.6f, 1.0f, rand);
+        ld.LinePathNoiseScale = MathUtil.FloatRange(0.6f, 1.0f, rand);
 
         ld.InitialNoPosShiftLength = 5 + rand.Next() % 5;
 
@@ -228,14 +228,14 @@ public class AddRoadService : IAddRoadService
             if (!primaryRoad)
             {
                 float oldRoadPercent = roadPercent;
-                roadPercent *= MathUtils.FloatRange(0.2f, 0.4f, rand);
+                roadPercent *= MathUtil.FloatRange(0.2f, 0.4f, rand);
                 dirtPercent = oldRoadPercent - roadPercent;
                 basePercent = 1 - roadPercent - dirtPercent;
             }
 
             if (FlagUtils.IsSet(extraMapFlags, MapGenFlags.MinorRoad))
             {
-                dirtPercent = MathUtils.FloatRange(0.6f, 1.0f, rand);
+                dirtPercent = MathUtil.FloatRange(0.6f, 1.0f, rand);
                 roadPercent = 1 - dirtPercent;
                 basePercent = 0;
             }
@@ -350,13 +350,13 @@ public class AddRoadService : IAddRoadService
                     continue;
                 }
 
-                float dist = MathUtils.Sqrt((x-px)*(x-px)+(y-py)*(y-py));
+                float dist = MathUtil.Sqrt((x-px)*(x-px)+(y-py)*(y-py));
 				if (dist > radius)
                 {
                     continue;
                 }
 
-                float roadPct = MathUtils.FloatRange(0.8f,1.0f,rand);
+                float roadPct = MathUtil.FloatRange(0.8f,1.0f,rand);
 				_md.ClearAlphasAt(x,y);
 				_md.alphas[x,y,MapConstants.BaseTerrainIndex] = 1-roadPct;
 				_md.alphas[x,y,MapConstants.RoadTerrainIndex] = roadPct;
@@ -458,10 +458,10 @@ public class AddRoadService : IAddRoadService
                     }
                 }
             }
-            startx = MathUtils.Clamp(0, startx, _mapProvider.GetMap().GetHwid()-1);
-            endx = MathUtils.Clamp(0, endx, _mapProvider.GetMap().GetHwid() - 1);
-            starty = MathUtils.Clamp(0, starty, _mapProvider.GetMap().GetHhgt() - 1);
-            endy = MathUtils.Clamp(0, endy, _mapProvider.GetMap().GetHhgt() - 1);
+            startx = MathUtil.Clamp(0, startx, _mapProvider.GetMap().GetHwid()-1);
+            endx = MathUtil.Clamp(0, endx, _mapProvider.GetMap().GetHwid() - 1);
+            starty = MathUtil.Clamp(0, starty, _mapProvider.GetMap().GetHhgt() - 1);
+            endy = MathUtil.Clamp(0, endy, _mapProvider.GetMap().GetHhgt() - 1);
 
 
             int totalCells = 0;

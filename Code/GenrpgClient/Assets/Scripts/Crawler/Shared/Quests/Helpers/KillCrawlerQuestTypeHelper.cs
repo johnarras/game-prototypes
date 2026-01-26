@@ -92,7 +92,6 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             };
 
             world.AddQuest(quest);
-
             await Task.CompletedTask;
             return;
         }

@@ -1,12 +1,11 @@
 using Genrpg.Shared.Crawler.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class CrawlerCurrencyTypeInfoHelper : BaseInfoHelper<ElementTypeSettings, ElementType>
+    public class CrawlerCurrencyTypeInfoHelper : BaseInfoHelper<CrawlerCurrencySettings, CrawlerCurrencyType>
     {
 
         public override long HelperKey => EntityTypes.CrawlerCurrency;

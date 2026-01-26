@@ -5,9 +5,7 @@ using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
@@ -21,8 +19,6 @@ namespace Genrpg.RequestServer.Services.GameClient
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
         private IHourlyUpdateService _hourlyUpdateService = null;
-        private ITextSerializer _serializer = null;
-        private IRepositoryService _repoService = null;
 
         public async Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {

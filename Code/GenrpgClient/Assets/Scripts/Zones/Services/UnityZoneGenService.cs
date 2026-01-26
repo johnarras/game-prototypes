@@ -332,7 +332,7 @@ public class UnityZoneGenService : ZoneGenService
                 float alphaTotal = 0.0f;
                 for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
                 {
-                    _md.alphas[x, y, i] = MathUtils.Clamp(0, _md.alphas[x, y, i], 1);
+                    _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
                     alphaTotal += _md.alphas[x, y, i];
                 }
                 if (alphaTotal <= 0)
@@ -345,7 +345,7 @@ public class UnityZoneGenService : ZoneGenService
                     for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
                     {
                         _md.alphas[x, y, i] /= alphaTotal;
-                        _md.alphas[x, y, i] = MathUtils.Clamp(0, _md.alphas[x, y, i], 1);
+                        _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
                     }
                 }
             }

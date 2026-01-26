@@ -6,8 +6,8 @@
       "Icon": "FastMove",
       "Art": "FastMove",
       "BonusSpeed": 2,
-      "ForageChance": -0.03,
-      "RationsCost": 1
+      "RationsCost": 1,
+      "ForageChance": -0.03
     },
     {
       "IdKey": 2,

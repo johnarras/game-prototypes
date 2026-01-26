@@ -6,12 +6,12 @@ namespace Genrpg.Shared.Trader.Travel.WebApi
     {
         public bool Success { get; set; }
         public string ErrorMessage { get; set; }
-        public long FromX { get; set; }
-        public long FromY { get; set; }
-        public long ToX { get; set; }
-        public long ToY { get; set; }
-        public long ToCityId { get; set; }
-        public long DistanceToTarget { get; set; }
-        public long NewTraderFlags { get; set; }
+        public int FromX { get; set; }
+        public int FromY { get; set; }
+        public int ToX { get; set; }
+        public int ToY { get; set; }
+        public int ToCityId { get; set; }
+        public int DistanceToTarget { get; set; }
+        public int NewTraderFlags { get; set; }
     }
 }

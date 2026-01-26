@@ -20,7 +20,7 @@ namespace Genrpg.RequestServer.Core
     /// <summary>
     /// This is a minimal amount of webdev used to get us into code that can be used elsewhere easier.
     /// </summary>
-    public class WebRequestServer : BaseServer<WebContext, WebsiteSetupService, IQueueMessageHandler>
+    public class WebRequestServer : BaseServer<WebContext, WebsiteSetupService, IWebsiteQueueMessageHandler>
     {
         protected IGameClientWebService _gameClientWebService { get; private set; }
         protected IAccountAuthWebService _accountAuthWebService { get; private set; }

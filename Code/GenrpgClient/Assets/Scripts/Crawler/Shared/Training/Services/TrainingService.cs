@@ -88,7 +88,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
 
-            long level = MathUtils.Clamp(1, member.Level, trainingSettings.MaxScalingExpLevel);
+            long level = MathUtil.Clamp(1, member.Level, trainingSettings.MaxScalingExpLevel);
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 
@@ -141,7 +141,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
 
-            long level = MathUtils.Clamp(1, member.Level, trainingSettings.MaxScalingExpLevel);
+            long level = MathUtil.Clamp(1, member.Level, trainingSettings.MaxScalingExpLevel);
 
             RoleSettings roleSettings = _gameData.Get<RoleSettings>(_gs.ch);
 

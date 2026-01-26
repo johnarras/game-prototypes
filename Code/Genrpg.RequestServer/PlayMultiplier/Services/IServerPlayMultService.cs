@@ -11,7 +11,7 @@ namespace Genrpg.RequestServer.PlayMultiplier.Services
 {
     public interface IServerPlayMultService : IInjectable
     {
-        Task SetPlayMult(WebContext context, long newPlayMult);
+        Task SetPlayMult(WebContext context, int newPlayMult);
     }
 }
 

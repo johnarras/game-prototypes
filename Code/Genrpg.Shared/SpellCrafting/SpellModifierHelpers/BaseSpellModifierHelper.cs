@@ -38,7 +38,7 @@ namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 
         public virtual double GetValidValue(MapObject obj, double value)
         {
-            value = MathUtils.Clamp(GetMinValue(obj), value, GetMaxValue(obj));
+            value = MathUtil.Clamp(GetMinValue(obj), value, GetMaxValue(obj));
 
             double minValue = GetMinValue(obj);
             double valueDelta = ValueDelta(obj);

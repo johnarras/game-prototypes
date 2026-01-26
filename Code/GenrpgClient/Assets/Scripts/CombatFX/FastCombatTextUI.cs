@@ -106,10 +106,10 @@ namespace Assets.Scripts.UI.CombatTexts
                     textColor = new Color(0.66f, 0, 0.8f, 1);
                 }
 
-                float angle = MathUtils.FloatRange(-45, 225, _rand);
+                float angle = MathUtil.FloatRange(-45, 225, _rand);
                 float frameDy = Mathf.Sin(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
                 float frameDx = Mathf.Cos(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
-                float startFrames = MathUtils.FloatRange(0, 20, _rand);
+                float startFrames = MathUtil.FloatRange(0, 20, _rand);
 
                 Vector3 startPos = transform.position +
                     new Vector3(frameDx * startFrames, frameDy * startFrames, 0);

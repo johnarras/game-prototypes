@@ -24,9 +24,9 @@ namespace Genrpg.Shared.Trader.Animals.Settings
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public long Speed { get; set; }
-        public long Capacity { get; set; }
-        public long Upkeep { get; set; }
+        public int Speed { get; set; }
+        public int Capacity { get; set; }
+        public int Upkeep { get; set; }
         public long Price { get; set; }
         public bool StartsUnlocked { get; set; }
     }

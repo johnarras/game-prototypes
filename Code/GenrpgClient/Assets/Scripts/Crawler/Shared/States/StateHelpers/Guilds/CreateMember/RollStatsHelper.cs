@@ -50,7 +50,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             foreach (StatType statType in statTypes)
             {
-                int statValue = MathUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand);
+                int statValue = MathUtil.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand);
 
                 if (!rollStats)
                 {

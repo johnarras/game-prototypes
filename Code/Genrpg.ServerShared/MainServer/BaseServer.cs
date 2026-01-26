@@ -26,7 +26,7 @@ namespace Genrpg.ServerShared.MainServer
         where IQMessageHandler : IQueueMessageHandler
     {
         protected TGameState _context = null;
-        protected CancellationTokenSource _tokenSource = new CancellationTokenSource();
+        protected CancellationTokenSource _currServerToken = new CancellationTokenSource();
         protected string _serverId = null;
         protected ICloudCommsService _cloudCommsService = null;
         protected IServerConfig _config = null;
@@ -34,7 +34,7 @@ namespace Genrpg.ServerShared.MainServer
 
         public virtual CancellationToken GetToken()
         {
-            return _tokenSource?.Token ?? CancellationToken.None;
+            return _currServerToken?.Token ?? CancellationToken.None;
         }
 
         public virtual ServerGameState GetServerGameState()
@@ -53,21 +53,25 @@ namespace Genrpg.ServerShared.MainServer
             await Task.CompletedTask;
         }
 
-
         private SetupDictionaryContainer<Type, IQMessageHandler> _queueHandlers = new();
 
-        public async Task Init(CancellationToken serverToken, object data = null, object parentObject = null)
+        public async Task Init(CancellationToken mainServerToken, object data = null, object parentObject = null)
         {
 
+            _currServerToken = CancellationTokenSource.CreateLinkedTokenSource(mainServerToken);
             try
             {
-                await PreInit(data, parentObject, serverToken);
+                AppDomain.CurrentDomain.ProcessExit += (s, e) =>
+                {
+                    _currServerToken.Cancel();
+                };
 
-                _tokenSource = CancellationTokenSource.CreateLinkedTokenSource(serverToken, _tokenSource.Token);
+                await PreInit(data, parentObject, _currServerToken.Token);
+
                 _serverId = GetServerId(data);
 
                 _context = await new ServerSetup().SetupFromConfig<TGameState, TSetupService>(this, _serverId,
-                    _tokenSource.Token);
+                    _currServerToken.Token);
 
                 _cloudCommsService.SetQueueMessageHandlers(_queueHandlers.GetDict());
 
@@ -75,7 +79,7 @@ namespace Genrpg.ServerShared.MainServer
 
                 _context.loc.Resolve(parentObject);
                 _context.loc.Resolve(this);
-                await FinalInit(data, parentObject, serverToken);
+                await FinalInit(data, parentObject, _currServerToken.Token);
             }
             catch (Exception ex)
             {

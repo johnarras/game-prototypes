@@ -112,14 +112,14 @@ namespace Genrpg.MapServer.Maps
 
         public void Dispose()
         {
-            _tokenSource.Cancel();
+            _currServerToken.Cancel();
         }
 
         protected virtual IListener GetListener(string host, int port, EMapApiSerializers serializerType)
         {
             ISerializer serializer = (serializerType == EMapApiSerializers.MessagePack ? _binarySerializer : _textSerializer);
 
-            return new BaseTcpListener(host, port, _logService, serializer, _taskService, AddConnection, ReceiveCommands, _tokenSource.Token);
+            return new BaseTcpListener(host, port, _logService, serializer, _taskService, AddConnection, ReceiveCommands, _currServerToken.Token);
         }
 
         public void RefreshGameData(IGameData gameData)
@@ -150,15 +150,15 @@ namespace Genrpg.MapServer.Maps
             InitMapInstanceData initData = data as InitMapInstanceData;
             _isRunning = true;
 
-            _instanceTokenSource = CancellationTokenSource.CreateLinkedTokenSource(parentToken, _tokenSource.Token);
+            _instanceTokenSource = CancellationTokenSource.CreateLinkedTokenSource(parentToken, _currServerToken.Token);
 
             // Step 2: Load map before setting up messaging and object manager
             _mapProvider.SetMap(await _mapDataService.LoadMap(_rand, _mapId));
             _mapProvider.SetSpawns(await _mapSpawnDataService.LoadMapSpawnData(_repoService, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion));
 
             // Step 3: Setup messaging and object systems
-            _messageService.Init(_tokenSource.Token);
-            _objectManager.Init(_rand, _tokenSource.Token);
+            _messageService.Init(_currServerToken.Token);
+            _objectManager.Init(_rand, _currServerToken.Token);
             _port = initData.Port;
             _serializerType = initData.SerializerType;
             _host = "127.0.0.1";
@@ -174,7 +174,7 @@ namespace Genrpg.MapServer.Maps
 
             SendAddInstanceMessage();
 
-            _taskService.ForgetTask(ProcessMap(_tokenSource.Token), true);
+            _taskService.ForgetTask(ProcessMap(_currServerToken.Token), true);
 
             await _pathfindingService.LoadPathfinding(
                 _config.ContentRoot + "/" + Game.Prefix.ToLower() +

@@ -32,7 +32,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
             {
 
                 List<string> wordChoices = new List<string>();
-                int startOffsetIndex = MathUtils.IntRange(0, RiddleConstants.MaxLetterPosition, rand);
+                int startOffsetIndex = MathUtil.IntRange(0, RiddleConstants.MaxLetterPosition, rand);
 
                 if (rand.NextDouble() < 0.7f)
                 {

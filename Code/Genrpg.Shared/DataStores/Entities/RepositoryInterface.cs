@@ -21,7 +21,7 @@ namespace Genrpg.Shared.DataStores.Entities
     {
         Task<T> Load<T>(string id) where T : class, IStringId;
 
-        Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : class, IStringId;
+        Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : IStringId;
 
         Task<bool> Delete<T>(T t) where T : class, IStringId;
     }
@@ -35,7 +35,7 @@ namespace Genrpg.Shared.DataStores.Entities
     public interface IRepository
     {
         Task<T> Load<T>(string id) where T : class, IStringId;
-        Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : class, IStringId;
+        Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId;
         Task<bool> Delete<T>(T obj) where T : class, IStringId;
     }
 

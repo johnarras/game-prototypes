@@ -1,9 +1,10 @@
-using System;
-using System.Text;
-using System.Security.Cryptography;
+using Assets.Scripts.Repository.Constants;
 using Genrpg.Shared.Interfaces;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 
-public interface IClientCryptoService :IInjectable
+public interface IClientCryptoService : IInjectable
 {
     string EncryptString(string txt);
     string DecryptString(string txt);
@@ -35,7 +36,7 @@ public class ClientCryptoService : IClientCryptoService
 
     public string GetDeviceId()
     {
-        byte[] bytes = Encoding.UTF8.GetBytes(_appService.DeviceUniqueIdentifier);
+        byte[] bytes = Encoding.UTF8.GetBytes(_appService.DeviceUniqueIdentifier + ClientRepositoryConstants.GetDataPathPrefix());
         MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
         return Convert.ToBase64String(provider.ComputeHash(bytes));
     }

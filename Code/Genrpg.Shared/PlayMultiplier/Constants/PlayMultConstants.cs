@@ -2,7 +2,7 @@ namespace Genrpg.Shared.PlayMultiplier.Constants
 {
     public class PlayMultConstants
     {
-        public const long MinMult = 1;
+        public const int MinMult = 1;
     }
 }
 

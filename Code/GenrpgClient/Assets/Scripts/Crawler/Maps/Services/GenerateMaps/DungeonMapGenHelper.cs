@@ -38,7 +38,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             if (genData.MaxFloor == 0 || genData.PrevMap == null)
             {
-                genData.MaxFloor = MathUtils.IntRange(genType.MinFloors, genType.MaxFloors, rand);
+                genData.MaxFloor = MathUtil.IntRange(genType.MinFloors, genType.MaxFloors, rand);
 
                 if (genData.CurrFloor == 0)
                 {
@@ -55,8 +55,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 {
                     genData.Looping = false;
                 }
-                int width = MathUtils.IntRange(genType.MinWidth, genType.MaxWidth, rand);
-                int height = MathUtils.IntRange(genType.MinHeight, genType.MaxHeight, rand);
+                int width = MathUtil.IntRange(genType.MinWidth, genType.MaxWidth, rand);
+                int height = MathUtil.IntRange(genType.MinHeight, genType.MaxHeight, rand);
 
                 if (!genData.RandomWallsDungeon)
                 {
@@ -98,8 +98,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             if (genData.RandomWallsDungeon)
             {
-                double wallChance = MathUtils.FloatRange(genType.MinWallChance, genType.MaxWallChance, rand);
-                double doorChance = MathUtils.FloatRange(genType.MinDoorChance, genType.MaxDoorChance, rand);
+                double wallChance = MathUtil.FloatRange(genType.MinWallChance, genType.MaxWallChance, rand);
+                double doorChance = MathUtil.FloatRange(genType.MinDoorChance, genType.MaxDoorChance, rand);
                 for (int x = 0; x < map.Width; x++)
                 {
                     for (int z = 0; z < map.Height; z++)
@@ -166,11 +166,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int maxRoomSize = 6;
                 for (int r = 0; r < roomTimes; r++)
                 {
-                    int minx = MathUtils.IntRange(0, map.Width - maxRoomSize - 1, rand);
-                    int maxx = minx + MathUtils.IntRange(maxRoomSize / 2, maxRoomSize, rand);
+                    int minx = MathUtil.IntRange(0, map.Width - maxRoomSize - 1, rand);
+                    int maxx = minx + MathUtil.IntRange(maxRoomSize / 2, maxRoomSize, rand);
 
-                    int minz = MathUtils.IntRange(0, map.Height - maxRoomSize - 1, rand);
-                    int maxz = MathUtils.IntRange(maxRoomSize / 2, maxRoomSize, rand);
+                    int minz = MathUtil.IntRange(0, map.Height - maxRoomSize - 1, rand);
+                    int maxz = MathUtil.IntRange(maxRoomSize / 2, maxRoomSize, rand);
 
                     for (int x = minx; x < maxx; x++)
                     {
@@ -183,13 +183,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
 
                 int exitEdgeDistance = 1;
-                enterX = MathUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
-                enterZ = MathUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
+                enterX = MathUtil.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                enterZ = MathUtil.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
 
                 do
                 {
-                    exitX = MathUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
-                    exitZ = MathUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
+                    exitX = MathUtil.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                    exitZ = MathUtil.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
                 }
                 while (enterX == exitX && enterZ == exitZ);
 
@@ -229,7 +229,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 // Add rooms first.
 
-                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * MathUtils.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
+                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * MathUtil.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
 
                 if (roomCount < 1)
                 {
@@ -344,10 +344,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     }
 
 
-                    minx = MathUtils.Clamp(edgeSize, minx, map.Width - edgeSize - 1);
-                    maxx = MathUtils.Clamp(edgeSize, maxx, map.Width - edgeSize - 1);
-                    minz = MathUtils.Clamp(edgeSize, minz, map.Height - edgeSize - 1);
-                    maxz = MathUtils.Clamp(edgeSize, maxz, map.Height - edgeSize - 1);
+                    minx = MathUtil.Clamp(edgeSize, minx, map.Width - edgeSize - 1);
+                    maxx = MathUtil.Clamp(edgeSize, maxx, map.Width - edgeSize - 1);
+                    minz = MathUtil.Clamp(edgeSize, minz, map.Height - edgeSize - 1);
+                    maxz = MathUtil.Clamp(edgeSize, maxz, map.Height - edgeSize - 1);
 
 
                     for (int x = minx; x <= maxx; x++)
@@ -1181,8 +1181,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             for (int r = 0; r < roomCount; r++)
             {
-                double widthFloat = Math.Min(MathUtils.FloatRange(minWidth, maxWidth, rand), MathUtils.FloatRange(minWidth, maxWidth, rand));
-                double heightFloat = Math.Min(MathUtils.FloatRange(minHeight, maxHeight, rand), MathUtils.FloatRange(minHeight, maxHeight, rand));
+                double widthFloat = Math.Min(MathUtil.FloatRange(minWidth, maxWidth, rand), MathUtil.FloatRange(minWidth, maxWidth, rand));
+                double heightFloat = Math.Min(MathUtil.FloatRange(minHeight, maxHeight, rand), MathUtil.FloatRange(minHeight, maxHeight, rand));
 
                 int width = (int)widthFloat;
                 int height = (int)heightFloat;
@@ -1197,8 +1197,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     height++;
                 }
 
-                int xstart = MathUtils.IntRange(1, map.Width - width - 2, rand);
-                int zstart = MathUtils.IntRange(1, map.Height - height - 2, rand);
+                int xstart = MathUtil.IntRange(1, map.Width - width - 2, rand);
+                int zstart = MathUtil.IntRange(1, map.Height - height - 2, rand);
 
                 int xend = xstart + width;
                 int zend = zstart + height;

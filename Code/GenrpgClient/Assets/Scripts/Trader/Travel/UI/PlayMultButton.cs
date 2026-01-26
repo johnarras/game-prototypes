@@ -36,12 +36,12 @@ namespace Assets.Scripts.Trader.Travel.UI
             ShowData();
         }
 
-        private long _queuedPlayMult = -1;
+        private int _queuedPlayMult = -1;
 
         private void ClickSetMultButton()
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
-            long maxMult = _playMultService.GetMaxMult(coreData);
+            int maxMult = _playMultService.GetMaxMult(coreData);
 
             if (coreData.Vars[TraderVars.Mult] < maxMult)
             {

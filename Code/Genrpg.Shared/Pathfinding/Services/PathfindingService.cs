@@ -318,7 +318,7 @@ namespace Genrpg.Shared.Pathfinding.Services
                 {
                     return;
                 }
-                int index = MathUtils.Clamp(0, (int)cell.Cost, OpenSet.Length - 1);
+                int index = MathUtil.Clamp(0, (int)cell.Cost, OpenSet.Length - 1);
 
                 if (index >= 0 && index < OpenSet.Length)
                 {
@@ -341,7 +341,7 @@ namespace Genrpg.Shared.Pathfinding.Services
                 MinOpenCellZ = Math.Min(gz, MinOpenCellZ);
                 MaxOpenCellZ = Math.Max(gz, MaxOpenCellZ);
 
-                int index = MathUtils.Clamp(0, (int)cell.Cost, OpenSet.Length-1);
+                int index = MathUtil.Clamp(0, (int)cell.Cost, OpenSet.Length-1);
 
                 List<PathCell> openList = OpenSet[index];
                 cell.IsOpen = true;
@@ -579,10 +579,10 @@ namespace Genrpg.Shared.Pathfinding.Services
 
             workbook.CenterX = startGridX;
             workbook.CenterZ = startGridZ;
-            workbook.MinX = MathUtils.Clamp(0, workbook.CenterX - GridCenter, _grid.GetLength(0) - 1);
-            workbook.MaxX = MathUtils.Clamp(0, workbook.CenterX + GridCenter - 1, _grid.GetLength(0) - 1);
-            workbook.MinZ = MathUtils.Clamp(0, workbook.CenterZ - GridCenter, _grid.GetLength(1) - 1);
-            workbook.MaxZ = MathUtils.Clamp(0, workbook.CenterZ + GridCenter - 1, _grid.GetLength(1) - 1);
+            workbook.MinX = MathUtil.Clamp(0, workbook.CenterX - GridCenter, _grid.GetLength(0) - 1);
+            workbook.MaxX = MathUtil.Clamp(0, workbook.CenterX + GridCenter - 1, _grid.GetLength(0) - 1);
+            workbook.MinZ = MathUtil.Clamp(0, workbook.CenterZ - GridCenter, _grid.GetLength(1) - 1);
+            workbook.MaxZ = MathUtil.Clamp(0, workbook.CenterZ + GridCenter - 1, _grid.GetLength(1) - 1);
 
             workbook.AddOpenCell(startCell, null);
 

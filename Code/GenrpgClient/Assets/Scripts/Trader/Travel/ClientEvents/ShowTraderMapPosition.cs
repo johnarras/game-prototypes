@@ -5,5 +5,6 @@
         public float X;
         public float Y;
         public bool UpdateAngle;
+        public bool FullRefresh;
     }
 }

@@ -1,4 +1,3 @@
-using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -12,9 +11,7 @@ using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
@@ -34,8 +31,8 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
             UnitType unitType = _gameData.Get<UnitTypeSettings>(_gs.ch).Get(entityId);
             List<string> lines = new List<string>();
 
-            
-            lines.Add(_infoService.CreateHeaderLine(unitType.Name));
+
+            lines.Add(_infoService.CreateHeaderLine(unitType.Name, false));
             lines.Add(unitType.Desc ?? "");
 
             FullMonsterStats stats = _combatService.GetFullMonsterStats(_crawlerService.GetParty(), unitType, FactionTypes.Player, 1000, false);

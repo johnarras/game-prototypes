@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -764,7 +763,7 @@ namespace Genrpg.Shared.Utils
             }
 
             List<string> retval = new List<string>();
-            string[] words1 = str.Split(',');
+            string[] words1 = StrUtils.SafeSplitCommaLine(str);
 
             foreach (string word in words1)
             {
@@ -780,6 +779,18 @@ namespace Genrpg.Shared.Utils
             }
 
             return retval;
+        }
+
+        public static List<string> SplitIntoLines(string txt)
+        {
+            string[] words = txt.Split("\n");
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = words[i].Replace("\r", "");
+            }
+
+            return words.ToList();
         }
     }
 }

@@ -200,8 +200,8 @@ public class ZoneScreen : BaseScreen
         float newdx = xmaxpct - xminpct;
         float newdy = ymaxpct - yminpct;
 
-        float xpct = MathUtils.Clamp(0, (xpctstart - xminpct) / (xmaxpct - xminpct), 1) - 0.5f;
-        float ypct = MathUtils.Clamp(0, (ypctstart - yminpct) / (ymaxpct - yminpct), 1) - 0.5f;
+        float xpct = MathUtil.Clamp(0, (xpctstart - xminpct) / (xmaxpct - xminpct), 1) - 0.5f;
+        float ypct = MathUtil.Clamp(0, (ypctstart - yminpct) / (ymaxpct - yminpct), 1) - 0.5f;
 
         float rot = player.transform.eulerAngles.y;
 

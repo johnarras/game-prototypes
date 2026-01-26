@@ -376,10 +376,10 @@ namespace Genrpg.MapServer.Maps
             _totalQueries++;
             List<MapObject> retval = new List<MapObject>();
 
-            gxmin = MathUtils.Clamp(0, gxmin, _gridSize - 1);
-            gxmax = MathUtils.Clamp(0, gxmax, _gridSize - 1);
-            gzmin = MathUtils.Clamp(0, gzmin, _gridSize - 1);
-            gzmax = MathUtils.Clamp(0, gzmax, _gridSize - 1);
+            gxmin = MathUtil.Clamp(0, gxmin, _gridSize - 1);
+            gxmax = MathUtil.Clamp(0, gxmax, _gridSize - 1);
+            gzmin = MathUtil.Clamp(0, gzmin, _gridSize - 1);
+            gzmax = MathUtil.Clamp(0, gzmax, _gridSize - 1);
 
             for (int gx = gxmin; gx <= gxmax; gx++)
             {
@@ -563,7 +563,7 @@ namespace Genrpg.MapServer.Maps
             {
                 gridItem.Obj.Spawn.SpawnSeconds = 20;
                 _messageService.SendMessage(GetMessageTarget(), new RespawnObject() { Spawn = gridItem.Obj.Spawn },
-                    MathUtils.IntRange(gridItem.Obj.Spawn.SpawnSeconds,gridItem.Obj.Spawn.SpawnSeconds*2, rand));
+                    MathUtil.IntRange(gridItem.Obj.Spawn.SpawnSeconds,gridItem.Obj.Spawn.SpawnSeconds*2, rand));
             }
 
             DespawnObject despawn = new DespawnObject()
@@ -612,13 +612,13 @@ namespace Genrpg.MapServer.Maps
                         if (times > 0)
                         {
                             int delta = 25;
-                            copySpawn.X += MathUtils.IntRange(-delta, delta, rand);
-                            copySpawn.Z += MathUtils.IntRange(-delta, delta, rand);
+                            copySpawn.X += MathUtil.IntRange(-delta, delta, rand);
+                            copySpawn.Z += MathUtil.IntRange(-delta, delta, rand);
                             copySpawn.ObjId += "." + times.ToString();
                         }
                         if (!copySpawn.GetAddons().Any())
                         {
-                            copySpawn.FactionTypeId = MathUtils.IntRange(1, 4, rand);
+                            copySpawn.FactionTypeId = MathUtil.IntRange(1, 4, rand);
                         }
                         copySpawns.Add(copySpawn);
                     }
@@ -706,7 +706,7 @@ namespace Genrpg.MapServer.Maps
             {
                 AIUpdate update = new AIUpdate();
 
-                _messageService.SendMessage(unit, update, MathUtils.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, rand));
+                _messageService.SendMessage(unit, update, MathUtil.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, rand));
             }
         }
 

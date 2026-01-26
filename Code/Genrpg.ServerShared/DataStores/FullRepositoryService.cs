@@ -96,12 +96,17 @@ namespace Genrpg.ServerShared.DataStores
                 _queues.Add(new DbQueue(_logService, _taskService, token));
             }
 
-
-            foreach (EDataCategories category in Enum.GetValues(typeof(EDataCategories)))
+            foreach (ERepoTypes repoType in Enum.GetValues(typeof(ERepoTypes)))
             {
-                string env = _environments[category.ToString()];
-                foreach (ERepoTypes repoType in Enum.GetValues(typeof(ERepoTypes)))
+                foreach (EDataCategories category in Enum.GetValues(typeof(EDataCategories)))
                 {
+                    if (category == EDataCategories.Default)
+                    {
+                        continue;
+                    }
+
+                    string env = _environments[category.ToString()];
+
                     InitRepoArgs args = new InitRepoArgs()
                     {
                         Category = category,
@@ -110,7 +115,11 @@ namespace Genrpg.ServerShared.DataStores
                     };
 
                     string typeKey = GetEnvCategoryStoreTypeKey(env, category, repoType);
-                    _repos[typeKey] = await _resourceProvider.CreateRepo(args, token);
+                    IRepository repo = await _resourceProvider.CreateRepo(args, token);
+                    if (repo != null)
+                    {
+                        _repos[typeKey] = repo;
+                    }
                 }
             }
 
@@ -166,7 +175,7 @@ namespace Genrpg.ServerShared.DataStores
             return await repo.Delete(obj);
         }
 
-        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : class, IStringId
+        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId
         {
             IRepository repo = FindRepo(obj.GetType());
             return await repo.Save(obj, args);

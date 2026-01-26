@@ -517,7 +517,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (effect.MinQuantity > 0 && effect.MaxQuantity > 0 && !action.QuantityIsBaseAmount)
                     {
-                        attackQuantity = MathUtils.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand);
+                        attackQuantity = MathUtil.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand);
                     }
                     else
                     {
@@ -1057,7 +1057,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     {
                         double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
 
-                        double healing = MathUtils.FloatRange(1, maxVal * maxVal, _rand);
+                        double healing = MathUtil.FloatRange(1, maxVal * maxVal, _rand);
 
                         long currHealth = target.Stats.Curr(StatTypes.Health);
                         long maxHealth = target.Stats.Max(StatTypes.Health);

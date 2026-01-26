@@ -104,8 +104,8 @@ public class AddSecondaryLocations : BaseZoneGenerator
                 CenterX = cx,
                 CenterZ = cy,
                 LocationTypeId = LocationTypes.Secondary,
-                XSize = MathUtils.IntRange(minRad, maxRad, rand),
-                ZSize = MathUtils.IntRange(minRad, maxRad, rand),        
+                XSize = MathUtil.IntRange(minRad, maxRad, rand),
+                ZSize = MathUtil.IntRange(minRad, maxRad, rand),        
             };
 
             base._md.AddMapLocation(_mapProvider, loc);

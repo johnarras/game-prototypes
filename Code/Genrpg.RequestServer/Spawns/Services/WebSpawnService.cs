@@ -160,7 +160,7 @@ namespace Genrpg.RequestServer.Spawns.Services
                 return retval;
             }
 
-            long quantity = MathUtils.LongRange(si.MinQuantity, si.MaxQuantity, context.rand);
+            long quantity = MathUtil.LongRange(si.MinQuantity, si.MaxQuantity, context.rand);
 
             Reward rew = new Reward();
             rew.EntityId = si.EntityId;

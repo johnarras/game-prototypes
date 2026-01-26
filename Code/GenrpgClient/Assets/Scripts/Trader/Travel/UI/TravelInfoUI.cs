@@ -43,12 +43,12 @@ namespace Assets.Scripts.Trader.Travel.UI
                 rationsSpriteString = "<sprite name=\"" + _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).Get(CoreCurrencyTypes.Rations).Name + "\"> ";
             }
 
-            _uiService.SetText(DistanceText, "Speed/Day: " + info.DiceSpeed + " <sprite name=\"Die5\">" +
+            _uiService.SetText(DistanceText, info.DiceSpeed + " <sprite name=\"Die5\">" +
                 (info.BonusSpeed > 0 ? " + " + info.BonusSpeed : ""));
 
-            _uiService.SetText(CostPerDayText, "Cost/Day: " + rationsSpriteString + info.CostPerDay);
+            _uiService.SetText(CostPerDayText, info.CostPerDay.ToString());
 
-            _uiService.SetText(TotalCostText, "Total Cost:" + rationsSpriteString + info.TotalCost);
+            _uiService.SetText(TotalCostText, info.TotalCost.ToString());
 
         }
     }

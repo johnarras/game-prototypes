@@ -267,12 +267,23 @@ namespace Assets.Scripts.GameObjects
             GameObject go = obj as GameObject;
             if (go == null)
             {
-                return null;
+                if (obj is MonoBehaviour mb)
+                {
+                    go = mb.gameObject;
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             if (typeof(T).IsSubclassOf(typeof(Component)))
             {
-                if (!go.TryGetComponent<T>(out T comp))
+                if (go.TryGetComponent<T>(out T comp))
+                {
+                    return comp;
+                }
+                else
                 {
                     Transform t = go.transform.parent;
 

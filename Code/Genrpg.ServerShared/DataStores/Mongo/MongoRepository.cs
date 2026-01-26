@@ -175,7 +175,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             return (T)await collection.Load(id);
         }
 
-        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : class, IStringId
+        public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId
         {
 
             INoSQLCollection collection = GetCollection(obj.GetType());

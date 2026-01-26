@@ -104,9 +104,9 @@ public class AddPlants : BaseZoneGenerator
             MyRandom rand = new MyRandom(full.noiseSeed);
             for (int i = 0; i < plantChanceTimes; i++)
             {
-                float pers = MathUtils.FloatRange(0.1f, 0.3f, rand) * 1.2f;
-                float amp = MathUtils.FloatRange(1.0f, 2.0f, rand) * 0.9f;
-                float freq = perlinSize * MathUtils.FloatRange(0.04f, 0.25f, rand);
+                float pers = MathUtil.FloatRange(0.1f, 0.3f, rand) * 1.2f;
+                float amp = MathUtil.FloatRange(1.0f, 2.0f, rand) * 0.9f;
+                float freq = perlinSize * MathUtil.FloatRange(0.04f, 0.25f, rand);
 
                 int octaves = 2;
 
@@ -130,9 +130,9 @@ public class AddPlants : BaseZoneGenerator
                 plantChances.Add(_noiseService.Generate(pers, freq, amp, octaves, pseed, perlinSize, perlinSize));
             }
 
-            float steepFreq = perlinSize * MathUtils.FloatRange(0.05f, 0.15f, rand);
-            float steepAmp = MathUtils.FloatRange(4, 20, rand);
-            float steepPers = MathUtils.FloatRange(0.1f, 0.3f, rand);
+            float steepFreq = perlinSize * MathUtil.FloatRange(0.05f, 0.15f, rand);
+            float steepAmp = MathUtil.FloatRange(4, 20, rand);
+            float steepPers = MathUtil.FloatRange(0.1f, 0.3f, rand);
             int steepOctaves = 2;
 
             /// Steepness allowed at each coord for this grass to grow or not.
@@ -149,7 +149,7 @@ public class AddPlants : BaseZoneGenerator
             {
                 for (int y = starty; y <= endy; y++)
                 {
-                    float currDensityMult = MathUtils.FloatRange(0, 2, rand);
+                    float currDensityMult = MathUtil.FloatRange(0, 2, rand);
                     numChecked++;
 
                     if (_md.mapZoneIds[x,y] != zone.IdKey) // zoneobject
@@ -237,7 +237,7 @@ public class AddPlants : BaseZoneGenerator
                         }
                         else
                         {
-                            chance = MathUtils.FloatRange(0, 1, rand);
+                            chance = MathUtil.FloatRange(0, 1, rand);
                         }
                     }
 
@@ -255,7 +255,7 @@ public class AddPlants : BaseZoneGenerator
 
                     if (val < 1 && rand.NextDouble() < GrassRandomChance)
                     {
-                        val = (short)MathUtils.IntRange(1, 3, rand);
+                        val = (short)MathUtil.IntRange(1, 3, rand);
                     }
 
                     if (val > 0)

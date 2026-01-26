@@ -122,7 +122,7 @@ namespace Genrpg.Editor.Utils
             SerializationInitializer.Init(GetCodeFolderPath());
         }
 
-        static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\"; }
+        public static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\"; }
 
         const string GitOffsetPath = "..\\GameData";
         public static void WriteGameDataToDisk(FullGameDataCopy dataCopy, ITextSerializer serializer)

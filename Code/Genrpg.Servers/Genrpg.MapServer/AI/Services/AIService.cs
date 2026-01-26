@@ -118,10 +118,10 @@ namespace Genrpg.MapServer.AI.Services
 
                 float wanderRange = AIConstants.IdleWanderRange;
 
-                float targetx = MathUtils.FloatRange(unit.Spawn.X - wanderRange, unit.Spawn.X + wanderRange, rand);
-                float targetz = MathUtils.FloatRange(unit.Spawn.Z - wanderRange, unit.Spawn.Z + wanderRange, rand);
+                float targetx = MathUtil.FloatRange(unit.Spawn.X - wanderRange, unit.Spawn.X + wanderRange, rand);
+                float targetz = MathUtil.FloatRange(unit.Spawn.Z - wanderRange, unit.Spawn.Z + wanderRange, rand);
 
-                LocationMove(rand, unit, targetx, targetz, MathUtils.FloatRange(0.2f, 0.3f, rand));
+                LocationMove(rand, unit, targetx, targetz, MathUtil.FloatRange(0.2f, 0.3f, rand));
             }
         }
 

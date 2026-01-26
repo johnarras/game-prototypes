@@ -43,8 +43,8 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
             for (int i = 0; i < wordNames.Count; i++)
             {
-                long purchaseQuantity = MathUtils.LongRange(3, 10, rand);
-                long purchaseCost = MathUtils.LongRange(3, 10, rand);
+                long purchaseQuantity = MathUtil.LongRange(3, 10, rand);
+                long purchaseCost = MathUtil.LongRange(3, 10, rand);
 
                 total += purchaseQuantity * purchaseCost;
 

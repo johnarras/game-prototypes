@@ -572,7 +572,6 @@ namespace Assets.Scripts.Crawler.Services
         }
         public async Awaitable NewGame(int options)
         {
-            _dispatcher.Dispatch(new CloseAllScreens());
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
 
             _party = new PartyData();
@@ -615,8 +614,9 @@ namespace Assets.Scripts.Crawler.Services
 
             await _worldService.GenerateWorld(_party);
 
-            await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
-            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
+            //await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
+            _dispatcher.Dispatch(new CloseAllScreens());
+            //_dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
 
 
 

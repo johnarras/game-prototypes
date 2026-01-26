@@ -59,7 +59,7 @@ namespace Genrpg.Shared.ProcGen.Services
             int height = (int)(sd.YMax - sd.YMin + 1);
             if (sd.NoiseAmp > 0 && sd.NoiseFreq > 0)
             {
-                float pers = MathUtils.FloatRange(0.2f, 0.6f, rand);
+                float pers = MathUtil.FloatRange(0.2f, 0.6f, rand);
 
                 if (width <= 20000 && height <= 20000)
                 {
@@ -72,8 +72,8 @@ namespace Genrpg.Shared.ProcGen.Services
             for (int i = 0; i < maxNumTimes && list.Count < sd.Count; i++)
             {
                 MyPoint2 newpt = new MyPoint2();
-                newpt.X = MathUtils.FloatRange(sd.XMin, sd.XMax, rand);
-                newpt.Y = MathUtils.FloatRange(sd.YMin, sd.YMax, rand);
+                newpt.X = MathUtil.FloatRange(sd.XMin, sd.XMax, rand);
+                newpt.Y = MathUtil.FloatRange(sd.YMin, sd.YMax, rand);
 
                 double newDist = GeomUtils.GetMinDistance2(list, newpt);
 
@@ -81,10 +81,10 @@ namespace Genrpg.Shared.ProcGen.Services
 
                 if (noise != null)
                 {
-                    int dx = MathUtils.Clamp(0, (int)(newpt.X - sd.XMin), width - 1);
-                    int dy = MathUtils.Clamp(0, (int)(newpt.Y - sd.YMin), height - 1);
+                    int dx = MathUtil.Clamp(0, (int)(newpt.X - sd.XMin), width - 1);
+                    int dy = MathUtil.Clamp(0, (int)(newpt.Y - sd.YMin), height - 1);
                     currSeparation *= 1 + noise[dx, dy];
-                    currSeparation = MathUtils.Clamp(sd.MinSeparation / 4, currSeparation, sd.MinSeparation * 2);
+                    currSeparation = MathUtil.Clamp(sd.MinSeparation / 4, currSeparation, sd.MinSeparation * 2);
                 }
 
                 if (newDist > currSeparation)

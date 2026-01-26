@@ -3,6 +3,6 @@
   "ParentId": "default",
   "IdKey": 45,
   "Name": "TraderCity",
-  "ScreenLayerId": 20,
+  "ScreenLayerId": 15,
   "Subdirectory": "TraderCity"
 }

@@ -9,7 +9,7 @@ namespace Genrpg.Shared.UserEnergy.WebApi
     {
         public List<Reward> Rewards { get; set; } = new List<Reward>();
         public DateTime NextHourlyUpdate { get; set; }
-        public long Day { get; set; }
+        public int Day { get; set; }
     }
 
 }

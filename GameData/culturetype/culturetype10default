@@ -2,7 +2,7 @@
   "Id": "culturetype10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "Gallo-Roman",
-  "Icon": "GalloRoman",
-  "Art": "GalloRoman"
+  "Name": "Germanic",
+  "Icon": "Germanic",
+  "Art": "Germanic"
 }

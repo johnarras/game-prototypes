@@ -222,7 +222,7 @@ public class CameraController : ICameraController
             return;
         }
 
-        CameraHeightAboveGroundTarget = MathUtils.Clamp(-1, CameraHeightAboveGroundTarget, 10);
+        CameraHeightAboveGroundTarget = MathUtil.Clamp(-1, CameraHeightAboveGroundTarget, 10);
 
         List<ActiveScreen> screens = _screenService.GetAllScreens();
 
@@ -266,7 +266,7 @@ public class CameraController : ICameraController
             }
 
 
-            targetCameraDistance = MathUtils.Clamp(MinCameraDistance, targetCameraDistance,
+            targetCameraDistance = MathUtil.Clamp(MinCameraDistance, targetCameraDistance,
                                                     MaxCameraDistance);
         }
 
@@ -479,7 +479,7 @@ public class CameraController : ICameraController
 
         cameraOffset = Vector3.zero;
 
-        CameraDistance = MathUtils.Clamp(MinCameraDistance, CameraDistance, MaxCameraDistance);
+        CameraDistance = MathUtil.Clamp(MinCameraDistance, CameraDistance, MaxCameraDistance);
 
         if (CameraDistance != 0)
         {

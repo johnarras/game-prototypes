@@ -37,10 +37,10 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
     [MessagePackObject]
     public class TraderStatStatus
     {
-        [Key(0)] public long Base { get; set; }
-        [Key(1)] public long Bonus { get; set; }
+        [Key(0)] public int Base { get; set; }
+        [Key(1)] public int Bonus { get; set; }
 
-        public long Total() { return Base + Bonus; }
+        public int Total() { return Base + Bonus; }
 
     }
 

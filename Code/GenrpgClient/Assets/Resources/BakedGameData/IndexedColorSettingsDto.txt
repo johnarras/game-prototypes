@@ -1,0 +1,184 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "TextureTypeId": 13,
+      "R": 16,
+      "G": 16,
+      "B": 48
+    },
+    {
+      "IdKey": 2,
+      "R": 16,
+      "G": 48,
+      "B": 16
+    },
+    {
+      "IdKey": 2,
+      "TextureTypeId": 75,
+      "R": 16,
+      "G": 48,
+      "B": 16
+    },
+    {
+      "IdKey": 3,
+      "TextureTypeId": 6,
+      "R": 48,
+      "G": 48,
+      "B": 16
+    },
+    {
+      "IdKey": 4,
+      "TextureTypeId": 43,
+      "R": 48,
+      "G": 80,
+      "B": 16
+    },
+    {
+      "IdKey": 5,
+      "TextureTypeId": 42,
+      "R": 80,
+      "G": 80,
+      "B": 16
+    },
+    {
+      "IdKey": 6,
+      "TextureTypeId": 65,
+      "R": 80,
+      "G": 80,
+      "B": 48
+    },
+    {
+      "IdKey": 7,
+      "TextureTypeId": 72,
+      "R": 80,
+      "G": 112,
+      "B": 16
+    },
+    {
+      "IdKey": 8,
+      "TextureTypeId": 7,
+      "R": 80,
+      "G": 112,
+      "B": 48
+    },
+    {
+      "IdKey": 9,
+      "TextureTypeId": 16,
+      "R": 112,
+      "G": 80,
+      "B": 48
+    },
+    {
+      "IdKey": 10,
+      "TextureTypeId": 20,
+      "R": 112,
+      "G": 112,
+      "B": 48
+    },
+    {
+      "IdKey": 11,
+      "TextureTypeId": 58,
+      "R": 112,
+      "G": 112,
+      "B": 80
+    },
+    {
+      "IdKey": 12,
+      "TextureTypeId": 64,
+      "R": 144,
+      "G": 112,
+      "B": 80
+    },
+    {
+      "IdKey": 13,
+      "TextureTypeId": 11,
+      "R": 144,
+      "G": 144,
+      "B": 80
+    },
+    {
+      "IdKey": 14,
+      "TextureTypeId": 19,
+      "R": 144,
+      "G": 144,
+      "B": 112
+    },
+    {
+      "IdKey": 15,
+      "TextureTypeId": 102,
+      "R": 176,
+      "G": 144,
+      "B": 112
+    },
+    {
+      "IdKey": 16,
+      "TextureTypeId": 9,
+      "R": 176,
+      "G": 176,
+      "B": 112
+    },
+    {
+      "IdKey": 17,
+      "TextureTypeId": 25,
+      "R": 208,
+      "G": 176,
+      "B": 112
+    },
+    {
+      "IdKey": 18,
+      "TextureTypeId": 39,
+      "R": 208,
+      "G": 176,
+      "B": 144
+    },
+    {
+      "IdKey": 19,
+      "TextureTypeId": 104,
+      "R": 240,
+      "G": 176,
+      "B": 144
+    },
+    {
+      "IdKey": 20,
+      "TextureTypeId": 103,
+      "R": 240,
+      "G": 208,
+      "B": 144
+    },
+    {
+      "IdKey": 21,
+      "TextureTypeId": 86,
+      "R": 240,
+      "G": 208,
+      "B": 176
+    },
+    {
+      "IdKey": 22,
+      "TextureTypeId": 88,
+      "R": 240,
+      "G": 240,
+      "B": 176
+    },
+    {
+      "IdKey": 23,
+      "TextureTypeId": 13,
+      "R": 240,
+      "G": 240,
+      "B": 208
+    },
+    {
+      "IdKey": 24,
+      "TextureTypeId": 105,
+      "R": 240,
+      "G": 240,
+      "B": 240
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "IndexedColorSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-24T19:36:44.473Z"
+}

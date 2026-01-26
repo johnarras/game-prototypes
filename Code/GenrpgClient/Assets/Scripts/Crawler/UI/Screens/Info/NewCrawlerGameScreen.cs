@@ -1,4 +1,5 @@
-using Assets.Scripts.UI.ScreenSystem;
+using Assets.Scripts.ClientEvents.UI;
+using Genrpg.Shared.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
@@ -32,15 +33,23 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
 
             if (_inputService.ContinueKeyIsDown())
             {
-                StartClose();
+                CloseScreenAction();
                 return;
             }
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            StartClose();
+            CloseScreenAction();
         }
+
+        private void CloseScreenAction()
+        {
+            StartClose();
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
+
+        }
+
     }
 }
 

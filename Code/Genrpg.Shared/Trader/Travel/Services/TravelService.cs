@@ -1,7 +1,5 @@
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Utils;
 using System;
 
 namespace Genrpg.Shared.Trader.Travel.Services
@@ -15,61 +13,65 @@ namespace Genrpg.Shared.Trader.Travel.Services
 
     public interface ITravelService : IInjectable
     {
-        public void SetWaterMask(byte[] waterMask);
+        public void SetTerrainMap(byte[] terrainMap);
 
         bool IsWater(double x, double y);
-        int GetWaterMaskIndex(double x, double y);
+        int GetTerrainIndexIndex(double x, double y);
+        int GetTerrainIndex(double x, double y);
 
     }
 
 
     public class TravelService : ITravelService
     {
-        private IGameData _gameData = null;
-
-        private byte[] _waterMask = null;
+        private byte[] _terrainIndexes = null;
 
 
         private int _width = 8192;
         private int _height = 8192;
 
         // Assume the mask will be 2x by x 
-        public void SetWaterMask(byte[] waterMask)
+        public void SetTerrainMap(byte[] terrainIndexes)
         {
-            _waterMask = waterMask;
-            int length = waterMask.Length;
-            int totalSize = length * 8;
+            _terrainIndexes = terrainIndexes;
+            int length = terrainIndexes.Length;
+            int totalSize = length;
             totalSize /= 2;
             int size = (int)(Math.Sqrt(totalSize));
             _width = size * 2;
             _height = size;
         }
 
-        public int GetWaterMaskIndex(double x, double y)
+        public int GetTerrainIndexIndex(double x, double y)
         {
-            if (_waterMask == null)
+            if (_terrainIndexes == null)
             {
                 return 0;
             }
+
+            if (x < 0 || y < 0 || x >= _width || y >= _height)
+            {
+                return 0;
+            }
+
             return (int)x + (int)y * _width;
+        }
+
+        public int GetTerrainIndex(double x, double y)
+        {
+            int maskIndex = GetTerrainIndexIndex(x, y);
+
+            return _terrainIndexes[maskIndex];
         }
 
         public bool IsWater(double x, double y)
         {
-            if (_waterMask == null)
+            if (_terrainIndexes == null)
             {
                 return false;
             }
-            int index = GetWaterMaskIndex(x, y);
-            int byteIndex = index / 8;
-            int bitOffset = index % 8;
-
-            if (byteIndex >= _waterMask.Length)
-            {
-                return false;
-            }
-
-            return FlagUtils.IsSet(_waterMask[byteIndex], (1 << bitOffset));
+            int index = GetTerrainIndexIndex(x, y);
+            return _terrainIndexes[index] == 0;
         }
     }
 }

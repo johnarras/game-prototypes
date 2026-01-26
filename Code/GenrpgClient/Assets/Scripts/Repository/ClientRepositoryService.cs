@@ -70,7 +70,7 @@ namespace Assets.Scripts.Repository
             Save(t).Wait();
         }
 
-        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : class, IStringId
+        public async Task<bool> Save<T>(T t, RepoSaveArgs args = null) where T : IStringId
         {
             try
             {

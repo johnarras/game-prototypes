@@ -426,9 +426,9 @@ public class ZoneStateController : IZoneStateController
         }
         if (nextWindBurst < DateTime.UtcNow)
         {
-            _coreData.Wind.windMain = MathUtils.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
-            windBurstEnd = DateTime.UtcNow.AddSeconds(MathUtils.FloatRange(4.0f, 7.0f, _rand));
-            nextWindBurst = DateTime.UtcNow.AddSeconds(MathUtils.FloatRange(12.0f, 22.0f, _rand));
+            _coreData.Wind.windMain = MathUtil.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
+            windBurstEnd = DateTime.UtcNow.AddSeconds(MathUtil.FloatRange(4.0f, 7.0f, _rand));
+            nextWindBurst = DateTime.UtcNow.AddSeconds(MathUtil.FloatRange(12.0f, 22.0f, _rand));
         }
     }
 }

@@ -16,7 +16,7 @@ public class SetfinalTerrainHeights : BaseZoneGenerator
                 {
                     _md.heights[x, y] = 0;
                 }
-                _md.heights[x, y] = MathUtils.Clamp(0, _md.heights[x, y], 1);
+                _md.heights[x, y] = MathUtil.Clamp(0, _md.heights[x, y], 1);
             }
         }
 

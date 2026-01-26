@@ -20,7 +20,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         {
             if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Spinner, true))
             {
-                int rotateAmount = MathUtils.IntRange(-1, 2, _rand);
+                int rotateAmount = MathUtil.IntRange(-1, 2, _rand);
                 if (rotateAmount != 0)
                 {
                     await _moveService.Rot(status, rotateAmount, true, token);

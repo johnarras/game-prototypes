@@ -6,9 +6,9 @@ namespace Genrpg.Shared.PlayMultiplier.Services
 {
     public interface ISharedPlayMultService : IInjectable
     {
-        long GetMaxMult(CoreData coreData);
+        int GetMaxMult(CoreData coreData);
 
-        List<long> GetValidMults(CoreData coreData);
+        List<int> GetValidMults(CoreData coreData);
     }
 }
 

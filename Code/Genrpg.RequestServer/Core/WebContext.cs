@@ -128,6 +128,7 @@ namespace Genrpg.RequestServer.Core
                 currSnapshot.Dispose();
             }
 
+
             ArrayPoolBufferWriter<byte> buffer = _binarySerializer.GetBuffer();
             _binarySerializer.BinarySerialize(doc, buffer);
             _unitData[doc.GetType()] = new UnitDataSnapShotMustDispose(buffer, doc);

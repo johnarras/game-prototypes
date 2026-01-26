@@ -47,7 +47,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
             for (int m = 0; m < selectAction.Action.Action.PossibleTargetGroups.Count; m++)
             {
                 CombatGroup group = selectAction.Action.Action.PossibleTargetGroups[m];
-                char c = (char)('1' + m);
+                char c = (char)('A' + m);
 
                 Action clickRowAction = delegate ()
                 {

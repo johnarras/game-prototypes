@@ -76,7 +76,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 {
                     if (statData.Stats[rew.EntityId].Base < rew.Quantity)
                     {
-                        statData.Stats[rew.EntityId].Base = rew.Quantity;
+                        statData.Stats[rew.EntityId].Base = (int)rew.Quantity;
                     }
                 }
                 else if (CoreData.Level < 1 && rew.EntityTypeId == EntityTypes.CoreCurrency)
@@ -96,7 +96,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 {
                     if (statData.Stats[rew.EntityId].Base < rew.Quantity)
                     {
-                        statData.Stats[rew.EntityId].Base = rew.Quantity;
+                        statData.Stats[rew.EntityId].Base = (int)rew.Quantity;
                     }
                 }
                 else if (rew.EntityTypeId == EntityTypes.Animal)

@@ -355,8 +355,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 posAsset.SetOpened(false);
             }
 
-            ex = MathUtils.ModClamp(ex, mapRoot.Map.Width);
-            ez = MathUtils.ModClamp(ez, mapRoot.Map.Height);
+            ex = MathUtil.ModClamp(ex, mapRoot.Map.Width);
+            ez = MathUtil.ModClamp(ez, mapRoot.Map.Height);
 
             _party.CurrPos.X = ex;
             _party.CurrPos.Z = ez;
@@ -404,7 +404,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public void SetFullRot(float endRot)
         {
-            _party.CurrPos.Rot = MathUtils.ModClamp((int)endRot, 360);
+            _party.CurrPos.Rot = MathUtil.ModClamp((int)endRot, 360);
             _mapService.GetMapRoot().DrawRot = _party.CurrPos.Rot;
         }
 

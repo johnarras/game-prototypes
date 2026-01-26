@@ -25,7 +25,7 @@ public class ItemTooltipRow : BaseBehaviour
             }
             else
             {
-                _uiService.SetColor(TextRow, Color.white*0.9f);
+                _uiService.SetColor(TextRow, Color.white * 0.5f);
             }
         }
         if (rowData.change == 0)
