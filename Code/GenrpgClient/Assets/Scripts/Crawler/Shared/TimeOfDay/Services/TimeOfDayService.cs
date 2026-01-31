@@ -83,7 +83,7 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
 
                 if (overloadedInventoryCount > 0)
                 {
-                    _dispatcher.Dispatch(new ShowFloatingText("You are carrying too many items!", EFloatingTextArt.Error));
+                    _dispatcher.Dispatch(new ShowFloatingText("Overloaded! You move slower in the world and in combat!", EFloatingTextArt.Error));
                 }
 
             }

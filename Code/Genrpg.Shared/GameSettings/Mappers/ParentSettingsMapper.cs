@@ -1,8 +1,11 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.Interfaces;
 using MessagePack;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Genrpg.Shared.GameSettings.Mappers
@@ -37,11 +40,22 @@ namespace Genrpg.Shared.GameSettings.Mappers
 
                 if (simplify)
                 {
+                    List<TChild> removeList = new List<TChild>();
                     foreach (TChild child in tparent.GetData())
                     {
                         child.SaveTime = DateTime.MinValue;
                         child.Id = null;
                         child.ParentId = null;
+
+                        if (child is IId ichild && ichild.IdKey < 1)
+                        {
+                            removeList.Add(child);
+                        }
+                    }
+
+                    if (removeList.Count > 0)
+                    {
+                        api.Children = api.Children.Except(removeList).ToList();
                     }
                 }
 

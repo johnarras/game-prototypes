@@ -241,8 +241,6 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                 targets = SelectRandomGroupUnits(enemyGroups);
             }
 
-            targets = targets.OrderBy(x => Guid.NewGuid()).ToList();
-
             UnitAction combatAction = new UnitAction()
             {
                 Caster = unit,

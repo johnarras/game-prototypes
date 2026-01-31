@@ -1,0 +1,14 @@
+{
+  "Id": "minigametype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "High Spinner",
+  "Desc": "High Spin thing",
+  "AtlasPrefix": "Spinner",
+  "ArtSubdirectory": "SpinnerHigh",
+  "Icon": "SpinnerHigh",
+  "Art": "MinigameRoot",
+  "MinLevel": 4,
+  "Active": true,
+  "WinCoins": 15
+}

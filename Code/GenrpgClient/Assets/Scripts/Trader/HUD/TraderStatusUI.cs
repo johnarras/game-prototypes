@@ -11,7 +11,6 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
     {
 
         private ITraderInfoService _infoService = null;
-        private ICaravanService _caravanService = null;
         private ICalendarService _calendarService = null;
 
         public GText PositionText;

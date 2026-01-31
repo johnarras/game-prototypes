@@ -1,0 +1,15 @@
+{
+  "Id": "minigametype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Low Match",
+  "Desc": "Low match thing",
+  "AtlasPrefix": "Match",
+  "ArtSubdirectory": "MatchLow",
+  "Icon": "MatchLow",
+  "Art": "MinigameRoot",
+  "MinLevel": 8,
+  "Active": true,
+  "WinCoins": 60,
+  "LoseCoins": 10
+}

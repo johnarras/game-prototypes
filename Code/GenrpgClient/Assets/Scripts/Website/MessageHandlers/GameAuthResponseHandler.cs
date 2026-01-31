@@ -1,6 +1,7 @@
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Purchasing.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Constants;
@@ -14,6 +15,7 @@ using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -25,6 +27,7 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IAssetService _assetService = null;
         private IClientWebService _webNetworkService = null;
         private IClientPurchasingService _purchasingService = null;
+        private IClientMinigameService _clientMinigameService = null;
 
         protected override void InnerProcess(GameAuthResponse response, CancellationToken token)
         {
@@ -85,6 +88,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             await Awaitable.NextFrameAsync(cancellationToken: token);
             await Awaitable.NextFrameAsync(cancellationToken: token);
 
+            bool closeAllScreens = true;
             keepOpenScreens = new List<long>();
             if (GameModeUtils.IsPureClientMode(_gs.GameMode))
             {
@@ -95,6 +99,13 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
                 keepOpenScreens.Add(ScreenNames.TraderHUD);
                 await _screenService.OpenAsync(ScreenNames.TraderHUD, null, token);
+            }
+            else if (_gs.GameMode == EGameModes.Minigames)
+            {
+
+                closeAllScreens = false;
+                keepOpenScreens.Add(ScreenNames.MinigameHUD);
+                _clientMinigameService.ShowLobby();
             }
             else
             {
@@ -113,7 +124,10 @@ namespace Assets.Scripts.Website.MessageHandlers
                 }
             }
             await _purchasingService.RetryPurchaseAfterLogin(token);
-            _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
+            if (closeAllScreens)
+            {
+                _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
+            }
         }
 
         public async Awaitable RetryUploadMap(CancellationToken token)

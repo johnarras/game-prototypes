@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype65default",
+  "ParentId": "default",
+  "IdKey": 65,
+  "Name": "MinigameType",
+  "Icon": "MinigameType",
+  "Art": "MinigameType"
+}

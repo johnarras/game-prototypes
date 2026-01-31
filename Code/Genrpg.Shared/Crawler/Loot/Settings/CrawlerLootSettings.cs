@@ -5,6 +5,7 @@ using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.Crawler.Loot.Settings
 {
@@ -52,7 +53,9 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
         /// <summary>
         /// Chance to get an item effect per extra spell chance.
         /// </summary>
-        public double ItemEnchantChance { get; set; }
+        public double EnchantChancePerPowerIncrease { get; set; }
+
+        public double BaseEnchantChance { get; set; }
 
         public long LevelDiffBeforeLootLoss { get; set; }
         public double LootLossPerLevelDiff { get; set; }
@@ -61,6 +64,18 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
         public double StartStatBonusAmount { get; set; }
         public double StatBonusPerLevel { get; set; }
         public double StatBonusVariance { get; set; }
+
+        public override CrawlerLootType Get(long idkey)
+        {
+            CrawlerLootType child = base.Get(idkey);
+
+            if (child != null)
+            {
+                return child;
+            }
+
+            return _data.FirstOrDefault(x => x.EntityTypeId == idkey);
+        }
     }
 
     public class CrawlerLootTypeSettingsDto : ParentSettingsDto<CrawlerLootSettings, CrawlerLootType>

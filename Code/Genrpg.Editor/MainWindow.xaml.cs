@@ -8,6 +8,7 @@ using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Constants;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Serialization.Interfaces;
@@ -358,7 +359,7 @@ namespace Genrpg.Editor
         {
             FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
 
-            EditorGameDataUtils.WriteGameDataToDisk(dataCopy, _serializer);
+            EditorGameDataUtils.WriteGameDataToGit(dataCopy, _serializer);
 
             form.StartClose();
         }
@@ -399,28 +400,9 @@ namespace Genrpg.Editor
                 DateTime saveTime = DateTime.UtcNow;
                 FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
 
-                Dictionary<Type, IGameSettingsMapper> mapperDict = _gameDataService.GetAllMappers();
+                List<IGameSettings> allSettings = dataCopy.Data; 
 
-                List<ITopLevelSettings> clientSettings = new List<ITopLevelSettings>();
-                foreach (IGameSettings gameSettings in dataCopy.Data)
-                {
-                    if (gameSettings is ITopLevelSettings topLevelSettings)
-                    {
-                        if (MainWindow.UpdateSaveTime)
-                        {
-                            gameSettings.SaveTime = saveTime;
-                        }
-                        if (mapperDict.TryGetValue(topLevelSettings.GetType(), out IGameSettingsMapper mapper))
-                        {
-                            if (mapper.SendToClient())
-                            {
-                                clientSettings.Add(mapper.MapToDto(topLevelSettings, true));
-                            }
-                        }
-                    }
-                }
-
-                EditorGameDataUtils.WriteGameDataToClient(clientSettings, _serializer);
+                EditorGameDataUtils.WriteGameDataToClient(allSettings, _serializer, _gameDataService);
 
             }
             catch (Exception ex)

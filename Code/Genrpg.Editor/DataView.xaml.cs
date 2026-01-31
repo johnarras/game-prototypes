@@ -168,14 +168,6 @@ namespace Genrpg.Editor
             return _parent;
         }
 
-        public void Save()
-        {
-            if (_window != null)
-            {
-                _taskService.ForgetTask(_window.SaveData(), false);
-            }
-        }
-
         private void SetupGrids()
         {
             if (_window == null)
@@ -283,7 +275,7 @@ namespace Genrpg.Editor
 
             int y = 30;
             int x = 20;
-            int w = 100;
+            int w = 120;
             int h = 30;
 
             UIHelper.CreateButton(this, EButtonTypes.TopBar, "HomeButton", "Home", w, h, x, y, OnClickHome); x += w + 5;
@@ -297,8 +289,10 @@ namespace Genrpg.Editor
             CopyButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "CopyButton", "Copy", w, h, x, y, OnClickCopy); x += w + 5;
 
             x += w + 5;
-            UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveButton", "Save", w, h, x, y, OnClickSave); x += w + 5;
-
+            UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveAndCopyButton", "SaveYesCopy", w, h, x, y, OnClickSaveYesCopy); x += w + 5;
+            x += w + 5;
+            x += w + 5;
+            UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveButton", "SaveNoCopy", w, h, x, y, OnClickSaveNoCopy); x += w + 5;
             x += w + 5;
             DeleteButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "DeleteButton", "Delete", w, h, x, y, OnClickDelete); x += w + 5;
 
@@ -344,12 +338,20 @@ namespace Genrpg.Editor
             }
         }
 
-        public void OnClickSave(object sender, object e)
+        public void OnClickSaveNoCopy(object sender, object e)
         {
             SaveChanges();
             if (_window != null)
             {
-                _taskService.ForgetTask(_window.SaveData(), false);
+                _taskService.ForgetTask(_window.SaveData(false), false);
+            }
+        }
+        public void OnClickSaveYesCopy(object sender, object e)
+        {
+            SaveChanges();
+            if (_window != null)
+            {
+                _taskService.ForgetTask(_window.SaveData(true), false);
             }
         }
 

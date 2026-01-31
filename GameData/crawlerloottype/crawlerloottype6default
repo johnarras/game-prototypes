@@ -5,6 +5,6 @@
   "Name": "Resistances",
   "Desc": "Resistant to different elements.",
   "EntityTypeId": 25,
-  "ItemEnchantWeight": 0.01,
+  "ItemEnchantWeight": 0.06,
   "ScalingPerLevel": 1.0
 }

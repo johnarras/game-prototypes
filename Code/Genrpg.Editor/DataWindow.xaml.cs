@@ -10,6 +10,7 @@ using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Settings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.SettingsNames.Settings;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Versions.Settings;
@@ -157,7 +158,7 @@ namespace Genrpg.Editor
             _canvas.Add(cont);
         }
 
-        public async Task SaveData()
+        public async Task SaveData(bool copyData)
         {
 
             String env = _config.DefaultEnv;
@@ -382,7 +383,7 @@ namespace Genrpg.Editor
                 {
                     SmallPopup popup = UIHelper.ShowBlockingDialog(this, "Saving Game Data");
 
-                    _taskService.ForgetTask(SaveSettingsList(settingsList, popup), false);
+                    _taskService.ForgetTask(SaveSettingsList(settingsList, popup, copyData), false);
 
                 });
 
@@ -394,14 +395,17 @@ namespace Genrpg.Editor
             }
         }
 
-        private async Task SaveSettingsList(List<BaseGameSettings> settingsList, SmallPopup popup)
+        private async Task SaveSettingsList(List<BaseGameSettings> settingsList, SmallPopup popup, bool copyData)
         {
-            await SaveSettingsListInternal(settingsList);
+            await SaveSettingsListInternal(settingsList, copyData);
+
             this.DispatcherQueue.TryEnqueue(() => { popup.StartClose(); });
         }
 
-        private async Task SaveSettingsListInternal(List<BaseGameSettings> settingsList)
+        private async Task SaveSettingsListInternal(List<BaseGameSettings> settingsList, bool copyData)
         {
+
+            List<IGameSettings> gameSettingsList = settingsList.Cast<IGameSettings>().ToList();
             while (settingsList.Count > 0)
             {
                 List<Task> saveTasks = new List<Task>();
@@ -422,6 +426,15 @@ namespace Genrpg.Editor
                 {
                     break;
                 }
+            }
+
+
+            if (copyData)
+            {
+                ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
+                IServerGameDataService gds = gs.loc.Get<IServerGameDataService>();
+                EditorGameDataUtils.WriteGameDataListToGit(gameSettingsList, serializer);
+                EditorGameDataUtils.WriteGameDataToClient(gameSettingsList, serializer, gds);
             }
             gs.LookedAtObjects = new List<object>();
 

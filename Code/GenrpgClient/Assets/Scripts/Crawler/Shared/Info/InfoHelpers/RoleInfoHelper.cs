@@ -96,7 +96,6 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         }
         protected virtual void ShowBuffs<T>(Role role, long entityTypeId, List<string> lines, string header, IReadOnlyList<T> gameDataList, bool inOneRow) where T : IIndexedGameItem
         {
-            int quantityPerRow = 3;
             List<RoleBonusBinary> bonuses = role.BinaryBonuses.Where(x => x.EntityTypeId == entityTypeId).ToList();
 
             if (bonuses.Count < 1)

@@ -57,7 +57,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
                 options |= ((row.IsOptionSet() ? 1 : 0) << (int)row.GetOptionId());
             }
             _didStartGame = true;
-            _awaitableService.ForgetAwaitable(_crawlerService.NewGame(options));
+            _awaitableService.ForgetAwaitable(_crawlerService.NewGamePhaseThree(options));
             StartClose();
         }
 

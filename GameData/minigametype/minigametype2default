@@ -1,0 +1,14 @@
+{
+  "Id": "minigametype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Med Spinner",
+  "Desc": "Med spin thing",
+  "AtlasPrefix": "Spinner",
+  "ArtSubdirectory": "SpinnerMed",
+  "Icon": "SpinnerMed",
+  "Art": "MinigameRoot",
+  "MinLevel": 3,
+  "Active": true,
+  "WinCoins": 30
+}

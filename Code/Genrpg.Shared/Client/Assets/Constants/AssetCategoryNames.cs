@@ -13,6 +13,7 @@ namespace Genrpg.Shared.Client.Assets.Constants
         public const string Dungeons = "Dungeons";
         public const string Grass = "Grass";
         public const string Magic = "Magic";
+        public const string Minigames = "Minigames";
         public const string Monsters = "Monsters";
         public const string Prefabs = "Prefabs";
         public const string Props = "Props";

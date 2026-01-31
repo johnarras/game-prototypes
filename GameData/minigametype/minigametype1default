@@ -1,0 +1,14 @@
+{
+  "Id": "minigametype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Low Spinner",
+  "Desc": "Low spin thing",
+  "AtlasPrefix": "Spinner",
+  "ArtSubdirectory": "SpinnerLow",
+  "Icon": "SpinnerLow",
+  "Art": "MinigameRoot",
+  "MinLevel": 1,
+  "Active": true,
+  "WinCoins": 10
+}

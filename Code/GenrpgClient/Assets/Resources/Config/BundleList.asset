@@ -1533,3 +1533,31 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uizones
     IsLocal: 0
+  - BundleName: atlasclickerminigametypeicons
+    IsLocal: 0
+  - BundleName: atlasmatchminigametypeicons
+    IsLocal: 0
+  - BundleName: atlasspinnerminigametypeicons
+    IsLocal: 0
+  - BundleName: minigamesclickerhigh
+    IsLocal: 0
+  - BundleName: minigamesclickerlow
+    IsLocal: 0
+  - BundleName: minigamesclickermed
+    IsLocal: 0
+  - BundleName: minigamesmatchhigh
+    IsLocal: 0
+  - BundleName: minigamesmatchlow
+    IsLocal: 0
+  - BundleName: minigamesmatchmed
+    IsLocal: 0
+  - BundleName: minigamesspinnerhigh
+    IsLocal: 0
+  - BundleName: minigamesspinnerlow
+    IsLocal: 0
+  - BundleName: minigamesspinnermed
+    IsLocal: 0
+  - BundleName: uiminigamehud
+    IsLocal: 0
+  - BundleName: uiminigamelobby
+    IsLocal: 0

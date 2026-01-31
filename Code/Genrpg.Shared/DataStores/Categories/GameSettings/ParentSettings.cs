@@ -49,7 +49,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
 
         public IReadOnlyList<TChild> GetData() { return _data; }
 
-        public TChild Get(long idkey)
+        public virtual TChild Get(long idkey)
         {
             if (idkey > 0 && _dict.TryGetValue(idkey, out TChild child))
             {

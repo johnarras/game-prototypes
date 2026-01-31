@@ -48,8 +48,6 @@ public class FileDownloadService : IFileDownloadService
     private ILogService _logService = null;
     private IAssetService _assetService = null;
     private IBinaryFileRepository _binaryFileRepo = null;
-    private IClientWebService _webService = null;
-
 
     public async Task Initialize(CancellationToken token)
     {

@@ -10,12 +10,12 @@
   "MinHealthPerLevel": 2.0,
   "MaxHealthPerLevel": 5.0,
   "ManaPerLevel": 100,
-  "ExtraHealthScalePerLevel": 0.01,
+  "ExtraHealthScalePerLevel": 0.02,
   "ExtraDamageScalePerLevel": 0.01,
   "MapUnitKeywordChance": 0.25,
   "UnitKeywordChance": 0.5,
   "PrimaryStatsPointsPerLevel": 0.25,
   "BasicLoot": [],
   "Name": "CrawlerMonsterSettings",
-  "SaveTime": "2025-10-26T18:34:25.719Z"
+  "SaveTime": "2026-01-27T22:37:30.1706269Z"
 }

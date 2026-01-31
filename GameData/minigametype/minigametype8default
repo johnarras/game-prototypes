@@ -1,0 +1,14 @@
+{
+  "Id": "minigametype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Med Match",
+  "Desc": "Med match thing",
+  "AtlasPrefix": "Match",
+  "ArtSubdirectory": "MatchMed",
+  "Icon": "MatchMed",
+  "Art": "MinigameRoot",
+  "MinLevel": 9,
+  "Active": true,
+  "WinCoins": 10
+}

@@ -6,6 +6,7 @@ using Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades;
 using Assets.Scripts.Inventory.UI;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
+using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -187,6 +188,13 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
         protected override void TryEquip(Item origItem, long equipSlotId)
         {
+
+            if (!CanManageInventoryNow())
+            {
+                return;
+            }
+
+
             InventoryData inventoryData = _unit.Get<InventoryData>();
 
             List<Item> equipment = inventoryData.GetAllEquipment();
@@ -216,8 +224,32 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             base.ShowStats();
         }
 
+
+        private bool CanManageInventoryNow()
+        {
+            PartyData party = _crawlerService.GetParty();
+
+            if (party == null)
+            {
+                return false;
+            }
+
+            if (party.Combat != null)
+            {
+                _dispatcher.Dispatch(new ShowFloatingText("You cannot manage items in combat!", EFloatingTextArt.Error));
+                return false;
+            }
+            return true;
+
+        }
         protected override void TryUnequip(Item item)
         {
+
+            if (!CanManageInventoryNow())
+            {
+                return;
+            }
+
             OnUnequip(new OnUnequipItem() { UnitId = _unit.Id, ItemId = item.Id });
             CopyDataBack();
         }
@@ -256,6 +288,12 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             if (otherTarget == DropTarget)
             {
                 PartyData party = _crawlerService.GetParty();
+
+                if (!CanManageInventoryNow())
+                {
+                    return;
+                }
+
                 if (party != null && Items != null && party.Inventory.Contains(dragItem.GetDataItem()))
                 {
                     if (_craftingService.ScrapItem(party, dragItem.GetDataItem(), DropTarget.transform.position))

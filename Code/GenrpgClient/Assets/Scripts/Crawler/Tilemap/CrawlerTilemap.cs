@@ -51,8 +51,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
     public class CrawlerTilemap : BaseBehaviour
     {
-        public const bool RequireMapping = false;
-        public const bool UseFogOfWar = false;
+        public const bool RequireMapping = true;
+        public const bool UseFogOfWar = true;
 
 
         public GImage PartyImage;

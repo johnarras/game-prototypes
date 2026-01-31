@@ -3,7 +3,9 @@ using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
@@ -29,6 +31,7 @@ using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.LoadSave.Constants;
 using Genrpg.Shared.LoadSave.Services;
@@ -45,8 +48,34 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Services
+namespace Genrpg.Shared.Crawler.States.Services
 {
+
+
+    public interface ICrawlerService : IInitializable, IClientQuitCleanup, IKeyboardSubsystem
+    {
+        CancellationToken GetToken();
+        void ChangeState(ECrawlerStates state, CancellationToken token, object extraData = null, ECrawlerStates returnState = ECrawlerStates.None);
+        void ChangeState(CrawlerStateData currentState, CrawlerStateAction nextStateAction, CancellationToken token);
+        PartyData GetParty();
+        Task SaveGame();
+        PartyData LoadParty(long slotId = LoadSaveConstants.MinSlot);
+        void InitPartyAfterLoad(PartyData party);
+        void ClearAllStates();
+        bool ContinueGame();
+        CrawlerStateData PopState();
+        CrawlerStateData GetTopLevelState();
+        ECrawlerStates GetState();
+
+        void NewGamePhaseOne();
+
+        void NewGamePhaseTwo();
+        Awaitable NewGamePhaseThree(int options);
+        void ClearSpeedup();
+        List<IStateHelper> GetAllStateHelpers();
+        long GetCrawlerScreenId();
+        ECrawlerStates GetPrevState(ECrawlerStates tryPrevState = ECrawlerStates.None);
+    }
     public class CrawlerService : ICrawlerService
     {
         private IClientUpdateService _updateService = null;
@@ -570,7 +599,21 @@ namespace Assets.Scripts.Crawler.Services
             }
             return false;
         }
-        public async Awaitable NewGame(int options)
+
+        public void NewGamePhaseOne()
+        {
+
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.NewCrawlerGame));
+        }
+
+        public void NewGamePhaseTwo()
+        {
+            _dispatcher.Dispatch(new CloseAllScreens());
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.Crawler));
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
+        }
+
+        public async Awaitable NewGamePhaseThree(int options)
         {
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
 
@@ -614,11 +657,7 @@ namespace Assets.Scripts.Crawler.Services
 
             await _worldService.GenerateWorld(_party);
 
-            //await _screenService.OpenAsync(ScreenNames.NewCrawlerGame, null, _token);
             _dispatcher.Dispatch(new CloseAllScreens());
-            //_dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
-
-
 
             ChangeState(ECrawlerStates.GuildMain, GetToken());
         }

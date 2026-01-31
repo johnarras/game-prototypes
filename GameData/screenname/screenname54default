@@ -1,0 +1,8 @@
+{
+  "Id": "screenname54default",
+  "ParentId": "default",
+  "IdKey": 54,
+  "Name": "MinigameLobby",
+  "ScreenLayerId": 20,
+  "Subdirectory": "MinigameLobby"
+}

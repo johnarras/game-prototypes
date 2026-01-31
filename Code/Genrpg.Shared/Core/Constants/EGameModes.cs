@@ -5,7 +5,7 @@ namespace Genrpg.Shared.Core.Constants
     {
         Crawler = 0,
         MMO = 1,
-        Unused = 2,
+        Minigames = 2,
         Trader = 3,
     }
 

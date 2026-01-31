@@ -42,10 +42,8 @@ namespace Assets.Scripts.Trader.Travel.Services
 
     public class ClientTravelService : IClientTravelService
     {
-        private IGameData _gameData = null;
         private IClientGameState _gs = null;
         private ITravelService _travelService = null;
-        private IScreenService _screenService = null;
         private IDispatcher _dispatcher = null;
         private IClientWebService _webService = null;
         private IAwaitableService _awaitableService = null;
@@ -64,6 +62,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         {
             _token = token;
             _dispatcher.AddListener<TravelResponse>(OnTravelResponse, token);
+            await Task.CompletedTask;
         }
 
         public void ClickTravelButton()

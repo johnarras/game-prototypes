@@ -116,5 +116,5 @@
   "MaxNpcQuantity": 1,
   "MinNpcSeparation": 3,
   "MinDistanceToEntrance": 3,
-  "RoomIsDifferentZoneTypeChance": 0.25
+  "RoomIsDifferentZoneTypeChance": 0.05
 }

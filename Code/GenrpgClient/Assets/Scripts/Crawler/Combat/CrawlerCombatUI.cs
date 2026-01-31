@@ -4,6 +4,8 @@ using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Crawler.Combat.Constants;
+using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Spells.Settings.Elements;
@@ -64,6 +66,7 @@ namespace Assets.Scripts.Crawler.Combat
                 EnemyGrid.UpdateGroups(party.Combat.Enemies);
             }
         }
+
 
         private bool _didShowBolt = false;
         private void OnShowCombatBolt(ShowCombatBolt showCombatBolt)

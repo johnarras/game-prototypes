@@ -5,6 +5,6 @@
   "Name": "Map Magic",
   "Desc": "Ignore map magic.",
   "EntityTypeId": 51,
-  "ItemEnchantWeight": 0.09,
+  "ItemEnchantWeight": 0.01,
   "ScalingPerLevel": 1.0
 }

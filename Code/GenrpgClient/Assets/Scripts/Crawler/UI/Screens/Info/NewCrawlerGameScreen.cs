@@ -1,5 +1,4 @@
-using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Crawler.States.Services;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
@@ -9,6 +8,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
     public class NewCrawlerGameScreen : BaseScreen, IPointerDownHandler
     {
 
+        private ICrawlerService _crawlerService = null;
         private IInputService _inputService = null;
         public GText Text;
 
@@ -46,11 +46,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         private void CloseScreenAction()
         {
             StartClose();
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
-
+            _crawlerService.NewGamePhaseTwo();
         }
-
     }
 }
-
-

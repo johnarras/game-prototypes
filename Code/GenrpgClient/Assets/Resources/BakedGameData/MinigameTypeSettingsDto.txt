@@ -1,0 +1,122 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Low Spinner",
+      "Desc": "Low spin thing",
+      "AtlasPrefix": "Spinner",
+      "ArtSubdirectory": "SpinnerLow",
+      "Icon": "SpinnerLow",
+      "Art": "MinigameRoot",
+      "MinLevel": 1,
+      "Active": true,
+      "WinCoins": 10
+    },
+    {
+      "IdKey": 2,
+      "Name": "Med Spinner",
+      "Desc": "Med spin thing",
+      "AtlasPrefix": "Spinner",
+      "ArtSubdirectory": "SpinnerMed",
+      "Icon": "SpinnerMed",
+      "Art": "MinigameRoot",
+      "MinLevel": 3,
+      "Active": true,
+      "WinCoins": 30
+    },
+    {
+      "IdKey": 3,
+      "Name": "High Spinner",
+      "Desc": "High Spin thing",
+      "AtlasPrefix": "Spinner",
+      "ArtSubdirectory": "SpinnerHigh",
+      "Icon": "SpinnerHigh",
+      "Art": "MinigameRoot",
+      "MinLevel": 4,
+      "Active": true,
+      "WinCoins": 15
+    },
+    {
+      "IdKey": 4,
+      "Name": "Low Clicker",
+      "Desc": "Low click thing",
+      "AtlasPrefix": "Clicker",
+      "ArtSubdirectory": "ClickerLow",
+      "Icon": "ClickerLow",
+      "Art": "MinigameRoot",
+      "MinLevel": 7,
+      "Active": true,
+      "WinCoins": 20,
+      "LoseCoins": 5
+    },
+    {
+      "IdKey": 5,
+      "Name": "Med Clicker",
+      "Desc": "Med click thing",
+      "AtlasPrefix": "Clicker",
+      "ArtSubdirectory": "ClickerMed",
+      "Icon": "ClickerMed",
+      "Art": "MinigameRoot",
+      "MinLevel": 2,
+      "Active": true,
+      "WinCoins": 25
+    },
+    {
+      "IdKey": 6,
+      "Name": "High Clicker",
+      "Desc": "High click thing",
+      "AtlasPrefix": "Clicker",
+      "ArtSubdirectory": "ClickerHigh",
+      "Icon": "ClickerHigh",
+      "Art": "MinigameRoot",
+      "MinLevel": 3,
+      "Active": true,
+      "WinCoins": 50,
+      "LoseCoins": 5
+    },
+    {
+      "IdKey": 7,
+      "Name": "Low Match",
+      "Desc": "Low match thing",
+      "AtlasPrefix": "Match",
+      "ArtSubdirectory": "MatchLow",
+      "Icon": "MatchLow",
+      "Art": "MinigameRoot",
+      "MinLevel": 8,
+      "Active": true,
+      "WinCoins": 60,
+      "LoseCoins": 10
+    },
+    {
+      "IdKey": 8,
+      "Name": "Med Match",
+      "Desc": "Med match thing",
+      "AtlasPrefix": "Match",
+      "ArtSubdirectory": "MatchMed",
+      "Icon": "MatchMed",
+      "Art": "MinigameRoot",
+      "MinLevel": 9,
+      "Active": true,
+      "WinCoins": 10
+    },
+    {
+      "IdKey": 9,
+      "Name": "High Match",
+      "Desc": "High match thing",
+      "AtlasPrefix": "Match",
+      "ArtSubdirectory": "MatchHigh",
+      "Icon": "MatchHigh",
+      "Art": "MinigameRoot",
+      "MinLevel": 10,
+      "Active": true,
+      "WinCoins": 35,
+      "LoseCoins": 10
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "MinigameTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-01-31T01:31:57.0730377Z"
+}

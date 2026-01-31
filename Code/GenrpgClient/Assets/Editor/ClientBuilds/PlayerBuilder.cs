@@ -227,7 +227,7 @@ namespace RunBuilds
                     }
                     catch (Exception ee)
                     {
-                        Debug.Log("Build Comment was not env values");
+                        Debug.Log(ee.Message + " Build Comment was not env values");
                     }
                 }
 

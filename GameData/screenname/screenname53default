@@ -1,0 +1,8 @@
+{
+  "Id": "screenname53default",
+  "ParentId": "default",
+  "IdKey": 53,
+  "Name": "MinigameHUD",
+  "ScreenLayerId": 10,
+  "Subdirectory": "MinigameHUD"
+}

@@ -15,7 +15,6 @@ namespace Assets.Scripts.Trader.Info.Services
 
     public class TraderInfoService : ITraderInfoService
     {
-        private IGameData _gameData = null;
         private ICaravanService _caravanService = null;
 
         public string GetHUDStatus(CoreData coreData)

@@ -67,7 +67,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                             amt.EntityId == statType.IdKey)
                         {
                             statValue += (int)amt.Amount;
-                            textToShow += (amt.Amount > 0 ? "(+" : "(") + (int)amt.Amount + " " + role.Name + ") ";
+                            textToShow += (amt.Amount > 0 ? "(+" : "(") + (int)amt.Amount + " " + role.Abbrev + ") ";
                         }
                     }
                 }
@@ -80,9 +80,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
             }
 
             stateData.AddText(_textService.HighlightText($"Stat bonuses are applied to the initial stat" +
-                " and per action/tier whenever a skill " +
-                "using that stat is used. So a +2 strength bonus with"
-                + " 5 melee attacks would apply 2 damage to each attack.", TextColors.ColorGold));
+                " and per hit/tier when using a skill. ", TextColors.ColorGold));
 
             if (rollStats)
             {

@@ -1,0 +1,14 @@
+{
+  "Id": "minigametype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Med Clicker",
+  "Desc": "Med click thing",
+  "AtlasPrefix": "Clicker",
+  "ArtSubdirectory": "ClickerMed",
+  "Icon": "ClickerMed",
+  "Art": "MinigameRoot",
+  "MinLevel": 2,
+  "Active": true,
+  "WinCoins": 25
+}

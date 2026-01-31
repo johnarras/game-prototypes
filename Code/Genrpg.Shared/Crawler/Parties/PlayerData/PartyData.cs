@@ -85,6 +85,8 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public long MaxLevelEntered { get; set; }
 
+        public long MaxMapIdEntered { get; set; }
+
         public long LastAutoCompleteLevel { get; set; }
 
         public string RoguelikeDungeonName { get; set; }

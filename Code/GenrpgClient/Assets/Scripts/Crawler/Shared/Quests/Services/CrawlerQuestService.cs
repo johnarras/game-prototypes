@@ -601,6 +601,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             List<CrawlerQuest> completedQuests = new List<CrawlerQuest>();
 
+            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
             if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 foreach (CrawlerQuest quest in allQuests)
@@ -621,11 +622,10 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 int totalQuests = availableQuests.Count + currentQuests.Count;
 
-                int quantityToAdd = 4 - totalQuests;
+                int quantityToAdd = questSettings.SingleDungeonNpcQuestCount - totalQuests;
 
                 if (quantityToAdd > 0)
                 {
-                    CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
                     CrawlerMap cityMap = world.GetMap(1);
 
                     int startQuestCount = world.Quests.Count;

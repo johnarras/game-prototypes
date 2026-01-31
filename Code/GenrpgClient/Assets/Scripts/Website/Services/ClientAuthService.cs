@@ -55,7 +55,6 @@ public class ClientAuthService : IClientAuthService
     protected IAwaitableService _awaitableService = null;
     private ITextSerializer _serializer = null;
     private IDispatcher _dispatcher = null;
-    private IClientConfigContainer _configContainer = null;
 
     public async Task Initialize(CancellationToken token)
     {

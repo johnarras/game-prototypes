@@ -1,0 +1,15 @@
+{
+  "Id": "minigametype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "High Clicker",
+  "Desc": "High click thing",
+  "AtlasPrefix": "Clicker",
+  "ArtSubdirectory": "ClickerHigh",
+  "Icon": "ClickerHigh",
+  "Art": "MinigameRoot",
+  "MinLevel": 3,
+  "Active": true,
+  "WinCoins": 50,
+  "LoseCoins": 5
+}

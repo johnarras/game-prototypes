@@ -1,3 +1,4 @@
+using ABI.Microsoft.UI.Xaml;
 using Genrpg.Editor.Entities.Copying;
 using Genrpg.Editor.Entities.Core;
 using Genrpg.Editor.Services.Setup;
@@ -15,6 +16,8 @@ using Genrpg.Shared.Entities.Settings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
+using Genrpg.Shared.GameSettings.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Serialization.Interfaces;
@@ -88,7 +91,6 @@ namespace Genrpg.Editor.Utils
 
         public static async Task SaveFullGameData(IUICanvas form, FullGameDataCopy dataCopy, string env, bool deleteExistingData, CancellationToken token)
         {
-
             try
             {
                 EditorGameState gs = await SetupFromConfig(form, env, false);
@@ -122,14 +124,37 @@ namespace Genrpg.Editor.Utils
             SerializationInitializer.Init(GetCodeFolderPath());
         }
 
+        public static void WriteGameDataListToGit(List<IGameSettings> list, ITextSerializer serializer)
+        {
+            string dirName = GetGitDataPath();
+
+            DateTime saveTime = DateTime.UtcNow;
+            foreach (IGameSettings settings in list)
+            {
+                WriteGameDataText(dirName, settings, serializer, saveTime);
+            }
+        }
+
         public static string GetCodeFolderPath() { return AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\"; }
 
-        const string GitOffsetPath = "..\\GameData";
-        public static void WriteGameDataToDisk(FullGameDataCopy dataCopy, ITextSerializer serializer)
+        public static string GetGitDataPath()
         {
-            string dirName = GetCodeFolderPath();
+            string dirName = GetCodeFolderPath() + GitDataOffsetPath;
 
-            dirName += GitOffsetPath;
+            if (!Directory.Exists(dirName))
+            {
+                Directory.CreateDirectory(dirName);
+            }
+
+            return dirName;
+        }
+
+
+        const string GitDataOffsetPath = "..\\GameData";
+        public static void WriteGameDataToGit(FullGameDataCopy dataCopy, ITextSerializer serializer)
+        {
+
+            string dirName = GetGitDataPath();
 
             if (Directory.Exists(dirName))
             {
@@ -139,6 +164,7 @@ namespace Genrpg.Editor.Utils
             {
                 Directory.CreateDirectory(dirName);
             }
+
             foreach (string file in Directory.GetFiles(dirName))
             {
                 File.Delete(file);
@@ -156,12 +182,10 @@ namespace Genrpg.Editor.Utils
                 RemoveDeletedFiles(dirName, data.GetChildren());
             }
             RemoveDeletedFiles(dirName, dataCopy.Data);
-
-
         }
 
-
-        public static void WriteGameDataToClient(List<ITopLevelSettings> defaultClientSettings, ITextSerializer serializer)
+        public static void WriteGameDataToClient(List<IGameSettings> allSettings, ITextSerializer serializer,
+            IServerGameDataService gameDataService)
         {
             string dirName = GetCodeFolderPath() + "..\\Code\\" + Game.Prefix + "Client\\Assets\\Resources\\BakedGameData";
 
@@ -170,7 +194,30 @@ namespace Genrpg.Editor.Utils
                 Directory.CreateDirectory(dirName);
             }
 
-            foreach (ITopLevelSettings settingsItem in defaultClientSettings)
+            Dictionary<Type, IGameSettingsMapper> mapperDict = gameDataService.GetAllMappers();
+
+            DateTime saveTime = DateTime.UtcNow;
+
+            List<ITopLevelSettings> finalSettings = new List<ITopLevelSettings>();
+            foreach (IGameSettings gameSettings in allSettings)
+            {
+                if (gameSettings is ITopLevelSettings topLevelSettings)
+                { 
+                    if (MainWindow.UpdateSaveTime)
+                    {
+                        gameSettings.SaveTime = saveTime;
+                    }
+                    if (mapperDict.TryGetValue(topLevelSettings.GetType(), out IGameSettingsMapper mapper))
+                    {
+                        if (mapper.SendToClient())
+                        {
+                            finalSettings.Add(mapper.MapToDto(topLevelSettings, true));
+                        }
+                    }
+                }
+            }
+
+            foreach (ITopLevelSettings settingsItem in finalSettings)
             {
                 string txt = serializer.PrettyPrint(settingsItem);
                 string filename = settingsItem.GetType().Name + ".txt";
@@ -270,7 +317,7 @@ namespace Genrpg.Editor.Utils
 
             List<Type> settingsTypes = ReflectionUtils.GetTypesImplementing(typeof(IGameSettings));
 
-            string mainDirName = GetCodeFolderPath() + GitOffsetPath;
+            string mainDirName = GetCodeFolderPath() + GitDataOffsetPath;
 
             if (!Directory.Exists(mainDirName))
             {

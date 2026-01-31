@@ -5,6 +5,7 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
+using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Settings;
@@ -14,6 +15,7 @@ using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;
@@ -43,6 +45,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         private IGameData _gameData = null;
         private IDispatcher _dispatcher = null;
         private ISelectCombatActionsService _selectActionService = null;
+        private ILootGenService _lootGenService = null;
 
 
         private List<Func<PartyData, CancellationToken, Task<ECombatStepResults>>> _steps = new List<Func<PartyData, CancellationToken, Task<ECombatStepResults>>>()
@@ -129,7 +132,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             // Remove dead
             allUnits = allUnits.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
 
-            party.Combat.AttackSequence = SequenceUnitActionsByAscendingPriority(allUnits);
+            party.Combat.AttackSequence = SequenceUnitActionsByAscendingPriority(party, allUnits);
             await Task.CompletedTask;
             return ECombatStepResults.Continue;
         }
@@ -214,16 +217,26 @@ namespace Genrpg.Shared.Crawler.Combat.Services
         }
 
 
-        private List<CrawlerUnit> SequenceUnitActionsByAscendingPriority(List<CrawlerUnit> allUnits)
+        private List<CrawlerUnit> SequenceUnitActionsByAscendingPriority(PartyData party, List<CrawlerUnit> allUnits)
         {
 
             CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
             int speedDeltaPercent = combatSettings.SpeedCombatSequencingDeltaPercent;
 
+            long overloadedInventoryCount = Math.Max(0, party.Inventory.Count - _lootGenService.GetPartyInventorySize(party));
+
+
+            
+
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)
             {
                 unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * MathUtil.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
+
+                if (unit.FactionTypeId == FactionTypes.Player && overloadedInventoryCount > 0)
+                {
+                    unit.CombatPriority /= 2;
+                }
             }
 
             allUnits = allUnits.OrderBy(x => x.CombatPriority).ToList();

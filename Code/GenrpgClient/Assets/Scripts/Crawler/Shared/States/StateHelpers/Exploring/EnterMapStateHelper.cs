@@ -77,23 +77,23 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
                     if (detail.EntityId == 2 && currMap.IdKey == 1)
                     {
-                        if (party.MaxLevelEntered > detail.EntityId)
+                        if (party.MaxMapIdEntered > detail.EntityId)
                         {
-                            mapIds.Add(party.MaxLevelEntered);
+                            mapIds.Add(party.MaxMapIdEntered);
 
-                            if (!mapIds.Contains(party.MaxLevelEntered / 2))
+                            if (!mapIds.Contains(party.MaxMapIdEntered / 2))
                             {
-                                mapIds.Add(party.MaxLevelEntered / 2);
+                                mapIds.Add(party.MaxMapIdEntered / 2);
                             }
 
-                            if (!mapIds.Contains(party.MaxLevelEntered * 3 / 4))
+                            if (!mapIds.Contains(party.MaxMapIdEntered * 3 / 4))
                             {
-                                mapIds.Add(party.MaxLevelEntered * 3 / 4);
+                                mapIds.Add(party.MaxMapIdEntered * 3 / 4);
                             }
 
-                            if (!mapIds.Contains(party.MaxLevelEntered / 4))
+                            if (!mapIds.Contains(party.MaxMapIdEntered / 4))
                             {
-                                mapIds.Add(party.MaxLevelEntered / 4);
+                                mapIds.Add(party.MaxMapIdEntered / 4);
                             }
                         }
                     }
@@ -123,6 +123,11 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                         if (party.MaxLevelEntered < currNextMap.Level)
                         {
                             party.MaxLevelEntered = currNextMap.Level;
+                        }
+
+                        if (party.MaxMapIdEntered < currNextMap.IdKey)
+                        {
+                            party.MaxMapIdEntered = currNextMap.IdKey;
                         }
 
                         if (currMap != null && currMap.IdKey > 1)

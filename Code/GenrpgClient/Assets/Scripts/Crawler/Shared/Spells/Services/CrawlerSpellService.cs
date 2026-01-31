@@ -113,7 +113,6 @@ namespace Genrpg.Shared.Crawler.Spells.Services
         protected ICrawlerStatService _crawlerStatService = null;
         private ITextService _textService = null;
         private IRoleService _roleService = null;
-        private IClientAppService _appService = null;
         private IInfoService _infoService = null;
         private ICrawlerOptionsService _optionsService = null;
 
@@ -810,7 +809,6 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                             }
                         }
                     }
-                    //action.FinalTargets = new List<CrawlerUnit>(action.FinalTargets.OrderBy(x => Guid.NewGuid().ToString()));
                 }
 
                 if (action.CastingItem != null)

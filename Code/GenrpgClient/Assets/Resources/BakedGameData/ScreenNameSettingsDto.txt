@@ -307,6 +307,18 @@
       "Name": "TraderSupplies",
       "ScreenLayerId": 20,
       "Subdirectory": "TraderCity"
+    },
+    {
+      "IdKey": 53,
+      "Name": "MinigameHUD",
+      "ScreenLayerId": 10,
+      "Subdirectory": "MinigameHUD"
+    },
+    {
+      "IdKey": 54,
+      "Name": "MinigameLobby",
+      "ScreenLayerId": 20,
+      "Subdirectory": "MinigameLobby"
     }
   ],
   "Parent": {
@@ -314,5 +326,5 @@
     "Name": "ScreenNameSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-20T14:37:03.005Z"
+  "SaveTime": "2026-01-30T22:58:55.4260995Z"
 }

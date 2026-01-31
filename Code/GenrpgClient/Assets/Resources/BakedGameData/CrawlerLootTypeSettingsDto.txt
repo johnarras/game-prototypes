@@ -8,7 +8,7 @@
       "Icon": "",
       "Art": "",
       "EntityTypeId": 100,
-      "ItemEnchantWeight": 0.9,
+      "ItemEnchantWeight": 0.8,
       "ScalingPerLevel": 0.25
     },
     {
@@ -16,7 +16,7 @@
       "Name": "Map Magic",
       "Desc": "Ignore map magic.",
       "EntityTypeId": 51,
-      "ItemEnchantWeight": 0.09,
+      "ItemEnchantWeight": 0.01,
       "ScalingPerLevel": 1.0
     },
     {
@@ -35,7 +35,7 @@
       "Icon": "",
       "Art": "",
       "EntityTypeId": 36,
-      "ItemEnchantWeight": 0.01,
+      "ItemEnchantWeight": 0.06,
       "ScalingPerLevel": 0.3
     },
     {
@@ -46,7 +46,7 @@
       "Icon": "",
       "Art": "",
       "EntityTypeId": 27,
-      "ItemEnchantWeight": 0.01,
+      "ItemEnchantWeight": 0.06,
       "ScalingPerLevel": 1.0
     },
     {
@@ -54,7 +54,7 @@
       "Name": "Resistances",
       "Desc": "Resistant to different elements.",
       "EntityTypeId": 25,
-      "ItemEnchantWeight": 0.01,
+      "ItemEnchantWeight": 0.06,
       "ScalingPerLevel": 1.0
     }
   ],
@@ -79,7 +79,8 @@
     "ExtraLootScalePerMonsterBonus": 0.1,
     "AllowAllArmorTypes": true,
     "AllowAllWeaponTypes": true,
-    "ItemEnchantChance": 0.75,
+    "EnchantChancePerPowerIncrease": 0.15,
+    "BaseEnchantChance": 0.1,
     "LevelDiffBeforeLootLoss": 5,
     "LootLossPerLevelDiff": 0.15,
     "MinLootPercent": 0.1,
@@ -90,5 +91,5 @@
     "Name": "CrawlerLootSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-03T00:30:12.016Z"
+  "SaveTime": "2026-01-27T15:35:07.83Z"
 }

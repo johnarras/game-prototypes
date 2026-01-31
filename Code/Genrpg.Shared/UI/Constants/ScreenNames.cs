@@ -55,6 +55,8 @@ namespace Genrpg.Shared.UI.Constants
         public const long TraderCityRoads = 50;
         public const long TradeGoods = 51; // your inventory? and in city list of items to buy/sell?
         public const long TraderSupplies = 52; // Gold -> other currencies
+        public const long MinigameHUD = 53;
+        public const long MinigameLobby = 54;
 
 
     }

@@ -10,9 +10,6 @@ namespace Assets.Scripts.Trader.UI.TradeMapUI
 {
     public class TraderMapScreen : BaseScreen
     {
-
-        private ITravelService _travelService = null;
-
         public TraderMapCityButton ButtonPrefab;
 
         public GImage MapImage;

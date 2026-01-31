@@ -13,7 +13,7 @@ namespace Assets.Scripts.Trader.UI.Animals
 
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
-
+            await Task.CompletedTask;
         }
     }
 }

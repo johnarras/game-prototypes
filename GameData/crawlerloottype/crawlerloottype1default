@@ -8,6 +8,6 @@
   "Icon": "",
   "Art": "",
   "EntityTypeId": 100,
-  "ItemEnchantWeight": 0.9,
+  "ItemEnchantWeight": 0.8,
   "ScalingPerLevel": 0.25
 }

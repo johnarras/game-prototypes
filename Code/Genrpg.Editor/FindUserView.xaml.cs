@@ -179,16 +179,6 @@ namespace Genrpg.Editor
             await Task.CompletedTask;
         }
 
-
-        public void Save()
-        {
-            if (_win != null)
-            {
-
-                _ = Task.Run(() => _win.SaveData());
-            }
-        }
-
     }
 }
 

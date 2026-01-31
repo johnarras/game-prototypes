@@ -19,7 +19,8 @@
   "ExtraLootScalePerMonsterBonus": 0.1,
   "AllowAllArmorTypes": true,
   "AllowAllWeaponTypes": true,
-  "ItemEnchantChance": 0.75,
+  "EnchantChancePerPowerIncrease": 0.15,
+  "BaseEnchantChance": 0.1,
   "LevelDiffBeforeLootLoss": 5,
   "LootLossPerLevelDiff": 0.15,
   "MinLootPercent": 0.1,
@@ -28,5 +29,5 @@
   "StatBonusPerLevel": 0.4,
   "StatBonusVariance": 0.25,
   "Name": "CrawlerLootSettings",
-  "SaveTime": "2026-01-03T00:30:12.016Z"
+  "SaveTime": "2026-01-27T15:35:07.83Z"
 }

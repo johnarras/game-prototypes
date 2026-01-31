@@ -1,0 +1,11 @@
+header minigametype,IdKey,Name,Icon,Art,Desc,AtlasPrefix,ArtSubdirectory,Active,MinLevel,WinCoins,LoseCoins
+,,,,,,,,,,,
+minigametype,1,Low Spinner,SpinnerLow,MinigameRoot,Low spin thing,Spinner,SpinnerLow,TRUE,1,10,0
+minigametype,2,Med Spinner,SpinnerMed,MinigameRoot,Med spin thing,Spinner,SpinnerMed,TRUE,3,30,0
+minigametype,3,High Spinner,SpinnerHigh,MinigameRoot,High Spin thing,Spinner,SpinnerHigh,TRUE,4,15,0
+minigametype,4,Low Clicker,ClickerLow,MinigameRoot,Low click thing,Clicker,ClickerLow,TRUE,7,20,5
+minigametype,5,Med Clicker,ClickerMed,MinigameRoot,Med click thing,Clicker,ClickerMed,TRUE,2,25,0
+minigametype,6,High Clicker,ClickerHigh,MinigameRoot,High click thing,Clicker,ClickerHigh,TRUE,3,50,5
+minigametype,7,Low Match,MatchLow,MinigameRoot,Low match thing,Match,MatchLow,TRUE,8,60,10
+minigametype,8,Med Match,MatchMed,MinigameRoot,Med match thing,Match,MatchMed,TRUE,9,10,0
+minigametype,9,High Match,MatchHigh,MinigameRoot,High match thing,Match,MatchHigh,TRUE,10,35,10

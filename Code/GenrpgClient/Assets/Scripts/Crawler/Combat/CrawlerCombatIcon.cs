@@ -4,9 +4,11 @@ using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.UI.CombatTexts;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.GameEvents;
+using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.UnitEffects.Constants;
 using System;
 using System.Linq;
@@ -27,6 +29,7 @@ namespace Assets.Scripts.Crawler.Combat
         public GText Dist;
         public CombatGroup Group;
         public GButton Button;
+        public CombatGroupHealthUI HealthUI;
 
         private Action _clickAction;
 
@@ -35,6 +38,8 @@ namespace Assets.Scripts.Crawler.Combat
             base.Init();
             _dispatcher.AddListener<SetCombatGroupAction>(OnSetCombatGroupAction, GetToken());
             _dispatcher.AddListener<ClearCombatGroupActions>(OnClearCombatGroupActions, GetToken());
+
+            _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
             _uiService.SetButton(Button, name, OnClickButton);
 
         }
@@ -67,6 +72,25 @@ namespace Assets.Scripts.Crawler.Combat
                 Icon.SetImage(Group.UnitType.Icon);
             }
             _didInit = true;
+
+            UpdateHealthBar();
+        }
+
+        private void UpdateHealthBar()
+        {
+            if (HealthUI != null)
+            {
+                HealthUI.UpdateHealthData(Group);
+            }
+        }
+
+        private void OnShowCombatText(ShowCombatText text)
+        {
+            if (Group == null || text.TargetGroupId != Group.Id)
+            {
+                return;
+            }
+            UpdateHealthBar();
         }
 
         private void OnClickButton()

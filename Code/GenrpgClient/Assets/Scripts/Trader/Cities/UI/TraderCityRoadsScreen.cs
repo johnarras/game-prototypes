@@ -18,7 +18,6 @@ namespace Assets.Scripts.Trader.UI.Cities
     public class TraderCityRoadsScreen : TypedArgScreen<TraderCityRoadsScreenArgs>
     {
 
-        private IClientWebService _webService = null;
         private ICaravanService _caravanService = null;
         private ITraderMapService _traderMapService = null;
 
@@ -33,8 +32,6 @@ namespace Assets.Scripts.Trader.UI.Cities
         public GameObject EnterCityButtonParent;
 
         private List<TraderPathUI> _roads = new List<TraderPathUI>();
-
-        private City _city = null;
 
         public class CityDistance
         {

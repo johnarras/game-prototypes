@@ -22,6 +22,8 @@ namespace Genrpg.Shared.Crawler.Quests.Settings
         public double ExpLootMult { get; set; }
         public double GoldLootMult { get; set; }
         public double ItemLootMult { get; set; }
+
+        public int SingleDungeonNpcQuestCount { get; set; }
     }
 
     public class CrawlerQuestType : ChildSettings, IIndexedGameItem, IWeightedItem

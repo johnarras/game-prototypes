@@ -97,7 +97,7 @@ namespace Assets.Scripts.Controllers
                 float lightTarget = party.Buffs[PartyBuffs.Light];
                 if (lightTarget > 1)
                 {
-                    lightTarget = 1 + (lightTarget - 1) / 3;
+                    lightTarget = 1 + Mathf.Log(lightTarget, 2);
                 }
                 Headlight.intensity = _currIntensity * lightTarget;
                 Headlight.range = Range;

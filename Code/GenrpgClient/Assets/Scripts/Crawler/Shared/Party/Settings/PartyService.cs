@@ -1,12 +1,17 @@
 using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Crawler.Maps.Constants;
+using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
+using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -17,6 +22,7 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -63,7 +69,9 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private ICrawlerOptionsService _optionsService = null;
         private ITrainingService _trainingService = null;
         private IInputService _inputService = null;
-        ICrawlerUpgradeService _upgradeService = null;
+        private ICrawlerMapService _mapService = null;
+        private ICrawlerUpgradeService _upgradeService = null;
+        private ICrawlerCombatService _combatService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
@@ -151,16 +159,21 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 party.WorldId = _rand.Next() % 100000000;
             }
             party.Maps = new List<CrawlerMapStatus>();
-            party.CurrentMap = new CurrentMapStatus();
             party.CompletedMaps.Clear();
             party.RiddlesCompleted.Clear();
             party.QuestItems.Clear();
-            party.CurrPos = new MapPosition();
             party.RecallPos = new MapPosition();
             party.CompletedQuests.Clear();
             party.Quests.Clear();
             OnEnterMap(party);
+            ResetToFirstCity(party);
+        }
+
+        protected void ResetToFirstCity(PartyData party)
+        {            
+            party.CurrentMap = new CurrentMapStatus();
             party.AddFlags(PartyFlags.InGuildHall);
+            party.CurrPos = new MapPosition();
         }
 
         public void OnEnterMap(PartyData party)
@@ -210,7 +223,17 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 FullReset(party);
                 await _crawlerWorldService.GenerateWorld(party);
             }
+            else
+            {
+                ResetToFirstCity(party);
+            }
+
+
+            _crawlerService.ClearAllStates();
+            _combatService.EndCombat(party);
             _crawlerService.ChangeState(ECrawlerStates.GuildMain, token);
+            _mapService.CleanMap();
+
             _dispatcher.Dispatch(new RefreshPartyStatus());
             _dispatcher.Dispatch(new UpdateCombatGroups());
 

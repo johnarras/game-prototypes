@@ -67,6 +67,8 @@ namespace Genrpg.Shared.Entities.Constants
         public const long Skin = 62;
         public const long TraderFlag = 63;
         public const long TraderSkill = 64;
+        public const long MinigameType = 65;
+
 
         // Crawler-specific entitytypes
         public const long CrawlerSpell = 100;

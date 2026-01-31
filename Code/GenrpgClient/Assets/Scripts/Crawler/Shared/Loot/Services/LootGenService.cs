@@ -387,17 +387,17 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                                     _rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
                             }
                         }
+                    }
 
-                        if (_rand.NextDouble() < lootSettings.ItemEnchantChance * itemGenArgs.PowerIncrease)
+                    if (_rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease* itemGenArgs.PowerIncrease)
+                    {
+                        CrawlerLootType enchantType = RandomUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
+
+                        if (enchantType != null)
                         {
-                            CrawlerLootType enchantType = RandomUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
-
-                            if (enchantType != null)
+                            if (_lootTypeHelpers.TryGetValue(enchantType.EntityTypeId, out ICrawlerLootTypeHelper helper))
                             {
-                                if (_lootTypeHelpers.TryGetValue(enchantType.EntityTypeId, out ICrawlerLootTypeHelper helper))
-                                {
-                                    helper.AddEnchantToItem(party, item, itemGenArgs);
-                                }
+                                helper.AddEnchantToItem(party, item, itemGenArgs);
                             }
                         }
                     }

@@ -1,4 +1,5 @@
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Crawler.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Services;
@@ -55,7 +56,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
         private void ClickNewCrawler()
         {
             StartClose();
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.NewCrawlerGame));
+            _crawlerService.NewGamePhaseOne();
         }
 
         private void ClickContinue()

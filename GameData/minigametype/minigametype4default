@@ -1,0 +1,15 @@
+{
+  "Id": "minigametype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Low Clicker",
+  "Desc": "Low click thing",
+  "AtlasPrefix": "Clicker",
+  "ArtSubdirectory": "ClickerLow",
+  "Icon": "ClickerLow",
+  "Art": "MinigameRoot",
+  "MinLevel": 7,
+  "Active": true,
+  "WinCoins": 20,
+  "LoseCoins": 5
+}
