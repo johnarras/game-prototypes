@@ -1,6 +1,8 @@
+using Genrpg.ServerShared.DataStores.Mongo.Interfaces;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -10,39 +12,20 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Xml;
 
-namespace Genrpg.ServerShared.DataStores.Mongo
+namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
 {
-
-
-    public interface INoSQLCollection
-    {
-        Task<object> Load(string id);
-        Task<bool> TransactionSave(object t, RepoSaveArgs args = null);
-        Task<bool> Save(object t, RepoSaveArgs args = null);
-        Task<bool> Delete(object t);
-        Task<bool> DeleteAll(object func);
-        Task<bool> UpdateDict(string id, Dictionary<string, object> fieldNameUpdates);
-        Task<bool> UpdateAction(string id, object action);
-        Task CreateIndex(CreateIndexData options);
-        Task<List<object>> Search(object func, int quantity = 1000, int skip = 0);
-        Task<bool> SaveAll(object itemList);
-        Task<object> AtomicIncrement(string docId, string fieldName, long increment);
-        Task<object> AtomicAddBits(string docId, string fieldName, long addBits);
-        Task<object> AtomicRemoveBits(string docId, string fieldName, long removeBits);
-    }
-
-
-    public class MongoRepositoryCollection<T> : INoSQLCollection where T : class, ISearchableItem
+    public class MongoRepositoryCollection<T> : ITypedNoSQLCollection<T> where T : class, ISearchableItem, IStringId
     {
         protected IMongoCollection<T> _collection = null;
         protected ILogService _logService = null;
-        public MongoRepositoryCollection(MongoRepository mongoRepository, ILogService logService)
+        public MongoRepositoryCollection(IMongoDatabase mongoDatabase, ILogService logService)
         {
             _logService = logService;
             try
             {
-                _collection = mongoRepository.GetDatabase().GetCollection<T>(GetCollectionName());
+                _collection = mongoDatabase.GetCollection<T>(GetCollectionName());
             }
             catch (Exception e)
             {
@@ -143,6 +126,8 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             return await InnerSave(obj, args);
         }
 
+
+        private ReplaceOptions _saveOptions = new ReplaceOptions() { IsUpsert = true, BypassDocumentValidation = true, };
         protected async Task<bool> InnerSave(object obj, RepoSaveArgs args = null)
         {
             T t = (T)obj;
@@ -159,8 +144,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
                     throw new Exception("Missing Id on save");
                 }
 
-                ReplaceOptions options = new ReplaceOptions() { IsUpsert = true, BypassDocumentValidation = true, };
-                ReplaceOneResult replaceResult = await ReplaceDocument(t, options, args);
+                ReplaceOneResult replaceResult = await ReplaceDocument(t, _saveOptions, args);
 
                 if (replaceResult.ModifiedCount < 1 && string.IsNullOrEmpty(replaceResult.UpsertedId?.AsString ?? null))
                 {
@@ -196,13 +180,13 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             }
         }
 
-        public async Task<List<object>> Search(object funcObj, int quantity = 1000, int skip = 0)
+        public async Task<List<T>> Search(object funcObj, int quantity = 1000, int skip = 0)
         {
             Expression<Func<T, bool>> func = (Expression<Func<T, bool>>)funcObj;
 
             if (func == null)
             {
-                return new List<object>();
+                return new List<T>();
             }
 
             try
@@ -217,15 +201,15 @@ namespace Genrpg.ServerShared.DataStores.Mongo
                     options.Limit = quantity;
                 }
                 IAsyncCursor<T> cursor = await _collection.FindAsync(func, options);
-                List<T> retval = await cursor.ToListAsync();
-                return retval.Cast<object>().ToList();
+                return await cursor.ToListAsync();
             }
             catch (Exception ex)
             {
                 _logService.Exception(ex, "Mongo.Search");
             }
-            return new List<object>();
+            return new List<T>();
         }
+
 
         public async Task CreateIndex(CreateIndexData data)
         {
@@ -250,7 +234,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo
                 }
             }
 
-
             List<IndexConfig> orderedConfigs = data.Configs.OrderBy(x => x.MemberName).ToList();
 
             string totalIndex = "";
@@ -270,7 +253,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
                     Unique = config.Unique,
                 };
 
-                MemberInfo mem = thisType.GetMembers().FirstOrDefault(x => x.Name == config.MemberName);
+                MemberInfo mem = thisType.GetMembers(BindingFlags.Public).FirstOrDefault(x => x.Name == config.MemberName);
                 if (mem == null)
                 {
                     continue;

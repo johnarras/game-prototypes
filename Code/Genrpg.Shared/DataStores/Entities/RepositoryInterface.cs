@@ -1,3 +1,4 @@
+using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System;
@@ -42,6 +43,7 @@ namespace Genrpg.Shared.DataStores.Entities
     public interface ISearchRepository : IRepository
     {
         Task<List<T>> Search<T>(object func, int quantity = 1000, int skip = 0) where T : class, ISearchableItem;
+        Task CreateIndexes(CreateIndexData data);
     }
 
     public class RepoSaveArgs

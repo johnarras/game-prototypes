@@ -27,12 +27,12 @@ public class CharacterSelectScreen : ErrorMessageScreen
     public GButton CrawlerButton;
     public GText ErrorText;
 
+
     protected IZoneGenService _zoneGenService = null;
     protected IClientAuthService _loginService = null;
     protected INoiseService _noiseService = null;
     protected IInputService _inputService = null;
-    protected IPlayerSearchService _playerSearchService = null;
-    private IClientConfigContainer _configContainer = null;
+    private IClientConfigContainer _configContainer;
     private IClientAppService _clientAppService = null;
 
     public const string CharacterRowArt = "CharacterSelectRow";

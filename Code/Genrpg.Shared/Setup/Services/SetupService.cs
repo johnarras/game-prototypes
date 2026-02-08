@@ -87,7 +87,6 @@ namespace Genrpg.Shared.Setup.Services
 
         private void InjectAssemblyServices(Assembly assembly, IServiceLocator loc, List<string> completedAssemblyNames, CancellationToken token)
         {
-
             List<Type> injectableTypes = ReflectionUtils.GetTypesImplementing(assembly, typeof(IInjectable));
 
             foreach (Type type in injectableTypes)

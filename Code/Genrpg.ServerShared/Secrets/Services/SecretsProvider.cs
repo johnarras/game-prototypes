@@ -11,8 +11,6 @@ namespace Genrpg.ServerShared.Secrets.Services
         Task<string> GetSecret(string key);
     }
 
-
-
     public class SecretsProvider : ISecretsProvider
     {
         private IServerConfig _serverConfig = null;

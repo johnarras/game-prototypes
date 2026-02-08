@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Genrpg.Shared.DataStores.Categories.GameSettings
 {
-    [DataGroup(EDataCategories.Settings,ERepoTypes.Mongo)]
+    [DataGroup(EDataCategories.Settings,ERepoTypes.Polymorphic)]
     public abstract class BaseGameSettings : IGameSettings
     {
         [MessagePack.IgnoreMember]

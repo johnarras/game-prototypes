@@ -23,6 +23,8 @@ namespace Genrpg.Shared.Crawler.Quests.Settings
         public double GoldLootMult { get; set; }
         public double ItemLootMult { get; set; }
 
+        public long SingleDungeonMaxLevelGapForCredit { get; set; }
+
         public int SingleDungeonNpcQuestCount { get; set; }
     }
 

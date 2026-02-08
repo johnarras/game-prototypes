@@ -36,7 +36,7 @@
       "Art": "",
       "EntityTypeId": 36,
       "ItemEnchantWeight": 0.06,
-      "ScalingPerLevel": 0.3
+      "ScalingPerLevel": 0.35
     },
     {
       "IdKey": 5,
@@ -80,7 +80,7 @@
     "AllowAllArmorTypes": true,
     "AllowAllWeaponTypes": true,
     "EnchantChancePerPowerIncrease": 0.15,
-    "BaseEnchantChance": 0.1,
+    "BaseEnchantChance": 0.05,
     "LevelDiffBeforeLootLoss": 5,
     "LootLossPerLevelDiff": 0.15,
     "MinLootPercent": 0.1,
@@ -91,5 +91,5 @@
     "Name": "CrawlerLootSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-27T15:35:07.83Z"
+  "SaveTime": "2026-01-27T22:35:53.315Z"
 }

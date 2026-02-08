@@ -9,11 +9,6 @@ namespace Genrpg.ServerShared.Crypto.Services
 
     public class CryptoService : ICryptoService
     {
-
-        private ISecretsProvider _secretsProvider = null;
-        private ITextSerializer _serializer = null;
-        private ILogService _logService = null;
-
         public string GetPasswordHash(string salt, string passwordOrToken)
         {
             if (string.IsNullOrEmpty(passwordOrToken) || string.IsNullOrEmpty(salt))

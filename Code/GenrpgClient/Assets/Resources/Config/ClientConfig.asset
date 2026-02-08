@@ -19,7 +19,7 @@ MonoBehaviour:
   AssetsEnv: local
   WorldsEnv: local
   ProductId: 2
-  SelfContainedClient: 1
+  SelfContainedClient: 0
   ExportGameData: 0
   GooglePlaySecret: temp
   IOSSecret: temp

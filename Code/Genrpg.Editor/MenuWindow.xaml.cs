@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using WinRT.Genrpg_EditorGenericHelpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,7 +27,7 @@ namespace Genrpg.Editor
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class MainWindow : WindowBase, IUICanvas
+    public partial class MenuWindow : WindowBase, IUICanvas
     {
         public const bool UpdateSaveTime = false;
 
@@ -34,6 +35,7 @@ namespace Genrpg.Editor
 
         private EditorGameState _gs = null;
         private string _prefix;
+        private string _env;
 
         private IServerGameDataService _gameDataService = null;
         private ICloudCommsService _cloudCommsService = null;
@@ -45,162 +47,77 @@ namespace Genrpg.Editor
         public bool Contains(object cont) { return _canvas.Contains(cont); }
 
 
-        public MainWindow()
+        public MenuWindow()
         {
             Content = _canvas;
             _prefix = Game.Prefix;
             int buttonCount = 0;
 
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _prefix, getButtonWidth(), getButtonHeight(),
+            _env = MainMenuWindow.CurrentEnv;
+
+            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _env + " Editor", getButtonWidth() * 2, getButtonHeight(),
                 getLeftRightPadding(), getTopBottomPadding(), 20);
             buttonCount++;
 
-            string[] envWords = { "dev" };
-            string[] actionWords = "Data Importer CopyToGit CopyToClient CopyToServers SerializeSetup Users  CopyToTest Maps CopyToDB TestAccountSetup".Split(' ');
-            int column = 0;
-            for (int e = 0; e < envWords.Length; e++)
-            {
-                string env = envWords[e];
 
-                if (env != EnvNames.Dev)
+            string[] actionWords = "Data Importer CopyToGit CopyToClient CopyToServers SerializeSetup Users Maps CopyToDB".Split(' ');
+            int column = 0;
+
+            if (string.IsNullOrEmpty(_env))
+            {
+                return;
+            }
+
+            for (int a = 0; a < actionWords.Length; a++)
+            {
+                string action = actionWords[a];
+
+                if (string.IsNullOrEmpty(action))
                 {
                     continue;
                 }
-                if (env != EnvNames.Test)
+
+                if (_env == EnvNames.Prod && action == "Data")
                 {
-                    for (int a = 0; a < actionWords.Length; a++)
+                    continue;
+                }
+
+                if (action == "Maps")
+                {
+                    if (_prefix == Game.Prefix)
                     {
-                        string action = actionWords[a];
-
-                        if (string.IsNullOrEmpty(action))
-                        {
-                            continue;
-                        }
-
-                        if (env == EnvNames.Prod && action == "Data")
-                        {
-                            continue;
-                        }
-
-                        if (action == "Maps")
-                        {
-                            if (_prefix == Game.Prefix)
-                            {
-
-                                UIHelper.CreateButton(this,
-                                    EButtonTypes.Default,
-                                    env + " " + action,
-                                    _prefix + " " + env + " " + action,
-                                    getButtonWidth(),
-                                    getButtonHeight(),
-                                    getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
-                                    getTotalHeight(buttonCount),
-                                    OnClickMaps);
-                                buttonCount++;
-                            }
-                            continue;
-                        }
-
-
 
                         UIHelper.CreateButton(this,
                             EButtonTypes.Default,
-                            env + " " + action,
-                            env + " " + action,
+                            _env + " " + action,
+                            _prefix + " " + _env + " " + action,
                             getButtonWidth(),
                             getButtonHeight(),
                             getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
                             getTotalHeight(buttonCount),
-                            OnClickButton);
+                            OnClickMaps);
                         buttonCount++;
                     }
+                    continue;
                 }
 
+                UIHelper.CreateButton(this,
+                    EButtonTypes.Default,
+                    action,
+                    action,
+                    getButtonWidth(),
+                    getButtonHeight(),
+                    getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
+                    getTotalHeight(buttonCount),
+                    OnClickButton);
+                buttonCount++;
             }
-
-
-            UIHelper.CreateButton(this,
-                EButtonTypes.Default,
-                "TestSharedRandom",
-                "Test Shared Random",
-                getButtonWidth(),
-                getButtonHeight(),
-                getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
-                getTotalHeight(buttonCount),
-                OnClickSharedRandom);
-            buttonCount++;
 
             UIHelper.SetWindowRect(this, 100, 100,
                  2 * getLeftRightPadding() + 1 * (getButtonWidth() + getButtonGap() * 2),
             getTotalHeight(buttonCount) + getTopBottomPadding() + _topPadding);
 
-        }
-
-        private void OnClickSharedRandom(object sender, object e)
-        {
-            TestSharedRandomAsync().Wait();
-        }
-
-        private async Task TestSharedRandomAsync()
-        {
-            int numTasks = 100;
-            int iterationCount = 100000;
-
-            DateTime startTime = DateTime.UtcNow;
-            List<Task> tasks = new List<Task>();
-            for (int i = 0; i < numTasks; i++)
-            {
-                tasks.Add(TestRegRandom(iterationCount));
-            }
-
-            await Task.WhenAll(tasks);
-
-            double randSeconds = (DateTime.UtcNow - startTime).TotalSeconds;
-
-            startTime = DateTime.UtcNow;
-
-            tasks.Clear();
-            for (int i = 0; i < numTasks; i++)
-            {
-                tasks.Add(TestSharedRandom(iterationCount));
-            }
-
-            await Task.WhenAll(tasks);
-
-            double sharedSeconds = (DateTime.UtcNow - startTime).TotalSeconds;
-
-            Trace.WriteLine("RandSeconds: " + randSeconds + " " + totalRandVal + " SharedSeconds: " + sharedSeconds + " " + totalSharedVal);
-
-        }
-
-        private long totalRandVal = 0;
-        private long totalSharedVal = 0;
-        private async Task TestRegRandom(int iterations)
-        {
-            Random rand = new Random();
-            long val = 0;
-            for (int i = 0; i < iterations; i++)
-            {
-                val += rand.Next() + rand.Next() + rand.Next() + rand.Next() + rand.Next() +
-                   rand.Next() + rand.Next() + rand.Next() + rand.Next() + rand.Next();
-            }
-
-            totalRandVal += val;
-            await Task.CompletedTask;
-        }
-
-        private async Task TestSharedRandom(int iterations)
-        {
-            long val = 0;
-            for (int i = 0; i < iterations; i++)
-            {
-                val += Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next() +
-                    Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next() + Random.Shared.Next();
-            }
-
-            totalSharedVal += val;
-            await Task.CompletedTask;
         }
 
         private int getButtonWidth() { return 150; }
@@ -226,34 +143,7 @@ namespace Genrpg.Editor
 
         private async Task OnClickMapsAsync(object sender, object e)
         {
-            ButtonBase but = sender as ButtonBase;
-            if (but == null)
-            {
-                return;
-            }
-
-            String txt = but.Content.ToString();
-            if (String.IsNullOrEmpty(txt))
-            {
-                return;
-            }
-
-            string[] words = txt.Split(' ');
-            if (words.Length < 3)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_prefix))
-            {
-                return;
-            }
-
-            String env = words[1];
-            String action = words[2];
-
-            _gs = await EditorGameDataUtils.SetupFromConfig(this, env, true);
-
+            _gs = await EditorGameDataUtils.SetupFromConfig(this, _env, true);
         }
 
         private void OnClickButton(object sender, object e)
@@ -264,50 +154,31 @@ namespace Genrpg.Editor
                 return;
             }
 
-            String txt = but.Name;
-            if (String.IsNullOrEmpty(txt))
-            {
-                return;
-            }
-            string[] words = txt.Split(' ');
-            if (words.Length < 2)
-            {
-                return;
-            }
+            String action = but.Name;
 
-            if (string.IsNullOrEmpty(_prefix))
+            if (string.IsNullOrEmpty(_prefix) || string.IsNullOrEmpty(_env))
             {
-                return;
-            }
-
-            String env = words[0];
-            String action = words[1];
-
-            if (action == "CopyToTest")
-            {
-                CopyDataFromEnvToEnv(EnvNames.Dev, EnvNames.Test);
                 return;
             }
 
             if (action == "CopyToGit")
             {
-                CopyGameDataFromDatabaseToGit(EnvNames.Dev);
+                CopyGameDataFromDatabaseToGit(_env);
                 return;
             }
             if (action == "CopyToDB")
             {
-                CopyGameDataFromGitToDatabase(EnvNames.Dev);
+                CopyGameDataFromGitToDatabase(_env);
                 return;
             }
             if (action == "CopyToClient")
             {
-                CopyGameDataFromDatabaseToClient(EnvNames.Dev);
+                CopyGameDataFromDatabaseToClient(_env);
                 return;
             }
             else if (action == "CopyToServers")
             {
-
-                _ = Task.Run(() => RefreshServerDataAsync(env));
+                _ = Task.Run(() => RefreshServerDataAsync(_env));
                 return;
             }
 
@@ -325,7 +196,7 @@ namespace Genrpg.Editor
 
             }
 
-            Task.Run(() => OnClickButtonAsync(action, env, null));
+            Task.Run(() => OnClickButtonAsync(action, _env, null));
         }
 
 
@@ -366,13 +237,13 @@ namespace Genrpg.Editor
 
         private void CopyGameDataFromGitToDatabase(string env)
         {
-            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Mongo");
+            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Db");
             _ = Task.Run(() => CopyGameDataFromGitToDatabaseAsync(form, env, EditorGameState.CTS.Token));
         }
 
         private async Task CopyGameDataFromGitToDatabaseAsync(SmallPopup form, string env, CancellationToken token)
         {
-            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadDataFromDisk(form, token);
+            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadDataFromDisk(form, env, token);
             await EditorGameDataUtils.SaveFullGameData(form, dataCopy, env, true, token);
 
             form.StartClose();

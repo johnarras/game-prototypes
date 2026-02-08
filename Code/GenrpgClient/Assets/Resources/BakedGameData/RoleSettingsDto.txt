@@ -13,6 +13,8 @@
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -105,6 +107,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -207,6 +213,8 @@
       "CritPercent": 10,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -401,6 +409,8 @@
       "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -579,6 +589,8 @@
       "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -781,6 +793,8 @@
       "CritPercent": 1,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -857,6 +871,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -964,6 +982,8 @@
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -1192,6 +1212,8 @@
       "CritPercent": 2,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -1272,6 +1294,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 64
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
         },
         {
           "EntityTypeId": 100,
@@ -1401,6 +1427,8 @@
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -1501,6 +1529,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 80
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
         },
         {
           "EntityTypeId": 100,
@@ -1634,6 +1666,8 @@
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -1729,11 +1763,19 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 82
         },
         {
           "EntityTypeId": 100,
           "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -1837,6 +1879,8 @@
       "Guardian": true,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -1913,6 +1957,10 @@
         {
           "EntityTypeId": 100,
           "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -2021,6 +2069,8 @@
       "CritPercent": 3,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -2243,6 +2293,8 @@
       "CritPercent": 2,
       "TrainingXpScale": 1.0,
       "TrainingGoldScale": 1.0,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 2,
@@ -2298,11 +2350,19 @@
         },
         {
           "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
           "EntityId": 83
         },
         {
           "EntityTypeId": 100,
           "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
         },
         {
           "EntityTypeId": 100,
@@ -2448,6 +2508,8 @@
       "Desc": "Normal people",
       "Abbrev": "Hu",
       "RoleCategoryId": 2,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [],
       "AmountBonuses": [
         {
@@ -2468,6 +2530,8 @@
       "Desc": "Slightly more Ranged",
       "Abbrev": "Elf",
       "RoleCategoryId": 2,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [],
       "AmountBonuses": [
         {
@@ -2494,6 +2558,8 @@
       "Abbrev": "Dw",
       "RoleCategoryId": 2,
       "HealthPerLevel": 5,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [],
       "AmountBonuses": [
         {
@@ -2514,6 +2580,8 @@
       "Desc": "More Melee",
       "Abbrev": "Hc",
       "RoleCategoryId": 2,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [],
       "AmountBonuses": [
         {
@@ -2539,6 +2607,8 @@
       "Desc": "More Spell Dam",
       "Abbrev": "Gn",
       "RoleCategoryId": 2,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [],
       "AmountBonuses": [
         {
@@ -2565,6 +2635,8 @@
       "Abbrev": "Hf",
       "RoleCategoryId": 2,
       "CritPercent": 5,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
       "BinaryBonuses": [
         {
           "EntityTypeId": 100,
@@ -2590,5 +2662,5 @@
     "Name": "RoleSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-29T01:56:32.8760676Z"
+  "SaveTime": "2026-02-04T22:28:56.541Z"
 }

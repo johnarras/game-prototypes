@@ -8,6 +8,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using Newtonsoft.Json;
 using System;
@@ -1485,12 +1486,8 @@ namespace Genrpg.Editor.Services.Reflection
 
                 foreach (Type t in assembly.GetExportedTypes())
                 {
-                    if (!t.IsClass)
-                    {
-                        continue;
-                    }
 
-                    if (t.IsAbstract)
+                    if (ReflectionUtils.IsValidReflectionType(t))
                     {
                         continue;
                     }

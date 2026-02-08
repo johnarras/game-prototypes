@@ -19,6 +19,8 @@ namespace Genrpg.Shared.Crawler.Options.Constants
         public const long Camping = 14;
         public const long AutoLevelUp = 15;
         public const long DroppingGivesMoney = 16;
+        public const long HarderMonsters = 17;
+        public const long MoreMonsters = 18;
 
 
     }

@@ -59,7 +59,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
                 IServerConfig newConfig = _serializer.MakeCopy(_config);
                 newConfig.DataEnvs[EDataCategories.Worlds.ToString()] = request.WorldDataEnv;
 
-                WebContext newContext = await new ServerSetup().SetupFromConfig<WebContext, WebsiteSetupService>(null, _config.ServerId, token, newConfig);
+                WebContext newContext = await new ServerSetup().SetupFromConfig<WebContext, WebsiteSetupService>(null, _config.ServerId, token, newConfig, null);
 
                 IFullRepositoryService newRepoService = newContext.loc.Get<IFullRepositoryService>();
 

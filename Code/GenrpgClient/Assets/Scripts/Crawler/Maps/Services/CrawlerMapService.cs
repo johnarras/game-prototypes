@@ -41,6 +41,7 @@ using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -960,7 +961,18 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             world.Maps = world.Maps.Where(x => x.IdKey == 1 || x.IdKey == 2 || x.IdKey == currMap.IdKey).ToList();
             world.ClearCache();
 
-            if (world.Maps.Count != mapCount)
+            bool changedCityLevel = false;
+
+            if (cityMap != null && cityMap.Level < party.MaxLevelEntered)
+            {
+                cityMap.Level = party.MaxLevelEntered;
+                changedCityLevel = true;
+                party.VendorItems.Clear();
+                party.VendorBuyback.Clear();
+                party.LastVendorRefresh = DateTime.UtcNow.AddDays(-1);
+            }
+
+            if (world.Maps.Count != mapCount || changedCityLevel)
             {
                 await _worldService.SaveWorld(world);
             }

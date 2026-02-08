@@ -58,6 +58,9 @@ namespace Genrpg.Shared.Crawler.Roles.Settings
         public double TrainingXpScale { get; set; }
         public double TrainingGoldScale { get; set; }
 
+        public long StartSkillPoints { get; set; }
+        public long StartUpgradePoints { get; set; }
+
         public List<RoleBonusBinary> BinaryBonuses { get; set; } = new List<RoleBonusBinary>();
 
         public List<RoleBonusAmount> AmountBonuses { get; set; } = new List<RoleBonusAmount>();

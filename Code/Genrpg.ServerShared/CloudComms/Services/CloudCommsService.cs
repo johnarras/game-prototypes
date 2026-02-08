@@ -5,7 +5,7 @@ using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin;
 using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.CloudComms.Queues.Requests.Entities;
 using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.OnlineResources.Interfaces;
+using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.ServerShared.Secrets.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;

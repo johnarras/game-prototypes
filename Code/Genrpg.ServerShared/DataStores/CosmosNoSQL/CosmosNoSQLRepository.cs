@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Buffers;
 using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Interfaces;
@@ -28,12 +29,8 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
         static readonly string PartitionKeyPath = "/" + (nameof(IPartitionedData.pk));
         private ILogService _logService = null;
         private ITextSerializer _serializer = null;
-        private static ConcurrentDictionary<string, CosmosClient> _clientCache = new ConcurrentDictionary<string, CosmosClient>();
-
         private Database _database = null;
         private Microsoft.Azure.Cosmos.Container _container = null;
-
-        static object _connectionLock = new object();
 
         private CosmosClient _client = null;
 
@@ -53,7 +50,7 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
         private CancellationToken _token;
 
         public async Task Init(InitRepoArgs args,
-            string connectionString,
+            CosmosClient client,
             ILogService logService,
             IAnalyticsService analyticsService,
             ITextSerializer serializer,
@@ -63,80 +60,26 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
             string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
             _logService = logService;
             _serializer = serializer;
-            try
+            _client = client;
+
+            _requestOptions = new ItemRequestOptions()
             {
-                if (_clientCache.TryGetValue(connectionString, out CosmosClient client))
-                {
-                    _client = client;
-                }
-                else
-                {
-                    lock (_connectionLock)
-                    {
-                        if (_clientCache.TryGetValue(connectionString, out CosmosClient client2))
-                        {
-                            _client = client2;
-                        }
-                        else
-                        {
-                            CosmosSerializationOptions serializerOptions = new CosmosSerializationOptions()
-                            {
-                                IgnoreNullValues = true,
-                                Indented = false,
-                                PropertyNamingPolicy = CosmosPropertyNamingPolicy.Default,
-                            };
-
-                            CosmosClientOptions options = new CosmosClientOptions()
-                            {
-                                ConnectionMode = ConnectionMode.Direct,
-                                AllowBulkExecution = false,
-                                EnableContentResponseOnWrite = false,
-                                SerializerOptions = serializerOptions,
-                                MaxRetryAttemptsOnRateLimitedRequests = 30,
-                                MaxRetryWaitTimeOnRateLimitedRequests = TimeSpan.FromSeconds(60),
-                                ApplicationRegion = Regions.CentralUS,
-                            };
-
-                            CosmosClient client3 = new CosmosClient(connectionString, options);
-
-                            _clientCache.TryAdd(connectionString, client3);
-
-                            if (_clientCache.TryGetValue(connectionString, out CosmosClient client4))
-                            {
-                                _client = client4;
-                            }
-                            else
-                            {
-                                throw new Exception("Failed to create CosmosClient");
-                            }
-                        }
-                    }
-                }
-
-                _requestOptions = new ItemRequestOptions()
-                {
-                    PriorityLevel = PriorityLevel.High,
-                    EnableContentResponseOnWrite = false,
-                    ConsistencyLevel = ConsistencyLevel.Session,
-                    IndexingDirective = IndexingDirective.Exclude,
-                    // If there's a cache set it here
-                    //DedicatedGatewayRequestOptions = new DedicatedGatewayRequestOptions() { BypassIntegratedCache = false, MaxIntegratedCacheStaleness = TimeSpan.FromMinutes(5) }
-                };
+                PriorityLevel = PriorityLevel.High,
+                EnableContentResponseOnWrite = false,
+                ConsistencyLevel = ConsistencyLevel.Session,
+                IndexingDirective = IndexingDirective.Exclude,
+                // If there's a cache set it here
+                //DedicatedGatewayRequestOptions = new DedicatedGatewayRequestOptions() { BypassIntegratedCache = false, MaxIntegratedCacheStaleness = TimeSpan.FromMinutes(5) }
+            };
 
 
-                _database = await _client.CreateDatabaseIfNotExistsAsync(databaseName, requestOptions: _requestOptions, cancellationToken: token);
+            _database = await _client.CreateDatabaseIfNotExistsAsync(databaseName, requestOptions: _requestOptions, cancellationToken: token);
 
-                ContainerProperties props = new ContainerProperties(args.Category.ToString(), PartitionKeyPath);
-                props.IndexingPolicy.IndexingMode = IndexingMode.None;
-                props.IndexingPolicy.Automatic = false;
+            ContainerProperties props = new ContainerProperties(args.Category.ToString(), PartitionKeyPath);
+            props.IndexingPolicy.IndexingMode = IndexingMode.None;
+            props.IndexingPolicy.Automatic = false;
 
-                _container = await _database.CreateContainerIfNotExistsAsync(props);
-            }
-            catch (Exception ex)
-            {
-                _logService.Exception(ex, "CosmosNoSQL.Init");
-            }
-            await Task.CompletedTask;
+            _container = await _database.CreateContainerIfNotExistsAsync(props);
         }
 
 

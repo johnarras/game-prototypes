@@ -24,10 +24,14 @@ namespace Genrpg.Shared.GameSettings.Loaders
 
         public virtual List<CreateIndexData> GetIndexes()
         {
-            CreateIndexData indexData = new CreateIndexData(typeof(TChild));
-            indexData.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(ChildSettings.ParentId) });
+            return new List<CreateIndexData>();
 
-            return new List<CreateIndexData>() { indexData };
+
+            // For now remove due to changing to new single collection method for this.
+            //CreateIndexData indexData = new CreateIndexData(typeof(TChild));
+            //indexData.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(ChildSettings.ParentId) });
+
+            //return new List<CreateIndexData>() { indexData };
         }
 
         public virtual async Task Initialize(CancellationToken token)

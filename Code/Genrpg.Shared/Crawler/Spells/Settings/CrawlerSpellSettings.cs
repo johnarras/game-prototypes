@@ -34,6 +34,7 @@ namespace Genrpg.Shared.Crawler.Spells.Settings
         public long RoleScalingTypeId { get; set; }
 
         public int RoleScalingTier { get; set; }
+        public int PointCost { get; set; }
 
         public List<CrawlerSpellEffect> Effects { get; set; } = new List<CrawlerSpellEffect>();
 

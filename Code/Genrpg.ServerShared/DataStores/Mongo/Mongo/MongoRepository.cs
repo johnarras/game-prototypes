@@ -1,4 +1,6 @@
 using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores.Mongo.Interfaces;
+using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
@@ -15,113 +17,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Authentication;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.ServerShared.DataStores.Mongo
+namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
 {
-    public class MongoRepository : IFullRepository
+    public class MongoRepository : IFullRepository, IMongoInitRepository
     {
         private ILogService _logService = null;
-
-        private static ConcurrentDictionary<string, MongoClient> _clientCache = new ConcurrentDictionary<string, MongoClient>();
 
         private MongoClient _client = null;
         private IMongoDatabase _database = null;
         private ConcurrentDictionary<Type, INoSQLCollection> _collections = new ConcurrentDictionary<Type, INoSQLCollection>();
-
-        static object _connectionLock = new object();
+        private CancellationToken _token;
 
         #region Core
         public async Task Init(InitRepoArgs args,
-            string connectionString,
+            MongoClient client,
             ILogService logService,
             IAnalyticsService analyticsService,
-            ITextSerializer serializer)
+            ITextSerializer serializer, 
+            CancellationToken token)
         {
+            _token = token;
             string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
             _logService = logService;
-            try
-            {
-                Setup();
-
-                if (_clientCache.TryGetValue(connectionString, out MongoClient client))
-                {
-                    _client = client;
-                }
-                else
-                {
-                    lock (_connectionLock)
-                    {
-                        if (_clientCache.TryGetValue(connectionString, out MongoClient client2))
-                        {
-                            _client = client2;
-                        }
-                        else
-                        {
-                            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
-                            settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-                            _clientCache.TryAdd(connectionString, new MongoClient(settings));
-
-                            if (_clientCache.TryGetValue(connectionString, out MongoClient client3))
-                            {
-                                _client = client3;
-                            }
-                            else
-                            {
-                                throw new Exception("Failed to create MongClient");
-                            }
-                        }
-                    }
-                }
-
-                _database = _client.GetDatabase(databaseName);
-
-            }
-            catch (Exception ex)
-            {
-                _logService.Exception(ex, "MongoRepo.Init");
-            }
-            await Task.CompletedTask;
+            _client = client;
+            _database = _client.GetDatabase(databaseName);
         }
-
-        public async Task CopyBetweenCollections<T>(string startSuffix, string endSuffix) where T : ISearchableItem, new()
-        {
-            string startName = (typeof(T).Name + startSuffix).ToLower();
-            string endName = (typeof(T).Name + endSuffix).ToLower();
-
-            IMongoCollection<T> startColl = _database.GetCollection<T>(startName);
-            IMongoCollection<T> endColl = _database.GetCollection<T>(endName);
-
-            List<T> items = await startColl.Find(x => true).ToListAsync();
-
-            List<WriteModel<T>> models = new List<WriteModel<T>>();
-
-            foreach (T item in items)
-            {
-                ReplaceOneModel<T> replaceModel = new ReplaceOneModel<T>(new FilterDefinitionBuilder<T>().Where(x => x.Id == item.Id), item);
-                replaceModel.IsUpsert = true;
-                models.Add(replaceModel);
-            }
-
-            BulkWriteOptions options = new BulkWriteOptions()
-            {
-                BypassDocumentValidation = true,
-                IsOrdered = false,
-            };
-            await endColl.BulkWriteAsync(models, options);
-        }
-
-        private void Setup()
-        {
-            ConventionRegistry.Register("IgnoreMessyData",
-                            new ConventionPack
-                            {
-                                new IgnoreIfDefaultConvention(true),
-                                new IgnoreExtraElementsConvention(true),
-                            },
-                            t => true);
-        }
-
         public MongoClient GetClient()
         {
             return _client;
@@ -146,7 +69,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public INoSQLCollection GetCollection(Type t)
+        protected  INoSQLCollection GetCollection(Type t)
         {
             if (_collections.TryGetValue(t, out INoSQLCollection coll))
             {
@@ -160,7 +83,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
                 typeof(VersionedMongoCollection<>) :
                 typeof(MongoRepositoryCollection<>);
             Type genericType = baseCollectionType.MakeGenericType(t);
-            coll = (INoSQLCollection)Activator.CreateInstance(genericType, new object[] { this, _logService });
+            coll = (INoSQLCollection)Activator.CreateInstance(genericType, new object[] { GetDatabase(), _logService });
             _collections[t] = coll;
             return coll;
         }
@@ -169,15 +92,12 @@ namespace Genrpg.ServerShared.DataStores.Mongo
 
         public async Task<T> Load<T>(string id) where T : class, IStringId
         {
-
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return (T)await collection.Load(id);
         }
 
         public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId
         {
-
             INoSQLCollection collection = GetCollection(obj.GetType());
             return await collection.Save(obj, args);
         }
@@ -186,7 +106,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         {
             INoSQLCollection collection = GetCollection(obj.GetType());
             return await collection.Delete(obj);
-
         }
 
         public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem
@@ -201,20 +120,9 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             if (funcObj is Expression<Func<T, bool>> func)
 
             {
-                INoSQLCollection collection = GetCollection(typeof(T));
+                ITypedNoSQLCollection<T> collection = GetCollection(typeof(T))as ITypedNoSQLCollection<T>;
 
-                List<object> objects = await collection.Search(func, quantity, skip);
-
-                List<T> retval = new List<T>();
-
-                foreach (object o in objects)
-                {
-                    if (o is T t)
-                    {
-                        retval.Add(t);
-                    }
-                }
-                return retval;
+                return await collection.Search(func, quantity, skip);
             }
             return new List<T>();
         }
@@ -248,7 +156,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo
 
         public async Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem
         {
-
             if (true)
             {
                 List<Task<bool>> saves = new List<Task<bool>>();
@@ -304,21 +211,18 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return await collection.UpdateDict(docId, fieldNameUpdates);
         }
 
         public virtual async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return await collection.UpdateAction(docId, action);
         }
 
         public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return (T)await collection.AtomicIncrement(docId, fieldName, increment);
         }
 
@@ -326,7 +230,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return (T)await collection.AtomicAddBits(docId, fieldName, addBits);
         }
 
@@ -334,7 +237,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem
         {
             INoSQLCollection collection = GetCollection(typeof(T));
-
             return (T)await collection.AtomicRemoveBits(docId, fieldName, removeBits);
         }
     }

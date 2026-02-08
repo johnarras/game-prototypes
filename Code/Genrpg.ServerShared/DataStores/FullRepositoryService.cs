@@ -2,7 +2,7 @@ using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.DataStores.DbQueues;
 using Genrpg.ServerShared.DataStores.DbQueues.Actions;
 using Genrpg.ServerShared.DataStores.Entities;
-using Genrpg.ServerShared.OnlineResources.Interfaces;
+using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
@@ -16,6 +16,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,7 +58,6 @@ namespace Genrpg.ServerShared.DataStores
         Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem;
         Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem;
 
-        Task CreateIndexes(CreateIndexData data);
         Task<bool> SaveAll<T>(List<T> tlist) where T : class, ISearchableItem;
         Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem;
     }
@@ -131,6 +131,11 @@ namespace Genrpg.ServerShared.DataStores
             return (env + category.ToString() + repoType.ToString()).ToLower();
         }
 
+        protected ISearchRepository FindSearchRepo(Type t)
+        {
+            IRepository repo = FindRepo(t);
+            return repo as ISearchRepository;   
+        }
 
         protected IFullRepository FindServerRepo(Type t)
         {
@@ -149,7 +154,7 @@ namespace Genrpg.ServerShared.DataStores
                 return repo;
             }
 
-            DataGroup dataGroup = Attribute.GetCustomAttribute(t, typeof(DataGroup), true) as DataGroup;
+            DataGroup dataGroup = t.GetCustomAttribute<DataGroup>(true);
 
             if (dataGroup == null)
             {
@@ -235,7 +240,7 @@ namespace Genrpg.ServerShared.DataStores
 
         public async Task<List<T>> Search<T>(Expression<Func<T, bool>> func, int quantity = 1000, int skip = 0) where T : class, ISearchableItem
         {
-            IFullRepository repo = FindServerRepo(typeof(T));
+            ISearchRepository repo = FindSearchRepo(typeof(T));
             return await repo.Search<T>(func, quantity, skip);
         }
 
@@ -243,12 +248,12 @@ namespace Genrpg.ServerShared.DataStores
         {
             try
             {
-                IFullRepository repo = FindServerRepo(data.TypeToIndex);
+                ISearchRepository repo = FindSearchRepo(data.TypeToIndex);
                 await repo.CreateIndexes(data);
             }
             catch (Exception ex)
             {
-                _logService.Exception(ex, "FullRepo.CreateIndexes");
+                _logService.Exception(ex, "SearchRepo.CreateIndexes");
             }
         }
 

@@ -5,6 +5,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="NewMainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControlBase.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -26,7 +29,7 @@
     <Page Update="DataWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <None Update="MainWindow.xaml">
+    <None Update="MenuWindow.xaml">
       <SubType>Designer</SubType>
     </None>
     <None Update="Package.appxmanifest">

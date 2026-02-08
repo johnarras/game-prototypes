@@ -20,7 +20,7 @@
   "AllowAllArmorTypes": true,
   "AllowAllWeaponTypes": true,
   "EnchantChancePerPowerIncrease": 0.15,
-  "BaseEnchantChance": 0.1,
+  "BaseEnchantChance": 0.05,
   "LevelDiffBeforeLootLoss": 5,
   "LootLossPerLevelDiff": 0.15,
   "MinLootPercent": 0.1,
@@ -29,5 +29,5 @@
   "StatBonusPerLevel": 0.4,
   "StatBonusVariance": 0.25,
   "Name": "CrawlerLootSettings",
-  "SaveTime": "2026-01-27T15:35:07.83Z"
+  "SaveTime": "2026-01-27T22:35:53.315Z"
 }

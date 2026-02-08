@@ -1,6 +1,7 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Entities;
@@ -20,16 +21,7 @@ namespace Genrpg.ServerShared.DataStores.Blobs
 {
     public class AzureBlobRepository : IRepository
     {
-        class BlobConnection
-        {
-            public string ConnectionString { get; set; }
-            public BlobServiceClient Client { get; set; }
-            public ConcurrentDictionary<string, BlobContainerClient> Containers { get; set; } = new ConcurrentDictionary<string, BlobContainerClient>();
-        }
 
-        private BlobContainerClient _container = null;
-
-        private static ConcurrentDictionary<string, BlobConnection> _connections { get; set; } = new ConcurrentDictionary<string, BlobConnection>();
 
         private IAnalyticsService _analyticsService = null;
         private ILogService _logService = null;
@@ -37,13 +29,17 @@ namespace Genrpg.ServerShared.DataStores.Blobs
 
         private InitRepoArgs _args = null;
 
+        private BlobServiceClient _serviceClient = null;
+        private BlobContainerClient _container = null;
+
         CancellationToken _token;
 
         public async Task Init(InitRepoArgs args,
-            string connectionString,
+            BlobServiceClient serviceClient,
             ILogService logService,
             IAnalyticsService analyticsService,
-            ITextSerializer serializer, CancellationToken token)
+            ITextSerializer serializer,
+            CancellationToken token)
         {
             _token = token;
             _logService = logService;
@@ -51,27 +47,11 @@ namespace Genrpg.ServerShared.DataStores.Blobs
             _analyticsService = analyticsService;
             _args = args;
 
-            if (!_connections.TryGetValue(connectionString, out BlobConnection connection))
-            {
-                connection = new BlobConnection();
-                connection.Client = new BlobServiceClient(connectionString);
-                _connections[connectionString] = connection;
-            }
-
+            _serviceClient = serviceClient;
             string containerName = BlobUtils.GetBlobContainerName(args.Category.ToString(), Game.Prefix, args.Env);
+            _container = _serviceClient.GetBlobContainerClient(containerName);
 
-            if (!connection.Containers.TryGetValue(containerName, out BlobContainerClient container))
-            {
-                container = connection.Client.GetBlobContainerClient(containerName);
-                _container = container;
-                await container.CreateIfNotExistsAsync(PublicAccessType.BlobContainer, null, null);
-                connection.Containers[containerName] = container;
-            }
-            else
-            {
-                _container = container;
-            }
-
+            await _container.CreateIfNotExistsAsync(PublicAccessType.BlobContainer, null, null);
         }
 
         #region Core

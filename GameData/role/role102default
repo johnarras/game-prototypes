@@ -7,6 +7,8 @@
   "Abbrev": "Dw",
   "RoleCategoryId": 2,
   "HealthPerLevel": 5,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [],
   "AmountBonuses": [
     {

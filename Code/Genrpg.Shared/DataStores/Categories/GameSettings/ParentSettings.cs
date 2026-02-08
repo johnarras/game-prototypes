@@ -60,6 +60,8 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
 
         public override void SetInternalIds()
         {
+
+            string childLowerName = typeof(TChild).Name.ToLower();
             for (int c = 0; c < _data.Count; c++)
             {
                 TChild child = _data[c];
@@ -70,11 +72,18 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
                 string childId = child.Id;
                 if (child is IId iid)
                 {
-                    childId = child.GetType().Name + iid.IdKey + Id;
+                    childId = childLowerName + iid.IdKey + Id;
                 }
-                else if (string.IsNullOrEmpty(childId))
+                else 
                 {
-                    childId = child.GetType().Name + HashUtils.NewGuid().ToString();
+                    if (string.IsNullOrEmpty(childId))
+                    {
+                        childId = HashUtils.NewGuid().ToString();
+                    }
+                    if (childId.IndexOf(childLowerName) < 0)
+                    {
+                        childId = childLowerName + childId;
+                    }
                 }
                 childId = childId.ToLower();
                 child.Id = childId;

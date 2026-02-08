@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "More Monsters",
+  "Desc": "Players will encounter more monsters on average.",
+  "Icon": "MoreMonsters",
+  "Art": "MoreMonsters"
+}

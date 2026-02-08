@@ -156,26 +156,26 @@ PrefabInstance:
         like The Bard''s Tale, Might and Magic and
 
 
-        Wizardry.
-        There are many options that
+        Dungeon
+        Hack. There are many options that
 
 
-        allow you to customize features to
+        allow you to customize features
+        to
 
 
-        your
-        liking, allowing you to try anything
+        your liking, allowing you to try anything
 
 
-        from a party-based, world-based
-        game
+        from a party-based,
+        world-based game
 
 
         to a single character in an endless dungeon
 
 
-        in one
-        city.'
+        in
+        one city.'
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 91bd94bdc67a59e4bb88a4c2c45db377,
         type: 3}

@@ -132,7 +132,7 @@ namespace Genrpg.Shared.Serialization.Utils
         private static bool IsValidType(Type t)
         {
 
-            if (!t.IsClass || t.IsAbstract || t.IsInterface || t.IsGenericType ||
+            if (!ReflectionUtils.IsValidReflectionType(t) || t.IsInterface ||
                 string.IsNullOrEmpty(t.FullName) ||
                 t.FullName.IndexOf("Genrpg.Editor") >= 0 ||
                 t.FullName.IndexOf(TypePathPrefix) != 0)
@@ -140,7 +140,7 @@ namespace Genrpg.Shared.Serialization.Utils
                 return false;
             }
 
-            SystemTextJsonIgnoreTypeAttribute? attr = Attribute.GetCustomAttribute(t, typeof(SystemTextJsonIgnoreTypeAttribute), true) as SystemTextJsonIgnoreTypeAttribute;
+            SystemTextJsonIgnoreTypeAttribute? attr = t.GetCustomAttribute<SystemTextJsonIgnoreTypeAttribute>(true);
 
             return attr == null;
         }
@@ -152,7 +152,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
             foreach (Type type in allTypes)
             {
-                SystemTextJsonInterfaceAttribute? interfaceProp = Attribute.GetCustomAttribute(type, typeof(SystemTextJsonInterfaceAttribute), true) as SystemTextJsonInterfaceAttribute;
+                SystemTextJsonInterfaceAttribute? interfaceProp = type.GetCustomAttribute<SystemTextJsonInterfaceAttribute>(true);
 
                 if (interfaceProp != null && type.IsInterface)
                 {

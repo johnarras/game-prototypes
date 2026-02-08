@@ -1,8 +1,11 @@
 using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
+using Genrpg.Shared.Chests.Settings;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
+using Genrpg.Shared.Crawler.Combat.Entities;
+using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
@@ -32,6 +35,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Purchasing;
 
 namespace Genrpg.Shared.Crawler.Quests.Services
 {
@@ -44,6 +48,12 @@ namespace Genrpg.Shared.Crawler.Quests.Services
     }
 
 
+    public class KillQuestTargetResult
+    {
+        public List<long> AllPossibleUnitTypeIds { get; set; } = new List<long>();
+        public List<UnitType> CurrentUnits { get; set; } = new List<UnitType>();
+    }
+
     public interface ICrawlerQuestService : IInjectable
     {
         Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
@@ -52,14 +62,16 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         ICrawlerQuestTypeHelper GetHelper(long questTypeId);
         Awaitable AcceptQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
         void DropQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
-        Awaitable<List<string>> UpdateAfterCombat(PartyData party, List<CrawlerUnit> killedUnits, CancellationToken token);
-        Awaitable<List<UnitType>> GetKillQuestTargets(PartyData party);
+        Awaitable<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token);
+        Awaitable<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level);
         Awaitable<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentState, bool showNPC);
         Awaitable CheckForCompletedQuests(PartyData party);
         Awaitable GiveExploreQuestCredit(PartyData party, long mapId);
         Awaitable<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcTypeId, MapCellDetail npcDetail, CancellationToken token);
         Awaitable<bool> QuestIsActive(PartyData party, long questId);
         Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId);
+        bool CanGetQuestCredit(PartyData party, long level);
+       
     }
 
     public class CrawlerQuestService : ICrawlerQuestService
@@ -130,7 +142,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
                 {
-                    questCount = 4;
+                    questCount = questSettings.SingleDungeonNpcQuestCount;
                 }
 
                 while (GetAllQuestsForNpc(party, world, npc.IdKey).Count < questCount)
@@ -306,8 +318,10 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             _dispatcher.Dispatch(new UpdateQuestUI());
         }
 
-        public async Awaitable<List<string>> UpdateAfterCombat(PartyData party, List<CrawlerUnit> killedUnits, CancellationToken token)
+        public async Awaitable<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token)
         {
+
+            List<CrawlerUnit> killedUnits = combat.EnemiesKilled;
 
             List<string> retval = new List<string>();
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
@@ -316,6 +330,11 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
 
             if (allQuests.Count < 1)
+            {
+                return retval;
+            }
+
+            if (!CanGetQuestCredit(party, combat.Level))
             {
                 return retval;
             }
@@ -462,20 +481,22 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             return retval;
         }
 
-        public async Awaitable<List<UnitType>> GetKillQuestTargets(PartyData party)
+        public async Awaitable<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level)
         {
+            KillQuestTargetResult result = new KillQuestTargetResult();
+
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 
             List<CrawlerQuest> currentQuests = await GetQuestsForMap(party, party.CurrPos.MapId);
 
             if (currentQuests.Count < 1)
             {
-                return new List<UnitType>();
+                return result;
             }
 
-            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
+            bool canGetQuestCredit = CanGetQuestCredit(party, level);
 
-            List<UnitType> retval = new List<UnitType>();
+            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
 
             foreach (PartyQuest pq in party.Quests)
             {
@@ -500,29 +521,28 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 if (utype != null)
                 {
-
-
-                    if (_rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
+                    result.AllPossibleUnitTypeIds.Add(utype.IdKey);
+                    if (!canGetQuestCredit || _rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
                     {
                         continue;
                     }
-
                     else
                     {
-                        retval.Add(utype);
+                        result.CurrentUnits.Add(utype);
                     }
                 }
             }
 
-            if (retval.Count < 1)
+            if (result.CurrentUnits.Count < 1)
             {
                 party.FailedKillQuestTimes++;
             }
             else
             {
+                result.CurrentUnits = result.CurrentUnits.OrderBy(x=>Guid.NewGuid()).ThenBy(x=>x.MinRange).ToList(); 
                 party.FailedKillQuestTimes = 0;
             }
-            return retval;
+            return result;
         }
 
         public async Awaitable<string> ShowQuestStatus(PartyData party, long currentQuestId, bool showFullDescription, bool showCurrentState, bool showNPC)
@@ -708,6 +728,21 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             return list;
 
+        }
+
+        public bool CanGetQuestCredit(PartyData party, long level)
+        {
+
+            CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
+            if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
+            {
+                if (party.MaxLevelEntered - level > questSettings.SingleDungeonMaxLevelGapForCredit)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

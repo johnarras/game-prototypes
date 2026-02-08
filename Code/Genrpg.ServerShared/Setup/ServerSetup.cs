@@ -11,7 +11,8 @@ namespace Genrpg.ServerShared.Setup
 {
     public class ServerSetup
     {
-        public async Task<GS> SetupFromConfig<GS, TSetupService>(object currentObject, string serverId, CancellationToken token, IServerConfig serverConfigIn = null)
+        public async Task<GS> SetupFromConfig<GS, TSetupService>(object currentObject, string serverId, CancellationToken token, IServerConfig serverConfigIn,
+            string envOverride)
             where GS : ServerGameState
             where TSetupService : SetupService
         {
@@ -27,7 +28,7 @@ namespace Genrpg.ServerShared.Setup
 
                 if (config == null)
                 {
-                    config = await new ConfigSetup().SetupServerConfig(token, serverId);
+                    config = await new ConfigSetup().SetupServerConfig(token, serverId, envOverride);
                 }
 
                 GS gs = (GS)Activator.CreateInstance(typeof(GS), new object[] { config });

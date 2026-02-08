@@ -1,13 +1,18 @@
 
+using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Constants;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
-public class ClientLogService : ILogService
+public class ClientLogService : ILogService, IClientQuitCleanup
 {
 
     const string LogPrefix = "UnityLog";
@@ -15,6 +20,8 @@ public class ClientLogService : ILogService
     {
         await Task.CompletedTask;
     }
+
+    List<string> messages = new List<string>();
 
     private ClientConfig _config = null;
     private IDispatcher _dispatcher = null;
@@ -33,13 +40,14 @@ public class ClientLogService : ILogService
 
     public void Debug(string txt)
     {
-        UnityEngine.Debug.Log(LogPrefix + "Log: " + txt);
+
+        UnityEngine.Debug.Log(GetFullLogText("Debug: ", txt));
     }
 
     public void Error(string txt)
     {
         _dispatcher.Dispatch(new ShowFloatingText(txt, EFloatingTextArt.Error));
-        UnityEngine.Debug.LogError(LogPrefix + "Error: " + txt);
+        UnityEngine.Debug.LogError(GetFullLogText("Error: ", txt));
     }
 
     public void Exception(Exception e, string txt)
@@ -49,24 +57,45 @@ public class ClientLogService : ILogService
             return;
         }
         _dispatcher.Dispatch(new ShowFloatingText(txt + " " + e.Message + " " + e.StackTrace, EFloatingTextArt.Error));
-        UnityEngine.Debug.LogError(LogPrefix + "Exc: " + txt + " -- " + e.Message + " " + e.StackTrace);
+        UnityEngine.Debug.LogError(GetFullLogText("Exc: ", txt + " -- " + e.Message + " " + e.StackTrace));
     }
 
 
     public void Info(string txt)
     {
-        UnityEngine.Debug.Log(LogPrefix + "Info: " + txt);
+        UnityEngine.Debug.Log(GetFullLogText("Info: ", txt));
     }
 
     public void Message(string txt)
     {
         _dispatcher.Dispatch(new ShowFloatingText(txt, EFloatingTextArt.Message));
-        UnityEngine.Debug.Log(LogPrefix + "Message: " + txt);
+        UnityEngine.Debug.Log(GetFullLogText("Message: ", txt));
     }
 
     public void Warning(string txt)
     {
-        UnityEngine.Debug.LogWarning(LogPrefix + "Warning: " + txt);
+        UnityEngine.Debug.LogWarning(GetFullLogText("Warning: ", txt));
+    }
+
+    private string GetFullLogText(string textPrefix, string txt)
+    {
+        string newText = LogPrefix + textPrefix + txt;
+        messages.Add(newText);
+        return newText;
+    }
+
+    public void OnQuit()
+    {
+        string fullPath = Path.Combine(Application.persistentDataPath, "LogFile.txt");
+
+        StringBuilder sb = new StringBuilder();
+
+        foreach (string line in messages)
+        {
+            sb.AppendLine(line);
+        }
+
+        File.WriteAllText(fullPath, sb.ToString());
     }
 }
 

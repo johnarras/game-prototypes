@@ -6,6 +6,8 @@
   "Desc": "More Melee",
   "Abbrev": "Hc",
   "RoleCategoryId": 2,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [],
   "AmountBonuses": [
     {

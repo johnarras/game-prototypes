@@ -182,7 +182,7 @@ namespace Genrpg.Shared.Serialization.Utils
                 return false;
             }
 
-            MessagePackIgnoreTypeAttribute? attr = Attribute.GetCustomAttribute(t, typeof(MessagePackIgnoreTypeAttribute), true) as MessagePackIgnoreTypeAttribute;
+            MessagePackIgnoreTypeAttribute? attr = t.GetCustomAttribute<MessagePackIgnoreTypeAttribute>(true);
 
             return attr == null;
         }
@@ -194,7 +194,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
             foreach (Type type in allTypes)
             {
-                MessagePackInterfaceAttribute? interfaceProp = Attribute.GetCustomAttribute(type, typeof(MessagePackInterfaceAttribute), true) as MessagePackInterfaceAttribute;
+                MessagePackInterfaceAttribute? interfaceProp = type.GetCustomAttribute<MessagePackInterfaceAttribute>(true);
 
                 if (interfaceProp != null && type.IsInterface)
                 {

@@ -376,6 +376,10 @@ namespace Genrpg.Editor
                         settingsList.Add(baseGameSetting);
                         baseGameSetting.SaveTime = updateTime;
                     }
+                    else
+                    {
+                        Console.WriteLine("Not a game setting: " + obj.GetType().Name);
+                    }
                 }
 
 

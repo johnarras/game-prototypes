@@ -271,6 +271,12 @@
       "Art": "TraderSkill"
     },
     {
+      "IdKey": 65,
+      "Name": "MinigameType",
+      "Icon": "MinigameType",
+      "Art": "MinigameType"
+    },
+    {
       "IdKey": 100,
       "Name": "CrawlerSpell"
     },

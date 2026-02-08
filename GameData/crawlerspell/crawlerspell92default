@@ -2,7 +2,7 @@
   "Id": "crawlerspell92default",
   "ParentId": "default",
   "IdKey": 92,
-  "Name": "Apply Dot",
+  "Name": "Apply DoT",
   "Desc": "Chance to apply a DoT to enemies when damaging them.",
   "PowerCost": 20.0,
   "PowerPerLevel": 2.0,
@@ -12,6 +12,7 @@
   "TargetTypeId": 6,
   "RoleScalingTypeId": 3,
   "RoleScalingTier": 3,
+  "PointCost": 5,
   "Effects": [
     {
       "EntityTypeId": 101,

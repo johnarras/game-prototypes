@@ -6,6 +6,8 @@
   "Desc": "More Spell Dam",
   "Abbrev": "Gn",
   "RoleCategoryId": 2,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [],
   "AmountBonuses": [
     {

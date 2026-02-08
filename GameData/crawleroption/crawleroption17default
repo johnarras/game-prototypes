@@ -1,0 +1,9 @@
+{
+  "Id": "crawleroption17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Harder Monsters",
+  "Desc": "Monsters are more difficult to kill.",
+  "Icon": "HarderMonsters",
+  "Art": "HarderMonsters"
+}

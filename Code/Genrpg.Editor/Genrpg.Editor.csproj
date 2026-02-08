@@ -26,6 +26,7 @@
     <None Remove="DataWindow.xaml" />
     <None Remove="FindUserView.xaml" />
     <None Remove="ImportWindow.xaml" />
+    <None Remove="NewMainPage.xaml" />
     <None Remove="SmallPopup.xaml" />
     <None Remove="UserControlBase.xaml" />
     <None Remove="WindowBase.xaml" />
@@ -108,6 +109,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="Properties\PublishProfiles\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="NewMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserControlBase.xaml">

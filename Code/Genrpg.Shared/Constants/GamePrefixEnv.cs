@@ -13,6 +13,7 @@ namespace Genrpg.Shared.Constants
         public const string Local = "local";
         public const string Dev = "dev";
         public const string Test = "test";
+        public const string Staging = "staging";
         public const string Prod = "prod";
     }   
 }

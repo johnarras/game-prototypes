@@ -13,6 +13,8 @@
   "Guardian": true,
   "TrainingXpScale": 1.0,
   "TrainingGoldScale": 1.0,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 2,

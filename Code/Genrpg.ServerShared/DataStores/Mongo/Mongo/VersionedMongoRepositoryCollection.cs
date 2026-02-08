@@ -6,11 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Genrpg.ServerShared.DataStores.Mongo
+namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
 {
     public class VersionedMongoCollection<T> : MongoRepositoryCollection<T> where T : class, ISearchableItem, IVersionedData
     {
-        public VersionedMongoCollection(MongoRepository mongoRepository, ILogService logService) : base(mongoRepository, logService)
+        public VersionedMongoCollection(IMongoDatabase mongoDatabase, ILogService logService) : base(mongoDatabase, logService)
         {
         }
 

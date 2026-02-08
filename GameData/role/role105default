@@ -7,6 +7,8 @@
   "Abbrev": "Hf",
   "RoleCategoryId": 2,
   "CritPercent": 5,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 100,

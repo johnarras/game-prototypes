@@ -11,7 +11,7 @@ using Genrpg.Shared.Tasks.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.ServerShared.OnlineResources.Interfaces
+namespace Genrpg.ServerShared.DataStores.Services
 {
     public interface IOnlineResourceProvider : IInjectable
     {

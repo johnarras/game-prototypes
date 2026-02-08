@@ -3,7 +3,7 @@ using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.WebApi;
 
-namespace Genrpg.RequestServer.PlayMultiplier.Commands
+namespace Genrpg.RequestServer.PlayMultiplier.RequestHandlers
 {
     public class SetPlayMultRequestHandler : BaseClientUserRequestHandler<SetPlayMultRequest>
     {

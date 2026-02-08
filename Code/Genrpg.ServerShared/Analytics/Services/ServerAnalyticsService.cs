@@ -9,9 +9,6 @@ namespace Genrpg.ServerShared.Analytics.Services
 {
     public class ServerAnalyticsService : IAnalyticsService
     {
-
-        private ITextSerializer _serializer = null;
-        private IServerConfig _serverConfig = null;
         public async Task Initialize(CancellationToken toke)
         {
             await Task.CompletedTask;

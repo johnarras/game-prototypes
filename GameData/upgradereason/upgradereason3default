@@ -5,6 +5,6 @@
   "Name": "CompleteQuest",
   "Desc": "Completing a Quest",
   "Icon": "",
-  "RunPoints": 5,
+  "RunPoints": 2,
   "AlwaysSingleLevel": true
 }

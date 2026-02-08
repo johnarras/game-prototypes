@@ -19,7 +19,7 @@
       "Name": "CompleteQuest",
       "Desc": "Completing a Quest",
       "Icon": "",
-      "RunPoints": 5,
+      "RunPoints": 2,
       "AlwaysSingleLevel": true
     }
   ],
@@ -28,5 +28,5 @@
     "Name": "UpgradeReasonSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2026-01-31T22:23:07.778Z"
 }

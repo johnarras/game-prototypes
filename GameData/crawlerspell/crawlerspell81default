@@ -42,10 +42,22 @@
       "RoleId": 6
     },
     {
+      "RoleId": 7
+    },
+    {
+      "RoleId": 8
+    },
+    {
+      "RoleId": 9
+    },
+    {
       "RoleId": 10
     },
     {
       "RoleId": 11
+    },
+    {
+      "RoleId": 12
     }
   ],
   "ItemEnchantWeight": 1.0

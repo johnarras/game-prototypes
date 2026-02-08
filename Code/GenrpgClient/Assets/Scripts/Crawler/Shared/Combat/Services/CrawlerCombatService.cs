@@ -229,7 +229,17 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 groupCount = Math.Min(groupCount, maxGroupCount);
 
+                KillQuestTargetResult killResult = await _questService.GetKillQuestTargets(party, level);
+
+
+                bool canGetQuestCredit = _questService.CanGetQuestCredit(party, level);
+
                 List<UnitType> chosenUnitTypes = new List<UnitType>();
+
+                if (!canGetQuestCredit && killResult.AllPossibleUnitTypeIds.Count > 0)
+                {
+                    spawns = spawns.Where(x => !killResult.AllPossibleUnitTypeIds.Contains(x.UnitTypeId)).ToList();
+                }
 
                 while (chosenUnitTypes.Count < groupCount && spawns.Count > 0)
                 {
@@ -264,19 +274,14 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     spawns.Remove(chosenSpawn);
                 }
 
-                List<UnitType> unitTypes = await _questService.GetKillQuestTargets(party);
 
-                unitTypes = unitTypes.OrderBy(x => HashUtils.NewGuid()).ToList();
-
-                unitTypes = unitTypes.OrderBy(x => x.MinRange).ToList();
-
-                if (unitTypes.Count > 0 && !chosenUnitTypes.Contains(unitTypes[0]))
+                if (killResult.CurrentUnits.Count > 0 && !chosenUnitTypes.Contains(killResult.CurrentUnits[0]))
                 {
                     if (chosenUnitTypes.Count > 0)
                     {
                         chosenUnitTypes.RemoveAt(0);
                     }
-                    chosenUnitTypes.Insert(0, unitTypes[0]);
+                    chosenUnitTypes.Insert(0, killResult.CurrentUnits[0]);
                 }
 
                 int currRange = CrawlerCombatConstants.MinRange;
@@ -358,6 +363,14 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     FactionTypeId = FactionTypes.Faction1,
                     BossName = wqi.GuardName
                 });
+            }
+
+            if (_optionsService.HasOption(party, CrawlerOptions.MoreMonsters))
+            {
+                foreach (InitialCombatGroup initialGroup in initialState.CombatGroups)
+                {
+                    initialGroup.Quantity += MathUtil.LongRange(0, initialGroup.Quantity, _rand);
+                }
             }
 
             // Now save party so players have to come back and fight the monsters even if they quit.
@@ -898,7 +911,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 if (spell != null)
                 {
                     double spellLevel = _roleService.GetSpellScalingLevel(party, caster, spell);
-                    newAction.Text += " [Tier: " + spellLevel + "]";
+                    newAction.Text += " [" + spellLevel + "x]";
                 }
 
                 if (newAction.CombatActionId == CombatActions.Defend)

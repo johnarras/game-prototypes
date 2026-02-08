@@ -47,9 +47,10 @@
     "ExpLootMult": 4.0,
     "GoldLootMult": 2.5,
     "ItemLootMult": 0.5,
+    "SingleDungeonMaxLevelGapForCredit": 3,
     "SingleDungeonNpcQuestCount": 3,
     "Name": "CrawlerQuestSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-28T23:34:08.7387228Z"
+  "SaveTime": "2026-02-01T18:47:36.466Z"
 }

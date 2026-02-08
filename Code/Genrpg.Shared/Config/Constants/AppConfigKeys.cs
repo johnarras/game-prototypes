@@ -3,13 +3,17 @@ namespace Genrpg.Shared.Config.Constants
     public class AppConfigKeys
     {
         public const string ConnectionSuffix = "Connection";
+        public const string SecretInfix = "Secret";
         public const string MessagingEnv = "MessagingEnv";
 
         public const string ContentRoot = "ContentRoot";
-        public const string EtherscanKey = "EtherscanKey";
         public const string PublicIP = "PublicIP";
         public const string BlobUploadURL = "BlobUploadURL";
         public const string PlaceholderString = "XXXXX";
+
+        public const string KeyVaultURI = "KeyVaultURI";
+
+        public const string OrgSecretsVaultPrefix = "oxdb";
 
         public const string SessionCacheDbConnectionString = "NoSQLDefaultConnection";
 

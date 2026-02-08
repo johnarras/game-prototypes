@@ -1,3 +1,4 @@
+using Azure;
 using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.CloudComms.Queues.Entities;
 using Genrpg.ServerShared.CloudComms.Services;
@@ -71,7 +72,7 @@ namespace Genrpg.ServerShared.MainServer
                 _serverId = GetServerId(data);
 
                 _context = await new ServerSetup().SetupFromConfig<TGameState, TSetupService>(this, _serverId,
-                    _currServerToken.Token);
+                    _currServerToken.Token, null, null);
 
                 _cloudCommsService.SetQueueMessageHandlers(_queueHandlers.GetDict());
 

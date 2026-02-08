@@ -247,10 +247,17 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     healthScale *= (1 + monsterSettings.ExtraHealthScalePerLevel * unit.Level);
                     damageScale *= (1 + monsterSettings.ExtraDamageScalePerLevel * unit.Level);
+
+
                     if (_optionsService.HasOption(party, CrawlerOptions.MonstersGetStronger))
                     {
                         healthScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraHealthScalePerDay);
                         damageScale *= (1 + party.DaysPlayed * combatSettings.MonsterExtraDamageScalePerDay);
+                    }
+                    if (_optionsService.HasOption(party, CrawlerOptions.HarderMonsters))
+                    {
+                        healthScale *= 1.25f;
+                        damageScale *= 1.25f;
                     }
                 }
 

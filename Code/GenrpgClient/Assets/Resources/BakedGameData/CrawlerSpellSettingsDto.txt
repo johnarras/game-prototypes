@@ -179,6 +179,7 @@
       "TargetTypeId": 10,
       "RoleScalingTypeId": 1,
       "RoleScalingTier": 2,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 38,
@@ -217,6 +218,7 @@
       "TargetTypeId": 10,
       "RoleScalingTypeId": 2,
       "RoleScalingTier": 2,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 39,
@@ -253,6 +255,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [],
       "RolesKnowingThis": [
         {
@@ -279,6 +282,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 1,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -313,6 +317,7 @@
       "TargetTypeId": 2,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 34,
@@ -356,6 +361,7 @@
       "TargetTypeId": 5,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 3,
+      "PointCost": 15,
       "Effects": [
         {
           "EntityTypeId": 34,
@@ -384,6 +390,7 @@
       "TargetTypeId": 2,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -427,6 +434,7 @@
       "TargetTypeId": 5,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 3,
+      "PointCost": 15,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -469,6 +477,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -528,6 +537,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -566,6 +576,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -601,6 +612,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 5,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -630,6 +642,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 8,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -662,6 +675,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 5,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -699,6 +713,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -729,6 +744,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -766,6 +782,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -797,6 +814,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 6,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -837,6 +855,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 5,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -868,6 +887,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -905,6 +925,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 6,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -936,6 +957,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 5,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 36,
@@ -967,6 +989,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 59,
@@ -995,6 +1018,7 @@
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 37,
@@ -1067,10 +1091,22 @@
           "RoleId": 6
         },
         {
+          "RoleId": 7
+        },
+        {
+          "RoleId": 8
+        },
+        {
+          "RoleId": 9
+        },
+        {
           "RoleId": 10
         },
         {
           "RoleId": 11
+        },
+        {
+          "RoleId": 12
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1134,6 +1170,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1181,6 +1218,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 4,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1231,6 +1269,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
       "RoleScalingTier": 1,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1243,6 +1282,9 @@
       ],
       "RolesKnowingThis": [
         {
+          "RoleId": 1
+        },
+        {
           "RoleId": 2
         },
         {
@@ -1250,6 +1292,9 @@
         },
         {
           "RoleId": 4
+        },
+        {
+          "RoleId": 5
         },
         {
           "RoleId": 6
@@ -1261,7 +1306,16 @@
           "RoleId": 8
         },
         {
+          "RoleId": 9
+        },
+        {
+          "RoleId": 10
+        },
+        {
           "RoleId": 11
+        },
+        {
+          "RoleId": 12
         }
       ],
       "ItemEnchantWeight": 1.0
@@ -1278,6 +1332,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 2,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1325,6 +1380,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 7,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1372,6 +1428,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1419,6 +1476,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 2,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1466,6 +1524,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 1,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1503,7 +1562,7 @@
     },
     {
       "IdKey": 92,
-      "Name": "Apply Dot",
+      "Name": "Apply DoT",
       "Desc": "Chance to apply a DoT to enemies when damaging them.",
       "PowerCost": 20.0,
       "PowerPerLevel": 2.0,
@@ -1513,6 +1572,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 3,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1557,6 +1617,7 @@
       "TargetTypeId": 6,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 101,
@@ -1600,6 +1661,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1628,6 +1690,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1656,6 +1719,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1684,6 +1748,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1712,6 +1777,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1740,6 +1806,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1768,6 +1835,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1796,6 +1864,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 5,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1824,6 +1893,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1852,6 +1922,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1880,6 +1951,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1908,6 +1980,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1936,6 +2009,7 @@
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
       "RoleScalingTier": 1,
+      "PointCost": 10,
       "Effects": [
         {
           "EntityTypeId": 4,
@@ -1965,6 +2039,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -1997,6 +2072,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2029,6 +2105,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 4,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2054,6 +2131,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2092,6 +2170,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2127,6 +2206,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2159,6 +2239,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2194,6 +2275,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2229,6 +2311,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2258,6 +2341,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2290,6 +2374,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2322,6 +2407,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2351,6 +2437,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2392,6 +2479,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2430,6 +2518,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2462,6 +2551,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2497,6 +2587,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2532,6 +2623,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2567,6 +2659,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2599,6 +2692,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2631,6 +2725,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2666,6 +2761,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2704,6 +2800,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2742,6 +2839,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 5,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2771,6 +2869,7 @@
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 1,
+      "PointCost": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2806,6 +2905,7 @@
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 2,
+      "PointCost": 3,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -2841,6 +2941,7 @@
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
       "RoleScalingTier": 4,
+      "PointCost": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
@@ -4908,5 +5009,5 @@
     "Name": "CrawlerSpellSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-29T01:56:32.8760676Z"
+  "SaveTime": "2026-02-04T22:28:56.541Z"
 }

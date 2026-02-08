@@ -12,6 +12,7 @@
   "TargetTypeId": 6,
   "RoleScalingTypeId": 6,
   "RoleScalingTier": 4,
+  "PointCost": 3,
   "Effects": [
     {
       "EntityTypeId": 101,

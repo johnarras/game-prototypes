@@ -7,124 +7,124 @@
     },
     {
       "IdKey": 2,
-      "Name": "Copperx",
+      "Name": "Copper",
       "Armor": 2,
       "Damage": 1,
       "CostPct": 200
     },
     {
       "IdKey": 3,
-      "Name": "Brassx",
+      "Name": "Brass",
       "Armor": 4,
       "Damage": 2,
       "CostPct": 300
     },
     {
       "IdKey": 4,
-      "Name": "Bronzex",
+      "Name": "Bronze",
       "Armor": 7,
       "Damage": 4,
       "CostPct": 400
     },
     {
       "IdKey": 5,
-      "Name": "Jadex",
+      "Name": "Jade",
       "Armor": 10,
       "Damage": 7,
       "CostPct": 500
     },
     {
       "IdKey": 6,
-      "Name": "Ironx",
+      "Name": "Iron",
       "Armor": 13,
       "Damage": 10,
       "CostPct": 600
     },
     {
       "IdKey": 7,
-      "Name": "Steelx",
+      "Name": "Steel",
       "Armor": 17,
       "Damage": 14,
       "CostPct": 750
     },
     {
       "IdKey": 8,
-      "Name": "Silverx",
+      "Name": "Silver",
       "Armor": 21,
       "Damage": 18,
       "CostPct": 1000
     },
     {
       "IdKey": 9,
-      "Name": "Goldx",
+      "Name": "Gold",
       "Armor": 25,
       "Damage": 22,
       "CostPct": 1250
     },
     {
       "IdKey": 10,
-      "Name": "Platinumx",
+      "Name": "Platinum",
       "Armor": 30,
       "Damage": 26,
       "CostPct": 1500
     },
     {
       "IdKey": 11,
-      "Name": "Mithrilx",
+      "Name": "Mithril",
       "Armor": 35,
       "Damage": 30,
       "CostPct": 2000
     },
     {
       "IdKey": 12,
-      "Name": "Adamantitex",
+      "Name": "Adamantite",
       "Armor": 40,
       "Damage": 35,
       "CostPct": 2500
     },
     {
       "IdKey": 13,
-      "Name": "Rubyx",
+      "Name": "Ruby",
       "Armor": 45,
       "Damage": 40,
       "CostPct": 3000
     },
     {
       "IdKey": 14,
-      "Name": "Emeraldx",
+      "Name": "Emerald",
       "Armor": 50,
       "Damage": 45,
       "CostPct": 4000
     },
     {
       "IdKey": 15,
-      "Name": "Sapphirex",
+      "Name": "Sapphire",
       "Armor": 60,
       "Damage": 50,
       "CostPct": 5000
     },
     {
       "IdKey": 16,
-      "Name": "Diamondx",
+      "Name": "Diamond",
       "Armor": 75,
       "Damage": 55,
       "CostPct": 7500
     },
     {
       "IdKey": 17,
-      "Name": "Obsidianx",
+      "Name": "Obsidian",
       "Armor": 100,
       "Damage": 60,
       "CostPct": 10000
     }
   ],
   "Parent": {
-    "Id": "abtest",
-    "LevelsPerQuality": 4.0,
-    "ExtraQualityChance": 0.3,
-    "ArmorChance": 0.7,
+    "Id": "default",
+    "LevelsPerQuality": 5.0,
+    "ExtraQualityChance": 0.25,
+    "ArmorChance": 0.8,
     "Name": "LootRankSettings"
   },
-  "Id": "abtest",
+  "Id": "default",
   "SaveTime": "2026-01-06T22:43:03.07Z"
 }

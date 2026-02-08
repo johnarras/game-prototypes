@@ -5,6 +5,8 @@ Desc,,Tough Fighter,Sneaky Fighter,Ranged Combat,Spell Damage,Healing,Hybrid ,Hy
 RoleCategoryId,,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2
 HealthPerLevel,,22,16,18,12,14,18,16,18,18,20,16,10,0,0,5,0,0,0
 ManaPerLevel,,10,10,14,22,22,14,16,18,10,18,20,20,0,0,0,0,0,0
+StartSkillPoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+StartUpgradePoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 TrainingXpScale,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
 TrainingGoldScale,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
 Guardian,,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
@@ -46,11 +48,11 @@ Armor,4,x,,,,x,,x,,,x,,,,,,,,
 Resist,3,,,,x,,,,x,,,x,,,,,,,
 Hit,4,x,,x,,,x,,,x,,,,,,,,,
 Speed,5,x,x,,,,,,x,x,,x,,,,,,,
-Light,8,x,x,x,x,x,x,,,,x,x,,,,,,,
+Light,12,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
 Magic Compass,7,x,x,x,x,x,,,x,x,,,,,,,,,
 Levitate,7,,,x,x,,x,x,x,,,x,x,,,,,,
 Danger Sense,8,x,x,x,x,x,,,,x,x,,x,,,,,,
-Mapping,7,,x,x,x,,x,x,x,,,x,,,,,,,
+Mapping,12,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
 Autoheal,7,,,,,x,x,x,x,,x,x,x,,,,,,
 Barrier,7,x,,,,x,x,,x,x,x,,x,,,,,,
 Retaliate,7,x,x,,,,,x,,x,x,x,x,,,,,,
@@ -58,7 +60,7 @@ Cursed Arrows,7,,x,x,x,,,x,,x,,x,x,,,,,,
 Parry,7,x,,,,x,x,x,x,x,x,,,,,,,,
 Apply DoT,6,x,x,x,,,x,,x,,,x,,,,,,,
 Lifesteal,6,,,,x,x,,x,,x,x,,x,,,,,,
-,,7,7,7,7,7,7,7,7,7,7,7,7,,,,,,
+,,8,7,7,7,8,7,8,8,9,8,7,9,,,,,,
 Charge,3,x,,,,,x,,,x,,,,,,,,,
 Heal Wounds,6,,,,,x,x,x,x,,x,x,,,,,,,
 Heal Party,1,,,,,x,,,,,,,,,,,,,

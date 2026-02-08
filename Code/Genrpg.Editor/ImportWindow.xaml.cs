@@ -89,8 +89,6 @@ namespace Genrpg.Editor
             _comboBox.DisplayMemberPath = nameof(ImporterName.Name);
             _comboBox.SelectedValuePath = nameof(ImporterName.Importer);
 
-
-
             UIHelper.CreateButton(this,
             EButtonTypes.Default,
             "ImportButton", "Import Data", getButtonWidth(), getButtonHeight(), cx, cy, OnClickButton);
@@ -141,7 +139,7 @@ namespace Genrpg.Editor
                 afterAction = (gs) => { ImportData(gs, importer); };
                 action = "Data";
 
-                Task.Run(() => OnClickButtonAsync(action, "Import", afterAction));
+                Task.Run(() => OnClickButtonAsync(action, MainMenuWindow.CurrentEnv, afterAction));
             }
         }
 
@@ -156,7 +154,6 @@ namespace Genrpg.Editor
 
             _ = Task.Run(() => ImportDataAsync(gs, importer));
         }
-
 
         private async Task ImportDataAsync(EditorGameState gs, IDataImporter importer)
         {

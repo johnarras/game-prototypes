@@ -1,10 +1,14 @@
 using Genrpg.Shared.Constants;
+using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
+using Genrpg.Shared.Setup.Services;
+using Genrpg.Shared.Stats.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,18 +20,92 @@ namespace Genrpg.Shared.Utils
 
         private static Assembly[] _allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
         private static List<Assembly> _searchAssemblies = new List<Assembly>();
+        private static object _searchAssemblyLock = new object();
 
         public static Assembly[] GetAllAssemblies()
         {
             return _allAssemblies;
         }
 
-        public static void AddAllowedAssembly(Assembly assembly)
+        public static List<Type> GetTypesWithAttribute(Type attributeType)
+        {
+            List<Type> retval = new List<Type>();
+
+            if (!typeof(Attribute).IsAssignableFrom(attributeType))
+            {
+                return retval;
+            }
+
+            List<Assembly> assemblies = GetSearchAssemblies();
+
+            foreach (Assembly assembly in assemblies)
+            {
+                foreach (Type t in assembly.GetExportedTypes())
+                {
+                    if (!IsValidReflectionType(t))
+                    {
+                        continue;
+                    }
+                    if (t.GetCustomAttribute(attributeType) != null)
+                    {
+                        retval.Add(t);  
+                    }
+                }
+            }
+
+            return retval;
+        }
+
+        public static void AddSearchAssembly(Assembly assembly)
         {
             if (!_searchAssemblies.Contains(assembly))
             {
-                _searchAssemblies.Add(assembly);
+                lock (_searchAssemblyLock)
+                {
+                    if (!_searchAssemblies.Contains(assembly))
+                    {
+                        List<Assembly> newList = new List<Assembly>(_searchAssemblies);
+                        newList.Add(assembly);
+
+                        _searchAssemblies = newList;
+                    }
+                }
             }
+        }
+
+        private static List<Assembly> GetSearchAssemblies()
+        {
+            if (!_searchAssemblies.Contains(Assembly.GetExecutingAssembly()))
+            {
+                lock (_searchAssemblyLock)
+                {
+                    if (!_searchAssemblies.Contains(Assembly.GetExecutingAssembly()))
+                    {
+                        Assembly currentAssembly = Assembly.GetExecutingAssembly();
+                        int dotIndex = currentAssembly.FullName.IndexOf(".");
+
+                        List<Assembly> newList = _searchAssemblies.ToList();
+                        newList.Add(Assembly.GetExecutingAssembly());
+
+                        if (dotIndex > 0)
+                        {
+                            string prefix = currentAssembly.FullName.Substring(0, dotIndex);
+
+                            Assembly[] assemblies = _allAssemblies;
+                            foreach (Assembly assembly in assemblies)
+                            {
+                                if (assembly.FullName.IndexOf(prefix) == 0)
+                                {
+                                    newList.Add(assembly);
+                                }
+                            }
+                        }
+                        _searchAssemblies = newList;   
+                    }
+                }
+            }
+
+            return _searchAssemblies;
         }
 
         public static List<Type> GetTypesImplementing(Type interfaceType)
@@ -42,31 +120,20 @@ namespace Genrpg.Shared.Utils
                 return retval;
             }
 
-            if (!_searchAssemblies.Contains(Assembly.GetExecutingAssembly()))
-            {
-                Assembly currentAssembly = Assembly.GetExecutingAssembly();
-                int dotIndex = currentAssembly.FullName.IndexOf(".");
+            List<Assembly> assemblies = GetSearchAssemblies();
 
-                if (dotIndex > 0)
-                {
-                    string prefix = currentAssembly.FullName.Substring(0, dotIndex);
-
-                    Assembly[] assemblies = _allAssemblies;
-                    foreach (Assembly assembly in assemblies)
-                    {
-                        if (assembly.FullName.IndexOf(prefix) == 0)
-                        {
-                            AddAllowedAssembly(assembly);
-                        }
-                    }
-                }
-            }
-
-            foreach (Assembly assembly in _searchAssemblies)
+            foreach (Assembly assembly in assemblies)
             {
                 retval.AddRange(GetTypesImplementing(assembly, interfaceType));
             }
             return retval;
+        }
+
+        private static readonly Type _excludeType = typeof(ExcludeFromReflectionAttribute);
+
+        public static bool IsValidReflectionType(Type t)
+        {
+            return t.IsClass && !t.IsAbstract && !t.IsGenericType;
         }
 
         public static List<Type> GetTypesImplementing(Assembly assembly, Type interfaceType)
@@ -74,17 +141,8 @@ namespace Genrpg.Shared.Utils
             List<Type> retval = new List<Type>();
             foreach (Type t in assembly.GetExportedTypes())
             {
-                if (!t.IsClass)
-                {
-                    continue;
-                }
 
-                if (t.IsAbstract)
-                {
-                    continue;
-                }
-
-                if (t.IsGenericType)
+                if (!IsValidReflectionType(t))
                 {
                     continue;
                 }
@@ -94,6 +152,12 @@ namespace Genrpg.Shared.Utils
                 {
                     continue;
                 }
+
+                if (Attribute.IsDefined(t, _excludeType))
+                {
+                    continue;
+                }
+
                 retval.Add(t);
             }
             return retval;
@@ -103,63 +167,36 @@ namespace Genrpg.Shared.Utils
         {
             Dictionary<K, T> dict = new Dictionary<K, T>();
             Type ttype = typeof(T);
+            List<Type> types = GetTypesImplementing(typeof(T));
 
-            Assembly[] assemblies = _allAssemblies;
-
-            foreach (Assembly assembly in assemblies)
+            foreach (Type t in types)
             {
-                if (assembly.FullName.IndexOf(Game.Prefix) < 0
-                    && assembly.FullName.IndexOf(Game.DefaultPrefix) < 0
-                    && !_searchAssemblies.Contains(assembly))
+                if (!IsValidReflectionType(t))
                 {
                     continue;
                 }
 
-                foreach (Type t in assembly.GetExportedTypes())
+                T inst = (T)EntityUtils.DefaultConstructor(t);
+
+                if (inst == null || inst.HelperKey == null)
                 {
-                    if (!t.IsClass)
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    if (t.IsAbstract)
-                    {
-                        continue;
-                    }
+                if (dict.ContainsKey(inst.HelperKey))
+                {
+                    dict.Remove(inst.HelperKey);
+                }
 
-                    if (t.ContainsGenericParameters)
-                    {
-                        continue;
-                    }
-
-                    Type inter = t.GetInterface(ttype.Name);
-                    if (inter == null)
-                    {
-                        continue;
-                    }
-
-                    T inst = (T)EntityUtils.DefaultConstructor(t);
-
-                    if (inst == null || inst.HelperKey == null)
-                    {
-                        continue;
-                    }
-
-                    if (dict.ContainsKey(inst.HelperKey))
-                    {
-                        dict.Remove(inst.HelperKey);
-                    }
-
-                    dict[inst.HelperKey] = inst;
-                    try
-                    {
-                        loc.StoreDictionaryItem(inst);
-                        loc.Resolve(inst);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("EXC: " + e.Message + " " + e.StackTrace);
-                    }
+                dict[inst.HelperKey] = inst;
+                try
+                {
+                    loc.StoreDictionaryItem(inst);
+                    loc.Resolve(inst);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("EXC: " + e.Message + " " + e.StackTrace);
                 }
             }
             return dict;

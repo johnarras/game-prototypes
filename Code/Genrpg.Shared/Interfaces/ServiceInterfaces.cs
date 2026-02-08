@@ -1,4 +1,5 @@
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,6 +17,11 @@ namespace Genrpg.Shared.Interfaces
     }
 
     public interface IExplicitInject
+    {
+
+    }
+
+    public class ExcludeFromReflectionAttribute : Attribute
     {
 
     }

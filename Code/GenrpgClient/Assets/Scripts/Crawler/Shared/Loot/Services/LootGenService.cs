@@ -526,7 +526,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 Exp = exp,
                 Level = party.Combat.Level,
                 ItemCount = itemCount,
-                ExtraMessages = await _questService.UpdateAfterCombat(party, party.Combat.EnemiesKilled, token),
+                ExtraMessages = await _questService.UpdateAfterCombat(party, party.Combat, token),
                 NextState = ECrawlerStates.ExploreWorld,
                 NextStateData = null,
             };
@@ -568,6 +568,8 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 NextStateData = genData.NextStateData,
             };
 
+            bool harderMonsters = _optionsService.HasOption(party, CrawlerOptions.HarderMonsters);
+
             CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(_gs.ch);
 
             List<Item> items = new List<Item>();
@@ -575,6 +577,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             double lootQualityBonus = _upgradeService.GetPartyBonus(party, PartyUpgrades.LootQuality);
 
             long extraItems = Math.Max(0, genData.ItemCount - lootSettings.MaxLootItems);
+
+            if (harderMonsters)
+            {
+                extraItems++;
+            }
 
             for (int i = 0; i < Math.Min(lootSettings.MaxLootItems, genData.ItemCount); i++)
             {

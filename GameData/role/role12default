@@ -12,6 +12,8 @@
   "CritPercent": 2,
   "TrainingXpScale": 1.0,
   "TrainingGoldScale": 1.0,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 2,
@@ -67,11 +69,19 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 83
     },
     {
       "EntityTypeId": 100,
       "EntityId": 84
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
     },
     {
       "EntityTypeId": 100,

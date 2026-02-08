@@ -147,23 +147,25 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
             if (reason.AlwaysSingleLevel)
             {
                 result.TotalUpgradePoints = reason.RunPoints + reason.GamePoints;
-                return result;
+                result.RunUpgradePoints = result.TotalUpgradePoints;
             }
-
-            if (newLevel > status.RunLevel)
+            else
             {
-                result.RunLevelsCompleted = newLevel - status.RunLevel;
-                result.RunUpgradePoints = result.RunLevelsCompleted * reason.RunPoints;
-                result.TotalUpgradePoints += result.RunUpgradePoints;
-                status.RunLevel = newLevel;
+                if (newLevel > status.RunLevel)
+                {
+                    result.RunLevelsCompleted = newLevel - status.RunLevel;
+                    result.RunUpgradePoints = result.RunLevelsCompleted * reason.RunPoints;
+                    result.TotalUpgradePoints += result.RunUpgradePoints;
+                    status.RunLevel = newLevel;
 
-            }
-            if (newLevel > status.GameLevel)
-            {
-                result.GameLevelsCompleted = newLevel - status.GameLevel;
-                result.GameUpgradePoints = result.GameLevelsCompleted * reason.GamePoints;
-                result.TotalUpgradePoints += result.GameUpgradePoints;
-                status.GameLevel = newLevel;
+                }
+                if (newLevel > status.GameLevel)
+                {
+                    result.GameLevelsCompleted = newLevel - status.GameLevel;
+                    result.GameUpgradePoints = result.GameLevelsCompleted * reason.GamePoints;
+                    result.TotalUpgradePoints += result.GameUpgradePoints;
+                    status.GameLevel = newLevel;
+                }
             }
 
             List<string> messages = new List<string>();
@@ -193,8 +195,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                 result.Messages = new List<string>(messages);
             }
 
-            party.TotalUpgradePoints += result.TotalUpgradePoints;
-            party.UpgradePoints += result.TotalUpgradePoints;
+             party.UpgradePoints += result.TotalUpgradePoints;
             _dispatcher.Dispatch(new UpdateCrawlerUI());
             return result;
         }

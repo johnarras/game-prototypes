@@ -567,6 +567,10 @@
     {
       "IdKey": 142,
       "Name": "MapTextureSettings"
+    },
+    {
+      "IdKey": 143,
+      "Name": "MinigameTypeSettings"
     }
   ],
   "Parent": {

@@ -33,7 +33,7 @@ namespace Genrpg.GameServer
             ILogService serverLogger = null;
             try
             {
-                serverConfig = await new ConfigSetup().SetupServerConfig(_serverTokenSource.Token, "GameServer");
+                serverConfig = await new ConfigSetup().SetupServerConfig(_serverTokenSource.Token, "GameServer", "");
 
                 InstanceServerMain instanceServer = new InstanceServerMain();
                 await instanceServer.Init(_serverTokenSource.Token);

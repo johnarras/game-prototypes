@@ -5,8 +5,8 @@ namespace Genrpg.Shared.DataStores.DataGroups
         Mongo,
         Blob,
         NoSQL,
+        Polymorphic,
     };
-
 }
 
 

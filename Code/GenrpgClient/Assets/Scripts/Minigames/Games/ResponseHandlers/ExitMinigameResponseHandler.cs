@@ -14,8 +14,6 @@ namespace Assets.Scripts.Minigames.Games.ResponseHandlers
 {
     public class EndMinigameResponseHandler : BaseClientWebResponseHandler<EndMinigameResponse>
     {
-        private IClientRandom _rand = null;
-        private IRewardService _rewardService = null;
         protected override void InnerProcess(EndMinigameResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))

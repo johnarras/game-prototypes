@@ -61,31 +61,39 @@ namespace Genrpg.Editor.Utils
 
         public static async Task<EditorGameState> SetupFromConfig(object parent, string env, bool setupForEditor, IServerConfig serverConfig = null)
         {
-            if (serverConfig == null)
+            try
             {
-                ConfigSetup configSetup = new ConfigSetup();
-                serverConfig = await configSetup.SetupServerConfig(EditorGameState.CTS.Token, CloudServerNames.Editor.ToString().ToLower());
+                if (serverConfig == null)
+                {
+                    ConfigSetup configSetup = new ConfigSetup();
+                    serverConfig = await configSetup.SetupServerConfig(EditorGameState.CTS.Token, CloudServerNames.Editor.ToString().ToLower(), env);
+                }
+                serverConfig.DefaultEnv = env;
+                EditorGameState gs = await new ServerSetup().SetupFromConfig<EditorGameState, EditorSetupService>(parent, CloudServerNames.Editor.ToString().ToLower(),
+                  EditorGameState.CTS.Token, serverConfig, env);
+
+                gs.data = gs.loc.Get<IGameData>();
+                List<ITopLevelSettings> allSettings = gs.data.AllSettings();
+
+                foreach (ITopLevelSettings settings in allSettings)
+                {
+                    if (setupForEditor)
+                    {
+                        settings.SetupForEditor(gs.LookedAtObjects);
+                    }
+                    if (settings.SaveTime == DateTime.MinValue)
+                    {
+                        gs.LookedAtObjects.Add(settings);
+                    }
+                }
+
+                return gs;
             }
-            serverConfig.DefaultEnv = env;
-            EditorGameState gs = await new ServerSetup().SetupFromConfig<EditorGameState, EditorSetupService>(parent, CloudServerNames.Editor.ToString().ToLower(),
-              EditorGameState.CTS.Token, serverConfig);
-
-            gs.data = gs.loc.Get<IGameData>();
-            List<ITopLevelSettings> allSettings = gs.data.AllSettings();
-
-            foreach (ITopLevelSettings settings in allSettings)
+            catch (Exception eex)
             {
-                if (setupForEditor)
-                {
-                    settings.SetupForEditor(gs.LookedAtObjects);
-                }
-                if (settings.SaveTime == DateTime.MinValue)
-                {
-                    gs.LookedAtObjects.Add(settings);
-                }
+                Console.WriteLine("Exc: " + eex.Message);
             }
-
-            return gs;
+            return null;
         }
 
 
@@ -175,6 +183,7 @@ namespace Genrpg.Editor.Utils
             {
                 WriteGameDataText(dirName, data, serializer, saveTime);
 
+                data.SetInternalIds();
                 foreach (IGameSettings child in data.GetChildren())
                 {
                     WriteGameDataText(dirName, child, serializer, saveTime);
@@ -203,7 +212,7 @@ namespace Genrpg.Editor.Utils
             {
                 if (gameSettings is ITopLevelSettings topLevelSettings)
                 { 
-                    if (MainWindow.UpdateSaveTime)
+                    if (MenuWindow.UpdateSaveTime)
                     {
                         gameSettings.SaveTime = saveTime;
                     }
@@ -283,7 +292,7 @@ namespace Genrpg.Editor.Utils
                 }
                 else
                 {
-                    if (MainWindow.UpdateSaveTime)
+                    if (MenuWindow.UpdateSaveTime)
                     {
                         baseSettings.SaveTime = saveTime;
                     }
@@ -306,10 +315,10 @@ namespace Genrpg.Editor.Utils
             File.WriteAllText(fullPath, txt);
         }
 
-        public static async Task<FullGameDataCopy> LoadDataFromDisk(IUICanvas form, CancellationToken token)
+        public static async Task<FullGameDataCopy> LoadDataFromDisk(IUICanvas form, string env, CancellationToken token)
         {
 
-            EditorGameState gs = await SetupFromConfig(form, EnvNames.Dev, false);
+            EditorGameState gs = await SetupFromConfig(form, env, false);
 
             ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
 
@@ -414,9 +423,6 @@ namespace Genrpg.Editor.Utils
                     maxIndex = allSettingNames.Max(x => x.IdKey);
                 }
 
-
-
-
                 AddEntityListData<EntitySettings, EntityType, EntityTypes>(gs);
                 AddEntityListData<ScreenNameSettings, ScreenName, ScreenNames>(gs);
 
@@ -452,6 +458,11 @@ namespace Genrpg.Editor.Utils
                             {
                                 if (childSetting.SaveTime == DateTime.MinValue)
                                 {
+
+                                    if (childSetting is IId idChild && idChild.IdKey == 0)
+                                    {
+                                        continue;
+                                    }
                                     gs.LookedAtObjects.Add(childSetting);
                                 }
                             }

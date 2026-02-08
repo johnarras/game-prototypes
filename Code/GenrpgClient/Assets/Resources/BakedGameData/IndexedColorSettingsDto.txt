@@ -14,13 +14,6 @@
       "B": 16
     },
     {
-      "IdKey": 2,
-      "TextureTypeId": 75,
-      "R": 16,
-      "G": 48,
-      "B": 16
-    },
-    {
       "IdKey": 3,
       "TextureTypeId": 6,
       "R": 48,
