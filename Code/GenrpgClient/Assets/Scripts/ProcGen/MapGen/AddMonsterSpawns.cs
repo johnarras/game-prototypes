@@ -58,7 +58,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 {
                     continue;
                 }
-                if (FlagUtils.IsSet(_md.flags[cx, cy], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.BelowWater))
                 {
                     continue;
                 }

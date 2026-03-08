@@ -1,0 +1,27 @@
+{
+  "Id": "travelencounter1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Spoiled Food",
+  "Text": "Some of your rations spoiled!",
+  "Weight": 100.0,
+  "GoodEffects": [],
+  "BadEffects": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 4,
+      "MinQuantity": 10,
+      "MaxQuantity": 20,
+      "Weight": 100.0
+    }
+  ],
+  "FailureEffects": [
+    {
+      "EntityTypeId": 67,
+      "EntityId": 3,
+      "MinQuantity": 2,
+      "MaxQuantity": 5,
+      "Weight": 100.0
+    }
+  ]
+}

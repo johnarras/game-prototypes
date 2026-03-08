@@ -166,11 +166,11 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
                     long currRegen = (long)fraction.Fraction;
                     fraction.Fraction -= currRegen;
 
-                    if (hours.StatTypeId == StatTypes.Health && member.StatusEffects.HasBit(StatusEffects.Poisoned))
+                    if (hours.StatTypeId == StatTypes.Health && member.StatusEffects.HasBitIndex(StatusEffects.Poisoned))
                     {
                         currRegen = -currRegen;
                     }
-                    if (hours.StatTypeId == StatTypes.Mana && member.StatusEffects.HasBit(StatusEffects.Diseased))
+                    if (hours.StatTypeId == StatTypes.Mana && member.StatusEffects.HasBitIndex(StatusEffects.Diseased))
                     {
                         currRegen = -currRegen;
                     }
@@ -194,7 +194,7 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
                         }
                         if (fraction.StatTypeId == StatTypes.Health && currVal == 0)
                         {
-                            member.StatusEffects.SetBit(StatusEffects.Dead);
+                            member.StatusEffects.SetBitIndex(StatusEffects.Dead);
                         }
                     }
                 }

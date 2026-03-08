@@ -90,7 +90,7 @@ namespace Assets.Scripts.Info.UI
                 return;
             }
 
-            row.InitData(this, txt);
+            row.SetData(this, txt);
             _rows.Add(row);
         }
 

@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 return;
             }
 
-            if (!party.QuestItems.HasBit(questItemId))
+            if (!party.QuestItems.HasBitIndex(questItemId))
             {
                 WorldQuestItem wqi = status.World.QuestItems.FirstOrDefault(x => x.IdKey == questItemId);
 

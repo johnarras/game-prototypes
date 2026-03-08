@@ -1,7 +1,9 @@
 
+using Genrpg.Shared.Client.Interfaces;
+
 namespace Assets.Scripts.Crawler.ClientEvents.CombatEvents
 {
-    public class ShowCombatBolt
+    public class ShowCombatBolt : IClientEvent
     {
 
         public string CasterId { get; set; }

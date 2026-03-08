@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Genrpg.Shared.Client.Interfaces;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Trader.HUD.ClientEvents
 {
-    public class ShowTraderDiceRoll
+    public class ShowTraderDiceRoll : IClientEvent
     {
         public List<int> RolledDistances { get; set; } = new List<int>();
         public int BonusDistance { get; set; }

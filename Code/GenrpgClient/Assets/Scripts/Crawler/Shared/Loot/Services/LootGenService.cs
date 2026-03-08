@@ -608,7 +608,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 {
                     loot.NewQuestItems.Add(questItemId);
 
-                    party.QuestItems.SetBit(questItemId);
+                    party.QuestItems.SetBitIndex(questItemId);
                 }
 
                 while (items.Count > lootSettings.MaxLootItems)

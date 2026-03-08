@@ -1,6 +1,8 @@
+using Genrpg.Shared.Client.Interfaces;
+
 namespace Assets.Scripts.ClientEvents.UI
 {
-    public class OpenScreen
+    public class OpenScreen : IClientEvent
     {
         public long ScreenId { get; set; }
         public object Data { get; set; }

@@ -18,7 +18,6 @@ namespace Genrpg.RequestServer.Trader.Travel.RequestHandlers
 
             CoreData coreData = await context.GetAsync<CoreData>();
 
-
             CaravanPosition position = _caravanService.GetPosition(coreData);
 
             await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs()

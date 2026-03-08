@@ -14,9 +14,9 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
     {
         public MeshRenderer MeshRenderer;
         private ICrawlerMapService _mapService = null;
-        public override void InitData(int x, int z, CrawlerMap map)
+        public override void SetData(int x, int z, CrawlerMap map)
         {
-            base.InitData(x, z, map);
+            base.SetData(x, z, map);
             CrawlerMapRoot root = _mapService.GetMapRoot();
 
             DungeonMaterials wallMats = root.GetMaterialsAt(x, z);

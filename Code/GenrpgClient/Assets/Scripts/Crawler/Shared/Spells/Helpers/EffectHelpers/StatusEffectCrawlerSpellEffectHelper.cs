@@ -50,7 +50,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                         continue;
                     }
                     finalQuantity--;
-                    if (target.StatusEffects.HasBit(allEffects[i].IdKey))
+                    if (target.StatusEffects.HasBitIndex(allEffects[i].IdKey))
                     {
                         target.RemoveStatusBit(fullEffect.Effect.EntityId);
                         args.FullAction = $"{caster.Name} Cleanses {target.Name} of {allEffects[i].Name}";

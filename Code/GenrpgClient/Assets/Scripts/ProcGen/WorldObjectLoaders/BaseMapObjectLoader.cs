@@ -1,6 +1,7 @@
 
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.GameSettings;

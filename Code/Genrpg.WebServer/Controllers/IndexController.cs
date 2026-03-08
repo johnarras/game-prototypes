@@ -15,9 +15,9 @@ namespace Genrpg.WebServer.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get()
+        public IActionResult Get(WebRequestServer webServer)
         {
-            return GetContent("[Index]");
+            return GetContent(webServer.GetIndexString());
         }
 
         private static readonly NewtonsoftTextSerializer newtonSoftSerializer = new NewtonsoftTextSerializer();

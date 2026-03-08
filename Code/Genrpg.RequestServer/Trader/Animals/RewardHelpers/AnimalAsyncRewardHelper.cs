@@ -13,10 +13,15 @@ namespace Genrpg.RequestServer.Trader.Animals.RewardHelpers
 
         public long HelperKey => EntityTypes.Animal;
 
-        public async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveRewardAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
         {
-
             _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), entityId);
+            return true;
+        }
+
+        public async Task<long> GetQuantityAsync(WebContext context, long entityId)
+        {
+            return _animalService.GetAnimalQuantity(await context.GetAsync<HoldingsData>(), entityId);
         }
     }
 }

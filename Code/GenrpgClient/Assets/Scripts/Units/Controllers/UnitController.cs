@@ -114,7 +114,7 @@ public class UnitController : BaseBehaviour
         string[] moveInputsToCheck = _playerManager.MoveInputsToCheck();
         for (int i = 0; i < moveInputsToCheck.Length; i++)
         {
-            SetKeyPercent(moveInputsToCheck[i], FlagUtils.IsSet(keysDown, 1 << i) ? 1 : 0);
+            SetKeyPercent(moveInputsToCheck[i], FlagUtils.MatchesAnyBits(keysDown, 1 << i) ? 1 : 0);
         }
         _unit.FinalRot = rot;
     }

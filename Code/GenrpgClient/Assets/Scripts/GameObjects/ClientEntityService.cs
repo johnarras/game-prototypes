@@ -10,6 +10,33 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameObjects
 {
+
+    public interface IClientEntityService : IInjectable
+    {
+        C FullInstantiate<C>(C c) where C : class;
+        object FullInstantiate(object obj);
+        void InitializeHierarchy(object obj);
+        C GetOrAddComponent<C>(object obj) where C : class;
+        void SetActive(object obj, bool value);
+        void Destroy(object obj);
+        void WaitToDestroy(object obj, float waitSeconds, CancellationToken token);
+        object FindChild(object objIn, string name);
+        List<T> GetComponents<T>(object obj);
+        T GetInterface<T>(object obj);
+        T GetComponent<T>(object obj) where T : class;
+        T FindInParents<T>(object obj) where T : class;
+        void DestroyAllChildren(object obj);
+        void SetLayer(object obj, string layerName);
+        void SetLayer(object obj, int layer);
+        void AddToParent(object childObj, object parentObj);
+        object GetEntity(object obj);
+        void RegisterDestroyCallback(object obj, Action action);
+
+        void ReorderSiblings<T>(List<T> objects) where T : UnityEngine.Object;
+    }
+
+
+
     public class ClientEntityService : IClientEntityService
     {
         protected IServiceLocator _loc = null;
@@ -474,6 +501,21 @@ namespace Assets.Scripts.GameObjects
             }
 
             return default(T);
+        }
+
+        public void ReorderSiblings<T>(List<T> objects) where T : UnityEngine.Object
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (objects[i] is GameObject go)
+                {
+                    go.transform.SetSiblingIndex(i);
+                }
+                else if (objects[i] is MonoBehaviour mb)
+                {
+                    mb.transform.SetSiblingIndex(i);
+                }
+            }
         }
     }
 }

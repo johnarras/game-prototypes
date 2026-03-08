@@ -7,21 +7,16 @@ namespace Genrpg.Shared.Core.Constants
         MMO = 1,
         Minigames = 2,
         Trader = 3,
+        LockstepTemplate = 4,
     }
 
     public class GameModeUtils
     {
         public static bool IsPureClientMode(EGameModes mode)
         {
-            return mode == EGameModes.Crawler;
-        }
-
-        public static bool IsCrawlerMode(EGameModes mode)
-        {
-            return mode == EGameModes.Crawler;
+            return mode == EGameModes.Crawler || mode == EGameModes.LockstepTemplate;
         }
     }
-
 }
 
 

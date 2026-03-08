@@ -1,0 +1,8 @@
+{
+  "Id": "corecurrencytype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Exp",
+  "Icon": "Exp",
+  "Art": "Exp"
+}

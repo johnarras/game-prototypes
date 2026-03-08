@@ -10,7 +10,7 @@ using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.ServerShared.PlayerData;
+using Genrpg.ServerShared.PlayerData.Services;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.Settings;
 using Genrpg.Shared.Config.Constants;
@@ -37,7 +37,7 @@ namespace Genrpg.RequestServer.Services.GameAuth
         private IRepositoryService _repoService = null;
         private IGameData _gameData = null;
         protected IPlayerDataService _playerDataService = null!;
-        protected ILoginPlayerDataService _loginPlayerDataService = null!;
+        protected ILoadPlayerDataService _loginPlayerDataService = null!;
         protected IServerConfig _config = null!;
         protected IServerGameDataService _gameDataService = null!;
         protected ICloudCommsService _cloudCommsService = null!;
@@ -108,10 +108,6 @@ namespace Genrpg.RequestServer.Services.GameAuth
             context.core.ClientVersion = gameAcct.ClientVersion;
 
             List<IUnitData> allUserData = await _loginPlayerDataService.LoadPlayerDataOnLogin(context, null);
-
-            List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
-
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, true));
 
             await UpdatePublicUser(accountSessionData, gameAcct);
 

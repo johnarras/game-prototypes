@@ -1,4 +1,4 @@
-using Genrpg.Editor.Entities.Core;
+using Genrpg.DataUtils.Entities.Core;
 using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Editor

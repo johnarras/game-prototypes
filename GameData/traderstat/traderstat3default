@@ -2,7 +2,7 @@
   "Id": "traderstat3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Holdings TradeGoods",
-  "Icon": "HoldingsTradeGoods",
-  "Art": "HoldingsTradeGoods"
+  "Name": "Coins Storage",
+  "Icon": "CoinsStorage",
+  "Art": "CoinsStorage"
 }

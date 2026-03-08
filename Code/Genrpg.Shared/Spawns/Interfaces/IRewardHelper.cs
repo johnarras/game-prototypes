@@ -15,13 +15,8 @@ namespace Genrpg.Shared.Spawns.Interfaces
     {
         // This will handle any extra results we need to send to the client.
         bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp);
-    }
 
-    public interface IQuantityRewardHelper : IRewardHelper
-    {
-        bool Add(MapObject obj, long entityId, long quantity, RewardParams rp);
-        bool Set(MapObject obj, long entityId, long quantity, RewardParams rp);
-        long Get(MapObject obj, long entityId);
+        long GetQuantity(MapObject obj, long entityId);
     }
 }
 

@@ -99,7 +99,7 @@ namespace Genrpg.Shared.MapObjects.Entities
         {
             if (effect.EntityTypeId == EntityTypes.StatusEffect)
             {
-                StatusEffects.SetBit(effect.EntityId);
+                StatusEffects.SetBitIndex(effect.EntityId);
             }
         }
         public virtual void Dispose()
@@ -126,14 +126,14 @@ namespace Genrpg.Shared.MapObjects.Entities
             {
                 if (!Effects.Any(x => x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == effect.EntityId))
                 {
-                    StatusEffects.RemoveBit(effect.EntityId);
+                    StatusEffects.RemoveBitIndex(effect.EntityId);
                 }
             }
         }
 
         public void RemoveStatusBit(long statusBitId)
         {
-            StatusEffects.RemoveBit(statusBitId);
+            StatusEffects.RemoveBitIndex(statusBitId);
             if (Effects.Any(x => x.EntityTypeId == EntityTypes.StatusEffect && x.EntityId == statusBitId))
             {
                 lock (this)

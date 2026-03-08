@@ -106,7 +106,7 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
             {
                 string currText = sb.ToString();
                 PartyQuest partyQuest = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == crawlerQuestId);
-                if (party.CompletedQuests.HasBit(quest.IdKey) ||
+                if (party.CompletedQuests.HasBitIndex(quest.IdKey) ||
                     (partyQuest != null && partyQuest.CurrQuantity >= quest.Quantity))
                 {
                     sb.Clear();

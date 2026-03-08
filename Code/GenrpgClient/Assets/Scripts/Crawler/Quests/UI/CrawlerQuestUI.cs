@@ -108,10 +108,10 @@ namespace Assets.Scripts.Crawler.Quests.UI
                 _currentRows.AddRange(inactiveRows);
             }
 
+            _clientEntityService.ReorderSiblings(_currentRows);
+
             for (int i = 0; i < _currentRows.Count; i++)
             {
-                _currentRows[i].transform.SetSiblingIndex(i);
-
                 _clientEntityService.SetActive(_currentRows[i].gameObject, activeRows.Count == 0 || _currentRows[i].IsActiveQuest());
             }
 

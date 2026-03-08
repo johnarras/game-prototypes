@@ -15,6 +15,7 @@ using Genrpg.Shared.Zones.WorldData;
 using System.Linq;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.ProcGen.Constants;
 
 public interface IMapGenData : IInjectable
 {
@@ -227,7 +228,7 @@ public class MapGenData : IMapGenData
             return;
         }
 
-        for (int c = 0; c < MapConstants.MaxTerrainIndex; c++)
+        for (int c = 0; c < TerrainTexChannels.Max; c++)
         {
             alphas[x, z, c] *= 0;
         }
@@ -294,7 +295,7 @@ public class MapGenData : IMapGenData
 
     public float GetAverageSplatNear(int x, int y, int radius, int channel)
     {
-        if (alphas == null || radius < 1 || channel < 0 || channel >= MapConstants.MaxTerrainIndex)
+        if (alphas == null || radius < 1 || channel < 0 || channel >= TerrainTexChannels.Max)
         {
             return 0.0f;
         }

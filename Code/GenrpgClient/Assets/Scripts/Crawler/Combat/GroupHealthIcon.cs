@@ -17,7 +17,7 @@ namespace Assets.Scripts.Crawler.Combat
 
         public void UpdateFromUnit(CrawlerUnit unit)
         {
-            if (unit == null || unit.StatusEffects.HasBit(StatusEffects.Dead))
+            if (unit == null || unit.StatusEffects.HasBitIndex(StatusEffects.Dead))
             {
                 _clientEntityService.SetActive(ImageObject, false);
             }

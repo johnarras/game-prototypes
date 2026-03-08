@@ -4,6 +4,7 @@ using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Props;
 using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
@@ -42,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
 
                 if (prop != null)
                 {
-                    prop.InitData(loadData.Cell.MapX, loadData.Cell.MapZ, loadData.MapRoot.Map);
+                    prop.SetData(loadData.Cell.MapX, loadData.Cell.MapZ, loadData.MapRoot.Map);
                 }
             }
         }

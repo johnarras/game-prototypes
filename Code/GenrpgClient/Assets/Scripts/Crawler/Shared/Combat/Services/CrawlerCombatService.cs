@@ -123,7 +123,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     if (effect.RemoveAtEndOfCombat)
                     {
-                        member.StatusEffects.RemoveBit(effect.IdKey);
+                        member.StatusEffects.RemoveBitIndex(effect.IdKey);
                     }
                 }
 
@@ -566,7 +566,6 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public void AddCombatUnits(PartyData party, InitialCombatGroup initial)
         {
-
             UnitType unitType = _gameData.Get<UnitTypeSettings>(_gs.ch).Get(initial.UnitTypeId);
 
             if (unitType == null)
@@ -1027,7 +1026,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (long effId in _disabledBits)
             {
-                if (unit.StatusEffects.HasBit(effId))
+                if (unit.StatusEffects.HasBitIndex(effId))
                 {
                     return true;
                 }
@@ -1067,7 +1066,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             if (disabledBits > 0)
             {
                 if (_actionToDisableBits.ContainsKey(combatActionId) &&
-                    FlagUtils.IsSet(_actionToDisableBits[combatActionId], disabledBits))
+                    FlagUtils.MatchesAnyBits(_actionToDisableBits[combatActionId], disabledBits))
                 {
                     return true;
                 }
@@ -1077,7 +1076,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             {
                 foreach (long statusEffectId in blockingStatusEffectList)
                 {
-                    if (unit.StatusEffects.HasBit(statusEffectId))
+                    if (unit.StatusEffects.HasBitIndex(statusEffectId))
                     {
                         return true;
                     }
@@ -1107,13 +1106,13 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             long weakAmount = 0;
             foreach (IdVal idval in _combatActionWeakPercents[combatActionId])
             {
-                if (unit.StatusEffects.HasBit(idval.Id))
+                if (unit.StatusEffects.HasBitIndex(idval.Id))
                 {
                     weakAmount += idval.Val;
                 }
             }
 
-            if (unit.StatusEffects.HasBit(StatusEffects.Weak))
+            if (unit.StatusEffects.HasBitIndex(StatusEffects.Weak))
             {
                 weakAmount += settings.Get(StatusEffects.Weak).Amount;
             }
@@ -1134,7 +1133,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public bool ProccedStatusEffect(CrawlerUnit unit, long statusEffectId)
         {
-            if (!unit.StatusEffects.HasBit(statusEffectId))
+            if (!unit.StatusEffects.HasBitIndex(statusEffectId))
             {
                 return false;
             }
@@ -1168,8 +1167,8 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
         public bool IsValidEnemyTarget(CrawlerUnit unit)
         {
-            return !unit.StatusEffects.HasBit(StatusEffects.Dead) &&
-                !unit.StatusEffects.HasBit(StatusEffects.Possessed);
+            return !unit.StatusEffects.HasBitIndex(StatusEffects.Dead) &&
+                !unit.StatusEffects.HasBitIndex(StatusEffects.Possessed);
         }
     }
 }

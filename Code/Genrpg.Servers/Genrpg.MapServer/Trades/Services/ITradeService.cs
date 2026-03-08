@@ -5,6 +5,7 @@ using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Trades.Entities;
 using Genrpg.Shared.Trades.Messages;
 using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Genrpg.MapServer.Trades.Services
         void HandleStartTrade(Character ch, StartTrade startTrade);
         void HandleCancelTrade(Character ch, CancelTrade cancelTrade);
         void HandleOnCancelTrade(Character ch, OnCancelTrade message);
-        void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade);
+        void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade, IRandom rand);
         void HandleOnAcceptTrade(Character ch, OnAcceptTrade message);
         void HandleUpdateTrade(Character ch, UpdateTrade updateTrade);
         void HandleOnUpdateTrade(Character ch, OnUpdateTrade message);

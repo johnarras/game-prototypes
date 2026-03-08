@@ -116,7 +116,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
 
             InventoryData idata = _partyMember.Get<InventoryData>();
 
-            Upgrades.InitData(_partyMember);
+            Upgrades.SetData(_partyMember);
 
             idata.SetInvenEquip(party.Inventory, _partyMember.Equipment);
 

@@ -18,11 +18,18 @@ namespace Genrpg.RequestServer.CoreCurrencies.RewardHelpers
     {
         public override long HelperKey => EntityTypes.CoreCurrency;
 
-        public override async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
+        public override async Task<long> GetQuantityAsync(WebContext context, long entityId)
+        {
+            CoreData coreData = await context.GetAsync<CoreData>();
+            return coreData.Currencies[entityId];
+        }
+
+        public override async Task<bool> GiveRewardAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 
             coreData.Currencies.Add(entityId, quantity);
+            return true;
         }
     }
 }

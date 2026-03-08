@@ -53,12 +53,12 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                     cz = (cz + map.Height) % map.Height;
                 }
 
-                if (party.CurrentMap.Cleansed.HasBit(map.GetIndex(cx, cz)))
+                if (party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(cx, cz)))
                 {
                     continue;
                 }
 
-                if (!party.CurrentMap.Visited.HasBit(map.GetIndex(cx, cz)))
+                if (!party.CurrentMap.Visited.HasBitIndex(map.GetIndex(cx, cz)))
                 {
 
                     int encounter = map.GetEntityId(cx, cz, EntityTypes.MapEncounter);

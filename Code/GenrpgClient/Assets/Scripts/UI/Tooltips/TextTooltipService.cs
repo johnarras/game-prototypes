@@ -1,5 +1,6 @@
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;

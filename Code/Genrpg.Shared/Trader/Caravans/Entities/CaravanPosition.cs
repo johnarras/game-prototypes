@@ -10,7 +10,7 @@ namespace Genrpg.Shared.Trader.Caravans.Entities
         public int ToY { get; set; }
         public int CurrX { get; set; }
         public int CurrY { get; set; }
-        public int DistanceToTarget { get; set; }
+        public int TotalDistanceToTarget { get; set; }
         public int DistanceGone { get; set; }
         public City TargetCity { get; set; }
         public float Angle { get; set; }
@@ -21,7 +21,8 @@ namespace Genrpg.Shared.Trader.Caravans.Entities
             {
                 return null;
             }
-            if (CurrX == TargetCity.MapPixelX && CurrY == TargetCity.MapPixelY)
+
+            if (TotalDistanceToTarget < 1 || DistanceGone >= TotalDistanceToTarget)
             {
                 return TargetCity;
             }

@@ -43,8 +43,8 @@ namespace Assets.Scripts.Crawler.UI.HUD
             PartyData party = _crawlerService.GetParty();
             int magicBits = _crawlerMapService.GetMagicBits(party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z, true);
 
-            _clientEntityService.SetActive(SilenceImage, FlagUtils.IsSet(magicBits, MapMagics.Silence));
-            _clientEntityService.SetActive(NoMagicImage, FlagUtils.IsSet(magicBits, MapMagics.NoMagic));
+            _clientEntityService.SetActive(SilenceImage, FlagUtils.MatchesAnyBits(magicBits, MapMagics.Silence));
+            _clientEntityService.SetActive(NoMagicImage, FlagUtils.MatchesAnyBits(magicBits, MapMagics.NoMagic));
 
         }
     }

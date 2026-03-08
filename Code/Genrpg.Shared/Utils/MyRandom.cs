@@ -25,6 +25,11 @@ namespace Genrpg.Shared.Utils
         double Weight { get; }
     }
 
+
+    public interface IFloatWeightedItem
+    {
+        float Weight { get; }
+    }
     public interface IItemEnchantWeight
     {
         double ItemEnchantWeight { get; }

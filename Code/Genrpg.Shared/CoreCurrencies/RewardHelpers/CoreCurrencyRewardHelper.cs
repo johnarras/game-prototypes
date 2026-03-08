@@ -11,6 +11,12 @@ namespace Genrpg.Shared.CoreCurrencies.RewardHelpers
     {
         public long HelperKey => EntityTypes.CoreCurrency;
 
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            CoreData coreData = obj.Get<CoreData>();
+            return coreData.Currencies[entityId];
+        }
+
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
             CoreData coreData = obj.Get<CoreData>();

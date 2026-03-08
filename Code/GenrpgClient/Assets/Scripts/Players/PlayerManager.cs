@@ -1,4 +1,5 @@
 using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input;
 using Assets.Scripts.Input.Interfaces;
 using Genrpg.Shared.Client.Core;

@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine; // Needed
 using Assets.Scripts.MapTerrain;
 using UnityEditor;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class SetFinalTerrainTextures : BaseZoneGenerator
 {
@@ -24,18 +25,18 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
             for (int y = 0; y < _md.ahgt; y++)
             {
                 float total = 0;
-                for (int i =0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i =0; i < TerrainTexChannels.Max; i++)
                 {
                     total += _md.alphas[x, y, i];
                 }
                 if (total < 0.1f)
                 {
                     _md.ClearAlphasAt(x, y);
-                    _md.alphas[x, y, MapConstants.BaseTerrainIndex] = 1.0f;
+                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
                 else
                 {
-                    for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                    for (int i = 0; i < TerrainTexChannels.Max; i++)
                     {
                         _md.alphas[x, y, i] /= total;
                     }

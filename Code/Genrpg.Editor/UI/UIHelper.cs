@@ -7,57 +7,19 @@ using Windows.System;
 using Windows.UI.Core;
 using System;
 using Microsoft.UI.Xaml.Media;
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.UI.Interfaces;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Microsoft.UI.Xaml.Data;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Interfaces;
 
 namespace Genrpg.Editor.UI
 {
     public static class UIHelper
     {
-        public static SmallPopup ShowBlockingDialog(WindowBase parent, string text, double width = 0, double height = 0)
-        {         
-            SmallPopup win = new SmallPopup(text, (int)width, (int)height);
-            win.Activate();
-            return win;
-        }
-
-        public static async Task<ContentDialogResultBase> ShowMessageBox(WindowBase window, string content, string title = null, bool showCancelButton = false)
-        {
-            MessageBoxWaiter waiter = new MessageBoxWaiter();
-
-            window.DispatcherQueue.TryEnqueue(() =>
-            {
-                ContentDialog noWifiDialog = new ContentDialog
-                {
-                    Title = title,
-                    Content = content,
-                    PrimaryButtonText = "Ok",
-                    SecondaryButtonText = (showCancelButton ? "Cancel" : null),
-                };
-
-                noWifiDialog.XamlRoot = window.Content.XamlRoot;
-
-                waiter.Operation = noWifiDialog.ShowAsync();
-                waiter.DidSetOperation = true;
-            });
-
-            while (!waiter.DidSetOperation ||
-               waiter.Operation.Status == AsyncStatus.Started)
-            {
-                await Task.Delay(1);
-            }
-
-            int val = (int)(waiter.Operation.GetResults());
-            waiter.Result = (ContentDialogResultBase)val;
-            return waiter.Result;
-        }
-
         public static ButtonBase CreateButton(IUICanvas canvas, EButtonTypes buttonType, 
             string name, string text, double width, double height, double xpos, double ypos, Action<object,object> clickAction)
         {

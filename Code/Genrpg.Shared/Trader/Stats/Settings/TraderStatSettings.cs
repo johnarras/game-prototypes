@@ -49,7 +49,12 @@ namespace Genrpg.Shared.Trader.Stats.Settings
     }
     public class BonusTraderStatEntityHelper : BaseEntityHelper<TraderStatSettings, TraderStat>
     {
-        public override long HelperKey => EntityTypes.BonusTraderStat;
+        public override long HelperKey => EntityTypes.TraderBonusStat;
+    }
+
+    public class TraderStatBuffEntityHelper : BaseEntityHelper<TraderStatSettings,TraderStat>
+    {
+        public override long HelperKey => EntityTypes.TraderStatBuff;
     }
 }
 

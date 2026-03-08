@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -64,6 +65,54 @@ namespace Genrpg.Shared.Utils
                 hex.Append(b.ToString("X2"));
             }
             return hex.ToString();
+        }
+
+        public static string GetnewBase58Id()
+        {
+            string encoded;
+            do
+            {
+                Guid guid = Guid.NewGuid();
+
+                ReadOnlySpan<byte> fullSpan = guid.ToByteArray();
+
+                // Slice the span into two 8-byte segments
+
+                long part1 = BitConverter.ToInt64(fullSpan.Slice(0, 8));
+                long part2 = BitConverter.ToInt64(fullSpan.Slice(8, 8));
+
+                encoded = HashUtils.GetIdFromVal(part1) + HashUtils.GetIdFromVal(part2);
+            }
+            while (IsInappropriate(encoded));
+
+            return encoded;
+        }
+
+        // This needs to be improved obviously.
+        private static readonly string[] _nameBlacklist = { 
+            "fuck", "shit", "nazi", "cunt", 
+            "piss", "slut", "nigg", "damn", 
+            "hell", "asshole", "fuk", "shyt", 
+            "coc", "dik", "vag",
+        
+        };
+        private static bool IsInappropriate(string base58Id)
+        {
+            string lowerId = base58Id.ToLower();
+
+            // Check for direct matches or leetspeak subs
+            // You can expand this to check for '5' as 's', etc.
+            string normalized = lowerId
+                .Replace('5', 's')
+                .Replace('1', 'i')
+                .Replace('4', 'a')
+                .Replace('8', 'b')
+                .Replace('0', 'o')
+                .Replace('3', 'e')
+                .Replace('6', 'g')
+                ;
+
+            return _nameBlacklist.Any(word => normalized.Contains(word));
         }
     }
 }

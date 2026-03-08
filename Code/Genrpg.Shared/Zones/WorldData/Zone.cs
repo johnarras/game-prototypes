@@ -4,7 +4,6 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.Utils;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,10 +26,30 @@ namespace Genrpg.Shared.Zones.WorldData
         public long Seed { get; set; }
 
 
+        public void SetTextureTypeId(long textureChannel, long textureTypeId)
+        {
+            if (textureChannel == TerrainTexChannels.Base)
+            {
+                BaseTextureTypeId = textureTypeId;  
+            }
+            else if (textureChannel == TerrainTexChannels.Dirt)
+            {
+                DirtTextureTypeId = textureTypeId;
+            }
+            else if (textureChannel == TerrainTexChannels.Road)
+            {
+                RoadTextureTypeId = textureTypeId;  
+            }
+            else if (textureChannel == TerrainTexChannels.Steep)
+            {
+                SteepTextureTypeId = textureTypeId;  
+            }
+        }
+
         public long BaseTextureTypeId { get; set; }
         public long DirtTextureTypeId { get; set; }
-        public long RockTextureTypeId { get; set; }
         public long RoadTextureTypeId { get; set; }
+        public long SteepTextureTypeId { get; set; }
 
         public long Level { get; set; }
 
@@ -49,11 +68,6 @@ namespace Genrpg.Shared.Zones.WorldData
         public Zone()
         {
             Locations = new List<Location>();
-            BaseTextureTypeId = TextureTypes.Grass;
-            DirtTextureTypeId = TextureTypes.Dirt;
-            RockTextureTypeId = TextureTypes.Rock;
-            RoadTextureTypeId = TextureTypes.Road;
-
             CleanData();
         }
 
@@ -167,7 +181,7 @@ namespace Genrpg.Shared.Zones.WorldData
             }
             else if (index == 3)
             {
-                return RockTextureTypeId;
+                return SteepTextureTypeId;
             }
             return BaseTextureTypeId;
         }

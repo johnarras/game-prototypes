@@ -10,6 +10,7 @@ using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddRandomDirt : BaseZoneGenerator
 {
@@ -35,7 +36,7 @@ public class AddRandomDirt : BaseZoneGenerator
 
         int size = Math.Max(Math.Max(dx, dy), MapConstants.DefaultHeightmapSize);
 
-        int[] replaceTextures = new int[] { MapConstants.DirtTerrainIndex, MapConstants.SteepTerrainIndex };
+        int[] replaceTextures = new int[] { TerrainTexChannels.Dirt, TerrainTexChannels.Steep };
 
         float midNoise = 0.8f;
 
@@ -98,7 +99,7 @@ public class AddRandomDirt : BaseZoneGenerator
                             maxPct = 1;
                         }
 
-                        float basePct = _md.alphas[x, y, MapConstants.BaseTerrainIndex];
+                        float basePct = _md.alphas[x, y, TerrainTexChannels.Base];
                         float newPct = Math.Max(changes[x - startx, y - starty], 0);
                         if (newPct > maxPct)
                         {
@@ -109,12 +110,12 @@ public class AddRandomDirt : BaseZoneGenerator
                         {
                             newPct = basePct;
                         }
-                        _md.alphas[x, y, MapConstants.BaseTerrainIndex] -= newPct;
+                        _md.alphas[x, y, TerrainTexChannels.Base] -= newPct;
                         _md.alphas[x, y, newIndex] += newPct;
                         if (_md.alphas[x, y, newIndex] > 1)
                         {
                             float diff = _md.alphas[x, y, newIndex] - 1;
-                            _md.alphas[x, y, MapConstants.BaseTerrainIndex] = diff;
+                            _md.alphas[x, y, TerrainTexChannels.Base] = diff;
                             _md.alphas[x, y, newIndex] = 1;
                         }
                     }

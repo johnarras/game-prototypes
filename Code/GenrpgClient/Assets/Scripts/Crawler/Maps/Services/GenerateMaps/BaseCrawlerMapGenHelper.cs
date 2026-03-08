@@ -1,5 +1,6 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.MapGen.Entities;

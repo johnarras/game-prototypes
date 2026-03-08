@@ -1,4 +1,5 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Animations;
 using Assets.Scripts.UI.Constants;
@@ -452,6 +453,19 @@ namespace Assets.Scripts.UI.Services
             slider.onValueChanged.RemoveAllListeners();
             slider.onValueChanged.AddListener(valueChangedEvent);
             _clientEntityService.RegisterDestroyCallback(slider, () => { slider.onValueChanged.RemoveAllListeners(); });
+        }
+
+        public void PlaceChildInParentRect(RectTransform childRect, RectTransform parentRect, float xpct, float ypct)
+        {
+            Vector2 anchor = new Vector2(xpct, ypct);
+
+            if (childRect.transform.parent != parentRect.transform)
+            {
+                _clientEntityService.AddToParent(childRect.gameObject, parentRect.gameObject);
+            }
+            childRect.anchorMin = anchor;
+            childRect.anchorMax = anchor;
+            childRect.anchoredPosition = Vector2.zero;
         }
     }
 }

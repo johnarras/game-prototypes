@@ -1,9 +1,10 @@
+using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.Crawler.Combat.Constants;
 
 namespace Genrpg.Shared.Crawler.GameEvents
 {
 
-    public class ShowCombatText
+    public class ShowCombatText : IClientEvent
     {
         public string CasterUnitId { get; set; }
         public string CasterGroupId { get; set; }

@@ -8,27 +8,27 @@
     },
     {
       "IdKey": 2,
-      "Name": "Holdings Animals",
-      "Icon": "HoldingsAnimals",
-      "Art": "HoldingsAnimals"
-    },
-    {
-      "IdKey": 3,
-      "Name": "Holdings TradeGoods",
-      "Icon": "HoldingsTradeGoods",
-      "Art": "HoldingsTradeGoods"
-    },
-    {
-      "IdKey": 4,
       "Name": "Coins Regen",
       "Icon": "CoinsRegen",
       "Art": "CoinsRegen"
     },
     {
-      "IdKey": 5,
+      "IdKey": 3,
       "Name": "Coins Storage",
       "Icon": "CoinsStorage",
       "Art": "CoinsStorage"
+    },
+    {
+      "IdKey": 4,
+      "Name": "Supplies Regen",
+      "Icon": "SuppliesRegen",
+      "Art": "SuppliesRegen"
+    },
+    {
+      "IdKey": 5,
+      "Name": "Supplies Storage",
+      "Icon": "SuppliesStorage",
+      "Art": "SuppliesStorage"
     },
     {
       "IdKey": 6,
@@ -44,15 +44,15 @@
     },
     {
       "IdKey": 8,
-      "Name": "Supplies Storage",
-      "Icon": "SuppliesStorage",
-      "Art": "SuppliesStorage"
+      "Name": "Rations Regen",
+      "Icon": "RationsRegen",
+      "Art": "RationsRegen"
     },
     {
       "IdKey": 9,
-      "Name": "Supplies Regen",
-      "Icon": "SuppliesRegen",
-      "Art": "SuppliesRegen"
+      "Name": "Rations Storage",
+      "Icon": "RationsStorage",
+      "Art": "RationsStorage"
     },
     {
       "IdKey": 10,
@@ -62,55 +62,51 @@
     },
     {
       "IdKey": 11,
-      "Name": "Guards",
-      "Icon": "Guards",
-      "Art": "Guards"
+      "Name": "Caravan Capacity",
+      "Icon": "CaravanCapacity",
+      "Art": "CaravanCapacity"
     },
     {
       "IdKey": 12,
-      "Name": "CaravanTradeGoods",
-      "Icon": "CaravanTradeGoods",
-      "Art": "CaravanTradeGoods"
-    },
-    {
-      "IdKey": 13,
-      "Name": "Rations Regen",
-      "Desc": "",
-      "AtlasPrefix": "",
-      "Icon": "RationsRegen",
-      "Art": "RationsRegen"
-    },
-    {
-      "IdKey": 14,
-      "Name": "Rations Storage",
-      "Desc": "",
-      "AtlasPrefix": "",
-      "Icon": "RationsStorage",
-      "Art": "RationsStorage"
-    },
-    {
-      "IdKey": 15,
-      "Name": "CaravanBonusSpeed",
+      "Name": "Caravan Bonus Speed",
       "Icon": "CaravanBonusSpeed",
       "Art": "CaravanBonusSpeed"
     },
     {
+      "IdKey": 13,
+      "Name": "Good Luck",
+      "Icon": "GoodLuck",
+      "Art": "GoodLuck"
+    },
+    {
+      "IdKey": 14,
+      "Name": "Bad Luck",
+      "Icon": "BadLuck",
+      "Art": "BadLuck"
+    },
+    {
+      "IdKey": 15,
+      "Name": "Coins Cost",
+      "Icon": "CoinsCost",
+      "Art": "CoinsCost"
+    },
+    {
       "IdKey": 16,
-      "Name": "CaravanRationsCost",
-      "Icon": "CaravanRationsCost",
-      "Art": "CaravanRationsCost"
+      "Name": "Supplies Cost",
+      "Icon": "SuppliesCost",
+      "Art": "SuppliesCost"
     },
     {
       "IdKey": 17,
-      "Name": "GoodLuckEvents",
-      "Icon": "GoodLuckEvents",
-      "Art": "GoodLuckEvents"
+      "Name": "Mana Cost",
+      "Icon": "ManaCost",
+      "Art": "ManaCost"
     },
     {
       "IdKey": 18,
-      "Name": "BadLuckEvents",
-      "Icon": "BadLuckEvents",
-      "Art": "BadLuckEvents"
+      "Name": "Rations Cost",
+      "Icon": "RationsCost",
+      "Art": "RationsCost"
     }
   ],
   "Parent": {
@@ -118,5 +114,5 @@
     "Name": "TraderStatSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-18T21:32:36.476Z"
+  "SaveTime": "2026-03-01T20:16:25.531Z"
 }

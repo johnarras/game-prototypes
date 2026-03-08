@@ -3,6 +3,7 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trader.Animals.Settings;
 using Genrpg.Shared.Trader.Holdings.PlayerData;
+using System;
 using System.Linq;
 
 namespace Genrpg.Shared.Trader.Animals.Services
@@ -12,6 +13,10 @@ namespace Genrpg.Shared.Trader.Animals.Services
     {
         void AddAnimalToHoldings(CoreData coreData, HoldingsData holdings, long animalTypeId);
         void AddSkinToHoldings(CoreData coreData, HoldingsData holdings, long skinTypeId);
+
+        long GetAnimalQuantity(HoldingsData holdings, long animalTypeId);
+
+        long GetSkinQuantity(HoldingsData holdings, long skinTypeId);
     }
 
     public class AnimalService : IAnimalService
@@ -21,9 +26,9 @@ namespace Genrpg.Shared.Trader.Animals.Services
 
         public void AddAnimalToHoldings(CoreData coreData, HoldingsData holdings, long animalTypeId)
         {
-            if (!holdings.AnimalsOwned.HasBit(animalTypeId))
+            if (!holdings.AnimalsOwned.HasBitIndex(animalTypeId))
             {
-                holdings.AnimalsOwned.SetBit(animalTypeId);
+                holdings.AnimalsOwned.SetBitIndex(animalTypeId);
             }
 
             SkinType skinType = _gameData.Get<SkinTypeSettings>(coreData).GetData().FirstOrDefault(x => x.AnimalTypeId == animalTypeId && x.IsDefault);
@@ -42,7 +47,17 @@ namespace Genrpg.Shared.Trader.Animals.Services
                 return;
             }
 
-            holdings.SkinsOwned.SetBit(skinTypeId);
+            holdings.SkinsOwned.SetBitIndex(skinTypeId);
+        }
+
+        public long GetAnimalQuantity(HoldingsData holdings, long animalTypeId)
+        {
+            return holdings.AnimalsOwned.HasBitIndex(animalTypeId) ? 1 : 0;
+        }
+
+        public long GetSkinQuantity(HoldingsData holdings, long skinTypeId)
+        {
+            return holdings.SkinsOwned.HasBitIndex(skinTypeId) ? 1 : 0; 
         }
     }
 }

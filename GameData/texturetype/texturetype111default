@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype111default",
+  "ParentId": "default",
+  "IdKey": 111,
+  "Name": "Tower",
+  "Icon": "Tower",
+  "Art": "Tower",
+  "Size": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "Id": "traderdebuff1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Unlucky",
+  "Icon": "Unlucky",
+  "Art": "Unlucky",
+  "CleanseCoreCurrencyTypeId": 3,
+  "CleanseQuantity": 2,
+  "CityCoinsCleanseCost": 20,
+  "Effects": [
+    {
+      "EntityTypeId": 204,
+      "Quantity": 5,
+      "EntityId": 14
+    }
+  ]
+}

@@ -3,6 +3,7 @@ using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.MapGen.Services;
@@ -55,7 +56,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
             party.CurrPos.Rot = mapData.MapRot;
             CrawlerMap map = mapData.Map;
 
-            if (!party.CompletedMaps.HasBit(mapData.Map.IdKey))
+            if (!party.CompletedMaps.HasBitIndex(mapData.Map.IdKey))
             {
                 CrawlerMapStatus status = party.GetMapStatus(mapData.Map.IdKey, true);
             }
@@ -64,9 +65,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
             CrawlerMapRoot mapRoot = _clientEntityService.GetOrAddComponent<CrawlerMapRoot>(go);
 
             mapRoot.SetupFromMap(map);
-            mapRoot.DrawX = party.CurrPos.X * CrawlerMapConstants.XZBlockSize;
-            mapRoot.DrawZ = party.CurrPos.Z * CrawlerMapConstants.XZBlockSize;
-            mapRoot.DrawY = CrawlerMapConstants.YBlockSize / 2;
+            mapRoot.DrawX = party.CurrPos.X * mapRoot.XZBlockSize;
+            mapRoot.DrawZ = party.CurrPos.Z * mapRoot.XZBlockSize;
+            mapRoot.DrawY = mapRoot.YBlockSize / 2;
             mapRoot.DrawRot = party.CurrPos.Rot;
 
             _dispatcher.Dispatch(new UpdateQuestUI());

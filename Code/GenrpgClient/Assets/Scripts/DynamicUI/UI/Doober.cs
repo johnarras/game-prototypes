@@ -1,5 +1,5 @@
-using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Utils;
@@ -9,41 +9,45 @@ namespace Assets.Scripts.Doobers.UI
 {
     public class Doober : EntityIcon, IDynamicUIItem
     {
+
+        private IDynamicUIService _dynamicUIService = null;
+
         private Vector3 _startPos;
         private Vector3 _endPos;
+        private Vector3 _offsetPos;
 
         RectTransform _rectTransform;
 
-        private ShowDooberEvent _showDoober = null;
+        private DooberArgs _dooberArgs = null;
 
         private float _offsetAngle = 0;
 
         private float _elapsedTime = 0;
 
         protected override bool IsDooberTarget => false;
-        public void InitData(long entityTypeId, long entityId, long quantity, ShowDooberEvent showDoober)
+        public void SetData(long entityTypeId, long entityId, long quantity, DooberArgs dooberArgs)
         {
             SetEntityData(entityTypeId, entityId, quantity, quantity);
-            InitShowDoober(showDoober);
+            InitDooberArgs(dooberArgs);
         }
 
-        public void InitData(string atlasName, string spriteName, ShowDooberEvent showDoober)
+        public void SetData(string atlasName, string spriteName, DooberArgs dooberArgs)
         {
             _spriteService.LoadAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
-            InitShowDoober(showDoober);
+            InitDooberArgs(dooberArgs);
         }
 
-        private void InitShowDoober(ShowDooberEvent showDoober)
+        private void InitDooberArgs(DooberArgs dooberArgs)
         {
             _elapsedTime = 0;
             _offsetAngle = 0;
             _rectTransform = GetComponent<RectTransform>();
-            _showDoober = showDoober;
-            _startPos = showDoober.StartPosition;
-            _endPos = showDoober.EndPosition;
-            if (showDoober.SizeScale != 0)
+            _dooberArgs = dooberArgs;
+            _startPos = dooberArgs.StartPosition;
+            _endPos = dooberArgs.EndPosition;
+            if (dooberArgs.SizeScale != 0)
             {
-                transform.localScale = Vector3.one * (float)showDoober.SizeScale;
+                transform.localScale = Vector3.one * (float)dooberArgs.SizeScale;
             }
             _rectTransform.position = _startPos;
             PointAtEndPosition();
@@ -51,42 +55,48 @@ namespace Assets.Scripts.Doobers.UI
 
         public bool FrameUpdateIsComplete(float deltaTime)
         {
-            if (_showDoober == null || _showDoober.LerpTime <= 0)
+            if (_dooberArgs == null || _dooberArgs.LerpTime <= 0)
             {
+                if (_dooberArgs != null)
+                {
+                    _dynamicUIService.ReturnDooberArgs(_dooberArgs);
+                    _dooberArgs = null;
+                }
                 return true;
             }
-
             if (_elapsedTime == 0)
             {
                 _offsetAngle = MathUtil.FloatRange(0, 360, _rand);
             }
             _elapsedTime += deltaTime;
 
-            float percentDone = MathUtil.Clamp(0, _elapsedTime / _showDoober.LerpTime, 1);
+            float percentDone = MathUtil.Clamp(0, _elapsedTime / _dooberArgs.LerpTime, 1);
 
-            if (_showDoober.StartOffsetSize > 0)
+            if (_dooberArgs.StartOffsetSize > 0)
             {
                 float sin = Mathf.Sin(_offsetAngle);
                 float cos = Mathf.Cos(_offsetAngle);
 
-                _startPos += new Vector3(cos, sin, 0) * _showDoober.StartOffsetSize * (1 - percentDone) * (1 - percentDone) * 0.25f;
+                _offsetPos = new Vector3(cos, sin, 0) * _dooberArgs.StartOffsetSize * (1 - percentDone) * (1-percentDone) * (percentDone);
             }
 
-
-            if (_showDoober.Accelerate)
+            if (_dooberArgs.PercentDonePowerMult > 0)
             {
-                percentDone *= percentDone;
+                percentDone *= Mathf.Pow(percentDone, _dooberArgs.PercentDonePowerMult);
             }
 
             percentDone = MathUtil.Clamp(0, percentDone, 1);
 
-            _rectTransform.position = Vector2.Lerp(_startPos, _endPos, percentDone);
-
+            _rectTransform.position = Vector2.Lerp(_startPos + _offsetPos, _endPos, percentDone);
 
             if (percentDone >= 1)
             {
-                _dispatcher.Dispatch(new AddEntityQuantityVisual() { EntityTypeId = _entityTypeId, InstantUpdate = false, QuantityAdded = _currQuantity, EntityId = _entityId });
-
+                if (_dooberArgs != null)
+                {
+                    _dynamicUIService.ReturnDooberArgs(_dooberArgs);
+                    _dooberArgs = null; 
+                }
+                _dynamicUIService.AddEntityQuantityVisual(_entityTypeId, _entityId, _currQuantity, false);
                 return true;
             }
 
@@ -98,7 +108,7 @@ namespace Assets.Scripts.Doobers.UI
         private void PointAtEndPosition()
         {
 
-            if (_showDoober.PointAtEnd)
+            if (_dooberArgs.PointAtEnd)
             {
                 Vector2 posDiff = _endPos - _rectTransform.position;
 

@@ -10,11 +10,9 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
             return _entityId;
         }
 
-        public void InitData(long statusEffectId)
+        public void SetData(long statusEffectId)
         {
-
             SetEntityData(EntityTypes.StatusEffect, statusEffectId, 1, 1);
-
         }
     }
 }

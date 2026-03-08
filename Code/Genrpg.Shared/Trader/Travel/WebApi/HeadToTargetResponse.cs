@@ -11,7 +11,7 @@ namespace Genrpg.Shared.Trader.Travel.WebApi
         public int ToX { get; set; }
         public int ToY { get; set; }
         public int ToCityId { get; set; }
-        public int DistanceToTarget { get; set; }
+        public int TotalDistanceToTarget { get; set; }
         public int NewTraderFlags { get; set; }
     }
 }

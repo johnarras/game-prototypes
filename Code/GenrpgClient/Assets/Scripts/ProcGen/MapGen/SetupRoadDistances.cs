@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.ProcGen.Constants;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -22,12 +23,12 @@ public class SetupRoadDistances : BaseZoneGenerator
 		{
 			for (int y = 0; y < _md.ahgt; y++)
 			{
-				if (_md.alphas[x,y,MapConstants.RoadTerrainIndex] == 0)
+				if (_md.alphas[x,y,TerrainTexChannels.Road] == 0)
 				{
 					continue;
 				}
 
-                if (_md.alphas[x, y, MapConstants.RoadTerrainIndex] >= 0.5f)
+                if (_md.alphas[x, y, TerrainTexChannels.Road] >= 0.5f)
                 {
                     _md.subZonePercents[x, y] = 0;
                 }

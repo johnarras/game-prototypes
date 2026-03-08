@@ -97,7 +97,7 @@ public abstract class DragItem<TData, TDragItem, TScreen, TInitData> : BaseBehav
 
     protected virtual bool ShowTooltipOnLeft()
     {
-        return (_initData == null || !FlagUtils.IsSet(_initData.Flags, ItemIconFlags.ShowTooltipOnRight));
+        return (_initData == null || !FlagUtils.MatchesAnyBits(_initData.Flags, ItemIconFlags.ShowTooltipOnRight));
     }
 
 

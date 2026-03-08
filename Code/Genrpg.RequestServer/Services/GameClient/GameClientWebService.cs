@@ -1,5 +1,6 @@
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.PlayerData.Services;
 using Genrpg.RequestServer.Resets.Entities;
 using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Services.WebServer;
@@ -18,7 +19,7 @@ namespace Genrpg.RequestServer.Services.GameClient
         private IServerGameDataService _gameDataService = null;
         private ILogService _logService = null;
         private IWebServerService _loginServerService = null;
-        private IHourlyUpdateService _hourlyUpdateService = null;
+        private ILoadPlayerDataService _loadPlayerDataService = null;
 
         public async Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, CancellationToken token)
         {
@@ -85,8 +86,8 @@ namespace Genrpg.RequestServer.Services.GameClient
             context.SetGameUserId(tokenUserId);
 
             context.core = await context.GetAsync<CoreData>();
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, false));
-            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs() { OnLogin = false });
+
+            await _loadPlayerDataService.UpdatePlayerAfterLoginOrLoad(context, false);
 
             return true;
         }

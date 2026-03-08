@@ -1,0 +1,27 @@
+{
+  "Id": "travelencounter4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Mana Storm",
+  "Text": "You encounter a Mana Storm",
+  "Weight": 100.0,
+  "GoodEffects": [],
+  "BadEffects": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 3,
+      "MinQuantity": 5,
+      "MaxQuantity": 10,
+      "Weight": 100.0
+    }
+  ],
+  "FailureEffects": [
+    {
+      "EntityTypeId": 67,
+      "EntityId": 6,
+      "MinQuantity": 2,
+      "MaxQuantity": 5,
+      "Weight": 100.0
+    }
+  ]
+}

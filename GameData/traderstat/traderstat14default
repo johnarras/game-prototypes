@@ -2,9 +2,7 @@
   "Id": "traderstat14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Rations Storage",
-  "Desc": "",
-  "AtlasPrefix": "",
-  "Icon": "RationsStorage",
-  "Art": "RationsStorage"
+  "Name": "Bad Luck",
+  "Icon": "BadLuck",
+  "Art": "BadLuck"
 }

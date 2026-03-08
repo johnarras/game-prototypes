@@ -20,14 +20,14 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         {
             base.Init();
 
-            _dispatcher.AddListener<UpdateTraderStatusUI>(OnUpdateTraderStatusUI, GetToken());
+            _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateTraderHUD, GetToken());
 
 
             ShowData();
 
         }
 
-        private void OnUpdateTraderStatusUI(UpdateTraderStatusUI update)
+        private void OnUpdateTraderHUD(UpdateTraderHUD update)
         {
             ShowData();
         }

@@ -45,6 +45,8 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
         private const string CollectionName = "alldata";
 
+        private string _databaseName = null;
+
         public async Task Init(InitRepoArgs args,
             MongoClient client,
             ILogService logService,
@@ -54,6 +56,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
         {
             _token = token;
             string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
+            _databaseName = databaseName;   
             _logService = logService;
             _serializer = serializer;
             _client = client;
@@ -75,7 +78,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
                                 {
                                     BsonClassMap classMap = new BsonClassMap(type);
                                     classMap.AutoMap();
-                                    classMap.SetDiscriminator(type.Name);
+                                    classMap.SetDiscriminator(type.Name.ToLower());
                                     BsonClassMap.RegisterClassMap(classMap);
                                 }
                             }
@@ -90,10 +93,29 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             }
         }
 
+        public IMongoCollection<BsonDocument> GetSettingsCollection()
+        {
+            if (_databaseName.IndexOf(EDataCategories.Settings.ToString().ToLower()) <0)
+            {
+                return null;
+            }
+                
+            return _collection;
+        }
+        
 
-        protected string GetFullDocId(Type t, string id)
+        public string GetFullDocId(Type t, string id)
         {
             string typeNameLower = t.Name.ToLower();
+
+            return GetFullDocId(typeNameLower, id);
+
+        }
+
+        public string GetFullDocId(string typeName, string id)
+        {
+
+            string typeNameLower = typeName.ToLower();
 
             string finalId = id;
             if (id.IndexOf(typeNameLower) < 0)
@@ -104,11 +126,9 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             return finalId;
         }
 
-
         public async Task<T> Load<T>(string id) where T : class, IStringId
         {
             string fullId = GetFullDocId(typeof(T), id);
-
 
             FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("_id", fullId);
 
@@ -129,7 +149,6 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             }
             return default;
         }
-
 
         private ReplaceOptions _saveOptions = new ReplaceOptions() { IsUpsert = true, BypassDocumentValidation = true, };
         public async Task<bool> Save<T>(T obj, RepoSaveArgs args = null) where T : IStringId
@@ -191,8 +210,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             try
             {
 
-                string typeName = typeof(T).Name;
-                string lowerName = typeName.ToLower();
+                string typeName = typeof(T).Name.ToLower();
                 if (funcObj is not Expression<Func<T, bool>> tFilter)
                 {
                     return new List<T>();
@@ -219,7 +237,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
                 foreach (T t in retval)
                 {
-                    t.Id = t.Id.Replace(lowerName, "");
+                    t.Id = t.Id.Replace(typeName, "");
                 }
                 return retval;
             }

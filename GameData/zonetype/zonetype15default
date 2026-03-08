@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "Dungeon",
   "Art": "Dungeon",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 109,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

@@ -43,7 +43,7 @@ namespace Genrpg.Shared.Crawler.Roles.Services
 
             long scalingLossPercent = 0;
 
-            if (crawlerUnit.StatusEffects.HasBit(StatusEffects.Cursed))
+            if (crawlerUnit.StatusEffects.HasBitIndex(StatusEffects.Cursed))
             {
                 scalingLossPercent = _gameData.Get<StatusEffectSettings>(_gs.ch).Get(StatusEffects.Cursed).Amount;
             }

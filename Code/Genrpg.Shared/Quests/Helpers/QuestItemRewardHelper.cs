@@ -8,6 +8,8 @@ namespace Genrpg.Shared.Quests.Helpers
 {
     public class QuestItemRewardHelper : IRewardHelper
     {
+        public long HelperKey => EntityTypes.QuestItem;
+
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
             if (quantity < 1)
@@ -18,7 +20,10 @@ namespace Genrpg.Shared.Quests.Helpers
             return true;
         }
 
-        public long HelperKey => EntityTypes.QuestItem;
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            return 0;
+        }
 
     }
 }

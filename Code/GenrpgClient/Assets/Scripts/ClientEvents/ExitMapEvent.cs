@@ -1,8 +1,9 @@
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Client.Interfaces;
 
 namespace ClientEvents
 {
-    public class ExitMapEvent
+    public class ExitMapEvent : IClientEvent
     {
         public Character Ch;
     }

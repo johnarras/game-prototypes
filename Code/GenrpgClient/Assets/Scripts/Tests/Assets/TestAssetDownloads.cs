@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Entities.Utils;

@@ -1,3 +1,4 @@
+using Genrpg.Shared.Client.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Genrpg.Shared.Client.GameEvents
         Error = 1,
     }
 
-    public class ShowFloatingText
+    public class ShowFloatingText : IClientEvent
     {
 
         public ShowFloatingText(string text, EFloatingTextArt art = EFloatingTextArt.Message)

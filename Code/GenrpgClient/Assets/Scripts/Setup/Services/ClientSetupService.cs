@@ -16,6 +16,8 @@ public class ClientSetupService : SetupService
         {
             service.SetGameToken(token);
         }
+
+
     }
 }
 

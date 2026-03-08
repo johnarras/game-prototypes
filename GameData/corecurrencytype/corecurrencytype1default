@@ -5,6 +5,6 @@
   "Name": "Coins",
   "Icon": "Coins",
   "Art": "Coins",
-  "RegenTraderStatId": 4,
-  "StorageTraderStatId": 5
+  "RegenTraderStatId": 2,
+  "StorageTraderStatId": 3
 }

@@ -130,7 +130,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             List<CrawlerUnit> allUnits = party.Combat.GetAllUnits();
 
             // Remove dead
-            allUnits = allUnits.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
+            allUnits = allUnits.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).ToList();
 
             party.Combat.AttackSequence = SequenceUnitActionsByAscendingPriority(party, allUnits);
             await Task.CompletedTask;
@@ -243,7 +243,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             foreach (CrawlerUnit unit in allUnits)
             {
-                if (unit.StatusEffects.HasBit(StatusEffects.Slowed))
+                if (unit.StatusEffects.HasBitIndex(StatusEffects.Slowed))
                 {
                     unit.CombatPriority *= combatSettings.SlowEffectPriorityScale;
                 }

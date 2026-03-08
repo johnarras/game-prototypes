@@ -7,6 +7,7 @@ using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddDetailHeights : BaseZoneGenerator
 {
@@ -212,7 +213,7 @@ public class AddDetailHeights : BaseZoneGenerator
                 float roadHeightMult = 1.0f;
 				
 				
-				if (false && alphamaps[wx,wy,MapConstants.RoadTerrainIndex] > 0.12f)
+				if (false && alphamaps[wx,wy,TerrainTexChannels.Road] > 0.12f)
 				{
 					roadHeightMult = 0;
 				}

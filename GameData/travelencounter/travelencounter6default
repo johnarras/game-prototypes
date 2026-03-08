@@ -1,0 +1,19 @@
+{
+  "Id": "travelencounter6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Beehive",
+  "Text": "You discover a beehive with delicious honey!",
+  "Weight": 100.0,
+  "GoodEffects": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 4,
+      "MinQuantity": 10,
+      "MaxQuantity": 20,
+      "Weight": 100.0
+    }
+  ],
+  "BadEffects": [],
+  "FailureEffects": []
+}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.WorldData;
@@ -112,7 +113,7 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         {
             for (int y = miny+closeCheckEdgeSize; y < maxy-closeCheckEdgeSize; y++)
             {
-                if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.IsRaisedOrLowered))
+                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsRaisedOrLowered))
                 {
                     tooCloseToRaisedOrLowered = true;
                     break;
@@ -353,7 +354,7 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                         }
 
                         // Use wx wy for global alphas value
-                        if (_md.alphas[wx, wy, MapConstants.RoadTerrainIndex] > 0)
+                        if (_md.alphas[wx, wy, TerrainTexChannels.Road] > 0)
                         {
                             if (xx < x)
                             {

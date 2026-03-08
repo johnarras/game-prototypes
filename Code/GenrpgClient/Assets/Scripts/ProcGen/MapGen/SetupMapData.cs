@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ public class SetupMapData : BaseZoneGenerator
 
             _terrainManager.SetAllTerrainNeighbors();
 
-            _md.alphas = new float[_md.awid, _md.ahgt, MapConstants.MaxTerrainIndex];
+            _md.alphas = new float[_md.awid, _md.ahgt, TerrainTexChannels.Max];
             _md.heights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
 
@@ -91,7 +92,7 @@ public class SetupMapData : BaseZoneGenerator
             {
                 for (int y = 0; y < _md.ahgt; y++)
                 {
-                    _md.alphas[x, y, MapConstants.BaseTerrainIndex] = 1.0f;
+                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
             }
         }

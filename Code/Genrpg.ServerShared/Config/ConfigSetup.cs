@@ -20,7 +20,8 @@ namespace Genrpg.ServerShared.Config
         {
 
             ServerConfig serverConfig = new ServerConfig();
-            serverConfig.DefaultEnv = ConfigurationManager.AppSettings[AppConfigKeys.MainEnv];
+
+            serverConfig.DefaultEnv = await GetValue(AppConfigKeys.DefaultEnv, null);
 
             if (!string.IsNullOrEmpty(envOverride))
             {
@@ -34,27 +35,41 @@ namespace Genrpg.ServerShared.Config
 
             SecretClient secretsClient = null;
 
-            string secretsVaultURI = ConfigurationManager.AppSettings[AppConfigKeys.KeyVaultURI];
+            string secretsVaultURI = await GetValue(AppConfigKeys.KeyVaultURI, null);
+            string secretsVaultPrefix = await GetValue(AppConfigKeys.KeyVaultPrefix, null);
 
             if (!string.IsNullOrEmpty(secretsVaultURI))
             {
-                string secretsSuffix = EnvNames.Dev.ToLower();
-                if (serverConfig.DefaultEnv.IndexOf(EnvNames.Prod.ToLower()) == 0 ||
-                        serverConfig.DefaultEnv.IndexOf(EnvNames.Staging.ToLower()) == 0)
+
+                List<string> vaultNames = new List<string>();
+
+                if (!EnvNames.IsProdEnv(serverConfig.DefaultEnv))
                 {
-                    secretsSuffix = EnvNames.Prod.ToLower() + "-testing";
+                    vaultNames.Add(EnvNames.Dev);
+                }
+                else
+                {
+                    vaultNames.Add(EnvNames.Prod + "-write");
+                    vaultNames.Add(EnvNames.Prod + "-read");
                 }
 
-                secretsVaultURI = secretsVaultURI.Replace(AppConfigKeys.PlaceholderString, AppConfigKeys.OrgSecretsVaultPrefix + secretsSuffix);
-
-                try
+                SecretClient secretClient = null;
+                foreach (string vaultName in vaultNames)
                 {
-                    secretsClient = new SecretClient(new Uri(secretsVaultURI), new DefaultAzureCredential());
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Failed to connect to secrets vault: " + e.Message);
+                    if (secretClient == null)
+                    {
+                        try
+                        {
+                            string fullSecretsVaultURI = secretsVaultURI.Replace(AppConfigKeys.PlaceholderString,  secretsVaultPrefix + vaultName);
+                            secretsClient = new SecretClient(new Uri(fullSecretsVaultURI), credential);
+                            await secretsClient.GetPropertiesOfSecretsAsync().AnyAsync();
+                            break;
+                        }
+                        catch
+                        {
+                            secretsClient = null;
+                        }
+                    }
                 }
             }
             string filePath = config.FilePath;
@@ -66,17 +81,17 @@ namespace Genrpg.ServerShared.Config
 
             serverConfig.MessagingEnv = await GetValueOrDefault(AppConfigKeys.MessagingEnv, serverConfig.DefaultEnv, secretsClient);
 
-            serverConfig.ContentRoot = ConfigurationManager.AppSettings[AppConfigKeys.ContentRoot];
+            serverConfig.ContentRoot = await GetValue(AppConfigKeys.ContentRoot, secretsClient);
 
-            serverConfig.PublicIP = ConfigurationManager.AppSettings[AppConfigKeys.PublicIP];
+            serverConfig.PublicIP = await GetValue(AppConfigKeys.PublicIP, secretsClient);
 
-            serverConfig.PackageName = ConfigurationManager.AppSettings[AppConfigKeys.PackageName];
+            serverConfig.PackageName = await GetValue(AppConfigKeys.PackageName, secretsClient);
 
-            serverConfig.IOSBuyValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.IOSBuyValidationURL];
+            serverConfig.IOSBuyValidationURL = await GetValue(AppConfigKeys.IOSBuyValidationURL, secretsClient);
 
-            serverConfig.IOSSandboxValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.IOSSandboxValidationURL];
+            serverConfig.IOSSandboxValidationURL = await GetValue(AppConfigKeys.IOSSandboxValidationURL, secretsClient);
 
-            serverConfig.GooglePlayValidationURL = ConfigurationManager.AppSettings[AppConfigKeys.GooglePlayValidationURL];
+            serverConfig.GooglePlayValidationURL = await GetValue(AppConfigKeys.GooglePlayValidationURL, secretsClient) ;
 
             List<string> allKeys = ConfigurationManager.AppSettings.AllKeys.ToList();
 
@@ -84,7 +99,7 @@ namespace Genrpg.ServerShared.Config
 
             foreach (string repoType in Enum.GetNames(typeof(ERepoTypes)))
             {
-                defaultConnections[repoType] = ConfigurationManager.AppSettings[repoType + AppConfigKeys.Default + AppConfigKeys.ConnectionSuffix];
+                defaultConnections[repoType] = await GetValue(repoType + AppConfigKeys.Default + AppConfigKeys.ConnectionSuffix, secretsClient);
             }
 
             foreach (string key in allKeys)
@@ -108,22 +123,19 @@ namespace Genrpg.ServerShared.Config
                 }
             }
 
-
-            string txt = serverConfig.GetSecret("TestSecret");
-            Console.WriteLine("TestSecret:" + txt);
             await Task.CompletedTask;
             return serverConfig;
         }
 
-        private async Task<string> GetValueOrDefault(string key, string defaultValue, SecretClient secretClient)
+        private async Task<string> GetValue(string key, SecretClient secretClient)
         {
-            string configValue = ConfigurationManager.AppSettings[key];
-            
-            if (configValue == AppConfigKeys.Default)
+            string val = Environment.GetEnvironmentVariable(key);
+
+            if (string.IsNullOrEmpty(val))
             {
-                return defaultValue;
+                val = ConfigurationManager.AppSettings[key];
             }
-            
+
             if (secretClient != null)
             {
                 try
@@ -131,7 +143,7 @@ namespace Genrpg.ServerShared.Config
                     KeyVaultSecret secret = await secretClient.GetSecretAsync(key);
                     if (secret != null && !string.IsNullOrEmpty(secret.Value))
                     {
-                        configValue = secret.Value;
+                        val = secret.Value;
                     }
                 }
                 catch (RequestFailedException rfe) when (rfe.Status == 404)
@@ -143,7 +155,17 @@ namespace Genrpg.ServerShared.Config
                     Console.WriteLine("Missing Secret: " + ex.Message);
                 }
             }
+            return val;
+        }
 
+        private async Task<string> GetValueOrDefault(string key, string defaultValue, SecretClient secretClient)
+        {
+            string configValue = await GetValue(key, secretClient);
+            
+            if (configValue == AppConfigKeys.Default)
+            {
+                return defaultValue;
+            }
 
             if (string.IsNullOrEmpty(configValue))
             {

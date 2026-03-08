@@ -1,6 +1,8 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Entities;
 using Genrpg.RequestServer.Rewards.Services;
+using Genrpg.RequestServer.Trader.Encounters.Services;
+using Genrpg.RequestServer.Trader.Stats.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Services;
 using Genrpg.Shared.CoreCurrencies.Settings;
@@ -19,11 +21,13 @@ namespace Genrpg.RequestServer.Resets.Services
         private IGameData _gameData = null;
         private ICoreCurrencyService _coreCurrencyService = null;
         private IWebRewardService _rewardService = null;
+        private ITravelEncounterService _encounterService = null;
+        private IServerTraderStatService _traderStatService = null;
         public async Task CheckHourlyCurrencyUpdate(WebContext context, HourlyResetArgs args)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 
-            long resetHours = 0;
+            long regenHours = 0;
             if (!args.IsCamping)
             {
                 DateTime nowTime = DateTime.UtcNow;
@@ -32,13 +36,13 @@ namespace Genrpg.RequestServer.Resets.Services
                     return;
                 }
 
-                resetHours = (int)(nowTime - coreData.NextHourlyUpdate).TotalHours + 1;
+                regenHours = (int)(nowTime - coreData.NextHourlyUpdate).TotalHours + 1;
             }
             else
             {
                 CampingSettings campingSettings = _gameData.Get<CampingSettings>(context.core);
 
-                resetHours = (args.InCity ? campingSettings.CityRegenHours : campingSettings.RoadRegenHours);
+                regenHours = (args.InCity ? campingSettings.CityRegenHours : campingSettings.RoadRegenHours);
             }
 
             IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(context.core).GetData();
@@ -61,7 +65,7 @@ namespace Genrpg.RequestServer.Resets.Services
 
                 long maxAdded = storageVal - currVal;
 
-                long newRegen = Math.Min(maxAdded, resetHours * regenVal);
+                long newRegen = Math.Min(maxAdded, regenHours * regenVal);
 
                 if (newRegen > 0)
                 {
@@ -81,7 +85,6 @@ namespace Genrpg.RequestServer.Resets.Services
                 coreData.Vars.Add(TraderVars.PlayCount, 1);
             }
 
-
             if (!args.OnLogin)
             {
                 context.AddResponse(new HourlyUpdateResponse()
@@ -91,6 +94,14 @@ namespace Genrpg.RequestServer.Resets.Services
                     Day = coreData.Vars[TraderVars.PlayCount],
                 });
             }
+
+            await _traderStatService.AddDebuffDaysPlayed(context, regenHours, true);
+
+            if (args.IsCamping)
+            {
+                await _encounterService.TryCampingEncounter(context);
+            }
+
         }
     }
 }

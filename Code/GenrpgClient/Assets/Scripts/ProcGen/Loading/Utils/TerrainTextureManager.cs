@@ -1,11 +1,13 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.Zones.WorldData;
 using System.Collections.Generic;
@@ -70,7 +72,7 @@ public class TerrainTextureManager : ITerrainTextureManager
         {
             Zone zone = _mapProvider.GetMap().Get<Zone>(zoneId);
 
-            for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+            for (int i = 0; i < TerrainTexChannels.Max; i++)
             {
                 if (!patch.TerrainTextureIndexes.Contains(zone.GetTerrainTextureByIndex(i)))
                 {

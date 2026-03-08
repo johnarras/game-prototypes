@@ -16,7 +16,7 @@ namespace Genrpg.Shared.Crawler.Options.Services
 
         public bool HasOption(PartyData party, long optionIndex)
         {
-            return FlagUtils.IsSet(party.Options, (1 << (int)optionIndex));
+            return FlagUtils.MatchesAnyBits(party.Options, (1 << (int)optionIndex));
         }
     }
 }

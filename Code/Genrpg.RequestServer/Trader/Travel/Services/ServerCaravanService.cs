@@ -52,7 +52,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             coreData.Vars[TraderVars.FromX] = position.CurrX;
             coreData.Vars[TraderVars.FromY] = position.CurrY;
             coreData.Vars[TraderVars.DistanceGone] = 0;
-            coreData.Vars[TraderVars.DistanceToTarget] = _traderMapService.GetDistanceBetweenPoints(
+            coreData.Vars[TraderVars.TotalDistanceToTarget] = _traderMapService.GetDistanceBetweenPoints(
                 _gameData.Get<TravelSettings>(coreData), position.CurrX, position.CurrY, request.ToX, request.ToY);
             coreData.Vars[TraderVars.CityId] = 0;
             City toCity = _gameData.Get<CitySettings>(coreData).GetData().FirstOrDefault(
@@ -85,7 +85,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             response.FromY = coreData.Vars[TraderVars.FromY];
             response.ToX = coreData.Vars[TraderVars.ToX];
             response.ToY = coreData.Vars[TraderVars.ToY];
-            response.DistanceToTarget = coreData.Vars[TraderVars.DistanceToTarget];
+            response.TotalDistanceToTarget = coreData.Vars[TraderVars.TotalDistanceToTarget];
             response.ToCityId = coreData.Vars[TraderVars.CityId];
             response.NewTraderFlags = coreData.Vars[TraderVars.Flags];
             response.Success = true;
@@ -120,7 +120,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             coreData.Vars[TraderVars.ToX] = city.MapPixelX;
             coreData.Vars[TraderVars.ToY] = city.MapPixelY;
             coreData.Vars[TraderVars.DistanceGone] = 0;
-            coreData.Vars[TraderVars.DistanceToTarget] = 0;
+            coreData.Vars[TraderVars.TotalDistanceToTarget] = 0;
             coreData.Vars[TraderVars.CityId] = (int)cityId;
 
         }

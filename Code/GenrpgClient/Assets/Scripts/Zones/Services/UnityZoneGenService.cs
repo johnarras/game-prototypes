@@ -11,6 +11,7 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.UI.Constants;
@@ -330,19 +331,19 @@ public class UnityZoneGenService : ZoneGenService
             for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
             {
                 float alphaTotal = 0.0f;
-                for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
                     alphaTotal += _md.alphas[x, y, i];
                 }
                 if (alphaTotal <= 0)
                 {
-                    _md.alphas[x, y, MapConstants.BaseTerrainIndex] = 0.75f;
-                    _md.alphas[x, y, MapConstants.DirtTerrainIndex] = 0.25f;
+                    _md.alphas[x, y, TerrainTexChannels.Base] = 0.75f;
+                    _md.alphas[x, y, TerrainTexChannels.Dirt] = 0.25f;
                 }
                 else
                 {
-                    for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                    for (int i = 0; i < TerrainTexChannels.Max; i++)
                     {
                         _md.alphas[x, y, i] /= alphaTotal;
                         _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
@@ -371,7 +372,7 @@ public class UnityZoneGenService : ZoneGenService
 
                 if (patch.baseAlphas == null)
                 {
-                    patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, MapConstants.MaxTerrainIndex];
+                    patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, TerrainTexChannels.Max];
                 }
 
                 int startx = gy * (MapConstants.TerrainPatchSize - 1);
@@ -383,7 +384,7 @@ public class UnityZoneGenService : ZoneGenService
                     {
                         patch.mainZoneIds[x, y] = (byte)_md.mapZoneIds[startx + x, starty + y];
                         patch.subZoneIds[x, y] = (byte)_md.subZoneIds[startx + x, starty + y];
-                        for (int index = 0; index < MapConstants.MaxTerrainIndex; index++)
+                        for (int index = 0; index < TerrainTexChannels.Max; index++)
                         {
                             patch.baseAlphas[x, y, index] = _md.alphas[x + startx, y + starty, index];
                         }
@@ -420,7 +421,7 @@ public class UnityZoneGenService : ZoneGenService
 
         if (patch.baseAlphas == null)
         {
-            patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, MapConstants.MaxTerrainIndex];
+            patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, TerrainTexChannels.Max];
         }
 
         int firstZoneIndex = -1;
@@ -559,7 +560,7 @@ public class UnityZoneGenService : ZoneGenService
 
                         int baseIndex = patch.TerrainTextureIndexes.IndexOf(zone.BaseTextureTypeId);
 
-                        for (int index = 0; index < MapConstants.MaxTerrainIndex; index++)
+                        for (int index = 0; index < TerrainTexChannels.Max; index++)
                         {
                             long textureTypeId = zone.GetTerrainTextureByIndex(index);
                             int fullIndex = patch.TerrainTextureIndexes.IndexOf(textureTypeId);
@@ -843,6 +844,7 @@ public class UnityZoneGenService : ZoneGenService
     }
 
 
+
     public override void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token)
     {
 
@@ -862,6 +864,12 @@ public class UnityZoneGenService : ZoneGenService
         {
             return;
         }
+
+        InitTerrainSettings(terr, patchSize);
+    }
+
+    public override void InitTerrainSettings(Terrain terr, int patchSize)
+    {
         LODGroup lg = terr.gameObject.GetComponent<LODGroup>();
 
 

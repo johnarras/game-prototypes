@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using Assets.Scripts.Trader.ClientEvents;
+using Assets.Scripts.Trader.Travel.ClientEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Trader.Caravans.Services
         {
             base.UpdateTravelStats(core);
 
-            _dispatcher.Dispatch(new VisualUpdateTravelStats());
+            _dispatcher.Dispatch(new UpdateTraderHUD());
 
         }
     }

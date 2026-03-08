@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 
             foreach (CrawlerMap cityMap in cities)
             {
-                if (!party.CompletedMaps.HasBit(cityMap.IdKey))
+                if (!party.CompletedMaps.HasBitIndex(cityMap.IdKey))
                 {
                     continue;
                 }

@@ -8,7 +8,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
 
         private MemberUpgrade _upgrade = null;
 
-        public void InitData(MemberUpgrade upgrade, long tier, double value)
+        public void SetData(MemberUpgrade upgrade, long tier, double value)
         {
             _upgrade = upgrade;
             _uiService.SetText(MainText, _infoService.CreateInfoLink(upgrade) + "(" + tier + ") " + (value >= 0 ? "+" : "") + value);

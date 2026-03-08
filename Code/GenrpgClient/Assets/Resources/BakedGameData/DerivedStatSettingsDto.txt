@@ -3,13 +3,13 @@
     {
       "Name": "DerivedStat",
       "FromStatTypeId": 11,
-      "ToStatTypeId": 21,
+      "ToStatTypeId": 61,
       "Percent": 100
     },
     {
       "Name": "DerivedStat",
       "FromStatTypeId": 11,
-      "ToStatTypeId": 61,
+      "ToStatTypeId": 21,
       "Percent": 100
     },
     {
@@ -32,15 +32,15 @@
     },
     {
       "Name": "DerivedStat",
-      "FromStatTypeId": 15,
-      "ToStatTypeId": 1,
-      "Percent": 1000
-    },
-    {
-      "Name": "DerivedStat",
       "FromStatTypeId": 14,
       "ToStatTypeId": 22,
       "Percent": 100
+    },
+    {
+      "Name": "DerivedStat",
+      "FromStatTypeId": 15,
+      "ToStatTypeId": 1,
+      "Percent": 1000
     },
     {
       "Name": "DerivedStat",

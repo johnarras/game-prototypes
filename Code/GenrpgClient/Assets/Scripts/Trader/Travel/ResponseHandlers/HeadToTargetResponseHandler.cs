@@ -31,7 +31,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             coreData.Vars[TraderVars.ToY] = response.ToY;
             coreData.Vars[TraderVars.CityId] = response.ToCityId;
             coreData.Vars[TraderVars.DistanceGone] = 0;
-            coreData.Vars[TraderVars.DistanceToTarget] = response.DistanceToTarget;
+            coreData.Vars[TraderVars.TotalDistanceToTarget] = response.TotalDistanceToTarget;
 
             long oldFlags = coreData.Vars[TraderVars.Flags];
             coreData.Vars[TraderVars.Flags] = response.NewTraderFlags;
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             }
 
             _dispatcher.Dispatch(new CloseScreen(ScreenNames.TraderCityRoads));
-            _dispatcher.Dispatch(new UpdateTraderStatusUI());
+            _dispatcher.Dispatch(new UpdateTraderHUD() {  FullRefresh = true });
             _dispatcher.Dispatch(new UpdateTraderMapAngle());
         }
     }

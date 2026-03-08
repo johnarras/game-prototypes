@@ -1,4 +1,5 @@
 using Assets.Scripts.Awaitables;
+using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.Utils;
 using System;
 using UnityEngine;
@@ -24,7 +25,9 @@ public class ProgressBar : BaseBehaviour
     public RectTransform BGRect;
     public RectTransform FrontRect;
     public RectTransform BackRect;
+    public GameObject FrontBarRHS;
     public int FillTicks = 0;
+    public int MinFillTicks = 0;
     public float PulsePercent;
     public float MinBarWidth;
     public float MaxBarWidth;
@@ -36,6 +39,7 @@ public class ProgressBar : BaseBehaviour
     private long _maxValue = 1;
     private long _currValue = 0;
     private long _targetValue = 0;
+    private long _startValueWhenTargetSet = 0;
     private long _oldValue = -999999999999;
 
     private string _customText = "";
@@ -53,6 +57,16 @@ public class ProgressBar : BaseBehaviour
     public long GetCurrValue()
     {
         return _currValue;
+    }
+
+    public long GetTargetValue()
+    {
+        return _targetValue;
+    }
+
+    public long GetStartValueWhenTargetSet()
+    {
+        return _startValueWhenTargetSet;
     }
 
     public override void Init()
@@ -77,6 +91,7 @@ public class ProgressBar : BaseBehaviour
         _minValue = minValue;
         _maxValue = maxValue;
         _currValue = currValue;
+        _startValueWhenTargetSet = currValue;
         _targetValue = currValue;
         _oldValue = Math.Min(-1, _currValue - 1);
         _didShowAfterInit = false;
@@ -157,6 +172,15 @@ public class ProgressBar : BaseBehaviour
             float barWidth = (float)(currPct - 1) * barSize;
 
             rect.sizeDelta = new UnityEngine.Vector2(barWidth, rect.sizeDelta.y);
+
+            if (FrontBarRHS != null)
+            {
+                float pivotOffset = 1.0f - rect.pivot.x;
+                float rightEdgeX = rect.rect.width * pivotOffset;
+
+                Vector3 currPos = FrontBarRHS.transform.localPosition;
+                FrontBarRHS.transform.localPosition = new Vector3(rightEdgeX, currPos.y, currPos.z);
+            }
         }
     }
 
@@ -205,13 +229,16 @@ public class ProgressBar : BaseBehaviour
 
     public void SetValue(long value, string customText = "")
     {
+        _startValueWhenTargetSet = _targetValue;
         _targetValue = value;
         _customText = customText;
     }
 
+    public void AddValue(long value, string customText = "")
+    {
+        SetValue(_targetValue+value, customText);   
+    }
 
-    private float fillFraction = 0;
-    private float currFillFraction = 0;
     void ProgressUpdate()
     {
         if (_currValue == _targetValue)
@@ -222,6 +249,8 @@ public class ProgressBar : BaseBehaviour
         long diff = _targetValue - _currValue;
 
         long fillSpeed = _maxValue - _minValue;
+
+        long currFillLength = _targetValue - _startValueWhenTargetSet;
 
         long startFillSpeed = fillSpeed;
 
@@ -234,16 +263,20 @@ public class ProgressBar : BaseBehaviour
                 {
                     fillSpeed = 1;
                 }
-                else
-                {
-                    fillFraction = 1.0f * startFillSpeed / FillTicks;
-                    currFillFraction += fillFraction;
-                }
             }
-            else if (currFillFraction >= 1)
+            else if (MinFillTicks > 1) // fillSpeed > 0, now perhaps slow it down if there are too many ticks.
             {
-                currFillFraction -= 1;
-                fillSpeed = 1;
+                long maxFillSpeed = (long)Math.Ceiling(Math.Abs(currFillLength * 1.0f / MinFillTicks)); // take at least MinFilTicks to fill any length, even if the whole bar fill speed is fast.
+
+                if (maxFillSpeed < 1)
+                {
+                    maxFillSpeed = 1;
+                }
+
+                if (fillSpeed > maxFillSpeed)
+                {
+                    fillSpeed = maxFillSpeed;   
+                }
             }
         }
 
@@ -271,6 +304,10 @@ public class ProgressBar : BaseBehaviour
         ShowPulse();
     }
 
+    public bool IsAnimating()
+    {
+        return _currValue != _targetValue;
+    }
 
     private void ShowPulse()
     {

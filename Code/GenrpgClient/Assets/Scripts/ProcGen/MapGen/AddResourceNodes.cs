@@ -11,6 +11,7 @@ using Genrpg.Shared.Zones.WorldData;
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.GroundObjects.Settings;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class ZoneResourceNodeData
 {
@@ -196,7 +197,7 @@ public class AddResourceNodes : BaseZoneGenerator
                 continue;
             }
 
-            if (FlagUtils.IsSet(_md.flags[cx, cy], MapGenFlags.BelowWater))
+            if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.BelowWater))
             {
                 continue;
             }
@@ -204,12 +205,12 @@ public class AddResourceNodes : BaseZoneGenerator
             {
                 continue;
             }
-            if (_md.alphas[cx, cy, MapConstants.RoadTerrainIndex] > 0)
+            if (_md.alphas[cx, cy, TerrainTexChannels.Road] > 0)
             {
                 continue;
             }
 
-            if (FlagUtils.IsSet(_md.flags[cx,cy],MapGenFlags.NearResourceNode))
+            if (FlagUtils.MatchesAnyBits(_md.flags[cx,cy],MapGenFlags.NearResourceNode))
             {
                 continue;
             }

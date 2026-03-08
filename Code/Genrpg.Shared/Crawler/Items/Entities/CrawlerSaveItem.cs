@@ -1,8 +1,10 @@
+using Genrpg.Shared.Effects.Interfaces;
 using Genrpg.Shared.Inventory.PlayerData;
 using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Genrpg.Shared.Crawler.Items.Entities
 {
@@ -20,6 +22,21 @@ namespace Genrpg.Shared.Crawler.Items.Entities
 
     }
 
+    public class SaveEffect
+    {
+        public long[] Dat { get; set; } = new long[3];
+
+        public SaveEffect()
+        {
+            Dat = new long[3];
+        }
+
+        public SaveEffect(IEffect eff)
+        {
+            Dat = new long[3] { eff.EntityTypeId, eff.EntityId, eff.Quantity };
+        }
+    }
+
     public class CrawlerSaveItem
     {
         public string Id { get; set; }
@@ -27,9 +44,10 @@ namespace Genrpg.Shared.Crawler.Items.Entities
 
         public string Dat { get; set; }
 
-        public List<ItemEffect> Effects { get; set; } = new List<ItemEffect>();
-
         private long[] _dat = null;
+
+        public List<SaveEffect> SaveEffects { get; set; }= new List<SaveEffect>();
+
 
         public long Get(long index)
         {

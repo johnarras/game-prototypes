@@ -19,26 +19,17 @@ namespace Genrpg.Shared.Trader.Calendar.Services
                 totalDays = 0;
             }
 
-            long dayOfWeek = totalDays % CalendarConstants.DaysPerWeek;
+            long dayOfMonth = 1 + totalDays % CalendarConstants.DaysPerMonth;
 
-            totalDays /= CalendarConstants.DaysPerWeek;
+            long monthOfYear = 1 + totalDays % CalendarConstants.MonthsPerYear;
 
-            long weekOfMonth = totalDays % CalendarConstants.WeeksPerMonth;
-
-            totalDays /= CalendarConstants.WeeksPerMonth;
-
-            long monthOfYear = totalDays % CalendarConstants.MonthsPerYear;
-
-            totalDays /= CalendarConstants.MonthsPerYear;
+            long year = CalendarConstants.StartYear + totalDays / CalendarConstants.MonthsPerYear;
 
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("It is the " + (dayOfWeek + 1) + NumberUtils.GetOrdinalSuffix(dayOfWeek + 1) + " day");
-            sb.Append(" of the " + (weekOfMonth + 1) + NumberUtils.GetOrdinalSuffix(weekOfMonth + 1) + " week");
-            sb.Append(" of the " + (monthOfYear + 1) + NumberUtils.GetOrdinalSuffix(monthOfYear + 1) + " month");
-            sb.Append(" of the year " + (totalDays + CalendarConstants.StartYear));
-
+            sb.Append("The " + (dayOfMonth + 1) + NumberUtils.GetOrdinalSuffix(dayOfMonth + 1) + " of " +
+                "M" + (monthOfYear + 1) + " in " + year);
             return sb.ToString();
 
         }

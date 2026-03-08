@@ -599,8 +599,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                             }
 
                             int bits = map.GetEntityId(xx, zz, EntityTypes.MapMagic);
-                            if (FlagUtils.IsSet(bits, (1 << MapMagics.Silence)) &&
-                                FlagUtils.IsSet(bits, (1 << MapMagics.NoMagic)))
+                            if (FlagUtils.MatchesAnyBits(bits, (1 << MapMagics.Silence)) &&
+                                FlagUtils.MatchesAnyBits(bits, (1 << MapMagics.NoMagic)))
                             {
                                 continue;
                             }

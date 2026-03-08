@@ -1,4 +1,5 @@
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.DynamicUI.Services;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Crawler.Crafting.Settings;
 using Genrpg.Shared.Crawler.Currencies.Settings;
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
         private IGameData _gameData = null;
         private IClientRandom _rand = null;
         private IDispatcher _dispatcher = null;
+        private IDynamicUIService _dynamicUIService = null;
 
         public bool ScrapItem(PartyData party, Item item, Vector3 startPos)
         {
@@ -73,17 +75,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
                 if (currencyCounts[idkey] > 0)
                 {
                     party.Currencies.Add(idkey, currencyCounts[idkey]);
-
-                    ShowDooberEvent showDoober = new ShowDooberEvent()
-                    {
-                        StartPosition = startPos,
-                        EntityTypeId = EntityTypes.CrawlerCurrency,
-                        EntityId = idkey,
-                        Quantity = currencyCounts[idkey],
-                        StartsInUI = true,
-                    };
-
-                    _dispatcher.Dispatch(showDoober);
+                    _dynamicUIService.ShowEntityDooberWithStartPosition(EntityTypes.CrawlerCurrency, idkey, currencyCounts[idkey], true, startPos);
                 }
             }
 

@@ -12,6 +12,7 @@ using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.Zones.WorldData;
 using Assets.Scripts.ProcGen.Loading.Utils;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddBridges : BaseZoneGenerator
 {
@@ -415,7 +416,7 @@ public class AddBridges : BaseZoneGenerator
 
                 for (int y = 0; y < yvals.Count; y++)
                 {
-                    if (FlagUtils.IsSet(_md.flags[x,y],MapGenFlags.NearWater))
+                    if (FlagUtils.MatchesAnyBits(_md.flags[x,y],MapGenFlags.NearWater))
                     {
                         nearWater = true;
                         break;
@@ -432,7 +433,7 @@ public class AddBridges : BaseZoneGenerator
 
                 for (int x = 0; x < xvals.Count; x++)
                 {
-                    if (FlagUtils.IsSet(_md.flags[x,y], MapGenFlags.NearWater))
+                    if (FlagUtils.MatchesAnyBits(_md.flags[x,y], MapGenFlags.NearWater))
                     {
                         nearWater = true;
                         break;
@@ -541,8 +542,8 @@ public class AddBridges : BaseZoneGenerator
                     {
                         closeToMid = true;
                         _md.ClearAlphasAt(ax, az);
-                        _md.alphas[ax, az, MapConstants.BaseTerrainIndex] = 0.99f;
-                        _md.alphas[ax, az, MapConstants.RoadTerrainIndex] = 0.01f;
+                        _md.alphas[ax, az, TerrainTexChannels.Base] = 0.99f;
+                        _md.alphas[ax, az, TerrainTexChannels.Road] = 0.01f;
                     }
 
                     float minEndPtSize = 2.0f;
@@ -563,7 +564,7 @@ public class AddBridges : BaseZoneGenerator
                             if (!closeToMid)
                             {
                                 //_md.ClearAlphasAt(ax, az);
-                                //_md.alphas[ax, az, MapConstants.RoadTerrainIndex] = 1.0f;
+                                //_md.alphas[ax, az, TerrainTexChannels.Road] = 1.0f;
                             }
                             continue;
                         }
@@ -626,9 +627,9 @@ public class AddBridges : BaseZoneGenerator
                     float distToRoad = _md.roadDistances[ax, az];
 					if (distToRoad < rad)
 					{
-						aveSplat = _md.GetAverageSplatNear(ax, az, rad, MapConstants.RoadTerrainIndex);
+						aveSplat = _md.GetAverageSplatNear(ax, az, rad, TerrainTexChannels.Road);
 					}
-					float currSplat = _md.alphas[ax,az,MapConstants.RoadTerrainIndex];	
+					float currSplat = _md.alphas[ax,az,TerrainTexChannels.Road];	
 					float maxRoadSplatAllowed = 0.50f;
 
 					currSplat = 0;
@@ -688,7 +689,7 @@ public class AddBridges : BaseZoneGenerator
 							if (minDist >= 10)
 							{
 								_md.ClearAlphasAt(x, z);
-								_md.alphas[x, z, MapConstants.BaseTerrainIndex] = 1;
+								_md.alphas[x, z, TerrainTexChannels.Base] = 1;
 							}
 						}
 					}
@@ -722,10 +723,10 @@ public class AddBridges : BaseZoneGenerator
 
 					if (cdist < halfBridgeLength+2 && distFromBridgeEnd > 2)
 					{
-                        float currRoad = _md.alphas[ax, az, MapConstants.RoadTerrainIndex];
-						_md.alphas[ax, az, MapConstants.RoadTerrainIndex] = 0;
-						_md.alphas[ax, az, MapConstants.BaseTerrainIndex] += currRoad / 2;
-						_md.alphas[ax, az, MapConstants.DirtTerrainIndex] += currRoad / 2;
+                        float currRoad = _md.alphas[ax, az, TerrainTexChannels.Road];
+						_md.alphas[ax, az, TerrainTexChannels.Road] = 0;
+						_md.alphas[ax, az, TerrainTexChannels.Base] += currRoad / 2;
+						_md.alphas[ax, az, TerrainTexChannels.Dirt] += currRoad / 2;
 					}
 					
 				}

@@ -1,4 +1,5 @@
 
+using Assets.Scripts.DynamicUI.Services;
 using ClientEvents;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
@@ -6,10 +7,10 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Messages;
 using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Units.Entities;
+using System.Linq.Expressions;
 
 public class ExpBar : BaseBehaviour
 {
-
     public ProgressBar _progressBar;
 
     private long _curr = 0;

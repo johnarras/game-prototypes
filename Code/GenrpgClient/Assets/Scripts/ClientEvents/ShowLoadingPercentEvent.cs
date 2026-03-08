@@ -1,6 +1,8 @@
+using Genrpg.Shared.Client.Interfaces;
+
 namespace ClientEvents
 {
-    public class ShowLoadingPercentEvent
+    public class ShowLoadingPercentEvent : IClientEvent
     {
         public int CurrStep;
         public int TotalSteps;

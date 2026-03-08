@@ -4,8 +4,5 @@
   "IdKey": 2,
   "Name": "Searching",
   "Icon": "Searching",
-  "Art": "Searching",
-  "BonusSpeed": -1,
-  "ForageChance": 0.05,
-  "GoodEventChance": 0.02
+  "Art": "Searching"
 }

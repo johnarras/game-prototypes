@@ -14,11 +14,17 @@ namespace Genrpg.Shared.Spells.Helpers
 
     public class SpellRewardHelper : IRewardHelper
     {
+        public long HelperKey => EntityTypes.Spell;
+
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
             return true;
         }
-        public long HelperKey => EntityTypes.Spell;
+
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            return 0;
+        }
     }
 }
 

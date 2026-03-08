@@ -215,7 +215,7 @@ public class AddMountainNoise : BaseAddMountains
                                 hgt *= currDist / currTerraceSize * 0.8f;
                             }
                         }
-                        if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.IsSecondaryWall) && !showTerraces)
+                        if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsSecondaryWall) && !showTerraces)
                         {
                             hgt *= secondaryWallScale;
                         }

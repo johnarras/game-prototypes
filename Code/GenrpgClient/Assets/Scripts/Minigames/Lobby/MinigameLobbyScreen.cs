@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
+using Genrpg.Shared.Minigames.Games.Settings;
 using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -45,7 +44,7 @@ namespace Assets.Scripts.Minigames.Lobby
 
                 _clientEntityService.AddToParent(icon, IconParent);
 
-                icon.InitData(mtype, this);
+                icon.SetData(mtype, this);
             }
             await Task.CompletedTask;
         }

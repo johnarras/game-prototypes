@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:WindowBase
+    x:Class="Genrpg.Editor.GeminiApiWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Genrpg.Editor"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="GeminiApiWindow">
+
+    <Grid Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Column="0" Padding="20" Spacing="10" HorizontalAlignment="Left" Width="800">
+            <TextBlock x:Name="PromptLabel" 
+                   Text="Prompt:" 
+                   Style="{StaticResource BodyTextBlockStyle}"/>
+
+            <TextBox x:Name="PromptInputBox" 
+                 PlaceholderText="Type here..."
+                 Width="800"
+                 Height="600"     
+                 HorizontalAlignment="Left"/>
+            <TextBox x:Name="OutputFileInputBox" Header="Enter Output File Path:" PlaceholderText="Output Path..." Width="400"/>
+            <TextBlock x:Name="StatusText" Text="Status:"></TextBlock>
+            <Button x:Name="SendButton" Content="Send"></Button>
+        </StackPanel>
+
+        <Image x:Name="OutputImage" 
+           Grid.Column="1" 
+           Margin="20,0,0,0"
+           Stretch="Uniform"
+           Width="1024"
+           Height="1024"
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Top"/>
+    </Grid>
+</local:WindowBase>

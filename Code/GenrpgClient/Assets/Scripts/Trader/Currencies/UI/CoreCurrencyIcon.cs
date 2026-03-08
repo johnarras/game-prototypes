@@ -1,4 +1,3 @@
-using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Services;
@@ -7,6 +6,7 @@ using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 using Genrpg.Shared.Utils;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Trader.UI.Currencies
 {
@@ -22,6 +22,11 @@ namespace Assets.Scripts.Trader.UI.Currencies
         public override void Init()
         {
             SetEntityData(EntityTypes.CoreCurrency, EntityUI.EntityId, 0);
+        }
+
+        protected override GameObject GetDooberHitPosition()
+        {
+            return FillBar.FrontBarRHS;
         }
 
         public override void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
@@ -57,15 +62,6 @@ namespace Assets.Scripts.Trader.UI.Currencies
                 long regen = _coreCurrencyService.GetRegen(_entityId, coreData, _gs.ch.Get<TraderStatData>());
                 _uiService.SetText(QuantityText, $"+{regen} in " + TimeUtils.PrintTime(finalSeconds));
             }
-        }
-
-        protected override void OnReplaceEntityModel(ReplaceEntityModel model)
-        {
-            if (model.EntityTypeId != EntityTypes.CoreCurrency || model.EntityId != EntityUI.EntityId)
-            {
-                return;
-            }
-            Init();
         }
     }
 }

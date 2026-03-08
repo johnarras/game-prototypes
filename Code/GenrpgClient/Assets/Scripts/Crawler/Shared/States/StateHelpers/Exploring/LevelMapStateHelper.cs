@@ -30,7 +30,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             PartyData party = _crawlerService.GetParty();
 
-            bool isComplete = party.CompletedMaps.HasBit(party.CurrPos.MapId);
+            bool isComplete = party.CompletedMaps.HasBitIndex(party.CurrPos.MapId);
 
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 

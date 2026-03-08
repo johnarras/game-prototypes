@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "Tower",
   "Art": "Tower",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 111,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

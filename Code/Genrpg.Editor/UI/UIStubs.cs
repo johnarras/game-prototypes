@@ -1,4 +1,4 @@
-using Genrpg.Editor.UI.Interfaces;
+using Genrpg.DataUtils.Interfaces;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -88,14 +88,6 @@ namespace Genrpg.Editor.UI
         {
             return Children;
         }
-    }
-
-
-    public enum ContentDialogResultBase
-    {
-        None=0,
-        Primary=1,
-        Secondary=2,
     }
 }
 

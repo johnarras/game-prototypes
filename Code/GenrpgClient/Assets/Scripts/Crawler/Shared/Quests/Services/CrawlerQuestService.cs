@@ -191,7 +191,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 return;
             }
 
-            if (party.CompletedQuests.HasBit(fullQuest.Quest.IdKey))
+            if (party.CompletedQuests.HasBitIndex(fullQuest.Quest.IdKey))
             {
                 ShowCompleteQuestError("You already completed this quest.");
                 return;
@@ -233,7 +233,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
             lootGenData.ItemCount += (int)MathUtil.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
             party.Quests.Remove(partyQuest);
-            party.CompletedQuests.SetBit(fullQuest.Quest.IdKey);
+            party.CompletedQuests.SetBitIndex(fullQuest.Quest.IdKey);
 
 
             NewUpgradePointsResult questCompleteResult = _upgradeService.GetNewPartyUpgradePoints(party, levelAtParty, UpgradeReasons.CompleteQuest, "");
@@ -290,7 +290,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                     foreach (long okMapId in okMapIds)
                     {
-                        if (party.CompletedMaps.HasBit(okMapId))
+                        if (party.CompletedMaps.HasBitIndex(okMapId))
                         {
                             partyQuest.CurrQuantity = quest.Quantity;
                             break;
@@ -348,7 +348,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 Dictionary<long, int> unitQuantities = null;
                 foreach (CrawlerQuest killQuest in killQuests)
                 {
-                    if (party.CompletedQuests.HasBit(killQuest.IdKey))
+                    if (party.CompletedQuests.HasBitIndex(killQuest.IdKey))
                     {
                         continue;
                     }
@@ -390,7 +390,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             foreach (CrawlerQuest itemQuest in startItemQuests)
             {
 
-                if (party.CompletedQuests.HasBit(itemQuest.IdKey))
+                if (party.CompletedQuests.HasBitIndex(itemQuest.IdKey))
                 {
                     continue;
                 }
@@ -626,7 +626,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             {
                 foreach (CrawlerQuest quest in allQuests)
                 {
-                    if (party.CompletedQuests.HasBit(quest.IdKey))
+                    if (party.CompletedQuests.HasBitIndex(quest.IdKey))
                     {
                         completedQuests.Add(quest);
                         continue;
@@ -637,7 +637,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 {
                     world.Quests.Remove(completedQuest);
                     party.Quests = party.Quests.Where(x => x.CrawlerQuestId != completedQuest.IdKey).ToList();
-                    party.CompletedQuests.RemoveBit(completedQuest.IdKey);
+                    party.CompletedQuests.RemoveBitIndex(completedQuest.IdKey);
                 }
 
                 int totalQuests = availableQuests.Count + currentQuests.Count;
@@ -663,7 +663,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             completedQuests.Clear();
             foreach (CrawlerQuest quest in allQuests)
             {
-                if (party.CompletedQuests.HasBit(quest.IdKey))
+                if (party.CompletedQuests.HasBitIndex(quest.IdKey))
                 {
                     completedQuests.Add(quest);
                     continue;

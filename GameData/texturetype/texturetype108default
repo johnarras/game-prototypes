@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype108default",
+  "ParentId": "default",
+  "IdKey": 108,
+  "Name": "City",
+  "Icon": "City",
+  "Art": "City",
+  "Size": 1.0
+}

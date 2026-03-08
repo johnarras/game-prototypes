@@ -10,9 +10,9 @@ namespace Assets.Scripts.Crawler.Maps.Props
         public RiddleType _riddleType = null;
 
         protected int _index = 0;
-        public override void InitData(int x, int z, CrawlerMap map)
+        public override void SetData(int x, int z, CrawlerMap map)
         {
-            base.InitData(x, z, map);
+            base.SetData(x, z, map);
 
             _riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(map.RiddleHints?.RiddleTypeId ?? 0);
 

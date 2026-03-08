@@ -29,7 +29,7 @@ public class VendorItemIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandle
 
         _initData = data;
 
-        isVendorItem = (FlagUtils.IsSet(_initData.Flags, ItemIconFlags.IsVendorItem));
+        isVendorItem = (FlagUtils.MatchesAnyBits(_initData.Flags, ItemIconFlags.IsVendorItem));
 
         InitItemIconData idata = new InitItemIconData()
         {

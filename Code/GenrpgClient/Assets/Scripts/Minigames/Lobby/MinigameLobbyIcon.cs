@@ -1,10 +1,7 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Minigames.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.Lobby
 {
@@ -20,15 +17,11 @@ namespace Assets.Scripts.Minigames.Lobby
         private MinigameType _mtype = null;
 
         private MinigameLobbyScreen _screen = null;
-        public void InitData(MinigameType mtype, MinigameLobbyScreen screen)
+        public void SetData(MinigameType mtype, MinigameLobbyScreen screen)
         {
-
             _mtype = mtype;
-            _screen = screen;   
-
+            _screen = screen; 
             _spriteService.LoadEntityIcon(EntityTypes.MinigameType, _mtype.IdKey, Image, GetToken());
-
-
             _uiService.SetButton(Button, _screen.GetName(), ClickMinigame);
         }
 

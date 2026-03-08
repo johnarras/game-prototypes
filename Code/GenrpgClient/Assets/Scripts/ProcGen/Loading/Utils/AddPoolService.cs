@@ -127,7 +127,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                 continue;
                             }
 
-                            if (FlagUtils.IsSet(_md.flags[xx, yy], MapGenFlags.NearWater))
+                            if (FlagUtils.MatchesAnyBits(_md.flags[xx, yy], MapGenFlags.NearWater))
                             {
                                 nearWater = true;
                                 break;

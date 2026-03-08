@@ -2,6 +2,8 @@ using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
+using Assets.Scripts.DynamicUI.Interfaces;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
@@ -9,15 +11,33 @@ using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
+using Genrpg.Shared.Utils;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.DynamicUI.Services
 {
     public interface IDynamicUIService : IInitializable, IClientResetCleanup
     {
+        void AddEntityQuantityVisual(long entityTypeId, long entityId, long quantityAdded, bool instant);
+        DooberArgs CheckoutDooberArgs(bool randomPath = true);
+
+        void ReturnDooberArgs(DooberArgs dooberArgs);
+
+        bool ShowDefaultEntityDoober(long entityTypeId, long entityId, long quantity);
+
+        bool ShowEntityDooberWithStartPosition(long entityTypeId, long entityId, long quantity, bool startsInUI, Vector3 startPosition);
+
+        DooberArgs CheckoutSimpleEntityDooberArgs(long entityTypeId, long entityId, long quantity);
+
+        DooberArgs CheckoutEntityDooberArgs(long entityTypeId, long entityId, long quantity, bool startsInUI, Vector3 startPosition);
+
+        bool ShowDoober(DooberArgs dooberArgs);
     }
 
 
@@ -29,6 +49,10 @@ namespace Assets.Scripts.DynamicUI.Services
         {
             public GameObject Go { get; set; }
             public RectTransform Rt { get; set; }
+
+            public bool IsMainTarget { get; set; }
+
+            public IEntityQuantityIcon EntityQuantityIcon { get; set; }
         }
 
         public const string Subdirectory = "DynamicUI";
@@ -44,8 +68,9 @@ namespace Assets.Scripts.DynamicUI.Services
         private IInputService _inputService = null;
         private ICameraController _cameraController = null;
         private IObjectPool _objectPool = null;
+        private IRandom _rand = null;
 
-        private Dictionary<string, DooberTarget> _dooberTargets = new Dictionary<string, DooberTarget>();
+        private Dictionary<string, List<DooberTarget>> _dooberTargets = new Dictionary<string, List<DooberTarget>>();
 
         private List<DynamicUIItem> _currentItems = new List<DynamicUIItem>();
         private List<DynamicUIItem> _removeList = new List<DynamicUIItem>();
@@ -57,6 +82,31 @@ namespace Assets.Scripts.DynamicUI.Services
 
         private Camera _mainCam = null;
 
+
+        private ConcurrentQueue<DooberArgs> _dooberArgPool = new ConcurrentQueue<DooberArgs>();
+
+
+        public DooberArgs CheckoutDooberArgs(bool randomPaths = true)
+        {
+            if (!_dooberArgPool.TryDequeue(out DooberArgs result))
+            {
+                result = new DooberArgs();
+            }
+
+            if (randomPaths)
+            {
+                result.PercentDonePowerMult = 0.5f;
+                result.StartOffsetSize = MathUtil.FloatRange(250,500, _rand);
+            }
+            return result;
+        }
+
+        public void ReturnDooberArgs(DooberArgs dooberArgs)
+        {
+            dooberArgs.Clear();
+            _dooberArgPool.Enqueue(dooberArgs);  
+        }
+
         public async Task Initialize(CancellationToken token)
         {
             _token = token;
@@ -64,7 +114,6 @@ namespace Assets.Scripts.DynamicUI.Services
             _dispatcher.AddListener<ShowDynamicUIItem>(OnShowDynamicUIItem, _token);
             _updateService.AddUpdate(this, OnUpdate, UpdateTypes.Regular, _token);
             _dispatcher.AddListener<SetDooberTarget>(OnSetDooberTarget, token);
-            _dispatcher.AddListener<ShowDooberEvent>(OnShowDoober, token);
             _mainCam = _cameraController?.GetMainCamera() ?? null;
 
             await Task.CompletedTask;
@@ -80,9 +129,14 @@ namespace Assets.Scripts.DynamicUI.Services
             await Task.CompletedTask;
         }
 
+        private string GetDooberTargetKey(long entityTypeId, long entityId)
+        {
+            return entityTypeId + "." + entityId;
+        }
+
         private void OnSetDooberTarget(SetDooberTarget sdt)
         {
-            string key = sdt.EntityTypeId + "." + sdt.EntityId;
+            string key = GetDooberTargetKey(sdt.EntityTypeId, sdt.EntityId);
 
             if (_dooberTargets.ContainsKey(key))
             {
@@ -95,18 +149,21 @@ namespace Assets.Scripts.DynamicUI.Services
             {
                 Go = sdt.Target,
                 Rt = rt,
+                IsMainTarget = sdt.IsMainDooberTarget,
+                EntityQuantityIcon = sdt.EntityQuantityIcon,
             };
 
-            _dooberTargets[key] = dt;
+            if (!_dooberTargets.ContainsKey(key))
+            {
+                _dooberTargets[key] = new List<DooberTarget>();
+            }
+            _dooberTargets[key].Add(dt);
 
             _clientEntityService.RegisterDestroyCallback(sdt.Target, () =>
             {
-                if (_dooberTargets.TryGetValue(key, out DooberTarget dt))
+                if (_dooberTargets.TryGetValue(key, out List<DooberTarget> targets))
                 {
-                    if (dt.Go == sdt.Target)
-                    {
-                        _dooberTargets.Remove(key);
-                    }
+                    targets.Remove(dt);
                 }
             });
         }
@@ -118,15 +175,23 @@ namespace Assets.Scripts.DynamicUI.Services
                 _dynamicUIScreen = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
             }
 
-            string key = entityTypeId + "." + entityId;
+            string key = GetDooberTargetKey(entityTypeId, entityId);
 
-            if (!_dooberTargets.TryGetValue(key, out DooberTarget dt))
+            if (!_dooberTargets.TryGetValue(key, out List<DooberTarget> targets))
             {
                 _logService.Warning("No doober target for " + entityTypeId + " " + entityId);
                 return Vector2.zero;
             }
 
-            return dt.Rt.position;
+            DooberTarget mainDt = targets.FirstOrDefault(x => x.IsMainTarget);
+
+            if (mainDt == null)
+            {
+                _logService.Warning("No doober target for " + entityTypeId + " " + entityId);
+                return Vector2.zero;
+            }
+
+            return mainDt.Rt.position;
 
         }
 
@@ -143,12 +208,12 @@ namespace Assets.Scripts.DynamicUI.Services
             }
         }
 
-        private void OnShowDoober(ShowDooberEvent showDoober)
+        public bool ShowDoober(DooberArgs dooberArgs)
         {
 
             SetupAnchors();
 
-            Vector3 startPosition = showDoober.StartPosition;
+            Vector3 startPosition = dooberArgs.StartPosition;
 
             if (startPosition == Vector3.zero)
             {
@@ -157,31 +222,33 @@ namespace Assets.Scripts.DynamicUI.Services
 
             Vector2 endPos = Vector2.zero;
 
-            if (showDoober.EndPosition == Vector3.zero)
+            if (dooberArgs.EndPosition == Vector3.zero)
             {
-                endPos = GetDooberTarget(showDoober.EntityTypeId, showDoober.EntityId);
+                endPos = GetDooberTarget(dooberArgs.EntityTypeId, dooberArgs.EntityId);
             }
             else
             {
-                endPos = showDoober.EndPosition;
+                endPos = dooberArgs.EndPosition;
             }
 
             Vector2 startPos = startPosition;
 
-            if (!showDoober.StartsInUI)
+            if (!dooberArgs.StartsInUI)
             {
                 startPos = RectTransformUtility.WorldToScreenPoint(_mainCam, startPosition);
             }
 
             Vector2 diff = new Vector2(startPos.x - startPosition.x, startPos.y - startPosition.y);
 
-            showDoober.EndPosition = endPos;
-            showDoober.StartPosition = startPos;
+            dooberArgs.EndPosition = endPos;
+            dooberArgs.StartPosition = startPos;
 
             ShowDynamicUIItem showItem = new ShowDynamicUIItem(DynamicUILocation.ScreenSpace,
-               DooberPrefabName, startPos, OnLoadDoober, showDoober, _token, Subdirectory);
+               DooberPrefabName, startPos, OnLoadDoober, dooberArgs, _token, Subdirectory);
 
             OnShowDynamicUIItem(showItem);
+
+            return true;
 
         }
 
@@ -213,7 +280,7 @@ namespace Assets.Scripts.DynamicUI.Services
                 return;
             }
 
-            ShowDooberEvent showDoober = data as ShowDooberEvent;
+            DooberArgs dooberArgs = data as DooberArgs;
 
             if (data == null)
             {
@@ -228,15 +295,14 @@ namespace Assets.Scripts.DynamicUI.Services
                 return;
             }
 
-            if (!string.IsNullOrEmpty(showDoober.AtlasName) && !string.IsNullOrEmpty(showDoober.SpriteName))
+            if (!string.IsNullOrEmpty(dooberArgs.AtlasName) && !string.IsNullOrEmpty(dooberArgs.SpriteName))
             {
-                doober.InitData(showDoober.AtlasName, showDoober.SpriteName, showDoober);
+                doober.SetData(dooberArgs.AtlasName, dooberArgs.SpriteName, dooberArgs);
             }
             else
             {
-                doober.InitData(showDoober.EntityTypeId, showDoober.EntityId, showDoober.Quantity, showDoober);
+                doober.SetData(dooberArgs.EntityTypeId, dooberArgs.EntityId, dooberArgs.Quantity, dooberArgs);
             }
-
         }
 
         private GameObject GetAnchor(DynamicUILocation loc)
@@ -297,6 +363,60 @@ namespace Assets.Scripts.DynamicUI.Services
                     }
                 }
             }
+        }
+
+        public void AddEntityQuantityVisual(long entityTypeId, long entityId, long quantityAdded, bool instant)
+        {
+
+            string key = GetDooberTargetKey(entityTypeId, entityId);
+
+            if (!_dooberTargets.TryGetValue(key, out List<DooberTarget> targets))
+            {
+                return;
+            }
+
+            foreach (DooberTarget target in targets)
+            {
+                if (target.EntityQuantityIcon != null)
+                {
+                    target.EntityQuantityIcon.AddVisualQuantity(entityTypeId, entityId, quantityAdded, instant);
+                }
+            }
+        }
+
+        public bool ShowDefaultEntityDoober(long entityTypeId, long entityId, long quantity)
+        {
+            return ShowEntityDooberWithStartPosition(entityTypeId, entityId, quantity, true, Vector3.zero);
+        }
+
+        public bool ShowEntityDooberWithStartPosition(long entityTypeId, long entityId, long quantity, bool startsInUI, Vector3 startPosition)
+        {
+            DooberArgs dooberArgs = CheckoutDooberArgs();
+
+            dooberArgs.EntityTypeId = entityTypeId;   
+            dooberArgs.EntityId = entityId;   
+            dooberArgs.Quantity = quantity;
+            dooberArgs.StartsInUI = startsInUI;
+            dooberArgs.StartPosition = startPosition;
+
+            return ShowDoober(dooberArgs);
+        }
+
+        public DooberArgs CheckoutSimpleEntityDooberArgs(long entityTypeId, long entityId, long quantity)
+        {
+            return CheckoutEntityDooberArgs(entityTypeId, entityId, quantity, true, Vector3.zero);
+        }
+
+        public DooberArgs CheckoutEntityDooberArgs(long entityTypeId, long entityId, long quantity, bool startsInUI, Vector3 startPosition)
+        {
+            DooberArgs dooberArgs = CheckoutDooberArgs();
+            dooberArgs.EntityTypeId = entityTypeId; 
+            dooberArgs.EntityId = entityId;
+            dooberArgs.Quantity = quantity;
+            dooberArgs.StartsInUI |= startsInUI;
+            dooberArgs.StartPosition = startPosition;
+
+            return dooberArgs;
         }
     }
 }

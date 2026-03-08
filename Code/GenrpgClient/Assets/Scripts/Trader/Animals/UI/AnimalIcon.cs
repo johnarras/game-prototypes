@@ -31,7 +31,7 @@ namespace Assets.Scripts.Trader.UI.Animals
         public GButton AddButton;
 
 
-        public void InitData(AnimalIconInitData init)
+        public void SetData(AnimalIconInitData init)
         {
 
         }

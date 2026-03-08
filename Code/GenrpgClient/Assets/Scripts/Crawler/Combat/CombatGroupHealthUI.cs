@@ -21,7 +21,7 @@ namespace Assets.Scripts.Crawler.Combat
                         break;
                     }
 
-                    if (!group.Units[i].StatusEffects.HasBit(StatusEffects.Dead))
+                    if (!group.Units[i].StatusEffects.HasBitIndex(StatusEffects.Dead))
                     {
                         Icons[i].UpdateFromUnit(group.Units[i]);
                         iconsShown++;

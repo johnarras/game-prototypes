@@ -650,7 +650,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                 if (_combatService.IsDisabled(action.Caster))
                 {
-                    if (!action.Caster.StatusEffects.HasBit(StatusEffects.Dead))
+                    if (!action.Caster.StatusEffects.HasBitIndex(StatusEffects.Dead))
                     {
                         ShowCombatLogText($"{action.Caster.Name} is disabled!");
                     }
@@ -737,7 +737,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     foreach (CrawlerUnit unit in action.FinalTargets)
                     {
-                        if (unit.StatusEffects.HasBit(StatusEffects.Dead))
+                        if (unit.StatusEffects.HasBitIndex(StatusEffects.Dead))
                         {
                             continue;
                         }
@@ -841,7 +841,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 if (action.Caster.FactionTypeId != FactionTypes.Player &&
                     _rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
                 {
-                    List<PartyMember> targets = party.ActiveParty.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
+                    List<PartyMember> targets = party.ActiveParty.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).ToList();
 
                     if (targets.Count > 0)
                     {
@@ -851,7 +851,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 }
                 else
                 {
-                    action.FinalTargets = action.FinalTargets.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).ToList();
+                    action.FinalTargets = action.FinalTargets.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).ToList();
                 }
                 if (action.FinalTargets.Count > 0)
                 {
@@ -972,7 +972,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             {
                 spell.HitsLeft = Math.Max(spell.HitQuantity, 1);
             }
-            if (caster.StatusEffects.HasBit(StatusEffects.Cursed))
+            if (caster.StatusEffects.HasBitIndex(StatusEffects.Cursed))
             {
                 spell.HitsLeft = Math.Max(1, spell.HitsLeft / 2);
             }
@@ -981,7 +981,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             args.IsEnemyTarget = IsEnemyTarget(spell.Spell.TargetTypeId);
 
-            if (args.IsEnemyTarget && target.StatusEffects.HasBit(StatusEffects.Dead))
+            if (args.IsEnemyTarget && target.StatusEffects.HasBitIndex(StatusEffects.Dead))
             {
                 return;
             }
@@ -1011,7 +1011,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     if (args.IsEnemyTarget && target.IsPlayer() &&
                         _rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
                     {
-                        AddToActionDict(args.ActionList, caster, target, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
+                        AddToActionDict(args.ActionList, target, caster, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
                         args.DidParry = true;
                     }
                 }
@@ -1139,7 +1139,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                         string extraWords = "";
 
-                        if (FlagUtils.IsSet(actionListItem.ExtraMessageBits, ExtraMessageBits.Misses))
+                        if (FlagUtils.MatchesAnyBits(actionListItem.ExtraMessageBits, ExtraMessageBits.Misses))
                         {
                             if (actionListKeys.Count > 1)
                             {
@@ -1147,11 +1147,11 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                             }
                         }
 
-                        if (FlagUtils.IsSet(actionListItem.ExtraMessageBits, ExtraMessageBits.Resists))
+                        if (FlagUtils.MatchesAnyBits(actionListItem.ExtraMessageBits, ExtraMessageBits.Resists))
                         {
                             extraWords = "(Resist)";
                         }
-                        else if (FlagUtils.IsSet(actionListItem.ExtraMessageBits, ExtraMessageBits.Vulnerable))
+                        else if (FlagUtils.MatchesAnyBits(actionListItem.ExtraMessageBits, ExtraMessageBits.Vulnerable))
                         {
                             extraWords = "(Vulnerable)";
                         }
@@ -1163,7 +1163,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                             long missCount = 0;
                             foreach (ActionListItem item in args.ActionList.Values)
                             {
-                                if (FlagUtils.IsSet(item.ExtraMessageBits, ExtraMessageBits.Misses))
+                                if (FlagUtils.MatchesAnyBits(item.ExtraMessageBits, ExtraMessageBits.Misses))
                                 {
                                     missCount += item.TotalHits;
                                 }
@@ -1219,7 +1219,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             {
                 await Awaitable.WaitForSecondsAsync(afterInitialTextTime, token);
             }
-            target.StatusEffects.SetBit(StatusEffects.Dead);
+            target.StatusEffects.SetBitIndex(StatusEffects.Dead);
 
             CombatGroup cg = party.Combat.GetGroup(target.CombatGroupId);
 

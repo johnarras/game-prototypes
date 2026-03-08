@@ -16,7 +16,9 @@ namespace Genrpg.RequestServer.Rewards.RewardHelpers.Core
 
         public abstract long HelperKey { get; }
 
-        public abstract Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
+        public abstract Task<long> GetQuantityAsync(WebContext context, long entityId);
+
+        public abstract Task<bool> GiveRewardAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
     }
 }
 

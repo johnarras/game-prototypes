@@ -24,7 +24,7 @@ namespace Assets.Scripts.Info.UI
             _uiService.ClearButton(Button);
         }
 
-        public void InitData(InfoPanel panel, string text)
+        public void SetData(InfoPanel panel, string text)
         {
             _panel = panel;
             _text = text;

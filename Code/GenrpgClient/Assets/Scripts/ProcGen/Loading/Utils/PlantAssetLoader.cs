@@ -1,5 +1,6 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.ProcGen.Loading.Utils;
 using Genrpg.Shared.Client.Assets.Constants;

@@ -26,7 +26,9 @@ namespace Genrpg.RequestServer.Rewards.Interfaces
         /// <param name="quantity"></param>
         /// <param name="extraData"></param>
         /// <returns></returns>
-        Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
+        Task<bool> GiveRewardAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp);
+
+        Task<long> GetQuantityAsync(WebContext context, long entityId);
     }
 }
 

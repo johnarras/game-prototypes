@@ -8,6 +8,7 @@ using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddRoadBorders : BaseZoneGenerator
 {
@@ -90,7 +91,7 @@ public class AddRoadBorders : BaseZoneGenerator
                     continue;
                 }
 
-				float roadVal = _md.alphas[x,y,MapConstants.RoadTerrainIndex];
+				float roadVal = _md.alphas[x,y,TerrainTexChannels.Road];
 				if (roadVal > 0)
 				{
 					continue;
@@ -137,11 +138,11 @@ public class AddRoadBorders : BaseZoneGenerator
                 currDirtPercent = MathUtil.Clamp(0, currDirtPercent, 0.8f);
 
 
-                for (int c = 0; c < MapConstants.MaxTerrainIndex; c++)
+                for (int c = 0; c < TerrainTexChannels.Max; c++)
 				{
 					_md.alphas[x,y,c] *= (1-currDirtPercent);
 				}
-				_md.alphas[x,y,MapConstants.DirtTerrainIndex] += currDirtPercent;
+				_md.alphas[x,y,TerrainTexChannels.Dirt] += currDirtPercent;
 
 			}
 		}

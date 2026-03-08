@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets;
+using Assets.Scripts.GameObjects;
 using ClientEvents;
 using Genrpg.Shared.AI.Settings;
 using Genrpg.Shared.Characters.PlayerData;

@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype67default",
+  "ParentId": "default",
+  "IdKey": 67,
+  "Name": "TraderDebuff",
+  "Icon": "TraderDebuff",
+  "Art": "TraderDebuff"
+}

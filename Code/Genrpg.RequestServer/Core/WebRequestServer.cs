@@ -7,9 +7,11 @@ using Genrpg.RequestServer.Services.GameClient;
 using Genrpg.RequestServer.Services.NoUsers;
 using Genrpg.RequestServer.Setup;
 using Genrpg.ServerShared.CloudComms.Constants;
+using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.Shared.Charms.Services;
+using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
@@ -35,11 +37,18 @@ namespace Genrpg.RequestServer.Core
         protected CancellationToken _token => _serverSource.Token;
         protected IPartitionedDataSaveService _saveService { get; private set; }
 
+        protected IServerConfig _serverConfig { get; private set; }
+
         public WebRequestServer()
         {
             _serverSource = new CancellationTokenSource();
 
             Init(_serverSource.Token).Wait();
+        }
+
+        public string GetIndexString()
+        {
+            return "[Index: " + _serverConfig.DefaultEnv + "]";
         }
 
         protected WebContext SetupContext()

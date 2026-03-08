@@ -6,6 +6,7 @@ using System.Threading;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddSteepnessTextures : BaseZoneGenerator
 {
@@ -93,7 +94,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
                 float edgePct = _md.EdgeHeightmapAdjustPercent(_mapProvider.GetMap(), x, y);
 
 				float steep = _terrainManager.GetSteepness(y,x);
-				float roadPercent= alphas[x,y,MapConstants.RoadTerrainIndex];
+				float roadPercent= alphas[x,y,TerrainTexChannels.Road];
 
 				if (roadPercent > 0) // && steep < _md.MinSteepnessForTexture*1.5f)
 				{
@@ -209,10 +210,10 @@ public class AddSteepnessTextures : BaseZoneGenerator
 					// Add some mixture of dirt and whatnot in there.
 
 					_md.ClearAlphasAt(x,y);
-					alphas[x,y,MapConstants.BaseTerrainIndex] = groundPercent;
-					alphas[x,y,MapConstants.SteepTerrainIndex] = steepPercent;
-					alphas[x,y,MapConstants.RoadTerrainIndex] = roadPercent;
-					alphas[x,y,MapConstants.DirtTerrainIndex] = dirtPercent;
+					alphas[x,y,TerrainTexChannels.Base] = groundPercent;
+					alphas[x,y,TerrainTexChannels.Steep] = steepPercent;
+					alphas[x,y,TerrainTexChannels.Road] = roadPercent;
+					alphas[x,y,TerrainTexChannels.Dirt] = dirtPercent;
 				}
 			}
 		}

@@ -5,14 +5,12 @@ newplayerbonus,3,basetraderstat,supplies storage,50
 newplayerbonus,4,basetraderstat,supplies regen,5
 newplayerbonus,5,basetraderstat,mana storage,40
 newplayerbonus,6,basetraderstat,mana regen,4
-newplayerbonus,7,basetraderstat,food storage,60
-newplayerbonus,8,basetraderstat,food regen,6
-newplayerbonus,9,basetraderstat,guards,2
-newplayerbonus,10,basetraderstat,caravan animals,1
-newplayerbonus,11,animal,donkey,1
-newplayerbonus,12,basetraderstat,holdings tradegoods,2
-newplayerbonus,13,basetraderstat,foraging,1
-newplayerbonus,14,corecurrency,coins,800
-newplayerbonus,15,corecurrency,supplies,50
-newplayerbonus,16,corecurrency,mana,40
-newplayerbonus,17,corecurrency,food,120
+newplayerbonus,7,basetraderstat,rations storage,60
+newplayerbonus,8,basetraderstat,rations regen,6
+newplayerbonus,9,basetraderstat,caravan animals,1
+newplayerbonus,10,animal,donkey,1
+newplayerbonus,11,basetraderstat,foraging,1
+newplayerbonus,12,corecurrency,coins,800
+newplayerbonus,13,corecurrency,supplies,50
+newplayerbonus,14,corecurrency,mana,40
+newplayerbonus,15,corecurrency,rations,120

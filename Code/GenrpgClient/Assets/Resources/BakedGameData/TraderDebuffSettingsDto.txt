@@ -1,0 +1,132 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Unlucky",
+      "Icon": "Unlucky",
+      "Art": "Unlucky",
+      "CleanseCoreCurrencyTypeId": 3,
+      "CleanseQuantity": 2,
+      "CityCoinsCleanseCost": 20,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 5,
+          "EntityId": 14
+        }
+      ]
+    },
+    {
+      "IdKey": 2,
+      "Name": "Slowed",
+      "Icon": "Slowed",
+      "Art": "Slowed",
+      "CleanseCoreCurrencyTypeId": 2,
+      "CleanseQuantity": 1,
+      "CityCoinsCleanseCost": 40,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": -1,
+          "EntityId": 12
+        }
+      ]
+    },
+    {
+      "IdKey": 3,
+      "Name": "Hungry",
+      "Icon": "Hungry",
+      "Art": "Hungry",
+      "CleanseCoreCurrencyTypeId": 4,
+      "CleanseQuantity": 2,
+      "CityCoinsCleanseCost": 10,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 1,
+          "EntityId": 18
+        }
+      ]
+    },
+    {
+      "IdKey": 4,
+      "Name": "Broken Down",
+      "Icon": "BrokenDown",
+      "Art": "BrokenDown",
+      "CleanseCoreCurrencyTypeId": 2,
+      "CleanseQuantity": 2,
+      "CityCoinsCleanseCost": 25,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": -1,
+          "EntityId": 12
+        },
+        {
+          "EntityTypeId": 204,
+          "Quantity": -1,
+          "EntityId": 11
+        }
+      ]
+    },
+    {
+      "IdKey": 5,
+      "Name": "Sickly",
+      "Icon": "Sickly",
+      "Art": "Sickly",
+      "CleanseCoreCurrencyTypeId": 4,
+      "CleanseQuantity": 1,
+      "CityCoinsCleanseCost": 15,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": -1,
+          "EntityId": 11
+        }
+      ]
+    },
+    {
+      "IdKey": 6,
+      "Name": "Magic Void",
+      "Icon": "MagicVoid",
+      "Art": "MagicVoid",
+      "CleanseCoreCurrencyTypeId": 3,
+      "CleanseQuantity": 1,
+      "CityCoinsCleanseCost": 35,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": -2,
+          "EntityId": 6
+        }
+      ]
+    },
+    {
+      "IdKey": 7,
+      "Name": "Cursed",
+      "Icon": "Cursed",
+      "Art": "Cursed",
+      "CleanseCoreCurrencyTypeId": 3,
+      "CleanseQuantity": 1,
+      "CityCoinsCleanseCost": 50,
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 5,
+          "EntityId": 14
+        },
+        {
+          "EntityTypeId": 204,
+          "Quantity": -5,
+          "EntityId": 13
+        }
+      ]
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TraderDebuffSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-03T23:45:49.883Z"
+}

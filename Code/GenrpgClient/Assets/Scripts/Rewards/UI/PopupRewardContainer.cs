@@ -1,4 +1,5 @@
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Rewards.Entities;
@@ -17,6 +18,9 @@ namespace Assets.Scripts.Rewards.UI
     }
     public class PopupRewardContainer : BaseBehaviour
     {
+
+        protected IDynamicUIService _dynamicUIService = null;
+
         public float DistancePerSecond;
         public float DisplayTime;
 
@@ -30,17 +34,16 @@ namespace Assets.Scripts.Rewards.UI
             _assetService.LoadAssetInto(gameObject, AssetCategoryNames.UI, "PopupRewardIcon", OnLoadIcon, GetToken(), reward,
                 "Rewards");
 
-            _dispatcher.Dispatch(new ShowDooberEvent()
-            {
-                EntityTypeId = reward.EntityTypeId,
-                EntityId = reward.EntityId,
-                Quantity = reward.Quantity,
-                StartPosition = gameObject.transform.position,
-                LerpTime = 1.5f,
-                Accelerate = true,
-                StartOffsetSize = MathUtil.FloatRange(0, 100, _rand)
 
-            });
+            DooberArgs dooberArgs = _dynamicUIService.CheckoutDooberArgs();
+
+            dooberArgs.EntityTypeId = reward.EntityTypeId;
+            dooberArgs.EntityId = reward.EntityId;
+            dooberArgs.Quantity = reward.Quantity;
+            dooberArgs.StartPosition = gameObject.transform.position;
+            dooberArgs.LerpTime = 1.5f;
+
+            _dynamicUIService.ShowDoober(dooberArgs);
         }
 
         private void OnLoadIcon(GameObject go, IReward rew, CancellationToken token)

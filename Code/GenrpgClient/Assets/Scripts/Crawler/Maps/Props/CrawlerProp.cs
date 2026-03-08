@@ -38,7 +38,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
             _targetFrameRate = _appService.TargetFrameRate;
         }
 
-        public virtual void InitData(int x, int z, CrawlerMap map)
+        public virtual void SetData(int x, int z, CrawlerMap map)
         {
             _x = x;
             _z = z;

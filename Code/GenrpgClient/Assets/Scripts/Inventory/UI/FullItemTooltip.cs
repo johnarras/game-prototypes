@@ -44,8 +44,8 @@ public class FullItemTooltip : BaseTooltip
             return;
         }
 
-        _isVendorItem = FlagUtils.IsSet(initData.flags, ItemIconFlags.IsVendorItem);
-        _tooltipOnRight = FlagUtils.IsSet(initData.flags, ItemIconFlags.ShowTooltipOnRight);
+        _isVendorItem = FlagUtils.MatchesAnyBits(initData.flags, ItemIconFlags.IsVendorItem);
+        _tooltipOnRight = FlagUtils.MatchesAnyBits(initData.flags, ItemIconFlags.ShowTooltipOnRight);
 
         _mainItem = initData.item;
         _equips = new List<Item>();

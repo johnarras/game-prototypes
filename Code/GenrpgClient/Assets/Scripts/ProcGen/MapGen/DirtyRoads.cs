@@ -7,6 +7,7 @@ using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class DirtyRoads : BaseZoneGenerator
 {
@@ -84,7 +85,7 @@ public class DirtyRoads : BaseZoneGenerator
                     continue;
                 }
 
-				if (_md.alphas[x,z,MapConstants.RoadTerrainIndex] < minRoadPercent)
+				if (_md.alphas[x,z,TerrainTexChannels.Road] < minRoadPercent)
                 {
                     continue;
                 }
@@ -116,9 +117,9 @@ public class DirtyRoads : BaseZoneGenerator
 				}
 
 				_md.ClearAlphasAt(x,z);
-				_md.alphas[x,z,MapConstants.RoadTerrainIndex] = 1-totalPct;
-				_md.alphas[x,z,MapConstants.DirtTerrainIndex] = dirtPct;
-				_md.alphas[x,z,MapConstants.BaseTerrainIndex] = basePct;
+				_md.alphas[x,z,TerrainTexChannels.Road] = 1-totalPct;
+				_md.alphas[x,z,TerrainTexChannels.Dirt] = dirtPct;
+				_md.alphas[x,z,TerrainTexChannels.Base] = basePct;
 
 			}
 		}

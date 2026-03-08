@@ -28,7 +28,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
         public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
-            if (!party.CompletedMaps.HasBit(party.CurrPos.MapId))
+            if (!party.CompletedMaps.HasBitIndex(party.CurrPos.MapId))
             {
                 _crawlerService.ChangeState(ECrawlerStates.LevelMap, token);
                 moveStatus.MoveIsComplete = true;

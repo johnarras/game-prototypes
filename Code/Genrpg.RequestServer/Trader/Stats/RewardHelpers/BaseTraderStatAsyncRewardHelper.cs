@@ -1,8 +1,11 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Rewards.RewardHelpers.Core;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Stats.PlayerData;
+using Genrpg.Shared.Trader.Stats.Services;
 
 namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
 {
@@ -16,16 +19,26 @@ namespace Genrpg.RequestServer.Trader.Stats.RewardHelpers
     /// </summary>
     public class BaseTraderStatAsyncRewardHelper : BaseAsyncRewardHelper
     {
+
+        private ITraderStatService _statService = null;
+
         public override long HelperKey => EntityTypes.BaseTraderStat;
 
-        public override async Task GiveRewardsAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
+        public override async Task<long> GetQuantityAsync(WebContext context, long entityId)
         {
-            TraderStatData statData = await context.GetAsync<TraderStatData>();
+            return _statService.GetBaseStat(await context.GetAsync<TraderStatData>(), entityId);
+        }
 
-            if (statData.Stats[entityId].Base < quantity)
-            {
-                statData.Stats[entityId].Base = (int)quantity;
-            }
+        public override async Task<bool> GiveRewardAsync(WebContext context, long entityId, long quantity, object extraData, RewardParams rp)
+        {
+            _statService.SetBaseStat(
+                await context.GetAsync<CoreData>(),
+                await context.GetAsync<CaravanData>(),
+                await context.GetAsync<TraderStatData>(),
+                entityId, quantity
+                );
+
+            return true;
         }
     }
 }

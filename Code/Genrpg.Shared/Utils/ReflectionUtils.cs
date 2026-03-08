@@ -18,13 +18,12 @@ namespace Genrpg.Shared.Utils
     public class ReflectionUtils
     {
 
-        private static Assembly[] _allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
         private static List<Assembly> _searchAssemblies = new List<Assembly>();
         private static object _searchAssemblyLock = new object();
 
         public static Assembly[] GetAllAssemblies()
         {
-            return _allAssemblies;
+            return AppDomain.CurrentDomain.GetAssemblies();
         }
 
         public static List<Type> GetTypesWithAttribute(Type attributeType)
@@ -36,7 +35,7 @@ namespace Genrpg.Shared.Utils
                 return retval;
             }
 
-            List<Assembly> assemblies = GetSearchAssemblies();
+            List<Assembly> assemblies = GetSearchAssemblies(attributeType.Assembly);
 
             foreach (Assembly assembly in assemblies)
             {
@@ -73,34 +72,42 @@ namespace Genrpg.Shared.Utils
             }
         }
 
-        private static List<Assembly> GetSearchAssemblies()
+        private static List<Assembly> GetSearchAssemblies(Assembly typeAssembly)
         {
-            if (!_searchAssemblies.Contains(Assembly.GetExecutingAssembly()))
+
+            List<Assembly> addAssemblies = new List<Assembly>();
+            addAssemblies.Add(Assembly.GetExecutingAssembly());
+            addAssemblies.Add(typeAssembly);
+
+            foreach (Assembly executing in addAssemblies)
             {
-                lock (_searchAssemblyLock)
+                if (!_searchAssemblies.Contains(executing))
                 {
-                    if (!_searchAssemblies.Contains(Assembly.GetExecutingAssembly()))
+                    lock (_searchAssemblyLock)
                     {
-                        Assembly currentAssembly = Assembly.GetExecutingAssembly();
-                        int dotIndex = currentAssembly.FullName.IndexOf(".");
-
-                        List<Assembly> newList = _searchAssemblies.ToList();
-                        newList.Add(Assembly.GetExecutingAssembly());
-
-                        if (dotIndex > 0)
+                        if (!_searchAssemblies.Contains(executing))
                         {
-                            string prefix = currentAssembly.FullName.Substring(0, dotIndex);
+                            Assembly currentAssembly = executing;
+                            int dotIndex = currentAssembly.FullName.IndexOf(".");
 
-                            Assembly[] assemblies = _allAssemblies;
-                            foreach (Assembly assembly in assemblies)
+                            List<Assembly> newList = _searchAssemblies.ToList();
+                            newList.Add(executing);
+
+                            if (dotIndex > 0)
                             {
-                                if (assembly.FullName.IndexOf(prefix) == 0)
+                                string prefix = currentAssembly.FullName.Substring(0, dotIndex);
+
+                                Assembly[] assemblies = GetAllAssemblies();
+                                foreach (Assembly assembly in assemblies)
                                 {
-                                    newList.Add(assembly);
+                                    if (assembly.FullName.IndexOf(prefix) == 0)
+                                    {
+                                        newList.Add(assembly);
+                                    }
                                 }
                             }
+                            _searchAssemblies = newList;
                         }
-                        _searchAssemblies = newList;   
                     }
                 }
             }
@@ -120,7 +127,8 @@ namespace Genrpg.Shared.Utils
                 return retval;
             }
 
-            List<Assembly> assemblies = GetSearchAssemblies();
+
+            List<Assembly> assemblies = GetSearchAssemblies(interfaceType.Assembly);
 
             foreach (Assembly assembly in assemblies)
             {

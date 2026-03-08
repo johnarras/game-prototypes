@@ -1,5 +1,8 @@
 ﻿using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.LevelTrack.Services;
 using Genrpg.RequestServer.Rewards.Services;
+using Genrpg.RequestServer.Trader.Encounters.Services;
+using Genrpg.RequestServer.Trader.Stats.Services;
 using Genrpg.RequestServer.Trader.Travel.Entities;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Constants;
@@ -9,6 +12,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
+using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Flags.Constants;
 using Genrpg.Shared.Trader.Flags.Settings;
@@ -19,6 +23,7 @@ using Genrpg.Shared.Trader.Travel.Settings;
 using Genrpg.Shared.Trader.Travel.WebApi;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
+using MongoDB.Driver.Search;
 
 namespace Genrpg.RequestServer.Trader.Travel.Services
 {
@@ -35,6 +40,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
         private ITravelService _travelService = null;
         private IServerCaravanService _serverCaravanService = null;
         private ITraderMapService _traderMapService = null;
+        private IServerTraderStatService _serverStatService = null;
+        private ITravelEncounterService _encounterService = null;
+        private IServerLevelTrackService _levelService = null;
         public async Task Initialize(CancellationToken token)
         {
             _travelService.SetTerrainMap(File.ReadAllBytes("AppData/WorldMapColorIndexes.bytes"));
@@ -59,7 +67,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 return response;
             }
 
-            if (coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.DistanceToTarget])
+            if (coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.TotalDistanceToTarget])
             {
                 response.ErrorMessage = "You already reached your target!";
                 return response;
@@ -70,8 +78,8 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             TravelStatus status = new TravelStatus()
             {
                 DistanceGone = position.DistanceGone,
-                DistanceToTarget = position.DistanceToTarget,
-                TotalDistanceTravelled = 0,
+                TotalDistanceToTarget = position.TotalDistanceToTarget,
+                TotalDistanceTravelledToday = 0,
                 TargetCityId = position.GetTargetCityId(),
                 Response = response,
                 IsFree = args.IsFree,
@@ -96,9 +104,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             coreData.Vars[TraderVars.DistanceGone] = status.DistanceGone;
             response.TargetCityId = position.GetTargetCityId();
             response.TotalCost = status.Response.Days.Sum(x => x.RationsCost);
-            response.TotalDistanceTravelled = status.TotalDistanceTravelled;
+            response.TotalDistanceTravelled = status.TotalDistanceTravelledToday;
             response.DistanceAlongRoad = status.DistanceGone;
-            response.DistanceLeft = status.DistanceToTarget - status.DistanceGone;
+            response.DistanceLeft = status.TotalDistanceToTarget - status.DistanceGone;
             response.EndDay = coreData.Vars[TraderVars.PlayCount];
 
             if (response.DistanceLeft < 1)
@@ -112,11 +120,12 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
         private async Task<bool> TravelOneDay(WebContext context, CoreData coreData, TravelStatus status, TraderFlagSettings flagSettings)
         {
-            int distanceLeft = status.DistanceToTarget - status.DistanceGone;
+            int distanceLeft = status.TotalDistanceToTarget - status.DistanceGone;
 
             if (distanceLeft < 1)
             {
-                status.Response.Messages.Add("You have arrived!");
+                City city = _gameData.Get<CitySettings>(context.core).Get(status.TargetCityId);
+                status.Response.Messages.Add("You have arrived in " + city.Name + "!");
                 return false;
             }
 
@@ -158,7 +167,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             day.EndDistance = endDistance;
             status.TravelDays++;
             day.Day = coreData.Vars[TraderVars.PlayCount] + status.TravelDays;
-            status.TotalDistanceTravelled += distanceToday;
+            status.TotalDistanceTravelledToday += distanceToday;
             status.DistanceGone = endDistance;
 
             TravelRewardSettings rewardSettings = _gameData.Get<TravelRewardSettings>(context.core);
@@ -219,10 +228,18 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 coreData.RemoveFlag(TraderFlags.AtSea);
             }
 
+            int debuffDaysAdded = 1;
             day.EndDiceSpeed = coreData.Vars[TraderVars.DiceSpeed];
             day.EndBonusSpeed = coreData.Vars[TraderVars.BonusSpeed];
             day.EndFlags = coreData.Vars[TraderVars.Flags];
-            await Task.CompletedTask;
+            day.DebuffDaysAdded = debuffDaysAdded;
+            // Do this before new encounters so you don't instantly lose a debuff day.
+            await _serverStatService.AddDebuffDaysPlayed(context, debuffDaysAdded, false);
+
+            day.EncounterResult = await _encounterService.TryEndOfTravelDayEncounter(context, status, day);
+
+            day.ExpResponse = await _levelService.GainExp(context, day.TotalDistance, false);
+
             return true;
         }
     }

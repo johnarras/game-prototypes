@@ -2,7 +2,7 @@
   "Id": "traderstat8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Supplies Storage",
-  "Icon": "SuppliesStorage",
-  "Art": "SuppliesStorage"
+  "Name": "Rations Regen",
+  "Icon": "RationsRegen",
+  "Art": "RationsRegen"
 }

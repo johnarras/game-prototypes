@@ -43,7 +43,7 @@ namespace Assets.Scripts.Crawler.Combat
 
                 CrawlerCombatIcon icon = Icons.FirstOrDefault(x => x.Group.Id == group.Id);
 
-                if (!group.Units.FastAny(x => !x.StatusEffects.HasBit(StatusEffects.Dead)))
+                if (!group.Units.FastAny(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)))
                 {
                     if (icon != null)
                     {

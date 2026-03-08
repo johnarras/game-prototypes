@@ -8,7 +8,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Trader.MinigameTypes.Settings
+namespace Genrpg.Shared.Minigames.Games.Settings
 {
     public class MinigameTypeSettings : ParentSettings<MinigameType>
     {

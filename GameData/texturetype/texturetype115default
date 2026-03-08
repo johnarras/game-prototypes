@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype115default",
+  "ParentId": "default",
+  "IdKey": 115,
+  "Name": "Outdoors",
+  "Icon": "Outdoors",
+  "Art": "Outdoors",
+  "Size": 1.0
+}

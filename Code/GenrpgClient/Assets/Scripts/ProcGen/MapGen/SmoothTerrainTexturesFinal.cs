@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.ProcGen.Constants;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -14,13 +15,13 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
         int radius = 1;
         float smoothScale = 0.04f;
 
-        float[,,] alphas2 = new float[awid, ahgt, MapConstants.MaxTerrainIndex];
+        float[,,] alphas2 = new float[awid, ahgt, TerrainTexChannels.Max];
 
         for (int x = 0; x < awid; x++)
         {
             for (int y = 0; y < ahgt; y++)
             {
-                for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     alphas2[x, y, i] = _md.alphas[x, y, i];
                 }
@@ -31,7 +32,7 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
         {
             for (int y = 0; y < ahgt; y++)
             {
-                for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     float totalWeight = 0;
                     float totalVal = 0;
@@ -67,11 +68,11 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
             for (int y = 0; y < _md.ahgt; y++)
             {
                 float total = 0;
-                for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     total += alphas2[x, y, i];
                 }
-                for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     alphas2[x, y, i] /= total;
                 }

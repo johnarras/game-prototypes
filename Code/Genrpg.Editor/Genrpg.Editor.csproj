@@ -21,10 +21,10 @@
     <Page Remove="Properties\PublishProfiles\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="CopyDataView.xaml" />
     <None Remove="DataView.xaml" />
     <None Remove="DataWindow.xaml" />
     <None Remove="FindUserView.xaml" />
+    <None Remove="GeminiApiWindow.xaml" />
     <None Remove="ImportWindow.xaml" />
     <None Remove="NewMainPage.xaml" />
     <None Remove="SmallPopup.xaml" />
@@ -60,18 +60,10 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Genrpg.ServerShared\Genrpg.ServerShared.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\AppConfig\App.config" Link="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="ImportWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="CopyDataView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -109,6 +101,14 @@
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="Properties\PublishProfiles\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Genrpg.DataUtils\Genrpg.DataUtils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GeminiApiWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="NewMainPage.xaml">

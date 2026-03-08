@@ -18,7 +18,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
         public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
 
-            if (party.Combat == null || target.StatusEffects.HasBit(StatusEffects.Dead))
+            if (party.Combat == null || target.StatusEffects.HasBitIndex(StatusEffects.Dead))
             {
                 return;
             }
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             group.Units.Remove(target);
 
-            target.StatusEffects.SetBit(StatusEffects.Dead);
+            target.StatusEffects.SetBitIndex(StatusEffects.Dead);
 
             party.Combat.AttackSequence.Remove(target);
 

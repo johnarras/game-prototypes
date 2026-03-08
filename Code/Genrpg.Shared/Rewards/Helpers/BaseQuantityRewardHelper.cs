@@ -14,45 +14,26 @@ using System.Text;
 
 namespace Genrpg.Shared.Rewards.Helpers
 {
-    public abstract class BaseQuantityRewardHelper<TParent, TChild> : IQuantityRewardHelper where TParent : OwnerQuantityObjectList<TChild>, new() where TChild : OwnerQuantityChild, IId, new()
+    public abstract class BaseQuantityRewardHelper<TParent, TChild> where TParent : OwnerQuantityObjectList<TChild>, new() where TChild : OwnerQuantityChild, IId, new()
     {
-
-        protected IRewardService _rewardService;
         public abstract long HelperKey { get; }
 
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
-           return Add(obj, entityId, quantity, rp);
-        }
-
-        public bool Add(MapObject obj, long entityId, long quantity, RewardParams rp)
-        {
-            if (quantity == 0)
-            {
-                return false;
-            }
-
             TParent parentData = obj.Get<TParent>();
             TChild status = parentData.Get(entityId);
             status.Quantity += quantity;
-            _rewardService.OnAddQuantity(obj, status, HelperKey, status.IdKey, quantity, rp);
+
+            if (status.Quantity < 0)
+            {
+                status.Quantity = 0;
+            }
             return true;
         }
-
         public long Get(MapObject obj, long entityId)
         {
             return obj.Get<TParent>().Get(entityId).Quantity;
-        }
-
-        public bool Set(MapObject obj, long entityId, long quantity, RewardParams rp)
-        {
-            TParent parentData = obj.Get<TParent>();
-            TChild status = parentData.Get(entityId);
-            long oldQuantity = Math.Max(0, status.Quantity);
-            long diff = quantity - oldQuantity;
-            Add(obj, entityId, diff, rp);
-            return true;
         }
     }
 }

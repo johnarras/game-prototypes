@@ -1,0 +1,11 @@
+{
+  "Id": "texturetype116default",
+  "ParentId": "default",
+  "IdKey": 116,
+  "Name": "Stars",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "Stars",
+  "Art": "Stars",
+  "Size": 1.0
+}

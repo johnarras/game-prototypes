@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "Cave",
   "Art": "Cave",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 110,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

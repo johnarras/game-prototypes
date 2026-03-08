@@ -1,50 +1,52 @@
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.Entities.Copying;
-using Genrpg.Editor.Entities.Core;
+using CommunityToolkit.WinUI;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Entities.Copying;
+using Genrpg.DataUtils.Entities.Core;
+using Genrpg.DataUtils.Interfaces;
+using Genrpg.DataUtils.Services.EditorData;
+using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Editor.Utils;
 using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WinRT.Genrpg_EditorGenericHelpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Genrpg.Editor
 {
+
+    public class ButtonClickAction
+    {
+        public string ButtonName { get; set; }
+        public Action<object,object> ClickAction { get; set; }
+
+        public ButtonClickAction(string buttonName, Action<object,object> clickAction)
+        {
+            ButtonName = buttonName;
+            ClickAction = clickAction;
+        }
+    }
+
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
     public partial class MenuWindow : WindowBase, IUICanvas
     {
-        public const bool UpdateSaveTime = false;
-
         const int _topPadding = 50;
 
-        private EditorGameState _gs = null;
         private string _prefix;
         private string _env;
 
-        private IServerGameDataService _gameDataService = null;
-        private ICloudCommsService _cloudCommsService = null;
-        private ITextSerializer _serializer = null;
-
-        private CanvasBase _canvas = new CanvasBase();
-        public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
-        public void Remove(object cont) { _canvas.Remove(cont); }
-        public bool Contains(object cont) { return _canvas.Contains(cont); }
 
 
         public MenuWindow()
@@ -53,15 +55,32 @@ namespace Genrpg.Editor
             _prefix = Game.Prefix;
             int buttonCount = 0;
 
-
             _env = MainMenuWindow.CurrentEnv;
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _env + " Editor", getButtonWidth() * 2, getButtonHeight(),
+            bool isProd = EnvNames.IsProdEnv(_env);
+
+            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _env + " Editor", getButtonWidth(), getButtonHeight(),
                 getLeftRightPadding(), getTopBottomPadding(), 20);
             buttonCount++;
 
 
-            string[] actionWords = "Data Importer CopyToGit CopyToClient CopyToServers SerializeSetup Users Maps CopyToDB".Split(' ');
+            List<ButtonClickAction> actionWords = new List<ButtonClickAction>();
+            actionWords.Add(new ButtonClickAction("Data", OnClickDataButton));
+            if (!isProd)
+            {
+                actionWords.Add(new ButtonClickAction("Importer", ClickImporter));
+                actionWords.Add(new ButtonClickAction("CopyToGit", ClickCopyFromDatabaseToGit));
+                actionWords.Add(new ButtonClickAction("CopyToClient", ClickCopyFromDatabaseToClient));
+                actionWords.Add(new ButtonClickAction("SerializeSetup", ClickSerializeSetup));
+            }
+
+            actionWords.Add(new ButtonClickAction("CopyToServer", ClickRefreshServerGameData));
+            actionWords.Add(new ButtonClickAction("Users", OnClickDataButton));
+            actionWords.Add(new ButtonClickAction("Maps", OnClickMaps));
+            actionWords.Add(new ButtonClickAction("CopyToDb", ClickCopyFromGitToDatabase));
+
+
+            actionWords.Add(new ButtonClickAction("GeminiApi", OnClickGeminiApi));
             int column = 0;
 
             if (string.IsNullOrEmpty(_env))
@@ -69,48 +88,26 @@ namespace Genrpg.Editor
                 return;
             }
 
-            for (int a = 0; a < actionWords.Length; a++)
+            for (int a = 0; a < actionWords.Count; a++)
             {
-                string action = actionWords[a];
+                ButtonClickAction action = actionWords[a];
 
-                if (string.IsNullOrEmpty(action))
+                if (string.IsNullOrEmpty(action.ButtonName) ||
+                    action.ClickAction == null)
                 {
                     continue;
                 }
 
-                if (_env == EnvNames.Prod && action == "Data")
-                {
-                    continue;
-                }
-
-                if (action == "Maps")
-                {
-                    if (_prefix == Game.Prefix)
-                    {
-
-                        UIHelper.CreateButton(this,
-                            EButtonTypes.Default,
-                            _env + " " + action,
-                            _prefix + " " + _env + " " + action,
-                            getButtonWidth(),
-                            getButtonHeight(),
-                            getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
-                            getTotalHeight(buttonCount),
-                            OnClickMaps);
-                        buttonCount++;
-                    }
-                    continue;
-                }
 
                 UIHelper.CreateButton(this,
                     EButtonTypes.Default,
-                    action,
-                    action,
+                    action.ButtonName,
+                    action.ButtonName,
                     getButtonWidth(),
                     getButtonHeight(),
                     getLeftRightPadding() + column * (getButtonWidth() + column * getButtonGap()),
                     getTotalHeight(buttonCount),
-                    OnClickButton);
+                    action.ClickAction);
                 buttonCount++;
             }
 
@@ -135,152 +132,106 @@ namespace Genrpg.Editor
             return (getButtonHeight() + getButtonGap()) * numButtons + getTopBottomPadding();
         }
 
+        private void OnClickDataButton(object sender, object e)
+        {
+            Task.Run(() => OnClickButtonAsync(sender, null));
+        }
+
         private void OnClickMaps(object sender, object e)
         {
-
-            _ = Task.Run(() => OnClickMapsAsync(sender, e));
+            
+            Task.Run(() => OnClickButtonAsync(sender, null));
         }
 
-        private async Task OnClickMapsAsync(object sender, object e)
+        private void ClickCopyFromDatabaseToGit(object sender, object e)
         {
-            _gs = await EditorGameDataUtils.SetupFromConfig(this, _env, true);
+            Task.Run(() => OnClickButtonAsync(sender, CopyGameDataFromDatabaseToGitAsync));
         }
 
-        private void OnClickButton(object sender, object e)
+        private void ClickCopyFromGitToDatabase(object sender, object e)
         {
-            ButtonBase but = sender as ButtonBase;
-            if (but == null)
+            Task.Run(() => OnClickButtonAsync(sender, CopyGameDataFromGitToDatabaseAsync));
+        }
+        
+        private void ClickCopyFromDatabaseToClient(object sender, object e)
+        {
+            Task.Run(() => OnClickButtonAsync(sender, CopyGameDataFromDatabaseToClientAsync));
+        }
+
+        private void ClickRefreshServerGameData(object sender, object e)
+        {
+            Task.Run(() => OnClickButtonAsync(sender, RefreshServerDataAsync)); ;
+        }
+
+        private void ClickSerializeSetup(object sender, object e)
+        {
+            Task.Run(() => OnClickButtonAsync(sender, SerializeSetupAsync)); 
+        }
+
+        private void OnClickGeminiApi(object sender, object e)
+        {
+            GeminiApiWindow window = new GeminiApiWindow(_env);
+            window.Activate();
+        }
+        private async Task SerializeSetupAsync (EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        {
+            gameDataService.InitSerialization();
+        }
+
+        private void ClickImporter(object sender, object e)
+        {
+            ImportWindow importer = new ImportWindow(_env);
+            importer.Activate();
+        }
+
+        private async Task OnClickButtonAsync(object sender, OnEditorClickAction afterAction = null)
+        {
+
+            DispatcherQueue.TryEnqueue(async () =>
             {
-                return;
-            }
+                ButtonBase button = sender as ButtonBase;
+                ISmallPopup form = await ShowBlockingDialog(StrUtils.SplitOnCapitalLetters(button?.Name ?? "Loading Data"));
+                EditorDataSetup eds = new EditorDataSetup();
+                await eds.SetupGameState(this, _env, true, button.Name, afterAction);
+                form.StartClose();
+            });
+        }
 
-            String action = but.Name;
+        private async Task CopyGameDataFromDatabaseToGitAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        {
+            gameDataService.WriteAllGameDataToGit(gs);
+        }
 
-            if (string.IsNullOrEmpty(_prefix) || string.IsNullOrEmpty(_env))
+        private async Task CopyGameDataFromGitToDatabaseAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        {
+            try
             {
-                return;
-            }
+                await gameDataService.CopyFromGitToDb(gs, token);
 
-            if (action == "CopyToGit")
+            }
+            catch (Exception ex)
             {
-                CopyGameDataFromDatabaseToGit(_env);
-                return;
+                Console.WriteLine(ex.Message + " " + ex.StackTrace);
             }
-            if (action == "CopyToDB")
-            {
-                CopyGameDataFromGitToDatabase(_env);
-                return;
-            }
-            if (action == "CopyToClient")
-            {
-                CopyGameDataFromDatabaseToClient(_env);
-                return;
-            }
-            else if (action == "CopyToServers")
-            {
-                _ = Task.Run(() => RefreshServerDataAsync(_env));
-                return;
-            }
+        }
 
-            if (action == "SerializeSetup")
-            {
-                EditorGameDataUtils.InitSerialization();
-                return;
-            }
-
-            if (action == "Importer")
-            {
-                ImportWindow importer = new ImportWindow();
-                importer.Activate();
-                return;
-
-            }
-
-            Task.Run(() => OnClickButtonAsync(action, _env, null));
+        private async Task RefreshServerDataAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        {
+            gs.loc.Get<ICloudCommsService>().SendPubSubMessage(new UpdateGameDataAdminMessage());
         }
 
 
-        private async Task OnClickButtonAsync(string action, string env, Action<EditorGameState> afterAction = null)
+        private async Task CopyGameDataFromDatabaseToClientAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
-            _gs = await EditorGameDataUtils.SetupForEditing(this, action, env, afterAction);
-        }
-
-        private void CopyDataFromEnvToEnv(string fromEnv, string toEnv)
-        {
-            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying data from " + fromEnv + " to " + toEnv);
-            _ = Task.Run(() => CopyDataFromEnvToEnvAsync(fromEnv, toEnv, form));
-        }
-
-        private async Task CopyDataFromEnvToEnvAsync(string fromEnv, string toEnv, SmallPopup form)
-        {
-
-            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, fromEnv, EditorGameState.CTS.Token);
-            await EditorGameDataUtils.SaveFullGameData(this, dataCopy, toEnv, true, EditorGameState.CTS.Token);
-
-            form.StartClose();
-        }
-
-        private void CopyGameDataFromDatabaseToGit(string env)
-        {
-            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Git");
-            _ = Task.Run(() => CopyGameDataFromDatabaseToGitAsync(env, form, EditorGameState.CTS.Token));
-        }
-
-        private async Task CopyGameDataFromDatabaseToGitAsync(string env, SmallPopup form, CancellationToken token)
-        {
-            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
-
-            EditorGameDataUtils.WriteGameDataToGit(dataCopy, _serializer);
-
-            form.StartClose();
-        }
-
-        private void CopyGameDataFromGitToDatabase(string env)
-        {
-            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Db");
-            _ = Task.Run(() => CopyGameDataFromGitToDatabaseAsync(form, env, EditorGameState.CTS.Token));
-        }
-
-        private async Task CopyGameDataFromGitToDatabaseAsync(SmallPopup form, string env, CancellationToken token)
-        {
-            FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadDataFromDisk(form, env, token);
-            await EditorGameDataUtils.SaveFullGameData(form, dataCopy, env, true, token);
-
-            form.StartClose();
-        }
-
-        private async Task RefreshServerDataAsync(string env)
-        {
-            _gs = await EditorGameDataUtils.SetupFromConfig(this, env, true);
-
-            _cloudCommsService.SendPubSubMessage(new UpdateGameDataAdminMessage());
-        }
-
-
-        private void CopyGameDataFromDatabaseToClient(string env)
-        {
-            SmallPopup form = UIHelper.ShowBlockingDialog(this, "Copying to Client");
-            _ = Task.Run(() => CopyGameDataFromDatabaseToClientAsync(env, form, EditorGameState.CTS.Token));
-        }
-
-        private async Task CopyGameDataFromDatabaseToClientAsync(string env, SmallPopup form, CancellationToken token)
-        {
-
             try
             {
                 DateTime saveTime = DateTime.UtcNow;
-                FullGameDataCopy dataCopy = await EditorGameDataUtils.LoadFullGameData(this, env, token);
-
-                List<IGameSettings> allSettings = dataCopy.Data; 
-
-                EditorGameDataUtils.WriteGameDataToClient(allSettings, _serializer, _gameDataService);
-
+                gameDataService.WriteGameDataToClient(gs.data.AllSettings().Cast<IGameSettings>().ToList());
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            form.StartClose();
         }
     }
 }

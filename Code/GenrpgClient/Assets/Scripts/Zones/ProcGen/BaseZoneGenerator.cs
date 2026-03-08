@@ -11,6 +11,7 @@ using Genrpg.Shared.ProcGen.Services;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using Assets.Scripts.GameObjects;
 
 public class BaseZoneGenerator : IZoneGenerator, IInitializable
 {

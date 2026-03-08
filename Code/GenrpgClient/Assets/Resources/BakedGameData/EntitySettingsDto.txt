@@ -41,6 +41,12 @@
       "Name": "Set"
     },
     {
+      "IdKey": 11,
+      "Name": "Exp",
+      "Icon": "Exp",
+      "Art": "Exp"
+    },
+    {
       "IdKey": 12,
       "Name": "QuestItem"
     },
@@ -277,6 +283,24 @@
       "Art": "MinigameType"
     },
     {
+      "IdKey": 66,
+      "Name": "TraderBuff",
+      "Icon": "TraderBuff",
+      "Art": "TraderBuff"
+    },
+    {
+      "IdKey": 67,
+      "Name": "TraderDebuff",
+      "Icon": "TraderDebuff",
+      "Art": "TraderDebuff"
+    },
+    {
+      "IdKey": 68,
+      "Name": "TraderVars",
+      "Icon": "TraderVars",
+      "Art": "TraderVars"
+    },
+    {
       "IdKey": 100,
       "Name": "CrawlerSpell"
     },
@@ -338,27 +362,17 @@
     },
     {
       "IdKey": 203,
-      "Name": "BonusTraderStat",
-      "Icon": "BonusTraderStat",
-      "Art": "BonusTraderStat"
+      "Name": "TraderStatBonus",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "TraderStatBonus",
+      "Art": "TraderStatBonus"
     },
     {
-      "IdKey": 210,
-      "Name": "TraderStat",
-      "Icon": "TraderStat",
-      "Art": "TraderStat"
-    },
-    {
-      "IdKey": 211,
-      "Name": "BaseTraderStat",
-      "Icon": "BaseTraderStat",
-      "Art": "BaseTraderStat"
-    },
-    {
-      "IdKey": 212,
-      "Name": "BonusTraderStat",
-      "Icon": "BonusTraderStat",
-      "Art": "BonusTraderStat"
+      "IdKey": 204,
+      "Name": "TraderStatBuff",
+      "Icon": "TraderStatBuff",
+      "Art": "TraderStatBuff"
     }
   ],
   "Parent": {
@@ -366,5 +380,5 @@
     "Name": "EntitySettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-02T01:11:07.143Z"
+  "SaveTime": "2026-03-01T22:53:19.263Z"
 }

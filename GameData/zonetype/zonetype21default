@@ -4,14 +4,13 @@
   "IdKey": 21,
   "Name": "Natural",
   "Desc": "",
+  "AtlasPrefix": "",
   "Icon": "Natural",
   "Art": "Natural",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 114,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

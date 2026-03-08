@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "Unholy",
   "Art": "Unholy",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 113,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

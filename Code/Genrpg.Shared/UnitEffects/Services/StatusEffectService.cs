@@ -26,7 +26,7 @@ namespace Genrpg.Shared.UnitEffects.Services
 
             for (int i = 0; i < effects.Count; i++)
             {
-                if (unit.StatusEffects.HasBit(i))
+                if (unit.StatusEffects.HasBitIndex(i))
                 {
                     if (showAbbreviations)
                     {

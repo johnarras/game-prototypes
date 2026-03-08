@@ -65,7 +65,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             foreach (ElementType etype in elementSettings.GetData())
             {
-                if (FlagUtils.IsSet(stats.ResistBits, etype.IdKey))
+                if (FlagUtils.MatchesAnyBits(stats.ResistBits, etype.IdKey))
                 {
                     sb.Append(_infoService.CreateInfoLink(etype) + " ");
                 }
@@ -80,7 +80,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
             foreach (ElementType etype in elementSettings.GetData())
             {
-                if (FlagUtils.IsSet(stats.VulnBits, etype.IdKey))
+                if (FlagUtils.MatchesAnyBits(stats.VulnBits, etype.IdKey))
                 {
                     sb.Append(_infoService.CreateInfoLink(etype) + " ");
                 }

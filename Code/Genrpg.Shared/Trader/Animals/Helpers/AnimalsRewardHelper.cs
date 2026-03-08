@@ -15,6 +15,11 @@ namespace Genrpg.Shared.Trader.Animals.Helpers
 
         public long HelperKey => EntityTypes.Animal;
 
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            return _animalService.GetAnimalQuantity(obj.Get<HoldingsData>(), entityId);
+        }
+
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
             _animalService.AddAnimalToHoldings(obj.Get<CoreData>(), obj.Get<HoldingsData>(), entityId);

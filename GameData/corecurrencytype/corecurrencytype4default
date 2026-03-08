@@ -8,6 +8,6 @@
   "AtlasPrefix": "",
   "Icon": "Rations",
   "Art": "Rations",
-  "RegenTraderStatId": 13,
-  "StorageTraderStatId": 14
+  "RegenTraderStatId": 8,
+  "StorageTraderStatId": 9
 }

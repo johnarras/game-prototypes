@@ -11,6 +11,7 @@ using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddMountainTextures : BaseZoneGenerator
 {
@@ -111,15 +112,15 @@ public class AddMountainTextures : BaseZoneGenerator
 
 		for (int i = 0; i < 2; i++)
 		{
-			mainChoices.Add (MapConstants.BaseTerrainIndex);
+			mainChoices.Add (TerrainTexChannels.Base);
 		}
 		for (int i = 0; i < 2; i++)
 		{
-			mainChoices.Add (MapConstants.DirtTerrainIndex);
+			mainChoices.Add (TerrainTexChannels.Dirt);
 		}
 		for (int i = 0; i < 16; i++)
 		{
-			mainChoices.Add (MapConstants.SteepTerrainIndex);
+			mainChoices.Add (TerrainTexChannels.Steep);
 		}
 
 		int choice = texRand.Next() % mainChoices.Count;
@@ -128,25 +129,25 @@ public class AddMountainTextures : BaseZoneGenerator
 
 		List<int> cleftChoices = new List<int>();
 
-		if (mainTex != MapConstants.BaseTerrainIndex)
+		if (mainTex != TerrainTexChannels.Base)
 		{
 			for (int i = 0; i < 2; i++)
 			{
-				cleftChoices.Add (MapConstants.BaseTerrainIndex);
+				cleftChoices.Add (TerrainTexChannels.Base);
 			}
 		}
-		if (mainTex != MapConstants.DirtTerrainIndex)
+		if (mainTex != TerrainTexChannels.Dirt)
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				cleftChoices.Add (MapConstants.DirtTerrainIndex);
+				cleftChoices.Add (TerrainTexChannels.Dirt);
 			}
 		}
-		if (mainTex != MapConstants.SteepTerrainIndex)
+		if (mainTex != TerrainTexChannels.Steep)
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				cleftChoices.Add (MapConstants.SteepTerrainIndex);
+				cleftChoices.Add (TerrainTexChannels.Steep);
 			}
 		}
 
@@ -160,9 +161,9 @@ public class AddMountainTextures : BaseZoneGenerator
 		List<int> oppChoices = new List<int>();
 		int[] allOppChoices = new int[] 
 		{ 
-			MapConstants.BaseTerrainIndex,
-			MapConstants.DirtTerrainIndex,
-			MapConstants.SteepTerrainIndex,
+			TerrainTexChannels.Base,
+			TerrainTexChannels.Dirt,
+			TerrainTexChannels.Steep,
 		};
 
 		foreach (int opp in allOppChoices)
@@ -182,17 +183,17 @@ public class AddMountainTextures : BaseZoneGenerator
 
         if (useCaps)
 		{
-			if (mainTex == MapConstants.BaseTerrainIndex)
+			if (mainTex == TerrainTexChannels.Base)
 			{
-				mainTex = MapConstants.SteepTerrainIndex;
-				cleftTex = MapConstants.BaseTerrainIndex;
+				mainTex = TerrainTexChannels.Steep;
+				cleftTex = TerrainTexChannels.Base;
 			}
 			else
 			{
-				cleftTex = MapConstants.BaseTerrainIndex;
+				cleftTex = TerrainTexChannels.Base;
 			}
 
-			oppTex = MapConstants.BaseTerrainIndex;
+			oppTex = TerrainTexChannels.Base;
 		}
 
 
@@ -253,7 +254,7 @@ public class AddMountainTextures : BaseZoneGenerator
 				int rad = 6;
 
 				
-				if (alphas[x,y,MapConstants.RoadTerrainIndex] > 0.0f)
+				if (alphas[x,y,TerrainTexChannels.Road] > 0.0f)
 				{
 					continue;
 				}
@@ -382,7 +383,7 @@ public class AddMountainTextures : BaseZoneGenerator
 					origPercent = Math.Min (1,Math.Max (origPercent,roadPct*mult));
 				}
                 // Rescale existing splats.
-                for (int c = 0; c < MapConstants.MaxTerrainIndex; c++)
+                for (int c = 0; c < TerrainTexChannels.Max; c++)
                 {
                     _md.alphas[x, y, c] *= origPercent;
                 }

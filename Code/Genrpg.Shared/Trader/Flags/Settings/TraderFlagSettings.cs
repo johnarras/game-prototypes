@@ -4,7 +4,6 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Trader.Buffs.Interfaces;
 using Genrpg.Shared.Trader.Flags.Constants;
 using System.Collections.Generic;
 
@@ -15,7 +14,7 @@ namespace Genrpg.Shared.Trader.Flags.Settings
         public override string Id { get; set; }
     }
 
-    public class TraderFlag : ChildSettings, IIndexedGameItem, ITravelBuff
+    public class TraderFlag : ChildSettings, IIndexedGameItem
     {
 
         public override string Id { get; set; }
@@ -26,14 +25,6 @@ namespace Genrpg.Shared.Trader.Flags.Settings
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public bool IsBad { get; set; }
-        public bool IsBuff { get; set; }
-        public int BonusSpeed { get; set; }
-        public int RationsCost { get; set; }
-        public int Capacity { get; set; }
-        public double ForageChance { get; set; }
-        public double GoodEventChance { get; set; }
-        public double BadEventChance { get; set; }
     }
 
     public class TraderFlagSettingsDto : ParentSettingsDto<TraderFlagSettings, TraderFlag>

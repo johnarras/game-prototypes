@@ -2,6 +2,7 @@ using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Info.Services;

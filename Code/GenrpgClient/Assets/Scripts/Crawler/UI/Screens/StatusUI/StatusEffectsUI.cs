@@ -16,7 +16,7 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
         private List<StatusEffectIcon> _effectIcons = new List<StatusEffectIcon>();
 
         private long _currentStatusEffects = 0;
-        public void InitData(Unit unit)
+        public void SetData(Unit unit)
         {
 
             long newStatusEffects = unit.StatusEffects.Bits[0];
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
 
             foreach (StatusEffectIcon effectIcon in _effectIcons)
             {
-                if (!unit.StatusEffects.HasBit(effectIcon.GetStatusEffectId()))
+                if (!unit.StatusEffects.HasBitIndex(effectIcon.GetStatusEffectId()))
                 {
                     removeList.Add(effectIcon);
                 }
@@ -46,14 +46,14 @@ namespace Assets.Scripts.Crawler.UI.StatusUI
 
             foreach (StatusEffect effect in effects)
             {
-                if (unit.StatusEffects.HasBit(effect.IdKey))
+                if (unit.StatusEffects.HasBitIndex(effect.IdKey))
                 {
                     if (!_effectIcons.FastAny(x => x.GetStatusEffectId() == effect.IdKey))
                     {
                         StatusEffectIcon newIcon = _clientEntityService.FullInstantiate<StatusEffectIcon>(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
                         _effectIcons.Add(newIcon);
-                        newIcon.InitData(effect.IdKey);
+                        newIcon.SetData(effect.IdKey);
                     }
                 }
             }

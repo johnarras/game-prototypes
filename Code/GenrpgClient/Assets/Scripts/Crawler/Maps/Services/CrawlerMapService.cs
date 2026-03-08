@@ -13,6 +13,7 @@ using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Crawler.Tilemaps;
 using Assets.Scripts.Dungeons;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Core;
@@ -47,6 +48,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Services.CrawlerMaps
@@ -65,7 +67,6 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         bool IsIndoors();
         ICrawlerMapTypeHelper GetMapHelper(long mapType);
         IClientMapEncounterHelper GetEncounterHelper(long encounterTypeId);
-        string GetBGImageName();
         void MarkCellCleansed(int x, int z);
         void UpdateCameraPos(CancellationToken token);
         CrawlerMapRoot GetMapRoot();
@@ -98,6 +99,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private IPartyService _partyService = null;
         private ICrawlerOptionsService _optionsService = null;
         private ICrawlerMapGenService _mapGenService = null;
+        private ICrawlerTerrainService _terrainService = null;
+
+        const string MateriaListFilenameSuffix = "MaterialsList";
+
+        const string DungeonAssetBlockListFilename = "DungeonAssetBlockList";
 
         CrawlerMapRoot _crawlerMapRoot = null;
         private CancellationToken _token;
@@ -119,29 +125,6 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         public CrawlerMapRoot GetMapRoot()
         {
             return _crawlerMapRoot;
-        }
-
-        public string GetBGImageName()
-        {
-            if (_party == null)
-            {
-                _party = _crawlerService.GetParty();
-            }
-
-            if (_party.Combat != null)
-            {
-                return "Battlefield";
-            }
-
-
-            ZoneType zoneType = _worldService.GetCurrentZone(_party).Result;
-
-            if (zoneType != null && !string.IsNullOrEmpty(zoneType.Icon))
-            {
-                return zoneType.Icon;
-            }
-            return CrawlerClientConstants.DefaultWorldBG;
-
         }
 
         private GameObject _playerLightObject = null;
@@ -225,7 +208,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _crawlerMapRoot = await helper.EnterMap(party, mapData, token);
 
             _crawlerMapRoot.MapTypeHelper = helper;
-            await LoadDungeonAssets(_crawlerMapRoot, token);
+            await LoadMapMaterialList(_world, party, _crawlerMapRoot, token);
 
             MovePartyTo(party, _party.CurrPos.X, _party.CurrPos.Z, _party.CurrPos.Rot, true, token);
 
@@ -248,24 +231,24 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
         }
 
-        private async Task LoadDungeonAssets(CrawlerMapRoot mapRoot, CancellationToken token)
+        private async Task LoadMapMaterialList(CrawlerWorld world, PartyData party, CrawlerMapRoot mapRoot, CancellationToken token)
         {
 
-            List<long> zoneTypes = mapRoot.GetAllZoneTypes();
+            List<long> dungeonZoneTypes = mapRoot.GetAllDungeonZoneTypes();
 
-            foreach (long zoneTypeId in zoneTypes)
+            foreach (long zoneTypeId in dungeonZoneTypes)
             {
                 ZoneType ztype = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zoneTypeId);
 
                 if (ztype != null)
                 {
-                    AssetBlock block = new AssetBlock() { ZoneTypeId = ztype.IdKey };
+                    MaterialBlock block = new MaterialBlock() { ZoneTypeId = ztype.IdKey };
 
-                    mapRoot.AssetBlocks[zoneTypeId] = block;
+                    mapRoot.MaterialBlocks[zoneTypeId] = block;
 
                     string dungeonArtName = ztype.Art;
 
-                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName, OnLoadDungeonAssets, null, token, block);
+                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName + MateriaListFilenameSuffix, OnLoadDungeonAssets, null, token, block);
 
                 }
             }
@@ -274,11 +257,15 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, null, token, default(object), buildingArtFolder);
 
+            _assetService.LoadAsset(AssetCategoryNames.Dungeons, DungeonAssetBlockListFilename, OnLoadDungeonAssetBlock, null, token, mapRoot);
 
-            while (mapRoot.AssetBlocks.Any(a => !a.Value.IsReady()))
+            while (!mapRoot.AssetsAreReady())
             {
                 await Task.Delay(1);
             }
+
+            await _terrainService.DrawTerrain(world, party, mapRoot, token);
+
         }
         private void OnLoadCityAssets(object obj, object data, CancellationToken token)
         {
@@ -292,7 +279,25 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _crawlerMapRoot.CityAssets = assetGo.GetComponent<CityAssets>();
         }
 
-        private void OnLoadDungeonAssets(GameObject assetGo, AssetBlock block, CancellationToken token)
+        private void OnLoadDungeonAssetBlock(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
+        {
+            DungeonAssetBlockList list = go.GetComponent<DungeonAssetBlockList>();  
+
+            if (list == null || list.Blocks.Count < 1)
+            {
+                return;
+            }
+
+            mapRoot.AssetBlockList = list;
+
+            IRandom rand = new MyRandom(mapRoot.Map.ArtSeed * 17);
+
+            mapRoot.AssetBlock = RandomUtils.GetRandomFloatElement(list.Blocks, rand);
+            mapRoot.XZBlockSize = mapRoot.AssetBlock.BlockXZSize;
+            mapRoot.YBlockSize = mapRoot.AssetBlock.BlockYSize;
+        }
+
+        private void OnLoadDungeonAssets(GameObject assetGo, MaterialBlock block, CancellationToken token)
         {
 
             if (block == null)
@@ -300,15 +305,15 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            block.DungeonAssets = assetGo.GetComponent<DungeonAssets>();
+            block.MaterialList = assetGo.GetComponent<DungeonMaterialsList>();
 
             long materialSeed = _crawlerMapRoot.Map.ArtSeed / 5 + 1433 + block.ZoneTypeId;
 
-            int matWeightSum = block.DungeonAssets.Materials.Sum(x => x.Weight);
+            int matWeightSum = block.MaterialList.Materials.Sum(x => x.Weight);
 
             int weightChosen = (int)materialSeed % matWeightSum;
 
-            foreach (WeightedDungeonMaterials mat in block.DungeonAssets.Materials)
+            foreach (WeightedDungeonMaterials mat in block.MaterialList.Materials)
             {
                 weightChosen -= mat.Weight;
 
@@ -351,26 +356,35 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         {
             if (_crawlerMapRoot != null)
             {
-                foreach (AssetBlock block in _crawlerMapRoot.AssetBlocks.Values)
+                foreach (MaterialBlock block in _crawlerMapRoot.MaterialBlocks.Values)
                 {
 
-                    if (block.DungeonAssets != null)
+                    if (block.MaterialList != null)
                     {
-                        _clientEntityService.Destroy(block.DungeonAssets.gameObject);
-                        block.DungeonAssets = null;
+                        _clientEntityService.Destroy(block.MaterialList.gameObject);
+                        block.MaterialList = null;
                     }
                     block.DungeonMaterials = null;
 
                 }
-                _crawlerMapRoot.AssetBlocks.Clear();
+                _crawlerMapRoot.MaterialBlocks.Clear();
                 if (_crawlerMapRoot.CityAssets != null)
                 {
                     _clientEntityService.Destroy(_crawlerMapRoot.CityAssets.gameObject);
                     _crawlerMapRoot.CityAssets = null;
                 }
                 _clientEntityService.Destroy(_crawlerMapRoot.gameObject);
-                _crawlerMapRoot = null;
+
+                if (_crawlerMapRoot.AssetBlockList != null)
+                {
+                    _crawlerMapRoot.AssetBlock = null;
+                    _crawlerMapRoot.AssetBlockList.Clear();                    
+                    _clientEntityService.Destroy(_crawlerMapRoot.AssetBlockList);
+                    _crawlerMapRoot.AssetBlockList = null;
+                }
+
             }
+            _crawlerMapRoot = null;
         }
 
         public void UpdateCameraPos(CancellationToken token)
@@ -407,9 +421,9 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     // _camera.rect = new Rect(0, 0, 2f / 3f, 1);
                 }
 
-                _camera.transform.localPosition = new Vector3(0, 0, -CrawlerMapConstants.XZBlockSize * 0.6f);
+                _camera.transform.localPosition = new Vector3(0, 0, -_crawlerMapRoot.XZBlockSize * 0.4f);
                 _camera.transform.eulerAngles = new Vector3(0, 0, 0);
-                _camera.farClipPlane = CrawlerMapConstants.XZBlockSize * 8;
+                _camera.farClipPlane = _crawlerMapRoot.XZBlockSize * CrawlerDrawMapService.ViewRadius;
                 _camera.fieldOfView = 70f;
             }
 
@@ -456,7 +470,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            _party.CompletedMaps.SetBit(map.IdKey);
+            _party.CompletedMaps.SetBitIndex(map.IdKey);
             for (int xx = 0; xx < map.Width; xx++)
             {
                 for (int zz = 0; zz < map.Height; zz++)
@@ -464,7 +478,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     long questItemId = map.GetEntityId(xx, zz, EntityTypes.QuestItem);
                     if (questItemId > 0)
                     {
-                        _party.QuestItems.SetBit(questItemId);
+                        _party.QuestItems.SetBitIndex(questItemId);
                     }
                 }
             }
@@ -488,7 +502,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            _party.CurrentMap.Cleansed.SetBit(map.GetIndex(x, z));
+            _party.CurrentMap.Cleansed.SetBitIndex(map.GetIndex(x, z));
 
             MapEncounterType encounterType = _gameData.Get<MapEncounterSettings>(_gs.ch).Get(GetCurrentEncounterAtCell(_party, map, x, z, true));
 
@@ -512,7 +526,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             int index = map.GetIndex(x, z);
 
-            _party.CurrentMap.Visited.SetBit(index);
+            _party.CurrentMap.Visited.SetBitIndex(index);
 
             if (map.CrawlerMapTypeId == CrawlerMapTypes.City)
             {
@@ -520,7 +534,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return false;
             }
 
-            if (_party.CompletedMaps.HasBit(mapId))
+            if (_party.CompletedMaps.HasBitIndex(mapId))
             {
                 return false;
             }
@@ -541,12 +555,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 }
             }
 
-            if (!status.Visited.HasBit(index))
+            if (!status.Visited.HasBitIndex(index))
             {
                 status.CellsVisited++;
             }
 
-            status.Visited.SetBit(index);
+            status.Visited.SetBitIndex(index);
 
             // On map complete, mark all previous maps as complete.
             if (status.CellsVisited >= status.TotalCells)
@@ -577,7 +591,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                             _party.Maps.Remove(dungeonStatus);
                         }
 
-                        if (!_party.CompletedMaps.HasBit(cm.IdKey))
+                        if (!_party.CompletedMaps.HasBitIndex(cm.IdKey))
                         {
                             SetMapComplete(_party, _world, cm.IdKey);
 
@@ -613,11 +627,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             if (thisRunOnly)
             {
-                return _party.CurrentMap.Visited.HasBit(map.GetIndex(x, z));
+                return _party.CurrentMap.Visited.HasBitIndex(map.GetIndex(x, z));
             }
 
 
-            if (_party.CompletedMaps.HasBit(mapId))
+            if (_party.CompletedMaps.HasBitIndex(mapId))
             {
                 return true;
             }
@@ -631,7 +645,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             int index = map.GetIndex(x, z);
 
-            return status.Visited.HasBit(index);
+            return status.Visited.HasBitIndex(index);
         }
 
         public void MovePartyTo(PartyData party, int x, int z, int rot, bool showMinimap, CancellationToken token)
@@ -644,8 +658,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             x = MathUtil.Clamp(0, x, _crawlerMapRoot.Map.Width - 1);
             z = MathUtil.Clamp(0, z, _crawlerMapRoot.Map.Height - 1);
 
-            _crawlerMapRoot.DrawX = x * CrawlerMapConstants.XZBlockSize;
-            _crawlerMapRoot.DrawZ = z * CrawlerMapConstants.XZBlockSize;
+            _crawlerMapRoot.DrawX = x * _crawlerMapRoot.XZBlockSize;
+            _crawlerMapRoot.DrawZ = z * _crawlerMapRoot.XZBlockSize;
             party.CurrPos.X = x;
             party.CurrPos.Z = z;
             party.CurrPos.Rot = rot;
@@ -771,7 +785,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public bool HasMagicBit(int x, int z, long bit, bool modifyWithPartyBuffs)
         {
-            return FlagUtils.IsSet(GetMagicBits(_party.CurrPos.MapId, x, z, modifyWithPartyBuffs), (1 << (int)bit));
+            return FlagUtils.MatchesAnyBits(GetMagicBits(_party.CurrPos.MapId, x, z, modifyWithPartyBuffs), (1 << (int)bit));
         }
 
         public int GetMagicBits(long mapId, int x, int z, bool modifyWithPartyBuffs)
@@ -790,7 +804,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             int bits = map.GetEntityId(x, z, EntityTypes.MapMagic);
 
-            if (mapId == _party.CurrPos.MapId && _party.CurrentMap.Cleansed.HasBit(map.GetIndex(x, z)))
+            if (mapId == _party.CurrPos.MapId && _party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(x, z)))
             {
                 return 0;
             }
@@ -855,7 +869,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return 0;
             }
 
-            if (etype.CanBeCleansed && party.CurrentMap.Cleansed.HasBit(map.GetIndex(x, z)))
+            if (etype.CanBeCleansed && party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(x, z)))
             {
                 return 0;
             }
@@ -865,7 +879,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             {
                 // Check if map is completed or we have the one-time flag set.
                 // If didn't visit now and didn't complete map, then the encounter is there.
-                if (party.CompletedMaps.HasBit(map.IdKey) && party.LastAutoCompleteLevel != map.IdKey)
+                if (party.CompletedMaps.HasBitIndex(map.IdKey) && party.LastAutoCompleteLevel != map.IdKey)
                 {
                     return 0;
                 }
@@ -947,7 +961,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             CrawlerMap dungeonMap = _world.GetMap(2);
 
             party.CompletedMaps.Clear();
-            party.CompletedMaps.SetBit(1);
+            party.CompletedMaps.SetBitIndex(1);
             party.Maps.Clear();
 
             if (currMap.IdKey == 1 && world.GetMap(2) == null)

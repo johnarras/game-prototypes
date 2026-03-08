@@ -22,6 +22,23 @@ namespace Genrpg.Shared.Utils
             return default(T);
         }
 
+        public static T GetRandomFloatElement<T>(IEnumerable<T> list, IRandom rand) where T : IFloatWeightedItem
+        {
+            double chanceSum = list.Sum(x => x.Weight);
+
+            double chanceChosen = rand.NextDouble() * chanceSum;
+
+            foreach (T t in list)
+            {
+                chanceChosen -= t.Weight;
+                if (chanceChosen <= 0)
+                {
+                    return t;
+                }
+            }
+            return default(T);
+        }
+
         public static T GetRandomEnchant<T>(IEnumerable<T> list, IRandom rand) where T : IItemEnchantWeight
         {
             double chanceSum = list.Sum(x => x.ItemEnchantWeight);

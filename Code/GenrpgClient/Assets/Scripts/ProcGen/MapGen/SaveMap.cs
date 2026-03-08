@@ -1,4 +1,5 @@
 using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
@@ -113,7 +114,7 @@ public class SaveMap : BaseZoneGenerator
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
 
-                for (int i = 0; i < MapConstants.MaxTerrainIndex - 1; i++)
+                for (int i = 0; i < TerrainTexChannels.Max - 1; i++)
                 {
                     bytes[index++] = (byte)(_md.alphas[x + startX, y + startY, i] * MapConstants.AlphaSaveMult);
                 }

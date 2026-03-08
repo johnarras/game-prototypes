@@ -6,6 +6,7 @@ using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using Assets.Scripts.ProcGen.Loading.Utils;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddWater : BaseZoneGenerator
 {
@@ -100,9 +101,9 @@ public class AddWater : BaseZoneGenerator
                     }
                     int dy = z - cz;
 
-                    if (_md.alphas[x,z,MapConstants.RoadTerrainIndex] > 0 ||
+                    if (_md.alphas[x,z,TerrainTexChannels.Road] > 0 ||
                         _md.mountainHeights[x,z] != 0 ||
-                        FlagUtils.IsSet(_md.flags[x,z],MapGenFlags.IsLocation |
+                        FlagUtils.MatchesAnyBits(_md.flags[x,z],MapGenFlags.IsLocation |
                         MapGenFlags.NearWater))
                     {
                         float dist = (float)Math.Sqrt(dx * dx + dy * dy);
@@ -167,7 +168,7 @@ public class AddWater : BaseZoneGenerator
                         }
 
                         if (_md.heights[x,y] < worldBaseHeight &&
-                            FlagUtils.IsSet(_md.flags[x,y], MapGenFlags.BelowWater))
+                            FlagUtils.MatchesAnyBits(_md.flags[x,y], MapGenFlags.BelowWater))
                         {
                             _md.heights[x, y] = worldBaseHeight;
                         }

@@ -2,7 +2,7 @@
   "Id": "traderstat5default",
   "ParentId": "default",
   "IdKey": 5,
-  "Name": "Coins Storage",
-  "Icon": "CoinsStorage",
-  "Art": "CoinsStorage"
+  "Name": "Supplies Storage",
+  "Icon": "SuppliesStorage",
+  "Art": "SuppliesStorage"
 }

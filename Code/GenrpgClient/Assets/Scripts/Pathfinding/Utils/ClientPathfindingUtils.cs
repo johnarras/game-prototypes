@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Client.Tokens;
 using Genrpg.Shared.Interfaces;

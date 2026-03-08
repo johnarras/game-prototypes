@@ -3,6 +3,7 @@ using Genrpg.Shared.Currencies.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Messages;
 using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Utils;
 using System.Threading;
 
 namespace Assets.Scripts.MessageHandlers.Currency
@@ -17,7 +18,7 @@ namespace Assets.Scripts.MessageHandlers.Currency
                 return;
             }
            
-            _rewardService.Add(_gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, null);
+            _rewardService.GiveReward(_rand, _gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, null, null);
             _dispatcher.Dispatch(msg);
         }
     }

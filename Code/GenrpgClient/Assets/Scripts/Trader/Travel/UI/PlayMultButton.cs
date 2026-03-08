@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using Assets.Scripts.Trader.ClientEvents;
+using Assets.Scripts.Trader.Travel.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.WebApi;
@@ -99,7 +100,7 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             _caravanService.UpdateTravelStatsFromCaravan(coreData, _gs.ch.Get<CaravanData>(), _gs.ch.Get<TraderStatData>());
 
-            _dispatcher.Dispatch(new VisualUpdateTravelStats());
+            _dispatcher.Dispatch(new UpdateTraderHUD());
         }
     }
 }

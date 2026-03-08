@@ -193,7 +193,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             if (unit.IsPlayer())
             {
-                if (!unit.StatusEffects.HasBit(StatusEffects.Possessed))
+                if (!unit.StatusEffects.HasBitIndex(StatusEffects.Possessed))
                 {
                     return;
                 }
@@ -333,7 +333,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
         {
             List<CrawlerUnit> allUnits = new List<CrawlerUnit>();
 
-            groups = groups.Where(x => x.Units.FastAny(u => !u.StatusEffects.HasBit(StatusEffects.Dead))).ToList();
+            groups = groups.Where(x => x.Units.FastAny(u => !u.StatusEffects.HasBitIndex(StatusEffects.Dead))).ToList();
             if (groups.Count > 0)
             {
                 return groups[_rand.Next() % groups.Count].Units;

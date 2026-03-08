@@ -2,10 +2,12 @@ using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Accounts.Constants;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.DataStores.Indexes;
+using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -241,13 +243,8 @@ namespace Genrpg.ServerShared.Accounts.Services
 
         public async Task<string> GetNextAccountId()
         {
-            AccountIdIncrement increment = await _serverRepositoryService.AtomicIncrement<AccountIdIncrement>(AccountIdIncrement.DocId, nameof(AccountIdIncrement.AccountId), 1) as AccountIdIncrement;
 
-            MyRandom random = new MyRandom(increment.AccountId);
-
-            long newAccountId = random.Next() + AccountConstants.IdStartVal;
-            // Feel free to use a GUID or something...I just think it's neat I can autoincrement in mongo. :)
-            string newId = HashUtils.GetIdFromVal(newAccountId);
+            string newId = HashUtils.GetnewBase58Id();
             return newId;
         }
     }

@@ -1,3 +1,4 @@
+using Genrpg.Shared.Client.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Quests.ClientEvents
 {
-    public class UpdateQuestUI
+    public class UpdateQuestUI : IClientEvent
     {
     }
 }

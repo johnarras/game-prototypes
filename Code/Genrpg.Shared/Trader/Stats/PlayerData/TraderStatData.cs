@@ -17,6 +17,10 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
     {
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public TraderStatCollection Stats { get; set; } = new TraderStatCollection();
+
+        [Key(2)] public TraderBuffCollection Buffs { get; set; } = new TraderBuffCollection();
+
+        [Key(3)] public TraderDebuffCollection Debuffs { get; set; } = new TraderDebuffCollection();
     }
 
     [MessagePackObject]
@@ -40,9 +44,57 @@ namespace Genrpg.Shared.Trader.Stats.PlayerData
         [Key(0)] public int Base { get; set; }
         [Key(1)] public int Bonus { get; set; }
 
-        public int Total() { return Base + Bonus; }
+        [Key(2)] public int Buff { get; set; }
+
+        public int Total() { return Base + Bonus + Buff; }
 
     }
+
+    [MessagePackObject]
+    public class TraderDebuffCollection : BaseSmallIdObjectCollection<TraderDebuffStatus>
+    {
+        [Key(0)] public TraderDebuffStatus[] Data { get => _data; set => _data = value; }
+        protected override TraderDebuffStatus InternalAdd(TraderDebuffStatus first, TraderDebuffStatus second)
+        {
+            throw new NotImplementedException("Cannot add two TraderDebuffStatuses together");
+        }
+
+        protected override bool IsDefault(TraderDebuffStatus t)
+        {
+            return t == default(TraderDebuffStatus);
+        }
+    }
+
+    [MessagePackObject]
+    public class TraderDebuffStatus
+    {
+        [Key(0)] public int EndDebuffPlayCount { get; set; }
+    }
+
+
+    [MessagePackObject]
+    public class TraderBuffCollection : BaseSmallIdObjectCollection<TraderBuffStatus>
+    {
+        [Key(0)] public TraderBuffStatus[] Data { get => _data; set => _data = value; }
+        protected override TraderBuffStatus InternalAdd(TraderBuffStatus first, TraderBuffStatus second)
+        {
+            throw new NotImplementedException("Cannot add two TraderBuffStatuses together");
+        }
+
+        protected override bool IsDefault(TraderBuffStatus t)
+        {
+            return t == default(TraderBuffStatus);
+        }
+    }
+
+    [MessagePackObject]
+    public class TraderBuffStatus
+    {
+        [Key(0)] public DateTime EndTime { get; set; }
+    }
+
+
+
 
     public class TraderStatDataLoader : UnitDataLoader<TraderStatData> { }
 

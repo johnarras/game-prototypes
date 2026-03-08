@@ -1,6 +1,7 @@
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Entities.Settings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
@@ -13,7 +14,6 @@ namespace Genrpg.Shared.Rewards.Services
     public class RewardService : IRewardService
     {
 
-        protected IRepositoryService _repoService = null;
 
         private SetupDictionaryContainer<long, IRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IRewardHelper>();
         protected IRewardHelper GetRewardHelper(long entityTypeId)
@@ -55,7 +55,6 @@ namespace Genrpg.Shared.Rewards.Services
 
         public virtual bool GiveReward(IRandom rand, MapObject obj, IReward reward, RewardParams rp)
         {
-
             return GiveReward(rand, obj, reward.EntityTypeId, reward.EntityId, reward.Quantity, reward.ExtraData, rp);
         }
 
@@ -72,28 +71,21 @@ namespace Genrpg.Shared.Rewards.Services
             return helper.GiveReward(rand, obj, entityId, quantity, extraData, rp);
         }
 
-        public bool Add(MapObject obj, long entityTypeId, long entityId, long quantity, RewardParams rp)
+        public virtual long GetQuantity(MapObject obj, long entityTypeId, long entityId)
         {
-            IQuantityRewardHelper quantityHelper = GetRewardHelper(entityTypeId) as IQuantityRewardHelper;
-            if (quantityHelper != null)
+            IRewardHelper helper = GetRewardHelper(entityTypeId);
+
+            if (helper == null)
             {
-                return quantityHelper.Add(obj, entityId, quantity, rp);
+                return 0;
             }
-            return false;
+
+            return helper.GetQuantity(obj, entityTypeId);
         }
 
-        public bool Set(MapObject obj, long entityTypeId, long entityId, long quantity, RewardParams rp)
+        protected virtual void OnGiveRewardSuccess(IRandom rand, MapObject obj, long entityTypeId, long entityId, long quantity, object extraData, RewardParams rp)
         {
-            IQuantityRewardHelper quantityHelper = GetRewardHelper(entityTypeId) as IQuantityRewardHelper;
-            if (quantityHelper != null)
-            {
-                return quantityHelper.Set(obj, entityId, quantity, rp);
-            }
-            return false;
-        }
 
-        public virtual void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp) where TUpd : class, ISearchableItem
-        {
         }
     }
 }

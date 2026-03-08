@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype112default",
+  "ParentId": "default",
+  "IdKey": 112,
+  "Name": "Arcane",
+  "Icon": "Arcane",
+  "Art": "Arcane",
+  "Size": 1.0
+}

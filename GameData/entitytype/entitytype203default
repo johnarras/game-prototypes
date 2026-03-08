@@ -2,7 +2,9 @@
   "Id": "entitytype203default",
   "ParentId": "default",
   "IdKey": 203,
-  "Name": "BonusTraderStat",
-  "Icon": "BonusTraderStat",
-  "Art": "BonusTraderStat"
+  "Name": "TraderStatBonus",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "TraderStatBonus",
+  "Art": "TraderStatBonus"
 }

@@ -4,7 +4,5 @@
   "IdKey": 4,
   "Name": "At Sea",
   "Icon": "AtSea",
-  "Art": "AtSea",
-  "BonusSpeed": 3,
-  "BadEventChance": 0.2
+  "Art": "AtSea"
 }

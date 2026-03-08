@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "Road",
   "Art": "Road",
-  "Textures": [
-    {
-      "TextureTypeId": 4,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 4,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [],
   "ZoneAdjectives": [],
   "BridgeTypes": [],

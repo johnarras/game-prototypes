@@ -1,16 +1,17 @@
 using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.ClientEvents;
-using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.DynamicUI.Interfaces;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Utils;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Entities.UI
 {
-    public class EntityIcon : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class EntityIcon : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler, IEntityQuantityIcon
     {
 
         protected ISpriteService _spriteService = null;
@@ -50,6 +51,8 @@ namespace Assets.Scripts.Entities.UI
             SetEntityData(reward.EntityTypeId, reward.EntityId, reward.Quantity, maxQuantity);
         }
 
+        virtual protected GameObject GetDooberHitPosition() { return gameObject; }
+
         public virtual void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
         {
 
@@ -63,19 +66,7 @@ namespace Assets.Scripts.Entities.UI
             AddUpdate(UpdateQuantity, UpdateTypes.Late);
             if (IsDooberTarget)
             {
-                AddListener<AddEntityQuantityVisual>(OnAddEntityQuantityVisual);
-                AddListener<SetEntityQuantityVisual>(OnSetEntityQuantityVisual);
-                AddListener<ReplaceEntityModel>(OnReplaceEntityModel);
-            }
-
-            if (IsMainIcon)
-            {
-                _dispatcher.Dispatch(new SetDooberTarget()
-                {
-                    EntityTypeId = EntityTypeId,
-                    EntityId = EntityId,
-                    Target = gameObject,
-                });
+                _dispatcher.Dispatch(new SetDooberTarget(EntityTypeId, EntityId, GetDooberHitPosition(), IsMainIcon, this));
             }
 
             _spriteService.LoadEntityIcon(entityTypeId, entityId, Icon, GetToken());
@@ -125,33 +116,6 @@ namespace Assets.Scripts.Entities.UI
             _uiService.SetText(QuantityText, StrUtils.PrintCommaValue(_currQuantity));
         }
 
-        protected virtual void OnSetEntityQuantityVisual(SetEntityQuantityVisual visual)
-        {
-            if (visual.EntityId != _entityId || visual.EntityTypeId != _entityTypeId)
-            {
-                return;
-            }
-            _targetQuantity = visual.NewQuantity;
-            OnUpdateQuantity(visual.InstantUpdate);
-        }
-
-        protected virtual void OnReplaceEntityModel(ReplaceEntityModel model)
-        {
-
-        }
-
-        protected virtual void OnAddEntityQuantityVisual(AddEntityQuantityVisual visual)
-        {
-
-            if (visual.EntityId != _entityId || visual.EntityTypeId != _entityTypeId)
-            {
-                return;
-            }
-
-            _targetQuantity += visual.QuantityAdded;
-            OnUpdateQuantity(visual.InstantUpdate);
-        }
-
         protected virtual void OnUpdateQuantity(bool instantUpdate)
         {
             if (instantUpdate)
@@ -183,6 +147,16 @@ namespace Assets.Scripts.Entities.UI
             _currQuantity = (_targetQuantity - _startQuantity) * _ticksSinceUpdate / UpdateTicks + _startQuantity;
 
             ShowQuantity();
+        }
+
+        public void AddVisualQuantity(long entityTypeId, long entityId, long quantityAdded, bool instant)
+        {
+            if (entityTypeId != _entityTypeId || entityId != _entityId)
+            {
+                return;
+            }
+            _targetQuantity += quantityAdded;
+            OnUpdateQuantity(instant);
         }
     }
 }

@@ -98,7 +98,7 @@ public class AddFences : BaseZoneGenerator
                     Location currLoc = _zoneGenService.FindMapLocation(x, y, 3);
 
                     if (currLoc == null ||
-                        FlagUtils.IsSet(_md.flags[x,y], MapGenFlags.IsLocationPatch))
+                        FlagUtils.MatchesAnyBits(_md.flags[x,y], MapGenFlags.IsLocationPatch))
                     {
                         continue;
                     }
@@ -114,7 +114,7 @@ public class AddFences : BaseZoneGenerator
                     continue;
                 }
 
-                if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
                 {
                     continue;
                 }

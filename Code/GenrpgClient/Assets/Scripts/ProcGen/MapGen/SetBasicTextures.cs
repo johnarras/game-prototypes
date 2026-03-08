@@ -2,6 +2,7 @@
 
 using System.Threading;
 using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.ProcGen.Constants;
 using UnityEngine; // Needed
 
 public class SetBasicTerrainTextures : BaseZoneGenerator
@@ -25,7 +26,7 @@ public class SetBasicTerrainTextures : BaseZoneGenerator
         // and then fall back to the defaults if that fails.
         // And if all of those fail and anything loads, use the thing that loaded
         // for all channels to try to deal with errors.
-        TerrainLayer[] layers = new TerrainLayer[MapConstants.MaxTerrainIndex];
+        TerrainLayer[] layers = new TerrainLayer[TerrainTexChannels.Max];
 
         for (int s = 0; s < layers.Length; s++)
         {

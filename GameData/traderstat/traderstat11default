@@ -2,7 +2,7 @@
   "Id": "traderstat11default",
   "ParentId": "default",
   "IdKey": 11,
-  "Name": "Guards",
-  "Icon": "Guards",
-  "Art": "Guards"
+  "Name": "Caravan Capacity",
+  "Icon": "CaravanCapacity",
+  "Art": "CaravanCapacity"
 }

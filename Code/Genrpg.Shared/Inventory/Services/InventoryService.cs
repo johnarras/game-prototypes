@@ -219,7 +219,7 @@ namespace Genrpg.Shared.Inventory.Services
             RemoveItem(obj, itemId, false);
 
             // Two handed weapons remove offhand items.
-            if (FlagUtils.IsSet(itype.Flags, ItemFlags.FlagTwoHandedItem))
+            if (FlagUtils.MatchesAnyBits(itype.Flags, ItemFlags.FlagTwoHandedItem))
             {
                 Item offhandEquip = idata.GetEquipBySlot(EquipSlots.OffHand);
                 if (offhandEquip != null)
@@ -234,7 +234,7 @@ namespace Genrpg.Shared.Inventory.Services
                 if (mainHandEquip != null)
                 {
                     ItemType mainHandItemType = _gameData.Get<ItemTypeSettings>(obj).Get(mainHandEquip.ItemTypeId);
-                    if (mainHandItemType != null && FlagUtils.IsSet(mainHandItemType.Flags, ItemFlags.FlagTwoHandedItem))
+                    if (mainHandItemType != null && FlagUtils.MatchesAnyBits(mainHandItemType.Flags, ItemFlags.FlagTwoHandedItem))
                     {
                         UnequipItem(obj, mainHandEquip.Id, false);
                     }

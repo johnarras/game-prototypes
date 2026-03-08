@@ -9,6 +9,7 @@ using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.ProcGen.Constants;
 
 public interface IAddRoadService : IInjectable
 {
@@ -180,7 +181,7 @@ public class AddRoadService : IAddRoadService
 
         ld.MaxWidthPosDrift = (Math.Abs(ey - sy) + Math.Abs(ex - sx)) / 4;
 
-        if (FlagUtils.IsSet(extraMapFlags, MapGenFlags.VeryCurvedRoad))
+        if (FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.VeryCurvedRoad))
         {
             ld.WidthPosShiftChance *= 2;
             ld.WidthPosShiftSize++;
@@ -188,7 +189,7 @@ public class AddRoadService : IAddRoadService
             ld.InitialNoPosShiftLength = 3;
         }
 
-        if (FlagUtils.IsSet(extraMapFlags, MapGenFlags.MinorRoad))
+        if (FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
         {
             ld.WidthPosShiftChance = 0.1f;
             ld.WidthPosShiftSize = 1;
@@ -233,7 +234,7 @@ public class AddRoadService : IAddRoadService
                 basePercent = 1 - roadPercent - dirtPercent;
             }
 
-            if (FlagUtils.IsSet(extraMapFlags, MapGenFlags.MinorRoad))
+            if (FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
             {
                 dirtPercent = MathUtil.FloatRange(0.6f, 1.0f, rand);
                 roadPercent = 1 - dirtPercent;
@@ -241,13 +242,13 @@ public class AddRoadService : IAddRoadService
             }
 
 
-            if (primaryRoad || alphamaps[px, py, MapConstants.RoadTerrainIndex] == 0 ||
-                FlagUtils.IsSet(extraMapFlags, MapGenFlags.MinorRoad))
+            if (primaryRoad || alphamaps[px, py, TerrainTexChannels.Road] == 0 ||
+                FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
             {
                 _md.ClearAlphasAt(px, py);
-                alphamaps[px, py, MapConstants.BaseTerrainIndex] = basePercent;
-                alphamaps[px, py, MapConstants.RoadTerrainIndex] = roadPercent;
-                alphamaps[px, py, MapConstants.DirtTerrainIndex] = dirtPercent;
+                alphamaps[px, py, TerrainTexChannels.Max] = basePercent;
+                alphamaps[px, py, TerrainTexChannels.Road] = roadPercent;
+                alphamaps[px, py, TerrainTexChannels.Dirt] = dirtPercent;
             }
 
 			if (pt.Z > 0)
@@ -358,8 +359,8 @@ public class AddRoadService : IAddRoadService
 
                 float roadPct = MathUtil.FloatRange(0.8f,1.0f,rand);
 				_md.ClearAlphasAt(x,y);
-				_md.alphas[x,y,MapConstants.BaseTerrainIndex] = 1-roadPct;
-				_md.alphas[x,y,MapConstants.RoadTerrainIndex] = roadPct;
+				_md.alphas[x,y,TerrainTexChannels.Base] = 1-roadPct;
+				_md.alphas[x,y,TerrainTexChannels.Road] = roadPct;
 			}
 		}
 	}

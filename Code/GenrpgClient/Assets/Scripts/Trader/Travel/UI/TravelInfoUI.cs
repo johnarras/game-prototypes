@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using Assets.Scripts.Trader.ClientEvents;
+using Assets.Scripts.Trader.Travel.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.CoreCurrencies.Constants;
 using Genrpg.Shared.CoreCurrencies.Settings;
@@ -19,13 +20,13 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         public override void Init()
         {
-            _dispatcher.AddListener<VisualUpdateTravelStats>(OnUpdateVisualTravelStats, GetToken());
+                _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateVisualTravelStats, GetToken());
             base.Init();
             ShowData();
         }
 
 
-        private void OnUpdateVisualTravelStats(VisualUpdateTravelStats response)
+        private void OnUpdateVisualTravelStats(UpdateTraderHUD response)
         {
             ShowData();
         }

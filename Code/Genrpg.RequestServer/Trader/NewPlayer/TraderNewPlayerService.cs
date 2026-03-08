@@ -1,10 +1,12 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Trader.Travel.Services;
 using Genrpg.Shared.Core.PlayerData;
+using Genrpg.Shared.CoreCurrencies.Constants;
 using Genrpg.Shared.CoreCurrencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.LevelTrackDifficulty.Settings;
 using Genrpg.Shared.LevelTracks.Settings;
 using Genrpg.Shared.NewPlayers.Settings;
 using Genrpg.Shared.PlayMultiplier.Constants;
@@ -106,8 +108,11 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
             }
             if (context.core.Level < 1)
             {
+                LevelTrackDifficultySettings diffSettings = _gameData.Get<LevelTrackDifficultySettings>(context.core);
+
                 context.core.Level = 1;
-                context.core.Vars[TraderVars.Exp] = 0;
+                context.core.Currencies[CoreCurrencyTypes.Exp] = 0;
+                context.core.Vars[TraderVars.ExpToLevelUp] = (int)diffSettings.GetExpToNextLevel(context.core.Level);
                 context.core.SetNextHourlyUpdate();
 
                 List<NewPlayerBonus> startTradeGoods = newPlayerSettings.GetData().Where(x => x.EntityTypeId == EntityTypes.TradeGood).ToList();
@@ -127,7 +132,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
 
                 foreach (AnimalType animal in animals)
                 {
-                    if (holdings.AnimalsOwned.HasBit(animal.IdKey))
+                    if (holdings.AnimalsOwned.HasBitIndex(animal.IdKey))
                     {
                         ownedAnimals.Add(animal);
                     }

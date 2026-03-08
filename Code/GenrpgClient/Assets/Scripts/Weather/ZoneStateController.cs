@@ -211,7 +211,7 @@ public class ZoneStateController : IZoneStateController
         return;
     }
 
-    private bool InCrawlerMode() { return GameModeUtils.IsCrawlerMode(_gs.GameMode); }
+    private bool UseDynamicWeather() { return _gs.GameMode != EGameModes.MMO; }
 
     private long _crawlerMapId = 0;
     private bool _didInitZoneState = false;
@@ -221,14 +221,14 @@ public class ZoneStateController : IZoneStateController
         if (!_didInitZoneState)
         {
             GameObject go = _playerManager.GetPlayerGameObject();
-            if (go != null || InCrawlerMode())
+            if (go != null || UseDynamicWeather())
             {
                 ResetColors();
                 _didInitZoneState = true;
             }
         }
 
-        float delta = (InCrawlerMode() ? 1 : ColorFrameDelta);
+        float delta = (UseDynamicWeather() ? 1 : ColorFrameDelta);
 
         if (AmbientScale < 1.0f)
         {
@@ -279,7 +279,7 @@ public class ZoneStateController : IZoneStateController
                     }
                 }
             }
-            else if (InCrawlerMode())
+            else if (UseDynamicWeather())
             {
 
                 PartyData party = _crawlerService.GetParty();

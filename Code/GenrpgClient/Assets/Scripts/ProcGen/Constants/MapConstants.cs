@@ -25,18 +25,11 @@ public class MapConstants : SharedMapConstants
     public const int MaxRoadCheckDistance = 80;
     public const int RoadBaseHillScaleDistance = MaxRoadCheckDistance;
 
-    public const int BaseTerrainIndex = 0;
-    public const int DirtTerrainIndex = 1;
-    public const int RoadTerrainIndex = 2;
-    public const int SteepTerrainIndex = 3;
-    public const int MaxTerrainIndex = 4;
-
     public const int MonsterSpawnSkipSize = 25;
 
     public const int MaxBridgeCheckDistance = 40;
 
     public const int MinResourceSeparation = 50;
-
 
     public const int ExtraSplatChannels = 0;
 

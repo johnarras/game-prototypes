@@ -1,0 +1,108 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Lucky",
+      "Icon": "Lucky",
+      "Art": "Lucky",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 5,
+          "EntityId": 13
+        }
+      ]
+    },
+    {
+      "IdKey": 2,
+      "Name": "Speedy",
+      "Icon": "Speedy",
+      "Art": "Speedy",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 2,
+          "EntityId": 12
+        }
+      ]
+    },
+    {
+      "IdKey": 3,
+      "Name": "Well Fed",
+      "Icon": "WellFed",
+      "Art": "WellFed",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": -1,
+          "EntityId": 18
+        }
+      ]
+    },
+    {
+      "IdKey": 4,
+      "Name": "Working Out",
+      "Icon": "WorkingOut",
+      "Art": "WorkingOut",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 1,
+          "EntityId": 11
+        }
+      ]
+    },
+    {
+      "IdKey": 5,
+      "Name": "Forager",
+      "Icon": "Forager",
+      "Art": "Forager",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 5,
+          "EntityId": 10
+        }
+      ]
+    },
+    {
+      "IdKey": 6,
+      "Name": "Surplus Rations",
+      "Icon": "SurplusRations",
+      "Art": "SurplusRations",
+      "Effects": []
+    },
+    {
+      "IdKey": 7,
+      "Name": "Surplus Supplies",
+      "Icon": "SurplusSupplies",
+      "Art": "SurplusSupplies",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 1,
+          "EntityId": 4
+        }
+      ]
+    },
+    {
+      "IdKey": 8,
+      "Name": "Surplus Mana",
+      "Icon": "SurplusMana",
+      "Art": "SurplusMana",
+      "Effects": [
+        {
+          "EntityTypeId": 204,
+          "Quantity": 1,
+          "EntityId": 6
+        }
+      ]
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "TraderBuffSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-01T23:34:20.268Z"
+}

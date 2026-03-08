@@ -1,0 +1,27 @@
+{
+  "Id": "travelencounter2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Broken Cart",
+  "Text": "Your cart breaks down!",
+  "Weight": 100.0,
+  "GoodEffects": [],
+  "BadEffects": [
+    {
+      "EntityTypeId": 200,
+      "EntityId": 2,
+      "MinQuantity": 5,
+      "MaxQuantity": 10,
+      "Weight": 100.0
+    }
+  ],
+  "FailureEffects": [
+    {
+      "EntityTypeId": 67,
+      "EntityId": 4,
+      "MinQuantity": 2,
+      "MaxQuantity": 5,
+      "Weight": 100.0
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ public class Dispatcher : IDispatcher
 
     private Dictionary<Type, object> _dict = new Dictionary<Type, object>();
 
-    public void AddListener<T>(GameAction<T> action, CancellationToken token) where T : class
+    public void AddListener<T>(GameAction<T> action, CancellationToken token) where T : class, IClientEvent
     {
         token.Register(() =>
         {
@@ -39,7 +40,7 @@ public class Dispatcher : IDispatcher
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="action"></param>
-    private void RemoveListener<T>(GameAction<T> action) where T : class
+    private void RemoveListener<T>(GameAction<T> action) where T : class, IClientEvent
     {
         if (!_dict.ContainsKey(typeof(T)))
         {
@@ -52,7 +53,7 @@ public class Dispatcher : IDispatcher
         }
     }
 
-    public void Dispatch<T>(T actionParam) where T : class
+    public void Dispatch<T>(T actionParam) where T : class, IClientEvent
     {
         if (!_dict.ContainsKey(typeof(T)))
         {

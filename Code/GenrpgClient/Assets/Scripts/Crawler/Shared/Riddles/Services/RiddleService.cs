@@ -181,7 +181,7 @@ namespace Genrpg.Shared.Riddles.Services
 
                 for (int l = 0; l < 26; l++)
                 {
-                    if (!FlagUtils.IsSet(letterBits, (1 << l)))
+                    if (!FlagUtils.MatchesAnyBits(letterBits, (1 << l)))
                     {
                         _lookup.WordsNotContainingLetters[(char)('a' + l)].Add(word);
                     }

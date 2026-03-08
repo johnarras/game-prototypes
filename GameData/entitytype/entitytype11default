@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "Exp",
+  "Icon": "Exp",
+  "Art": "Exp"
+}

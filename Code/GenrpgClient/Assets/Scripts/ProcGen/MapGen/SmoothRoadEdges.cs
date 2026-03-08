@@ -1,3 +1,4 @@
+using Genrpg.Shared.ProcGen.Constants;
 using System;
 
 using System.Threading;
@@ -36,7 +37,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
 				int ay = (int)(1.0f*y/hhgt*ahgt);
 
 
-				float currSplat = _md.alphas[ax,ay,MapConstants.RoadTerrainIndex];
+				float currSplat = _md.alphas[ax,ay,TerrainTexChannels.Road];
 				if (currSplat > 0.0f)
 				{
 					//continue;
@@ -47,7 +48,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
 					continue;
 				}
 
-				float aveSplat = _md.GetAverageSplatNear(ax,ay,radius,MapConstants.RoadTerrainIndex);
+				float aveSplat = _md.GetAverageSplatNear(ax,ay,radius,TerrainTexChannels.Road);
 
 				int averad = radius;
 				if (currSplat > 0)

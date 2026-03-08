@@ -139,7 +139,7 @@ namespace Genrpg.Shared.Inventory.Services
 
             int iconIndex = ((IdHash * 131 + 29) % maxIconIndex) + 1;
 
-            if (FlagUtils.IsSet(itype.Flags, ItemFlags.SkipScalingIconName))
+            if (FlagUtils.MatchesAnyBits(itype.Flags, ItemFlags.SkipScalingIconName))
             {
                 scalingName = "";
             }

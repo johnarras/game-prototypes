@@ -24,7 +24,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 return;
             }
 
-            if (party.RiddlesCompleted.HasBit(status.MapRoot.Map.IdKey))
+            if (party.RiddlesCompleted.HasBitIndex(status.MapRoot.Map.IdKey))
             {
                 return;
             }

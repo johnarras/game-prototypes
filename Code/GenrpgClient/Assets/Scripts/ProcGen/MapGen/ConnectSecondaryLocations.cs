@@ -6,6 +6,7 @@ using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 // Connect these zone centers to "closest object.
 
@@ -81,7 +82,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                                 continue;
                             }
 
-                            if (_md.alphas[x, y, MapConstants.RoadTerrainIndex] > 0)
+                            if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
                             {
                                 int dx = x - cx;
                                 double dist = Math.Sqrt(dx * dx + dy * dy);
@@ -110,7 +111,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                                 continue;
                             }
 
-                            if (_md.alphas[x, y, MapConstants.RoadTerrainIndex] > 0)
+                            if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
                             {
                                 int dy = y - cy;
                                 double dist = Math.Sqrt(dx * dx + dy * dy);

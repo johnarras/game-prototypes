@@ -2,7 +2,7 @@
   "Id": "traderstat4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Coins Regen",
-  "Icon": "CoinsRegen",
-  "Art": "CoinsRegen"
+  "Name": "Supplies Regen",
+  "Icon": "SuppliesRegen",
+  "Art": "SuppliesRegen"
 }

@@ -28,27 +28,27 @@ namespace Genrpg.MapServer.Rewards.Services
 
             return base.GiveRewards(rand, obj, resultList, rp);
         }
-
-        public override void OnAddQuantity<TUpd>(MapObject obj, TUpd upd, long entityTypeId, long entityId, long diff, RewardParams rp)
+        protected override void OnGiveRewardSuccess(IRandom rand, MapObject obj, long entityTypeId, long entityId, long diff, object extraData, RewardParams rp)
         {
             if (diff == 0)
             {
                 return;
             }
-            _fullRepoService.QueueSave(upd);
+            //}
+            //_fullRepoService.QueueSave(upd);
 
-            if (upd is IOwnerQuantityChild quantityChild)
-            {
-                OnAddQuantityReward onAdd = new OnAddQuantityReward()
-                {
-                    CharId = obj.Id,
-                    EntityTypeId = entityTypeId,
-                    EntityId = entityId,
-                    Quantity = diff,
-                };
+            //if (upd is IOwnerQuantityChild quantityChild)
+            //{
+            //    OnAddQuantityReward onAdd = new OnAddQuantityReward()
+            //    {
+            //        CharId = obj.Id,
+            //        EntityTypeId = entityTypeId,
+            //        EntityId = entityId,
+            //        Quantity = diff,
+            //    };
 
-                _messageService.SendMessage(obj, onAdd);
-            }
+            //    _messageService.SendMessage(obj, onAdd);
+            //}
         }
     }
 }

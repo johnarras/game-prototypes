@@ -24,6 +24,22 @@ namespace Genrpg.Shared.Rewards.Entities
         [Key(3)] public long QualityTypeId { get; set; }
         [Key(4)] public long Level { get; set; }
         [Key(5)] public Item ExtraData { get; set; }
+
+
+        public Reward()
+        {
+
+        }
+
+        public Reward(IReward other)
+        {
+            EntityTypeId = other.EntityTypeId;
+            EntityId = other.EntityId;
+            Quantity = other.Quantity;
+            QualityTypeId   = other.QualityTypeId;
+            Level = other.Level;
+            ExtraData = other.ExtraData;            
+        }
     }
 }
 

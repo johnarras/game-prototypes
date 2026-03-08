@@ -47,6 +47,8 @@ namespace Assets.Scripts.UI.Interfaces
         void IncrementButtonBlock();
         void DecrementButtonBlock();
         void ClearButtonBlock();
+
+        void PlaceChildInParentRect(RectTransform childRect, RectTransform parentRect, float xpct, float ypct);
     }
 }
 

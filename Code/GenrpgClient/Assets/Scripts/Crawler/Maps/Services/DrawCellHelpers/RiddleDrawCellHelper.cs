@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
         {
             int riddleIndex = mapRoot.Map.GetEntityId(cell.MapX, cell.MapZ, EntityTypes.Riddle);
 
-            if (riddleIndex > 0 && !party.RiddlesCompleted.HasBit(mapRoot.Map.IdKey))
+            if (riddleIndex > 0 && !party.RiddlesCompleted.HasBitIndex(mapRoot.Map.IdKey))
             {
                 RiddleType riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(mapRoot.Map.RiddleHints?.RiddleTypeId ?? 0);
 

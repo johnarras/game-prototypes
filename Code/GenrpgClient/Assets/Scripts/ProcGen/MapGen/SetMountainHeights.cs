@@ -5,6 +5,7 @@ using Genrpg.Shared.Utils;
 using System.Threading;
 using UnityEngine;
 using System.Threading.Tasks;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class SetMountainHeights : BaseAddMountains
 {
@@ -96,7 +97,7 @@ public class SetMountainHeights : BaseAddMountains
 
                 if (_md.mountainHeights[x, y] == 0 || _md.mountainDistPercent[x, y] >= 1.0f)
                 {
-                    if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                    if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
                     {
                         _md.heights[x, y] += _md.mountainNoise[x, y] * noiseScale / MapConstants.MapHeight;
                     }
@@ -119,7 +120,7 @@ public class SetMountainHeights : BaseAddMountains
                 {
                     _md.heights[x, y] += (mountainDefaultHeight / MapConstants.MapHeight) * whh;
                     _md.ClearAlphasAt(x, y);
-                    _md.alphas[x, y, MapConstants.BaseTerrainIndex] = 1.0f;
+                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
                 float currentNoise = Math.Abs(_md.mountainNoise[x, y]);
                 float maxNoise = Math.Abs(_md.mountainHeights[x, y]) * mountainDefaultHeight * 0.2f;
@@ -134,7 +135,7 @@ public class SetMountainHeights : BaseAddMountains
                     noiseScale *= (maxNoise) / currentNoise;
                 }
 
-                if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
                 {
                     noiseScale = 1.0f;
                 }

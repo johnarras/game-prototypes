@@ -1,5 +1,7 @@
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameSettings.Entities;
+using Assets.Scripts.Lockstep.Config.Core;
+using Assets.Scripts.Lockstep.Game.Services;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Purchasing.Services;
@@ -15,7 +17,6 @@ using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IClientWebService _webNetworkService = null;
         private IClientPurchasingService _purchasingService = null;
         private IClientMinigameService _clientMinigameService = null;
+        private ILockstepGameService _lockstepService = null;
 
         protected override void InnerProcess(GameAuthResponse response, CancellationToken token)
         {
@@ -92,8 +94,17 @@ namespace Assets.Scripts.Website.MessageHandlers
             keepOpenScreens = new List<long>();
             if (GameModeUtils.IsPureClientMode(_gs.GameMode))
             {
-                keepOpenScreens.Add(ScreenNames.CrawlerMainMenu);
-                await _screenService.OpenAsync(ScreenNames.CrawlerMainMenu, null, token);
+                if (_gs.GameMode == EGameModes.Crawler)
+                {
+                    keepOpenScreens.Add(ScreenNames.CrawlerMainMenu);
+                    await _screenService.OpenAsync(ScreenNames.CrawlerMainMenu, null, token);
+                }
+                else if (_gs.GameMode == EGameModes.LockstepTemplate)
+                {
+                    BaseLockstepConfig lockstepConfig = await _lockstepService.SetupExampleLockstep(432132);
+
+                    _lockstepService.SetupGame(lockstepConfig);
+                }
             }
             else if (_gs.GameMode == EGameModes.Trader)
             {

@@ -56,7 +56,7 @@ namespace Genrpg.Shared.Input.PlayerData
             string txt = KeyPress;
             for (int m = 0; m < ModifierList.Length; m++)
             {
-                if (FlagUtils.IsSet(Modifiers, ModifierList[m]))
+                if (FlagUtils.MatchesAnyBits(Modifiers, ModifierList[m]))
                 {
                     txt = ModifierNames[m] + "-" + txt;
                 }

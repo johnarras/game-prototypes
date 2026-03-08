@@ -8,6 +8,7 @@ using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Dungeons.Constants;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.ProcGen.Constants;
 
 namespace Genrpg.Shared.Zones.Settings
 {
@@ -21,8 +22,6 @@ namespace Genrpg.Shared.Zones.Settings
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-
-
         public int MinLevel { get; set; }
 
         public float GenChance { get; set; }
@@ -46,9 +45,12 @@ namespace Genrpg.Shared.Zones.Settings
         /// Chance this is generated when creating a new map in the list of zones.
         /// </summary>
         public float ZoneListGenScale { get; set; }
+        
+        public long BaseTextureTypeId{ get; set; }
+        public long DirtTextureTypeId { get; set; }
+        public long RoadTextureTypeId { get; set; }
+        public long SteepTextureTypeId { get; set; }
 
-
-        public List<ZoneTextureType> Textures { get; set; } = new List<ZoneTextureType>();
 
         public List<WeightedName> ZoneNames { get; set; } = new List<WeightedName>();
         public List<WeightedName> ZoneAdjectives { get; set; } = new List<WeightedName>();
@@ -89,13 +91,30 @@ namespace Genrpg.Shared.Zones.Settings
         }
 
 
+        public long GetTerrainTextureIdFromChannel(int terrainChannel)
+        {
+            if (terrainChannel == TerrainTexChannels.Dirt)
+            {
+                return DirtTextureTypeId;
+            }
+            else if (terrainChannel == TerrainTexChannels.Road)
+            {
+                return RoadTextureTypeId; 
+            }
+            else if (terrainChannel == TerrainTexChannels.Steep)
+            {
+                return SteepTextureTypeId;  
+            }
+            return BaseTextureTypeId;
+        }
+
+
         public void SlimForClient()
         {
             ClearLists();
         }
         private void ClearLists()
         {
-            Textures = new List<ZoneTextureType>();
             ZoneNames = new List<WeightedName>();
             ZoneAdjectives = new List<WeightedName>();
 

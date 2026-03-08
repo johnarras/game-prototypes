@@ -1,10 +1,12 @@
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.Entities.Core;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Entities.Core;
+using Genrpg.DataUtils.Interfaces;
+using Genrpg.DataUtils.Services.EditorData;
+using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Editor.Utils;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.Shared.Accounts.PlayerData;
+using Genrpg.Shared.Tasks.Services;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -15,16 +17,14 @@ namespace Genrpg.Editor
     public partial class FindUserView : UserControlBase, IUICanvas
     {
         private IFullRepositoryService _repoService = null;
+        private IEditorDataService _dataService = null;
+        private ITaskService _taskService = null;
         private EditorGameState _gs = null;
         private DataWindow _win = null;
         private TextBoxBase _queryInput = null;
         private ComboBoxBase _queryType = null;
         private CommunityToolkit.WinUI.UI.Controls.DataGrid Grid = null;
 
-        private CanvasBase _canvas = new CanvasBase();
-        public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
-        public void Remove(object cont) { _canvas.Remove(cont); }
-        public bool Contains(object cont) { return _canvas.Contains(cont); }
 
         public FindUserView(EditorGameState gsIn, DataWindow winIn)
         {
@@ -103,17 +103,17 @@ namespace Genrpg.Editor
                 return;
             }
 
-            if (_gs == null || _gs.loc == null)
+            if (_gs == null || _gs.loc == null || _win == null)
             {
                 return;
             }
 
-            SmallPopup form = UIHelper.ShowBlockingDialog(_win, "Loading user data");
-            Task.Run(() => EditorPlayerUtils.LoadEditorUserData(_gs, _repoService, acct.Id)).GetAwaiter().GetResult();
+            ISmallPopup form = _win.ShowBlockingDialog("Loading user data").Result;
+            _taskService.ForgetTask(_dataService.LoadEditorUserData(_gs, acct.Id), false);
             form.StartClose();
             if (_gs.EditorUser.GameAccount == null)
             {
-                UIHelper.ShowMessageBox(_win, "User Not Found").Wait();
+                _win.ShowMessageBox("User Not Found").Wait();
                 return;
             }
 
@@ -137,14 +137,15 @@ namespace Genrpg.Editor
                 return;
             }
 
-            SmallPopup form = UIHelper.ShowBlockingDialog(_win, "Loading user data");
-            Task.Run(() => EditorPlayerUtils.LoadEditorUserData(_gs, _repoService, acct.Id)).GetAwaiter().GetResult();
+            ISmallPopup form = _win.ShowBlockingDialog("Loading user data").Result;
+            _taskService.ForgetTask(_dataService.LoadEditorUserData(_gs, acct.Id) , false);
 
             form.StartClose();
-            form = UIHelper.ShowBlockingDialog(_win, "Deleting user data");
+            form = _win.ShowBlockingDialog("Deleting user data").Result;
 
             // We don't delete the account here.
-            Task.Run(() => EditorPlayerUtils.DeleteEditorUserData(_gs, _repoService)).GetAwaiter().GetResult();
+            _taskService.ForgetTask(_dataService.DeleteEditorUserData(_gs), false);
+           
             form.StartClose();
 
         }

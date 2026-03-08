@@ -89,7 +89,8 @@
       "IdKey": 15,
       "Name": "WastelandCracked",
       "Art": "WastelandCracked",
-      "Size": 8.0
+      "Size": 8.0,
+      "ParentTextureTypeId": 11
     },
     {
       "IdKey": 16,
@@ -719,6 +720,78 @@
       "Desc": "",
       "Icon": "",
       "Art": "Lava"
+    },
+    {
+      "IdKey": 107,
+      "Name": "PointOfInterest",
+      "Icon": "PointOfInterest",
+      "Art": "PointOfInterest",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 108,
+      "Name": "City",
+      "Icon": "City",
+      "Art": "City",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 109,
+      "Name": "Dungeon",
+      "Icon": "Dungeon",
+      "Art": "Dungeon",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 110,
+      "Name": "Cave",
+      "Icon": "Cave",
+      "Art": "Cave",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 111,
+      "Name": "Tower",
+      "Icon": "Tower",
+      "Art": "Tower",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 112,
+      "Name": "Arcane",
+      "Icon": "Arcane",
+      "Art": "Arcane",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 113,
+      "Name": "Unholy",
+      "Icon": "Unholy",
+      "Art": "Unholy",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 114,
+      "Name": "Natural",
+      "Icon": "Natural",
+      "Art": "Natural",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 115,
+      "Name": "Outdoors",
+      "Icon": "Outdoors",
+      "Art": "Outdoors",
+      "Size": 1.0
+    },
+    {
+      "IdKey": 116,
+      "Name": "Stars",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "Stars",
+      "Art": "Stars",
+      "Size": 1.0
     }
   ],
   "Parent": {
@@ -726,5 +799,5 @@
     "Name": "TextureTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2026-02-25T22:09:30.092Z"
 }

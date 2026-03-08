@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Minigames.Services;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
+using Genrpg.Shared.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.UI
 {

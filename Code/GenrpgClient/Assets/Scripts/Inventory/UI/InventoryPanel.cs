@@ -46,16 +46,16 @@ public class InventoryPanel : BaseBehaviour
                 continue;
             }
 
-            if (itype.EquipSlotId > 0 || FlagUtils.IsSet(itype.Flags,ItemFlags.NoStack))
+            if (itype.EquipSlotId > 0 || FlagUtils.MatchesAnyBits(itype.Flags,ItemFlags.NoStack))
             {
-                if (FlagUtils.IsSet(categories,InventoryGroup.Equipment))
+                if (FlagUtils.MatchesAnyBits(categories,InventoryGroup.Equipment))
                 {
                     finalInventory.Add(item);
                 }
             }
             else
             {
-                if (FlagUtils.IsSet(categories,InventoryGroup.Reagents))
+                if (FlagUtils.MatchesAnyBits(categories,InventoryGroup.Reagents))
                 {
                     finalInventory.Add(item);
                 }

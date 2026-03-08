@@ -22,12 +22,12 @@ namespace Genrpg.Shared.Ftue.PlayerData
 
         public bool HaveCompletedFtue(long ftueId)
         {
-            return CompletedFtues.HasBit(ftueId);
+            return CompletedFtues.HasBitIndex(ftueId);
         }
 
         public void SetFtueCompleted(long ftueId)
         {
-            CompletedFtues.SetBit(ftueId);
+            CompletedFtues.SetBitIndex(ftueId);
         }
     }
     public class FtueDataLoader : UnitDataLoader<FtueData> { }

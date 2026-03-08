@@ -1,0 +1,18 @@
+header traderdebuff,IdKey,Name,Icon,Art,CleanseCoreCurrencyTypeId,CleanseQuantity,CityCoinsCleanseCost
+header debuffeffect,EntityTypeId,EntityId,Quantity,,,,
+traderdebuff,1,Unlucky,Unlucky,Unlucky,mana,2,20
+debuffeffect,traderstatbuff,bad luck,5,,,,
+traderdebuff,2,Slowed,Slowed,Slowed,supplies,1,40
+debuffeffect,traderstatbuff,caravan bonus speed,-1,,,,
+traderdebuff,3,Hungry,Hungry,Hungry,rations,2,10
+debuffeffect,traderstatbuff,rations cost,1,,,,
+traderdebuff,4,Broken Down,BrokenDown,BrokenDown,supplies,2,25
+debuffeffect,traderstatbuff,caravan bonus speed,-1,,,,
+debuffeffect,traderstatbuff,caravan capacity,-1,,,,
+traderdebuff,5,Sickly,Sickly,Sickly,rations,1,15
+debuffeffect,traderstatbuff,caravan capacity,-1,,,,
+traderdebuff,6,Magic Void,MagicVoid,MagicVoid,mana,1,35
+debuffeffect,traderstatbuff,mana regen,-2,,,,
+traderdebuff,7,Cursed,Cursed,Cursed,mana,1,50
+debuffeffect,traderstatbuff,bad luck,5,,,,
+debuffeffect,traderstatbuff,good luck,-5,,,,

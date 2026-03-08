@@ -45,6 +45,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: atlasanimalicons
     IsLocal: 0
+  - BundleName: atlasclickerminigametypeicons
+    IsLocal: 0
   - BundleName: atlascorecurrencytypeicons
     IsLocal: 0
   - BundleName: atlascrawlercombat
@@ -61,7 +63,11 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: atlasicons
     IsLocal: 0
+  - BundleName: atlasmatchminigametypeicons
+    IsLocal: 0
   - BundleName: atlasskillicons
+    IsLocal: 0
+  - BundleName: atlasspinnerminigametypeicons
     IsLocal: 0
   - BundleName: atlasstatuseffecticons
     IsLocal: 0
@@ -215,7 +221,7 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: culturesroman
     IsLocal: 0
-  - BundleName: dungeonsarcane
+  - BundleName: dungeonsarcanematerialslist
     IsLocal: 0
   - BundleName: dungeonsarcanemats
     IsLocal: 0
@@ -229,33 +235,35 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: dungeonsbasewall
     IsLocal: 0
-  - BundleName: dungeonscave
+  - BundleName: dungeonscavematerialslist
     IsLocal: 0
-  - BundleName: dungeonscity
+  - BundleName: dungeonscitymaterialslist
     IsLocal: 0
   - BundleName: dungeonsdarkgraymats
     IsLocal: 0
-  - BundleName: dungeonsdungeon
+  - BundleName: dungeonsdungeonassetblocklist
+    IsLocal: 0
+  - BundleName: dungeonsdungeonmaterialslist
     IsLocal: 0
   - BundleName: dungeonsgraymats
     IsLocal: 0
-  - BundleName: dungeonslava
+  - BundleName: dungeonslavamaterialslist
     IsLocal: 0
   - BundleName: dungeonslavamats
     IsLocal: 0
-  - BundleName: dungeonsnatural
+  - BundleName: dungeonsnaturalmaterialslist
     IsLocal: 0
   - BundleName: dungeonsnaturalmats
     IsLocal: 0
-  - BundleName: dungeonsoutdoors
+  - BundleName: dungeonsoutdoorsmaterialslist
     IsLocal: 0
   - BundleName: dungeonstanmats
     IsLocal: 0
   - BundleName: dungeonsterrainfloor
     IsLocal: 0
-  - BundleName: dungeonstower
+  - BundleName: dungeonstowermaterialslist
     IsLocal: 0
-  - BundleName: dungeonsunholy
+  - BundleName: dungeonsunholymaterialslist
     IsLocal: 0
   - BundleName: dungeonsunholymats
     IsLocal: 0
@@ -502,6 +510,24 @@ MonoBehaviour:
   - BundleName: magicwaterprojectile
     IsLocal: 0
   - BundleName: magicwatershield
+    IsLocal: 0
+  - BundleName: minigamesclickerhigh
+    IsLocal: 0
+  - BundleName: minigamesclickerlow
+    IsLocal: 0
+  - BundleName: minigamesclickermed
+    IsLocal: 0
+  - BundleName: minigamesmatchhigh
+    IsLocal: 0
+  - BundleName: minigamesmatchlow
+    IsLocal: 0
+  - BundleName: minigamesmatchmed
+    IsLocal: 0
+  - BundleName: minigamesspinnerhigh
+    IsLocal: 0
+  - BundleName: minigamesspinnerlow
+    IsLocal: 0
+  - BundleName: minigamesspinnermed
     IsLocal: 0
   - BundleName: monstersairelemental
     IsLocal: 0
@@ -823,6 +849,12 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: storessuppliesstoreartpanel
     IsLocal: 0
+  - BundleName: terraintexarcane
+    IsLocal: 0
+  - BundleName: terraintexcave
+    IsLocal: 0
+  - BundleName: terraintexcity
+    IsLocal: 0
   - BundleName: terraintexcobblea
     IsLocal: 0
   - BundleName: terraintexcracked
@@ -905,6 +937,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: terraintexdirtsandi
     IsLocal: 0
+  - BundleName: terraintexdungeon
+    IsLocal: 0
   - BundleName: terraintexforest
     IsLocal: 0
   - BundleName: terraintexgrass
@@ -951,11 +985,17 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: terraintexleavesd
     IsLocal: 0
+  - BundleName: terraintexnatural
+    IsLocal: 0
+  - BundleName: terraintexoutdoors
+    IsLocal: 0
   - BundleName: terraintexpath
     IsLocal: 0
   - BundleName: terraintexpebblesgray
     IsLocal: 0
   - BundleName: terraintexpebblesgrayb
+    IsLocal: 0
+  - BundleName: terraintexpointofinterest
     IsLocal: 0
   - BundleName: terraintexroad
     IsLocal: 0
@@ -1027,9 +1067,15 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: terraintexsnow
     IsLocal: 0
+  - BundleName: terraintexstars
+    IsLocal: 0
   - BundleName: terraintexswamp
     IsLocal: 0
   - BundleName: terraintexswamproad
+    IsLocal: 0
+  - BundleName: terraintextower
+    IsLocal: 0
+  - BundleName: terraintexunholy
     IsLocal: 0
   - BundleName: terraintexwasteland
     IsLocal: 0
@@ -1503,6 +1549,10 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uimaps
     IsLocal: 0
+  - BundleName: uiminigamehud
+    IsLocal: 0
+  - BundleName: uiminigamelobby
+    IsLocal: 0
   - BundleName: uioptions
     IsLocal: 0
   - BundleName: uiquests
@@ -1533,31 +1583,9 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uizones
     IsLocal: 0
-  - BundleName: atlasclickerminigametypeicons
+  - BundleName: atlasanimaltypeicons
     IsLocal: 0
-  - BundleName: atlasmatchminigametypeicons
+  - BundleName: atlastraderbufficons
     IsLocal: 0
-  - BundleName: atlasspinnerminigametypeicons
-    IsLocal: 0
-  - BundleName: minigamesclickerhigh
-    IsLocal: 0
-  - BundleName: minigamesclickerlow
-    IsLocal: 0
-  - BundleName: minigamesclickermed
-    IsLocal: 0
-  - BundleName: minigamesmatchhigh
-    IsLocal: 0
-  - BundleName: minigamesmatchlow
-    IsLocal: 0
-  - BundleName: minigamesmatchmed
-    IsLocal: 0
-  - BundleName: minigamesspinnerhigh
-    IsLocal: 0
-  - BundleName: minigamesspinnerlow
-    IsLocal: 0
-  - BundleName: minigamesspinnermed
-    IsLocal: 0
-  - BundleName: uiminigamehud
-    IsLocal: 0
-  - BundleName: uiminigamelobby
+  - BundleName: atlastraderdebufficons
     IsLocal: 0

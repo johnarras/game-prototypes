@@ -54,6 +54,7 @@ public class InitClient : BaseBehaviour, IInitClient
     public float PlayerSpeedMult;
     public long AccountSuffixId;
     public bool TestLocalBundles;
+    public bool RunSteamInEditor;
 #endif
 
     public EGameModes GameMode => _clientConfig.GameMode;
@@ -141,6 +142,7 @@ public class InitClient : BaseBehaviour, IInitClient
         EditorInstance = this;
 #endif
         await InitialSetup();
+
 
         string envName = _config.Config.Env.ToString();
 

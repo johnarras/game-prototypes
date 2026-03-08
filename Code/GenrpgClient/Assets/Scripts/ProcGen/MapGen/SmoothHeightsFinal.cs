@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.ProcGen.Constants;
 using System;
 
 using System.Threading;
@@ -54,7 +55,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                             continue;
                         }
                         numRoadCellsChecked++;
-                        totalRoadPercent += _md.alphas[xx, yy, MapConstants.RoadTerrainIndex];
+                        totalRoadPercent += _md.alphas[xx, yy, TerrainTexChannels.Road];
 			            if (_md.mapZoneIds[xx,yy] != _md.mapZoneIds[x,y])
                         {
                             float dx = xx - x;

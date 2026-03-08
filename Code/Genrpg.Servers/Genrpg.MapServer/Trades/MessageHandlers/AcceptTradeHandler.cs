@@ -19,7 +19,7 @@ namespace Genrpg.MapServer.Trades.MessageHandlers
         private ITradeService _tradeService = null;
         protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, AcceptTrade message)
         {
-            _tradeService.HandleAcceptTrade(ch, message);
+            _tradeService.HandleAcceptTrade(ch, message, rand);
         }
     }
 }

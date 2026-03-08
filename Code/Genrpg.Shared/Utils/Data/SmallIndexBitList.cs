@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Utils.Data
 
         [Key(0)] public int[] Bits { get; set; } = new int[1];
 
-        public bool HasBit(long index)
+        public bool HasBitIndex(long index)
         {
             int subIndex = (int)(index / BitsPerItem);
 
@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Utils.Data
             Bits = new int[1];
         }
 
-        public void SetBit(long index)
+        public void SetBitIndex(long index)
         {
             int subIndex = (int)(index / BitsPerItem);
 
@@ -53,7 +53,7 @@ namespace Genrpg.Shared.Utils.Data
             Bits[subIndex] |= (1 << bitRemainder);
         }
 
-        public void RemoveBit(long index)
+        public void RemoveBitIndex(long index)
         {
             int subIndex = (int)(index / BitsPerItem);
 

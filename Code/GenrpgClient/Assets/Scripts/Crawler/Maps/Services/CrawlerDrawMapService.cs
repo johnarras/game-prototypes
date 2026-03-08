@@ -30,13 +30,13 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         private OrderedSetupDictionaryContainer<Type, ICrawlerDrawCellHelper> _drawHelpers = new OrderedSetupDictionaryContainer<Type, ICrawlerDrawCellHelper>();
 
-        const int ViewRadius = 8;
+        public const int ViewRadius = 8;
         public async Awaitable DrawNearbyMap(PartyData _party, CrawlerWorld _world, CrawlerMapRoot _crawlerMapRoot, CancellationToken token)
         {
             await Awaitable.MainThreadAsync();
             try
             {
-                if (_crawlerMapRoot == null || _crawlerMapRoot.AssetBlocks.Any(a => !a.Value.IsReady()))
+                if (_crawlerMapRoot == null || !_crawlerMapRoot.AssetsAreReady())
                 {
                     return;
                 }
@@ -89,7 +89,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         }
 
                         cell.DidJustDraw = true;
-                        cell.Content.transform.position = new Vector3(worldX * CrawlerMapConstants.XZBlockSize, 0, worldZ * CrawlerMapConstants.XZBlockSize);
+                        cell.Content.transform.position = new Vector3(worldX * _crawlerMapRoot.XZBlockSize, 0, worldZ * _crawlerMapRoot.XZBlockSize);
 
                         if (!cell.DidInit)
                         {

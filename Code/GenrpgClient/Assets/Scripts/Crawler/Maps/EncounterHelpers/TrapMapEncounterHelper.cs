@@ -43,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
         public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
-            if (party.Buffs[PartyBuffs.Levitate] == 0 && !party.CurrentMap.Cleansed.HasBit(map.GetIndex(party.CurrPos.X, party.CurrPos.Z)))
+            if (party.Buffs[PartyBuffs.Levitate] == 0 && !party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(party.CurrPos.X, party.CurrPos.Z)))
             {
                 _dispatcher.Dispatch(new ShowFloatingText("It's a Trap!", EFloatingTextArt.Error));
                 CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
                     {
-                        pm.StatusEffects.SetBit(StatusEffects.Dead);
+                        pm.StatusEffects.SetBitIndex(StatusEffects.Dead);
                         continue;
                     }
 
@@ -82,7 +82,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
                         if (effect != null)
                         {
-                            pm.StatusEffects.SetBit(tier);
+                            pm.StatusEffects.SetBitIndex(tier);
                         }
                     }
                 }

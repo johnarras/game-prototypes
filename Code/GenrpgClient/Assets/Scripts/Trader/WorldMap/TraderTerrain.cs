@@ -103,7 +103,7 @@ public class TraderTerrain : BaseBehaviour
 
         CaravanPosition pos = _caravanService.GetPosition(coreData);
 
-        MyPointF posPoint = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, pos.DistanceGone, pos.DistanceToTarget);
+        MyPointF posPoint = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, pos.DistanceGone, pos.TotalDistanceToTarget);
         float xpos = posPoint.X;
         float ypos = posPoint.Y;
 
@@ -133,7 +133,7 @@ public class TraderTerrain : BaseBehaviour
         x *= _mapToDataRatio;
         y *= _mapToDataRatio;
 
-        Vector3 worldPos = new Vector3(x, 0, _texHeight - y - 1);
+        Vector3 worldPos = new Vector3(x, 0, _texHeight - y);
         _camera.transform.position = worldPos + CameraOffset;
         _camera.transform.LookAt(worldPos);
         CaravanAnchor.transform.position = worldPos + Vector3.up * 1.0f;

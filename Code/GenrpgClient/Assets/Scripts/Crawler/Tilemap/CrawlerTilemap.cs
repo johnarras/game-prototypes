@@ -481,7 +481,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         UseFogOfWar &&
                         _mapStatus != null && _mapStatus.MapId == _map.IdKey &&
                         (InitFromExplicitData || _map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors) &&
-                        !_party.CompletedMaps.HasBit(_map.IdKey) && !_mapStatus.Visited.HasBit(index))
+                        !_party.CompletedMaps.HasBitIndex(_map.IdKey) && !_mapStatus.Visited.HasBitIndex(index))
                     {
                         if (_map.Get(x, z, CellIndex.Terrain) > 0 && !InitFromExplicitData &&
                                 Mathf.Abs(ix - Width / 2) <= GhostImageWidth && Mathf.Abs(iz - Height / 2) <= GhostImageWidth)
@@ -513,7 +513,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     }
                     else
                     {
-                        if (_party.CompletedMaps.HasBit(_map.IdKey))
+                        if (_party.CompletedMaps.HasBitIndex(_map.IdKey))
                         {
                             _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_unexploredSprite);
                         }
@@ -655,7 +655,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         sb.Clear();
                         for (int i = 0; i < magicTypes.Count; i++)
                         {
-                            if (FlagUtils.IsSet(magicBits, (1 << (int)magicTypes[i].IdKey)))
+                            if (FlagUtils.MatchesAnyBits(magicBits, (1 << (int)magicTypes[i].IdKey)))
                             {
                                 sb.Append(magicTypes[i].MapSymbol);
                             }

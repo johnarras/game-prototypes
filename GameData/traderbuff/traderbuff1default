@@ -1,0 +1,15 @@
+{
+  "Id": "traderbuff1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Lucky",
+  "Icon": "Lucky",
+  "Art": "Lucky",
+  "Effects": [
+    {
+      "EntityTypeId": 204,
+      "Quantity": 5,
+      "EntityId": 13
+    }
+  ]
+}

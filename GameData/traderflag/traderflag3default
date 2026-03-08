@@ -4,6 +4,5 @@
   "IdKey": 3,
   "Name": "On Road",
   "Icon": "OnRoad",
-  "Art": "OnRoad",
-  "BonusSpeed": 2
+  "Art": "OnRoad"
 }

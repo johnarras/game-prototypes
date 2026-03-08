@@ -5,6 +5,7 @@ using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Constants;
 using Genrpg.Shared.Pathfinding.Constants;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils.Data;
 using System;
@@ -228,7 +229,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
 
             if (patch.baseAlphas == null)
             {
-                patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, MapConstants.MaxTerrainIndex];
+                patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, TerrainTexChannels.Max];
             }
 
             // 3 Alphas 3 bytes 
@@ -239,7 +240,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                 for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
                 {
                     alphaTotal = 0;
-                    for (int i = 0; i < MapConstants.MaxTerrainIndex - 1; i++)
+                    for (int i = 0; i < TerrainTexChannels.Max - 1; i++)
                     {
                         try
                         {
@@ -254,11 +255,11 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                     }
                     if (alphaTotal < 1)
                     {
-                        patch.baseAlphas[x, y, MapConstants.MaxTerrainIndex - 1] = 1 - alphaTotal;
+                        patch.baseAlphas[x, y, TerrainTexChannels.Max - 1] = 1 - alphaTotal;
                     }
                     else if (alphaTotal > 1)
                     {
-                        for (int i = 0; i < MapConstants.MaxTerrainIndex; i++)
+                        for (int i = 0; i < TerrainTexChannels.Max; i++)
                         {
                             patch.baseAlphas[x, y, i] /= alphaTotal;
                         }

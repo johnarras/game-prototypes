@@ -1,6 +1,8 @@
 using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -86,7 +88,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
         _updateService?.AddDelayedUpdate(this, func, delaySeconds, GetToken());
     }
 
-    protected void AddListener<T>(GameAction<T> action) where T : class
+    protected void AddListener<T>(GameAction<T> action) where T : class, IClientEvent
     {
         _dispatcher.AddListener<T>(action, GetToken());
     }

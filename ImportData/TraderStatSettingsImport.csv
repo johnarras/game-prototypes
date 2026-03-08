@@ -1,0 +1,19 @@
+header traderstat,Idkey,Name,Icon,Art
+traderstat,1,Caravan Animals,CaravanAnimals,CaravanAnimals
+traderstat,2,Coins Regen,CoinsRegen,CoinsRegen
+traderstat,3,Coins Storage,CoinsStorage,CoinsStorage
+traderstat,4,Supplies Regen,SuppliesRegen,SuppliesRegen
+traderstat,5,Supplies Storage,SuppliesStorage,SuppliesStorage
+traderstat,6,Mana Regen,ManaRegen,ManaRegen
+traderstat,7,Mana Storage,ManaStorage,ManaStorage
+traderstat,8,Rations Regen,RationsRegen,RationsRegen
+traderstat,9,Rations Storage,RationsStorage,RationsStorage
+traderstat,10,Foraging,Foraging,Foraging
+traderstat,11,Caravan Capacity,CaravanCapacity,CaravanCapacity
+traderstat,12,Caravan Bonus Speed,CaravanBonusSpeed,CaravanBonusSpeed
+traderstat,13,Good Luck,GoodLuck,GoodLuck
+traderstat,14,Bad Luck,BadLuck,BadLuck
+traderstat,15,Coins Cost,CoinsCost,CoinsCost
+traderstat,16,Supplies Cost,SuppliesCost,SuppliesCost
+traderstat,17,Mana Cost,ManaCost,ManaCost
+traderstat,18,Rations Cost,RationsCost,RationsCost

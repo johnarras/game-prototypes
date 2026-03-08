@@ -1,18 +1,12 @@
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Importers;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Interfaces;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Editor.Utils;
 using Genrpg.Shared.Constants;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.Utils;
-using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -71,6 +65,7 @@ namespace Genrpg.Editor
             _comboBox.ItemsSource = envNames;
             _comboBox.DisplayMemberPath = nameof(KeyValue.Key);
             _comboBox.SelectedValuePath = nameof(KeyValue.Key);
+            _comboBox.SelectedIndex = 0;
 
             UIHelper.CreateLabel(this, ELabelTypes.Default, "DevSuffixLabel", "Dev Suffix:", getButtonWidth(), getButtonHeight(), cx, cy);
             _suffixInput = UIHelper.CreateTextBoxBase(_canvas, "DevSuffix", "", getButtonWidth(), getButtonHeight(), cx + getButtonWidth(), cy, null);
@@ -110,7 +105,13 @@ namespace Genrpg.Editor
             
             KeyValue selectedItem = _comboBox.SelectedItem as KeyValue;
 
-            string envName = selectedItem.Val;
+            string envName = selectedItem?.Val ?? null;
+
+            if (string.IsNullOrEmpty(envName))
+            {
+                return;
+            }
+
             string suffix = _suffixInput.Text;
 
             string fullEnv = envName;
@@ -126,7 +127,6 @@ namespace Genrpg.Editor
                     fullEnv += suffix;
                 }
             }
-            Console.WriteLine(fullEnv);
 
             CurrentEnv = fullEnv;
 

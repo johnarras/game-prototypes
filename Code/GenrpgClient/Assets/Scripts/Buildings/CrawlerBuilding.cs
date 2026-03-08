@@ -40,7 +40,7 @@ namespace Assets.Scripts.Buildings
         };
 
 
-        public async Awaitable InitData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
+        public async Awaitable SetData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
         {
             string overrideName = null;
 

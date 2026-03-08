@@ -6,12 +6,10 @@
   "Desc": "",
   "Icon": "PointOfInterest",
   "Art": "PointOfInterest",
-  "Textures": [
-    {
-      "TextureTypeId": 99,
-      "Name": "Road/Base"
-    }
-  ],
+  "BaseTextureTypeId": 107,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [],
   "ZoneAdjectives": [],
   "BridgeTypes": [],

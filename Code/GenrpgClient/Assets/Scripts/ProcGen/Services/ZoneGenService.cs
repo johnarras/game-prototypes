@@ -11,6 +11,7 @@ using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
 using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Names.Settings;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Plants;
@@ -51,6 +52,8 @@ public interface IZoneGenService : IInitializable
 
     void LoadMap(LoadIntoMapRequest loadData);
     void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token);
+
+    void InitTerrainSettings(Terrain terr, int patchSize);
     Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token);
 
     string LoadedMapId { get; set; }
@@ -88,6 +91,11 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
     }
     public virtual void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token)
+    {
+
+    }
+
+    public virtual void InitTerrainSettings(Terrain terr, int patchSize)
     {
 
     }
@@ -306,68 +314,54 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
         genZone.SpreadChance = MathUtil.FloatRange(0.04f, 0.07f, rand);
 
-        if (zt.Textures != null)
+        IReadOnlyList<TextureType> allTextures = _gameData.Get<TextureTypeSettings>(_gs.ch).GetData();
+
+        for (int i = 0; i < TerrainTexChannels.Max; i++)
         {
-            IReadOnlyList<TextureType> allTextures = _gameData.Get<TextureTypeSettings>(_gs.ch).GetData();
-            if (allTextures == null)
+            long startTexTypeId = zt.GetTerrainTextureIdFromChannel(i);
+
+            if (startTexTypeId == 0)
             {
-                allTextures = new List<TextureType>();
+                startTexTypeId = 1;
             }
-            IReadOnlyList<TextureChannel> channels = _gameData.Get<TextureChannelSettings>(_gs.ch).GetData();
 
-            for (int i = 0; i < channels.Count; i++)
+            List<long> currTextures = new List<long>() { startTexTypeId };
+
+            bool addedNew = false;
+            do
             {
-                TextureChannel channel = channels[i];
+                addedNew = false;
 
-                IReadOnlyList<ZoneTextureType> startTex = zt.Textures.Where(x => x.TextureChannelId == channel.IdKey).ToList();
+                List<long> tempTex = new List<long>(currTextures);
 
-                List<long> currTextures = new List<long>();
-                foreach (ZoneTextureType st in startTex)
+                foreach (long item in tempTex)
                 {
-                    currTextures.Add(st.TextureTypeId);
-                }
-
-                bool addedNew = false;
-                do
-                {
-                    addedNew = false;
-
-                    List<long> tempTex = new List<long>(currTextures);
-
-                    foreach (long item in tempTex)
+                    List<TextureType> otherTexs = allTextures.Where(x => x.ParentTextureTypeId == item).ToList();
+                    foreach (TextureType ot in otherTexs)
                     {
-                        List<TextureType> otherTexs = allTextures.Where(x => x.ParentTextureTypeId == item).ToList();
-                        foreach (TextureType ot in otherTexs)
+                        if (!currTextures.Contains(ot.IdKey))
                         {
-                            if (!currTextures.Contains(ot.IdKey))
-                            {
-                                currTextures.Add(ot.IdKey);
-                                addedNew = true;
-                            }
+                            currTextures.Add(ot.IdKey);
+                            addedNew = true;
                         }
                     }
                 }
-                while (addedNew);
+            }
+            while (addedNew);
 
 
-                if (currTextures.Count > 0)
+            if (currTextures.Count > 0)
+            {
+                long id = currTextures[rand.Next() % currTextures.Count];
+                if (id == 0)
                 {
-                    long id = currTextures[rand.Next() % currTextures.Count];
-                    if (id == 0)
-                    {
-                        _logService.Debug("Zero texture id " + zone.IdKey + " " + zone.ZoneTypeId + " " + id);
-                    }
-                    EntityUtils.SetObjectValue(zone, channels[i].Name + "TextureTypeId", id);
+                    _logService.Debug("Zero texture id " + zone.IdKey + " " + zone.ZoneTypeId + " " + id);
                 }
-                else
-                {
-                    _logService.Debug("CurrentTextures Empty: " + zone.IdKey + " " + zone.ZoneTypeId + " Channel " + channel.Name);
-                }
+
+                zone.SetTextureTypeId(i, id);
             }
         }
-
     }
-
 
 
 

@@ -1,12 +1,14 @@
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Interfaces;
-using Genrpg.Editor.Services.Reflection;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Entities.Core;
+using Genrpg.DataUtils.Interfaces;
+using Genrpg.DataUtils.Services.Reflection;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
+using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.PlayerData;
+using Genrpg.ServerShared.PlayerData.Services;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
@@ -76,6 +78,7 @@ namespace Genrpg.Editor
         protected ILogService _logService = null;
         protected IGameData _gameData = null;
         protected ITaskService _taskService = null;
+        protected IServerConfig _config = null;
 
         protected bool IsIgnoreField(String nm)
         {
@@ -91,12 +94,6 @@ namespace Genrpg.Editor
 
 
         protected static readonly string[] EditorIgnoreFields = new string[] { "_lookup", "SaveTime", "UpdateTime" };
-
-
-        private CanvasBase _canvas = new CanvasBase();
-        public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
-        public void Remove(object cont) { _canvas.Remove(cont); }
-        public bool Contains(object cont) { return _canvas.Contains(cont); }
 
 
         public DataView(EditorGameState gs, DataWindow win, Object obj, Object parent, Object grandParent, DataView parentView)
@@ -261,6 +258,8 @@ namespace Genrpg.Editor
         private bool addedButtons = false;
         private void AddTopButtons()
         {
+            bool isProd = EnvNames.IsProdEnv(_config.DefaultEnv);
+
             if (addedButtons)
             {
                 return;
@@ -284,18 +283,21 @@ namespace Genrpg.Editor
 
             DetailsButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "DetailsButton", "Details", w, h, x, y, OnClickDetails); x += w + 5;
 
-            AddButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "AddButton", "Add", w, h, x, y, OnClickAdd); x += w + 5;
 
-            CopyButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "CopyButton", "Copy", w, h, x, y, OnClickCopy); x += w + 5;
+            if (!EnvNames.IsProdEnv(_config.DefaultEnv))
+            {
+                AddButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "AddButton", "Add", w, h, x, y, OnClickAdd); x += w + 5;
 
-            x += w + 5;
-            UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveAndCopyButton", "SaveYesCopy", w, h, x, y, OnClickSaveYesCopy); x += w + 5;
-            x += w + 5;
-            x += w + 5;
-            UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveButton", "SaveNoCopy", w, h, x, y, OnClickSaveNoCopy); x += w + 5;
-            x += w + 5;
-            DeleteButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "DeleteButton", "Delete", w, h, x, y, OnClickDelete); x += w + 5;
+                CopyButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "CopyButton", "Copy", w, h, x, y, OnClickCopy); x += w + 5;
 
+                x += w + 5;
+                UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveAndCopyButton", "SaveYesCopy", w, h, x, y, OnClickSaveYesCopy); x += w + 5;
+                x += w + 5;
+                x += w + 5;
+                UIHelper.CreateButton(this, EButtonTypes.TopBar, "SaveButton", "SaveNoCopy", w, h, x, y, OnClickSaveNoCopy); x += w + 5;
+                x += w + 5;
+                DeleteButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "DeleteButton", "Delete", w, h, x, y, OnClickDelete); x += w + 5;
+            }
         }
         public void OnClickCopy(object sender, object e)
         {
@@ -343,7 +345,7 @@ namespace Genrpg.Editor
             SaveChanges();
             if (_window != null)
             {
-                _taskService.ForgetTask(_window.SaveData(false), false);
+                _taskService.ForgetTask(_window.SaveData(_gs, false), false);
             }
         }
         public void OnClickSaveYesCopy(object sender, object e)
@@ -351,7 +353,7 @@ namespace Genrpg.Editor
             SaveChanges();
             if (_window != null)
             {
-                _taskService.ForgetTask(_window.SaveData(true), false);
+                _taskService.ForgetTask(_window.SaveData(_gs, true), false);
             }
         }
 

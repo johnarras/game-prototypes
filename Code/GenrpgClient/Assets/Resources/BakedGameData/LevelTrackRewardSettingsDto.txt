@@ -1,459 +1,172 @@
 {
   "Children": [
     {
-      "IdKey": 1
-    },
-    {
       "IdKey": 2,
-      "Exp": 10,
       "EntityTypeId": 202,
-      "EntityId": 5,
-      "Quantity": 900
+      "EntityId": 3,
+      "Quantity": 900,
+      "Level": 2
     },
     {
       "IdKey": 3,
-      "Exp": 20,
       "EntityTypeId": 202,
-      "EntityId": 4,
-      "Quantity": 50
+      "EntityId": 2,
+      "Quantity": 50,
+      "Level": 3
     },
     {
       "IdKey": 4,
-      "Exp": 30,
       "EntityTypeId": 202,
-      "EntityId": 8,
-      "Quantity": 60
+      "EntityId": 5,
+      "Quantity": 60,
+      "Level": 4
     },
     {
       "IdKey": 5,
-      "Exp": 40,
       "EntityTypeId": 202,
-      "EntityId": 9,
-      "Quantity": 6
+      "EntityId": 4,
+      "Quantity": 6,
+      "Level": 5
     },
     {
       "IdKey": 6,
-      "Exp": 50,
-      "EntityTypeId": 56,
-      "EntityId": 2,
-      "Quantity": 1
+      "EntityTypeId": 202,
+      "EntityId": 9,
+      "Quantity": 70,
+      "Level": 6
     },
     {
       "IdKey": 7,
-      "Exp": 60,
       "EntityTypeId": 202,
-      "EntityId": 11,
-      "Quantity": 3
+      "EntityId": 8,
+      "Quantity": 7,
+      "Level": 7
     },
     {
       "IdKey": 8,
-      "Exp": 70,
       "EntityTypeId": 202,
       "EntityId": 7,
-      "Quantity": 50
+      "Quantity": 50,
+      "Level": 8
     },
     {
       "IdKey": 9,
-      "Exp": 80,
       "EntityTypeId": 202,
       "EntityId": 6,
-      "Quantity": 5
+      "Quantity": 5,
+      "Level": 9
     },
     {
       "IdKey": 10,
-      "Exp": 90,
-      "EntityTypeId": 56,
+      "EntityTypeId": 202,
       "EntityId": 3,
-      "Quantity": 1
+      "Quantity": 1200,
+      "Level": 10
     },
     {
       "IdKey": 11,
-      "Exp": 100,
       "EntityTypeId": 202,
-      "EntityId": 5,
-      "Quantity": 1000
+      "EntityId": 2,
+      "Quantity": 60,
+      "Level": 11
     },
     {
       "IdKey": 12,
-      "Exp": 110,
       "EntityTypeId": 202,
-      "EntityId": 4,
-      "Quantity": 60
+      "EntityId": 5,
+      "Quantity": 70,
+      "Level": 12
     },
     {
       "IdKey": 13,
-      "Exp": 120,
       "EntityTypeId": 202,
-      "EntityId": 8,
-      "Quantity": 90
+      "EntityId": 4,
+      "Quantity": 7,
+      "Level": 13
     },
     {
       "IdKey": 14,
-      "Exp": 130,
       "EntityTypeId": 202,
       "EntityId": 9,
-      "Quantity": 7
+      "Quantity": 80,
+      "Level": 14
     },
     {
       "IdKey": 15,
-      "Exp": 140,
       "EntityTypeId": 202,
-      "EntityId": 11,
-      "Quantity": 4
+      "EntityId": 8,
+      "Quantity": 8,
+      "Level": 15
     },
     {
       "IdKey": 16,
-      "Exp": 150,
       "EntityTypeId": 202,
       "EntityId": 7,
-      "Quantity": 60
+      "Quantity": 60,
+      "Level": 16
     },
     {
       "IdKey": 17,
-      "Exp": 160,
       "EntityTypeId": 202,
       "EntityId": 6,
-      "Quantity": 6
+      "Quantity": 6,
+      "Level": 17
     },
     {
       "IdKey": 18,
-      "Exp": 170,
       "EntityTypeId": 202,
-      "EntityId": 1,
-      "Quantity": 2
+      "EntityId": 3,
+      "Quantity": 1500,
+      "Level": 18
     },
     {
       "IdKey": 19,
-      "Exp": 180,
       "EntityTypeId": 202,
       "EntityId": 2,
-      "Quantity": 3
+      "Quantity": 75,
+      "Level": 19
     },
     {
       "IdKey": 20,
-      "Exp": 190,
       "EntityTypeId": 202,
-      "EntityId": 3,
-      "Quantity": 5
+      "EntityId": 5,
+      "Quantity": 80,
+      "Level": 20
     },
     {
       "IdKey": 21,
-      "Exp": 200,
       "EntityTypeId": 202,
-      "EntityId": 10,
-      "Quantity": 2
+      "EntityId": 4,
+      "Quantity": 8,
+      "Level": 21
     },
     {
       "IdKey": 22,
-      "Exp": 210
+      "EntityTypeId": 202,
+      "EntityId": 9,
+      "Quantity": 90,
+      "Level": 22
     },
     {
       "IdKey": 23,
-      "Exp": 220
+      "EntityTypeId": 202,
+      "EntityId": 8,
+      "Quantity": 9,
+      "Level": 23
     },
     {
       "IdKey": 24,
-      "Exp": 230
+      "EntityTypeId": 202,
+      "EntityId": 7,
+      "Quantity": 70,
+      "Level": 24
     },
     {
       "IdKey": 25,
-      "Exp": 240
-    },
-    {
-      "IdKey": 26,
-      "Exp": 250
-    },
-    {
-      "IdKey": 27,
-      "Exp": 260
-    },
-    {
-      "IdKey": 28,
-      "Exp": 270
-    },
-    {
-      "IdKey": 29,
-      "Exp": 280
-    },
-    {
-      "IdKey": 30,
-      "Exp": 290
-    },
-    {
-      "IdKey": 31,
-      "Exp": 300
-    },
-    {
-      "IdKey": 32,
-      "Exp": 310
-    },
-    {
-      "IdKey": 33,
-      "Exp": 320
-    },
-    {
-      "IdKey": 34,
-      "Exp": 330
-    },
-    {
-      "IdKey": 35,
-      "Exp": 340
-    },
-    {
-      "IdKey": 36,
-      "Exp": 350
-    },
-    {
-      "IdKey": 37,
-      "Exp": 360
-    },
-    {
-      "IdKey": 38,
-      "Exp": 370
-    },
-    {
-      "IdKey": 39,
-      "Exp": 380
-    },
-    {
-      "IdKey": 40,
-      "Exp": 390
-    },
-    {
-      "IdKey": 41,
-      "Exp": 400
-    },
-    {
-      "IdKey": 42,
-      "Exp": 410
-    },
-    {
-      "IdKey": 43,
-      "Exp": 420
-    },
-    {
-      "IdKey": 44,
-      "Exp": 430
-    },
-    {
-      "IdKey": 45,
-      "Exp": 440
-    },
-    {
-      "IdKey": 46,
-      "Exp": 450
-    },
-    {
-      "IdKey": 47,
-      "Exp": 460
-    },
-    {
-      "IdKey": 48,
-      "Exp": 470
-    },
-    {
-      "IdKey": 49,
-      "Exp": 480
-    },
-    {
-      "IdKey": 50,
-      "Exp": 490
-    },
-    {
-      "IdKey": 51,
-      "Exp": 500
-    },
-    {
-      "IdKey": 52,
-      "Exp": 510
-    },
-    {
-      "IdKey": 53,
-      "Exp": 520
-    },
-    {
-      "IdKey": 54,
-      "Exp": 530
-    },
-    {
-      "IdKey": 55,
-      "Exp": 540
-    },
-    {
-      "IdKey": 56,
-      "Exp": 550
-    },
-    {
-      "IdKey": 57,
-      "Exp": 560
-    },
-    {
-      "IdKey": 58,
-      "Exp": 570
-    },
-    {
-      "IdKey": 59,
-      "Exp": 580
-    },
-    {
-      "IdKey": 60,
-      "Exp": 590
-    },
-    {
-      "IdKey": 61,
-      "Exp": 600
-    },
-    {
-      "IdKey": 62,
-      "Exp": 610
-    },
-    {
-      "IdKey": 63,
-      "Exp": 620
-    },
-    {
-      "IdKey": 64,
-      "Exp": 630
-    },
-    {
-      "IdKey": 65,
-      "Exp": 640
-    },
-    {
-      "IdKey": 66,
-      "Exp": 650
-    },
-    {
-      "IdKey": 67,
-      "Exp": 660
-    },
-    {
-      "IdKey": 68,
-      "Exp": 670
-    },
-    {
-      "IdKey": 69,
-      "Exp": 680
-    },
-    {
-      "IdKey": 70,
-      "Exp": 690
-    },
-    {
-      "IdKey": 71,
-      "Exp": 700
-    },
-    {
-      "IdKey": 72,
-      "Exp": 710
-    },
-    {
-      "IdKey": 73,
-      "Exp": 720
-    },
-    {
-      "IdKey": 74,
-      "Exp": 730
-    },
-    {
-      "IdKey": 75,
-      "Exp": 740
-    },
-    {
-      "IdKey": 76,
-      "Exp": 750
-    },
-    {
-      "IdKey": 77,
-      "Exp": 760
-    },
-    {
-      "IdKey": 78,
-      "Exp": 770
-    },
-    {
-      "IdKey": 79,
-      "Exp": 780
-    },
-    {
-      "IdKey": 80,
-      "Exp": 790
-    },
-    {
-      "IdKey": 81,
-      "Exp": 800
-    },
-    {
-      "IdKey": 82,
-      "Exp": 810
-    },
-    {
-      "IdKey": 83,
-      "Exp": 820
-    },
-    {
-      "IdKey": 84,
-      "Exp": 830
-    },
-    {
-      "IdKey": 85,
-      "Exp": 840
-    },
-    {
-      "IdKey": 86,
-      "Exp": 850
-    },
-    {
-      "IdKey": 87,
-      "Exp": 860
-    },
-    {
-      "IdKey": 88,
-      "Exp": 870
-    },
-    {
-      "IdKey": 89,
-      "Exp": 880
-    },
-    {
-      "IdKey": 90,
-      "Exp": 890
-    },
-    {
-      "IdKey": 91,
-      "Exp": 900
-    },
-    {
-      "IdKey": 92,
-      "Exp": 910
-    },
-    {
-      "IdKey": 93,
-      "Exp": 920
-    },
-    {
-      "IdKey": 94,
-      "Exp": 930
-    },
-    {
-      "IdKey": 95,
-      "Exp": 940
-    },
-    {
-      "IdKey": 96,
-      "Exp": 950
-    },
-    {
-      "IdKey": 97,
-      "Exp": 960
-    },
-    {
-      "IdKey": 98,
-      "Exp": 970
-    },
-    {
-      "IdKey": 99,
-      "Exp": 980
+      "EntityTypeId": 202,
+      "EntityId": 6,
+      "Quantity": 7,
+      "Level": 25
     }
   ],
   "Parent": {
@@ -461,5 +174,5 @@
     "Name": "LevelTrackRewardSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-21T20:59:20.494Z"
+  "SaveTime": "2026-03-04T23:19:32.427Z"
 }

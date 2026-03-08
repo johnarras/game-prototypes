@@ -12,6 +12,7 @@ namespace Genrpg.Shared.Entities.Constants
         public const long Recipe = 8;
         public const long Quest = 9;
         public const long Set = 10;
+        public const long Exp = 11;
         public const long QuestItem = 12;
         public const long GroundObject = 13;
         public const long Zone = 14;
@@ -68,6 +69,9 @@ namespace Genrpg.Shared.Entities.Constants
         public const long TraderFlag = 63;
         public const long TraderSkill = 64;
         public const long MinigameType = 65;
+        public const long TraderBuff = 66;
+        public const long TraderDebuff = 67;
+        public const long TraderVars = 68;
 
 
         // Crawler-specific entitytypes
@@ -87,7 +91,8 @@ namespace Genrpg.Shared.Entities.Constants
         public const long CoreCurrency = 200;
         public const long TraderStat = 201;
         public const long BaseTraderStat = 202;
-        public const long BonusTraderStat = 203;
+        public const long TraderBonusStat = 203;
+        public const long TraderStatBuff = 204;
 
     }
 }

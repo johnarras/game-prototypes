@@ -68,7 +68,6 @@ public class CreateMinimap : BaseZoneGenerator
 
         List<string> sunNames = new List<String>() { "Sun", "Sunlight" };
 
-
         Light light = _zoneStateController.SunLight;
 
         float lightIntensity = 1.0f;

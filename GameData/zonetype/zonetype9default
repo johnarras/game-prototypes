@@ -4,33 +4,13 @@
   "IdKey": 9,
   "Name": "Water",
   "Desc": "",
+  "AtlasPrefix": "",
   "Icon": "Water",
   "Art": "Water",
-  "Textures": [
-    {
-      "TextureTypeId": 13
-    },
-    {
-      "TextureTypeId": 20,
-      "TextureChannelId": 1
-    },
-    {
-      "TextureTypeId": 22,
-      "TextureChannelId": 2
-    },
-    {
-      "TextureTypeId": 21,
-      "TextureChannelId": 3
-    },
-    {
-      "TextureTypeId": 3,
-      "TextureChannelId": 3
-    },
-    {
-      "TextureTypeId": 4,
-      "TextureChannelId": 2
-    }
-  ],
+  "BaseTextureTypeId": 13,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 4,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Minigames.UI;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
+using Genrpg.Shared.Minigames.Games.Settings;
 using System.Threading;
 using UnityEngine;
 

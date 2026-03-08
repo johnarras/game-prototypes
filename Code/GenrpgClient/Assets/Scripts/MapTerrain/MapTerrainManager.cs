@@ -8,6 +8,7 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
@@ -718,7 +719,7 @@ public class MapTerrainManager : IMapTerrainManager
             }
         }
         int alphaPatchSize = patchSize * MapConstants.AlphaMapsPerTerrainCell;
-        float[,,] patchAlphas = new float[alphaPatchSize, alphaPatchSize, MapConstants.MaxTerrainIndex];
+        float[,,] patchAlphas = new float[alphaPatchSize, alphaPatchSize, TerrainTexChannels.Max];
 
         Vector3 offsetPos = new Vector3(gx * (MapConstants.TerrainPatchSize - 1), 0, gy * (MapConstants.TerrainPatchSize - 1));
         string terrainName = "Terrain" + gx + "_" + gy;
@@ -747,7 +748,7 @@ public class MapTerrainManager : IMapTerrainManager
         }
         terr2.terrainData.SetHeights(0, 0, patchHeights);
 
-        TerrainLayer[] arr = new TerrainLayer[MapConstants.MaxTerrainIndex];
+        TerrainLayer[] arr = new TerrainLayer[TerrainTexChannels.Max];
         for (int s = 0; s < arr.Length; s++)
         {
             arr[s] = CreateTerrainLayer(null);
@@ -1275,8 +1276,8 @@ public class MapTerrainManager : IMapTerrainManager
         if (_basicTerrainTextures == null)
         {
             UnityEngine.Color[] colors = new UnityEngine.Color[] { Color.green * 0.6f, new UnityEngine.Color(0.6f, 0.3f, 0), Color.white * 0.4f, Color.white * 0.8f };
-            _basicTerrainTextures = new Texture2D[MapConstants.MaxTerrainIndex];
-            for (int c = 0; c < colors.Length && c < MapConstants.MaxTerrainIndex; c++)
+            _basicTerrainTextures = new Texture2D[TerrainTexChannels.Max];
+            for (int c = 0; c < colors.Length && c < TerrainTexChannels.Max; c++)
             {
 
                 Texture2D tex = new Texture2D(4, 4, TextureFormat.ARGB32, false, true);

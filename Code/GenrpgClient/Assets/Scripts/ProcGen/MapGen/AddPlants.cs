@@ -13,6 +13,7 @@ using Genrpg.Shared.Zones.WorldData;
 using Assets.Scripts.ProcGen.Loading.Utils;
 using UnityEngine;
 using Genrpg.Shared.Client.Core;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class BaseDetailPrototype
 {
@@ -161,11 +162,11 @@ public class AddPlants : BaseZoneGenerator
                     {
                         continue;
                     }
-                    if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.BelowWater))
+                    if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
                     {
                         continue;
                     }
-                    if (_md.alphas[x,y, MapConstants.RoadTerrainIndex] > 0)
+                    if (_md.alphas[x,y, TerrainTexChannels.Road] > 0)
                     {
                         bool isNearRoad = false;
                         int roadRad = 0;
@@ -181,7 +182,7 @@ public class AddPlants : BaseZoneGenerator
                                 {
                                     continue;
                                 }
-                                if (_md.alphas[xx,yy, MapConstants.RoadTerrainIndex] > 0)
+                                if (_md.alphas[xx,yy, TerrainTexChannels.Road] > 0)
                                 {
                                     isNearRoad = true;
                                     break;
@@ -243,7 +244,7 @@ public class AddPlants : BaseZoneGenerator
 
                     if (_zoneGenService.FindMapLocation(x, y, 1) != null)
                     {
-                        if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.IsLocationPatch))
+                        if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsLocationPatch))
                         {
                             nearLocation++;
                             continue;

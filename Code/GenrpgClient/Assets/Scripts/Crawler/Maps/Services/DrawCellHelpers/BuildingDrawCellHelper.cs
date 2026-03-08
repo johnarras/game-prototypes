@@ -8,6 +8,7 @@ using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Utils;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -51,17 +52,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     if (mapRoot.CityAssets != null)
                     {
-                        int weightSum = mapRoot.CityAssets.Buildings.Sum(x => x.Weight);
-                        int weightChosen = (int)loadData.Seed * 3 % weightSum;
-                        foreach (WeightedCrawlerBuilding wcb in mapRoot.CityAssets.Buildings)
-                        {
-                            weightChosen -= wcb.Weight;
-
-                            if (weightChosen <= 0)
-                            {
-                                await ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
-                            }
-                        }
+                        IRandom rand = new MyRandom(loadData.Seed);
+                        WeightedCrawlerBuilding wcb = RandomUtils.GetRandomFloatElement(mapRoot.CityAssets.Buildings, rand);
+                        await ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
                     }
                 }
             }
@@ -79,7 +72,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             CrawlerBuilding crawlerBuilding = _clientEntityService.FullInstantiate(buildingIn);
             _clientEntityService.AddToParent(crawlerBuilding, parent);
 
-            await crawlerBuilding.InitData(loadData.Data as BuildingType, loadData.Seed, loadData.MapRoot, loadData.Cell, mats);
+            await crawlerBuilding.SetData(loadData.Data as BuildingType, loadData.Seed, loadData.MapRoot, loadData.Cell, mats);
             crawlerBuilding.transform.eulerAngles = new Vector3(0, loadData.Angle, 0);
             crawlerBuilding.transform.localScale = Vector3.one;
 

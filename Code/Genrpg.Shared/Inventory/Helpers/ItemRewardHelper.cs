@@ -9,11 +9,14 @@ using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
+using System.Linq;
 using System.Threading.Tasks;
 namespace Genrpg.Shared.Inventory.Helpers
 {
     public class ItemRewardHelper : IRewardHelper
     {
+
+        public long HelperKey => EntityTypes.Item;
         private IInventoryService _inventoryService = null;
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
@@ -26,7 +29,12 @@ namespace Genrpg.Shared.Inventory.Helpers
             return true;
         }
 
-        public long HelperKey => EntityTypes.Item;
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            InventoryData idata = obj.Get<InventoryData>();
+
+            return idata.GetItemsByItemTypeId(entityId).Sum(x => x.Quantity);
+        }
 
     }
 }

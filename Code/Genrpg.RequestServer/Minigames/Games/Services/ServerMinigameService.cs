@@ -5,12 +5,9 @@ using Genrpg.Shared.CoreCurrencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Minigames.Games.Settings;
 using Genrpg.Shared.Minigames.Games.WebApi;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.RequestServer.Minigames.Games.Services
 {

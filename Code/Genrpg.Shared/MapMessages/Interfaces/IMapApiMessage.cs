@@ -1,3 +1,4 @@
+using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.Serialization.Attributes;
 using MessagePack;
 using Newtonsoft.Json;
@@ -55,7 +56,7 @@ namespace Genrpg.Shared.MapMessages.Interfaces
     [Union(46 ,typeof(Genrpg.Shared.Chat.Messages.OnChatMessage))]
     [Union(47 ,typeof(Genrpg.Shared.Chat.Messages.SendChatMessage))]
     [Union(48 ,typeof(Genrpg.Shared.Achievements.Messages.OnUpdateAchievement))]
-    public interface IMapApiMessage : IMapMessage
+    public interface IMapApiMessage : IMapMessage, IClientEvent
     {
     }
 

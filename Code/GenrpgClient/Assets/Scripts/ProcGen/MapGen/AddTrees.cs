@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Trees;
@@ -454,7 +455,7 @@ public class AddTrees : BaseZoneGenerator
                                 continue;
                             }
 
-                            if (FlagUtils.IsSet(_md.flags[lx,ly], MapGenFlags.IsLocationPatch))
+                            if (FlagUtils.MatchesAnyBits(_md.flags[lx,ly], MapGenFlags.IsLocationPatch))
                             {
                                 foundLocationPatch = true;
                                 break;
@@ -471,12 +472,12 @@ public class AddTrees : BaseZoneGenerator
                         continue;
                     }
                 }
-                if (FlagUtils.IsSet(_md.flags[x+ddx,y+ddy], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.flags[x+ddx,y+ddy], MapGenFlags.BelowWater))
                 {
                     continue;
                 }
 
-                if (FlagUtils.IsSet(_md.flags[x+ddx,y+ddy], MapGenFlags.NearWater) != isWaterItem)
+                if (FlagUtils.MatchesAnyBits(_md.flags[x+ddx,y+ddy], MapGenFlags.NearWater) != isWaterItem)
                 {
                     continue;
                 }
@@ -829,14 +830,14 @@ public class AddTrees : BaseZoneGenerator
                                 dirtIntensity = 1;
                             }
 
-                            float oldBase = _md.alphas[x2, y2, MapConstants.BaseTerrainIndex];
-                            float oldDirt = _md.alphas[x2, y2, MapConstants.DirtTerrainIndex];
+                            float oldBase = _md.alphas[x2, y2, TerrainTexChannels.Base];
+                            float oldDirt = _md.alphas[x2, y2, TerrainTexChannels.Dirt];
                             float newBase = oldBase * (1 - dirtIntensity);
                             float baseDiff = newBase - oldBase;
-                            _md.alphas[x2, y2, MapConstants.BaseTerrainIndex] = newBase;
-                            _md.alphas[x2, y2, MapConstants.DirtTerrainIndex] += (oldBase - newBase);
+                            _md.alphas[x2, y2, TerrainTexChannels.Base] = newBase;
+                            _md.alphas[x2, y2, TerrainTexChannels.Dirt] += (oldBase - newBase);
 
-                            //_md.ClearAlphasAt(x2, y2); _md.alphas[x2, y2, MapConstants.DirtTerrainIndex] = 1;
+                            //_md.ClearAlphasAt(x2, y2); _md.alphas[x2, y2, TerrainTexChannels.Dirt] = 1;
                         }
                     }
                     for (int x2 = cx - maxRadius - 1; x2 <= cx + maxRadius; x2++)

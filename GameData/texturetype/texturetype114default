@@ -1,0 +1,9 @@
+{
+  "Id": "texturetype114default",
+  "ParentId": "default",
+  "IdKey": 114,
+  "Name": "Natural",
+  "Icon": "Natural",
+  "Art": "Natural",
+  "Size": 1.0
+}

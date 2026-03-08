@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clientConfig: {fileID: 11400000, guid: 93c18f0fc0579cd408ad032e236d593a, type: 2}
   _splashOverlay: {fileID: 3006165306106258109}
-  _globalRoot: {fileID: 0}
   _coreClientData: {fileID: 2690440748948586782}
   CurrMapId: 3
   BlockCount: 90
@@ -59,6 +58,7 @@ MonoBehaviour:
   PlayerSpeedMult: 1
   AccountSuffixId: 0
   TestLocalBundles: 0
+  RunSteamInEditor: 0
 --- !u!1001 &1630290392400293763
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ namespace Assets.Scripts.Trader.Info.Services
                 {
                     sb.Append("Wilderness: ");
                 }
-                sb.Append(" (" + pos.DistanceGone + "/" + pos.DistanceToTarget + " " + TraderConstants.DistanceAbbreviation + ")");
+                sb.Append(" (" + pos.DistanceGone + "/" + pos.TotalDistanceToTarget + " " + TraderConstants.DistanceAbbreviation + ")");
             }
 
             return sb.ToString();

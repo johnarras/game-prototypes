@@ -1,15 +1,14 @@
+using Genrpg.Shared.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Buildings
 {
     [Serializable]
-    public class WeightedCrawlerBuilding
+    public class WeightedCrawlerBuilding : IFloatWeightedItem
     {
-        public int Weight;
+        [field: SerializeField]
+        public float Weight { get; set; }
         public CrawlerBuilding Building;
         public BuildingMats Mats;
     }

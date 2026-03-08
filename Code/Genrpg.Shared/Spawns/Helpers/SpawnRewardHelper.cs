@@ -15,6 +15,11 @@ namespace Genrpg.Shared.Spawns.Helpers
     {
         public long HelperKey => EntityTypes.Spawn;
 
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            return 0;
+        }
+
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {
             return true;

@@ -6,7 +6,7 @@ using Genrpg.ServerShared.Accounts.Services;
 using Genrpg.ServerShared.CloudComms.Services;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.ServerShared.PlayerData;
+using Genrpg.ServerShared.PlayerData.Services;
 using Genrpg.Shared.Accounts.PlayerData;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.DataStores.Entities;
@@ -22,7 +22,7 @@ namespace Genrpg.RequestServer.AuthRequests.AccountAuthRequestHandlers
     {
 
         protected IPlayerDataService _playerDataService = null!;
-        protected ILoginPlayerDataService _loginPlayerDataService = null!;
+        protected ILoadPlayerDataService _loginPlayerDataService = null!;
         protected ILogService _logService = null!;
         protected ISearchRepositoryService _repoService = null!;
         protected IWebServerService _loginServerService = null!;

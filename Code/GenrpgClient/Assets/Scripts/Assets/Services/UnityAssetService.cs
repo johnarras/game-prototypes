@@ -23,6 +23,8 @@ using Genrpg.Shared.Interfaces;
 
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
+using Assets.Scripts.GameObjects;
+
 
 
 

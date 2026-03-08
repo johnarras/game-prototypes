@@ -12,6 +12,7 @@ namespace Genrpg.Shared.Config.Constants
         public const string PlaceholderString = "XXXXX";
 
         public const string KeyVaultURI = "KeyVaultURI";
+        public const string KeyVaultPrefix = "KeyVaultPrefix";
 
         public const string OrgSecretsVaultPrefix = "oxdb";
 
@@ -24,7 +25,10 @@ namespace Genrpg.Shared.Config.Constants
         public const string IOSSandboxValidationURL = "IOSSandboxValidationURL";
         public const string GooglePlayValidationURL = "GooglePlayValidationURL";
 
-        public const string MainEnv = "DefaultEnv";
+        public const string GoogleApiKey = "GoogleApiKey";
+        public const string GoogleApiURL = "GoogleApiURL";
+
+        public const string DefaultEnv = "DefaultEnv";
 
         public const string Default = "Default";
 

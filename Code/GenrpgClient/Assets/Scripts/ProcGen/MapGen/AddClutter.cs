@@ -8,6 +8,7 @@ using Genrpg.Shared.ProcGen.Settings.Clutter;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
+using Genrpg.Shared.ProcGen.Constants;
 
 public class AddClutter : BaseZoneGenerator
 {
@@ -69,7 +70,7 @@ public class AddClutter : BaseZoneGenerator
             int x = MathUtil.IntRange(startx, endx, rand);
             int y = MathUtil.IntRange(starty, endy, rand);
 
-            if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.BelowWater))
+            if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
             {
                 continue;
             }
@@ -93,7 +94,7 @@ public class AddClutter : BaseZoneGenerator
             {
                 continue;
             }
-            if (_md.alphas[x, y, MapConstants.RoadTerrainIndex] > 0)
+            if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
             {
                 continue;
             }

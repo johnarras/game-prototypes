@@ -1,5 +1,6 @@
-using Assets.Scripts.ClientEvents.Entities;
+using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.ClientEvents;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Core.PlayerData;
@@ -15,25 +16,20 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
     {
         private IRewardService _rewardService = null;
         private IClientRandom _rand = null;
+
         protected override void InnerProcess(HourlyUpdateResponse response, CancellationToken token)
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
             coreData.NextHourlyUpdate = response.NextHourlyUpdate;
             coreData.Vars[TraderVars.PlayCount] = response.Day;
-            RewardParams rp = new RewardParams()
-            {
-                SkipVisualUpdate = true,
-            };
+            RewardParams rp = new RewardParams();
 
             foreach (Reward rew in response.Rewards)
             {
-                _rewardService.GiveReward(_rand, _gs.ch, rew, rp);
-
-                _dispatcher.Dispatch(new ReplaceEntityModel() { EntityTypeId = rew.EntityTypeId, EntityId = rew.EntityId });
-
+                _rewardService.GiveReward(_rand, _gs.ch, rew, new ClientRewardParams(false, true));
             }
 
-            _dispatcher.Dispatch(new UpdateTraderStatusUI());
+            _dispatcher.Dispatch(new UpdateTraderHUD());
         }
     }
 }

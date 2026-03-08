@@ -127,6 +127,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 808382652}
     m_Modifications:
+    - target: {fileID: 1880425893740860500, guid: e044c918e0fdd1a4dae4b477e1411714,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880425893740860500, guid: e044c918e0fdd1a4dae4b477e1411714,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880425893740860500, guid: e044c918e0fdd1a4dae4b477e1411714,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3731700555145375390, guid: e044c918e0fdd1a4dae4b477e1411714,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -280,6 +295,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377301529737244786, guid: a47566d87e2e8f641be7678647c65008,
+        type: 3}
+      propertyPath: m_bInitialized
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1604152586628774692, guid: a47566d87e2e8f641be7678647c65008,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,6 +375,11 @@ PrefabInstance:
       propertyPath: _coreClientData
       value: 
       objectReference: {fileID: 572657308}
+    - target: {fileID: 3029877380482160996, guid: a47566d87e2e8f641be7678647c65008,
+        type: 3}
+      propertyPath: RunSteamInEditor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3029877380482160996, guid: a47566d87e2e8f641be7678647c65008,
         type: 3}
       propertyPath: TestLocalBundles

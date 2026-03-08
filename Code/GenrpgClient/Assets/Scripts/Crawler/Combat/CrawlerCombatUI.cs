@@ -2,7 +2,9 @@ using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
+using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
@@ -18,6 +20,7 @@ namespace Assets.Scripts.Crawler.Combat
     {
         private ICrawlerService _crawlerService = null;
         private ISpriteService _spriteService = null;
+        private IDynamicUIService _dynamicUIService = null;
 
         public CrawlerGroupGrid AllyGrid;
         public CrawlerGroupGrid EnemyGrid;
@@ -97,17 +100,19 @@ namespace Assets.Scripts.Crawler.Combat
 
             if (etype != null && !_didShowBolt)
             {
-                _dispatcher.Dispatch(new ShowDooberEvent()
-                {
-                    StartPosition = startUnitUI.GetHitPosition(),
-                    EndPosition = endUnitUI.GetHitPosition(),
-                    AtlasName = AtlasNames.CrawlerCombat,
-                    SpriteName = etype.Icon + "Bolt",
-                    PointAtEnd = true,
-                    LerpTime = showCombatBolt.Seconds,
-                    StartsInUI = true,
-                    SizeScale = showCombatBolt.SizeScale,
-                });
+
+                DooberArgs dooberArgs = _dynamicUIService.CheckoutDooberArgs();
+
+                dooberArgs.StartPosition = startUnitUI.GetHitPosition();
+                dooberArgs.EndPosition = endUnitUI.GetHitPosition();
+                dooberArgs.AtlasName = AtlasNames.CrawlerCombat;
+                dooberArgs.SpriteName = etype.Icon + "Bolt";
+                dooberArgs.PointAtEnd = true;
+                dooberArgs.LerpTime = showCombatBolt.Seconds;
+                dooberArgs.StartsInUI = true;
+                dooberArgs.SizeScale = showCombatBolt.SizeScale;
+
+                _dynamicUIService.ShowDoober(dooberArgs);
             }
         }
     }

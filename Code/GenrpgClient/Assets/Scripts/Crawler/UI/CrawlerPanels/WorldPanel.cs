@@ -1,7 +1,9 @@
+using Genrpg.Shared.Client.Interfaces;
+
 namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 {
 
-    public class ShowWorldPanelImage
+    public class ShowWorldPanelImage : IClientEvent
     {
         public string SpriteName;
     }

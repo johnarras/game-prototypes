@@ -40,7 +40,7 @@ public class AddChests : BaseZoneGenerator
         {
             for (int y = MapConstants.TerrainPatchSize; y < _mapProvider.GetMap().GetHhgt() - MapConstants.TerrainPatchSize; y += skipSize)
             {
-                if (FlagUtils.IsSet(_md.flags[x, y], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
+                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
                 {
                     continue;
                 }

@@ -36,7 +36,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                 foreach (PartyMember pm in party.ActiveParty)
                 {
-                    if (pm.StatusEffects.HasBit(StatusEffects.Dead))
+                    if (pm.StatusEffects.HasBitIndex(StatusEffects.Dead))
                     {
                         continue;
                     }
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                     _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -healthLost, ElementTypes.Melee);
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
                     {
-                        pm.StatusEffects.SetBit(StatusEffects.Dead);
+                        pm.StatusEffects.SetBitIndex(StatusEffects.Dead);
                         continue;
                     }
 

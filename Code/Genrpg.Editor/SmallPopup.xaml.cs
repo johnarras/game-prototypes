@@ -1,6 +1,6 @@
-using Genrpg.Editor.Constants;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Interfaces;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -10,7 +10,7 @@ namespace Genrpg.Editor
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SmallPopup : WindowBase, IUICanvas
+    public sealed partial class SmallPopup : WindowBase, ISmallPopup
     {
         public SmallPopup(string text, int width = 0, int height = 0)
         {
@@ -33,11 +33,6 @@ namespace Genrpg.Editor
 
             UIHelper.CreateLabel(this, ELabelTypes.Default, "DialogText", text, width - 2*border, height-2*border, border, border,36);
         }
-
-        private CanvasBase _canvas = new CanvasBase();
-        public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
-        public void Remove(object cont) { _canvas.Remove(cont); }
-        public bool Contains(object cont) { return _canvas.Contains(cont); }
 
         public void StartClose()
         {

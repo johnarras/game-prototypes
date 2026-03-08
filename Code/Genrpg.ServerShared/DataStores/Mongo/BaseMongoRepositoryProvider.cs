@@ -9,7 +9,6 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Security.Authentication;
@@ -17,15 +16,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
+namespace Genrpg.ServerShared.DataStores.Mongo
 {
-    public abstract class BaseMongoRepositoryProvider<MR> : IAzureRepositoryProvider where MR : class, IMongoInitRepository, new()
+    /// <summary>
+    /// This creates mongo repos.
+    /// This is intentionally not generic so that the static connection pool doesn't make the same connection
+    /// more than once. If you want, you can make this generic and move the pool object outside of this class.
+    /// </summary>
+    public abstract class BaseMongoRepositoryProvider : IAzureRepositoryProvider
     {
         private ILogService _logService = null;
         private IAnalyticsService _analyticsService = null;
         private ITextSerializer _textSerializer = null;
         private ISecretsProvider _secretsProvider = null;
         public abstract ERepoTypes HelperKey { get; }
+        protected abstract IMongoInitRepository CreateRepository();
 
         public async Task<IRepository> TryCreateRepo(InitRepoArgs args, CancellationToken token)
         {
@@ -41,7 +46,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
             MongoClient client = await GetMongoClient(connectionString);
 
-            MR repo = new MR();
+            IMongoInitRepository repo = CreateRepository();
             await repo.Init(args, client, _logService, _analyticsService, _textSerializer, token);
             return repo;
         }
@@ -76,6 +81,8 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+                settings.RetryWrites = false;
+                settings.RetryReads = true;
                 MongoClient mongoClient = new MongoClient(settings);
                 _mongoClientDict[connectionString] = mongoClient;
 

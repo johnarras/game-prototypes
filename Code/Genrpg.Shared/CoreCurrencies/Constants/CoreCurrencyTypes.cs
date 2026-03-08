@@ -7,6 +7,7 @@ namespace Genrpg.Shared.CoreCurrencies.Constants
         public const long Supplies = 2;
         public const long Mana = 3;
         public const long Rations = 4;
+        public const long Exp = 5;
     }
 }
 

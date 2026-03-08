@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.Minigames.UI;
-using Genrpg.Shared.Trader.MinigameTypes.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.Types.Spinners
 {

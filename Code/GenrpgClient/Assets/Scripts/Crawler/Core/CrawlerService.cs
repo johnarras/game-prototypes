@@ -4,6 +4,7 @@ using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Crawler.ClientEvents.HUD;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
@@ -39,6 +40,7 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -337,7 +339,11 @@ namespace Genrpg.Shared.Crawler.States.Services
                 newItem.Set(CIdx.SellValue, item.SellValue);
                 newItem.Set(CIdx.QualityTypeId, item.QualityTypeId);
 
-                newItem.Effects = new List<ItemEffect>(item.Effects);
+                newItem.SaveEffects = new List<SaveEffect>();
+                foreach (ItemEffect ieff in item.Effects)
+                {
+                    newItem.SaveEffects.Add(new SaveEffect(ieff));
+                }
 
                 newItem.CreateDatString();
                 retval.Add(newItem);
@@ -371,7 +377,17 @@ namespace Genrpg.Shared.Crawler.States.Services
                     Procs = new List<ItemProc>()
                 };
 
-                newItem.Effects.AddRange(saveItem.Effects);
+                newItem.Effects = new List<ItemEffect>();
+                foreach (SaveEffect se in saveItem.SaveEffects)
+                {
+                    newItem.Effects.Add(new ItemEffect()
+                    {
+                        EntityTypeId = se.Dat[0],
+                        EntityId = se.Dat[1],
+                        Quantity = se.Dat[2],
+                    });
+                }
+
 
                 retval.Add(newItem);
 
@@ -398,23 +414,6 @@ namespace Genrpg.Shared.Crawler.States.Services
 
             _party = party;
             _party.Inventory = ConvertItemsFromSaveToGame(_party, _party.SaveInventory);
-
-            // Party.Members is only for backwards compat with older savefiles.
-            if (_party.Members != null && _party.Members.Count > 0)
-            {
-                foreach (PartyMember member in _party.Members)
-                {
-                    if (member.PartySlot > 0)
-                    {
-                        _party.ActiveParty.Add(member);
-                    }
-                    else
-                    {
-                        _party.InGuild.Add(member);
-                    }
-                }
-                _party.Members.Clear();
-            }
 
             foreach (PartyMember member in _party.GetAllMembers())
             {
@@ -632,12 +631,10 @@ namespace Genrpg.Shared.Crawler.States.Services
             _party.HourOfDay = 0;
             IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
 
-            foreach (CrawlerCurrencyType ctype in ctypes)
-            {
-                _partyService.SetCurrencyQuantity(_party, ctype.IdKey, 0);
-            }
+            _party.Currencies = new SmallIdLongCollection();
 
-            _partyService.SetCurrencyQuantity(_party, CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+            _party.Currencies.Add(CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+
 
             CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
 
@@ -652,6 +649,8 @@ namespace Genrpg.Shared.Crawler.States.Services
                 }
                 member.Summons = new List<PartySummon>();
             }
+
+            _dispatcher.Dispatch(new ResetCrawlerHUD());
 
             await StartGameAfterLoadAsync(_party);
 

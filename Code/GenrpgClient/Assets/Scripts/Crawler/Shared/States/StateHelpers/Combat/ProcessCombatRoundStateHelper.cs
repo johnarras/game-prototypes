@@ -72,7 +72,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
                 while (!_canEndCombatRound)
                 {
-                    if (party.Combat.PartyWonCombat())
+                    if (party.Combat == null || party.Combat.PartyWonCombat())
                     {
                         _canEndCombatRound = true;
                     }

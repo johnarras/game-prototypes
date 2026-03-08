@@ -15,6 +15,16 @@ namespace Genrpg.Shared.Constants
         public const string Test = "test";
         public const string Staging = "staging";
         public const string Prod = "prod";
+
+
+        public static bool IsProdEnv(string env)
+        {
+            if (string.IsNullOrEmpty(env))
+            {
+                return false;
+            }
+            return env.IndexOf(Prod) == 0 || env.IndexOf(Staging) == 0; 
+        }
     }   
 }
 

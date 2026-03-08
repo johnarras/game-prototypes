@@ -23,8 +23,6 @@ namespace Assets.Scripts.Trader.UI.TradeMapUI
 
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
-
-
             await LoadCityImages();
         }
 

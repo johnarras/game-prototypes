@@ -9,6 +9,8 @@ using Genrpg.Shared.Units.Mappers;
 using Genrpg.Shared.Utils.Data;
 using MessagePack;
 using System;
+using System.ComponentModel.Design;
+using System.Reflection;
 
 namespace Genrpg.Shared.Core.PlayerData
 {
@@ -32,11 +34,13 @@ namespace Genrpg.Shared.Core.PlayerData
         [Key(4)] public DateTime LastDailyReset { get; set; }
         [Key(5)] public DateTime NextHourlyUpdate { get; set; }
 
-        [Key(6)] public long Level { get; set; }
+        [Key(6)] public DateTime NextBuffEndsTime { get; set; }
 
-        [Key(7)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
+        [Key(7)] public long Level { get; set; }
 
-        [Key(8)] public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
+        [Key(9)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
+
+        [Key(10)] public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
 
         public bool HasFlag(long flagIndex) { return (Vars[CoreVars.Flags] & (1 << (int)flagIndex)) != 0; }
         public void AddFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] | (int)(1 << (int)flagIndex); }

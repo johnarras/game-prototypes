@@ -1,4 +1,5 @@
 
+using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
@@ -16,7 +17,7 @@ public class CrawlerInputData
 }
 
 
-public class CrawlerStateData
+public class CrawlerStateData : IClientEvent
 {
     public CrawlerStateData(ECrawlerStates state, bool forceNextState = false)
     {

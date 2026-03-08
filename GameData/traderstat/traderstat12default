@@ -2,7 +2,7 @@
   "Id": "traderstat12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "CaravanTradeGoods",
-  "Icon": "CaravanTradeGoods",
-  "Art": "CaravanTradeGoods"
+  "Name": "Caravan Bonus Speed",
+  "Icon": "CaravanBonusSpeed",
+  "Art": "CaravanBonusSpeed"
 }

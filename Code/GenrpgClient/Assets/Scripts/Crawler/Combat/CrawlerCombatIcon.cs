@@ -62,7 +62,7 @@ namespace Assets.Scripts.Crawler.Combat
                 CombatEffectUI.SetData(Group.Id, Icon.AnimatedImage, IconParent, Group.FactionTypeId);
             }
 
-            int okUnitCount = Group.Units.Where(x => !x.StatusEffects.HasBit(StatusEffects.Dead)).Count();
+            int okUnitCount = Group.Units.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).Count();
 
             _uiService.SetText(Name, (okUnitCount == 1 ? Group.SingularName : Group.PluralName));
             _uiService.SetText(Dist, Group.Range + "'");

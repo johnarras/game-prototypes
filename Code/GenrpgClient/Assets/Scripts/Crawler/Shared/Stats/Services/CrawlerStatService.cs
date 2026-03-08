@@ -331,7 +331,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
             statBonus += (long)_upgradeService.GetUnitBonus(unit, EntityTypes.StatBonus, statTypeId);
 
-            if (unit.StatusEffects.HasBit(StatusEffects.Withered))
+            if (unit.StatusEffects.HasBitIndex(StatusEffects.Withered))
             {
                 statBonus = statBonus * (100 - _gameData.Get<StatusEffectSettings>(_gs.ch).Get(StatusEffects.Withered).Amount) / 100;
             }

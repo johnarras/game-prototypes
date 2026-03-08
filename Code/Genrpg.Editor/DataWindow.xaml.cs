@@ -1,16 +1,17 @@
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Services.Reflection;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Entities.Core;
+using Genrpg.DataUtils.Interfaces;
+using Genrpg.DataUtils.Services.EditorData;
+using Genrpg.DataUtils.Services.Reflection;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Editor.Utils;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Settings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.SettingsNames.Settings;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Versions.Settings;
@@ -31,15 +32,20 @@ namespace Genrpg.Editor
     public sealed partial class DataWindow : WindowBase, IUICanvas
     {
 
-        private IRepositoryService _repoService = null;
-        private IServerConfig _config = null;
-        private ITaskService _taskService = null;
+        protected IServerConfig _serverConfig = null;
+        protected IRepositoryService _repoService = null;
+        protected IServerGameDataService _gameDataService = null;
+        protected ITaskService _taskService = null;
+        protected IEditorDataService _dataService = null;
+        IEditorReflectionService _reflectionService = null;
 
-        private EditorGameState gs = null;
+
+        private EditorGameState _gs = null;
         public IList<UserControlBase> ViewStack = null;
         private Object obj = null;
         public String action = "";
         private WindowBase _parentForm;
+
 
 
         int width = 2400;
@@ -48,18 +54,12 @@ namespace Genrpg.Editor
         public int Width => width;
         public int Height => height;
 
-        private CanvasBase _canvas = new CanvasBase();
-        public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
-        public void Remove(object cont) { _canvas.Remove(cont); }
-        public bool Contains(object cont) { return _canvas.Contains(cont); }
-
-
         public DataWindow(EditorGameState gsIn, Object objIn, WindowBase parentFormIn, String actionIn)
         {
             Content = _canvas;
             _parentForm = parentFormIn;
-            gs = gsIn;
-            gs.loc.Resolve(this);
+            _gs = gsIn;
+            _gs.loc.Resolve(this);
             action = actionIn;
             ViewStack = new List<UserControlBase>();
             obj = objIn;
@@ -79,19 +79,15 @@ namespace Genrpg.Editor
             UserControlBase view = null;
             if (action == "Users")
             {
-                view = new FindUserView(gs, this);
+                view = new FindUserView(_gs, this);
             }
             else if (action == "Data")
             {
-                view = ucf.Create(gs, this, obj, null, null, null);
+                view = ucf.Create(_gs, this, obj, null, null, null);
             }
             else if (action == "Map")
             {
-                view = ucf.Create(gs, this, obj, null, null, null);
-            }
-            else if (action == "CopyToTest")
-            {
-                view = new CopyDataView(gs, this);
+                view = ucf.Create(_gs, this, obj, null, null, null);
             }
         }
 
@@ -158,10 +154,10 @@ namespace Genrpg.Editor
             _canvas.Add(cont);
         }
 
-        public async Task SaveData(bool copyData)
+        public async Task SaveData(EditorGameState gs, bool copyData)
         {
 
-            String env = _config.DefaultEnv;
+            String env = _serverConfig.DefaultEnv;
 
             if (action == "Data")
             {
@@ -173,8 +169,6 @@ namespace Genrpg.Editor
                         gs.LookedAtObjects.Add(settings);
                     }
                 }
-
-                IServerGameDataService gds = gs.loc.Get<IServerGameDataService>();
 
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -188,7 +182,7 @@ namespace Genrpg.Editor
                 {
                     if (string.IsNullOrEmpty(settings.Id))
                     {
-                        await UIHelper.ShowMessageBox(this, "Setting object blank Id of type " + settings.GetType().Name);
+                        await ShowMessageBox("Setting object blank Id of type " + settings.GetType().Name);
                         foundBadData = true;
                         return;
                     }
@@ -220,7 +214,7 @@ namespace Genrpg.Editor
                                     {
                                         sb.Append(idName.Name + " ");
                                     }
-                                    await UIHelper.ShowMessageBox(this, sb.ToString());
+                                    await ShowMessageBox(sb.ToString());
                                     foundBadData = true;
                                 }
                             }
@@ -232,7 +226,7 @@ namespace Genrpg.Editor
 
                     if (items.Count != nameGroups.Count)
                     {
-                        await UIHelper.ShowMessageBox(this, "Setting " + group.Key.Name + " has duplicate DocId");
+                        await ShowMessageBox("Setting " + group.Key.Name + " has duplicate DocId");
                         foundBadData = true;
                     }
                 }
@@ -273,14 +267,12 @@ namespace Genrpg.Editor
                                 }
                             }
                         }
-
-
                     }
                 }
 
                 if (overrideSB.Length > 0)
                 {
-                    await UIHelper.ShowMessageBox(this, overrideSB.ToString());
+                    await ShowMessageBox(overrideSB.ToString());
                 }
 
 
@@ -295,7 +287,7 @@ namespace Genrpg.Editor
                 {
                     if (string.IsNullOrEmpty(settings.Id))
                     {
-                        await UIHelper.ShowMessageBox(this, "Setting object blank Id of type " + settings.GetType().Name);
+                        await ShowMessageBox("Setting object blank Id of type " + settings.GetType().Name);
                         foundBadData = true;
                         return;
                     }
@@ -341,9 +333,9 @@ namespace Genrpg.Editor
                     }
                 }
 
-                ContentDialogResultBase result = await UIHelper.ShowMessageBox(this, saveList.ToString(), "Save This Data?", true);
+                EContentDialogResult result = await ShowMessageBox(saveList.ToString(), "Save This Data?", true);
 
-                if (result != ContentDialogResultBase.Primary)
+                if (result != EContentDialogResult.Primary)
                 {
                     return;
                 }
@@ -383,10 +375,9 @@ namespace Genrpg.Editor
                 }
 
 
+                ISmallPopup popup = await ShowBlockingDialog("Saving Game Data");
                 this.DispatcherQueue.TryEnqueue(() =>
                 {
-                    SmallPopup popup = UIHelper.ShowBlockingDialog(this, "Saving Game Data");
-
                     _taskService.ForgetTask(SaveSettingsList(settingsList, popup, copyData), false);
 
                 });
@@ -395,11 +386,11 @@ namespace Genrpg.Editor
 
             else if (action == "Users")
             {
-                Task.Run(() => EditorPlayerUtils.SaveEditorUserData(gs, _repoService).GetAwaiter().GetResult()).GetAwaiter().GetResult();
+                _taskService.ForgetTask(_dataService.SaveEditorUserData(gs), true);
             }
         }
 
-        private async Task SaveSettingsList(List<BaseGameSettings> settingsList, SmallPopup popup, bool copyData)
+        private async Task SaveSettingsList(List<BaseGameSettings> settingsList, ISmallPopup popup, bool copyData)
         {
             await SaveSettingsListInternal(settingsList, copyData);
 
@@ -408,6 +399,11 @@ namespace Genrpg.Editor
 
         private async Task SaveSettingsListInternal(List<BaseGameSettings> settingsList, bool copyData)
         {
+
+            if (EnvNames.IsProdEnv(_serverConfig.DefaultEnv))
+            {
+                copyData = false;
+            }
 
             List<IGameSettings> gameSettingsList = settingsList.Cast<IGameSettings>().ToList();
             while (settingsList.Count > 0)
@@ -432,15 +428,12 @@ namespace Genrpg.Editor
                 }
             }
 
-
             if (copyData)
             {
-                ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
-                IServerGameDataService gds = gs.loc.Get<IServerGameDataService>();
-                EditorGameDataUtils.WriteGameDataListToGit(gameSettingsList, serializer);
-                EditorGameDataUtils.WriteGameDataToClient(gameSettingsList, serializer, gds);
+                _dataService.WriteGameDataListToGit(gameSettingsList);
+                _dataService.WriteGameDataToClient(gameSettingsList);
             }
-            gs.LookedAtObjects = new List<object>();
+            _gs.LookedAtObjects = new List<object>();
 
         }
 
@@ -448,8 +441,6 @@ namespace Genrpg.Editor
         public String ShowStack()
         {
             string txt = "";
-
-            IEditorReflectionService reflectionService = gs.loc.Get<IEditorReflectionService>();
 
             for (int i = 0; i < ViewStack.Count; i++)
             {
@@ -468,7 +459,7 @@ namespace Genrpg.Editor
 
                 Type type = obj.GetType();
 
-                object idObj = reflectionService.GetObjectValue(obj, GameDataConstants.IdKey);
+                object idObj = _reflectionService.GetObjectValue(obj, GameDataConstants.IdKey);
 
                 if (idObj == null)
                 {
@@ -477,14 +468,14 @@ namespace Genrpg.Editor
 
                 string idStr = idObj.ToString();
 
-                object nameObj = reflectionService.GetObjectValue(obj, "Name");
+                object nameObj = _reflectionService.GetObjectValue(obj, "Name");
 
                 if (!String.IsNullOrEmpty(txt))
                 {
                     txt += " >>> ";
                 }
 
-                string mname = reflectionService.GetMemberName(par, obj);
+                string mname = _reflectionService.GetMemberName(par, obj);
                 if (string.IsNullOrEmpty(mname))
                 {
                     mname = type.Name;

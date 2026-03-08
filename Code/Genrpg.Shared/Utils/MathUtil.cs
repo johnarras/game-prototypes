@@ -344,6 +344,7 @@ namespace Genrpg.Shared.Utils
         {
             return (3 - 2 * x) * x * x;
         }
+
     }
 }
 

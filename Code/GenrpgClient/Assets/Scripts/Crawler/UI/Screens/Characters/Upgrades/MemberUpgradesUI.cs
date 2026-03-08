@@ -20,7 +20,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
         public GText PointsLeft;
 
 
-        public void InitData(PartyMember member)
+        public void SetData(PartyMember member)
         {
             IReadOnlyList<MemberUpgrade> upgrades = _gameData.Get<MemberUpgradeSettings>(_gs.ch).GetData();
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
 
                 _clientEntityService.AddToParent(row, ContentRoot);
 
-                row.InitData(upgrade, member.Upgrades[upgrade.IdKey], _upgradeService.GetUnitBonus(member, EntityTypes.MemberUpgrades, upgrade.IdKey));
+                row.SetData(upgrade, member.Upgrades[upgrade.IdKey], _upgradeService.GetUnitBonus(member, EntityTypes.MemberUpgrades, upgrade.IdKey));
 
             }
 

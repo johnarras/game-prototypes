@@ -1,3 +1,4 @@
+using Genrpg.DataUtils.Constants;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
@@ -8,7 +9,7 @@ namespace Genrpg.Editor.UI
 
         public IAsyncOperation<ContentDialogResult> Operation { get; set; } = null;
         public bool DidSetOperation { get; set; } = false;
-        public ContentDialogResultBase Result { get; set; } = ContentDialogResultBase.None;
+        public EContentDialogResult Result { get; set; } = EContentDialogResult.None;
     }
 }
 

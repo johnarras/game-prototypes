@@ -111,10 +111,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public InitialCombatState InitialCombat { get; set; }
 
-        // This is for backwards compat only. [Obsolete]
-        [IgnoreMember] public List<PartyMember> Members { get; set; } = new List<PartyMember>();
-
-        [IgnoreMember] public List<PartyMember> ActiveParty { get; set; } = new List<PartyMember>();
+        public List<PartyMember> ActiveParty { get; set; } = new List<PartyMember>();
 
         public List<PartyMember> InGuild { get; set; } = new List<PartyMember>();
 
@@ -128,7 +125,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         {
             if (ItemBuffs.TryGetValue(entityTypeId, out SmallIndexBitList bitList))
             {
-                if (entityId == 0 || bitList.HasBit(entityId))
+                if (entityId == 0 || bitList.HasBitIndex(entityId))
                 {
                     return true;
                 }
@@ -143,7 +140,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
             {
                 ItemBuffs[entityTypeId] = new SmallIndexBitList();
             }
-            ItemBuffs[entityTypeId].SetBit(entityId);
+            ItemBuffs[entityTypeId].SetBitIndex(entityId);
         }
 
         public void RemoveItemBuff(long entityTypeId, long entityId)
@@ -151,7 +148,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
             if (ItemBuffs.ContainsKey(entityTypeId))
             {
-                ItemBuffs[entityTypeId].RemoveBit(entityId);
+                ItemBuffs[entityTypeId].RemoveBitIndex(entityId);
             }
         }
 
@@ -191,7 +188,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
                 return false;
             }
 
-            return !(ActiveParty.Any(x => !x.StatusEffects.HasBit(StatusEffects.Dead)));
+            return !(ActiveParty.Any(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)));
         }
 
         public List<PartyMember> GetAllMembers()
@@ -242,7 +239,7 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
 
         public bool HasRiddleBitIndex(long bitIndex)
         {
-            return FlagUtils.IsSet(GetRiddleStatus(), (1 << (int)bitIndex));
+            return FlagUtils.MatchesAnyBits(GetRiddleStatus(), (1 << (int)bitIndex));
         }
     }
 

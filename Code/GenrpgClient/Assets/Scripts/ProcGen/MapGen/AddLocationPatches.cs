@@ -1,3 +1,4 @@
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
@@ -249,8 +250,8 @@ public class AddLocationPatches : BaseZoneGenerator
                 {
                     _md.ClearAlphasAt(x, z);
                     float dirtPct = MathUtil.FloatRange(0.9f, 1.0f, rand);
-                    _md.alphas[x, z, MapConstants.DirtTerrainIndex] = dirtPct;
-                    _md.alphas[x, z, MapConstants.BaseTerrainIndex] = 1 - dirtPct;
+                    _md.alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
+                    _md.alphas[x, z, TerrainTexChannels.Base] = 1 - dirtPct;
                 }
 
                 if (outsideCenterDist <= minNormDist)

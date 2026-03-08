@@ -2,7 +2,7 @@
   "Id": "newplayerbonus13default",
   "ParentId": "default",
   "IdKey": 13,
-  "EntityTypeId": 202,
-  "EntityId": 10,
-  "Quantity": 1
+  "EntityTypeId": 200,
+  "EntityId": 2,
+  "Quantity": 50
 }

@@ -1,15 +1,17 @@
-using Genrpg.Editor.Constants;
-using Genrpg.Editor.Entities.Core;
-using Genrpg.Editor.Importers;
+using Genrpg.DataUtils.Constants;
+using Genrpg.DataUtils.Entities.Core;
+using Genrpg.DataUtils.Importers;
+using Genrpg.DataUtils.Interfaces;
+using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.Editor.UI.Interfaces;
-using Genrpg.Editor.Utils;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Utils;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -25,6 +27,7 @@ namespace Genrpg.Editor
         const int _topPadding = 50;
 
         private string _prefix;
+        private string _env;
 
         private List<IDataImporter> _importers = null;
 
@@ -41,8 +44,9 @@ namespace Genrpg.Editor
             public string Name { get; set; }
         }
 
-        public ImportWindow()
+        public ImportWindow(string env)
         {
+            _env = env;
             Content = _canvas;
             _prefix = Game.Prefix;
             int buttonCount = 0;
@@ -107,13 +111,6 @@ namespace Genrpg.Editor
 
         private int getButtonGap() { return 8; }
 
-        private int getTotalHeight(int numButtons)
-        {
-            return (getButtonHeight() + getButtonGap()) * numButtons + getTopBottomPadding();
-        }
-
-
-
         private void OnClickButton(object sender, object e)
         {
 
@@ -129,30 +126,28 @@ namespace Genrpg.Editor
                 return;
             }
 
-            Action<EditorGameState> afterAction = null;
-
 
             IDataImporter importer = selectedImporter.Importer;
-            string action = "";
+            string action = "Import";
             if (importer != null)
             {
-                afterAction = (gs) => { ImportData(gs, importer); };
-                action = "Data";
-
-                Task.Run(() => OnClickButtonAsync(action, MainMenuWindow.CurrentEnv, afterAction));
+                Task.Run(() => OnClickButtonAsync(action, _env, importer));
             }
         }
 
 
-        private async Task OnClickButtonAsync(string action, string env, Action<EditorGameState> afterAction = null)
-        {
-            await EditorGameDataUtils.SetupForEditing(this, action, env, afterAction);
-        }
 
-        private void ImportData(EditorGameState gs, IDataImporter importer)
+
+        private async Task OnClickButtonAsync(string action, string env, IDataImporter importer)
         {
 
-            _ = Task.Run(() => ImportDataAsync(gs, importer));
+            DispatcherQueue.TryEnqueue(async () =>
+            {
+                ISmallPopup form = await ShowBlockingDialog(StrUtils.SplitOnCapitalLetters("Importing " + importer.GetType().Name.Replace("Importer","")));
+                EditorDataSetup eds = new EditorDataSetup();
+                await eds.SetupGameState(this, _env, true, "Data", async (gs,gds, token) => { await ImportDataAsync(gs, importer); });
+                form.StartClose();
+            });
         }
 
         private async Task ImportDataAsync(EditorGameState gs, IDataImporter importer)
@@ -161,14 +156,12 @@ namespace Genrpg.Editor
 
             try
             {
-                await importer.ImportData(this, gs);
+                await importer.ImportData(gs);
             }
             catch (Exception ex)
             {
-                await UIHelper.ShowMessageBox(this, ex.Message, "Exception", false);
+                await ShowMessageBox(ex.Message, "Exception", false);
             }
         }
     }
 }
-
-

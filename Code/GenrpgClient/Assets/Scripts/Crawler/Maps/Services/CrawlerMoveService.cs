@@ -290,8 +290,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            float endDrawX = mapRoot.DrawX + nx * CrawlerMapConstants.XZBlockSize;
-            float endDrawZ = mapRoot.DrawZ + nz * CrawlerMapConstants.XZBlockSize;
+            float endDrawX = mapRoot.DrawX + nx * mapRoot.XZBlockSize;
+            float endDrawZ = mapRoot.DrawZ + nz * mapRoot.XZBlockSize;
 
             float startDrawX = mapRoot.DrawX;
             float startDrawZ = mapRoot.DrawZ;

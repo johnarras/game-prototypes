@@ -571,6 +571,22 @@
     {
       "IdKey": 143,
       "Name": "MinigameTypeSettings"
+    },
+    {
+      "IdKey": 144,
+      "Name": "TraderBuffSettings"
+    },
+    {
+      "IdKey": 145,
+      "Name": "TraderDebuffSettings"
+    },
+    {
+      "IdKey": 146,
+      "Name": "LevelTrackDifficultySettings"
+    },
+    {
+      "IdKey": 147,
+      "Name": "TravelEncounterSettings"
     }
   ],
   "Parent": {

@@ -1,17 +1,14 @@
-using Assets.Scripts.ClientEvents.Entities;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.DynamicUI.Services;
 using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -22,7 +19,6 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -54,7 +50,6 @@ namespace Genrpg.Shared.Crawler.Party.Services
         void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party);
         void AddExp(PartyData party, PartyMember member, long quantity);
         void AddCurrency(PartyData party, long entityId, long quantity);
-        void SetCurrencyQuantity(PartyData party, long entityId, long quantity);
 
     }
 
@@ -72,6 +67,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         private ICrawlerMapService _mapService = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private ICrawlerCombatService _combatService = null;
+        private IDynamicUIService _dynamicUIService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
@@ -295,25 +291,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         public void AddCurrency(PartyData party, long entityId, long quantity)
         {
             party.Currencies.Add(entityId, quantity);
-            _dispatcher.Dispatch(new AddEntityQuantityVisual()
-            {
-                EntityTypeId = EntityTypes.CrawlerCurrency,
-                EntityId = entityId,
-                QuantityAdded = quantity
-            });
-        }
-
-        public void SetCurrencyQuantity(PartyData party, long entityId, long quantity)
-        {
-            party.Currencies[entityId] = quantity;
-
-            _dispatcher.Dispatch(new SetEntityQuantityVisual()
-            {
-                EntityTypeId = EntityTypes.CrawlerCurrency,
-                EntityId = entityId,
-                NewQuantity = quantity,
-                InstantUpdate = true,
-            });
+            _dynamicUIService.AddEntityQuantityVisual(EntityTypes.CrawlerCurrency, entityId, quantity, false);
         }
 
         public void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party)

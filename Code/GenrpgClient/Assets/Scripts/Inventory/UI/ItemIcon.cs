@@ -112,13 +112,13 @@ public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconDat
             _uiService.SetText(QuantityText, data.Quantity.ToString());
         }
 
-        if (FlagUtils.IsSet(_initData.Flags, ItemIconFlags.ShowTooltipNow))
+        if (FlagUtils.MatchesAnyBits(_initData.Flags, ItemIconFlags.ShowTooltipNow))
         {
             ShowTooltip();
             _initData.Flags &= ~ItemIconFlags.ShowTooltipNow;
         }
 
-        if (FlagUtils.IsSet(_initData.Flags, ItemIconFlags.NoDrag))
+        if (FlagUtils.MatchesAnyBits(_initData.Flags, ItemIconFlags.NoDrag))
         {
             _canDrag = false;
         }

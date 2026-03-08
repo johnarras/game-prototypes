@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.Trader.Travel.ClientEvents
+﻿using Genrpg.Shared.Client.Interfaces;
+
+namespace Assets.Scripts.Trader.Travel.ClientEvents
 {
-    public class ShowTraderMapPosition
+    public class ShowTraderMapPosition : IClientEvent
     {
         public float X;
         public float Y;

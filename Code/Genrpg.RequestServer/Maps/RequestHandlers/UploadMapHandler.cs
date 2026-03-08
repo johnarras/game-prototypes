@@ -23,7 +23,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
         protected override async Task InnerHandleMessage(WebContext context, UploadMapRequest request, CancellationToken token)
         {
-            if (_config.DefaultEnv == EnvNames.Prod)
+            if (EnvNames.IsProdEnv(_config.DefaultEnv))
             {
                 ShowError(context, "Cannot update maps in live");
                 return;

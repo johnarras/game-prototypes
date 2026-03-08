@@ -1,10 +1,11 @@
 
+using Genrpg.Shared.Client.Interfaces;
 using System;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents
 {
-    public class AddActionPanelText 
+    public class AddActionPanelText : IClientEvent
     {
         public string Text { get; set; }
         public Action OnClickAction { get; set; }

@@ -11,9 +11,14 @@ namespace Genrpg.Shared.Trader.Animals.Helpers
 {
     public class SkinTypeRewardHelper : IRewardHelper
     {
-        private IAnimalService _animalService = null;
+        private IAnimalService _animalService = null!;
 
         public long HelperKey => EntityTypes.Skin;
+
+        public long GetQuantity(MapObject obj, long entityId)
+        {
+            return _animalService.GetSkinQuantity(obj.Get<HoldingsData>(), entityId);   
+        }
 
         public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
         {

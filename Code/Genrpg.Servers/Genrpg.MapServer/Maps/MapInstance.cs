@@ -12,7 +12,7 @@ using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.ServerShared.Maps;
 using Genrpg.ServerShared.MapSpawns;
-using Genrpg.ServerShared.PlayerData;
+using Genrpg.ServerShared.PlayerData.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Core.PlayerData;
@@ -164,7 +164,7 @@ namespace Genrpg.MapServer.Maps
             _host = "127.0.0.1";
             _mapSize = _mapProvider.GetMap().BlockCount;
 
-            if (_config.DefaultEnv.IndexOf(EnvNames.Test) >= 0 || _config.DefaultEnv.IndexOf(EnvNames.Prod) >= 0)
+            if (_config.DefaultEnv != EnvNames.Local)
             {
                 _host = _config.PublicIP;
             }

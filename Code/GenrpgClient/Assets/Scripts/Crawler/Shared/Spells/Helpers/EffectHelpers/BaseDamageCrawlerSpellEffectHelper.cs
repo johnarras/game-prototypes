@@ -26,7 +26,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     {
         public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
-            if (target.StatusEffects.HasBit(StatusEffects.Dead))
+            if (target.StatusEffects.HasBitIndex(StatusEffects.Dead))
             {
                 return;
             }
@@ -42,21 +42,21 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
 
             bool targetHasResist = !casterIgnoreResists &&
-                (FlagUtils.IsSet(target.ResistBits, elementBits) ||
+                (FlagUtils.MatchesAnyBits(target.ResistBits, elementBits) ||
                 (target.FactionTypeId == FactionTypes.Player &&
                 _partyService.HasPartyBuff(party, EntityTypes.Resist, fullEffect.Effect.ElementTypeId)));
 
 
             if (targetHasResist)
             {
-                if (!FlagUtils.IsSet(target.VulnBits, elementBits))
+                if (!FlagUtils.MatchesAnyBits(target.VulnBits, elementBits))
                 {
                     damageScale *= etype.ResistDamagePercent / 100.0;
                     finalCritChance += etype.ResistCritPercentMod;
                     args.ExtraMessageBits |= ExtraMessageBits.Resists;
                 }
             }
-            else if (FlagUtils.IsSet(target.VulnBits, elementBits))
+            else if (FlagUtils.MatchesAnyBits(target.VulnBits, elementBits))
             {
                 damageScale *= etype.VulnDamagePercent / 100.0;
                 args.ExtraMessageBits |= ExtraMessageBits.Vulnerable;

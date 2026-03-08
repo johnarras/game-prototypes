@@ -1,0 +1,15 @@
+{
+  "Id": "traderbuff8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Surplus Mana",
+  "Icon": "SurplusMana",
+  "Art": "SurplusMana",
+  "Effects": [
+    {
+      "EntityTypeId": 204,
+      "Quantity": 1,
+      "EntityId": 6
+    }
+  ]
+}

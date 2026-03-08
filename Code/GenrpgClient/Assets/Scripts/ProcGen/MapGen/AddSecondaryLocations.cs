@@ -68,7 +68,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
                         continue;
                     }
 
-                    if (FlagUtils.IsSet(base._md.flags[xx, yy], MapGenFlags.IsEdgeWall))
+                    if (FlagUtils.MatchesAnyBits(base._md.flags[xx, yy], MapGenFlags.IsEdgeWall))
                     {
                         failed = true;
                     }

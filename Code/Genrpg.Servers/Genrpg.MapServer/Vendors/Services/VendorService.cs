@@ -188,7 +188,7 @@ namespace Genrpg.MapServer.Vendors.Services
 
             if (vendorItem != null)
             {
-                _rewardService.Add(ch, EntityTypes.Currency, CurrencyTypes.Money, -itemPrice, null);
+                _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Money, -itemPrice, null, null);
                 _inventoryService.AddItem(ch, vendorItem.Item, true);
                 _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsBought, 1);
             }
@@ -238,7 +238,7 @@ namespace Genrpg.MapServer.Vendors.Services
 
             _inventoryService.RemoveItem(ch, sellItem.ItemId, true);
             _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsSold, item.Quantity);
-            _rewardService.Add(ch, EntityTypes.Currency, CurrencyTypes.Money, money, null);
+            _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Money, money, null, null);
             _achievementService.UpdateAchievement(ch, AchievementTypes.VendorMoney, money);
         }
     }

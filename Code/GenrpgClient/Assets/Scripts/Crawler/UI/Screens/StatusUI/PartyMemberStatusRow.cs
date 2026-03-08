@@ -132,7 +132,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
                 HealthBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Health), _partyMember.Stats.Curr(StatTypes.Health));
                 ManaBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Mana), _partyMember.Stats.Curr(StatTypes.Mana));
-                StatusEffectsUI?.InitData(_partyMember);
+                StatusEffectsUI?.SetData(_partyMember);
                 SetPortrait(_partyMember.PortraitName);
 
                 TrainingInfo info = _trainingService.GetTrainingInfo(_party, _partyMember);

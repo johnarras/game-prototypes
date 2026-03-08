@@ -14,6 +14,7 @@ using Genrpg.Shared.Trades.Constants;
 using Genrpg.Shared.Trades.Entities;
 using Genrpg.Shared.Trades.Messages;
 using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -123,15 +124,15 @@ namespace Genrpg.MapServer.Trades.Services
         #endregion
 
         #region Accept
-        public void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade)
+        public void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade, IRandom rand)
         {
             ProcessExistingTrade(ch, delegate (FullTradeObject fullTrade)
                 {
-                    HandleAcceptTradeInternal(ch, acceptTrade, fullTrade);
+                    HandleAcceptTradeInternal(ch, acceptTrade, fullTrade, rand);
                 });
         }
 
-        private void HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade)
+        private void HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade, IRandom rand)
         {
             foreach (TradeChar tch in fullTrade.TradeObject.Chars)
             {
@@ -179,8 +180,8 @@ namespace Genrpg.MapServer.Trades.Services
 
                 if (currTrade.Money > 0)
                 {
-                    _rewardService.Add(currChar, EntityTypes.Currency, CurrencyTypes.Money, -currTrade.Money, null);
-                    _rewardService.Add(otherChar, EntityTypes.Currency, CurrencyTypes.Money, currTrade.Money, null);
+                    _rewardService.GiveReward(rand, currChar, EntityTypes.Currency, CurrencyTypes.Money, -currTrade.Money, null, null);
+                    _rewardService.GiveReward(rand, otherChar, EntityTypes.Currency, CurrencyTypes.Money, currTrade.Money, null, null);
                 }
 
                 for (int i = 0; i < currTrade.Items.Length; i++)

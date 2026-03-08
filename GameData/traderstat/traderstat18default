@@ -2,7 +2,7 @@
   "Id": "traderstat18default",
   "ParentId": "default",
   "IdKey": 18,
-  "Name": "BadLuckEvents",
-  "Icon": "BadLuckEvents",
-  "Art": "BadLuckEvents"
+  "Name": "Rations Cost",
+  "Icon": "RationsCost",
+  "Art": "RationsCost"
 }

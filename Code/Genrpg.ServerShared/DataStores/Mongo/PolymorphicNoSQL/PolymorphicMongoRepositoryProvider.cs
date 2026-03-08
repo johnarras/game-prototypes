@@ -1,4 +1,5 @@
 ﻿using Genrpg.ServerShared.DataStores.Entities;
+using Genrpg.ServerShared.DataStores.Mongo.Interfaces;
 using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.ServerShared.Secrets.Services;
 using Genrpg.Shared.Analytics.Services;
@@ -15,9 +16,13 @@ using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 {
-    public class PolymorphicMongoRepositoryProvider : BaseMongoRepositoryProvider<PolymorphicMongoRepository>
+    public class PolymorphicMongoRepositoryProvider : BaseMongoRepositoryProvider
     {
         public override ERepoTypes HelperKey => ERepoTypes.Polymorphic;
 
+        protected override IMongoInitRepository CreateRepository()
+        {
+            return new PolymorphicMongoRepository();
+        }
     }
 }

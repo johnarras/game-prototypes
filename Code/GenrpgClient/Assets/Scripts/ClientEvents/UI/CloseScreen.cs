@@ -1,6 +1,8 @@
+using Genrpg.Shared.Client.Interfaces;
+
 namespace Assets.Scripts.ClientEvents.UI
 {
-    public class CloseScreen
+    public class CloseScreen : IClientEvent
     {
         public long ScreenId { get; set; }
 

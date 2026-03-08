@@ -5,8 +5,8 @@ namespace Genrpg.Shared.Trader.Travel.Entities
     public class TravelStatus
     {
         public int DistanceGone { get; set; }
-        public int TotalDistanceTravelled { get; set; }
-        public int DistanceToTarget { get; set; }
+        public int TotalDistanceTravelledToday { get; set; }
+        public int TotalDistanceToTarget { get; set; }
         public int TargetCityId { get; set; }
         public bool ArrivedInCity { get; set; }
         public int TravelDays { get; set; }

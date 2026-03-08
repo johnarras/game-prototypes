@@ -5,6 +5,6 @@
   "Name": "Supplies",
   "Icon": "Supplies",
   "Art": "Supplies",
-  "RegenTraderStatId": 9,
-  "StorageTraderStatId": 8
+  "RegenTraderStatId": 4,
+  "StorageTraderStatId": 5
 }

@@ -21,27 +21,10 @@
   "RoadDipScale": 1.0,
   "RoadDirtScale": 1.0,
   "ZoneListGenScale": 0.8,
-  "Textures": [
-    {
-      "TextureTypeId": 5
-    },
-    {
-      "TextureTypeId": 8,
-      "TextureChannelId": 1
-    },
-    {
-      "TextureTypeId": 16,
-      "TextureChannelId": 2
-    },
-    {
-      "TextureTypeId": 10,
-      "TextureChannelId": 3
-    },
-    {
-      "TextureTypeId": 62,
-      "TextureChannelId": 1
-    }
-  ],
+  "BaseTextureTypeId": 5,
+  "DirtTextureTypeId": 2,
+  "RoadTextureTypeId": 16,
+  "SteepTextureTypeId": 3,
   "ZoneNames": [
     {
       "Weight": 1000.0,

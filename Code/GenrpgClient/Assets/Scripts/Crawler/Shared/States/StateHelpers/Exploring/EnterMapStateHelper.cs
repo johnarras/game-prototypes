@@ -202,7 +202,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             CrawlerMapStatus nextMapStatus = party.GetMapStatus(detail.EntityId, false);
 
-            bool didComplete = party.CompletedMaps.HasBit(detail.EntityId);
+            bool didComplete = party.CompletedMaps.HasBitIndex(detail.EntityId);
 
             #region Riddles
             bool havePartyBuff = _partyService.HasPartyBuff(party, EntityTypes.Riddle, 0);
@@ -218,7 +218,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     {
                         WorldQuestItem itemNeeded = null;
 
-                        if (!party.QuestItems.HasBit(nextMaps[0].MapQuestItemId))
+                        if (!party.QuestItems.HasBitIndex(nextMaps[0].MapQuestItemId))
                         {
                             WorldQuestItem wqi = world.QuestItems.FirstOrDefault(x => x.IdKey == nextMaps[0].MapQuestItemId);
                             if (wqi != null)
@@ -304,7 +304,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                         Map = nextMaps[0],
                                     };
 
-                                    party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
+                                    party.RiddlesCompleted.SetBitIndex(party.CurrPos.MapId);
                                     _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token, enterMapData);
                                 }
                                 else
@@ -334,7 +334,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                 for (int i = 0; i < maxBitIndex; i++)
                                 {
                                     if (party.HasRiddleBitIndex(i) !=
-                                        (FlagUtils.IsSet(answerVal, (1 << i))))
+                                        (FlagUtils.MatchesAnyBits(answerVal, (1 << i))))
                                     {
                                         togglesAreCorrect = false;
                                         break;
@@ -357,7 +357,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                         Map = nextMaps[0],
                                     };
 
-                                    party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
+                                    party.RiddlesCompleted.SetBitIndex(party.CurrPos.MapId);
                                     _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token, enterMapData);
                                 }
                             :
@@ -393,7 +393,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                             {
                                 for (int i = 0; i < 32; i++)
                                 {
-                                    if (!FlagUtils.IsSet(allBits, 1 << i))
+                                    if (!FlagUtils.MatchesAnyBits(allBits, 1 << i))
                                     {
                                         break;
                                     }
@@ -420,7 +420,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                                             Map = nextMaps[0],
                                         };
 
-                                        party.RiddlesCompleted.SetBit(party.CurrPos.MapId);
+                                        party.RiddlesCompleted.SetBitIndex(party.CurrPos.MapId);
                                         _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token, enterMapData);
                                     }));
 

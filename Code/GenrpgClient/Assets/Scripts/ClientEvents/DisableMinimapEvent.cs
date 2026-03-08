@@ -1,6 +1,8 @@
+using Genrpg.Shared.Client.Interfaces;
+
 namespace ClientEvents
 {
-    public class DisableMinimapEvent
+    public class DisableMinimapEvent : IClientEvent
     {
     }
 }

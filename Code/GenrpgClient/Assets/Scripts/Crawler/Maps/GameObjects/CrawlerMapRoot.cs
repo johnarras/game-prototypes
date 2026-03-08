@@ -1,4 +1,5 @@
 using Assets.Scripts.Buildings;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -10,21 +11,21 @@ using UnityEngine;
 namespace Assets.Scripts.Crawler.Maps.GameObjects
 {
 
-    public class AssetBlock
+    public class MaterialBlock
     {
         public long ZoneTypeId { get; set; }
-        public DungeonAssets DungeonAssets { get; set; }
+        public DungeonMaterialsList MaterialList { get; set; }
         public DungeonMaterials DungeonMaterials { get; set; }
         public Material DoorMat { get; set; }
 
         public bool IsReady()
         {
-            return DungeonAssets != null && DungeonMaterials != null && DoorMat != null;
+            return MaterialList != null && DungeonMaterials != null && DoorMat != null;
         }
 
         public void Clear()
         {
-            DungeonAssets?.Clear();
+            MaterialList?.Clear();
             DoorMat = null;
         }
     }
@@ -34,38 +35,58 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     {
         public string MapId { get; set; }
 
+        public int XZBlockSize { get; set; } = CrawlerMapConstants.DefaultXZBlockSize;
+
+        public int YBlockSize { get; set; } = CrawlerMapConstants.DefaultYBlockSize;
+
         private Dictionary<string, ClientMapCell> _worldCells { get; set; } = new Dictionary<string, ClientMapCell>();
 
         private Dictionary<string, List<ClientMapCell>> _mapCellCache { get; set; } = new Dictionary<string, List<ClientMapCell>>();
 
         private List<ClientMapCell> _allCells { get; set; } = new List<ClientMapCell>();
 
-        public Dictionary<long, AssetBlock> AssetBlocks { get; set; } = new Dictionary<long, AssetBlock>();
+        public DungeonAssetBlockList AssetBlockList { get; set; }
 
+        public WeightedDungeonAssetBlock AssetBlock { get; set; }
+
+        public Dictionary<long, MaterialBlock> MaterialBlocks { get; set; } = new Dictionary<long, MaterialBlock>();
+       
         public CityAssets CityAssets { get; set; }
+        
+        public bool AssetsAreReady()
+        {
+            return AssetBlockList != null && AssetBlock != null && MaterialBlocks.Count > 0 && !MaterialBlocks.Values.Any(x => !x.IsReady()) &&
+                CityAssets != null;
+        }
 
         public ICrawlerMapTypeHelper MapTypeHelper { get; set; }
 
         private long[,] _extendedTerrain = null;
 
-        private List<long> _zoneTypes = null;
+        private List<long> _dungeonZoneTypes = null;
+
+        private List<long> _allZoneTypes = null;
+
+        public GameObject TerrainObject = null;
+
+        public List<CrawlerTerrainIndexData> Indexes { get; set; } = new List<CrawlerTerrainIndexData>();
 
         public List<ClientMapCell> GetAllCells()
         {
             return _allCells;
         }
 
-        public AssetBlock GetAssetBlockAt(int x, int z)
+        public MaterialBlock GetMaterialBlockAt(int x, int z)
         {
             long zoneTypeId = GetZoneTypeAt(x, z);
 
-            if (AssetBlocks.TryGetValue(zoneTypeId, out AssetBlock assetBlock))
+            if (MaterialBlocks.TryGetValue(zoneTypeId, out MaterialBlock assetBlock))
             {
                 return assetBlock;
             }
-            if (AssetBlocks.Count > 0)
+            if (MaterialBlocks.Count > 0)
             {
-                return AssetBlocks.Values.First();
+                return MaterialBlocks.Values.First();
             }
             return null;
         }
@@ -73,7 +94,13 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public List<long> GetAllZoneTypes()
         {
             SetupExtendedTerrain();
-            return _zoneTypes;
+            return _allZoneTypes; 
+        }
+
+        public List<long> GetAllDungeonZoneTypes()
+        {
+            SetupExtendedTerrain();
+            return _dungeonZoneTypes;
         }
 
         public long GetZoneTypeAt(int x, int z)
@@ -87,7 +114,8 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             if (_extendedTerrain == null)
             {
                 _extendedTerrain = new long[Map.Width, Map.Height];
-                _zoneTypes = new List<long>();
+                _dungeonZoneTypes = new List<long>();
+                _allZoneTypes = new List<long>();
                 for (int x = 0; x < Map.Width; x++)
                 {
                     for (int z = 0; z < Map.Height; z++)
@@ -110,33 +138,39 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
                             zoneTypeId = Map.Get(x, z + 1, CellIndex.Terrain);
                         }
                         _extendedTerrain[x, z] = zoneTypeId;
-                        if (zoneTypeId > 0 && !_zoneTypes.Contains(zoneTypeId))
+                        if (zoneTypeId > 0 && !_dungeonZoneTypes.Contains(zoneTypeId))
                         {
-                            _zoneTypes.Add(zoneTypeId);
+                            _dungeonZoneTypes.Add(zoneTypeId);
+                            _allZoneTypes.Add(zoneTypeId);
                         }
                     }
                 }
 
+                if (!_allZoneTypes.Contains(Map.ZoneTypeId))
+                {
+                    _allZoneTypes.Add(Map.ZoneTypeId);  
+                }
+
                 if (Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
                 {
-                    _zoneTypes = new List<long>() { Map.ZoneTypeId };
+                    _dungeonZoneTypes = new List<long>() { Map.ZoneTypeId };
                 }
             }
         }
 
         public DungeonMaterials GetMaterialsAt(int x, int z)
         {
-            return GetAssetBlockAt(x, z)?.DungeonMaterials ?? null;
+            return GetMaterialBlockAt(x, z)?.DungeonMaterials ?? null;
         }
 
-        public DungeonAssets GetAssetsAt(int x, int z)
+        public DungeonMaterialsList GetAssetsAt(int x, int z)
         {
-            return GetAssetBlockAt(x, z)?.DungeonAssets ?? null;
+            return GetMaterialBlockAt(x, z)?.MaterialList ?? null;
         }
 
         public Material GetDoorMatAt(int x, int z)
         {
-            return GetAssetBlockAt(x, z)?.DoorMat ?? null;
+            return GetMaterialBlockAt(x, z)?.DoorMat ?? null;
         }
 
         public ClientMapCell GetCellAtWorldPos(int worldX, int worldZ, bool createIfNotExist)
@@ -259,12 +293,14 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             _mapCellCache.Clear();
             _allCells.Clear();
 
-            foreach (AssetBlock block in AssetBlocks.Values)
+            foreach (MaterialBlock block in MaterialBlocks.Values)
             {
                 block.Clear();
             }
 
-            AssetBlocks.Clear();
+            MaterialBlocks.Clear();
+
+            _clientEntityService.Destroy(TerrainObject);
 
             base.OnDestroy();
         }
