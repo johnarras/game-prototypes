@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Water Buffalo",
+  "Desc": "A powerful bovine, perfectly adapted for pulling plows and carts through deep mud and water. Slower and less heat-tolerant than an ox on dry land.",
+  "Icon": "WaterBuffalo",
+  "Art": "WaterBuffalo",
+  "Speed": 3,
+  "Size": 2,
+  "Price": 276500,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -3
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 4
+    }
+  ]
+}

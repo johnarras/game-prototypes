@@ -1,16 +1,10 @@
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Entities;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {
@@ -58,7 +52,7 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
                 _spellService.ShowCombatText(targ, quantity.ToString(), CombatTextColors.Green, isCrit);
             }
 
-            _statService.Add(targ, StatTypes.Health, StatCategories.Curr, quantity);
+            _statService.Add(targ, StatTypes.Health, UnitStatValOffsets.Curr, quantity);
             if (targ.Stats.Curr(StatTypes.Health) <= 0)
             {
                 _unitService.CheckForDeath(rand, eff, targ);

@@ -91,6 +91,13 @@ public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : Bas
         ResetCurrentDragItem();
         _origItem = icon;
         _dragItem = _clientEntityService.FullInstantiate<TDragItem>(icon);
+        RectTransform rect = icon.GetComponent<RectTransform>();
+
+        if (rect != null)
+        {
+            RectTransform dragRect = _dragItem.GetComponent<RectTransform>();
+            dragRect.sizeDelta = rect.sizeDelta;    
+        }
         _dragItem.Init(icon.GetInitData(), GetToken());
         _dragItem.transform.SetParent(dragParent.transform);
         _dragItem.transform.localScale = icon.transform.lossyScale;

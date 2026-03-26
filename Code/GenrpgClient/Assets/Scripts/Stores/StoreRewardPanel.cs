@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI.Stores
         {
             _spawnItem = reward;
 
-            _spriteService.LoadEntityIcon(reward.EntityTypeId, reward.EntityId, RewardIcon, token);
+            _spriteService.SetEntityIcon(reward.EntityTypeId, reward.EntityId, RewardIcon, token);
 
             _uiService.SetText(RewardQuantity, reward.Quantity.ToString());
 

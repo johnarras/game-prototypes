@@ -4,6 +4,7 @@ using Genrpg.RequestServer.Purchasing.ValidationHelpers;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.GameSettings.Services;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Indexes;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -186,8 +187,8 @@ namespace Genrpg.RequestServer.Purchasing.Services
                 // Current receipt.
             }
 
-
-            DefaultStoreOfferSettings defaultOffers = _gameData.Get<DefaultStoreOfferSettings>(context.core);
+            CoreData coreData = await context.GetAsync<CoreData>();
+            DefaultStoreOfferSettings defaultOffers = _gameData.Get<DefaultStoreOfferSettings>(coreData);
             PlayerStoreOfferData offerData = await context.GetAsync<PlayerStoreOfferData>();
 
             PlayerStoreOffer playerStoreOffer = offerData.StoreOffers.FirstOrDefault(x => x.OfferId == request.OfferId);
@@ -217,7 +218,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
                 return;
             }
 
-            ProductSku currentSku = _gameData.Get<ProductSkuSettings>(context.core).Get(playerBundle.ProductSkuId);
+            ProductSku currentSku = _gameData.Get<ProductSkuSettings>(coreData).Get(playerBundle.ProductSkuId);
 
             if (currentSku == null)
             {
@@ -349,6 +350,8 @@ namespace Genrpg.RequestServer.Purchasing.Services
                 return;
             }
 
+            CoreData coreData = await context.GetAsync<CoreData>();
+
             string offerId = null;
             string bundleId = null;
             string uniqueId = null;
@@ -376,13 +379,13 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             if (!AllDataIsOk(offerId, bundleId, uniqueId, productId))
             {
-                StoreOfferSettings storeOfferSettings = _gameData.Get<StoreOfferSettings>(context.core);
+                StoreOfferSettings storeOfferSettings = _gameData.Get<StoreOfferSettings>(coreData);
 
                 StoreOffer offer = storeOfferSettings.GetData().FirstOrDefault(x => x.OfferId == request.OfferId);
 
                 if (offer != null)
                 {
-                    StoreBundleSet bundleSet = _gameData.Get<StoreBundleSetSettings>(context.core).Get(offer.StoreBundleSetId);
+                    StoreBundleSet bundleSet = _gameData.Get<StoreBundleSetSettings>(coreData).Get(offer.StoreBundleSetId);
 
                     if (bundleSet != null)
                     {
@@ -390,7 +393,7 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
                         if (bundle != null)
                         {
-                            ProductSku sku = _gameData.Get<ProductSkuSettings>(context.core).Get(bundle.ProductSkuId);
+                            ProductSku sku = _gameData.Get<ProductSkuSettings>(coreData).Get(bundle.ProductSkuId);
 
                             if (sku != null)
                             {
@@ -478,7 +481,9 @@ namespace Genrpg.RequestServer.Purchasing.Services
 
             currentPurchase.Clear();
 
-            await GetCurrentStores(context, context.core, true, token);
+            CoreData coreData = await context.GetAsync<CoreData>();
+
+            await GetCurrentStores(context, coreData, true, token);
             await Task.CompletedTask;
         }
 

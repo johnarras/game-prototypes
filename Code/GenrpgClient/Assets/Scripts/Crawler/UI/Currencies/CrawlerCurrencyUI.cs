@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.ClientEvents.HUD;
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.DataStores.Indexes;
@@ -25,17 +25,17 @@ namespace Assets.Scripts.Crawler.UI.Currencies
         private void CreateIcons()
         {
 
-            IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+            IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
             _clientEntityService.DestroyAllChildren(IconAnchor);
 
             PartyData party = _crawlerService.GetParty();
 
-            foreach (CrawlerCurrencyType ctype in ctypes)
+            foreach (CoreCurrencyType ctype in ctypes)
             {
                 CrawlerCurrencyIcon icon = _clientEntityService.FullInstantiate(IconPrefab);
                 _clientEntityService.AddToParent(icon, IconAnchor);
-                icon.SetEntityData(EntityTypes.CrawlerCurrency, ctype.IdKey, party.Currencies[ctype.IdKey], 0);
+                icon.SetEntityData(EntityTypes.CoreCurrency, ctype.IdKey, party.Currencies[ctype.IdKey], 0);
             }
         }
 

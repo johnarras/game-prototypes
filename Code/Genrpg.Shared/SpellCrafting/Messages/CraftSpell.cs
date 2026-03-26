@@ -1,6 +1,6 @@
-using MessagePack;
 using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using MessagePack;
 
 namespace Genrpg.Shared.SpellCrafting.Messages
 {

@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Well Fed",
+  "Icon": "WellFed",
+  "Art": "WellFed",
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -1
+    }
+  ]
+}

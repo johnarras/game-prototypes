@@ -41,6 +41,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     return;
                 }
 
+                
                 int centerX = (int)(_party.CurrPos.X);
                 int centerZ = (int)(_party.CurrPos.Z);
 

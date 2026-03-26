@@ -1,4 +1,3 @@
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.ProcGen.Settings.Locations
@@ -9,7 +8,7 @@ namespace Genrpg.Shared.ProcGen.Settings.Locations
     /// there might be a chance for multiple factions
     /// to be here or something. Not sure, but
     /// it should be separate
-        /// 
+    /// 
     /// </summary>
     public class Location
     {

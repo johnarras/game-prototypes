@@ -9,7 +9,7 @@ using Genrpg.Shared.Zones.WorldData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 public interface IAddNearbyItemsHelper : IInjectable
 {
@@ -46,11 +46,11 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 
         int maxNumPlants = maxPlaceQuantity;
 
-        int bushesToAdd = MathUtil.IntRange(maxNumPlants / 2, maxNumPlants, rand);
+        int bushesToAdd = RandUtils.IntRange(maxNumPlants / 2, maxNumPlants, rand);
 
         if (rand.NextDouble() < 0.3f)
         {
-            bushesToAdd += MathUtil.IntRange(1, maxNumPlants, rand);
+            bushesToAdd += RandUtils.IntRange(1, maxNumPlants, rand);
         }
 
         int treesToAdd = bushesToAdd / 10;
@@ -141,8 +141,8 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             int numPlaced = 0;
             for (int tries = 0; tries < numToPlace * 30 && numPlaced < numToPlace; tries++)
             {
-                int plantx = (int)(MathUtil.FloatRange(x - offset, x + offset, rand)+0.5f);
-                int planty = (int)(MathUtil.FloatRange(y - offset, y + offset, rand) + 0.5f);
+                int plantx = (int)(x +RandUtils.DeltaRange(offset, rand)+0.5f);
+                int planty = (int)(y + RandUtils.DeltaRange(offset, rand) + 0.5f);
 
 
 
@@ -196,7 +196,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
         {
             if (rand.Next() % 5 > newItemTimes)
             {
-                nearbyItemsCount += MathUtil.IntRange(0, 2, rand);
+                nearbyItemsCount += RandUtils.IntRange(0, 2, rand);
             }
         }
 
@@ -210,7 +210,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             nearbyItemsCount = nearbyItemsCount * 3 / 2;
         }
 
-        nearbyItemsCount = MathUtil.IntRange(nearbyItemsCount * 3 / 4, nearbyItemsCount * 5 / 4, rand);
+        nearbyItemsCount = RandUtils.IntRange(nearbyItemsCount * 3 / 4, nearbyItemsCount * 5 / 4, rand);
 
 
         return nearbyItemsCount;

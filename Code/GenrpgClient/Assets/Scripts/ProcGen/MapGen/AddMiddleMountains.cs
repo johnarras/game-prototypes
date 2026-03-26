@@ -2,7 +2,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
@@ -50,7 +50,7 @@ public class AddMiddleMountains : BaseAddMountains
         MyRandom middleRand = new MyRandom(zone.Seed + 233499);
 
 
-        int numWalls = MathUtil.IntRange(0, 1, middleRand);
+        int numWalls = RandUtils.IntRange(0, 1, middleRand);
 
         if (middleRand.NextDouble() < 0.2f)
         {
@@ -66,17 +66,17 @@ public class AddMiddleMountains : BaseAddMountains
                 break;
             }
 
-            int currMaxLen = MathUtil.IntRange(30, maxSize, middleRand);
+            int currMaxLen = RandUtils.IntRange(30, maxSize, middleRand);
 
 
-            int sx = MathUtil.IntRange(zone.XMin, zone.XMax, middleRand);
+            int sx = RandUtils.IntRange(zone.XMin, zone.XMax, middleRand);
 
-            int sy = MathUtil.IntRange(zone.ZMin, zone.ZMax, middleRand);
+            int sy = RandUtils.IntRange(zone.ZMin, zone.ZMax, middleRand);
 
 
-            int ex = MathUtil.IntRange(sx - currMaxLen, sx + currMaxLen, middleRand);
+            int ex = RandUtils.IntRange(sx - currMaxLen, sx + currMaxLen, middleRand);
 
-            int ey = MathUtil.IntRange(sy - currMaxLen, sx + currMaxLen, middleRand);
+            int ey = RandUtils.IntRange(sy - currMaxLen, sx + currMaxLen, middleRand);
 
             if (ex < 0 || ex >= _mapProvider.GetMap().GetHwid() || ey < 0 || ey >= _mapProvider.GetMap().GetHhgt())
             {

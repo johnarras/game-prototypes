@@ -6,8 +6,8 @@ using Genrpg.RequestServer.Trader.Stats.Services;
 using Genrpg.ServerShared.GameSettings.Services;
 using Genrpg.ServerShared.PlayerData.Services;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.GameSettings.Services;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 
@@ -27,7 +27,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
         OrderedSetupDictionaryContainer<Type, IUserLoadUpdater> _userLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, IUserLoadUpdater>();
         private IPlayerDataService _playerDataService = null;
         private IHourlyUpdateService _periodicUpdateService = null;
-        private IServerTraderStatService _statService = null;
+        private IServerGameStatService _statService = null;
         private IServerGameDataService _gameDataService = null;
 
         public async Task Initialize(CancellationToken token)
@@ -86,7 +86,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
 
         public async Task UpdatePlayerAfterLoginOrLoad(WebContext context, bool isLogin)
         {
-            context.AddResponseRange(_gameDataService.GetClientSettings(context.core, isLogin));
+            context.AddResponseRange(_gameDataService.GetClientSettings(await context.GetAsync<CoreData>(), isLogin));
             await _periodicUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs() { OnLogin = isLogin });
             await _statService.CheckBuffs(context, isLogin);
         }

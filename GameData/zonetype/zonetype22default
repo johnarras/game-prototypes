@@ -114,7 +114,6 @@
   "UnitKeyWords": [],
   "PlantChoices": "",
   "WeatherTypeId": 9,
-  "BuildingTypeId": 21,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0

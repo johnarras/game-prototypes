@@ -12,8 +12,8 @@
   "Effects": [
     {
       "EntityTypeId": 31,
-      "Quantity": 5,
-      "EntityId": 36
+      "EntityId": 36,
+      "Quantity": 5
     }
   ],
   "PrefixNames": [],

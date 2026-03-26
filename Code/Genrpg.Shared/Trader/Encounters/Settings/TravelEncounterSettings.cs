@@ -1,15 +1,12 @@
 ﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
-using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Trader.Cultures.Settings
+namespace Genrpg.Shared.Trader.Encounters.Settings
 {
     public class TravelEncounterSettings : ParentSettings<TravelEncounter>
     {
@@ -20,7 +17,7 @@ namespace Genrpg.Shared.Trader.Cultures.Settings
 
         public override void SetData(List<TravelEncounter> data)
         {
-                base.SetData(data);
+            base.SetData(data);
 
             _goodEncounters = data.Where(x => !x.BadEffects.Any()).ToList();
             _badEncounters = data.Where(x => x.BadEffects.Any()).ToList();
@@ -30,14 +27,14 @@ namespace Genrpg.Shared.Trader.Cultures.Settings
 
         public IReadOnlyList<TravelEncounter> GetGoodEncounters()
         {
-            return _goodEncounters; 
+            return _goodEncounters;
         }
 
         private List<TravelEncounter> _badEncounters { get; set; } = new List<TravelEncounter>();
 
         public IReadOnlyList<TravelEncounter> GetBadEncounters()
         {
-            return _badEncounters;  
+            return _badEncounters;
         }
 
 
@@ -67,7 +64,7 @@ namespace Genrpg.Shared.Trader.Cultures.Settings
 
     }
     public class TravelEncounterSettingsLoader : ParentSettingsLoader<TravelEncounterSettings, TravelEncounter> { }
-    
+
     // No DTO Or mapper, don't send to client.
 }
 

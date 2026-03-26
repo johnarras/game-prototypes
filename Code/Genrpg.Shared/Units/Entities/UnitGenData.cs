@@ -1,5 +1,3 @@
-using MessagePack;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Shared.Units.Entities

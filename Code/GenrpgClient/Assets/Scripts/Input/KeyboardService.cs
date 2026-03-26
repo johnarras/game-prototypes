@@ -2,7 +2,7 @@ using Assets.Scripts.ClientEvents.DataUpdates;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;

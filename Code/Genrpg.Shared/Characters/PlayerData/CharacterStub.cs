@@ -1,5 +1,4 @@
 using Genrpg.Shared.Interfaces;
-using MessagePack;
 
 namespace Genrpg.Shared.Characters.PlayerData
 {

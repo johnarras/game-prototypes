@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
-
 namespace Genrpg.Shared.Inventory.Constants
 {
     public class EquipSlots
@@ -25,8 +20,6 @@ namespace Genrpg.Shared.Inventory.Constants
         public const long MainHand = 15;
         public const long OffHand = 16;
         public const long Ranged = 17;
-        public const long PoisonVial = 18;
-        public const long Quiver = 19;
 
 
         /// <summary>

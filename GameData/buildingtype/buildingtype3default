@@ -2,10 +2,9 @@
   "Id": "buildingtype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Tannery",
-  "Icon": "Tannery",
-  "Art": "Tannery",
-  "Radius": 5,
-  "VariationCount": 1,
+  "Name": "Guild",
+  "Icon": "Guild",
+  "Art": "Guild",
+  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

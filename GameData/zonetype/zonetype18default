@@ -690,7 +690,6 @@
   "PlantChoices": "34 35 36 37 38",
   "FenceChance": 0.1,
   "WeatherTypeId": 9,
-  "BuildingTypeId": 23,
   "CreviceCountScale": 4.0,
   "CreviceDepthScale": 0.5,
   "CreviceWidthScale": 2.0,

@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -45,7 +46,7 @@ namespace Assets.Scripts.Crawler.Items.Services
             List<MemberItemSpell> memberList = new List<MemberItemSpell>();
             foreach (Item item in member.Equipment)
             {
-                ItemEffect spellEffect = item.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell);
+                Effect spellEffect = item.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell);
                 if (spellEffect == null)
                 {
                     continue;

@@ -17,10 +17,10 @@ namespace Genrpg.Shared.Stats.Entities
         {
             return _stats[statCategory, statTypeId - _cacheLineOffset];
         }
-        public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
-        public int Pct(long statTypeId) { return Get(statTypeId, StatCategories.Pct); }
-        public int Base(long statTypeId) { return Get(statTypeId, StatCategories.Base); }
-        public int Bonus(long statTypeId) { return Get(statTypeId, StatCategories.Bonus); }
+        public int Curr(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Curr); }
+        public int Pct(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Pct); }
+        public int Base(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Base); }
+        public int Bonus(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Bonus); }
 
         public int Max(long statTypeId)
         {
@@ -49,7 +49,7 @@ namespace Genrpg.Shared.Stats.Entities
         public void ResetAll()
         {
             // Offset = 1 to make the mutable stats all be in one cache line I hope
-            _stats = new int[StatCategories.Size, StatConstants.MaxStatType - _cacheLineOffset];
+            _stats = new int[UnitStatValOffsets.Size, StatConstants.MaxStatType - _cacheLineOffset];
         }
 
         public int[,] GetStats()
@@ -67,17 +67,17 @@ namespace Genrpg.Shared.Stats.Entities
             _stats[statCategory, statTypeId - _cacheLineOffset] = (int)val;
         }
 
-        public int Curr(long statTypeId) { return Get(statTypeId, StatCategories.Curr); }
-        public void SetCurr(long statTypeId, long val) { Set(statTypeId, StatCategories.Curr, val); }
+        public int Curr(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Curr); }
+        public void SetCurr(long statTypeId, long val) { Set(statTypeId, UnitStatValOffsets.Curr, val); }
 
-        public int Pct(long statTypeId) { return Get(statTypeId, StatCategories.Pct); }
-        public void SetPct(long statTypeId, long val) { Set(statTypeId, StatCategories.Pct, val); }
+        public int Pct(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Pct); }
+        public void SetPct(long statTypeId, long val) { Set(statTypeId, UnitStatValOffsets.Pct, val); }
 
-        public int Base(long statTypeId) { return Get(statTypeId, StatCategories.Base); }
-        public void SetBase(long statTypeId, long val) { Set(statTypeId, StatCategories.Base, val); }
+        public int Base(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Base); }
+        public void SetBase(long statTypeId, long val) { Set(statTypeId, UnitStatValOffsets.Base, val); }
 
-        public int Bonus(long statTypeId) { return Get(statTypeId, StatCategories.Bonus); }
-        public void SetBonus(long statTypeId, long val) { Set(statTypeId, StatCategories.Bonus, val); }
+        public int Bonus(long statTypeId) { return Get(statTypeId, UnitStatValOffsets.Bonus); }
+        public void SetBonus(long statTypeId, long val) { Set(statTypeId, UnitStatValOffsets.Bonus, val); }
 
         public int Max(long statTypeId)
         {

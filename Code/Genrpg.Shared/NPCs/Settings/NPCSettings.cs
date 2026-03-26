@@ -1,11 +1,9 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.NPCs.Constants;
 using Genrpg.Shared.Vendors.WorldData;
-using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.NPCs.Settings

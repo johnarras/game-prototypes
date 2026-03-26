@@ -1,5 +1,4 @@
 using Genrpg.Shared.Utils;
-using MessagePack;
 namespace Genrpg.Shared.Zones.Settings
 {
     public class ZoneFenceType : IWeightedItem

@@ -21,7 +21,7 @@ namespace Genrpg.ServerShared.DataStores.Services
     {
         private ILogService _logService = null;
 
-        private SetupDictionaryContainer<ERepoTypes,IAzureRepositoryProvider> _providers = new SetupDictionaryContainer<ERepoTypes,IAzureRepositoryProvider>();
+        private SetupDictionaryContainer<ERepoTypes, IAzureRepositoryProvider> _providers = new SetupDictionaryContainer<ERepoTypes, IAzureRepositoryProvider>();
 
         public async Task<ICloudMessageImpl> CreateCloudMessageImpl(IServiceLocator loc, IServerConfig config, ILogService logService,
             ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, CancellationToken token)

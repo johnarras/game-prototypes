@@ -11,7 +11,6 @@ using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Crypto.Services;
 using Genrpg.ServerShared.MainServer;
 using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
@@ -48,7 +47,7 @@ namespace Genrpg.RequestServer.Core
 
         public string GetIndexString()
         {
-            return "[Index: " + _serverConfig.DefaultEnv + "]";
+            return "[ Index: " + _serverConfig.DefaultEnv + " ]";
         }
 
         protected WebContext SetupContext()

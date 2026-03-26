@@ -59,7 +59,7 @@
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CrawlerCurrencySettings"
+    "Name": "CoreCurrencyTypeSettings"
   },
   "Id": "default",
   "SaveTime": "2025-11-18T03:04:02.688Z"

@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.TraderMapUI;
 using Assets.Scripts.Trader.WorldMap;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
@@ -11,7 +13,24 @@ using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SearchService;
+using static UnityEngine.Rendering.GPUSort;
+
+
+
+public class TerrainPatchArgs
+{
+    public long BiomeIndex { get; set; }
+
+    public long MapPatchXYIndex { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public int CX { get; set; }
+    public int CY { get; set; }
+}
 
 public class TraderTerrain : BaseBehaviour
 {
@@ -38,11 +57,9 @@ public class TraderTerrain : BaseBehaviour
 
     private Dictionary<long, TraderTerrainPatch> _patchesByCoordinate = new Dictionary<long, TraderTerrainPatch>();
 
-    private ConcurrentQueue<TraderTerrainPatch> _patchPool = new ConcurrentQueue<TraderTerrainPatch>();
+    private IObjectPool _patchPool;
 
     public TraderMapCityButton Button;
-
-    public TraderTerrainPatch PatchPrefab;
 
     int _lastCenterX = -1;
     int _lastCenterY = -1;
@@ -151,6 +168,7 @@ public class TraderTerrain : BaseBehaviour
         return x * 100000 + y;
     }
 
+
     private void ShowMapAroundCenter(float x, float y, bool fullRefresh)
     {
         int cx = (int)x;
@@ -182,12 +200,18 @@ public class TraderTerrain : BaseBehaviour
 
                     int biomeIndex = _travelService.GetTerrainIndex(xx, yy);
 
-                    TraderTerrainPatch patch = CheckoutPatch();
+                    TerrainPatchArgs args = new TerrainPatchArgs()
+                    {
+                        BiomeIndex = biomeIndex,
+                        MapPatchXYIndex = index,
+                        X = xx,
+                        Y = (int)_texHeight - yy - 1,
+                        CX =cx,
+                        CY =cy, 
+                    };
 
-                    _clientEntityService.AddToParent(patch, PatchAnchor);
-                    patch.ShowTerrain(this, xx, (int)_texHeight - yy - 1, cx, cy, biomeIndex);
 
-                    _patchesByCoordinate[index] = patch;
+                    _patchPool.CheckoutObject(PatchAnchor, AssetCategoryNames.Biomes, "TraderTerrainPatch", OnDownloadTerrainPatch, args, GetToken());
 
                 }
             }
@@ -213,24 +237,20 @@ public class TraderTerrain : BaseBehaviour
             }
         }
     }
-
-    private TraderTerrainPatch CheckoutPatch()
+    private void OnDownloadTerrainPatch(GameObject go, TerrainPatchArgs data, CancellationToken token)
     {
-        if (_patchPool.TryDequeue(out TraderTerrainPatch patch))
-        {
-            _clientEntityService.SetActive(patch, true);
-            return patch;
-        }
 
-        patch = _clientEntityService.FullInstantiate<TraderTerrainPatch>(PatchPrefab);
+        TraderTerrainPatch patch = go.GetComponent<TraderTerrainPatch>();
+        patch.ShowTerrain(this, data);
 
-        return patch;
+        _patchesByCoordinate[data.MapPatchXYIndex] = patch;
+
     }
+
 
     public void ReturnPatch(TraderTerrainPatch patch)
     {
-        _patchPool.Enqueue(patch);
-        _clientEntityService.SetActive(patch, false);
+        _patchPool.ReturnObject(patch);
     }
 }
 

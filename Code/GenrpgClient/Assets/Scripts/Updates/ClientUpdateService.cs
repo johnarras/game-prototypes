@@ -1,7 +1,7 @@
 
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Updates;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;

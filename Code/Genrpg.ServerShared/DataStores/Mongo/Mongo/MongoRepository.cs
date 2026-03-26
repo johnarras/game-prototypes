@@ -1,6 +1,5 @@
 using Genrpg.ServerShared.DataStores.Entities;
 using Genrpg.ServerShared.DataStores.Mongo.Interfaces;
-using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.DataStores.Indexes;
@@ -9,14 +8,12 @@ using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
-using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,7 +33,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
             MongoClient client,
             ILogService logService,
             IAnalyticsService analyticsService,
-            ITextSerializer serializer, 
+            ITextSerializer serializer,
             CancellationToken token)
         {
             _token = token;
@@ -69,7 +66,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        protected  INoSQLCollection GetCollection(Type t)
+        protected INoSQLCollection GetCollection(Type t)
         {
             if (_collections.TryGetValue(t, out INoSQLCollection coll))
             {
@@ -108,7 +105,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
             return await collection.Delete(obj);
         }
 
-        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem
+        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.DeleteAll(func);
@@ -120,7 +117,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
             if (funcObj is Expression<Func<T, bool>> func)
 
             {
-                ITypedNoSQLCollection<T> collection = GetCollection(typeof(T))as ITypedNoSQLCollection<T>;
+                ITypedNoSQLCollection<T> collection = GetCollection(typeof(T)) as ITypedNoSQLCollection<T>;
 
                 return await collection.Search(func, quantity, skip);
             }
@@ -148,13 +145,13 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <returns></returns>
-        public async Task<bool> SaveAll<T>(List<T> items) where T : class, ISearchableItem
+        public async Task<bool> SaveAll<T>(List<T> items) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.SaveAll(items);
         }
 
-        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem
+        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId
         {
             if (true)
             {
@@ -208,33 +205,33 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
             }
         }
 
-        public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem
+        public virtual async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.UpdateDict(docId, fieldNameUpdates);
         }
 
-        public virtual async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem
+        public virtual async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return await collection.UpdateAction(docId, action);
         }
 
-        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem
+        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return (T)await collection.AtomicIncrement(docId, fieldName, increment);
         }
 
 
-        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem
+        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return (T)await collection.AtomicAddBits(docId, fieldName, addBits);
         }
 
 
-        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem
+        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId
         {
             INoSQLCollection collection = GetCollection(typeof(T));
             return (T)await collection.AtomicRemoveBits(docId, fieldName, removeBits);

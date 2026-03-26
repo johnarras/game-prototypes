@@ -1,6 +1,5 @@
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Stats.Entities;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 

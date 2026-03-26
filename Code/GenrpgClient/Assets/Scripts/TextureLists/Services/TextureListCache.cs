@@ -83,7 +83,14 @@ namespace Assets.Scripts.TextureLists.Services
                 TextureName = textureName
             };
 
-            _assetService.LoadAssetInto(GetTextureListParent(), AssetCategoryNames.TextureLists, textureName, OnDownloadTextureList, token, downloadData);
+            string assetCategoryNames = AssetCategoryNames.TextureLists;
+            
+            if (textureName.ToLower().IndexOf("portrait") == 0)
+            {
+                assetCategoryNames = AssetCategoryNames.Portraits;
+            }
+
+            _assetService.LoadAssetInto(GetTextureListParent(), assetCategoryNames, textureName, OnDownloadTextureList, token, downloadData);
         }
 
         public async Task OnReset(CancellationToken token)
@@ -96,7 +103,7 @@ namespace Assets.Scripts.TextureLists.Services
         private void OnDownloadTextureList(GameObject go, DownloadTextureListData downloadData, CancellationToken token)
         {
 
-            if (downloadData == null || string.IsNullOrEmpty(downloadData.TextureName))
+            if (downloadData == null || string.IsNullOrEmpty(downloadData.TextureName) || go == null)
             {
                 _clientEntityService.Destroy(go);
                 return;

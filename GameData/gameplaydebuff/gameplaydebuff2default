@@ -1,0 +1,18 @@
+{
+  "Id": "gameplaydebuff2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Slowed",
+  "Icon": "Slowed",
+  "Art": "Slowed",
+  "CleanseCoreCurrencyTypeId": 3,
+  "CleanseQuantity": 1,
+  "CityCoinsCleanseCost": 40,
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 3,
+      "Quantity": -1
+    }
+  ]
+}

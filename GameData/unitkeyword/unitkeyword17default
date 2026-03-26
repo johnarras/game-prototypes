@@ -9,23 +9,23 @@
   "Effects": [
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 15
+      "EntityId": 15,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 13
+      "EntityId": 13,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 230
+      "EntityId": 230,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 231
+      "EntityId": 231,
+      "Quantity": 1
     }
   ],
   "Weight": 20.0,

@@ -1,28 +1,18 @@
-header travelencountersettings,Id,Name,GoodEncounterChance,BadEncounterChance,,,,
-travelencountersettings,default,Default,0.1,0.25,,,,
-,,,,,,,,
-header travelencounter,Idkey,Name,Desc,Weight,Icon,Text,FailureText,
-,,,,,,,,
-header goodeffect,EntityTypeId,EntityId,MinQuantity,MaxQuantity,Weight,GroupId,,MinLevel
-header badeffect,EntityTypeId,EntityId,MinQuantity,MaxQuantity,Weight,GroupId,,MinLevel
-header failureeffect,EntityTypeId,EntityId,MinQuantity,MaxQuantity,Weight,GroupId,,MinLevel
-,,,,,,,,
-travelencounter,1,Spoiled Food,,100,,Some of your rations spoiled!,You don't have enough rations and are now hungry.,
-badeffect,corecurrencytype,rations,10,20,100,,,
-failureeffect,traderdebuff,hungry,2,5,100,,,
-,,,,,,,,
-travelencounter,2,Broken Cart,,100,,Your cart breaks down!,"You can't fix the cart, so you will be slowed for a few days.",
-badeffect,corecurrency,supplies,5,10,100,,,
-failureeffect,traderdebuff,Broken Down,2,5,100,,,
-,,,,,,,,
-travelencounter,3,Corrupt Soldiers,,100,,You get shaken down by corrupt soldiers.,"You can't pay them, so they take some of your other supplies.",
-badeffect,corecurrency,coins,50,150,100,,,
-failureeffect,corecurrency,supplies,10,20,100,,,
-failureeffect,corecurrency,rations,10,20,100,,,
-,,,,,,,,
-travelencounter,4,Mana Storm,,100,,You encounter a Mana Storm,"You can't defend against it, so some of your supplies are ruined.",
-badeffect,corecurrency,mana,5,10,100,,,
-failureeffect,traderdebuff,magic void,2,5,100,,,
-,,,,,,,,
-travelencounter,6,Beehive,,100,,You discover a beehive with delicious honey!,,
-goodeffect,corecurrency,rations,10,20,100,,,
+header gameplaydebuff,IdKey,Name,Icon,Art,CleanseCoreCurrencyTypeId,CleanseQuantity,CityCoinsCleanseCost
+header debuffeffect,EntityTypeId,EntityId,Quantity,,,,
+gameplaydebuff,1,Unlucky,Unlucky,Unlucky,mana,2,20
+debuffeffect,gameplaystatbuff,bad luck,5,,,,
+gameplaydebuff,2,Slowed,Slowed,Slowed,supplies,1,40
+debuffeffect,gameplaystatbuff,caravan bonus speed,-1,,,,
+gameplaydebuff,3,Hungry,Hungry,Hungry,rations,2,10
+debuffeffect,gameplaystatbuff,rations cost,1,,,,
+gameplaydebuff,4,Broken Down,BrokenDown,BrokenDown,supplies,2,25
+debuffeffect,gameplaystatbuff,caravan bonus speed,-1,,,,
+debuffeffect,gameplaystatbuff,caravan capacity,-1,,,,
+gameplaydebuff,5,Sickly,Sickly,Sickly,rations,1,15
+debuffeffect,gameplaystatbuff,caravan capacity,-1,,,,
+gameplaydebuff,6,Magic Void,MagicVoid,MagicVoid,mana,1,35
+debuffeffect,bonuscurrencyregen,mana,-2,,,,
+gameplaydebuff,7,Cursed,Cursed,Cursed,mana,1,50
+debuffeffect,gameplaystatbuff,bad luck,5,,,,
+debuffeffect,gameplaystatbuff,good luck,-5,,,,

@@ -1,6 +1,5 @@
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Inventory.PlayerData;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities

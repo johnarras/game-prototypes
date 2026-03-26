@@ -1,31 +1,25 @@
 
+using Genrpg.MapServer.AI.Constants;
+using Genrpg.MapServer.Combat.Messages;
+using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Units.Services;
+using Genrpg.Shared.AI.Settings;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Pathfinding.Entities;
+using Genrpg.Shared.Pathfinding.Services;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Spells.PlayerData.Spells;
+using Genrpg.Shared.Targets.Messages;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.MapServer.Maps;
-using System.Threading;
-using Genrpg.MapServer.Spells;
-using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.MapServer.Combat.Messages;
-using Genrpg.MapServer.AI.Constants;
-using Genrpg.Shared.AI.Settings;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Pathfinding.Entities;
-using Genrpg.MapServer.Units.Services;
 
 namespace Genrpg.MapServer.AI.Services
 {
@@ -118,10 +112,10 @@ namespace Genrpg.MapServer.AI.Services
 
                 float wanderRange = AIConstants.IdleWanderRange;
 
-                float targetx = MathUtil.FloatRange(unit.Spawn.X - wanderRange, unit.Spawn.X + wanderRange, rand);
-                float targetz = MathUtil.FloatRange(unit.Spawn.Z - wanderRange, unit.Spawn.Z + wanderRange, rand);
+                float targetx = unit.Spawn.X + RandUtils.DeltaRange(wanderRange, rand);
+                float targetz = unit.Spawn.Z + RandUtils.DeltaRange(wanderRange, rand);
 
-                LocationMove(rand, unit, targetx, targetz, MathUtil.FloatRange(0.2f, 0.3f, rand));
+                LocationMove(rand, unit, targetx, targetz, RandUtils.FloatRange(0.2f, 0.3f, rand));
             }
         }
 
@@ -427,7 +421,7 @@ namespace Genrpg.MapServer.AI.Services
 
                 if (finalDist > distToGo || finalDist < AIConstants.CloseToTargetDistance)
                 {
-                    SetUnitAtFinalLocation(unit);        
+                    SetUnitAtFinalLocation(unit);
                 }
             }
         }

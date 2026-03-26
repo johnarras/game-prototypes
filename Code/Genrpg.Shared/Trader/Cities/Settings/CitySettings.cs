@@ -4,7 +4,6 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Trader.Cities.Settings
@@ -16,15 +15,14 @@ namespace Genrpg.Shared.Trader.Cities.Settings
 
     public class CityTradeGood
     {
+        public string Name { get; set; }
         public long TradeGoodId { get; set; }
-        public double ProductionScale { get; set; }
-        public double PriceScale { get; set; }
     }
 
-    public class CityAnimal
+    public class CityCaravanMember
     {
-        public long AnimalTypeId { get; set; }
-        public double PriceScale { get; set; }
+        public long CaravanMemberId { get; set; }
+        public string Name { get; set; }
     }
 
     public class City : ChildSettings, IIndexedGameItem
@@ -44,9 +42,9 @@ namespace Genrpg.Shared.Trader.Cities.Settings
         public int MapPixelY { get; set; }
         public long BiomeTypeId { get; set; }
         public long CultureTypeId { get; set; }
+
         public List<CityTradeGood> TradeGoodsProduced { get; set; } = new List<CityTradeGood>();
-        public List<CityAnimal> Animals { get; set; } = new List<CityAnimal>();
-        public SmallIdLongCollection TradeGoodBuyCosts { get; set; } = new SmallIdLongCollection();
+        public List<CityCaravanMember> CaravanMembersForSale { get; set; } = new List<CityCaravanMember>();
     }
 
     public class CitySettingsDto : ParentSettingsDto<CitySettings, City>

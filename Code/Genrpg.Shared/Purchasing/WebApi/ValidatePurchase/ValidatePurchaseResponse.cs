@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Purchasing.Constants;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Website.Interfaces;

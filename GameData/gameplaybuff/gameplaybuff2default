@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Speedy",
+  "Icon": "Speedy",
+  "Art": "Speedy",
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 3,
+      "Quantity": 2
+    }
+  ]
+}

@@ -1,10 +1,7 @@
-using System;
+using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.MapMessages.Interfaces;
 
 namespace Genrpg.MapServer.MapMessaging.Filters
 {

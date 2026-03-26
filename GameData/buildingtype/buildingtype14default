@@ -2,11 +2,8 @@
   "Id": "buildingtype14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Temple",
-  "Icon": "Temple",
-  "Art": "Temple",
-  "Radius": 5,
-  "IsCrawlerBuilding": true,
-  "VariationCount": 1,
+  "Name": "Mage Tower",
+  "Icon": "MageTower",
+  "Art": "MageTower",
   "ShowNameplate": true
 }

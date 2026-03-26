@@ -1,5 +1,3 @@
-using MessagePack;
-using Genrpg.Shared.Stats.Entities;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crafting.Entities

@@ -1,6 +1,7 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Spawns.Helpers;
 using Genrpg.RequestServer.Spawns.Services;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
@@ -24,7 +25,7 @@ namespace Genrpg.RequestServer.Entities.Helpers
         {
             List<Reward> rewards = new List<Reward>();
 
-            List<IIdName> childObjects = _entityService.GetChildList(context.core, si.EntityId);
+            List<IIdName> childObjects = _entityService.GetChildList(await context.GetAsync<CoreData>(), si.EntityId);
 
             if (childObjects.Count < 1)
             {
@@ -58,9 +59,7 @@ namespace Genrpg.RequestServer.Entities.Helpers
                         {
                             EntityTypeId = si.EntityId,
                             EntityId = origItem.IdKey,
-                            QualityTypeId = rollLootArgs.QualityTypeId,
-                            Level = rollLootArgs.Level,
-                            Quantity = MathUtil.LongRange(si.MinQuantity * quantityMult, si.MaxQuantity * quantityMult, context.rand),
+                            Quantity = RandUtils.LongRange(si.MinQuantity * quantityMult, si.MaxQuantity * quantityMult, context.rand),
                         });
                         break;
                     }

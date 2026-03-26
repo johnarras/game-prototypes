@@ -1,4 +1,3 @@
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.ProcGen.Entities

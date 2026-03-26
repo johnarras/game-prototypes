@@ -13,6 +13,7 @@ using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -198,7 +199,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
                             continue;
                         }
 
-                        ItemEffect effect = itemSpell.UsableItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.IdKey);
+                        Effect effect = itemSpell.UsableItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId == spell.IdKey);
 
                         if (effect != null && effect.Quantity >= currCaster.Power)
                         {

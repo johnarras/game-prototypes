@@ -1,8 +1,5 @@
 using Genrpg.Shared.Spells.Procs.Interfaces;
-using MessagePack;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Procs.Entities
 {

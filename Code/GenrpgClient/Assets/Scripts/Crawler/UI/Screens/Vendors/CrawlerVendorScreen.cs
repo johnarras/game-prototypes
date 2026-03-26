@@ -1,7 +1,7 @@
 
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -86,7 +86,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _party.LastVendorRefresh = DateTime.UtcNow;
 
 
-            int quantity = MathUtil.IntRange(4, 10, _rand);
+            int quantity = RandUtils.IntRange(4, 10, _rand);
 
             long level = await _crawlerWorldService.GetMapLevelAtParty(_party);
 
@@ -125,7 +125,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _iconService.InitItemIcon(idata, VendorItems, _assetService, GetToken());
         }
 
-        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies[CrawlerCurrencyTypes.Gold]));
+        _uiService.SetText(PartyGoldText, StrUtils.PrintCommaValue(_party.Currencies[CoreCurrencyTypes.Coins]));
     }
 
     // Blank
@@ -168,7 +168,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             return;
         }
 
-        if (vendorItem.BuyCost > _party.Currencies[CrawlerCurrencyTypes.Gold])
+        if (vendorItem.BuyCost > _party.Currencies[CoreCurrencyTypes.Coins])
         {
             _dispatcher.Dispatch(new ShowFloatingText("You need more gold to buy this!", EFloatingTextArt.Error));
             return;

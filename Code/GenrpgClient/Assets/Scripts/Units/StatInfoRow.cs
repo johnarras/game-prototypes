@@ -38,7 +38,7 @@ public class StatInfoRow : RolloverInfoRow
 
         if (_statType == null)
         {
-            _statType = _gameData.Get<StatSettings>(unit).Get(this._statTypeId);
+            _statType = _gameData.Get<StatSettings>(unit).Get(_statTypeId);
         }
 
         if (_statType == null)

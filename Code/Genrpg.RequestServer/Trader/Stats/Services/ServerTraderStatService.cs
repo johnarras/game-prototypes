@@ -1,30 +1,29 @@
 ﻿using Genrpg.RequestServer.Core;
+using Genrpg.Shared.Attributes.Services;
+using Genrpg.Shared.Attributes.WebApi;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Services;
-using Genrpg.Shared.Trader.Stats.WebApi;
 
 namespace Genrpg.RequestServer.Trader.Stats.Services
 {
 
-    public interface IServerTraderStatService : IInjectable
+    public interface IServerGameStatService : IInjectable
     {
         Task AddDebuffDaysPlayed(WebContext context, long daysAdded, bool sendResponseToClient);
         Task CheckBuffs(WebContext context, bool isLogin);
     }
 
-    public class ServerTraderStatService : IServerTraderStatService
+    public class ServerGameStatService : IServerGameStatService
     {
-        private ITraderStatService _statService = null;
+        private IAttributeService _attributeService = null;
 
         public async Task CheckBuffs(WebContext context, bool isLogin)
         {
-            if (isLogin || (context.core.Vars[TraderVars.BuffBits] != 0 && context.core.NextBuffEndsTime <= DateTime.UtcNow))
+            CoreData coreData = await context.GetAsync<CoreData>();
+            if (isLogin || (coreData.Vars[TraderVars.BuffBits] != 0 && coreData.NextBuffEndsTime <= DateTime.UtcNow))
             {
-                _statService.CheckBuffs(context.core, await context.GetAsync<CaravanData>(), await context.GetAsync<TraderStatData>(), isLogin);
+                await _attributeService.CheckBuffs(context, isLogin);
 
                 if (!isLogin)
                 {
@@ -64,7 +63,7 @@ namespace Genrpg.RequestServer.Trader.Stats.Services
                 return;
             }
 
-            _statService.AddDebuffDaysPlayed(coreData, await context.GetAsync<CaravanData>(), await context.GetAsync<TraderStatData>(), newDebuffDaysPlayed);
+            await _attributeService.AddDebuffDaysPlayed(context, newDebuffDaysPlayed);
 
         }
     }

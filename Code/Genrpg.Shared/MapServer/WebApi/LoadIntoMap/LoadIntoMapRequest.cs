@@ -1,5 +1,4 @@
 using Genrpg.Shared.Website.Interfaces;
-using MessagePack;
 
 namespace Genrpg.Shared.MapServer.WebApi.LoadIntoMap
 {

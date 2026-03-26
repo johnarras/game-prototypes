@@ -1,18 +1,13 @@
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.Shared.DataStores.Categories.GameSettings
 {
-    [DataGroup(EDataCategories.Settings,ERepoTypes.Polymorphic)]
+    [DataGroup(EDataCategories.Settings, ERepoTypes.Polymorphic)]
     public abstract class BaseGameSettings : IGameSettings
     {
         [MessagePack.IgnoreMember]

@@ -38,7 +38,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             if (genData.MaxFloor == 0 || genData.PrevMap == null)
             {
-                genData.MaxFloor = MathUtil.IntRange(genType.MinFloors, genType.MaxFloors, rand);
+                genData.MaxFloor = RandUtils.IntRange(genType.MinFloors, genType.MaxFloors, rand);
 
                 if (genData.CurrFloor == 0)
                 {
@@ -55,8 +55,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 {
                     genData.Looping = false;
                 }
-                int width = MathUtil.IntRange(genType.MinWidth, genType.MaxWidth, rand);
-                int height = MathUtil.IntRange(genType.MinHeight, genType.MaxHeight, rand);
+                int width = RandUtils.IntRange(genType.MinWidth, genType.MaxWidth, rand);
+                int height = RandUtils.IntRange(genType.MinHeight, genType.MaxHeight, rand);
 
                 if (!genData.RandomWallsDungeon)
                 {
@@ -98,8 +98,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             if (genData.RandomWallsDungeon)
             {
-                double wallChance = MathUtil.FloatRange(genType.MinWallChance, genType.MaxWallChance, rand);
-                double doorChance = MathUtil.FloatRange(genType.MinDoorChance, genType.MaxDoorChance, rand);
+                double wallChance = RandUtils.FloatRange(genType.MinWallChance, genType.MaxWallChance, rand);
+                double doorChance = RandUtils.FloatRange(genType.MinDoorChance, genType.MaxDoorChance, rand);
                 for (int x = 0; x < map.Width; x++)
                 {
                     for (int z = 0; z < map.Height; z++)
@@ -166,11 +166,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int maxRoomSize = 6;
                 for (int r = 0; r < roomTimes; r++)
                 {
-                    int minx = MathUtil.IntRange(0, map.Width - maxRoomSize - 1, rand);
-                    int maxx = minx + MathUtil.IntRange(maxRoomSize / 2, maxRoomSize, rand);
+                    int minx = RandUtils.IntRange(0, map.Width - maxRoomSize - 1, rand);
+                    int maxx = minx + RandUtils.IntRange(maxRoomSize / 2, maxRoomSize, rand);
 
-                    int minz = MathUtil.IntRange(0, map.Height - maxRoomSize - 1, rand);
-                    int maxz = MathUtil.IntRange(maxRoomSize / 2, maxRoomSize, rand);
+                    int minz = RandUtils.IntRange(0, map.Height - maxRoomSize - 1, rand);
+                    int maxz = RandUtils.IntRange(maxRoomSize / 2, maxRoomSize, rand);
 
                     for (int x = minx; x < maxx; x++)
                     {
@@ -183,13 +183,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
 
                 int exitEdgeDistance = 1;
-                enterX = MathUtil.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
-                enterZ = MathUtil.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
+                enterX = RandUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                enterZ = RandUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
 
                 do
                 {
-                    exitX = MathUtil.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
-                    exitZ = MathUtil.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
+                    exitX = RandUtils.IntRange(exitEdgeDistance, map.Width - 1 - exitEdgeDistance, rand);
+                    exitZ = RandUtils.IntRange(exitEdgeDistance, map.Height - 1 - exitEdgeDistance, rand);
                 }
                 while (enterX == exitX && enterZ == exitZ);
 
@@ -229,7 +229,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             {
                 // Add rooms first.
 
-                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * MathUtil.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
+                int roomCount = (int)(Math.Sqrt(map.Width * map.Height) * RandUtils.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
 
                 if (roomCount < 1)
                 {
@@ -718,7 +718,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         protected long GetRandomEncounter(IRandom rand)
         {
 
-            MapEncounterType encounter = RandomUtils.GetRandomElement(_gameData.Get<MapEncounterSettings>(_gs.ch).GetData(), rand);
+            MapEncounterType encounter = RandUtils.GetRandomElement(_gameData.Get<MapEncounterSettings>(_gs.ch).GetData(), rand);
 
             if (encounter != null)
             {
@@ -1181,8 +1181,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             for (int r = 0; r < roomCount; r++)
             {
-                double widthFloat = Math.Min(MathUtil.FloatRange(minWidth, maxWidth, rand), MathUtil.FloatRange(minWidth, maxWidth, rand));
-                double heightFloat = Math.Min(MathUtil.FloatRange(minHeight, maxHeight, rand), MathUtil.FloatRange(minHeight, maxHeight, rand));
+                double widthFloat = Math.Min(RandUtils.FloatRange(minWidth, maxWidth, rand), RandUtils.FloatRange(minWidth, maxWidth, rand));
+                double heightFloat = Math.Min(RandUtils.FloatRange(minHeight, maxHeight, rand), RandUtils.FloatRange(minHeight, maxHeight, rand));
 
                 int width = (int)widthFloat;
                 int height = (int)heightFloat;
@@ -1197,8 +1197,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     height++;
                 }
 
-                int xstart = MathUtil.IntRange(1, map.Width - width - 2, rand);
-                int zstart = MathUtil.IntRange(1, map.Height - height - 2, rand);
+                int xstart = RandUtils.IntRange(1, map.Width - width - 2, rand);
+                int zstart = RandUtils.IntRange(1, map.Height - height - 2, rand);
 
                 int xend = xstart + width;
                 int zend = zstart + height;
@@ -1285,6 +1285,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 }
             }
 
+            if (zoneTypes.Count < 1)
+            {
+                return;
+            }
+
+            long replacementZoneTypeId = zoneTypes[rand.Next() % zoneTypes.Count];
+
             CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
             foreach (int roomId in distinctRoomIds)
@@ -1298,9 +1305,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     continue;
                 }
 
-                long replaceZoneTypeId = zoneTypes[rand.Next() % zoneTypes.Count];
-                zoneTypes.Remove(replaceZoneTypeId);
-
                 for (int x = 0; x < map.Width; x++)
                 {
                     for (int z = 0; z < map.Height; z++)
@@ -1309,7 +1313,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         {
                             if (map.Get(x, z, CellIndex.Terrain) > 0)
                             {
-                                map.Set(x, z, CellIndex.Terrain, replaceZoneTypeId);
+                                map.Set(x, z, CellIndex.Terrain, replacementZoneTypeId);
                             }
                         }
                     }

@@ -79,15 +79,15 @@ public class RockObjectLoader : BaseObjectLoader
             }
         }
 
-        float newScale = MathUtil.SeedFloatRange(dlo.placementSeed, 147, minScale, maxScale);
+        float newScale = RandUtils.SeedFloatRange(dlo.placementSeed, 147, minScale, maxScale);
 
 
 
         go.transform.localScale = new Vector3(newScale, newScale, newScale);
 
-        float xrot = MathUtil.SeedFloatRange(dlo.placementSeed, 103, 0, 359, 360);
-        float yrot = MathUtil.SeedFloatRange(dlo.placementSeed, 461, 0, 359, 360);
-        float zrot = MathUtil.SeedFloatRange(dlo.placementSeed, 2767, 0, 359, 360);
+        float xrot = RandUtils.SeedFloatRange(dlo.placementSeed, 103, 0, 359, 360);
+        float yrot = RandUtils.SeedFloatRange(dlo.placementSeed, 461, 0, 359, 360);
+        float zrot = RandUtils.SeedFloatRange(dlo.placementSeed, 2767, 0, 359, 360);
 
 
 

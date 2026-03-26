@@ -1,9 +1,11 @@
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Doobers.Events;
+using Genrpg.Shared.Attributes.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Settings;
+using Genrpg.Shared.Currencies.Settings;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.Camping.WebApi;
 using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UI.Constants;
 using System.Collections.Generic;
 
@@ -16,19 +18,27 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         protected IScreenService _screenService = null;
         protected ICaravanService _caravanService = null;
 
-        public GButton AnimalsButton;
-        public GButton TradeGoodsButton;
+        public GButton CaravanButton;
         public GButton CampButton;
         public GButton ChangeHeadingButton;
         public GButton MapButton;
+        public GButton SpellbookButton;
+        public GButton RepairButton;
 
         public override void Init()
         {
-            _uiService.SetButton(AnimalsButton, GetName(), () => { OpenScreenNamed(ScreenNames.Animals); });
-            _uiService.SetButton(TradeGoodsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TradeGoods); });
+            _uiService.SetButton(CaravanButton, GetName(), () => { OpenScreenNamed(ScreenNames.Caravan); });
             _uiService.SetButton(CampButton, GetName(), ClickCamp);
             _uiService.SetButton(ChangeHeadingButton, GetName(), ClickChangeHeading);
             _uiService.SetButton(MapButton, GetName(), ClickMapButton);
+            _uiService.SetButton(SpellbookButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderSpells); });
+            _uiService.SetButton(RepairButton, GetName(), () => { OpenScreenNamed(ScreenNames.Repair); });
+
+            if (CaravanButton != null)
+            {
+                _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.TradeGood, 0, CaravanButton.gameObject, true, null));
+                _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.CaravanMember, 0, CaravanButton.gameObject, true, null));
+            }
         }
 
         private void OpenScreenNamed(long screenName)
@@ -40,11 +50,11 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-            TraderStatData statData = _gs.ch.Get<TraderStatData>();
+            AttributeData attributeData = _gs.ch.Get<AttributeData>();
 
             IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
-            _webService.SendClientUserWebRequest(new CampRequest(), GetToken());
+            _webService.SendWebRequest(new CampRequest(), GetToken());
 
         }
 

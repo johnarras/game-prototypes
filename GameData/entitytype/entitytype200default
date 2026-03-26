@@ -1,8 +1,0 @@
-{
-  "Id": "entitytype200default",
-  "ParentId": "default",
-  "IdKey": 200,
-  "Name": "CoreCurrency",
-  "Icon": "CoreCurrency",
-  "Art": "CoreCurrency"
-}

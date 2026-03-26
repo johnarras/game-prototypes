@@ -1,44 +1,37 @@
 
+using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.Maps.Constants;
+using Genrpg.MapServer.Maps.Filters;
+using Genrpg.MapServer.Maps.Messaging;
+using Genrpg.Shared.AI.Settings;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Factories;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Messages;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Movement.Messages;
+using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Spawns.Settings;
+using Genrpg.Shared.Spawns.WorldData;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
 using System.Threading;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.MapObjects.Factories;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.MapServer.Maps.Messaging;
-using Genrpg.MapServer.Maps.Filters;
-using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.AI.Settings;
-using Genrpg.Shared.MapServer.Messages;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Spawns.WorldData;
-using MongoDB.Bson.IO;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.GameSettings;
-using Genrpg.MapServer.Maps.Constants;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.AI.Constants;
-using System.Runtime.Serialization;
-using Genrpg.Shared.Serialization.Interfaces;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Maps
 {
@@ -124,7 +117,7 @@ namespace Genrpg.MapServer.Maps
             if (!MapInstanceConstants.ServerTestMode)
             {
                 _idLookupObjectCount = 0;
-                foreach (ConcurrentDictionary<string,MapObjectGridItem> dict in _idDict.Values)
+                foreach (ConcurrentDictionary<string, MapObjectGridItem> dict in _idDict.Values)
                 {
                     _idLookupObjectCount += dict.Count;
                 }
@@ -139,7 +132,7 @@ namespace Genrpg.MapServer.Maps
                 }
 
                 _zoneObjectCount = 0;
-                foreach (ConcurrentDictionary<string,Character> zdict in _zoneDict.Values)
+                foreach (ConcurrentDictionary<string, Character> zdict in _zoneDict.Values)
                 {
                     _zoneObjectCount += zdict.Count;
                 }
@@ -163,7 +156,7 @@ namespace Genrpg.MapServer.Maps
             };
             return counts;
         }
-        public async Task Initialize( CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
             for (int i = 0; i < 256; i++)
             {
@@ -204,7 +197,7 @@ namespace Genrpg.MapServer.Maps
                     }
                 }
                 _didSetupOnce = true;
-                _unitsAdded = 0; 
+                _unitsAdded = 0;
             }
 
             _messageTargets = new MapObject[MessageTargetCount];
@@ -233,7 +226,7 @@ namespace Genrpg.MapServer.Maps
             if ((oldgz != item.GZ || oldgx != item.GX) &&
             (oldgx >= 0 && oldgx < _gridSize && oldgz >= 0 && oldgz < _gridSize))
             {
-                if (_objectGrid[oldgx,oldgz].GetObjects().Contains(item.Obj))
+                if (_objectGrid[oldgx, oldgz].GetObjects().Contains(item.Obj))
                 {
                     _logService.Message($"Removing object from old grid in middle of destroy {++_multiRemoveTimes}");
                 }
@@ -364,11 +357,11 @@ namespace Genrpg.MapServer.Maps
 
         public IReadOnlyList<MapObject> GetObjectsFromGridCell(int gx, int gz)
         {
-            if (gx >= 0 && gz >= 0 && gx < _gridSize && gz <  _gridSize)
+            if (gx >= 0 && gz >= 0 && gx < _gridSize && gz < _gridSize)
             {
                 return _objectGrid[gx, gz].GetObjects();
             }
-            return new List<MapObject>();   
+            return new List<MapObject>();
         }
 
         protected List<MapObject> GetObjectsFromGridBox(int gxmin, int gxmax, int gzmin, int gzmax)
@@ -452,7 +445,7 @@ namespace Genrpg.MapServer.Maps
         public int GetGridIndexFromCoord(double mapPos, bool useCeiling)
         {
             return MapUtils.GetGridIndexFromCoord(mapPos, _gridSize, useCeiling);
-            
+
         }
 
         public virtual MapObjectGridItem AddObject(IRandom rand, MapObject obj, IMapSpawn spawn)
@@ -563,7 +556,7 @@ namespace Genrpg.MapServer.Maps
             {
                 gridItem.Obj.Spawn.SpawnSeconds = 20;
                 _messageService.SendMessage(GetMessageTarget(), new RespawnObject() { Spawn = gridItem.Obj.Spawn },
-                    MathUtil.IntRange(gridItem.Obj.Spawn.SpawnSeconds,gridItem.Obj.Spawn.SpawnSeconds*2, rand));
+                    RandUtils.IntRange(gridItem.Obj.Spawn.SpawnSeconds, gridItem.Obj.Spawn.SpawnSeconds * 2, rand));
             }
 
             DespawnObject despawn = new DespawnObject()
@@ -603,7 +596,7 @@ namespace Genrpg.MapServer.Maps
             List<MapSpawn> copySpawns = new List<MapSpawn>();
             foreach (MapSpawn spawn in _mapProvider.GetSpawns().Data)
             {
-                if (spawn.EntityTypeId == EntityTypes.Unit || spawn.EntityTypeId== EntityTypes.ZoneUnit)
+                if (spawn.EntityTypeId == EntityTypes.Unit || spawn.EntityTypeId == EntityTypes.ZoneUnit)
                 {
                     int maxTimes = 1;// + _rand.Next() % 3;
                     for (int times = 0; times < maxTimes; times++)
@@ -612,13 +605,13 @@ namespace Genrpg.MapServer.Maps
                         if (times > 0)
                         {
                             int delta = 25;
-                            copySpawn.X += MathUtil.IntRange(-delta, delta, rand);
-                            copySpawn.Z += MathUtil.IntRange(-delta, delta, rand);
+                            copySpawn.X += RandUtils.IntRange(-delta, delta, rand);
+                            copySpawn.Z += RandUtils.IntRange(-delta, delta, rand);
                             copySpawn.ObjId += "." + times.ToString();
                         }
                         if (!copySpawn.GetAddons().Any())
                         {
-                            copySpawn.FactionTypeId = MathUtil.IntRange(1, 4, rand);
+                            copySpawn.FactionTypeId = RandUtils.IntRange(1, 4, rand);
                         }
                         copySpawns.Add(copySpawn);
                     }
@@ -683,7 +676,7 @@ namespace Genrpg.MapServer.Maps
             if (GetObject(spawn.ObjId, out MapObject currObj))
             {
                 return currObj;
-                }
+            }
 
             if (!GetFactory(spawn.EntityTypeId, out IMapObjectFactory fact))
             {
@@ -706,7 +699,7 @@ namespace Genrpg.MapServer.Maps
             {
                 AIUpdate update = new AIUpdate();
 
-                _messageService.SendMessage(unit, update, MathUtil.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, rand));
+                _messageService.SendMessage(unit, update, RandUtils.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, rand));
             }
         }
 
@@ -815,7 +808,7 @@ namespace Genrpg.MapServer.Maps
         public List<Character> GetAllCharacters()
         {
             List<Character> retval = new List<Character>();
-            foreach (ConcurrentDictionary<string,Character> dict in _zoneDict.Values)
+            foreach (ConcurrentDictionary<string, Character> dict in _zoneDict.Values)
             {
                 retval.AddRange(dict.Values);
             }

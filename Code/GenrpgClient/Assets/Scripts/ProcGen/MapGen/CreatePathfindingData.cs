@@ -86,7 +86,7 @@ public class CreatePathfindingData : BaseZoneGenerator
                     BuildingType btype = _gameData.Get<BuildingSettings>(null).Get(spawn.EntityId);
                     if (btype != null)
                     {
-                        int buildingRadius = Math.Max(1, (btype.Radius + 1) / 2);
+                        int buildingRadius = 4;
                         for (int x = (int)spawn.X - buildingRadius + 1; x <= spawn.X + buildingRadius; x++)
                         {
                             int px = x / blockSize;

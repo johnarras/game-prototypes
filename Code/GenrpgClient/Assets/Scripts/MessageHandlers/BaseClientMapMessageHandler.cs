@@ -1,9 +1,10 @@
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapMessages.Interfaces;
 using System;
 using System.Threading;
+using UnityEngine;
 
 public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler where T : class, IMapApiMessage
 {
@@ -18,11 +19,11 @@ public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler 
     protected IClientGameState _gs;
     protected IClientRandom _rand;
 
-    protected abstract void InnerProcess(T msg, CancellationToken token);
+    protected abstract Awaitable InnerProcess(T msg, CancellationToken token);
 
-    public void Process(IMapApiMessage msg, CancellationToken token)
+    public async Awaitable Process(IMapApiMessage msg, CancellationToken token)
     {
-        InnerProcess(msg as T, token);
+        await InnerProcess(msg as T, token);
     }
 }
 

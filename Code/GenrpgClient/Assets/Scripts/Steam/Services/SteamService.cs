@@ -31,7 +31,7 @@ namespace Assets.Scripts.Steam.Services
         public async Task Initialize(CancellationToken token)
         {
 #if UNITY_EDITOR
-            if (!InitClient.EditorInstance.RunSteamInEditor)
+            if (InitClient.EditorInstance == null || !InitClient.EditorInstance.RunSteamInEditor)
             {
                 return;
             }

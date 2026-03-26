@@ -7,7 +7,7 @@ namespace Genrpg.Shared.Quests.Helpers
     {
         public override long HelperKey => EntityTypes.Quest;
 
-}
+    }
 }
 
 

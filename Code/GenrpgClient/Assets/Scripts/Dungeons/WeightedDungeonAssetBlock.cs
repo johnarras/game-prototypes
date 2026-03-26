@@ -23,27 +23,27 @@ namespace Assets.Scripts.Dungeons
 
         public List<WeightedDungeonAsset> GetAssetList(int assetIndex)
         {
-            if (assetIndex == DungeonAssetIndex.Walls)
+            if (assetIndex == DungeonPrefabIndexes.Walls)
             {
                 return Walls;
             }
-            else if (assetIndex == DungeonAssetIndex.Doors)
+            else if (assetIndex == DungeonPrefabIndexes.Door)
             {
                 return Doors;
             }
-            else if (assetIndex == DungeonAssetIndex.Floors)
+            else if (assetIndex == DungeonPrefabIndexes.Floors)
             {
                 return Floors;
             }
-            else if (assetIndex == DungeonAssetIndex.Ceilings)
+            else if (assetIndex == DungeonPrefabIndexes.Ceilings)
             {
                 return Ceilings;
             }
-            else if (assetIndex == DungeonAssetIndex.Pillars)
+            else if (assetIndex == DungeonPrefabIndexes.Pillars)
             {
                 return Pillars;
             }
-            else if (assetIndex == DungeonAssetIndex.Fences)
+            else if (assetIndex == DungeonPrefabIndexes.Fences)
             {
                 return Fences;
             }
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Dungeons
 
         public void Clear()
         {
-            for (int i = 0; i < DungeonAssetIndex.Max; i++)
+            for (int i = 0; i < DungeonPrefabIndexes.Max; i++)
             {
                 DestroyAssetList(GetAssetList(i));
             }

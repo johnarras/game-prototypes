@@ -2,10 +2,9 @@
   "Id": "buildingtype10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "House",
-  "Icon": "House",
-  "Art": "House",
-  "Radius": 5,
+  "Name": "City",
+  "Icon": "City",
+  "Art": "City",
   "IsCrawlerBuilding": true,
-  "VariationCount": 4
+  "ShowNameplate": true
 }

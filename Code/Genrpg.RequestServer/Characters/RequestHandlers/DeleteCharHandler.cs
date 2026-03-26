@@ -2,6 +2,7 @@ using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.WebApi.DeleteChar;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 
 namespace Genrpg.RequestServer.Characters.RequestHandlers
@@ -11,8 +12,8 @@ namespace Genrpg.RequestServer.Characters.RequestHandlers
         protected override async Task InnerHandleMessage(WebContext context, DeleteCharRequest request, CancellationToken token)
         {
             CoreCharacter coreCh = await _repoService.Load<CoreCharacter>(request.CharId);
-
-            if (coreCh != null && coreCh.UserId == context.core.Id)
+            CoreData coreData = await context.GetAsync<CoreData>();
+            if (coreCh != null && coreCh.UserId == coreData.Id)
             {
                 Character ch = new Character(coreCh);
 

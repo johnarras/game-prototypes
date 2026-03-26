@@ -1,9 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Names.Settings
@@ -11,23 +9,13 @@ namespace Genrpg.Shared.Names.Settings
     public class WeightedName : IWeightedItem
     {
         public double Weight { get; set; }
-        public bool Ignore { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
 
-        public WeightedName()
-        {
-            Weight = 1000;
-            Ignore = false;
-            Name = "";
-            Desc = "";
-        }
     }
     public class NameSettings : ParentSettings<NameList>
     {
         public override string Id { get; set; }
-
-
 
         public NameList GetNameList(string nm)
         {

@@ -2,8 +2,6 @@ using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Utils;
-using System.Threading.Tasks;
 
 namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 {

@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Entities.Services;
@@ -26,8 +26,6 @@ public class EntityTypeWithIdUIEditor : Editor
         bool needToSetDirty = false;
         IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
         EntityTypeWithIdUI entityui = (EntityTypeWithIdUI)target;
-
-        
 
         IGameData gameData = gs.loc.Get<IGameData>();
 

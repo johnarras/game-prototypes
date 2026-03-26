@@ -1,8 +1,6 @@
-using MessagePack;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Website.Interfaces;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Characters.WebApi.DeleteChar
 {

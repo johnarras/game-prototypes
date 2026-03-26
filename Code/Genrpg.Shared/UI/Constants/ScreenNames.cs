@@ -42,21 +42,30 @@ namespace Genrpg.Shared.UI.Constants
         public const long TileUpgrade = 37;
         public const long Marker = 38;
         public const long CrawlerNewGameOptions = 39;
-        public const long Animals = 40; // Your animals and in city buy?
+        public const long Caravan = 40; // Your CaravanMembers 
         public const long TraderMap = 41;
         public const long TraderHUD = 42;
         public const long TraderTravel = 43;
-        public const long TraderVendor = 44;
+        public const long TraderVendor = 44;// SpendLocations.TradeGoods
         public const long TraderCity = 45;
         public const long TraderQuests = 46;
         public const long TraderNPC = 47; // Quests
         public const long TraderInfo = 48;
         public const long ClientOptions = 49;
-        public const long TraderCityRoads = 50;
-        public const long TradeGoods = 51; // your inventory? and in city list of items to buy/sell?
-        public const long TraderSupplies = 52; // Gold -> other currencies
-        public const long MinigameHUD = 53;
-        public const long MinigameLobby = 54;
+        public const long TraderCityRoads = 50; // SpendLocations.Portals
+        public const long MinigameHUD = 51;
+        public const long MinigameLobby = 52;
+        public const long TradeGoods = 53; // My trade goods, maybe just show in caravan?
+        public const long Supplies = 54; // SpendLocations.Roscoes
+        public const long TraderTemple = 55; // SpendLocations.Temple
+        public const long TraderSpells = 56; // SpendLocations.Spells
+        public const long TraderCaravanMembers = 57; // SpendLocations.CaravanMembers
+        public const long TraderTrainer = 58; //SpendLocations.Trainer
+        public const long Enchanter = 59; // SpendLocations.Buffs
+        public const long Repair = 60;  // SpendLocations.Repair
+        public const long TravelingVendor = 61; // SpendLocations.TravelingVendor
+
+
 
 
     }

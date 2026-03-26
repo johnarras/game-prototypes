@@ -264,9 +264,9 @@ namespace Assets.Scripts.Crawler.Combat
             _hitImageFrame = 0;
             RectTransform rectTransform = HitImage.GetComponent<RectTransform>();
 
-            float dx = MathUtil.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dx = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
 
-            float dy = MathUtil.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dy = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
 
             float angle = 0;
 
@@ -274,22 +274,22 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 if (dy < 0)
                 {
-                    angle = MathUtil.FloatRange(0, 90, _rand);
+                    angle = RandUtils.FloatRange(0, 90, _rand);
                 }
                 else
                 {
-                    angle = MathUtil.FloatRange(-90, 0, _rand);
+                    angle = RandUtils.FloatRange(-90, 0, _rand);
                 }
             }
             else
             {
                 if (dy < 0)
                 {
-                    angle = MathUtil.FloatRange(90, 180, _rand);
+                    angle = RandUtils.FloatRange(90, 180, _rand);
                 }
                 else
                 {
-                    angle = MathUtil.FloatRange(180, 270, _rand);
+                    angle = RandUtils.FloatRange(180, 270, _rand);
                 }
             }
 
@@ -298,7 +298,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             rectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
-            rectTransform.localScale = Vector3.one * MathUtil.FloatRange(1, 1 + HitImageSizeDelta, _rand);
+            rectTransform.localScale = Vector3.one * RandUtils.FloatRange(1, 1 + HitImageSizeDelta, _rand);
         }
     }
 }

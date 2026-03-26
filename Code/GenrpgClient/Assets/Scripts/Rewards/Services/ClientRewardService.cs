@@ -1,9 +1,10 @@
 using Assets.Scripts.DynamicUI.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.MapObjects.Entities;
+using Assets.Scripts.Core;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Rewards.Services
 {
@@ -12,11 +13,10 @@ namespace Assets.Scripts.Rewards.Services
         private IDispatcher _dispatcher;
         private IDynamicUIService _dynamicUIService = null;
 
-        public override bool GiveReward(IRandom rand, MapObject obj, long entityTypeId, long entityId, long quantity, object extraData, RewardParams rp)
+        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, Item extraData, RewardParams rp)
         {
-            if (base.GiveReward(rand, obj, entityTypeId, entityId, quantity, extraData, rp))
+            if (await base.GiveReward(obj, entityTypeId, entityId, quantity, extraData, rp))
             {
-
                 ClientRewardParams crp = rp as ClientRewardParams;
                 bool showDoober = crp?.ShowDoobers ?? true;
 

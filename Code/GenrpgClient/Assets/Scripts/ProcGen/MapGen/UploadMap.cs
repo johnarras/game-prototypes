@@ -53,7 +53,7 @@ public class UploadMap : BaseZoneGenerator
         _mapProvider.GetSpawns().Id = "UploadedSpawns";
         await _repoService.Save(_mapProvider.GetSpawns());
         _mapProvider.GetSpawns().Id = oldMapId;
-        _webNetworkService.SendClientUserWebRequest(update, _token);
+        _webNetworkService.SendWebRequest(update, _token);
 
     }
 }

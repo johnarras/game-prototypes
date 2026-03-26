@@ -1,6 +1,6 @@
 using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Constants;
 using System.Threading;

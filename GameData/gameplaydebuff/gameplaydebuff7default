@@ -1,0 +1,23 @@
+{
+  "Id": "gameplaydebuff7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Cursed",
+  "Icon": "Cursed",
+  "Art": "Cursed",
+  "CleanseCoreCurrencyTypeId": 4,
+  "CleanseQuantity": 1,
+  "CityCoinsCleanseCost": 50,
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 1,
+      "Quantity": -1
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": -1
+    }
+  ]
+}

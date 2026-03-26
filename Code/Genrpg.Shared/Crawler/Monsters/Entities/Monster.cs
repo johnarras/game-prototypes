@@ -1,10 +1,7 @@
 using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Units.Entities;
-using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Monsters.Entities
 {
@@ -13,7 +10,7 @@ namespace Genrpg.Shared.Crawler.Monsters.Entities
         public long MinDam { get; set; }
         public long MaxDam { get; set; }
 
-        public List<UnitEffect> Spells { get; set; } = new List<UnitEffect>();
+        public List<Effect> Spells { get; set; } = new List<Effect>();
         public List<FullEffect> ApplyEffects { get; set; } = new List<FullEffect>();
 
     }

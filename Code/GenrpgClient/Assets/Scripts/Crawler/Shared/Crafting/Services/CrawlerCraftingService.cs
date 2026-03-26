@@ -1,8 +1,8 @@
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Crafting.Settings;
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
@@ -13,6 +13,7 @@ using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Assets.Scripts.Crawler.Shared.Crafting.Services
 {
@@ -33,19 +34,19 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
         {
             Dictionary<long, long> currencyCounts = new Dictionary<long, long>();
 
-            CrawlerCurrencySettings currencySettings = _gameData.Get<CrawlerCurrencySettings>(_gs.ch);
+            CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch);
 
-            IReadOnlyList<CrawlerCurrencyType> currencies = currencySettings.GetData();
+            IReadOnlyList<CoreCurrencyType> currencies = currencySettings.GetData();
 
             CrawlerCraftingSettings craftingSettings = _gameData.Get<CrawlerCraftingSettings>(_gs.ch);
 
             List<StatType> primaryStats = _gameData.Get<StatSettings>(_gs.ch).GetData().Where(x => StatConstants.IsPrimaryStat(x.IdKey)).ToList();
 
-            foreach (ItemEffect eff in item.Effects)
+            foreach (Effect eff in item.Effects)
             {
                 if (eff.EntityTypeId == EntityTypes.Stat)
                 {
-                    CrawlerCurrencyType ctype = currencies.FirstOrDefault(x => x.CraftingStatTypeId == eff.EntityId);
+                    CoreCurrencyType ctype = currencies.FirstOrDefault(x => x.StatTypeId == eff.EntityId);
 
                     if (ctype != null)
                     {
@@ -75,7 +76,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
                 if (currencyCounts[idkey] > 0)
                 {
                     party.Currencies.Add(idkey, currencyCounts[idkey]);
-                    _dynamicUIService.ShowEntityDooberWithStartPosition(EntityTypes.CrawlerCurrency, idkey, currencyCounts[idkey], true, startPos);
+                    _dynamicUIService.ShowEntityDooberWithStartPosition(EntityTypes.CoreCurrency, idkey, currencyCounts[idkey], true, startPos);
                 }
             }
 

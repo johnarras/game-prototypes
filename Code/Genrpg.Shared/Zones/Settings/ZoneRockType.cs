@@ -1,6 +1,5 @@
-using MessagePack;
-using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Shared.Zones.Settings
 {

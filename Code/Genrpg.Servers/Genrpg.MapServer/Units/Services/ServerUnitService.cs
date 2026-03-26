@@ -88,9 +88,9 @@ namespace Genrpg.MapServer.Units.Services
                     }
                     targ.Loot[0].Rewards.Add(new Reward()
                     {
-                        EntityTypeId = EntityTypes.Currency,
-                        EntityId = CurrencyTypes.Money,
-                        Quantity = MathUtil.LongRange(levelData.KillMoney / 2, levelData.KillMoney * 3 / 2, rand),
+                        EntityTypeId = EntityTypes.CharCurrency,
+                        EntityId = CharCurrencyTypes.Money,
+                        Quantity = RandUtils.LongRange(levelData.KillMoney / 2, levelData.KillMoney * 3 / 2, rand),
                     });
                 }
 

@@ -4,7 +4,6 @@ using Azure.Security.KeyVault.Secrets;
 using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.DataGroups;
-using Microsoft.Azure.Cosmos.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -60,7 +59,7 @@ namespace Genrpg.ServerShared.Config
                     {
                         try
                         {
-                            string fullSecretsVaultURI = secretsVaultURI.Replace(AppConfigKeys.PlaceholderString,  secretsVaultPrefix + vaultName);
+                            string fullSecretsVaultURI = secretsVaultURI.Replace(AppConfigKeys.PlaceholderString, secretsVaultPrefix + vaultName);
                             secretsClient = new SecretClient(new Uri(fullSecretsVaultURI), credential);
                             await secretsClient.GetPropertiesOfSecretsAsync().AnyAsync();
                             break;
@@ -91,7 +90,7 @@ namespace Genrpg.ServerShared.Config
 
             serverConfig.IOSSandboxValidationURL = await GetValue(AppConfigKeys.IOSSandboxValidationURL, secretsClient);
 
-            serverConfig.GooglePlayValidationURL = await GetValue(AppConfigKeys.GooglePlayValidationURL, secretsClient) ;
+            serverConfig.GooglePlayValidationURL = await GetValue(AppConfigKeys.GooglePlayValidationURL, secretsClient);
 
             List<string> allKeys = ConfigurationManager.AppSettings.AllKeys.ToList();
 
@@ -161,7 +160,7 @@ namespace Genrpg.ServerShared.Config
         private async Task<string> GetValueOrDefault(string key, string defaultValue, SecretClient secretClient)
         {
             string configValue = await GetValue(key, secretClient);
-            
+
             if (configValue == AppConfigKeys.Default)
             {
                 return defaultValue;

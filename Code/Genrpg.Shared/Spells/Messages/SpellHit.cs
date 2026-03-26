@@ -1,12 +1,9 @@
-using MessagePack;
-using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Spells.Settings.Skills;
 using Genrpg.Shared.Spells.Settings.Spells;
+using Genrpg.Shared.Units.Entities;
+using MessagePack;
 
 namespace Genrpg.Shared.Spells.Messages
 {
@@ -31,7 +28,7 @@ namespace Genrpg.Shared.Spells.Messages
 
         public float CritChance { get; set; }
 
-        public SpellEffect Effect { get; set; }
+        public SpellEffect SpellEffect { get; set; }
 
         public SkillType SkillType { get; set; }
         public ElementType ElementType { get; set; }

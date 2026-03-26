@@ -2,7 +2,6 @@ using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Purchasing.Settings

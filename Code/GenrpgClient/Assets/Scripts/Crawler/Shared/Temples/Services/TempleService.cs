@@ -1,4 +1,4 @@
-using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Temples.Settings;
@@ -85,7 +85,7 @@ namespace Genrpg.Shared.Crawler.Temples.Services
                 return;
             }
 
-            if (result.Cost > party.Currencies[CrawlerCurrencyTypes.Gold])
+            if (result.Cost > party.Currencies[CoreCurrencyTypes.Coins])
             {
                 result.Message = "You need " + result.Cost + " Gold to heal " + member.Name;
                 return;

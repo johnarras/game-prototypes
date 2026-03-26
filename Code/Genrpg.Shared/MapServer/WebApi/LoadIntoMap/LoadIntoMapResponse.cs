@@ -1,16 +1,11 @@
-using MessagePack;
-
-using System.Collections.Generic;
-using Newtonsoft.Json;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Networking.Constants;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.GameSettings.PlayerData;
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Purchasing.PlayerData;
 using Genrpg.Shared.Website.Interfaces;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.MapServer.WebApi.LoadIntoMap
 {

@@ -73,7 +73,7 @@ public class AddLocationPatches : BaseZoneGenerator
                             zone.Locations.Add(loc);
                         }
                         loc.ZoneId = zone.IdKey;
-                        AddOneLocationPatch(loc, MathUtil.FloatRange(0.9f, 1.0f, smoothnessRand));
+                        AddOneLocationPatch(loc, RandUtils.FloatRange(0.9f, 1.0f, smoothnessRand));
                     }
                 }
             }
@@ -189,11 +189,11 @@ public class AddLocationPatches : BaseZoneGenerator
 
         // Slightly perturb the height of the location.
         float dVert = 0;// (fullXSize+fullZSize) / 50.0f;
-        aveHeight += (MathUtil.FloatRange(-dVert, dVert, rand)) / MapConstants.MapHeight;
+        aveHeight += (RandUtils.DeltaRange(dVert, rand)) / MapConstants.MapHeight;
 
         float heightPerturb = (midSize / 2) / MapConstants.MapHeight;
 
-        aveHeight += MathUtil.FloatRange(-heightPerturb, heightPerturb, rand);
+        aveHeight += RandUtils.DeltaRange(heightPerturb, rand);
 
 
         aveHeight *= MapConstants.MapHeight;
@@ -249,7 +249,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 if (false && changePct == 1 && loc.LocationTypeId == LocationTypes.Patch)
                 {
                     _md.ClearAlphasAt(x, z);
-                    float dirtPct = MathUtil.FloatRange(0.9f, 1.0f, rand);
+                    float dirtPct = RandUtils.FloatRange(0.9f, 1.0f, rand);
                     _md.alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
                     _md.alphas[x, z, TerrainTexChannels.Base] = 1 - dirtPct;
                 }
@@ -283,13 +283,13 @@ public class AddLocationPatches : BaseZoneGenerator
             int locPlaceId = 0;
             for (int i = 0; i < placeCount * 100; i++)
             {
-                int patchXSize = MathUtil.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
-                int patchZSize = MathUtil.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
+                int patchXSize = RandUtils.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
+                int patchZSize = RandUtils.IntRange(minPatchSize, minPatchSize * 3 / 2, rand);
                 int xgap = patchXSize * 6 / 2;
                 int zgap = patchZSize * 6 / 2;
 
-                int nx = MathUtil.IntRange(loc.CenterX - xSearchSize, loc.CenterX + xSearchSize, rand);
-                int nz = MathUtil.IntRange(loc.CenterZ - zSearchSize, loc.CenterZ + zSearchSize, rand);
+                int nx = RandUtils.IntRange(loc.CenterX - xSearchSize, loc.CenterX + xSearchSize, rand);
+                int nz = RandUtils.IntRange(loc.CenterZ - zSearchSize, loc.CenterZ + zSearchSize, rand);
 
                 if (nx < MapConstants.MapEdgeSize || nx >= _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize ||
                     nz < MapConstants.MapEdgeSize || nz >= _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize)

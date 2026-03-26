@@ -1,20 +1,13 @@
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Names.Services;
 using Genrpg.Shared.Names.Settings;
+using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Units.Settings;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Units.Services
 {
@@ -302,7 +295,7 @@ namespace Genrpg.Shared.Units.Services
                 return null;
             }
 
-            return _gameData.Get<UnitTypeSettings>(null).Get(RandomUtils.GetRandomElement(zone.Units, rand).UnitTypeId);
+            return _gameData.Get<UnitTypeSettings>(null).Get(RandUtils.GetRandomElement(zone.Units, rand).UnitTypeId);
 
         }
     }

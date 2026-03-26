@@ -23,7 +23,7 @@ public class AudioChannel
         }
 
         float randTime = curr.GetRandomIzeSeconds();
-        float nextRandTime = MathUtil.FloatRange(randTime / 2, randTime * 3 / 2, rand);
+        float nextRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, rand);
         curr.NextRandomizeTime = DateTime.UtcNow.AddSeconds(nextRandTime);
 
 

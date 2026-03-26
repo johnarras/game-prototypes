@@ -64,9 +64,9 @@ public class PlantAssetLoader : IPlantAssetLoader
         MyRandom bendRand = new MyRandom(_mapProvider.GetMap().Seed + 3234992);
 
         UnityEngine.Color color = UnityEngine.Color.white;
-        float amount = MathUtil.FloatRange(0.20f, 0.40f, bendRand);
-        float speed = MathUtil.FloatRange(0.30f, 0.70f, bendRand);
-        float strength = MathUtil.FloatRange(0.30f, 0.70f, bendRand);
+        float amount = RandUtils.FloatRange(0.20f, 0.40f, bendRand);
+        float speed = RandUtils.FloatRange(0.30f, 0.70f, bendRand);
+        float strength = RandUtils.FloatRange(0.30f, 0.70f, bendRand);
 
         tdata.wavingGrassTint = UnityEngine.Color.white;
         tdata.wavingGrassAmount = amount;

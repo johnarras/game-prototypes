@@ -1,6 +1,7 @@
 {
   "Id": "indexedcolor1default",
   "IdKey": 1,
+  "Name": "",
   "ParentId": "default",
   "TextureTypeId": 13,
   "R": 16,

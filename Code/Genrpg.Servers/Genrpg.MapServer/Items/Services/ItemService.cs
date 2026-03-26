@@ -79,13 +79,12 @@ namespace Genrpg.MapServer.Items.Services
                     RollLootArgs rollLootArgs = new RollLootArgs()
                     {
                         Level = ch.Level,
-                        QualityTypeId = item.QualityTypeId,
                         Times = 1
                     };
                     List<RewardList> newItems = _spawnService.Roll(rand, spawnProc.EntityId, rollLootArgs);
                     if (newItems != null)
                     {
-                        _rewardService.GiveRewards(rand, ch, newItems, null);
+                        _rewardService.GiveRewards(ch, newItems, null).Wait();
                     }
 
                     res.Success = true;
@@ -124,7 +123,7 @@ namespace Genrpg.MapServer.Items.Services
             {
                 if (shouldRemoveItem)
                 {
-                    _inventoryService.RemoveItemQuantity(ch, item.Id, 1);
+                    _inventoryService.RemoveItem(ch, item.Id, true);
                 }
             }
 

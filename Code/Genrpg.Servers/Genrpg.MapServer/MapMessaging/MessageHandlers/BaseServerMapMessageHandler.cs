@@ -14,6 +14,7 @@ using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Utils;
 using System;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.MapMessaging.MessageHandlers
 {
@@ -37,13 +38,13 @@ namespace Genrpg.MapServer.MapMessaging.MessageHandlers
         {
         }
 
-        protected abstract void InnerProcess(IRandom rand, MapMessagePackage pack, TMapObject obj, TMapMessage message);
+        protected abstract Task InnerProcess(IRandom rand, MapMessagePackage pack, TMapObject obj, TMapMessage message);
 
-        public void Process(IRandom rand, MapMessagePackage pack)
+        public async Task Process(IRandom rand, MapMessagePackage pack)
         {
             if (!pack.message.IsCancelled() && pack.mapObject is TMapObject tMapObject)
             {
-                InnerProcess(rand, pack, tMapObject, pack.message as TMapMessage);
+                await InnerProcess(rand, pack, tMapObject, pack.message as TMapMessage);
             }
         }
     }

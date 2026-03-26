@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;

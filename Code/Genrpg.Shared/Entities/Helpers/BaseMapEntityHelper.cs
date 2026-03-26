@@ -59,7 +59,7 @@ namespace Genrpg.Shared.Entities.Helpers
 
         public virtual bool IsMapEntity() { return true; }
 
-        private string _typeNameLowercase = typeof(TObj).Name.ToLower();
+        private string _typeNameLowercase = StrUtils.NormalizeTypeName<TObj>();
         public bool IsEntityHelperFor(string name)
         {
             return StrUtils.IsLowercaseEqual(name, _typeNameLowercase);

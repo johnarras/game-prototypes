@@ -2,7 +2,7 @@
   "Id": "screenname40default",
   "ParentId": "default",
   "IdKey": 40,
-  "Name": "Animals",
+  "Name": "Caravan",
   "ScreenLayerId": 20,
   "Subdirectory": "TraderCaravan"
 }

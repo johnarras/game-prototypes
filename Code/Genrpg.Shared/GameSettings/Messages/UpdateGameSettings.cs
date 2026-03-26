@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.MapMessages;
+using MessagePack;
 
 namespace Genrpg.Shared.GameSettings.Messages
 {

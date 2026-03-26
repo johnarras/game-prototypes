@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Setup.Services;
 using System.Collections.Generic;

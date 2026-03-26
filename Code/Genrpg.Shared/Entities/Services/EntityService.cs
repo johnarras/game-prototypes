@@ -20,7 +20,7 @@ namespace Genrpg.Shared.Entities.Services
         IIdName Find(IFilteredObject obj, long entityType, long entityId);
         List<IIdName> GetChildList(IFilteredObject obj, long entityTypeId);
         List<IIdName> GetChildList(IFilteredObject obj, string tableName);
-        EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId,
+        EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId, string forcedIconName = "",
             EEntityIconCategories category = EEntityIconCategories.Default);
         IEntityHelper GetEntityHelper(string typeName);
     }
@@ -90,7 +90,8 @@ namespace Genrpg.Shared.Entities.Services
             return new List<IIdName>();
         }
 
-        public EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId, EEntityIconCategories category = EEntityIconCategories.Default)
+        public EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId,
+            string forcedIconName = "", EEntityIconCategories category = EEntityIconCategories.Default)
         {
             IEntityHelper helper = GetEntityHelper(entityTypeId);
 
@@ -99,18 +100,30 @@ namespace Genrpg.Shared.Entities.Services
                 return null;
             }
 
+            string atlasName = "";
+            string iconName = forcedIconName;
+
             IIdName idName = helper.Find(obj, entityId);
+
+            atlasName = helper.GetIconAtlasName(obj, entityId, category);
 
             if (idName is IIndexedGameItem indexedItem)
             {
-                return new EntityAtlasIcon()
+                if (string.IsNullOrEmpty(iconName))
                 {
-                    AtlasName = helper.GetIconAtlasName(obj, entityId, category),
-                    IconName = indexedItem.Icon,
-                };
+                    iconName = indexedItem.Icon;
+                }
+            }
+            else if (string.IsNullOrEmpty(forcedIconName))
+            {
+                return null;
             }
 
-            return null;
+            return new EntityAtlasIcon()
+            {
+                AtlasName = atlasName,
+                IconName = iconName,
+            };
         }
         public IEntityHelper GetEntityHelper(string typeName)
         {

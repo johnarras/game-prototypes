@@ -1,10 +1,10 @@
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Buildings;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Controllers;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.EncounterHelpers;
 using Assets.Scripts.Crawler.Maps.Entities;
@@ -14,9 +14,11 @@ using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Crawler.Tilemaps;
 using Assets.Scripts.Dungeons;
 using Assets.Scripts.GameObjects;
+using Assets.Scripts.ProcGen.Materials;
+using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
@@ -38,6 +40,8 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
@@ -49,6 +53,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Services.CrawlerMaps
@@ -100,10 +105,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private ICrawlerOptionsService _optionsService = null;
         private ICrawlerMapGenService _mapGenService = null;
         private ICrawlerTerrainService _terrainService = null;
+        private IMaterialGenService _materialGenService = null;
 
-        const string MateriaListFilenameSuffix = "MaterialsList";
+        private ILogService _logService = null;
 
-        const string DungeonAssetBlockListFilename = "DungeonAssetBlockList";
+        public const string MaterialGenDataFilenameSuffix = "MaterialGenData";
+
+        public const string DungeonAssetBlockListFilename = "DungeonAssetBlockList";
 
         CrawlerMapRoot _crawlerMapRoot = null;
         private CancellationToken _token;
@@ -208,7 +216,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _crawlerMapRoot = await helper.EnterMap(party, mapData, token);
 
             _crawlerMapRoot.MapTypeHelper = helper;
-            await LoadMapMaterialList(_world, party, _crawlerMapRoot, token);
+
+            await LoadMapAssets(_world, party, _crawlerMapRoot, token);
 
             MovePartyTo(party, _party.CurrPos.X, _party.CurrPos.Z, _party.CurrPos.Rot, true, token);
 
@@ -231,7 +240,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _dispatcher.Dispatch(new CloseScreen(ScreenNames.Loading));
         }
 
-        private async Task LoadMapMaterialList(CrawlerWorld world, PartyData party, CrawlerMapRoot mapRoot, CancellationToken token)
+        private async Task LoadMapAssets(CrawlerWorld world, PartyData party, CrawlerMapRoot mapRoot, CancellationToken token)
         {
 
             List<long> dungeonZoneTypes = mapRoot.GetAllDungeonZoneTypes();
@@ -248,16 +257,20 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                     string dungeonArtName = ztype.Art;
 
-                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName + MateriaListFilenameSuffix, OnLoadDungeonAssets, null, token, block);
+                    _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName + MaterialGenDataFilenameSuffix, OnLoadDungeonMaterialsData, _crawlerMapRoot.AssetRoot, token, block);
 
                 }
             }
 
-            string buildingArtFolder = _gameData.Get<BuildingArtSettings>(_gs.ch).Get(mapRoot.Map.BuildingArtId).Art;
+            _assetService.LoadAsset(AssetCategoryNames.Dungeons, DungeonAssetBlockListFilename, OnLoadDungeonAssetBlock, _crawlerMapRoot.AssetRoot, token, mapRoot);
 
-            _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, null, token, default(object), buildingArtFolder);
+            if (_crawlerMapRoot.Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
+            {
+                string buildingArtFolder = _gameData.Get<BuildingArtSettings>(_gs.ch).Get(mapRoot.Map.BuildingArtId).Art;
 
-            _assetService.LoadAsset(AssetCategoryNames.Dungeons, DungeonAssetBlockListFilename, OnLoadDungeonAssetBlock, null, token, mapRoot);
+                _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, _crawlerMapRoot.AssetRoot, token, default(object), buildingArtFolder);
+
+            }
 
             while (!mapRoot.AssetsAreReady())
             {
@@ -277,6 +290,70 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             }
 
             _crawlerMapRoot.CityAssets = assetGo.GetComponent<CityAssets>();
+
+            _assetService.LoadAsset(AssetCategoryNames.Dungeons, "Building" + MaterialGenDataFilenameSuffix, OnLoadBuildingMaterialData,
+                _crawlerMapRoot.AssetRoot, token, _crawlerMapRoot);
+
+        }
+
+        private void OnLoadBuildingMaterialData(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
+        {
+
+            _awaitableService.ForgetAwaitable(OnLoadBuildingMaterialDataAsync(go, mapRoot, token));
+        }
+
+        private async Awaitable OnLoadBuildingMaterialDataAsync(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
+        {
+
+            MaterialGenData materialsData = _clientEntityService.FullInstantiate(go.GetComponent<MaterialGenData>());
+            _clientEntityService.AddToParent(materialsData, mapRoot.AssetRoot);
+     
+            WallTextureGenArgs args = new WallTextureGenArgs()
+            {
+                MaterialsData = materialsData,
+                Seed = mapRoot.Map.ArtSeed + 292381,
+            };
+
+            Texture2D[] textures = await _materialGenService.GenerateMultipleLooseTexturesForOneMaterialIndex(args, DungeonMaterialIndexes.Stone, 3);
+
+            foreach (Texture2D tex in textures)
+            {
+                Material mat = new Material(materialsData.MainMaterial);
+
+                mat.mainTexture = tex;
+                MaterialOption weighted = new MaterialOption()
+                {
+                    Mat = mat,
+                };
+
+                mapRoot.BuildingWallOptions.Add(weighted);
+
+                mapRoot.GeneratedTextures.Add(tex);
+
+            }
+
+            foreach (WeightedCrawlerBuilding weightedBuilding in mapRoot.CityAssets.Buildings)
+            {
+                weightedBuilding.Mats.WallMats.Clear(); 
+
+                foreach (MaterialOption opt in mapRoot.BuildingWallOptions)
+                {
+                    weightedBuilding.Mats.WallMats.Add(new WeightedBuildingMaterial()
+                    {
+                        Mat = opt.Mat,
+                        Weight = 1000,
+                        ColorTargets = new List<Color>(materialsData.ForegroundColors),
+                    });                   
+                }
+
+                foreach (WeightedBuildingMaterial weightedMat in weightedBuilding.Mats.WallMats)
+                {
+                    for (int c =0; c <weightedMat.ColorTargets.Count; c++)
+                    {
+                        weightedMat.ColorTargets[c] = weightedMat.ColorTargets[c] * 0.75f;
+                    }
+                }
+            }
         }
 
         private void OnLoadDungeonAssetBlock(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
@@ -292,12 +369,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             IRandom rand = new MyRandom(mapRoot.Map.ArtSeed * 17);
 
-            mapRoot.AssetBlock = RandomUtils.GetRandomFloatElement(list.Blocks, rand);
+            mapRoot.AssetBlock = RandUtils.GetRandomFloatElement(list.Blocks, rand);
             mapRoot.XZBlockSize = mapRoot.AssetBlock.BlockXZSize;
             mapRoot.YBlockSize = mapRoot.AssetBlock.BlockYSize;
         }
 
-        private void OnLoadDungeonAssets(GameObject assetGo, MaterialBlock block, CancellationToken token)
+        private void OnLoadDungeonMaterialsData(GameObject assetGo, MaterialBlock block, CancellationToken token)
         {
 
             if (block == null)
@@ -305,42 +382,52 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 return;
             }
 
-            block.MaterialList = assetGo.GetComponent<DungeonMaterialsList>();
+            _awaitableService.ForgetAwaitable(OnLoadDungeonMaterialsDataAsync(assetGo, block, token));
+        }
 
+        private async Awaitable OnLoadDungeonMaterialsDataAsync(GameObject assetGo, MaterialBlock block, CancellationToken token)
+        { 
             long materialSeed = _crawlerMapRoot.Map.ArtSeed / 5 + 1433 + block.ZoneTypeId;
 
-            int matWeightSum = block.MaterialList.Materials.Sum(x => x.Weight);
+            IRandom rand = new MyRandom(materialSeed);
 
-            int weightChosen = (int)materialSeed % matWeightSum;
+            MaterialGenData materialsData = _clientEntityService.FullInstantiate(assetGo.GetComponent<MaterialGenData>());
+            _clientEntityService.AddToParent(materialsData, _crawlerMapRoot.AssetRoot);
 
-            foreach (WeightedDungeonMaterials mat in block.MaterialList.Materials)
+            WallTextureGenArgs genArgs = new WallTextureGenArgs()
             {
-                weightChosen -= mat.Weight;
+                Seed = _crawlerMapRoot.Map.ArtSeed + block.ZoneTypeId,
+                MaterialsData = materialsData,
+                ZoneTypeId = block.ZoneTypeId,
+            };
 
-                if (weightChosen <= 0)
+            GeneratedWallLooseTextureSet textureSet = await _materialGenService.GenerateTextures(genArgs);
+
+            foreach (Texture2D tex in textureSet.Textures)
+            {
+                if (tex != null)
                 {
-                    block.DungeonMaterials = mat.Materials;
-                    break;
+                    _crawlerMapRoot.GeneratedTextures.Add(tex);
                 }
             }
 
-            // Get doormat for this level.
-
-            List<WeightedMaterial> doorMats = block.DungeonMaterials.GetMaterials(DungeonAssetIndex.Doors);
-
-            long doorWeightSum = doorMats.Sum(x => x.Weight);
-
-            long doorHash = _crawlerMapRoot.Map.ArtSeed / 3 + 317;
-
-            long doorChosen = doorHash % doorWeightSum;
-
-            foreach (WeightedMaterial wmat in doorMats)
+            for (int materialIndex = 0; materialIndex < DungeonMaterialIndexes.Max; materialIndex++)
             {
-                doorChosen -= wmat.Weight;
-                if (doorChosen <= 0)
+                int materialCount = 1;
+
+                for (int m = 0; m < materialCount; m++)
                 {
-                    block.DoorMat = wmat.Mat;
-                    break;
+                    Material mat = new Material(materialsData.MainMaterial);
+
+                    MaterialOption weighted = new MaterialOption()
+                    {
+                        Mat = mat,
+                    };
+
+                    weighted.Mat.mainTexture = textureSet.Textures[materialIndex];
+
+                    block.FinalMaterials.GetMaterials(materialIndex).Add(weighted);
+
                 }
             }
         }
@@ -358,14 +445,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             {
                 foreach (MaterialBlock block in _crawlerMapRoot.MaterialBlocks.Values)
                 {
-
-                    if (block.MaterialList != null)
-                    {
-                        _clientEntityService.Destroy(block.MaterialList.gameObject);
-                        block.MaterialList = null;
-                    }
-                    block.DungeonMaterials = null;
-
+                    block.FinalMaterials = null;
                 }
                 _crawlerMapRoot.MaterialBlocks.Clear();
                 if (_crawlerMapRoot.CityAssets != null)
@@ -429,7 +509,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             _cameraParent.transform.position = new Vector3(_crawlerMapRoot.DrawX, _crawlerMapRoot.DrawY, _crawlerMapRoot.DrawZ);
             _cameraParent.transform.eulerAngles = new Vector3(0, _crawlerMapRoot.DrawRot + 90, 0);
-            _dispatcher.Dispatch(new SetWorldPicture(null, false));
+            _dispatcher.Dispatch(new ShowWorldPanelImage(null));
             if (_playerLightObject != null && _camera != null)
             {
                 _playerLightObject.transform.position = _camera.transform.position;

@@ -33,6 +33,40 @@ namespace Genrpg.Shared.Utils
             return _base58Chars;
         }
 
+        private static char[] _lowercaseAlphaChars = null;
+
+        public static char[] GetLowercaseAlphaChars()
+        {
+            if (_lowercaseAlphaChars != null)
+            {
+                return _lowercaseAlphaChars;
+            }
+
+            List<char> retval = new List<char>();
+            for (int i = (int)'a'; i <= (int)'z'; i++)
+            {
+                retval.Add((char)i);
+            }
+            _lowercaseAlphaChars = retval.ToArray();
+            return _lowercaseAlphaChars;
+        }
+
+        public static string GetLowercaseAlphaIdFromVal(long val)
+        {
+            char[] idChars = GetLowercaseAlphaChars();
+
+            StringBuilder sb = new StringBuilder();
+
+            long idval = val;
+
+            while (idval > 0)
+            {
+                sb.Append(idChars[(int)(idval % idChars.Length)]);
+                idval /= idChars.Length;
+            }
+            return sb.ToString();
+        }
+
         public static string GetIdFromVal(long val)
         {
             char[] idChars = GetBase58Chars();
@@ -89,12 +123,12 @@ namespace Genrpg.Shared.Utils
         }
 
         // This needs to be improved obviously.
-        private static readonly string[] _nameBlacklist = { 
-            "fuck", "shit", "nazi", "cunt", 
-            "piss", "slut", "nigg", "damn", 
-            "hell", "asshole", "fuk", "shyt", 
+        private static readonly string[] _nameBlacklist = {
+            "fuck", "shit", "nazi", "cunt",
+            "piss", "slut", "nigg", "damn",
+            "hell", "asshole", "fuk", "shyt",
             "coc", "dik", "vag",
-        
+
         };
         private static bool IsInappropriate(string base58Id)
         {

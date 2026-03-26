@@ -1,6 +1,5 @@
-using MessagePack;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Units.Entities;
 
 namespace Genrpg.Shared.Spells.Casting
 {

@@ -1,0 +1,9 @@
+{
+  "Id": "gameplaybuff6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Surplus Rations",
+  "Icon": "SurplusRations",
+  "Art": "SurplusRations",
+  "Effects": []
+}

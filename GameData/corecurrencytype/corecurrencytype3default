@@ -2,9 +2,8 @@
   "Id": "corecurrencytype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Mana",
-  "Icon": "Mana",
-  "Art": "Mana",
-  "RegenTraderStatId": 6,
-  "StorageTraderStatId": 7
+  "Name": "Supplies",
+  "PluralName": "",
+  "Icon": "Supplies",
+  "Art": "Supplies"
 }

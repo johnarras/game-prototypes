@@ -1,0 +1,24 @@
+{
+  "Id": "spendlocation6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Trade Goods",
+  "Desc": "The Trader",
+  "Icon": "TradeGoods",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Buy Trade Good",
+      "Desc": "Buy Trade Goods",
+      "SpendCoreCurrencyTypeId": 1,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 57,
+          "EntityId": -1,
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

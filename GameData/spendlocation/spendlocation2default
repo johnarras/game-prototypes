@@ -1,0 +1,55 @@
+{
+  "Id": "spendlocation2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Supplies",
+  "Desc": "Roscoe's Expedition Emporium!",
+  "Icon": "Supplies",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Supplies",
+      "Desc": "Stock Up On Supplies",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 10,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 1,
+          "EntityId": 3,
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "Index": 2,
+      "Name": "Rations",
+      "Desc": "Get Rations For Your Journey",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 25,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 1,
+          "EntityId": 2,
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "Index": 3,
+      "Name": "Mana",
+      "Desc": "Top Off Your Mana",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 100,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 1,
+          "EntityId": 2,
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

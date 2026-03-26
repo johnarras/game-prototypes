@@ -11,7 +11,7 @@ namespace Assets.Scripts.CombatFX
 
         public void InitElementImage(string imageName)
         {
-            _spriteService.LoadAtlasSpriteInto(AtlasNames.CrawlerCombat, imageName + "Bolt", Image, GetToken());
+            _spriteService.SetAtlasSpriteInto(AtlasNames.CrawlerCombat, imageName + "Bolt", Image, GetToken());
         }
     }
 }

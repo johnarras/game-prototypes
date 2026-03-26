@@ -4,7 +4,5 @@
   "IdKey": 9,
   "Name": "Zebu",
   "Icon": "Zebu",
-  "Art": "Zebu",
-  "AnimalTypeId": 9,
-  "IsDefault": true
+  "Art": "Zebu"
 }

@@ -1,10 +1,17 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
+﻿using Assets.Scripts.Entities.UI;
+using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Travel.ClientEvents;
+using Assets.Scripts.UI.Entities;
+using Genrpg.Shared.Attributes.Constants;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
-using Genrpg.Shared.CoreCurrencies.Settings;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
+using Genrpg.Shared.Utils.Data;
+using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {
@@ -13,10 +20,14 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         private ICaravanService _caravanService = null;
 
-        public GText DistanceText;
-        public GText CostPerDayText;
-        public GText TotalCostText;
+        public GText DiceCountText;
+        public GText BonusDistanceText;
 
+        public EntityTypeIconList DailyCurrencyIcons;
+        public EntityTypeIconList TotalCurrencyIcons;
+
+        public CapacityEntityIcon SizeIcon;
+        public CapacityEntityIcon InventoryIcon;
 
         public override void Init()
         {
@@ -39,17 +50,20 @@ namespace Assets.Scripts.Trader.Travel.UI
             CaravanTravelInfo info = _caravanService.GetTravelInfo(coreData);
 
 
-            if (string.IsNullOrEmpty(rationsSpriteString))
-            {
-                rationsSpriteString = "<sprite name=\"" + _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).Get(CoreCurrencyTypes.Rations).Name + "\"> ";
-            }
+            _uiService.SetText(DiceCountText, info.DiceSpeed.ToString());
 
-            _uiService.SetText(DistanceText, info.DiceSpeed + " <sprite name=\"Die5\">" +
-                (info.BonusSpeed > 0 ? " + " + info.BonusSpeed : ""));
+            _uiService.SetText(BonusDistanceText, (info.BonusSpeed > 0 ? "+" + info.BonusSpeed : ""));
 
-            _uiService.SetText(CostPerDayText, info.CostPerDay.ToString());
+            SizeIcon.SetEntityData(EntityTypes.GameplayStat, GameplayStats.MaxSize, info.SizeUsed, info.MaxSize);
+            InventoryIcon.SetEntityData(EntityTypes.GameplayStat, GameplayStats.MaxInventory, info.InventoryUsed, info.MaxInventory);
 
-            _uiService.SetText(TotalCostText, info.TotalCost.ToString());
+            DailyCurrencyIcons.ShowSmallIdList(EntityTypes.CoreCurrency, info.CurrenciesPerDay.Data, 1);
+
+            TotalCurrencyIcons.ShowSmallIdList(EntityTypes.CoreCurrency, info.CurrenciesPerDay.Data, info.Days);
+        }
+
+        private void ShowCurrencyList(SmallIdLongCollection collection, GameObject currencyAnchor)
+        {
 
         }
     }

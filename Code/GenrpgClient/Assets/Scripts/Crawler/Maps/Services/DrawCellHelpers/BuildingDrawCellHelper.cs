@@ -33,12 +33,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 {
                     string suffix = "";
 
-                    if (btype.VariationCount > 1)
-                    {
-                        int indexVal = (cell.MapX * 13 + cell.MapZ * 41) % btype.VariationCount + 1;
-                        suffix = indexVal.ToString();
-                    }
-
                     CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
                     {
                         Cell = cell,
@@ -53,7 +47,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                     if (mapRoot.CityAssets != null)
                     {
                         IRandom rand = new MyRandom(loadData.Seed);
-                        WeightedCrawlerBuilding wcb = RandomUtils.GetRandomFloatElement(mapRoot.CityAssets.Buildings, rand);
+                        WeightedCrawlerBuilding wcb = RandUtils.GetRandomFloatElement(mapRoot.CityAssets.Buildings, rand);
                         await ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
                     }
                 }

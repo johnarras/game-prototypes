@@ -78,7 +78,7 @@ public class ActionButton : SpellIcon
             iconName = _spell.Icon;
         }
 
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
+        _spriteService.SetAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
 
         if (Tint != null && _spell == null)
         {

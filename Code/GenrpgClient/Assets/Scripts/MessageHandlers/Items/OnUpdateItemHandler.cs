@@ -2,13 +2,14 @@ using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Messages;
 using System.Threading;
 using Genrpg.Shared.Inventory.Services;
+using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Items
 {
     public class OnUpdateItemHandler : BaseClientMapMessageHandler<OnUpdateItem>
     {
         protected ISharedItemService _sharedItemService = null;
-        protected override void InnerProcess(OnUpdateItem msg, CancellationToken token)
+        protected override async Awaitable InnerProcess(OnUpdateItem msg, CancellationToken token)
         {
 
             if (msg.UnitId != _gs.ch.Id)

@@ -161,7 +161,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
                 isLikePedestal = true;
                 long weightTotal = lookup.WordsContainingLetters.Values.Sum(x => x.Count);
 
-                long valueChosen = MathUtil.LongRange(0, weightTotal, rand);
+                long valueChosen = RandUtils.LongRange(0, weightTotal, rand);
 
                 char chosenLetter = '1';
 

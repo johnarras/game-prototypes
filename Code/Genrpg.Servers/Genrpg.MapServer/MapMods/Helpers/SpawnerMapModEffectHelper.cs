@@ -52,8 +52,8 @@ namespace Genrpg.MapServer.MapMods.Helpers
 
             for (int times = 0; times < 10; times++)
             {
-                int xpos = (int)(mapMod.X + MathUtil.FloatRange(-addon.Radius, addon.Radius, rand));
-                int zpos = (int)(mapMod.Z + MathUtil.FloatRange(-addon.Radius, addon.Radius, rand));
+                int xpos = (int)(mapMod.X + RandUtils.DeltaRange(addon.Radius, rand));
+                int zpos = (int)(mapMod.Z + RandUtils.DeltaRange(addon.Radius, rand));
 
                 if (_pathfindingService.CellIsBlocked(xpos, zpos))
                 {

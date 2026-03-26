@@ -9,23 +9,23 @@
   "Effects": [
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 4
+      "EntityId": 4,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 3
+      "EntityId": 3,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 10
+      "EntityId": 10,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 4
+      "EntityId": 4,
+      "Quantity": 1
     }
   ]
 }

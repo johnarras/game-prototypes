@@ -1,0 +1,8 @@
+{
+  "Id": "charcurrencytype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Money",
+  "Icon": "Money",
+  "Art": "Money"
+}

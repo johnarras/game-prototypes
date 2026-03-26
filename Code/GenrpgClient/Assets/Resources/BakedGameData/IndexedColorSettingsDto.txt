@@ -2,6 +2,7 @@
   "Children": [
     {
       "IdKey": 1,
+      "Name": "",
       "TextureTypeId": 13,
       "R": 16,
       "G": 16,
@@ -9,6 +10,7 @@
     },
     {
       "IdKey": 2,
+      "TextureTypeId": 1,
       "R": 16,
       "G": 48,
       "B": 16
@@ -173,5 +175,5 @@
     "Name": "IndexedColorSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-24T19:36:44.473Z"
+  "SaveTime": "2026-03-10T21:16:45.514Z"
 }

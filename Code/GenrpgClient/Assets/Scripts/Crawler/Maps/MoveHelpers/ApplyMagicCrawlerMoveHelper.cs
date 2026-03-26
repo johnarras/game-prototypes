@@ -20,7 +20,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         {
             if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Spinner, true))
             {
-                int rotateAmount = MathUtil.IntRange(-1, 2, _rand);
+                int rotateAmount = RandUtils.IntRange(-1, 2, _rand);
                 if (rotateAmount != 0)
                 {
                     await _moveService.Rot(status, rotateAmount, true, token);
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                     int healthLost = Math.Max(1, (int)(pm.Stats.Max(StatTypes.Health) * mapSettings.DrainHealthPercent));
                     healthLost = Math.Min(healthLost, pm.Stats.Curr(StatTypes.Health));
-                    _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -healthLost, ElementTypes.Melee);
+                    _crawlerStatService.Add(party, pm, StatTypes.Health, UnitStatValOffsets.Curr, -healthLost, ElementTypes.Melee);
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
                     {
                         pm.StatusEffects.SetBitIndex(StatusEffects.Dead);
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                     int manaLost = Math.Max(1, (int)(pm.Stats.Max(StatTypes.Mana) * mapSettings.DrainManaPercent));
                     manaLost = Math.Min(manaLost, pm.Stats.Curr(StatTypes.Mana));
-                    _crawlerStatService.Add(party, pm, StatTypes.Mana, StatCategories.Curr, -manaLost);
+                    _crawlerStatService.Add(party, pm, StatTypes.Mana, UnitStatValOffsets.Curr, -manaLost);
                 }
 
                 if (await _partyService.CheckIfPartyIsDead(party, token))

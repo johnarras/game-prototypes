@@ -30,7 +30,7 @@ namespace Genrpg.Shared.Zones.WorldData
         {
             if (textureChannel == TerrainTexChannels.Base)
             {
-                BaseTextureTypeId = textureTypeId;  
+                BaseTextureTypeId = textureTypeId;
             }
             else if (textureChannel == TerrainTexChannels.Dirt)
             {
@@ -38,11 +38,11 @@ namespace Genrpg.Shared.Zones.WorldData
             }
             else if (textureChannel == TerrainTexChannels.Road)
             {
-                RoadTextureTypeId = textureTypeId;  
+                RoadTextureTypeId = textureTypeId;
             }
             else if (textureChannel == TerrainTexChannels.Steep)
             {
-                SteepTextureTypeId = textureTypeId;  
+                SteepTextureTypeId = textureTypeId;
             }
         }
 

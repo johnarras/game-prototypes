@@ -1,4 +1,4 @@
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
@@ -15,18 +15,7 @@ using System.Linq;
 
 namespace Genrpg.Shared.Units.Entities
 {
-    /// <summary>
-    /// Core effect
-    /// </summary>
-    public class UnitEffect : IEffect
-    {
-        public long EntityTypeId { get; set; }
-
-        public long Quantity { get; set; }
-
-        public long EntityId { get; set; }
-    }
-
+   
     public class Unit : MapObject
     {
         public long BaseStatAmount { get; set; }

@@ -26,16 +26,6 @@ namespace Genrpg.MapServer.Items.Services
 
         }
 
-        public override Item RemoveItemQuantity(MapObject obj, string itemId, int quantity)
-        {
-            return _tradeService.SafeModifyObject(obj, delegate
-            {
-                return base.RemoveItemQuantity(obj, itemId, quantity);
-            }, null);
-        }
-
-
-
         public override Item RemoveItem(MapObject obj, string itemId, bool destroyItem)
         {
             return _tradeService.SafeModifyObject(obj, delegate

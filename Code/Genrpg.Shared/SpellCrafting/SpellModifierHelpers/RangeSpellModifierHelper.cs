@@ -1,4 +1,3 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.SpellCrafting.Constants;
 

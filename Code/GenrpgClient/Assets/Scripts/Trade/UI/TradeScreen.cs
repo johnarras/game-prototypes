@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;

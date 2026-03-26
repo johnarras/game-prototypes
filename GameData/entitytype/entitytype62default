@@ -2,7 +2,9 @@
   "Id": "entitytype62default",
   "ParentId": "default",
   "IdKey": 62,
-  "Name": "Skin",
-  "Icon": "Skin",
-  "Art": "Skin"
+  "Name": "SkinType",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "SkinType",
+  "Art": "SkinType"
 }

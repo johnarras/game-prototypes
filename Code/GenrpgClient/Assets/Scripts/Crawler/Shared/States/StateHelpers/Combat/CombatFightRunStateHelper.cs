@@ -1,6 +1,6 @@
 
-using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Constants;
@@ -49,7 +49,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
                 if (!didShowPortrait)
                 {
-                    _dispatcher.Dispatch(new SetWorldPicture(group.Units[0].PortraitName, false));
+                    _dispatcher.Dispatch(new ShowWorldPanelImage(group.Units[0].PortraitName));
                     stateData.WorldSpriteName = group.Units[0].PortraitName;
                     didShowPortrait = true;
                 }

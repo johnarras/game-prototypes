@@ -19,12 +19,12 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
             base.SetData(x, z, map);
             CrawlerMapRoot root = _mapService.GetMapRoot();
 
-            DungeonMaterials wallMats = root.GetMaterialsAt(x, z);
+            FinalDungeonMaterials wallMats = root.GetMaterialsAt(x, z);
 
             if (wallMats != null)
             {
 
-                MeshRenderer.sharedMaterial = wallMats.GetMaterials(DungeonAssetIndex.Walls)[0].Mat;
+                MeshRenderer.sharedMaterial = wallMats.GetMaterials(DungeonPrefabIndexes.Walls)[0].Mat;
                 float colorScale = 1.1f;
                 MeshRenderer.material.color = new Color(colorScale, colorScale, colorScale, colorScale);
             }

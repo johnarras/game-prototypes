@@ -1,6 +1,4 @@
 using Genrpg.ServerShared.CloudComms.Servers.InstanceServer.Queues;
-using Genrpg.ServerShared.Core;
-using Genrpg.Shared.Logging.Interfaces;
 
 namespace Genrpg.InstanceServer.MessageHandlers
 {

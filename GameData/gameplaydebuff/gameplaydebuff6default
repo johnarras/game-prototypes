@@ -1,0 +1,18 @@
+{
+  "Id": "gameplaydebuff6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Magic Void",
+  "Icon": "MagicVoid",
+  "Art": "MagicVoid",
+  "CleanseCoreCurrencyTypeId": 4,
+  "CleanseQuantity": 1,
+  "CityCoinsCleanseCost": 35,
+  "Effects": [
+    {
+      "EntityTypeId": 79,
+      "EntityId": 4,
+      "Quantity": -1
+    }
+  ]
+}

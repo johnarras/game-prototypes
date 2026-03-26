@@ -1,5 +1,5 @@
 using Assets.Scripts.UI.Abstractions;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
 using System;

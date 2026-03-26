@@ -1,9 +1,6 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using MessagePack;
 
 namespace Genrpg.Shared.SpellCrafting.Messages
 {

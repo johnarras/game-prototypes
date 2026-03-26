@@ -9,10 +9,8 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Security.Authentication;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,4 +1,5 @@
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
@@ -22,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
             ElementType etype = etypes[_rand.Next(etypes.Count)];
 
-            item.Effects.Add(new ItemEffect()
+            item.Effects.Add(new Effect()
             {
                 EntityTypeId = EntityTypes.Resist,
                 EntityId = etype.IdKey,

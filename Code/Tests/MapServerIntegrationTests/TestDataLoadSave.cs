@@ -35,7 +35,7 @@ namespace Tests.MapServerTests
 
             foreach (IGameSettingsLoader loader in allLoaders)
             {
-                List<ITopLevelSettings> currSettings = allSettings.Where(x=>x.GetType() == loader.HelperKey).ToList();
+                List<ITopLevelSettings> currSettings = allSettings.Where(x => x.GetType() == loader.HelperKey).ToList();
 
                 Assert.IsNotNull(currSettings.FirstOrDefault(x => x.Id == GameDataConstants.DefaultFilename), "Missing Default setting for " +
                     loader.HelperKey);
@@ -51,7 +51,7 @@ namespace Tests.MapServerTests
             DataOverrideSettings defaultOverrides = allDataOverrides[0];
 
 
-            List<SettingsNameSettings> allNameSettings = allSettings.Where(x => 
+            List<SettingsNameSettings> allNameSettings = allSettings.Where(x =>
             x.GetType() == typeof(SettingsNameSettings)).Cast<SettingsNameSettings>().ToList();
 
 

@@ -33,12 +33,6 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         private List<TraderPathUI> _roads = new List<TraderPathUI>();
 
-        public class CityDistance
-        {
-            public double Distance { get; set; }
-            public City City { get; set; }
-        }
-
         protected override async Task OnStartOpen(TraderCityRoadsScreenArgs data, CancellationToken token)
         {
 
@@ -51,36 +45,15 @@ namespace Assets.Scripts.Trader.UI.Cities
 
             IReadOnlyList<City> allCities = _gameData.Get<CitySettings>(_gs.ch).GetData();
 
-            List<CityDistance> distances = new List<CityDistance>();
+            List<CityTravelDistance> distances = await _traderMapService.GetNearbyCities(_gs.ch);
 
             TravelSettings settings = _gameData.Get<TravelSettings>(_gs.ch);
 
-            foreach (City city in allCities)
-            {
-                if (city.IdKey == pos.GetTargetCityId())
-                {
-                    continue;
-                }
-
-                double distanceToCity = _traderMapService.GetDistanceBetweenPoints(settings, pos.CurrX, pos.CurrY, city.MapPixelX, city.MapPixelY);
-
-                if (distanceToCity == 0 || distanceToCity > settings.MaxDistanceToTarget)
-                {
-                    continue;
-                }
-
-                distances.Add(new CityDistance()
-                {
-                    City = city,
-                    Distance = distanceToCity,
-                });
-            }
-
             distances = distances.OrderBy(x => x.Distance).ToList();
 
-            List<CityDistance> forcedDistances = distances.Where(x => x.Distance < settings.MaxDistanceToTarget / 3).ToList();
+            List<CityTravelDistance> forcedDistances = distances.Where(x => x.Distance < settings.MaxDistanceToTarget / 3).ToList();
 
-            List<CityDistance> otherDistances = distances.Except(forcedDistances).ToList();
+            List<CityTravelDistance> otherDistances = distances.Except(forcedDistances).ToList();
 
             distances = forcedDistances;
 
@@ -114,13 +87,13 @@ namespace Assets.Scripts.Trader.UI.Cities
             await Task.CompletedTask;
         }
 
-        private void ShowNearbyCities(CaravanPosition pos, List<CityDistance> distances)
+        private void ShowNearbyCities(CaravanPosition pos, List<CityTravelDistance> distances)
         {
 
             _clientEntityService.DestroyAllChildren(RoadRowAnchor);
             _roads.Clear();
 
-            foreach (CityDistance distance in distances)
+            foreach (CityTravelDistance distance in distances)
             {
                 TraderRoadArgs args = new TraderRoadArgs()
                 {

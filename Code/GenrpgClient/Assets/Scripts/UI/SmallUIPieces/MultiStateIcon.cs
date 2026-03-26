@@ -26,12 +26,12 @@ namespace Assets.Scripts.UI.SmallUIPieces
                 string.IsNullOrEmpty(StateIconNames[state]) ||
                 StateIconNames[state] == ItemConstants.BlankIconName)
             {
-                _spriteService.LoadAtlasSpriteInto(AtlasName, ItemConstants.BlankIconName, Icon, GetToken());
+                _spriteService.SetAtlasSpriteInto(AtlasName, ItemConstants.BlankIconName, Icon, GetToken());
                 _clientEntityService.SetActive(Icon, false);
             }
             else
             {
-                _spriteService.LoadAtlasSpriteInto(AtlasName, StateIconNames[state], Icon, GetToken());
+                _spriteService.SetAtlasSpriteInto(AtlasName, StateIconNames[state], Icon, GetToken());
                 _clientEntityService.SetActive(Icon, true);
             }
         }

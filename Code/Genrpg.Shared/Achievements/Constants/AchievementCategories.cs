@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Achievements.Constants
 {
     public class AchievementCategories

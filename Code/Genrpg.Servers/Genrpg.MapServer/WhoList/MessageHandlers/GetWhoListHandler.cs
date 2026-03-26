@@ -3,24 +3,19 @@ using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Errors.Messages;
-using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.WhoList.Entities;
 using Genrpg.Shared.WhoList.Messages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.WhoList.MessageHandlers
 {
     public class GetWhoListHandler : BaseCharacterServerMapMessageHandler<GetWhoList>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, GetWhoList message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, GetWhoList message)
         {
             _cloudCommsService.SendResponseMessageWithHandler<WhoListResponse>(CloudServerNames.Player,
                new WhoListRequest() { Args = message.Args }, (response) => { OnReceiveWhoList(ch.Id, response); });
@@ -48,9 +43,9 @@ namespace Genrpg.MapServer.WhoList.MessageHandlers
                 {
                     onGetList.Items.Add(new WhoListItem()
                     {
-                        Id= wlc.Id,
-                        Name= wlc.Name,
-                        Level= wlc.Level,
+                        Id = wlc.Id,
+                        Name = wlc.Name,
+                        Level = wlc.Level,
                         ZoneName = wlc.ZoneName,
                     });
                 }

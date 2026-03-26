@@ -1,21 +1,17 @@
 ﻿using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.RequestServer.Spawns.Services;
+using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Cultures.Settings;
 using Genrpg.Shared.Trader.Encounters.Entities;
+using Genrpg.Shared.Trader.Encounters.Settings;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Utils;
-using Microsoft.Azure.Cosmos.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ZstdSharp.Unsafe;
 
 namespace Genrpg.RequestServer.Trader.Encounters.Services
 {
@@ -30,8 +26,8 @@ namespace Genrpg.RequestServer.Trader.Encounters.Services
     {
 
         private IGameData _gameData = null;
-        private IWebSpawnService _spawnService = null; 
-        private IWebRewardService _rewardService = null;
+        private IWebSpawnService _spawnService = null;
+        private IRewardService _rewardService = null;
 
         public async Task TryCampingEncounter(WebContext context)
         {
@@ -41,26 +37,24 @@ namespace Genrpg.RequestServer.Trader.Encounters.Services
         public async Task<EncounterResult> TryEndOfTravelDayEncounter(WebContext context, TravelStatus status, TravelDay day)
         {
 
+            CoreData coreData = await context.GetAsync<CoreData>();
+            TravelEncounterSettings encounterSettings = _gameData.Get<TravelEncounterSettings>(coreData);
 
-            TravelEncounterSettings encounterSettings = _gameData.Get<TravelEncounterSettings>(context.core);
+            double goodChance = encounterSettings.GoodEncounterChance + coreData.Vars[TraderVars.Luck] / 100.0;
 
-            double goodChance = encounterSettings.GoodEncounterChance + context.core.Vars[TraderVars.GoodEventChance] / 100.0;
-
-            double badChance = encounterSettings.BadEncounterChance + context.core.Vars[TraderVars.BadEventChance] / 100.0;
+            double badChance = encounterSettings.BadEncounterChance - coreData.Vars[TraderVars.Luck] / 100.0;
 
 
             TravelEncounter chosenEncounter = null;
 
-            
-
             if (context.rand.NextDouble() < goodChance)
             {
-                chosenEncounter = RandomUtils.GetRandomElement(encounterSettings.GetGoodEncounters(), context.rand);
+                chosenEncounter = RandUtils.GetRandomElement(encounterSettings.GetGoodEncounters(), context.rand);
             }
 
             if (chosenEncounter == null && context.rand.NextDouble() < badChance)
             {
-                chosenEncounter = RandomUtils.GetRandomElement(encounterSettings.GetBadEncounters(), context.rand);
+                chosenEncounter = RandUtils.GetRandomElement(encounterSettings.GetBadEncounters(), context.rand);
             }
 
             if (chosenEncounter == null)
@@ -97,7 +91,7 @@ namespace Genrpg.RequestServer.Trader.Encounters.Services
                             rew.Quantity = -rew.Quantity;
                         }
 
-                        long currCurrencyQuantity = context.core.Currencies[rew.EntityId];
+                        long currCurrencyQuantity = coreData.Currencies[rew.EntityId];
 
                         if (Math.Abs(rew.Quantity) > currCurrencyQuantity)
                         {
@@ -116,8 +110,8 @@ namespace Genrpg.RequestServer.Trader.Encounters.Services
                 result.RewardLists.AddRange(await _spawnService.Roll(context, chosenEncounter.FailureEffects, rollArgs));
             }
 
-            RewardParams rp= new RewardParams();
-            await _rewardService.GiveRewardsAsync(context, result.RewardLists, rp);
+            RewardParams rp = new RewardParams();
+            await _rewardService.GiveRewards(context, result.RewardLists, rp);
 
             result.Message = chosenEncounter.Text;
 

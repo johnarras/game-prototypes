@@ -1,6 +1,5 @@
-using MessagePack;
-using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Sexes.Constants;
+using Genrpg.Shared.Website.Interfaces;
 
 namespace Genrpg.Shared.Characters.WebApi.CreateChar
 {

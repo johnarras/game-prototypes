@@ -1,21 +1,15 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.DataUtils.Services.Reflection;
 using Genrpg.ServerShared.DataStores;
-using Genrpg.Shared.Currencies.Helpers;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Genrpg.DataUtils.Services.Importing
 {
@@ -102,7 +96,7 @@ namespace Genrpg.DataUtils.Services.Importing
 
                                     namesToCheck.Add(lowerDataName);
 
-                                    if (lowerDataName.LastIndexOf("type") == lowerDataName.Length-4)
+                                    if (lowerDataName.Length >= 4 && lowerDataName.LastIndexOf("type") == lowerDataName.Length-4)
                                     {
                                         namesToCheck.Add(lowerDataName.Substring(0,lowerDataName.LastIndexOf("type")));
                                     }

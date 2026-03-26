@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Mule",
+  "Desc": "A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal.",
+  "Icon": "Mule",
+  "Art": "Mule",
+  "Speed": 3,
+  "Size": 2,
+  "Price": 29250,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -2
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 2
+    }
+  ]
+}

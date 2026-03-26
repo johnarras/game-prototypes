@@ -42,6 +42,8 @@ namespace Assets.Scripts.Crawler.Maps.Services
     public interface ICrawlerTerrainService : IInjectable
     {
         Awaitable DrawTerrain(CrawlerWorld world, PartyData party, CrawlerMapRoot mapRoot, CancellationToken token);
+
+        void UpdateTerrainLayersFromTextures(CrawlerMapRoot mapRoot);
     }
 
     public class CrawlerTerrainService : ICrawlerTerrainService
@@ -58,8 +60,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
         public async Awaitable DrawTerrain(CrawlerWorld world, PartyData party, CrawlerMapRoot mapRoot, CancellationToken token)
         {
 
-            
-
             List<long> allZoneTypes = mapRoot.GetAllZoneTypes();
 
 
@@ -71,11 +71,13 @@ namespace Assets.Scripts.Crawler.Maps.Services
             _clientEntityService.Destroy(mapRoot.TerrainObject);
             mapRoot.TerrainObject = (GameObject)(await _assetService.LoadAssetAsync(AssetCategoryNames.Prefabs, "TerrainMaterialPlaceholder", null, token));
             Terrain terr = mapRoot.TerrainObject.GetComponent<Terrain>();
+            mapRoot.GroundTerrain = terr;
             mapRoot.TerrainObject.name = "CrawlerMapTerrain";
             _clientEntityService.AddToParent(mapRoot.TerrainObject, mapRoot);
             mapRoot.TerrainObject.transform.localPosition = Vector3.zero;
             TerrainData tdata = GameObject.Instantiate<TerrainData>(terr.terrainData);
             terr.terrainData = tdata;
+            mapRoot.GroundTerrainData = tdata;
             tdata.detailPrototypes = new DetailPrototype[0];
             tdata.treePrototypes = new TreePrototype[0];
 
@@ -162,17 +164,15 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                 if (mapRoot.MaterialBlocks.TryGetValue(zoneTypeId, out MaterialBlock zoneBlock))
                 {
-                    if (zoneBlock.DungeonMaterials != null && zoneBlock.DungeonMaterials.FloorMat != null &&
-                        zoneBlock.DungeonMaterials.FloorMat.Count > 0)
+                    List<MaterialOption> floorMats = zoneBlock.FinalMaterials.GetMaterials(DungeonMaterialIndexes.Floors);
+                    if (floorMats != null && floorMats.Count > 0)
                     {
                         long matSeed = world.Seed + zoneTypeId * 37 + mapRoot.Map.IdKey * 59;
 
-                        WeightedMaterial finalMat = zoneBlock.DungeonMaterials.FloorMat[(int)matSeed%zoneBlock.DungeonMaterials.FloorMat.Count] ;
+                        MaterialOption finalMat = floorMats[(int)matSeed% floorMats.Count] ;
 
                         if (finalMat.Mat != null)
                         {
-
-
                             CrawlerTerrainIndexData floorIndexData = new CrawlerTerrainIndexData()
                             {
                                 ZoneTypeId = zoneTypeId,
@@ -204,7 +204,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
             List<CrawlerTerrainIndexData> detailIndexDataList = new List<CrawlerTerrainIndexData>();
             foreach (TextureType ttype in detailTextureTypes)
             {
-
                 CrawlerTerrainIndexData detailIndexData = new CrawlerTerrainIndexData()
                 {
                     ZoneTypeId = -1,
@@ -311,18 +310,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 }
             }
 
-            mapRoot.Indexes = finalIndexes;
+            mapRoot.TerrainTextureIndexes = finalIndexes;
 
-            TerrainLayer[] layers = new TerrainLayer[finalIndexes.Count];
 
-            for (int l = 0; l < finalIndexes.Count; l++)
-            {
+            UpdateTerrainLayersFromTextures(mapRoot);
 
-                TerrainLayer layer = _mapTerrainManager.CreateTerrainLayer(finalIndexes[l].Diffuse, finalIndexes[l].Normal);
-
-                layer.tileSize = new Vector2(heightCellsPerWorldBlock, heightCellsPerWorldBlock);
-                layers[l] = layer;
-            }
 
             for (int x = 0; x < alphamapSize; x++)
             {
@@ -379,14 +371,14 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         }
                         if (delta == -1)
                         {
-                            for (int l = 0; l < layers.Length; l++)
+                            for (int l = 0; l < mapRoot.TerrainTextureIndexes.Count; l++)
                             {
                                 textureAlphas1[y, x, l] = textureAlphas1[y, x + 1, l];
                             }
                         }
                         else if (delta == 1)
                         {
-                            for (int l = 0; l < layers.Length; l++)
+                            for (int l = 0; l < mapRoot.TerrainTextureIndexes.Count; l++)
                             {
                                 textureAlphas1[y, x + 1, l] = textureAlphas1[y, x, l];
                             }
@@ -400,7 +392,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             {
                 for (int y = 1; y < alphamapSize - 1; y++)
                 {
-                    for (int l = 0; l < layers.Length; l++)
+                    for (int l = 0; l < mapRoot.TerrainTextureIndexes.Count; l++)
                     {
                         textureAlphas2[x, y, l] =
                             (textureAlphas1[x, y, l] * 4 +
@@ -423,9 +415,9 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                 int detailIndex = detailIndexData.AlphaIndex;
                 IRandom rand = new MyRandom(world.Seed/3 + mapRoot.Map.IdKey * 13 + detailTimes*19);
-                float freq = MathUtil.FloatRange(0.01f, 0.02f, rand) * alphamapSize;
-                float amp = MathUtil.FloatRange(1.1f, 1.5f, rand);
-                float pers = MathUtil.FloatRange(0.5f, 0.7f, rand);
+                float freq = RandUtils.FloatRange(0.01f, 0.02f, rand) * alphamapSize;
+                float amp = RandUtils.FloatRange(1.1f, 1.5f, rand);
+                float pers = RandUtils.FloatRange(0.5f, 0.7f, rand);
                 int octaves = 2;
 
                 float[,] noiseVals = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), alphamapSize, alphamapSize);
@@ -453,7 +445,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         float noiseVal = MathUtil.Clamp(0, noiseVals[x, y], 1);
 
 
-                        for (int l = 0; l < layers.Length; l++)
+                        for (int l = 0; l < mapRoot.TerrainTextureIndexes.Count; l++)
                         {
                             textureAlphas2[x, y, l] *= (1 - noiseVal);
                             textureAlphas2[x, y, detailIndex] = noiseVal;
@@ -462,7 +454,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 }
             }
 
-
             tdata.heightmapResolution = heightMapSize;
             tdata.alphamapResolution = alphamapSize;
             tdata.SetHeights(0, 0, terrainHeights);
@@ -470,10 +461,31 @@ namespace Assets.Scripts.Crawler.Maps.Services
             float maxHeight = 100;
             tdata.size = new Vector3(heightMapSize-1, maxHeight, heightMapSize-1);
 
-            tdata.terrainLayers = layers;
             tdata.SetAlphamaps(0, 0, textureAlphas2);
             terr.Flush();
         }
+
+        public void UpdateTerrainLayersFromTextures(CrawlerMapRoot mapRoot)
+        {
+            if (mapRoot.GroundTerrain == null || mapRoot.GroundTerrainData == null)
+            {
+                return;
+            }
+            int heightCellsPerWorldBlock = mapRoot.XZBlockSize;
+            TerrainLayer[] layers = new TerrainLayer[mapRoot.TerrainTextureIndexes.Count];
+
+            for (int l = 0; l < mapRoot.TerrainTextureIndexes.Count; l++)
+            {
+
+                TerrainLayer layer = _mapTerrainManager.CreateTerrainLayer(mapRoot.TerrainTextureIndexes[l].Diffuse, mapRoot.TerrainTextureIndexes[l].Normal);
+
+                layer.tileSize = new Vector2(heightCellsPerWorldBlock, heightCellsPerWorldBlock);
+                layers[l] = layer;
+            }
+            mapRoot.GroundTerrainData.terrainLayers = layers;
+            mapRoot.GroundTerrain.Flush();
+        }
+
 
         private void OnDownloadTexture(GameObject go, CrawlerTerrainIndexData index, CancellationToken token)
         {

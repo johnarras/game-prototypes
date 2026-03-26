@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat17default",
-  "ParentId": "default",
-  "IdKey": 17,
-  "Name": "Mana Cost",
-  "Icon": "ManaCost",
-  "Art": "ManaCost"
-}

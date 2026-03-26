@@ -2,7 +2,7 @@
   "Id": "screenname51default",
   "ParentId": "default",
   "IdKey": 51,
-  "Name": "TradeGoods",
+  "Name": "MinigameHUD",
   "ScreenLayerId": 20,
-  "Subdirectory": "TraderCaravan"
+  "Subdirectory": "MinigameHUD"
 }

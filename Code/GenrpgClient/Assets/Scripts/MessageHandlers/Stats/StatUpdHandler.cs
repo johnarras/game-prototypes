@@ -3,12 +3,13 @@ using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Stats
 {
     public class StatUpdHandler : BaseClientMapMessageHandler<StatUpd>
     {
-        protected override void InnerProcess(StatUpd msg, CancellationToken token)
+        protected override async Awaitable InnerProcess(StatUpd msg, CancellationToken token)
         {
             if (!_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {

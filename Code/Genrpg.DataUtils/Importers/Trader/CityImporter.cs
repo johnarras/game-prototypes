@@ -1,12 +1,13 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Trader.Animals.Settings;
+using Genrpg.Shared.Trader.CaravanMembers.Settings;
 using Genrpg.Shared.Trader.Biomes.Settings;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Cultures.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
 using Genrpg.Shared.Utils;
 using System.Text;
+using Genrpg.Shared.Trader.CaravanMembers.Helpers;
 
 namespace Genrpg.DataUtils.Importers.Trader
 {
@@ -47,7 +48,7 @@ namespace Genrpg.DataUtils.Importers.Trader
 
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
-            IReadOnlyList<AnimalType> animals = gs.data.Get<AnimalTypeSettings>(null).GetData();
+            IReadOnlyList<CaravanMember> members = gs.data.Get<CaravanMemberSettings>(null).GetData();
             IReadOnlyList<TradeGood> tradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
 
             BiomeTypeSettings biomeSettings = gs.data.Get<BiomeTypeSettings>(null);
@@ -58,9 +59,9 @@ namespace Genrpg.DataUtils.Importers.Trader
 
 
             List<string> badTradeGoods = new List<string>();
-            List<string> badAnimals = new List<string>();
+            List<string> badMembers = new List<string>();
             List<string> allTradeGoods = new List<string>();
-            string childTypeName = typeof(City).Name.ToLower();
+            string childTypeName = StrUtils.NormalizeTypeName<City>();
             City currentChild = null;
             for (int row = 0; row < lines.Count; row++)
             {
@@ -122,18 +123,18 @@ namespace Genrpg.DataUtils.Importers.Trader
                     {
                         foreach (string animalName in animalNameLists[i])
                         {
-                            AnimalType animal = animals.FirstOrDefault(x => StrUtils.NormalizeWord(animalName) == StrUtils.NormalizeWord(x.Name));
+                            CaravanMember member = members.FirstOrDefault(x => StrUtils.NormalizeWord(animalName) == StrUtils.NormalizeWord(x.Name));
 
-                            if (animal == null)
+                            if (member == null)
                             {
-                                if (!badAnimals.Contains(animalName))
+                                if (!badMembers.Contains(animalName))
                                 {
-                                    badAnimals.Add(animalName);
+                                    badMembers.Add(animalName);
                                 }
                                 continue;
                             }
 
-                            currentChild.Animals.Add(new CityAnimal() { AnimalTypeId = animal.IdKey, PriceScale = (i == 0 ? 1 : 10) });
+                            currentChild.CaravanMembersForSale.Add(new CityCaravanMember() { CaravanMemberId = member.IdKey });
                         }
                     }
                 }
@@ -160,10 +161,10 @@ namespace Genrpg.DataUtils.Importers.Trader
                 }
                 finalErrors.Append("\n");
             }
-            if (badAnimals.Count > 0)
+            if (badMembers.Count > 0)
             {
                 finalErrors.Append("BadAnimals: ");
-                foreach (string error in badAnimals)
+                foreach (string error in badMembers)
                 {
                     finalErrors.Append(error + ";");
                 }

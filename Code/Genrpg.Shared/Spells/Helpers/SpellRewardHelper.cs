@@ -1,12 +1,7 @@
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Rewards.Interfaces;
 using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Spells.Helpers
@@ -16,14 +11,17 @@ namespace Genrpg.Shared.Spells.Helpers
     {
         public long HelperKey => EntityTypes.Spell;
 
-        public bool GiveReward(IRandom rand, MapObject obj, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
-            return true;
+            await Task.CompletedTask;
+            return 0;
         }
 
-        public long GetQuantity(MapObject obj, long entityId)
+
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
         {
-            return 0;
+            await Task.CompletedTask;
+            return true;
         }
     }
 }

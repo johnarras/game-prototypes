@@ -26,8 +26,6 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
                 rew.EntityId = newItem.ItemTypeId;
                 rew.EntityTypeId = EntityTypes.Item;
                 rew.Quantity = 1;
-                rew.QualityTypeId = rollLootArgs.QualityTypeId;
-                rew.Level = rollLootArgs.Level;
                 rewardList.Rewards.Add(rew);
             }
             return retval;

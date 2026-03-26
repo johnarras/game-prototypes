@@ -1,7 +1,7 @@
 
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Constants;
 using System;

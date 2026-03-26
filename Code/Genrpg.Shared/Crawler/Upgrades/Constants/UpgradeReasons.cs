@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Crawler.Upgrades.Constants
 {
     public class UpgradeReasons

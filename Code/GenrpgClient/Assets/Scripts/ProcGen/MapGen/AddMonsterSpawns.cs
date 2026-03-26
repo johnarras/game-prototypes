@@ -46,8 +46,8 @@ public class AddMonsterSpawns : BaseZoneGenerator
         {
             for (int y = starty; y <= endy; y += MapConstants.MonsterSpawnSkipSize)
             {
-                int cx = x + MathUtil.IntRange(-offsetSize, offsetSize, rand);
-                int cy = y + MathUtil.IntRange(-offsetSize, offsetSize, rand);
+                int cx = x + RandUtils.IntRange(-offsetSize, offsetSize, rand);
+                int cy = y + RandUtils.IntRange(-offsetSize, offsetSize, rand);
 
                 if (cx < 0 || cy < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy >= _mapProvider.GetMap().GetHhgt())
                 {

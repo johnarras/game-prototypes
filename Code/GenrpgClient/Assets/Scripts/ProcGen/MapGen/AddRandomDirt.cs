@@ -56,19 +56,19 @@ public class AddRandomDirt : BaseZoneGenerator
                 MyRandom rand = new MyRandom(zone.Seed % 23463321 + r * 10293 + r * r * 32123 + outertimes*3);
                 bool usePerlin = rand.NextDouble() < 0.5f;
 
-                float freq = MathUtil.FloatRange(size * 0.03f, size * 0.2f, rand)*1.35f;
-                float amp = MathUtil.FloatRange(0.4f, 1.0f, rand)*1.1f;
+                float freq = RandUtils.FloatRange(size * 0.03f, size * 0.2f, rand)*1.35f;
+                float amp = RandUtils.FloatRange(0.4f, 1.0f, rand)*1.1f;
 
 
-                float pers = MathUtil.FloatRange(0.2f, 0.5f, rand);
+                float pers = RandUtils.FloatRange(0.2f, 0.5f, rand);
                 int octaves = 2;
 
                 float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), size, size);
                 perlinOutputs.Add(noise);
 
-                float maxFreq = MathUtil.FloatRange(size * 0.03f, size * 0.08f, rand);
-                float maxAmp = MathUtil.FloatRange(0.1f, 0.3f, rand);
-                float maxPers = MathUtil.FloatRange(0.2f, 0.4f, rand);
+                float maxFreq = RandUtils.FloatRange(size * 0.03f, size * 0.08f, rand);
+                float maxAmp = RandUtils.FloatRange(0.1f, 0.3f, rand);
+                float maxPers = RandUtils.FloatRange(0.2f, 0.4f, rand);
                 int maxOctaves = 2;
 
                 float[,] maxNoise = _noiseService.Generate(maxPers, maxFreq, maxAmp, maxOctaves, rand.Next(), size, size);

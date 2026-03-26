@@ -2,13 +2,10 @@ using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Constants;
 using Genrpg.Shared.DataStores.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Transactions;
 using MessagePack;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Units.Mappers
 {

@@ -36,7 +36,7 @@ public class ClutterObjectLoader : BaseObjectLoader
         dlo.loadData = loadData;
         dlo.x = x;
         dlo.y = y;
-        dlo.zOffset = MathUtil.FloatRange(0, 1, _rand);
+        dlo.zOffset = RandUtils.FloatRange(0, 1, _rand);
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
@@ -55,7 +55,7 @@ public class ClutterObjectLoader : BaseObjectLoader
 
             dlo.x = x + ((indexHash / 7) % 3 - 1);
             dlo.y = y + ((indexHash / 131) % 3 - 1);
-            dlo.zOffset = MathUtil.FloatRange(0, 1, _rand);
+            dlo.zOffset = RandUtils.FloatRange(0, 1, _rand);
             dlo.zone = currZone;
             dlo.zoneType = currZoneType;
             dlo.assetCategory = AssetCategoryNames.Props;

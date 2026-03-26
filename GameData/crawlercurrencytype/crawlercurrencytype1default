@@ -1,9 +1,0 @@
-{
-  "Id": "crawlercurrencytype1default",
-  "ParentId": "default",
-  "IdKey": 1,
-  "Name": "Gold",
-  "Desc": "Used for basic purchases.",
-  "Icon": "GoldIcon",
-  "Art": "GoldArt"
-}

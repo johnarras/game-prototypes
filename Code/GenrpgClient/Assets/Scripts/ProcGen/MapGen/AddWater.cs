@@ -69,8 +69,8 @@ public class AddWater : BaseZoneGenerator
                 break;
             }
 
-            int cx = MathUtil.IntRange(minx, maxx, rand);
-            int cz = MathUtil.IntRange(minz, maxz, rand);
+            int cx = RandUtils.IntRange(minx, maxx, rand);
+            int cz = RandUtils.IntRange(minz, maxz, rand);
 
 
             int rad = 100;
@@ -187,30 +187,30 @@ public class AddWater : BaseZoneGenerator
 
         int size = maxRadius * 2 + 1;
 
-        float heightAmp = MathUtil.FloatRange(0.4f, 0.7f, rand);
-        float heightFreq = MathUtil.FloatRange(0.02f, 0.04f, rand) * size;
-        float heightPers = MathUtil.FloatRange(0.2f, 0.5f, rand);
+        float heightAmp = RandUtils.FloatRange(0.4f, 0.7f, rand);
+        float heightFreq = RandUtils.FloatRange(0.02f, 0.04f, rand) * size;
+        float heightPers = RandUtils.FloatRange(0.2f, 0.5f, rand);
         int heightOctaves = 2;
         float[,] heightNoise = _noiseService.Generate(heightPers, heightFreq, heightAmp, heightOctaves, rand.Next(), size, size);
 
-        int maxRadiusX = MathUtil.IntRange(maxRadius * 2 / 3, maxRadius, rand);
-        int maxRadiusY = MathUtil.IntRange(maxRadius * 2 / 3, maxRadius, rand);
+        int maxRadiusX = RandUtils.IntRange(maxRadius * 2 / 3, maxRadius, rand);
+        int maxRadiusY = RandUtils.IntRange(maxRadius * 2 / 3, maxRadius, rand);
         int minRadius = Math.Min(maxRadiusX, maxRadiusY);
-        float bottomDepth = MathUtil.FloatRange(minRadius / 4, minRadius / 2, rand);
+        float bottomDepth = RandUtils.FloatRange(minRadius / 4, minRadius / 2, rand);
 
 
-        float radAmp = MathUtil.FloatRange(0.5f, 0.9f, rand);
-        float radFreq = MathUtil.FloatRange(5.0f, 14.0f, rand);
-        float radPers = MathUtil.FloatRange(0.2f, 0.8f, rand);
+        float radAmp = RandUtils.FloatRange(0.5f, 0.9f, rand);
+        float radFreq = RandUtils.FloatRange(5.0f, 14.0f, rand);
+        float radPers = RandUtils.FloatRange(0.2f, 0.8f, rand);
         int radOctaves = 2;
 
         float[,] radNoise = _noiseService.Generate(radPers, radFreq, radAmp, radOctaves, rand.Next(), 360, 360);
 
 
-        float midPower = MathUtil.FloatRange(0.2f, 0.4f, rand);
-        float powerAmp = MathUtil.FloatRange(0.05f, 0.15f, rand);
-        float powerFreq = MathUtil.FloatRange(5.0f, 12.0f, rand);
-        float powerPers = MathUtil.FloatRange(0.2f, 0.3f, rand);
+        float midPower = RandUtils.FloatRange(0.2f, 0.4f, rand);
+        float powerAmp = RandUtils.FloatRange(0.05f, 0.15f, rand);
+        float powerFreq = RandUtils.FloatRange(5.0f, 12.0f, rand);
+        float powerPers = RandUtils.FloatRange(0.2f, 0.3f, rand);
         int powerOctaves = 2;
         float[,] powerNoise = _noiseService.Generate(powerPers, powerFreq, powerAmp, powerOctaves, rand.Next(), 360, 360);
 

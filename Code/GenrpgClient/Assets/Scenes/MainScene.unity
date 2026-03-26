@@ -378,7 +378,7 @@ PrefabInstance:
     - target: {fileID: 3029877380482160996, guid: a47566d87e2e8f641be7678647c65008,
         type: 3}
       propertyPath: RunSteamInEditor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3029877380482160996, guid: a47566d87e2e8f641be7678647c65008,
         type: 3}

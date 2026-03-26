@@ -4,12 +4,13 @@ using Genrpg.Shared.Targets.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Targets
 {
     public class OnTargetIsDeadHandler : BaseClientMapMessageHandler<OnTargetIsDead>
     {
-        protected override void InnerProcess(OnTargetIsDead msg, CancellationToken token)
+        protected override async Awaitable InnerProcess(OnTargetIsDead msg, CancellationToken token)
         {
             if (_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {

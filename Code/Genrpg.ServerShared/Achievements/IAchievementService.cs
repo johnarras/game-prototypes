@@ -1,4 +1,3 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;
 

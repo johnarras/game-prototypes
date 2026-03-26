@@ -1,6 +1,6 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.MapGen.Entities;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -85,14 +85,14 @@ namespace Assets.Scripts.Crawler.Maps
             genData.MapType = mtype;
             if (genData.GenType == null)
             {
-                genData.GenType = RandomUtils.GetRandomElement(mtype.GenTypes, rand);
+                genData.GenType = RandUtils.GetRandomElement(mtype.GenTypes, rand);
             }
 
             if (genData.ZoneType == null)
             {
                 if (genData.GenType != null && genData.GenType.WeightedZones.Count > 0)
                 {
-                    long zoneTypeId = RandomUtils.GetRandomElement(genData.GenType.WeightedZones, rand).ZoneTypeId;
+                    long zoneTypeId = RandUtils.GetRandomElement(genData.GenType.WeightedZones, rand).ZoneTypeId;
 
                     genData.ZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zoneTypeId);
 
@@ -110,7 +110,7 @@ namespace Assets.Scripts.Crawler.Maps
 
                         while (keywordCount > 0 && zoneKeywords.Count > 0)
                         {
-                            ZoneUnitKeyword zk = RandomUtils.GetRandomElement(zoneKeywords, rand);
+                            ZoneUnitKeyword zk = RandUtils.GetRandomElement(zoneKeywords, rand);
                             UnitKeyword uk = _gameData.Get<UnitKeywordSettings>(_gs.ch).Get(zk.UnitKeywordId);
 
                             if (uk != null)
@@ -131,7 +131,7 @@ namespace Assets.Scripts.Crawler.Maps
 
             if (genData.BuildingArtId == 0)
             {
-                genData.BuildingArtId = RandomUtils.GetRandomElement(_gameData.Get<BuildingArtSettings>(_gs.ch).GetData(), rand).IdKey;
+                genData.BuildingArtId = RandUtils.GetRandomElement(_gameData.Get<BuildingArtSettings>(_gs.ch).GetData(), rand).IdKey;
             }
 
             if (genData.ArtSeed == 0)

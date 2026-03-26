@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Units.Entities;
@@ -28,7 +28,7 @@ namespace Genrpg.Shared.Units.Settings
 
         public int MinRange { get; set; }
 
-        public List<UnitEffect> Effects { get; set; } = new List<UnitEffect>();
+        public List<Effect> Effects { get; set; } = new List<Effect>();
 
         public long MinLevel { get; set; }
 

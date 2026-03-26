@@ -1,12 +1,11 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using Assets.Scripts.Awaitables;
+using Assets.Scripts.Trader.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.WebApi;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Stats.PlayerData;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
@@ -17,6 +16,8 @@ namespace Assets.Scripts.Trader.Travel.UI
         private ISharedPlayMultService _playMultService = null;
         private IClientWebService _webService = null;
         private ICaravanService _caravanService = null;
+        private IAwaitableService _awaitableService = null;
+
         public GImage PlayMultBG;
         public GText PlayMultText;
 
@@ -65,7 +66,7 @@ namespace Assets.Scripts.Trader.Travel.UI
                 _queuedPlayMult = -1;
             }
             _playMultRequestsSent++;
-            _webService.SendClientUserWebRequest(new SetPlayMultRequest() { PlayMult = coreData.Vars[TraderVars.Mult] }, GetToken());
+            _webService.SendWebRequest(new SetPlayMultRequest() { PlayMult = coreData.Vars[TraderVars.Mult] }, GetToken());
         }
 
         private void OnSetPlayMultResponse(SetPlayMultResponse response)
@@ -77,13 +78,14 @@ namespace Assets.Scripts.Trader.Travel.UI
                 if (_queuedPlayMult > 0)
                 {
                     _playMultRequestsSent++;
-                    _webService.SendClientUserWebRequest(new SetPlayMultRequest() { PlayMult = _queuedPlayMult }, GetToken());
+                    _webService.SendWebRequest(new SetPlayMultRequest() { PlayMult = _queuedPlayMult }, GetToken());
                     _queuedPlayMult = 0;
                     return;
                 }
 
                 CoreData coreData = _gs.ch.Get<CoreData>();
                 coreData.Vars[TraderVars.Mult] = response.NewPlayMult;
+                coreData.Vars[TraderVars.MultBonusSpeed] = response.MultBonusSpeed;
                 ShowData();
             }
         }
@@ -98,9 +100,23 @@ namespace Assets.Scripts.Trader.Travel.UI
             PlayMultBG?.SetColor(coreData.Vars[TraderVars.Mult] < maxMult ? LowerTierColor : MaxTierColor);
 
 
-            _caravanService.UpdateTravelStatsFromCaravan(coreData, _gs.ch.Get<CaravanData>(), _gs.ch.Get<TraderStatData>());
+            _awaitableService.ForgetAwaitable(ShowDataAsync());
 
-            _dispatcher.Dispatch(new UpdateTraderHUD());
+        }
+
+        private async Awaitable ShowDataAsync()
+        {
+
+            try
+            {
+                await _caravanService.CalcCoreTravelStats(_gs.ch);
+
+                _dispatcher.Dispatch(new UpdateTraderHUD());
+            }
+            catch (Exception e)
+            {
+                _logService.Exception(e, "PlayMultButtonShowData");
+            }
         }
     }
 }

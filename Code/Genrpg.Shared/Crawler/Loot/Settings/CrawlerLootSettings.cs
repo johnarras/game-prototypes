@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
@@ -47,8 +46,6 @@ namespace Genrpg.Shared.Crawler.Loot.Settings
         public double MaxLevelGoldMultDefault { get; set; }
         public double ItemChanceDefault { get; set; }
         public double ExtraLootScalePerMonsterBonus { get; set; }
-        public bool AllowAllArmorTypes { get; set; }
-        public bool AllowAllWeaponTypes { get; set; }
 
         /// <summary>
         /// Chance to get an item effect per extra spell chance.

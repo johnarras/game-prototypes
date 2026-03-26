@@ -9,28 +9,28 @@
   "Effects": [
     {
       "EntityTypeId": 25,
-      "Quantity": 1,
-      "EntityId": 1
+      "EntityId": 1,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 16
+      "EntityId": 16,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 9
+      "EntityId": 9,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 7
+      "EntityId": 7,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 2
+      "EntityId": 2,
+      "Quantity": 1
     }
   ]
 }

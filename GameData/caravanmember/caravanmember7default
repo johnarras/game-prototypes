@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Heavy Warhorse",
+  "Desc": "A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge.",
+  "Icon": "HeavyWarhorse",
+  "Art": "HeavyWarhorse",
+  "Speed": 5,
+  "Size": 2,
+  "Price": 78250,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -4
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 2
+    }
+  ]
+}

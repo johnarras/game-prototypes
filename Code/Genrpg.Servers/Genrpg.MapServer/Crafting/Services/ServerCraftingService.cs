@@ -7,6 +7,7 @@ using Genrpg.Shared.Crafting.PlayerData.Crafting;
 using Genrpg.Shared.Crafting.PlayerData.Recipes;
 using Genrpg.Shared.Crafting.Services;
 using Genrpg.Shared.Crafting.Settings.Crafters;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -60,6 +61,8 @@ namespace Genrpg.MapServer.Crafting.Services
                 return result;
             }
 
+            result.Message = "This crafting is currently disabled, sorry.";
+            return result;
 
             ValidityResult validResult = _sharedCraftingService.HasValidReagents(rand, ch, data, ch);
 
@@ -126,13 +129,6 @@ namespace Genrpg.MapServer.Crafting.Services
                 return result;
             }
 
-            // Now remove all reagents. Quantities were checked in the validity check above.
-            List<FullReagent> allReagents = data.GetAllReagents();
-            foreach (FullReagent reagent in allReagents)
-            {
-                _inventoryService.RemoveItemQuantity(ch, reagent.ItemId, reagent.Quantity);
-            }
-
             // Create the new item using the level and quality determined above. Name is generated.
 
 
@@ -140,21 +136,17 @@ namespace Genrpg.MapServer.Crafting.Services
             {
                 Id = HashUtils.NewGuid(),
                 Level = stats.Level,
-                QualityTypeId = stats.QualityTypeId,
                 ItemTypeId = stats.EntityId,
-                ScalingTypeId = stats.ScalingTypeId,
-                Quantity = 1,
-                Name = _itemGenService.GenerateItemName(rand, stats.EntityId, stats.Level, stats.QualityTypeId, allReagents).SingularName,
+                Name = _itemGenService.GenerateItemName(rand, stats.EntityId, stats.Level, stats.QualityTypeId, new List<FullReagent>()).SingularName,
             };
 
-
             // Now add the stats that were determined above.
-            item.Effects = new List<ItemEffect>();
+            item.Effects = new List<Effect>();
             if (stats.Stats != null)
             {
                 foreach (CraftingStat stat in stats.Stats)
                 {
-                    ItemEffect ieff = new ItemEffect() { EntityTypeId = EntityTypes.Stat, EntityId = stat.Id, Quantity = stat.Val };
+                    Effect ieff = new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = stat.Id, Quantity = stat.Val };
                     item.Effects.Add(ieff);
                 }
             }

@@ -9,33 +9,33 @@
   "Effects": [
     {
       "EntityTypeId": 24,
-      "Quantity": 1,
-      "EntityId": 2
+      "EntityId": 2,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 25,
-      "Quantity": 1,
-      "EntityId": 3
+      "EntityId": 3,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 1
+      "EntityId": 1,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 4
+      "EntityId": 4,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 220
+      "EntityId": 220,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 221
+      "EntityId": 221,
+      "Quantity": 1
     }
   ]
 }

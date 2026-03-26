@@ -1,5 +1,5 @@
 using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 

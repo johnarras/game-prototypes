@@ -1,10 +1,9 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.PlayerSearch;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.UI.Screens;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.GameEvents;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
 using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.UI.Constants;

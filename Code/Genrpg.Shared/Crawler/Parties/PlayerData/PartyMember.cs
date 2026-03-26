@@ -3,7 +3,6 @@ using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Utils.Data;
-using MessagePack;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,6 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
         public long StatTypeId { get; set; }
         public float Fraction { get; set; }
     }
-
     public class PartyMember : CrawlerUnit
     {
         public int PartySlot { get; set; }
@@ -60,14 +58,14 @@ namespace Genrpg.Shared.Crawler.Parties.PlayerData
                 {
                     if (Int64.TryParse(words[_permStats.Length], out long health))
                     {
-                        Stats.Set(StatTypes.Health, StatCategories.Curr, health);
+                        Stats.Set(StatTypes.Health, UnitStatValOffsets.Curr, health);
                     }
                 }
                 if (words.Length > _permStats.Length + 1)
                 {
                     if (Int64.TryParse(words[_permStats.Length + 1], out long health))
                     {
-                        Stats.Set(StatTypes.Mana, StatCategories.Curr, health);
+                        Stats.Set(StatTypes.Mana, UnitStatValOffsets.Curr, health);
                     }
                 }
             }

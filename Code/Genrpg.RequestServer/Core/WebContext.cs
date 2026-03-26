@@ -2,7 +2,6 @@ using CommunityToolkit.HighPerformance.Buffers;
 using Genrpg.RequestServer.Core.Services;
 using Genrpg.ServerShared.Config;
 using Genrpg.ServerShared.Core;
-using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Users;
 using Genrpg.Shared.DataStores.Entities;
@@ -17,16 +16,14 @@ using MongoDB.Driver;
 namespace Genrpg.RequestServer.Core
 {
 
-    public class WebContext : ServerGameState, IDisposable
+    public class WebContext : ServerGameState, IDisposable, IUnitDataLookup
     {
-
 
         public string GameUserId => _gameUserId;
         private string _gameUserId { get; set; }
 
-        public CoreData core { get; set; }
 
-        public MyRandom rand { get; set; } = new MyRandom();
+        public IRandom rand { get; set; } = new MyRandom();
 
         protected WebResponseList Responses { get; set; } = new WebResponseList();
 
@@ -35,7 +32,6 @@ namespace Genrpg.RequestServer.Core
         protected IBinarySerializer _binarySerializer = null;
 
         protected IPartitionedDataSaveService _partitionedSaveService = null;
-
 
         public WebContext(IServerConfig config) : base(config)
         {

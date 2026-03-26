@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelfButton: {fileID: 0}
   Background: {fileID: 7462141813575589130}
-  Frame: {fileID: 3127390445142647324}
+  Frame: {fileID: 0}
   Icon: {fileID: 8750678189205042141}
   QuantityText: {fileID: 716760143374803498}
   ItemName: {fileID: 2877984597960077743}
@@ -765,22 +765,42 @@ PrefabInstance:
     - target: {fileID: 224586527676685280, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224586527676685280, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 96
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224586527676685280, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224586527676685280, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224920924469213976, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224920924469213976, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 90
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224920924469213976, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224920924469213976, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4424096078458704614, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
         type: 3}
@@ -895,18 +915,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5ec29f826410a84792259cf40e7d3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3127390445142647324 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5335487859456762502, guid: 9f4b7ebc1a55c5a4b83d19714e30f401,
-    type: 3}
-  m_PrefabInstance: {fileID: 7020492771659727002}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac6b8df9b4e23cb4d8fa628fbf5ee242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7093402623276806414 stripped

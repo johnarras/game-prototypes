@@ -15,7 +15,6 @@ namespace Genrpg.RequestServer.Trader.Travel.RequestHandlers
 
             TravelArgs args = new TravelArgs()
             {
-                IsFree = false,
             };
 
 

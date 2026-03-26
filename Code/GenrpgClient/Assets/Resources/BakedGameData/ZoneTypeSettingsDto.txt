@@ -8153,7 +8153,6 @@
       "UnitKeyWords": [],
       "PlantChoices": "",
       "WeatherTypeId": 10,
-      "BuildingTypeId": 21,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0
@@ -8526,7 +8525,6 @@
       ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
-      "BuildingTypeId": 19,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -8936,7 +8934,6 @@
       ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
-      "BuildingTypeId": 18,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -9280,7 +9277,6 @@
       ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
-      "BuildingTypeId": 20,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -9976,7 +9972,6 @@
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 9,
-      "BuildingTypeId": 23,
       "CreviceCountScale": 4.0,
       "CreviceDepthScale": 0.5,
       "CreviceWidthScale": 2.0,
@@ -10189,7 +10184,6 @@
       ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
-      "BuildingTypeId": 25,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -10415,7 +10409,6 @@
       ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
-      "BuildingTypeId": 24,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -10801,7 +10794,6 @@
       "UnitKeyWords": [],
       "PlantChoices": "",
       "WeatherTypeId": 9,
-      "BuildingTypeId": 22,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0,
@@ -10921,7 +10913,6 @@
       "UnitKeyWords": [],
       "PlantChoices": "",
       "WeatherTypeId": 9,
-      "BuildingTypeId": 21,
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
       "TraveralTimeScale": 1.0
@@ -11039,48 +11030,8 @@
       "Overrides": [],
       "ZoneUnitSpawns": [
         {
-          "UnitTypeId": 22,
-          "Weight": 100.0
-        },
-        {
           "UnitTypeId": 23,
           "Weight": 10.0
-        },
-        {
-          "UnitTypeId": 31,
-          "Weight": 100.0
-        },
-        {
-          "UnitTypeId": 32,
-          "Weight": 100.0
-        },
-        {
-          "UnitTypeId": 33,
-          "Weight": 100.0
-        },
-        {
-          "UnitTypeId": 34,
-          "Weight": 100.0
-        },
-        {
-          "UnitTypeId": 35,
-          "Weight": 100.0
-        },
-        {
-          "UnitTypeId": 36,
-          "Weight": 10.0
-        },
-        {
-          "UnitTypeId": 37,
-          "Weight": 10.0
-        },
-        {
-          "UnitTypeId": 38,
-          "Weight": 10.0
-        },
-        {
-          "UnitTypeId": 42,
-          "Weight": 100.0
         },
         {
           "UnitTypeId": 43,
@@ -11103,10 +11054,6 @@
           "Weight": 10.0
         },
         {
-          "UnitTypeId": 50,
-          "Weight": 100.0
-        },
-        {
           "UnitTypeId": 51,
           "Weight": 10.0
         },
@@ -11123,28 +11070,11 @@
           "Weight": 10.0
         },
         {
-          "UnitTypeId": 70,
-          "Weight": 10.0
-        },
-        {
-          "UnitTypeId": 71,
-          "Weight": 10.0
-        },
-        {
           "UnitTypeId": 77,
           "Weight": 10.0
         }
       ],
-      "UnitKeyWords": [
-        {
-          "UnitKeywordId": 8,
-          "Weight": 100.0
-        },
-        {
-          "UnitKeywordId": 10,
-          "Weight": 100.0
-        }
-      ],
+      "UnitKeyWords": [],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "MusicTypeId": 1,
@@ -11157,5 +11087,5 @@
     "Id": "default",
     "Name": "ZoneTypeSettings"
   },
-  "SaveTime": "2026-02-25T22:09:30.092Z"
+  "SaveTime": "2026-03-23T20:27:09.495Z"
 }

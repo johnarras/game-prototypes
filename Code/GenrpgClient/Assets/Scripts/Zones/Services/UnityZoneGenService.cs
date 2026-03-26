@@ -7,8 +7,8 @@ using Assets.Scripts.Minimap.Services;
 using ClientEvents;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Characters.Utils;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Core;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
 using Genrpg.Shared.ProcGen.Constants;
@@ -741,7 +741,7 @@ public class UnityZoneGenService : ZoneGenService
 
         string postData = _serializer.SerializeToString(loadData);
 
-        _webNetworkService.SendClientUserWebRequest(loadData, _gameToken);
+        _webNetworkService.SendWebRequest(loadData, _gameToken);
     }
 
     public override async Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token)

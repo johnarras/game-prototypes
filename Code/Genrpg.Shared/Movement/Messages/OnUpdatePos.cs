@@ -1,9 +1,6 @@
 using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Utils;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Movement.Messages
 {
@@ -37,7 +34,7 @@ namespace Genrpg.Shared.Movement.Messages
         public void SetZ(float z) { Dat[Z] = z; }
         public float GetZ() { return Dat[Z]; }
 
-        public void SetRot(float rot) { Dat[Rot] = MathUtil.Clamp(0,rot,360); }
+        public void SetRot(float rot) { Dat[Rot] = MathUtil.Clamp(0, rot, 360); }
         public float GetRot() { return Dat[Rot]; }
 
         public void SetSpeed(float speed) { Dat[Speed] = speed; }

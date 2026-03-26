@@ -65,18 +65,6 @@ namespace Genrpg.Shared.Utils
             return mid;
         }
 
-
-        public static float FloatRange(double minVal, double maxVal, IRandom rand)
-        {
-            if (rand == null)
-            {
-                return (float)(minVal + maxVal / 2);
-            }
-
-            return (float)(minVal + rand.NextDouble() * (maxVal - minVal));
-        }
-
-
         public static int ModClamp(int val, int mod)
         {
             int r = val % mod;
@@ -91,64 +79,23 @@ namespace Genrpg.Shared.Utils
         }
 
         /// <summary>
-        /// Pick a random range that generally goes from midVal-scaleDelta to midVal+scaleDelta, but
-        /// give a certain number of chances (scaleTimes) to roll a number less than (scaleChance) to 
-        /// increase the size of the random range by scaleDelta again.
+        /// This creates something similar to an sshaped curve on the unit interval between height 0 and 1 using piecewise quadratics.
         /// </summary>
-        /// <param name="midval"></param>
-        /// <param name="rand"></param>
-        /// <param name="scaleTimes"></param>
-        /// <param name="scaleChance"></param>
-        /// <param name="scaleDelta"></param>
+        /// <param name="gs"></param>
+        /// <param name="xInUnityInterval"></param>
         /// <returns></returns>
-        public static float ScaledRange(float midval, IRandom rand, int scaleTimes, double scaleChance)
+        public static float QuadraticSShaped(float xInUnityInterval)
         {
-            if (rand == null)
-            {
-                return midval;
-            }
+            xInUnityInterval = Clamp(0, xInUnityInterval, 1);
 
-            int totalScaleTimes = 0;
-            for (int i = 0; i < scaleTimes; i++)
+            if (xInUnityInterval <= 0.5f)
             {
-                if (rand.NextDouble() < scaleChance)
-                {
-                    totalScaleTimes++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            if (rand.NextDouble() < 0.5f)
-            {
-                return FloatRange(0.5f / (1 + totalScaleTimes), 1.0f, rand) * midval;
+                return 2 * xInUnityInterval * xInUnityInterval;
             }
             else
             {
-                return FloatRange(1.0f, totalScaleTimes + 2, rand) * midval;
+                return 1 - 2 * (1 - xInUnityInterval) * (1 - xInUnityInterval);
             }
-        }
-
-
-        public static int IntRange(int minVal, int maxVal, IRandom rand)
-        {
-            if (rand == null || minVal >= maxVal)
-            {
-                return (minVal + maxVal) / 2;
-            }
-
-            return minVal + rand.Next() % (maxVal - minVal + 1);
-        }
-        public static long LongRange(long minVal, long maxVal, IRandom rand)
-        {
-            if (rand == null || minVal >= maxVal)
-            {
-                return (minVal + maxVal) / 2;
-            }
-
-            return minVal + rand.NextLong() % (maxVal - minVal + 1);
         }
 
         public static float Sqrt(float val)
@@ -275,36 +222,6 @@ namespace Genrpg.Shared.Utils
             return LPNorm(1, vals);
         }
 
-        public static float SeedFloatRange(long seed, int mult, float minval, float maxval, int steps = 101)
-        {
-            if (steps < 1 || minval >= maxval)
-            {
-                return minval;
-            }
-
-            return minval + (maxval - minval) * (seed * mult % steps) / (1.0f * steps);
-        }
-
-        /// <summary>
-        /// This creates something similar to an sshaped curve on the unit interval between height 0 and 1 using piecewise quadratics.
-        /// </summary>
-        /// <param name="gs"></param>
-        /// <param name="xInUnityInterval"></param>
-        /// <returns></returns>
-        public static float QuadraticSShaped(float xInUnityInterval)
-        {
-            xInUnityInterval = Clamp(0, xInUnityInterval, 1);
-
-            if (xInUnityInterval <= 0.5f)
-            {
-                return 2 * xInUnityInterval * xInUnityInterval;
-            }
-            else
-            {
-                return 1 - 2 * (1 - xInUnityInterval) * (1 - xInUnityInterval);
-            }
-        }
-
 
         public static long RoundToNiceValue(long value)
         {
@@ -345,6 +262,27 @@ namespace Genrpg.Shared.Utils
             return (3 - 2 * x) * x * x;
         }
 
+        public static int LerpInModRange(int currVal, int nextVal, int modSize, float lerpValue)
+        {
+
+            if (currVal > nextVal)
+            {
+                nextVal += modSize;
+            }
+
+            float val = currVal * lerpValue + (1 - lerpValue) * nextVal;
+
+            while (val < 0)
+            {
+                val += modSize;
+            }
+            while (val > modSize)
+            {
+                val -= modSize;
+            }
+
+            return (int)val;
+        }
     }
 }
 

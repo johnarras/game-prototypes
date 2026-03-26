@@ -83,7 +83,7 @@ namespace RunBuilds
                 BasicAuthToken = authString,
             };
 
-            return await webService.SendRequest<string>(mainURL, method, requestData, security);
+            return await webService.SendRawWebRequest<string>(mainURL, method, requestData, security);
         }
 
         private static async Awaitable CloudBuildWithEnvVars(Dictionary<string, string> envVars)

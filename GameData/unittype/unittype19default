@@ -12,18 +12,18 @@
   "Effects": [
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 210
+      "EntityId": 210,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 220
+      "EntityId": 220,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 100,
-      "Quantity": 1,
-      "EntityId": 230
+      "EntityId": 230,
+      "Quantity": 1
     }
   ],
   "PrefixNames": [],

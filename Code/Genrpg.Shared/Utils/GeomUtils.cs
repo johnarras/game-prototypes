@@ -1,8 +1,7 @@
-using MessagePack;
+using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
 
 namespace Genrpg.Shared.Utils
 {
@@ -103,7 +102,7 @@ namespace Genrpg.Shared.Utils
             MyPoint2 closestPoint = null;
             foreach (MyPoint2 pt in points)
             {
-                double dist = MathUtil.LPNorm(p, pt.X-newPoint.X, pt.Y-newPoint.Y);
+                double dist = MathUtil.LPNorm(p, pt.X - newPoint.X, pt.Y - newPoint.Y);
 
                 if (dist < minDist)
                 {
@@ -126,7 +125,7 @@ namespace Genrpg.Shared.Utils
                 return MaxDistance;
             }
 
-            return MathUtil.LPNorm(p, closestPt.X-newPoint.X, closestPt.Y-newPoint.Y);
+            return MathUtil.LPNorm(p, closestPt.X - newPoint.X, closestPt.Y - newPoint.Y);
 
 
         }

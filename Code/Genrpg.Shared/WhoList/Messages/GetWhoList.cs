@@ -1,8 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.MapMessages;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MessagePack;
 
 namespace Genrpg.Shared.WhoList.Messages
 {

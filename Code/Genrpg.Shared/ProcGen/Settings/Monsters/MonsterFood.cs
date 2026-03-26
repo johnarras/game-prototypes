@@ -1,8 +1,7 @@
-using MessagePack;
 namespace Genrpg.Shared.ProcGen.Settings.Monsters
 {
     /// <summary>
-    /// Set up what this creature likes to eat. It can be plants or animals or both.
+    /// Set up what this creature likes to eat. It can be plants or CaravanMembers or both.
     /// </summary>
 
     public class MonsterFood

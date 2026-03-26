@@ -1,12 +1,8 @@
-using MessagePack;
 using Genrpg.Shared.MapServer.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 public class MessageConstants
 {
-    public const float DefaultGridDistance = SharedMapConstants.TerrainPatchSize*75/100;
+    public const float DefaultGridDistance = SharedMapConstants.TerrainPatchSize * 75 / 100;
 
     public const float DefaultUpdatePosDistance = DefaultGridDistance;
 

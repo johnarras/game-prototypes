@@ -1,14 +1,14 @@
 ﻿
 
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Genrpg.ServerShared.Config;
 using Genrpg.Shared.Config.Constants;
 using Genrpg.Shared.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.ProcGen
 {

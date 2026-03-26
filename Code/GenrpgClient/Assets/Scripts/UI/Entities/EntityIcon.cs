@@ -2,9 +2,9 @@ using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,7 +31,6 @@ namespace Assets.Scripts.Entities.UI
         protected long _targetQuantity;
         protected long _ticksSinceUpdate = 0;
 
-
         public long EntityTypeId => _entityTypeId;
         public long EntityId => _entityId;
         public long Quantity => _currQuantity;
@@ -46,7 +45,7 @@ namespace Assets.Scripts.Entities.UI
             _uiService.SetText(NameText, null);
         }
 
-        public void SetEntityData(IReward reward, long maxQuantity = 0)
+        public void SetEntityData(IEffect reward, long maxQuantity = 0)
         {
             SetEntityData(reward.EntityTypeId, reward.EntityId, reward.Quantity, maxQuantity);
         }
@@ -55,7 +54,6 @@ namespace Assets.Scripts.Entities.UI
 
         public virtual void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
         {
-
             _entityTypeId = entityTypeId;
             _entityId = entityId;
             _maxQuantity = maxQuantity;
@@ -69,7 +67,7 @@ namespace Assets.Scripts.Entities.UI
                 _dispatcher.Dispatch(new SetDooberTarget(EntityTypeId, EntityId, GetDooberHitPosition(), IsMainIcon, this));
             }
 
-            _spriteService.LoadEntityIcon(entityTypeId, entityId, Icon, GetToken());
+            _spriteService.SetEntityIcon(entityTypeId, entityId, Icon, GetToken());
 
             if (maxQuantity < 1)
             {

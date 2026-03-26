@@ -2,251 +2,110 @@
   "Children": [
     {
       "IdKey": 1,
-      "Name": "Clothing Store",
-      "Icon": "ClothingStore",
-      "Art": "ClothingStore",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
+      "Name": "House",
+      "Icon": "House",
+      "Art": "House",
+      "IsCrawlerBuilding": true
     },
     {
       "IdKey": 2,
-      "Name": "Woodworking Shop",
-      "Icon": "WoodworkingShop",
-      "Art": "WoodworkingShop",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Guard Tower",
+      "Icon": "GuardTower",
+      "Art": "GuardTower",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 3,
-      "Name": "Tannery",
-      "Icon": "Tannery",
-      "Art": "Tannery",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Guild",
+      "Icon": "Guild",
+      "Art": "Guild",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 4,
-      "Name": "The Smithy",
-      "Icon": "Smithy",
-      "Art": "Smithy",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Equipment",
+      "Icon": "Equipment",
+      "Art": "Equipment",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 5,
-      "Name": "Stonecarver's",
-      "Icon": "Stonecarver",
-      "Art": "Stonecarver",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Temple",
+      "Icon": "Temple",
+      "Art": "Temple",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 6,
-      "Name": "Jewelry Shop",
-      "Icon": "JewelryShop",
-      "Art": "JewelryShop",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Trainer",
+      "Icon": "Trainer",
+      "Art": "Trainer",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 7,
-      "Name": "Alchemy Lab",
-      "Icon": "AlchemyLab",
-      "Art": "AlchemyLab",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Regen",
+      "Icon": "Regen",
+      "Art": "Regen",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 8,
-      "Name": "Enchanter's Hut",
-      "Icon": "EnchantersHut",
-      "Art": "EnchantersHut",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Tavern",
+      "Icon": "Tavern",
+      "Art": "Tavern",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 9,
-      "Name": "Thieves' Guild",
-      "Icon": "ThievesGuild",
-      "Art": "ThievesGuild",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Dungeon",
+      "Icon": "Dungeon",
+      "Art": "Dungeon",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 10,
-      "Name": "House",
-      "Icon": "House",
-      "Art": "House",
-      "Radius": 5,
+      "Name": "City",
+      "Icon": "City",
+      "Art": "City",
       "IsCrawlerBuilding": true,
-      "VariationCount": 4
+      "ShowNameplate": true
     },
     {
       "IdKey": 11,
-      "Name": "Guard Tower",
-      "Icon": "GuardTower",
-      "Art": "GuardTower",
-      "Radius": 4,
-      "VariationCount": 1,
+      "Name": "Npc",
+      "Icon": "Npc",
+      "Art": "Npc",
+      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
       "IdKey": 12,
-      "Name": "Guild",
-      "Icon": "Guild",
-      "Art": "Guild",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
+      "Name": "Lumbermill",
+      "Icon": "Lumbermill",
+      "Art": "Lumbermill",
       "ShowNameplate": true
     },
     {
       "IdKey": 13,
-      "Name": "Equipment",
-      "Icon": "Equipment",
-      "Art": "Equipment",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
+      "Name": "Quarry",
+      "Icon": "Quarry",
+      "Art": "Quarry",
       "ShowNameplate": true
     },
     {
       "IdKey": 14,
-      "Name": "Temple",
-      "Icon": "Temple",
-      "Art": "Temple",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 15,
-      "Name": "Trainer",
-      "Icon": "Trainer",
-      "Art": "Trainer",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 16,
-      "Name": "Regen",
-      "Icon": "Regen",
-      "Art": "Regen",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 17,
-      "Name": "Tavern",
-      "Icon": "Tavern",
-      "Art": "Tavern",
-      "Radius": 5,
-      "IsCrawlerBuilding": true,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 18,
-      "Name": "Cave",
-      "Desc": "",
-      "Icon": "Cave",
-      "Art": "Cave",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 19,
-      "Name": "Dungeon",
-      "Desc": "",
-      "Icon": "Dungeon",
-      "Art": "Dungeon",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 20,
-      "Name": "Tower",
-      "Desc": "",
-      "Icon": "Tower",
-      "Art": "Tower",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 21,
-      "Name": "City",
-      "Desc": "",
-      "Icon": "City",
-      "Art": "City",
-      "Radius": 5,
-      "VariationCount": 2,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 22,
-      "Name": "Natural",
-      "Desc": "",
-      "Icon": "Natural",
-      "Art": "Natural",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 23,
-      "Name": "Lava",
-      "Desc": "",
-      "Icon": "Lava",
-      "Art": "Lava",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 24,
-      "Name": "Unholy",
-      "Desc": "",
-      "Icon": "Unholy",
-      "Art": "Unholy",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 25,
-      "Name": "Arcane",
-      "Desc": "",
-      "Icon": "Arcane",
-      "Art": "Arcane",
-      "Radius": 5,
-      "VariationCount": 1,
-      "ShowNameplate": true
-    },
-    {
-      "IdKey": 26,
-      "Name": "Npc",
-      "Desc": "",
-      "Icon": "Npc",
-      "Art": "Npc",
-      "Radius": 5,
-      "VariationCount": 1,
+      "Name": "Mage Tower",
+      "Icon": "MageTower",
+      "Art": "MageTower",
       "ShowNameplate": true
     }
   ],
@@ -255,5 +114,5 @@
     "Name": "BuildingSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-08-26T15:14:36.351Z"
+  "SaveTime": "2026-03-23T19:57:26.207Z"
 }

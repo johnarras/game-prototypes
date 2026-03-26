@@ -4,7 +4,5 @@
   "IdKey": 7,
   "Name": "Heavy Warhorse",
   "Icon": "HeavyWarhorse",
-  "Art": "HeavyWarhorse",
-  "AnimalTypeId": 7,
-  "IsDefault": true
+  "Art": "HeavyWarhorse"
 }

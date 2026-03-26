@@ -1,8 +1,4 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Maps.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Maps.Entities
 {

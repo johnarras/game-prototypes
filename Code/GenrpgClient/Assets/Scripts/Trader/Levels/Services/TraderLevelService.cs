@@ -3,13 +3,13 @@ using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.Levels.UI;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.LevelTrackDifficulty.Settings;
+using Genrpg.Shared.LevelTracks.Settings;
 using Genrpg.Shared.LevelTracks.WebApi;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Trader.Levels.Services
                     {
                         foreach (Reward rew in gained.Rewards)
                         {
-                            _rewardService.GiveReward(_random, _gs.ch, rew, new ClientRewardParams(false, false));
+                            await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, false));
                         }
                         await Awaitable.WaitForSecondsAsync(0.5f);
                     }

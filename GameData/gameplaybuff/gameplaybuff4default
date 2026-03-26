@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Working Out",
+  "Icon": "WorkingOut",
+  "Art": "WorkingOut",
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 1
+    }
+  ]
+}

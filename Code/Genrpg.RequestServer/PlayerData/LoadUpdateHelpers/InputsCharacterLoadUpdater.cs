@@ -1,17 +1,9 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Input.Constants;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Input.Settings;
-using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.RequestServer.PlayerData.LoadUpdateHelpers
 {

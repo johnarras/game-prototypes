@@ -28,7 +28,7 @@ namespace Assets.Scripts.UI.Blockers
 
             await base.OnStartOpen(data, token);
 
-            this._step = data as FtueStep;
+            _step = data as FtueStep;
 
             if (_step == null)
             {

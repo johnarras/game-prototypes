@@ -308,7 +308,7 @@ namespace Genrpg.Shared.Riddles.Services
                     continue;
                 }
 
-                RiddleType riddleType = RandomUtils.GetRandomElement(riddleTypes, rand);
+                RiddleType riddleType = RandUtils.GetRandomElement(riddleTypes, rand);
 
                 if (_riddleTypeHelpers.TryGetValue(riddleType.IdKey, out IRiddleTypeHelper helper))
                 {

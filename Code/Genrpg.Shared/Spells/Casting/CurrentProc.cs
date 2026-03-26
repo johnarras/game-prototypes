@@ -1,4 +1,3 @@
-using MessagePack;
 using System;
 
 namespace Genrpg.Shared.Spells.Casting

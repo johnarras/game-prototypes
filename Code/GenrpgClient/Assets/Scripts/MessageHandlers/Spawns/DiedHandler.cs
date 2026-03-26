@@ -2,12 +2,13 @@ using Genrpg.Shared.Combat.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Spawns
 {
     public class DiedHandler : BaseClientMapMessageHandler<Died>
     {
-        protected override void InnerProcess(Died msg, CancellationToken token)
+        protected override async Awaitable InnerProcess(Died msg, CancellationToken token)
         {
             if (_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {

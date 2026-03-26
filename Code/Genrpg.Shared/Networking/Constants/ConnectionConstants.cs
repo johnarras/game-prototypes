@@ -1,5 +1,3 @@
-using MessagePack;
-
 namespace Genrpg.Shared.Networking.Constants
 {
     public class ConnectionConstants

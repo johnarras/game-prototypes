@@ -8,7 +8,6 @@ using UnityEngine;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Logging.Interfaces;
 using System.Threading.Tasks;
-using Genrpg.Shared.Client.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.DataStores.DataGroups;
@@ -24,6 +23,8 @@ using Genrpg.Shared.Interfaces;
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Assets.Scripts.GameObjects;
+using Assets.Scripts.Core;
+
 
 
 
@@ -486,6 +487,11 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
                     else
                     {
                         _failedLocalLoads.Add(assetName);
+
+                        if (handler != null)
+                        {
+                            handler(asset, data, token);
+                        }
                     }
                     return;
                 }
@@ -1112,10 +1118,27 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
             fullName = fullName.Substring(0, lastSlashIndex);
         }
 
-        string lettername = new String(fullName.Where(x => char.IsLetter(x)).ToArray()).ToLowerInvariant();
-        assetDictionary[assetPath] = lettername;
+        string letterDigitName = new String(fullName.Where(x => char.IsLetterOrDigit(x)).ToArray()).ToLowerInvariant();
 
-        return lettername;
+        int endDigitsToRemove = 0;
+
+        for (int pos = letterDigitName.Length-1; pos >= 0; pos--)
+        {
+            if (char.IsDigit(letterDigitName[pos]))
+            {
+                endDigitsToRemove++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        string finalName = letterDigitName.Substring(0, letterDigitName.Length - endDigitsToRemove);
+
+        assetDictionary[assetPath] = finalName;
+
+        return finalName;
     }
 
     public void LoadAssetInto<T>(object parent, string assetPathSuffix, string assetPath,

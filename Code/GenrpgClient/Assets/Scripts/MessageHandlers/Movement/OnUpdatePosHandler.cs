@@ -1,5 +1,5 @@
 using Assets.Scripts.Pathfinding.Utils;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Core.Entities;
@@ -24,7 +24,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
         private IClientPathfindingUtils _pathfindingUtils;
         private IPlayerManager _playerManager;
 
-        protected override void InnerProcess(OnUpdatePos pos, CancellationToken token)
+        protected override async Awaitable InnerProcess(OnUpdatePos pos, CancellationToken token)
         {
             if (pos.ObjId == _playerManager.GetUnitId())
             {

@@ -1,0 +1,8 @@
+{
+  "Id": "gameplaystat3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Bonus Speed",
+  "Icon": "BonusSpeed",
+  "Art": "BonusSpeed"
+}

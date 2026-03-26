@@ -1,7 +1,4 @@
-using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Maps.Entities
 {
@@ -15,7 +12,7 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
     public class MapRiddleHints
     {
         public long RiddleTypeId { get; set; }
-        public List<RiddleHint> Hints { get; set; } = new List<RiddleHint>();    
+        public List<RiddleHint> Hints { get; set; } = new List<RiddleHint>();
     }
 
     public class MapEntranceRiddle

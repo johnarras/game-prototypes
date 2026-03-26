@@ -1,5 +1,3 @@
-using MessagePack;
-using System.Numerics;
 namespace Genrpg.Shared.Utils
 {
     public class FlagUtils

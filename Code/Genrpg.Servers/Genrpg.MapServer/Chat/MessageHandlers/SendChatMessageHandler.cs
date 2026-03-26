@@ -2,21 +2,17 @@ using Genrpg.MapServer.MapMessaging.MessageHandlers;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Chat.Constants;
 using Genrpg.Shared.Chat.Messages;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Chat.MessageHandlers
 {
     public class SendChatMessageHandler : BaseMapObjectServerMapMessageHandler<SendChatMessage>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, MapObject obj, SendChatMessage message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, MapObject obj, SendChatMessage message)
         {
             float radius = 0;
             if (message.ChatTypeId == ChatTypes.Say)
@@ -44,6 +40,7 @@ namespace Genrpg.MapServer.Chat.MessageHandlers
                     _messageService.SendMessage(ch, onChatMessage);
                 }
             }
+            await Task.CompletedTask;
         }
     }
 }

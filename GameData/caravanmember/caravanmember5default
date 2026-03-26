@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Tamed Onager",
+  "Desc": "A wild ass from the deserts of Persia. Faster than a donkey but notoriously difficult to tame and control. A prestigious, if impractical, chariot animal.",
+  "Icon": "TamedOnager",
+  "Art": "TamedOnager",
+  "Speed": 4,
+  "Size": 2,
+  "Price": 163750,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -2
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 2
+    }
+  ]
+}

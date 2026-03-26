@@ -74,10 +74,10 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         MyRandom rand = new MyRandom(seed);
 
 
-        extraWidth = MathUtil.IntRange(extraWidth * 4 / 5, extraWidth * 5 / 4, rand);
+        extraWidth = RandUtils.IntRange(extraWidth * 4 / 5, extraWidth * 5 / 4, rand);
 
 
-        float heightOffset = MathUtil.FloatRange(0.7f,0.9f,rand)*extraWidth / MapConstants.MapHeight;
+        float heightOffset = RandUtils.FloatRange(0.7f,0.9f,rand)*extraWidth / MapConstants.MapHeight;
 
 
         float waterScaledHeight = 1.0f * MapConstants.MinLandHeight / MapConstants.MapHeight;
@@ -166,16 +166,16 @@ public class RaiseOrLowerZones : BaseZoneGenerator
             heightOffset = -heightOffset;
         }
 
-        float centerAmp = MathUtil.FloatRange(powerSpread,powerSpread*2, rand);
-        float centerFreq = MathUtil.FloatRange(size / 40, size / 10, rand);
-        float centerPers = MathUtil.FloatRange(0.1f, 0.4f, rand);
+        float centerAmp = RandUtils.FloatRange(powerSpread,powerSpread*2, rand);
+        float centerFreq = RandUtils.FloatRange(size / 40, size / 10, rand);
+        float centerPers = RandUtils.FloatRange(0.1f, 0.4f, rand);
         int centerOctaves = 2;
 
         float[,] centers = _noiseService.Generate(centerPers, centerFreq, centerAmp, centerOctaves, rand.Next(), distx, disty);
 
-        float powerAmp = MathUtil.FloatRange(centerSpread,centerSpread*2, rand);
-        float powerFreq = MathUtil.FloatRange(size / 40, size / 10, rand);
-        float powerPers = MathUtil.FloatRange(0.1f, 0.3f, rand);
+        float powerAmp = RandUtils.FloatRange(centerSpread,centerSpread*2, rand);
+        float powerFreq = RandUtils.FloatRange(size / 40, size / 10, rand);
+        float powerPers = RandUtils.FloatRange(0.1f, 0.3f, rand);
         int powerOctaves = 2;
 
         float[,] powers = _noiseService.Generate(powerPers, powerFreq, powerAmp,powerOctaves, rand.Next(), distx, disty);

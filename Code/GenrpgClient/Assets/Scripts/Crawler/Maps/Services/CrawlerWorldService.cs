@@ -1,7 +1,7 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
 using Genrpg.Shared.Crawler.Maps.Constants;
@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Genrpg.Shared.Buildings.Constants;
 
 namespace Assets.Scripts.Crawler.Maps.Services
 {
@@ -108,7 +109,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 MapFloor = genData.CurrFloor,
                 ArtSeed = genData.ArtSeed,
                 ZoneTypeId = genData.ZoneType.IdKey,
-                BuildingTypeId = genData.ZoneType.BuildingTypeId,
                 WeatherTypeId = genData.ZoneType.WeatherTypeId,
                 BuildingArtId = genData.BuildingArtId,
             };
@@ -139,7 +139,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 {
                     CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-                    int spawnCount = MathUtil.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand);
+                    int spawnCount = RandUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand);
 
                     int sharedZoneSpawnCount = mapSettings.SharedZoneUnitCount;
 
@@ -170,7 +170,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                     while (map.ZoneUnits.Count < spawnCount && spawns.Count > 0)
                     {
-                        ZoneUnitSpawn spawn = RandomUtils.GetRandomElement(spawns, _rand);
+                        ZoneUnitSpawn spawn = RandUtils.GetRandomElement(spawns, _rand);
 
                         spawns.Remove(spawn);
                         map.ZoneUnits.Add(spawn);

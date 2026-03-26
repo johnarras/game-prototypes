@@ -62,8 +62,8 @@ public abstract class BaseMapObjectLoader : IMapObjectLoader
 
         long placementSeed = (long)(data.Spawn.X * 131 + data.Spawn.Z * 517);
 
-        float nx = MathUtil.SeedFloatRange(placementSeed * 13, 143, -0.5f, 0.5f, 101) + data.Spawn.X;
-        float nz = MathUtil.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101) + data.Spawn.Z;
+        float nx = RandUtils.SeedFloatRange(placementSeed * 13, 143, -0.5f, 0.5f, 101) + data.Spawn.X;
+        float nz = RandUtils.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101) + data.Spawn.Z;
 
         if (data.FixedPosition)
         {

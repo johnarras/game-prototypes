@@ -41,8 +41,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
         {
             IRandom rand = new MyRandom(genData.World.Seed / 4 + genData.World.GetMaxMapId() * 131);
-            int width = MathUtil.IntRange(genData.GenType.MinWidth, genData.GenType.MaxWidth, rand);
-            int height = MathUtil.IntRange(genData.GenType.MinHeight, genData.GenType.MaxHeight, rand);
+            int width = RandUtils.IntRange(genData.GenType.MinWidth, genData.GenType.MaxWidth, rand);
+            int height = RandUtils.IntRange(genData.GenType.MinHeight, genData.GenType.MaxHeight, rand);
 
             height = 65;
             CrawlerMap outdoorMap = _worldService.CreateMap(genData, width, height);
@@ -131,11 +131,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 {
                     CenterX = (int)centerPoint.X,
                     CenterY = (int)centerPoint.Z,
-                    SpreadX = MathUtil.FloatRange(1 - spreadDelta, 1 + spreadDelta, rand),
-                    SpreadY = MathUtil.FloatRange(1 - spreadDelta, 1 + spreadDelta, rand),
+                    SpreadX = RandUtils.DeltaScale(spreadDelta, rand),
+                    SpreadY = RandUtils.DeltaScale(spreadDelta, rand),
                     ZoneTypeId = biomeType.IdKey,
-                    DirX = MathUtil.FloatRange(-dirDelta, dirDelta, rand),
-                    DirY = MathUtil.FloatRange(-dirDelta, dirDelta, rand),
+                    DirX = RandUtils.DeltaRange(dirDelta, rand),
+                    DirY = RandUtils.DeltaRange(dirDelta, rand),
                     Level = level,
                 };
 
@@ -186,7 +186,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 foreach (ZoneRegion region in regions)
                 {
                     region.Name = _zoneGenService.GenerateZoneName(region.ZoneTypeId, rand.Next(), false);
-                    float currRadius = MathUtil.FloatRange(radius * (1 - radiusDelta), radius * (1 + radiusDelta), rand);
+                    float currRadius = RandUtils.FloatRange(radius * (1 - radiusDelta), radius * (1 + radiusDelta), rand);
 
                     float xrad = currRadius * region.SpreadX;
                     float yrad = currRadius * region.SpreadY;
@@ -236,7 +236,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             for (int c = 0; c < 4; c++)
             {
-                cornerRadii.Add(MathUtil.FloatRange(minCornerRadius, maxCornerRadius, rand));
+                cornerRadii.Add(RandUtils.FloatRange(minCornerRadius, maxCornerRadius, rand));
             }
 
             int maxCheckRadius = (int)(maxCornerRadius + startMapEdgeSize);
@@ -279,7 +279,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                         }
                     }
 
-                    int mapEdgeSize = startMapEdgeSize + MathUtil.IntRange(-1, 1, rand);
+                    int mapEdgeSize = startMapEdgeSize + RandUtils.IntRange(-1, 1, rand);
                     if ((x < mapEdgeSize || x >= outdoorMap.Width - mapEdgeSize) ||
                         (y < mapEdgeSize || y >= outdoorMap.Height - mapEdgeSize))
                     {
@@ -336,7 +336,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                         float currDist = Mathf.Sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
 
-                        currDist += MathUtil.FloatRange(-1, 1, rand);
+                        currDist += RandUtils.DeltaRange(1, rand);
 
                         if (currDist >= currRadius && terrain[x, y] != waterZoneId)
                         {
@@ -551,7 +551,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 finalDungeonPoints.Add(new PointXZ(xx, yy));
 
-                outdoorMap.SetEntity(xx, yy, EntityTypes.Building, dungeonMap.BuildingTypeId);
+                outdoorMap.SetEntity(xx, yy, EntityTypes.Building, dungeonMap.GetBuildingTypeId());
             }
 
             List<Riddle> riddles = _gameData.Get<RiddleSettings>(_gs.ch).GetData().ToList();
@@ -921,13 +921,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 for (int i = 0; i < midPointQuantity; i++)
                 {
-                    float percent = MathUtil.FloatRange(0, 1, rand);
+                    float percent = RandUtils.FloatRange(0, 1, rand);
 
                     int fx = (int)(start.X + (end.X - start.X) * percent);
                     int fz = (int)(start.Z + (end.Z - start.Z) * percent);
 
-                    fx += MathUtil.IntRange(-posDelta, posDelta, rand);
-                    fz += MathUtil.IntRange(-posDelta, posDelta, rand);
+                    fx += RandUtils.IntRange(-posDelta, posDelta, rand);
+                    fz += RandUtils.IntRange(-posDelta, posDelta, rand);
 
                     fx = MathUtil.Clamp(mapEdgeSize, fx, map.Width - mapEdgeSize);
                     fz = MathUtil.Clamp(mapEdgeSize, fz, map.Height - mapEdgeSize);
@@ -1025,19 +1025,19 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             int xsize = map.Width / 4;
             int zsize = map.Height / 4;
 
-            int xlen = MathUtil.IntRange(xsize * 2 / 3, xsize * 4 / 3, rand);
-            int zlen = MathUtil.IntRange(zsize * 2 / 3, zsize * 4 / 3, rand);
+            int xlen = RandUtils.IntRange(xsize * 2 / 3, xsize * 4 / 3, rand);
+            int zlen = RandUtils.IntRange(zsize * 2 / 3, zsize * 4 / 3, rand);
 
-            int endX = startX + xdir * xsize + MathUtil.IntRange(-xsize / 2, xsize / 2, rand);
-            int endZ = startZ + zdir * zsize + MathUtil.IntRange(-zsize / 2, zsize / 2, rand);
+            int endX = startX + xdir * xsize + RandUtils.IntRange(-xsize / 2, xsize / 2, rand);
+            int endZ = startZ + zdir * zsize + RandUtils.IntRange(-zsize / 2, zsize / 2, rand);
 
             if (xdir == 0)
             {
-                endX += MathUtil.IntRange(xsize / 3, xsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
+                endX += RandUtils.IntRange(xsize / 3, xsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
             }
             if (zdir == 0)
             {
-                endZ += MathUtil.IntRange(zsize / 3, zsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
+                endZ += RandUtils.IntRange(zsize / 3, zsize / 2, rand) * (rand.NextDouble() < 0.5 ? 1 : -1);
             }
 
 
@@ -1056,7 +1056,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             while (dist < maxLength)
             {
-                dist += MathUtil.IntRange(minBendLength, maxBendLength, rand);
+                dist += RandUtils.IntRange(minBendLength, maxBendLength, rand);
 
                 if (dist > maxLength)
                 {
@@ -1068,8 +1068,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int nx = (int)(startX + (endX - startX) * pct);
                 int nz = (int)(startZ + (endZ - startZ) * pct);
 
-                nx += MathUtil.IntRange(-bendDelta, bendDelta, rand);
-                nz += MathUtil.IntRange(-bendDelta, bendDelta, rand);
+                nx += RandUtils.IntRange(-bendDelta, bendDelta, rand);
+                nz += RandUtils.IntRange(-bendDelta, bendDelta, rand);
 
                 points.AddRange(_lineGenService.GridConnect(cx, cz, nx, nz, rand.NextDouble() < 0.5));
 
@@ -1083,8 +1083,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     int ndz = ddx * rand.NextDouble() < 0.5 ? 1 : -1;
 
 
-                    ndx += MathUtil.IntRange(-bendDelta, bendDelta, rand);
-                    ndz += MathUtil.IntRange(-bendDelta, bendDelta, rand);
+                    ndx += RandUtils.IntRange(-bendDelta, bendDelta, rand);
+                    ndz += RandUtils.IntRange(-bendDelta, bendDelta, rand);
 
                     points.AddRange(_lineGenService.GridConnect(nx, nz, nx + ndx, nz + ndz, rand.NextDouble() < 0.5));
                 }
@@ -1118,7 +1118,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             while (curr < end - maxSkip)
             {
-                curr += MathUtil.IntRange(minSkip, maxSkip, rand);
+                curr += RandUtils.IntRange(minSkip, maxSkip, rand);
 
                 if (curr < end - minSkip)
                 {

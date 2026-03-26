@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype71default",
+  "ParentId": "default",
+  "IdKey": 71,
+  "Name": "BaseGameplayStat",
+  "Icon": "BaseGameplayStat",
+  "Art": "BaseGameplayStat"
+}

@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.Quests.Entities
 {
 

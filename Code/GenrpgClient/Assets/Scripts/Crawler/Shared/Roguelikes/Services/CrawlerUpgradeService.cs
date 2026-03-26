@@ -1,7 +1,7 @@
 
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;

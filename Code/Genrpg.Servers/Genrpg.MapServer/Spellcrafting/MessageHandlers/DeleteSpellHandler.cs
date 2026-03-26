@@ -7,13 +7,15 @@ using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
 {
     public class DeleteSpellHandler : BaseCharacterServerMapMessageHandler<DeleteSpell>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, DeleteSpell message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, DeleteSpell message)
         {
+            await Task.CompletedTask;
             SpellData spellData = ch.Get<SpellData>();
 
             List<Spell> deleteSpells = spellData.GetData().Where(x => x.IdKey == message.SpellId).ToList();

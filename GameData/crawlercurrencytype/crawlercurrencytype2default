@@ -1,9 +1,0 @@
-{
-  "Id": "crawlercurrencytype2default",
-  "ParentId": "default",
-  "IdKey": 2,
-  "Name": "Metal",
-  "Icon": "MetalIcon",
-  "Art": "MetalArt",
-  "CraftingStatTypeId": 11
-}

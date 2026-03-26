@@ -27,7 +27,7 @@ public class MoneySegment : BaseBehaviour
         }
         if (!string.IsNullOrEmpty(IconName))
         {
-            _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, IconName, Icon, GetToken());
+            _spriteService.SetAtlasSpriteInto(AtlasNames.UI, IconName, Icon, GetToken());
         }
     }
 

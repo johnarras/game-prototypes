@@ -2,7 +2,7 @@ using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Items.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
@@ -38,8 +38,6 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
@@ -50,6 +48,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Genrpg.Shared.Effects.Entities;
+using Genrpg.Shared.UnitEffects.Settings;
+using Genrpg.Shared.UnitEffects.Constants;
 
 namespace Genrpg.Shared.Crawler.Combat.Services
 {
@@ -317,7 +318,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = MathUtil.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
+                    long quantity = RandUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -349,7 +350,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     UnitTypeId = wqi.GuardUnitTypeId,
                     Range = CrawlerCombatConstants.MaxRange,
-                    Quantity = MathUtil.IntRange(5, 10, _rand),
+                    Quantity = RandUtils.IntRange(5, 10, _rand),
                     Level = combatState.Level,
                     FactionTypeId = FactionTypes.Faction1,
                 });
@@ -369,7 +370,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             {
                 foreach (InitialCombatGroup initialGroup in initialState.CombatGroups)
                 {
-                    initialGroup.Quantity += MathUtil.LongRange(0, initialGroup.Quantity, _rand);
+                    initialGroup.Quantity += RandUtils.LongRange(0, initialGroup.Quantity, _rand);
                 }
             }
 
@@ -415,11 +416,11 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             IReadOnlyList<UnitKeyword> allUnitKeywords = _gameData.Get<UnitKeywordSettings>(_gs.ch).GetData();
 
-            List<UnitEffect> spells = new List<UnitEffect>();
-            List<UnitEffect> applyEffects = new List<UnitEffect>();
+            List<Effect> spells = new List<Effect>();
+            List<Effect> applyEffects = new List<Effect>();
 
-            List<UnitEffect> resistEffects = new List<UnitEffect>();
-            List<UnitEffect> vulnEffects = new List<UnitEffect>();
+            List<Effect> resistEffects = new List<Effect>();
+            List<Effect> vulnEffects = new List<Effect>();
 
             long suffixKeywordId = 0;
             UnitKeyword suffixKeyword = null;
@@ -432,7 +433,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 if (possibleKeywords.Count > 0)
                 {
-                    UnitKeyword chosenKeyword = RandomUtils.GetRandomElement(possibleKeywords, _rand);
+                    UnitKeyword chosenKeyword = RandUtils.GetRandomElement(possibleKeywords, _rand);
 
                     suffixKeywordId = chosenKeyword.IdKey;
                     suffixKeyword = chosenKeyword;
@@ -490,7 +491,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
             // Don't introduce stronger debuffs until later when the player have a chance to cure them.
             double maxEffectTier = combatSettings.DebuffTiersPerUnitLevel * combatLevel;
-            foreach (UnitEffect aeffect in applyEffects)
+            foreach (Effect aeffect in applyEffects)
             {
                 if (aeffect.EntityId > maxEffectTier)
                 {
@@ -533,13 +534,13 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             long vulnBits = 0;
             long resistBits = 0;
 
-            foreach (UnitEffect eff in resistEffects)
+            foreach (Effect eff in resistEffects)
             {
                 resistBits |= (long)(1 << (int)eff.EntityId);
                 retval.BonusCount++;
             }
 
-            foreach (UnitEffect eff in vulnEffects)
+            foreach (Effect eff in vulnEffects)
             {
                 vulnBits |= (long)(1 << (int)eff.EntityId);
                 retval.BonusCount++;

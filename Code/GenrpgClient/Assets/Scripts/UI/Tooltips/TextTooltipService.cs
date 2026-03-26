@@ -2,7 +2,7 @@ using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;

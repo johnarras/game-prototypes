@@ -1,7 +1,7 @@
-using MessagePack;
+using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.MapMessages;
+using MessagePack;
 
 namespace Genrpg.Shared.Spells.Settings.Effects
 {
@@ -42,12 +42,12 @@ namespace Genrpg.Shared.Spells.Settings.Effects
             TargetId = hit.Target.Id;
             SpellId = hit.SendSpell.Spell.IdKey;
             Icon = hit.SendSpell.Spell.Icon;
-            MaxDuration = hit.Effect.Duration;
+            MaxDuration = hit.SpellEffect.Duration;
             DurationLeft = MaxDuration;
-            Radius = hit.Effect.Radius;
+            Radius = hit.SpellEffect.Radius;
             IsOrigTarget = hit.OrigTarget == hit.Target;
             ElementTypeId = hit.SendSpell.Spell.ElementTypeId;
-            SkillTypeId = hit.Effect.SkillTypeId;
+            SkillTypeId = hit.SpellEffect.SkillTypeId;
             Range = hit.SendSpell.Spell.GetRange();
             CritChance = hit.CritChance;
             CritMult = hit.CritMult;

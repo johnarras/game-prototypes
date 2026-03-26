@@ -1,18 +1,14 @@
-using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.AI.Services;
-using Genrpg.Shared.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Genrpg.MapServer.MapMessaging.Interfaces;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.ServerShared.Achievements;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.Spells.Constants;
+using Genrpg.MapServer.Maps;
 using Genrpg.MapServer.Spells.Services;
 using Genrpg.MapServer.Units.Services;
+using Genrpg.ServerShared.Achievements;
+using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Spells.Settings.Effects;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 
 namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {

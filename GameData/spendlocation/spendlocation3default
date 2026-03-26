@@ -1,0 +1,25 @@
+{
+  "Id": "spendlocation3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Temple",
+  "Desc": "The Temple",
+  "Icon": "Temple",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Cure",
+      "Desc": "Cure a Malady",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 5000,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": -1,
+          "Quantity": -1
+        }
+      ]
+    }
+  ]
+}

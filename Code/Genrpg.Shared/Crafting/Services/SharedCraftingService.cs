@@ -485,14 +485,6 @@ namespace Genrpg.Shared.Crafting.Services
                     result.Message = "Missing item type with id " + dreagent.ItemTypeId;
                     return result;
                 }
-
-                if (myItem.Quantity < quantity)
-                {
-                    result.Message = "Need " + quantity + " of " + itype.Name + " but only have " + myItem.QualityTypeId + " L/Q: " +
-                        myItem.Level + "/" + myItem.QualityTypeId;
-                    return result;
-                }
-
             }
 
             result.IsValid = true;

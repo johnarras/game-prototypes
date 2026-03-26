@@ -1,10 +1,5 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.Networking.Interfaces;
 using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.Networking.Interfaces;
 
 namespace Genrpg.Shared.Networking.Entities
 {

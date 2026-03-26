@@ -1,0 +1,10 @@
+{
+  "Id": "entitytype83default",
+  "ParentId": "default",
+  "IdKey": 83,
+  "Name": "BaseTravelDayCurrency",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "BaseTravelDayCurrency",
+  "Art": "BaseTravelDayCurrency"
+}

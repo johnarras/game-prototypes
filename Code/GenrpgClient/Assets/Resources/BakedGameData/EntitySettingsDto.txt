@@ -2,7 +2,7 @@
   "Children": [
     {
       "IdKey": 1,
-      "Name": "Currency"
+      "Name": "CoreCurrency"
     },
     {
       "IdKey": 2,
@@ -22,7 +22,7 @@
     },
     {
       "IdKey": 6,
-      "Name": "Tutorial"
+      "Name": "CharCurrency"
     },
     {
       "IdKey": 7,
@@ -39,12 +39,6 @@
     {
       "IdKey": 10,
       "Name": "Set"
-    },
-    {
-      "IdKey": 11,
-      "Name": "Exp",
-      "Icon": "Exp",
-      "Art": "Exp"
     },
     {
       "IdKey": 12,
@@ -73,14 +67,6 @@
     {
       "IdKey": 18,
       "Name": "MapMod"
-    },
-    {
-      "IdKey": 19,
-      "Name": "Tribe"
-    },
-    {
-      "IdKey": 20,
-      "Name": "Reputation"
     },
     {
       "IdKey": 21,
@@ -232,7 +218,7 @@
     },
     {
       "IdKey": 56,
-      "Name": "Animal"
+      "Name": "CaravanMember"
     },
     {
       "IdKey": 57,
@@ -260,9 +246,11 @@
     },
     {
       "IdKey": 62,
-      "Name": "Skin",
-      "Icon": "Skin",
-      "Art": "Skin"
+      "Name": "SkinType",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "SkinType",
+      "Art": "SkinType"
     },
     {
       "IdKey": 63,
@@ -284,21 +272,118 @@
     },
     {
       "IdKey": 66,
-      "Name": "TraderBuff",
-      "Icon": "TraderBuff",
-      "Art": "TraderBuff"
-    },
-    {
-      "IdKey": 67,
-      "Name": "TraderDebuff",
-      "Icon": "TraderDebuff",
-      "Art": "TraderDebuff"
+      "Name": "MoveCaravanMember",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "MoveCaravanMember",
+      "Art": "MoveCaravanMember"
     },
     {
       "IdKey": 68,
       "Name": "TraderVars",
       "Icon": "TraderVars",
       "Art": "TraderVars"
+    },
+    {
+      "IdKey": 69,
+      "Name": "SpendCurrencyLocation",
+      "Icon": "SpendCurrencyLocation",
+      "Art": "SpendCurrencyLocation"
+    },
+    {
+      "IdKey": 70,
+      "Name": "GameplayStat",
+      "Icon": "GameplayStat",
+      "Art": "GameplayStat"
+    },
+    {
+      "IdKey": 71,
+      "Name": "BaseGameplayStat",
+      "Icon": "BaseGameplayStat",
+      "Art": "BaseGameplayStat"
+    },
+    {
+      "IdKey": 73,
+      "Name": "BonusGameplayStat",
+      "Icon": "BonusGameplayStat",
+      "Art": "BonusGameplayStat"
+    },
+    {
+      "IdKey": 74,
+      "Name": "GameplayStatBuff",
+      "Icon": "GameplayStatBuff",
+      "Art": "GameplayStatBuff"
+    },
+    {
+      "IdKey": 75,
+      "Name": "GameplayBuff",
+      "Icon": "GameplayBuff",
+      "Art": "GameplayBuff"
+    },
+    {
+      "IdKey": 76,
+      "Name": "GameplayDebuff",
+      "Icon": "GameplayDebuff",
+      "Art": "GameplayDebuff"
+    },
+    {
+      "IdKey": 77,
+      "Name": "BaseCurrencyRegen",
+      "Icon": "BaseCurrencyRegen",
+      "Art": "BaseCurrencyRegen"
+    },
+    {
+      "IdKey": 78,
+      "Name": "BonusCurrencyRegen",
+      "Icon": "BonusCurrencyRegen",
+      "Art": "BonusCurrencyRegen"
+    },
+    {
+      "IdKey": 79,
+      "Name": "CurrencyRegenBuff",
+      "Icon": "CurrencyRegenBuff",
+      "Art": "CurrencyRegenBuff"
+    },
+    {
+      "IdKey": 80,
+      "Name": "BaseCurrencyStorage",
+      "Icon": "BaseCurrencyStorage",
+      "Art": "BaseCurrencyStorage"
+    },
+    {
+      "IdKey": 81,
+      "Name": "BonusCurrencyStorage",
+      "Icon": "BonusCurrencyStorage",
+      "Art": "BonusCurrencyStorage"
+    },
+    {
+      "IdKey": 82,
+      "Name": "CurrencyStorageBuff",
+      "Icon": "CurrencyStorageBuff",
+      "Art": "CurrencyStorageBuff"
+    },
+    {
+      "IdKey": 83,
+      "Name": "BaseTravelDayCurrency",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "BaseTravelDayCurrency",
+      "Art": "BaseTravelDayCurrency"
+    },
+    {
+      "IdKey": 84,
+      "Name": "BonusTravelDayCurrency",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "BonusTravelDayCurrency",
+      "Art": "BonusTravelDayCurrency"
+    },
+    {
+      "IdKey": 85,
+      "Name": "TravelDayCurrencyBuff",
+      "Desc": "",
+      "Icon": "TravelDayCurrencyBuff",
+      "Art": "TravelDayCurrencyBuff"
     },
     {
       "IdKey": 100,
@@ -317,62 +402,6 @@
       "IdKey": 103,
       "Name": "Role",
       "Desc": ""
-    },
-    {
-      "IdKey": 104,
-      "Name": "CrawlerCurrency"
-    },
-    {
-      "IdKey": 149,
-      "Name": "TimedEventCurrency"
-    },
-    {
-      "IdKey": 150,
-      "Name": "SeasonTheme"
-    },
-    {
-      "IdKey": 151,
-      "Name": "SeasonTierList"
-    },
-    {
-      "IdKey": 152,
-      "Name": "CollectionTheme"
-    },
-    {
-      "IdKey": 153,
-      "Name": "CollectionTierList"
-    },
-    {
-      "IdKey": 200,
-      "Name": "CoreCurrency",
-      "Icon": "CoreCurrency",
-      "Art": "CoreCurrency"
-    },
-    {
-      "IdKey": 201,
-      "Name": "TraderStat",
-      "Icon": "TraderStat",
-      "Art": "TraderStat"
-    },
-    {
-      "IdKey": 202,
-      "Name": "BaseTraderStat",
-      "Icon": "BaseTraderStat",
-      "Art": "BaseTraderStat"
-    },
-    {
-      "IdKey": 203,
-      "Name": "TraderStatBonus",
-      "Desc": "",
-      "AtlasPrefix": "",
-      "Icon": "TraderStatBonus",
-      "Art": "TraderStatBonus"
-    },
-    {
-      "IdKey": 204,
-      "Name": "TraderStatBuff",
-      "Icon": "TraderStatBuff",
-      "Art": "TraderStatBuff"
     }
   ],
   "Parent": {
@@ -380,5 +409,5 @@
     "Name": "EntitySettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-01T22:53:19.263Z"
+  "SaveTime": "2026-03-26T17:49:31.37Z"
 }

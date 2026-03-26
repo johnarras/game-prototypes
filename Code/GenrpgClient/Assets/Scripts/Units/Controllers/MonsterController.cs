@@ -8,7 +8,7 @@ using System.Linq;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 public class MonsterController : UnitController
 {

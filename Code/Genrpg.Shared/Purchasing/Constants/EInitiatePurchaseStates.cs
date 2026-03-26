@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Purchasing.Constants
 {
     public enum EInitiatePurchaseStates
@@ -11,11 +7,11 @@ namespace Genrpg.Shared.Purchasing.Constants
         MissingStoreOffer = 2,
         MissingOfferProduct = 3,
         MissingPlayerStoreOffer = 4,
-        OfferIsAlreadyInitialized=5,
+        OfferIsAlreadyInitialized = 5,
         MissingPlayerBundle = 6,
         MissingOfferItemSku = 7,
         MissingGameDataSku = 8,
-        MissingPlayerStoreItem=9,
+        MissingPlayerStoreItem = 9,
     }
 }
 

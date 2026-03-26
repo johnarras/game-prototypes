@@ -27,28 +27,32 @@ namespace Assets.Scripts.Controllers
         float _currIntensity = 0;
         float _targetIntensity = 0;
 
-        const float IntensityDelta = 10f;
+        const float IntensityDelta = 7f;
 
         public float MaxIntensity = 150;
 
         public Vector3 Offset;
 
-        private float _startMaxIntensity;
-
         private int _maxStableTicks = 5;
         private int _stableTicksLeft = 0;
+
+        public float FlickerSpeed = 0.001f;
+
+        Color _color1;
+        Color _color2;
 
         public override void Init()
         {
             base.Init();
             AddUpdate(LightUpdate, UpdateTypes.Late);
-            _startMaxIntensity = MaxIntensity;
             _targetIntensity = MaxIntensity;
             _currIntensity = MaxIntensity;
             if (_configContainer.Config.GameMode != EGameModes.Crawler && Headlight != null)
             {
                 Headlight.intensity = 0;
             }
+            _color1 = Headlight.color;
+            _color2 = Color.orange;
         }
 
         bool haveSetPosition = false;
@@ -76,9 +80,13 @@ namespace Assets.Scripts.Controllers
             }
             haveSetPosition = true;
 
+            float noise = Mathf.PerlinNoise(Time.time * FlickerSpeed, 0.0f);
+
+            Headlight.color = Color.Lerp(_color1, _color2, noise);
+
             if (_currIntensity != _targetIntensity)
             {
-                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, MathUtil.FloatRange(0, IntensityDelta * 2, _rand));
+                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, RandUtils.FloatRange(0, IntensityDelta * 2, _rand));
             }
 
             if (_currIntensity == _targetIntensity)
@@ -87,8 +95,8 @@ namespace Assets.Scripts.Controllers
 
                 if (_stableTicksLeft <= 0)
                 {
-                    _targetIntensity = MathUtil.FloatRange(_startMaxIntensity * 2 / 3, _startMaxIntensity, _rand);
-                    _stableTicksLeft = MathUtil.IntRange(0, _maxStableTicks, _rand);
+                    _targetIntensity = RandUtils.FloatRange(MaxIntensity * 3 / 4, MaxIntensity, _rand);
+                    _stableTicksLeft = RandUtils.IntRange(0, _maxStableTicks, _rand);
                 }
             }
 
@@ -97,7 +105,7 @@ namespace Assets.Scripts.Controllers
                 float lightTarget = party.Buffs[PartyBuffs.Light];
                 if (lightTarget > 1)
                 {
-                    lightTarget = 1 + Mathf.Log(lightTarget, 2);
+                    lightTarget = 1 + Mathf.Log(lightTarget, 2)/10;
                 }
                 Headlight.intensity = _currIntensity * lightTarget;
                 Headlight.range = Range;

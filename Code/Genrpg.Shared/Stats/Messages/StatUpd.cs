@@ -1,8 +1,6 @@
 using Genrpg.Shared.MapMessages;
 using MessagePack;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Stats.Messages
 {
@@ -33,7 +31,7 @@ namespace Genrpg.Shared.Stats.Messages
         const int StatTypeId = 0;
         const int Curr = 1;
         const int Max = 2;
-        const int Size = 3;    
+        const int Size = 3;
 
         [Key(0)] public int[] Dat { get; set; } = new int[Size];
 

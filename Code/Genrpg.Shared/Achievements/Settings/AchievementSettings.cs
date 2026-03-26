@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Achievements.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;

@@ -1,10 +1,4 @@
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Crawler.Maps.Entities
 {

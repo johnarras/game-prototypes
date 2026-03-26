@@ -3,7 +3,7 @@
   "IdKey": 1,
   "Name": "Coins",
   "ParentId": "default",
-  "EntityTypeId": 200,
+  "EntityTypeId": 1,
   "EntityId": 1,
   "MinQuantity": 1,
   "MaxQuantity": 2,

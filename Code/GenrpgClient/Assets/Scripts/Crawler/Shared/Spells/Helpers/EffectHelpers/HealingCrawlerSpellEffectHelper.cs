@@ -29,7 +29,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             {
                 return;
             }
-            args.NewQuantity += MathUtil.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+            args.NewQuantity += RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
 
             long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
 
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 finalTarget = caster;
             }
 
-            _crawlerStatService.Add(party, finalTarget, StatTypes.Health, StatCategories.Curr, args.TotalHealing);
+            _crawlerStatService.Add(party, finalTarget, StatTypes.Health, UnitStatValOffsets.Curr, args.TotalHealing);
             _spellService.AddToActionDict(args.ActionList, caster, target, "Heals", args.NewQuantity, 0, false, ECombatTextTypes.Healing, 0);
 
 

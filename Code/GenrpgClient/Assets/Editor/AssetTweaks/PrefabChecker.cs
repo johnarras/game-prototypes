@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 
 public delegate void CheckPrefab (GameObject go, string path, System.Object returnData, StringBuilder logTxt);

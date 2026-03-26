@@ -111,8 +111,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 int sx = startPoint.X;
                 int sz = startPoint.Z;
 
-                int dx = MathUtil.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
-                int dz = MathUtil.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dx = RandUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
+                int dz = RandUtils.IntRange(maxLength / 2, maxLength, rand) * (rand.NextDouble() < 0.5f ? -1 : 1);
 
                 int ex = MathUtil.Clamp(edgeSize, sx + dx, map.Width - edgeSize - 1);
                 int ez = MathUtil.Clamp(edgeSize, sz + dz, map.Height - edgeSize - 1);
@@ -187,7 +187,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             int minDistanceBetweenNpcs = Math.Max(3, genData.MapType.MinNpcSeparation);
 
-            int npcQuantity = MathUtil.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
+            int npcQuantity = RandUtils.IntRange(genData.MapType.MinNpcQuantity, genData.MapType.MaxNpcQuantity, rand);
 
             if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld) && npcQuantity > 1)
             {

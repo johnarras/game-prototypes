@@ -587,6 +587,42 @@
     {
       "IdKey": 147,
       "Name": "TravelEncounterSettings"
+    },
+    {
+      "IdKey": 148,
+      "Name": "SpendLocationSettings"
+    },
+    {
+      "IdKey": 149,
+      "Name": "PortraitSettings"
+    },
+    {
+      "IdKey": 150,
+      "Name": "CharCurrencySettings"
+    },
+    {
+      "IdKey": 151,
+      "Name": "CharCurrencyTypeSettings"
+    },
+    {
+      "IdKey": 152,
+      "Name": "GameplayBuffSettings"
+    },
+    {
+      "IdKey": 153,
+      "Name": "GameplayDebuffSettings"
+    },
+    {
+      "IdKey": 154,
+      "Name": "GameplayStatSettings"
+    },
+    {
+      "IdKey": 155,
+      "Name": "CaravanMemberSettings"
+    },
+    {
+      "IdKey": 156,
+      "Name": "SpecialSpendActionSettings"
     }
   ],
   "Parent": {

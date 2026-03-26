@@ -705,6 +705,16 @@ namespace Genrpg.Shared.Utils
             return line;
         }
 
+        public static string NormalizeTypeName<T>()
+        {
+            return NormalizeTypeName(typeof(T));
+        }
+
+        public static string NormalizeTypeName(Type t)
+        {
+            return NormalizeWord(t.Name);
+        }
+
         public static string NormalizeWord(string word)
         {
             if (string.IsNullOrEmpty(word))

@@ -59,7 +59,7 @@ namespace Genrpg.Shared.ProcGen.Services
             int height = (int)(sd.YMax - sd.YMin + 1);
             if (sd.NoiseAmp > 0 && sd.NoiseFreq > 0)
             {
-                float pers = MathUtil.FloatRange(0.2f, 0.6f, rand);
+                float pers = RandUtils.FloatRange(0.2f, 0.6f, rand);
 
                 if (width <= 20000 && height <= 20000)
                 {
@@ -72,8 +72,8 @@ namespace Genrpg.Shared.ProcGen.Services
             for (int i = 0; i < maxNumTimes && list.Count < sd.Count; i++)
             {
                 MyPoint2 newpt = new MyPoint2();
-                newpt.X = MathUtil.FloatRange(sd.XMin, sd.XMax, rand);
-                newpt.Y = MathUtil.FloatRange(sd.YMin, sd.YMax, rand);
+                newpt.X = RandUtils.FloatRange(sd.XMin, sd.XMax, rand);
+                newpt.Y = RandUtils.FloatRange(sd.YMin, sd.YMax, rand);
 
                 double newDist = GeomUtils.GetMinDistance2(list, newpt);
 

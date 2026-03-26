@@ -1,7 +1,4 @@
 using Genrpg.Shared.Client.Assets.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Crawler.Constants
 {

@@ -1,23 +1,20 @@
 ﻿using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Services;
-using Genrpg.Shared.Trader.Stats.WebApi;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Attributes.Services;
+using Genrpg.Shared.Attributes.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Trader.Stats.ResponseHandlers
 {
     public class AddDebuffPlayCountResponseHandler : BaseClientWebResponseHandler<AddDebuffPlayCountResponse>
     {
 
-        private ITraderStatService _statService = null;
-        protected override void InnerProcess(AddDebuffPlayCountResponse response, CancellationToken token)
+        private IAttributeService _attributeService = null;
+        protected override async Awaitable InnerProcess(AddDebuffPlayCountResponse response, CancellationToken token)
         {
-            _statService.AddDebuffDaysPlayed(_gs.ch.Get<CoreData>(), _gs.ch.Get<CaravanData>(), _gs.ch.Get<TraderStatData>(), response.DebuffDaysAdded);
+            await _attributeService.AddDebuffDaysPlayed(_gs.ch, response.DebuffDaysAdded);
+            await Task.CompletedTask;
         }
     }
 }

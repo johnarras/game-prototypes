@@ -1,5 +1,4 @@
 using Genrpg.Shared.Inventory.PlayerData;
-using MessagePack;
 namespace Genrpg.Shared.Inventory.Entities
 {
     public class ItemGenArgs

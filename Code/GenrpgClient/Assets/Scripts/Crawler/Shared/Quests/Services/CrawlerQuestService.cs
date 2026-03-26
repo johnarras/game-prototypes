@@ -2,8 +2,8 @@ using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Genrpg.Shared.Chests.Settings;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
@@ -149,7 +149,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 {
                     MapLink targetMap = allMaps[rand.Next(allMaps.Count)];
 
-                    CrawlerQuestType questType = RandomUtils.GetRandomElement(questSettings.GetData(), rand);
+                    CrawlerQuestType questType = RandUtils.GetRandomElement(questSettings.GetData(), rand);
 
                     await SetupQuest(party, world, startMap, targetMap, npc, questType, rand, token);
                 }
@@ -231,7 +231,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
 
-            lootGenData.ItemCount += (int)MathUtil.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
+            lootGenData.ItemCount += (int)RandUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBitIndex(fullQuest.Quest.IdKey);
 
@@ -435,7 +435,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 {
                     if (_rand.NextDouble() < lootChance)
                     {
-                        long indexChosen = MathUtil.LongRange(0, totalQuantity, _rand);
+                        long indexChosen = RandUtils.LongRange(0, totalQuantity, _rand);
 
                         for (int q = 0; q < finalItemQuests.Count; q++)
                         {

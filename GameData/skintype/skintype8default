@@ -4,7 +4,5 @@
   "IdKey": 8,
   "Name": "Ox",
   "Icon": "Ox",
-  "Art": "Ox",
-  "AnimalTypeId": 8,
-  "IsDefault": true
+  "Art": "Ox"
 }

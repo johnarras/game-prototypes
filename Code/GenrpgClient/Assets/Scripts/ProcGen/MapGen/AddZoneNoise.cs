@@ -16,14 +16,14 @@ public class AddZoneNoise : BaseZoneGenerator
     {
         int noiseSize = _mapProvider.GetMap().GetHwid();
         float ampDelta = 0.05f;
-        float zoneAmp = MathUtil.FloatRange(_amplitude * (1 - ampDelta), _amplitude * (1 + ampDelta), _rand);
+        float zoneAmp = _amplitude * RandUtils.DeltaScale(ampDelta, _rand);  
         float denomDelta = 0.05f;
-        float zoneDenom = MathUtil.FloatRange(_freqDiv * (1 - denomDelta), _freqDiv * (1 + denomDelta), _rand);
+        float zoneDenom = _freqDiv * RandUtils.DeltaScale(denomDelta, _rand); 
         float persDelta = 0.05f;
-        float pers = MathUtil.FloatRange(_persistence * (1 - persDelta), _persistence * (1 + persDelta), _rand);
+        float pers = _persistence * RandUtils.DeltaScale(persDelta, _rand);
         float freq = noiseSize / zoneDenom;
         float lacDelta = 0.05f;
-        float lac = MathUtil.FloatRange(_lacunarity * (1 - lacDelta), _lacunarity * (1 + pers), _rand);
+        float lac = _lacunarity * RandUtils.DeltaScale(lacDelta, _rand);
 
         int seed = _rand.Next();
         float[,] heights = _noiseService.Generate(pers, noiseSize / zoneDenom, zoneAmp, 2, seed, noiseSize, noiseSize, 0.5f);

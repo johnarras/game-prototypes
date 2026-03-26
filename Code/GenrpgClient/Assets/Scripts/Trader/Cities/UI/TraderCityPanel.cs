@@ -1,4 +1,6 @@
-﻿using Genrpg.Shared.Trader.Cities.Settings;
+﻿using Assets.Scripts.ClientEvents.UI;
+using Genrpg.Shared.Trader.Cities.Settings;
+using Genrpg.Shared.UI.Constants;
 
 namespace Assets.Scripts.Trader.Cities.UI
 {
@@ -9,14 +11,29 @@ namespace Assets.Scripts.Trader.Cities.UI
         public GButton GuildButton;
         public GButton QuestsButton;
         public GButton SuppliesButton;
+        public GButton EnchanterButton;
+        public GButton TempleButton;
+        public GButton TrainerButton;
 
         private City _city = null;
         public void SetData(City city)
         {
             _city = city;
 
-
+            _uiService.SetButton(AnimalsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderCaravanMembers); });
+            _uiService.SetButton(VendorButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderVendor); });
+            _uiService.SetButton(GuildButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderQuests); });
+            _uiService.SetButton(QuestsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderQuests); });
+            _uiService.SetButton(SuppliesButton, GetName(), () => { OpenScreenNamed(ScreenNames.Supplies); });
+            _uiService.SetButton(EnchanterButton, GetName(), () => { OpenScreenNamed(ScreenNames.Enchanter); });
+            _uiService.SetButton(TempleButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderTemple); });
+            _uiService.SetButton(TrainerButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderTrainer); });
 
         }
+        private void OpenScreenNamed(long screenName)
+        {
+            _dispatcher.Dispatch(new OpenScreen(screenName));
+        }
+
     }
 }

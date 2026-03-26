@@ -1,0 +1,9 @@
+{
+  "Id": "spendlocation10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Traveling Vendor",
+  "Desc": "You meet another traveling trader.",
+  "Icon": "TravelingVendor",
+  "SpendTypes": []
+}

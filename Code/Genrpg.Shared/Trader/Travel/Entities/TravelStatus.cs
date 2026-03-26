@@ -1,4 +1,5 @@
-﻿using Genrpg.Shared.Trader.Travel.WebApi;
+﻿using Genrpg.Shared.Trader.Caravans.Entities;
+using Genrpg.Shared.Trader.Travel.WebApi;
 
 namespace Genrpg.Shared.Trader.Travel.Entities
 {
@@ -10,8 +11,8 @@ namespace Genrpg.Shared.Trader.Travel.Entities
         public int TargetCityId { get; set; }
         public bool ArrivedInCity { get; set; }
         public int TravelDays { get; set; }
-        public bool IsFree { get; set; }
         public bool EarlyStopMessage { get; set; }
         public TravelResponse Response { get; set; }
+        public CaravanTravelInfo TravelInfo { get; set; }
     }
 }

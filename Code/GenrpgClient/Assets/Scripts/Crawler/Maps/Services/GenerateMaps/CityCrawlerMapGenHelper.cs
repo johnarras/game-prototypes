@@ -40,12 +40,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             int mapEdgeDistance = 1;
 
-            int width = (int)MathUtil.LongRange(genType.MinWidth, genType.MaxWidth, rand);
-            int height = (int)MathUtil.LongRange(genType.MinHeight, genType.MaxHeight, rand);
+            int width = (int)RandUtils.LongRange(genType.MinWidth, genType.MaxWidth, rand);
+            int height = (int)RandUtils.LongRange(genType.MinHeight, genType.MaxHeight, rand);
             CrawlerMap map = _worldService.CreateMap(genData, width, height);
 
             map.Name = _zoneGenService.GenerateZoneName(genData.ZoneType.IdKey, rand.Next(), true);
-            bool[,] clearCells = AddCorridors(map, genData, rand, MathUtil.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
+            bool[,] clearCells = AddCorridors(map, genData, rand, RandUtils.FloatRange(genType.MinCorridorDensity, genType.MaxCorridorDensity, rand));
 
             int gateX = -1;
             int gateZ = -1;
@@ -58,7 +58,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 if (rand.NextDouble() < 0.5f)
                 {
                     gateX = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Width - 1 - cityEdgeDistance);
-                    gateZ = MathUtil.IntRange(map.Height / 3, map.Height * 2 / 3, rand);
+                    gateZ = RandUtils.IntRange(map.Height / 3, map.Height * 2 / 3, rand);
 
                     int start = gateX;
                     int dir = (gateX == cityEdgeDistance ? 1 : -1);
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 else
                 {
                     gateZ = (rand.NextDouble() < 0.5 ? cityEdgeDistance : map.Height - 1 - cityEdgeDistance);
-                    gateX = MathUtil.IntRange(map.Width / 3, map.Width * 2 / 3, rand);
+                    gateX = RandUtils.IntRange(map.Width / 3, map.Width * 2 / 3, rand);
 
                     int start = gateZ;
                     int dir = (gateZ == cityEdgeDistance ? 1 : -1);
@@ -197,13 +197,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
             List<BuildingType> crawlerBuildings = buildings.Where(x => x.IsCrawlerBuilding).ToList();
 
-            List<BuildingType> fillerBuildings = crawlerBuildings.Where(x => x.VariationCount > 1).ToList();
+            List<BuildingType> fillerBuildings = crawlerBuildings.Where(x => x.IdKey == BuildingTypes.House).ToList();
 
-            List<BuildingType> requiredBuildings = crawlerBuildings.Where(x => x.VariationCount == 1).ToList();
+            List<BuildingType> requiredBuildings = crawlerBuildings.Where(x => x.IdKey != BuildingTypes.House).ToList();
 
             List<PointXZ> fillerBuildingPositions = new List<PointXZ>();
 
-            float buildingChance = MathUtil.FloatRange(genType.MinBuildingDensity, genType.MaxBuildingDensity, rand);
+            float buildingChance = RandUtils.FloatRange(genType.MinBuildingDensity, genType.MaxBuildingDensity, rand);
 
             if (fillerBuildings.Count > 0)
             {
@@ -360,7 +360,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                 CrawlerMap dungeonMap = await _mapGenService.Generate(party, world, dungeonGenData, token);
 
-                map.SetEntity((int)currPoint.X, (int)currPoint.Z, EntityTypes.Building, dungeonMap.BuildingTypeId);
+                map.SetEntity((int)currPoint.X, (int)currPoint.Z, EntityTypes.Building, dungeonMap.GetBuildingTypeId());
 
                 if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
                 {

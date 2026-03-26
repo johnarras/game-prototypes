@@ -32,7 +32,7 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
 
             RewardList rewardList = new RewardList();
             retval.Add(rewardList);
-            long quantity = MathUtil.LongRange(spawnItem.MinQuantity, spawnItem.MaxQuantity, rand);
+            long quantity = RandUtils.LongRange(spawnItem.MinQuantity, spawnItem.MaxQuantity, rand);
 
             ItemGenArgs igd = new ItemGenArgs()
             {
@@ -42,33 +42,15 @@ namespace Genrpg.MapServer.Spawns.RollHelpers
                 Quantity = 1,
             };
 
-            if (itype.CanStack())
+            for (int i = 0; i < quantity; i++)
             {
                 Reward rew = new Reward();
                 rew.EntityId = spawnItem.EntityId;
                 rew.EntityTypeId = EntityTypes.Item;
                 rew.Quantity = 1;
-                rew.QualityTypeId = rollLootArgs.QualityTypeId;
-                rew.Level = rollLootArgs.Level;
                 rewardList.Rewards.Add(rew);
 
                 rew.ExtraData = _itemGenService.Generate(rand, igd);
-                rew.Quantity = rollLootArgs.QualityTypeId;
-            }
-            else
-            {
-                for (int i = 0; i < quantity; i++)
-                {
-                    Reward rew = new Reward();
-                    rew.EntityId = spawnItem.EntityId;
-                    rew.EntityTypeId = EntityTypes.Item;
-                    rew.Quantity = 1;
-                    rew.QualityTypeId = rollLootArgs.QualityTypeId;
-                    rew.Level = rollLootArgs.Level;
-                    rewardList.Rewards.Add(rew);
-
-                    rew.ExtraData = _itemGenService.Generate(rand, igd);
-                }
             }
             return retval;
         }

@@ -1,24 +1,26 @@
 ﻿using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.LevelTracks.WebApi;
-using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Trader.Encounters.Entities;
-using System.Collections.Generic;
+using Genrpg.Shared.Utils.Data;
 
 namespace Genrpg.Shared.Trader.Travel.Entities
 {
+
+    public class DayVars
+    {
+        public const int Day = 1;
+        public const int BonusDistance = 2;
+        public const int TotalDistance = 3;
+        public const int EndDistance = 4;
+        public const int EndFlags = 5;
+        public const int Exp = 6;
+        public const int DiceCount = 7;
+    }
+
     public class TravelDay : IClientEvent
     {
-        public List<int> RolledDistances { get; set; } = new List<int>();
-        public int BonusDistance { get; set; }
-        public int TotalDistance { get; set; }
-        public int EndDistance { get; set; }
-        public int Day { get; set; }
-        public int EndFlags { get; set; }
-        public int EndDiceSpeed { get; set; }
-        public int EndBonusSpeed { get; set; }
-        public int RationsCost { get; set; }
-        public int DebuffDaysAdded { get; set; }
-        public List<Reward> TravelRewards { get; set; } = new List<Reward>();
+        public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
+        public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
 
         public EncounterResult EncounterResult { get; set; } = null!;
         public GainExpResponse ExpResponse { get; set; } = null!;

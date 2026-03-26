@@ -1,0 +1,6 @@
+header gameplaystat,Idkey,Name,Icon,Art
+gameplaystat,1,Max Size,MaxSize,MaxSize
+gameplaystat,2,Max Inventory,MaxInventory,MaxInventory
+gameplaystat,3,Bonus Speed,BonusSpeed,BonusSpeed
+gameplaystat,4,Luck,Luck,Luck
+gameplaystat,5,Searching,Searching,Searching

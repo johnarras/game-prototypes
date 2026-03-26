@@ -5,14 +5,16 @@ using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Players.Constants;
 using Genrpg.Shared.Players.Messages;
 using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Players.MessageHandlers
 {
     public class SaveDirtyHandler : BaseCharacterServerMapMessageHandler<SaveDirty>
     {
         protected IPlayerDataService _playerDataService = null;
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, SaveDirty message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, SaveDirty message)
         {
+            await Task.CompletedTask;
             _playerDataService.SavePlayerData(ch);
 
             if (!message.IsCancelled())

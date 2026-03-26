@@ -1,11 +1,9 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Stats.Constants;
-using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Spells.Settings.Skills

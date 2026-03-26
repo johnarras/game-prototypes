@@ -1,4 +1,4 @@
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Spells.Interfaces
 {

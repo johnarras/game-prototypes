@@ -1,5 +1,5 @@
 using Genrpg.Shared.Effects.Helpers.DisplayHelpers;
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;

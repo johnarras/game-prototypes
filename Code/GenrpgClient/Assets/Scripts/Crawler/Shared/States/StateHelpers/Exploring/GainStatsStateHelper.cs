@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;

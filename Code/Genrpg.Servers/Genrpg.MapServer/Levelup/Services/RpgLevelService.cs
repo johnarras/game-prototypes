@@ -13,13 +13,14 @@ using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 namespace Genrpg.MapServer.Levelup.Services
 {
     public interface IRpgLevelService : IInjectable
     {
-        void UpdateLevel(IRandom rand, Character ch);
+        Task UpdateLevel(IRandom rand, Character ch);
         void SetupLevels(GameData data);
-        bool GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev);
+        Task<bool> GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev);
 
     }
 
@@ -30,13 +31,13 @@ namespace Genrpg.MapServer.Levelup.Services
         private IMapMessageService _messageService = null;
         private IGameData _gameData = null;
 
-        public void UpdateLevel(IRandom rand, Character ch)
+        public async Task UpdateLevel(IRandom rand, Character ch)
         {
-            CurrencyData currencies = ch.Get<CurrencyData>();
+            CharCurrencyData currencies = ch.Get<CharCurrencyData>();
 
             long startLevel = ch.Level;
             long maxLevel = _gameData.Get<RpgLevelSettings>(ch).MaxLevel;
-            long startExp = currencies.GetQuantity(CurrencyTypes.Exp);
+            long startExp = currencies.Data[CharCurrencyTypes.Exp];
             long currExp = startExp;
             long endLevel = startLevel;
             for (endLevel = startLevel; endLevel < maxLevel; endLevel++)
@@ -61,18 +62,18 @@ namespace Genrpg.MapServer.Levelup.Services
                     UnitId = ch.Id,
                 };
                 _messageService.SendMessageNear(ch, levelMessage);
-                GiveLevelRewards(rand, ch, ldata);
+                await GiveLevelRewards(rand, ch, ldata);
             }
 
             if (endLevel > startLevel)
             {
-                long oldExp = _rewardService.GetQuantity(ch, EntityTypes.Currency, CurrencyTypes.Exp);
-                _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Exp, currExp-oldExp, null, null);
+                long oldExp = currencies.Data[CharCurrencyTypes.Exp];
+                await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, currExp - oldExp, null, null);
                 _statService.CalcStats(ch, true);
             }
         }
 
-        public virtual bool GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev)
+        public virtual async Task<bool> GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev)
         {
 
             if (lev == null)
@@ -89,7 +90,7 @@ namespace Genrpg.MapServer.Levelup.Services
 
             if (lev.RewardList != null)
             {
-                _rewardService.GiveRewards(rand, ch, new List<RewardList>() { new RewardList() { RewardSourceId = RewardSources.Levelup, Rewards = lev.RewardList } }, null);
+                await _rewardService.GiveRewards(ch, new List<RewardList>() { new RewardList() { RewardSourceId = RewardSources.Levelup, Rewards = lev.RewardList } }, null);
             }
 
             ch.AbilityPoints += lev.AbilityPoints;

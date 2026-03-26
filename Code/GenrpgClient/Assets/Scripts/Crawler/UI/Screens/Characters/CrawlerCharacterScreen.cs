@@ -6,7 +6,7 @@ using Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades;
 using Assets.Scripts.Inventory.UI;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;

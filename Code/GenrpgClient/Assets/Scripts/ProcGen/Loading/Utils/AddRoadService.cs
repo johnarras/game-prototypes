@@ -8,7 +8,7 @@ using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.ProcGen.Constants;
 
 public interface IAddRoadService : IInjectable
@@ -175,7 +175,7 @@ public class AddRoadService : IAddRoadService
 		ld.WidthPosShiftChance = 0.03f + 0.05f*(float)(rand.NextDouble ());
 		ld.WidthPosShiftSize = 1;
 
-        ld.LinePathNoiseScale = MathUtil.FloatRange(0.6f, 1.0f, rand);
+        ld.LinePathNoiseScale = RandUtils.FloatRange(0.6f, 1.0f, rand);
 
         ld.InitialNoPosShiftLength = 5 + rand.Next() % 5;
 
@@ -229,14 +229,14 @@ public class AddRoadService : IAddRoadService
             if (!primaryRoad)
             {
                 float oldRoadPercent = roadPercent;
-                roadPercent *= MathUtil.FloatRange(0.2f, 0.4f, rand);
+                roadPercent *= RandUtils.FloatRange(0.2f, 0.4f, rand);
                 dirtPercent = oldRoadPercent - roadPercent;
                 basePercent = 1 - roadPercent - dirtPercent;
             }
 
             if (FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
             {
-                dirtPercent = MathUtil.FloatRange(0.6f, 1.0f, rand);
+                dirtPercent = RandUtils.FloatRange(0.6f, 1.0f, rand);
                 roadPercent = 1 - dirtPercent;
                 basePercent = 0;
             }
@@ -357,7 +357,7 @@ public class AddRoadService : IAddRoadService
                     continue;
                 }
 
-                float roadPct = MathUtil.FloatRange(0.8f,1.0f,rand);
+                float roadPct = RandUtils.FloatRange(0.8f,1.0f,rand);
 				_md.ClearAlphasAt(x,y);
 				_md.alphas[x,y,TerrainTexChannels.Base] = 1-roadPct;
 				_md.alphas[x,y,TerrainTexChannels.Road] = roadPct;

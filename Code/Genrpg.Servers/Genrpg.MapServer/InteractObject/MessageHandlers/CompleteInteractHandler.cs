@@ -14,6 +14,7 @@ using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.InteractObject.MessageHandlers
 {
@@ -21,8 +22,9 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
     {
         private ISpawnService _spawnService = null;
 
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, CompleteInteract message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, CompleteInteract message)
         {
+            await Task.CompletedTask;
             string errorMessage = "";
             if (ch.ActionMessage == null)
             {
@@ -90,7 +92,7 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
 
                     if (rewards.Count > 0)
                     {
-                        _rewardService.GiveRewards(rand, ch, rewards, null);
+                        await _rewardService.GiveRewards(ch, rewards, null);
 
                         SendRewards sendLoot = new SendRewards()
                         {
@@ -107,7 +109,7 @@ namespace Genrpg.MapServer.InteractObject.MessageHandlers
                 {
                     if (unit.SkillLoot != null && unit.SkillLoot.Count > 0)
                     {
-                        _rewardService.GiveRewards(rand, ch, unit.SkillLoot, null);
+                        await _rewardService.GiveRewards(ch, unit.SkillLoot, null);
 
                         SendRewards sendLoot = new SendRewards()
                         {

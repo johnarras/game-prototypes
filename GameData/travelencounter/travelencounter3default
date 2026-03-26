@@ -8,7 +8,7 @@
   "GoodEffects": [],
   "BadEffects": [
     {
-      "EntityTypeId": 200,
+      "EntityTypeId": 1,
       "EntityId": 1,
       "MinQuantity": 50,
       "MaxQuantity": 150,
@@ -17,14 +17,14 @@
   ],
   "FailureEffects": [
     {
-      "EntityTypeId": 200,
+      "EntityTypeId": 1,
       "EntityId": 2,
       "MinQuantity": 10,
       "MaxQuantity": 20,
       "Weight": 100.0
     },
     {
-      "EntityTypeId": 200,
+      "EntityTypeId": 1,
       "EntityId": 4,
       "MinQuantity": 10,
       "MaxQuantity": 20,

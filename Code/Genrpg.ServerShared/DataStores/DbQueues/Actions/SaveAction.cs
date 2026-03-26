@@ -1,11 +1,11 @@
-using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.DataStores.DbQueues.Actions
 {
 
-    public class SaveAction<T> : IDbAction where T : class, ISearchableItem
+    public class SaveAction<T> : IDbAction where T : class, IStringId
     {
 
         private List<T> _items { get; set; } = new List<T>();

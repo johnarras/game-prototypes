@@ -1,19 +1,22 @@
-using Genrpg.Shared.DataStores.Interfaces;
+
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Utils;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Rewards.Services
 {
-    public interface IRewardService : IInjectable
+    public interface IRewardService : IInitializable
     {
-        bool GiveRewards<RL>(IRandom rand, MapObject obj, List<RL> resultList, RewardParams rp) where RL : RewardList;
-        bool GiveReward(IRandom rand, MapObject obj, IReward res, RewardParams rp);
-        bool GiveReward(IRandom rand, MapObject obj, long entityType, long entityId, long quantity, object extraData, RewardParams rp);
+        Task<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp);
+        Task<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, RewardParams rp) where TReward : IEffect;
 
-        long GetQuantity(MapObject obj, long entityTypeId, long entityId);
+        Task<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, RewardParams rp) where TReward : IEffect;
+
+        Task<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, Item extraData, RewardParams rp);
     }
 }
 

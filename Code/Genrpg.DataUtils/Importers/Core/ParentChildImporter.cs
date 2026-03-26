@@ -1,6 +1,7 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.DataUtils.Importers.Core
 {
@@ -17,8 +18,8 @@ namespace Genrpg.DataUtils.Importers.Core
             List<TChild> fullChildList = new List<TChild>();
             List<TChild> newChildList = new List<TChild>();
 
-            string parentTypeName = typeof(TParent).Name.ToLower();
-            string childTypeName = typeof(TChild).Name.ToLower();
+            string parentTypeName = StrUtils.NormalizeTypeName<TParent>();
+            string childTypeName = StrUtils.NormalizeTypeName<TChild>();
 
             List<string> childTypeNames = new List<string>();
             childTypeNames.Add(childTypeName);

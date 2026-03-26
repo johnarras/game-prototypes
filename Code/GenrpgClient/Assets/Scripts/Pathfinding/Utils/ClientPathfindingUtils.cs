@@ -2,7 +2,7 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Pathfinding.Entities;

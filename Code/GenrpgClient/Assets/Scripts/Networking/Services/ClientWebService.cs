@@ -3,10 +3,11 @@
 
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Core;
 using Assets.Scripts.Login.Messages;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Core.Constants;
+using Genrpg.Shared.Crawler.Quests.Entities;
 using Genrpg.Shared.GameAuth.WebApi.RefreshToken;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -17,9 +18,11 @@ using Genrpg.Shared.Serialization.Services;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -28,7 +31,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public delegate void WebResultsHandler(string txt, List<FullWebRequest> requests, CancellationToken token);
+public delegate Awaitable WebResultsHandler(string txt, List<FullWebRequest> requests, CancellationToken token);
 
 
 public enum EWebRequestState
@@ -56,22 +59,12 @@ public class FullWebRequest
 
 public interface IClientWebService : IInitializable, IGameTokenService
 {
-    void SendAccountAuthWebRequest(IAccountAuthRequest loginRequest, CancellationToken token);
-    Awaitable<T> SendAccountAuthWebRequestAsync<T>(IAccountAuthRequest userRequest, CancellationToken token);
+    FullWebRequest SendWebRequest(IWebRequest request, CancellationToken token, Type responseType = null);
+    Awaitable<T> SendWebRequestAsync<T>(IWebRequest webRequest, CancellationToken token) where T : class, IWebResponse;
 
+    Awaitable HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token);
 
-    void SendGameAuthWebRequest(IGameAuthRequest loginRequest, CancellationToken token);
-    Awaitable<T> SendGameAuthWebRequestAsync<T>(IGameAuthRequest userRequest, CancellationToken token);
-
-    void SendClientUserWebRequest(IClientUserRequest data, CancellationToken token);
-    Awaitable<T> SendClientUserWebRequestAsync<T>(IClientUserRequest userRequest, CancellationToken token);
-
-    void SendNoUserWebRequest(INoUserRequest data, CancellationToken token);
-    Awaitable<T> SendNoUserWebRequestAsync<T>(INoUserRequest userRequest, CancellationToken token);
-
-    void HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token);
-
-    Awaitable<TResponseType> SendRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null)
+    Awaitable<TResponseType> SendRawWebRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null)
         where TResponseType : class;
 
 }
@@ -88,7 +81,7 @@ public class ClientWebService : IClientWebService
         public IClientWebResponseHandler Handler { get; set; } = null;
     }
 
-    private Dictionary<string, WebRequestQueue> _queues = new Dictionary<string, WebRequestQueue>();
+    private Dictionary<Type, WebRequestQueue> _queues = new Dictionary<Type, WebRequestQueue>();
 
     private NewtonsoftTextSerializer textSerializer { get; set; } = new NewtonsoftTextSerializer();
 
@@ -137,10 +130,10 @@ public class ClientWebService : IClientWebService
 
 
         // Batch requests to fewer endpoints like in a realtime game.
-        _queues[AccountAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + AccountAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, null);
-        _queues[GameAuthEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[AccountAuthEndpoint]);
-        _queues[GameClientEndpoint] = new WebRequestQueue(_gs, token, webServerURL + GameClientEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[GameAuthEndpoint]);
-        _queues[NoUserEndpoint] = new WebRequestQueue(_gs, token, webServerURL + NoUserEndpoint, 0, _showRequestLogs, _logService, this, _serializer, _gameData, null);
+        _queues[typeof(IAccountAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + AccountAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, null);
+        _queues[typeof(IGameAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + GameAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[typeof(IAccountAuthRequest)]);
+        _queues[typeof(IClientUserRequest)] = new WebRequestQueue(_gs, token, webServerURL + GameClientEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _queues[typeof(IGameAuthRequest)]);
+        _queues[typeof(INoUserRequest)] = new WebRequestQueue(_gs, token, webServerURL + NoUserEndpoint, 0, _showRequestLogs, _logService, this, _serializer, _gameData, null);
         foreach (var queue in _queues.Values)
         {
             _loc.Resolve(queue);
@@ -152,7 +145,7 @@ public class ClientWebService : IClientWebService
         await Task.CompletedTask;
     }
 
-    public void HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token)
+    public async Awaitable HandleResponses(string txt, List<FullWebRequest> requests, CancellationToken token)
     {
         try
         {
@@ -202,7 +195,7 @@ public class ClientWebService : IClientWebService
 
             foreach (ResultHandlerPair responsePair in responsePairs)
             {
-                responsePair.Handler.Process(responsePair.Result, token);
+                await responsePair.Handler.Process(responsePair.Result, token);
             }
         }
         catch (Exception ex)
@@ -233,7 +226,7 @@ public class ClientWebService : IClientWebService
 
         private bool _showRequestLogs = false;
 
-        public WebRequestQueue(IClientGameState gs, CancellationToken token, string fullEndpoint, float delaySeconds, bool showRequestLogs, ILogService logService, IClientWebService _clientWebService,
+        public WebRequestQueue(IClientGameState gs, CancellationToken token, string fullEndpoint, float delaySeconds, bool showRequestLogs, ILogService logService, IClientWebService clientWebService,
             ITextSerializer serializer, IGameData gameData, WebRequestQueue parentQueue)
         {
             _gs = gs;
@@ -242,7 +235,7 @@ public class ClientWebService : IClientWebService
             _serializer = serializer;
             _gameData = gameData;
             _showRequestLogs = showRequestLogs;
-            this._clientWebService = _clientWebService;
+            _clientWebService = clientWebService;
             if (_parentQueue != null)
             {
                 _parentQueue.AddChildQueue(this);
@@ -338,9 +331,9 @@ public class ClientWebService : IClientWebService
             _awaitableService.ForgetAwaitable(req.SendRequest(_logService, _clientWebService, _fullEndpoint, envelope, _pending.ToList(), HandleResults, security, fullRequestSource.Token));
         }
 
-        public void HandleResults(string txt, List<FullWebRequest> requests, CancellationToken token)
+        public async Awaitable HandleResults(string txt, List<FullWebRequest> requests, CancellationToken token)
         {
-            _clientWebService.HandleResponses(txt, requests, token);
+            await _clientWebService.HandleResponses(txt, requests, token);
             _lastResponseReceivedTime = DateTime.UtcNow;
             _pending.Clear();
         }
@@ -360,61 +353,31 @@ public class ClientWebService : IClientWebService
         return _token;
     }
 
-    public void SendAccountAuthWebRequest(IAccountAuthRequest authRequest, CancellationToken token)
+
+    public FullWebRequest SendWebRequest(IWebRequest request, CancellationToken token, Type responseType = null)
     {
-        SendRequest(AccountAuthEndpoint, authRequest, token);
-    }
-
-    public async Awaitable<T> SendAccountAuthWebRequestAsync<T>(IAccountAuthRequest userRequest, CancellationToken token)
-    {
-        return await SendWebRequestAsync<T>(AccountAuthEndpoint, userRequest, token);
-    }
-
-
-    public void SendGameAuthWebRequest(IGameAuthRequest authRequest, CancellationToken token)
-    {
-        SendRequest(GameAuthEndpoint, authRequest, token);
-    }
-
-    public async Awaitable<T> SendGameAuthWebRequestAsync<T>(IGameAuthRequest userRequest, CancellationToken token)
-    {
-        return await SendWebRequestAsync<T>(GameAuthEndpoint, userRequest, token);
-    }
-
-
-    public void SendClientUserWebRequest(IClientUserRequest userRequest, CancellationToken token)
-    {
-        SendRequest(GameClientEndpoint, userRequest, token);
-    }
-
-    public async Awaitable<T> SendClientUserWebRequestAsync<T>(IClientUserRequest userRequest, CancellationToken token)
-    {
-        return await SendWebRequestAsync<T>(GameClientEndpoint, userRequest, token);
-    }
-
-
-    public void SendNoUserWebRequest(INoUserRequest noUserRequest, CancellationToken token)
-    {
-        SendRequest(NoUserEndpoint, noUserRequest, token);
-    }
-
-    public async Awaitable<T> SendNoUserWebRequestAsync<T>(INoUserRequest userRequest, CancellationToken token)
-    {
-        return await SendWebRequestAsync<T>(NoUserEndpoint, userRequest, token);
-    }
-
-    private FullWebRequest SendRequest(string endpoint, IWebRequest loginRequest, CancellationToken token, Type responseType = null)
-    {
-        if (_queues.TryGetValue(endpoint, out WebRequestQueue queue))
+        foreach (Type t in _queues.Keys)
         {
-            return queue.AddRequest(loginRequest, token, responseType);
+            if (t.IsAssignableFrom(request.GetType()))
+            {
+                _queues[t].AddRequest(request, token, responseType);
+                break;
+            }
         }
-        return null;
+
+        FullWebRequest fullRequest = new FullWebRequest()
+        {
+            Request = request,
+            Token = token,
+            ResponseType = responseType,
+            State = EWebRequestState.Pending,
+        };
+        return fullRequest;
     }
 
-    private async Awaitable<T> SendWebRequestAsync<T>(string endpoint, IWebRequest webRequest, CancellationToken token)
+    public async Awaitable<T> SendWebRequestAsync<T>(IWebRequest webRequest, CancellationToken token) where T : class, IWebResponse
     {
-        FullWebRequest fullRequest = SendRequest(endpoint, webRequest, token, typeof(T));
+        FullWebRequest fullRequest = SendWebRequest(webRequest, token, typeof(T));
 
         while (fullRequest.State == EWebRequestState.Pending)
         {
@@ -424,7 +387,8 @@ public class ClientWebService : IClientWebService
         return (T)fullRequest.ResponseObject;
     }
 
-    public async Awaitable<TResponseType> SendRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null) where TResponseType : class
+
+    public async Awaitable<TResponseType> SendRawWebRequest<TResponseType>(string url, HttpMethod method, object requestData = null, SecurityData security = null) where TResponseType : class
     {
 
         using (UnityWebRequest request = new UnityWebRequest(url, method.ToString()))
@@ -473,7 +437,7 @@ public class ClientWebService : IClientWebService
                 if (await RefreshSessionTokenAsync(_token))
                 {
                     security.SessionToken = _gs.SessionState.SessionToken;
-                    return await SendRequest<TResponseType>(url, method, requestData, security);
+                    return await SendRawWebRequest<TResponseType>(url, method, requestData, security);
                 }
                 else
                 {
@@ -506,7 +470,7 @@ public class ClientWebService : IClientWebService
             Json = _serializer.SerializeToString(set),
         };
 
-        WebServerResponseSet responseSet = await SendRequest<WebServerResponseSet>(_configContainer.Config.GetWebEndpoint() + RefreshTokenEndpoint, HttpMethod.Post, envelope);
+        WebServerResponseSet responseSet = await SendRawWebRequest<WebServerResponseSet>(_configContainer.Config.GetWebEndpoint() + RefreshTokenEndpoint, HttpMethod.Post, envelope);
 
         if (responseSet != null)
         {

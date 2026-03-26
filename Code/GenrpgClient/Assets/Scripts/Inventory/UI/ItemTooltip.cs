@@ -1,5 +1,6 @@
 using Assets.Scripts.Assets.Sprites.Services;
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Effects.Services;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.Constants;
@@ -73,12 +74,8 @@ public class ItemTooltip : BaseTooltip
         _unit = data.unit;
 
         _uiService.SetText(Message, _data.Message);
-        _uiService.SetText(ItemName, _sharedItemService.GetName(_gameData, _unit, _data.MainItem));
-        _uiService.SetText(BasicInfo, _sharedItemService.GetBasicInfo(_gameData, _unit, _data.MainItem));
-
-        string bgName = _iconService.GetBackingNameFromQuality(_gameData, _data.MainItem.QualityTypeId);
-
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, RarityImage, token);
+        _uiService.SetText(ItemName, _sharedItemService.GetName(_unit, _data.MainItem));
+        _uiService.SetText(BasicInfo, _sharedItemService.GetBasicInfo(_unit, _data.MainItem));
 
         ShowMoney();
 
@@ -91,7 +88,7 @@ public class ItemTooltip : BaseTooltip
         _rows = new List<ItemTooltipRow>();
 
 
-        List<ItemEffect> otherEffects = new List<ItemEffect>();
+        List<Effect> otherEffects = new List<Effect>();
         if (_data.CompareToItem != null && _data.CompareToItem.Effects != null)
         {
             otherEffects = _data.CompareToItem.Effects;
@@ -123,7 +120,7 @@ public class ItemTooltip : BaseTooltip
         {
             if (_data.MainItemType != null && _data.MainItemType.Effects != null)
             {
-                foreach (ItemEffect eff in _data.MainItemType.Effects)
+                foreach (Effect eff in _data.MainItemType.Effects)
                 {
                     if (eff.EntityTypeId == EntityTypes.Stat || eff.EntityTypeId == EntityTypes.StatPct)
                     {
@@ -150,7 +147,7 @@ public class ItemTooltip : BaseTooltip
 
         }
 
-        foreach (ItemEffect eff in _data.MainItem.Effects)
+        foreach (Effect eff in _data.MainItem.Effects)
         {
             string mainText = _effectService.DisplayEffect(_unit, eff);
 
@@ -160,7 +157,7 @@ public class ItemTooltip : BaseTooltip
             }
 
             long change = (_data.CompareToItem != null ? -eff.Quantity : 0);
-            ItemEffect otherEffect = otherEffects.FirstOrDefault(x => x.EntityTypeId == eff.EntityTypeId && x.EntityId == eff.EntityId);
+            Effect otherEffect = otherEffects.FirstOrDefault(x => x.EntityTypeId == eff.EntityTypeId && x.EntityId == eff.EntityId);
 
             if (otherEffect != null)
             {
@@ -177,9 +174,9 @@ public class ItemTooltip : BaseTooltip
             ShowTooltipRow(rowData);
         }
 
-        foreach (ItemEffect eff in otherEffects)
+        foreach (Effect eff in otherEffects)
         {
-            ItemEffect mainEffect = _data.MainItem.Effects.FirstOrDefault(x => x.EntityTypeId == eff.EntityTypeId &&
+            Effect mainEffect = _data.MainItem.Effects.FirstOrDefault(x => x.EntityTypeId == eff.EntityTypeId &&
             x.EntityId == eff.EntityId);
             if (mainEffect != null)
             {

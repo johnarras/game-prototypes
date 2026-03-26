@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Riding Horse",
+  "Desc": "Bred for speed and agility, this horse is ideal for riders, messengers, and lightly packed scouts. Less efficient for heavy loads than a mule.",
+  "Icon": "RidingHorse",
+  "Art": "RidingHorse",
+  "Speed": 6,
+  "Size": 2,
+  "Price": 58250,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -2
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 1
+    }
+  ]
+}

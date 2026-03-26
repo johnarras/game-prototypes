@@ -1,0 +1,32 @@
+{
+  "Id": "itemtype5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Gloves",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "Gloves",
+  "Art": "Gloves",
+  "MinVal": 3,
+  "MaxVal": 3,
+  "EquipSlotId": 10,
+  "IconCount": 3,
+  "Effects": [],
+  "Names": [
+    {
+      "Weight": 1000.0,
+      "Name": "Gloves",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Gauntlets",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Wristguards",
+      "Desc": ""
+    }
+  ]
+}

@@ -1,5 +1,7 @@
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using Assets.Scripts.ProcGen.Materials;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -36,6 +38,9 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
         }
 
         private ICrawlerMapService _crawlerMapService = null;
+        private IMaterialGenService _materialGenService = null;
+
+        private IAwaitableService _awaitableService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ExploreWorld;
         public override bool IsTopLevelState() { return true; }
@@ -81,10 +86,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.Actions.Add(new CrawlerStateAction("Recall", Key.R));
             stateData.Actions.Add(new CrawlerStateAction("Options", Key.O));
             stateData.Actions.Add(new CrawlerStateAction("Party Order", Key.P));
-            stateData.Actions.Add(new CrawlerStateAction("Guild Hall", Key.G, ECrawlerStates.GuildMain));
             stateData.Actions.Add(new CrawlerStateAction("Buffs", Key.B));
             stateData.Actions.Add(new CrawlerStateAction("Use Item", Key.U));
 
+            //if (_clientAppService.IsEditor)
+            {
+                stateData.Actions.Add(new CrawlerStateAction("Gen Wall", Key.G, ECrawlerStates.None, () => GenerateWall(token)));
+            }
 
             if (map != null)
             {
@@ -163,6 +171,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             await _crawlerMapService.EnterMap(party, mapData, token);
 
             return stateData;
+        }
+
+        private void GenerateWall(CancellationToken token)
+        {
+            _awaitableService.ForgetAwaitable(_materialGenService.GenerateRandomMaterialsInCrawler(token));
+
+
         }
     }
 }

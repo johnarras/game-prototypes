@@ -41,7 +41,7 @@ public class CharacterCreateScreen : BaseScreen
             Name = charName,
         };
 
-        _webNetworkService.SendClientUserWebRequest(createCommand, GetToken());
+        _webNetworkService.SendWebRequest(createCommand, GetToken());
 
     }
 }

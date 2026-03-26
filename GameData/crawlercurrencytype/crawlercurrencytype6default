@@ -1,9 +1,0 @@
-{
-  "Id": "crawlercurrencytype6default",
-  "ParentId": "default",
-  "IdKey": 6,
-  "Name": "Essence",
-  "Icon": "EssenceIcon",
-  "Art": "EssenceArt",
-  "CraftingStatTypeId": 17
-}

@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype76default",
+  "ParentId": "default",
+  "IdKey": 76,
+  "Name": "GameplayDebuff",
+  "Icon": "GameplayDebuff",
+  "Art": "GameplayDebuff"
+}

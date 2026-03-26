@@ -1,7 +1,5 @@
 ﻿using Genrpg.Shared.Rewards.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Trader.Encounters.Entities
 {

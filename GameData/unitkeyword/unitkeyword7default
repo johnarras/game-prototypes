@@ -9,13 +9,13 @@
   "Effects": [
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 1
+      "EntityId": 1,
+      "Quantity": 1
     },
     {
       "EntityTypeId": 36,
-      "Quantity": 1,
-      "EntityId": 2
+      "EntityId": 2,
+      "Quantity": 1
     }
   ]
 }

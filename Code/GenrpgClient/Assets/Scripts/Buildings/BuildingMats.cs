@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Buildings
 {
@@ -12,7 +8,6 @@ namespace Assets.Scripts.Buildings
         public List<WeightedBuildingMaterial> DoorMats = new List<WeightedBuildingMaterial>();
         public List<WeightedBuildingMaterial> WindowMats = new List<WeightedBuildingMaterial>();
         public List<WeightedBuildingMaterial> ShinglesMats = new List<WeightedBuildingMaterial>();
-
 
         public List<WeightedBuildingMaterial> GetMatsFromSlot(EBuildingMatSlots slot)
         {
@@ -33,6 +28,19 @@ namespace Assets.Scripts.Buildings
                 return ShinglesMats;
             }
             return WallMats;
+        }
+
+        public bool IsReady()
+        {
+            if (WallMats == null || WallMats.Count == 0 ||
+                DoorMats == null || DoorMats.Count == 0 ||
+                WindowMats == null || WindowMats.Count == 0 ||
+                ShinglesMats == null || ShinglesMats.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
     }

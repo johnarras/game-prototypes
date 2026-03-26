@@ -1,6 +1,6 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Loot.Services;
@@ -186,7 +186,7 @@ namespace Genrpg.Shared.Crawler.TimeOfDay.Services
                             currVal = 0;
                         }
 
-                        _statService.Set(member, fraction.StatTypeId, StatCategories.Curr, currVal);
+                        _statService.Set(member, fraction.StatTypeId, UnitStatValOffsets.Curr, currVal);
                         didAdjustStat = true;
                         if (currVal >= maxVal)
                         {

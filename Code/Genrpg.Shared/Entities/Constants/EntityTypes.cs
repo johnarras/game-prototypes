@@ -3,16 +3,16 @@ namespace Genrpg.Shared.Entities.Constants
     public class EntityTypes
     {
         public const long None = 0;
-        public const long Currency = 1;
+        public const long CoreCurrency = 1;
         public const long Item = 2;
         public const long Spell = 3;
         public const long Unit = 4;
         public const long Spawn = 5;
+        public const long CharCurrency = 6;
         public const long Scaling = 7;
         public const long Recipe = 8;
         public const long Quest = 9;
         public const long Set = 10;
-        public const long Exp = 11;
         public const long QuestItem = 12;
         public const long GroundObject = 13;
         public const long Zone = 14;
@@ -20,11 +20,7 @@ namespace Genrpg.Shared.Entities.Constants
         public const long ProxyCharacter = 16;
         public const long Building = 17;
         public const long MapMod = 18;
-        public const long Tribe = 19;
-        public const long Reputation = 20;
         public const long Chest = 21;
-        public const long BoardPrize = 22;
-        public const long BoardMode = 23;
         public const long Vulnerability = 24;
         public const long Resist = 25;
         public const long Crafter = 26;
@@ -32,7 +28,6 @@ namespace Genrpg.Shared.Entities.Constants
         public const long ZoneCategory = 28;
         public const long RandomEntity = 29;
         public const long TimedEvent = 30;
-
         public const long Stat = 31;
         public const long StatPct = 32;
         public const long Damage = 33;
@@ -58,41 +53,46 @@ namespace Genrpg.Shared.Entities.Constants
         public const long RiddleType = 53;
         public const long Marker = 54;
         public const long City = 55;
-        public const long Animal = 56;
+        public const long CaravanMember = 56;
         public const long TradeGood = 57;
         public const long Road = 58;
         public const long Polymorph = 59;
-
         public const long StoreRewards = 60;
         public const long ProductSku = 61;
-        public const long Skin = 62;
+        public const long SkinType = 62;
         public const long TraderFlag = 63;
         public const long TraderSkill = 64;
         public const long MinigameType = 65;
-        public const long TraderBuff = 66;
-        public const long TraderDebuff = 67;
+        public const long MoveCaravanMember = 66;
         public const long TraderVars = 68;
+        public const long SpendCurrencyLocation = 69;
 
+        public const long GameplayStat = 70;
+        public const long BaseGameplayStat = 71;
+        public const long BonusGameplayStat = 73;
+        public const long GameplayStatBuff = 74;
+        public const long GameplayBuff = 75;
+        public const long GameplayDebuff = 76;
+
+        public const long BaseCurrencyRegen = 77;
+        public const long BonusCurrencyRegen = 78;
+        public const long CurrencyRegenBuff = 79;
+
+        public const long BaseCurrencyStorage = 80;
+        public const long BonusCurrencyStorage = 81;
+        public const long CurrencyStorageBuff = 82;
+
+
+        public const long BaseTravelDayCurrency = 83;
+        public const long BonusTravelDayCurrency = 84;
+        public const long TravelDayCurrencyBuff = 85;
 
         // Crawler-specific entitytypes
         public const long CrawlerSpell = 100;
         public const long PartyBuff = 101;
         public const long Map = 102;
         public const long Role = 103;
-        public const long CrawlerCurrency = 104;
 
-        public const long TimedEventCurrency = 149;
-        public const long SeasonTheme = 150;
-        public const long SeasonTierList = 151;
-        public const long CollectionTheme = 152;
-        public const long CollectionTierList = 153;
-
-        // User Reward Types
-        public const long CoreCurrency = 200;
-        public const long TraderStat = 201;
-        public const long BaseTraderStat = 202;
-        public const long TraderBonusStat = 203;
-        public const long TraderStatBuff = 204;
 
     }
 }

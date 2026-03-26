@@ -1,0 +1,22 @@
+{
+  "Children": [
+    {
+      "IdKey": 2,
+      "Name": "Money",
+      "Icon": "Money",
+      "Art": "Money"
+    },
+    {
+      "IdKey": 3,
+      "Name": "Exp",
+      "Icon": "Exp",
+      "Art": "Exp"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "CharCurrencyTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-23T19:48:51.657Z"
+}

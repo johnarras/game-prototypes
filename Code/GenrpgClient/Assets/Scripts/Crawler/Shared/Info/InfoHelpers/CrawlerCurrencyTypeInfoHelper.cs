@@ -1,14 +1,14 @@
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 {
-    public class CrawlerCurrencyTypeInfoHelper : BaseInfoHelper<CrawlerCurrencySettings, CrawlerCurrencyType>
+    public class CoreCurrencyTypeInfoHelper : BaseInfoHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
     {
 
-        public override long HelperKey => EntityTypes.CrawlerCurrency;
+        public override long HelperKey => EntityTypes.CoreCurrency;
 
         protected override bool MakeEntityNamePlural() { return false; }
 
@@ -16,11 +16,11 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
         {
             List<string> lines = base.GetInfoLines(entityId);
 
-            CrawlerCurrencyType ctype = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).Get(entityId);
+            CoreCurrencyType ctype = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).Get(entityId);
 
-            if (ctype.CraftingStatTypeId > 0)
+            if (ctype.StatTypeId > 0)
             {
-                StatType statType = _gameData.Get<StatSettings>(_gs.ch).Get(ctype.CraftingStatTypeId);
+                StatType statType = _gameData.Get<StatSettings>(_gs.ch).Get(ctype.StatTypeId);
 
                 if (statType != null)
                 {

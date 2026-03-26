@@ -6,7 +6,7 @@ using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -144,11 +144,11 @@ public class ScreenService : IScreenService
 
             layer.JustClosedScreen = false;
 
-            if (layer.CurrentScreen != null || layer.CurrentLoading != null)
+            if (layer.ScreenQueue == null || layer.ScreenQueue.Count < 1)
             {
                 continue;
             }
-            if (layer.ScreenQueue == null || layer.ScreenQueue.Count < 1)
+            if (layer.CurrentScreen != null || layer.CurrentLoading != null)
             {
                 continue;
             }
@@ -189,9 +189,12 @@ public class ScreenService : IScreenService
 
     private async Awaitable OnLoadScreenAsync(GameObject screen, ActiveScreen nextItem, CancellationToken token)
     {
-        if (screen == null)
+        ClientScreenLayer layer = nextItem.LayerObject as ClientScreenLayer;
+
+        if (layer == null)
         {
-            _logService.Debug("Couldn't load screen ");
+            _logService.Debug("Couldn't find active screen layer for new screen");
+            _clientEntityService.Destroy(screen);
             return;
         }
 
@@ -202,12 +205,13 @@ public class ScreenService : IScreenService
             return;
         }
 
-        ClientScreenLayer layer = nextItem.LayerObject as ClientScreenLayer;
-
-        if (layer == null)
+        if (screen == null)
         {
-            _logService.Debug("Couldn't find active screen layer for new screen");
-            _clientEntityService.Destroy(screen);
+            if (layer.CurrentLoading == nextItem)
+            {
+                layer.CurrentLoading = null;
+            }
+            _logService.Debug("Couldn't load screen ");
             return;
         }
 
@@ -216,6 +220,10 @@ public class ScreenService : IScreenService
 
         if (bs == null)
         {
+            if (layer.CurrentLoading == nextItem)
+            {
+                layer.CurrentLoading = null;
+            }
             _clientEntityService.Destroy(screen);
             _logService.Debug("Screen had no BaseScreen on it");
             return;
@@ -238,7 +246,6 @@ public class ScreenService : IScreenService
 
         _analyticsService.Send(AnalyticsEvents.OpenScreen, nextItem.Screen.GetName());
         List<Canvas> canvases = _clientEntityService.GetComponents<Canvas>(nextItem.Screen);
-
 
         _clientEntityService.SetActive(nextItem.Screen, false);
 

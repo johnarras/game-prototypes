@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Services;

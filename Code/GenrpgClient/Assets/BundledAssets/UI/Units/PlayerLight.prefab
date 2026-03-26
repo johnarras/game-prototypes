@@ -43,7 +43,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 1, g: 0.9386285, b: 0.827044, a: 1}
+  m_Color: {r: 1, g: 0.87981135, b: 0.7688679, a: 1}
   m_Intensity: 50
   m_Range: 60
   m_SpotAngle: 150
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3821bd1d144cb749be409dc040f1337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 60
+  Range: 80
   Headlight: {fileID: 2827752772893039626}
-  MaxIntensity: 150
+  MaxIntensity: 80
   Offset: {x: 0, y: 0, z: 0}
+  FlickerSpeed: 1

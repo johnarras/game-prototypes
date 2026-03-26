@@ -8,12 +8,13 @@ using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Interfaces;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Effects.Entities;
+using Genrpg.Shared.UnitEffects.Settings;
 
 namespace Genrpg.DataUtils.Importers.Crawler
 {
@@ -156,7 +157,7 @@ namespace Genrpg.DataUtils.Importers.Crawler
 
                 if (importRow.BonusHealthPercent > 0)
                 {
-                    child.Effects.Add(new UnitEffect()
+                    child.Effects.Add(new Effect()
                     {
                         EntityTypeId = EntityTypes.StatPct,
                         EntityId = StatTypes.Health,
@@ -166,7 +167,7 @@ namespace Genrpg.DataUtils.Importers.Crawler
 
                 if (importRow.BonusDamagePercent > 0)
                 {
-                    child.Effects.Add(new UnitEffect()
+                    child.Effects.Add(new Effect()
                     {
                         EntityTypeId = EntityTypes.StatPct,
                         EntityId = StatTypes.Health,
@@ -208,14 +209,14 @@ namespace Genrpg.DataUtils.Importers.Crawler
                 }
 
 
-                child.Effects = new List<UnitEffect>();
+                child.Effects = new List<Effect>();
 
-                _importService.AddEffectList<TParent, StatSettings, StatType, UnitEffect>(gs, l, "StatPercents", EntityTypes.StatPct, child.Effects, importRow.StatPercents);
-                _importService.AddEffectList<TParent, StatSettings, StatType, UnitEffect>(gs, l, "Stats", EntityTypes.Stat, child.Effects, importRow.Stats);
-                _importService.AddEffectList<TParent, ElementTypeSettings, ElementType, UnitEffect>(gs, l, "Vulns", EntityTypes.Vulnerability, child.Effects, importRow.Vulns);
-                _importService.AddEffectList<TParent, ElementTypeSettings, ElementType, UnitEffect>(gs, l, "Resists", EntityTypes.Resist, child.Effects, importRow.Resists);
-                _importService.AddEffectList<TParent, StatusEffectSettings, StatusEffect, UnitEffect>(gs, l, "Procs", EntityTypes.StatusEffect, child.Effects, importRow.Procs);
-                _importService.AddEffectList<TParent, CrawlerSpellSettings, CrawlerSpell, UnitEffect>(gs, l, "Spells", EntityTypes.CrawlerSpell, child.Effects, importRow.Spells);
+                _importService.AddEffectList<TParent, StatSettings, StatType, Effect>(gs, l, "StatPercents", EntityTypes.StatPct, child.Effects, importRow.StatPercents);
+                _importService.AddEffectList<TParent, StatSettings, StatType, Effect>(gs, l, "Stats", EntityTypes.Stat, child.Effects, importRow.Stats);
+                _importService.AddEffectList<TParent, ElementTypeSettings, ElementType, Effect>(gs, l, "Vulns", EntityTypes.Vulnerability, child.Effects, importRow.Vulns);
+                _importService.AddEffectList<TParent, ElementTypeSettings, ElementType, Effect>(gs, l, "Resists", EntityTypes.Resist, child.Effects, importRow.Resists);
+                _importService.AddEffectList<TParent, StatusEffectSettings, StatusEffect, Effect>(gs, l, "Procs", EntityTypes.StatusEffect, child.Effects, importRow.Procs);
+                _importService.AddEffectList<TParent, CrawlerSpellSettings, CrawlerSpell, Effect>(gs, l, "Spells", EntityTypes.CrawlerSpell, child.Effects, importRow.Spells);
 
 
                 ImportSpawns(gs, GetEntityTypeId(), child.IdKey, 1, importRow.RareSpawns);
@@ -278,7 +279,7 @@ namespace Genrpg.DataUtils.Importers.Crawler
 
                         if (summonIdkey > 0)
                         {
-                            summon.UnitType.Effects.Add(new UnitEffect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = summonIdkey + CrawlerSpellConstants.MonsterSummonSpellIdOffset, Quantity = 1 });
+                            summon.UnitType.Effects.Add(new Effect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = summonIdkey + CrawlerSpellConstants.MonsterSummonSpellIdOffset, Quantity = 1 });
                         }
 
                     }

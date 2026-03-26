@@ -7,11 +7,7 @@ using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
-using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Driver.Core.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,10 +33,10 @@ namespace Genrpg.ServerShared.DataStores.Blobs
                 return null;
             }
 
-            BlobServiceClient client = await GetBlobClient(connectionString);   
+            BlobServiceClient client = await GetBlobClient(connectionString);
 
             AzureBlobRepository repo = new AzureBlobRepository();
-            await repo.Init(args, client, _logService, _analyticsService, _textSerializer,  token);
+            await repo.Init(args, client, _logService, _analyticsService, _textSerializer, token);
             return repo;
 
         }

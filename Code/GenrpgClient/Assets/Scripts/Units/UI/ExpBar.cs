@@ -1,5 +1,4 @@
 
-using Assets.Scripts.DynamicUI.Services;
 using ClientEvents;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.PlayerData;
@@ -7,7 +6,6 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Rewards.Messages;
 using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Units.Entities;
-using System.Linq.Expressions;
 
 public class ExpBar : BaseBehaviour
 {
@@ -33,9 +31,9 @@ public class ExpBar : BaseBehaviour
             return;
         }
 
-        CurrencyData currencies = _gs.ch.Get<CurrencyData>();
+        CharCurrencyData currencies = _gs.ch.Get<CharCurrencyData>();
 
-        long currExp = currencies.GetQuantity(CurrencyTypes.Exp);
+        long currExp = currencies.Data[CharCurrencyTypes.Exp];
 
         if (_progressBar != null && _unit != null)
         {
@@ -47,7 +45,7 @@ public class ExpBar : BaseBehaviour
 
     private void OnAddQuantityRewardHandler(OnAddQuantityReward data)
     {
-        if (data.EntityTypeId == EntityTypes.Currency && data.EntityId == CurrencyTypes.Money)
+        if (data.EntityTypeId == EntityTypes.CharCurrency && data.EntityId == CharCurrencyTypes.Money)
         {
             Init(_unit);
         }

@@ -1,6 +1,7 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.Shared.Purchasing.Settings;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Utils;
 using System.Linq;
 
 namespace Genrpg.DataUtils.Importers.Purchasing
@@ -22,7 +23,7 @@ namespace Genrpg.DataUtils.Importers.Purchasing
         protected override void ImportChildSubObject(EditorGameState gs, StoreBundleSet current, int line, string firstColumn, string[] headers, string[] rowWords)
         {
 
-            if (firstColumn == typeof(StoreBundle).Name.ToLower())
+            if (firstColumn == StrUtils.NormalizeTypeName<StoreBundle>())
             {
                 StoreBundleImportRow row = _importService.ImportLine<StoreBundleImportRow>(gs, line, headers, rowWords);
 

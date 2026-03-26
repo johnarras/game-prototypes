@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Trader.ClientEvents;
+using Genrpg.Shared.Attributes.PlayerData;
+using Genrpg.Shared.Attributes.Settings;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Settings;
 using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,36 +12,36 @@ using UnityEngine;
 
 namespace Assets.Scripts.Trader.Stats.UI
 {
-    public class TraderDebuffsUI : BaseBehaviour
+    public class GameplayDebuffsUI : BaseBehaviour
     {
 
         public GameObject IconAnchor;
-        public TraderDebuffIcon IconPrefab;
+        public GameplayDebuffIcon IconPrefab;
 
         long _currentUnixEpochSeconds = 0;
-        private List<TraderDebuffIcon> _icons = new List<TraderDebuffIcon>();
+        private List<GameplayDebuffIcon> _icons = new List<GameplayDebuffIcon>();
         public override void Init()
         {
             base.Init();
-            _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateTraderStatsHandler, GetToken());
+            _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateGameplayStatsHandler, GetToken());
             ShowDebuffs();
             _currentUnixEpochSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         }
 
-        private void OnUpdateTraderStatsHandler(UpdateTraderHUD update)
+        private void OnUpdateGameplayStatsHandler(UpdateTraderHUD update)
         {
             ShowDebuffs();
         }
 
         private void ShowDebuffs()
         {
-            TraderStatData statData = _gs.ch.Get<TraderStatData>();
+            AttributeData attributeData = _gs.ch.Get<AttributeData>();
 
-            IReadOnlyList<TraderDebuff> debuffs = _gameData.Get<TraderDebuffSettings>(_gs.ch).GetData();
+            IReadOnlyList<GameplayDebuff> debuffs = _gameData.Get<GameplayDebuffSettings>(_gs.ch).GetData();
 
             DateTime nowTime = DateTime.UtcNow;
 
-            List<TraderDebuffIcon> removeIcons = new List<TraderDebuffIcon>();
+            List<GameplayDebuffIcon> removeIcons = new List<GameplayDebuffIcon>();
 
             CoreData coreData = _gs.ch.Get<CoreData>();
 
@@ -49,9 +49,9 @@ namespace Assets.Scripts.Trader.Stats.UI
 
             long debuffDaysPlayed = coreData.Vars[TraderVars.DebuffDaysPlayed];
 
-            foreach (TraderDebuff debuff in debuffs)
+            foreach (GameplayDebuff debuff in debuffs)
             {
-                TraderDebuffIcon currIcon = _icons.FirstOrDefault(x => x.GetDebuffId() == debuff.IdKey);
+                GameplayDebuffIcon currIcon = _icons.FirstOrDefault(x => x.GetDebuffId() == debuff.IdKey);
 
                 if (currIcon != null)
                 {
@@ -69,15 +69,15 @@ namespace Assets.Scripts.Trader.Stats.UI
                 {
                     if (FlagUtils.HasBitIndex(currDebuffs, debuff.IdKey))
                     {
-                        TraderDebuffIcon newIcon = _clientEntityService.FullInstantiate(IconPrefab);
+                        GameplayDebuffIcon newIcon = _clientEntityService.FullInstantiate(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
-                        newIcon.SetData(debuff, statData.Debuffs[debuff.IdKey], debuffDaysPlayed);
+                        newIcon.SetData(debuff, attributeData.Debuffs[debuff.IdKey], debuffDaysPlayed);
                         _icons.Add(newIcon);
                     }
                 }
             }
 
-            foreach (TraderDebuffIcon icon in removeIcons)
+            foreach (GameplayDebuffIcon icon in removeIcons)
             {
                 _clientEntityService.Destroy(icon);
             }

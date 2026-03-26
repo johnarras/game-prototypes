@@ -468,7 +468,7 @@ namespace Genrpg.MapServer.Spells.Services
                     OrigTarget = origTarget,
                     Target = targ,
                     SendSpell = sendSpell,
-                    Effect = effect,
+                    SpellEffect = effect,
                     ElementType = elementType,
                     SkillType = skillType,
                 };
@@ -523,7 +523,7 @@ namespace Genrpg.MapServer.Spells.Services
             List<ActiveSpellEffect> retval = new List<ActiveSpellEffect>();
             SendSpell sendSpell = hit.SendSpell;
             Spell spell = sendSpell.Spell;
-            SpellEffect effect = hit.Effect;
+            SpellEffect effect = hit.SpellEffect;
 
             ElementType elementType = hit.ElementType;
             SkillType skillType = hit.SkillType;

@@ -1,5 +1,4 @@
 using Genrpg.Shared.MapServer.Entities;
-using System.Collections.Generic;
 
 namespace Genrpg.RequestServer.Maps
 {

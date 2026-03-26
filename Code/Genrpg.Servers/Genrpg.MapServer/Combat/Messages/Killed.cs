@@ -1,7 +1,4 @@
 using Genrpg.Shared.MapMessages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.MapServer.Combat.Messages
 {
@@ -10,7 +7,7 @@ namespace Genrpg.MapServer.Combat.Messages
         public string UnitId { get; set; }
         public long UnitTypeId { get; set; }
         public long FactionTypeId { get; set; }
-        public string ObjId { get; set; }      
+        public string ObjId { get; set; }
         public long Level { get; set; }
         public long ZoneId { get; set; }
     }

@@ -1,12 +1,13 @@
 
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using System;
 using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.Login.Messages.Core
 {
@@ -22,11 +23,11 @@ namespace Assets.Scripts.Login.Messages.Core
 
         virtual public int Priority() { return 0; }
 
-        protected abstract void InnerProcess(T response, CancellationToken token);
+        protected abstract Awaitable InnerProcess(T response, CancellationToken token);
 
-        public void Process(IWebResponse response, CancellationToken token)
+        public async Awaitable Process(IWebResponse response, CancellationToken token)
         {
-            InnerProcess(response as T, token);
+            await InnerProcess(response as T, token);
         }
     }
 }

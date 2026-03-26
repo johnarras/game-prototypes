@@ -16,7 +16,7 @@ namespace Assets.Editor.Utils
             CreateEntityIcons(EntityTypes.TradeGood);
         }
 
-        public static void CreateEntityIcons(long entityTypeId, int size = 256)
+        public static void CreateEntityIcons(long entityTypeId, int textureSize = 256, int iconQuantity = 1)
         {
             IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
@@ -63,10 +63,10 @@ namespace Assets.Editor.Utils
                     continue;
                 }
 
-                Texture2D tex = new Texture2D(size, size, TextureFormat.ARGB32, false, true);
-                for (int x = 0; x < size; x++)
+                Texture2D tex = new Texture2D(textureSize, textureSize, TextureFormat.ARGB32, false, true);
+                for (int x = 0; x < textureSize; x++)
                 {
-                    for (int y = 0; y < size; y++)
+                    for (int y = 0; y < textureSize; y++)
                     {
                         tex.SetPixel(x, y, Color.white);
                     }

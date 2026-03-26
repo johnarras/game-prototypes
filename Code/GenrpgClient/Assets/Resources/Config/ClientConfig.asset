@@ -16,8 +16,8 @@ MonoBehaviour:
   Env: local
   BaseWebEndpoint: https://XXXXX-genrpg.azurewebsites.net
   ContentEndpoint: http://oxdbassets.azureedge.net
-  AssetsEnv: local
-  WorldsEnv: local
+  AssetsEnv: dev
+  WorldsEnv: dev
   ProductId: 2
   SelfContainedClient: 1
   ExportGameData: 0

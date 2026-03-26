@@ -1,7 +1,4 @@
 using Genrpg.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Tasks.Services
@@ -21,7 +18,7 @@ namespace Genrpg.Shared.Tasks.Services
             }
             else
             {
-                Task.Factory.StartNew(()=>t, TaskCreationOptions.LongRunning).ConfigureAwait(false);
+                Task.Factory.StartNew(() => t, TaskCreationOptions.LongRunning).ConfigureAwait(false);
             }
         }
     }

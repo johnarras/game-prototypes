@@ -1,6 +1,7 @@
 
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.DataStores.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -61,6 +62,11 @@ namespace Genrpg.Shared.Interfaces
     public interface IIdName : IId, IName
     {
 
+    }
+
+    public interface IEffectList<T> where T : class, IEffect
+    {
+        List<T> Effects { get; set; }
     }
 
     public interface IIndexedGameItem : IIdName

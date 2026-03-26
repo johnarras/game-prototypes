@@ -1,13 +1,13 @@
 ﻿using Genrpg.RequestServer.Core;
-using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Minigames.Games.Settings;
 using Genrpg.Shared.Minigames.Games.WebApi;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Rewards.Services;
 
 namespace Genrpg.RequestServer.Minigames.Games.Services
 {
@@ -18,7 +18,7 @@ namespace Genrpg.RequestServer.Minigames.Games.Services
     public class ServerMinigameService : IServerMingiameService
     {
         private IGameData _gameData = null;
-        private IWebRewardService _rewardService = null;
+        private IRewardService _rewardService = null;
 
         public async Task EndMinigame(WebContext context, long minigameTypeId, bool wonGame)
         {
@@ -27,7 +27,7 @@ namespace Genrpg.RequestServer.Minigames.Games.Services
 
             CoreData coreData = await context.GetAsync<CoreData>();
 
-            MinigameType mtype = _gameData.Get<MinigameTypeSettings>(context.core).Get(minigameTypeId);
+            MinigameType mtype = _gameData.Get<MinigameTypeSettings>(coreData).Get(minigameTypeId);
 
             if (mtype == null)
             {
@@ -52,7 +52,7 @@ namespace Genrpg.RequestServer.Minigames.Games.Services
 
                 response.Rewards = rewardData;
 
-                await _rewardService.GiveRewardsAsync(context, rewardData.Rewards[0].Rewards, new RewardParams());
+                await _rewardService.GiveRewards(context, rewardData.Rewards[0].Rewards, new RewardParams());
             }
 
             response.Success = true;

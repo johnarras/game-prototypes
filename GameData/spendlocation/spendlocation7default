@@ -1,0 +1,24 @@
+{
+  "Id": "spendlocation7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Portal",
+  "Desc": "Portal to a city you've visited before.",
+  "Icon": "Portal",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Take a portal to another city",
+      "Desc": "Portal",
+      "SpendCoreCurrencyTypeId": 4,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 55,
+          "EntityId": -1,
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

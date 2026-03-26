@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
@@ -6,7 +5,6 @@ using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Buildings.Settings
@@ -16,7 +14,7 @@ namespace Genrpg.Shared.Buildings.Settings
         public override string Id { get; set; }
     }
 
-    public class BuildingType : ChildSettings, IVariationIndexedGameItem
+    public class BuildingType : ChildSettings, IIndexedGameItem
     {
 
         public override string Id { get; set; }
@@ -27,10 +25,8 @@ namespace Genrpg.Shared.Buildings.Settings
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public int Radius { get; set; } = 5;
 
         public bool IsCrawlerBuilding { get; set; }
-        public int VariationCount { get; set; } = 1;
         public bool ShowNameplate { get; set; }
     }
 

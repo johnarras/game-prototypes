@@ -1,5 +1,4 @@
 using Genrpg.Shared.Spells.Messages;
-using MessagePack;
 
 namespace Genrpg.Shared.Spells.Casting
 {

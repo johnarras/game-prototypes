@@ -1,7 +1,6 @@
-using MessagePack;
-using System.Collections.Generic;
 using Genrpg.Shared.Quests.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Quests.Entities
 {

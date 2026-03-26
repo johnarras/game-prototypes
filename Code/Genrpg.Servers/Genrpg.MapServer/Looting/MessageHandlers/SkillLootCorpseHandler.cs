@@ -10,14 +10,16 @@ using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Looting.MessageHandlers
 {
     public class SkillLootCorpseHandler : BaseUnitServerMapMessageHandler<SkillLootCorpse>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Unit looter, SkillLootCorpse message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Unit looter, SkillLootCorpse message)
         {
 
+            await Task.CompletedTask;
             if (looter.ActionMessage != null)
             {
                 pack.SendError(looter, "You are already busy");

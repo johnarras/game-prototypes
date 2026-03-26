@@ -1,17 +1,11 @@
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Units.Services;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Spawns.Interfaces;
+using Genrpg.Shared.Units.Services;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.Shared.MapObjects.Factories
 {

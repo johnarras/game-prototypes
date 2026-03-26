@@ -43,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             {
                 if (mapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors))
                 {
-                    AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Ceiling, DungeonAssetIndex.Ceilings, go, new Vector3(0, yBlockSize * (isRoom ? 2 : 1), 0), new Vector3(90, 0, 0), realCellX, realCellZ);
+                    AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Ceiling, DungeonPrefabIndexes.Ceilings, go, new Vector3(0, yBlockSize * (isRoom ? 2 : 1), 0), new Vector3(90, 0, 0), realCellX, realCellZ);
                 }
 
                 //if (mapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
@@ -54,55 +54,61 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
             Vector3 nOffset = new Vector3(0, xzBlockSize / 2, xzBlockSize / 2);
             Vector3 nRot = new Vector3(0, 0, 0);
+            Vector3 eOffset = new Vector3(xzBlockSize / 2, yBlockSize / 2, 0);
+            Vector3 eRot = new Vector3(0, 90, 0);
 
             int northBits = mapRoot.Map.NorthWall(cell.MapX, cell.MapZ);
 
             bool havePillar = false;
             bool IsTallBorder = false;
 
+            float pillarAngle = 0;
             if (northBits == WallTypes.Wall || northBits == WallTypes.Secret)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonAssetIndex.Walls, go, nOffset, nRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonPrefabIndexes.Walls, go, nOffset, nRot, realCellX, realCellZ);
                 havePillar = true;
+                pillarAngle = 0;
             }
             else if (northBits == WallTypes.Door)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonAssetIndex.Doors, go, nOffset, nRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonPrefabIndexes.Door, go, nOffset, nRot, realCellX, realCellZ);
                 havePillar = true;
+                pillarAngle = 0;
             }
+            
             else if (northBits == WallTypes.Barricade)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonAssetIndex.Fences, go, nOffset, nRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonPrefabIndexes.Fences, go, nOffset, nRot, realCellX, realCellZ);
             }
             if (isRoom != nIsRoom && mapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors))
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthUpper, DungeonAssetIndex.Walls, go, nOffset + new Vector3(0, yBlockSize, 0), nRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthUpper, DungeonPrefabIndexes.Walls, go, nOffset + new Vector3(0, yBlockSize, 0), nRot, realCellX, realCellZ);
                 IsTallBorder = true;
             }
 
-            Vector3 eOffset = new Vector3(xzBlockSize / 2, yBlockSize / 2, 0);
-            Vector3 eRot = new Vector3(0, 90, 0);
 
             int eastBits = mapRoot.Map.EastWall(cell.MapX, cell.MapZ);
 
             if (eastBits == WallTypes.Wall || eastBits == WallTypes.Secret)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonAssetIndex.Walls, go, eOffset, eRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonPrefabIndexes.Walls, go, eOffset, eRot, realCellX, realCellZ);
                 havePillar = true;
+                pillarAngle = 90;
             }
             else if (eastBits == WallTypes.Door)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonAssetIndex.Doors, go, eOffset, eRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonPrefabIndexes.Door, go, eOffset, eRot, realCellX, realCellZ);
                 havePillar = true;
+                pillarAngle = 90;
             }
             else if (eastBits == WallTypes.Barricade)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonAssetIndex.Fences, go, eOffset, eRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastWall, DungeonPrefabIndexes.Fences, go, eOffset, eRot, realCellX, realCellZ);
             }
 
             if (isRoom != eIsRoom && mapRoot.Map.HasFlag(CrawlerMapFlags.IsIndoors))
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastUpper, DungeonAssetIndex.Walls, go, eOffset + new Vector3(0, yBlockSize, 0), eRot, realCellX, realCellZ);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.EastUpper, DungeonPrefabIndexes.Walls, go, eOffset + new Vector3(0, yBlockSize, 0), eRot, realCellX, realCellZ);
                 IsTallBorder = true;
             }
 
@@ -110,13 +116,20 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             // Check next wall up or over.
             if (!havePillar)
             {
-                if (realCellX == 0 || realCellZ == 0 ||
-                    realCellX == mapRoot.Map.Width - 1 ||
-                    realCellZ == mapRoot.Map.Height - 1)
+                if (!mapRoot.Map.HasFlag(CrawlerMapFlags.IsLooping))
                 {
-                    if (!mapRoot.Map.HasFlag(CrawlerMapFlags.IsLooping))
+                    if (realCellX == 0 || realCellZ == 0)
+                    {
+
+                        havePillar = true;
+                        pillarAngle = 180;
+                    }
+
+                    if (realCellX == mapRoot.Map.Width - 1 ||
+                        realCellZ == mapRoot.Map.Height - 1)
                     {
                         havePillar = true;
+                        pillarAngle = 90;
                     }
                 }
 
@@ -124,6 +137,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 if (eastWall == WallTypes.Wall || eastWall == WallTypes.Door || eastWall == WallTypes.Secret)
                 {
                     havePillar = true;
+                    pillarAngle = -90;
                 }
                 else
                 {
@@ -131,16 +145,18 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                     if (northWall == WallTypes.Wall || northWall == WallTypes.Door || northWall == WallTypes.Secret)
                     {
                         havePillar = true;
+                        pillarAngle = 90;
                     }
                 }
             }
 
             if (havePillar && mapRoot.Map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors)
             {
-                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Pillar, DungeonAssetIndex.Pillars, go, new Vector3(xzBlockSize / 2, 0, xzBlockSize / 2), Vector3.zero, -1, -1);
+                Vector2 pillarRot = new Vector3(0, pillarAngle, 0);
+                AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Pillar, DungeonPrefabIndexes.Pillars, go, new Vector3(xzBlockSize / 2, 0, xzBlockSize / 2), pillarRot, -1, -1);
                 if (IsTallBorder)
                 {
-                    AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Pillar, DungeonAssetIndex.Pillars, go, new Vector3(xzBlockSize / 2, yBlockSize, xzBlockSize / 2), Vector3.zero, -1, -1);
+                    AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.Pillar, DungeonPrefabIndexes.Pillars, go, new Vector3(xzBlockSize / 2, yBlockSize, xzBlockSize / 2), pillarRot, -1, -1);
                 }
             }
             await Task.CompletedTask;
@@ -150,20 +166,13 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
         {
             List<WeightedDungeonAsset> assetList = mapRoot.AssetBlock.GetAssetList(dungeonAssetIndex);
 
-            bool isDoor = dungeonAssetIndex == DungeonAssetIndex.Doors;
-
-            if (isDoor)
-            {
-                dungeonAssetIndex = DungeonAssetIndex.Walls;
-            }
-
             DungeonAsset asset = assetList[0].Asset;
 
             if (assetList.Count > 1)
             {
                 IRandom rand = new MyRandom(mapRoot.Map.ArtSeed + realCellX * 7079 + realCellZ * 2383 + (int)offset.x * 3361 + (int)offset.y * 709 + (int)offset.z * 4327);
 
-                WeightedDungeonAsset weightedAsset = RandomUtils.GetRandomFloatElement(assetList, rand);
+                WeightedDungeonAsset weightedAsset = RandUtils.GetRandomFloatElement(assetList, rand);
 
                 asset = weightedAsset.Asset;
             }
@@ -174,48 +183,19 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             dungeonAsset.transform.localPosition = offset;
             dungeonAsset.transform.eulerAngles = euler;
 
-            List<WeightedMaterial> materialList = block.DungeonMaterials.GetMaterials(dungeonAssetIndex);
+            List<MaterialOption> materialList = block.FinalMaterials.GetMaterials(dungeonAssetIndex);
 
-            Material finalMat = materialList.Count > 0 ? materialList[0].Mat : null;
+            long weightHash = realCellX * 1951 + realCellZ * 443 + (int)offset.x * 197 + (int)offset.y * 2843 + (int)offset.z * 653;
 
-            long matWeightSum = materialList.Sum(x => x.Weight);
 
-            if (matWeightSum > 0)
+            for (int materialIndex = 0; materialIndex < DungeonMaterialIndexes.Max; materialIndex++)
             {
-                long weightHash = realCellX * 1951 + realCellZ * 443 + (int)offset.x * 197 + (int)offset.y * 2843 + (int)offset.z * 653;
+                Material finalMat = block.GetRandomMaterial(materialIndex, weightHash + materialIndex * 131);
 
-                long chosenWeight = weightHash % matWeightSum;
-
-                foreach (WeightedMaterial weightedMat in materialList)
+                foreach (MeshRenderer renderer in dungeonAsset.GetRenderersForMaterialIndex(materialIndex))
                 {
-                    chosenWeight -= weightedMat.Weight;
-
-                    if (chosenWeight <= 0)
-                    {
-                        finalMat = weightedMat.Mat;
-                        break;
-                    }
+                    renderer.sharedMaterial = finalMat;
                 }
-            }
-
-            if (finalMat != null)
-            {
-                foreach (Renderer rend in dungeonAsset.Renderers)
-                {
-                    rend.sharedMaterial = finalMat;
-                }
-
-                if (isDoor)
-                {
-                    foreach (Renderer rend in dungeonAsset.DoorRenderers)
-                    {
-                        rend.sharedMaterial = block.DoorMat;
-                    }
-                }
-            }
-            else
-            {
-                _clientEntityService.SetActive(dungeonAsset, false);
             }
         }
     }

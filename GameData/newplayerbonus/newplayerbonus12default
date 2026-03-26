@@ -1,8 +1,0 @@
-{
-  "Id": "newplayerbonus12default",
-  "ParentId": "default",
-  "IdKey": 12,
-  "EntityTypeId": 200,
-  "EntityId": 1,
-  "Quantity": 800
-}

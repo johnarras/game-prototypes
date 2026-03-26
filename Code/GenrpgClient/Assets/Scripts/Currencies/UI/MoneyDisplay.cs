@@ -26,7 +26,7 @@ public class MoneyDisplay : BaseBehaviour
     private void OnCurrencyUpdate(OnAddQuantityReward data)
     {
 
-        if (data.EntityTypeId == EntityTypes.Currency && data.EntityId == CurrencyTypes.Money)
+        if (data.EntityTypeId == EntityTypes.CharCurrency && data.EntityId == CharCurrencyTypes.Money)
         {
             UpdateValue();
         }
@@ -39,8 +39,8 @@ public class MoneyDisplay : BaseBehaviour
         {
             if (_gs.ch != null)
             {
-                CurrencyData currencies = _gs.ch.Get<CurrencyData>();
-                SetMoney(currencies.GetQuantity(CurrencyTypes.Money));
+                CharCurrencyData currencies = _gs.ch.Get<CharCurrencyData>();
+                SetMoney(currencies.Data[CharCurrencyTypes.Money]);
             }
         }
     }

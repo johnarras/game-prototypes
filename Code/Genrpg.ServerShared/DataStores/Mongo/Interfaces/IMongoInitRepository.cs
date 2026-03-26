@@ -1,13 +1,9 @@
 ﻿using Genrpg.ServerShared.DataStores.Entities;
-using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,11 +11,11 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Interfaces
 {
     public interface IMongoInitRepository : IRepository
     {
-       Task Init(InitRepoArgs args,
-            MongoClient client,
-            ILogService logService,
-            IAnalyticsService analyticsService,
-            ITextSerializer serializer,
-            CancellationToken token);
+        Task Init(InitRepoArgs args,
+             MongoClient client,
+             ILogService logService,
+             IAnalyticsService analyticsService,
+             ITextSerializer serializer,
+             CancellationToken token);
     }
 }

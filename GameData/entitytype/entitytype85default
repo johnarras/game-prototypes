@@ -1,0 +1,9 @@
+{
+  "Id": "entitytype85default",
+  "ParentId": "default",
+  "IdKey": 85,
+  "Name": "TravelDayCurrencyBuff",
+  "Desc": "",
+  "Icon": "TravelDayCurrencyBuff",
+  "Art": "TravelDayCurrencyBuff"
+}

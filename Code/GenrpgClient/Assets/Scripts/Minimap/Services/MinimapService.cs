@@ -1,7 +1,7 @@
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;

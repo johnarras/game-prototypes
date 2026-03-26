@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat2default",
-  "ParentId": "default",
-  "IdKey": 2,
-  "Name": "Coins Regen",
-  "Icon": "CoinsRegen",
-  "Art": "CoinsRegen"
-}

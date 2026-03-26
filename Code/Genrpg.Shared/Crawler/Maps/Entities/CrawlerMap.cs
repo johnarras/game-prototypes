@@ -1,8 +1,8 @@
+using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Zones.Settings;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,7 +39,6 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
         public long ArtSeed { get; set; }
         public long WeatherTypeId { get; set; }
         public long ZoneTypeId { get; set; }
-        public long BuildingTypeId { get; set; }
         public long BuildingArtId { get; set; }
         public long BaseCrawlerMapId { get; set; }
         public List<MapCellDetail> Details { get; set; } = new List<MapCellDetail>();
@@ -54,6 +53,11 @@ namespace Genrpg.Shared.Crawler.Maps.Entities
         public void SetupDataBlocks()
         {
             Data = new byte[Width * Height * CellIndex.Max];
+        }
+
+        public long GetBuildingTypeId()
+        {
+            return CrawlerMapTypeId == CrawlerMapTypes.Dungeon ? BuildingTypes.Dungeon : BuildingTypes.City;
         }
 
         public byte Get(int x, int z, int offset)

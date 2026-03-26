@@ -1,7 +1,6 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Genrpg.ServerShared.DataStores.Entities;
-using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.DataStores.Entities;
@@ -10,8 +9,8 @@ using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
-using System.Collections.Concurrent;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -57,7 +56,7 @@ namespace Genrpg.ServerShared.DataStores.Blobs
         #region Core
         private BlobClient GetBlockBlobReference(Type t, string id)
         {
-            return _container.GetBlobClient(t.Name.ToLower() + "/" + id);
+            return _container.GetBlobClient(StrUtils.NormalizeTypeName(t) + "/" + id);
         }
 
         // Breakd LSP

@@ -3,7 +3,7 @@ using System;
 
 namespace Genrpg.Shared.DataStores.DataGroups
 {
-    
+
     public class DataGroup : Attribute
     {
         [IgnoreMember] public EDataCategories Category { get; set; }

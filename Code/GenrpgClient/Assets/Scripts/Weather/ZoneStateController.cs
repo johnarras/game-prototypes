@@ -1,7 +1,7 @@
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Entities;
 using ClientEvents;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -426,9 +426,9 @@ public class ZoneStateController : IZoneStateController
         }
         if (nextWindBurst < DateTime.UtcNow)
         {
-            _coreData.Wind.windMain = MathUtil.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
-            windBurstEnd = DateTime.UtcNow.AddSeconds(MathUtil.FloatRange(4.0f, 7.0f, _rand));
-            nextWindBurst = DateTime.UtcNow.AddSeconds(MathUtil.FloatRange(12.0f, 22.0f, _rand));
+            _coreData.Wind.windMain = RandUtils.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
+            windBurstEnd = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(4.0f, 7.0f, _rand));
+            nextWindBurst = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(12.0f, 22.0f, _rand));
         }
     }
 }

@@ -2,8 +2,8 @@
   "Id": "leveltrackreward23default",
   "ParentId": "default",
   "IdKey": 23,
-  "EntityTypeId": 202,
-  "EntityId": 8,
-  "Quantity": 9,
-  "Level": 23
+  "EntityTypeId": 77,
+  "EntityId": 4,
+  "Quantity": 5,
+  "Level": 9
 }

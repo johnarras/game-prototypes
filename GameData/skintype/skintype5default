@@ -4,7 +4,5 @@
   "IdKey": 5,
   "Name": "Tamed Onager",
   "Icon": "TamedOnager",
-  "Art": "TamedOnager",
-  "AnimalTypeId": 5,
-  "IsDefault": true
+  "Art": "TamedOnager"
 }

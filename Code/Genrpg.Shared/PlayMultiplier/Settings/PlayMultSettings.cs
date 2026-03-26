@@ -8,9 +8,9 @@ namespace Genrpg.Shared.PlayMultiplier.Settings
     public class PlayMultSettings : NoChildSettings
     {
         public override string Id { get; set; }
-        public double ExtraDailyDistPerTotalDice { get; set; }
+        public double ExtraDailyDistPerTotalCurrencySpend { get; set; }
         public int MaxPlayMult { get; set; }
-        public double MaxMultAsPercentOfCurrentDice { get; set; }
+        public double MaxMultAsAPercentOfCurrentCurrency { get; set; }
     }
 
     public class PlayMultSettingsDto : NoChildSettingsDto<PlayMultSettings>

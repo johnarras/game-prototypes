@@ -14,19 +14,29 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     public class MaterialBlock
     {
         public long ZoneTypeId { get; set; }
-        public DungeonMaterialsList MaterialList { get; set; }
-        public DungeonMaterials DungeonMaterials { get; set; }
-        public Material DoorMat { get; set; }
+        public FinalDungeonMaterials FinalMaterials { get; set; } = new FinalDungeonMaterials();
 
         public bool IsReady()
         {
-            return MaterialList != null && DungeonMaterials != null && DoorMat != null;
+            if (FinalMaterials == null || !FinalMaterials.IsReady())               
+            {
+                return false;
+            }
+            return true;
         }
 
         public void Clear()
         {
-            MaterialList?.Clear();
-            DoorMat = null;
+        }
+
+        public Material GetRandomMaterial(int dungeonAssetIndex, long seed)
+        {
+            List<MaterialOption> options = FinalMaterials.GetMaterials(dungeonAssetIndex);
+            if (options.Count > 0)
+            {
+                return options[(int)seed % options.Count].Mat;
+            }
+            return null;
         }
     }
 
@@ -38,6 +48,11 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public int XZBlockSize { get; set; } = CrawlerMapConstants.DefaultXZBlockSize;
 
         public int YBlockSize { get; set; } = CrawlerMapConstants.DefaultYBlockSize;
+
+        public GameObject AssetRoot { get; set; }
+
+        public Terrain GroundTerrain { get; set; }
+        public TerrainData GroundTerrainData { get; set; }
 
         private Dictionary<string, ClientMapCell> _worldCells { get; set; } = new Dictionary<string, ClientMapCell>();
 
@@ -52,11 +67,17 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public Dictionary<long, MaterialBlock> MaterialBlocks { get; set; } = new Dictionary<long, MaterialBlock>();
        
         public CityAssets CityAssets { get; set; }
+
+        public List<MaterialOption> BuildingWallOptions { get; set; } = new List<MaterialOption>();
+
+        public List<Texture2D> GeneratedTextures { get; set; } = new List<Texture2D>();
         
         public bool AssetsAreReady()
         {
-            return AssetBlockList != null && AssetBlock != null && MaterialBlocks.Count > 0 && !MaterialBlocks.Values.Any(x => !x.IsReady()) &&
-                CityAssets != null;
+            return AssetBlockList != null && AssetBlock != null && MaterialBlocks.Count > 0 &&
+                !MaterialBlocks.Values.Any(x => !x.IsReady()) &&
+                ((CityAssets != null && CityAssets.IsReady()) || 
+                Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon);
         }
 
         public ICrawlerMapTypeHelper MapTypeHelper { get; set; }
@@ -69,7 +90,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         public GameObject TerrainObject = null;
 
-        public List<CrawlerTerrainIndexData> Indexes { get; set; } = new List<CrawlerTerrainIndexData>();
+        public List<CrawlerTerrainIndexData> TerrainTextureIndexes { get; set; } = new List<CrawlerTerrainIndexData>();
 
         public List<ClientMapCell> GetAllCells()
         {
@@ -158,19 +179,9 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             }
         }
 
-        public DungeonMaterials GetMaterialsAt(int x, int z)
+        public FinalDungeonMaterials GetMaterialsAt(int x, int z)
         {
-            return GetMaterialBlockAt(x, z)?.DungeonMaterials ?? null;
-        }
-
-        public DungeonMaterialsList GetAssetsAt(int x, int z)
-        {
-            return GetMaterialBlockAt(x, z)?.MaterialList ?? null;
-        }
-
-        public Material GetDoorMatAt(int x, int z)
-        {
-            return GetMaterialBlockAt(x, z)?.DoorMat ?? null;
+            return GetMaterialBlockAt(x, z)?.FinalMaterials ?? null;
         }
 
         public ClientMapCell GetCellAtWorldPos(int worldX, int worldZ, bool createIfNotExist)
@@ -293,12 +304,24 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             _mapCellCache.Clear();
             _allCells.Clear();
 
+            foreach (Texture2D tex in GeneratedTextures)
+            {
+                _clientEntityService.Destroy(tex);
+            }
+            GeneratedTextures.Clear();
+
             foreach (MaterialBlock block in MaterialBlocks.Values)
             {
                 block.Clear();
             }
 
             MaterialBlocks.Clear();
+
+            foreach (MaterialOption opt in BuildingWallOptions)
+            {
+                opt.Clear();
+            }
+            BuildingWallOptions.Clear();    
 
             _clientEntityService.Destroy(TerrainObject);
 

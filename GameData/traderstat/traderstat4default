@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat4default",
-  "ParentId": "default",
-  "IdKey": 4,
-  "Name": "Supplies Regen",
-  "Icon": "SuppliesRegen",
-  "Art": "SuppliesRegen"
-}

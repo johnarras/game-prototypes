@@ -15,10 +15,23 @@ namespace Genrpg.Shared.Utils.Data
     {
         protected override bool ExistsAtIndex(long index)
         {
-            if (index >= _data.Length || IsDefault(_data[index]))
+            if (index >= MaxSize)
             {
-                // The creation will throw the exception if the index is too big.
-                this[index] = new T();
+                throw new IndexOutOfRangeException("Small Id Colletions are limited to size " + MaxSize);
+            }
+            if (index >= _data.Length)
+            {
+                T[] newData = new T[index + 1];
+
+                for (int i = 0; i < _data.Length; i++)
+                {
+                    newData[i] = _data[i];
+                }
+                _data = newData;
+            }
+            if (IsDefault(_data[index]))
+            {
+                _data[index] = new T();
             }
             return true;
         }
@@ -32,9 +45,20 @@ namespace Genrpg.Shared.Utils.Data
     public abstract class BaseSmallIdQuantityCollection<T>
     {
 
+        public void CopyFrom(BaseSmallIdQuantityCollection<T> other)
+        {
+            _data = new T[other._data.Length];
+            for (int i = 0; i < other._data.Length; i++)
+            {
+                _data[i] = other._data[i];
+            }
+        }
+
+
         protected const int MaxSize = 256;
 
         protected T[] _data { get; set; } = new T[4];
+        public int Count() { return _data.Length; }
 
         protected virtual bool ExistsAtIndex(long index)
         {

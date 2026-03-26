@@ -1,9 +1,0 @@
-{
-  "Id": "crawlercurrencytype8default",
-  "ParentId": "default",
-  "IdKey": 8,
-  "Name": "Stone",
-  "Icon": "StoneIcon",
-  "Art": "StoneArt",
-  "CraftingStatTypeId": 15
-}

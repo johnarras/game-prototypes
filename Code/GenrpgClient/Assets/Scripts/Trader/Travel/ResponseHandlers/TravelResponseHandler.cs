@@ -1,14 +1,16 @@
 ﻿using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Travel.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Trader.MessageHandlers.Travelling
 {
     public class TravelResponseHandler : BaseClientWebResponseHandler<TravelResponse>
     {
-        protected override void InnerProcess(TravelResponse response, CancellationToken token)
+        protected override async Awaitable InnerProcess(TravelResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             CoreData coreData = _gs.ch.Get<CoreData>();
 
             _dispatcher.Dispatch(response);
+            await Task.CompletedTask;
         }
     }
 }

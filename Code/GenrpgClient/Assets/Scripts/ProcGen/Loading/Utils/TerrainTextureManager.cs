@@ -160,15 +160,7 @@ public class TerrainTextureManager : ITerrainTextureManager
             return;
         }
 
-        IndexList indexes = _clientEntityService.GetOrAddComponent<IndexList>(terr.gameObject);
-
-        if (indexes.Indexes == null || indexes.Indexes.Length != currLayers.Length)
-        {
-            indexes.Indexes = new int[currLayers.Length];
-        }
-
         currLayers[index] = tdata.TerrLayer;
-        indexes.Indexes[index] = (int)tdata.TexType.IdKey;
 
         _terrainManager.SetTerrainLayerData(currLayers[index]);
 

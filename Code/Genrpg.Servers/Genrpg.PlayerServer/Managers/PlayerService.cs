@@ -2,8 +2,6 @@ using Genrpg.PlayerServer.Entities;
 using Genrpg.ServerShared.CloudComms.Servers.MapInstance.Queues;
 using Genrpg.ServerShared.CloudComms.Servers.PlayerServer.Queues;
 using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.Core;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System.Collections.Concurrent;

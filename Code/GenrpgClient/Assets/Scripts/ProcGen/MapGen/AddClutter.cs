@@ -42,7 +42,7 @@ public class AddClutter : BaseZoneGenerator
         MyRandom rand = new MyRandom(zone.Seed % 2000000000 + 15434454);
 
 
-        float clutterDensity = MathUtil.FloatRange(0.0f, 1.0f, rand) * RandomClutterDensity;
+        float clutterDensity = RandUtils.FloatRange(0.0f, 1.0f, rand) * RandomClutterDensity;
 
         if (_gameData.Get<ClutterTypeSettings>(_gs.ch).GetData() == null)
         {
@@ -67,8 +67,8 @@ public class AddClutter : BaseZoneGenerator
                 break;
             }
 
-            int x = MathUtil.IntRange(startx, endx, rand);
-            int y = MathUtil.IntRange(starty, endy, rand);
+            int x = RandUtils.IntRange(startx, endx, rand);
+            int y = RandUtils.IntRange(starty, endy, rand);
 
             if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
             {
@@ -105,7 +105,7 @@ public class AddClutter : BaseZoneGenerator
                 continue;
             }
 
-            int currQuantityToPlace = 2 + MathUtil.IntRange(0, 1, rand);
+            int currQuantityToPlace = 2 + RandUtils.IntRange(0, 1, rand);
 
 
             for (int i = 0; i < 5; i++)
@@ -122,7 +122,7 @@ public class AddClutter : BaseZoneGenerator
 
             if (rand.NextDouble() < 0.1f)
             {
-                currQuantityToPlace += MathUtil.IntRange(0, currQuantityToPlace / 2, rand);
+                currQuantityToPlace += RandUtils.IntRange(0, currQuantityToPlace / 2, rand);
             }
 
             int maxOffset = 1;
@@ -233,7 +233,7 @@ public class AddClutter : BaseZoneGenerator
                 numToPlace /= 2;
             }
 
-            float currMaxOffset = MathUtil.FloatRange(0.7f, 1.2f, rand);
+            float currMaxOffset = RandUtils.FloatRange(0.7f, 1.2f, rand);
             _addNearbyItemsHelper.AddItemsNear(rand, zoneType, zone, x, y, 0.9f, numToPlace, 1.0f, currMaxOffset);
         }
     }

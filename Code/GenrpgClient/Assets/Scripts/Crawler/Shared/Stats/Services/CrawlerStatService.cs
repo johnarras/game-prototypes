@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -25,10 +25,11 @@ using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils;  
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Stats.Services
 {
@@ -120,13 +121,13 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                 for (int primaryStatId = StatConstants.PrimaryStatStart; primaryStatId < StatConstants.PrimaryStatEnd; primaryStatId++)
                 {
-                    _statService.Add(member, primaryStatId, StatCategories.Base, member.GetPermStat(primaryStatId));
-                    _statService.Add(member, primaryStatId, StatCategories.Pct, bonusPercent);
+                    _statService.Add(member, primaryStatId, UnitStatValOffsets.Base, member.GetPermStat(primaryStatId));
+                    _statService.Add(member, primaryStatId, UnitStatValOffsets.Pct, bonusPercent);
                 }
 
                 foreach (long buffStatType in buffStatTypes)
                 {
-                    _statService.Set(member, buffStatType, StatCategories.Base, statSettings.BaseBuffStatValue + member.Level);
+                    _statService.Set(member, buffStatType, UnitStatValOffsets.Base, statSettings.BaseBuffStatValue + member.Level);
 
                 }
 
@@ -134,11 +135,11 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                 foreach (Item item in member.Equipment)
                 {
-                    foreach (ItemEffect eff in item.Effects)
+                    foreach (Effect eff in item.Effects)
                     {
                         if (eff.EntityTypeId == EntityTypes.Stat)
                         {
-                            _statService.Add(member, eff.EntityId, StatCategories.Bonus, eff.Quantity);
+                            _statService.Add(member, eff.EntityId, UnitStatValOffsets.Bonus, eff.Quantity);
                         }
                     }
                 }
@@ -157,8 +158,8 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                     }
                 }
 
-                _statService.Set(member, StatTypes.Health, StatCategories.Base, totalHealth);
-                _statService.Set(member, StatTypes.Mana, StatCategories.Base, totalMana);
+                _statService.Set(member, StatTypes.Health, UnitStatValOffsets.Base, totalHealth);
+                _statService.Set(member, StatTypes.Mana, UnitStatValOffsets.Base, totalMana);
 
                 foreach (long mutableStatType in mutableStatTypes)
                 {
@@ -167,11 +168,11 @@ namespace Genrpg.Shared.Crawler.Stats.Services
 
                     if (resetCurrStats || currStatVal > maxStatVal)
                     {
-                        _statService.Set(member, mutableStatType, StatCategories.Curr, maxStatVal);
+                        _statService.Set(member, mutableStatType, UnitStatValOffsets.Curr, maxStatVal);
                     }
                     else
                     {
-                        _statService.Set(member, mutableStatType, StatCategories.Curr, currStatVal);
+                        _statService.Set(member, mutableStatType, UnitStatValOffsets.Curr, currStatVal);
                     }
                 }
 
@@ -180,7 +181,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 {
                     if (stype.BonusStatTypeId > 0)
                     {
-                        _statService.Add(unit, stype.BonusStatTypeId, StatCategories.Pct, GetStatBonus(party, member, stype.IdKey));
+                        _statService.Add(unit, stype.BonusStatTypeId, UnitStatValOffsets.Pct, GetStatBonus(party, member, stype.IdKey));
                     }
                 }
             }
@@ -188,9 +189,9 @@ namespace Genrpg.Shared.Crawler.Stats.Services
             {
                 UnitType unitType = _gameData.Get<UnitTypeSettings>(_gs.ch).Get(unit.UnitTypeId);
 
-                List<UnitEffect> statEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.Stat).ToList();
+                List<Effect> statEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.Stat).ToList();
 
-                List<UnitEffect> statPctEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.StatPct).ToList();
+                List<Effect> statPctEffects = unitType.Effects.Where(x => x.EntityTypeId == EntityTypes.StatPct).ToList();
 
                 foreach (UnitKeyword unitKeyword in monster.ExtraKeywords)
                 {
@@ -198,25 +199,25 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                     statPctEffects.AddRange(unitKeyword.Effects.Where(x => x.EntityTypeId == EntityTypes.StatPct));
                 }
 
-                foreach (UnitEffect statEffect in statEffects)
+                foreach (Effect statEffect in statEffects)
                 {
-                    _statService.Set(unit, statEffect.EntityId, StatCategories.Bonus, statEffect.Quantity);
+                    _statService.Set(unit, statEffect.EntityId, UnitStatValOffsets.Bonus, statEffect.Quantity);
                 }
 
-                foreach (UnitEffect pctEffect in statPctEffects)
+                foreach (Effect pctEffect in statPctEffects)
                 {
-                    _statService.Set(unit, pctEffect.EntityId, StatCategories.Pct, pctEffect.Quantity);
+                    _statService.Set(unit, pctEffect.EntityId, UnitStatValOffsets.Pct, pctEffect.Quantity);
                 }
 
                 foreach (StatType statType in allStats)
                 {
                     if (statType.IdKey >= StatConstants.PrimaryStatStart && statType.IdKey <= StatConstants.PrimaryStatEnd)
                     {
-                        _statService.Set(unit, statType.IdKey, StatCategories.Base, (long)(unit.Level * monsterSettings.PrimaryStatsPointsPerLevel) + statSettings.MinStartValue);
+                        _statService.Set(unit, statType.IdKey, UnitStatValOffsets.Base, (long)(unit.Level * monsterSettings.PrimaryStatsPointsPerLevel) + statSettings.MinStartValue);
                     }
                     else if (buffStatTypes.Contains(statType.IdKey))
                     {
-                        _statService.Set(unit, statType.IdKey, StatCategories.Base, statSettings.BaseBuffStatValue + unit.Level);
+                        _statService.Set(unit, statType.IdKey, UnitStatValOffsets.Base, statSettings.BaseBuffStatValue + unit.Level);
                     }
 
                 }
@@ -276,18 +277,18 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 for (int t = 0; t < healthCalcTimes; t++)
                 {
 
-                    startHealth += MathUtil.LongRange(minHealth, maxHealth, _rand);
+                    startHealth += RandUtils.LongRange(minHealth, maxHealth, _rand);
                 }
 
                 startHealth /= healthCalcTimes;
 
-                _statService.Set(unit, StatTypes.Health, StatCategories.Base, startHealth);
-                _statService.Set(unit, StatTypes.Health, StatCategories.Curr, startHealth);
+                _statService.Set(unit, StatTypes.Health, UnitStatValOffsets.Base, startHealth);
+                _statService.Set(unit, StatTypes.Health, UnitStatValOffsets.Curr, startHealth);
 
                 long maxMana = unit.Level * monsterSettings.ManaPerLevel;
 
-                _statService.Set(unit, StatTypes.Mana, StatCategories.Base, maxMana);
-                _statService.Set(unit, StatTypes.Mana, StatCategories.Curr, maxMana);
+                _statService.Set(unit, StatTypes.Mana, UnitStatValOffsets.Base, maxMana);
+                _statService.Set(unit, StatTypes.Mana, UnitStatValOffsets.Curr, maxMana);
 
             }
         }

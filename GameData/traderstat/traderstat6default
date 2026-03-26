@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat6default",
-  "ParentId": "default",
-  "IdKey": 6,
-  "Name": "Mana Regen",
-  "Icon": "ManaRegen",
-  "Art": "ManaRegen"
-}

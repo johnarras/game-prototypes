@@ -40,8 +40,8 @@ public class VendorItemIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandle
         };
      
 
-        _uiService.SetText(ItemName, _sharedItemService.GetName(_gameData, _gs.ch, data.Data));
-        _uiService.SetText(ItemInfo, _sharedItemService.GetBasicInfo(_gameData, _gs.ch, data.Data));
+        _uiService.SetText(ItemName, _sharedItemService.GetName(_gs.ch, data.Data));
+        _uiService.SetText(ItemInfo, _sharedItemService.GetBasicInfo(_gs.ch, data.Data));
 
         _price = (isVendorItem ? data.Data.BuyCost : data.Data.SellValue);
 

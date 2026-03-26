@@ -1,14 +1,9 @@
-using MessagePack;
-using Genrpg.Shared.Interfaces;
-using System.Collections.Generic;
-using Genrpg.Shared.Names.Settings;
-using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Zones.Entities;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Dungeons.Constants;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Units.Settings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.Zones.Entities;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Zones.Settings
 {
@@ -45,8 +40,8 @@ namespace Genrpg.Shared.Zones.Settings
         /// Chance this is generated when creating a new map in the list of zones.
         /// </summary>
         public float ZoneListGenScale { get; set; }
-        
-        public long BaseTextureTypeId{ get; set; }
+
+        public long BaseTextureTypeId { get; set; }
         public long DirtTextureTypeId { get; set; }
         public long RoadTextureTypeId { get; set; }
         public long SteepTextureTypeId { get; set; }
@@ -72,8 +67,6 @@ namespace Genrpg.Shared.Zones.Settings
         public float FenceChance { get; set; }
 
         public long WeatherTypeId { get; set; }
-        public long BuildingTypeId { get; set; }
-
         public float CreviceCountScale { get; set; }
         public float CreviceDepthScale { get; set; }
         public float CreviceWidthScale { get; set; }
@@ -99,11 +92,11 @@ namespace Genrpg.Shared.Zones.Settings
             }
             else if (terrainChannel == TerrainTexChannels.Road)
             {
-                return RoadTextureTypeId; 
+                return RoadTextureTypeId;
             }
             else if (terrainChannel == TerrainTexChannels.Steep)
             {
-                return SteepTextureTypeId;  
+                return SteepTextureTypeId;
             }
             return BaseTextureTypeId;
         }

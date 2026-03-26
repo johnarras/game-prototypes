@@ -1,8 +1,7 @@
 using Assets.Scripts.Entities.UI;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Services;
+using Genrpg.Shared.Currencies.Services;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 using Genrpg.Shared.Utils;
 using System;
@@ -32,9 +31,9 @@ namespace Assets.Scripts.Trader.UI.Currencies
         public override void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
-            TraderStatData statData = _gs.ch.Get<TraderStatData>();
             long currQuantity = coreData.Currencies[entityId];
-            long storage = _coreCurrencyService.GetStorage(entityId, coreData, statData);
+
+            long storage = _coreCurrencyService.GetStorage(_gs.ch, entityId).Result;
             base.SetEntityData(entityTypeId, entityId, currQuantity, storage);
             FillBar.InitRange(0, storage, currQuantity);
         }
@@ -54,12 +53,12 @@ namespace Assets.Scripts.Trader.UI.Currencies
 
                 if (totalSeconds < 1)
                 {
-                    _webService.SendClientUserWebRequest(new UpdateCoreCurrenciesRequest(), GetToken());
+                    _webService.SendWebRequest(new UpdateCoreCurrenciesRequest(), GetToken());
                 }
 
                 long finalSeconds = (int)Math.Max(0, totalSeconds);
 
-                long regen = _coreCurrencyService.GetRegen(_entityId, coreData, _gs.ch.Get<TraderStatData>());
+                long regen = _coreCurrencyService.GetRegen(_gs.ch, _entityId).Result;
                 _uiService.SetText(QuantityText, $"+{regen} in " + TimeUtils.PrintTime(finalSeconds));
             }
         }

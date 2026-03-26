@@ -4,7 +4,7 @@ using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Options.Services;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
 using System;
@@ -341,7 +341,7 @@ public class UnityAudioService : IAudioService
         if (catCont.curr != null && catCont.curr.GetRandomIzeSeconds() > 0)
         {
             float randTime = catCont.curr.GetRandomIzeSeconds();
-            float newRandTime = MathUtil.FloatRange(randTime / 2, randTime * 3 / 2, _rand);
+            float newRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, _rand);
             catCont.curr.NextRandomizeTime = DateTime.UtcNow.AddSeconds(newRandTime);
         }
     }

@@ -18,6 +18,7 @@ using Genrpg.Shared.UI.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Website.MessageHandlers
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IClientMinigameService _clientMinigameService = null;
         private ILockstepGameService _lockstepService = null;
 
-        protected override void InnerProcess(GameAuthResponse response, CancellationToken token)
+        protected override async Awaitable InnerProcess(GameAuthResponse response, CancellationToken token)
         {
             _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
         }
@@ -139,6 +140,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
                 _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
             }
+            await Task.CompletedTask;
         }
 
         public async Awaitable RetryUploadMap(CancellationToken token)
@@ -152,7 +154,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             comm.Map.Id = mapId;
             comm.SpawnData.Id = mapId;
             comm.WorldDataEnv = _assetService.GetWorldDataEnv();
-            _webNetworkService.SendClientUserWebRequest(comm, token);
+            _webNetworkService.SendWebRequest(comm, token);
         }
     }
 }

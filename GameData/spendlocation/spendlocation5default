@@ -1,0 +1,40 @@
+{
+  "Id": "spendlocation5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Spellbook",
+  "Desc": "Your Spellbook",
+  "Icon": "Spellbook",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Conjure Rations",
+      "Desc": "Conjure some Rations",
+      "SpendCoreCurrencyTypeId": 4,
+      "SpendQuantity": 40,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 1,
+          "EntityId": 2,
+          "Quantity": 20
+        }
+      ]
+    },
+    {
+      "Index": 2,
+      "Name": "Conjure Supplies",
+      "Desc": "Conjure some Supplies",
+      "SpendCoreCurrencyTypeId": 4,
+      "SpendQuantity": 50,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 1,
+          "EntityId": 3,
+          "Quantity": 15
+        }
+      ]
+    }
+  ]
+}

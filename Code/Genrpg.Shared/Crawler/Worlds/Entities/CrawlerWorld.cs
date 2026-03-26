@@ -1,6 +1,5 @@
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Interfaces;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 

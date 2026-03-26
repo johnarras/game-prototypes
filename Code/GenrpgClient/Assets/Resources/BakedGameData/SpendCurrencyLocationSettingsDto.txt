@@ -1,0 +1,451 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Animals",
+      "Desc": "Buy Animals Here!",
+      "Icon": "Animals",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Buy Animal",
+          "Desc": "Buy an animal!",
+          "SpendCoreCurrencyTypeId": 1,
+          "MinLevel": 1,
+          "MaxTimes": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 56,
+              "EntityId": -1,
+              "Quantity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 2,
+      "Name": "Supplies",
+      "Desc": "Roscoe's Expedition Emporium!",
+      "Icon": "Supplies",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Supplies",
+          "Desc": "Stock Up On Supplies",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 10,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 1,
+              "EntityId": 3,
+              "Quantity": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Name": "Rations",
+          "Desc": "Get Rations For Your Journey",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 25,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 1,
+              "EntityId": 2,
+              "Quantity": 1
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Name": "Mana",
+          "Desc": "Top Off Your Mana",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 100,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 1,
+              "EntityId": 2,
+              "Quantity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 3,
+      "Name": "Temple",
+      "Desc": "The Temple",
+      "Icon": "Temple",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Cure",
+          "Desc": "Cure a Malady",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 5000,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": -1,
+              "Quantity": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 4,
+      "Name": "Trainer",
+      "Desc": "Adventurer Training",
+      "Icon": "Training",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Rations Storage",
+          "Desc": "Increase your Rations Storage!",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 50000,
+          "MinLevel": 1,
+          "MaxTimes": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 81,
+              "EntityId": 2,
+              "Quantity": 10
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Name": "CoinsStorage",
+          "Desc": "Increase your Coins Storage",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 100000,
+          "MinLevel": 1,
+          "MaxTimes": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 81,
+              "EntityId": 1,
+              "Quantity": 10
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Name": "Supplies Storage",
+          "Desc": "Increase your Supplies Storage",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 150000,
+          "MinLevel": 1,
+          "MaxTimes": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 81,
+              "EntityId": 3,
+              "Quantity": 10
+            }
+          ]
+        },
+        {
+          "Index": 4,
+          "Name": "Mana Storage",
+          "Desc": "Increase your Mana Storage",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 250000,
+          "MinLevel": 1,
+          "MaxTimes": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 81,
+              "EntityId": 4,
+              "Quantity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 5,
+      "Name": "Spellbook",
+      "Desc": "Your Spellbook",
+      "Icon": "Spellbook",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Conjure Rations",
+          "Desc": "Conjure some Rations",
+          "SpendCoreCurrencyTypeId": 4,
+          "SpendQuantity": 40,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 1,
+              "EntityId": 2,
+              "Quantity": 20
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Name": "Conjure Supplies",
+          "Desc": "Conjure some Supplies",
+          "SpendCoreCurrencyTypeId": 4,
+          "SpendQuantity": 50,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 1,
+              "EntityId": 3,
+              "Quantity": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 6,
+      "Name": "Trade Goods",
+      "Desc": "The Trader",
+      "Icon": "TradeGoods",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Buy Trade Good",
+          "Desc": "Buy Trade Goods",
+          "SpendCoreCurrencyTypeId": 1,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 57,
+              "EntityId": -1,
+              "Quantity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 7,
+      "Name": "Portal",
+      "Desc": "Portal to a city you've visited before.",
+      "Icon": "Portal",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Take a portal to another city",
+          "Desc": "Portal",
+          "SpendCoreCurrencyTypeId": 4,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 55,
+              "EntityId": -1,
+              "Quantity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 8,
+      "Name": "Buffs",
+      "Desc": "Magical Enchantments",
+      "Icon": "Buffs",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Lucky",
+          "Desc": "Get some luck for your journey!",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 10000,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 75,
+              "EntityId": 1,
+              "Quantity": 600
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Name": "Speedy",
+          "Desc": "Speed up for a bit!",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 20000,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 75,
+              "EntityId": 2,
+              "Quantity": 600
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Name": "Working Out",
+          "Desc": "Carry an extra Trade Good!",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 30000,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 75,
+              "EntityId": 4,
+              "Quantity": 600
+            }
+          ]
+        },
+        {
+          "Index": 4,
+          "Name": "Well Fed",
+          "Desc": "Require one less food for a bit.",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 40000,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 75,
+              "EntityId": 3,
+              "Quantity": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 9,
+      "Name": "Repairs",
+      "Desc": "Repair issues with your caravan!",
+      "Icon": "Repairs",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "Unlucky",
+          "Desc": "Tip the Leprechaun to get your luck back!",
+          "SpendCoreCurrencyTypeId": 1,
+          "SpendQuantity": 500,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 1,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Name": "Hungry",
+          "Desc": "Feast to fell full again!",
+          "SpendCoreCurrencyTypeId": 2,
+          "SpendQuantity": 100,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 3,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Name": "Slowed",
+          "Desc": "Grease everything up to get back up to speed.",
+          "SpendCoreCurrencyTypeId": 3,
+          "SpendQuantity": 75,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 2,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 4,
+          "Name": "Broken Down",
+          "Desc": "Fix your cart.",
+          "SpendCoreCurrencyTypeId": 3,
+          "SpendQuantity": 100,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 4,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 5,
+          "Name": "Magic Void",
+          "Desc": "Dispel the Magic Void",
+          "SpendCoreCurrencyTypeId": 4,
+          "SpendQuantity": 50,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 6,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 6,
+          "Name": "Decurse",
+          "Desc": "Break your curse",
+          "SpendCoreCurrencyTypeId": 4,
+          "SpendQuantity": 75,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 7,
+              "Quantity": -1
+            }
+          ]
+        },
+        {
+          "Index": 6,
+          "Name": "Sickly",
+          "Desc": "Eat more to feel better.",
+          "SpendCoreCurrencyTypeId": 2,
+          "SpendQuantity": 100,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 76,
+              "EntityId": 5,
+              "Quantity": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IdKey": 10,
+      "Name": "Traveling Vendor",
+      "Desc": "You meet another traveling trader.",
+      "Icon": "TravelingVendor",
+      "SpendTypes": []
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SpendLocationSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-24T11:10:48.067Z"
+}

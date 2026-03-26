@@ -1,20 +1,12 @@
 using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Settings;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Charms.Services
 {
@@ -132,7 +124,7 @@ namespace Genrpg.Shared.Charms.Services
                         });
                     }
 
-                    list.Bonuses = list.Bonuses.OrderBy(x=>x.EntityTypeId).ThenBy(x=>x.EntityId).ToList();
+                    list.Bonuses = list.Bonuses.OrderBy(x => x.EntityTypeId).ThenBy(x => x.EntityId).ToList();
                 }
             }
             return retval;

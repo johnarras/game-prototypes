@@ -1,10 +1,8 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapMessages;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Units.Entities;
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Combat.Messages
 {

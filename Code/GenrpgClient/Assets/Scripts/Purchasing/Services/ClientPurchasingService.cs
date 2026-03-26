@@ -288,7 +288,7 @@ namespace Assets.Scripts.Purchasing.Services
                 Platform = GetPurchasePlatform(),
             };
 
-            InitiatePurchaseResponse initiateResponse = await _webService.SendClientUserWebRequestAsync<InitiatePurchaseResponse>(initializeRequest, token);
+            InitiatePurchaseResponse initiateResponse = await _webService.SendWebRequestAsync<InitiatePurchaseResponse>(initializeRequest, token);
 
             if (initiateResponse == null)
             {
@@ -393,7 +393,7 @@ namespace Assets.Scripts.Purchasing.Services
                 ReceiptData = receiptData,
             };
 
-            ValidatePurchaseResponse response = await _webService.SendClientUserWebRequestAsync<ValidatePurchaseResponse>(request, token);
+            ValidatePurchaseResponse response = await _webService.SendWebRequestAsync<ValidatePurchaseResponse>(request, token);
 
             if (response == null)
             {

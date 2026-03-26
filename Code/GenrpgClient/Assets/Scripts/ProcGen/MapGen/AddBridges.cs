@@ -178,7 +178,7 @@ public class AddBridges : BaseZoneGenerator
 
 			// Not to close to road end
 			centerpt = null;
-			cval = MathUtil.IntRange (bridgeDistanceFromStart,road.Count-bridgeDistanceFromEnd,rand);
+			cval = RandUtils.IntRange (bridgeDistanceFromStart,road.Count-bridgeDistanceFromEnd,rand);
 
 			if (cval < halfBridgeLength || cval >= road.Count-halfBridgeLength)
             {
@@ -333,7 +333,7 @@ public class AddBridges : BaseZoneGenerator
 
             float startHeightDiff = maxHeight - minHeight;
 
-            cy = minHeight + MathUtil.FloatRange(0.0f, 0.25f, rand) * startHeightDiff;
+            cy = minHeight + RandUtils.FloatRange(0.0f, 0.25f, rand) * startHeightDiff;
 
 			float cyscale = cy/MapConstants.MapHeight;
 			
@@ -392,7 +392,7 @@ public class AddBridges : BaseZoneGenerator
             float bdist = MathUtil.Sqrt ((ex-sx)*(ex-sx)+(ez-sz)*(ez-sz));
 
 
-			int fullcl = MathUtil.IntRange(8*halfBridgeLength,22*halfBridgeLength,rand);
+			int fullcl = RandUtils.IntRange(8*halfBridgeLength,22*halfBridgeLength,rand);
 
 
             List<int> xvals = new List<int>();
@@ -453,23 +453,23 @@ public class AddBridges : BaseZoneGenerator
             // is a mreasurement of how obtuse this triangle can be.
 
 
-            float endDistScale = MathUtil.FloatRange (1.5f, 4.0f,rand);
-			float edgeDistScale = MathUtil.FloatRange (3.0f,7.0f,rand);
+            float endDistScale = RandUtils.FloatRange (1.5f, 4.0f,rand);
+			float edgeDistScale = RandUtils.FloatRange (3.0f,7.0f,rand);
 			
-			float baseObtuseness = MathUtil.FloatRange(0.95f,1.40f, rand);
+			float baseObtuseness = RandUtils.FloatRange(0.95f,1.40f, rand);
 			// The obtuseness allowed for the dug out area increases as we
 			// move toward the edge of the region, but randomize how much
 			// it can increase so some walls don't curve out so much
 			// 1.0f was the original value here.
-			float obtusnessIncreaseNearEdgesScale = MathUtil.FloatRange(1.2f,2.0f,rand);
+			float obtusnessIncreaseNearEdgesScale = RandUtils.FloatRange(1.2f,2.0f,rand);
 
 			// Normally the walls stop after the obtuse triangle gets too big.
 			// 0.7f was the original value here
-			//float maxExtraObtusenessAllowed = MathUtil.FloatRange (0.6f,0.85f,rand);
-			float maxExtraObtusenessAllowed = MathUtil.FloatRange(0.5f, 0.7f, rand);
+			//float maxExtraObtusenessAllowed = RandUtils.FloatRange (0.6f,0.85f,rand);
+			float maxExtraObtusenessAllowed = RandUtils.FloatRange(0.5f, 0.7f, rand);
 
 
-			float holeDepthScale = MathUtil.FloatRange(1.2f, 1.6f, rand) * (float)Math.Sqrt(lengthMult);
+			float holeDepthScale = RandUtils.FloatRange(1.2f, 1.6f, rand) * (float)Math.Sqrt(lengthMult);
 
 			
 			// Used for scaling how far up the ends of the roads go to make them
@@ -491,9 +491,9 @@ public class AddBridges : BaseZoneGenerator
 			int noiseSize = fullcl * 2 + 1;
 			for (int n = 0; n < numNoises; n++)
 			{
-                float freq = MathUtil.FloatRange(0.02f, 0.05f, rand) * noiseSize;
-                float amp = MathUtil.FloatRange(0.4f, 0.8f, rand);
-                float pers = MathUtil.FloatRange(0.2f, 0.5f, rand);
+                float freq = RandUtils.FloatRange(0.02f, 0.05f, rand) * noiseSize;
+                float amp = RandUtils.FloatRange(0.4f, 0.8f, rand);
+                float pers = RandUtils.FloatRange(0.2f, 0.5f, rand);
                 int octaves = 2;
 
                 float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), noiseSize, noiseSize);
@@ -775,8 +775,8 @@ public class AddBridges : BaseZoneGenerator
 
 
 
-                    int poolx = ipx + MathUtil.IntRange(-maxDelta, maxDelta, rand);
-                    int poolz = ipz + MathUtil.IntRange(-maxDelta, maxDelta, rand);
+                    int poolx = ipx + RandUtils.IntRange(-maxDelta, maxDelta, rand);
+                    int poolz = ipz + RandUtils.IntRange(-maxDelta, maxDelta, rand);
 
                     WaterGenData wgd = new WaterGenData()
                     {

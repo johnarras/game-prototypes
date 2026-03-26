@@ -1,6 +1,8 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.DataUtils.Services.Importing;
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
@@ -16,6 +18,7 @@ namespace Genrpg.DataUtils.Importers.Core
         protected ILogService _logService;
         protected IRepositoryService _repoService;
         protected IImportService _importService;
+        protected IAttributeService _attributeService = null;
 
         public string ImportDataFilename => typeof(TParent).Name + "Import.csv";
 
@@ -106,9 +109,9 @@ namespace Genrpg.DataUtils.Importers.Core
         }
 
 
-        public List<UnitEffect> ReadElementWords(string wordList, long entityTypeId, IReadOnlyList<ElementType> elementTypes)
+        public List<Effect> ReadElementWords(string wordList, long entityTypeId, IReadOnlyList<ElementType> elementTypes)
         {
-            List<UnitEffect> retval = new List<UnitEffect>();
+            List<Effect> retval = new List<Effect>();
             if (string.IsNullOrEmpty(wordList))
             {
                 return retval;
@@ -124,7 +127,7 @@ namespace Genrpg.DataUtils.Importers.Core
 
                 if (etype != null)
                 {
-                    retval.Add(new UnitEffect() { EntityTypeId = entityTypeId, EntityId = etype.IdKey, Quantity = 1 });
+                    retval.Add(new Effect() { EntityTypeId = entityTypeId, EntityId = etype.IdKey, Quantity = 1 });
                 }
                 else
                 {

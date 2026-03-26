@@ -1,0 +1,8 @@
+{
+  "Id": "gameplaystat2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Max Inventory",
+  "Icon": "MaxInventory",
+  "Art": "MaxInventory"
+}

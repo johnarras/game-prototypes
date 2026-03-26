@@ -1,91 +1,81 @@
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.DataStores.Interfaces;
-using Genrpg.Shared.Entities.Settings;
+
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.Rewards.Interfaces;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Rewards.Services
 {
     public class RewardService : IRewardService
     {
-
-
         private SetupDictionaryContainer<long, IRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IRewardHelper>();
-        protected IRewardHelper GetRewardHelper(long entityTypeId)
+        public async Task Initialize(CancellationToken token)
         {
-            if (_rewardHelpers.TryGetValue(entityTypeId, out IRewardHelper helper))
+            await Task.CompletedTask;
+        }
+
+        private IRewardHelper GetRewardHelper(long rewardTypeId)
+        {
+            if (_rewardHelpers.TryGetValue(rewardTypeId, out IRewardHelper rewardHelper))
             {
-                return helper;
+                return rewardHelper;
             }
             return null;
         }
 
-        public virtual bool GiveRewards<RL>(IRandom rand, MapObject obj, List<RL> resultList, RewardParams rp) where RL : RewardList
+        public async Task<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, RewardParams rp) where TReward : IEffect
         {
-            if (resultList == null)
+            if (rp == null)
             {
-                return false;
+                rp = new RewardParams();
             }
-            bool hadFailure = false;
-            if (obj is Character ch)
+            bool allSuccess = true;
+            foreach (TReward reward in rewards)
             {
-                foreach (RewardList rl in resultList)
+                if (!await GiveReward(context, reward, rp))
                 {
-                    foreach (Reward reward in rl.Rewards)
-                    {
-                        if (!GiveReward(rand, ch, reward, rp))
-                        {
-                            hadFailure = true;
-                        }
-                    }
+                    allSuccess = false;
                 }
             }
-            else
-            {
-                hadFailure = true;
-            }
-
-            return !hadFailure;
+            return allSuccess;
         }
 
-        public virtual bool GiveReward(IRandom rand, MapObject obj, IReward reward, RewardParams rp)
+        public async Task<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp)
         {
-            return GiveReward(rand, obj, reward.EntityTypeId, reward.EntityId, reward.Quantity, reward.ExtraData, rp);
-        }
-
-        public virtual bool GiveReward(IRandom rand, MapObject obj, long entityType, long entityId, long quantity, object extraData, RewardParams rp)
-        {
-            IRewardHelper helper = GetRewardHelper(entityType);
-
-            if (helper == null)
+            bool allSuccess = true;
+            foreach (RewardList rewardList in rewardLists)
             {
-                return false;
+                if (!await GiveRewards(context, rewardList.Rewards, rp))
+                {
+                    allSuccess = false;
+                }
             }
-
-            // This handles any extra results we need to send to the client.
-            return helper.GiveReward(rand, obj, entityId, quantity, extraData, rp);
+            return allSuccess;
         }
 
-        public virtual long GetQuantity(MapObject obj, long entityTypeId, long entityId)
+        public async Task<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, RewardParams rp) where TReward : IEffect
+        {
+            Item extraData = null;
+            if (rew is IReward ir)
+            {
+                extraData = ir.ExtraData;
+            }
+            return await GiveReward(context, rew.EntityTypeId, rew.EntityId, rew.Quantity, extraData, rp);
+        }
+
+        public virtual async Task<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, Item extraData, RewardParams rp)
         {
             IRewardHelper helper = GetRewardHelper(entityTypeId);
-
-            if (helper == null)
+            if (helper != null)
             {
-                return 0;
+                return await helper.GiveReward(context, entityId, quantity, extraData, rp);
             }
-
-            return helper.GetQuantity(obj, entityTypeId);
-        }
-
-        protected virtual void OnGiveRewardSuccess(IRandom rand, MapObject obj, long entityTypeId, long entityId, long quantity, object extraData, RewardParams rp)
-        {
-
+            return false;
         }
     }
 }

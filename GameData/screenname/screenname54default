@@ -2,7 +2,7 @@
   "Id": "screenname54default",
   "ParentId": "default",
   "IdKey": 54,
-  "Name": "MinigameLobby",
+  "Name": "Supplies",
   "ScreenLayerId": 20,
-  "Subdirectory": "MinigameLobby"
+  "Subdirectory": "TraderSpend"
 }

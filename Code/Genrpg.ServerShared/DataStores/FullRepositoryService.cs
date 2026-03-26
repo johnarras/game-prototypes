@@ -25,23 +25,23 @@ namespace Genrpg.ServerShared.DataStores
 
     public interface IFullRepositoryService : ISearchRepositoryService
     {
-        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem;
-        Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem;
-        Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem;
-        void QueueDelete<T>(T t) where T : class, ISearchableItem;
-        void QueueSave<T>(T t) where T : class, ISearchableItem;
+        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId;
+        Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId;
+        Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId;
+        void QueueDelete<T>(T t) where T : class, IStringId;
+        void QueueSave<T>(T t) where T : class, IStringId;
 
-        Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem;
-        void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem;
+        Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId;
+        void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId;
 
-        Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem;
-        void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem;
+        Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId;
+        void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, IStringId;
 
-        Task<bool> SaveAll<T>(List<T> list) where T : class, ISearchableItem;
-        Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem;
+        Task<bool> SaveAll<T>(List<T> list) where T : class, IStringId;
+        Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId;
         Task CreateIndexes(CreateIndexData data);
-        Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem;
-        void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, ISearchableItem;
+        Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId;
+        void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, IStringId;
 
 
     }
@@ -51,15 +51,15 @@ namespace Genrpg.ServerShared.DataStores
 
     public interface IFullRepository : ISearchRepository
     {
-        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem;
-        Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem;
-        Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem;
-        Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem;
-        Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem;
-        Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem;
+        Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId;
+        Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId;
+        Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId;
+        Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId;
+        Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId;
+        Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId;
 
-        Task<bool> SaveAll<T>(List<T> tlist) where T : class, ISearchableItem;
-        Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem;
+        Task<bool> SaveAll<T>(List<T> tlist) where T : class, IStringId;
+        Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId;
     }
 
     public class FullRepositoryService : IFullRepositoryService
@@ -134,7 +134,7 @@ namespace Genrpg.ServerShared.DataStores
         protected ISearchRepository FindSearchRepo(Type t)
         {
             IRepository repo = FindRepo(t);
-            return repo as ISearchRepository;   
+            return repo as ISearchRepository;
         }
 
         protected IFullRepository FindServerRepo(Type t)
@@ -192,13 +192,13 @@ namespace Genrpg.ServerShared.DataStores
             return await repo.Load<T>(id);
         }
 
-        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, ISearchableItem
+        public async Task<bool> DeleteAll<T>(Expression<Func<T, bool>> func) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
             return await repo.DeleteAll(func);
         }
 
-        public async Task<bool> SaveAll<T>(List<T> list) where T : class, ISearchableItem
+        public async Task<bool> SaveAll<T>(List<T> list) where T : class, IStringId
         {
             if (list.Count < 1)
             {
@@ -209,19 +209,19 @@ namespace Genrpg.ServerShared.DataStores
             return await repo.SaveAll(list);
         }
 
-        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, ISearchableItem
+        public async Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(list[0].GetType());
             return await repo.TransactionSave(list);
         }
 
-        public void QueueSave<T>(T t) where T : class, ISearchableItem
+        public void QueueSave<T>(T t) where T : class, IStringId
         {
             SaveAction<T> saveAction = new SaveAction<T>(t, this);
             _queues[StrUtils.GetPrefixIdHash(t.Id) % QueueCount].Enqueue(saveAction);
         }
 
-        public void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, ISearchableItem
+        public void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, IStringId
         {
             if (list.Count < 1)
             {
@@ -232,7 +232,7 @@ namespace Genrpg.ServerShared.DataStores
             _queues[StrUtils.GetPrefixIdHash(queueId) % QueueCount].Enqueue(saveAction);
         }
 
-        public void QueueDelete<T>(T t) where T : class, ISearchableItem
+        public void QueueDelete<T>(T t) where T : class, IStringId
         {
             DeleteAction<T> deleteAction = new DeleteAction<T>(t, this);
             _queues[StrUtils.GetPrefixIdHash(t.Id) % QueueCount].Enqueue(deleteAction);
@@ -257,34 +257,34 @@ namespace Genrpg.ServerShared.DataStores
             }
         }
 
-        public async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem
+        public async Task<bool> UpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
 
             return await repo.UpdateDict<T>(docId, fieldNameUpdates);
         }
 
-        public void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, ISearchableItem
+        public void QueueUpdateDict<T>(string docId, Dictionary<string, object> fieldNameUpdates) where T : class, IStringId
         {
             UpdateAction<T> updateAction = new UpdateAction<T>(docId, fieldNameUpdates, this);
             _queues[StrUtils.GetPrefixIdHash(docId) % QueueCount].Enqueue(updateAction);
         }
 
 
-        public async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem
+        public async Task<bool> UpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
 
             return await repo.UpdateAction<T>(docId, action);
         }
 
-        public void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, ISearchableItem
+        public void QueueUpdateAction<T>(string docId, Action<T> action) where T : class, IStringId
         {
             UpdateAction<T> updateAction = new UpdateAction<T>(docId, action, this);
             _queues[StrUtils.GetPrefixIdHash(docId) % QueueCount].Enqueue(updateAction);
         }
 
-        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, ISearchableItem
+        public async Task<T> AtomicIncrement<T>(string docId, string fieldName, long increment) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
 
@@ -293,7 +293,7 @@ namespace Genrpg.ServerShared.DataStores
         }
 
 
-        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, ISearchableItem
+        public async Task<T> AtomicAddBits<T>(string docId, string fieldName, long addBits) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
 
@@ -301,7 +301,7 @@ namespace Genrpg.ServerShared.DataStores
 
         }
 
-        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, ISearchableItem
+        public async Task<T> AtomicRemoveBits<T>(string docId, string fieldName, long removeBits) where T : class, IStringId
         {
             IFullRepository repo = FindServerRepo(typeof(T));
 

@@ -16,9 +16,9 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 1000000000 + 192873);
 
-        float delta = MathUtil.FloatRange(0.07f, 0.12f, rand);
+        float delta = RandUtils.FloatRange(0.07f, 0.12f, rand);
 
-        float heightPerGrid = MathUtil.FloatRange(MapConstants.MapHeightPerGrid * (1 - delta), MapConstants.MapHeightPerGrid * (1 + delta), rand);
+        float heightPerGrid = MapConstants.MapHeightPerGrid * RandUtils.DeltaRange(delta, rand); 
 
         float minHeight = MapConstants.StartHeightPercent - heightPerGrid * 0.3f;
         float maxHeight = MapConstants.StartHeightPercent + heightPerGrid * (_mapProvider.GetMap().BlockCount / 2 - 1);
@@ -36,12 +36,12 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
 
         for (int i = 0; i < heightTimes; i++)
         {
-            float pers = MathUtil.FloatRange(0.1f, 0.3f, rand);
+            float pers = RandUtils.FloatRange(0.1f, 0.3f, rand);
 
             // This number is here because these ups and downs should be a percent of the overall world height.
-            float amp = MathUtil.FloatRange(0.005f, 0.01f, rand) * overworldSizeMult;
+            float amp = RandUtils.FloatRange(0.005f, 0.01f, rand) * overworldSizeMult;
             // We want these features to be approx several hundred units across or so.
-            float freq = _mapProvider.GetMap().GetHwid() / (MathUtil.FloatRange(6.0f, 9.0f, rand) * MapConstants.TerrainPatchSize);
+            float freq = _mapProvider.GetMap().GetHwid() / (RandUtils.FloatRange(6.0f, 9.0f, rand) * MapConstants.TerrainPatchSize);
             // This number is in this range because we want a few bumps to encompass the whole world.
             int octaves = 2;
             float[,] heights = _noiseService.Generate(pers, freq, amp, octaves, pseed, wid, hgt);

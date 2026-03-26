@@ -6,6 +6,8 @@
   "BaseForageChance": 0.1,
   "BaseGoodEventChance": 0.1,
   "BaseBadEventChance": 0.5,
+  "PortalDistancePerMana": 10,
+  "MinPortalCost": 25,
   "Name": "TravelSettings",
-  "SaveTime": "2026-01-18T20:03:55.163Z"
+  "SaveTime": "2026-03-11T00:39:36.155Z"
 }

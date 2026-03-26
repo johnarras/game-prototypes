@@ -1,6 +1,4 @@
-using MessagePack;
 using Genrpg.Shared.Interfaces;
-using System;
 
 namespace Genrpg.Shared.ProcGen.Settings.Names
 {

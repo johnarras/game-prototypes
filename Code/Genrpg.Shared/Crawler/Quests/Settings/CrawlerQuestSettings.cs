@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;

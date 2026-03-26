@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;

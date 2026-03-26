@@ -1,178 +1,298 @@
 {
   "Children": [
     {
+      "IdKey": 1,
+      "EntityTypeId": 80,
+      "EntityId": 1,
+      "Quantity": 800,
+      "Level": 1
+    },
+    {
       "IdKey": 2,
-      "EntityTypeId": 202,
+      "EntityTypeId": 77,
+      "EntityId": 1,
+      "Quantity": 80,
+      "Level": 1
+    },
+    {
+      "IdKey": 3,
+      "EntityTypeId": 80,
       "EntityId": 3,
+      "Quantity": 50,
+      "Level": 1
+    },
+    {
+      "IdKey": 4,
+      "EntityTypeId": 77,
+      "EntityId": 3,
+      "Quantity": 5,
+      "Level": 1
+    },
+    {
+      "IdKey": 5,
+      "EntityTypeId": 80,
+      "EntityId": 4,
+      "Quantity": 40,
+      "Level": 1
+    },
+    {
+      "IdKey": 6,
+      "EntityTypeId": 77,
+      "EntityId": 4,
+      "Quantity": 4,
+      "Level": 1
+    },
+    {
+      "IdKey": 7,
+      "EntityTypeId": 80,
+      "EntityId": 2,
+      "Quantity": 60,
+      "Level": 1
+    },
+    {
+      "IdKey": 8,
+      "EntityTypeId": 77,
+      "EntityId": 2,
+      "Quantity": 6,
+      "Level": 1
+    },
+    {
+      "IdKey": 9,
+      "EntityTypeId": 56,
+      "EntityId": 1,
+      "Quantity": 1,
+      "Level": 1
+    },
+    {
+      "IdKey": 10,
+      "EntityTypeId": 71,
+      "EntityId": 1,
+      "Quantity": 2,
+      "Level": 1
+    },
+    {
+      "IdKey": 11,
+      "EntityTypeId": 71,
+      "EntityId": 5,
+      "Quantity": 1,
+      "Level": 1
+    },
+    {
+      "IdKey": 12,
+      "EntityTypeId": 1,
+      "EntityId": 1,
+      "Quantity": 800,
+      "Level": 1
+    },
+    {
+      "IdKey": 13,
+      "EntityTypeId": 1,
+      "EntityId": 3,
+      "Quantity": 50,
+      "Level": 1
+    },
+    {
+      "IdKey": 14,
+      "EntityTypeId": 1,
+      "EntityId": 4,
+      "Quantity": 40,
+      "Level": 1
+    },
+    {
+      "IdKey": 15,
+      "EntityTypeId": 1,
+      "EntityId": 2,
+      "Quantity": 120,
+      "Level": 1
+    },
+    {
+      "IdKey": 16,
+      "EntityTypeId": 80,
+      "EntityId": 1,
       "Quantity": 900,
       "Level": 2
     },
     {
-      "IdKey": 3,
-      "EntityTypeId": 202,
-      "EntityId": 2,
+      "IdKey": 17,
+      "EntityTypeId": 77,
+      "EntityId": 1,
       "Quantity": 50,
       "Level": 3
     },
     {
-      "IdKey": 4,
-      "EntityTypeId": 202,
-      "EntityId": 5,
+      "IdKey": 18,
+      "EntityTypeId": 80,
+      "EntityId": 3,
       "Quantity": 60,
       "Level": 4
     },
     {
-      "IdKey": 5,
-      "EntityTypeId": 202,
-      "EntityId": 4,
+      "IdKey": 19,
+      "EntityTypeId": 77,
+      "EntityId": 3,
       "Quantity": 6,
       "Level": 5
     },
     {
-      "IdKey": 6,
-      "EntityTypeId": 202,
-      "EntityId": 9,
+      "IdKey": 20,
+      "EntityTypeId": 80,
+      "EntityId": 2,
       "Quantity": 70,
       "Level": 6
     },
     {
-      "IdKey": 7,
-      "EntityTypeId": 202,
-      "EntityId": 8,
+      "IdKey": 21,
+      "EntityTypeId": 77,
+      "EntityId": 2,
       "Quantity": 7,
       "Level": 7
     },
     {
-      "IdKey": 8,
-      "EntityTypeId": 202,
-      "EntityId": 7,
+      "IdKey": 22,
+      "EntityTypeId": 80,
+      "EntityId": 4,
       "Quantity": 50,
       "Level": 8
     },
     {
-      "IdKey": 9,
-      "EntityTypeId": 202,
-      "EntityId": 6,
+      "IdKey": 23,
+      "EntityTypeId": 77,
+      "EntityId": 4,
       "Quantity": 5,
       "Level": 9
     },
     {
-      "IdKey": 10,
-      "EntityTypeId": 202,
-      "EntityId": 3,
+      "IdKey": 24,
+      "EntityTypeId": 80,
+      "EntityId": 1,
       "Quantity": 1200,
       "Level": 10
     },
     {
-      "IdKey": 11,
-      "EntityTypeId": 202,
-      "EntityId": 2,
+      "IdKey": 25,
+      "EntityTypeId": 77,
+      "EntityId": 1,
       "Quantity": 60,
       "Level": 11
     },
     {
-      "IdKey": 12,
-      "EntityTypeId": 202,
-      "EntityId": 5,
+      "IdKey": 26,
+      "EntityTypeId": 80,
+      "EntityId": 3,
       "Quantity": 70,
       "Level": 12
     },
     {
-      "IdKey": 13,
-      "EntityTypeId": 202,
-      "EntityId": 4,
+      "IdKey": 27,
+      "EntityTypeId": 77,
+      "EntityId": 3,
       "Quantity": 7,
       "Level": 13
     },
     {
-      "IdKey": 14,
-      "EntityTypeId": 202,
-      "EntityId": 9,
+      "IdKey": 28,
+      "EntityTypeId": 80,
+      "EntityId": 2,
       "Quantity": 80,
       "Level": 14
     },
     {
-      "IdKey": 15,
-      "EntityTypeId": 202,
-      "EntityId": 8,
+      "IdKey": 29,
+      "EntityTypeId": 77,
+      "EntityId": 2,
       "Quantity": 8,
       "Level": 15
     },
     {
-      "IdKey": 16,
-      "EntityTypeId": 202,
-      "EntityId": 7,
+      "IdKey": 30,
+      "EntityTypeId": 80,
+      "EntityId": 4,
       "Quantity": 60,
       "Level": 16
     },
     {
-      "IdKey": 17,
-      "EntityTypeId": 202,
-      "EntityId": 6,
+      "IdKey": 31,
+      "EntityTypeId": 77,
+      "EntityId": 4,
       "Quantity": 6,
       "Level": 17
     },
     {
-      "IdKey": 18,
-      "EntityTypeId": 202,
-      "EntityId": 3,
+      "IdKey": 32,
+      "EntityTypeId": 80,
+      "EntityId": 1,
       "Quantity": 1500,
       "Level": 18
     },
     {
-      "IdKey": 19,
-      "EntityTypeId": 202,
-      "EntityId": 2,
+      "IdKey": 33,
+      "EntityTypeId": 77,
+      "EntityId": 1,
       "Quantity": 75,
       "Level": 19
     },
     {
-      "IdKey": 20,
-      "EntityTypeId": 202,
-      "EntityId": 5,
+      "IdKey": 34,
+      "EntityTypeId": 80,
+      "EntityId": 3,
       "Quantity": 80,
       "Level": 20
     },
     {
-      "IdKey": 21,
-      "EntityTypeId": 202,
-      "EntityId": 4,
+      "IdKey": 35,
+      "EntityTypeId": 77,
+      "EntityId": 3,
       "Quantity": 8,
       "Level": 21
     },
     {
-      "IdKey": 22,
-      "EntityTypeId": 202,
-      "EntityId": 9,
+      "IdKey": 36,
+      "EntityTypeId": 80,
+      "EntityId": 2,
       "Quantity": 90,
       "Level": 22
     },
     {
-      "IdKey": 23,
-      "EntityTypeId": 202,
-      "EntityId": 8,
+      "IdKey": 37,
+      "EntityTypeId": 77,
+      "EntityId": 2,
       "Quantity": 9,
       "Level": 23
     },
     {
-      "IdKey": 24,
-      "EntityTypeId": 202,
-      "EntityId": 7,
+      "IdKey": 38,
+      "EntityTypeId": 80,
+      "EntityId": 4,
       "Quantity": 70,
       "Level": 24
     },
     {
-      "IdKey": 25,
-      "EntityTypeId": 202,
-      "EntityId": 6,
+      "IdKey": 39,
+      "EntityTypeId": 77,
+      "EntityId": 4,
       "Quantity": 7,
       "Level": 25
+    },
+    {
+      "IdKey": 40,
+      "EntityTypeId": 71,
+      "EntityId": 1,
+      "Quantity": 3,
+      "Level": 26
+    },
+    {
+      "IdKey": 41,
+      "EntityTypeId": 62,
+      "EntityId": 1,
+      "Quantity": 1,
+      "Level": 1
     }
   ],
   "Parent": {
     "Id": "default",
+    "StartCityId": 22,
     "Name": "LevelTrackRewardSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-04T23:19:32.427Z"
+  "SaveTime": "2026-03-26T03:17:36.93Z"
 }

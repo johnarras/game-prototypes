@@ -1,0 +1,40 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Max Size",
+      "Icon": "MaxSize",
+      "Art": "MaxSize"
+    },
+    {
+      "IdKey": 2,
+      "Name": "Max Inventory",
+      "Icon": "MaxInventory",
+      "Art": "MaxInventory"
+    },
+    {
+      "IdKey": 3,
+      "Name": "Bonus Speed",
+      "Icon": "BonusSpeed",
+      "Art": "BonusSpeed"
+    },
+    {
+      "IdKey": 4,
+      "Name": "Luck",
+      "Icon": "Luck",
+      "Art": "Luck"
+    },
+    {
+      "IdKey": 5,
+      "Name": "Searching",
+      "Icon": "Searching",
+      "Art": "Searching"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "GameplayStatSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-25T14:19:31.611Z"
+}

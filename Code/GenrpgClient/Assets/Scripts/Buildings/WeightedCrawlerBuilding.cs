@@ -11,6 +11,11 @@ namespace Assets.Scripts.Buildings
         public float Weight { get; set; }
         public CrawlerBuilding Building;
         public BuildingMats Mats;
+
+        public bool IsReady()
+        {
+            return Building != null && Mats != null && Mats.IsReady();
+        }
     }
 }
 

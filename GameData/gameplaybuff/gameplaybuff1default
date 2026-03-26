@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Lucky",
+  "Icon": "Lucky",
+  "Art": "Lucky",
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 4,
+      "Quantity": 2
+    }
+  ]
+}

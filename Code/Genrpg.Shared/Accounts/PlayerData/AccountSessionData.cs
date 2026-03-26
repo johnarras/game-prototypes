@@ -1,5 +1,3 @@
-using MessagePack;
-
 namespace Genrpg.Shared.Accounts.PlayerData
 {
     public class AccountSessionData : BaseAccountData

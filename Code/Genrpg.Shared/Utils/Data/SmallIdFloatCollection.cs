@@ -1,5 +1,3 @@
-using MessagePack;
-
 namespace Genrpg.Shared.Utils.Data
 {
     public class SmallIdFloatCollection : BaseSmallIdQuantityCollection<float>

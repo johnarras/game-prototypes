@@ -1,26 +1,19 @@
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.Spells.Casting;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Stats.Constants;
+using Genrpg.Shared.Targets.Messages;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Spells.Casting;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.MapMessaging.MessageHandlers;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spells.MessageHandlers
 {
     public class CastingSpellHandler : BaseUnitServerMapMessageHandler<CastingSpell>
     {
         private IStatService _statService = null;
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Unit unit, CastingSpell message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Unit unit, CastingSpell message)
         {
             if (!_unitService.IsOkUnit(unit, true))
             {
@@ -58,7 +51,7 @@ namespace Genrpg.MapServer.Spells.MessageHandlers
                 return;
             }
 
-            _statService.Add(unit, result.Spell.PowerStatTypeId, StatCategories.Curr, -result.Spell.GetCost(unit));
+            _statService.Add(unit, result.Spell.PowerStatTypeId, UnitStatValOffsets.Curr, -result.Spell.GetCost(unit));
 
             // Send projectile to target.
             _spellService.SendSpell(rand, unit, result);

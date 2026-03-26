@@ -2,7 +2,6 @@ using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Spells.Casting;
 using Genrpg.Shared.Stats.Entities;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Inventory.Settings.ItemSets

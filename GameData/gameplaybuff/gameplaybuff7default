@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Surplus Supplies",
+  "Icon": "SurplusSupplies",
+  "Art": "SurplusSupplies",
+  "Effects": [
+    {
+      "EntityTypeId": 79,
+      "EntityId": 3,
+      "Quantity": 1
+    }
+  ]
+}

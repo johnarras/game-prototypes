@@ -1,14 +1,8 @@
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Ftue.PlayerData;
 using Genrpg.Shared.Ftue.Settings.Steps;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Genrpg.Shared.Ftue.Services
 {

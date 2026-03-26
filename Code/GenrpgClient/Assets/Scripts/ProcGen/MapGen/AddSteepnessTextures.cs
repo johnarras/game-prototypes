@@ -53,24 +53,24 @@ public class AddSteepnessTextures : BaseZoneGenerator
         // we show the cleft splat, otherwise we don't
         int extraRaisedPointsAmount = 1 + steepRandom.NextDouble() < 0.1f ? 1 : 0;
 
-		float randomDirtChance = MathUtil.FloatRange(0.04f,0.20f,steepRandom);
-		float minRandomDirtPercent = MathUtil.FloatRange (0.1f,0.5f,steepRandom);
-		float maxRandomDirtPercent = MathUtil.FloatRange (0.6f,0.9f,steepRandom);
+		float randomDirtChance = RandUtils.FloatRange(0.04f,0.20f,steepRandom);
+		float minRandomDirtPercent = RandUtils.FloatRange (0.1f,0.5f,steepRandom);
+		float maxRandomDirtPercent = RandUtils.FloatRange (0.6f,0.9f,steepRandom);
 
 
         MyRandom detailRand = new MyRandom(zone.Seed/5+582934);
        
-        float ssaoFreq = MathUtil.FloatRange(0.3f, 0.7f, detailRand) * maxLen;
-        float ssaoAmp = MathUtil.FloatRange(0.05f, 0.4f, detailRand);
-        float ssaoPers = MathUtil.FloatRange(0.3f, 0.6f, detailRand);
+        float ssaoFreq = RandUtils.FloatRange(0.3f, 0.7f, detailRand) * maxLen;
+        float ssaoAmp = RandUtils.FloatRange(0.05f, 0.4f, detailRand);
+        float ssaoPers = RandUtils.FloatRange(0.3f, 0.6f, detailRand);
         int ssaoOctaves = 3;
 
         float[,] cleftDirtNoise = _noiseService.Generate(ssaoPers, ssaoFreq, ssaoAmp, ssaoOctaves, detailRand.Next(), width, height);
 
 
-        float midFreq = MathUtil.FloatRange(0.3f, 0.7f, detailRand) * maxLen;
-        float midAmp = MathUtil.FloatRange(1.0f, 1.5f, detailRand);
-        float midPers = MathUtil.FloatRange(0.2f, 0.3f, detailRand);
+        float midFreq = RandUtils.FloatRange(0.3f, 0.7f, detailRand) * maxLen;
+        float midAmp = RandUtils.FloatRange(1.0f, 1.5f, detailRand);
+        float midPers = RandUtils.FloatRange(0.2f, 0.3f, detailRand);
         int midOCtaves = 2;
 
         float[,] midNoise = _noiseService.Generate(midPers, midFreq, midAmp, midOCtaves, detailRand.Next(), width, height);
@@ -105,7 +105,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
 				
 				if (steep >= MapConstants.MinSteepnessForTexture)
 				{
-					float currSteep = steep*MathUtil.FloatRange(0.8f,1.0f,steepRandom);
+					float currSteep = steep*RandUtils.FloatRange(0.8f,1.0f,steepRandom);
 					// Grass starts at 20 and drops.
 					float groundPercent = MathUtil.Clamp(0,1.0f-Math.Abs (currSteep-MapConstants.MinSteepnessForTexture)*0.05f,1);
 					// Dirt is a triangle that maxes at 0.35
@@ -117,14 +117,14 @@ public class AddSteepnessTextures : BaseZoneGenerator
 					{
 						if (steepRandom.NextDouble () < 0.20f)
 						{
-							dirtPercent += MathUtil.FloatRange (0.0f,0.6f,steepRandom);
+							dirtPercent += RandUtils.FloatRange (0.0f,0.6f,steepRandom);
 						}
 					}
 
 					float percentPerturb = 0.2f;
-					groundPercent*=MathUtil.FloatRange(1-percentPerturb,1+percentPerturb,steepRandom);
-					dirtPercent*=MathUtil.FloatRange(1-percentPerturb,1+percentPerturb,steepRandom);
-					steepPercent*=MathUtil.FloatRange(1-percentPerturb,1+percentPerturb,steepRandom);
+					groundPercent*=RandUtils.DeltaScale(percentPerturb,steepRandom);
+					dirtPercent*=RandUtils.DeltaScale(percentPerturb, steepRandom);
+					steepPercent*=RandUtils.DeltaScale(percentPerturb, steepRandom);
 
 
 					if (useCleftDirt)
@@ -174,9 +174,9 @@ public class AddSteepnessTextures : BaseZoneGenerator
                             float currDirtNoise = cleftDirtNoise[x - startx, y - starty];
 
 
-                            float newDirtAmount = MathUtil.FloatRange(0.4, (1 - dirtPercent) * 0.9f, steepRandom);
+                            float newDirtAmount = RandUtils.FloatRange(0.4, (1 - dirtPercent) * 0.9f, steepRandom);
 							newDirtAmount *= (1 + currDirtNoise);
-							newDirtAmount += (innerNumAboveMid - currInnerMinNumAboveMid) * MathUtil.FloatRange(0, 0.2f, steepRandom);
+							newDirtAmount += (innerNumAboveMid - currInnerMinNumAboveMid) * RandUtils.FloatRange(0, 0.2f, steepRandom);
 							dirtPercent += newDirtAmount;
                             if (dirtPercent > 1)
                             {
@@ -187,7 +187,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
 
 					if (steepRandom.NextDouble () < randomDirtChance)
 					{
-						dirtPercent += MathUtil.FloatRange (minRandomDirtPercent,maxRandomDirtPercent,steepRandom);
+						dirtPercent += RandUtils.FloatRange (minRandomDirtPercent,maxRandomDirtPercent,steepRandom);
 						groundPercent /= 2;
 						steepPercent /= 2;
 					}

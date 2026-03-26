@@ -21,13 +21,13 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
 
         for (int times = 0; times < 3; times++)
         {
-            float amp = MathUtil.FloatRange(1.2f, 1.8f, rand)*1.4f;
+            float amp = RandUtils.FloatRange(1.2f, 1.8f, rand)*1.4f;
 
-            float freq = wid * MathUtil.FloatRange(0.015f, 0.025f, rand) * 1.0f;
+            float freq = wid * RandUtils.FloatRange(0.015f, 0.025f, rand) * 1.0f;
 
             int octaves = 3;
 
-            float pers = MathUtil.FloatRange(0.35f, 0.45f, rand);
+            float pers = RandUtils.FloatRange(0.35f, 0.45f, rand);
 
             int pseed = rand.Next();
 

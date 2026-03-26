@@ -3,7 +3,7 @@
 
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;

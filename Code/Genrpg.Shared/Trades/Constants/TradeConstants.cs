@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Trades.Constants
 {
     public class TradeConstants

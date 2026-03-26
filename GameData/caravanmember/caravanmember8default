@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Ox",
+  "Desc": "A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder.",
+  "Icon": "Ox",
+  "Art": "Ox",
+  "Speed": 3,
+  "Size": 2,
+  "Price": 356000,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -4
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 5
+    }
+  ]
+}

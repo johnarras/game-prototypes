@@ -1,6 +1,3 @@
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
@@ -8,8 +5,6 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.Shared.DataStores.Categories.GameSettings
 {
@@ -23,7 +18,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
             _data = data;
             if (data.Count > 0 && data[0] is IId iTempId)
             {
-                List<IId> idList = data.Cast<IId>().Where(x=>x.IdKey > 0).ToList();
+                List<IId> idList = data.Cast<IId>().Where(x => x.IdKey > 0).ToList();
                 idList = idList.OrderBy(x => x.IdKey).ToList();
                 _data = idList.Cast<TChild>().ToList();
             }
@@ -61,7 +56,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
         public override void SetInternalIds()
         {
 
-            string childLowerName = typeof(TChild).Name.ToLower();
+            string childLowerName = StrUtils.NormalizeTypeName<TChild>();
             for (int c = 0; c < _data.Count; c++)
             {
                 TChild child = _data[c];
@@ -74,7 +69,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
                 {
                     childId = childLowerName + iid.IdKey + Id;
                 }
-                else 
+                else
                 {
                     if (string.IsNullOrEmpty(childId))
                     {

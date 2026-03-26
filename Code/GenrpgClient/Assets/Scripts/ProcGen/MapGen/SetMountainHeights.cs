@@ -15,27 +15,27 @@ public class SetMountainHeights : BaseAddMountains
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 1000000000 + 3323292);
 
-        float pers = MathUtil.FloatRange(0.15f, 0.25f, rand);
+        float pers = RandUtils.FloatRange(0.15f, 0.25f, rand);
         int octaves = 2;
-        float amp = MathUtil.FloatRange(0.30f, 0.45f, rand);
-        float freq = MathUtil.FloatRange(0.04f, 0.09f, rand) * _mapProvider.GetMap().GetHwid();
+        float amp = RandUtils.FloatRange(0.30f, 0.45f, rand);
+        float freq = RandUtils.FloatRange(0.04f, 0.09f, rand) * _mapProvider.GetMap().GetHwid();
 
-        float powerpers = MathUtil.FloatRange(0.10f, 0.20f, rand);
+        float powerpers = RandUtils.FloatRange(0.10f, 0.20f, rand);
         int poweroctaves = 2;
-        float poweramp = MathUtil.FloatRange(0.14f, 0.25f, rand);
-        float powerfreq = MathUtil.FloatRange(0.06f, 0.10f, rand) * _mapProvider.GetMap().GetHwid();
+        float poweramp = RandUtils.FloatRange(0.14f, 0.25f, rand);
+        float powerfreq = RandUtils.FloatRange(0.06f, 0.10f, rand) * _mapProvider.GetMap().GetHwid();
 
 
-        float edgepers = MathUtil.FloatRange(0.20f, 0.30f, rand);
+        float edgepers = RandUtils.FloatRange(0.20f, 0.30f, rand);
         int edgeoctaves = 2;
-        float edgeamp = MathUtil.FloatRange(0.40f, 0.70f, rand);
-        float edgefreq = MathUtil.FloatRange(0.03f, 0.05f, rand) * _mapProvider.GetMap().GetHwid();
+        float edgeamp = RandUtils.FloatRange(0.40f, 0.70f, rand);
+        float edgefreq = RandUtils.FloatRange(0.03f, 0.05f, rand) * _mapProvider.GetMap().GetHwid();
 
 
-        float edgePowPers = MathUtil.FloatRange(0.20f, 0.30f, rand);
+        float edgePowPers = RandUtils.FloatRange(0.20f, 0.30f, rand);
         int edgePowoctaves = 2;
-        float edgePowamp = MathUtil.FloatRange(0.30f, 0.50f, rand);
-        float edgePowfreq = MathUtil.FloatRange(0.03f, 0.06f, rand) * _mapProvider.GetMap().GetHwid();
+        float edgePowamp = RandUtils.FloatRange(0.30f, 0.50f, rand);
+        float edgePowfreq = RandUtils.FloatRange(0.03f, 0.06f, rand) * _mapProvider.GetMap().GetHwid();
 
 
 
@@ -44,7 +44,7 @@ public class SetMountainHeights : BaseAddMountains
         float[,] edgeNoise = _noiseService.Generate(edgepers, edgefreq, edgeamp, edgeoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         float[,] edgePowNoise = _noiseService.Generate(edgePowPers, edgePowfreq, edgePowamp, edgePowoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         
-        float mountainDefaultHeight = _md.GetMountainDefaultSize(_mapProvider.GetMap()) * MathUtil.FloatRange(0.8f, 1.0f, rand);
+        float mountainDefaultHeight = _md.GetMountainDefaultSize(_mapProvider.GetMap()) * RandUtils.FloatRange(0.8f, 1.0f, rand);
 
         float minDistPctCutoff = 0.9f;
 

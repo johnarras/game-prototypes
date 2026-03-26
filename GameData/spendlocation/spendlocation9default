@@ -1,0 +1,115 @@
+{
+  "Id": "spendlocation9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Repairs",
+  "Desc": "Repair issues with your caravan!",
+  "Icon": "Repairs",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Unlucky",
+      "Desc": "Tip the Leprechaun to get your luck back!",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 500,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 1,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 2,
+      "Name": "Hungry",
+      "Desc": "Feast to fell full again!",
+      "SpendCoreCurrencyTypeId": 2,
+      "SpendQuantity": 100,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 3,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 3,
+      "Name": "Slowed",
+      "Desc": "Grease everything up to get back up to speed.",
+      "SpendCoreCurrencyTypeId": 3,
+      "SpendQuantity": 75,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 2,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 4,
+      "Name": "Broken Down",
+      "Desc": "Fix your cart.",
+      "SpendCoreCurrencyTypeId": 3,
+      "SpendQuantity": 100,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 4,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 5,
+      "Name": "Magic Void",
+      "Desc": "Dispel the Magic Void",
+      "SpendCoreCurrencyTypeId": 4,
+      "SpendQuantity": 50,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 6,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 6,
+      "Name": "Decurse",
+      "Desc": "Break your curse",
+      "SpendCoreCurrencyTypeId": 4,
+      "SpendQuantity": 75,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 7,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "Index": 6,
+      "Name": "Sickly",
+      "Desc": "Eat more to feel better.",
+      "SpendCoreCurrencyTypeId": 2,
+      "SpendQuantity": 100,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 76,
+          "EntityId": 5,
+          "Quantity": -1
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,3 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Accounts.PlayerData
 {
     public class AccountConnection : BaseAccountData

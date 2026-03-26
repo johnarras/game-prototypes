@@ -406,6 +406,12 @@ namespace Genrpg.Editor
             {
                 return false;
             }
+            PropertyInfo pinfo = (PropertyInfo)mem;
+
+            if (pinfo.GetIndexParameters().Length > 0)
+            {
+                return false;
+            }
 
             FieldInfo finfo = mem as FieldInfo;
             if (finfo != null && finfo.IsStatic)
@@ -465,11 +471,11 @@ namespace Genrpg.Editor
             int sx = SingleItemWidth;
             int sy = SingleItemHeight;
 
-            List<MemberInfo> members = _reflectionService.GetMembers(Obj);
+            List<MemberInfo> members = _reflectionService.GetPublicMembers(Obj);
 
             for (int i = 0; i < members.Count; i++)
             {
-                MemberInfo mem = members[i];
+                MemberInfo mem = members[i];               
 
                 if (!AllowEditing(_gs, mem, true))
                 {
@@ -1023,7 +1029,7 @@ namespace Genrpg.Editor
         protected void ShowMultiItemButtonsOnSingleItemView()
         {
             _numSingleTopButtonsShown = 0;
-            List<MemberInfo> members = _reflectionService.GetMembers(Obj);
+            List<MemberInfo> members = _reflectionService.GetPublicMembers(Obj);
 
             colorPanels = new List<CanvasBase>();
             int numButtonsPerRow = 8;
@@ -1420,7 +1426,7 @@ namespace Genrpg.Editor
                 return;
             }
 
-            List<MemberInfo> members = _reflectionService.GetMembers(_objType);
+            List<MemberInfo> members = _reflectionService.GetPublicMembers(_objType);
 
             foreach (MemberInfo mem in members)
             {
@@ -1575,7 +1581,7 @@ namespace Genrpg.Editor
                 }
 
                 string[] ignoreFields = EditorIgnoreFields;
-                List<MemberInfo> members = _reflectionService.GetMembers(underlyingType);
+                List<MemberInfo> members = _reflectionService.GetPublicMembers(underlyingType);
 
                 for (int i = 0; i < members.Count; i++)
                 {

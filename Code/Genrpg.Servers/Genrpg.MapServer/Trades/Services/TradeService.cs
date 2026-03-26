@@ -180,8 +180,8 @@ namespace Genrpg.MapServer.Trades.Services
 
                 if (currTrade.Money > 0)
                 {
-                    _rewardService.GiveReward(rand, currChar, EntityTypes.Currency, CurrencyTypes.Money, -currTrade.Money, null, null);
-                    _rewardService.GiveReward(rand, otherChar, EntityTypes.Currency, CurrencyTypes.Money, currTrade.Money, null, null);
+                    _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, null, null).Wait();
+                    _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, null, null).Wait();
                 }
 
                 for (int i = 0; i < currTrade.Items.Length; i++)
@@ -418,7 +418,7 @@ namespace Genrpg.MapServer.Trades.Services
                 return;
             }
 
-            long charMoney = ch.Get<CurrencyData>().Get(CurrencyTypes.Money).Quantity;
+            long charMoney = ch.Get<CharCurrencyData>().Data[CharCurrencyTypes.Money];
 
             if (charMoney < updateTrade.Money)
             {

@@ -16,7 +16,7 @@ public class SaveMap : BaseZoneGenerator
     {
         await base.Generate(token);
 
-        _mapProvider.GetMap().OverrideZonePercent = 0; // MathUtil.IntRange(20, 80, _rand);
+        _mapProvider.GetMap().OverrideZonePercent = 0; // RandUtils.IntRange(20, 80, _rand);
 
         for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
         {

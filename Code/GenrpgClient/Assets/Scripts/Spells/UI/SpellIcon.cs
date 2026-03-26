@@ -36,7 +36,7 @@ public class SpellIcon : DragItem<Spell, SpellIcon, SpellIconScreen, InitSpellIc
             iconName = data.Data.Icon;
         }
 
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
+        _spriteService.SetAtlasSpriteInto(AtlasNames.SkillIcons, iconName, Icon, _token);
 
     }
 

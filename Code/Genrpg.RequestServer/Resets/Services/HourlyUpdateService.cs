@@ -1,17 +1,17 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Resets.Entities;
-using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.RequestServer.Trader.Encounters.Services;
 using Genrpg.RequestServer.Trader.Stats.Services;
+using Genrpg.Shared.Attributes.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Services;
-using Genrpg.Shared.CoreCurrencies.Settings;
+using Genrpg.Shared.Currencies.Services;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Camping.Settings.Genrpg.Shared.Trader.Camping.Settings;
 using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Stats.PlayerData;
 using Genrpg.Shared.UserEnergy.WebApi;
 
 namespace Genrpg.RequestServer.Resets.Services
@@ -20,9 +20,9 @@ namespace Genrpg.RequestServer.Resets.Services
     {
         private IGameData _gameData = null;
         private ICoreCurrencyService _coreCurrencyService = null;
-        private IWebRewardService _rewardService = null;
+        private IRewardService _rewardService = null;
         private ITravelEncounterService _encounterService = null;
-        private IServerTraderStatService _traderStatService = null;
+        private IServerGameStatService _gameStatService = null;
         public async Task CheckHourlyCurrencyUpdate(WebContext context, HourlyResetArgs args)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
@@ -40,21 +40,21 @@ namespace Genrpg.RequestServer.Resets.Services
             }
             else
             {
-                CampingSettings campingSettings = _gameData.Get<CampingSettings>(context.core);
+                CampingSettings campingSettings = _gameData.Get<CampingSettings>(coreData);
 
                 regenHours = (args.InCity ? campingSettings.CityRegenHours : campingSettings.RoadRegenHours);
             }
 
-            IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(context.core).GetData();
+            IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(coreData).GetData();
 
-            TraderStatData statData = await context.GetAsync<TraderStatData>();
+            AttributeData attributeData = await context.GetAsync<AttributeData>();
 
             List<Reward> newRewards = new List<Reward>();
 
             foreach (CoreCurrencyType ctype in currencies)
             {
-                long regenVal = _coreCurrencyService.GetRegen(ctype.IdKey, coreData, statData);
-                long storageVal = _coreCurrencyService.GetStorage(ctype.IdKey, coreData, statData);
+                long regenVal = await _coreCurrencyService.GetRegen(context, ctype.IdKey);
+                long storageVal = await _coreCurrencyService.GetStorage(context, ctype.IdKey);
 
                 long currVal = coreData.Currencies[ctype.IdKey];
 
@@ -74,11 +74,11 @@ namespace Genrpg.RequestServer.Resets.Services
             }
 
 
-            await _rewardService.GiveRewardsAsync(context, newRewards, new RewardParams());
+            await _rewardService.GiveRewards(context, newRewards, new RewardParams());
 
             if (!args.IsCamping)
             {
-                context.core.SetNextHourlyUpdate();
+                coreData.SetNextHourlyUpdate();
             }
             else
             {
@@ -90,12 +90,12 @@ namespace Genrpg.RequestServer.Resets.Services
                 context.AddResponse(new HourlyUpdateResponse()
                 {
                     Rewards = newRewards,
-                    NextHourlyUpdate = context.core.NextHourlyUpdate,
+                    NextHourlyUpdate = coreData.NextHourlyUpdate,
                     Day = coreData.Vars[TraderVars.PlayCount],
                 });
             }
 
-            await _traderStatService.AddDebuffDaysPlayed(context, regenHours, true);
+            await _gameStatService.AddDebuffDaysPlayed(context, regenHours, true);
 
             if (args.IsCamping)
             {

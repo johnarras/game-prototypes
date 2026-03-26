@@ -130,7 +130,7 @@ namespace Genrpg.RequestServer.Spawns.Services
             foreach (int key in groupDict.Keys)
             {
 
-                SI si = RandomUtils.GetRandomElement(groupDict[key], context.rand);
+                SI si = RandUtils.GetRandomElement(groupDict[key], context.rand);
 
                 if (si != null)
                 {
@@ -160,14 +160,12 @@ namespace Genrpg.RequestServer.Spawns.Services
                 return retval;
             }
 
-            long quantity = MathUtil.LongRange(si.MinQuantity, si.MaxQuantity, context.rand);
+            long quantity = RandUtils.LongRange(si.MinQuantity, si.MaxQuantity, context.rand);
 
             Reward rew = new Reward();
             rew.EntityId = si.EntityId;
             rew.EntityTypeId = si.EntityTypeId;
             rew.Quantity = quantity;
-            rew.QualityTypeId = rollLootArgs.QualityTypeId;
-            rew.Level = rollLootArgs.Level;
             retval.Add(rew);
 
             return retval;

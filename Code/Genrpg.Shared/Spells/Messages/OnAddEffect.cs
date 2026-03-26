@@ -1,9 +1,6 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.MapMessages;
-using Genrpg.Shared.Effects.Interfaces;
+using MessagePack;
 
 namespace Genrpg.Shared.Spells.Messages
 {

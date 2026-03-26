@@ -1,10 +1,10 @@
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.ClientEvents.WorldPanelEvents;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
+using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Combat.Constants;
@@ -53,6 +53,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Spells.Services
 {
@@ -516,7 +517,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (effect.MinQuantity > 0 && effect.MaxQuantity > 0 && !action.QuantityIsBaseAmount)
                     {
-                        attackQuantity = MathUtil.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand);
+                        attackQuantity = RandUtils.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand);
                     }
                     else
                     {
@@ -611,7 +612,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             if (powerCost > 0)
             {
                 long currMana = member.Stats.Curr(StatTypes.Mana);
-                _crawlerStatService.Add(party, member, StatTypes.Mana, StatCategories.Curr, -Math.Min(powerCost, currMana));
+                _crawlerStatService.Add(party, member, StatTypes.Mana, UnitStatValOffsets.Curr, -Math.Min(powerCost, currMana));
             }
         }
 
@@ -633,7 +634,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                 if (action.CastingItem != null)
                 {
-                    ItemEffect effect = action.CastingItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell &&
+                    Effect effect = action.CastingItem.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell &&
                     x.EntityId == action.Spell.IdKey);
 
                     if (effect != null)
@@ -777,7 +778,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (!string.IsNullOrEmpty(action.Caster.PortraitName))
                     {
-                        _dispatcher.Dispatch(new SetWorldPicture(action.Caster.PortraitName, false));
+                        _dispatcher.Dispatch(new ShowWorldPanelImage(action.Caster.PortraitName));    
                     }
 
                     if (action.FinalTargets.Count == 0 || action.FinalTargets[0].DefendRank < EDefendRanks.Guardian)
@@ -1055,7 +1056,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                     {
                         double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
 
-                        double healing = MathUtil.FloatRange(1, maxVal * maxVal, _rand);
+                        double healing = RandUtils.FloatRange(1, maxVal * maxVal, _rand);
 
                         long currHealth = target.Stats.Curr(StatTypes.Health);
                         long maxHealth = target.Stats.Max(StatTypes.Health);
@@ -1068,7 +1069,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         {
                             AddToActionDict(args.ActionList, target, target, "AutoHeals", intHealing, 0, false, ECombatTextTypes.Healing, ElementTypes.Earth);
 
-                            _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, intHealing);
+                            _crawlerStatService.Add(party, target, StatTypes.Health, UnitStatValOffsets.Curr, intHealing);
                         }
                     }
                 }
@@ -1090,7 +1091,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                         if (thornsDamage > 0)
                         {
-                            _crawlerStatService.Add(party, caster, StatTypes.Health, StatCategories.Curr, -thornsDamage);
+                            _crawlerStatService.Add(party, caster, StatTypes.Health, UnitStatValOffsets.Curr, -thornsDamage);
 
                             casterIsDead = caster.Stats.Curr(StatTypes.Health) <= 0;
 
@@ -1111,7 +1112,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                                 if (totalLifesteal > 0)
                                 {
-                                    _crawlerStatService.Add(party, caster, StatTypes.Health, StatCategories.Curr, totalLifesteal);
+                                    _crawlerStatService.Add(party, caster, StatTypes.Health, UnitStatValOffsets.Curr, totalLifesteal);
                                     AddToActionDict(args.ActionList, caster, target, "Steals Life From", totalLifesteal, 0, false, ECombatTextTypes.Healing, ElementTypes.Shadow);
                                 }
                             }
@@ -1395,7 +1396,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             {
                 if (unit.DoTDamage > 0)
                 {
-                    _crawlerStatService.Add(party, unit, StatTypes.Health, StatCategories.Curr, -unit.DoTDamage);
+                    _crawlerStatService.Add(party, unit, StatTypes.Health, UnitStatValOffsets.Curr, -unit.DoTDamage);
                     ShowFloatingCombatText(unit, unit, (-unit.DoTDamage).ToString(), ECombatTextTypes.Damage, ElementTypes.Melee);
 
                     await CheckHandleUnitDeath(party, unit, unit, 0, token);

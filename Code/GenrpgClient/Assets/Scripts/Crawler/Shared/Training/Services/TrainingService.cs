@@ -1,7 +1,7 @@
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -182,7 +182,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
                 Cost = cost,
                 TotalExp = exp,
                 ExpLeft = Math.Max(0, exp - member.Exp),
-                PartyGold = party.Currencies[CrawlerCurrencyTypes.Gold],
+                PartyGold = party.Currencies[CoreCurrencyTypes.Coins],
                 NextLevel = member.Level + 1,
             };
 
@@ -207,7 +207,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
 
             IReadOnlyList<Role> allRoles = _gameData.Get<RoleSettings>(_gs.ch).GetData();
 
-            if (info.Cost > party.Currencies[CrawlerCurrencyTypes.Gold] || info.TotalExp > member.Exp)
+            if (info.Cost > party.Currencies[CoreCurrencyTypes.Coins] || info.TotalExp > member.Exp)
             {
                 return result;
             }
@@ -352,7 +352,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             long cost = GetNewClassTrainingCost(member);
 
-            if (party.Currencies[CrawlerCurrencyTypes.Gold] < cost)
+            if (party.Currencies[CoreCurrencyTypes.Coins] < cost)
             {
                 _dispatcher.Dispatch(new ShowFloatingText("Not enough gold!", EFloatingTextArt.Error));
                 return;
@@ -384,7 +384,7 @@ namespace Genrpg.Shared.Crawler.Training.Services
         {
             TrainingInfo info = GetTrainingInfo(party, member);
 
-            if (info.Cost > party.Currencies[CrawlerCurrencyTypes.Gold] || member.Exp < info.TotalExp)
+            if (info.Cost > party.Currencies[CoreCurrencyTypes.Coins] || member.Exp < info.TotalExp)
             {
                 return;
             }

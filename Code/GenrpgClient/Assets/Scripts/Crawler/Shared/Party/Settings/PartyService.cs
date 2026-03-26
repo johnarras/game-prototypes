@@ -2,12 +2,12 @@ using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.DynamicUI.Services;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Party.Services
 {
@@ -200,7 +201,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
                 status.RunLevel = 0;
             }
 
-            AddGold(party, -party.Currencies[CrawlerCurrencyTypes.Gold]);
+            AddGold(party, -party.Currencies[CoreCurrencyTypes.Coins]);
             party.HourOfDay = 0;
             party.Combat = null;
             party.InitialCombat = null;
@@ -261,7 +262,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
             {
                 foreach (Item item in member.Equipment)
                 {
-                    foreach (ItemEffect eff in item.Effects)
+                    foreach (Effect eff in item.Effects)
                     {
                         if (eff.EntityTypeId != EntityTypes.Stat &&
                             eff.EntityTypeId != EntityTypes.StatPct)
@@ -285,13 +286,13 @@ namespace Genrpg.Shared.Crawler.Party.Services
 
         public void AddGold(PartyData party, long quantity)
         {
-            AddCurrency(party, CrawlerCurrencyTypes.Gold, quantity);
+            AddCurrency(party, CoreCurrencyTypes.Coins, quantity);
         }
 
         public void AddCurrency(PartyData party, long entityId, long quantity)
         {
             party.Currencies.Add(entityId, quantity);
-            _dynamicUIService.AddEntityQuantityVisual(EntityTypes.CrawlerCurrency, entityId, quantity, false);
+            _dynamicUIService.AddEntityQuantityVisual(EntityTypes.CoreCurrency, entityId, quantity, false);
         }
 
         public void AddClickPartyMemberButtons(CrawlerStateData stateData, PartyData party)

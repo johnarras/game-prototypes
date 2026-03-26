@@ -2,9 +2,6 @@
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.Minigames.Games.Services;
 using Genrpg.Shared.Minigames.Games.WebApi;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.RequestServer.Minigames.Games.RequestHandlers
 {

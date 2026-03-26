@@ -20,10 +20,9 @@ namespace Genrpg.RequestServer.Resets.Services
 
         public async Task DailyReset(WebContext context)
         {
-            DateTime currTime = _timeService.GetTime(context.core);
-            ResetSettings settings = _gameData.Get<ResetSettings>(context.core);
-
             CoreData coreData = await context.GetAsync<CoreData>();
+            DateTime currTime = _timeService.GetTime(coreData);
+            ResetSettings settings = _gameData.Get<ResetSettings>(coreData);
 
             DateTime nextResetTime = coreData.LastDailyReset.Date.AddDays(1).AddHours(settings.ResetHour);
 

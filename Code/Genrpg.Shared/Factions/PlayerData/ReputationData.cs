@@ -1,48 +1,31 @@
-using MessagePack;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.Units.Loaders;
+using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.Units.Mappers;
-using System.Collections.Generic;
-
+using Genrpg.Shared.Utils.Data;
+using MessagePack;
 namespace Genrpg.Shared.Factions.PlayerData
 {
-    [MessagePackObject]
-    public class ReputationStatus : OwnerQuantityChild
-    {
-
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string OwnerId { get; set; }
-        [Key(2)] public override long IdKey { get; set; }
-        [Key(3)] public long RepLevelId { get; set; }
-        [Key(4)] public override long Quantity { get; set; }
-    }
     /// <summary>
-    /// A list of affinities/reputations
+    /// Used to contain a list of currencies on objects that need it (like user and character)
     /// </summary>
-    /// 
+
     [MessagePackObject]
-    public class ReputationData : OwnerQuantityObjectList<ReputationStatus>
+    public class ReputationData : NoChildPlayerData
     {
         [Key(0)] public override string Id { get; set; }
 
-        protected override void OnCreateChild(ReputationStatus newChild)
-        {
-            newChild.RepLevelId = newChild.IdKey == FactionTypes.Player ? RepLevels.Neutral : RepLevels.Hated;
-        }
+        [Key(1)] public SmallIdLongCollection Data { get; set; } = new SmallIdLongCollection();
 
     }
+
     [MessagePackObject]
-    public class ReputationDto : OwnerDtoList<ReputationData, ReputationStatus>
+    public class ReputationDto : NoChildPlayerDataDto<ReputationData>
     {
-        [Key(0)] public override List<ReputationStatus> Children { get; set; }
-        [Key(1)] public override ReputationData Parent { get; set; }
-        [Key(2)] public override string Id { get; set; }
+        [Key(0)] public override ReputationData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
     }
-    public class ReputationDataLoader : OwnerIdDataLoader<ReputationData, ReputationStatus> { }
 
 
-    public class ReputationDataMapper : OwnerDataMapper<ReputationData, ReputationStatus, ReputationDto> { }
+    public class ReputationDataMapper : NoChildUnitDataMapper<ReputationData, ReputationDto> { }
 }
 
 

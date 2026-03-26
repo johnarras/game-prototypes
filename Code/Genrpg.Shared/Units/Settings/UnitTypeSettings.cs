@@ -1,5 +1,5 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
@@ -47,7 +47,7 @@ namespace Genrpg.Shared.Units.Settings
 
         public double SpawnQuantityScale { get; set; }
 
-        public List<UnitEffect> Effects { get; set; } = new List<UnitEffect>();
+        public List<Effect> Effects { get; set; } = new List<Effect>();
 
         public List<WeightedName> PrefixNames { get; set; } = new List<WeightedName>();
 

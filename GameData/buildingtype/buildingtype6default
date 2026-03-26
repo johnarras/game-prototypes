@@ -2,10 +2,9 @@
   "Id": "buildingtype6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "Jewelry Shop",
-  "Icon": "JewelryShop",
-  "Art": "JewelryShop",
-  "Radius": 5,
-  "VariationCount": 1,
+  "Name": "Trainer",
+  "Icon": "Trainer",
+  "Art": "Trainer",
+  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

@@ -1,4 +1,3 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.Utils;
@@ -9,9 +8,9 @@ namespace Genrpg.Shared.Names.Services
 
     public interface INameGenService : IInjectable
     {
-        string PickWord(IRandom rand, List<WeightedName> list, string excludeName = "", string excludePrefix = "", string excludeDesc = "");
+        string PickWord(IRandom rand, List<WeightedName> list, string excludeName = "", string excludeWords = "");
         string PickDataListName(IRandom rand, string name);
-        string PickNameListName(IRandom rand, string nameListName, string excludeName = "", string excludePrefix = "", string excludeDesc = "");
+        string PickNameListName(IRandom rand, string nameListName, string excludeName = "", string excludeWords = "");
         string PickItemName(IRandom rand, List<IIndexedGameItem> list, bool onlyShortNames = false);
 
         string CombinePrefixSuffix(IRandom rand, string prefix, string suffix, float hyphenChance);

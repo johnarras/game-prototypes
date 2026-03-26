@@ -11,7 +11,6 @@ namespace Genrpg.Shared.Trader.Travel.WebApi
         public int TargetCityId { get; set; }
         public int TotalDistanceTravelled { get; set; }
         public int DistanceLeft { get; set; }
-        public int TotalCost { get; set; }
         public int DistanceAlongRoad { get; set; }
         public int EndDay { get; set; }
         public int EnterCityId { get; set; }

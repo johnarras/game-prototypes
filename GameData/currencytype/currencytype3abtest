@@ -1,7 +1,0 @@
-{
-  "Id": "currencytype3abtest",
-  "ParentId": "abtest",
-  "IdKey": 3,
-  "Name": "Exp",
-  "Icon": "IconStarGold"
-}

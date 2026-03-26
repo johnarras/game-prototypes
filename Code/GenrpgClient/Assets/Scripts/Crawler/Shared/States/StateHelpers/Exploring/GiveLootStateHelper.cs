@@ -1,8 +1,8 @@
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -60,13 +60,13 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 stateData.AddText(loot.Exp + " Exp per party member!");
             }
 
-            IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+            IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
-            foreach (CrawlerCurrencyType ctype in ctypes)
+            foreach (CoreCurrencyType ctype in ctypes)
             {
                 if (loot.Currencies[ctype.IdKey] > 0)
                 {
-                    stateData.AddText(loot.Currencies[CrawlerCurrencyTypes.Gold] + " " + ctype.Name + "!");
+                    stateData.AddText(loot.Currencies[CoreCurrencyTypes.Coins] + " " + ctype.Name + "!");
                 }
             }
 

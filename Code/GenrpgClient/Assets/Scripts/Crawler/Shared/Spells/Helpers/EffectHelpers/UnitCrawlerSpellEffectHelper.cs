@@ -41,7 +41,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             if (party.Combat != null)
             {
-                long quantity = MathUtil.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+                long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
 
                 if (caster is PartyMember member)
                 {

@@ -33,7 +33,7 @@ namespace Assets.Scripts.Doobers.UI
 
         public void SetData(string atlasName, string spriteName, DooberArgs dooberArgs)
         {
-            _spriteService.LoadAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
+            _spriteService.SetAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
             InitDooberArgs(dooberArgs);
         }
 
@@ -66,7 +66,7 @@ namespace Assets.Scripts.Doobers.UI
             }
             if (_elapsedTime == 0)
             {
-                _offsetAngle = MathUtil.FloatRange(0, 360, _rand);
+                _offsetAngle = RandUtils.FloatRange(0, 360, _rand);
             }
             _elapsedTime += deltaTime;
 

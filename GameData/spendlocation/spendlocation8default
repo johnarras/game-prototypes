@@ -1,0 +1,70 @@
+{
+  "Id": "spendlocation8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Buffs",
+  "Desc": "Magical Enchantments",
+  "Icon": "Buffs",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Lucky",
+      "Desc": "Get some luck for your journey!",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 10000,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 75,
+          "EntityId": 1,
+          "Quantity": 600
+        }
+      ]
+    },
+    {
+      "Index": 2,
+      "Name": "Speedy",
+      "Desc": "Speed up for a bit!",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 20000,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 75,
+          "EntityId": 2,
+          "Quantity": 600
+        }
+      ]
+    },
+    {
+      "Index": 3,
+      "Name": "Working Out",
+      "Desc": "Carry an extra Trade Good!",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 30000,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 75,
+          "EntityId": 4,
+          "Quantity": 600
+        }
+      ]
+    },
+    {
+      "Index": 4,
+      "Name": "Well Fed",
+      "Desc": "Require one less food for a bit.",
+      "SpendCoreCurrencyTypeId": 1,
+      "SpendQuantity": 40000,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 75,
+          "EntityId": 3,
+          "Quantity": 600
+        }
+      ]
+    }
+  ]
+}

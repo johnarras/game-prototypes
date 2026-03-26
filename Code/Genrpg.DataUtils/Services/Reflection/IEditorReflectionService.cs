@@ -22,7 +22,7 @@ namespace Genrpg.DataUtils.Services.Reflection
         bool IsGenericList(Type mtype);
         object GetObjectValue(object obj, string name);
         bool MemberIsPrimitive(MemberInfo mem);
-        List<MemberInfo> GetMembers(object obj);
+        List<MemberInfo> GetPublicMembers(object obj);
         Type GetMemberType(MemberInfo mem);
         List<IIdName> CreateDataList(EditorGameState gs, string listName);
         string GetMemberName(object parent, object child);

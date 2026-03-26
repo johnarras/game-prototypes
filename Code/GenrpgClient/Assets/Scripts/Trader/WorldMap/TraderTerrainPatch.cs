@@ -1,7 +1,10 @@
-﻿using Assets.Scripts.Assets.Textures;
+﻿using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Textures;
+using Genrpg.Shared.Trader.Biomes.Settings;
 using Genrpg.Shared.Trader.Maps.Settings;
 using System.Threading;
 using UnityEngine;
@@ -13,8 +16,9 @@ namespace Assets.Scripts.Trader.WorldMap
         private IAwaitableService _awaitableService = null;
         private IClientAppService _appService = null;
 
-        public SpriteRenderer SpriteRenderer;
-        public GameObject SpriteObject;
+
+        public DungeonAsset GroundAsset;
+        public GameObject GroundAssetObject;
 
         private int _x = -1;
         private int _y = -1;
@@ -23,12 +27,15 @@ namespace Assets.Scripts.Trader.WorldMap
         public int Y => _y;
 
         public float StartY = -3;
-        public float AnimateSeconds = 1.0f;
+        public float AnimateSeconds = 10.0f;
         private int _animateFrames = 60;
 
         private bool _hidingNow = false;
 
         private TraderTerrain _terrain = null;
+
+        public TextureList _currentTextures = null;
+
         public double GetDistanceToPoint(int cx, int cy)
         {
             float dx = cx - _x;
@@ -37,12 +44,12 @@ namespace Assets.Scripts.Trader.WorldMap
             return Mathf.Sqrt(dx * dx + dy * dy);
         }
 
-        public void ShowTerrain(TraderTerrain terrain, int x, int y, int cx, int cy, long biomeIndex)
+        public void ShowTerrain(TraderTerrain terrain, TerrainPatchArgs args)
         {
             _terrain = terrain;
-            _x = x;
-            _y = y;
-
+            _x = args.X;
+            _y = args.Y;
+            long biomeIndex = args.BiomeIndex;
 
             IndexedColor color = _gameData.Get<IndexedColorSettings>(_gs.ch).Get(biomeIndex);
 
@@ -52,13 +59,39 @@ namespace Assets.Scripts.Trader.WorldMap
 
                 if (ttype != null)
                 {
-                    _assetService.LoadAsset<GameObject>(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, gameObject, GetToken());
+                    if (_currentTextures == null || _currentTextures.name != ttype.Art)
+                    {
+                        SetMainTexture(null);
+
+                        if (_currentTextures != null)
+                        {
+                            _clientEntityService.Destroy(_currentTextures.gameObject);
+                        }
+                        _currentTextures = null;
+                        _assetService.LoadAsset(AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTerrainTexture, gameObject, GetToken(), ttype);
+                    }
+                    else
+                    {
+                        OnDownloadTerrainTexture(_currentTextures.gameObject, ttype, GetToken());
+                    }
                 }
             }
 
+            
         }
 
-        private void OnDownloadTerrainTexture(GameObject go, object data, CancellationToken token)
+        private void SetMainTexture(Texture2D tex)
+        {
+            if (GroundAsset != null)
+            {
+                foreach (Renderer renderer in GroundAsset.FloorRenderers)
+                {
+                    renderer.material.mainTexture = tex;
+                }
+            }
+        }
+
+        private void OnDownloadTerrainTexture(GameObject go, TextureType ttype, CancellationToken token)
         {
             if (go == null)
             {
@@ -70,34 +103,43 @@ namespace Assets.Scripts.Trader.WorldMap
             if (tlist == null || tlist.Textures.Count < 1 || tlist.Textures[0] == null)
             {
                 _clientEntityService.Destroy(go);
+                _clientEntityService.Destroy(_currentTextures);
+                _currentTextures = null;
                 return;
             }
+            gameObject.name = "LoadedTerrain" + ttype.Name;
 
-            Sprite sprite = Sprite.Create(tlist.Textures[0], new Rect(0, 0, tlist.Textures[0].width, tlist.Textures[0].height), Vector2.zero);
+            SetMainTexture(tlist.Textures[0]);
 
-            SpriteRenderer.sprite = sprite;
             _animateFrames = Mathf.Max(1, (int)(AnimateSeconds * _appService.TargetFrameRate));
             _awaitableService.ForgetAwaitable(AnimateIn());
 
             transform.localPosition = new Vector3(_x, 0.2f, _y);
+
+            _currentTextures = tlist;
         }
 
         private async Awaitable AnimateIn()
         {
+            float s = 1.70f;
             _hidingNow = false;
 
-            SpriteObject.transform.localPosition = new Vector3(0, StartY, 0);
+            GroundAssetObject.transform.localPosition = new Vector3(0, StartY, 0);
             for (int f = 0; f < _animateFrames; f++)
             {
                 if (_hidingNow)
                 {
                     return;
                 }
-                float dist = (_animateFrames - f) * 1.0f / _animateFrames * StartY;
+                float timePct = 1.0f*f/ _animateFrames;
 
-                dist *= dist;
+                float tp = timePct-1;
 
-                SpriteObject.transform.localPosition = new Vector3(0, -dist, 0);
+                float dist =((s+1)*tp*tp*tp-s*tp*tp)* StartY;
+
+                //dist *= dist;
+
+                GroundAssetObject.transform.localPosition = new Vector3(0, -dist, 0);
                 await Awaitable.NextFrameAsync();
             }
         }
@@ -112,11 +154,11 @@ namespace Assets.Scripts.Trader.WorldMap
 
         private async Awaitable HideTerrainAsync()
         {
-            float startPos = SpriteObject.transform.localPosition.y;
+            float startPos = GroundAssetObject.transform.localPosition.y;
             for (int f = 0; f <= _animateFrames; f++)
             {
                 float ypos = startPos + 1.0f * f / _animateFrames * f / _animateFrames * StartY;
-                SpriteObject.transform.localPosition = new Vector3(0, ypos, 0);
+                GroundAssetObject.transform.localPosition = new Vector3(0, ypos, 0);
                 await Awaitable.NextFrameAsync();
             }
 

@@ -15,6 +15,10 @@ namespace Genrpg.Shared.Trader.Travel.Settings
         public double BaseGoodEventChance { get; set; }
         public double BaseBadEventChance { get; set; }
 
+        public long PortalDistancePerMana { get; set; }
+        public long MinPortalCost { get; set; }
+
+
     }
 
 

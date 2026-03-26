@@ -4,6 +4,7 @@ using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Services;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.Spells.Settings.Elements;
@@ -51,7 +52,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
             lines.Add("Abilities:");
 
 
-            foreach (UnitEffect unitSpell in stats.Spells)
+            foreach (Effect unitSpell in stats.Spells)
             {
                 CrawlerSpell spell = spellSettings.Get(unitSpell.EntityId);
 

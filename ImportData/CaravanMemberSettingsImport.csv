@@ -1,0 +1,76 @@
+header caravanmembersettings,Id,Name,MoveAnimalOutsideOfCityManaCost,,,,,
+header caravanmember,IdKey,Name,Icon,Art,Speed,Size,Price,Desc
+header membereffect,EntityTypeId,EntityId,Quantity,,,,,
+caravanmembersettings,default,Default Animals,40,,,,,
+caravanmember,1,Donkey,Donkey,Donkey,2,2,750,"The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person."
+membereffect,traveldaycurrencybuff,rations,-1,,,,,
+membereffect,gameplaystatbuff,max inventory,1,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,2,Pony,Pony,Pony,4,2,41000,"A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances."
+membereffect,traveldaycurrencybuff,rations,-1,,,,,
+membereffect,gameplaystatbuff,max inventory,1,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,3,Mule,Mule,Mule,3,2,29250,"A sterile hybrid of a donkey and horse. Prized for its strength, stamina, and intelligence. Can handle terrain and work longer than a horse, making it a premier pack animal."
+membereffect,traveldaycurrencybuff,rations,-2,,,,,
+membereffect,gameplaystatbuff,max inventory,2,,,,,
+,,,,,,,,
+caravanmember,4,Riding Horse,RidingHorse,RidingHorse,6,2,58250,"Bred for speed and agility, this horse is ideal for riders, messengers, and lightly packed scouts. Less efficient for heavy loads than a mule."
+membereffect,traveldaycurrencybuff,rations,-2,,,,,
+membereffect,gameplaystatbuff,max inventory,1,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,5,Tamed Onager,TamedOnager,TamedOnager,4,2,163750,"A wild ass from the deserts of Persia. Faster than a donkey but notoriously difficult to tame and control. A prestigious, if impractical, chariot animal."
+membereffect,traveldaycurrencybuff,rations,-2,,,,,
+membereffect,gameplaystatbuff,max inventory,2,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,6,Draft Horse,DraftHorse,DraftHorse,4,2,155500,"A heavier, stronger breed of horse, used for pulling wagons and plows. Faster than an ox but requires more care and better quality food (grain)."
+membereffect,traveldaycurrencybuff,rations,-4,,,,,
+membereffect,gameplaystatbuff,max inventory,3,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,7,Heavy Warhorse,HeavyWarhorse,HeavyWarhorse,5,2,78250,"A massive, powerful horse bred to carry a fully armored rider (a cataphract or knight) into battle. Slow to accelerate but devastating in a charge."
+membereffect,traveldaycurrencybuff,rations,-4,,,,,
+membereffect,gameplaystatbuff,max inventory,2,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,8,Ox,Ox,Ox,3,2,356000,"A castrated bull, the primary beast of burden for heavy pulling. Incredibly strong and steady, but very slow. Can subsist on poor-quality fodder."
+membereffect,traveldaycurrencybuff,rations,-4,,,,,
+membereffect,gameplaystatbuff,max inventory,5,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,9,Zebu,Zebu,Zebu,4,2,368750,"A type of domestic cattle from India with a distinctive fatty hump. Highly resistant to heat and drought, making it an ideal draft animal for the region."
+membereffect,traveldaycurrencybuff,rations,-3,,,,,
+membereffect,gameplaystatbuff,max inventory,3,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,10,Water Buffalo,WaterBuffalo,WaterBuffalo,3,2,276500,"A powerful bovine, perfectly adapted for pulling plows and carts through deep mud and water. Slower and less heat-tolerant than an ox on dry land."
+membereffect,traveldaycurrencybuff,rations,-3,,,,,
+membereffect,gameplaystatbuff,max inventory,4,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,11,Dromedary Camel,DromedaryCamel,DromedaryCamel,4,2,48500,"The one-humped 'ship of the desert'. Unmatched endurance in hot, arid climates due to its ability to conserve water. The backbone of caravan trade in Africa and Arabia."
+membereffect,traveldaycurrencybuff,rations,-3,,,,,
+membereffect,gameplaystatbuff,max inventory,2,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,12,Bactrian Camel,BactrianCamel,BactrianCamel,5,2,185250,"The two-humped camel of Central Asia. Even stronger than a dromedary and better adapted to cold climates, making it vital for the high-altitude sections of the Silk Road."
+membereffect,traveldaycurrencybuff,rations,-3,,,,,
+membereffect,gameplaystatbuff,max inventory,2,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,13,Yak,Yak,Yak,5,2,1406250,The primary beast of burden in the high plateaus of the Himalayas. Uniquely adapted to extreme cold and low oxygen environments where other animals would perish.
+membereffect,traveldaycurrencybuff,rations,-3,,,,,
+membereffect,gameplaystatbuff,max inventory,3,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,14,Reindeer,Reindeer,Reindeer,5,2,19500,"A semi-domesticated deer of the far north. A vital resource for northern cultures, used as a pack animal or for pulling sleds over snow and tundra."
+membereffect,traveldaycurrencybuff,rations,-2,,,,,
+membereffect,gameplaystatbuff,max inventory,1,,,,,
+,,,,,,,,
+,,,,,,,,
+caravanmember,15,Asian Elephant,AsianElephant,AsianElephant,4,3,1474500,A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.
+membereffect,traveldaycurrencybuff,rations,-6,,,,,
+membereffect,gameplaystatbuff,max inventory,6,,,,,

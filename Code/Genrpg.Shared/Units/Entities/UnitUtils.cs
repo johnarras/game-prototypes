@@ -1,15 +1,12 @@
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Units.Constants;
-using MessagePack;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Units.Entities
 {
     public class UnitUtils
     {
-        public static bool TurnTowardNextPosition(Unit unit, float maxRotation=360)
+        public static bool TurnTowardNextPosition(Unit unit, float maxRotation = 360)
         {
 
             float cx = unit.X;
@@ -164,7 +161,7 @@ namespace Genrpg.Shared.Units.Entities
             return AngleToward(unit, target.X, target.Y, target.Z);
         }
 
-        public static bool AttackerInfoMatchesObject (AttackerInfo attackerInfo, MapObject obj)
+        public static bool AttackerInfoMatchesObject(AttackerInfo attackerInfo, MapObject obj)
         {
             if (attackerInfo == null || !(obj is Unit unit))
             {

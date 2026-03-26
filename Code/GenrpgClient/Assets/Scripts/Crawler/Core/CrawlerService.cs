@@ -8,11 +8,11 @@ using Assets.Scripts.Crawler.ClientEvents.HUD;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Items.Entities;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -49,6 +49,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.States.Services
 {
@@ -333,14 +334,12 @@ namespace Genrpg.Shared.Crawler.States.Services
                 newItem.Set(CIdx.ItemTypeId, item.ItemTypeId);
                 newItem.Set(CIdx.LootRankId, item.LootRankId);
                 newItem.Set(CIdx.Level, item.Level);
-                newItem.Set(CIdx.ScalingTypeId, item.ScalingTypeId);
                 newItem.Set(CIdx.EquipSlotId, item.EquipSlotId);
                 newItem.Set(CIdx.BuyCost, item.BuyCost);
                 newItem.Set(CIdx.SellValue, item.SellValue);
-                newItem.Set(CIdx.QualityTypeId, item.QualityTypeId);
 
                 newItem.SaveEffects = new List<SaveEffect>();
-                foreach (ItemEffect ieff in item.Effects)
+                foreach (Effect ieff in item.Effects)
                 {
                     newItem.SaveEffects.Add(new SaveEffect(ieff));
                 }
@@ -366,21 +365,18 @@ namespace Genrpg.Shared.Crawler.States.Services
                     Id = saveItem.Id,
                     Name = saveItem.Name,
                     BuyCost = saveItem.Get(CIdx.BuyCost),
-                    ScalingTypeId = saveItem.Get(CIdx.ScalingTypeId),
                     EquipSlotId = saveItem.Get(CIdx.EquipSlotId),
                     ItemTypeId = saveItem.Get(CIdx.ItemTypeId),
                     Level = (int)saveItem.Get(CIdx.Level),
                     LootRankId = saveItem.Get(CIdx.LootRankId),
-                    QualityTypeId = saveItem.Get(CIdx.QualityTypeId),
-                    Quantity = 1,
                     SellValue = saveItem.Get(CIdx.SellValue),
                     Procs = new List<ItemProc>()
                 };
 
-                newItem.Effects = new List<ItemEffect>();
+                newItem.Effects = new List<Effect>();
                 foreach (SaveEffect se in saveItem.SaveEffects)
                 {
-                    newItem.Effects.Add(new ItemEffect()
+                    newItem.Effects.Add(new Effect()
                     {
                         EntityTypeId = se.Dat[0],
                         EntityId = se.Dat[1],
@@ -629,11 +625,11 @@ namespace Genrpg.Shared.Crawler.States.Services
             _party.Flags = 0;
             _party.DaysPlayed = 0;
             _party.HourOfDay = 0;
-            IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+            IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
             _party.Currencies = new SmallIdLongCollection();
 
-            _party.Currencies.Add(CrawlerCurrencyTypes.Gold, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
+            _party.Currencies.Add(CoreCurrencyTypes.Coins, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
 
 
             CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);

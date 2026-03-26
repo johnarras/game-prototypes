@@ -1,0 +1,8 @@
+{
+  "Id": "gameplaystat4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "Luck",
+  "Icon": "Luck",
+  "Art": "Luck"
+}

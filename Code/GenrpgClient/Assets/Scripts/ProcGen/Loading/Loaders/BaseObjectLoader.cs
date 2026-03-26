@@ -2,7 +2,7 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -82,8 +82,8 @@ public abstract class BaseObjectLoader : IInjectable
 
         if (dlo.allowRandomPlacement)
         {
-            dlo.ddx = MathUtil.SeedFloatRange(dlo.placementSeed * 13, 143, -0.5f, 0.5f, 101);
-            dlo.ddy = MathUtil.SeedFloatRange(dlo.placementSeed * 17, 149, -0.5f, 0.5f, 101);
+            dlo.ddx = RandUtils.SeedFloatRange(dlo.placementSeed * 13, 143, -0.5f, 0.5f, 101);
+            dlo.ddy = RandUtils.SeedFloatRange(dlo.placementSeed * 17, 149, -0.5f, 0.5f, 101);
         }
         dlo.height = _terrainManager.SampleHeight(wx, wy);
         go.transform.localPosition = new Vector3(dlo.x + dlo.ddx, dlo.height + dlo.zOffset, dlo.y + dlo.ddy);

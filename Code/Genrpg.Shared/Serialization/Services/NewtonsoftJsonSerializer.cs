@@ -1,7 +1,6 @@
 using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Buffers;
 using Genrpg.Shared.Serialization.Interfaces;
-using MessagePack;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;

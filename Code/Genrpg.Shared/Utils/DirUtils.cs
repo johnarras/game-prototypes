@@ -1,7 +1,4 @@
 using Genrpg.Shared.Utils.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Utils
 {
@@ -14,11 +11,11 @@ namespace Genrpg.Shared.Utils
             {
                 return 0;
             }
-            else if (dy < 0) 
+            else if (dy < 0)
             {
                 return 180;
             }
-            else if (dx > 0) 
+            else if (dx > 0)
             {
                 return 90;
             }

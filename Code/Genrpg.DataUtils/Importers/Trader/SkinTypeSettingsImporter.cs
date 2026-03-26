@@ -1,6 +1,7 @@
 ﻿using Genrpg.DataUtils.Entities.Core;
 using Genrpg.DataUtils.Importers.Core;
-using Genrpg.Shared.Trader.Animals.Settings;
+using Genrpg.Shared.Trader.CaravanMembers.Settings;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.DataUtils.Importers.Trader
 {

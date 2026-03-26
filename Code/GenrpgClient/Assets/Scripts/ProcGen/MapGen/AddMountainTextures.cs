@@ -84,27 +84,27 @@ public class AddMountainTextures : BaseZoneGenerator
 		MyRandom texRand = new MyRandom(zone.Seed+5423+_mapProvider.GetMap().Seed/5);
         MyRandom capRand = new MyRandom(zone.Seed % 373823332 + 23423);
 
-        float capFreq = MathUtil.FloatRange(minFreqMult, maxFreqMult, capRand) * size;
-        float capAmp = MathUtil.FloatRange(0.0f,40.0f, capRand);
-        float capPers = MathUtil.FloatRange(0.2f, 0.4f, capRand);
+        float capFreq = RandUtils.FloatRange(minFreqMult, maxFreqMult, capRand) * size;
+        float capAmp = RandUtils.FloatRange(0.0f,40.0f, capRand);
+        float capPers = RandUtils.FloatRange(0.2f, 0.4f, capRand);
         int capOctaves = 2;
         float[,] capSteepnessDeltas = _noiseService.Generate(capPers, capFreq, capAmp, capOctaves, capRand.Next(), size, size);
 
 
         MyRandom randRand = new MyRandom(zone.Seed % 233534543 + 34534);
-        float randFreq = MathUtil.FloatRange(minFreqMult,maxFreqMult, randRand) * size;
-        float randAmp = MathUtil.FloatRange(0.0f, 0.4f, randRand);
-        float randPers = MathUtil.FloatRange(0.2f, 0.5f, randRand);
+        float randFreq = RandUtils.FloatRange(minFreqMult,maxFreqMult, randRand) * size;
+        float randAmp = RandUtils.FloatRange(0.0f, 0.4f, randRand);
+        float randPers = RandUtils.FloatRange(0.2f, 0.5f, randRand);
         float[,] randomBaseAmounts = _noiseService.Generate(randPers, randFreq, randAmp, 2, randRand.Next() % 100000000, size, size);
 
         randRand = new MyRandom(zone.Seed % 233534 + 34532434);
-        randFreq = MathUtil.FloatRange(minFreqMult,maxFreqMult, randRand) * size;
-        randAmp = MathUtil.FloatRange(0.0f, 0.4f, randRand);
-        randPers = MathUtil.FloatRange(0.2f, 0.5f, randRand);
+        randFreq = RandUtils.FloatRange(minFreqMult,maxFreqMult, randRand) * size;
+        randAmp = RandUtils.FloatRange(0.0f, 0.4f, randRand);
+        randPers = RandUtils.FloatRange(0.2f, 0.5f, randRand);
         float[,] randomCleftAmounts = _noiseService.Generate(randPers, randFreq, randAmp, 2, randRand.Next() % 100000000, size, size);
 
-        float coreSteepnessWallPercent = MathUtil.FloatRange(0.7f, 0.99f, randRand);
-        float innerWallSizePercent = MathUtil.FloatRange(0.95f, 0.98f, randRand);
+        float coreSteepnessWallPercent = RandUtils.FloatRange(0.7f, 0.99f, randRand);
+        float innerWallSizePercent = RandUtils.FloatRange(0.95f, 0.98f, randRand);
 
         int extraAboveMidNeeded = randRand.NextDouble() < 0.3f ? 1 : 0;
 
@@ -199,13 +199,13 @@ public class AddMountainTextures : BaseZoneGenerator
 
 
 		// How steep can things be and still have cap?
-		float startMinSteepnessForCap = MathUtil.FloatRange(MinSteepness,MaxSteepness, texRand);
+		float startMinSteepnessForCap = RandUtils.FloatRange(MinSteepness,MaxSteepness, texRand);
 
         startMinSteepnessForCap = 10;
 
         // How long it takes the textures to transition from wall texture to
         // flat cap texture.
-        float capTransitionRange = MathUtil.FloatRange (10,20,texRand);
+        float capTransitionRange = RandUtils.FloatRange (10,20,texRand);
 
 		// These are the current values for the main/cleft and opp textures.
 		float currMainPercent = 0;
@@ -274,7 +274,7 @@ public class AddMountainTextures : BaseZoneGenerator
                 if (useCaps && steep < minSteepnessForCap)
                 {
                     float pct = MathUtil.Clamp(0, (minSteepnessForCap - steep) / capTransitionRange,
-                                               MathUtil.FloatRange(0.4f, 1.0f, steepRandom));
+                                               RandUtils.FloatRange(0.4f, 1.0f, steepRandom));
                     currCleftPercent = pct;
                     currMainPercent = 0;
                     currOppPercent = 1 - pct;
@@ -325,11 +325,11 @@ public class AddMountainTextures : BaseZoneGenerator
 
                         //if (Math.Abs(ahx - ahy) > 3)
                         {
-                            float pct = MathUtil.FloatRange(0.2f, 1.0f, steepRandom) * extraNumMid * 0.50f;
+                            float pct = RandUtils.FloatRange(0.2f, 1.0f, steepRandom) * extraNumMid * 0.50f;
                             pct = Math.Min(0.90f, pct);
                             if (pct > 0.6f)
                             {
-                                pct = MathUtil.FloatRange(1 - pct, pct, steepRandom);
+                                pct = RandUtils.FloatRange(1 - pct, pct, steepRandom);
                             }
                             currOppPercent = 0;
                             currMainPercent = 1 - pct;
@@ -373,7 +373,7 @@ public class AddMountainTextures : BaseZoneGenerator
 				{
 					float edgePercent = (wallDist-innerWallSizePercent)/(1.0f-innerWallSizePercent);
 
-					origPercent = MathUtil.FloatRange (0,(float)(edgePercent*1.2f),edgeRand);
+					origPercent = RandUtils.FloatRange (0,(float)(edgePercent*1.2f),edgeRand);
 					origPercent = MathUtil.Clamp(0,origPercent,1);
 				}
 

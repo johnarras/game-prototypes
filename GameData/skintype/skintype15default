@@ -4,7 +4,5 @@
   "IdKey": 15,
   "Name": "Asian Elephant",
   "Icon": "AsianElephant",
-  "Art": "AsianElephant",
-  "AnimalTypeId": 15,
-  "IsDefault": true
+  "Art": "AsianElephant"
 }

@@ -1,0 +1,8 @@
+{
+  "Id": "gameplaystat1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Max Size",
+  "Icon": "MaxSize",
+  "Art": "MaxSize"
+}

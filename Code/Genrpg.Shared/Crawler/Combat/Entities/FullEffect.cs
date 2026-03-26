@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Spells.Settings.Elements;
 

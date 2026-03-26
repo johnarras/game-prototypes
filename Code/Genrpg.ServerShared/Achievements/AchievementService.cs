@@ -21,25 +21,27 @@ namespace Genrpg.ServerShared.Achievements
                 return;
             }
 
-            AchievementStatus status = ch.Get<AchievementData>().Get(achievementTypeId);
+            AchievementData adata = mapObject.Get<AchievementData>();
+
+            long currQuantity = adata.Data[achievementTypeId];
+
 
             AchievementType type = _gameData.Get<AchievementSettings>(ch).Get(achievementTypeId);
 
             if (type?.Category == AchievementCategories.Max)
             {
-                if (quantity > status.Quantity)
+                if (quantity > currQuantity)
                 {
-                    status.Quantity = quantity;
-                    _repoService.QueueSave(status);
-                    ch.AddMessage(new OnUpdateAchievement() { AchievementTypeId = (int)status.IdKey, Quantity = quantity });
+                    adata.Data[achievementTypeId] = quantity;
+                    _repoService.QueueSave(adata);
+                    ch.AddMessage(new OnUpdateAchievement() { AchievementTypeId = achievementTypeId, Quantity = quantity });
                     // Send to clients
                 }
             }
             else
             {
-                status.Quantity += quantity;
-                _repoService.QueueSave(status);
-                ch.AddMessage(new OnUpdateAchievement() { AchievementTypeId = (int)status.IdKey, Quantity = quantity });
+                _repoService.QueueSave(adata);
+                ch.AddMessage(new OnUpdateAchievement() { AchievementTypeId = achievementTypeId, Quantity = quantity });
                 // Send to client
             }
         }

@@ -7,7 +7,7 @@ using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
@@ -96,7 +96,7 @@ namespace Assets.Scripts.DynamicUI.Services
             if (randomPaths)
             {
                 result.PercentDonePowerMult = 0.5f;
-                result.StartOffsetSize = MathUtil.FloatRange(250,500, _rand);
+                result.StartOffsetSize = RandUtils.FloatRange(250,500, _rand);
             }
             return result;
         }
@@ -175,9 +175,30 @@ namespace Assets.Scripts.DynamicUI.Services
                 _dynamicUIScreen = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
             }
 
-            string key = GetDooberTargetKey(entityTypeId, entityId);
+            List<string> keys = new List<string>();
 
-            if (!_dooberTargets.TryGetValue(key, out List<DooberTarget> targets))
+            keys.Add(GetDooberTargetKey(entityTypeId, entityId));
+            if (entityId > 0)
+            {
+                keys.Add(GetDooberTargetKey(entityTypeId, 0));
+            }
+
+            List<DooberTarget> targets = new List<DooberTarget>();
+
+            foreach (string key in keys)
+            {
+                if (_dooberTargets.ContainsKey(key))
+                {
+                    targets = _dooberTargets[key];
+
+                    if (targets != null && targets.Count > 0)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (targets == null || targets.Count < 1)
             {
                 _logService.Warning("No doober target for " + entityTypeId + " " + entityId);
                 return Vector2.zero;

@@ -1,5 +1,4 @@
 using Genrpg.Shared.Utils.Data;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Parties.PlayerData

@@ -1,12 +1,8 @@
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
-using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Genrpg.Shared.GameSettings;
 
 namespace Genrpg.Shared.UnitEffects.Services
 {

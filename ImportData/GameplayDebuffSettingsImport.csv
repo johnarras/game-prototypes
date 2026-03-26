@@ -1,0 +1,17 @@
+header gameplaydebuff,IdKey,Name,Icon,Art,CleanseCoreCurrencyTypeId,CleanseQuantity,CityCoinsCleanseCost
+header debuffeffect,EntityTypeId,EntityId,Quantity,,,,
+gameplaydebuff,1,Unlucky,Unlucky,Unlucky,mana,2,20
+debuffeffect,gameplaystatbuff,luck,-2,,,,
+gameplaydebuff,2,Slowed,Slowed,Slowed,supplies,1,40
+debuffeffect,gameplaystatbuff,bonus speed,-1,,,,
+gameplaydebuff,3,Hungry,Hungry,Hungry,rations,2,10
+debuffeffect,traveldaycurrencybuff,rations,-1,,,,
+gameplaydebuff,4,Broken Down,BrokenDown,BrokenDown,supplies,2,25
+debuffeffect,gameplaystatbuff,maxsize,-1,,,,
+gameplaydebuff,5,Sickly,Sickly,Sickly,rations,1,15
+debuffeffect,gameplaystatbuff,max inventory,-1,,,,
+gameplaydebuff,6,Magic Void,MagicVoid,MagicVoid,mana,1,35
+debuffeffect,currencyregenbuff,mana,-1,,,,
+gameplaydebuff,7,Cursed,Cursed,Cursed,mana,1,50
+debuffeffect,gameplaystatbuff,max size,-1,,,,
+debuffeffect,gameplaystatbuff,max inventory,-1,,,,

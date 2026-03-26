@@ -10,11 +10,11 @@ using Assets.Scripts.Trader.Levels.Services;
 using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
-using Genrpg.Shared.CoreCurrencies.Settings;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -26,8 +26,6 @@ using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Maps.Services;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Services;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Trader.Travel.Services;
 using Genrpg.Shared.Trader.Travel.WebApi;
@@ -40,6 +38,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using Genrpg.Shared.Attributes.PlayerData;
+using Genrpg.Shared.Attributes.Services;
 
 namespace Assets.Scripts.Trader.Travel.Services
 {
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         private ICaravanService _caravanService = null;
         private IUIService _uiService = null;
         private ITraderMapService _traderMapService = null;
-        private ITraderStatService _statService = null;
+        private IAttributeService _attributeService = null;
         private ITraderLevelService _traderLevelService = null;
         private IDynamicUIService _dynamicUIService = null;
         private IClientEncounterService _encounterService = null;
@@ -105,7 +105,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                     TravelRequest req = new TravelRequest();
 
                     _uiService.IncrementButtonBlock();
-                    _webService.SendClientUserWebRequest(req, _token);
+                    _webService.SendWebRequest(req, _token);
                 }
             }
         }
@@ -120,14 +120,9 @@ namespace Assets.Scripts.Trader.Travel.Services
             try
             {
                 CoreData coreData = _gs.ch.Get<CoreData>();
-                if (response.TotalCost > 0)
-                {
-                    _rewardService.GiveReward(_rand, _gs.ch, EntityTypes.CoreCurrency, CoreCurrencyTypes.Rations, -response.TotalCost, null,
-                        new ClientRewardParams(false, true));
-                }
 
                 CaravanData caravanData = _gs.ch.Get<CaravanData>();
-                TraderStatData statData = _gs.ch.Get<TraderStatData>();
+                AttributeData attributeData = _gs.ch.Get<AttributeData>();
 
                 CaravanPosition pos = _caravanService.GetPosition(coreData);
 
@@ -141,30 +136,66 @@ namespace Assets.Scripts.Trader.Travel.Services
                 {
                     TravelDay td = response.Days[day];
 
-                    _statService.AddDebuffDaysPlayed(coreData, caravanData, statData, td.DebuffDaysAdded);
+                    for (int i = 0; i < td.Currencies.Count(); i++)
+                    {
+                        await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, CoreCurrencyTypes.Rations, td.Currencies[i], null,
+                            new ClientRewardParams(false, true));
+                    }
+
+                    await _attributeService.AddDebuffDaysPlayed(_gs.ch, 1);
                     _dispatcher.Dispatch(td);
-                    long distanceGoneToday = td.EndDistance - startDist;
+                    long distanceGoneToday = td.Vars[DayVars.EndDistance] - startDist;
                     double currDist = startDist;
-                    _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = td.RolledDistances, BonusDistance = td.BonusDistance, TotalDistance = td.TotalDistance });
+
+                    int rollCount = td.Vars[DayVars.DiceCount];
+                    List<int> rolledDistances = new List<int>();
+
+                    for (int rindex = 0; rindex < rollCount; rindex++)
+                    {
+                        rolledDistances.Add(td.Vars[DayVars.DiceCount + 1 + rindex]);
+                    }
+
+                    _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = rolledDistances, BonusDistance = td.Vars[DayVars.BonusDistance], 
+                        TotalDistance = td.Vars[DayVars.TotalDistance] });
 
                     List<DooberArgs> rewardDoobers = new List<DooberArgs>();
                     List<DooberArgs> expDoobers = new List<DooberArgs>();
-                    for (int rewardIndex = 0; rewardIndex < td.TravelRewards.Count; rewardIndex++)
+
+                    int travelRewardCountIndex = DayVars.DiceCount + rollCount + 1;
+
+                    int rewardCount = td.Vars[travelRewardCountIndex];
+
+                    List<Reward> rewards = new List<Reward>();
+
+                    travelRewardCountIndex++;
+                    for (int r = 0; r < rewardCount; r++)
                     {
-                        Reward rew = td.TravelRewards[rewardIndex];
+
+                        rewards.Add(new Reward()
+                        {
+                            EntityTypeId = td.Vars[travelRewardCountIndex++],
+                            EntityId = td.Vars[travelRewardCountIndex++],
+                            Quantity = td.Vars[travelRewardCountIndex++],
+                        });
+                    }
+
+                    for (int rewardIndex = 0; rewardIndex < rewards.Count; rewardIndex++)
+                    {
+                        Reward rew = rewards[rewardIndex];
                         for (int q = 0; q < rew.Quantity; q++)
                         {
                             rewardDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(rew.EntityTypeId, rew.EntityId, 1));
                         }
-                        _rewardService.GiveReward(_rand, _gs.ch, rew, new ClientRewardParams(false, false));
+                        await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, false));
                     }
 
-                    if (td.ExpResponse != null)
+
+
+                    int expGained = td.Vars[DayVars.Exp];
+
+                    for (int exp = 0; exp < expGained; exp++)
                     {
-                        for (int exp = 0; exp < td.ExpResponse.ExpGained; exp++)
-                        {
-                            expDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, 1));
-                        }
+                        expDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, 1));
                     }
 
                     rewardDoobers = rewardDoobers.OrderBy(x=>Guid.NewGuid()).ToList();    
@@ -197,27 +228,32 @@ namespace Assets.Scripts.Trader.Travel.Services
                         currDist = viewDist;
                     }
 
-                    if (td.EndFlags != coreData.Vars[TraderVars.Flags])
+                    if (td.Vars[DayVars.EndFlags] != coreData.Vars[TraderVars.Flags])
                     {
-                        coreData.Vars[TraderVars.Flags] = td.EndFlags;
-                        _caravanService.UpdateTravelStats(coreData);
+                        coreData.Vars[TraderVars.Flags] = td.Vars[DayVars.EndFlags];
+                        await _caravanService.CalcCoreTravelStats(_gs.ch);
                     }
                     _dispatcher.Dispatch(new UpdateTraderHUD());
                     bool isWater = _travelService.IsWater(x, y);
 
-                    startDist = td.EndDistance;
+                    startDist = td.Vars[DayVars.EndDistance];
 
                     await _encounterService.ShowEncounterResult(td.EncounterResult);
                     await _traderLevelService.ShowLevelGain(td.ExpResponse, false);
+
+                    coreData.Vars[TraderVars.PlayCount] = td.Vars[DayVars.Day];
+                    if (day < response.Days.Count - 1)
+                    {
+                        _dispatcher.Dispatch(new UpdateTraderHUD());
+                    }
                 }
 
                 coreData.Vars[TraderVars.DistanceGone] = response.DistanceAlongRoad;
                 coreData.Vars[TraderVars.PlayCount] = response.EndDay;
 
-                if (coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.TotalDistanceToTarget])
-                {
-                    _dispatcher.Dispatch(new UpdateTraderHUD() { FullRefresh = true });
-                }
+
+                bool atEndOfRoad = coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.TotalDistanceToTarget];
+                _dispatcher.Dispatch(new UpdateTraderHUD() { FullRefresh = atEndOfRoad });
 
                 foreach (string msg in response.Messages)
                 {
@@ -229,12 +265,13 @@ namespace Assets.Scripts.Trader.Travel.Services
                 IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
 
-                sb.Append("Currencies: ");
-                foreach (CoreCurrencyType ctype in currencies)
-                {
-                    sb.Append(ctype.Name + ": " + coreData.Currencies[ctype.IdKey] + " ");
-                }
-                _logService.Info(sb.ToString());
+                //sb.Append("Currencies: ");
+                //foreach (CoreCurrencyType ctype in currencies)
+                //{
+                //    sb.Append(ctype.Name + ": " + coreData.Currencies[ctype.IdKey] + " ");
+                //}
+                //_logService.Info(sb.ToString());
+
             }
             catch (Exception e)
             {

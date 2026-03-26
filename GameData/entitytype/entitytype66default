@@ -2,7 +2,9 @@
   "Id": "entitytype66default",
   "ParentId": "default",
   "IdKey": 66,
-  "Name": "TraderBuff",
-  "Icon": "TraderBuff",
-  "Art": "TraderBuff"
+  "Name": "MoveCaravanMember",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "MoveCaravanMember",
+  "Art": "MoveCaravanMember"
 }

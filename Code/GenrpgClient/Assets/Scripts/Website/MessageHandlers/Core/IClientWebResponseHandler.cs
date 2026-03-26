@@ -2,6 +2,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using System;
 using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.Login.Messages
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Login.Messages
     {
 
         int Priority();
-        void Process(IWebResponse result, CancellationToken token);
+        Awaitable Process(IWebResponse result, CancellationToken token);
     }
 }
 

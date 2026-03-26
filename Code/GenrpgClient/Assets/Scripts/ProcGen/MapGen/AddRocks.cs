@@ -65,7 +65,7 @@ public class AddRocks : BaseZoneGenerator
         MyRandom rand = new MyRandom(zone.Seed % 2000000000 + 15434454);
 
 
-        float densityMult = MathUtil.FloatRange(1.0f, 1.5f, rand);
+        float densityMult = RandUtils.FloatRange(1.0f, 1.5f, rand);
 
         List<FullRockType> list = new List<FullRockType>();
 
@@ -134,8 +134,8 @@ public class AddRocks : BaseZoneGenerator
                 break;
             }
 
-            int x = MathUtil.IntRange(startx, endx, rand);
-            int y = MathUtil.IntRange(starty, endy, rand);
+            int x = RandUtils.IntRange(startx, endx, rand);
+            int y = RandUtils.IntRange(starty, endy, rand);
 
             
 
@@ -223,8 +223,8 @@ public class AddRocks : BaseZoneGenerator
                 }
 
 
-                int px = x + MathUtil.IntRange(-maxOffset, maxOffset, rand);
-                int pz = y + MathUtil.IntRange(-maxOffset, maxOffset, rand);
+                int px = x + RandUtils.IntRange(-maxOffset, maxOffset, rand);
+                int pz = y + RandUtils.IntRange(-maxOffset, maxOffset, rand);
 
                 px -= px / (MapConstants.TerrainPatchSize - 1);
                 pz -= pz / (MapConstants.TerrainPatchSize - 1);
@@ -272,7 +272,7 @@ public class AddRocks : BaseZoneGenerator
                             numToPlace = 3;
                         }
 
-                        float currMaxOffset = MathUtil.FloatRange(1.1f, 2.1f, rand);
+                        float currMaxOffset = RandUtils.FloatRange(1.1f, 2.1f, rand);
                         float currMinOffset = currMaxOffset / 2;
                         _addNearbyItemsHelper.AddItemsNear(rand, zoneType, zone, x, y, 0.9f, nearbyItemsCount, currMinOffset, currMaxOffset);
                     }

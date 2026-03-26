@@ -1,8 +1,5 @@
 using Genrpg.Shared.Spells.Interfaces;
 using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spells.Settings.Effects
 {

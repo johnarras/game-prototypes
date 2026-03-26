@@ -2,10 +2,9 @@
   "Id": "buildingtype9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "Thieves' Guild",
-  "Icon": "ThievesGuild",
-  "Art": "ThievesGuild",
-  "Radius": 5,
-  "VariationCount": 1,
+  "Name": "Dungeon",
+  "Icon": "Dungeon",
+  "Art": "Dungeon",
+  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

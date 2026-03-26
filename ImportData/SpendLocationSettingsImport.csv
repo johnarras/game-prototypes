@@ -1,0 +1,74 @@
+header spendlocationsettings,Id,,,,,,
+header spendlocation,IdKey,Name,Desc,Icon,,,
+header spendtype,Index,Name,Desc,SpendCoreCurrencyTypeId,SpendQuantity,MinLevel,MaxTimes
+header spendreward,EntityTypeId,EntityId,Quantity,,,,
+spendlocationsettings,default,,,,,,
+,,,,,,,
+spendlocation,1,Animals,Buy Animals Here!,Animals,,,
+spendtype,1,Buy Animal,Buy an animal!,coins,0,1,1
+spendreward,animaltype,-1,1,,,,
+,,,,,,,
+spendlocation,2,Supplies,Roscoe's Expedition Emporium!,Supplies,,,
+spendtype,1,Supplies,Stock Up On Supplies,coins,10,1,0
+spendreward,corecurrency,supplies,1,,,,
+spendtype,2,Rations,Get Rations For Your Journey,coins,25,1,0
+spendreward,corecurrency,rations,1,,,,
+spendtype,3,Mana,Top Off Your Mana,coins,100,1,0
+spendreward,corecurrency,rations,1,,,,
+,,,,,,,
+spendlocation,3,Temple,The Temple,Temple,,,
+spendtype,1,Cure,Cure a Malady,coins,5000,1,0
+spendreward,gameplaydebuff,-1,-1,,,,
+,,,,,,,
+spendlocation,4,Trainer,Adventurer Training,Training,TRUE,,
+spendtype,1,Rations Storage,Increase your Rations Storage!,coins,50000,1,1
+spendreward,bonuscurrencystorage,rations,10,,,,
+spendtype,2,CoinsStorage,Increase your Coins Storage,coins,100000,1,1
+spendreward,bonuscurrencystorage,coins,10,,,,
+spendtype,3,Supplies Storage,Increase your Supplies Storage,coins,150000,1,1
+spendreward,bonuscurrencystorage,supplies,10,,,,
+spendtype,4,Mana Storage,Increase your Mana Storage,coins,250000,1,1
+spendreward,bonuscurrencystorage,mana,10,,,,
+,,,,,,,
+,,,,,,,
+spendlocation,5,Spellbook,Your Spellbook,Spellbook,,,
+spendtype,1,Conjure Rations,Conjure some Rations,mana,40,1,0
+spendreward,corecurrency,rations,20,,,,
+spendtype,2,Conjure Supplies,Conjure some Supplies,mana,50,1,0
+spendreward,corecurrency,supplies,15,,,,
+,,,,,,,
+spendlocation,6,Trade Goods,The Trader,TradeGoods,,,
+spendtype,1,Buy Trade Good,Buy Trade Goods,coins,0,1,0
+spendreward,tradegood,-1,1,,,,
+,,,,,,,
+spendlocation,7,Portal,Portal to a city you've visited before.,Portal,,,
+spendtype,1,Take a portal to another city,Portal,mana,0,1,0
+spendreward,city,-1,1,,,,
+,,,,,,,
+spendlocation,8,Buffs,Magical Enchantments,Buffs,,,
+spendtype,1,Lucky,Get some luck for your journey!,coins,10000,1,0
+spendreward,gameplaybuff,lucky,600,,,,
+spendtype,2,Speedy,Speed up for a bit!,coins,20000,1,0
+spendreward,gameplaybuff,speedy,600,,,,
+spendtype,3,Working Out,Carry an extra Trade Good!,coins,30000,1,0
+spendreward,gameplaybuff,workingout,600,,,,
+spendtype,4,Well Fed,Require one less food for a bit.,coins,40000,1,0
+spendreward,gameplaybuff,wellfed,600,,,,
+,,,,,,,
+spendlocation,9,Repairs,Repair issues with your caravan!,Repairs,,,
+spendtype,1,Unlucky,Tip the Leprechaun to get your luck back!,coins,500,1,0
+spendreward,gameplaydebuff,unlucky,-1,,,,
+spendtype,2,Hungry,Feast to fell full again!,rations,100,1,0
+spendreward,gameplaydebuff,hungry,-1,,,,
+spendtype,3,Slowed,Grease everything up to get back up to speed.,supplies,75,1,0
+spendreward,gameplaydebuff,slowed,-1,,,,
+spendtype,4,Broken Down,Fix your cart.,supplies,100,1,0
+spendreward,gameplaydebuff,broken down,-1,,,,
+spendtype,5,Magic Void,Dispel the Magic Void,mana,50,1,0
+spendreward,gameplaydebuff,magic void,-1,,,,
+spendtype,6,Decurse,Break your curse,mana,75,1,0
+spendreward,gameplaydebuff,cursed,-1,,,,
+spendtype,6,Sickly,Eat more to feel better.,rations,100,1,0
+spendreward,gameplaydebuff,sickly,-1,,,,
+,,,,,,,
+spendlocation,10,Traveling Vendor,You meet another traveling trader.,TravelingVendor,,,

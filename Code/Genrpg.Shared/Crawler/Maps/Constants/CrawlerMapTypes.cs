@@ -1,9 +1,3 @@
-using Genrpg.Shared.Characters.PlayerData;
-using MessagePack.Formatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Genrpg.Shared.Crawler.Maps.Constants
 {
 

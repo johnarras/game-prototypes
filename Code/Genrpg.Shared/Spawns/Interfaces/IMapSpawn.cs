@@ -1,8 +1,6 @@
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Spawns.Interfaces
 {

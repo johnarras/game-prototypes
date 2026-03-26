@@ -380,7 +380,6 @@
   "UnitKeyWords": [],
   "PlantChoices": "",
   "WeatherTypeId": 9,
-  "BuildingTypeId": 22,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,

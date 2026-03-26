@@ -51,8 +51,6 @@ public class LootPopup : TypedArgScreen<List<RewardList>>
                 EntityTypeId = rew.EntityTypeId,
                 EntityId = rew.EntityId,
                 Quantity = rew.Quantity,
-                Level = rew.Level,
-                Quality = rew.QualityTypeId,
             };
             _iconService.InitItemIcon(iid, _itemAnchor, _assetService, token);
         }

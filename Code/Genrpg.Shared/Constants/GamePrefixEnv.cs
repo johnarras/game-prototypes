@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.Constants
 {
 
@@ -23,9 +22,9 @@ namespace Genrpg.Shared.Constants
             {
                 return false;
             }
-            return env.IndexOf(Prod) == 0 || env.IndexOf(Staging) == 0; 
+            return env.IndexOf(Prod) == 0 || env.IndexOf(Staging) == 0;
         }
-    }   
+    }
 }
 
 

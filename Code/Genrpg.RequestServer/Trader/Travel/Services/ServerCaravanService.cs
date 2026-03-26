@@ -7,8 +7,8 @@ using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Flags.Constants;
+using Genrpg.Shared.Trader.Holdings.PlayerData;
 using Genrpg.Shared.Trader.Maps.Services;
-using Genrpg.Shared.Trader.Travel.Settings;
 using Genrpg.Shared.Trader.Travel.WebApi;
 
 namespace Genrpg.RequestServer.Trader.Travel.Services
@@ -52,8 +52,8 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             coreData.Vars[TraderVars.FromX] = position.CurrX;
             coreData.Vars[TraderVars.FromY] = position.CurrY;
             coreData.Vars[TraderVars.DistanceGone] = 0;
-            coreData.Vars[TraderVars.TotalDistanceToTarget] = _traderMapService.GetDistanceBetweenPoints(
-                _gameData.Get<TravelSettings>(coreData), position.CurrX, position.CurrY, request.ToX, request.ToY);
+            coreData.Vars[TraderVars.TotalDistanceToTarget] = await _traderMapService.GetDistanceBetweenPoints(
+                context, position.CurrX, position.CurrY, request.ToX, request.ToY);
             coreData.Vars[TraderVars.CityId] = 0;
             City toCity = _gameData.Get<CitySettings>(coreData).GetData().FirstOrDefault(
                 x => x.MapPixelX == request.ToX && x.MapPixelY == request.ToY);
@@ -79,8 +79,6 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 coreData.RemoveFlag(TraderFlags.OnRoad);
             }
 
-            _caravanService.UpdateTravelStats(coreData);
-
             response.FromX = coreData.Vars[TraderVars.FromX];
             response.FromY = coreData.Vars[TraderVars.FromY];
             response.ToX = coreData.Vars[TraderVars.ToX];
@@ -98,8 +96,11 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
             CoreData coreData = await context.GetAsync<CoreData>();
             CaravanPosition position = _caravanService.GetPosition(coreData);
 
+            HoldingsData holdings = await context.GetAsync<HoldingsData>();
 
-            City city = _gameData.Get<CitySettings>(context.core).Get(cityId);
+            holdings.CitiesVisited.SetBitIndex(cityId);
+
+            City city = _gameData.Get<CitySettings>(coreData).Get(cityId);
 
             if (city == null)
             {

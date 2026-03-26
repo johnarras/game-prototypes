@@ -50,8 +50,8 @@ namespace Genrpg.Shared.Entities.Helpers
 
         public virtual bool IsMapEntity() { return false; }
 
-        private string _parentTypeName = typeof(TParent).Name.ToLower();
-        private string _childTypeName = typeof(TChild).Name.ToLower();
+        private string _parentTypeName = StrUtils.NormalizeTypeName<TParent>();
+        private string _childTypeName = StrUtils.NormalizeTypeName<TChild>();
 
         public virtual bool IsEntityHelperFor(string name)
         {

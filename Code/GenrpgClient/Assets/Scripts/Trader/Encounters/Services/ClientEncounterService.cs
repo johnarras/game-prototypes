@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Entities.Services;
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Trader.Encounters.Services
                 foreach (Reward rew in rlist.Rewards)
                 {
 
-                    _rewardService.GiveReward(_rand, _gs.ch, rew, new ClientRewardParams(false, true));
+                    await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, true));
 
                     IEntityHelper helper = _entityService.GetEntityHelper(rew.EntityTypeId);
                     if (helper != null)

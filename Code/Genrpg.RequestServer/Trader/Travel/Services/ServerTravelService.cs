@@ -1,15 +1,15 @@
 ﻿using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.LevelTrack.Services;
-using Genrpg.RequestServer.Rewards.Services;
 using Genrpg.RequestServer.Trader.Encounters.Services;
 using Genrpg.RequestServer.Trader.Stats.Services;
 using Genrpg.RequestServer.Trader.Travel.Entities;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
@@ -23,7 +23,6 @@ using Genrpg.Shared.Trader.Travel.Settings;
 using Genrpg.Shared.Trader.Travel.WebApi;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using MongoDB.Driver.Search;
 
 namespace Genrpg.RequestServer.Trader.Travel.Services
 {
@@ -36,11 +35,11 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
     {
         private ICaravanService _caravanService = null;
         private IGameData _gameData = null;
-        private IWebRewardService _rewardService = null;
+        private IRewardService _rewardService = null;
         private ITravelService _travelService = null;
         private IServerCaravanService _serverCaravanService = null;
         private ITraderMapService _traderMapService = null;
-        private IServerTraderStatService _serverStatService = null;
+        private IServerGameStatService _serverStatService = null;
         private ITravelEncounterService _encounterService = null;
         private IServerLevelTrackService _levelService = null;
         public async Task Initialize(CancellationToken token)
@@ -57,9 +56,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
             CaravanPosition position = _caravanService.GetPosition(coreData);
 
-            TravelSettings travelSettings = _gameData.Get<TravelSettings>(context.core);
+            TravelSettings travelSettings = _gameData.Get<TravelSettings>(coreData);
 
-            TraderFlagSettings flagSettings = _gameData.Get<TraderFlagSettings>(context.core);
+            TraderFlagSettings flagSettings = _gameData.Get<TraderFlagSettings>(coreData);
 
             if (position.GetCurrentCity() != null)
             {
@@ -82,8 +81,14 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 TotalDistanceTravelledToday = 0,
                 TargetCityId = position.GetTargetCityId(),
                 Response = response,
-                IsFree = args.IsFree,
+                TravelInfo = travelInfo,    
             };
+
+            if (travelInfo.DiceSpeed < 1)
+            {
+                response.ErrorMessage = "You can't move!";
+                return response;
+            }
 
             for (int d = 0; d < travelInfo.Days; d++)
             {
@@ -93,17 +98,9 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 }
             }
 
-            RewardParams rp = new RewardParams();
-
-            foreach (TravelDay tday in status.Response.Days)
-            {
-                await _rewardService.GiveRewardsAsync(context, tday.TravelRewards, rp);
-            }
-
             coreData.Vars.Add(TraderVars.PlayCount, status.TravelDays);
             coreData.Vars[TraderVars.DistanceGone] = status.DistanceGone;
             response.TargetCityId = position.GetTargetCityId();
-            response.TotalCost = status.Response.Days.Sum(x => x.RationsCost);
             response.TotalDistanceTravelled = status.TotalDistanceTravelledToday;
             response.DistanceAlongRoad = status.DistanceGone;
             response.DistanceLeft = status.TotalDistanceToTarget - status.DistanceGone;
@@ -124,32 +121,47 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
             if (distanceLeft < 1)
             {
-                City city = _gameData.Get<CitySettings>(context.core).Get(status.TargetCityId);
+                City city = _gameData.Get<CitySettings>(coreData).Get(status.TargetCityId);
                 status.Response.Messages.Add("You have arrived in " + city.Name + "!");
                 return false;
             }
 
             TravelDay day = new TravelDay();
-            if (!status.IsFree)
+
+            for (int i = 0; i < coreData.TravelDayCurrencies.Count(); i++)
             {
-                int rationsCost = Math.Max(1, coreData.Vars[TraderVars.RationsCost]);
-                if (coreData.Currencies[CoreCurrencyTypes.Rations] < rationsCost)
+                if (coreData.TravelDayCurrencies[i] < 0 && coreData.Currencies[i] < -coreData.TravelDayCurrencies[i])
                 {
-                    status.Response.Messages.Add("You ran out of rations.");
+                    status.Response.Messages.Add("You ran out of resources and must stop.");
                     return false;
                 }
-                coreData.Currencies.Add(CoreCurrencyTypes.Rations, -rationsCost);
-                day.RationsCost = rationsCost;
             }
 
-            status.Response.Days.Add(day);
-            for (int i = 0; i < coreData.Vars[TraderVars.DiceSpeed]; i++)
+            for (int i = 0; i < coreData.TravelDayCurrencies.Count(); i++)
             {
-                day.RolledDistances.Add(MathUtil.IntRange(1, 6, context.rand));
+                coreData.Currencies.Add(i, coreData.TravelDayCurrencies[i]);
             }
-            day.BonusDistance = coreData.Vars[TraderVars.BonusSpeed];
 
-            int distanceToday = day.RolledDistances.Sum(x => x) + day.BonusDistance;
+            day.Currencies.CopyFrom(coreData.TravelDayCurrencies);
+
+            List<int> rolledDistances = new List<int>();
+            status.Response.Days.Add(day);
+            int diceSpeed = status.TravelInfo.DiceSpeed;
+            int bonusDistance = status.TravelInfo.BonusSpeed;
+            for (int i = 0; i < diceSpeed; i++)
+            {
+                rolledDistances.Add(RandUtils.IntRange(1, 6, context.rand));
+            }
+            day.Vars[DayVars.BonusDistance] = coreData.GetBonusSpeed();
+
+            int distanceToday = rolledDistances.Sum(x => x) + bonusDistance;
+
+            day.Vars[DayVars.DiceCount] = rolledDistances.Count;
+
+            for (int r = 0; r < rolledDistances.Count; r++)
+            {
+                day.Vars[r + DayVars.DiceCount + 1] = rolledDistances[r];
+            }
 
             if (distanceToday > distanceLeft)
             {
@@ -163,22 +175,24 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
             int endDistance = status.DistanceGone + distanceToday;
 
-            day.TotalDistance = distanceToday;
-            day.EndDistance = endDistance;
+            day.Vars[DayVars.TotalDistance] = distanceToday;
+            day.Vars[DayVars.EndDistance] = endDistance;
             status.TravelDays++;
-            day.Day = coreData.Vars[TraderVars.PlayCount] + status.TravelDays;
+            day.Vars[DayVars.Day] = coreData.Vars[TraderVars.PlayCount] + status.TravelDays;
             status.TotalDistanceTravelledToday += distanceToday;
             status.DistanceGone = endDistance;
 
-            TravelRewardSettings rewardSettings = _gameData.Get<TravelRewardSettings>(context.core);
+            TravelRewardSettings rewardSettings = _gameData.Get<TravelRewardSettings>(coreData);
 
+            IReadOnlyList<TravelReward> travelRewardOptions = rewardSettings.GetData();
 
-            IReadOnlyList<TravelReward> travelRewards = rewardSettings.GetData();
-
-            double forageChance = coreData.Vars[TraderVars.ForageChance] * 0.01f * coreData.Vars[TraderVars.RationsCost];
+            long totalCost = -coreData.TravelDayCurrencies.Data.Where(x => x < 0).Sum();
+            double forageChance = coreData.Vars[TraderVars.Searching] * 0.01f + 0.01f * totalCost;
 
             int guaranteedForage = (int)(forageChance);
             double forageRemainder = forageChance - guaranteedForage;
+
+            List<Reward> currentTravelRewards = new List<Reward>();
 
             for (int dist = 0; dist < distanceToday; dist++)
             {
@@ -191,29 +205,31 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
                 for (int times = 0; times < maxTimes; times++)
                 {
-                    TravelReward chosenReward = RandomUtils.GetRandomElement(travelRewards, context.rand);
+                    TravelReward chosenReward = RandUtils.GetRandomElement(travelRewardOptions, context.rand);
 
-                    Reward rew = day.TravelRewards.FirstOrDefault(x => x.EntityTypeId == chosenReward.EntityTypeId && x.EntityId == chosenReward.EntityId);
+                    Reward rew = currentTravelRewards.FirstOrDefault(x => x.EntityTypeId == chosenReward.EntityTypeId && x.EntityId == chosenReward.EntityId);
 
                     if (rew == null)
                     {
                         rew = new Reward() { EntityTypeId = chosenReward.EntityTypeId, EntityId = chosenReward.EntityId };
-                        day.TravelRewards.Add(rew);
-                        rew.Quantity += MathUtil.LongRange(chosenReward.MinQuantity, chosenReward.MaxQuantity, context.rand);
+                        currentTravelRewards.Add(rew);
                     }
+                    rew.Quantity += RandUtils.LongRange(chosenReward.MinQuantity, chosenReward.MaxQuantity, context.rand);
                 }
             }
 
-            if (day.TravelRewards.Count < 1)
+            if (currentTravelRewards.Count < 1)
             {
-                day.TravelRewards.Add(new Reward() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = CoreCurrencyTypes.Coins, Quantity = 1 });
+                currentTravelRewards.Add(new Reward() { EntityTypeId = EntityTypes.CoreCurrency, EntityId = CoreCurrencyTypes.Coins, Quantity = 1 });
             }
+
+
 
             MyPointF endPoint = _traderMapService.GetMapCoordinate(coreData.Vars[TraderVars.FromX],
                 coreData.Vars[TraderVars.FromY],
                 coreData.Vars[TraderVars.ToX],
                 coreData.Vars[TraderVars.ToY],
-                day.EndDistance,
+                day.Vars[DayVars.EndDistance],
                 status.DistanceGone
                 );
 
@@ -228,17 +244,34 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
                 coreData.RemoveFlag(TraderFlags.AtSea);
             }
 
-            int debuffDaysAdded = 1;
-            day.EndDiceSpeed = coreData.Vars[TraderVars.DiceSpeed];
-            day.EndBonusSpeed = coreData.Vars[TraderVars.BonusSpeed];
-            day.EndFlags = coreData.Vars[TraderVars.Flags];
-            day.DebuffDaysAdded = debuffDaysAdded;
+            day.Vars[DayVars.EndFlags] = coreData.Vars[TraderVars.Flags];
             // Do this before new encounters so you don't instantly lose a debuff day.
-            await _serverStatService.AddDebuffDaysPlayed(context, debuffDaysAdded, false);
+            await _serverStatService.AddDebuffDaysPlayed(context, 1, false);
 
             day.EncounterResult = await _encounterService.TryEndOfTravelDayEncounter(context, status, day);
 
-            day.ExpResponse = await _levelService.GainExp(context, day.TotalDistance, false);
+            day.ExpResponse = await _levelService.GainExp(context, day.Vars[DayVars.TotalDistance], false);
+
+            day.Vars[DayVars.Exp] = (int)day.ExpResponse.ExpGained;
+
+            if (day.ExpResponse.LevelsGained == null || day.ExpResponse.LevelsGained.Count < 1)
+            {
+                day.ExpResponse = null;
+            }
+            await _rewardService.GiveRewards(context, currentTravelRewards, null);
+
+            int maxVarIndexUsed = DayVars.DiceCount + day.Vars[DayVars.DiceCount] + 1;
+
+            day.Vars[maxVarIndexUsed] = currentTravelRewards.Count;
+
+
+            maxVarIndexUsed++;
+            for (int r = 0; r < currentTravelRewards.Count; r++)
+            {
+                day.Vars[maxVarIndexUsed++] = (int)currentTravelRewards[r].EntityTypeId;
+                day.Vars[maxVarIndexUsed++] = (int)currentTravelRewards[r].EntityId;
+                day.Vars[maxVarIndexUsed++] = (int)currentTravelRewards[r].Quantity;
+            }
 
             return true;
         }

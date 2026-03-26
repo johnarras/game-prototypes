@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Services;
@@ -188,7 +188,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
                 MyRandom rand = new MyRandom(genData.x * 31 + genData.z * 71);
 
-                float plantChance = MathUtil.FloatRange(0, 1, rand);
+                float plantChance = RandUtils.FloatRange(0, 1, rand);
 
                 for (int xx = cx - xSizeMaxHeight - extraEdge; xx <= cx + xSizeMaxHeight + extraEdge; xx++)
                 {

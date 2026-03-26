@@ -4,7 +4,5 @@
   "IdKey": 2,
   "Name": "Pony",
   "Icon": "Pony",
-  "Art": "Pony",
-  "AnimalTypeId": 2,
-  "IsDefault": true
+  "Art": "Pony"
 }

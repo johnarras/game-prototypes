@@ -2,10 +2,9 @@
   "Id": "buildingtype8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Enchanter's Hut",
-  "Icon": "EnchantersHut",
-  "Art": "EnchantersHut",
-  "Radius": 5,
-  "VariationCount": 1,
+  "Name": "Tavern",
+  "Icon": "Tavern",
+  "Art": "Tavern",
+  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

@@ -1,12 +1,8 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.SpellCrafting.Settings;
-using Genrpg.Shared.Spells.Constants;
 using Genrpg.Shared.Utils;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.SpellCrafting.SpellModifierHelpers
 {

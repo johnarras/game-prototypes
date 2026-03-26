@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat3default",
-  "ParentId": "default",
-  "IdKey": 3,
-  "Name": "Coins Storage",
-  "Icon": "CoinsStorage",
-  "Art": "CoinsStorage"
-}

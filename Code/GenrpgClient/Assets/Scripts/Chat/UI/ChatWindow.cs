@@ -52,12 +52,10 @@ namespace UI
         private void SetEditing(bool editing)
         {
             _editing = editing;
-            _logService.Info("Set editing val " + _editing);
             if (ChatInput != null)
             {
                 if (_editing)
                 {
-                    _logService.Info("Edit Now!");
                     EventSystem.current.SetSelectedGameObject(ChatInput.gameObject);
                     if (InputBackground != null)
                     {
@@ -72,7 +70,6 @@ namespace UI
                 else
                 {
                     SendChat();
-                    _logService.Info("Stop edit now!");
                     EventSystem.current.SetSelectedGameObject(null);
                     if (InputBackground != null)
                     {

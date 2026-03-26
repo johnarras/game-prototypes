@@ -1,11 +1,9 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Trader.TradeGoods.Settings
@@ -18,6 +16,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
     public class TradeGoodProducerCity
     {
         public long CityId { get; set; }
+        public string Name { get; set; }
     }
 
     public class TradeGood : ChildSettings, IIndexedGameItem
@@ -32,8 +31,8 @@ namespace Genrpg.Shared.Trader.TradeGoods.Settings
         public string Icon { get; set; }
         public string Art { get; set; }
         public string CategoryName { get; set; }
-        public double Price { get; set; }
-        public SmallIdLongCollection CityBuyCosts { get; set; } = new SmallIdLongCollection();
+        public long Price { get; set; }
+
         public List<TradeGoodProducerCity> ProducerCities { get; set; } = new List<TradeGoodProducerCity>();
     }
 

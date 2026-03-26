@@ -1,10 +1,8 @@
 using Genrpg.Shared.Factions.Constants;
+using Genrpg.Shared.Factions.PlayerData;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Factions.Settings;
-using System.Linq;
-using Genrpg.Shared.Factions.PlayerData;
 
 namespace Genrpg.Shared.Factions.Services
 {
@@ -24,19 +22,16 @@ namespace Genrpg.Shared.Factions.Services
     {
         private IGameData _gameData = null;
 
-        private ReputationStatus Find(Unit unit, long factionTypeId)
-        {
-            return unit.Get<ReputationData>().Get(factionTypeId);
-        }
 
         public long GetRep(Unit unit, long factionTypeId)
         {
-            return Find(unit, factionTypeId).Quantity;
+            ReputationData repData = unit.Get<ReputationData>();
+            return repData.Data[factionTypeId];
         }
 
         public long GetRepLevel(Unit unit, long factionTypeId)
         {
-            return Find(unit, factionTypeId).RepLevelId;
+            return 0;
         }
 
         public bool CanInteract(Unit unit, long factionTypeId)
@@ -66,27 +61,9 @@ namespace Genrpg.Shared.Factions.Services
                 quantity = 0;
             }
 
-            ReputationStatus status = Find(unit, factionTypeId); 
-            long diff = quantity - status.Quantity;
-            
+            ReputationData repData = unit.Get<ReputationData>();
 
-            if (diff == 0)
-            {
-                return;        
-            }
-
-            status.Quantity = quantity;
-
-            RepLevel repLevel = _gameData.Get<ReputationSettings>(unit).GetData().FirstOrDefault(x => x.PointsNeeded <= status.Quantity);
-
-            if (repLevel == null)
-            {
-                status.RepLevelId = 1;
-            }
-            else
-            {
-                status.RepLevelId = repLevel.IdKey;
-            }
+            repData.Data[factionTypeId] += quantity;
         }
     }
 }

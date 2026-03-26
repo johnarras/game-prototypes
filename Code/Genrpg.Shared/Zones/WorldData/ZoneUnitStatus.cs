@@ -1,5 +1,4 @@
 using Genrpg.Shared.Utils;
-using MessagePack;
 namespace Genrpg.Shared.Zones.WorldData
 {
     public class ZoneUnitStatus : IWeightedItem

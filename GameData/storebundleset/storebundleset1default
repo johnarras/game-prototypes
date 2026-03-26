@@ -12,7 +12,7 @@
       "BundleId": "Mana100",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 3,
           "Quantity": 100
         }
@@ -25,7 +25,7 @@
       "BundleId": "Mana300",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 3,
           "Quantity": 300
         }
@@ -38,7 +38,7 @@
       "BundleId": "Mana500",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 3,
           "Quantity": 500
         }

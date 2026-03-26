@@ -2,7 +2,7 @@ using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.ClientEvents;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Interfaces;
@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Genrpg.Shared.Logging.Interfaces;
 
 internal class CustomInputAction
 {
@@ -47,6 +48,9 @@ public interface IInputService : IInitializable, IClientResetCleanup
     float GetAxis(string mouseAxisName);
     Key FromChar(char c);
     bool EditingText();
+    void SetSelectedObject(UnityEngine.Object go);
+
+    void AddKeyboardSubsystem(IKeyboardSubsystem subsystem, CancellationToken destroyToken);
 }
 
 public class InputService : IInputService
@@ -59,6 +63,7 @@ public class InputService : IInputService
     private IDispatcher _dispatcher = null;
     private IClientGameState _gs = null;
     private IClientEntityService _clientEntityService = null;
+    private ILogService _logService = null;
 
     List<IKeyboardSubsystem> _keyboardSystems = new List<IKeyboardSubsystem>();
 
@@ -400,6 +405,38 @@ public class InputService : IInputService
     public bool EditingText()
     {
         return _clientEntityService.GetComponent<GInputField>(EventSystem.current.currentSelectedGameObject) != null;
+    }
+
+    public void AddKeyboardSubsystem(IKeyboardSubsystem subsystem, CancellationToken destroyToken)
+    {
+        _keyboardSystems.Add(subsystem);
+
+        destroyToken.Register(() => { 
+            
+            
+            _keyboardSystems.Remove(subsystem);
+            _logService.Info("Remote KeyboardSubsystem");
+        
+        });
+    }
+
+    public void SetSelectedObject(UnityEngine.Object obj)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        GameObject go = obj as GameObject;
+
+        if (go == null)
+        {
+            MonoBehaviour mb = obj as MonoBehaviour;
+
+            if (mb == null)
+            {
+                return;
+            }
+            go = mb.gameObject;
+        }
+
+        EventSystem.current.SetSelectedGameObject(go);
     }
 }
 

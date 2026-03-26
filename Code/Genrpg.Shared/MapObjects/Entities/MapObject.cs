@@ -14,16 +14,18 @@ using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Website.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Genrpg.Shared.MapObjects.Entities
 {
     [MessagePackIgnoreType]
-    public class MapObject : IMapObject, IDisposable
+    public class MapObject : IMapObject, IDisposable, IUnitDataLookup
     {
         public string Id { get; set; }
         public string GetId() { return Id; }
@@ -275,11 +277,16 @@ namespace Genrpg.Shared.MapObjects.Entities
             return (float)Math.Sqrt(dx * dx + dz * dz);
         }
 
-
-
         protected Dictionary<Type, IUnitData> _dataDict = new Dictionary<Type, IUnitData>();
 
         virtual protected bool AlwaysCreateMissingData() { return true; }
+
+
+        public virtual Task<T> GetAsync<T>() where T : class, IUnitData, new()
+        {
+            return Task.FromResult(Get<T>());
+        }
+
         public virtual T Get<T>() where T : class, IUnitData, new()
         {
             Type t = typeof(T);
@@ -312,6 +319,10 @@ namespace Genrpg.Shared.MapObjects.Entities
         public virtual List<ITopLevelUnitData> GetTopLevelData() { return new List<ITopLevelUnitData>(); }
 
         public virtual List<IUnitData> GetAllData() { return new List<IUnitData>(); }
+
+        public void AddResponse(IWebResponse response)
+        {
+        }
     }
 }
 

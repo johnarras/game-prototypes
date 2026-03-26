@@ -1,9 +1,0 @@
-{
-  "Id": "crawlercurrencytype7default",
-  "ParentId": "default",
-  "IdKey": 7,
-  "Name": "Gems",
-  "Icon": "GemsIcon",
-  "Art": "GemsArt",
-  "CraftingStatTypeId": 16
-}

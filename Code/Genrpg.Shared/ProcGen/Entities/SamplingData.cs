@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.ProcGen.Entities
 {
     public class SamplingData

@@ -1,5 +1,6 @@
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
@@ -28,10 +29,10 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
                 maxRank = StatusEffects.Dead - 1;
             }
 
-            long rank = Math.Min(MathUtil.LongRange(0, maxRank - 1, _rand),
-                MathUtil.LongRange(0, maxRank - 1, _rand));
+            long rank = Math.Min(RandUtils.LongRange(0, maxRank - 1, _rand),
+                RandUtils.LongRange(0, maxRank - 1, _rand));
 
-            item.Effects.Add(new ItemEffect()
+            item.Effects.Add(new Effect()
             {
                 EntityTypeId = EntityTypes.StatusEffect,
                 EntityId = effects[(int)rank].IdKey,

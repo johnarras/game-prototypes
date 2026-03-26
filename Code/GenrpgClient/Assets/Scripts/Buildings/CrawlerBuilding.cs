@@ -109,14 +109,7 @@ namespace Assets.Scripts.Buildings
                         renderer.material = mat.Mat;
                     }
 
-                    if (false && _buildingColors.ContainsKey(btype.IdKey))
-                    {
-                        foreach (MeshRenderer renderer in meshes)
-                        {
-                            renderer.material.color = _buildingColors[btype.IdKey];
-                        }
-                    }
-                    else if (mat.ColorTargets.Count > 0)
+                    if (mat.ColorTargets.Count > 0)
                     {
                         Color colorTarget = mat.ColorTargets[rand.Next() % mat.ColorTargets.Count];
 
@@ -127,7 +120,7 @@ namespace Assets.Scripts.Buildings
 
                         foreach (MeshRenderer renderer in meshes)
                         {
-                            renderer.material.color = newColor;
+                            renderer.material.SetColor("_MainColor", newColor);
                         }
                     }
                     break;

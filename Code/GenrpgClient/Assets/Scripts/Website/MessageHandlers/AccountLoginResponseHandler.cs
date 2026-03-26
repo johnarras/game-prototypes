@@ -9,12 +9,7 @@ namespace Assets.Scripts.Website.MessageHandlers
     public class AccountLoginResponseHandler : BaseClientWebResponseHandler<AccountLoginResponse>
     {
         private IClientAuthService _authService = null;
-        protected override void InnerProcess(AccountLoginResponse response, CancellationToken token)
-        {
-            _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
-        }
-
-        private async Awaitable InnerProcessAsync(AccountLoginResponse response, CancellationToken token)
+        protected override async Awaitable InnerProcess(AccountLoginResponse response, CancellationToken token)
         {
 
             await _authService.OnAccountLogin(response, token);

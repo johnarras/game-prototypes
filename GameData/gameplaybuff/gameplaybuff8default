@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Surplus Mana",
+  "Icon": "SurplusMana",
+  "Art": "SurplusMana",
+  "Effects": [
+    {
+      "EntityTypeId": 79,
+      "EntityId": 4,
+      "Quantity": 1
+    }
+  ]
+}

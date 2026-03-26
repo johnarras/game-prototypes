@@ -113,48 +113,8 @@
   "Overrides": [],
   "ZoneUnitSpawns": [
     {
-      "UnitTypeId": 22,
-      "Weight": 100.0
-    },
-    {
       "UnitTypeId": 23,
       "Weight": 10.0
-    },
-    {
-      "UnitTypeId": 31,
-      "Weight": 100.0
-    },
-    {
-      "UnitTypeId": 32,
-      "Weight": 100.0
-    },
-    {
-      "UnitTypeId": 33,
-      "Weight": 100.0
-    },
-    {
-      "UnitTypeId": 34,
-      "Weight": 100.0
-    },
-    {
-      "UnitTypeId": 35,
-      "Weight": 100.0
-    },
-    {
-      "UnitTypeId": 36,
-      "Weight": 10.0
-    },
-    {
-      "UnitTypeId": 37,
-      "Weight": 10.0
-    },
-    {
-      "UnitTypeId": 38,
-      "Weight": 10.0
-    },
-    {
-      "UnitTypeId": 42,
-      "Weight": 100.0
     },
     {
       "UnitTypeId": 43,
@@ -177,10 +137,6 @@
       "Weight": 10.0
     },
     {
-      "UnitTypeId": 50,
-      "Weight": 100.0
-    },
-    {
       "UnitTypeId": 51,
       "Weight": 10.0
     },
@@ -197,28 +153,11 @@
       "Weight": 10.0
     },
     {
-      "UnitTypeId": 70,
-      "Weight": 10.0
-    },
-    {
-      "UnitTypeId": 71,
-      "Weight": 10.0
-    },
-    {
       "UnitTypeId": 77,
       "Weight": 10.0
     }
   ],
-  "UnitKeyWords": [
-    {
-      "UnitKeywordId": 8,
-      "Weight": 100.0
-    },
-    {
-      "UnitKeywordId": 10,
-      "Weight": 100.0
-    }
-  ],
+  "UnitKeyWords": [],
   "PlantChoices": "",
   "WeatherTypeId": 9,
   "MusicTypeId": 1,

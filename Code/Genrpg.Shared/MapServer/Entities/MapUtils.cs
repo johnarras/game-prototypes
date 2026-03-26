@@ -1,11 +1,7 @@
-using MessagePack;
-using Genrpg.Shared.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapServer.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
+using System;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
@@ -71,7 +67,7 @@ namespace Genrpg.Shared.MapServer.Entities
         {
             return (int)Math.Ceiling(1.0 * map.GetMapSize() / SharedMapConstants.MapObjectGridSize);
         }
-    }  
+    }
 }
 
 

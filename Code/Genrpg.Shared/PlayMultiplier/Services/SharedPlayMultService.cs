@@ -1,9 +1,12 @@
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MobileGame.Constants;
+using Genrpg.Shared.PlayMultiplier.Constants;
 using Genrpg.Shared.PlayMultiplier.Settings;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +25,24 @@ namespace Genrpg.Shared.PlayMultiplier.Services
         {
             PlayMultSettings settings = _gameData.Get<PlayMultSettings>(coreData);
 
-            long totalEnergy = coreData.Currencies[CoreCurrencyTypes.Rations];
+            long maxMult = settings.MaxPlayMult;
 
-            int maxMult = (int)Math.Floor(settings.MaxMultAsPercentOfCurrentDice * totalEnergy);
+            for (int i = 0; i < coreData.TravelDayCurrencies.Count(); i++)
+            {
+                if (coreData.TravelDayCurrencies[i] < 0)
+                {
+                    long dailyValue = -coreData.TravelDayCurrencies[i];
 
-            maxMult = MathUtil.Clamp(MobileGameConstants.MinPlayMult, maxMult, settings.MaxPlayMult);
+                    long currentValueAvailable = (long)(coreData.Currencies[i] * settings.MaxMultAsAPercentOfCurrentCurrency);
+
+                    long currMaxMult = currentValueAvailable / dailyValue;
+
+                    if (currMaxMult < maxMult)
+                    {
+                        maxMult = Math.Max(1, currMaxMult);
+                    }
+                }
+            }
 
             List<int> result = new List<int>();
 

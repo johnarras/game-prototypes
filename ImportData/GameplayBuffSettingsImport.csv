@@ -1,0 +1,25 @@
+header gameplaybuff,IdKey,Name,Icon,Art
+header buffeffect,EntityTypeId,EntityId,Quantity,
+gameplaybuff,1,Lucky,Lucky,Lucky
+buffeffect,gameplaystatbuff,luck,2,
+,,,,
+gameplaybuff,2,Speedy,Speedy,Speedy
+buffeffect,gameplaystatbuff,bonusspeed,2,
+,,,,
+gameplaybuff,3,Well Fed,WellFed,WellFed
+buffeffect,traveldaycurrencybuff,rations,-1,
+,,,,
+gameplaybuff,4,Working Out,WorkingOut,WorkingOut
+buffeffect,gameplaystatbuff,maxcapacity,1,
+,,,,
+gameplaybuff,5,Forager,Forager,Forager
+buffeffect,gameplaystatbuff,searching,5,
+,,,,
+gameplaybuff,6,Surplus Rations,SurplusRations,SurplusRations
+buffefffect,currencyregenbuff,rations,2,
+,,,,
+gameplaybuff,7,Surplus Supplies,SurplusSupplies,SurplusSupplies
+buffeffect,currencyregenbuff,Supplies,1,
+,,,,
+gameplaybuff,8,Surplus Mana,SurplusMana,SurplusMana
+buffeffect,currencyregenbuff,mana,1,

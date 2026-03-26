@@ -2,10 +2,8 @@
   "Id": "buildingtype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Clothing Store",
-  "Icon": "ClothingStore",
-  "Art": "ClothingStore",
-  "Radius": 5,
-  "VariationCount": 1,
-  "ShowNameplate": true
+  "Name": "House",
+  "Icon": "House",
+  "Art": "House",
+  "IsCrawlerBuilding": true
 }

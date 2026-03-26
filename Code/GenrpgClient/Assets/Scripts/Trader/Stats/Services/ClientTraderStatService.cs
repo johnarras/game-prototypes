@@ -1,25 +1,25 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Services;
+﻿
+
+using Assets.Scripts.Trader.ClientEvents;
+using Genrpg.Shared.Attributes.Services;
+using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Stats.Services
 {
-   public class ClientTraderStatService : TraderStatService
+   public class ClientAttributeService : AttributeService
     {
         private IDispatcher _dispatcher = null;
 
-        public override void UpdateStats(CoreData coreData, CaravanData caravanData, TraderStatData statData)
+        public override async Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
         {
-           base.UpdateStats(coreData, caravanData, statData);
+            await base.UpdateBuffsAndDebuffs(lookup);    
             _dispatcher.Dispatch(new UpdateTraderHUD());
         }
 
-        public override void AddDebuffDaysPlayed(CoreData coreData, CaravanData caravanData, TraderStatData statData, long daysAdded)
+        public override async Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded)
         {
-            base.AddDebuffDaysPlayed(coreData, caravanData, statData, daysAdded);
+            await base.AddDebuffDaysPlayed(lookup, daysAdded);
             _dispatcher.Dispatch(new UpdateTraderHUD());
         }
     }

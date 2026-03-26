@@ -1,6 +1,7 @@
 
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crafting.Settings.Recipes;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -51,13 +52,11 @@ namespace Genrpg.Shared.Inventory.Services
                 item = new Item();
                 item.Id = HashUtils.NewGuid();
                 item.ItemTypeId = genData.oldItem.ItemTypeId;
-                item.QualityTypeId = genData.oldItem.QualityTypeId;
-                item.Quantity = genData.oldItem.Quantity;
                 item.Name = genData.oldItem.Name;
                 item.Level = genData.oldItem.Level;
                 if (genData.oldItem.Effects != null)
                 {
-                    item.Effects = new List<ItemEffect>(genData.oldItem.Effects);
+                    item.Effects = new List<Effect>(genData.oldItem.Effects);
                 }
 
                 return item;
@@ -109,17 +108,11 @@ namespace Genrpg.Shared.Inventory.Services
             Item item = new Item();
             item.Id = HashUtils.NewGuid();
             item.ItemTypeId = itype.IdKey;
-            item.QualityTypeId = gd.QualityTypeId;
-            item.Quantity = gd.Quantity;
-            if (item.Quantity > 1 && item.EquipSlotId > 0)
-            {
-                item.Quantity = 1;
-            }
 
             if (itype.Effects != null)
             {
-                item.Effects = new List<ItemEffect>();
-                foreach (ItemEffect eff in itype.Effects)
+                item.Effects = new List<Effect>();
+                foreach (Effect eff in itype.Effects)
                 {
                     if (eff.EntityTypeId == EntityTypes.Stat || eff.EntityTypeId == EntityTypes.StatPct)
                     {
@@ -147,7 +140,7 @@ namespace Genrpg.Shared.Inventory.Services
                 return null;
             }
 
-            item.Level = itype.GetFromRangeLevel(gd.Level);
+            item.Level = gd.Level;
 
             return item;
         }
@@ -477,7 +470,7 @@ namespace Genrpg.Shared.Inventory.Services
                 globalPct = 5;
             }
 
-            List<ItemEffect> effs = new List<ItemEffect>();
+            List<Effect> effs = new List<Effect>();
 
             foreach (long key in statTotals.Keys)
             {
@@ -504,25 +497,28 @@ namespace Genrpg.Shared.Inventory.Services
 
                 if (finalVal != 0)
                 {
-                    ItemEffect eff = new ItemEffect() { EntityTypeId = EntityTypes.Stat, EntityId = key, Quantity = finalVal };
+                    Effect eff = new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = key, Quantity = finalVal };
                     effs.Add(eff);
                 }
             }
 
+            BuyCostArgs buyArgs = new BuyCostArgs()
+            {
+                Level = genData.Level,
+                QualityTypeId = qualityType.IdKey,
+                ScalingTypeId = scalingType.IdKey,
+                ItemTypeId = itype.IdKey,
+                ExtraScaling = 1.0f,
+            };
 
-
-            Item item = null;
-            item = new Item();
+            Item item = new Item();
             item.Id = HashUtils.NewGuid();
             item.ItemTypeId = itype.IdKey;
-            item.QualityTypeId = genData.QualityTypeId;
             item.Level = genData.Level;
-            item.Quantity = 1;
-            item.ScalingTypeId = scalingType.IdKey;
             item.Effects = effs;
-            item.BuyCost = _sharedItemService.CalcBuyCost(_gameData, null, item);
+            item.BuyCost = _sharedItemService.CalcBuyCost(null, buyArgs);
             item.SellValue = (long)(item.BuyCost * _gameData.Get<VendorSettings>(null).SellToVendorPriceMult);
-            item.Name = GenerateItemName(rand, itype.IdKey, item.Level, item.QualityTypeId, new List<FullReagent>()).SingularName;
+            item.Name = GenerateItemName(rand, itype.IdKey, item.Level, qualityType.IdKey, new List<FullReagent>()).SingularName;
 
             return item;
 

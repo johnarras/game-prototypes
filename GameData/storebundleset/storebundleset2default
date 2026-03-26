@@ -12,7 +12,7 @@
       "BundleId": "Supplies100",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 2,
           "Quantity": 100
         }
@@ -25,7 +25,7 @@
       "BundleId": "Supplies300",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 2,
           "Quantity": 300
         }
@@ -38,7 +38,7 @@
       "BundleId": "Supplies300",
       "Rewards": [
         {
-          "EntityTypeId": 200,
+          "EntityTypeId": 1,
           "EntityId": 2,
           "Quantity": 500
         }

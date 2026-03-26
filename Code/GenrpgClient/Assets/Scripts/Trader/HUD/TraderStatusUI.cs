@@ -7,13 +7,12 @@ using Genrpg.Shared.Trader.Constants;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
 {
-    public class TraderStatusUI : BaseBehaviour
+    public class GameplayStatusUI : BaseBehaviour
     {
 
         private ITraderInfoService _infoService = null;
         private ICalendarService _calendarService = null;
 
-        public GText PositionText;
         public GText DateText;
 
         public override void Init()
@@ -39,7 +38,6 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
             if (coreData != null)
             {
                 _uiService.SetText(DateText, _calendarService.PrintDay(coreData.Vars[TraderVars.PlayCount]));
-                _uiService.SetText(PositionText, _infoService.GetHUDStatus(coreData));
             }
         }
     }

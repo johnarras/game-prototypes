@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Spawns.WorldData;
 using Genrpg.Shared.Website.Interfaces;

@@ -1,6 +1,5 @@
 using Genrpg.Shared.Purchasing.Constants;
 using Genrpg.Shared.Website.Interfaces;
-using MessagePack;
 
 namespace Genrpg.Shared.Purchasing.WebApi.InitializePurchase
 {

@@ -100,12 +100,12 @@ public class QuestInfoUI : BaseBehaviour
 
         List<Reward> rewards = _questService.GetRewards(_rand, _gs.ch, _qtype, false);
 
-        Reward expReward = rewards.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Currency && x.EntityId == CurrencyTypes.Exp);
+        Reward expReward = rewards.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CharCurrency && x.EntityId == CharCurrencyTypes.Exp);
         if (expReward != null)
         {
             _uiService.SetText(Experience, "XP: " + expReward.Quantity.ToString());
         }
-        Reward moneyReward = rewards.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Currency && x.EntityId == CurrencyTypes.Money);
+        Reward moneyReward = rewards.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CharCurrency && x.EntityId == CharCurrencyTypes.Money);
         if (moneyReward != null && Money != null)
         {
             Money.SetMoney(moneyReward.Quantity);
@@ -128,7 +128,7 @@ public class QuestInfoUI : BaseBehaviour
                         Data = item,
                         EntityTypeId = EntityTypes.Item,
                     };
-                    _iconService.InitItemIcon(idata, OtherRewards, this._assetService, _token);
+                    _iconService.InitItemIcon(idata, OtherRewards, _assetService, _token);
                 }
             }
         }

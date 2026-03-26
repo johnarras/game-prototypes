@@ -1,0 +1,15 @@
+{
+  "Id": "gameplaybuff5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Forager",
+  "Icon": "Forager",
+  "Art": "Forager",
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 5,
+      "Quantity": 5
+    }
+  ]
+}

@@ -7,6 +7,7 @@ using Genrpg.Shared.SpellCrafting.Services;
 using Genrpg.Shared.Spells.PlayerData.Spells;
 using Genrpg.Shared.Utils;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
 {
@@ -14,7 +15,7 @@ namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
     {
         private ISharedSpellCraftService _spellCraftService = null;
 
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, CraftSpell message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, CraftSpell message)
         {
             Spell startSpell = message.CraftedSpell;
 
@@ -57,6 +58,7 @@ namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
             spellData.Add(startSpell);
             _repoService.QueueSave(startSpell);
             ch.AddMessage(new OnCraftSpell() { CraftedSpell = startSpell });
+            await Task.CompletedTask;
         }
     }
 }

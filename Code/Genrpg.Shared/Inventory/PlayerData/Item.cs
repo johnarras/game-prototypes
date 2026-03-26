@@ -1,5 +1,5 @@
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using MessagePack;
 using System.Collections.Generic;
 
@@ -12,26 +12,18 @@ namespace Genrpg.Shared.Inventory.PlayerData
         [Key(1)] public override string OwnerId { get; set; }
         [Key(2)] public string Name { get; set; }
         [Key(3)] public long ItemTypeId { get; set; }
-        [Key(4)] public long Quantity { get; set; }
-        [Key(5)] public List<ItemEffect> Effects { get; set; } = new List<ItemEffect>();
-        [Key(6)] public long QualityTypeId { get; set; }
-        [Key(7)] public long LootRankId { get; set; }
-        [Key(8)] public long ScalingTypeId { get; set; }
-        [Key(9)] public long EquipSlotId { get; set; }
-        [Key(10)] public long BuyCost { get; set; }
-        [Key(11)] public long SellValue { get; set; }
-        [Key(12)] public long Level { get; set; }
+        [Key(4)] public long Level { get; set; }
+        [Key(5)] public List<Effect> Effects { get; set; } = new List<Effect>();
+        [Key(6)] public long LootRankId { get; set; }
 
-        [Key(13)] public List<ItemProc> Procs { get; set; } = new List<ItemProc>();
+        [Key(7)] public int IconIndex { get; set; }
 
-        /// <summary>
-        /// Cache this on the item when it's in memory so we don't have to keep looking it up.
-        /// </summary>
-        /// 
-        private string _icon;
+        [Key(8)] public long EquipSlotId { get; set; }
+        [Key(9)] public long BuyCost { get; set; }
+        [Key(10)] public long SellValue { get; set; }
 
-        public string GetIcon() { return _icon; }
-        public void SetIcon(string icon) { _icon = icon; }
+        [Key(11)] public List<ItemProc> Procs { get; set; } = new List<ItemProc>();
+
 
         private string _art;
         public string GetArt() { return _art; }
@@ -43,21 +35,10 @@ namespace Genrpg.Shared.Inventory.PlayerData
 
         public Item()
         {
-            Effects = new List<ItemEffect>();
-            Quantity = 1;
+            Effects = new List<Effect>();
         }
 
     }
-
-    [MessagePackObject]
-    public class ItemEffect : IEffect
-    {
-        [Key(0)] public long EntityTypeId { get; set; }
-        [Key(1)] public long Quantity { get; set; }
-        [Key(2)] public long EntityId { get; set; }
-        [Key(3)] public string Name { get; set; }
-    }
-
 }
 
 

@@ -1,4 +1,3 @@
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,12 +56,12 @@ namespace Genrpg.Shared.Utils.Data
 
             int[] item = Dat.FirstOrDefault(x => x[0] == subIndex);
 
-            if (item ==null)
+            if (item == null)
             {
                 return;
             }
 
-            item[1] &= ~(1 << bitRemainder);   
+            item[1] &= ~(1 << bitRemainder);
         }
 
         public bool MatchAnyBits(int bits)
@@ -70,7 +69,7 @@ namespace Genrpg.Shared.Utils.Data
             int[] item = Dat.FirstOrDefault(x => x[0] == 0);
             if (item != null)
             {
-                return (item[1] & bits) != 0;   
+                return (item[1] & bits) != 0;
             }
             return false;
         }

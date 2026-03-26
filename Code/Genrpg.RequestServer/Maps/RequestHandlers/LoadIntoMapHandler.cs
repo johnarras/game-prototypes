@@ -81,7 +81,7 @@ namespace Genrpg.RequestServer.Maps.RequestHandlers
 
             PlayerStoreOfferData offerData = await _purchasingService.GetCurrentStores(context, ch, true, token);
 
-            List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(context.core, serverDataList);
+            List<IUnitData> clientDataList = await _playerDataService.MapToClientDto(await context.GetAsync<CoreData>(), serverDataList);
 
             List<IGameSettingsLoader> loaders = _gameDataService.GetAllLoaders();
 

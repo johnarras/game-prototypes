@@ -1,6 +1,7 @@
 using Genrpg.DataUtils.Entities.Core;
 using Genrpg.DataUtils.Importers.Core;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
@@ -8,7 +9,6 @@ using Genrpg.Shared.Trader.Maps.Services;
 using Genrpg.Shared.Trader.TradeEconomy.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Settings;
 using Genrpg.Shared.Trader.Travel.Services;
-using Genrpg.Shared.Trader.Travel.Settings;
 
 namespace Genrpg.DataUtils.Importers.Trader
 {
@@ -26,7 +26,7 @@ namespace Genrpg.DataUtils.Importers.Trader
 
             IReadOnlyList<TradeGood> allTradeGoods = gs.data.Get<TradeGoodSettings>(null).GetData();
 
-            CalculateTradeGoodCosts(gs, allCities, allTradeGoods);
+            SetupTradeGoodProducerCities(gs, allCities, allTradeGoods);
 
             foreach (City city in allCities)
             {
@@ -48,85 +48,25 @@ namespace Genrpg.DataUtils.Importers.Trader
             return true;
         }
 
-        private void CalculateTradeGoodCosts(EditorGameState gs, IReadOnlyList<City> cities, IReadOnlyList<TradeGood> tradeGoods)
+        private void SetupTradeGoodProducerCities(EditorGameState gs, IReadOnlyList<City> cities, IReadOnlyList<TradeGood> tradeGoods)
         {
 
             TradeEconomySettings econ = gs.data.Get<TradeEconomySettings>(null);
 
-            foreach (City city in cities)
-            {
-                city.TradeGoodBuyCosts.Clear();
-            }
-
-
             foreach (TradeGood tradeGood in tradeGoods)
             {
-                tradeGood.ProducerCities.Clear();
-                List<City> producerCities = new List<City>();
-
-                List<City> consumerCities = new List<City>();
+                tradeGood.ProducerCities.Clear();;
                 foreach (City city in cities)
                 {
                     if (city.TradeGoodsProduced.Any(x => x.TradeGoodId == tradeGood.IdKey))
                     {
-                        producerCities.Add(city);
                         tradeGood.ProducerCities.Add(new TradeGoodProducerCity() { CityId = city.IdKey });
                     }
-                    else
-                    {
-                        consumerCities.Add(city);
-                    }
                 }
 
-                if (producerCities.Count < 1)
+                if (tradeGood.ProducerCities.Count < 1)
                 {
                     _logService.Error("No cities produce " + tradeGood.Name);
-
-                }
-                else
-                {
-                    long populationSum = producerCities.Sum(x => x.Population);
-
-                    if (populationSum > 0)
-                    {
-                        foreach (City city in producerCities)
-                        {
-
-                            CityTradeGood tg = city.TradeGoodsProduced.FirstOrDefault(x => x.TradeGoodId == tradeGood.IdKey);
-                            double popPct = city.Population * 1.0 / populationSum;
-
-                            double priceScale = econ.SmallProducerPriceScale * (1 - popPct) +
-                                econ.BigProducerPriceScale * (popPct);
-
-                            tg.PriceScale = priceScale;
-
-                            city.TradeGoodBuyCosts[tradeGood.IdKey] = (long)(tradeGood.Price * priceScale);
-                            tradeGood.CityBuyCosts[city.IdKey] = city.TradeGoodBuyCosts[tradeGood.IdKey];
-                        }
-                    }
-                }
-
-                foreach (City city in consumerCities)
-                {
-                    double minDistanceToProducer = 100000000;
-
-                    foreach (City producerCity in producerCities)
-                    {
-                        double dist = _traderMapService.GetDistanceBetweenPoints(gs.data.Get<TravelSettings>(null), city.MapPixelX, city.MapPixelY, producerCity.MapPixelX, producerCity.MapPixelY);
-
-
-                        if (dist < minDistanceToProducer)
-                        {
-                            minDistanceToProducer = dist;
-                        }
-                    }
-
-                    double distancePct = Math.Min(1, minDistanceToProducer / econ.MaxCostDistance);
-
-                    double costScale = econ.MinConsumerPriceScale * (1 - distancePct) + econ.MaxConsumerPriceScale * (distancePct);
-
-                    city.TradeGoodBuyCosts[tradeGood.IdKey] = (long)(costScale * tradeGood.Price);
-                    tradeGood.CityBuyCosts[city.IdKey] = city.TradeGoodBuyCosts[tradeGood.IdKey];
                 }
             }
         }

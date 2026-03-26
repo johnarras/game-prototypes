@@ -15,6 +15,8 @@ public interface ILineGenService : IInitializable
     List<MyPointF> GetBressenhamCircle(MyPoint center, LineGenParameters pars);
     List<ConnectedPairData> ConnectPoints(List<ConnectPointData> points, IRandom rand, float extraConnectionPct = 0.0f);
     List<PointXZ> GridConnect(int sx, int sz, int ex, int ez, bool xFirst);
+
+    List<PointXZ> GetRotatedEllipse(float cx, float cy, float rx, float ry, float angle);
 }
 
 public class LineGenService : ILineGenService
@@ -104,10 +106,10 @@ public class LineGenService : ILineGenService
 
         if (lg.LinePathNoiseScale > 0)
         {
-            float freq = MathUtil.FloatRange(0.0150f, 0.020f, rand) * length * 0.3f;
+            float freq = RandUtils.FloatRange(0.0150f, 0.020f, rand) * length * 0.3f;
             if (rand.NextDouble() < 0.2f)
             {
-                freq *= MathUtil.FloatRange(0.8f, 1.2f, rand);
+                freq *= RandUtils.FloatRange(0.8f, 1.2f, rand);
 
             }
 
@@ -116,9 +118,9 @@ public class LineGenService : ILineGenService
                 freq *= lg.LinePathNoiseScale;
             }
 
-            float amp = MathUtil.FloatRange(0.3f, 0.4f, rand);
+            float amp = RandUtils.FloatRange(0.3f, 0.4f, rand);
             int octaves = 2;
-            float pers = MathUtil.FloatRange(0.3f, 0.4f, rand);
+            float pers = RandUtils.FloatRange(0.3f, 0.4f, rand);
             float[,] offsets2 = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), length + 1, length + 1);
             if (offsets2 != null && offsets2.Length > length)
             {
@@ -512,7 +514,7 @@ public class LineGenService : ILineGenService
         }
         int midRoadsToAdd = (int)(finalConnections.Count * extraConnectionPct);
 
-        int maxRoadsToAdd = MathUtil.IntRange(midRoadsToAdd / 2, midRoadsToAdd * 3 / 2, rand);
+        int maxRoadsToAdd = RandUtils.IntRange(midRoadsToAdd / 2, midRoadsToAdd * 3 / 2, rand);
 
         for (int i = 0; i < maxRoadsToAdd; i++)
         {
@@ -664,6 +666,44 @@ public class LineGenService : ILineGenService
 
         return points;
     }
+
+    public List<PointXZ> GetRotatedEllipse(float cx, float cy, float rx, float ry, float angleDegrees)
+    {
+
+        List<PointXZ> retval = new List<PointXZ>();
+        float angleRad = angleDegrees * (MathF.PI / 180.0f);
+        float cosA = MathF.Cos(angleRad);
+        float sinA = MathF.Sin(angleRad);
+
+        // Calculate bounding box half-extents
+        float width = MathF.Sqrt(MathF.Pow(rx * cosA, 2) + MathF.Pow(ry * sinA, 2));
+        float height = MathF.Sqrt(MathF.Pow(rx * sinA, 2) + MathF.Pow(ry * cosA, 2));
+
+        int xStart = (int)MathF.Floor(cx - width);
+        int xEnd = (int)MathF.Ceiling(cx + width);
+        int yStart = (int)MathF.Floor(cy - height);
+        int yEnd = (int)MathF.Ceiling(cy + height);
+
+        for (int y = yStart; y <= yEnd; y++)
+        {
+            for (int x = xStart; x <= xEnd; x++)
+            {
+                // Relativize to center
+                float dx = x - cx;
+                float dy = y - cy;
+
+                // Rotate point back to axis-aligned space
+                float xRot = dx * cosA + dy * sinA;
+                float yRot = -dx * sinA + dy * cosA;
+
+                // Standard ellipse check
+                if ((xRot * xRot) / (rx * rx) + (yRot * yRot) / (ry * ry) <= 1.0f)
+                {
+                    retval.Add(new PointXZ(x, y));
+                }
+            }
+        }
+
+        return retval;
+    }
 }
-
-

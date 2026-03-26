@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype82default",
+  "ParentId": "default",
+  "IdKey": 82,
+  "Name": "CurrencyStorageBuff",
+  "Icon": "CurrencyStorageBuff",
+  "Art": "CurrencyStorageBuff"
+}

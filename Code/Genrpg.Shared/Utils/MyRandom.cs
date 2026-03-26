@@ -1,5 +1,4 @@
 using Genrpg.Shared.Interfaces;
-using MessagePack;
 using System;
 
 namespace Genrpg.Shared.Utils
@@ -98,7 +97,7 @@ namespace Genrpg.Shared.Utils
         }
 
         /// <summary>
-        /// Returns a MyRandom number between minValue and maxValue-1
+        /// Returns a MyRandom number between minValue and maxValue
         /// </summary>
         /// <param name="minValue"></param>
         /// <param name="maxValue"></param>

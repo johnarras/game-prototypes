@@ -3,9 +3,9 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Minigames.Controllers;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
-using Genrpg.Shared.Client.Tokens;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
+using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Minigames.Games.Settings;
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Minigames.Services
             MinigameType mtype = _gameData.Get<MinigameTypeSettings>(_gs.ch).Get(minigameTypeId);
             _dispatcher.Dispatch(new ShowFloatingText("Won " + mtype.Name));
             ShowLobby(minigameTypeId);
-            _webService.SendClientUserWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = true }, _token);
+            _webService.SendWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = true }, _token);
         }
 
         public void ClickLose(long minigameTypeId)
@@ -137,7 +137,7 @@ namespace Assets.Scripts.Minigames.Services
             MinigameType mtype = _gameData.Get<MinigameTypeSettings>(_gs.ch).Get(minigameTypeId);
             _dispatcher.Dispatch(new ShowFloatingText("Lost " + mtype.Name));
             ShowLobby(minigameTypeId);
-            _webService.SendClientUserWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = false }, _token);
+            _webService.SendWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = false }, _token);
         }
     }
 }

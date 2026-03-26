@@ -3,54 +3,20 @@
     {
       "IdKey": 2,
       "Name": "Money",
-      "PluralName": "",
-      "Desc": "",
-      "Icon": "IconCopper",
-      "Art": "updated tuning"
+      "Icon": "Money",
+      "Art": "Money"
     },
     {
       "IdKey": 3,
       "Name": "Exp",
-      "Icon": "IconStarGold"
-    },
-    {
-      "IdKey": 4,
-      "Name": "Ability",
-      "Art": "new text blah"
-    },
-    {
-      "IdKey": 101,
-      "Name": "Alignment Tokens"
-    },
-    {
-      "IdKey": 102,
-      "Name": "Race Tokens",
-      "Art": "aaa"
-    },
-    {
-      "IdKey": 103,
-      "Name": "Religion Tokens",
-      "Icon": "IconCross",
-      "Art": "bbb"
-    },
-    {
-      "IdKey": 104,
-      "Name": "Job Tokens",
-      "Icon": "IconHammer"
-    },
-    {
-      "IdKey": 106,
-      "Name": "Monster Tokens"
-    },
-    {
-      "IdKey": 107,
-      "Name": "Player Tokens"
+      "Icon": "Exp",
+      "Art": "Exp"
     }
   ],
   "Parent": {
     "Id": "default",
-    "Name": "CurrencySettings"
+    "Name": "CharCurrencySettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-02T21:51:19.282Z"
+  "SaveTime": "2026-03-23T19:25:36.8Z"
 }

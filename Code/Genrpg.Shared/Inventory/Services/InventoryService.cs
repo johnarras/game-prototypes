@@ -1,8 +1,5 @@
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.DataStores.Constants;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.Messages;
@@ -14,7 +11,6 @@ using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Genrpg.Shared.Inventory.Services
 {
@@ -65,53 +61,11 @@ namespace Genrpg.Shared.Inventory.Services
             {
                 return false;
             }
-
-            if (itype.CanStack())
-            {
-                Item stackItem = idata.GetMatchingStackItem(item);
-
-                if (stackItem != null)
-                {
-                    stackItem.Quantity += item.Quantity;
-                    AddMessage(unit, idata, stackItem, new OnUpdateItem { Item = stackItem, UnitId = unit.Id });
-                    return true;
-                }
-            }
             idata.AddInventory(item);
             item.OwnerId = unit.Id;
 
             AddMessage(unit, idata, item, new OnAddItem() { ItemId = item.Id, UnitId = unit.Id });
             return true;
-        }
-
-        public virtual Item RemoveItemQuantity(MapObject unit, string itemId, int quantity)
-        {
-
-            if (quantity < 1)
-            {
-                return null;
-            }
-
-            InventoryData idata = unit.Get<InventoryData>();
-
-            Item item = idata.GetItem(itemId);
-            if (item == null)
-            {
-                return null;
-            }
-
-            item.Quantity -= quantity;
-            if (item.Quantity < 1)
-            {
-                idata.RemoveInventory(item);
-                AddMessage(unit, idata, item, new OnRemoveItem() { ItemId = item.Id, UnitId = unit.Id }, EDataUpdateTypes.Delete);
-            }
-            else
-            {
-                AddMessage(unit, idata, item, new OnUpdateItem { Item = item, UnitId = unit.Id });
-            }
-
-            return item;
         }
 
         public virtual Item RemoveItem(MapObject unit, string itemId, bool deleteItem)
@@ -134,7 +88,6 @@ namespace Genrpg.Shared.Inventory.Services
                 deleteItem ? EDataUpdateTypes.Delete : EDataUpdateTypes.Save);
             return item;
         }
-
 
         public virtual bool EquipItem(MapObject obj, string itemId, long equipSlotId, bool calcStatsNow = true)
         {
@@ -310,29 +263,6 @@ namespace Genrpg.Shared.Inventory.Services
                 {
                     return false;
                 }
-
-                CrawlerLootSettings lootSettings = _gameData.Get<CrawlerLootSettings>(unit);
-
-                List<Role> roles = _gameData.Get<RoleSettings>(unit).GetRoles(unit.Roles);
-
-                if (roles.Count < 1)
-                {
-                    return true;
-                }
-
-                if ((slot.IdKey == EquipSlots.MainHand || slot.IdKey == EquipSlots.Ranged))
-                {
-                    if (lootSettings.AllowAllWeaponTypes || roles.Any(x => x.BinaryBonuses.Any(x => x.EntityTypeId == EntityTypes.Item && x.EntityId == itype.IdKey)))
-                    {
-                        return true;
-                    }
-                }
-                else if (lootSettings.AllowAllArmorTypes || roles.Any(x => x.MaxArmorScalingTypeId >= item.ScalingTypeId))
-                {
-                    return true;
-                }
-
-                return false;
             }
 
             return true;

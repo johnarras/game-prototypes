@@ -2,12 +2,14 @@ using Assets.Scripts.ClientEvents.DataUpdates;
 using Assets.Scripts.Login.Messages.Core;
 using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
 using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
     public class UpdateGameDataResponseHandler : BaseClientWebResponseHandler<UpdateGameSettingsResponse>
     {
-        protected override void InnerProcess(UpdateGameSettingsResponse result, CancellationToken token)
+        protected override async Awaitable InnerProcess(UpdateGameSettingsResponse result, CancellationToken token)
         {
             if (_gs.ch != null)
             {
@@ -18,6 +20,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
             _gameData.AddData(result.NewSettings);
             _dispatcher.Dispatch(new OnNewGameData());
+            await Task.CompletedTask;
         }
     }
 }

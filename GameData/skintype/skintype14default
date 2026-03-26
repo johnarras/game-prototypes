@@ -4,7 +4,5 @@
   "IdKey": 14,
   "Name": "Reindeer",
   "Icon": "Reindeer",
-  "Art": "Reindeer",
-  "AnimalTypeId": 14,
-  "IsDefault": true
+  "Art": "Reindeer"
 }

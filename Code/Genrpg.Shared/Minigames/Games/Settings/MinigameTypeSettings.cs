@@ -1,11 +1,9 @@
-﻿using MessagePack;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
+﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Minigames.Games.Settings
@@ -30,7 +28,7 @@ namespace Genrpg.Shared.Minigames.Games.Settings
         public string Art { get; set; }
 
         public long MinLevel { get; set; }
-        
+
         public bool Active { get; set; }
 
         public long WinCoins { get; set; }

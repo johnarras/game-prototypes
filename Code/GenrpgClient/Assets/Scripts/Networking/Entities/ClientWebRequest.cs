@@ -22,10 +22,10 @@ public class ClientWebRequest
         _handler = handler;
         for (int times = 0; times < MaxTimes; times++)
         {
-            string text = await _clientWebService.SendRequest<string>(_uri, HttpMethod.Post, postData, security);
+            string text = await _clientWebService.SendRawWebRequest<string>(_uri, HttpMethod.Post, postData, security);
             if (!string.IsNullOrEmpty(text))
             {
-                handler(text, commands, token);
+                await handler(text, commands, token);
                 break;
             }
             else

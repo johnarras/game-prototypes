@@ -1,11 +1,9 @@
-using MessagePack;
 using Genrpg.Shared.Interfaces;
-using System;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
     public class MapStub : IStringId, IName
-    { 
+    {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }

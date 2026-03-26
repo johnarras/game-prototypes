@@ -2,8 +2,8 @@ using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Client.Core;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.Core;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
@@ -64,8 +64,8 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                         continue;
                     }
 
-                    long damage = MathUtil.LongRange(minDam, maxDam, _rand);
-                    _crawlerStatService.Add(party, pm, StatTypes.Health, StatCategories.Curr, -damage, ElementTypes.Melee);
+                    long damage = RandUtils.LongRange(minDam, maxDam, _rand);
+                    _crawlerStatService.Add(party, pm, StatTypes.Health, UnitStatValOffsets.Curr, -damage, ElementTypes.Melee);
 
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
                     {
@@ -75,7 +75,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
                     if (_rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
                     {
-                        long tier = Math.Min(MathUtil.LongRange(1, maxStatusEffectTier, _rand), MathUtil.LongRange(1, maxStatusEffectTier, _rand));
+                        long tier = Math.Min(RandUtils.LongRange(1, maxStatusEffectTier, _rand), RandUtils.LongRange(1, maxStatusEffectTier, _rand));
 
 
                         StatusEffect effect = effects.FirstOrDefault(x => x.IdKey == tier);

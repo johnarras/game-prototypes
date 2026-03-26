@@ -2,8 +2,6 @@ using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Interfaces;
 using MessagePack;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,7 +20,7 @@ namespace Genrpg.Shared.Users.Loaders
             if (obj == null)
             {
                 obj = new TServer() { Id = userId };
-                await _repoService.Save(obj);   
+                await _repoService.Save(obj);
             }
         }
 

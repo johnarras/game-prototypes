@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3341358986525135211}
   - component: {fileID: 3449427348213380016}
+  - component: {fileID: 159991469336577565}
   m_Layer: 0
   m_Name: TraderTerrain
   m_TagString: Untagged
@@ -89,6 +90,23 @@ MonoBehaviour:
     type: 3}
   TileViewRadius: 8
   CameraOrthgraphicSize: 5
+--- !u!111 &159991469336577565
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432107527951206980}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &5337724718148420401
 GameObject:
   m_ObjectHideFlags: 0

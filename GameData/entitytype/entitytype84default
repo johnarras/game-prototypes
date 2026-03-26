@@ -1,0 +1,10 @@
+{
+  "Id": "entitytype84default",
+  "ParentId": "default",
+  "IdKey": 84,
+  "Name": "BonusTravelDayCurrency",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "BonusTravelDayCurrency",
+  "Art": "BonusTravelDayCurrency"
+}

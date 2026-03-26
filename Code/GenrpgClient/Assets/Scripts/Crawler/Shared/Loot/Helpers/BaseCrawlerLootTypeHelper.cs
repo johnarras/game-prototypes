@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Inventory.Entities;

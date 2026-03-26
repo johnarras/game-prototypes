@@ -1,6 +1,5 @@
-using MessagePack;
-using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Crafting.Entities;
+using Genrpg.Shared.Inventory.PlayerData;
 
 namespace Genrpg.Shared.Crafting.Messages
 {

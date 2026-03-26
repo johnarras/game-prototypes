@@ -8,7 +8,7 @@ namespace Assets.Scripts.Trader.UI.InfoScreen
     public class TraderInfoScreen : BaseInfoScreen
     {
         public GButton CityButton;
-        public GButton AnimalButton;
+        public GButton CaravanMemberButton;
         public GButton RoadButton;
         public GButton TradeGoodsButton;
 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Trader.UI.InfoScreen
             await base.OnStartOpen(data, token);
 
             _uiService.SetButton(CityButton, GetName(), () => ShowInfoList(EntityTypes.City));
-            _uiService.SetButton(AnimalButton, GetName(), () => ShowInfoList(EntityTypes.Animal));
+            _uiService.SetButton(CaravanMemberButton, GetName(), () => ShowInfoList(EntityTypes.CaravanMember));
             _uiService.SetButton(RoadButton, GetName(), () => ShowInfoList(EntityTypes.Road));
             _uiService.SetButton(TradeGoodsButton, GetName(), () => ShowInfoList(EntityTypes.TradeGood));
 

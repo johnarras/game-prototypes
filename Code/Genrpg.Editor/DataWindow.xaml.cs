@@ -12,6 +12,7 @@ using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Settings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.SettingsNames.Settings;
 using Genrpg.Shared.Tasks.Services;
 using Genrpg.Shared.Versions.Settings;
@@ -176,7 +177,6 @@ namespace Genrpg.Editor
 
                 List<IGrouping<Type, ITopLevelSettings>> groups = gs.data.AllSettings().GroupBy(x => x.GetType()).ToList();
 
-
                 List<ITopLevelSettings> allSettings = gs.data.AllSettings();
                 foreach (ITopLevelSettings settings in allSettings)
                 {
@@ -189,7 +189,6 @@ namespace Genrpg.Editor
 
                     settings.SetInternalIds();
                 }
-
 
                 foreach (IGrouping<Type, ITopLevelSettings> group in groups)
                 {

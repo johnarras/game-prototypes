@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(null);
 
                 long defenseStatId = StatTypes.Armor;
-                args.NewQuantity = MathUtil.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+                args.NewQuantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
                 if (fullEffect.Effect.EntityTypeId == EntityTypes.Damage)
                 {
                     defenseStatId = StatTypes.Resist;
@@ -163,7 +163,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             }
 
             args.TotalDamage += args.NewQuantity;
-            _crawlerStatService.Add(party, target, StatTypes.Health, StatCategories.Curr, -args.NewQuantity, fullEffect.Effect.ElementTypeId);
+            _crawlerStatService.Add(party, target, StatTypes.Health, UnitStatValOffsets.Curr, -args.NewQuantity, fullEffect.Effect.ElementTypeId);
 
 
             double cursedArrowsValue = party.Buffs[PartyBuffs.CursedArrows];

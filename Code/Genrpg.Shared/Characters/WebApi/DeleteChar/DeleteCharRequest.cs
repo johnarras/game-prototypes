@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Website.Interfaces;
 
 namespace Genrpg.Shared.Characters.WebApi.DeleteChar

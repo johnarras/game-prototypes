@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.Crawler.Parties.PlayerData
 {
     public class UpgradeStatus

@@ -77,8 +77,6 @@
     "MaxLevelGoldMultDefault": 0.4,
     "ItemChanceDefault": 0.5,
     "ExtraLootScalePerMonsterBonus": 0.1,
-    "AllowAllArmorTypes": true,
-    "AllowAllWeaponTypes": true,
     "EnchantChancePerPowerIncrease": 0.15,
     "BaseEnchantChance": 0.05,
     "LevelDiffBeforeLootLoss": 5,

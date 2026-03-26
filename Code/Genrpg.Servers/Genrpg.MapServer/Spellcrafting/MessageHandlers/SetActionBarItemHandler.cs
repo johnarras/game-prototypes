@@ -4,12 +4,13 @@ using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
 {
     public class SetActionBarItemHandler : BaseCharacterServerMapMessageHandler<SetActionBarItem>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, SetActionBarItem message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Character ch, SetActionBarItem message)
         {
             ActionInputData actionData = ch.Get<ActionInputData>();
 
@@ -20,6 +21,7 @@ namespace Genrpg.MapServer.Spellcrafting.MessageHandlers
             }
 
             ch.AddMessage(new OnSetActionBarItem() { Index = message.Index, SpellId = message.SpellId });
+            await Task.CompletedTask;
 
         }
     }

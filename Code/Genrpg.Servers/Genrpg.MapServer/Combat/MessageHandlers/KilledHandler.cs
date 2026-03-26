@@ -10,6 +10,7 @@ using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.WorldData;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Combat.MessageHandlers
 {
@@ -18,7 +19,7 @@ namespace Genrpg.MapServer.Combat.MessageHandlers
         private IRpgLevelService _levelService = null;
         private IMapProvider _mapProvider = null;
 
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, Unit unit, Killed message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, Unit unit, Killed message)
         {
             _aiService.EndCombat(rand, unit, message.UnitId, false);
             if (unit is Character ch)
@@ -30,7 +31,7 @@ namespace Genrpg.MapServer.Combat.MessageHandlers
 
                     if (level != null)
                     {
-                        _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Exp, level.MobExp, null, null);
+                        await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, level.MobExp, null, null);
                         _levelService.UpdateLevel(rand, ch);
                     }
                 }

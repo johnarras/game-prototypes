@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 public interface IQuestGenService : IInitializable
 {
@@ -75,7 +75,7 @@ public class QuestGenService : IQuestGenService
         // Make standard quests first.
         foreach (MapSpawn npc in zoneNPCs)
         {
-            int numQuests = MathUtil.IntRange(1, 3, rand);
+            int numQuests = RandUtils.IntRange(1, 3, rand);
 
             for (int q = 0; q < numQuests; q++)
             {
@@ -102,7 +102,7 @@ public class QuestGenService : IQuestGenService
                 questType.MapId = _mapProvider.GetMap().Id;
                 questType.MapVersion = _mapProvider.GetMap().MapVersion;
 
-                int numTasks = (int)MathUtil.FloatRange(1, 2.2f, rand);
+                int numTasks = (int)RandUtils.FloatRange(1, 2.2f, rand);
 
                 for (int t = 0; t < numTasks; t++)
                 {
@@ -139,8 +139,8 @@ public class QuestGenService : IQuestGenService
                         if (onLocation < 0.4f)
                         {
                             onEntityTypeId = EntityTypes.Unit;
-                            taskQuantity = MathUtil.IntRange(1, 20, rand);
-                            dropChance = MathUtil.FloatRange(0.3, 1.0f, rand);
+                            taskQuantity = RandUtils.IntRange(1, 20, rand);
+                            dropChance = RandUtils.FloatRange(0.3, 1.0f, rand);
                             if (rand.NextDouble() < 0.3f)
                             {
                                 dropChance = 1.0f;
@@ -149,13 +149,13 @@ public class QuestGenService : IQuestGenService
                         else 
                         {
                             onEntityTypeId = EntityTypes.GroundObject;
-                            taskQuantity = MathUtil.IntRange(4, 10, rand);
+                            taskQuantity = RandUtils.IntRange(4, 10, rand);
                         }
                     }
                     else
                     {
                         taskEntityTypeId = EntityTypes.Unit;
-                        taskQuantity = MathUtil.IntRange(2, 10, rand);
+                        taskQuantity = RandUtils.IntRange(2, 10, rand);
                     }
 
                     if (taskQuantity > 5 && rand.NextDouble() < 0.5f)
@@ -183,7 +183,7 @@ public class QuestGenService : IQuestGenService
                         questItem = new QuestItem() { IdKey = GetNextQuestItemId(_gs) };
                         questItem.Name = "QuestItem" + questType.IdKey;
                         questItem.Icon = "Acorn_001";
-                        questItem.Art = "Pottery" + MathUtil.IntRange(1, 27, rand);
+                        questItem.Art = "Pottery" + RandUtils.IntRange(1, 27, rand);
                         _mapProvider.GetMap().QuestItems.Add(questItem);
                     }
 

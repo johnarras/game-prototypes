@@ -1,10 +1,6 @@
-using MessagePack;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.MapMessages.Interfaces;
-using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.Inventory.PlayerData;
+using Genrpg.Shared.MapMessages;
+using MessagePack;
 
 namespace Genrpg.Shared.Inventory.Messages
 {

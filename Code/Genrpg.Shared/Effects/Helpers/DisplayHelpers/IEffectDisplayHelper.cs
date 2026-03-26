@@ -1,4 +1,4 @@
-using Genrpg.Shared.Effects.Interfaces;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.PlayerFiltering.Interfaces;
 

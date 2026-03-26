@@ -1,25 +1,24 @@
 using Genrpg.RequestServer.Core;
+using Genrpg.RequestServer.LevelTrack.Services;
 using Genrpg.RequestServer.Trader.Travel.Services;
+using Genrpg.Shared.Attributes.PlayerData;
+using Genrpg.Shared.Attributes.Services;
+using Genrpg.Shared.Attributes.Settings;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
-using Genrpg.Shared.CoreCurrencies.Settings;
-using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.LevelTrackDifficulty.Settings;
 using Genrpg.Shared.LevelTracks.Settings;
-using Genrpg.Shared.NewPlayers.Settings;
 using Genrpg.Shared.PlayMultiplier.Constants;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Trader.Animals.Services;
-using Genrpg.Shared.Trader.Animals.Settings;
+using Genrpg.Shared.Trader.CaravanMembers.Services;
+using Genrpg.Shared.Trader.CaravanMembers.Settings;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Holdings.PlayerData;
-using Genrpg.Shared.Trader.Stats.PlayerData;
-using Genrpg.Shared.Trader.Stats.Settings;
 using Genrpg.Shared.Trader.TradeGoods.Services;
 
 namespace Genrpg.RequestServer.Trader.NewPlayer
@@ -36,122 +35,88 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
         private IGameData _gameData = null;
         private ICaravanService _caravanService = null;
         private ITradeGoodService _tradeGoodService = null;
-        private IAnimalService _animalService = null;
+        private ICaravanMemberService _CaravanMemberService = null;
         private IServerCaravanService _serverCaravanService = null;
+        private IAttributeService _attributeService = null;
+        private IServerLevelTrackService _levelTrackService = null;
 
         public async Task UpdatePlayerOnLogin(WebContext context, bool onLogin)
         {
-            CoreData CoreData = await context.GetAsync<CoreData>();
+            CoreData coreData = await context.GetAsync<CoreData>();
 
             List<Reward> newRewards = new List<Reward>();
 
-            CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(context.core);
+            CoreCurrencyTypeSettings currencySettings = _gameData.Get<CoreCurrencyTypeSettings>(coreData);
 
-            NewPlayerBonusSettings newPlayerSettings = _gameData.Get<NewPlayerBonusSettings>(context.core);
+            GameplayStatSettings statSettings = _gameData.Get<GameplayStatSettings>(coreData);
 
-            List<LevelTrackReward> levelRewards = _gameData.Get<LevelTrackRewardSettings>(context.core).GetData().Where(x => x.Level <= CoreData.Level).ToList();
-
-            TraderStatSettings statSettings = _gameData.Get<TraderStatSettings>(context.core);
-
-            TraderStatData statData = await context.GetAsync<TraderStatData>();
+            AttributeData attributeData = await context.GetAsync<AttributeData>();
 
             HoldingsData holdings = await context.GetAsync<HoldingsData>();
 
             CaravanData caravanData = await context.GetAsync<CaravanData>();
 
-            CaravanPosition pos = _caravanService.GetPosition(context.core);
+            CaravanPosition pos = _caravanService.GetPosition(coreData);
+
+            LevelTrackRewardSettings levelRewardSettings = _gameData.Get<LevelTrackRewardSettings>(coreData);
 
             if (!pos.OnRoad() && pos.GetCurrentCity() == null)
             {
-
-                await _serverCaravanService.EnterCity(context, newPlayerSettings.StartCityId, true);
+                await _serverCaravanService.EnterCity(context, levelRewardSettings.StartCityId, true);
             }
 
-            if (CoreData.Vars[TraderVars.Mult] < PlayMultConstants.MinMult)
+            if (coreData.Vars[TraderVars.Mult] < PlayMultConstants.MinMult)
             {
-                CoreData.Vars[TraderVars.Mult] = PlayMultConstants.MinMult;
+                coreData.Vars[TraderVars.Mult] = PlayMultConstants.MinMult;
             }
 
-            foreach (IReward rew in newPlayerSettings.GetData())
+            bool didJustLevelUp = coreData.Level < 1;
+
+            if (didJustLevelUp)
             {
-                if (rew.EntityTypeId == EntityTypes.BaseTraderStat)
+                LevelTrackDifficultySettings diffSettings = _gameData.Get<LevelTrackDifficultySettings>(coreData);
+                coreData.Level = 1;
+                coreData.Currencies[CoreCurrencyTypes.Exp] = 0;
+                coreData.Vars[TraderVars.ExpToLevelUp] = (int)diffSettings.GetExpToNextLevel(coreData.Level);
+                coreData.SetNextHourlyUpdate();
+            }
+
+            List<Reward> rewards = await _levelTrackService.GiveLevelTrackRewards(context, didJustLevelUp);
+
+            if (caravanData.CurrentMembers.Count < 1)
+            {
+                IReadOnlyList<CaravanMember> CaravanMembers = _gameData.Get<CaravanMemberSettings>(coreData).GetData();
+
+                List<CaravanMember> ownedCaravanMembers = new List<CaravanMember>();
+
+                foreach (CaravanMember CaravanMember in CaravanMembers)
                 {
-                    if (statData.Stats[rew.EntityId].Base < rew.Quantity)
+                    if (holdings.CaravanMembersOwned.HasBitIndex(CaravanMember.IdKey))
                     {
-                        statData.Stats[rew.EntityId].Base = (int)rew.Quantity;
-                    }
-                }
-                else if (CoreData.Level < 1 && rew.EntityTypeId == EntityTypes.CoreCurrency)
-                {
-                    CoreData.Currencies[rew.EntityId] = rew.Quantity;
-                }
-                else if (rew.EntityTypeId == EntityTypes.Animal)
-                {
-                    _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), rew.EntityId);
-                }
-
-            }
-
-            foreach (IReward rew in levelRewards)
-            {
-                if (rew.EntityTypeId == EntityTypes.BaseTraderStat)
-                {
-                    if (statData.Stats[rew.EntityId].Base < rew.Quantity)
-                    {
-                        statData.Stats[rew.EntityId].Base = (int)rew.Quantity;
-                    }
-                }
-                else if (rew.EntityTypeId == EntityTypes.Animal)
-                {
-                    _animalService.AddAnimalToHoldings(context.core, await context.GetAsync<HoldingsData>(), rew.EntityId);
-                }
-            }
-            if (context.core.Level < 1)
-            {
-                LevelTrackDifficultySettings diffSettings = _gameData.Get<LevelTrackDifficultySettings>(context.core);
-
-                context.core.Level = 1;
-                context.core.Currencies[CoreCurrencyTypes.Exp] = 0;
-                context.core.Vars[TraderVars.ExpToLevelUp] = (int)diffSettings.GetExpToNextLevel(context.core.Level);
-                context.core.SetNextHourlyUpdate();
-
-                List<NewPlayerBonus> startTradeGoods = newPlayerSettings.GetData().Where(x => x.EntityTypeId == EntityTypes.TradeGood).ToList();
-
-                foreach (IReward rew in startTradeGoods)
-                {
-                    _tradeGoodService.AddTradeGoodToCaravan(CoreData, caravanData, statData, rew.EntityId);
-                }
-            }
-
-            if (caravanData.Animals.Count < 1)
-            {
-
-                IReadOnlyList<AnimalType> animals = _gameData.Get<AnimalTypeSettings>(context.core).GetData();
-
-                List<AnimalType> ownedAnimals = new List<AnimalType>();
-
-                foreach (AnimalType animal in animals)
-                {
-                    if (holdings.AnimalsOwned.HasBitIndex(animal.IdKey))
-                    {
-                        ownedAnimals.Add(animal);
+                        ownedCaravanMembers.Add(CaravanMember);
                     }
                 }
 
-                AnimalType chosenAnimal = null;
-                if (ownedAnimals.Count < 1)
+                CaravanMember chosenCaravanMember = null;
+                if (ownedCaravanMembers.Count < 1)
                 {
-                    chosenAnimal = animals.OrderBy(x => x.Price).FirstOrDefault();
+                    chosenCaravanMember = CaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
                 }
                 else
                 {
-                    chosenAnimal = ownedAnimals.OrderBy(x => x.Price).FirstOrDefault();
+                    chosenCaravanMember = ownedCaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
                 }
 
-                _caravanService.AddAnimalToCaravan(CoreData, caravanData, holdings, statData, chosenAnimal.IdKey, true);
+                await _caravanService.AddMemberToCaravan(context, chosenCaravanMember.IdKey, true);
             }
 
-            _caravanService.UpdateTravelStatsFromCaravan(CoreData, caravanData, statData);
+            if (caravanData.SkinTypeId == 0)
+            {
+                caravanData.SkinTypeId = 1;
+            }
+
+
+            await _caravanService.CalcCoreTravelStats(context);
         }
     }
 }

@@ -1,4 +1,3 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Spells.Settings.Effects;
@@ -7,7 +6,6 @@ using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {

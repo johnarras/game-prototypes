@@ -211,6 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
         type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
+        type: 3}
       propertyPath: m_TextWrappingMode
       value: 0
       objectReference: {fileID: 0}
@@ -222,11 +227,16 @@ PrefabInstance:
     - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
         type: 3}
       propertyPath: m_VerticalAlignment
-      value: 1024
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
         type: 3}
       propertyPath: m_horizontalMapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098416782585100563, guid: 638a4896c064d0c498f66dce08bdc3d1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7782033818799144501, guid: 638a4896c064d0c498f66dce08bdc3d1,

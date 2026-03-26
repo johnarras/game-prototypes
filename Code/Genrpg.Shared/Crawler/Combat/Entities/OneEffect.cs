@@ -1,9 +1,3 @@
-using MessagePack;
-using Genrpg.Shared.Inventory.PlayerData;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Genrpg.Shared.Spells.Procs.Interfaces;
 using Genrpg.Shared.Crawler.Combat.Constants;
 
 namespace Genrpg.Shared.Crawler.Combat.Entities

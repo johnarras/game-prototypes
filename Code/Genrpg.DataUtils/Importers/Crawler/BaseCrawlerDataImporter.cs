@@ -5,6 +5,7 @@ using Genrpg.Shared.Crawler.Roles.Constants;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Constants;
 using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.Spells.Constants;
@@ -133,7 +134,7 @@ namespace Genrpg.DataUtils.Importers.Crawler
             foreach (UnitType utype in unitTypes)
             {
 
-                List<UnitEffect> allEffects = new List<UnitEffect>();
+                List<Effect> allEffects = new List<Effect>();
 
                 TribeType ttype = gs.data.Get<TribeSettings>(null).Get(utype.TribeTypeId);
 
@@ -164,17 +165,17 @@ namespace Genrpg.DataUtils.Importers.Crawler
                     }
                 }
 
-                foreach (UnitEffect effect in allEffects)
+                foreach (Effect effect in allEffects)
                 {
                     if (effect.EntityId == CrawlerSpellConstants.SelfSummonPlaceholderSpellId)
                     {
                         long spellId = effect.EntityId + CrawlerSpellConstants.MonsterSummonSpellIdOffset;
 
-                        UnitEffect currEffect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId >= spellId);
+                        Effect currEffect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId >= spellId);
 
                         if (currEffect == null)
                         {
-                            utype.Effects.Add(new UnitEffect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = spellId, Quantity = 1 });
+                            utype.Effects.Add(new Effect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = spellId, Quantity = 1 });
                             shouldSaveUnitType = true;
                         }
                     }
@@ -191,11 +192,11 @@ namespace Genrpg.DataUtils.Importers.Crawler
                                 if (utype.Name.Contains(prevUnitType.Name))
                                 {
                                     long spellId = prevUnitType.IdKey + CrawlerSpellConstants.MonsterSummonSpellIdOffset;
-                                    UnitEffect currEffect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId >= spellId);
+                                    Effect currEffect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CrawlerSpell && x.EntityId >= spellId);
 
                                     if (currEffect == null)
                                     {
-                                        utype.Effects.Add(new UnitEffect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = spellId, Quantity = 1 });
+                                        utype.Effects.Add(new Effect() { EntityTypeId = EntityTypes.CrawlerSpell, EntityId = spellId, Quantity = 1 });
 
                                         shouldSaveUnitType = true;
                                     }
@@ -223,7 +224,7 @@ namespace Genrpg.DataUtils.Importers.Crawler
                     newSpells.Remove(currSpell);
                 }
 
-                UnitEffect effect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Resist);
+                Effect effect = utype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.Resist);
 
                 if (effect != null && effect.EntityId > 0)
                 {

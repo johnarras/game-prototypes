@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Text;
-
 namespace Genrpg.Shared.Stats.Constants
 {
     public class StatTypes
@@ -52,7 +47,7 @@ namespace Genrpg.Shared.Stats.Constants
         public const long Efficiency = 64; // Cost reduction
         public const long Cooldown = 65; // Cooldown reduction
         public const long CritDam = 66; // Crit damage
-        
+
         public const long Hit = 70; // Chance to hit
 
         // Update StatConstants.MaxStatType to be the max value + 1 in this file.

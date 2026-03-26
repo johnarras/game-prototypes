@@ -1,5 +1,6 @@
 ﻿using Genrpg.DataUtils.Entities.Core;
 using Genrpg.Shared.GameSettings.Interfaces;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.DataUtils.Importers.Core
 {
@@ -20,7 +21,9 @@ namespace Genrpg.DataUtils.Importers.Core
         {
             TParent currParent = null;
 
-            string parentTypeName = typeof(TParent).Name.ToLower();
+            string parentTypeName = StrUtils.NormalizeTypeName<TParent>();
+                
+                typeof(TParent).Name.ToLower();
             Dictionary<string, string[]> headers = new Dictionary<string, string[]>();
 
             Dictionary<string, object> _contextObjects = new Dictionary<string, object>();

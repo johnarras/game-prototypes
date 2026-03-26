@@ -1,8 +1,0 @@
-{
-  "Id": "traderstat16default",
-  "ParentId": "default",
-  "IdKey": 16,
-  "Name": "Supplies Cost",
-  "Icon": "SuppliesCost",
-  "Art": "SuppliesCost"
-}

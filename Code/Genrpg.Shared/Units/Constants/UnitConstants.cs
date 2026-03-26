@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.Units.Constants
 {
     public class UnitConstants

@@ -1,9 +1,5 @@
-using MessagePack;
-using Genrpg.Shared.MapMessages.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Genrpg.Shared.MapMessages;
+using MessagePack;
 
 namespace Genrpg.Shared.Chat.Messages
 {

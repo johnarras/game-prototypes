@@ -1,6 +1,7 @@
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Inventory.Entities;
 using Genrpg.Shared.Inventory.PlayerData;
@@ -22,11 +23,11 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
             List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x=>x.RoleScalingTier <= effectLevel).ToList();
 
-            CrawlerSpell spell = RandomUtils.GetRandomEnchant(okSpells, _rand);
+            CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _rand);
 
             if (spell != null && lootType != null)
             {
-                item.Effects.Add(new ItemEffect()
+                item.Effects.Add(new Effect()
                 {
                     EntityTypeId = EntityTypes.CrawlerSpell,
                     EntityId = spell.IdKey,

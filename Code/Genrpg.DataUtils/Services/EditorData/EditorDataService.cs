@@ -3,7 +3,6 @@ using Genrpg.DataUtils.Entities.Core;
 using Genrpg.ServerShared.DataStores;
 using Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.ServerShared.PlayerData;
 using Genrpg.ServerShared.PlayerData.Services;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Constants;
@@ -12,20 +11,16 @@ using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.GameSettings.Interfaces;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Serialization.Utils;
+using Genrpg.Shared.Trader.Travel.Settings;
 using Genrpg.Shared.Utils;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
-using System.Collections;
-using System.Xml.Linq;
 
 namespace Genrpg.DataUtils.Services.EditorData
 {
@@ -125,7 +120,7 @@ namespace Genrpg.DataUtils.Services.EditorData
             {
                 FullRepositoryService repoService = (FullRepositoryService) gs.loc.Get<IRepositoryService>();
 
-                PolymorphicMongoRepository polyRepo = (PolymorphicMongoRepository)repoService.FindRepo(typeof(CurrencySettings));
+                PolymorphicMongoRepository polyRepo = (PolymorphicMongoRepository)repoService.FindRepo(typeof(CoreCurrencyTypeSettings));
 
                 IMongoCollection <BsonDocument> collection = polyRepo.GetSettingsCollection();
 
@@ -258,8 +253,15 @@ namespace Genrpg.DataUtils.Services.EditorData
             }
 
 
+            
             foreach (ITopLevelSettings settingsItem in finalSettings)
             {
+
+                if (settingsItem.GetType().Name.IndexOf("TravelRew") >= 0)
+                {
+                    Console.WriteLine("Saving TravelRewards");
+                }
+
                 string txt = _textSerializer.PrettyPrint(settingsItem);
                 string filename = settingsItem.GetType().Name + ".txt";
 
@@ -277,7 +279,7 @@ namespace Genrpg.DataUtils.Services.EditorData
 
             foreach (IGameSettings settings in allSettings)
             {
-                string subpath = settings.GetType().Name.ToLower();
+                string subpath = StrUtils.NormalizeTypeName(settings.GetType());
 
                 string fullDir = Path.Combine(parentPath, subpath);
 
@@ -335,7 +337,7 @@ namespace Genrpg.DataUtils.Services.EditorData
                 }
             }
 
-            string subpath = objectToSave.GetType().Name.ToLower();
+            string subpath = StrUtils.NormalizeTypeName(objectToSave.GetType());
 
             string fullDir = Path.Combine(parentPath, subpath);
 
@@ -437,7 +439,7 @@ namespace Genrpg.DataUtils.Services.EditorData
 
                 FullRepositoryService repoService = (FullRepositoryService)gs.loc.Get<IRepositoryService>();
 
-                PolymorphicMongoRepository polyRepo = (PolymorphicMongoRepository)repoService.FindRepo(typeof(CurrencySettings));
+                PolymorphicMongoRepository polyRepo = (PolymorphicMongoRepository)repoService.FindRepo(typeof(CoreCurrencyTypeSettings));
 
                 IMongoCollection<BsonDocument> collection = polyRepo.GetSettingsCollection();
                 List<WriteModel<BsonDocument>> bulkOps = new List<WriteModel<BsonDocument>>();

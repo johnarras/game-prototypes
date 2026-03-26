@@ -16,12 +16,12 @@ namespace Genrpg.ServerShared.CloudComms.Services
         void SetQueueMessageHandlers<H>(Dictionary<Type, H> handlers) where H : IQueueMessageHandler;
         void SendQueueMessage(string serverId, IQueueMessage cloudMessage);
         void SendQueueMessages(string serverId, List<IQueueMessage> cloudMessages);
-        
+
         Task<TResponse> SendResponseMessageAsync<TResponse>(string serverId, IRequestQueueMessage requestMessage) where TResponse : IResponseQueueMessage;
-        
+
         void SendResponseMessageWithHandler<TResponse>(string serverId, IRequestQueueMessage requestMessage,
             Action<TResponse> responseHandler) where TResponse : IResponseQueueMessage;
-        
+
         Task ReceiveQueueMessages(QueueMessageEnvelope envelope, CancellationToken token);
 
 

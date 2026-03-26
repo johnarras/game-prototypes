@@ -5,10 +5,12 @@ using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>
 {
-    protected override void InnerProcess(OnSpawn spawnMessage, CancellationToken token)
+    protected override async Awaitable InnerProcess(OnSpawn spawnMessage, CancellationToken token)
     {
         if (_objectManager.GetMapObject(spawnMessage.ObjId, out MapObject obj))
         {
@@ -46,7 +48,7 @@ public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>
 
             if (loader != null)
             {
-                loader.Load(spawnMessage, newObj, token);
+                await loader.Load(spawnMessage, newObj, token);
             }
         }
     }

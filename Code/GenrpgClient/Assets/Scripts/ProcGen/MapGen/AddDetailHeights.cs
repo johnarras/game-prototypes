@@ -110,16 +110,16 @@ public class AddDetailHeights : BaseZoneGenerator
 		float startExp = 0.0f;
 		
 		long pseed = zone.Seed+34543;
-        freq = startFreq * MathUtil.FloatRange(1 - freqDelta, 1 + freqDelta, rand);
-        amp = startAmp * MathUtil.FloatRange(1 - ampDelta, 1 + ampDelta, rand);
+        freq = startFreq * RandUtils.DeltaScale(freqDelta, rand);
+        amp = startAmp * RandUtils.DeltaScale(ampDelta, rand);
 
         float extraScale = 1.0f;
 
-        extraScale = MathUtil.FloatRange(0.9f, 1.3f, rand);
+        extraScale = RandUtils.FloatRange(0.9f, 1.3f, rand);
         freq /= extraScale;
         amp *= extraScale;
 
-		float exp = startExp* MathUtil.FloatRange(0.5f, 1.5f, rand);
+		float exp = startExp* RandUtils.FloatRange(0.5f, 1.5f, rand);
        
         amp *= 0.95f;
         pers *= 1.05f;
@@ -127,11 +127,11 @@ public class AddDetailHeights : BaseZoneGenerator
         float[,] heightsUp = _noiseService.Generate(pers,freq,amp,octaves,pseed,perlinSize,perlinSize, exp);
 		
 		
-        freq = startFreq * MathUtil.FloatRange(1 - freqDelta, 1 + freqDelta, rand)*0.45f;
-        amp = startAmp * MathUtil.FloatRange(1 - ampDelta, 1 + ampDelta, rand) * 1.45f;
-        exp = startExp * MathUtil.FloatRange(0.5f, 1.5f, rand);
+        freq = startFreq * RandUtils.DeltaScale(freqDelta, rand) *0.45f;
+        amp = startAmp * RandUtils.DeltaScale(ampDelta, rand) * 1.45f;
+        exp = startExp * RandUtils.FloatRange(0.5f, 1.5f, rand);
 
-        extraScale = MathUtil.FloatRange(0.9f, 1.3f, rand);
+        extraScale = RandUtils.FloatRange(0.9f, 1.3f, rand);
         freq /= extraScale;
         amp *= extraScale;
 
@@ -140,21 +140,21 @@ public class AddDetailHeights : BaseZoneGenerator
 		
 		
 
-        freq = startFreq * MathUtil.FloatRange(1 - freqDelta, 1 + freqDelta, rand)*0.9f;
-        amp = startAmp * MathUtil.FloatRange(1 - ampDelta, 1 + ampDelta, rand) * 1.1f;
-        exp = startExp * MathUtil.FloatRange(0.5f, 1.5f, rand);
+        freq = startFreq * RandUtils.DeltaScale(freqDelta, rand)*0.9f;
+        amp = startAmp * RandUtils.DeltaScale(ampDelta, rand) * 1.1f;
+        exp = startExp * RandUtils.FloatRange(0.5f, 1.5f, rand);
 
 
-        extraScale = MathUtil.FloatRange(0.9f, 1.3f, rand);
+        extraScale = RandUtils.FloatRange(0.9f, 1.3f, rand);
         freq /= extraScale;
         amp *= extraScale;
 
         float[,] heightsDown = _noiseService.Generate(pers,freq,amp,octaves,rand.Next(),perlinSize,perlinSize,exp);
 
 
-        float effPers = MathUtil.FloatRange(0.05f, 0.2f, rand);
-        float effFreq = MathUtil.FloatRange(0.05f, 0.10f, rand)*perlinSize;
-        float effAmp = MathUtil.FloatRange(0.04f, 0.12f, rand);
+        float effPers = RandUtils.FloatRange(0.05f, 0.2f, rand);
+        float effFreq = RandUtils.FloatRange(0.05f, 0.10f, rand)*perlinSize;
+        float effAmp = RandUtils.FloatRange(0.04f, 0.12f, rand);
 
         float[,] roadEffectPercent = _noiseService.Generate(effPers, effFreq, effAmp, 2, rand.Next(), perlinSize,perlinSize);
 
@@ -169,18 +169,18 @@ public class AddDetailHeights : BaseZoneGenerator
         float startRad = 40;
 
 
-        float radPers = MathUtil.FloatRange(0.1f, 0.4f, rand);
-        float radFreq = MathUtil.FloatRange(0.02f, 0.1f, rand) * perlinSize;
-        float radAmp = MathUtil.FloatRange(0.3f, 0.6f, rand)*startRad;
+        float radPers = RandUtils.FloatRange(0.1f, 0.4f, rand);
+        float radFreq = RandUtils.FloatRange(0.02f, 0.1f, rand) * perlinSize;
+        float radAmp = RandUtils.FloatRange(0.3f, 0.6f, rand)*startRad;
 
         float[,] radValues = _noiseService.Generate(radPers, radFreq, radAmp, 2, rand.Next(), perlinSize, perlinSize);
 
 
         float startPower = 1.5f;
 
-        float powerPers = MathUtil.FloatRange(0.1f, 0.4f, rand);
-        float powerFreq = MathUtil.FloatRange(0.02f, 0.1f, rand) * perlinSize;
-        float powerAmp = MathUtil.FloatRange(0.3f, 0.6f, rand);
+        float powerPers = RandUtils.FloatRange(0.1f, 0.4f, rand);
+        float powerFreq = RandUtils.FloatRange(0.02f, 0.1f, rand) * perlinSize;
+        float powerAmp = RandUtils.FloatRange(0.3f, 0.6f, rand);
 
         float[,] powerValues = _noiseService.Generate(powerPers, powerFreq, powerAmp, 2, rand.Next(), perlinSize, perlinSize);
 

@@ -1,11 +1,6 @@
-using MessagePack;
-using System;
-using System.Collections;
+using Genrpg.Shared.Spawns.WorldData;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Genrpg.Shared.Spawns.WorldData;
 //using TColl = System.Collections.Generic.HashSet<Entities.MapObjects.MapObject>;
 
 namespace Genrpg.Shared.MapObjects.Entities
@@ -33,7 +28,7 @@ namespace Genrpg.Shared.MapObjects.Entities
         {
             lock (ObjsLock)
             {
-                List<MapObject> set = new List<MapObject>(_objs.Where(x=>!x.IsDeleted()));
+                List<MapObject> set = new List<MapObject>(_objs.Where(x => !x.IsDeleted()));
                 set.Add(obj);
                 _objs = set;
             }

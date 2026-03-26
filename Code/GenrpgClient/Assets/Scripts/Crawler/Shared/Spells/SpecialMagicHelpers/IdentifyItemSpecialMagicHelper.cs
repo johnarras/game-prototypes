@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;

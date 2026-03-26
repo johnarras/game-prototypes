@@ -1,0 +1,22 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "MemberToHoldings",
+      "Icon": "MemberToHoldings",
+      "Art": "MemberToHoldings"
+    },
+    {
+      "IdKey": 2,
+      "Name": "MemberToCaravan",
+      "Icon": "MemberToCaravan",
+      "Art": "MemberToCaravan"
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "SpecialSpendActionSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-26T16:00:18.012Z"
+}

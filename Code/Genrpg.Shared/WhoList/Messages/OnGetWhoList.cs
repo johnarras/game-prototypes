@@ -1,9 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.MapMessages;
 using Genrpg.Shared.WhoList.Entities;
-using System;
+using MessagePack;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.WhoList.Messages
 {

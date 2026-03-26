@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Helpers;

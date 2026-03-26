@@ -50,8 +50,8 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
             IRandom rand = new MyRandom(loadData.Seed);
 
             float edgeDelta = 2;
-            float xpos = MathUtil.FloatRange(-loadData.MapRoot.XZBlockSize + edgeDelta, loadData.MapRoot.XZBlockSize - edgeDelta, rand) / 2;
-            float ypos = MathUtil.FloatRange(-loadData.MapRoot.YBlockSize + edgeDelta, loadData.MapRoot.YBlockSize - edgeDelta, rand) / 2;
+            float xpos = RandUtils.FloatRange(-loadData.MapRoot.XZBlockSize + edgeDelta, loadData.MapRoot.XZBlockSize - edgeDelta, rand) / 2;
+            float ypos = RandUtils.FloatRange(-loadData.MapRoot.YBlockSize + edgeDelta, loadData.MapRoot.YBlockSize - edgeDelta, rand) / 2;
 
             Vector3 pos = wb.MeshRenderer.gameObject.transform.localPosition;
 

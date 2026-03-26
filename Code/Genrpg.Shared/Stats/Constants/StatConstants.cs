@@ -1,5 +1,3 @@
-using MessagePack;
-
 namespace Genrpg.Shared.Stats.Constants
 {
     public class StatConstants

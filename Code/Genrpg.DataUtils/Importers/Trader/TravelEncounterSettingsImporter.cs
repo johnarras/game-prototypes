@@ -2,6 +2,7 @@
 using Genrpg.DataUtils.Importers.Core;
 using Genrpg.Shared.Spawns.Settings;
 using Genrpg.Shared.Trader.Cultures.Settings;
+using Genrpg.Shared.Trader.Encounters.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;

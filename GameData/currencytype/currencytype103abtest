@@ -1,8 +1,0 @@
-{
-  "Id": "currencytype103abtest",
-  "ParentId": "abtest",
-  "IdKey": 103,
-  "Name": "Religion Tokens",
-  "Icon": "IconCross",
-  "Art": "bbb"
-}

@@ -2,12 +2,10 @@
   "Id": "corecurrencytype4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Rations",
+  "Name": "Mana",
   "PluralName": "",
   "Desc": "",
   "AtlasPrefix": "",
-  "Icon": "Rations",
-  "Art": "Rations",
-  "RegenTraderStatId": 8,
-  "StorageTraderStatId": 9
+  "Icon": "Mana",
+  "Art": "Mana"
 }

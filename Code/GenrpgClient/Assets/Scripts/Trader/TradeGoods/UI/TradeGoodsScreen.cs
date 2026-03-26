@@ -1,7 +1,7 @@
 using Assets.Scripts.UI.ScreenSystem;
+using Genrpg.Shared.Attributes.PlayerData;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Stats.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +14,7 @@ namespace Assets.Scripts.Trader.UI.TradeGoods
             CaravanData cdata = _gs.ch.Get<CaravanData>();
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-            TraderStatData statData = _gs.ch.Get<TraderStatData>();
+            AttributeData attributeData = _gs.ch.Get<AttributeData>();
 
             await Task.CompletedTask;
         }

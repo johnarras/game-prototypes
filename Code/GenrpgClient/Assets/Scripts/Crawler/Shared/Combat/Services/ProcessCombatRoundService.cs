@@ -1,7 +1,7 @@
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Crawler.Shared.Combat.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
@@ -231,7 +231,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)
             {
-                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * MathUtil.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
+                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * RandUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
 
                 if (unit.FactionTypeId == FactionTypes.Player && overloadedInventoryCount > 0)
                 {

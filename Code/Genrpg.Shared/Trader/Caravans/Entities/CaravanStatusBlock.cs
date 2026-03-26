@@ -12,7 +12,7 @@
 
         // Add chances for certain events here
         public double ForageChance { get; set; }
-        public double BadEventChance { get; set; }
+        public double Luck { get; set; }
         public double GoodEventChance { get; set; }
 
     }

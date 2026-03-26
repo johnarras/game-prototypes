@@ -40,7 +40,7 @@ public class BaseAddMountains : BaseZoneGenerator
         }
         else if (chosenChance < totalChance)
         {
-            heightMult = MathUtil.FloatRange(0.2f, 1.0f, rand);
+            heightMult = RandUtils.FloatRange(0.2f, 1.0f, rand);
         }
         return heightMult;
     }
@@ -68,7 +68,7 @@ public class BaseAddMountains : BaseZoneGenerator
         int mountainWidth = (int)_md.GetMountainDefaultSize(_mapProvider.GetMap());
 
 
-        mountainWidth = (int)(MathUtil.IntRange(mountainWidth * 4 / 5, mountainWidth * 6 / 5, lineRand));
+        mountainWidth = (int)(RandUtils.IntRange(mountainWidth * 4 / 5, mountainWidth * 6 / 5, lineRand));
 
         if (secondaryMountain)
         {
@@ -79,12 +79,12 @@ public class BaseAddMountains : BaseZoneGenerator
         lp.MinWidthSize = 1;
         lp.MaxWidthSize = 1;
 
-        lp.WidthPosShiftChance = MathUtil.FloatRange(0.12f, 0.23f, lineRand);
+        lp.WidthPosShiftChance = RandUtils.FloatRange(0.12f, 0.23f, lineRand);
         lp.WidthPosShiftChance = 0;
         lp.WidthSize = 1;
         lp.WidthSizeChangeAmount = 0;
         lp.WidthSizeChangeChance = 0.0f;
-        lp.LinePathNoiseScale = MathUtil.FloatRange(0.0f, 0.1f, lineRand);
+        lp.LinePathNoiseScale = RandUtils.FloatRange(0.0f, 0.1f, lineRand);
         //lp.LinePathNoiseScale = 0;
         lp.Seed = lineRand.Next();
 
@@ -112,20 +112,20 @@ public class BaseAddMountains : BaseZoneGenerator
        { 
         MyRandom lineRand = new MyRandom(randSeed / 3 + 183892);
 
-        float amp = MathUtil.FloatRange(0.07f, 0.22f, lineRand) * 0.8f;
-        float freq = MathUtil.FloatRange(0.1f, 0.3f, lineRand) * maxLen * 0.01f * 0.8f;
+        float amp = RandUtils.FloatRange(0.07f, 0.22f, lineRand) * 0.8f;
+        float freq = RandUtils.FloatRange(0.1f, 0.3f, lineRand) * maxLen * 0.01f * 0.8f;
 
         int octaves = 2;
-        float pers = MathUtil.FloatRange(0.1f, 0.3f, lineRand);
+        float pers = RandUtils.FloatRange(0.1f, 0.3f, lineRand);
         float[,] mainHeightNoise = _noiseService.Generate(pers, freq, amp, octaves, lineRand.Next(), points.Count, 1);
 
-        float wfreq = MathUtil.FloatRange(0.05f, 0.1f, lineRand) * baseFreqScaling;
-        float wamp = MathUtil.FloatRange(0.2f, 0.4f, lineRand);
-        float wpers = MathUtil.FloatRange(0.4f, 0.7f, lineRand);       
+        float wfreq = RandUtils.FloatRange(0.05f, 0.1f, lineRand) * baseFreqScaling;
+        float wamp = RandUtils.FloatRange(0.2f, 0.4f, lineRand);
+        float wpers = RandUtils.FloatRange(0.4f, 0.7f, lineRand);       
         int woctaves = 2;
         float[,] widthNoise = _noiseService.Generate(wpers, wfreq, wamp, woctaves, lineRand.Next(), points.Count, 1);
 
-        float wallHeightScale = MathUtil.FloatRange(0.8f, 1.05f, lineRand);
+        float wallHeightScale = RandUtils.FloatRange(0.8f, 1.05f, lineRand);
         int currWallWidth = Math.Max(1, startWallWidth + lineRand.Next() % 3 - lineRand.Next() % 3);
         for (int l = 0; l < points.Count; l++)
         {

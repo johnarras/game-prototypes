@@ -3,7 +3,6 @@ using Genrpg.MonsterServer.Setup;
 using Genrpg.ServerShared.CloudComms.Constants;
 using Genrpg.ServerShared.Core;
 using Genrpg.ServerShared.MainServer;
-using Genrpg.Shared.Setup.Services;
 
 namespace Genrpg.MonsterServer
 {

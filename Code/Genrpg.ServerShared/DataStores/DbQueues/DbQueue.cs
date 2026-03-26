@@ -3,8 +3,6 @@ using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Tasks.Services;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -47,7 +45,7 @@ namespace Genrpg.ServerShared.DataStores.DbQueues
         }
 
         public void Enqueue(IDbAction action)
-        {            
+        {
             _queue.Enqueue(action);
         }
     }

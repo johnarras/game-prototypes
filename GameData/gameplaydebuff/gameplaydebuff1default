@@ -1,0 +1,18 @@
+{
+  "Id": "gameplaydebuff1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Unlucky",
+  "Icon": "Unlucky",
+  "Art": "Unlucky",
+  "CleanseCoreCurrencyTypeId": 4,
+  "CleanseQuantity": 2,
+  "CityCoinsCleanseCost": 20,
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 4,
+      "Quantity": -2
+    }
+  ]
+}

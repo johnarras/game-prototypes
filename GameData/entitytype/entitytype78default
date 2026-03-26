@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype78default",
+  "ParentId": "default",
+  "IdKey": 78,
+  "Name": "BonusCurrencyRegen",
+  "Icon": "BonusCurrencyRegen",
+  "Art": "BonusCurrencyRegen"
+}

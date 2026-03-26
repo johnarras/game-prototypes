@@ -180,8 +180,9 @@
   ],
   "Parent": {
     "Id": "default",
+    "MoveAnimalOutsideOfCityManaCost": 40,
     "Name": "AnimalTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-31T19:17:48.486Z"
+  "SaveTime": "2026-03-23T19:57:07.961Z"
 }

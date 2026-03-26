@@ -1,26 +1,17 @@
 ﻿using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Animals.WebApi;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
+using Genrpg.Shared.Trader.CaravanMembers.WebApi;
 using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Holdings.PlayerData;
-using Genrpg.Shared.Trader.Stats.PlayerData;
 
-namespace Genrpg.RequestServer.Trader.Animals.RequestHandlers
+namespace Genrpg.RequestServer.Trader.CaravanMembers.RequestHandlers
 {
-    public class RemoveAnimalFromCaravanRequestHandler : BaseClientUserRequestHandler<RemoveAnimalFromCaravanRequest>
+    public class RemoveCaravanMemberFromCaravanRequestHandler : BaseClientUserRequestHandler<RemoveCaravanMemberFromCaravanRequest>
     {
         protected ICaravanService _caravanService = null;
-        protected override async Task InnerHandleMessage(WebContext context, RemoveAnimalFromCaravanRequest request, CancellationToken token)
+        protected override async Task InnerHandleMessage(WebContext context, RemoveCaravanMemberFromCaravanRequest request, CancellationToken token)
         {
 
-            CoreData coreData = await context.GetAsync<CoreData>();
-            CaravanData caravanData = await context.GetAsync<CaravanData>();
-            HoldingsData holdingsData = await context.GetAsync<HoldingsData>();
-            TraderStatData statData = await context.GetAsync<TraderStatData>();
-
-            context.AddResponse(_caravanService.RemoveAnimalFromCaravan(coreData, caravanData, statData, request.AnimalTypeId));
+            context.AddResponse(await _caravanService.RemoveMemberFromCaravan(context, request.CaravanMemberId, false));
 
         }
     }

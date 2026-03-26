@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype75default",
+  "ParentId": "default",
+  "IdKey": 75,
+  "Name": "GameplayBuff",
+  "Icon": "GameplayBuff",
+  "Art": "GameplayBuff"
+}

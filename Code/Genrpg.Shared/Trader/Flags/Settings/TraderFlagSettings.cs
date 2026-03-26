@@ -40,7 +40,7 @@ namespace Genrpg.Shared.Trader.Flags.Settings
 
     public class TraderFlagEntityHelper : BaseEntityHelper<TraderFlagSettings, TraderFlag>
     {
-        public override long HelperKey => EntityTypes.TradeGood;
+        public override long HelperKey => EntityTypes.TraderFlag;
     }
 }
 

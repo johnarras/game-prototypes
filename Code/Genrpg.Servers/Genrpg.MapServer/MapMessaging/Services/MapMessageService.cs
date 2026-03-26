@@ -1,35 +1,29 @@
 
+using Genrpg.MapServer.AI.Services;
+using Genrpg.MapServer.MapMessaging.Entities;
+using Genrpg.MapServer.MapMessaging.Interfaces;
+using Genrpg.MapServer.Maps;
+using Genrpg.MapServer.Maps.Constants;
+using Genrpg.Shared.Characters.PlayerData;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.MapMessages;
+using Genrpg.Shared.MapMessages.Interfaces;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Messages;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Pathfinding.Services;
+using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Characters.PlayerData;
-using System.Runtime.InteropServices;
-using Genrpg.MapServer.AI.Services;
-using Genrpg.MapServer.Maps;
-using Genrpg.Shared.MapMessages.Interfaces;
-using Genrpg.MapServer.MapMessaging.Interfaces;
-using System.Reflection;
-using Genrpg.Shared.MapServer.Messages;
-using Genrpg.Shared.MapMessages;
-using Genrpg.MapServer.Maps.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.MapServer.MapMessaging.Entities;
-using Genrpg.MapServer.Spells.Services;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Tasks.Services;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.MapMessaging.Services
 {
@@ -45,7 +39,7 @@ namespace Genrpg.MapServer.MapMessaging.Services
 
         private IMapObjectManager _objectManager = null;
         private IAIService _aiService = null;
-        private IMapProvider _mapProvider =null;
+        private IMapProvider _mapProvider = null;
         private IPathfindingService _pathfindingService = null;
         private ITaskService _taskService = null;
 
@@ -127,7 +121,7 @@ namespace Genrpg.MapServer.MapMessaging.Services
                         + " Tot: " + counts.TotalMessages + " PerSec: " + counts.MessagesPerSecond
 
                          + " AI/Sec: " + aiUpdPerSec + " Cast/Sec: " + castPerSec
-                          + " PF/Sec: " + pfPerSec 
+                          + " PF/Sec: " + pfPerSec
                         );
 
                     if (MapInstanceConstants.ServerTestMode)

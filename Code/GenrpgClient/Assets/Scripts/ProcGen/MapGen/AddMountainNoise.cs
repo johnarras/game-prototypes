@@ -35,18 +35,18 @@ public class AddMountainNoise : BaseAddMountains
 
             MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 500000000 + zone.Seed % 500000000 + 328233);
 
-            float terraceSize = MathUtil.FloatRange(12.0f, 18.0f, rand);
+            float terraceSize = RandUtils.FloatRange(12.0f, 18.0f, rand);
 
-            float freqb = (float)(MathUtil.FloatRange(0.3f, 1.0f, rand) * size / 90.0f)*0.03f;
-            float ampb = MathUtil.FloatRange(0.9f, 1.4f, rand)*2.5f;
+            float freqb = (float)(RandUtils.FloatRange(0.3f, 1.0f, rand) * size / 90.0f)*0.03f;
+            float ampb = RandUtils.FloatRange(0.9f, 1.4f, rand)*2.5f;
             int octavesb = 2;
-            float persb = MathUtil.FloatRange(0.30f, 0.50f, rand)*1.1f;
+            float persb = RandUtils.FloatRange(0.30f, 0.50f, rand)*1.1f;
 
             int seedNext = rand.Next();
             float[,] heightsbig = _noiseService.Generate(persb, freqb, ampb, octavesb, seedNext, xsize, ysize);
 
-            float freqedge = (float)(MathUtil.FloatRange(0.5f, 1.5f, rand) * _mapProvider.GetMap().GetHwid() / 40.0f)*0.45f;
-            float ampedge = MathUtil.FloatRange(0.1f, 0.2f, rand)*2.5f;
+            float freqedge = (float)(RandUtils.FloatRange(0.5f, 1.5f, rand) * _mapProvider.GetMap().GetHwid() / 40.0f)*0.45f;
+            float ampedge = RandUtils.FloatRange(0.1f, 0.2f, rand)*2.5f;
             int octavesedge = 1;
             float persedge = 0.1f;
 
@@ -55,10 +55,10 @@ public class AddMountainNoise : BaseAddMountains
             float midMinVal = 0.85f;
             float midMaxVal = 1.0f;
 
-            float midfreq = (size / MathUtil.FloatRange(8.0f, 17.0f, rand))*0.053f;
-            float midamp = MathUtil.FloatRange(1.3f, 1.7f, rand) * 2.5f;
+            float midfreq = (size / RandUtils.FloatRange(8.0f, 17.0f, rand))*0.053f;
+            float midamp = RandUtils.FloatRange(1.3f, 1.7f, rand) * 2.5f;
             int midoctaves = 2;
-            float midpers = MathUtil.FloatRange(0.3f, 0.45f, rand);
+            float midpers = RandUtils.FloatRange(0.3f, 0.45f, rand);
 
             float[,] midVals = _noiseService.Generate(midpers, midfreq, midamp, midoctaves, rand.Next(), xsize, ysize);
 
@@ -76,18 +76,18 @@ public class AddMountainNoise : BaseAddMountains
                     continue;
                 }
 
-                float freq = (float)(MathUtil.FloatRange(0.05f, 0.07f, rand) * size)*0.05f;
-                float amp = MathUtil.FloatRange(10.0f, 20.0f, rand)*2.5f;
+                float freq = (float)(RandUtils.FloatRange(0.05f, 0.07f, rand) * size)*0.05f;
+                float amp = RandUtils.FloatRange(10.0f, 20.0f, rand)*2.5f;
                 int octaves = 2;
-                float pers = MathUtil.FloatRange(0.30f, 0.50f, rand);
+                float pers = RandUtils.FloatRange(0.30f, 0.50f, rand);
 
-                float extraScale = MathUtil.FloatRange(0.9f, 1.3f, rand);
+                float extraScale = RandUtils.FloatRange(0.9f, 1.3f, rand);
                 freq /= extraScale;
                 amp *= extraScale;
 
                 float[,] heights = _noiseService.Generate(pers, freq, amp, octaves, startPerlinSeed + 1000 * i, xsize, ysize);
 
-                float secondaryWallScale = MathUtil.FloatRange(0.4f, 1.0f, rand);
+                float secondaryWallScale = RandUtils.FloatRange(0.4f, 1.0f, rand);
 
                 // If the index is 1, do maxHeight-heights[x,y]
                 float maxHeight = 0;

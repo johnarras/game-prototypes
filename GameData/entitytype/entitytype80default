@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype80default",
+  "ParentId": "default",
+  "IdKey": 80,
+  "Name": "BaseCurrencyStorage",
+  "Icon": "BaseCurrencyStorage",
+  "Art": "BaseCurrencyStorage"
+}

@@ -1,7 +1,7 @@
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -69,7 +69,7 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
     {
         get
         {
-            return this.gameObject;
+            return gameObject;
         }
     }
 

@@ -47,8 +47,8 @@ public class CombatTextUI : BaseBehaviour
         if (CombatText != null)
         {
             float dmult = 0.03f;
-            float dx = MathUtil.FloatRange(-20, 20, _rand)*dmult;
-            float dy = MathUtil.FloatRange(0, 15, _rand)*dmult;
+            float dx = RandUtils.FloatRange(-20, 20, _rand)*dmult;
+            float dy = RandUtils.FloatRange(0, 15, _rand)*dmult;
             CombatText.transform.localPosition += new Vector3(dx, dy, 0);
 
             switch (text.TextColor)

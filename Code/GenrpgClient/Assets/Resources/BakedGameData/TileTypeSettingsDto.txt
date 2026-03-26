@@ -6,36 +6,8 @@
       "Desc": "Main base",
       "Icon": "TownHallTile",
       "Art": "TownHallTile",
-      "MinLevel": 1,
       "Flags": 1,
-      "Rewards": [],
-      "Effects": [],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 4
-        }
-      ]
+      "Rewards": []
     },
     {
       "IdKey": 2,
@@ -43,8 +15,6 @@
       "Desc": "Wood and Leather",
       "Icon": "ForestTile",
       "Art": "ForestTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -64,9 +34,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 3,
@@ -74,8 +42,6 @@
       "Desc": "Iron and Leather",
       "Icon": "HillsTile",
       "Art": "HillsTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -95,9 +61,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 4,
@@ -105,8 +69,6 @@
       "Desc": "Iron and Stone",
       "Icon": "MountainTile",
       "Art": "MountainTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -126,9 +88,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 5,
@@ -136,8 +96,6 @@
       "Desc": "Wood and Food",
       "Icon": "SwampTile",
       "Art": "SwampTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -157,9 +115,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 6,
@@ -167,8 +123,6 @@
       "Desc": "Food and Herbs",
       "Icon": "PlainsTile",
       "Art": "PlainsTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -188,9 +142,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 7,
@@ -198,8 +150,6 @@
       "Desc": "Stone and Herbs",
       "Icon": "DesertTile",
       "Art": "DesertTile",
-      "Weight": 1.0,
-      "MinLevel": 1,
       "Rewards": [
         {
           "EntityTypeId": 200,
@@ -219,9 +169,7 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [],
-      "UpgradeReagents": []
+      ]
     },
     {
       "IdKey": 8,
@@ -229,42 +177,8 @@
       "Desc": "Improves Leather",
       "Icon": "TannerTile",
       "Art": "TannerTile",
-      "MinLevel": 1,
       "Flags": 1,
-      "Rewards": [],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 12
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 5
-        }
-      ]
+      "Rewards": []
     },
     {
       "IdKey": 9,
@@ -272,7 +186,6 @@
       "Desc": "Improves Food",
       "Icon": "FarmTile",
       "Art": "FarmTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -283,39 +196,6 @@
           "Weight": 1.0,
           "GroupId": 1,
           "MinLevel": 1
-        }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 11
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 3
         }
       ]
     },
@@ -325,7 +205,6 @@
       "Desc": "Improves Wood",
       "Icon": "LumbermillTile",
       "Art": "LumbermillTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -337,39 +216,6 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 7
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 3
-        }
       ]
     },
     {
@@ -378,7 +224,6 @@
       "Desc": "Improves Herbs",
       "Icon": "AlchemistTile",
       "Art": "AlchemistTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -390,39 +235,6 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 9
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 2
-        }
       ]
     },
     {
@@ -431,7 +243,6 @@
       "Desc": "Improves Stone",
       "Icon": "StonemasonTile",
       "Art": "StonemasonTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -443,39 +254,6 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 8
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 3
-        }
       ]
     },
     {
@@ -484,7 +262,6 @@
       "Desc": "Improves Iron",
       "Icon": "SmithyTile",
       "Art": "SmithyTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -496,39 +273,6 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 201,
-          "Quantity": 1,
-          "EntityId": 10
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 2
-        }
       ]
     },
     {
@@ -537,7 +281,6 @@
       "Desc": "Adds Troops To Attack",
       "Icon": "BarracksTile",
       "Art": "BarracksTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -549,39 +292,6 @@
           "GroupId": 1,
           "MinLevel": 1
         }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 202,
-          "Quantity": 20,
-          "EntityId": 13
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 4
-        }
       ]
     },
     {
@@ -590,36 +300,8 @@
       "Desc": "Adds defenses to board",
       "Icon": "GuardTowerTile",
       "Art": "GuardTowerTile",
-      "MinLevel": 1,
       "Flags": 1,
-      "Rewards": [],
-      "Effects": [],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 2
-        }
-      ]
+      "Rewards": []
     },
     {
       "IdKey": 16,
@@ -627,36 +309,8 @@
       "Desc": "Lets you unlock chests.",
       "Icon": "TreasuryTile",
       "Art": "TreasuryTile",
-      "MinLevel": 1,
       "Flags": 1,
-      "Rewards": [],
-      "Effects": [],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 5
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 4
-        }
-      ]
+      "Rewards": []
     },
     {
       "IdKey": 17,
@@ -664,36 +318,8 @@
       "Desc": "Gives bonus round of rewards",
       "Icon": "AdventureTile",
       "Art": "AdventureTile",
-      "MinLevel": 1,
       "Flags": 1,
-      "Rewards": [],
-      "Effects": [],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 1
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 4
-        }
-      ]
+      "Rewards": []
     },
     {
       "IdKey": 18,
@@ -701,7 +327,6 @@
       "Desc": "Improves defenses",
       "Icon": "MageTowerTile",
       "Art": "MageTowerTile",
-      "MinLevel": 1,
       "Flags": 1,
       "Rewards": [
         {
@@ -712,39 +337,6 @@
           "Weight": 1.0,
           "GroupId": 1,
           "MinLevel": 1
-        }
-      ],
-      "Effects": [
-        {
-          "EntityTypeId": 202,
-          "Quantity": 25,
-          "EntityId": 14
-        }
-      ],
-      "UpgradeReagents": [
-        {
-          "UserCoinTypeId": 7,
-          "Quantity": 2
-        },
-        {
-          "UserCoinTypeId": 8,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 9,
-          "Quantity": 4
-        },
-        {
-          "UserCoinTypeId": 10,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 11,
-          "Quantity": 3
-        },
-        {
-          "UserCoinTypeId": 12,
-          "Quantity": 3
         }
       ]
     }

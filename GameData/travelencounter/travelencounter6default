@@ -7,7 +7,7 @@
   "Weight": 100.0,
   "GoodEffects": [
     {
-      "EntityTypeId": 200,
+      "EntityTypeId": 1,
       "EntityId": 4,
       "MinQuantity": 10,
       "MaxQuantity": 20,

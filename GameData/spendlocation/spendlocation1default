@@ -1,0 +1,25 @@
+{
+  "Id": "spendlocation1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Animals",
+  "Desc": "Buy Animals Here!",
+  "Icon": "Animals",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "Buy Animal",
+      "Desc": "Buy an animal!",
+      "SpendCoreCurrencyTypeId": 1,
+      "MinLevel": 1,
+      "MaxTimes": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 56,
+          "EntityId": -1,
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

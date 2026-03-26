@@ -1,17 +1,14 @@
-using MessagePack;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Core.Entities;
-
-using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
-using System.Collections.Generic;
-using Genrpg.Shared.Stats.Messages;
+using Genrpg.Shared.MapObjects.Entities;
+using Genrpg.Shared.MapObjects.Messages;
+using Genrpg.Shared.Spawns.Interfaces;
 using Genrpg.Shared.Spawns.WorldData;
+using Genrpg.Shared.Stats.Messages;
 using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
+using System.Collections.Generic;
 
 namespace Genrpg.Shared.Units.Factories
 {

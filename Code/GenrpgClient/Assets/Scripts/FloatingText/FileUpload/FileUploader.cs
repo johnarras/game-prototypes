@@ -68,7 +68,7 @@ public class FileUploader
             uploadURL = uploadURL.Replace("&amp;", "&");
 
             ClientWebService webService = new ClientWebService();
-            string txt = (webService.SendRequest<string>(uploadPrefix + "/" + expectedFilename, HttpMethod.Get).ToString());
+            string txt = (webService.SendRawWebRequest<string>(uploadPrefix + "/" + expectedFilename, HttpMethod.Get).ToString());
 
             string command = ((string.IsNullOrEmpty(txt) || txt.Contains("BlobNotFound")) ? "copy" : "sync");
 

@@ -1,13 +1,9 @@
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Names.Settings;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
-using Genrpg.Shared.GameSettings;
 using System.Text;
 namespace Genrpg.Shared.Names.Services
 {
@@ -16,7 +12,7 @@ namespace Genrpg.Shared.Names.Services
 
         private IGameData _gameData = null;
 
-        public string PickWord(IRandom rand, List<WeightedName> list, string excludeName = "", string excludePrefix = "", string excludeDesc = "")
+        public string PickWord(IRandom rand, List<WeightedName> list, string excludeName = "", string excludePrefix = "")
         {
             if (list == null)
             {
@@ -31,14 +27,11 @@ namespace Genrpg.Shared.Names.Services
 
                 for (int l = 0; l < list.Count; l++)
                 {
-                    if (!list[l].Ignore && list[l].Weight > 0 &&
-                        !string.IsNullOrEmpty(list[l].Name) &&
+                    if (!string.IsNullOrEmpty(list[l].Name) &&
                         (string.IsNullOrEmpty(excludeName) ||
                         list[l].Name.IndexOf(excludeName) < 0) &&
                         (string.IsNullOrEmpty(excludePrefix) ||
-                        list[l].Name.IndexOf(excludePrefix) != 0) &&
-                        (string.IsNullOrEmpty(excludeDesc) ||
-                        list[l].Desc.IndexOf(excludeDesc) < 0))
+                        list[l].Name.IndexOf(excludePrefix) != 0))
                     {
                         if (times == 0)
                         {
@@ -103,7 +96,7 @@ namespace Genrpg.Shared.Names.Services
             return name;
         }
 
-        public string PickNameListName(IRandom rand, string nameListName, string excludeName = "", string excludePrefix = "", string excludeDesc = "")
+        public string PickNameListName(IRandom rand, string nameListName, string excludeName = "", string excludePrefix = "")
         {
             if (string.IsNullOrEmpty(nameListName))
             {
@@ -115,7 +108,7 @@ namespace Genrpg.Shared.Names.Services
 
             if (nl != null && nl.Names != null && nl.Names.Count > 0)
             {
-                return PickWord(rand, nl.Names, excludeName, excludePrefix, excludeDesc);
+                return PickWord(rand, nl.Names, excludeName, excludePrefix);
             }
             return nameListName;
         }
@@ -287,7 +280,7 @@ namespace Genrpg.Shared.Names.Services
                 {
                     sb.Append(_consonants[rand.Next() % _consonants.Length]);
                 }
-                sb.Append(_vowels[rand.Next()%_vowels.Length]);
+                sb.Append(_vowels[rand.Next() % _vowels.Length]);
             }
 
             if (rand.NextDouble() < 0.5f)

@@ -3,7 +3,7 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Assets.Scripts.Crawler.Tilemaps;
-using Genrpg.Shared.Client.GameEvents;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
@@ -33,14 +33,11 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         public GButton CastPartyBuffsButton;
         public GButton UseItemButton;
         public GButton CampingButton;
-        public GButton TraderMapButton;
-        public GButton TraderInfoButton;
         public GButton SnapshotButton;
         public GButton OptionsButton;
 
         public override void Init()
         {
-            _uiService.SetButton(MapButton, name, ClickMapScreen);
             _uiService.SetButton(MapButton, name, ClickMapScreen);
             _uiService.SetButton(SafetyButton, name, ClickSafety);
             _uiService.SetButton(InfoButton, name, ClickInfo);
@@ -50,8 +47,6 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             _uiService.SetButton(PartyOrderButton, name, ClickPartyOrder);
             _uiService.SetButton(CastPartyBuffsButton, name, CastAllPartyBuffs);
             _uiService.SetButton(UseItemButton, name, ClickUseItem);
-            _uiService.SetButton(TraderMapButton, name, ClickTraderMap);
-            _uiService.SetButton(TraderInfoButton, name, ClickTraderInfo);
             _uiService.SetButton(SnapshotButton, name, ClickTakeSnapshot);
             _uiService.SetButton(OptionsButton, name, ClickOptions);
 
@@ -93,10 +88,6 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         private void ClickInfo()
         {
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerInfo));
-        }
-        private void ClickTraderInfo()
-        {
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderInfo));
         }
         private void ClickOptions()
         {
@@ -153,11 +144,6 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         private void CastAllPartyBuffs()
         {
             _awaitableService.ForgetTask(_buffService.CastAllPartyBuffs(_crawlerService.GetParty(), GetToken()));
-        }
-
-        private void ClickTraderMap()
-        {
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderMap));
         }
 
         private void ClickTakeSnapshot()

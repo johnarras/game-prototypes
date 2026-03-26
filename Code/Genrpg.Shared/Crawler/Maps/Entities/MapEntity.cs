@@ -1,5 +1,3 @@
-using MessagePack;
-
 namespace Genrpg.Shared.Crawler.Maps.Entities
 {
     public class MapEntity

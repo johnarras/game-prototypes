@@ -10,10 +10,10 @@ public class SetupMountainDecayPower : BaseZoneGenerator
         await base.Generate(token);
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 100000000 + 3452329);
-        float powerpers = MathUtil.FloatRange(0.2f, 0.4f, rand);
+        float powerpers = RandUtils.FloatRange(0.2f, 0.4f, rand);
         int poweroctaves = 2;
-        float poweramp = MathUtil.FloatRange(0.3f, 0.5f, rand);
-        float powerFreq = MathUtil.FloatRange(0.04f, 0.14f, rand) * _mapProvider.GetMap().GetHwid();
+        float poweramp = RandUtils.FloatRange(0.3f, 0.5f, rand);
+        float powerFreq = RandUtils.FloatRange(0.04f, 0.14f, rand) * _mapProvider.GetMap().GetHwid();
         
         _md.mountainDecayPower = _noiseService.Generate(powerpers, powerFreq, poweramp, poweroctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         

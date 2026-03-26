@@ -131,7 +131,7 @@ namespace Genrpg.MapServer.Spawns.Services
             foreach (int key in groupDict.Keys)
             {
 
-                SI si = RandomUtils.GetRandomElement(groupDict[key], rand);
+                SI si = RandUtils.GetRandomElement(groupDict[key], rand);
 
                 if (si != null)
                 {
@@ -165,14 +165,12 @@ namespace Genrpg.MapServer.Spawns.Services
 
             RewardList rewardList = new RewardList();
             retval.Add(rewardList);
-            long quantity = MathUtil.LongRange(si.MinQuantity, si.MaxQuantity, rand);
+            long quantity = RandUtils.LongRange(si.MinQuantity, si.MaxQuantity, rand);
 
             Reward rew = new Reward();
             rew.EntityId = si.EntityId;
             rew.EntityTypeId = si.EntityTypeId;
             rew.Quantity = quantity;
-            rew.QualityTypeId = rollLootArgs.QualityTypeId;
-            rew.Level = rollLootArgs.Level;
             rewardList.Rewards.Add(rew);
 
             return retval;

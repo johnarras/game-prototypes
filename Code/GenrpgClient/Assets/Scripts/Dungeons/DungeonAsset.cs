@@ -11,20 +11,39 @@ namespace Assets.Scripts.Dungeons
         private IAudioService _audioService = null;
         public Animator Animator;
 
-        public List<MeshRenderer> Renderers = new List<MeshRenderer>();
+        public List<MeshRenderer> StoneRenderers = new List<MeshRenderer>();
 
-        public List<MeshRenderer> DoorRenderers = new List<MeshRenderer>();
+        public List<MeshRenderer> WoodRenderers = new List<MeshRenderer>();
+
+        public List<MeshRenderer> FloorRenderers= new List<MeshRenderer>(); 
+
+        public List<MeshRenderer> GetRenderersForMaterialIndex(int materialIndex)
+        {
+            if (materialIndex == DungeonMaterialIndexes.Stone)
+            {
+                return StoneRenderers;
+            }
+            else if (materialIndex == DungeonMaterialIndexes.Wood)
+            {
+                return WoodRenderers;   
+            }
+            else if (materialIndex == DungeonMaterialIndexes.Floors)
+            {
+                return FloorRenderers;
+            }
+            return StoneRenderers;
+        }
 
 
         public bool SetOpened(bool isOpen)
         {
-            if (DoorRenderers.Count > 0)
+            if (WoodRenderers.Count > 0)
             {
                 if (isOpen)
                 {
                     _audioService.PlaySound(CrawlerAudio.DoorOpen, null);
                 }
-                foreach (MeshRenderer renderer in DoorRenderers)
+                foreach (MeshRenderer renderer in WoodRenderers)
                 {
                     _clientEntityService.SetActive(renderer.gameObject, !isOpen);
                 }
@@ -35,9 +54,6 @@ namespace Assets.Scripts.Dungeons
 
         public void Clear()
         {
-            Animator = null;
-            Renderers.Clear();
-            DoorRenderers.Clear();
         }
 
         protected override void OnDestroy()

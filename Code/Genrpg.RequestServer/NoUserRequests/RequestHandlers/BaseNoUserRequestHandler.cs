@@ -1,7 +1,7 @@
 
-using Genrpg.Shared.Website.Messages.Error;
-using Genrpg.Shared.Website.Interfaces;
 using Genrpg.RequestServer.Core;
+using Genrpg.Shared.Website.Interfaces;
+using Genrpg.Shared.Website.Messages.Error;
 
 namespace Genrpg.RequestServer.NoUserRequests.RequestHandlers
 {

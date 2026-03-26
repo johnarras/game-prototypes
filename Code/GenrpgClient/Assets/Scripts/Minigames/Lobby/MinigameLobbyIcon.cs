@@ -21,7 +21,7 @@ namespace Assets.Scripts.Minigames.Lobby
         {
             _mtype = mtype;
             _screen = screen; 
-            _spriteService.LoadEntityIcon(EntityTypes.MinigameType, _mtype.IdKey, Image, GetToken());
+            _spriteService.SetEntityIcon(EntityTypes.MinigameType, _mtype.IdKey, Image, GetToken());
             _uiService.SetButton(Button, _screen.GetName(), ClickMinigame);
         }
 

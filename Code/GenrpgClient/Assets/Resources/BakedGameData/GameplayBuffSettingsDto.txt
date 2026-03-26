@@ -1,0 +1,108 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Lucky",
+      "Icon": "Lucky",
+      "Art": "Lucky",
+      "Effects": [
+        {
+          "EntityTypeId": 74,
+          "EntityId": 4,
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "IdKey": 2,
+      "Name": "Speedy",
+      "Icon": "Speedy",
+      "Art": "Speedy",
+      "Effects": [
+        {
+          "EntityTypeId": 74,
+          "EntityId": 3,
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "IdKey": 3,
+      "Name": "Well Fed",
+      "Icon": "WellFed",
+      "Art": "WellFed",
+      "Effects": [
+        {
+          "EntityTypeId": 85,
+          "EntityId": 2,
+          "Quantity": -1
+        }
+      ]
+    },
+    {
+      "IdKey": 4,
+      "Name": "Working Out",
+      "Icon": "WorkingOut",
+      "Art": "WorkingOut",
+      "Effects": [
+        {
+          "EntityTypeId": 74,
+          "EntityId": 2,
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "IdKey": 5,
+      "Name": "Forager",
+      "Icon": "Forager",
+      "Art": "Forager",
+      "Effects": [
+        {
+          "EntityTypeId": 74,
+          "EntityId": 5,
+          "Quantity": 5
+        }
+      ]
+    },
+    {
+      "IdKey": 6,
+      "Name": "Surplus Rations",
+      "Icon": "SurplusRations",
+      "Art": "SurplusRations",
+      "Effects": []
+    },
+    {
+      "IdKey": 7,
+      "Name": "Surplus Supplies",
+      "Icon": "SurplusSupplies",
+      "Art": "SurplusSupplies",
+      "Effects": [
+        {
+          "EntityTypeId": 79,
+          "EntityId": 3,
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "IdKey": 8,
+      "Name": "Surplus Mana",
+      "Icon": "SurplusMana",
+      "Art": "SurplusMana",
+      "Effects": [
+        {
+          "EntityTypeId": 79,
+          "EntityId": 4,
+          "Quantity": 1
+        }
+      ]
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "GameplayBuffSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-03-25T14:18:14.055Z"
+}

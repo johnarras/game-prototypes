@@ -1,11 +1,11 @@
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crawler.Crafting.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Currencies.Constants;
-using Genrpg.Shared.Crawler.Currencies.Settings;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Constants;
 using Genrpg.Shared.Crawler.Loot.Helpers;
 using Genrpg.Shared.Crawler.Loot.Settings;
@@ -46,6 +46,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Loot.Services
 {
@@ -231,186 +232,136 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             ScalingType scalingType = null;
             long scalingTypeId = 0;
 
-            if (isArmor || lootSettings.AllowAllWeaponTypes)
-            {
-                scalingTypeId = MathUtil.IntRange(1, LootConstants.MaxArmorScalingType, _rand);
-                scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
-            }
 
             if (itemType == null)
             {
                 return null;
             }
 
+            scalingTypeId = RandUtils.IntRange(1, LootConstants.MaxArmorScalingType, _rand);
+            scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
 
             if (scalingType == null)
             {
                 return null;
             }
 
-
-
             Item item = new Item() { Id = HashUtils.NewGuid().ToString() };
 
             item.ItemTypeId = itemType.IdKey;
 
-            if (isArmor || lootSettings.AllowAllWeaponTypes)
-            {
-                item.ScalingTypeId = scalingTypeId;
-            }
             item.LootRankId = chosenRank.IdKey;
-            item.QualityTypeId = 0;
 
             EquipSlot equipSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
 
             if (isArmor)
             {
-                if (equipSlot == null || equipSlot.BaseBonusStatTypeId < 1)
+                if (equipSlot.BaseBonusStatTypeId != StatTypes.Armor)
                 {
-                    item.ScalingTypeId = 0;
                 }
-                else
+                long bonusStat = itemType.MinVal;
+                if (scalingType != null)
                 {
-                    if (equipSlot.BaseBonusStatTypeId != StatTypes.Armor)
-                    {
-                        item.ScalingTypeId = 0;
-                    }
-                    long bonusStat = itemType.MinVal;
-                    if (scalingType != null)
-                    {
-                        bonusStat = Math.Max(1, (bonusStat * scalingType.ArmorPct) / 100);
-                    }
-                    item.Effects.Add(new ItemEffect() { EntityTypeId = EntityTypes.Stat, EntityId = equipSlot.BaseBonusStatTypeId, Quantity = bonusStat });
+                    bonusStat = Math.Max(1, (bonusStat * scalingType.ArmorPct) / 100);
                 }
+                item.Effects.Add(new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = equipSlot.BaseBonusStatTypeId, Quantity = bonusStat });
+
             }
 
             string baseItemName = itemType.Name;
             if (itemType.Names != null && itemType.Names.Count > 0)
             {
-                baseItemName = RandomUtils.GetRandomElement(itemType.Names, _rand)?.Name ?? "Armor";
+                baseItemName = RandUtils.GetRandomElement(itemType.Names, _rand)?.Name ?? "Armor";
             }
 
             // Weapon damage is calculated dynamically as needed.
 
-            if (itemType.EquipSlotId == EquipSlots.Quiver || itemType.EquipSlotId == EquipSlots.PoisonVial)
+            if (level > 0)
             {
-                List<ElementType> okElements = _gameData.Get<ElementTypeSettings>(null).GetData().Where(x => x.IdKey > 1).ToList();
+                List<long> usedStatTypeIds = new List<long>();
 
-                ElementType okElement = okElements[_rand.Next() % okElements.Count];
-
-                ItemProc iproc = new ItemProc()
+                if (scalingType.MainStatTypeId > 0)
                 {
-                    EntityTypeId = EntityTypes.Damage,
-                    EntityId = 0,
-                    ElementTypeId = okElement.IdKey,
-                    Chance = 0.5,
-                    MinQuantity = level / 5,
-                    MaxQuantity = level / 2,
-                };
-                item.Procs.Add(iproc);
-                if (itemType.EquipSlotId == EquipSlots.Quiver)
-                {
-                    item.Name = chosenRank.Name + " " + okElement.Name + " Quiver";
+                    usedStatTypeIds.Add(scalingType.MainStatTypeId);
                 }
-                else if (itemType.EquipSlotId == EquipSlots.PoisonVial)
+                usedStatTypeIds.Add(StatTypes.Stamina);
+
+                List<StatType> okStats = _gameData.Get<StatSettings>(null).GetData()
+                    .Where(x => x.IdKey >= StatConstants.PrimaryStatStart &&
+                x.IdKey <= StatConstants.PrimaryStatEnd && !usedStatTypeIds.Contains(x.IdKey)).ToList();
+
+                int statQuantity = (int)chosenRank.IdKey / 8;
+                if (_rand.NextDouble() < chosenRank.IdKey * 0.2f)
                 {
-                    item.Name = chosenRank.Name + " Vial of " + okElement.Name;
+                    statQuantity++;
                 }
-            }
-            else
-            {
-                if (level > 0)
+                for (int i = 0; i < statQuantity && okStats.Count > 0; i++)
                 {
-                    List<long> usedStatTypeIds = new List<long>();
 
-                    if (scalingType.MainStatTypeId > 0)
+                    StatType okStat = okStats[_rand.Next() % okStats.Count];
+                    usedStatTypeIds.Add(okStat.IdKey);
+                    okStats.Remove(okStat);
+                }
+
+                usedStatTypeIds = usedStatTypeIds.OrderBy(x => x).ToList();
+
+                double midStatAmount = lootSettings.StartStatBonusAmount + level * lootSettings.StatBonusPerLevel;
+
+                double bonusStatScale = equipSlot.BonusStatScale;
+
+                if (equipSlot.IdKey == EquipSlots.MainHand && itemType.HasFlag(ItemFlags.FlagTwoHandedItem))
+                {
+                    bonusStatScale += _gameData.Get<EquipSlotSettings>(_gs.ch).Get(EquipSlots.OffHand).BonusStatScale;
+                }
+
+                midStatAmount *= bonusStatScale;
+
+                foreach (long statTypeId in usedStatTypeIds)
+                {
+
+                    double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * RandUtils.DeltaScale(lootSettings.StatBonusVariance, _rand)));
+
+
+                    Effect itemEffect = new Effect()
                     {
-                        usedStatTypeIds.Add(scalingType.MainStatTypeId);
-                    }
-                    usedStatTypeIds.Add(StatTypes.Stamina);
+                        EntityTypeId = EntityTypes.Stat,
+                        EntityId = statTypeId,
+                        Quantity = (int)finalStatAmount,
+                    };
 
-                    List<StatType> okStats = _gameData.Get<StatSettings>(null).GetData()
-                        .Where(x => x.IdKey >= StatConstants.PrimaryStatStart &&
-                    x.IdKey <= StatConstants.PrimaryStatEnd && !usedStatTypeIds.Contains(x.IdKey)).ToList();
+                    item.Effects.Add(itemEffect);
+                }
 
-                    int statQuantity = (int)chosenRank.IdKey / 8;
-                    if (_rand.NextDouble() < chosenRank.IdKey * 0.2f)
+                if (itemGenArgs.PowerIncrease > 0)
+                {
+                    double extraStatQuantity = lootSettings.StatPointsPerExtraItem * itemGenArgs.PowerIncrease;
+                    foreach (Effect effect in item.Effects)
                     {
-                        statQuantity++;
-                    }
-                    for (int i = 0; i < statQuantity && okStats.Count > 0; i++)
-                    {
-
-                        StatType okStat = okStats[_rand.Next() % okStats.Count];
-                        usedStatTypeIds.Add(okStat.IdKey);
-                        okStats.Remove(okStat);
-                    }
-
-                    usedStatTypeIds = usedStatTypeIds.OrderBy(x => x).ToList();
-
-                    double midStatAmount = lootSettings.StartStatBonusAmount + level * lootSettings.StatBonusPerLevel;
-
-                    double bonusStatScale = equipSlot.BonusStatScale;
-
-                    if (equipSlot.IdKey == EquipSlots.MainHand && itemType.HasFlag(ItemFlags.FlagTwoHandedItem))
-                    {
-                        bonusStatScale += _gameData.Get<EquipSlotSettings>(_gs.ch).Get(EquipSlots.OffHand).BonusStatScale;
-                    }
-
-                    midStatAmount *= bonusStatScale;
-
-                    foreach (long statTypeId in usedStatTypeIds)
-                    {
-
-                        double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * (1 + MathUtil.FloatRange(-lootSettings.StatBonusVariance, lootSettings.StatBonusVariance, _rand))));
-
-
-                        ItemEffect itemEffect = new ItemEffect()
+                        if (effect.EntityTypeId == EntityTypes.Stat)
                         {
-                            EntityTypeId = EntityTypes.Stat,
-                            EntityId = statTypeId,
-                            Quantity = (int)finalStatAmount,
-                        };
-
-                        item.Effects.Add(itemEffect);
-                    }
-
-                    if (itemGenArgs.PowerIncrease > 0)
-                    {
-                        double extraStatQuantity = lootSettings.StatPointsPerExtraItem * itemGenArgs.PowerIncrease;
-                        foreach (ItemEffect effect in item.Effects)
-                        {
-                            if (effect.EntityTypeId == EntityTypes.Stat)
-                            {
-                                effect.Quantity +=
-                                    (long)extraStatQuantity +
-                                    _rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
-                            }
-                        }
-                    }
-
-                    if (_rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease* itemGenArgs.PowerIncrease)
-                    {
-                        CrawlerLootType enchantType = RandomUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
-
-                        if (enchantType != null)
-                        {
-                            if (_lootTypeHelpers.TryGetValue(enchantType.EntityTypeId, out ICrawlerLootTypeHelper helper))
-                            {
-                                helper.AddEnchantToItem(party, item, itemGenArgs);
-                            }
+                            effect.Quantity +=
+                                (long)extraStatQuantity +
+                                _rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
                         }
                     }
                 }
 
-                if (!isArmor)
+                if (_rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease * itemGenArgs.PowerIncrease)
                 {
-                    item.ScalingTypeId = 0;
+                    CrawlerLootType enchantType = RandUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
+
+                    if (enchantType != null)
+                    {
+                        if (_lootTypeHelpers.TryGetValue(enchantType.EntityTypeId, out ICrawlerLootTypeHelper helper))
+                        {
+                            helper.AddEnchantToItem(party, item, itemGenArgs);
+                        }
+                    }
                 }
-                item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
-                item.ScalingTypeId = scalingTypeId;
-                item.Level = Math.Max(1, level);
             }
+
+            item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
+             item.Level = Math.Max(1, level);
 
             double cost = lootSettings.BaseLootCost;
 
@@ -481,7 +432,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             {
                 double lootScale = (1 + crawlerUnit.BonusCount * extraScalePerBonus);
                 exp += expPerMonster * lootScale;
-                gold += MathUtil.LongRange(minGold, maxGold, _rand) * lootScale;
+                gold += RandUtils.LongRange(minGold, maxGold, _rand) * lootScale;
 
                 if (_rand.NextDouble() < itemChance * lootScale)
                 {
@@ -531,11 +482,11 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 NextStateData = null,
             };
 
-            allLootGenData.Currencies[CrawlerCurrencyTypes.Gold] = (long)gold;
+            allLootGenData.Currencies[CoreCurrencyTypes.Coins] = (long)gold;
 
             if (reagentCount > 0)
             {
-                IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(null).GetData();
+                IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(null).GetData();
 
                 for (int i = 0; i < reagentCount; i++)
                 {
@@ -616,19 +567,19 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                     Item lastItem = items.Last();
                     items.Remove(lastItem);
 
-                    genData.Currencies.Add(CrawlerCurrencyTypes.Gold, lastItem.BuyCost);
+                    genData.Currencies.Add(CoreCurrencyTypes.Coins, lastItem.BuyCost);
                 }
 
 
                 loot.Items = items;
 
-                loot.Currencies[CrawlerCurrencyTypes.Gold] = (long)(genData.Currencies[CrawlerCurrencyTypes.Gold] *
+                loot.Currencies[CoreCurrencyTypes.Coins] = (long)(genData.Currencies[CoreCurrencyTypes.Coins] *
                     (1 + _upgradeService.GetPartyBonus(party, PartyUpgrades.GoldPercent) / 100.0f));
 
 
-                IReadOnlyList<CrawlerCurrencyType> ctypes = _gameData.Get<CrawlerCurrencySettings>(_gs.ch).GetData();
+                IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
-                foreach (CrawlerCurrencyType ctype in ctypes)
+                foreach (CoreCurrencyType ctype in ctypes)
                 {
 
                     if (loot.Currencies[ctype.IdKey] > 0)
@@ -717,15 +668,15 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             LootGenData genData = new LootGenData()
             {
-                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * MathUtil.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
+                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * RandUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
                 ItemCount = itemCount,
                 NextState = nextState,
                 NextStateData = nextStateData,
                 Level = level,
             };
 
-            genData.Currencies[CrawlerCurrencyTypes.Gold] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
-                MathUtil.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
+            genData.Currencies[CoreCurrencyTypes.Coins] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
+                RandUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
 
             if (!string.IsNullOrEmpty(topMessage))
             {

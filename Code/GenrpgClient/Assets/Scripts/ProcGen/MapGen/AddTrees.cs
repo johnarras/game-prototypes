@@ -225,17 +225,17 @@ public class AddTrees : BaseZoneGenerator
             full.posRand = new MyRandom(zone.Seed + treeType.IdKey * 23423 + 324);
             full.chanceRand = new MyRandom(zone.Seed + treeType.IdKey * 23 + 43535);
             full.bareRand = new MyRandom(zone.Seed % 23423243 + treeType.IdKey * 234231);
-            full.overrideChance = MathUtil.FloatRange(MapConstants.MaxOverrideTreeTypeChance / 2,
+            full.overrideChance = RandUtils.FloatRange(MapConstants.MaxOverrideTreeTypeChance / 2,
                 MapConstants.MaxOverrideTreeTypeChance, choiceRand);
             full.chanceMult = zoneTree.PopulationScale * zoneTypeTree.PopulationScale;
 
             if (choiceRand.NextDouble() < 0.35f)
             {
-                full.overrideChance *= MathUtil.FloatRange(0.4f, 4.0f, choiceRand);
+                full.overrideChance *= RandUtils.FloatRange(0.4f, 4.0f, choiceRand);
             }
             if (choiceRand.NextDouble() < 0.35f)
             {
-                full.chanceMult *= MathUtil.FloatRange(0.5f, 5.0f, choiceRand);
+                full.chanceMult *= RandUtils.FloatRange(0.5f, 5.0f, choiceRand);
             }
             SetupTreeTypeOverrides(full, treeType);
 
@@ -299,34 +299,34 @@ public class AddTrees : BaseZoneGenerator
         float finalChance = (listIndex == TreeIndex ? MaxTreeChance : MaxBushChance);
 
 
-        float baseFreq = MathUtil.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.1f;
-        float baseAmp = MathUtil.FloatRange(0.8f, 1.2f, choiceRand) * 0.8f;
-        float basePers = MathUtil.FloatRange(0.2f, 0.3f, choiceRand);
+        float baseFreq = RandUtils.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.1f;
+        float baseAmp = RandUtils.FloatRange(0.8f, 1.2f, choiceRand) * 0.8f;
+        float basePers = RandUtils.FloatRange(0.2f, 0.3f, choiceRand);
 
 
-        float roadFreq = MathUtil.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.2f;
-        float roadAmp = MathUtil.FloatRange(5.0f, 10.0f, choiceRand);
-        float roadPers = MathUtil.FloatRange(0.1f, 0.3f, choiceRand);
+        float roadFreq = RandUtils.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.2f;
+        float roadAmp = RandUtils.FloatRange(5.0f, 10.0f, choiceRand);
+        float roadPers = RandUtils.FloatRange(0.1f, 0.3f, choiceRand);
 
         float[,] roadNoise = _noiseService.Generate(roadPers, roadFreq, roadAmp, 2, _mapProvider.GetMap().Seed % 329832323 + 874332, _mapProvider.GetMap().GetHwid(),_mapProvider.GetMap().GetHhgt());
 
 
-        float replaceFreq = MathUtil.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.2f;
-        float replaceAmp = MathUtil.FloatRange(0.8f, 1.2f, choiceRand);
-        float replacePers = MathUtil.FloatRange(0.4f, 0.7f, choiceRand);
+        float replaceFreq = RandUtils.FloatRange(0.07f, 0.6f, choiceRand) * _mapProvider.GetMap().GetHwid() * 0.2f;
+        float replaceAmp = RandUtils.FloatRange(0.8f, 1.2f, choiceRand);
+        float replacePers = RandUtils.FloatRange(0.4f, 0.7f, choiceRand);
 
         float[,] replaceNoise = _noiseService.Generate(replacePers, replaceFreq, replaceAmp, 2, _mapProvider.GetMap().Seed % 214423231 + 132, _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
 
 
         List<float[,]> allNoises = new List<float[,]>();
 
-        int numNoise = MathUtil.IntRange(4,11, choiceRand);
+        int numNoise = RandUtils.IntRange(4,11, choiceRand);
         for (int i = 0; i < numNoise; i++)
         {
-            float freq = MathUtil.FloatRange(0.02f, 0.066f, choiceRand) * _mapProvider.GetMap().GetHwid();
-            float amp = MathUtil.FloatRange(0.2f, 0.6f, choiceRand)*1.5f;
+            float freq = RandUtils.FloatRange(0.02f, 0.066f, choiceRand) * _mapProvider.GetMap().GetHwid();
+            float amp = RandUtils.FloatRange(0.2f, 0.6f, choiceRand)*1.5f;
             int octaves = 2;
-            float pers = MathUtil.FloatRange(0.1f, 0.5f, choiceRand);
+            float pers = RandUtils.FloatRange(0.1f, 0.5f, choiceRand);
             float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, _mapProvider.GetMap().Seed % 23432433 + i * 17, _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
             allNoises.Add(noise);
         }
@@ -342,14 +342,14 @@ public class AddTrees : BaseZoneGenerator
         {
             for (int cy = 0; cy < _mapProvider.GetMap().GetHhgt(); cy += skipSize)
             {
-                int x = cx + MathUtil.IntRange(-skipRadius, skipRadius, skipRand);
+                int x = cx + RandUtils.IntRange(-skipRadius, skipRadius, skipRand);
                 x = MathUtil.Clamp(0, x, _mapProvider.GetMap().GetHwid() - 1);
                 int ddx = -x / (MapConstants.TerrainPatchSize - 1);
                 if (x < 0 || x >= _mapProvider.GetMap().GetHwid())
                 {
                     continue;
                 }
-                int y = cy + MathUtil.IntRange(-skipRadius, skipRadius, skipRand);
+                int y = cy + RandUtils.IntRange(-skipRadius, skipRadius, skipRand);
                 y = MathUtil.Clamp(0, y, _mapProvider.GetMap().GetHhgt() - 1);
                 int ddy = -y / (MapConstants.TerrainPatchSize - 1);
                 if (y < 0 || y >= _mapProvider.GetMap().GetHhgt())
@@ -404,7 +404,7 @@ public class AddTrees : BaseZoneGenerator
 
 
                 int zoneRad = 25;
-                int numNearbyTries = Math.Min(MathUtil.IntRange(0, 15, choiceRand), MathUtil.IntRange(0, 15, choiceRand));
+                int numNearbyTries = Math.Min(RandUtils.IntRange(0, 15, choiceRand), RandUtils.IntRange(0, 15, choiceRand));
 
                 if (haveSecondaryZone)
                 {
@@ -417,8 +417,8 @@ public class AddTrees : BaseZoneGenerator
                 for (int tries = 0; tries < numNearbyTries; tries++)
                 {
 
-                    int nx = x + MathUtil.IntRange(-zoneRad, zoneRad, choiceRand);
-                    int ny = y + MathUtil.IntRange(-zoneRad, zoneRad, choiceRand);
+                    int nx = x + RandUtils.IntRange(-zoneRad, zoneRad, choiceRand);
+                    int ny = y + RandUtils.IntRange(-zoneRad, zoneRad, choiceRand);
                     nx = MathUtil.Clamp(0, nx, _mapProvider.GetMap().GetHwid() - 1);
                     ny = MathUtil.Clamp(0, ny, _mapProvider.GetMap().GetHhgt() - 1);
 
@@ -601,11 +601,11 @@ public class AddTrees : BaseZoneGenerator
         tc.Name = "Trees";
         tc.freqMult = genZone.TreeFreq * zoneType.TreeFreq;
         tc.densityMult = genZone.TreeDensity * zoneType.TreeDensity;
-        tc.numItems = MathUtil.IntRange(2, 4, choiceRand);
+        tc.numItems = RandUtils.IntRange(2, 4, choiceRand);
         tc.skipChance = (tc.freqMult <= 0 ? 0.15f : 0.75f);
         if (choiceRand.NextDouble() < 0.2f)
         {
-            tc.numItems += MathUtil.IntRange(1, 3, choiceRand);
+            tc.numItems += RandUtils.IntRange(1, 3, choiceRand);
         }
         tc.densityMult *= (tc.freqMult <= 0 ? TreeUniformChance : TreeNoiseChance);
         list.Add(tc);
@@ -619,13 +619,13 @@ public class AddTrees : BaseZoneGenerator
         tc.freqMult = genZone.BushFreq * zoneType.BushFreq * 2;
         tc.densityMult = genZone.BushDensity * zoneType.BushDensity;
         tc.posDeltaScale = 2.0f;
-        tc.numItems = MathUtil.IntRange(3, 5, choiceRand);
+        tc.numItems = RandUtils.IntRange(3, 5, choiceRand);
         tc.densityMult *= (tc.freqMult <= 0 ? BushUniformChance : BushNoiseChance);
         tc.skipChance =
         tc.skipChance = (tc.freqMult <= 0 ? 0.15f : 0.75f);
         if (choiceRand.NextDouble() < 0.1f)
         {
-            tc.numItems += MathUtil.IntRange(1, 3, choiceRand);
+            tc.numItems += RandUtils.IntRange(1, 3, choiceRand);
         }
         list.Add(tc);
 
@@ -643,12 +643,12 @@ public class AddTrees : BaseZoneGenerator
         {
             bushDensity = (float)Math.Sqrt(bushDensity);
         }
-        tc.densityMult = WaterChance * MathUtil.FloatRange(0.4f, 1.6f, choiceRand) * bushDensity;
+        tc.densityMult = WaterChance * RandUtils.FloatRange(0.4f, 1.6f, choiceRand) * bushDensity;
         tc.freqMult *= 0.0f;
         tc.posDeltaScale = 1.0f;
         tc.skipChance =
         tc.skipChance = (tc.freqMult <= 0 ? 0.15f : 0.75f);
-        tc.numItems = MathUtil.IntRange(2, 3, choiceRand);
+        tc.numItems = RandUtils.IntRange(2, 3, choiceRand);
         list.Add(tc);
 
         return list;
@@ -720,10 +720,10 @@ public class AddTrees : BaseZoneGenerator
                         {
                             treeType = item,
                         };
-                        over.chance = MathUtil.FloatRange(0, 0.1f, full.bareRand);
+                        over.chance = RandUtils.FloatRange(0, 0.1f, full.bareRand);
                         if (full.bareRand.NextDouble() < 0.1f)
                         {
-                            over.chance *= MathUtil.FloatRange(5, 50, full.bareRand);
+                            over.chance *= RandUtils.FloatRange(5, 50, full.bareRand);
                         }
                         full.overrideTreeTypes[name] = over;
                     }
@@ -774,8 +774,8 @@ public class AddTrees : BaseZoneGenerator
                     dirtRadius = (treeType.HasFlag(TreeFlags.IsBush) ? 0 : _gameData.Get<TreeTypeSettings>(_gs.ch).TreeDirtRadius);
                     float dirtScale = 0.6f;
                     dirtRadius *= (float)Math.Pow(TreeSizeScale, 0.9f);
-                    dirtRadius *= MathUtil.FloatRange(0.3f, 0.9f, full.posRand);
-                    dirtScale *= MathUtil.FloatRange(0.5f, 1.2f, full.posRand);
+                    dirtRadius *= RandUtils.FloatRange(0.3f, 0.9f, full.posRand);
+                    dirtScale *= RandUtils.FloatRange(0.5f, 1.2f, full.posRand);
                     if (dirtScale > 0.7f)
                     {
                         dirtScale = 0.7f;
@@ -783,7 +783,7 @@ public class AddTrees : BaseZoneGenerator
 
                     float maxOverallExtraHeight = MapConstants.MaxTreeBumpHeight / MapConstants.MapHeight;
                     // Put a bump near this item.
-                    float overallExtraHeight = MathUtil.FloatRange(0, 1, full.posRand) * maxOverallExtraHeight;
+                    float overallExtraHeight = RandUtils.FloatRange(0, 1, full.posRand) * maxOverallExtraHeight;
 
                     float steepness = _terrainManager.GetSteepness(x, y);
 
@@ -802,8 +802,8 @@ public class AddTrees : BaseZoneGenerator
                     {
                         maxRadius = -1;
                     }
-                    int cx = x + MathUtil.IntRange(-1, 1, full.posRand);
-                    int cy = y + MathUtil.IntRange(-1, 1, full.posRand);
+                    int cx = x + RandUtils.IntRange(-1, 1, full.posRand);
+                    int cy = y + RandUtils.IntRange(-1, 1, full.posRand);
                     cx = x; cy = y;
                     //cx = y; cy = x;
                     for (int x2 = cx - maxRadius - 1; x2 <= cx + maxRadius; x2++)
@@ -824,7 +824,7 @@ public class AddTrees : BaseZoneGenerator
 
                             float distScale = (float)Math.Sqrt(dx2 * dx2 + dy2 * dy2) / dirtRadius;
                             float dirtIntensity = (float)Math.Pow(Math.Exp(-distScale), 2.0f) * dirtScale;
-                            dirtIntensity *= MathUtil.FloatRange(0.7f, 1.3f, full.posRand);
+                            dirtIntensity *= RandUtils.FloatRange(0.7f, 1.3f, full.posRand);
                             if (dirtIntensity > 1)
                             {
                                 dirtIntensity = 1;
@@ -867,10 +867,10 @@ public class AddTrees : BaseZoneGenerator
                 }
                 if (!full.treeType.HasFlag(TreeFlags.NoNearbyItems))
                 {
-                    int numNearbyItems = MathUtil.IntRange(2, 9, full.chanceRand);
+                    int numNearbyItems = RandUtils.IntRange(2, 9, full.chanceRand);
                     if (full.chanceRand.NextDouble() < 0.3f)
                     {
-                        numNearbyItems += MathUtil.IntRange(2, 9, full.chanceRand);
+                        numNearbyItems += RandUtils.IntRange(2, 9, full.chanceRand);
                     }
                     numNearbyItems += 5;
 

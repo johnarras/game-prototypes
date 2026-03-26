@@ -1,0 +1,8 @@
+{
+  "Id": "screenname55default",
+  "ParentId": "default",
+  "IdKey": 55,
+  "Name": "TraderTemple",
+  "ScreenLayerId": 20,
+  "Subdirectory": "TraderSpend"
+}

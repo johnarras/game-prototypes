@@ -1,4 +1,3 @@
-using MessagePack;
 namespace Genrpg.Shared.Crafting.Constants
 {
     public class CraftingConstants

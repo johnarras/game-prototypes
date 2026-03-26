@@ -4,7 +4,7 @@ using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;

@@ -1,0 +1,18 @@
+{
+  "Id": "gameplaydebuff5default",
+  "ParentId": "default",
+  "IdKey": 5,
+  "Name": "Sickly",
+  "Icon": "Sickly",
+  "Art": "Sickly",
+  "CleanseCoreCurrencyTypeId": 2,
+  "CleanseQuantity": 1,
+  "CityCoinsCleanseCost": 15,
+  "Effects": [
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": -1
+    }
+  ]
+}

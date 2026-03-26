@@ -5,7 +5,7 @@ using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
 using UnityEngine;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 
 public class AddSecondaryLocations : BaseZoneGenerator
 {
@@ -104,8 +104,8 @@ public class AddSecondaryLocations : BaseZoneGenerator
                 CenterX = cx,
                 CenterZ = cy,
                 LocationTypeId = LocationTypes.Secondary,
-                XSize = MathUtil.IntRange(minRad, maxRad, rand),
-                ZSize = MathUtil.IntRange(minRad, maxRad, rand),        
+                XSize = RandUtils.IntRange(minRad, maxRad, rand),
+                ZSize = RandUtils.IntRange(minRad, maxRad, rand),        
             };
 
             base._md.AddMapLocation(_mapProvider, loc);

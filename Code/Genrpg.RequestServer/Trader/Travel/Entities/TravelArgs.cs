@@ -2,6 +2,5 @@
 {
     public class TravelArgs
     {
-        public bool IsFree { get; set; }
     }
 }

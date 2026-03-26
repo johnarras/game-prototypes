@@ -9,16 +9,18 @@ namespace Genrpg.Shared.Trader.Holdings.PlayerData
 {
 
     /// <summary>
-    /// This is modified only when the player buys or sells items or adds or removes animals.
+    /// This is modified only when the player buys or sells items or adds or removes CaravanMembers.
     /// </summary>
     [MessagePackObject]
     public class HoldingsData : UniquePersonalUserData, IUserData
     {
         [Key(0)] public override string Id { get; set; }
 
-        [Key(1)] public SmallIndexBitList AnimalsOwned { get; set; } = new SmallIndexBitList();
+        [Key(1)] public SmallIndexBitList CaravanMembersOwned { get; set; } = new SmallIndexBitList();
 
         [Key(2)] public SmallIndexBitList SkinsOwned { get; set; } = new SmallIndexBitList();
+
+        [Key(3)] public SmallIndexBitList CitiesVisited { get; set; } = new SmallIndexBitList();
     }
 
 

@@ -4,7 +4,7 @@ using Assets.Scripts.Lockstep.Factions.Setup;
 using Assets.Scripts.Lockstep.Maps.Components;
 using Assets.Scripts.Lockstep.Maps.Entities;
 using Assets.Scripts.Lockstep.Maps.Setup;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -239,8 +239,8 @@ namespace Assets.Scripts.Lockstep.Game.Services
 
             for (int m = 1; m <= 2; m++)
             {
-                int width = MathUtil.IntRange(minSize, maxSize, rand);
-                int height = MathUtil.IntRange(minSize, maxSize, rand);
+                int width = RandUtils.IntRange(minSize, maxSize, rand);
+                int height = RandUtils.IntRange(minSize, maxSize, rand);
 
                 TileConfig[,] tiles = new TileConfig[width, height];
 

@@ -2,7 +2,6 @@ using Genrpg.Shared.Crawler.Maps.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Zones.Settings;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Crawler.Maps.Entities

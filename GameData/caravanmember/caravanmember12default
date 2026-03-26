@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "Bactrian Camel",
+  "Desc": "The two-humped camel of Central Asia. Even stronger than a dromedary and better adapted to cold climates, making it vital for the high-altitude sections of the Silk Road.",
+  "Icon": "BactrianCamel",
+  "Art": "BactrianCamel",
+  "Speed": 5,
+  "Size": 2,
+  "Price": 185250,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -3
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 2
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Buildings.Constants;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Temples.Services;
+using Genrpg.Shared.Currencies.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
@@ -38,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
                 stateData.Actions.Add(new CrawlerStateAction(_textService.HighlightText(result.Message, color)));
             }
 
-            stateData.AddText("Party Gold: " + party.Currencies[CrawlerCurrencyTypes.Gold]);
+            stateData.AddText("Party Gold: " + party.Currencies[CoreCurrencyTypes.Coins]);
 
             foreach (PartyMember member in party.ActiveParty)
             {

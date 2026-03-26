@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Asian Elephant",
+  "Desc": "A living engine of war and labor. Capable of carrying and pulling immense loads and inspiring terror on the battlefield. Extremely expensive to acquire and maintain.",
+  "Icon": "AsianElephant",
+  "Art": "AsianElephant",
+  "Speed": 4,
+  "Size": 3,
+  "Price": 1474500,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -6
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 6
+    }
+  ]
+}

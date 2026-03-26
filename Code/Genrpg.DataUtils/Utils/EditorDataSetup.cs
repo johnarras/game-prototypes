@@ -72,10 +72,6 @@ namespace Genrpg.DataUtils.Utils
                 {
                     maxIndex = allSettingNames.Max(x => x.IdKey);
                 }
-
-                AddEntityListData<EntitySettings, EntityType, EntityTypes>(gs);
-                AddEntityListData<ScreenNameSettings, ScreenName, ScreenNames>(gs);
-
                 foreach (IGrouping<Type, ITopLevelSettings> group in groups)
                 {
                     string typeName = group.Key.Name;
@@ -146,39 +142,6 @@ namespace Genrpg.DataUtils.Utils
                 Console.WriteLine(ex.Message + " " + ex.StackTrace);
             }
             return null;
-        }
-
-
-        private void AddEntityListData<TParent, TChild, TConstantList>(EditorGameState gs)
-            where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
-        {
-            TParent parent = gs.data.Get<TParent>(null);
-
-            List<IIdName> childList = parent.GetData().Cast<IIdName>().ToList();
-
-
-            List<NameValue> nameList = ReflectionUtils.GetNumericConstants(typeof(TConstantList));
-
-
-            foreach (NameValue nv in nameList)
-            {
-                IIdName currType = childList.FirstOrDefault(x => x.IdKey == nv.IdKey);
-
-                if (currType == null)
-                {
-                    TChild child = new TChild();
-                    child.IdKey = nv.IdKey;
-                    child.Name = nv.Name;
-                    childList.Add(child);
-                    gs.LookedAtObjects.Add(child);
-                }
-            }
-
-            childList = childList.OrderBy(x => x.IdKey).ToList();
-
-            parent.SetData(childList.Cast<TChild>().ToList());
-
-
         }
     }
 }

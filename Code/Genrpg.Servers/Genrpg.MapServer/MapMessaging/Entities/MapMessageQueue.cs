@@ -149,8 +149,7 @@ namespace Genrpg.MapServer.MapMessaging.Entities
                         {
                             try
                             {
-                                // This is intentionally synchronous
-                                package.Process(rand);
+                                await package.Process(rand);
                                 _messagesProcessed++;
                                 package.mapObject.ReturnPackage(package);
                             }

@@ -4,7 +4,5 @@
   "IdKey": 6,
   "Name": "Draft Horse",
   "Icon": "DraftHorse",
-  "Art": "DraftHorse",
-  "AnimalTypeId": 6,
-  "IsDefault": true
+  "Art": "DraftHorse"
 }

@@ -76,7 +76,7 @@ namespace Genrpg.MapServer.Vendors.Services
                 return;
             }
 
-            int currItemCount = MathUtil.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
+            int currItemCount = RandUtils.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
             long level = mapObject.Level;
             Zone zone = _mapProvider.GetMap().Get<Zone>(mapObject.ZoneId);
 
@@ -141,10 +141,10 @@ namespace Genrpg.MapServer.Vendors.Services
                 return;
             }
 
-            CurrencyData cdata = ch.Get<CurrencyData>();
+            CharCurrencyData cdata = ch.Get<CharCurrencyData>();
             InventoryData idata = ch.Get<InventoryData>();
 
-            long playerMoney = cdata.GetQuantity(CurrencyTypes.Money);
+            long playerMoney = cdata.Data[CharCurrencyTypes.Money];
             long itemPrice = 0;
 
             VendorAddon addon = vendor.GetAddon<VendorAddon>();
@@ -188,7 +188,7 @@ namespace Genrpg.MapServer.Vendors.Services
 
             if (vendorItem != null)
             {
-                _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Money, -itemPrice, null, null);
+                _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -itemPrice, null, null).Wait();
                 _inventoryService.AddItem(ch, vendorItem.Item, true);
                 _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsBought, 1);
             }
@@ -224,7 +224,7 @@ namespace Genrpg.MapServer.Vendors.Services
             }
 
             InventoryData idata = ch.Get<InventoryData>();
-            CurrencyData cdata = ch.Get<CurrencyData>();
+            CharCurrencyData cdata = ch.Get<CharCurrencyData>();
 
             Item item = idata.GetItem(sellItem.ItemId);
 
@@ -237,8 +237,8 @@ namespace Genrpg.MapServer.Vendors.Services
             long money = (long)(item.BuyCost * _gameData.Get<VendorSettings>(obj).SellToVendorPriceMult);
 
             _inventoryService.RemoveItem(ch, sellItem.ItemId, true);
-            _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsSold, item.Quantity);
-            _rewardService.GiveReward(rand, ch, EntityTypes.Currency, CurrencyTypes.Money, money, null, null);
+            _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsSold, 1);
+            _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, money, null, null).Wait();
             _achievementService.UpdateAchievement(ch, AchievementTypes.VendorMoney, money);
         }
     }

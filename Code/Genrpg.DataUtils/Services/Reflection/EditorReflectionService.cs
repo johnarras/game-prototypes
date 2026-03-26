@@ -186,7 +186,7 @@ namespace Genrpg.DataUtils.Services.Reflection
         }
 
 
-        public List<MemberInfo> GetMembers(object obj)
+        public List<MemberInfo> GetPublicMembers(object obj)
         {
             if (obj == null)
             {
@@ -212,6 +212,7 @@ namespace Genrpg.DataUtils.Services.Reflection
                 {
                     continue;
                 }
+
                 list.Add(allProps[p]);
             }
             FieldInfo[] publicFields = type.GetFields();
@@ -397,7 +398,7 @@ namespace Genrpg.DataUtils.Services.Reflection
             }
 
 
-            List<MemberInfo> members = GetMembers(parent);
+            List<MemberInfo> members = GetPublicMembers(parent);
 
             foreach (MemberInfo mem in members)
             {
@@ -435,7 +436,7 @@ namespace Genrpg.DataUtils.Services.Reflection
 
 
 
-            List<MemberInfo> members = GetMembers(parent);
+            List<MemberInfo> members = GetPublicMembers(parent);
 
             if (members == null)
             {

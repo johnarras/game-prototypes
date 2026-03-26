@@ -1,11 +1,8 @@
 using Genrpg.RequestServer.ClientUserRequests.RequestHandlers;
 using Genrpg.RequestServer.Core;
 using Genrpg.RequestServer.PlayerData.Services;
-using Genrpg.RequestServer.Resets.Entities;
-using Genrpg.RequestServer.Resets.Services;
 using Genrpg.RequestServer.Services.WebServer;
 using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
@@ -84,8 +81,6 @@ namespace Genrpg.RequestServer.Services.GameClient
             }
 
             context.SetGameUserId(tokenUserId);
-
-            context.core = await context.GetAsync<CoreData>();
 
             await _loadPlayerDataService.UpdatePlayerAfterLoginOrLoad(context, false);
 

@@ -57,8 +57,8 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -247,8 +247,8 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -272,13 +272,13 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 37
+          "EntityId": 37,
+          "Quantity": 5
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -302,13 +302,13 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 37
+          "EntityId": 37,
+          "Quantity": 5
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -332,13 +332,13 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 37
+          "EntityId": 37,
+          "Quantity": 5
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -381,13 +381,13 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 37
+          "EntityId": 37,
+          "Quantity": 5
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -411,18 +411,18 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 210
+          "EntityId": 210,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 211
+          "EntityId": 211,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 212
+          "EntityId": 212,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -446,18 +446,18 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 220
+          "EntityId": 220,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 221
+          "EntityId": 221,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 222
+          "EntityId": 222,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -481,18 +481,18 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 230
+          "EntityId": 230,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 231
+          "EntityId": 231,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 232
+          "EntityId": 232,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -516,18 +516,18 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 210
+          "EntityId": 210,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 220
+          "EntityId": 220,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 230
+          "EntityId": 230,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -551,23 +551,23 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 211
+          "EntityId": 211,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 221
+          "EntityId": 221,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 232
+          "EntityId": 232,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -591,8 +591,8 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 9
+          "EntityId": 9,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -616,18 +616,18 @@
       "Effects": [
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 200
+          "EntityId": 200,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 201
+          "EntityId": 201,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 202
+          "EntityId": 202,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -651,18 +651,18 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 8
+          "EntityId": 8,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 16
+          "EntityId": 16,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -686,8 +686,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -711,8 +711,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -736,8 +736,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -761,8 +761,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -786,8 +786,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -811,8 +811,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -836,8 +836,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -861,13 +861,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -891,13 +891,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -921,23 +921,23 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -961,23 +961,23 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1001,18 +1001,18 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1036,28 +1036,28 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 8
+          "EntityId": 8,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1081,33 +1081,33 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 13
+          "EntityId": 13,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 8
+          "EntityId": 8,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1131,18 +1131,18 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1166,8 +1166,8 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1191,8 +1191,8 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1235,18 +1235,18 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1270,13 +1270,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 232
+          "EntityId": 232,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1300,13 +1300,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 212
+          "EntityId": 212,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1330,13 +1330,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 100,
-          "Quantity": 1,
-          "EntityId": 222
+          "EntityId": 222,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1360,18 +1360,18 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1395,13 +1395,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1425,13 +1425,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 12
+          "EntityId": 12,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1455,13 +1455,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 16
+          "EntityId": 16,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1485,13 +1485,13 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1515,13 +1515,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1545,13 +1545,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 4
+          "EntityId": 4,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1575,13 +1575,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1605,13 +1605,13 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1832,8 +1832,8 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1857,18 +1857,18 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1949,8 +1949,8 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -1987,28 +1987,28 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 9
+          "EntityId": 9,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2032,28 +2032,28 @@
       "Effects": [
         {
           "EntityTypeId": 24,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 7
+          "EntityId": 7,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 9
+          "EntityId": 9,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2077,13 +2077,13 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2107,13 +2107,13 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2137,18 +2137,18 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2172,8 +2172,8 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2216,23 +2216,23 @@
       "Effects": [
         {
           "EntityTypeId": 32,
-          "Quantity": 100,
-          "EntityId": 1
+          "EntityId": 1,
+          "Quantity": 100
         },
         {
           "EntityTypeId": 32,
-          "Quantity": 50,
-          "EntityId": 20
+          "EntityId": 20,
+          "Quantity": 50
         },
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 5
+          "EntityId": 5,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 16
+          "EntityId": 16,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2275,8 +2275,8 @@
       "Effects": [
         {
           "EntityTypeId": 31,
-          "Quantity": 5,
-          "EntityId": 36
+          "EntityId": 36,
+          "Quantity": 5
         }
       ],
       "PrefixNames": [],
@@ -2414,18 +2414,18 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2449,8 +2449,8 @@
       "Effects": [
         {
           "EntityTypeId": 25,
-          "Quantity": 1,
-          "EntityId": 2
+          "EntityId": 2,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2519,18 +2519,18 @@
       "Effects": [
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 6
+          "EntityId": 6,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 3
+          "EntityId": 3,
+          "Quantity": 1
         },
         {
           "EntityTypeId": 36,
-          "Quantity": 1,
-          "EntityId": 10
+          "EntityId": 10,
+          "Quantity": 1
         }
       ],
       "PrefixNames": [],
@@ -2567,5 +2567,5 @@
     "Name": "UnitTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-02-04T22:28:56.541Z"
+  "SaveTime": "2026-03-23T20:27:09.495Z"
 }

@@ -6,7 +6,7 @@ using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Assets.Scripts.UI.Pointers;
 using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Ftue.Messages;
 using Genrpg.Shared.Ftue.Services;

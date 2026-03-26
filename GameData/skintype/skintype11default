@@ -4,7 +4,5 @@
   "IdKey": 11,
   "Name": "Dromedary Camel",
   "Icon": "DromedaryCamel",
-  "Art": "DromedaryCamel",
-  "AnimalTypeId": 11,
-  "IsDefault": true
+  "Art": "DromedaryCamel"
 }

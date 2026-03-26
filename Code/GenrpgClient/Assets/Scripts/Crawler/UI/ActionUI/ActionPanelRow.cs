@@ -92,10 +92,7 @@ namespace Assets.Scripts.UI.Crawler.ActionUI
             {
                 if (!string.IsNullOrEmpty(_action.SpriteName))
                 {
-                    _dispatcher.Dispatch<ShowWorldPanelImage>(new ShowWorldPanelImage()
-                    {
-                        SpriteName = _action.SpriteName
-                    });
+                    _dispatcher.Dispatch<ShowWorldPanelImage>(new ShowWorldPanelImage(_action.SpriteName));
                 }
                 if (_action.OnPointerEnter != null)
                 {

@@ -1,14 +1,9 @@
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.DataStores.Interfaces;
 using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Setup.Services;
-using Genrpg.Shared.Stats.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,7 +42,7 @@ namespace Genrpg.Shared.Utils
                     }
                     if (t.GetCustomAttribute(attributeType) != null)
                     {
-                        retval.Add(t);  
+                        retval.Add(t);
                     }
                 }
             }

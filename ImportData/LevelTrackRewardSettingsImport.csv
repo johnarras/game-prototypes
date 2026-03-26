@@ -1,26 +1,44 @@
-header leveltrackreward,IdKey,Level,,Name,EntityTypeId,EntityId,Quantity,Icon,Art,Desc
-leveltrackreward,1,1,,,,,,,,
-leveltrackreward,2,2,,,basetraderstat,coins storage,900,,,
-leveltrackreward,3,3,,,basetraderstat,coins regen,50,,,
-leveltrackreward,4,4,,,basetraderstat,supplies storage,60,,,
-leveltrackreward,5,5,,,basetraderstat,supplies regen,6,,,
-leveltrackreward,6,6,,,basetraderstat,rations storage,70,,,
-leveltrackreward,7,7,,,basetraderstat,rations regen,7,,,
-leveltrackreward,8,8,,,basetraderstat,mana storage,50,,,
-leveltrackreward,9,9,,,basetraderstat,mana regen,5,,,
-leveltrackreward,10,10,,,basetraderstat,coins storage,1200,,,
-leveltrackreward,11,11,,,basetraderstat,coins regen,60,,,
-leveltrackreward,12,12,,,basetraderstat,supplies storage,70,,,
-leveltrackreward,13,13,,,basetraderstat,supplies regen,7,,,
-leveltrackreward,14,14,,,basetraderstat,rations storage,80,,,
-leveltrackreward,15,15,,,basetraderstat,rations regen,8,,,
-leveltrackreward,16,16,,,basetraderstat,mana storage,60,,,
-leveltrackreward,17,17,,,basetraderstat,mana regen,6,,,
-leveltrackreward,18,18,,,basetraderstat,coins storage,1500,,,
-leveltrackreward,19,19,,,basetraderstat,coins regen,75,,,
-leveltrackreward,20,20,,,basetraderstat,supplies storage,80,,,
-leveltrackreward,21,21,,,basetraderstat,supplies regen,8,,,
-leveltrackreward,22,22,,,basetraderstat,rations storage,90,,,
-leveltrackreward,23,23,,,basetraderstat,rations regen,9,,,
-leveltrackreward,24,24,,,basetraderstat,mana storage,70,,,
-leveltrackreward,25,25,,,basetraderstat,mana regen,7,,,
+header leveltrackrewardsettings,Id,StartCityId,,,
+leveltrackrewardsettings,default,22,,,
+header leveltrackreward,IdKey,Level,EntityTypeId,EntityId,Quantity
+leveltrackreward,1,1,basecurrencystorage,coins,800
+leveltrackreward,2,1,basecurrencyregen,coins,80
+leveltrackreward,3,1,basecurrencystorage,supplies,50
+leveltrackreward,4,1,basecurrencyregen,supplies,5
+leveltrackreward,5,1,basecurrencystorage,mana,40
+leveltrackreward,6,1,basecurrencyregen,mana,4
+leveltrackreward,7,1,basecurrencystorage,rations,60
+leveltrackreward,8,1,basecurrencyregen,rations,6
+leveltrackreward,9,1,caravanmember,donkey,1
+leveltrackreward,10,1,basegameplaystat,max size,2
+leveltrackreward,11,1,basegameplaystat,searching,1
+leveltrackreward,12,1,corecurrency,coins,800
+leveltrackreward,13,1,corecurrency,supplies,50
+leveltrackreward,14,1,corecurrency,mana,40
+leveltrackreward,15,1,corecurrency,rations,120
+leveltrackreward,16,2,basecurrencystorage,coins,900
+leveltrackreward,17,3,basecurrencyregen,coins,50
+leveltrackreward,18,4,basecurrencystorage,supplies,60
+leveltrackreward,19,5,basecurrencyregen,supplies,6
+leveltrackreward,20,6,basecurrencystorage,rations,70
+leveltrackreward,21,7,basecurrencyregen,rations,7
+leveltrackreward,22,8,basecurrencystorage,mana,50
+leveltrackreward,23,9,basecurrencyregen,mana,5
+leveltrackreward,24,10,basecurrencystorage,coins,1200
+leveltrackreward,25,11,basecurrencyregen,coins,60
+leveltrackreward,26,12,basecurrencystorage,supplies,70
+leveltrackreward,27,13,basecurrencyregen,supplies,7
+leveltrackreward,28,14,basecurrencystorage,rations,80
+leveltrackreward,29,15,basecurrencyregen,rations,8
+leveltrackreward,30,16,basecurrencystorage,mana,60
+leveltrackreward,31,17,basecurrencyregen,mana,6
+leveltrackreward,32,18,basecurrencystorage,coins,1500
+leveltrackreward,33,19,basecurrencyregen,coins,75
+leveltrackreward,34,20,basecurrencystorage,supplies,80
+leveltrackreward,35,21,basecurrencyregen,supplies,8
+leveltrackreward,36,22,basecurrencystorage,rations,90
+leveltrackreward,37,23,basecurrencyregen,rations,9
+leveltrackreward,38,24,basecurrencystorage,mana,70
+leveltrackreward,39,25,basecurrencyregen,mana,7
+leveltrackreward,40,26,basegameplaystat,max size,3
+leveltrackreward,41,1,skintype,donkey,1

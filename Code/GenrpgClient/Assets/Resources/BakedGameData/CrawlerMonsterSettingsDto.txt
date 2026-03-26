@@ -3,13 +3,13 @@
     "Id": "default",
     "BaseMinDam": 1,
     "BaseMaxDam": 2,
-    "MinDamPerLevel": 1.0,
-    "MaxDamPerLevel": 2.0,
+    "MinDamPerLevel": 0.5,
+    "MaxDamPerLevel": 1.0,
     "ScalingPerLevel": 0.07,
     "BaseMinHealth": 3,
-    "BaseMaxHealth": 8,
-    "MinHealthPerLevel": 3.0,
-    "MaxHealthPerLevel": 8.0,
+    "BaseMaxHealth": 6,
+    "MinHealthPerLevel": 2.0,
+    "MaxHealthPerLevel": 6.0,
     "ManaPerLevel": 100,
     "ExtraHealthScalePerLevel": 0.02,
     "ExtraDamageScalePerLevel": 0.01,
@@ -18,6 +18,6 @@
     "PrimaryStatsPointsPerLevel": 0.25,
     "BasicLoot": [],
     "Name": "CrawlerMonsterSettings",
-    "SaveTime": "2026-03-01T01:31:47.133Z"
+    "SaveTime": "2026-03-15T02:35:21.877Z"
   }
 }

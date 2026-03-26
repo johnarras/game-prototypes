@@ -8,7 +8,7 @@
   "GoodEffects": [],
   "BadEffects": [
     {
-      "EntityTypeId": 200,
+      "EntityTypeId": 1,
       "EntityId": 4,
       "MinQuantity": 10,
       "MaxQuantity": 20,

@@ -232,7 +232,7 @@
     },
     {
       "IdKey": 40,
-      "Name": "Animals",
+      "Name": "Caravan",
       "ScreenLayerId": 20,
       "Subdirectory": "TraderCaravan"
     },
@@ -258,12 +258,12 @@
       "IdKey": 44,
       "Name": "TraderVendor",
       "ScreenLayerId": 20,
-      "Subdirectory": "TraderVendor"
+      "Subdirectory": "TraderSpend"
     },
     {
       "IdKey": 45,
       "Name": "TraderCity",
-      "ScreenLayerId": 15,
+      "ScreenLayerId": 5,
       "Subdirectory": "TraderCity"
     },
     {
@@ -298,27 +298,69 @@
     },
     {
       "IdKey": 51,
-      "Name": "TradeGoods",
-      "ScreenLayerId": 20,
-      "Subdirectory": "TraderCaravan"
-    },
-    {
-      "IdKey": 52,
-      "Name": "TraderSupplies",
-      "ScreenLayerId": 20,
-      "Subdirectory": "TraderCity"
-    },
-    {
-      "IdKey": 53,
       "Name": "MinigameHUD",
-      "ScreenLayerId": 10,
+      "ScreenLayerId": 20,
       "Subdirectory": "MinigameHUD"
     },
     {
-      "IdKey": 54,
+      "IdKey": 52,
       "Name": "MinigameLobby",
       "ScreenLayerId": 20,
       "Subdirectory": "MinigameLobby"
+    },
+    {
+      "IdKey": 53,
+      "Name": "TradeGoods",
+      "ScreenLayerId": 10,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 54,
+      "Name": "Supplies",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 55,
+      "Name": "TraderTemple",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 56,
+      "Name": "TraderSpells",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 57,
+      "Name": "TraderAnimals",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 58,
+      "Name": "TraderTrainer",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 59,
+      "Name": "Enchanter",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 60,
+      "Name": "Repair",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
+    },
+    {
+      "IdKey": 61,
+      "Name": "TravelingVendor",
+      "ScreenLayerId": 20,
+      "Subdirectory": "TraderSpend"
     }
   ],
   "Parent": {
@@ -326,5 +368,5 @@
     "Name": "ScreenNameSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-30T22:58:55.426Z"
+  "SaveTime": "2026-03-26T19:25:21.849Z"
 }

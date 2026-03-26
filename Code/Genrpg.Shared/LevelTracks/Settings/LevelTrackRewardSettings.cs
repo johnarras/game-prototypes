@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
@@ -20,11 +19,9 @@ namespace Genrpg.Shared.LevelTracks.Settings
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public long Exp { get; set; }
         public long EntityTypeId { get; set; }
         public long EntityId { get; set; }
         public long Quantity { get; set; }
-        public long QualityTypeId { get; set; }
         public long Level { get; set; }
         public Item ExtraData { get; set; }
     }
@@ -32,6 +29,7 @@ namespace Genrpg.Shared.LevelTracks.Settings
     public class LevelTrackRewardSettings : ParentSettings<LevelTrackReward>
     {
         public override string Id { get; set; }
+        public long StartCityId { get; set; }
     }
 
     public class LevelTrackRewardSettingsDto : ParentSettingsDto<LevelTrackRewardSettings, LevelTrackReward>

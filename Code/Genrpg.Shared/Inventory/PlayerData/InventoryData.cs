@@ -1,7 +1,7 @@
-using MessagePack;
 using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
 using Genrpg.Shared.Units.Loaders;
 using Genrpg.Shared.Units.Mappers;
+using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -52,14 +52,6 @@ namespace Genrpg.Shared.Inventory.PlayerData
         public List<Item> GetAllItemsOfItemType(int itemTypeId)
         {
             return _inventory.Where(x => x.ItemTypeId == itemTypeId).ToList() ?? new List<Item>();
-        }
-
-        public Item GetMatchingStackItem(Item item)
-        {
-            return _inventory.FirstOrDefault(x =>
-            x.ItemTypeId == item.ItemTypeId &&
-            x.QualityTypeId == item.QualityTypeId &&
-            x.Level == item.Level);
         }
 
         public List<Item> GetItemsByItemTypeId(long itemTypeId)

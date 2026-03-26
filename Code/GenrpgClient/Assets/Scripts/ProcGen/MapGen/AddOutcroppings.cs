@@ -88,19 +88,19 @@ public class AddOutcroppings : BaseZoneGenerator
             ClearGrid();
 
 
-            float amp = MathUtil.FloatRange(0.1f, 0.2f, rand);
-            float freq = MathUtil.FloatRange(5f, 15f, rand);
-            float pers = MathUtil.FloatRange(0.2f, 0.5f, rand);
+            float amp = RandUtils.FloatRange(0.1f, 0.2f, rand);
+            float freq = RandUtils.FloatRange(5f, 15f, rand);
+            float pers = RandUtils.FloatRange(0.2f, 0.5f, rand);
 
             float[,] heightScales = _noiseService.Generate(pers, freq, amp, 2, rand.Next(), GridSize, GridSize);
 
             for (int tries = 0; tries < 20; tries++)
             {
-                int sx = MathUtil.IntRange(startx, endx, rand);
-                int sy = MathUtil.IntRange(starty, endy, rand);
+                int sx = RandUtils.IntRange(startx, endx, rand);
+                int sy = RandUtils.IntRange(starty, endy, rand);
 
-                int ex = MathUtil.IntRange(startx, endx, rand);
-                int ey = MathUtil.IntRange(starty, endy, rand);
+                int ex = RandUtils.IntRange(startx, endx, rand);
+                int ey = RandUtils.IntRange(starty, endy, rand);
 
                 int dx = Math.Abs(ex - sx);
                 int dy = Math.Abs(ey - sy);
@@ -119,9 +119,9 @@ public class AddOutcroppings : BaseZoneGenerator
                 int minSize = Math.Min(dx, dy);
                 int maxSize = Math.Max(dx, dy);
 
-                int maxWidth = MathUtil.IntRange(minSize * 2 / 3, minSize, rand);
+                int maxWidth = RandUtils.IntRange(minSize * 2 / 3, minSize, rand);
 
-                float fullHeight = MathUtil.FloatRange(20.0f,60.0f,rand) / MapConstants.MapHeight;
+                float fullHeight = RandUtils.FloatRange(20.0f,60.0f,rand) / MapConstants.MapHeight;
 
                 int mx = (sx + ex) / 2;
                 int my = (sy + ey) / 2;
@@ -173,9 +173,9 @@ public class AddOutcroppings : BaseZoneGenerator
                 List<MyPointF> lowestPoints = new List<MyPointF>();
 
 
-                float smoothFreq = MathUtil.FloatRange(0.03f, 0.7f, rand);
-                float smoothAmp = MathUtil.FloatRange(0.2f, 0.3f, rand);
-                float smoothPers = MathUtil.FloatRange(0.1f, 0.3f, rand);
+                float smoothFreq = RandUtils.FloatRange(0.03f, 0.7f, rand);
+                float smoothAmp = RandUtils.FloatRange(0.2f, 0.3f, rand);
+                float smoothPers = RandUtils.FloatRange(0.1f, 0.3f, rand);
                 int smoothOctaves = 2;
 
                 float[,] smoothNoise = _noiseService.Generate(pers, freq, amp, smoothOctaves, rand.Next(), GridSize, GridSize);
@@ -250,9 +250,9 @@ public class AddOutcroppings : BaseZoneGenerator
 
                 foreach (MyPointF pt in lowestPoints)
                 {
-                    float lowPointRadius = MathUtil.FloatRange(1.25f, 2.0f, rand) * fullHeight * MapConstants.MapHeight;
+                    float lowPointRadius = RandUtils.FloatRange(1.25f, 2.0f, rand) * fullHeight * MapConstants.MapHeight;
 
-                    float power = MathUtil.FloatRange(1.0f, 1.5f, rand);
+                    float power = RandUtils.FloatRange(1.0f, 1.5f, rand);
 
                     for (int x = 0; x < GridSize; x++)
                     {

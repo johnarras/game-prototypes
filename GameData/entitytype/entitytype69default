@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype69default",
+  "ParentId": "default",
+  "IdKey": 69,
+  "Name": "SpendCurrencyLocation",
+  "Icon": "SpendCurrencyLocation",
+  "Art": "SpendCurrencyLocation"
+}

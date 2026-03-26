@@ -19,8 +19,8 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
     public interface ISpriteService : IInitializable, IClientResetCleanup, IAssetSubsystem
     {
-        void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token);
-        void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage image, CancellationToken token, AssetDownloadHandler<object> handler = null);
+        void SetEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token, string forcedIconName = null);
+        void SetAtlasSpriteInto(string atlasName, string spriteName, GImage image, CancellationToken token, AssetDownloadHandler<object> handler = null);
         void LoadAtlas(string atlasName, CancellationToken token, AssetDownloadHandler<object> handler = null);
     }
 
@@ -55,10 +55,10 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
         public void LoadAtlas(string atlasName, CancellationToken token, AssetDownloadHandler<object> handler = null)
         {
-            LoadAtlasSpriteInto(atlasName, null, null, token, handler);
+            SetAtlasSpriteInto(atlasName, null, null, token, handler);
         }
 
-        public void LoadAtlasSpriteInto(string atlasName, string spriteName, GImage parentSprite, CancellationToken token, AssetDownloadHandler<object> handler = null)
+        public void SetAtlasSpriteInto(string atlasName, string spriteName, GImage parentSprite, CancellationToken token, AssetDownloadHandler<object> handler = null)
         {
             GImage image = parentSprite as GImage;
 
@@ -179,13 +179,14 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
         }
 
-        public void LoadEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token)
+        public void SetEntityIcon(long entityTypeId, long entityId, GImage parentImage, CancellationToken token,
+            string forcedIconName = null)
         {
-            EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.ch, entityTypeId, entityId);
+            EntityAtlasIcon icon = _entityService.TryGetEntityIcon(_gs.ch, entityTypeId, entityId, forcedIconName);
 
             if (icon != null && icon.IsValid())
             {
-                LoadAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
+                SetAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
             }
             else
             {

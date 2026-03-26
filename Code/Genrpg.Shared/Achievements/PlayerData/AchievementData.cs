@@ -1,9 +1,7 @@
-using MessagePack;
-using Genrpg.Shared.DataStores.Categories.PlayerData.ParentChild;
-using Genrpg.Shared.Units.Loaders;
+using Genrpg.Shared.DataStores.Categories.PlayerData.NoChild;
 using Genrpg.Shared.Units.Mappers;
-using System.Collections.Generic;
-
+using Genrpg.Shared.Utils.Data;
+using MessagePack;
 namespace Genrpg.Shared.Achievements.PlayerData
 {
     /// <summary>
@@ -11,37 +9,23 @@ namespace Genrpg.Shared.Achievements.PlayerData
     /// </summary>
 
     [MessagePackObject]
-    public class AchievementData : OwnerQuantityObjectList<AchievementStatus>
+    public class AchievementData : NoChildPlayerData
     {
         [Key(0)] public override string Id { get; set; }
 
-        public long GetQuantity(long AchievementTypeId)
-        {
-            return Get(AchievementTypeId).Quantity;
-        }
-
-    }
-    [MessagePackObject]
-    public class AchievementStatus : OwnerQuantityChild
-    {
-        [Key(0)] public override string Id { get; set; }
-        [Key(1)] public override string OwnerId { get; set; }
-        [Key(2)] public override long IdKey { get; set; }
-        [Key(3)] public override long Quantity { get; set; }
+        [Key(1)] public SmallIdLongCollection Data { get; set; } = new SmallIdLongCollection();
 
     }
 
     [MessagePackObject]
-    public class AchievementDto : OwnerDtoList<AchievementData, AchievementStatus>
+    public class AchievementDto : NoChildPlayerDataDto<AchievementData>
     {
-        [Key(0)] public override List<AchievementStatus> Children { get; set; }
-        [Key(1)] public override AchievementData Parent { get; set; }
-        [Key(2)] public override string Id { get; set; }
+        [Key(0)] public override AchievementData Parent { get; set; }
+        [Key(1)] public override string Id { get; set; }
     }
-    public class AchievementDataLoader : OwnerIdDataLoader<AchievementData, AchievementStatus> { }
 
 
-    public class AchievementDataMapper : OwnerDataMapper<AchievementData, AchievementStatus, AchievementDto> { }
+    public class AchievementDataMapper : NoChildUnitDataMapper<AchievementData, AchievementDto> { }
 }
 
 

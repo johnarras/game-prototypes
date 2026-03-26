@@ -1,7 +1,5 @@
-using Genrpg.ServerShared.Achievements;
 using Genrpg.Shared.Achievements.Constants;
 using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Messages;
@@ -12,7 +10,6 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.Spells.SpellEffectHandlers
 {
@@ -44,9 +41,9 @@ namespace Genrpg.MapServer.Spells.SpellEffectHandlers
             long amount = eff.Quantity;
 
             int variancePct = 20;
-            
-                amount = MathUtil.LongRange(startAmount * (100 - variancePct) / 100,
-                    startAmount * (100 + variancePct) / 100, rand);
+
+            amount = RandUtils.LongRange(startAmount * (100 - variancePct) / 100,
+                startAmount * (100 + variancePct) / 100, rand);
 
             long absorbAmount = 0;
             bool isImmune = targ.IsFullImmune();

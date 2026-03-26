@@ -1,7 +1,5 @@
-using Azure.Storage.Blobs.Models;
 using Genrpg.ServerShared.DataStores.Entities;
 using Genrpg.ServerShared.DataStores.Mongo.Interfaces;
-using Genrpg.ServerShared.DataStores.Services;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
@@ -14,15 +12,12 @@ using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Utils;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -56,7 +51,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
         {
             _token = token;
             string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
-            _databaseName = databaseName;   
+            _databaseName = databaseName;
             _logService = logService;
             _serializer = serializer;
             _client = client;
@@ -78,7 +73,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
                                 {
                                     BsonClassMap classMap = new BsonClassMap(type);
                                     classMap.AutoMap();
-                                    classMap.SetDiscriminator(type.Name.ToLower());
+                                    classMap.SetDiscriminator(StrUtils.NormalizeTypeName(type));
                                     BsonClassMap.RegisterClassMap(classMap);
                                 }
                             }
@@ -95,18 +90,18 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
         public IMongoCollection<BsonDocument> GetSettingsCollection()
         {
-            if (_databaseName.IndexOf(EDataCategories.Settings.ToString().ToLower()) <0)
+            if (_databaseName.IndexOf(EDataCategories.Settings.ToString().ToLower()) < 0)
             {
                 return null;
             }
-                
+
             return _collection;
         }
-        
+
 
         public string GetFullDocId(Type t, string id)
         {
-            string typeNameLower = t.Name.ToLower();
+            string typeNameLower = StrUtils.NormalizeTypeName(t);
 
             return GetFullDocId(typeNameLower, id);
 
@@ -164,7 +159,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
                 ReplaceOneResult replaceResult = await _collection.ReplaceOneAsync(
                     filter: Builders<BsonDocument>.Filter.Eq("_id", fullId),
                     replacement: doc,
-                    options:_saveOptions
+                    options: _saveOptions
                     );
 
                 if (replaceResult.ModifiedCount < 1 && string.IsNullOrEmpty(replaceResult.UpsertedId?.AsString ?? null))
@@ -188,7 +183,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
         {
             string fullId = GetFullDocId(obj.GetType(), obj.Id);
             FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("_id", fullId);
-            
+
             try
             {
                 DeleteResult result = await _collection.DeleteOneAsync(filter);
@@ -210,7 +205,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             try
             {
 
-                string typeName = typeof(T).Name.ToLower();
+                string typeName = StrUtils.NormalizeTypeName<T>();
                 if (funcObj is not Expression<Func<T, bool>> tFilter)
                 {
                     return new List<T>();
@@ -222,15 +217,15 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
 
                 FilterDefinition<T> fullFilter = Builders<T>.Filter.And(typeFilter, tFilter);
 
-                IFindFluent<T,T> query = collection.Find<T>(fullFilter);
+                IFindFluent<T, T> query = collection.Find<T>(fullFilter);
 
                 if (skip > 0)
                 {
-                    query = query.Skip(skip);   
+                    query = query.Skip(skip);
                 }
                 if (quantity > 0)
                 {
-                    query = query.Limit(quantity);  
+                    query = query.Limit(quantity);
                 }
 
                 List<T> retval = await query.ToListAsync();

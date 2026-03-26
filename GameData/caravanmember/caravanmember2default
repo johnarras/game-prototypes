@@ -1,0 +1,24 @@
+{
+  "Id": "caravanmember2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "Pony",
+  "Desc": "A small, hardy horse breed adapted to rough terrain or vast steppes. Valued for its incredible endurance and efficiency over long distances.",
+  "Icon": "Pony",
+  "Art": "Pony",
+  "Speed": 4,
+  "Size": 2,
+  "Price": 41000,
+  "Effects": [
+    {
+      "EntityTypeId": 85,
+      "EntityId": 2,
+      "Quantity": -1
+    },
+    {
+      "EntityTypeId": 74,
+      "EntityId": 2,
+      "Quantity": 1
+    }
+  ]
+}

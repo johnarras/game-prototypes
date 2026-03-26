@@ -1,11 +1,6 @@
 using Genrpg.Shared.DataStores.Categories.WorldData;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.MapServer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Genrpg.ServerShared.Maps.Entities
 {

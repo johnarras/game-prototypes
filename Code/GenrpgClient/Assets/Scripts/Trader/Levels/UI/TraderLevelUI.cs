@@ -2,7 +2,7 @@
 using Assets.Scripts.DynamicUI.Interfaces;
 using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.CoreCurrencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.Constants;
 using UnityEngine;

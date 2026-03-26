@@ -1,7 +1,7 @@
 
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Currencies.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -84,7 +84,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
             long trainingCost = _trainingService.GetNewClassTrainingCost(member);
 
 
-            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Currencies[CrawlerCurrencyTypes.Gold]}");
+            stateData.AddText($"{member.Name}: New Class Cost: {trainingCost} Party Gold: {party.Currencies[CoreCurrencyTypes.Coins]}");
 
             for (int i = 0; i < possibleRoles.Count; i++)
             {

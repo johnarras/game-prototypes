@@ -1,11 +1,12 @@
 
 using Genrpg.Shared.Pings.Messages;
 using System.Threading;
+using UnityEngine;
 
-public class PingHandler : BaseClientMapMessageHandler<Ping>
+public class PingHandler : BaseClientMapMessageHandler<Genrpg.Shared.Pings.Messages.Ping>
 {
 
-    protected override void InnerProcess(Ping msg, CancellationToken token)
+    protected override async Awaitable InnerProcess(Genrpg.Shared.Pings.Messages.Ping msg, CancellationToken token)
     {
     }
 }

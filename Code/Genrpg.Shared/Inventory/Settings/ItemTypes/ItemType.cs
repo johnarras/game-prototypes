@@ -1,4 +1,5 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -8,10 +9,8 @@ using Genrpg.Shared.Inventory.Settings.Qualities;
 using Genrpg.Shared.Inventory.Settings.Slots;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Names.Settings;
-using Genrpg.Shared.ProcGen.Settings.Names;
 using Genrpg.Shared.RpgLevels.Settings;
 using Genrpg.Shared.Units.Entities;
-using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,8 +21,6 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
 
         public const int MinRangedItemLevel = 5;
         public const int LevelGap = 2 * MinRangedItemLevel;
-
-
         public override string Id { get; set; }
         public override string ParentId { get; set; }
         public long IdKey { get; set; }
@@ -38,108 +35,32 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
         // Probably want to use bitfields but bleh. IDK.
         public long EquipSlotId { get; set; }
 
+        public int IconCount { get; set; }
+
         public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
 
-        public List<ItemEffect> Effects { get; set; }
-
-        public List<LevelRangeName> LevelRanges { get; set; }
-
-        public List<QualityName> QualityNames { get; set; }
-
-        public List<NameCount> IconCounts { get; set; }
+        public List<Effect> Effects { get; set; } = new List<Effect>();
 
         public List<WeightedName> Names { get; set; }
 
         public ItemType()
         {
-            Effects = new List<ItemEffect>();
-            LevelRanges = new List<LevelRangeName>();
-            QualityNames = new List<QualityName>();
-            IconCounts = new List<NameCount>();
+            Effects = new List<Effect>();
             Names = new List<WeightedName>();
-        }
-
-
-        public long GetFromRangeLevel(long desiredLevel)
-        {
-            if (LevelRanges == null || LevelRanges.Count < 1)
-            {
-                return desiredLevel;
-            }
-
-
-            LevelRangeName levelRangeWanted = LevelRanges.FirstOrDefault(x => x.MinLevel <= desiredLevel && x.MaxLevel >= desiredLevel);
-            if (levelRangeWanted == null)
-            {
-                return MinRangedItemLevel;
-            }
-
-            return (levelRangeWanted.MinLevel + levelRangeWanted.MaxLevel) / 2;
-        }
-
-        public LevelRangeName GetRange(int level, int depth = 0)
-        {
-            if (depth >= 10)
-            {
-                return null;
-            }
-            if (LevelRanges != null && LevelRanges.Count > 0)
-            {
-                LevelRangeName ln = LevelRanges.FirstOrDefault(x => x.MinLevel <= level && x.MaxLevel >= level);
-                if (ln != null)
-                {
-                    return ln;
-                }
-            }
-            return null;
-        }
-
-        public QualityName GetQuality(int quality, int depth = 0)
-        {
-            if (depth >= 10)
-            {
-                return null;
-            }
-
-            if (QualityNames != null && QualityNames.Count > 0)
-            {
-                QualityName qn = QualityNames.FirstOrDefault(x => x.QualityTypeId == quality);
-                if (qn != null)
-                {
-                    return qn;
-                }
-            }
-            return null;
         }
 
 
         public string GetIcon(int level)
         {
-            if (LevelRanges == null)
-            {
-                return Icon;
-            }
-            LevelRangeName ln = LevelRanges.FirstOrDefault(x => x.MinLevel <= level && x.MaxLevel >= level);
-            if (ln != null && !string.IsNullOrEmpty(ln.Icon))
-            {
-                return ln.Icon;
-            }
             return Icon;
         }
         public string GetNamePrefix(int level, long quality)
         {
             return "";
-        }
-
-        public bool IsReagent()
-        {
-            return CanStack() &&
-                Effects != null &&
-                Effects.Count > 0;
         }
 
         public Dictionary<long, long> GetCraftingStatPercents(IGameData gameData, Unit crafter, long level, long quality)
@@ -169,7 +90,7 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
             int globalScaling = gameData.Get<ItemTypeSettings>(crafter).GenGlobalScalingPercent;
 
 
-            foreach (ItemEffect eff in Effects)
+            foreach (Effect eff in Effects)
             {
                 if (eff.EntityTypeId != EntityTypes.Stat)
                 {
@@ -269,11 +190,6 @@ namespace Genrpg.Shared.Inventory.Settings.ItemTypes
 
             }
             return retval;
-        }
-
-        public bool CanStack()
-        {
-            return EquipSlotId < 1;
         }
     }
 

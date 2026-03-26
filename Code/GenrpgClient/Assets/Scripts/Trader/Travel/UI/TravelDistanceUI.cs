@@ -2,10 +2,10 @@
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.Travel.Services;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Animals.Settings;
+using Genrpg.Shared.Trader.CaravanMembers.Settings;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
@@ -18,6 +18,7 @@ using System.Globalization;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {
@@ -48,7 +49,7 @@ namespace Assets.Scripts.Trader.Travel.UI
         private bool _lastWasInCity = false;
 
 
-        private long _caravanIconAnimalId = 0;
+        private long _caravanSkinId = 0;
 
         public override void Init()
         {
@@ -73,7 +74,7 @@ namespace Assets.Scripts.Trader.Travel.UI
         private void OnShowTravelDay(TravelDay day)
         {
             ShowStatus(false);
-            _targetDistanceGone = day.EndDistance;
+            _targetDistanceGone = day.Vars[DayVars.EndDistance];
         }
 
         private void UpdateCurrentDistance()
@@ -123,17 +124,16 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             CaravanData caravanData = _gs.ch.Get<CaravanData>();
 
-            if (caravanData.Animals.Count > 0 && caravanData.Animals[0].AnimalTypeId != _caravanIconAnimalId)
+            _caravanSkinId = caravanData.SkinTypeId;
+
+            SkinType skinType = _gameData.Get<SkinTypeSettings>(_gs.ch).Get(_caravanSkinId);
+
+            if (skinType == null)
             {
-                _caravanIconAnimalId = caravanData.Animals[0].AnimalTypeId;
-
-                AnimalType atype = _gameData.Get<AnimalTypeSettings>(_gs.ch).Get(_caravanIconAnimalId);
-
-                if (atype != null)
-                {
-                    _spriteService.LoadEntityIcon(EntityTypes.Animal, _caravanIconAnimalId, CaravanIcon, GetToken());
-                }
+                skinType = _gameData.Get<SkinTypeSettings>(_gs.ch).GetData().First();
             }
+
+            _spriteService.SetEntityIcon(EntityTypes.SkinType, _caravanSkinId, CaravanIcon, base.GetToken());
 
             long currCityIdToShow = 0;
 

@@ -6,8 +6,6 @@
   "Desc": "Iron and Stone",
   "Icon": "MountainTile",
   "Art": "MountainTile",
-  "Weight": 1.0,
-  "MinLevel": 1,
   "Rewards": [
     {
       "EntityTypeId": 200,
@@ -27,7 +25,5 @@
       "GroupId": 1,
       "MinLevel": 1
     }
-  ],
-  "Effects": [],
-  "UpgradeReagents": []
+  ]
 }

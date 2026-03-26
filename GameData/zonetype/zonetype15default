@@ -368,7 +368,6 @@
   ],
   "PlantChoices": "",
   "WeatherTypeId": 11,
-  "BuildingTypeId": 19,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,

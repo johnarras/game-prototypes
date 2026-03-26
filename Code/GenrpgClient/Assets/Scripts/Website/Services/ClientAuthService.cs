@@ -3,7 +3,7 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameAuth.WebApi.Auth;
 using Genrpg.Shared.GameSettings;
@@ -155,7 +155,7 @@ public class ClientAuthService : IClientAuthService
     {
         request.ProductId = _config.Config.ProductId;
 
-        AccountLoginResponse result = await _clientWebService.SendAccountAuthWebRequestAsync<AccountLoginResponse>(request, token);
+        AccountLoginResponse result = await _clientWebService.SendWebRequestAsync<AccountLoginResponse>(request, token);
 
         if (result == null)
         {
@@ -177,7 +177,7 @@ public class ClientAuthService : IClientAuthService
     public async Awaitable SendSignupRequest(AccountSignupRequest request, CancellationToken token)
     {
         request.ProductId = _config.Config.ProductId;
-        _clientWebService.SendAccountAuthWebRequest(request, token);
+        _clientWebService.SendWebRequest(request, token);
         await Task.CompletedTask;
     }
 
@@ -211,7 +211,7 @@ public class ClientAuthService : IClientAuthService
             GameName = _gs.GameMode.ToString(),
         };
 
-        _clientWebService.SendGameAuthWebRequest(request, token);
+        _clientWebService.SendWebRequest(request, token);
 
     }
 }

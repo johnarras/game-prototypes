@@ -9,8 +9,6 @@ using UnityEngine;
 
 public interface IIconService : IInjectable
 {
-    string GetBackingNameFromQuality(IGameData gameData, long qualityTypeId);
-    string GetFrameNameFromLevel(IGameData gameData, long level);
     void InitItemIcon(InitItemIconData data, GameObject parent, IAssetService assetService, CancellationToken token);
     void InitSpellIcon(InitSpellIconData data, GameObject parent, IAssetService assetService, CancellationToken token);
 }

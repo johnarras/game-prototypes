@@ -10,13 +10,15 @@ using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Spells.Messages;
 using Genrpg.Shared.Utils;
+using System.Threading.Tasks;
 
 namespace Genrpg.MapServer.InteractObject.MessageHandlers
 {
     public class InteractCommandHandler : BaseMapObjectServerMapMessageHandler<InteractCommand>
     {
-        protected override void InnerProcess(IRandom rand, MapMessagePackage pack, MapObject obj, InteractCommand message)
+        protected override async Task InnerProcess(IRandom rand, MapMessagePackage pack, MapObject obj, InteractCommand message)
         {
+            await Task.CompletedTask;
             if (!_objectManager.GetObject(message.TargetId, out MapObject target))
             {
                 pack.SendError(obj, "Object does not exist!");

@@ -1,19 +1,12 @@
-using MessagePack;
-using Genrpg.Shared.Core.Entities;
+using Genrpg.Shared.DataStores.Categories.WorldData;
 using Genrpg.Shared.DataStores.Entities;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.Utils.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using Genrpg.Shared.DataStores.Categories.WorldData;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Quests.WorldData;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Vendors.WorldData;
-using Genrpg.Shared.ProcGen.Settings.Names;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Genrpg.Shared.MapServer.Entities
 {
@@ -81,7 +74,7 @@ namespace Genrpg.Shared.MapServer.Entities
             }
             return default;
         }
-        public virtual void ClearIndex() {}
+        public virtual void ClearIndex() { }
 
         public int GetMapSize()
         {

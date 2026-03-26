@@ -58,7 +58,7 @@ MonoBehaviour:
         type: 3}
     Floors:
     - <Weight>k__BackingField: 1000
-      Asset: {fileID: 2845164781777661836, guid: 089cdfcc98d856c47af4b2ed553cb236,
+      Asset: {fileID: 1600195048490632563, guid: 2c55a4b8a7fe2634ebbf5f8e2b822a80,
         type: 3}
     Ceilings:
     - <Weight>k__BackingField: 1000

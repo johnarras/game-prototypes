@@ -1,9 +1,8 @@
-﻿using MessagePack;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
+﻿using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 
-namespace Genrpg.Shared.LevelTrackDifficulty.Settings
+namespace Genrpg.Shared.LevelTracks.Settings
 {
     public class LevelTrackDifficultySettings : NoChildSettings // No List
     {

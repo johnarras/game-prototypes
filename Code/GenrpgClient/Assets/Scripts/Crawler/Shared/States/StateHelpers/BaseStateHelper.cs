@@ -1,6 +1,6 @@
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Core;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Services;

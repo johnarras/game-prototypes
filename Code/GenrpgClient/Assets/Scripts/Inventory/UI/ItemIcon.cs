@@ -1,5 +1,6 @@
 
 using Genrpg.Shared.Client.Assets.Constants;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
@@ -46,8 +47,6 @@ public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconDat
     protected IEntityService _entityService = null;
     protected IIconService _iconService = null;
 
-    public GImage Background;
-    public GImage Frame;
     public GImage Icon;
     public GText QuantityText;
 
@@ -62,50 +61,31 @@ public class ItemIcon : DragItem<Item, ItemIcon, ItemIconScreen, InitItemIconDat
         data.CreatedItem = this;
         _initData = data;
 
-        string bgName = _iconService.GetBackingNameFromQuality(_gameData, 0);
-        string frameName = _iconService.GetFrameNameFromLevel(_gameData, 1);
-
         string iconName = ItemConstants.BlankIconName;
+
+        long entityTypeId = data.EntityTypeId;
+        long entityId = data.EntityId;
 
         if (_initData.Data != null)
         {
-            frameName = _iconService.GetFrameNameFromLevel(_gameData, _initData.Data.Level);
-            bgName = _iconService.GetBackingNameFromQuality(_gameData, _initData.Data.QualityTypeId);
-            iconName = _sharedItemService.GetIcon(_gameData, _gs.ch, _initData.Data);
+            entityTypeId = EntityTypes.Item;
+            entityId = _initData.Data.ItemTypeId;
+            iconName = _sharedItemService.GetIcon(_gs.ch, _initData.Data);
         }
         else
         {
-            IIndexedGameItem dataObject = (IIndexedGameItem)_entityService.Find(_gs.ch, data.EntityTypeId, data.EntityId);
-            if (dataObject != null && !string.IsNullOrEmpty(dataObject.Icon))
+            if (entityTypeId == 0)
             {
-                iconName = dataObject.Icon;
-            }
-            if (data.Quality > 0)
-            {
-                bgName = _iconService.GetBackingNameFromQuality(_gameData, data.Quality);
-            }
-
-            if (data.Level > 0)
-            {
-                frameName = _iconService.GetFrameNameFromLevel(_gameData, data.Level);
+                entityTypeId = EntityTypes.Item;
             }
         }
 
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, bgName, Background, token);
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, frameName, Frame, token);
-        _spriteService.LoadAtlasSpriteInto(AtlasNames.Icons, iconName, Icon, token);
+        _spriteService.SetEntityIcon(entityTypeId, entityId, Icon, token, iconName);
 
         if (_initData.Data != null)
         {
             ItemType itype = _gameData.Get<ItemTypeSettings>(_gs.ch).Get(_initData.Data.ItemTypeId);
-            if (itype.EquipSlotId > 0)
-            {
-                _uiService.SetText(QuantityText, "");
-            }
-            else
-            {
-                _uiService.SetText(QuantityText, _initData.Data.Quantity.ToString());
-            }
+            _uiService.SetText(QuantityText, "");
         }
         else
         {

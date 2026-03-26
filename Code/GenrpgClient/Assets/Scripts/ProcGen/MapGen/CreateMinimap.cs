@@ -45,9 +45,9 @@ public class CreateMinimap : BaseZoneGenerator
 
         for (int i = 0; i < 3; i++)
         {
-            float amp = MathUtil.FloatRange(0.1f, 0.2f, rand) * 0.4f;
-            float freq = MathUtil.FloatRange(0.05f, 0.20f, rand) * TexSize * 1.2f;
-            float pers = MathUtil.FloatRange(0.15f, 0.3f, rand);
+            float amp = RandUtils.FloatRange(0.1f, 0.2f, rand) * 0.4f;
+            float freq = RandUtils.FloatRange(0.05f, 0.20f, rand) * TexSize * 1.2f;
+            float pers = RandUtils.FloatRange(0.15f, 0.3f, rand);
             int octaves = 2;
             float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), TexSize, TexSize);
             noiseList.Add(noise);
