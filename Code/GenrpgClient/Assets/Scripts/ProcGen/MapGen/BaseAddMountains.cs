@@ -1,20 +1,11 @@
-
-
-
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.MapServer.Entities;
-
-
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
-using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class BaseAddMountains : BaseZoneGenerator
 {
@@ -104,12 +95,12 @@ public class BaseAddMountains : BaseZoneGenerator
         float baseFreqScaling = MathUtil.Sqrt((sx - ex) * (sx - ex) + (sy - ey) * (sy - ey));
 
         AddMountainPoints(points, startWallWidth, baseFreqScaling, lineRand.Next(),
-            maxLen,secondaryMountain,heightMult);
+            maxLen, secondaryMountain, heightMult);
     }
 
-    public void AddMountainPoints(List<MyPointF> points, int startWallWidth, float baseFreqScaling, 
+    public void AddMountainPoints(List<MyPointF> points, int startWallWidth, float baseFreqScaling,
         int randSeed, int maxLen, bool secondaryMountain, float heightMult)
-       { 
+    {
         MyRandom lineRand = new MyRandom(randSeed / 3 + 183892);
 
         float amp = RandUtils.FloatRange(0.07f, 0.22f, lineRand) * 0.8f;
@@ -121,7 +112,7 @@ public class BaseAddMountains : BaseZoneGenerator
 
         float wfreq = RandUtils.FloatRange(0.05f, 0.1f, lineRand) * baseFreqScaling;
         float wamp = RandUtils.FloatRange(0.2f, 0.4f, lineRand);
-        float wpers = RandUtils.FloatRange(0.4f, 0.7f, lineRand);       
+        float wpers = RandUtils.FloatRange(0.4f, 0.7f, lineRand);
         int woctaves = 2;
         float[,] widthNoise = _noiseService.Generate(wpers, wfreq, wamp, woctaves, lineRand.Next(), points.Count, 1);
 
@@ -191,9 +182,9 @@ public class BaseAddMountains : BaseZoneGenerator
                     }
                     if (_md.mountainDistPercent[x, y] > distPct)
                     {
-                        _md.mountainDistPercent[x, y] = (float)distPct;                            
+                        _md.mountainDistPercent[x, y] = (float)distPct;
                     }
-                    if (_md.mountainCenterDist[x,y] > currDist)
+                    if (_md.mountainCenterDist[x, y] > currDist)
                     {
                         _md.mountainCenterDist[x, y] = (float)(currDist);
                         _md.nearestMountainTopHeight[x, y] = heightToSet;

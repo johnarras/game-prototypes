@@ -1,7 +1,3 @@
-
-using UnityEditor.SceneManagement;
-using UnityEngine;
-
 namespace Assets.Editor.Builds
 {
     public class PostprocessBuildClients : UnityEditor.Build.IPostprocessBuildWithReport

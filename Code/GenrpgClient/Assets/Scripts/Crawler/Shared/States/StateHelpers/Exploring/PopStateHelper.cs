@@ -1,9 +1,7 @@
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 {

@@ -79,7 +79,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
             foreach (CrawlerMapGenType genType in mtype.GenTypes)
             {
-                dungeonZoneTypes.AddRange(genType.WeightedZones.Select(x=>x.ZoneTypeId));
+                dungeonZoneTypes.AddRange(genType.WeightedZones.Select(x => x.ZoneTypeId));
             }
 
             dungeonZoneTypes = dungeonZoneTypes.Distinct().ToList();
@@ -94,7 +94,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
             args.ZoneTypeId = zoneTypeId;
 
-            List<NameValue> indexNames = ReflectionUtils.GetNumericConstants(typeof(DungeonMaterialIndexes));
+            List<NameValue> indexNames = ConstantUtils.GetNumericConstants(typeof(DungeonMaterialIndexes));
 
             GeneratedWallLooseTextureSet set = await GenerateTextures(args);
 
@@ -161,7 +161,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                 MaterialGenState state = new MaterialGenState()
                 {
-                    Rand = new MyRandom(args.Seed+materialIndex),
+                    Rand = new MyRandom(args.Seed + materialIndex),
                     MaterialIndex = materialIndex,
                     Settings = settings,
                 };
@@ -170,7 +170,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                 set.Textures[materialIndex] = await GenerateTexture(state);
 
-                prevState = state;  
+                prevState = state;
             }
             return set;
         }

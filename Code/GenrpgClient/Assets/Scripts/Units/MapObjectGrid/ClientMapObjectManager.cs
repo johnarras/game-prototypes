@@ -1,9 +1,9 @@
 
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Characters.PlayerData;
 using Assets.Scripts.Core;
+using Assets.Scripts.GameObjects;
 using Assets.Scripts.Setup.Interfaces;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapObjects.Entities;

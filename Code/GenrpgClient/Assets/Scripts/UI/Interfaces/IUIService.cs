@@ -1,5 +1,5 @@
-using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.Setup.Interfaces;
+using Assets.Scripts.UI.Abstractions;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.UI.Interfaces;
 using System;
@@ -32,7 +32,7 @@ namespace Assets.Scripts.UI.Interfaces
         void SetColor(IText text, object color);
         void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> extraData = null);
         void ClearButton(IButton button);
-        void SetButton(IButton button, string screenName, Func<CancellationToken, Task> awaitableAction, Dictionary<string, string> extraData = null);
+        void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> extraData = null);
         void SetAlpha(IText text, float alpha);
         void SetAutoSizing(IText text, bool autoSizing);
         void ResizeGridLayout(IGridLayoutGroup group, float xscale, float yscale);

@@ -18,7 +18,7 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
 
         float delta = RandUtils.FloatRange(0.07f, 0.12f, rand);
 
-        float heightPerGrid = MapConstants.MapHeightPerGrid * RandUtils.DeltaRange(delta, rand); 
+        float heightPerGrid = MapConstants.MapHeightPerGrid * RandUtils.DeltaRange(delta, rand);
 
         float minHeight = MapConstants.StartHeightPercent - heightPerGrid * 0.3f;
         float maxHeight = MapConstants.StartHeightPercent + heightPerGrid * (_mapProvider.GetMap().BlockCount / 2 - 1);

@@ -18,8 +18,6 @@ namespace Genrpg.Shared.Attributes.Services
 {
     public interface IAttributeService : IInitializable
     {
-        bool IsAttributeBuff(long entityTypeId);
-
         Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup);
 
         Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds);
@@ -36,7 +34,8 @@ namespace Genrpg.Shared.Attributes.Services
         Task<bool> GiveReward(IUnitDataLookup lookup, long entityTypeId, long entityId, long quantity);
         Task<bool> GiveReward(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId, long quantity);
 
-        Task<bool> ApplyBuffEffect(IUnitDataLookup lookup, IEffect effect);
+        Task<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index);
+        bool EntityTypeHasValIndex(long entityTypeId, EAttributeValIndex index);
     }
 
 
@@ -50,7 +49,8 @@ namespace Genrpg.Shared.Attributes.Services
     {
 
         private IGameData _gameData = null;
-        private ICaravanService _caravanService = null;
+        private ICalcAttributeService _calcAttributeService = null;
+    
 
 
         Dictionary<long, EntityToAttributeMapping> _mappingDict = new Dictionary<long, EntityToAttributeMapping>();
@@ -254,7 +254,7 @@ namespace Genrpg.Shared.Attributes.Services
             coreData.Vars[TraderVars.DebuffBits] = debuffBits;
             coreData.Vars[TraderVars.NextDebuffEndsDay] = nextDebuffEndPlayCount;
 
-            await _caravanService.CalcCoreTravelStats(lookup);
+            await _calcAttributeService.CalcBuffs(lookup);
         }
 
         public async Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc)
@@ -349,26 +349,24 @@ namespace Genrpg.Shared.Attributes.Services
             return status.GiveReward(index, quantity);
         }
 
-        public bool IsAttributeBuff(long entityTypeId)
-        {
+        public bool EntityTypeHasValIndex(long entityTypeId, EAttributeValIndex index)
+        { 
 
             if (_mappingDict.TryGetValue(entityTypeId, out EntityToAttributeMapping mapping))
             {
-                return mapping.Index == EAttributeValIndex.Buff;
+                return mapping.Index == index;
             }
             return false;
         }
 
-        public async Task<bool> ApplyBuffEffect(IUnitDataLookup lookup, IEffect effect)
+        public async Task<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index)
         {
-            if (!IsAttributeBuff(effect.EntityTypeId))
+            if (!EntityTypeHasValIndex(effect.EntityTypeId, index))
             {
                 return false;
             }
 
-            await GiveReward(lookup, effect.EntityTypeId, effect.EntityId, effect.Quantity);
-
-            return true;
+            return await GiveReward(lookup, effect.EntityTypeId, effect.EntityId, effect.Quantity);
         }
     }
 }

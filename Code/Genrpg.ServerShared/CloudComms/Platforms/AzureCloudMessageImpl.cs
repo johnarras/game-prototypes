@@ -27,7 +27,7 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
     public interface ICloudMessageImpl : IDisposable
     {
         Task Init(IServiceLocator loc, IServerConfig config, ILogService logService, ITextSerializer serializer, ISecretsProvider secretsProvider,
-            ITaskService taskService, ICloudCommsService cloudCommsService, CancellationToken token);
+            ITaskService taskService, ICloudCommsService cloudCommsService, IReflectionService reflectionService, CancellationToken token);
         string GetFullQueueName(string serverId);
         void SendQueueMessages(string serverId, List<IQueueMessage> cloudMessages);
         void SendPubSubMessage(IPubSubMessage message);
@@ -41,6 +41,7 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
         private IServerConfig _config = null;
         private ITextSerializer _serializer = null;
         private ITaskService _taskService = null;
+        private IReflectionService _reflectionService = null;
 
         private string _env;
         private string _serverId;
@@ -75,13 +76,14 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
 
         }
 
-        public async Task Init(IServiceLocator loc, IServerConfig config, ILogService logService, ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, CancellationToken token)
+        public async Task Init(IServiceLocator loc, IServerConfig config, ILogService logService, ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, IReflectionService reflectionService, CancellationToken token)
         {
             _cloudCommsService = cloudCommsService;
             _logService = logService;
             _secretsProvider = secretsProvider;
             _serializer = serializer;
             _taskService = taskService;
+            _reflectionService = reflectionService; 
             _loc = loc;
             _token = token;
             _config = config;
@@ -220,7 +222,7 @@ namespace Genrpg.ServerShared.CloudComms.Platforms
 
         private async Task SetupPubSub(IServiceLocator loc, CancellationToken token)
         {
-            _pubSubHelpers[PubSubTopicNames.Admin] = (AzureAdminPubSubHelper)(await ReflectionUtils.CreateInstanceFromType(_loc, typeof(AzureAdminPubSubHelper), token));
+            _pubSubHelpers[PubSubTopicNames.Admin] = (AzureAdminPubSubHelper)(await _reflectionService.CreateInstanceFromType(_loc, typeof(AzureAdminPubSubHelper), token));
 
             foreach (IAzurePubSubHelper helper in _pubSubHelpers.Values)
             {

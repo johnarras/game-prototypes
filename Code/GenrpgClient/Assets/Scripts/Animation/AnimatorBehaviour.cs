@@ -1,5 +1,4 @@
 using System;
-using Genrpg.Shared.Interfaces;
 
 using System.Threading;
 
@@ -48,7 +47,7 @@ public class AnimatorBehaviour : BaseBehaviour
     }
 
     private void StartAnimDelay(float delay, Action<CancellationToken> action, CancellationToken token)
-    {   
+    {
         if (action == null)
         {
             return;

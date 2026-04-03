@@ -10,7 +10,7 @@ public class RecipeRow : BaseBehaviour
     private RecipeStatus _status { get; set; }
     private ScalingType _scaling { get; set; }
     private CraftingScreen _screen { get; set; }
-    
+
     public GText RecipeName;
     public GText RecipeRank;
     public GImage BGImage;
@@ -57,7 +57,7 @@ public class RecipeRow : BaseBehaviour
     {
         if (BGImage != null)
         {
-            BGImage.Color = (active?Color.yellow : Color.gray);
+            BGImage.Color = (active ? Color.yellow : Color.gray);
         }
     }
 

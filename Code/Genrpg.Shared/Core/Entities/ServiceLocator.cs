@@ -1,6 +1,7 @@
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +35,17 @@ namespace Genrpg.Shared.Core.Entities
             public bool InitOnResolve { get; set; }
         }
 
-        public ServiceLocator(ILogService logService, IGameData gameData)
+        public ServiceLocator(ILogService logService, IReflectionService reflectionService, IGameData gameData)
         {
             _logService = logService;
+            _reflectionService = reflectionService; 
             Set(logService);
+            Set(reflectionService);
             Set(gameData);
         }
 
         private ILogService _logService = null;
+        private IReflectionService _reflectionService = null;
 
         /// <summary>
         /// Internal storage indexed by type

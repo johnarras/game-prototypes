@@ -5,11 +5,11 @@ public class ScaleToCamera : BaseBehaviour
 {
     private ICameraController _cameraController;
     public bool _remainVertical = false;
-    
+
     public float _defaultScale;
-    
+
     public float _minDistToCamera;
-    
+
     public GameObject _scaledGameObject;
     private Camera _mainCam = null;
 

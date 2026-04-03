@@ -8,7 +8,7 @@ namespace Genrpg.Shared.Resets.Settings
     {
         public override string Id { get; set; }
 
-        public double ResetHour { get; set; }
+        public int ResetHour { get; set; }
     }
     public class ResetSettingsLoader : NoChildSettingsLoader<ResetSettings> { }
 

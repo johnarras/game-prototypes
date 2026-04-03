@@ -851,6 +851,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScreenBG
       objectReference: {fileID: 0}
+    - target: {fileID: 512990781852646039, guid: 77bbb87161be19b4db12ba0679063b31,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

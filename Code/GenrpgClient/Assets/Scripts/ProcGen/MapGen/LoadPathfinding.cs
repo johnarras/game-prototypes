@@ -1,14 +1,12 @@
 
 
 
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Pathfinding.Constants;
-using System.Threading;
-using Genrpg.Shared.Utils;
-using UnityEngine;
-using Genrpg.Shared.DataStores.Categories;
 using Genrpg.Shared.DataStores.DataGroups;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.Pathfinding.Constants;
+using Genrpg.Shared.Utils;
+using System.Threading;
+using UnityEngine;
 
 public class LoadPathfinding : BaseZoneGenerator
 {
@@ -34,7 +32,7 @@ public class LoadPathfinding : BaseZoneGenerator
         }
     }
 
-    private void OnDownloadPathfinding (object obj, object data, CancellationToken token)
+    private void OnDownloadPathfinding(object obj, object data, CancellationToken token)
     {
 
         byte[] compressedBytes = obj as byte[];

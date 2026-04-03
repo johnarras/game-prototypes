@@ -1,8 +1,4 @@
-﻿using Assets.Scripts.Lockstep.Game.Services;
-using Genrpg.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Genrpg.Shared.Interfaces;
 using Unity.Mathematics;
 
 namespace Assets.Scripts.Lockstep.Presentation.Services
@@ -11,11 +7,11 @@ namespace Assets.Scripts.Lockstep.Presentation.Services
     {
         void SpawnMapTile(long biomeTypeId, float3 visualPos, int cellSize);
     }
-    public class LockstepVisualFactory : ILockstepVisualFactory  
+    public class LockstepVisualFactory : ILockstepVisualFactory
     {
 
         // private IAssetService _assetService = null;
-        public static LockstepVisualFactory Instance { get; private set;  }
+        public static LockstepVisualFactory Instance { get; private set; }
         public LockstepVisualFactory()
         {
             Instance = this;

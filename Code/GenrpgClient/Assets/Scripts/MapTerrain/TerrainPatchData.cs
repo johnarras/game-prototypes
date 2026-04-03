@@ -1,4 +1,3 @@
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace Assets.Scripts.MapTerrain
 
         public float[,] heights { get; set; }
 
-        public float[,,] baseAlphas { get; set; } 
+        public float[,,] baseAlphas { get; set; }
 
         public uint[,] mapObjects { get; set; }
 
@@ -45,7 +44,7 @@ namespace Assets.Scripts.MapTerrain
         public bool HaveSetAlphamaps = false;
 
         public List<long> TerrainTextureIndexes { get; set; } = new List<long>();
-        
+
         public string GetFilePath()
         {
             string path = MapUtils.GetMapFolder(MapId, MapVersion) + "TerrainX" + X.ToString("000") + "Y" + Y.ToString("000");

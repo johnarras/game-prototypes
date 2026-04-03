@@ -58,7 +58,8 @@ namespace Genrpg.Editor
 
             string[] envWords = { "Import" };
 
-            List<Type> importTypes = ReflectionUtils.GetTypesImplementing(typeof(IDataImporter));
+            ReflectionService reflectionService = new ReflectionService();
+            List<Type> importTypes = reflectionService.GetTypesImplementing(typeof(IDataImporter));
 
             _importers = new List<IDataImporter>();
             foreach (Type importType in importTypes)

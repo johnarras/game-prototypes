@@ -1,11 +1,7 @@
-﻿using Assets.Scripts.Lockstep.Factions.Components;
-using Assets.Scripts.Lockstep.Factions.Setup;
-using Assets.Scripts.Lockstep.Maps.Components;
+﻿using Assets.Scripts.Lockstep.Maps.Components;
 using Assets.Scripts.Lockstep.Maps.Entities;
 using Assets.Scripts.Lockstep.Math;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -88,7 +84,7 @@ namespace Assets.Scripts.Lockstep.Maps.Setup
 
             root.MapId = config.MapId;
             root.MapName = config.MapName;
-            root.Offset = config.Offset;    
+            root.Offset = config.Offset;
 
             // Assuming FixedPoint64 conversion exists in your Math lib
             root.WorldWidth = FixedPoint64.FromInt(width * config.CellSize);

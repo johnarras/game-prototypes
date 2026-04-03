@@ -1,5 +1,3 @@
-
-using Genrpg.Shared.DataStores.Categories;
 using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.Interfaces;
 using System;

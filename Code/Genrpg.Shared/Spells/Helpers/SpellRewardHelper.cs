@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Spells.Helpers
         }
 
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             await Task.CompletedTask;
             return true;

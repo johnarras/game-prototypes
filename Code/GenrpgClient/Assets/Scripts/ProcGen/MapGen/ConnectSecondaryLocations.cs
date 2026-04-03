@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils;
-using System.Threading;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
+using Genrpg.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 // Connect these zone centers to "closest object.
 
@@ -23,7 +22,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
             return;
         }
 
-        MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed/2 + 9977747);
+        MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed / 2 + 9977747);
 
         List<Location> locations = new List<Location>();
 
@@ -63,7 +62,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
             int cy = loc.CenterZ;
             for (int r = radiusStart; r <= radiusEnd; r += rskip)
             {
-                if (roadx >= 0 && roady >= 0 && r > minRoadDist*5/4)
+                if (roadx >= 0 && roady >= 0 && r > minRoadDist * 5 / 4)
                 {
                     break;
                 }
@@ -104,7 +103,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                     if (x >= 0 && x < _md.awid)
                     {
                         int dx = x - cx;
-                        for (int y = cy - rad; y <= cy+rad; y+= rskip)
+                        for (int y = cy - rad; y <= cy + rad; y += rskip)
                         {
                             if (y < 0 || y >= _md.ahgt)
                             {
@@ -134,7 +133,7 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
 
         }
 
-        
+
     }
 }
 

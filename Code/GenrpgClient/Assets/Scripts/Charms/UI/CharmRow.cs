@@ -1,12 +1,9 @@
 using Genrpg.Shared.Charms.Constants;
 using Genrpg.Shared.Charms.PlayerData;
 using Genrpg.Shared.Charms.Services;
-using Genrpg.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.UI.Charms
 {

@@ -10,7 +10,7 @@ namespace Genrpg.Shared.DataStores.Categories.GameSettings
     {
         public override void SetupForEditor(List<object> saveList)
         {
-            List<NameValue> nameList = ReflectionUtils.GetNumericConstants(typeof(TConstants));
+            List<NameValue> nameList = ConstantUtils.GetNumericConstants(typeof(TConstants));
 
             foreach (NameValue nv in nameList)
             {

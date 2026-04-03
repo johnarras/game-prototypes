@@ -1,10 +1,8 @@
-﻿using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Assets.Textures;
+﻿using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Dungeons;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.Trader.Biomes.Settings;
 using Genrpg.Shared.Trader.Maps.Settings;
 using System.Threading;
 using UnityEngine;
@@ -77,7 +75,7 @@ namespace Assets.Scripts.Trader.WorldMap
                 }
             }
 
-            
+
         }
 
         private void SetMainTexture(Texture2D tex)
@@ -131,11 +129,11 @@ namespace Assets.Scripts.Trader.WorldMap
                 {
                     return;
                 }
-                float timePct = 1.0f*f/ _animateFrames;
+                float timePct = 1.0f * f / _animateFrames;
 
-                float tp = timePct-1;
+                float tp = timePct - 1;
 
-                float dist =((s+1)*tp*tp*tp-s*tp*tp)* StartY;
+                float dist = ((s + 1) * tp * tp * tp - s * tp * tp) * StartY;
 
                 //dist *= dist;
 

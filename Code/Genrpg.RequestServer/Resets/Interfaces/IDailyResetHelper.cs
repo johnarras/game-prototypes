@@ -5,7 +5,7 @@ namespace Genrpg.RequestServer.Resets.Interfaces
 {
     public interface IDailyResetHelper : IOrderedSetupDictionaryItem<Type>
     {
-        Task DailyReset(WebContext context, DateTime currentResetDay, double resetHour);
+        Task DailyReset(WebContext context, int consecutiveResetDays, int daysMissed);
     }
 }
 

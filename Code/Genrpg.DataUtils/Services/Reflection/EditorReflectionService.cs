@@ -23,9 +23,10 @@ namespace Genrpg.DataUtils.Services.Reflection
     public class EditorReflectionService : IEditorReflectionService
     {
 
-        protected IMapProvider _mapProvider;
-        protected IEntityService _entityService;
-        protected ITextSerializer _serializer;
+        protected IMapProvider _mapProvider = null;
+        protected IEntityService _entityService = null;
+        protected ITextSerializer _serializer = null;
+        protected IReflectionService _reflectionService = null;
 
         public bool MemberIsMultiType(MemberInfo mem)
         {
@@ -1488,7 +1489,7 @@ namespace Genrpg.DataUtils.Services.Reflection
                 foreach (Type t in assembly.GetExportedTypes())
                 {
 
-                    if (ReflectionUtils.IsValidReflectionType(t))
+                    if (_reflectionService.IsValidReflectionType(t))
                     {
                         continue;
                     }

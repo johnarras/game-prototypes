@@ -6,6 +6,7 @@ using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
+using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.CurrencySpend.Entities;
 using Genrpg.Shared.Trader.CurrencySpend.Settings;
 using Genrpg.Shared.Trader.CurrencySpend.SpendHelpers;
@@ -104,7 +105,10 @@ namespace Genrpg.Shared.Trader.CurrencySpend.Services
         public async Task<SpendCurrencyResponse> SpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request)
         {
 
-            SpendCurrencyResponse response = new SpendCurrencyResponse();
+            SpendCurrencyResponse response = new SpendCurrencyResponse()
+            {
+                ExtraRewardArgs = request.ExtraRewardArgs,
+            };
 
             SpendCurrencyCheckResult spendResult = await CheckCanSpendCurrency(lookup, request);
 
@@ -118,8 +122,8 @@ namespace Genrpg.Shared.Trader.CurrencySpend.Services
 
             RewardParams args = new RewardParams()
             {
-                SpecialData = spendResult,
-                IsSpendAction = true,
+                ExtraRewardArgs = request.ExtraRewardArgs,
+               
             };
 
             List<IEffect> rewards = spendResult.SpendType.Rewards.Cast<IEffect>().ToList(); 
@@ -128,6 +132,7 @@ namespace Genrpg.Shared.Trader.CurrencySpend.Services
             {
                 Reward rew = new Reward(rewards[0]);
                 rew.EntityId = request.TargetEntityId;
+                rew.UniqueId = ++coreData.UniqueId;
                 rewards = new List<IEffect>() { rew };
             }
 
@@ -136,7 +141,6 @@ namespace Genrpg.Shared.Trader.CurrencySpend.Services
                 response.State = ESpendCurrencyCheckState.NoSpendRewards;
                 return response;
             }
-
             if (await _rewardService.GiveRewards(lookup, rewards, args))
             {
                 response.State = ESpendCurrencyCheckState.Success;   

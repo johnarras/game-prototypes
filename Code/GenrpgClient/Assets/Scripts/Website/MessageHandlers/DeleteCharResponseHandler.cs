@@ -1,6 +1,5 @@
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Entities;
-using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Characters.WebApi.DeleteChar;
 using Genrpg.Shared.UI.Constants;
 using System.Threading;

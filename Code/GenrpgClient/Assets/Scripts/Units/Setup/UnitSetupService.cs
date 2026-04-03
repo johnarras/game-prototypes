@@ -1,12 +1,9 @@
-
-using Assets.Scripts.Assets;
 using Assets.Scripts.GameObjects;
+using Assets.Scripts.Setup.Interfaces;
 using ClientEvents;
 using Genrpg.Shared.AI.Settings;
 using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
-using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;

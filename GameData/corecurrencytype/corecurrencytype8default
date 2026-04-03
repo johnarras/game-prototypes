@@ -4,5 +4,6 @@
   "IdKey": 8,
   "Name": "Metal",
   "Icon": "Metal",
-  "Art": "Metal"
+  "Art": "Metal",
+  "StatTypeId": 11
 }

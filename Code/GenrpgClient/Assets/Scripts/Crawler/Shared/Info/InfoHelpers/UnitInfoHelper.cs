@@ -9,7 +9,6 @@ using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;

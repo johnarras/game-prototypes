@@ -2,7 +2,7 @@
   "Id": "screenname44default",
   "ParentId": "default",
   "IdKey": 44,
-  "Name": "TraderVendor",
+  "Name": "Estate",
   "ScreenLayerId": 20,
-  "Subdirectory": "TraderSpend"
+  "Subdirectory": "TraderEstate"
 }

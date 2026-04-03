@@ -1,5 +1,5 @@
-using Genrpg.Shared.Buildings.Settings;
 using Assets.Scripts.Core;
+using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;

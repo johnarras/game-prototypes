@@ -1,5 +1,6 @@
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
+using MessagePack.Formatters;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.HelperClasses
@@ -7,10 +8,11 @@ namespace Genrpg.Shared.HelperClasses
     public class SetupDictionaryContainer<Key, Val> : IInitOnResolve where Val : ISetupDictionaryItem<Key>
     {
         protected IServiceLocator _loc = null!;
+        protected IReflectionService _reflectionService = null;
         protected Dictionary<Key, Val> _dictionary = new Dictionary<Key, Val>();
         public void Init()
         {
-            _dictionary = ReflectionUtils.SetupDictionary<Key, Val>(_loc);
+            _dictionary = _reflectionService.SetupDictionary<Key, Val>(_loc);
         }
 
         public bool TryGetValue(Key key, out Val value)

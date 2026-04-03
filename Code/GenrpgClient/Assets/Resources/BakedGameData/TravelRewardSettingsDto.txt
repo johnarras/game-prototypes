@@ -39,6 +39,56 @@
       "MaxQuantity": 2,
       "Weight": 10.0,
       "GroupId": 1
+    },
+    {
+      "IdKey": 5,
+      "Name": "Rations",
+      "EntityTypeId": 1,
+      "EntityId": 6,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 6,
+      "Name": "Rations",
+      "EntityTypeId": 1,
+      "EntityId": 7,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 7,
+      "Name": "Rations",
+      "EntityTypeId": 1,
+      "EntityId": 8,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 8,
+      "Name": "Rations",
+      "EntityTypeId": 1,
+      "EntityId": 9,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
+    },
+    {
+      "IdKey": 9,
+      "Name": "Rations",
+      "EntityTypeId": 1,
+      "EntityId": 10,
+      "MinQuantity": 1,
+      "MaxQuantity": 2,
+      "Weight": 1.0,
+      "GroupId": 1
     }
   ],
   "Parent": {
@@ -46,5 +96,5 @@
     "Name": "TravelRewardSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-25T00:51:42.135Z"
+  "SaveTime": "2026-04-02T22:03:04.208Z"
 }

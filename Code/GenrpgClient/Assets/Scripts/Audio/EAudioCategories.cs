@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-
 /// <summary>
 /// Enums for different categories of music/ambient sounds depending on how much you want to
 /// layer them,

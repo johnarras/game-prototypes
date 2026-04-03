@@ -1,6 +1,5 @@
 
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;

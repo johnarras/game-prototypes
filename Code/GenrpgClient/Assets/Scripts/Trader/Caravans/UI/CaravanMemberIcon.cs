@@ -1,38 +1,20 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Entities.UI;
-using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Currencies.UI;
-using Assets.Scripts.Trader.Travel.UI;
 using Genrpg.Shared.Attributes.Constants;
-using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.CaravanMembers.Settings;
-using Genrpg.Shared.Trader.CaravanMembers.WebApi;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.CurrencySpend.Settings;
-using NUnit.Framework;
 
 namespace Assets.Scripts.Trader.Caravans.UI
 {
-    public enum ECaravanMemberLocations
-    {
-        None,
-        Vendor,
-        Caravan,
-        Holdings,
-        Unavailable,
-    }
-
     public class CaravanMemberInitIconData
     {
+        public bool InCaravan { get; set; }
+        public CaravanScreen Screen { get; set; }
         public CaravanMember CaravanMember { get; set; }
-        public ECaravanMemberLocations CurrentLocation { get; set; }
-        public ECaravanMemberLocations TargetLocation { get; set; }
-        public SpendType SpendType { get; set; }
-        public SpendLocation SpendLoc { get; set; }
-        public City CurrentCity { get; set; }
     }
-
 
     public class CaravanMemberIcon : BaseBehaviour
     {
@@ -46,10 +28,8 @@ namespace Assets.Scripts.Trader.Caravans.UI
         public EntityIcon SizeIcon;
         public EntityIcon SpeedIcon;
 
-        public GText ActionButtonText;
-        public GButton ActionButton;
-
-        public SpendCurrencyButton SpendButton;
+        public GButton MoveButton;
+        public GText ButtonText;
 
         public EntityTypeIconList BonusList;
 
@@ -57,38 +37,21 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
         private int _siblingIndex = 0;
 
+
         public void SetData(CaravanMemberInitIconData initData, int siblingIndex)
         {
-            _initData = initData;
 
-
-            _uiService.SetButton(ActionButton, GetName(), OnClickAction);
-
-            if (initData.SpendLoc != null && initData.SpendType != null)
+            _initData = initData;   
+            if (initData.InCaravan)
             {
-                _clientEntityService.SetActive(SpendButton, true);
-                _clientEntityService.SetActive(ActionButton, false);
-                SpendButton.SetSpendType(initData.SpendLoc, initData.SpendType);
+                _uiService.SetText(ButtonText, "To Holdings");
             }
             else
             {
-                _clientEntityService.SetActive(SpendButton, false);
-                _clientEntityService.SetActive(ActionButton, true);
-
-                
-                if (_initData.TargetLocation == ECaravanMemberLocations.Caravan)
-                {
-                    _uiService.SetText(ActionButtonText, "Add To Caravan");
-                }
-                else if (_initData.TargetLocation == ECaravanMemberLocations.Holdings)
-                {
-                    _uiService.SetText(ActionButtonText, "Remove From Caravan");
-                }
-                else
-                {
-                    _clientEntityService.SetActive(ActionButton, false);
-                }
+                _uiService.SetText(ButtonText, "To Caravan");
             }
+
+            _uiService.SetButton(MoveButton, GetName(), MoveCaravanMember);
 
             _spriteService.SetEntityIcon(EntityTypes.CaravanMember, initData.CaravanMember.IdKey, Icon, GetToken());
 
@@ -99,13 +62,11 @@ namespace Assets.Scripts.Trader.Caravans.UI
             SpeedIcon.SetEntityData(EntityTypes.GameplayStat, GameplayStats.BonusSpeed, initData.CaravanMember.Speed);
 
             BonusList.ShowEffectList(initData.CaravanMember.Effects);
-
-            _dispatcher.Dispatch(new UpdateTraderHUD());
         }
 
-        public ECaravanMemberLocations GetCurrentLocation()
+        private void MoveCaravanMember()
         {
-            return _initData.CurrentLocation;   
+            _initData.Screen.MoveCaravanMember(_initData.CaravanMember.IdKey);
         }
 
         public long GetCaravanMemberId()
@@ -115,17 +76,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
         public int GetSiblingIndex()
         {
-            return _siblingIndex; 
-        }
-
-        private void OnClickAction()
-        {
-            _logService.Info("Clicked Action!");
-
-            if (_initData.TargetLocation == ECaravanMemberLocations.Caravan)
-            {
-                _webService.SendWebRequest(new AddCaravanMemberToCaravanRequest() { CaravanMemberId = _initData.CaravanMember.IdKey }, GetToken());
-            }
+            return _siblingIndex;
         }
     }
 }

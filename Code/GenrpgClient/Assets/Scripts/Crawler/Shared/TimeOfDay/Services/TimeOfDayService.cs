@@ -1,5 +1,4 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.GameEvents;

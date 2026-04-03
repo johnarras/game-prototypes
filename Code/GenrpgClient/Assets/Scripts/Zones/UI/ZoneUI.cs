@@ -1,7 +1,6 @@
 using ClientEvents;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Zones.Entities;
 using Genrpg.Shared.Zones.WorldData;
 using System.Threading;
 
@@ -23,7 +22,7 @@ public class ZoneUI : BaseBehaviour
     private void OnSetZoneName(SetZoneNameEvent data)
     {
         Zone zone = _zoneStateController.GetCurrentZone();
-        
+
         if (zone == null)
         {
             return;

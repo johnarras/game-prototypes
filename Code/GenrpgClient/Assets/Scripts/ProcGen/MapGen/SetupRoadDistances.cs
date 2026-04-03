@@ -6,56 +6,56 @@ using UnityEngine;
 
 public class SetupRoadDistances : BaseZoneGenerator
 {
-    public override async Awaitable Generate (CancellationToken token)
+    public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
-        _md.roadDistances = new float[_md.awid,_md.ahgt];
+        _md.roadDistances = new float[_md.awid, _md.ahgt];
 
-		for (int x = 0; x < _md.awid; x++)
-		{
-			for (int y = 0; y < _md.ahgt; y++)
-			{
+        for (int x = 0; x < _md.awid; x++)
+        {
+            for (int y = 0; y < _md.ahgt; y++)
+            {
                 _md.roadDistances[x, y] = MapConstants.InitialRoadDistance;
-			}
-		}
+            }
+        }
 
-		for (int x = 0; x < _md.awid; x++)
-		{
-			for (int y = 0; y < _md.ahgt; y++)
-			{
-				if (_md.alphas[x,y,TerrainTexChannels.Road] == 0)
-				{
-					continue;
-				}
+        for (int x = 0; x < _md.awid; x++)
+        {
+            for (int y = 0; y < _md.ahgt; y++)
+            {
+                if (_md.alphas[x, y, TerrainTexChannels.Road] == 0)
+                {
+                    continue;
+                }
 
                 if (_md.alphas[x, y, TerrainTexChannels.Road] >= 0.5f)
                 {
                     _md.subZonePercents[x, y] = 0;
                 }
-				for (int xx = x- MapConstants.MaxRoadCheckDistance; xx <= x+ MapConstants.MaxRoadCheckDistance; xx++)
-				{
-					if (xx < 0 || xx >= _md.awid)
-					{
-						continue;
-					}
-					for (int yy = y- MapConstants.MaxRoadCheckDistance; yy <= y+ MapConstants.MaxRoadCheckDistance; yy++)
-					{
-						if (yy < 0 || yy >= _md.ahgt)
-						{
-							continue;
-						}
+                for (int xx = x - MapConstants.MaxRoadCheckDistance; xx <= x + MapConstants.MaxRoadCheckDistance; xx++)
+                {
+                    if (xx < 0 || xx >= _md.awid)
+                    {
+                        continue;
+                    }
+                    for (int yy = y - MapConstants.MaxRoadCheckDistance; yy <= y + MapConstants.MaxRoadCheckDistance; yy++)
+                    {
+                        if (yy < 0 || yy >= _md.ahgt)
+                        {
+                            continue;
+                        }
 
-						double dist = (ushort)Math.Sqrt ((xx-x)*(xx-x)+(yy-y)*(yy-y));
-						if (dist < _md.roadDistances[xx,yy])
-						{
+                        double dist = (ushort)Math.Sqrt((xx - x) * (xx - x) + (yy - y) * (yy - y));
+                        if (dist < _md.roadDistances[xx, yy])
+                        {
                             _md.roadDistances[xx, yy] = (float)dist;
-						}
-					}
-				}
-			}
-		}
-	}
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-	
+
 
 

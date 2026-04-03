@@ -12,10 +12,10 @@ namespace Genrpg.Shared.Crawler.Quests.Helpers
 {
     public interface ICrawlerQuestTypeHelper : ISetupDictionaryItem<long>
     {
-        Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, 
+        Task SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc,
             CrawlerQuestType questType, IRandom rand, CancellationToken token);
 
-        Task<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool fullDescription,  bool showCurrentStatus, bool showNPC);
+        Task<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool fullDescription, bool showCurrentStatus, bool showNPC);
     }
 }
 

@@ -65,7 +65,7 @@ namespace Assets.Scripts.Lockstep.Math
             return a < b ? FixedPoint64.FromInt(b) : a;
         }
 
-        public static FixedPoint64 Min (FixedPoint64 a, int b)
+        public static FixedPoint64 Min(FixedPoint64 a, int b)
         {
             return a < b ? a : FixedPoint64.FromInt(b);
         }
@@ -93,7 +93,7 @@ namespace Assets.Scripts.Lockstep.Math
 
         public static FixedPoint64 operator -(FixedPoint64 a, FixedPoint64 b)
             => new FixedPoint64(a.RawValue - b.RawValue);
-      
+
         // Divided by an integer scalar
         public static FixedPoint64 operator /(FixedPoint64 a, int b)
         {

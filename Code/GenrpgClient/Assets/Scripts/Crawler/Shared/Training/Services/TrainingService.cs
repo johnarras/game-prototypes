@@ -1,7 +1,6 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Party.Services;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -11,6 +10,7 @@ using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
 using Genrpg.Shared.Crawler.Upgrades.Settings;
+using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Stats.Constants;

@@ -1,6 +1,5 @@
-using UnityEngine.EventSystems;
 using System.Threading;
-using Genrpg.Shared.Inventory.Services;
+using UnityEngine.EventSystems;
 
 public class CraftInventoryIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -12,7 +11,7 @@ public class CraftInventoryIcon : ItemIcon, IPointerEnterHandler, IPointerExitHa
     {
         _uiService.SetText(QuantityText, currQuantity.ToString());
     }
-    
+
     public long GetQuantity()
     {
         return currQuantity;

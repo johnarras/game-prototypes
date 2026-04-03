@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.Travel.Services;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.CaravanMembers.Settings;
@@ -12,13 +10,8 @@ using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Cities.Settings;
 using Genrpg.Shared.Trader.Travel.Entities;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using UnityEditor;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {

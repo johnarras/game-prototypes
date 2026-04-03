@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Assets.Scripts.Lockstep.Math
+﻿namespace Assets.Scripts.Lockstep.Math
 {
-    using System.Runtime.CompilerServices;
-
     namespace Assets.Scripts.Lockstep.Math
     {
-        using Unity.Mathematics;
-
         public static class SeedFactory
         {
             /// <summary>

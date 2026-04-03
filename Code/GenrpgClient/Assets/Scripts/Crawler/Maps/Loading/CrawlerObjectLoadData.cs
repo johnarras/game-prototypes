@@ -1,6 +1,5 @@
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Crawler.Maps.GameObjects;
-using Genrpg.Shared.Buildings.Settings;
 
 namespace Assets.Scripts.Crawler.Maps.Loading
 {

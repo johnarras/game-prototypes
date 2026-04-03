@@ -1,13 +1,13 @@
 
-using UnityEngine;
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Units.Entities;
+using UnityEngine;
 
 public class CastBar : BaseBehaviour
 {
-    
+
     public GameObject _contentParent;
-    
+
     public ProgressBar _progressBar;
 
     private Unit _unit;
@@ -22,7 +22,7 @@ public class CastBar : BaseBehaviour
         AddListener<OnStartCast>(OnStartCastHandler);
         AddListener<OnStopCast>(OnStopCastHandler);
     }
-    
+
     public void Init(Unit unit)
     {
         _unit = unit;
@@ -32,8 +32,8 @@ public class CastBar : BaseBehaviour
     private void OnStartCastHandler(OnStartCast onStartCast)
     {
 
-        if (_unit == null || 
-            onStartCast == null || 
+        if (_unit == null ||
+            onStartCast == null ||
             onStartCast.CasterId != _unit.Id)
         {
             return;
@@ -57,7 +57,7 @@ public class CastBar : BaseBehaviour
         return;
     }
 
-    public void ShowCast (int castTimeMS, string spellName)
+    public void ShowCast(int castTimeMS, string spellName)
     {
         if (_contentParent == null || _progressBar == null)
         {

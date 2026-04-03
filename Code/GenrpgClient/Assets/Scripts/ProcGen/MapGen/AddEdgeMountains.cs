@@ -12,7 +12,7 @@ public class AddEdgeMountains : BaseAddMountains
 {
     public override async Awaitable Generate(CancellationToken token)
     {
-        
+
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed / 4 + 31433);
         short[,] zoneIds = _md.mapZoneIds;
         List<MyPointF> points = new List<MyPointF>();
@@ -67,14 +67,14 @@ public class AddEdgeMountains : BaseAddMountains
             }
             float mainHeight = heights[cx, cz];
 
-            int currWallWidth = (int)(startMountainWidth * (1 + widths[cx,cz]));
+            int currWallWidth = (int)(startMountainWidth * (1 + widths[cx, cz]));
 
             if (_md.mapZoneIds[cx, cz] < 1)
             {
                 _md.mapZoneIds[cx, cz] = MapConstants.MountainZoneId;
             }
 
-            
+
             _md.mountainDistPercent[cx, cz] = 0f;
             _md.edgeMountainDistPercent[cx, cz] = 0f;
 

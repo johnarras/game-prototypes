@@ -7,7 +7,6 @@ using Assets.Scripts.Lockstep.Math;
 using Assets.Scripts.Lockstep.Math.Assets.Scripts.Lockstep.Math;
 using Assets.Scripts.Lockstep.Spawns;
 using Assets.Scripts.Lockstep.Systems.Constants;
-using TMPro;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;

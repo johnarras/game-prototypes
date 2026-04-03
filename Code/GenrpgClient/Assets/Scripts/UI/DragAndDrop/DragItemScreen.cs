@@ -96,7 +96,7 @@ public abstract class DragItemScreen<TData, TDragItem, TScreen, TInitData> : Bas
         if (rect != null)
         {
             RectTransform dragRect = _dragItem.GetComponent<RectTransform>();
-            dragRect.sizeDelta = rect.sizeDelta;    
+            dragRect.sizeDelta = rect.sizeDelta;
         }
         _dragItem.Init(icon.GetInitData(), GetToken());
         _dragItem.transform.SetParent(dragParent.transform);

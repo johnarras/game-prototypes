@@ -1,7 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 using Unity.Burst;
-using Unity.Burst.CompilerServices;
-using Unity.Collections;
 
 namespace Assets.Scripts.Lockstep.Math
 {
@@ -157,7 +155,7 @@ namespace Assets.Scripts.Lockstep.Math
             FixedPoint64 absZ = z.RawValue < 0 ? FixedPoint64.FromRaw(-z.RawValue) : z;
 
             // Using your overloaded operators:
-            return (z*45) - (z * (absZ - 1) * (14 + (absZ * 4)));
+            return (z * 45) - (z * (absZ - 1) * (14 + (absZ * 4)));
         }
     }
 }

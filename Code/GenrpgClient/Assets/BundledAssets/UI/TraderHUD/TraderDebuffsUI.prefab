@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6448177682961341492}
   - component: {fileID: 2914076814257460571}
+  - component: {fileID: 4731385041216924058}
   m_Layer: 0
   m_Name: TraderDebuffsUI
   m_TagString: Untagged
@@ -125,3 +126,16 @@ MonoBehaviour:
   IconAnchor: {fileID: 6311637843533673815}
   IconPrefab: {fileID: 2753878669163020358, guid: e1a168c685a813d4aaf4508c2f51f7f9,
     type: 3}
+--- !u!114 &4731385041216924058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179523375305961938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b9a91fbbd0cd64c87dd8db2cb9d9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.ClientEventListeners.BackScreenToggle
+  ToggleTarget: {fileID: 0}

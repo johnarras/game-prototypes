@@ -1,7 +1,6 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,11 +41,11 @@ namespace Assets.Scripts.Crawler.UI.HUD
 
             string codeName = button.name.Replace("Button", "");
 
-            MovementKeyCode kc = keys.FirstOrDefault(x=>x.Name == codeName);    
+            MovementKeyCode kc = keys.FirstOrDefault(x => x.Name == codeName);
 
             if (kc != null)
             {
-                _uiService.SetButton(button, name, () => 
+                _uiService.SetButton(button, name, () =>
                 {
                     if (_crawlerService.GetState() == ECrawlerStates.ExploreWorld)
                     {

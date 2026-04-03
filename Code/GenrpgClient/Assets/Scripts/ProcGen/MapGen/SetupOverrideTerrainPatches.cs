@@ -1,27 +1,26 @@
 
-using System.Collections.Generic;
-using Genrpg.Shared.Utils;
+using Genrpg.Shared.MapServer.Constants;
 using Genrpg.Shared.MapServer.Entities;
-
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.WorldData;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.Zones.WorldData;
 using UnityEngine;
 
 public class SetupOverrideTerrainPatches : BaseZoneGenerator
 {
-    public override async Awaitable Generate (CancellationToken token)
+    public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
         int wid = _mapProvider.GetMap().GetHwid();
-		int hgt = _mapProvider.GetMap().GetHhgt();
+        int hgt = _mapProvider.GetMap().GetHhgt();
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 1000000000 + 132873);
 
         for (int times = 0; times < 3; times++)
         {
-            float amp = RandUtils.FloatRange(1.2f, 1.8f, rand)*1.4f;
+            float amp = RandUtils.FloatRange(1.2f, 1.8f, rand) * 1.4f;
 
             float freq = wid * RandUtils.FloatRange(0.015f, 0.025f, rand) * 1.0f;
 
@@ -46,17 +45,17 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         {
             for (int z = 0; z < hgt; z++)
             {
-                _md.subZonePercents[x, z] = MathUtil.Clamp(0, 2*(_md.subZonePercents[x, z]-0.5f), 1);
+                _md.subZonePercents[x, z] = MathUtil.Clamp(0, 2 * (_md.subZonePercents[x, z] - 0.5f), 1);
             }
         }
 
 
-        List<Zone> procGenZones = _mapProvider.GetMap().Zones.Where(x=>x.IdKey >= SharedMapConstants.MinBaseZoneId && x.IdKey <= SharedMapConstants.MaxBaseZoneId).ToList();
+        List<Zone> procGenZones = _mapProvider.GetMap().Zones.Where(x => x.IdKey >= SharedMapConstants.MinBaseZoneId && x.IdKey <= SharedMapConstants.MaxBaseZoneId).ToList();
         for (int x = 0; x < wid; x++)
         {
             for (int z = 0; z < hgt; z++)
             {
-                if (_md.subZonePercents[x,z] > 0 && _md.subZoneIds[x,z] == 0)
+                if (_md.subZonePercents[x, z] > 0 && _md.subZoneIds[x, z] == 0)
                 {
                     Zone currZone = GetZoneAt(_mapProvider.GetMap(), x, z);
                     List<Zone> okZones = procGenZones.Where(x => x.ZoneTypeId != currZone.ZoneTypeId).ToList();
@@ -104,12 +103,12 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
             return;
         }
 
-        FloodFillRegion(zoneId, x - 1, z, depth+1);
-        FloodFillRegion(zoneId, x + 1, z, depth+1);
-        FloodFillRegion(zoneId, x, z - 1, depth+1);
-        FloodFillRegion(zoneId, x, z + 1, depth+1);
+        FloodFillRegion(zoneId, x - 1, z, depth + 1);
+        FloodFillRegion(zoneId, x + 1, z, depth + 1);
+        FloodFillRegion(zoneId, x, z - 1, depth + 1);
+        FloodFillRegion(zoneId, x, z + 1, depth + 1);
     }
 }
-	
+
 
 

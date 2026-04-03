@@ -15,7 +15,7 @@ namespace Assets.Scripts.Dungeons
 
         public List<MeshRenderer> WoodRenderers = new List<MeshRenderer>();
 
-        public List<MeshRenderer> FloorRenderers= new List<MeshRenderer>(); 
+        public List<MeshRenderer> FloorRenderers = new List<MeshRenderer>();
 
         public List<MeshRenderer> GetRenderersForMaterialIndex(int materialIndex)
         {
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Dungeons
             }
             else if (materialIndex == DungeonMaterialIndexes.Wood)
             {
-                return WoodRenderers;   
+                return WoodRenderers;
             }
             else if (materialIndex == DungeonMaterialIndexes.Floors)
             {

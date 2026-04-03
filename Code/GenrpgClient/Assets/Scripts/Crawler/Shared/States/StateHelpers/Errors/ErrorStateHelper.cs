@@ -32,7 +32,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Errors
             }
 
             AddSpaceAction(stateData);
-          
+
             await Task.CompletedTask;
             return stateData;
         }

@@ -1,4 +1,5 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.GameSettings.Loaders;
 using Genrpg.Shared.GameSettings.Mappers;
 using Genrpg.Shared.Interfaces;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Genrpg.Shared.LevelTracks.Settings
 {
-    public class LevelTrackReward : ChildSettings, IIndexedGameItem, IReward
+    public class LevelTrackReward : ChildSettings, IIndexedGameItem, IEffect
     {
 
         public override string Id { get; set; }
@@ -23,7 +24,6 @@ namespace Genrpg.Shared.LevelTracks.Settings
         public long EntityId { get; set; }
         public long Quantity { get; set; }
         public long Level { get; set; }
-        public Item ExtraData { get; set; }
     }
 
     public class LevelTrackRewardSettings : ParentSettings<LevelTrackReward>

@@ -26,7 +26,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
         {
             CrawlerStateData stateData = CreateStateData();
 
-            stateData.BGSpriteName = CrawlerClientConstants.TavernImage;
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             PartyData party = _crawlerService.GetParty();
 

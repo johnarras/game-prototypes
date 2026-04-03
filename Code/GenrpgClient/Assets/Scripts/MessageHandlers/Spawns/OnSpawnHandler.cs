@@ -5,7 +5,6 @@ using Genrpg.Shared.MapObjects.Messages;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>

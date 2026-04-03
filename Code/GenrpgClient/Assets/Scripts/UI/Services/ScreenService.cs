@@ -2,11 +2,11 @@ using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
+using Assets.Scripts.UI.ClientEvents;
 using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Interfaces;
 using Genrpg.Shared.Analytics.Services;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -273,6 +273,11 @@ public class ScreenService : IScreenService
         }
         layer.CurrentScreen = nextItem;
         layer.CurrentLoading = null;
+
+        if (layer == _layers.First())
+        {
+            _dispatcher.Dispatch(new ShowBackScreen());
+        }
     }
 
     public void OnOpenScreen(OpenScreen open)
@@ -365,6 +370,10 @@ public class ScreenService : IScreenService
                 layer.CurrentScreen = null;
                 layer.JustClosedScreen = true;
                 ClearAllScreensList();
+                if (layer == _layers.First())
+                {
+                    _dispatcher.Dispatch(new HideBackScreen());
+                }
                 break;
             }
         }

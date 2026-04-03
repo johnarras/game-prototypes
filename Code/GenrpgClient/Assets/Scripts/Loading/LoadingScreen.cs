@@ -1,6 +1,5 @@
 
 using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.UI.ScreenSystem;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,10 +1,6 @@
-using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.UnitEffects.Settings;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers

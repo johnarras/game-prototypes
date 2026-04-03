@@ -1,12 +1,11 @@
 ﻿using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
+using Assets.Scripts.Trader.ClientEvents;
+using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.CurrencySpend.Entities;
 using Genrpg.Shared.Trader.CurrencySpend.WebApi;
 using Genrpg.Shared.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using UnityEngine;
 
@@ -20,8 +19,17 @@ namespace Assets.Scripts.Trader.CurrencySpend.MessageHandlers
             if (response.State != ESpendCurrencyCheckState.Success)
             {
                 _dispatcher.Dispatch(new ShowFloatingText(StrUtils.SplitOnCapitalLetters(response.State.ToString()), EFloatingTextArt.Error));
+                return;
             }
-            await _rewardService.GiveRewards(_gs.ch, response.Rewards, null);
+
+            RewardParams args = new RewardParams()
+            {
+                ExtraRewardArgs = response.ExtraRewardArgs,
+            };
+
+            await _rewardService.GiveRewards(_gs.ch, response.Rewards, args);
+            _dispatcher.Dispatch(new UpdateTraderHUD());
+            _dispatcher.Dispatch(response);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Genrpg.Shared.Currencies.Constants
         public const long Cloth = 9;
         public const long Leather = 10;
         public const long Gems = 11;
+        public const long Lore = 12;
+        public const long Camps = 13;
     }
 }
 

@@ -9,7 +9,7 @@ namespace Assets.Scripts.MessageHandlers.Spells
     {
         protected override async Awaitable InnerProcess(OnAddEffect msg, CancellationToken token)
         {
-            if (!_objectManager.GetUnit(msg.TargetId,out Unit unit))
+            if (!_objectManager.GetUnit(msg.TargetId, out Unit unit))
             {
                 return;
             }

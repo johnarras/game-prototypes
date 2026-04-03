@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Assets.Scripts.ProcGen.Materials.Constants
+﻿namespace Assets.Scripts.ProcGen.Materials.Constants
 {
     public class MaterialGenConstants
     {

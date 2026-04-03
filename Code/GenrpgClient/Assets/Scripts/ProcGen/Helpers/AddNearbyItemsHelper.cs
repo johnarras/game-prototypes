@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
+using Genrpg.Shared.GameSettings;
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.ProcGen.Settings.Trees;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Interfaces;
-using Assets.Scripts.Core;
+using System;
+using System.Collections.Generic;
 
 public interface IAddNearbyItemsHelper : IInjectable
 {
@@ -36,7 +34,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 
         if (posHeight < MapConstants.OceanHeight)
         {
-            return;       
+            return;
         }
 
         if (rand.NextDouble() > placeChance)
@@ -141,7 +139,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             int numPlaced = 0;
             for (int tries = 0; tries < numToPlace * 30 && numPlaced < numToPlace; tries++)
             {
-                int plantx = (int)(x +RandUtils.DeltaRange(offset, rand)+0.5f);
+                int plantx = (int)(x + RandUtils.DeltaRange(offset, rand) + 0.5f);
                 int planty = (int)(y + RandUtils.DeltaRange(offset, rand) + 0.5f);
 
 
@@ -188,7 +186,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
         }
     }
 
-    public int GetNearbyItemsCount (int radius, MyRandom rand)
+    public int GetNearbyItemsCount(int radius, MyRandom rand)
     {
         int nearbyItemsCount = 1;
 

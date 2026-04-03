@@ -12,7 +12,7 @@ namespace Genrpg.RequestServer.Resets.Commands
         private IHourlyUpdateService _hourlyUpdateService = null;
         protected override async Task InnerHandleMessage(WebContext context, UpdateCoreCurrenciesRequest request, CancellationToken token)
         {
-            await _hourlyUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs() { OnLogin = false });
+            await _hourlyUpdateService.CheckHourlyCurrencyUpdates(context, new HourlyResetArgs() { OnLogin = false });
         }
     }
 }

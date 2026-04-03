@@ -24,7 +24,7 @@ public class MapProjectile : BaseBehaviour
 
         AddUpdate(ProjUpdate, UpdateTypes.Regular);
 
-        
+
 
         if (_full == null || _full.fromObj == null ||
             _full.fx == null)
@@ -34,7 +34,7 @@ public class MapProjectile : BaseBehaviour
         }
         _clientEntityService.AddToParent(entity, _objectManager.GetFXParent());
 
-       entity.transform.position = _full.fromObj.transform.position + extraHeight;
+        entity.transform.position = _full.fromObj.transform.position + extraHeight;
         lastPos = entity.transform.position;
         currPos = entity.transform.position;
 
@@ -60,17 +60,17 @@ public class MapProjectile : BaseBehaviour
             float deltaTime = _inputService.GetDeltaTime();
             float distThisTick = deltaTime * _full.fx.Speed;
 
-            Vector3 diff = _full.toObj.transform.position -entity.transform.position;
+            Vector3 diff = _full.toObj.transform.position - entity.transform.position;
 
             float magnitude = diff.magnitude;
 
             if (distThisTick < magnitude)
             {
-               entity.transform.position += diff * (distThisTick / magnitude);
+                entity.transform.position += diff * (distThisTick / magnitude);
             }
             else
             {
-               entity.transform.position = _full.toObj.transform.position;
+                entity.transform.position = _full.toObj.transform.position;
                 _clientEntityService.Destroy(entity);
             }
         }
@@ -87,14 +87,14 @@ public class MapProjectile : BaseBehaviour
             {
                 Vector3 newPos = (_full.fromObj.transform.position * (1 - _elapsedTime / _full.fx.Dur) +
                     _full.toObj.transform.position * (_elapsedTime / _full.fx.Dur)) + extraHeight;
-               entity.transform.position = newPos;
+                entity.transform.position = newPos;
                 lastPos = currPos;
                 currPos = entity.transform.position;
 
             }
             else
             {
-               entity.transform.position += currPos - lastPos;
+                entity.transform.position += currPos - lastPos;
                 lastPos = currPos;
                 currPos = entity.transform.position;
             }

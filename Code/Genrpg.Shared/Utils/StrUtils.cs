@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Genrpg.Shared.Utils
 {
@@ -317,6 +318,24 @@ namespace Genrpg.Shared.Utils
                 else
                 {
                     sb.Append(c % 10).ToString();
+                }
+            }
+            return sb.ToString();
+        }
+
+        public static string GetAlphaChars(string txt)
+        {
+            if (string.IsNullOrEmpty(txt))
+            {
+                return "";
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (int c = 0; c < txt.Length; c++)
+            {
+                if (char.IsLetter(txt[c]))
+                {
+                    sb.Append(txt[c]);
                 }
             }
             return sb.ToString();

@@ -2,10 +2,10 @@ using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.ClientEvents;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Constants;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using Genrpg.Shared.Logging.Interfaces;
 
 internal class CustomInputAction
 {
@@ -411,12 +410,13 @@ public class InputService : IInputService
     {
         _keyboardSystems.Add(subsystem);
 
-        destroyToken.Register(() => { 
-            
-            
+        destroyToken.Register(() =>
+        {
+
+
             _keyboardSystems.Remove(subsystem);
             _logService.Info("Remote KeyboardSubsystem");
-        
+
         });
     }
 

@@ -4,10 +4,7 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -25,7 +22,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 return;
             }
 
-            long questItemId = status.MapRoot.Map.GetEntityId(status.EX,status.EZ, EntityTypes.QuestItem);
+            long questItemId = status.MapRoot.Map.GetEntityId(status.EX, status.EZ, EntityTypes.QuestItem);
 
             if (questItemId < 1)
             {

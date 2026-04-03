@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.Input.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.SmallUIPieces
@@ -22,7 +19,7 @@ namespace Assets.Scripts.UI.SmallUIPieces
         {
             base.Init();
             _inputService.AddKeyboardSubsystem(this, GetToken());
-            IncrementSelectedIndex();    
+            IncrementSelectedIndex();
         }
 
         public void OnKeyPress(Key key)

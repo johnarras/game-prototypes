@@ -1,12 +1,6 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.Services.Entities
 {
@@ -23,7 +17,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Entities
         public int SZ;
         public int EX;
         public int EZ;
-        
+
     }
 }
 

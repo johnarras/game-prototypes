@@ -1,6 +1,5 @@
-using Assets.Scripts.UI.ScreenSystem;
-using Genrpg.Shared.Client.Assets.Constants;
 using Assets.Scripts.FloatingText.ClientEvents;
+using Genrpg.Shared.Client.Assets.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;

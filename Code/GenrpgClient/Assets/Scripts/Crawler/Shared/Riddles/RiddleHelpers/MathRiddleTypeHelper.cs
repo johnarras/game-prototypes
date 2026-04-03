@@ -1,13 +1,12 @@
+using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Riddles.Entities;
 using Genrpg.Shared.Utils;
-using System;
+using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
 
 namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {
@@ -57,7 +56,7 @@ namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 
             riddleSb.Append("How much gold will they have after completing this purchase?\n\n");
 
-            lockedFloor.AddFlags(CrawlerMapFlags.ShowFullRiddleText); 
+            lockedFloor.AddFlags(CrawlerMapFlags.ShowFullRiddleText);
             lockedFloor.EntranceRiddle.Text = riddleSb.ToString();
             lockedFloor.EntranceRiddle.Answer = (totalGold - total).ToString();
             lockedFloor.EntranceRiddle.Error = "Sorry, that's not the correct amount!";

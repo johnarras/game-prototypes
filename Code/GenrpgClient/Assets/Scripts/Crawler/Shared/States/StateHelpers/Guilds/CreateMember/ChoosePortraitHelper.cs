@@ -59,7 +59,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                    {
                        _dispatcher.Dispatch(new ShowWorldPanelImage(unitType.Icon));
                    }
-                   
+
                    ));
             }
 

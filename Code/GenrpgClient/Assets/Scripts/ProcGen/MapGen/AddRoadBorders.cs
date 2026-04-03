@@ -1,14 +1,12 @@
 
-using System;
-
-
-using Genrpg.Shared.Utils;
-using System.Threading;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class AddRoadBorders : BaseZoneGenerator
 {
@@ -22,25 +20,25 @@ public class AddRoadBorders : BaseZoneGenerator
         }
     }
 
-    public void GenerateOne (Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
-    { 
-        int dx = endx - startx+1;
-        int dy = endy - starty+1;
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    {
+        int dx = endx - startx + 1;
+        int dy = endy - starty + 1;
 
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
-		float dirtPercent = 
-			MapConstants.RoadBorderBaseDirtPercent*
-			genZone.RoadDirtScale *
-			zoneType.RoadDirtScale;
+        float dirtPercent =
+            MapConstants.RoadBorderBaseDirtPercent *
+            genZone.RoadDirtScale *
+            zoneType.RoadDirtScale;
 
 
-		if (dirtPercent <= 0)
-		{
-			return;
-		}
+        if (dirtPercent <= 0)
+        {
+            return;
+        }
 
-		MyRandom dirtRand = new MyRandom(_mapProvider.GetMap().Seed/19+zone.IdKey *23+zone.Seed+44663);
+        MyRandom dirtRand = new MyRandom(_mapProvider.GetMap().Seed / 19 + zone.IdKey * 23 + zone.Seed + 44663);
 
 
         int minDirtRadius = 1;
@@ -49,13 +47,13 @@ public class AddRoadBorders : BaseZoneGenerator
         float radfreq = RandUtils.FloatRange(0.4f, 1.5f, dirtRand) * (dx + dy) / 12.0f;
         float radamp = RandUtils.FloatRange(0.8f, 1.2f, dirtRand) * 8.0f;
 
-        float[,] radNoise = _noiseService.Generate(radpers, radfreq, radamp, 2, zone.IdKey * 237 + zone.Seed / 13,dx,dy);
+        float[,] radNoise = _noiseService.Generate(radpers, radfreq, radamp, 2, zone.IdKey * 237 + zone.Seed / 13, dx, dy);
 
-		float perturbPercent = RandUtils.FloatRange (0.3f,0.6f,dirtRand);
+        float perturbPercent = RandUtils.FloatRange(0.3f, 0.6f, dirtRand);
 
 
         float pers = RandUtils.FloatRange(0.2f, 0.4f, dirtRand);
-        float freq = RandUtils.FloatRange(0.1f,0.3f,dirtRand)*(dx + dy) / 2.0f;
+        float freq = RandUtils.FloatRange(0.1f, 0.3f, dirtRand) * (dx + dy) / 2.0f;
         float amp = RandUtils.FloatRange(0.3f, 0.8f, dirtRand);
 
         float[,] dirtAmount = _noiseService.Generate(pers, freq, amp, 2, zone.IdKey * 131 + zone.Seed / 7, dx, dy);
@@ -72,7 +70,7 @@ public class AddRoadBorders : BaseZoneGenerator
         {
             if (dirtRand.NextDouble() < 0.30f && roadRadius < 4)
             {
-                roadRadius++;           
+                roadRadius++;
             }
             else
             {
@@ -81,32 +79,32 @@ public class AddRoadBorders : BaseZoneGenerator
         }
 
 
-		for (int x = startx; x < endx; x++)
-		{
-			for (int y = starty; y < endy; y++)
-			{
+        for (int x = startx; x < endx; x++)
+        {
+            for (int y = starty; y < endy; y++)
+            {
 
                 if (_md.mapZoneIds[x, y] != zone.IdKey)
                 {
                     continue;
                 }
 
-				float roadVal = _md.alphas[x,y,TerrainTexChannels.Road];
-				if (roadVal > 0)
-				{
-					continue;
-				}
+                float roadVal = _md.alphas[x, y, TerrainTexChannels.Road];
+                if (roadVal > 0)
+                {
+                    continue;
+                }
 
                 roadRadius = (float)MathUtil.Clamp(minDirtRadius, Math.Abs(radNoise[x - startx, y - starty]), 6);
 
                 float roadDist = _md.roadDistances[x, y];
 
-				if (roadDist >= Math.Max(minDirtRadius,roadRadius) || roadDist <= 0f)
-				{
-					continue;
-				}
+                if (roadDist >= Math.Max(minDirtRadius, roadRadius) || roadDist <= 0f)
+                {
+                    continue;
+                }
 
-                float roadDistScale = (float)Math.Pow(1 - roadDist / roadRadius,0.2f);
+                float roadDistScale = (float)Math.Pow(1 - roadDist / roadRadius, 0.2f);
 
                 if (roadDist <= 10)
                 {
@@ -117,19 +115,19 @@ public class AddRoadBorders : BaseZoneGenerator
                 float posDirtPercent = 0.6f + Math.Abs(dirtAmount[x - startx, y - starty]);
 
 
-                float roadPctNearby = 1 - MathUtil.GetSmoothScalePercent(0, roadRadius,distToRoad);
-					
+                float roadPctNearby = 1 - MathUtil.GetSmoothScalePercent(0, roadRadius, distToRoad);
+
 
                 float roadPctNearbyScale = (float)Math.Pow(roadPctNearby, 0.25f);
-               
+
                 if (distToRoad <= 1.5f)
                 {
                     roadPctNearbyScale = Math.Max(roadPctNearbyScale, (2 - distToRoad) / 2);
                 }
                 roadPctNearbyScale = 1.0f;
-				float currDirtPercent = roadDistScale*RandUtils.FloatRange(dirtPercent*(1-perturbPercent),dirtPercent*1,dirtRand);
+                float currDirtPercent = roadDistScale * RandUtils.FloatRange(dirtPercent * (1 - perturbPercent), dirtPercent * 1, dirtRand);
                 currDirtPercent *= roadPctNearbyScale;
-				currDirtPercent = MathUtil.Clamp(0,currDirtPercent,0.75f);
+                currDirtPercent = MathUtil.Clamp(0, currDirtPercent, 0.75f);
                 if (roadRadius > 3)
                 {
                     currDirtPercent *= (1.01f * roadRadius);
@@ -139,15 +137,15 @@ public class AddRoadBorders : BaseZoneGenerator
 
 
                 for (int c = 0; c < TerrainTexChannels.Max; c++)
-				{
-					_md.alphas[x,y,c] *= (1-currDirtPercent);
-				}
-				_md.alphas[x,y,TerrainTexChannels.Dirt] += currDirtPercent;
+                {
+                    _md.alphas[x, y, c] *= (1 - currDirtPercent);
+                }
+                _md.alphas[x, y, TerrainTexChannels.Dirt] += currDirtPercent;
 
-			}
-		}
-	}
+            }
+        }
+    }
 }
-	
+
 
 

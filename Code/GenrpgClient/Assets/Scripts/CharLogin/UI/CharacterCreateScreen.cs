@@ -1,6 +1,5 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Characters.WebApi.CreateChar;
 using Genrpg.Shared.UI.Constants;
 using System.Threading;

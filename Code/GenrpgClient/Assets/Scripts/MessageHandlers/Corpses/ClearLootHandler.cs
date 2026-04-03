@@ -1,9 +1,5 @@
 using Genrpg.Shared.Loot.Messages;
 using Genrpg.Shared.Units.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using UnityEngine;
 
@@ -14,7 +10,7 @@ namespace Assets.Scripts.MessageHandlers.Corpses
     {
         protected override async Awaitable InnerProcess(ClearLoot msg, CancellationToken token)
         {
-            if (_objectManager.GetUnit(msg.UnitId,out Unit unit))
+            if (_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {
                 unit.Loot = null;
             }

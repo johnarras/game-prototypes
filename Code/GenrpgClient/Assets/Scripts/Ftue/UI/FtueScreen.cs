@@ -2,7 +2,6 @@ using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.Ftue.Constants;
 using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Ftue.Settings.Steps;
-using Genrpg.Shared.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -118,7 +117,7 @@ namespace Assets.Scripts.UI.Blockers
                 }
             }
 
-            
+
         }
 
         private void OnClickBackground()

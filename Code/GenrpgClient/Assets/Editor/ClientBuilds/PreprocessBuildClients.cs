@@ -1,7 +1,3 @@
-
-using UnityEditor.SceneManagement;
-using UnityEngine;
-
 namespace Assets.Editor.Builds
 {
     public class PreprocessBuildClients : UnityEditor.Build.IPreprocessBuildWithReport

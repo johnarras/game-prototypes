@@ -23,7 +23,7 @@ namespace Assets.Scripts.UI.Services
 
                 if (linkIndex >= 0 && gtext.textInfo.linkInfo.Length > linkIndex)
                 {
-                    TMP_LinkInfo linkInfo = gtext.textInfo.linkInfo[linkIndex]; 
+                    TMP_LinkInfo linkInfo = gtext.textInfo.linkInfo[linkIndex];
                     string linkID = linkInfo.GetLinkID();
                     if (!string.IsNullOrEmpty(linkID))
                     {

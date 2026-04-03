@@ -34,6 +34,7 @@ namespace Genrpg.MapServer.MapMessaging.Services
 
         private SetupDictionaryContainer<Type, IMapMessageHandler> _eventHandlerDict = new SetupDictionaryContainer<Type, IMapMessageHandler>();
         private ILogService _logService = null;
+        private IReflectionService _reflectionService = null;
 
         private List<MapMessageQueue> _queues = new List<MapMessageQueue>();
 
@@ -53,7 +54,7 @@ namespace Genrpg.MapServer.MapMessaging.Services
         {
             Type messageInterfaceType = typeof(IMapApiMessage);
 
-            List<Type> messageTypes = ReflectionUtils.GetTypesImplementing(messageInterfaceType);
+            List<Type> messageTypes = _reflectionService.GetTypesImplementing(messageInterfaceType);
 
             StringBuilder sb = new StringBuilder();
             foreach (Type t in messageTypes)

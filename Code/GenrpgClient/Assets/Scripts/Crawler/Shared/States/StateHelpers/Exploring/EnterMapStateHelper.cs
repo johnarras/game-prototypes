@@ -18,6 +18,7 @@ using Genrpg.Shared.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
@@ -190,15 +191,21 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             {
                 zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Dungeon);
             }
-            if (zoneType != null && !string.IsNullOrEmpty(zoneType.Icon))
+
+            long crawlerMapTypeId = nextMaps[0].CrawlerMapTypeId;
+
+            if (crawlerMapTypeId == CrawlerMapTypes.Dungeon)
             {
-                stateData.BGSpriteName = zoneType.Icon;
+                stateData.BGSpriteName = CrawlerClientConstants.DungeonImage;
+            }
+            else if (crawlerMapTypeId == CrawlerMapTypes.City)
+            {
+                stateData.BGSpriteName = CrawlerClientConstants.CityImage;
             }
             else
             {
-                stateData.BGSpriteName = CrawlerClientConstants.DefaultWorldBG;
+                stateData.BGSpriteName = CrawlerClientConstants.OutdoorsImage;
             }
-
 
             CrawlerMapStatus nextMapStatus = party.GetMapStatus(detail.EntityId, false);
 

@@ -1,6 +1,5 @@
 
 using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Setup.Constants;

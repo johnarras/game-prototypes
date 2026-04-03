@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Minigames.Controllers;
-using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
-using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Setup.Interfaces;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Minigames.Games.Settings;
@@ -68,7 +67,7 @@ namespace Assets.Scripts.Minigames.Services
         }
 
         private async Awaitable ShowMinigameAsync(long minigameTypeId)
-        { 
+        {
             MinigameType mtype = _gameData.Get<MinigameTypeSettings>(_gs.ch).Get(minigameTypeId);
 
             if (mtype == null)
@@ -81,7 +80,7 @@ namespace Assets.Scripts.Minigames.Services
             await _screenService.OpenAsync(ScreenNames.Loading, null, _token);
             _clientEntityService.DestroyAllChildren(_minigameAnchor);
             _assetService.LoadAssetInto(_minigameAnchor, AssetCategoryNames.Minigames, mtype.Art, OnLoadMinigame, _token, mtype, mtype.ArtSubdirectory);
-                
+
         }
 
         public void ShowLobby(long offset = 0)

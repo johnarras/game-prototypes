@@ -1,4 +1,3 @@
-using MessagePack;
 using Genrpg.Shared.Constants;
 
 public class PatcherUtils

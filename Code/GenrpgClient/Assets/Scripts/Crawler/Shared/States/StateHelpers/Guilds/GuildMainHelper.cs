@@ -42,7 +42,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
-            stateData.BGSpriteName = CrawlerClientConstants.TavernImage;
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             PartyData party = _crawlerService.GetParty();
 

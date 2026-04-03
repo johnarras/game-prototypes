@@ -9,7 +9,6 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -41,7 +40,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     return;
                 }
 
-                
+
                 int centerX = (int)(_party.CurrPos.X);
                 int centerZ = (int)(_party.CurrPos.Z);
 

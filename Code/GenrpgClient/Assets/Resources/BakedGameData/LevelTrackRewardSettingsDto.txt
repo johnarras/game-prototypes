@@ -102,182 +102,182 @@
       "IdKey": 15,
       "EntityTypeId": 1,
       "EntityId": 2,
-      "Quantity": 120,
+      "Quantity": 60,
       "Level": 1
     },
     {
       "IdKey": 16,
       "EntityTypeId": 80,
       "EntityId": 1,
-      "Quantity": 900,
+      "Quantity": 200,
       "Level": 2
     },
     {
       "IdKey": 17,
       "EntityTypeId": 77,
       "EntityId": 1,
-      "Quantity": 50,
+      "Quantity": 20,
       "Level": 3
     },
     {
       "IdKey": 18,
       "EntityTypeId": 80,
       "EntityId": 3,
-      "Quantity": 60,
+      "Quantity": 10,
       "Level": 4
     },
     {
       "IdKey": 19,
       "EntityTypeId": 77,
       "EntityId": 3,
-      "Quantity": 6,
+      "Quantity": 1,
       "Level": 5
     },
     {
       "IdKey": 20,
       "EntityTypeId": 80,
       "EntityId": 2,
-      "Quantity": 70,
+      "Quantity": 10,
       "Level": 6
     },
     {
       "IdKey": 21,
       "EntityTypeId": 77,
       "EntityId": 2,
-      "Quantity": 7,
+      "Quantity": 1,
       "Level": 7
     },
     {
       "IdKey": 22,
       "EntityTypeId": 80,
       "EntityId": 4,
-      "Quantity": 50,
+      "Quantity": 10,
       "Level": 8
     },
     {
       "IdKey": 23,
       "EntityTypeId": 77,
       "EntityId": 4,
-      "Quantity": 5,
+      "Quantity": 1,
       "Level": 9
     },
     {
       "IdKey": 24,
       "EntityTypeId": 80,
       "EntityId": 1,
-      "Quantity": 1200,
+      "Quantity": 200,
       "Level": 10
     },
     {
       "IdKey": 25,
       "EntityTypeId": 77,
       "EntityId": 1,
-      "Quantity": 60,
+      "Quantity": 20,
       "Level": 11
     },
     {
       "IdKey": 26,
       "EntityTypeId": 80,
       "EntityId": 3,
-      "Quantity": 70,
+      "Quantity": 10,
       "Level": 12
     },
     {
       "IdKey": 27,
       "EntityTypeId": 77,
       "EntityId": 3,
-      "Quantity": 7,
+      "Quantity": 1,
       "Level": 13
     },
     {
       "IdKey": 28,
       "EntityTypeId": 80,
       "EntityId": 2,
-      "Quantity": 80,
+      "Quantity": 10,
       "Level": 14
     },
     {
       "IdKey": 29,
       "EntityTypeId": 77,
       "EntityId": 2,
-      "Quantity": 8,
+      "Quantity": 1,
       "Level": 15
     },
     {
       "IdKey": 30,
       "EntityTypeId": 80,
       "EntityId": 4,
-      "Quantity": 60,
+      "Quantity": 10,
       "Level": 16
     },
     {
       "IdKey": 31,
       "EntityTypeId": 77,
       "EntityId": 4,
-      "Quantity": 6,
+      "Quantity": 1,
       "Level": 17
     },
     {
       "IdKey": 32,
       "EntityTypeId": 80,
       "EntityId": 1,
-      "Quantity": 1500,
+      "Quantity": 300,
       "Level": 18
     },
     {
       "IdKey": 33,
       "EntityTypeId": 77,
       "EntityId": 1,
-      "Quantity": 75,
+      "Quantity": 30,
       "Level": 19
     },
     {
       "IdKey": 34,
       "EntityTypeId": 80,
       "EntityId": 3,
-      "Quantity": 80,
+      "Quantity": 10,
       "Level": 20
     },
     {
       "IdKey": 35,
       "EntityTypeId": 77,
       "EntityId": 3,
-      "Quantity": 8,
+      "Quantity": 1,
       "Level": 21
     },
     {
       "IdKey": 36,
       "EntityTypeId": 80,
       "EntityId": 2,
-      "Quantity": 90,
+      "Quantity": 10,
       "Level": 22
     },
     {
       "IdKey": 37,
       "EntityTypeId": 77,
       "EntityId": 2,
-      "Quantity": 9,
+      "Quantity": 1,
       "Level": 23
     },
     {
       "IdKey": 38,
       "EntityTypeId": 80,
       "EntityId": 4,
-      "Quantity": 70,
+      "Quantity": 10,
       "Level": 24
     },
     {
       "IdKey": 39,
       "EntityTypeId": 77,
       "EntityId": 4,
-      "Quantity": 7,
+      "Quantity": 1,
       "Level": 25
     },
     {
       "IdKey": 40,
       "EntityTypeId": 71,
       "EntityId": 1,
-      "Quantity": 3,
+      "Quantity": 1,
       "Level": 26
     },
     {
@@ -294,5 +294,5 @@
     "Name": "LevelTrackRewardSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-26T03:17:36.93Z"
+  "SaveTime": "2026-03-30T01:44:12.026Z"
 }

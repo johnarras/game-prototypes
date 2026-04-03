@@ -13,7 +13,7 @@ namespace Genrpg.Shared.Trader.CaravanMembers.Settings
     {
         public override string Id { get; set; }
 
-        public long MoveCaravanMemberOutsideOfCityManaCost { get; set; }
+        public long MoveOutsideCityCostMult { get; set; }
     }
 
 

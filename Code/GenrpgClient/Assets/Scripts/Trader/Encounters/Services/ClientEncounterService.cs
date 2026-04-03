@@ -1,9 +1,7 @@
-﻿using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Rewards.Services;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Core;
+﻿using Assets.Scripts.Core;
+using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Entities.Constants;
+using Assets.Scripts.Rewards.Services;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.GameSettings;
@@ -11,7 +9,6 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Encounters.Entities;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -33,7 +30,7 @@ namespace Assets.Scripts.Trader.Encounters.Services
         private IClientRandom _rand = null;
         private IDynamicUIService _dynamicUIService = null;
         private IEntityService _entityService = null;
-        public async  Awaitable ShowEncounterResult(EncounterResult result)
+        public async Awaitable ShowEncounterResult(EncounterResult result)
         {
             if (result == null)
             {
@@ -63,7 +60,7 @@ namespace Assets.Scripts.Trader.Encounters.Services
                             string plusString = rew.Quantity > 0 ? "+" : "";
                             if (idname != null)
                             {
-                                sb.Append("    " + plusString + rew.Quantity + " " + idname.Name);  
+                                sb.Append("    " + plusString + rew.Quantity + " " + idname.Name);
                             }
                         }
                     }

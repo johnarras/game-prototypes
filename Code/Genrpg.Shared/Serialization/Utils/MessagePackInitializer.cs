@@ -11,11 +11,11 @@ using System.Text;
 namespace Genrpg.Shared.Serialization.Utils
 {
 
-    public static class MessagePackInitializer
+    public class MessagePackInitializer
     {
-        static readonly Type MainAttribute = typeof(MessagePackInterfaceAttribute);
+        readonly Type MainAttribute = typeof(MessagePackInterfaceAttribute);
 
-        static readonly List<LinePrefixPair> _attributesToRemove = new List<LinePrefixPair>()
+        readonly List<LinePrefixPair> _attributesToRemove = new List<LinePrefixPair>()
         {
            new LinePrefixPair() { Prefix = MpClassAttribute },
            new LinePrefixPair() { Prefix = MpKeyPrefix, Suffix = MpKeySuffix },
@@ -34,7 +34,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
         const string TypePathPrefix = "Genrpg.";
 
-        static readonly List<string> _neededUsings = new List<string>()
+        readonly List<string> _neededUsings = new List<string>()
         {
             "MessagePack",
         };
@@ -54,8 +54,10 @@ namespace Genrpg.Shared.Serialization.Utils
 
 
 
-        public static void Init(string dirName)
+        private IReflectionService _reflectionService = null;
+        public void Init(string dirName, IReflectionService reflectionService)
         {
+            _reflectionService = reflectionService; 
 
             RootClearExistingAttributes(dirName);
             List<Type> allTypes = GetAllTypes();
@@ -71,9 +73,9 @@ namespace Genrpg.Shared.Serialization.Utils
 
         }
 
-        private static List<Type> GetAllTypes()
+        private List<Type> GetAllTypes()
         {
-            Assembly[] assemblies = ReflectionUtils.GetAllAssemblies();
+            Assembly[] assemblies = _reflectionService.GetAllAssemblies();
 
             List<Assembly> checkAssemblies = new List<Assembly>();
 
@@ -96,7 +98,7 @@ namespace Genrpg.Shared.Serialization.Utils
             return allTypes;
         }
 
-        private static List<Type> GetValidClasses(List<InterfaceTypeList> list, List<Type> allTypes)
+        private List<Type> GetValidClasses(List<InterfaceTypeList> list, List<Type> allTypes)
         {
             List<Type> retval = new List<Type>();
 
@@ -123,7 +125,7 @@ namespace Genrpg.Shared.Serialization.Utils
             return retval;
         }
 
-        private static void AddExtraTypes(Type currType, List<Type> allTypes)
+        private void AddExtraTypes(Type currType, List<Type> allTypes)
         {
             PropertyInfo[] props = currType.GetProperties();
 
@@ -172,7 +174,7 @@ namespace Genrpg.Shared.Serialization.Utils
             }
         }
 
-        private static bool IsValidType(Type t)
+        private bool IsValidType(Type t)
         {
             if (!t.IsClass || t.IsAbstract || t.IsInterface || t.IsGenericType ||
                 string.IsNullOrEmpty(t.FullName) ||
@@ -187,7 +189,7 @@ namespace Genrpg.Shared.Serialization.Utils
             return attr == null;
         }
 
-        private static List<Type> GetValidInterfaces(List<Type> allTypes)
+        private List<Type> GetValidInterfaces(List<Type> allTypes)
         {
 
             List<Type> interfacesToSetup = new List<Type>();
@@ -205,7 +207,7 @@ namespace Genrpg.Shared.Serialization.Utils
         }
 
 
-        private static List<InterfaceTypeList> GetInterfaceTypeLists(List<Type> validInterfaces, List<Type> validClasses)
+        private List<InterfaceTypeList> GetInterfaceTypeLists(List<Type> validInterfaces, List<Type> validClasses)
         {
             List<InterfaceTypeList> retval = new List<InterfaceTypeList>();
 
@@ -263,14 +265,14 @@ namespace Genrpg.Shared.Serialization.Utils
 
 
 
-        private static string GetUnionText(string typeName, int unionIndex)
+        private string GetUnionText(string typeName, int unionIndex)
         {
             return "    " + MpUnionPrefix + unionIndex + MpUnionMiddle + typeName + MpUnionSuffix;
         }
 
 
 
-        public static void AddInterfaceAttributes(string codeFolder, List<InterfaceTypeList> list)
+        public void AddInterfaceAttributes(string codeFolder, List<InterfaceTypeList> list)
         {
 
             foreach (InterfaceTypeList itl in list)
@@ -369,7 +371,7 @@ namespace Genrpg.Shared.Serialization.Utils
 
 
 
-        private static void RootAddClassAttributes(string codeFolder, List<Type> validTypes)
+        private void RootAddClassAttributes(string codeFolder, List<Type> validTypes)
         {
             string[] allDirectories = Directory.GetDirectories(codeFolder);
 
@@ -384,7 +386,7 @@ namespace Genrpg.Shared.Serialization.Utils
             }
         }
 
-        private static void AddClassAttributesInDir(string dirName, List<Type> validTypesLeft)
+        private void AddClassAttributesInDir(string dirName, List<Type> validTypesLeft)
         {
             if (dirName.IndexOf("Genrpg.Shared") < 0 && dirName.IndexOf("Genrpg.ServerShared") < 0)
             {
@@ -494,7 +496,7 @@ namespace Genrpg.Shared.Serialization.Utils
         }
 
 
-        private static void RootClearExistingAttributes(string codeFolder)
+        private void RootClearExistingAttributes(string codeFolder)
         {
             string[] allDirectories = Directory.GetDirectories(codeFolder);
 
@@ -508,7 +510,7 @@ namespace Genrpg.Shared.Serialization.Utils
             }
         }
 
-        private static void ClearExistingAttributesInDir(string dirName)
+        private void ClearExistingAttributesInDir(string dirName)
         {
             string[] fileNames = Directory.GetFiles(dirName);
 
@@ -579,7 +581,7 @@ namespace Genrpg.Shared.Serialization.Utils
                 ClearExistingAttributesInDir(subdir);
             }
         }
-        private static void WriteLinesToFile(string filePath, List<string> lines)
+        private void WriteLinesToFile(string filePath, List<string> lines)
         {
             StringBuilder sb = new StringBuilder();
             for (int l = 0; l < lines.Count; l++)

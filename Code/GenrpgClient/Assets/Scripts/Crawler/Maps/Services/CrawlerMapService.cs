@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Buildings;
 using Assets.Scripts.ClientEvents.UI;
@@ -18,7 +17,6 @@ using Assets.Scripts.ProcGen.Materials;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Genrpg.Shared.Buildings.Settings;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
@@ -41,7 +39,6 @@ using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
@@ -52,8 +49,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Services.CrawlerMaps
@@ -307,7 +302,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             MaterialGenData materialsData = _clientEntityService.FullInstantiate(go.GetComponent<MaterialGenData>());
             _clientEntityService.AddToParent(materialsData, mapRoot.AssetRoot);
-     
+
             WallTextureGenArgs args = new WallTextureGenArgs()
             {
                 MaterialsData = materialsData,
@@ -334,7 +329,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             foreach (WeightedCrawlerBuilding weightedBuilding in mapRoot.CityAssets.Buildings)
             {
-                weightedBuilding.Mats.WallMats.Clear(); 
+                weightedBuilding.Mats.WallMats.Clear();
 
                 foreach (MaterialOption opt in mapRoot.BuildingWallOptions)
                 {
@@ -343,12 +338,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                         Mat = opt.Mat,
                         Weight = 1000,
                         ColorTargets = new List<Color>(materialsData.ForegroundColors),
-                    });                   
+                    });
                 }
 
                 foreach (WeightedBuildingMaterial weightedMat in weightedBuilding.Mats.WallMats)
                 {
-                    for (int c =0; c <weightedMat.ColorTargets.Count; c++)
+                    for (int c = 0; c < weightedMat.ColorTargets.Count; c++)
                     {
                         weightedMat.ColorTargets[c] = weightedMat.ColorTargets[c] * 0.75f;
                     }
@@ -358,7 +353,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         private void OnLoadDungeonAssetBlock(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
         {
-            DungeonAssetBlockList list = go.GetComponent<DungeonAssetBlockList>();  
+            DungeonAssetBlockList list = go.GetComponent<DungeonAssetBlockList>();
 
             if (list == null || list.Blocks.Count < 1)
             {
@@ -386,7 +381,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         }
 
         private async Awaitable OnLoadDungeonMaterialsDataAsync(GameObject assetGo, MaterialBlock block, CancellationToken token)
-        { 
+        {
             long materialSeed = _crawlerMapRoot.Map.ArtSeed / 5 + 1433 + block.ZoneTypeId;
 
             IRandom rand = new MyRandom(materialSeed);
@@ -458,7 +453,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 if (_crawlerMapRoot.AssetBlockList != null)
                 {
                     _crawlerMapRoot.AssetBlock = null;
-                    _crawlerMapRoot.AssetBlockList.Clear();                    
+                    _crawlerMapRoot.AssetBlockList.Clear();
                     _clientEntityService.Destroy(_crawlerMapRoot.AssetBlockList);
                     _crawlerMapRoot.AssetBlockList = null;
                 }

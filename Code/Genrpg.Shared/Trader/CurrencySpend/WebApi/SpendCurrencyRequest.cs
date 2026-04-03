@@ -13,5 +13,6 @@ namespace Genrpg.Shared.Trader.CurrencySpend.WebApi
         public long SpendQuantity { get; set; }
         public bool UseCurrentCity { get; set; }
         public long TargetEntityId { get; set; }
+        public string ExtraRewardArgs { get; set; }
     }
 }

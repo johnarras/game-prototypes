@@ -1,7 +1,7 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Entities;
 using ClientEvents;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Core.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;

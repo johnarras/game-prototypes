@@ -1,12 +1,11 @@
 
 using Genrpg.Shared.GroundObjects.Settings;
 using Genrpg.Shared.Interactions.Messages;
-using Genrpg.Shared.ProcGen.Entities;
 
 public class MapGroundObject : InteractableObject
 {
 
-    
+
 
     public long GroundObjectId;
     public long CrafterTypeId;

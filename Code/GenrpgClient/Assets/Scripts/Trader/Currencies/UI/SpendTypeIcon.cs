@@ -1,5 +1,5 @@
-﻿using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Trader.CurrencySpend.Settings;
+﻿using Genrpg.Shared.Trader.CurrencySpend.Settings;
+using Genrpg.Shared.Trader.CurrencySpend.WebApi;
 
 namespace Assets.Scripts.Trader.Currencies.UI
 {
@@ -12,14 +12,14 @@ namespace Assets.Scripts.Trader.Currencies.UI
         protected SpendLocation _loc;
         protected SpendType _spendType;
         protected long _targetEntityId;
-        
+
         public virtual void SetData(SpendLocation loc, SpendType spendType, long targetEntityId = 0)
         {
             _loc = loc;
             _spendType = spendType;
-            _targetEntityId = targetEntityId;   
+            _targetEntityId = targetEntityId;
 
-            Button.SetSpendType(loc, spendType, targetEntityId);
+            Button.SetSpendType(loc, spendType, UpdateSpendRequest);
 
             _uiService.SetText(Description, spendType.Name);
         }
@@ -27,6 +27,12 @@ namespace Assets.Scripts.Trader.Currencies.UI
         public long GetSpendTypeIndex()
         {
             return _spendType.Index;
+        }
+
+        private bool UpdateSpendRequest(SpendCurrencyRequest request)
+        {
+            request.TargetEntityId = _targetEntityId;
+            return true;
         }
     }
 }

@@ -272,11 +272,11 @@
     },
     {
       "IdKey": 66,
-      "Name": "MoveCaravanMember",
+      "Name": "UpdateCaravanMembers",
       "Desc": "",
       "AtlasPrefix": "",
-      "Icon": "MoveCaravanMember",
-      "Art": "MoveCaravanMember"
+      "Icon": "UpdateCaravanMembers",
+      "Art": "UpdateCaravanMembers"
     },
     {
       "IdKey": 68,
@@ -409,5 +409,5 @@
     "Name": "EntitySettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-26T17:49:31.37Z"
+  "SaveTime": "2026-03-30T20:36:57.583Z"
 }

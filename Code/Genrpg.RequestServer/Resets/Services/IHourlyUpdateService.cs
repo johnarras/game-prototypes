@@ -6,7 +6,7 @@ namespace Genrpg.RequestServer.Resets.Services
 {
     public interface IHourlyUpdateService : IInjectable
     {
-        Task CheckHourlyCurrencyUpdate(WebContext context, HourlyResetArgs args);
+        Task CheckHourlyCurrencyUpdates(WebContext context, HourlyResetArgs args);
     }
 }
 

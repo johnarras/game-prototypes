@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Buildings
 {
@@ -17,7 +14,7 @@ namespace Assets.Scripts.Buildings
                 return false;
             }
 
-            if (Buildings.Any(x=>!x.IsReady()))
+            if (Buildings.Any(x => !x.IsReady()))
             {
                 return false;
             }

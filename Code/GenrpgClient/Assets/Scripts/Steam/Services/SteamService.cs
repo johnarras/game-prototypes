@@ -3,11 +3,11 @@
 using Assets.Scripts.GameObjects;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
+using Steamworks;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Steamworks;
 
 namespace Assets.Scripts.Steam.Services
 {
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Steam.Services
         public void OnMessage(StringBuilder sb)
         {
 
-            _logService.Info("Steam Message: " + sb.ToString()); 
+            _logService.Info("Steam Message: " + sb.ToString());
         }
 
         public void OnUpdate()

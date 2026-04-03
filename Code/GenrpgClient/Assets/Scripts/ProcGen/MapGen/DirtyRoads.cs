@@ -1,13 +1,10 @@
-using System;
-
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
-using System.Threading;
-using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class DirtyRoads : BaseZoneGenerator
 {
@@ -18,10 +15,10 @@ public class DirtyRoads : BaseZoneGenerator
         {
             GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.XMax, zone.ZMin, zone.ZMax);
         }
-        
+
     }
 
-    public void GenerateOne (Zone zone, ZoneType zoneType, int minx, int maxx, int miny, int maxy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int minx, int maxx, int miny, int maxy)
     {
         if (zone == null)
         {
@@ -31,29 +28,29 @@ public class DirtyRoads : BaseZoneGenerator
         int sizex = maxx - minx + 1;
         int sizey = maxy - miny + 1;
 
-        if (sizex < 10 || sizey< 10)
+        if (sizex < 10 || sizey < 10)
         {
             return;
         }
 
         int size = Math.Max(sizex, sizey);
 
-        MyRandom rand = new MyRandom(zone.Seed+724334);
+        MyRandom rand = new MyRandom(zone.Seed + 724334);
 
         float globalScale = 1.25f;
 
-        float amp = RandUtils.FloatRange(0.6f, 1.3f, rand)*globalScale;
-        float freq = RandUtils.FloatRange(0.2f, 0.3f, rand) * size*globalScale;
-        float pers = RandUtils.FloatRange(0.4f, 0.7f, rand)*globalScale;
-		int octaves = 2;
+        float amp = RandUtils.FloatRange(0.6f, 1.3f, rand) * globalScale;
+        float freq = RandUtils.FloatRange(0.2f, 0.3f, rand) * size * globalScale;
+        float pers = RandUtils.FloatRange(0.4f, 0.7f, rand) * globalScale;
+        int octaves = 2;
 
         float[,] dirtHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizey);
 
         float minRoadPercent = 0.20f;
 
-		float maxOtherPercent = 0.80f;
+        float maxOtherPercent = 0.80f;
 
-        amp = RandUtils.FloatRange(0.6f, 1.3f, rand)*globalScale;
+        amp = RandUtils.FloatRange(0.6f, 1.3f, rand) * globalScale;
         freq = RandUtils.FloatRange(0.15f, 0.25f, rand) * size * globalScale;
         pers = RandUtils.FloatRange(0.4f, 0.7f, rand) * globalScale;
         octaves = 2;
@@ -62,7 +59,7 @@ public class DirtyRoads : BaseZoneGenerator
 
         float startMaxPct = 0.85f;
 
-        float pctamp = RandUtils.FloatRange(0.2f,0.3f, rand)* globalScale;
+        float pctamp = RandUtils.FloatRange(0.2f, 0.3f, rand) * globalScale;
         float pctfreq = RandUtils.FloatRange(0.1f, 0.2f, rand) * size * globalScale;
         float pctpers = RandUtils.FloatRange(0.0f, 0.4f, rand) * globalScale;
         int pctoctaves = 2;
@@ -72,57 +69,57 @@ public class DirtyRoads : BaseZoneGenerator
         float generalPerturb = 0.1f;
 
         for (int x = minx; x <= maxx; x++)
-		{
+        {
             if (x < 0 || x >= _mapProvider.GetMap().GetHwid())
             {
                 continue;
             }
 
-			for (int z = miny; z <= maxy; z++)
-			{
+            for (int z = miny; z <= maxy; z++)
+            {
                 if (z < 0 || z >= _mapProvider.GetMap().GetHhgt())
                 {
                     continue;
                 }
 
-				if (_md.alphas[x,z,TerrainTexChannels.Road] < minRoadPercent)
+                if (_md.alphas[x, z, TerrainTexChannels.Road] < minRoadPercent)
                 {
                     continue;
                 }
 
-                if (_md.mapZoneIds[x,z] != zone.IdKey)
+                if (_md.mapZoneIds[x, z] != zone.IdKey)
                 {
                     continue;
                 }
 
-				// Get height > 0
-				//float dirtPct = Math.Abs (dirtHeights[x,z]);
-				//float basePct = Math.Abs (baseHeights[x,z]);
-				float dirtPct = MathUtil.Clamp(0,dirtHeights[x-minx,z-miny]+RandUtils.DeltaRange(generalPerturb,rand),maxOtherPercent);
-				float basePct = MathUtil.Clamp(0,baseHeights[x-minx,z-miny]+RandUtils.DeltaRange(generalPerturb, rand),maxOtherPercent);
-
-                
+                // Get height > 0
+                //float dirtPct = Math.Abs (dirtHeights[x,z]);
+                //float basePct = Math.Abs (baseHeights[x,z]);
+                float dirtPct = MathUtil.Clamp(0, dirtHeights[x - minx, z - miny] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
+                float basePct = MathUtil.Clamp(0, baseHeights[x - minx, z - miny] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
 
 
-				float totalPct = dirtPct+basePct;
+
+
+                float totalPct = dirtPct + basePct;
 
 
                 float maxPct = maxPcts[x - minx, z - miny] + startMaxPct;
 
-				if (totalPct > maxPct)
-				{
-					dirtPct /= (totalPct/maxPct);
-					basePct /= (totalPct/maxPct);
-					totalPct = maxPct;
-				}
+                if (totalPct > maxPct)
+                {
+                    dirtPct /= (totalPct / maxPct);
+                    basePct /= (totalPct / maxPct);
+                    totalPct = maxPct;
+                }
 
-				_md.ClearAlphasAt(x,z);
-				_md.alphas[x,z,TerrainTexChannels.Road] = 1-totalPct;
-				_md.alphas[x,z,TerrainTexChannels.Dirt] = dirtPct;
-				_md.alphas[x,z,TerrainTexChannels.Base] = basePct;
+                _md.ClearAlphasAt(x, z);
+                _md.alphas[x, z, TerrainTexChannels.Road] = 1 - totalPct;
+                _md.alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
+                _md.alphas[x, z, TerrainTexChannels.Base] = basePct;
 
-			}
-		}
-	}
+            }
+        }
+    }
 }
 

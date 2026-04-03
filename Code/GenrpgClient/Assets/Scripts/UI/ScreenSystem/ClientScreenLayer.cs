@@ -11,6 +11,7 @@ public class ClientScreenLayer
     public List<ActiveScreen> ScreenQueue { get; set; } = new List<ActiveScreen>();
     public GameObject LayerParent { get; set; }
     public bool JustClosedScreen { get; set; }
+
 }
 
 

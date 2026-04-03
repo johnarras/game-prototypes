@@ -282,9 +282,9 @@ namespace Genrpg.Shared.MapObjects.Entities
         virtual protected bool AlwaysCreateMissingData() { return true; }
 
 
-        public virtual Task<T> GetAsync<T>() where T : class, IUnitData, new()
+        public async Task<T> GetAsync<T>() where T : class, IUnitData, new()
         {
-            return Task.FromResult(Get<T>());
+            return Get<T>();
         }
 
         public virtual T Get<T>() where T : class, IUnitData, new()

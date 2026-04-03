@@ -1,19 +1,15 @@
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
+using Assets.Scripts.ProcGen.Loading.Utils;
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.ProcGen.Entities;
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Plants;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Assets.Scripts.ProcGen.Loading.Utils;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Assets.Scripts.Core;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class BaseDetailPrototype
 {
@@ -49,7 +45,7 @@ public class AddPlants : BaseZoneGenerator
 
 
 
-   
+
 
     public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
     {
@@ -66,7 +62,7 @@ public class AddPlants : BaseZoneGenerator
 
         List<FullDetailPrototype> fullList = new List<FullDetailPrototype>();
 
-        _zonePlantValidator.UpdateValidPlantTypeList(zone, -1, -1, fullList,true, _token);
+        _zonePlantValidator.UpdateValidPlantTypeList(zone, -1, -1, fullList, true, _token);
 
         if (fullList == null)
         {
@@ -125,8 +121,8 @@ public class AddPlants : BaseZoneGenerator
                 density = genZone.GrassDensity * zoneType.GrassDensity * GrassDensityScale;
 
                 amp *= density;
-                
-              
+
+
 
                 plantChances.Add(_noiseService.Generate(pers, freq, amp, octaves, pseed, perlinSize, perlinSize));
             }
@@ -153,12 +149,12 @@ public class AddPlants : BaseZoneGenerator
                     float currDensityMult = RandUtils.FloatRange(0, 2, rand);
                     numChecked++;
 
-                    if (_md.mapZoneIds[x,y] != zone.IdKey) // zoneobject
+                    if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
                     {
                         badZoneId++;
                         continue;
                     }
-                    if (_md.mapObjects[x,y] != 0)
+                    if (_md.mapObjects[x, y] != 0)
                     {
                         continue;
                     }
@@ -166,7 +162,7 @@ public class AddPlants : BaseZoneGenerator
                     {
                         continue;
                     }
-                    if (_md.alphas[x,y, TerrainTexChannels.Road] > 0)
+                    if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
                     {
                         bool isNearRoad = false;
                         int roadRad = 0;
@@ -182,7 +178,7 @@ public class AddPlants : BaseZoneGenerator
                                 {
                                     continue;
                                 }
-                                if (_md.alphas[xx,yy, TerrainTexChannels.Road] > 0)
+                                if (_md.alphas[xx, yy, TerrainTexChannels.Road] > 0)
                                 {
                                     isNearRoad = true;
                                     break;
@@ -196,15 +192,15 @@ public class AddPlants : BaseZoneGenerator
                         }
                     }
                     float hgt = _terrainManager.SampleHeight(x, y);
-                    if (hgt < MapConstants.MinLandHeight*7/10)
+                    if (hgt < MapConstants.MinLandHeight * 7 / 10)
                     {
                         continue;
                     }
 
 
-                    float steep = _terrainManager.GetSteepness(x,y);
+                    float steep = _terrainManager.GetSteepness(x, y);
 
-                    if (steep > (midSteepVal+steepVals[x-startx,y-starty]))
+                    if (steep > (midSteepVal + steepVals[x - startx, y - starty]))
                     {
                         continue;
                     }
@@ -232,7 +228,7 @@ public class AddPlants : BaseZoneGenerator
                     }
                     else
                     {
-                        if (_rand.NextDouble() > currDensityMult*density / 20.0f)
+                        if (_rand.NextDouble() > currDensityMult * density / 20.0f)
                         {
                             continue;
                         }
@@ -274,10 +270,10 @@ public class AddPlants : BaseZoneGenerator
                             val++;
                         }
 
-                        int ny = y - (y / (MapConstants.TerrainPatchSize - 1))*0;
-                        int nx = x - (x / (MapConstants.TerrainPatchSize - 1))*0;
+                        int ny = y - (y / (MapConstants.TerrainPatchSize - 1)) * 0;
+                        int nx = x - (x / (MapConstants.TerrainPatchSize - 1)) * 0;
                         if (full.plantType.HasFlag(PlantFlags.UsePrefab))
-                        {                            
+                        {
                             val = (short)(val * MapConstants.PrefabPlantDensityScale);
                         }
                         _md.grassAmounts[nx, ny, index] = (byte)val;

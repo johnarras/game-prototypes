@@ -1,20 +1,18 @@
-
-using UnityEngine;
 using ClientEvents;
-using Genrpg.Shared.Units.Entities;
-using System.Linq;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Stats.Messages;
+using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using System.Linq;
 
 public class UnitStatBar : BaseBehaviour
 {
 
     Unit _unit = null;
 
-    
+
     public ProgressBar _progressBar;
 
-    
+
     public int _statTypeId;
 
     long _curr = 0;
@@ -64,7 +62,7 @@ public class UnitStatBar : BaseBehaviour
 
 
         return;
-        
+
     }
 
     private void OnLevelUpdate(LevelUpEvent data)

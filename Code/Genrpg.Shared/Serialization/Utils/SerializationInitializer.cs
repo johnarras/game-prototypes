@@ -1,3 +1,4 @@
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -39,10 +40,12 @@ namespace Genrpg.Shared.Serialization.Utils
 
     public static class SerializationInitializer
     {
-        public static void Init(string dirName)
+        public static void Init(string dirName, IReflectionService reflectionService)
         {
-            MessagePackInitializer.Init(dirName);
-            SystemTextJsonInitializer.Init(dirName);
+            MessagePackInitializer mpi = new MessagePackInitializer();  
+            mpi.Init(dirName, reflectionService);   
+            SystemTextJsonInitializer sji = new SystemTextJsonInitializer();
+            sji.Init(dirName, reflectionService);
         }
     }
 }

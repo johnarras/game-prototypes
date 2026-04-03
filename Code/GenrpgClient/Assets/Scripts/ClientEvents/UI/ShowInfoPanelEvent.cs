@@ -1,5 +1,4 @@
 using Genrpg.Shared.Client.Interfaces;
-using MessagePack;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.ClientEvents

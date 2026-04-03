@@ -1,14 +1,13 @@
+using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Riddles.Entities;
 using Genrpg.Shared.Utils;
-using System;
+using Genrpg.Shared.Utils.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using System.Linq;
 
 namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
 {

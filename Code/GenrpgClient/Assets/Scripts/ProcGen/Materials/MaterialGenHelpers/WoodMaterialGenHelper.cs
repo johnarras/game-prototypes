@@ -1,17 +1,9 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using Unity.Collections;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 {
@@ -44,7 +36,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     EffectThreshold = RandUtils.FloatRange(state.Settings.MinNoiseEffectThreshold, state.Settings.MaxNoiseEffectThreshold, state.Rand),
                 }
                 );
-               
+
             }
 
             state.Settings.ColorNoiseOctaves = 3;

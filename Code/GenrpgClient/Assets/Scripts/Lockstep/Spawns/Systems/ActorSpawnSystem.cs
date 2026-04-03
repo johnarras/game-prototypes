@@ -3,7 +3,6 @@ using Assets.Scripts.Lockstep.Game;
 using Assets.Scripts.Lockstep.Spawns;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Collections;
 
 [DisableAutoCreation]
 [BurstCompile]

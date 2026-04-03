@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Inventory.PlayerData;
-using System.Threading;
 using Genrpg.Shared.Inventory.Constants;
+using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Units.Entities;
+using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 public class InventoryPanel : BaseBehaviour
 {
@@ -46,16 +46,16 @@ public class InventoryPanel : BaseBehaviour
                 continue;
             }
 
-            if (itype.EquipSlotId > 0 || FlagUtils.MatchesAnyBits(itype.Flags,ItemFlags.NoStack))
+            if (itype.EquipSlotId > 0 || FlagUtils.MatchesAnyBits(itype.Flags, ItemFlags.NoStack))
             {
-                if (FlagUtils.MatchesAnyBits(categories,InventoryGroup.Equipment))
+                if (FlagUtils.MatchesAnyBits(categories, InventoryGroup.Equipment))
                 {
                     finalInventory.Add(item);
                 }
             }
             else
             {
-                if (FlagUtils.MatchesAnyBits(categories,InventoryGroup.Reagents))
+                if (FlagUtils.MatchesAnyBits(categories, InventoryGroup.Reagents))
                 {
                     finalInventory.Add(item);
                 }

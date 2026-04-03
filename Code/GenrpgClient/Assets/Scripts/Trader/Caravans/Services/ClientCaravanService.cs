@@ -1,19 +1,16 @@
 ﻿using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.ClientEvents;
-using Assets.Scripts.Core;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
-using System.Threading.Tasks;
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Caravans.Services
 {
-    public class ClientCaravanService : CaravanService
+    public class ClientCalcAttributeService : CalcAttributeService
     {
         private IDispatcher _dispatcher = null;
-        public override async Task CalcCoreTravelStats(IUnitDataLookup lookup)
+        public override async Task CalcBuffs(IUnitDataLookup lookup)
         {
-            await base.CalcCoreTravelStats(lookup); 
+            await base.CalcBuffs(lookup);
 
             _dispatcher.Dispatch(new UpdateTraderHUD());
 

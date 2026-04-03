@@ -1,6 +1,6 @@
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Assets;
 using Assets.Scripts.Core;
+using Assets.Scripts.GameObjects;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -11,7 +11,6 @@ using Genrpg.Shared.ProcGen.Services;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Assets.Scripts.GameObjects;
 
 public class BaseZoneGenerator : IZoneGenerator, IInitializable
 {

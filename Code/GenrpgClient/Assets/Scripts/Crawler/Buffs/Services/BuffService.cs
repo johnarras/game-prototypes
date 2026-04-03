@@ -17,7 +17,6 @@ using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Utils;
 using System;

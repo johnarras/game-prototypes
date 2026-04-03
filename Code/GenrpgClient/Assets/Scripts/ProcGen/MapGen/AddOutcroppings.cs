@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 public class AddOutcroppings : BaseZoneGenerator
 {
@@ -65,7 +65,7 @@ public class AddOutcroppings : BaseZoneGenerator
 
 
         int numOutcroppings = 2;
-        
+
 
         for (int times = 0; times < 10; times++)
         {
@@ -121,7 +121,7 @@ public class AddOutcroppings : BaseZoneGenerator
 
                 int maxWidth = RandUtils.IntRange(minSize * 2 / 3, minSize, rand);
 
-                float fullHeight = RandUtils.FloatRange(20.0f,60.0f,rand) / MapConstants.MapHeight;
+                float fullHeight = RandUtils.FloatRange(20.0f, 60.0f, rand) / MapConstants.MapHeight;
 
                 int mx = (sx + ex) / 2;
                 int my = (sy + ey) / 2;
@@ -131,7 +131,7 @@ public class AddOutcroppings : BaseZoneGenerator
                     UseOvalWidth = true,
                     MinWidthSize = Math.Max(4, minSize / 10),
                     MaxWidthSize = maxWidth,
-                    WidthSizeChangeAmount = maxWidth/4,
+                    WidthSizeChangeAmount = maxWidth / 4,
                     WidthSizeChangeChance = 0.2f,
                     Seed = rand.Next(),
                     WidthPosShiftChance = 0.4f,
@@ -156,17 +156,17 @@ public class AddOutcroppings : BaseZoneGenerator
                 {
                     foreach (MyPointF pt in line)
                     {
-                        int px = (int)(pt.X - mx)+GridSize/2;
-                        int py = (int)(pt.Y - my)+GridSize/2;
+                        int px = (int)(pt.X - mx) + GridSize / 2;
+                        int py = (int)(pt.Y - my) + GridSize / 2;
 
-                        
-                        if (px < 1 || py < 1 || px >= GridSize-1 || py >= GridSize-1)
+
+                        if (px < 1 || py < 1 || px >= GridSize - 1 || py >= GridSize - 1)
                         {
                             continue;
                         }
                         grids[px, py, 0] = InGridVal;
                         numCenters++;
-                                
+
                     }
                 }
 
@@ -181,11 +181,11 @@ public class AddOutcroppings : BaseZoneGenerator
                 float[,] smoothNoise = _noiseService.Generate(pers, freq, amp, smoothOctaves, rand.Next(), GridSize, GridSize);
 
 
-                int baseSmoothRad = Math.Max(7, (int)(fullHeight/6));
+                int baseSmoothRad = Math.Max(7, (int)(fullHeight / 6));
 
 
                 List<MyPointF> potentialLowestPoints = new List<MyPointF>();
-            
+
                 for (int x = 0; x < GridSize; x++)
                 {
                     for (int y = 0; y < GridSize; y++)
@@ -193,14 +193,14 @@ public class AddOutcroppings : BaseZoneGenerator
                         int numCells = 0;
                         float totalSum = 0;
                         int smoothRad = Math.Max(2, (int)(baseSmoothRad * (1 + smoothNoise[x, y])));
-                        for (int xx = x-smoothRad; xx <= x+smoothRad; xx++)
+                        for (int xx = x - smoothRad; xx <= x + smoothRad; xx++)
                         {
                             if (xx < 0 || xx >= GridSize)
                             {
                                 continue;
                             }
 
-                            for (int yy = y-smoothRad; yy <= y+smoothRad; yy++)
+                            for (int yy = y - smoothRad; yy <= y + smoothRad; yy++)
                             {
                                 if (yy < 0 || yy >= GridSize)
                                 {
@@ -306,7 +306,7 @@ public class AddOutcroppings : BaseZoneGenerator
 
                             grids[x, y, 1] *= mountainHeight;
 
-                            if (grids[x,y,1] == 1)
+                            if (grids[x, y, 1] == 1)
                             {
                                 float hgt = _md.heights[wx, wy];
                                 if (hgt < lowestMapHeight)
@@ -367,7 +367,7 @@ public class AddOutcroppings : BaseZoneGenerator
                         }
                         else
                         {
-                            float gridval = grids[x, y, 1] * ((_md.heights[wx, wy]-lowestMapHeight) - fullHeight * (1 + heightScales[x, y]));
+                            float gridval = grids[x, y, 1] * ((_md.heights[wx, wy] - lowestMapHeight) - fullHeight * (1 + heightScales[x, y]));
 
                             _md.heights[wx, wy] += gridval * -finalHeightScale;
                         }

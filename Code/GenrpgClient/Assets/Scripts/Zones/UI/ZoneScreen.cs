@@ -1,5 +1,4 @@
 using Assets.Scripts.Minimap.Services;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.MapServer.Services;
 using Genrpg.Shared.Utils;

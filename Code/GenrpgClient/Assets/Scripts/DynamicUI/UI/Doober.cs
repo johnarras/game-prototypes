@@ -77,7 +77,7 @@ namespace Assets.Scripts.Doobers.UI
                 float sin = Mathf.Sin(_offsetAngle);
                 float cos = Mathf.Cos(_offsetAngle);
 
-                _offsetPos = new Vector3(cos, sin, 0) * _dooberArgs.StartOffsetSize * (1 - percentDone) * (1-percentDone) * (percentDone);
+                _offsetPos = new Vector3(cos, sin, 0) * _dooberArgs.StartOffsetSize * (1 - percentDone) * (1 - percentDone) * (percentDone);
             }
 
             if (_dooberArgs.PercentDonePowerMult > 0)
@@ -94,7 +94,7 @@ namespace Assets.Scripts.Doobers.UI
                 if (_dooberArgs != null)
                 {
                     _dynamicUIService.ReturnDooberArgs(_dooberArgs);
-                    _dooberArgs = null; 
+                    _dooberArgs = null;
                 }
                 _dynamicUIService.AddEntityQuantityVisual(_entityTypeId, _entityId, _currQuantity, false);
                 return true;

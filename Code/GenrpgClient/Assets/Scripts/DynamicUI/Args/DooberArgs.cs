@@ -18,12 +18,12 @@ namespace Assets.Scripts.Doobers.Events
         public float LerpTime = 1.0f;
         public double SizeScale = 1.0f;
 
-        
+
 
         public void Clear()
         {
             StartPosition = Vector3.zero;
-            EntityTypeId = 0;   
+            EntityTypeId = 0;
             EntityId = 0;
             Quantity = 0;
             AtlasName = null;

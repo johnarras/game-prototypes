@@ -41,10 +41,10 @@ namespace Assets.Scripts.Crawler.Combat
                     percent -= 0.5f;
                     percent *= 2;
 
-                    Color currColor = midColor * (1 - percent) + highColor * percent;   
-                    Image.SetColor(currColor);  
+                    Color currColor = midColor * (1 - percent) + highColor * percent;
+                    Image.SetColor(currColor);
                 }
             }
-        } 
+        }
     }
 }

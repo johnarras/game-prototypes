@@ -1,8 +1,8 @@
 
 
-using System.Threading;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.ProcGen.Constants;
+using System.Threading;
 using UnityEngine; // Needed
 
 public class SetBasicTerrainTextures : BaseZoneGenerator
@@ -53,6 +53,6 @@ public class SetBasicTerrainTextures : BaseZoneGenerator
         }
     }
 }
-	
+
 
 

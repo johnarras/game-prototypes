@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.Interfaces;
 using System;

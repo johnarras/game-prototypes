@@ -1,6 +1,5 @@
 
 using Assets.Scripts.UI.Entities;
-using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using System.Collections.Generic;
@@ -10,11 +9,11 @@ using UnityEditor;
 [CustomEditor(typeof(EntityIdDropdownList), true)]
 public class EntityIdDropdownEditor : Editor
 {
-    
+
     private int oldSelectedEntityIndex = 0;
     private int selectedEntityIndex = 0;
     private List<IIdName> entities = new List<IIdName>();
-    string[] entityNames = new string[0];   
+    string[] entityNames = new string[0];
     public override void OnInspectorGUI()
     {
         bool needToSetDirty = false;

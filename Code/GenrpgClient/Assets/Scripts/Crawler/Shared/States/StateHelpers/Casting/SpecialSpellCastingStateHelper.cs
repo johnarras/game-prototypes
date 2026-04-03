@@ -1,15 +1,13 @@
 
 using Genrpg.Shared.Crawler.Spells.Settings;
+using Genrpg.Shared.Crawler.States.Constants;
+using Genrpg.Shared.Crawler.States.Entities;
+using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
+using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
 using Genrpg.Shared.Entities.Constants;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers;
-using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
 
 namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
 {

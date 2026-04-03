@@ -1,16 +1,12 @@
 ﻿using Assets.Scripts.Entities.UI;
 using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.UI.Entities;
 using Genrpg.Shared.Attributes.Constants;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Utils.Data;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
@@ -31,7 +27,7 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         public override void Init()
         {
-                _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateVisualTravelStats, GetToken());
+            _dispatcher.AddListener<UpdateTraderHUD>(OnUpdateVisualTravelStats, GetToken());
             base.Init();
             ShowData();
         }
@@ -47,6 +43,11 @@ namespace Assets.Scripts.Trader.Travel.UI
         private void ShowData()
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
+            ShowExplicitData(coreData);
+        }
+
+        public void ShowExplicitData(CoreData coreData)
+        {
             CaravanTravelInfo info = _caravanService.GetTravelInfo(coreData);
 
 
@@ -60,11 +61,6 @@ namespace Assets.Scripts.Trader.Travel.UI
             DailyCurrencyIcons.ShowSmallIdList(EntityTypes.CoreCurrency, info.CurrenciesPerDay.Data, 1);
 
             TotalCurrencyIcons.ShowSmallIdList(EntityTypes.CoreCurrency, info.CurrenciesPerDay.Data, info.Days);
-        }
-
-        private void ShowCurrencyList(SmallIdLongCollection collection, GameObject currencyAnchor)
-        {
-
         }
     }
 }

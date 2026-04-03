@@ -56,7 +56,6 @@ MonoBehaviour:
   AllyGrid: {fileID: 1900417923518495652}
   EnemyGrid: {fileID: 3807943540673319423}
   StatusPanel: {fileID: 0}
-  _combatHitImage: {fileID: 1620625767798681082}
 --- !u!222 &740180048782254770
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 
-using System;
 using Genrpg.Shared.UI.Interfaces;
+using System;
 
 namespace Assets.Scripts.UI.Core
 {

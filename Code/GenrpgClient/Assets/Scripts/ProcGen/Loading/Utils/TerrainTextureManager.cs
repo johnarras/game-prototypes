@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;

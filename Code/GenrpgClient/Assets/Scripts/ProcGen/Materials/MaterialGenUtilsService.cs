@@ -8,10 +8,6 @@ using Genrpg.Shared.Utils.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
-using System.Runtime.Versioning;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials
@@ -872,7 +868,7 @@ namespace Assets.Scripts.ProcGen.Materials
             finalDx *= RandUtils.DeltaScale(0.1f, state.Rand);
             finalDy *= RandUtils.DeltaScale(0.1f, state.Rand);
 
-            
+
 
             float angle = RandUtils.DeltaRange(20, state.Rand);
 
@@ -972,7 +968,7 @@ namespace Assets.Scripts.ProcGen.Materials
                 int cx = RandUtils.IntRange(0, state.Size - 1, state.Rand);
                 int cy = RandUtils.IntRange(0, state.Size - 1, state.Rand);
 
-                if (state.Block.BumpHeights[cx,cy] < MaterialGenConstants.MaxRecessedBumpHeight)
+                if (state.Block.BumpHeights[cx, cy] < MaterialGenConstants.MaxRecessedBumpHeight)
                 {
                     continue;
                 }
@@ -988,7 +984,7 @@ namespace Assets.Scripts.ProcGen.Materials
                     {
                         WidthSizeChangeAmount = 1,
                         InitialNoPosShiftLength = 0,
-                        MaxWidthPosDrift = state.Size/2,
+                        MaxWidthPosDrift = state.Size / 2,
                         LinePathNoiseScale = RandUtils.FloatRange(0, 0.3f, state.Rand),
                         MaxWidthSize = 2,
                         MinWidthSize = 1,
@@ -996,14 +992,14 @@ namespace Assets.Scripts.ProcGen.Materials
                         WidthPosShiftChance = RandUtils.FloatRange(0, 0.1f, state.Rand),
                         WidthPosShiftSize = 1,
                         WidthSizeChangeChance = RandUtils.FloatRange(0, 0.02f, state.Rand),
-                        WidthSize = RandUtils.IntRange(1,3, state.Rand),
+                        WidthSize = RandUtils.IntRange(1, 3, state.Rand),
                     };
 
 
                     int nx = RandUtils.IntRange(0, state.Size - 1, state.Rand);
                     int ny = RandUtils.IntRange(0, state.Size - 1, state.Rand);
 
-                    List<MyPointF> points = _lineGenService.GetBressenhamLine(new MyPoint(cx,cy),new MyPoint(nx,ny), lgp);
+                    List<MyPointF> points = _lineGenService.GetBressenhamLine(new MyPoint(cx, cy), new MyPoint(nx, ny), lgp);
 
                     foreach (MyPointF pt in points)
                     {

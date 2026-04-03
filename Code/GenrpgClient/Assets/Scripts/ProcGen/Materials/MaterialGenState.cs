@@ -4,8 +4,6 @@ using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials
@@ -128,7 +126,7 @@ namespace Assets.Scripts.ProcGen.Materials
             CurvedWallChance = RandUtils.FloatRange(Settings.CurvedWallMinChance, Settings.CurvedWallMaxChance, Rand);
 
             BlockRowCount = RandUtils.IntRange(Settings.MinBrickRows, Settings.MaxBrickRows, Rand);
-            
+
 
             RoundCornerDistAmp = RandUtils.FloatRange(Settings.MinRoundCornerDistAmp, Settings.MaxRoundCornerDistAmp, Rand);
             RoundCornerDistFreq = RandUtils.FloatRange(Settings.MinRoundCornerDistFreq, Settings.MaxRoundCornerDistFreq, Rand);
@@ -154,7 +152,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                 int index = Rand.Next() % listCopy.Count;
 
-                ForegroundMain = listCopy[index];   
+                ForegroundMain = listCopy[index];
 
                 listCopy.RemoveAt(index);
 
@@ -182,7 +180,7 @@ namespace Assets.Scripts.ProcGen.Materials
                     {
                         nextColor = listCopy[Rand.Next() % listCopy.Count];
                     }
-                        
+
 
                     ForegroundNoise.Add(new ScaledColor()
                     {
@@ -204,7 +202,7 @@ namespace Assets.Scripts.ProcGen.Materials
                     {
                         Color diffColor = color - ForegroundMain;
 
-                        float size = Math.Abs(diffColor.r)+Math.Abs(diffColor.g)+Math.Abs(diffColor.b);
+                        float size = Math.Abs(diffColor.r) + Math.Abs(diffColor.g) + Math.Abs(diffColor.b);
 
                         if (size > minDistanceToMain)
                         {

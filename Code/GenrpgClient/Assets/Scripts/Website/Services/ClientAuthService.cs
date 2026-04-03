@@ -3,7 +3,6 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
 using Genrpg.Shared.Accounts.WebApi.Login;
 using Genrpg.Shared.Accounts.WebApi.Signup;
-using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.GameAuth.WebApi.Auth;
 using Genrpg.Shared.GameSettings;
@@ -170,7 +169,7 @@ public class ClientAuthService : IClientAuthService
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
         string txt = _serializer.SerializeToString(resultSet);
-        _clientWebService.HandleResponses(txt, null, token);
+        await _clientWebService.HandleResponses(txt, null, token);
         await Task.CompletedTask;
     }
 

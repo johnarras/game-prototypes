@@ -1,9 +1,9 @@
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Core;
+using Assets.Scripts.DynamicUI.Services;
 using Genrpg.Shared.Crawler.Crafting.Settings;
-using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
+using Genrpg.Shared.Currencies.Settings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -13,7 +13,6 @@ using Genrpg.Shared.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Genrpg.Shared.Effects.Entities;
 
 namespace Assets.Scripts.Crawler.Shared.Crafting.Services
 {

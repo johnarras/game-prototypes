@@ -11,12 +11,9 @@ using Genrpg.Shared.Trader.Maps.Services;
 using Genrpg.Shared.Trader.Travel.Services;
 using Genrpg.Shared.Utils.Data;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.SearchService;
-using static UnityEngine.Rendering.GPUSort;
 
 
 
@@ -206,8 +203,8 @@ public class TraderTerrain : BaseBehaviour
                         MapPatchXYIndex = index,
                         X = xx,
                         Y = (int)_texHeight - yy - 1,
-                        CX =cx,
-                        CY =cy, 
+                        CX = cx,
+                        CY = cy,
                     };
 
 

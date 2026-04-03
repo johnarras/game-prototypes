@@ -9,7 +9,9 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.MapServer.Entities;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using System.Collections.Generic;
+using System.Reflection;
 
 
 
@@ -53,12 +55,28 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
         ClientConfigContainer configContainer = new ClientConfigContainer(config);
         _logService = new ClientLogService(configContainer.Config);
         _clientAppService = new ClientAppService(_logService);
-        _loc = new ServiceLocator(_logService, new ClientGameData());
+
+
+        IReflectionService reflectionService = new ClientReflectionService();
+
+
+        reflectionService.AddSearchAssembly(Assembly.GetExecutingAssembly());
+        _loc = new ServiceLocator(_logService, reflectionService, new ClientGameData());
         loc.Set(initClient);
         loc.Set(_clientAppService);
         loc.Set<IClientGameState>(this);
         loc.Set<IClientConfigContainer>(configContainer);
         loc.Set<IClientOptionsService>(new ClientOptionsService(_logService, _clientAppService, _serializer));
+    }
+
+    public class ClientReflectionService : ReflectionService
+    {
+        // Override this in the future when partial domain reloads become a thing
+        public override Assembly[] GetAllAssemblies()
+        {
+            return base.GetAllAssemblies();
+
+        }
     }
 }
 

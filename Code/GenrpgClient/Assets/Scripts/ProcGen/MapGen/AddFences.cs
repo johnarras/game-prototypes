@@ -1,14 +1,13 @@
 
-using System;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Fences;
 using Genrpg.Shared.ProcGen.Settings.Locations;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class AddFences : BaseZoneGenerator
@@ -25,7 +24,7 @@ public class AddFences : BaseZoneGenerator
         {
             GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
         }
-        
+
     }
 
     public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
@@ -77,11 +76,11 @@ public class AddFences : BaseZoneGenerator
         int ysize = endy - starty + 1;
 
         float amp = RandUtils.FloatRange(0.0f, 0.3f, chanceRand);
-        float freq = RandUtils.FloatRange(0.02f, 0.1f, chanceRand) * (xsize+ysize) / 2;
+        float freq = RandUtils.FloatRange(0.02f, 0.1f, chanceRand) * (xsize + ysize) / 2;
         float pers = RandUtils.FloatRange(0.2f, 0.45f, chanceRand);
         int octaves = 2;
 
-        float[,] fenceChances = _noiseService.Generate(pers, freq, amp, octaves, chanceRand.Next(), xsize,ysize);
+        float[,] fenceChances = _noiseService.Generate(pers, freq, amp, octaves, chanceRand.Next(), xsize, ysize);
 
 
 
@@ -93,12 +92,12 @@ public class AddFences : BaseZoneGenerator
             for (int y = starty + distFromEnd; y < endy - distFromEnd; y++)
             {
                 int ddy = y - starty;
-                if (chanceRand.NextDouble() > fenceChances[ddx,ddy])
+                if (chanceRand.NextDouble() > fenceChances[ddx, ddy])
                 {
                     Location currLoc = _zoneGenService.FindMapLocation(x, y, 3);
 
                     if (currLoc == null ||
-                        FlagUtils.MatchesAnyBits(_md.flags[x,y], MapGenFlags.IsLocationPatch))
+                        FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsLocationPatch))
                     {
                         continue;
                     }
@@ -108,7 +107,7 @@ public class AddFences : BaseZoneGenerator
                 {
                     continue;
                 }
-                float startRoadDist = _md.roadDistances[x,y];
+                float startRoadDist = _md.roadDistances[x, y];
                 if (startRoadDist < 1.5f || startRoadDist > 2.5f)
                 {
                     continue;
@@ -130,7 +129,7 @@ public class AddFences : BaseZoneGenerator
                 {
                     float dx2 = item.X - x;
                     float dy2 = item.Y - y;
-                    if (Math.Sqrt(dx2*dx2+dy2*dy2) < minDistToFence)
+                    if (Math.Sqrt(dx2 * dx2 + dy2 * dy2) < minDistToFence)
                     {
                         closeToFence = true;
                         continue;
@@ -146,7 +145,7 @@ public class AddFences : BaseZoneGenerator
 
                 float extraLengthMult = 2.0f;
 
-                float checkLength = fenceType.Length*extraLengthMult;
+                float checkLength = fenceType.Length * extraLengthMult;
 
                 int radToCheck = (int)Math.Ceiling(checkLength);
 
@@ -169,15 +168,15 @@ public class AddFences : BaseZoneGenerator
                             continue;
                         }
                         float newDist = _md.roadDistances[xx, yy];
-                        if (newDist < startRoadDist-0.5f || newDist > startRoadDist+0.5f)
+                        if (newDist < startRoadDist - 0.5f || newDist > startRoadDist + 0.5f)
                         {
                             continue;
                         }
 
-                        int sx = Math.Min((int)x, xx)+1;
-                        int ex = Math.Max((int)x, xx)-1;
-                        int sy = Math.Min(y, yy)+1;
-                        int ey = Math.Max(y, yy)-1;
+                        int sx = Math.Min((int)x, xx) + 1;
+                        int ex = Math.Max((int)x, xx) - 1;
+                        int sy = Math.Min(y, yy) + 1;
+                        int ey = Math.Max(y, yy) - 1;
 
                         bool tooCloseToRoad = false;
 
@@ -192,7 +191,7 @@ public class AddFences : BaseZoneGenerator
                                 }
                             }
                         }
-                        
+
                         if (tooCloseToRoad)
                         {
                             continue;
@@ -206,7 +205,7 @@ public class AddFences : BaseZoneGenerator
 
                         float ird = _md.roadDistances[inx, iny];
 
-                        if (ird < startRoadDist-0.75f || ird > startRoadDist + 0.75f)
+                        if (ird < startRoadDist - 0.75f || ird > startRoadDist + 0.75f)
                         {
                             continue;
                         }
@@ -245,7 +244,7 @@ public class AddFences : BaseZoneGenerator
                 float angle = (float)(Math.Atan2(dy, dx) * 180f / Math.PI + 90);
 
                 //float hgt = _md.SampleHeight(x+wdx, 2000, y+wdy);
-                float hgt = _terrainManager.SampleHeight(y + wdy,  x + wdx);
+                float hgt = _terrainManager.SampleHeight(y + wdy, x + wdx);
 
                 //var centerHeight = _md.SampleHeight(cx+wdx, 2000, cy+wdy);
                 float centerHeight = _terrainManager.SampleHeight(cy + wdy, cx + wdx);
@@ -258,7 +257,7 @@ public class AddFences : BaseZoneGenerator
                 float dhx = (float)Math.Sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y));
                 float dhy = centerHeight - hgt;
 
-                float hangle = (float)(Math.Atan2(-dhy, dhx)*180/Math.PI);
+                float hangle = (float)(Math.Atan2(-dhy, dhx) * 180 / Math.PI);
 
                 // Don't allow fences that are too slanted. Looks bad.
                 if (Math.Abs(hangle) >= MaxFenceHeightAngle)
@@ -266,8 +265,8 @@ public class AddFences : BaseZoneGenerator
                     continue;
                 }
 
-                if (x >= 0 && y >= 0 && x < _mapProvider.GetMap().GetHwid()  && y < _mapProvider.GetMap().GetHhgt() &&
-                    _md.mapObjects[x,y] == 0)
+                if (x >= 0 && y >= 0 && x < _mapProvider.GetMap().GetHwid() && y < _mapProvider.GetMap().GetHhgt() &&
+                    _md.mapObjects[x, y] == 0)
                 {
                     _md.mapObjects[x, y] = MapConstants.FenceObjectOffset + (int)(fenceType.IdKey);
                     ushort nextVal = (byte)((angle + 360) / 4);
@@ -282,7 +281,7 @@ public class AddFences : BaseZoneGenerator
         }
     }
 
-    public float GetHeightAngle (FenceType fenceType, float angle, float newx, float newz, float hgt)
+    public float GetHeightAngle(FenceType fenceType, float angle, float newx, float newz, float hgt)
     {
         if (_gs == null || fenceType == null)
         {
@@ -319,30 +318,30 @@ public class AddFences : BaseZoneGenerator
         return hangle;
     }
 
-	private FenceType GetFenceType (ZoneType ztype, MyRandom choiceRand)
-	{
-		if (choiceRand == null || ztype == null)
-		{
-			return null;
-		}
+    private FenceType GetFenceType(ZoneType ztype, MyRandom choiceRand)
+    {
+        if (choiceRand == null || ztype == null)
+        {
+            return null;
+        }
 
         ZoneFenceType zoneFenceType = RandUtils.GetRandomElement(ztype.FenceTypes, choiceRand);
-		if (zoneFenceType == null)
-		{
-			return null;
-		}
-		
-		FenceType fenceType = _gameData.Get<FenceTypeSettings>(_gs.ch).Get(zoneFenceType.FenceTypeId);
-		
-		if (fenceType == null || string.IsNullOrEmpty(fenceType.Art))
-		{
-			return null;
-		}
-		
-		return fenceType;
-	}
+        if (zoneFenceType == null)
+        {
+            return null;
+        }
+
+        FenceType fenceType = _gameData.Get<FenceTypeSettings>(_gs.ch).Get(zoneFenceType.FenceTypeId);
+
+        if (fenceType == null || string.IsNullOrEmpty(fenceType.Art))
+        {
+            return null;
+        }
+
+        return fenceType;
+    }
 
 }
-	
+
 
 

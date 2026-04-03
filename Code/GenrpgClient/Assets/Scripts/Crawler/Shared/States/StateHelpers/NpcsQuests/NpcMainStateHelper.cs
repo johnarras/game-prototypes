@@ -40,7 +40,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
 
             PartyData party = _crawlerService.GetParty();
 
-            stateData.BGSpriteName = CrawlerClientConstants.HouseImage + GetBuildingImageIndex(party, TriggerBuildingId());
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 

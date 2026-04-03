@@ -34,7 +34,7 @@ namespace Assets.Scripts.Lockstep.Math
         public static Vector2Fixed operator *(Vector2Fixed a, FixedPoint64 b)
             => new Vector2Fixed(a.X * b, a.Y * b);
 
-        public static Vector2Fixed operator /(Vector2Fixed a, FixedPoint64 b) => new Vector2Fixed(a.X/b,a.Y/b);
+        public static Vector2Fixed operator /(Vector2Fixed a, FixedPoint64 b) => new Vector2Fixed(a.X / b, a.Y / b);
 
         public FixedPoint64 Magnitude => FixedPointMath.Sqrt((X * X) + (Y * Y));
 

@@ -7,6 +7,7 @@ using Genrpg.Shared.DataStores.DataGroups;
 using Genrpg.Shared.DataStores.Entities;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
         private IAnalyticsService _analyticsService = null;
         private ITextSerializer _textSerializer = null;
         private ISecretsProvider _secretsProvider = null;
+        private IReflectionService _reflectionService = null;
         public abstract ERepoTypes HelperKey { get; }
         protected abstract IMongoInitRepository CreateRepository();
 
@@ -45,7 +47,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo
             MongoClient client = await GetMongoClient(connectionString);
 
             IMongoInitRepository repo = CreateRepository();
-            await repo.Init(args, client, _logService, _analyticsService, _textSerializer, token);
+            await repo.Init(args, client, _logService, _analyticsService, _textSerializer, _reflectionService, token);
             return repo;
         }
 

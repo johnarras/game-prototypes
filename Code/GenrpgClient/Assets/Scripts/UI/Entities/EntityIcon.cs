@@ -142,7 +142,14 @@ namespace Assets.Scripts.Entities.UI
                 return;
             }
 
-            _currQuantity = (_targetQuantity - _startQuantity) * _ticksSinceUpdate / UpdateTicks + _startQuantity;
+            if (UpdateTicks < 2)
+            {
+                _currQuantity = _targetQuantity;
+            }
+            else
+            {
+                _currQuantity = (_targetQuantity - _startQuantity) * _ticksSinceUpdate / UpdateTicks + _startQuantity;
+            }
 
             ShowQuantity();
         }

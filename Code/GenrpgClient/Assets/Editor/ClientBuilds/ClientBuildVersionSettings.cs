@@ -1,8 +1,7 @@
 
-using UnityEngine;
-using UnityEditor;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.Constants;
+using UnityEditor;
+using UnityEngine;
 
 public class ClientBuildVersionSettings : ScriptableObject
 {
@@ -10,7 +9,7 @@ public class ClientBuildVersionSettings : ScriptableObject
     public int Version = 0;
 
 
-    public static string GetVersionAssetPath (string env)
+    public static string GetVersionAssetPath(string env)
     {
         if (string.IsNullOrEmpty(env))
         {
@@ -20,7 +19,7 @@ public class ClientBuildVersionSettings : ScriptableObject
         return "Assets/Editor/" + env + "ClientBuildSettings.asset";
     }
 
-    public static void UpdateVersionFile (ClientBuildVersionSettings asset, string env)
+    public static void UpdateVersionFile(ClientBuildVersionSettings asset, string env)
     {
         if (asset == null)
         {
@@ -35,7 +34,7 @@ public class ClientBuildVersionSettings : ScriptableObject
 
     }
 
-    public static ClientBuildVersionSettings GetClientVersionFile (string env)
+    public static ClientBuildVersionSettings GetClientVersionFile(string env)
     {
         ClientBuildVersionSettings asset = AssetDatabase.LoadAssetAtPath<ClientBuildVersionSettings>(GetVersionAssetPath(env));
         if (asset == null)

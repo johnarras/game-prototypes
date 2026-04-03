@@ -1,10 +1,7 @@
 ﻿
 using Assets.Scripts.Lockstep.Factions.Components;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Unity.Entities;
-using static UnityEngine.Rendering.STP;
 
 namespace Assets.Scripts.Lockstep.Factions.Setup
 {

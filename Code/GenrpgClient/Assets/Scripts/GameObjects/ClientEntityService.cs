@@ -161,6 +161,14 @@ namespace Assets.Scripts.GameObjects
                 return;
             }
 
+            MonoBehaviour mb = unityObject as MonoBehaviour;
+
+            if (mb != null)
+            {
+                unityObject = mb.gameObject;
+            }
+
+
 #if UNITY_EDITOR
             if (!_clientAppService.IsPlaying)
             {

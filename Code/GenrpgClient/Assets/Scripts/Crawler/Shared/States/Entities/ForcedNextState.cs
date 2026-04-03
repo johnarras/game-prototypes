@@ -1,5 +1,3 @@
-using MessagePack;
-
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.States.Constants;
 

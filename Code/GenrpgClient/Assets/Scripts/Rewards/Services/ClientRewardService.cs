@@ -1,5 +1,4 @@
 using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Core;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
@@ -13,9 +12,9 @@ namespace Assets.Scripts.Rewards.Services
         private IDispatcher _dispatcher;
         private IDynamicUIService _dynamicUIService = null;
 
-        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, Item extraData, RewardParams rp)
+        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, Item extraData, long uniqueId, RewardParams rp)
         {
-            if (await base.GiveReward(obj, entityTypeId, entityId, quantity, extraData, rp))
+            if (await base.GiveReward(obj, entityTypeId, entityId, quantity, extraData, uniqueId, rp))
             {
                 ClientRewardParams crp = rp as ClientRewardParams;
                 bool showDoober = crp?.ShowDoobers ?? true;
@@ -31,7 +30,7 @@ namespace Assets.Scripts.Rewards.Services
                 else if (showVisualUpdate)
                 {
                     _dynamicUIService.AddEntityQuantityVisual(entityTypeId, entityId, quantity, instant);
-                } 
+                }
             }
 
             return false;
@@ -44,7 +43,7 @@ namespace Assets.Scripts.Rewards.Services
         public bool ShowVisualUpdate { get; set; } = true;
 
         public bool InstantShow { get; set; }
-        public ClientRewardParams(bool showDoobers, bool showVisualUpdate)  
+        public ClientRewardParams(bool showDoobers, bool showVisualUpdate)
         {
             ShowDoobers = showDoobers;
             ShowVisualUpdate = showVisualUpdate;

@@ -1,7 +1,4 @@
 ﻿using Assets.Scripts.Lockstep.Brains.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Unity.Collections;
 using Unity.Entities;
 

@@ -32,6 +32,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
         private IMongoDatabase _database = null;
         private IMongoCollection<BsonDocument> _collection = null;
         private ITextSerializer _serializer = null;
+        private IReflectionService _reflectionService = null;
 
         private CancellationToken _token;
 
@@ -47,6 +48,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
             ILogService logService,
             IAnalyticsService analyticsService,
             ITextSerializer serializer,
+            IReflectionService reflectionService,
             CancellationToken token)
         {
             _token = token;
@@ -63,7 +65,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.PolymorphicNoSQL
                 {
                     if (!_didInitializeMappings)
                     {
-                        List<Type> types = ReflectionUtils.GetTypesWithAttribute(typeof(DataGroup));
+                        List<Type> types = reflectionService.GetTypesWithAttribute(typeof(DataGroup));
                         foreach (Type type in types)
                         {
                             DataGroup group = type.GetCustomAttribute<DataGroup>(true);

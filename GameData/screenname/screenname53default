@@ -3,6 +3,6 @@
   "ParentId": "default",
   "IdKey": 53,
   "Name": "TradeGoods",
-  "ScreenLayerId": 10,
+  "ScreenLayerId": 20,
   "Subdirectory": "TraderSpend"
 }

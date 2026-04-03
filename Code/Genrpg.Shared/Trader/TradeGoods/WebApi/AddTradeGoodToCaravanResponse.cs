@@ -6,6 +6,7 @@ namespace Genrpg.Shared.Trader.TradeGoods.WebApi
     public class AddTradeGoodToCaravanResponse : IWebResponse
     {
         public long TradeGoodId { get; set; }
+        public long UniqueId { get; set; }
         public bool Success { get; set; }
         public string ErrorMessage { get; set; }
         public CaravanTravelInfo Travel { get; set; }

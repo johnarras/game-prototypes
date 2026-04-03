@@ -10,7 +10,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.ProcGen.Services;
 using Genrpg.Shared.ProcGen.Settings.Textures;
 using Genrpg.Shared.Utils;
@@ -20,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 namespace Assets.Scripts.Crawler.Maps.Services
 {
@@ -63,7 +61,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             List<long> allZoneTypes = mapRoot.GetAllZoneTypes();
 
 
-            if (mapRoot.MaterialBlocks.Count == 0 || mapRoot.MaterialBlocks.Any(x=>!x.Value.IsReady()))
+            if (mapRoot.MaterialBlocks.Count == 0 || mapRoot.MaterialBlocks.Any(x => !x.Value.IsReady()))
             {
                 return;
             }
@@ -87,8 +85,8 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             int alphaCellsPerWorldBlock = heightCellsPerWorldBlock * 2;
 
-            int terrainOffset = (extraViewRadius) * heightCellsPerWorldBlock 
-                +heightCellsPerWorldBlock/2; // Needed since objects are centered.
+            int terrainOffset = (extraViewRadius) * heightCellsPerWorldBlock
+                + heightCellsPerWorldBlock / 2; // Needed since objects are centered.
 
             mapRoot.TerrainObject.transform.localPosition = new Vector3(-terrainOffset, 0, -terrainOffset);
 
@@ -124,7 +122,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             foreach (string ignoreName in ignoreDetailZoneTypeNames)
             {
-                ZoneType ztype = zoneSettings.GetData().FirstOrDefault(x=>x.Name == ignoreName);
+                ZoneType ztype = zoneSettings.GetData().FirstOrDefault(x => x.Name == ignoreName);
                 if (ztype != null)
                 {
                     ignoreZoneTypeIds.Add(ztype.IdKey);
@@ -133,11 +131,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             foreach (string detailName in detailTextureNames)
             {
-                TextureType detailTexture = textureSettings.GetData().FirstOrDefault(x=>x.Name == detailName);  
+                TextureType detailTexture = textureSettings.GetData().FirstOrDefault(x => x.Name == detailName);
 
                 if (detailTexture != null && !string.IsNullOrEmpty(detailTexture.Art))
                 {
-                    detailTextureTypes.Add(detailTexture);  
+                    detailTextureTypes.Add(detailTexture);
                 }
             }
 
@@ -169,7 +167,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     {
                         long matSeed = world.Seed + zoneTypeId * 37 + mapRoot.Map.IdKey * 59;
 
-                        MaterialOption finalMat = floorMats[(int)matSeed% floorMats.Count] ;
+                        MaterialOption finalMat = floorMats[(int)matSeed % floorMats.Count];
 
                         if (finalMat.Mat != null)
                         {
@@ -192,7 +190,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 CrawlerTerrainIndexData newIndexData = new CrawlerTerrainIndexData()
                 {
                     ZoneTypeId = ztype.IdKey,
-                    TextureType = ttype,                           
+                    TextureType = ttype,
                 };
 
                 finalIndexes.Add(newIndexData);
@@ -210,11 +208,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     TextureType = ttype,
                 };
                 finalIndexes.Add(detailIndexData);
-                detailIndexDataList.Add(detailIndexData);   
+                detailIndexDataList.Add(detailIndexData);
                 _assetService.LoadAssetInto(mapRoot.TerrainObject, AssetCategoryNames.TerrainTex, ttype.Art, OnDownloadTexture, token, detailIndexData);
             }
 
-            while (finalIndexes.Any(x=> !x.IsReady))
+            while (finalIndexes.Any(x => !x.IsReady))
             {
                 await Awaitable.NextFrameAsync(token);
             }
@@ -228,29 +226,29 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             foreach (long zoneTypeId in ignoreZoneTypeIds)
             {
-                CrawlerTerrainIndexData ignoreIndexData = finalIndexes.FirstOrDefault(x=>x.ZoneTypeId == zoneTypeId);
+                CrawlerTerrainIndexData ignoreIndexData = finalIndexes.FirstOrDefault(x => x.ZoneTypeId == zoneTypeId);
 
                 if (ignoreIndexData != null)
                 {
-                    detailIgnoreAlphaIndexes.Add(ignoreIndexData.AlphaIndex);   
+                    detailIgnoreAlphaIndexes.Add(ignoreIndexData.AlphaIndex);
                 }
 
             }
 
-            long[,] zoneTypeIds = new long[alphamapSize,alphamapSize];
+            long[,] zoneTypeIds = new long[alphamapSize, alphamapSize];
 
             long[,] seeds = new long[alphamapSize, alphamapSize];
 
-            float[,] terrainHeights = new float[heightMapSize,heightMapSize];
+            float[,] terrainHeights = new float[heightMapSize, heightMapSize];
 
-            float[,,] textureAlphas1 = new float[alphamapSize,alphamapSize, finalIndexes.Count];
+            float[,,] textureAlphas1 = new float[alphamapSize, alphamapSize, finalIndexes.Count];
             float[,,] textureAlphas2 = new float[alphamapSize, alphamapSize, finalIndexes.Count];
             for (int x = 0; x < alphamapSize; x++)
             {
-                for (int y =0; y < alphamapSize; y++)
+                for (int y = 0; y < alphamapSize; y++)
                 {
                     textureAlphas1[x, y, 0] = 1;
-                    textureAlphas2[x, y, 0]  = 1;
+                    textureAlphas2[x, y, 0] = 1;
                 }
             }
 
@@ -259,7 +257,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             {
                 if (!isLooping)
                 {
-                    if (cx < extraViewRadius || cx >= mapWidth+extraViewRadius)
+                    if (cx < extraViewRadius || cx >= mapWidth + extraViewRadius)
                     {
                         continue;
                     }
@@ -298,13 +296,13 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         for (int iy = 0; iy < alphaCellsPerWorldBlock; iy++)
                         {
                             int finalY = cy * alphaCellsPerWorldBlock + iy;
-                            zoneTypeIds[finalY,finalX] = zoneTypeId;
+                            zoneTypeIds[finalY, finalX] = zoneTypeId;
 
                             long seed = world.Seed * 31 + mapRoot.Map.IdKey * 59 +
-                                worldX * 37 + worldY * 23 + worldY*ix + worldX*iy +
+                                worldX * 37 + worldY * 23 + worldY * ix + worldX * iy +
                                 ix * 43 + iy * 61;
 
-                            seeds[finalY,finalX] = seed;
+                            seeds[finalY, finalX] = seed;
                         }
                     }
                 }
@@ -321,7 +319,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 for (int y = 0; y < alphamapSize; y++)
                 {
 
-                    long zoneTypeId = zoneTypeIds[y,x];
+                    long zoneTypeId = zoneTypeIds[y, x];
 
                     if (zoneTypeId < 1)
                     {
@@ -329,7 +327,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         continue;
                     }
 
-                    CrawlerTerrainIndexData firstData = finalIndexes.FirstOrDefault(x=>x.ZoneTypeId == zoneTypeId);
+                    CrawlerTerrainIndexData firstData = finalIndexes.FirstOrDefault(x => x.ZoneTypeId == zoneTypeId);
 
                     if (firstData != null)
                     {
@@ -344,11 +342,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
             int shiftToSidePercent = 10;
             int shiftToMiddlePercent = 10;
             int delta = 0;
-            for (int x = 1; x < alphamapSize-1; x++)
+            for (int x = 1; x < alphamapSize - 1; x++)
             {
                 for (int y = 0; y < alphamapSize; y++)
                 {
-                    if (zoneTypeIds[y, x] != zoneTypeIds[y,x+1])
+                    if (zoneTypeIds[y, x] != zoneTypeIds[y, x + 1])
                     {
                         long seed = seeds[y, x];
                         if (delta == 0)
@@ -414,7 +412,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 }
 
                 int detailIndex = detailIndexData.AlphaIndex;
-                IRandom rand = new MyRandom(world.Seed/3 + mapRoot.Map.IdKey * 13 + detailTimes*19);
+                IRandom rand = new MyRandom(world.Seed / 3 + mapRoot.Map.IdKey * 13 + detailTimes * 19);
                 float freq = RandUtils.FloatRange(0.01f, 0.02f, rand) * alphamapSize;
                 float amp = RandUtils.FloatRange(1.1f, 1.5f, rand);
                 float pers = RandUtils.FloatRange(0.5f, 0.7f, rand);
@@ -430,7 +428,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                         int matchingIgnores = 0;
                         foreach (long alphaIndex in detailIgnoreAlphaIndexes)
                         {
-                            if (textureAlphas2[x,y,alphaIndex] > 0)
+                            if (textureAlphas2[x, y, alphaIndex] > 0)
                             {
                                 matchingIgnores++;
                             }
@@ -459,7 +457,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             tdata.SetHeights(0, 0, terrainHeights);
 
             float maxHeight = 100;
-            tdata.size = new Vector3(heightMapSize-1, maxHeight, heightMapSize-1);
+            tdata.size = new Vector3(heightMapSize - 1, maxHeight, heightMapSize - 1);
 
             tdata.SetAlphamaps(0, 0, textureAlphas2);
             terr.Flush();
@@ -497,11 +495,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
             {
                 if (tl.Textures.Count > 0)
                 {
-                    diffuse =  tl.Textures[0];
+                    diffuse = tl.Textures[0];
 
                     if (tl.Textures.Count > 1)
                     {
-                        normal = tl.Textures[1];  
+                        normal = tl.Textures[1];
                     }
                 }
             }

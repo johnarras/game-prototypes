@@ -1,5 +1,4 @@
 ﻿using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.Services;

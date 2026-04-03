@@ -2,7 +2,6 @@ using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Maps.Constants;

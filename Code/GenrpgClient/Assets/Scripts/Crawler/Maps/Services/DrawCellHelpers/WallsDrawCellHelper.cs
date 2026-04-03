@@ -7,7 +7,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -75,7 +74,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 havePillar = true;
                 pillarAngle = 0;
             }
-            
+
             else if (northBits == WallTypes.Barricade)
             {
                 AddWallComponent(mapRoot, cell, materialBlock, DungeonAssetPosition.NorthWall, DungeonPrefabIndexes.Fences, go, nOffset, nRot, realCellX, realCellZ);

@@ -22,7 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
         {
             CrawlerStateData stateData = CreateStateData();
 
-            stateData.BGSpriteName = CrawlerClientConstants.TrainerImage;
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
             PartyData party = _crawlerService.GetParty();
 
             stateData.AddText("Welcome to the trainer. What would you like to do?");

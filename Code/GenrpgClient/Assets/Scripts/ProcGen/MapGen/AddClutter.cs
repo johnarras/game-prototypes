@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-
+using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.ProcGen.Settings.Clutter;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using System.Threading;
-using Genrpg.Shared.ProcGen.Settings.Clutter;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class AddClutter : BaseZoneGenerator
 {
@@ -80,7 +79,7 @@ public class AddClutter : BaseZoneGenerator
                 continue;
             }
 
-            if (_zoneGenService.FindMapLocation(x,y, 5) != null)
+            if (_zoneGenService.FindMapLocation(x, y, 5) != null)
             {
                 continue;
             }

@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-
-using System.Threading;
-using Genrpg.Shared.MapServer.Constants;
 using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.MapServer.Constants;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class SetupTerrainPatches : BaseZoneGenerator
@@ -64,7 +63,8 @@ public class SetupTerrainPatches : BaseZoneGenerator
                             patch.subZoneIds[y - sy, x - sx] = (byte)_md.subZoneIds[y, x];
                         }
                     }
-                };
+                }
+                ;
 
                 if (baseZoneIdCounts.Values.Count > 0)
                 {

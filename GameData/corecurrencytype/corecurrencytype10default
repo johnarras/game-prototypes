@@ -4,5 +4,6 @@
   "IdKey": 10,
   "Name": "Leather",
   "Icon": "Leather",
-  "Art": "Leather"
+  "Art": "Leather",
+  "StatTypeId": 14
 }

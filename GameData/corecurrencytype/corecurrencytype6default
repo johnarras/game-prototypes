@@ -4,5 +4,6 @@
   "IdKey": 6,
   "Name": "Stone",
   "Icon": "Stone",
-  "Art": "Stone"
+  "Art": "Stone",
+  "StatTypeId": 15
 }

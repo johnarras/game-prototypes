@@ -1,9 +1,8 @@
-using System;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Spells.Messages;
-using UnityEngine;
 using Genrpg.Shared.Spells.Constants;
+using Genrpg.Shared.Spells.Messages;
+using Genrpg.Shared.Utils;
+using System;
+using UnityEngine;
 
 public class CombatTextUI : BaseBehaviour
 {
@@ -32,14 +31,14 @@ public class CombatTextUI : BaseBehaviour
             return;
         }
 
-        Transform oldParent =entity.transform.parent;
-       entity.transform.parent = null;
-       entity.transform.localScale = Vector3.one;
-       entity.transform.parent = oldParent;
+        Transform oldParent = entity.transform.parent;
+        entity.transform.parent = null;
+        entity.transform.localScale = Vector3.one;
+        entity.transform.parent = oldParent;
         _uiService.SetText(CombatText, text.Text);
 
         _isCrit = text.IsCrit;
-       
+
         createTime = DateTime.UtcNow;
 
         textStartScale = CombatText.transform.localScale;
@@ -47,8 +46,8 @@ public class CombatTextUI : BaseBehaviour
         if (CombatText != null)
         {
             float dmult = 0.03f;
-            float dx = RandUtils.FloatRange(-20, 20, _rand)*dmult;
-            float dy = RandUtils.FloatRange(0, 15, _rand)*dmult;
+            float dx = RandUtils.FloatRange(-20, 20, _rand) * dmult;
+            float dy = RandUtils.FloatRange(0, 15, _rand) * dmult;
             CombatText.transform.localPosition += new Vector3(dx, dy, 0);
 
             switch (text.TextColor)
@@ -77,7 +76,7 @@ public class CombatTextUI : BaseBehaviour
                 case CombatTextColors.White:
                     CombatText.Color = Color.white;
                     break;
-                default:                    
+                default:
                     CombatText.Color = Color.white;
                     break;
             }
@@ -90,7 +89,7 @@ public class CombatTextUI : BaseBehaviour
     Vector3 textStartScale = Vector3.one;
     private void CombatTextUpdate()
     {
-        if ((DateTime.UtcNow-createTime).TotalSeconds >= _lifetimeSeconds)
+        if ((DateTime.UtcNow - createTime).TotalSeconds >= _lifetimeSeconds)
         {
             _clientEntityService.Destroy(entity);
             return;
@@ -100,16 +99,16 @@ public class CombatTextUI : BaseBehaviour
         {
             CombatText.transform.localPosition += Vector3.up * _pixelsPerFrame * Time.deltaTime;
         }
-    
+
 
         if (_isCrit)
         {
             if (frameCount <= critFrames)
             {
-              
+
                 CombatText.transform.localScale = textStartScale * (1 + critMaxSizeMult * frameCount / critFrames);
             }
-            else if (frameCount <= critFrames*2)
+            else if (frameCount <= critFrames * 2)
             {
                 CombatText.transform.localScale = textStartScale * (1 + critMaxSizeMult * ((critFrames * 2) - frameCount) / critFrames);
             }

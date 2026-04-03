@@ -17,7 +17,7 @@ namespace Genrpg.Shared.Attributes.Helpers
             return await _attributeService.GetQuantity(context, HelperKey, entityId);
         }
 
-        public virtual async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public virtual async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             return await _attributeService.GiveReward(context, HelperKey, entityId, quantity);
         }

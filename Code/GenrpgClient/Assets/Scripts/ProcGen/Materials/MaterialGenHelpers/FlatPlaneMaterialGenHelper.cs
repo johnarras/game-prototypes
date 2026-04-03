@@ -1,12 +1,4 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Unity.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers

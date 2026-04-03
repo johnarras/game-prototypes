@@ -1,11 +1,10 @@
-using System.Linq;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils;
-using System.Threading;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.GroundObjects.Settings;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class AddChests : BaseZoneGenerator
@@ -130,10 +129,10 @@ public class AddChests : BaseZoneGenerator
                         ZoneId = _md.mapZoneIds[cx, cy],
                         ZoneOverridePercent = (int)(_md.overrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
                     };
-                    
 
-                    _mapProvider.GetSpawns().AddSpawn (initData);
-                
+
+                    _mapProvider.GetSpawns().AddSpawn(initData);
+
                     break;
                 }
             }

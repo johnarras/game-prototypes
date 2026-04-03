@@ -22,8 +22,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Houses
 
             PartyData party = _crawlerService.GetParty();
 
-            stateData.BGSpriteName = CrawlerClientConstants.HouseImage + GetBuildingImageIndex(party, TriggerBuildingId());
-
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             if (_rand.NextDouble() < 0.3f)
             {

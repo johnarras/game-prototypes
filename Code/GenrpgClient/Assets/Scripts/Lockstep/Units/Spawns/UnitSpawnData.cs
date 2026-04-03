@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.Lockstep.Brains.Constants;
 using Assets.Scripts.Lockstep.Math;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Unity.Collections;
 
 namespace Assets.Scripts.Lockstep.Units.Spawns

@@ -70,7 +70,6 @@ public class InitClient : BaseBehaviour, IInitClient
     {
         SpriteAtlasManager.atlasRequested += DummyRequestAtlas;
         SpriteAtlasManager.atlasRegistered += DummyRegisterAtlas;
-        ReflectionUtils.AddSearchAssembly(Assembly.GetExecutingAssembly());
     }
 
     public CoreClientData GetCoreClientData()

@@ -11,74 +11,74 @@ public class SmoothRoadEdges : BaseZoneGenerator
 
         await base.Generate(token);
 
-		int awid = _md.awid;
-		int ahgt = _md.ahgt;
-		int hwid = _mapProvider.GetMap().GetHwid();
-		int hhgt = _mapProvider.GetMap().GetHhgt();
-		
-		float[,] heights2 = new float[_mapProvider.GetMap().GetHwid(),_mapProvider.GetMap().GetHhgt()];
+        int awid = _md.awid;
+        int ahgt = _md.ahgt;
+        int hwid = _mapProvider.GetMap().GetHwid();
+        int hhgt = _mapProvider.GetMap().GetHhgt();
+
+        float[,] heights2 = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
         int radius = 7;
 
         radius = radius * 3 / 2;
 
-		for (int x = 0; x < hwid; x++)
-		{
-			for (int y = 0; y < hhgt; y++)
-			{
-				heights2[x,y] = _md.heights[x,y];
-			}
-		}
-		for (int x = 0; x < hwid; x++)
-		{
-			for (int y = 0; y < hhgt; y++)
+        for (int x = 0; x < hwid; x++)
+        {
+            for (int y = 0; y < hhgt; y++)
             {
-                int ax = (int)(1.0f*x/hwid*awid);
-				int ay = (int)(1.0f*y/hhgt*ahgt);
+                heights2[x, y] = _md.heights[x, y];
+            }
+        }
+        for (int x = 0; x < hwid; x++)
+        {
+            for (int y = 0; y < hhgt; y++)
+            {
+                int ax = (int)(1.0f * x / hwid * awid);
+                int ay = (int)(1.0f * y / hhgt * ahgt);
 
 
-				float currSplat = _md.alphas[ax,ay,TerrainTexChannels.Road];
-				if (currSplat > 0.0f)
-				{
-					//continue;
-				}
+                float currSplat = _md.alphas[ax, ay, TerrainTexChannels.Road];
+                if (currSplat > 0.0f)
+                {
+                    //continue;
+                }
 
-				if (_md.roadDistances[ax,ay] >= radius)
-				{
-					continue;
-				}
+                if (_md.roadDistances[ax, ay] >= radius)
+                {
+                    continue;
+                }
 
-				float aveSplat = _md.GetAverageSplatNear(ax,ay,radius,TerrainTexChannels.Road);
+                float aveSplat = _md.GetAverageSplatNear(ax, ay, radius, TerrainTexChannels.Road);
 
-				int averad = radius;
-				if (currSplat > 0)
-				{
-					averad = 2;
-				}
-				float aveHeight = _md.GetAverageHeightNear(_mapProvider.GetMap(), x,y,averad);
-			
-
-
-				if (currSplat <= 0 && _zoneGenService.FindMapLocation(x,y,5) != null)
-				{
-					continue;
-				}
+                int averad = radius;
+                if (currSplat > 0)
+                {
+                    averad = 2;
+                }
+                float aveHeight = _md.GetAverageHeightNear(_mapProvider.GetMap(), x, y, averad);
 
 
-				float alterPercent = Math.Max (0.1f,1-aveSplat*3.0f);
+
+                if (currSplat <= 0 && _zoneGenService.FindMapLocation(x, y, 5) != null)
+                {
+                    continue;
+                }
 
 
-				alterPercent = Math.Min (1.0f,aveSplat*5.0f);
+                float alterPercent = Math.Max(0.1f, 1 - aveSplat * 3.0f);
 
-				
-				if (averad < 0)
-				{
-					alterPercent /= 3;
-				}
-				if (currSplat > 0)
-				{
-					alterPercent = 1.0f;
-				}
+
+                alterPercent = Math.Min(1.0f, aveSplat * 5.0f);
+
+
+                if (averad < 0)
+                {
+                    alterPercent /= 3;
+                }
+                if (currSplat > 0)
+                {
+                    alterPercent = 1.0f;
+                }
 
 
                 float bridgeDist = _md.bridgeDistances[y, x];
@@ -95,25 +95,25 @@ public class SmoothRoadEdges : BaseZoneGenerator
 
 
                 if (alterPercent <= 0)
-				{
-					continue;
-				}
+                {
+                    continue;
+                }
 
-				float currHeight = _md.heights[x,y];
+                float currHeight = _md.heights[x, y];
 
-				if (aveHeight < currHeight)
-				{
-					aveHeight += (currHeight-aveHeight)/2;
-				}
+                if (aveHeight < currHeight)
+                {
+                    aveHeight += (currHeight - aveHeight) / 2;
+                }
 
-				heights2[x,y] = currHeight+(aveHeight-currHeight)*alterPercent;
+                heights2[x, y] = currHeight + (aveHeight - currHeight) * alterPercent;
 
-			}
-		}
+            }
+        }
 
-		_md.heights = heights2;
-	}
+        _md.heights = heights2;
+    }
 }
-	
+
 
 

@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Monsters.Entities;
@@ -13,6 +13,7 @@ using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Stats.Settings;
 using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.GameSettings;
@@ -25,11 +26,10 @@ using Genrpg.Shared.UnitEffects.Constants;
 using Genrpg.Shared.UnitEffects.Settings;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;  
+using Genrpg.Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Stats.Services
 {

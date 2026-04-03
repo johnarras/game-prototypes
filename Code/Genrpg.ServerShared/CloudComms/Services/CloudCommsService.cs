@@ -31,6 +31,7 @@ namespace Genrpg.ServerShared.CloudComms.Services
         private ITextSerializer _textSerializer = null!;
         private IOnlineResourceProvider _resourceProvider = null!;
         private ITaskService _taskService = null;
+        private IReflectionService _reflectionService = null;
 
         private string _serverId = null;
         private string _env = null;
@@ -54,7 +55,7 @@ namespace Genrpg.ServerShared.CloudComms.Services
             _token = token;
             _env = _config.MessagingEnv.ToLower();
             _serverId = _config.ServerId.ToLower();
-            _platformImpl = await _resourceProvider.CreateCloudMessageImpl(_loc, _config, _logService, _textSerializer, _secretsProvider, _taskService, this, token);
+            _platformImpl = await _resourceProvider.CreateCloudMessageImpl(_loc, _config, _logService, _textSerializer, _secretsProvider, _taskService, this, _reflectionService, token);
         }
 
         #region Queues

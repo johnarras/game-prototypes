@@ -1,14 +1,14 @@
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.Loot.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
 using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.Worlds.Entities;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Inventory.PlayerData;
 using System.Collections.Generic;
 using System.Linq;

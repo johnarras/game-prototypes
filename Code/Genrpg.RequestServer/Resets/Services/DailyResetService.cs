@@ -3,6 +3,7 @@ using Genrpg.RequestServer.Resets.Interfaces;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
+using Genrpg.Shared.Resets.PlayerData;
 using Genrpg.Shared.Resets.Settings;
 using Genrpg.Shared.Time.Services;
 
@@ -20,26 +21,66 @@ namespace Genrpg.RequestServer.Resets.Services
 
         public async Task DailyReset(WebContext context)
         {
+            
+            
             CoreData coreData = await context.GetAsync<CoreData>();
-            DateTime currTime = _timeService.GetTime(coreData);
+            
             ResetSettings settings = _gameData.Get<ResetSettings>(coreData);
 
-            DateTime nextResetTime = coreData.LastDailyReset.Date.AddDays(1).AddHours(settings.ResetHour);
+            ResetData resetData = await context.GetAsync<ResetData>();
 
-            if (nextResetTime > currTime)
+
+            DateTime currTime = _timeService.GetTime(coreData);
+
+            DateTime lastResetDate = resetData.LastResetDay.Date;
+            DateTime nextResetTime = resetData.LastResetDay.Date.AddDays(1).AddHours(settings.ResetHour);
+
+
+            DateTime todayDate = currTime.Date;
+
+            DateTime todayResetTime = todayDate.AddHours(settings.ResetHour);
+
+            int dayDiff = (todayDate - lastResetDate).Days;
+
+            DateTime currentResetDay = currTime.Date;
+            // Before reset, needed to have reset before yesterday.
+            if (currTime < todayResetTime)
+            {
+                if (dayDiff <= 1)
+                {
+                    return;
+                }
+                else
+                {
+                    dayDiff--;
+                }
+                currentResetDay = currentResetDay.AddDays(-1);
+            }
+
+            if (dayDiff < 1)
             {
                 return;
             }
 
-            DateTime resetDay = currTime.Date;
-            if (currTime.Hour < settings.ResetHour)
+            int daysMissed = dayDiff - 1;
+
+            if (daysMissed > 0)
             {
-                resetDay = resetDay.AddDays(-1);
+                resetData.ConsecutiveResetDays = 0;
             }
+            else
+            {
+                resetData.ConsecutiveResetDays++;
+            }
+
+            resetData.LastResetDay = currentResetDay;
+
+
+            DateTime lastAcceptableResetTime = todayResetTime.Date.AddDays(-1);
 
             foreach (IDailyResetHelper helper in _resetHelpers.OrderedItems())
             {
-                await helper.DailyReset(context, resetDay, settings.ResetHour);
+                await helper.DailyReset(context, resetData.ConsecutiveResetDays, daysMissed);
             }
 
             await Task.CompletedTask;

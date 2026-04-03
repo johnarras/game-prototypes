@@ -1,7 +1,6 @@
 
 using Assets.Scripts.UI.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Roles.Constants;
@@ -11,6 +10,7 @@ using Genrpg.Shared.Crawler.States.Entities;
 using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Currencies.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

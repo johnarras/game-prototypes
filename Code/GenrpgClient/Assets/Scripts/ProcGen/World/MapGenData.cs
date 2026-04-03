@@ -1,97 +1,91 @@
+using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.ProcGen.Entities;
+using Genrpg.Shared.ProcGen.Settings.Locations;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using Genrpg.Shared.Zones.WorldData;
 using System;
 using System.Collections.Generic;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Zones.Entities;
-using Assets.Scripts.MapTerrain;
-using UnityEngine;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
 using System.Linq;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Constants;
 
 public interface IMapGenData : IInjectable
 {
 
     // Alphamap width and height
-     int awid { get; set; }
-     int ahgt { get; set; }
+    int awid { get; set; }
+    int ahgt { get; set; }
 
     // Detail map width and height
-     int dwid { get; set; }
-     int dhgt { get; set; }
+    int dwid { get; set; }
+    int dhgt { get; set; }
 
-     byte[,,] grassAmounts { get; set; }
+    byte[,,] grassAmounts { get; set; }
 
     // heightmap
-     float[,] heights { get; set; }
-     float[,] subZonePercents { get; set; }
-     int[,] subZoneIds { get; set; }
-     float[,] overrideZoneScales { get; set; }
+    float[,] heights { get; set; }
+    float[,] subZonePercents { get; set; }
+    int[,] subZoneIds { get; set; }
+    float[,] overrideZoneScales { get; set; }
     // splatmaps
-     float[,,] alphas { get; set; }
+    float[,,] alphas { get; set; }
 
-     float[,] roadDistances { get; set; }
+    float[,] roadDistances { get; set; }
 
 
     // List of roads created
-     List<List<MyPointF>> roads { get; set; }
+    List<List<MyPointF>> roads { get; set; }
 
-     List<MyPointF> creviceBridges { get; set; }
+    List<MyPointF> creviceBridges { get; set; }
     // Bridges that have been made
-     List<MyPointF> currBridges { get; set; }
+    List<MyPointF> currBridges { get; set; }
 
-     ushort[,] bridgeDistances { get; set; }
+    ushort[,] bridgeDistances { get; set; }
 
 
-     float[,] mountainNoise { get; set; }
-     float[,] mountainDecayPower { get; set; }
+    float[,] mountainNoise { get; set; }
+    float[,] mountainDecayPower { get; set; }
 
-     List<Location>[,] locationGrid { get; set; }
+    List<Location>[,] locationGrid { get; set; }
 
     // Ends of ramps where special monsters or quests can be placed.
-     List<MyPoint> rampTops { get; set; }
+    List<MyPoint> rampTops { get; set; }
 
-     float[,] creviceDepths { get; set; }
+    float[,] creviceDepths { get; set; }
 
-     int[,] flags { get; set; }
+    int[,] flags { get; set; }
 
-     short[,] mapZoneIds { get; set; }
-     List<MyPoint> zoneCenters { get; set; }
-     List<ConnectedPairData> zoneConnections { get; set; }
-     float[,] mountainHeights { get; set; }
-     float[,] nearestMountainTopHeight { get; set; }
-     float[,] mountainCenterDist { get; set; }
-     float[,] mountainDistPercent { get; set; }
-     float[,] edgeMountainDistPercent { get; set; }
-     int[,] mapObjects { get; set; }
-     List<int[]> wallEndpoints { get; set; }
-
-
-     Dictionary<int, List<int>> zoneAdjacencies { get; set; }
+    short[,] mapZoneIds { get; set; }
+    List<MyPoint> zoneCenters { get; set; }
+    List<ConnectedPairData> zoneConnections { get; set; }
+    float[,] mountainHeights { get; set; }
+    float[,] nearestMountainTopHeight { get; set; }
+    float[,] mountainCenterDist { get; set; }
+    float[,] mountainDistPercent { get; set; }
+    float[,] edgeMountainDistPercent { get; set; }
+    int[,] mapObjects { get; set; }
+    List<int[]> wallEndpoints { get; set; }
 
 
+    Dictionary<int, List<int>> zoneAdjacencies { get; set; }
 
-     List<GenZone> GenZones { get; set; }
+
+
+    List<GenZone> GenZones { get; set; }
 
 
 
     // Have we copied the heightmap data into the TerrainData?
-     bool HaveSetHeights { get; set; }
+    bool HaveSetHeights { get; set; }
     // Have we copied the splatmaps data into the TerrainData?
-     bool HaveSetAlphaSplats { get; set; } 
+    bool HaveSetAlphaSplats { get; set; }
 
-     bool GeneratingMap { get; set; }
+    bool GeneratingMap { get; set; }
 
-     Dictionary<long, List<long>> zoneTreeIds { get; set; }
-     Dictionary<long, List<long>> zoneBushIds { get; set; }
+    Dictionary<long, List<long>> zoneTreeIds { get; set; }
+    Dictionary<long, List<long>> zoneBushIds { get; set; }
 
     void ClearGenerationData();
 
@@ -217,10 +211,10 @@ public class MapGenData : IMapGenData
     }
 
 
-    
-  
 
- 
+
+
+
     public void ClearAlphasAt(int x, int z)
     {
         if (x < 0 || z < 0 || x >= awid || z >= ahgt)

@@ -4,11 +4,11 @@ using UnityEngine;
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {
     public class WorldPanelCompass : PartyBuffUI
-    { 
+    {
         public GImage CompassDirection;
 
         protected override void FrameUpdateInternal(PartyData party)
-        { 
+        {
             RectTransform rectTransform = CompassDirection.GetComponent<RectTransform>();
             if (rectTransform != null)
             {

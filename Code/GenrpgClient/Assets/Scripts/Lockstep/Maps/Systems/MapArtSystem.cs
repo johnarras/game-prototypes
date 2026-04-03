@@ -2,7 +2,6 @@
 using Assets.Scripts.Lockstep.Presentation.Services;
 using Assets.Scripts.Lockstep.Systems;
 using Assets.Scripts.Lockstep.Systems.Constants;
-using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;

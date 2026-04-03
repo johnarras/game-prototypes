@@ -201,97 +201,78 @@ namespace Genrpg.ServerShared.DataStores.CosmosNoSQL
 
         public async Task<bool> TransactionSave<T>(List<T> items, RepoSaveArgs args = null) where T : IPartitionedData
         {
+            // 1. Group by Partition Key
+            var groups = items.GroupBy(x => x.pk).ToList();
+
+            // 2. Prepare parallel tasks
+            List<Task<bool>> saveTasks = new List<Task<bool>>();
+
+            foreach (var group in groups)
+            {
+                saveTasks.Add(ProcessSinglePartitionBatch(group));
+            }
+
+            // 3. Wait for all partitions to finish
+            bool[] results = await Task.WhenAll(saveTasks);
+            return results.All(success => success);
+        }
+
+        private async Task<bool> ProcessSinglePartitionBatch<T>(IGrouping<string, T> group) where T : IPartitionedData
+        {
             List<ArrayPoolBufferWriter<byte>> bufferWriters = new List<ArrayPoolBufferWriter<byte>>();
             List<Stream> streams = new List<Stream>();
+
             try
             {
-                foreach (T item in items)
+                PartitionKey partitionKey = new PartitionKey(group.Key);
+                TransactionalBatch batch = _container.CreateTransactionalBatch(partitionKey);
+
+                foreach (T item in group)
                 {
+                    // Ensure ID is correct for the type
                     item.Id = GetDocId(item.Id, item.GetType());
+
+                    ArrayPoolBufferWriter<byte> bufferWriter = _serializer.GetBuffer();
+                    bufferWriters.Add(bufferWriter);
+
+                    using (Utf8JsonWriter jsonWriter = new Utf8JsonWriter(bufferWriter))
+                    {
+                        JsonSerializer.Serialize(jsonWriter, item, item.GetType(), _serializerOptions);
+                    }
+
+                    Stream stream = bufferWriter.WrittenMemory.AsStream();
+                    streams.Add(stream);
+
+                    TransactionalBatchItemRequestOptions options = new TransactionalBatchItemRequestOptions
+                    {
+                        IfMatchEtag = item._etag,
+                        IndexingDirective = IndexingDirective.Exclude,
+                        EnableContentResponseOnWrite = false,
+                        PriorityLevel = PriorityLevel.High,
+                    };
+                    batch.UpsertItemStream(stream, options);
                 }
 
-                // 1. Group by Partition Key (Batch only works per Partition)
-                IEnumerable<IGrouping<string, T>> groups = items.GroupBy(x => x.pk);
+                using TransactionalBatchResponse response = await batch.ExecuteAsync();
 
-                foreach (IGrouping<string, T> group in groups)
+                if (!response.IsSuccessStatusCode)
                 {
-
-                    if (group.Count() == 1)
-                    {
-                        return await Save(group.First(), null);
-                    }
-
-
-                    // 2. Initialize the batch for this specific Partition Key
-                    PartitionKey partitionKey = new PartitionKey(group.Key);
-                    TransactionalBatch batch = _container.CreateTransactionalBatch(partitionKey);
-
-
-                    foreach (T item in group)
-                    {
-                        ArrayPoolBufferWriter<byte> bufferWriter = _serializer.GetBuffer();
-                        bufferWriters.Add(bufferWriter);
-
-                        using (Utf8JsonWriter jsonWriter = new Utf8JsonWriter(bufferWriter))
-                        {
-                            JsonSerializer.Serialize(jsonWriter, item, item.GetType(), _serializerOptions);
-                        }
-
-                        Stream stream = bufferWriter.WrittenMemory.AsStream();
-                        streams.Add(stream);
-
-                        TransactionalBatchItemRequestOptions options = new TransactionalBatchItemRequestOptions
-                        {
-                            IfMatchEtag = item._etag,
-                            IndexingDirective = IndexingDirective.Exclude,
-                            EnableContentResponseOnWrite = false,
-                            PriorityLevel = PriorityLevel.High,
-                        };
-                        batch.UpsertItemStream(stream, options);
-                    }
-
-                    // 4. Execute the transaction
-                    using TransactionalBatchResponse response = await batch.ExecuteAsync();
-
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        // 5. Handle Concurrency Failures
-                        // If any item fails the ETag check, the whole batch fails (Status 412)
-                        _logService.Error($"Batch failed with status: {response.StatusCode}");
-
-                        // You can find which specific item failed:
-                        for (int i = 0; i < response.Count; i++)
-                        {
-                            TransactionalBatchOperationResult<IPartitionedData> result = response.GetOperationResultAtIndex<IPartitionedData>(i);
-                            if (result.StatusCode == System.Net.HttpStatusCode.PreconditionFailed)
-                            {
-                                _logService.Error($"Item {i} (ID: {group.ElementAt(i).Id}) had a concurrency conflict.");
-                            }
-                        }
-                    }
+                    _logService.Error($"Batch failed for PK {group.Key} with status: {response.StatusCode}");
+                    return false;
                 }
+
                 return true;
             }
             catch (Exception ex)
             {
-                _logService.Exception(ex, "Cosmos.TransactionSave");
+                _logService.Exception(ex, $"Cosmos.ProcessSinglePartitionBatch - PK: {group.Key}");
                 return false;
             }
             finally
             {
-
-                foreach (Stream stream in streams)
-                {
-                    stream.Dispose();
-                }
-                streams.Clear();
-
-                foreach (ArrayPoolBufferWriter<byte> writer in bufferWriters)
-                {
-                    writer.Dispose();
-                }
-                bufferWriters.Clear();
+                // Cleanup streams and writers for this specific partition's task
+                foreach (var s in streams) s.Dispose();
+                foreach (var w in bufferWriters) w.Dispose();
             }
         }
     }

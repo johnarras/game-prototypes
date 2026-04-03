@@ -87,7 +87,7 @@ namespace Genrpg.RequestServer.PlayerData.Services
         public async Task UpdatePlayerAfterLoginOrLoad(WebContext context, bool isLogin)
         {
             context.AddResponseRange(_gameDataService.GetClientSettings(await context.GetAsync<CoreData>(), isLogin));
-            await _periodicUpdateService.CheckHourlyCurrencyUpdate(context, new HourlyResetArgs() { OnLogin = isLogin });
+            await _periodicUpdateService.CheckHourlyCurrencyUpdates(context, new HourlyResetArgs() { OnLogin = isLogin });
             await _statService.CheckBuffs(context, isLogin);
         }
     }

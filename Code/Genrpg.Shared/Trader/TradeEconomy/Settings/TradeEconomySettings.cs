@@ -1,5 +1,6 @@
 using Genrpg.Shared.DataStores.Categories.GameSettings;
 using Genrpg.Shared.GameSettings.Loaders;
+using Genrpg.Shared.GameSettings.Mappers;
 
 namespace Genrpg.Shared.Trader.TradeEconomy.Settings
 {
@@ -21,6 +22,15 @@ namespace Genrpg.Shared.Trader.TradeEconomy.Settings
     }
 
     public class TradeEconomySettingsLoader : NoChildSettingsLoader<TradeEconomySettings> { }
+
+
+    public class TradeEconomySettingsDto : NoChildSettingsDto<TradeEconomySettings>
+    {
+        public override TradeEconomySettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
+
+    public class TradeEconomySettingsMapper : NoChildSettingsMapper<TradeEconomySettings, TradeEconomySettingsDto> { }
 
 }
 

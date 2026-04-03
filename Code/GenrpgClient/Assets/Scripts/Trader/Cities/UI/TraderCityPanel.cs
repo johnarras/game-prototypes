@@ -6,8 +6,8 @@ namespace Assets.Scripts.Trader.Cities.UI
 {
     public class TraderCityPanel : BaseBehaviour
     {
-        public GButton AnimalsButton;
-        public GButton VendorButton;
+        public GButton CaravanMembersButton;
+        public GButton TradeGoodsButton;
         public GButton GuildButton;
         public GButton QuestsButton;
         public GButton SuppliesButton;
@@ -20,8 +20,8 @@ namespace Assets.Scripts.Trader.Cities.UI
         {
             _city = city;
 
-            _uiService.SetButton(AnimalsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderCaravanMembers); });
-            _uiService.SetButton(VendorButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderVendor); });
+            _uiService.SetButton(CaravanMembersButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderCaravanMembers); });
+            _uiService.SetButton(TradeGoodsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TradeGoods); });
             _uiService.SetButton(GuildButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderQuests); });
             _uiService.SetButton(QuestsButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderQuests); });
             _uiService.SetButton(SuppliesButton, GetName(), () => { OpenScreenNamed(ScreenNames.Supplies); });

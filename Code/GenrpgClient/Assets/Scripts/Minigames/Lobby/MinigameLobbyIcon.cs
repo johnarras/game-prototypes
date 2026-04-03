@@ -20,7 +20,7 @@ namespace Assets.Scripts.Minigames.Lobby
         public void SetData(MinigameType mtype, MinigameLobbyScreen screen)
         {
             _mtype = mtype;
-            _screen = screen; 
+            _screen = screen;
             _spriteService.SetEntityIcon(EntityTypes.MinigameType, _mtype.IdKey, Image, GetToken());
             _uiService.SetButton(Button, _screen.GetName(), ClickMinigame);
         }

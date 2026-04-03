@@ -84,7 +84,7 @@ namespace Assets.Scripts.TextureLists.Services
             };
 
             string assetCategoryNames = AssetCategoryNames.TextureLists;
-            
+
             if (textureName.ToLower().IndexOf("portrait") == 0)
             {
                 assetCategoryNames = AssetCategoryNames.Portraits;

@@ -1,7 +1,4 @@
-using Genrpg.Shared.ProcGen.Settings.Names;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Genrpg.Shared.Riddles.Entities
 {
@@ -15,9 +12,9 @@ namespace Genrpg.Shared.Riddles.Entities
 
         public List<string> ItemNames = new List<string>();
 
-        public Dictionary<char,List<string>> WordsContainingLetters = new Dictionary<char, List<string>>();
+        public Dictionary<char, List<string>> WordsContainingLetters = new Dictionary<char, List<string>>();
 
-        public Dictionary<char,List<string>> WordsNotContainingLetters = new Dictionary<char, List<string>>();
+        public Dictionary<char, List<string>> WordsNotContainingLetters = new Dictionary<char, List<string>>();
 
         public List<string> OffsetWords = new List<string>()
         {

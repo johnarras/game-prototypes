@@ -23,7 +23,7 @@ namespace Genrpg.RequestServer.Resets.Services
         private IRewardService _rewardService = null;
         private ITravelEncounterService _encounterService = null;
         private IServerGameStatService _gameStatService = null;
-        public async Task CheckHourlyCurrencyUpdate(WebContext context, HourlyResetArgs args)
+        public async Task CheckHourlyCurrencyUpdates(WebContext context, HourlyResetArgs args)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 

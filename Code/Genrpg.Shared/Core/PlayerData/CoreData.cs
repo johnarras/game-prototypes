@@ -30,10 +30,11 @@ namespace Genrpg.Shared.Core.PlayerData
         [Key(1)] public DateTime CreationDate { get; set; }
         [Key(2)] public string ClientVersion { get; set; } = VersionConstants.MinVersion.ToString();
         [Key(3)] public GameDataOverrideList DataOverrides { get; set; } = new GameDataOverrideList();
-        [Key(4)] public DateTime LastDailyReset { get; set; }
-        [Key(5)] public DateTime NextHourlyUpdate { get; set; }
+        [Key(4)] public DateTime NextHourlyUpdate { get; set; }
 
-        [Key(6)] public DateTime NextBuffEndsTime { get; set; }
+        [Key(5)] public DateTime NextBuffEndsTime { get; set; }
+
+        [Key(6)] public long UniqueId { get; set; }
 
         [Key(7)] public long Level { get; set; }
 

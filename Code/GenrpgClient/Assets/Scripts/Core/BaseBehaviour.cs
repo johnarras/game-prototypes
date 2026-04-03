@@ -1,7 +1,7 @@
 using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Client.Interfaces;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;

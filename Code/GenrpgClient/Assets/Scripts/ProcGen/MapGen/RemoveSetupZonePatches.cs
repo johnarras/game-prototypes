@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -21,25 +20,25 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
 
         int numIterations = 0;
         bool somethingchanged = false;
-      
+
         do
         {
             somethingchanged = false;
             numIterations++;
             List<MyPointF> addedVals = new List<MyPointF>();
-            for (int x = 1; x < _mapProvider.GetMap().GetHwid()-1; x++)
+            for (int x = 1; x < _mapProvider.GetMap().GetHwid() - 1; x++)
             {
-           
-                for (int y = 1; y < _mapProvider.GetMap().GetHhgt()-1; y++)
+
+                for (int y = 1; y < _mapProvider.GetMap().GetHhgt() - 1; y++)
                 {
-                    if (_md.mapZoneIds[x,y] <= MapConstants.MountainZoneId)
+                    if (_md.mapZoneIds[x, y] <= MapConstants.MountainZoneId)
                     {
                         List<int> choices = new List<int>();
                         foreach (MyPoint2 d in deltas)
                         {
                             short nearZoneId = _md.mapZoneIds[x + (int)(d.X), y + (int)(d.Y)];
                             if (nearZoneId > MapConstants.MountainZoneId)
-                            { 
+                            {
                                 choices.Add(nearZoneId);
                             }
                         }
@@ -55,7 +54,7 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
 
             foreach (MyPointF val in addedVals)
             {
-                _md.mapZoneIds[(int)(val.X),(int)(val.Y)] = (short)(val.Z);
+                _md.mapZoneIds[(int)(val.X), (int)(val.Y)] = (short)(val.Z);
             }
         }
         while (somethingchanged);

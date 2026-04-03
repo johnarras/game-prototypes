@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine.Assertions.Must;
+﻿using System.Text;
 
 namespace Assets.Scripts.ProcGen.Materials
 {
@@ -29,7 +26,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public bool IsUpReplace { get; set; }
 
-        public CornerPoint (int x, int y)
+        public CornerPoint(int x, int y)
         {
             OrigX = x;
             OrigY = y;
@@ -50,8 +47,8 @@ namespace Assets.Scripts.ProcGen.Materials
             sb.Append(" Right: " + RightIndex);
             sb.Append(" WasPerturbed: " + WasPerturbed);
             sb.Append(" Replaces: " + ReplacesIndex);
-            sb.Append(" SideReplace: " + (IsLeftReplace?"Left" : "Right"));
-            sb.Append(" UpDownReplace: " + (IsUpReplace?"Up":"Down"));
+            sb.Append(" SideReplace: " + (IsLeftReplace ? "Left" : "Right"));
+            sb.Append(" UpDownReplace: " + (IsUpReplace ? "Up" : "Down"));
 
             return sb.ToString();
         }

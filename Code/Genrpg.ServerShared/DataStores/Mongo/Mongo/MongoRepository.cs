@@ -8,6 +8,7 @@ using Genrpg.Shared.DataStores.Utils;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
+using Genrpg.Shared.Utils;
 using MongoDB.Driver;
 using System;
 using System.Collections.Concurrent;
@@ -22,6 +23,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
     public class MongoRepository : IFullRepository, IMongoInitRepository
     {
         private ILogService _logService = null;
+        private IReflectionService _reflectionService = null;
 
         private MongoClient _client = null;
         private IMongoDatabase _database = null;
@@ -34,6 +36,7 @@ namespace Genrpg.ServerShared.DataStores.Mongo.Mongo
             ILogService logService,
             IAnalyticsService analyticsService,
             ITextSerializer serializer,
+            IReflectionService reflectionService,
             CancellationToken token)
         {
             _token = token;

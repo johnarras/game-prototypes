@@ -1,8 +1,7 @@
 
-using UnityEngine.EventSystems;
 using Genrpg.Shared.Utils;
 using System.Threading;
-using Genrpg.Shared.Inventory.Services;
+using UnityEngine.EventSystems;
 
 public class VendorItemIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
@@ -38,7 +37,7 @@ public class VendorItemIcon : ItemIcon, IPointerEnterHandler, IPointerExitHandle
             Handler = data.Handler,
             Screen = data.Screen,
         };
-     
+
 
         _uiService.SetText(ItemName, _sharedItemService.GetName(_gs.ch, data.Data));
         _uiService.SetText(ItemInfo, _sharedItemService.GetBasicInfo(_gs.ch, data.Data));

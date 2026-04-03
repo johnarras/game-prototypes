@@ -3,6 +3,7 @@ using Genrpg.ServerShared.Logging;
 using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Logging.Interfaces;
+using Genrpg.Shared.Utils;
 
 namespace Genrpg.ServerShared.Core
 {
@@ -17,7 +18,8 @@ namespace Genrpg.ServerShared.Core
         {
             IServerConfig config = configIn;
             ILogService logService = new ServerLogService(configIn);
-            _loc = new ServiceLocator(logService, new GameData());
+            IReflectionService reflectionService = new ReflectionService();
+            _loc = new ServiceLocator(logService, reflectionService, new GameData());
             _loc.Set(config);
         }
     }

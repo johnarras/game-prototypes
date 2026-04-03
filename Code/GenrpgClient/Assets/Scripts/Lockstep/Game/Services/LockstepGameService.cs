@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.Lockstep.Config.Core;
+﻿using Assets.Scripts.Core;
+using Assets.Scripts.Lockstep.Config.Core;
 using Assets.Scripts.Lockstep.Config.Games;
 using Assets.Scripts.Lockstep.Factions.Setup;
-using Assets.Scripts.Lockstep.Maps.Components;
 using Assets.Scripts.Lockstep.Maps.Entities;
 using Assets.Scripts.Lockstep.Maps.Setup;
-using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
@@ -18,7 +17,6 @@ using System.Threading.Tasks;
 using Unity.Entities;
 using Unity.Mathematics;
 using static ActorSpawnSystem;
-using static UnityEngine.Rendering.STP;
 
 namespace Assets.Scripts.Lockstep.Game.Services
 {
@@ -28,7 +26,7 @@ namespace Assets.Scripts.Lockstep.Game.Services
         Task<BaseLockstepConfig> SetupExampleLockstep(long seed);
 
     }
-    public  class LockstepGameService : ILockstepGameService
+    public class LockstepGameService : ILockstepGameService
     {
         private bool _playing = false;
 
@@ -69,7 +67,7 @@ namespace Assets.Scripts.Lockstep.Game.Services
 
                 _world = new World("LockstepWorld");
                 ScriptBehaviourUpdateOrder.RemoveWorldFromCurrentPlayerLoop(_world);
-                    
+
 
                 Config = config;
                 _maps = new List<MapConfig>(config.MapConfigs);
@@ -130,11 +128,11 @@ namespace Assets.Scripts.Lockstep.Game.Services
                     WorldSeed = config.Seed,
                 });
 
-                
+
 
                 config.InjectData(_entityManager);
 
-                MapInjector injector = new MapInjector();   
+                MapInjector injector = new MapInjector();
                 injector.InjectData(_entityManager, config.MapConfigs);
 
                 _playing = true;
@@ -210,7 +208,7 @@ namespace Assets.Scripts.Lockstep.Game.Services
         }
 
         public async Task<BaseLockstepConfig> SetupExampleLockstep(long seed)
-        { 
+        {
 
             IRandom rand = new ClientRandom(seed);
 

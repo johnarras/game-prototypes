@@ -1,8 +1,4 @@
 ﻿using Assets.Scripts.Entities.UI;
-using Steamworks;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Entities
@@ -13,7 +9,7 @@ namespace Assets.Scripts.UI.Entities
         {
             if (maxQuantity < 1)
             {
-                maxQuantity = 1;    
+                maxQuantity = 1;
             }
             base.SetEntityData(entityTypeId, entityId, quantity, maxQuantity);
 

@@ -47,6 +47,7 @@ namespace Genrpg.DataUtils.Services.EditorData
         private IServerGameDataService _gameDataService = null;
         private IRepositoryService _repoService = null;
         private ILogService _logService = null;
+        private IReflectionService _reflectionService = null;
 
         public async Task<FullGameDataCopy> LoadDataFromGit(EditorGameState gs, CancellationToken token)
         {
@@ -55,7 +56,7 @@ namespace Genrpg.DataUtils.Services.EditorData
 
             FullGameDataCopy dataCopy = new FullGameDataCopy();
 
-            List<Type> settingsTypes = ReflectionUtils.GetTypesImplementing(typeof(IGameSettings));
+            List<Type> settingsTypes = _reflectionService.GetTypesImplementing(typeof(IGameSettings));
 
             string mainDirName = GetCodeFolderPath() + GitDataOffsetPath;
 
@@ -152,7 +153,7 @@ namespace Genrpg.DataUtils.Services.EditorData
 
         public void InitSerialization()
         {
-            SerializationInitializer.Init(GetCodeFolderPath());
+            SerializationInitializer.Init(GetCodeFolderPath(), _reflectionService);
         }
 
         public void WriteGameDataListToGit(List<IGameSettings> list)

@@ -17,7 +17,7 @@ namespace Genrpg.Shared.Attributes.Helpers
         {
             return await _attributeService.GetDebuffDays(context, entityId);
         }
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
 
             await _attributeService.AddDebuff(context, entityId, quantity);

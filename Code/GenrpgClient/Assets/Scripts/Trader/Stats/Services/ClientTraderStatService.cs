@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Stats.Services
 {
-   public class ClientAttributeService : AttributeService
+    public class ClientAttributeService : AttributeService
     {
         private IDispatcher _dispatcher = null;
 
         public override async Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
         {
-            await base.UpdateBuffsAndDebuffs(lookup);    
+            await base.UpdateBuffsAndDebuffs(lookup);
             _dispatcher.Dispatch(new UpdateTraderHUD());
         }
 

@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Vendors
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData crawlerStateData = CreateStateData();
-            crawlerStateData.BGSpriteName = CrawlerClientConstants.VendorImage;
+            crawlerStateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerVendor));
 
             await Task.CompletedTask;

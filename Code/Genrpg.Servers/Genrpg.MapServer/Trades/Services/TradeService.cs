@@ -180,8 +180,8 @@ namespace Genrpg.MapServer.Trades.Services
 
                 if (currTrade.Money > 0)
                 {
-                    _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, null, null).Wait();
-                    _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, null, null).Wait();
+                    _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, null, 0, null).Wait();
+                    _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, null, 0, null).Wait();
                 }
 
                 for (int i = 0; i < currTrade.Items.Length; i++)

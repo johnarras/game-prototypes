@@ -1122,7 +1122,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
         int endDigitsToRemove = 0;
 
-        for (int pos = letterDigitName.Length-1; pos >= 0; pos--)
+        for (int pos = letterDigitName.Length - 1; pos >= 0; pos--)
         {
             if (char.IsDigit(letterDigitName[pos]))
             {

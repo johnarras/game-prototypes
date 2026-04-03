@@ -1,6 +1,7 @@
 ﻿using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Trader.CurrencySpend.Entities;
 using Genrpg.Shared.Website.Interfaces;
+using MessagePack.Resolvers;
 using System.Collections.Generic;
 
 namespace Genrpg.Shared.Trader.CurrencySpend.WebApi
@@ -13,6 +14,6 @@ namespace Genrpg.Shared.Trader.CurrencySpend.WebApi
         public string Message { get; set; }
         public List<Reward> Rewards { get; set; } = new List<Reward>();
 
-        public string ExtraData { get; set; } = string.Empty;
+        public string ExtraRewardArgs { get; set; } = string.Empty;
     }
 }

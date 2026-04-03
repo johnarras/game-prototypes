@@ -39,6 +39,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
         private IServerCaravanService _serverCaravanService = null;
         private IAttributeService _attributeService = null;
         private IServerLevelTrackService _levelTrackService = null;
+        private ICalcAttributeService _calcAttributeService = null;
 
         public async Task UpdatePlayerOnLogin(WebContext context, bool onLogin)
         {
@@ -71,7 +72,6 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
             }
 
             bool didJustLevelUp = coreData.Level < 1;
-
             if (didJustLevelUp)
             {
                 LevelTrackDifficultySettings diffSettings = _gameData.Get<LevelTrackDifficultySettings>(coreData);
@@ -81,33 +81,32 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 coreData.SetNextHourlyUpdate();
             }
 
-            List<Reward> rewards = await _levelTrackService.GiveLevelTrackRewards(context, didJustLevelUp);
+            List<Reward> rewards = await _calcAttributeService.CalcBaseAttributes(context, didJustLevelUp);
 
-            if (caravanData.CurrentMembers.Count < 1)
+            List<CaravanMember> ownedCaravanMembers = new List<CaravanMember>();
+
+            IReadOnlyList<CaravanMember> CaravanMembers = _gameData.Get<CaravanMemberSettings>(coreData).GetData();
+
+            foreach (CaravanMember CaravanMember in CaravanMembers)
             {
-                IReadOnlyList<CaravanMember> CaravanMembers = _gameData.Get<CaravanMemberSettings>(coreData).GetData();
-
-                List<CaravanMember> ownedCaravanMembers = new List<CaravanMember>();
-
-                foreach (CaravanMember CaravanMember in CaravanMembers)
+                if (holdings.CaravanMembersOwned.HasBitIndex(CaravanMember.IdKey))
                 {
-                    if (holdings.CaravanMembersOwned.HasBitIndex(CaravanMember.IdKey))
-                    {
-                        ownedCaravanMembers.Add(CaravanMember);
-                    }
+                    ownedCaravanMembers.Add(CaravanMember);
                 }
+            }
 
-                CaravanMember chosenCaravanMember = null;
-                if (ownedCaravanMembers.Count < 1)
-                {
-                    chosenCaravanMember = CaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
-                }
-                else
-                {
-                    chosenCaravanMember = ownedCaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
-                }
-
-                await _caravanService.AddMemberToCaravan(context, chosenCaravanMember.IdKey, true);
+            CaravanMember chosenCaravanMember = null;
+            if (ownedCaravanMembers.Count < 1)
+            {
+                chosenCaravanMember = CaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
+            }
+            else
+            {
+                chosenCaravanMember = ownedCaravanMembers.OrderBy(x => x.Price).FirstOrDefault();
+            }
+            if (didJustLevelUp && caravanData.CurrentMembers.Count < 1)
+            {
+                await _caravanService.UpdateCaravanMembers(context, new List<long>() { chosenCaravanMember.IdKey });
             }
 
             if (caravanData.SkinTypeId == 0)
@@ -115,8 +114,7 @@ namespace Genrpg.RequestServer.Trader.NewPlayer
                 caravanData.SkinTypeId = 1;
             }
 
-
-            await _caravanService.CalcCoreTravelStats(context);
+            await _calcAttributeService.CalcBuffs(context);
         }
     }
 }

@@ -1,0 +1,13 @@
+{
+  "Parent": {
+    "Id": "default",
+    "SellPricePercent": 0.25,
+    "MaxCostDistance": 10000,
+    "MinConsumerPriceScale": 3.0,
+    "MaxConsumerPriceScale": 10.0,
+    "SmallProducerPriceScale": 2.0,
+    "BigProducerPriceScale": 1.0,
+    "Name": "TradeEconomySettings",
+    "SaveTime": "2026-04-02T13:58:46.368Z"
+  }
+}

@@ -1,6 +1,5 @@
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.SpellCrafting.Settings;
 using Genrpg.Shared.SpellCrafting.Services;
+using Genrpg.Shared.SpellCrafting.Settings;
 using Genrpg.Shared.SpellCrafting.SpellModifierHelpers;
 using System;
 
@@ -11,7 +10,7 @@ namespace Assets.Scripts.UI.Spells
         public GDropdown Dropdown;
         public GText ModifierName;
         public GText InfoText;
-                
+
         private long _spellModifierId;
         private ISpellModifierHelper _helper = null;
         SpellModifier _modifier = null;
@@ -31,7 +30,7 @@ namespace Assets.Scripts.UI.Spells
 
             Dropdown?.Init(_helper.GetValidValues(_gs.ch), onValueChangedAction);
 
-            
+
         }
 
         public double GetSelectedValue()

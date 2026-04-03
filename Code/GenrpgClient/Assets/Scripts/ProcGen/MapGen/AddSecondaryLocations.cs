@@ -1,11 +1,9 @@
-using System;
-
-using Genrpg.Shared.Utils;
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
+using Genrpg.Shared.Utils;
+using System;
+using System.Threading;
 using UnityEngine;
-using Assets.Scripts.Core;
 
 public class AddSecondaryLocations : BaseZoneGenerator
 {
@@ -15,7 +13,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
         PlaceOtherLocations(_gs);
     }
 
-    private void PlaceOtherLocations (IClientGameState gs)
+    private void PlaceOtherLocations(IClientGameState gs)
     {
         long locationsDesired = (int)(_mapProvider.GetMap().BlockCount * _mapProvider.GetMap().BlockCount * 0.05f);
 
@@ -30,7 +28,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
 
         int edgeDistance = 2 * MapConstants.TerrainPatchSize;
 
-        if (_mapProvider.GetMap().GetHwid() <= edgeDistance*2 || _mapProvider.GetMap().GetHhgt() <= edgeDistance*2)
+        if (_mapProvider.GetMap().GetHwid() <= edgeDistance * 2 || _mapProvider.GetMap().GetHhgt() <= edgeDistance * 2)
         {
             return;
         }
@@ -41,10 +39,10 @@ public class AddSecondaryLocations : BaseZoneGenerator
 
         int mountainCheckRadius = 50;
 
-        for (int times = 0; times < locationsDesired*100 && locationsPlaced < locationsDesired; times++)
+        for (int times = 0; times < locationsDesired * 100 && locationsPlaced < locationsDesired; times++)
         {
-            int cx = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHwid() - 2*edgeDistance);
-            int cy = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHhgt() - 2*edgeDistance);
+            int cx = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHwid() - 2 * edgeDistance);
+            int cy = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHhgt() - 2 * edgeDistance);
 
             // Not near current loc.
             Location nearLoc = _zoneGenService.FindMapLocation(cx, cy, minDistToFeature);
@@ -96,7 +94,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
             if (rand.NextDouble() < 0.2f)
             {
                 minRad *= 2;
-                maxRad *= 2;                
+                maxRad *= 2;
             }
 
             Location loc = new Location()
@@ -105,7 +103,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
                 CenterZ = cy,
                 LocationTypeId = LocationTypes.Secondary,
                 XSize = RandUtils.IntRange(minRad, maxRad, rand),
-                ZSize = RandUtils.IntRange(minRad, maxRad, rand),        
+                ZSize = RandUtils.IntRange(minRad, maxRad, rand),
             };
 
             base._md.AddMapLocation(_mapProvider, loc);

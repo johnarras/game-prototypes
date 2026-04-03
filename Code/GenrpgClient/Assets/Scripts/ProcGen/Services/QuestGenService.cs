@@ -1,23 +1,20 @@
-using Genrpg.Shared.Core.Entities;
+using Assets.Scripts.Core;
 using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.MapServer.Entities;
+using Genrpg.Shared.MapServer.Services;
+using Genrpg.Shared.Quests.Constants;
+using Genrpg.Shared.Quests.WorldData;
+using Genrpg.Shared.Spawns.WorldData;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Zones.Settings;
+using Genrpg.Shared.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Zones.WorldData;
-using Unity.Collections;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapServer.Services;
-using Assets.Scripts.Core;
 
 public interface IQuestGenService : IInitializable
 {
@@ -146,7 +143,7 @@ public class QuestGenService : IQuestGenService
                                 dropChance = 1.0f;
                             }
                         }
-                        else 
+                        else
                         {
                             onEntityTypeId = EntityTypes.GroundObject;
                             taskQuantity = RandUtils.IntRange(4, 10, rand);
@@ -256,7 +253,7 @@ public class QuestGenService : IQuestGenService
 
     protected List<MapSpawn> GetNPCsForZone(Map map, long zoneId)
     {
-        List<MapSpawn> zoneSpawns = _mapProvider.GetSpawns().Data.Where(x=>x.ZoneId == zoneId &&
+        List<MapSpawn> zoneSpawns = _mapProvider.GetSpawns().Data.Where(x => x.ZoneId == zoneId &&
         x.Addons != null && x.Addons.Count > 0).ToList();
 
         return zoneSpawns;

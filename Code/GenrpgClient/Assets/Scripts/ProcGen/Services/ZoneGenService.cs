@@ -1,8 +1,7 @@
-using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Core;
+using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Entities.Utils;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;

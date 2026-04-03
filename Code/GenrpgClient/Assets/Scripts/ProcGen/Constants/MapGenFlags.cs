@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
 public class MapGenFlags
 {
     public const int CheckedAdjacencies = 1 << 0;

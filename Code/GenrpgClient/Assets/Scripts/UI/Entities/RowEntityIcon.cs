@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.Entities.UI;
 using Assets.Scripts.UI.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Entities
@@ -10,12 +7,14 @@ namespace Assets.Scripts.UI.Entities
     public class RowEntityIcon : EntityIcon
     {
         protected ITextService _textService = null;
+
+        protected override bool IsDooberTarget => false;
         public override void SetEntityData(long entityTypeId, long entityId, long quantity, long maxQuantity = 0)
         {
             base.SetEntityData(entityTypeId, entityId, quantity, maxQuantity);
             if (quantity >= 0)
             {
-                _uiService.SetText(QuantityText, "+" +  quantity);
+                _uiService.SetText(QuantityText, "+" + quantity);
                 _uiService.SetColor(QuantityText, Color.white);
             }
             else

@@ -18,7 +18,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         public bool IsReady()
         {
-            if (FinalMaterials == null || !FinalMaterials.IsReady())               
+            if (FinalMaterials == null || !FinalMaterials.IsReady())
             {
                 return false;
             }
@@ -65,18 +65,18 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public WeightedDungeonAssetBlock AssetBlock { get; set; }
 
         public Dictionary<long, MaterialBlock> MaterialBlocks { get; set; } = new Dictionary<long, MaterialBlock>();
-       
+
         public CityAssets CityAssets { get; set; }
 
         public List<MaterialOption> BuildingWallOptions { get; set; } = new List<MaterialOption>();
 
         public List<Texture2D> GeneratedTextures { get; set; } = new List<Texture2D>();
-        
+
         public bool AssetsAreReady()
         {
             return AssetBlockList != null && AssetBlock != null && MaterialBlocks.Count > 0 &&
                 !MaterialBlocks.Values.Any(x => !x.IsReady()) &&
-                ((CityAssets != null && CityAssets.IsReady()) || 
+                ((CityAssets != null && CityAssets.IsReady()) ||
                 Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon);
         }
 
@@ -115,7 +115,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public List<long> GetAllZoneTypes()
         {
             SetupExtendedTerrain();
-            return _allZoneTypes; 
+            return _allZoneTypes;
         }
 
         public List<long> GetAllDungeonZoneTypes()
@@ -169,7 +169,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
                 if (!_allZoneTypes.Contains(Map.ZoneTypeId))
                 {
-                    _allZoneTypes.Add(Map.ZoneTypeId);  
+                    _allZoneTypes.Add(Map.ZoneTypeId);
                 }
 
                 if (Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
@@ -321,7 +321,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             {
                 opt.Clear();
             }
-            BuildingWallOptions.Clear();    
+            BuildingWallOptions.Clear();
 
             _clientEntityService.Destroy(TerrainObject);
 

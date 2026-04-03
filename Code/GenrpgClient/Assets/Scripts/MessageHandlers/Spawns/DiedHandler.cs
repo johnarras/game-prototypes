@@ -12,7 +12,7 @@ namespace Assets.Scripts.MessageHandlers.Spawns
         {
             if (_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {
-                unit.AddFlag(UnitFlags.IsDead);              
+                unit.AddFlag(UnitFlags.IsDead);
                 if (msg.FirstAttacker != null)
                 {
                     unit.AddAttacker(msg.FirstAttacker.AttackerId, msg.FirstAttacker.GroupId);

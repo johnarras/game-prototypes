@@ -1,7 +1,4 @@
 ﻿using Assets.Scripts.Lockstep.Math;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Unity.Entities;
 
 namespace Assets.Scripts.Lockstep.Factions.Components

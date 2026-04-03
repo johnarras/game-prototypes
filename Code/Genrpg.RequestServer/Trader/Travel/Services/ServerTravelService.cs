@@ -60,7 +60,7 @@ namespace Genrpg.RequestServer.Trader.Travel.Services
 
             TraderFlagSettings flagSettings = _gameData.Get<TraderFlagSettings>(coreData);
 
-            if (position.GetCurrentCity() != null)
+            if (!position.IsTravelling())
             {
                 response.ErrorMessage = "You are in a city!";
                 return response;

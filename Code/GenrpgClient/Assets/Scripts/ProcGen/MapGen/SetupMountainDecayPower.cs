@@ -14,9 +14,9 @@ public class SetupMountainDecayPower : BaseZoneGenerator
         int poweroctaves = 2;
         float poweramp = RandUtils.FloatRange(0.3f, 0.5f, rand);
         float powerFreq = RandUtils.FloatRange(0.04f, 0.14f, rand) * _mapProvider.GetMap().GetHwid();
-        
+
         _md.mountainDecayPower = _noiseService.Generate(powerpers, powerFreq, poweramp, poweroctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
-        
+
     }
 }
 

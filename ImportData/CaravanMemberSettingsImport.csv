@@ -1,7 +1,7 @@
-header caravanmembersettings,Id,Name,MoveAnimalOutsideOfCityManaCost,,,,,
+header caravanmembersettings,Id,Name,,,,,,
 header caravanmember,IdKey,Name,Icon,Art,Speed,Size,Price,Desc
 header membereffect,EntityTypeId,EntityId,Quantity,,,,,
-caravanmembersettings,default,Default Animals,40,,,,,
+caravanmembersettings,default,Default Animals,,,,,,
 caravanmember,1,Donkey,Donkey,Donkey,2,2,750,"The most common and affordable pack animal. Hardy and fuel-efficient, but slow and not exceptionally strong. The workhorse of the common person."
 membereffect,traveldaycurrencybuff,rations,-1,,,,,
 membereffect,gameplaystatbuff,max inventory,1,,,,,

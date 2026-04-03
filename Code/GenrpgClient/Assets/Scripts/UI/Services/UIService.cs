@@ -1,4 +1,5 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Animations;
@@ -6,7 +7,6 @@ using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Assets.Scripts.UI.Pointers;
 using Genrpg.Shared.Analytics.Services;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Ftue.Messages;
 using Genrpg.Shared.Ftue.Services;
@@ -168,7 +168,7 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void SetButton(IButton button, string screenName, Func<CancellationToken, Task> awaitableAction, Dictionary<string, string> extraData = null)
+        public void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> extraData = null)
         {
             if (button is GButton gbutton)
             {
@@ -219,7 +219,7 @@ namespace Assets.Scripts.UI.Services
         }
 
         private int _blockButtonCount = 0;
-        private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Task> awaitableAction, Dictionary<string, string> extraData = null)
+        private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> extraData = null)
         {
             if (_blockButtonCount > 0)
             {

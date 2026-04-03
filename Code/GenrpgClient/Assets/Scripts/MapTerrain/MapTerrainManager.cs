@@ -1,9 +1,8 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.MapServer.Entities;

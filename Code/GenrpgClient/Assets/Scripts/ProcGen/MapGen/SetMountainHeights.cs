@@ -1,17 +1,16 @@
 
-using System;
-
-using Genrpg.Shared.Utils;
-using System.Threading;
-using UnityEngine;
-using System.Threading.Tasks;
 using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.Utils;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class SetMountainHeights : BaseAddMountains
 {
     public override async Awaitable Generate(CancellationToken token)
     {
-        
+
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed % 1000000000 + 3323292);
 
@@ -43,7 +42,7 @@ public class SetMountainHeights : BaseAddMountains
         float[,] powernoise = _noiseService.Generate(powerpers, powerfreq, poweramp, poweroctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         float[,] edgeNoise = _noiseService.Generate(edgepers, edgefreq, edgeamp, edgeoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
         float[,] edgePowNoise = _noiseService.Generate(edgePowPers, edgePowfreq, edgePowamp, edgePowoctaves, rand.Next(), _mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt());
-        
+
         float mountainDefaultHeight = _md.GetMountainDefaultSize(_mapProvider.GetMap()) * RandUtils.FloatRange(0.8f, 1.0f, rand);
 
         float minDistPctCutoff = 0.9f;
@@ -72,7 +71,7 @@ public class SetMountainHeights : BaseAddMountains
                     rpct = (float)(Math.Pow(rpct, 1.6f));
                     float edgeDist = MathUtil.Clamp(0.10f, 0.30f + edgeNoise[x, y], 0.70f);
                     float edgeAmt = (float)(Math.Pow(edgeDist, 1.7f + edgePowNoise[x, y]));
-                    
+
                     float currAmt = rpct * rpct;
                     float noiseVal = noise[x, y];
                     float noiseMinDist = MapConstants.RoadBaseHillScaleDistance * (1 + noiseVal);

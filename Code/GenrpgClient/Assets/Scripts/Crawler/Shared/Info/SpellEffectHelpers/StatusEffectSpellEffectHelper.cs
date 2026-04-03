@@ -1,10 +1,7 @@
 using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.UnitEffects.Settings;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
@@ -19,7 +16,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
             StringBuilder sb = new StringBuilder();
             if (effect.MinQuantity < 0)
             {
-                sb.Append($"Removes weakest status effect (1 + {settings.ExtraCureStatusEffectsRemovedPerTier} per tier) up to {GetRoleScalingText(spell,effect, " your ")} Tier.");
+                sb.Append($"Removes weakest status effect (1 + {settings.ExtraCureStatusEffectsRemovedPerTier} per tier) up to {GetRoleScalingText(spell, effect, " your ")} Tier.");
             }
             else
             {

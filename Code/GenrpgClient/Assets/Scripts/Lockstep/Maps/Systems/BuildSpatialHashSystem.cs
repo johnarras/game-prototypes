@@ -5,11 +5,9 @@ using Assets.Scripts.Lockstep.Collisions.Constants;
 using Assets.Scripts.Lockstep.Factions.Components;
 using Assets.Scripts.Lockstep.Math;
 using Assets.Scripts.Lockstep.Systems.Constants;
-using Genrpg.Shared.Interfaces;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using static UnityEngine.Rendering.STP;
 
 namespace Assets.Scripts.Lockstep.Systems
 {

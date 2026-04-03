@@ -191,7 +191,7 @@ namespace RunBuilds
 
         private static void ClearBuildEnvironmentVariables()
         {
-            List<KeyValue> envVarNames = ReflectionUtils.GetStringConstants(typeof(ClientBuildVars));
+            List<KeyValue> envVarNames = ConstantUtils.GetStringConstants(typeof(ClientBuildVars));
 
             foreach (KeyValue kv in envVarNames)
             {

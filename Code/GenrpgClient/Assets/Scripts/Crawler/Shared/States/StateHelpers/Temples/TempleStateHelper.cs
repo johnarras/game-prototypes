@@ -27,7 +27,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Temples
 
             PartyData party = _crawlerService.GetParty();
 
-            stateData.BGSpriteName = CrawlerClientConstants.TempleImage;
+            stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             TempleResult result = action.ExtraData as TempleResult;
 

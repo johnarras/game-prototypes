@@ -1,15 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Genrpg.Shared.Core.Entities;
-
-
-using UnityEngine;
-using Genrpg.Shared.Characters.PlayerData;
 using ClientEvents;
-using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Characters.PlayerData;
 using Genrpg.Shared.Units.Entities;
 using System.Threading;
 
@@ -48,7 +38,7 @@ public class UnitFrameContainer : BaseBehaviour
     }
 
     private void OnUpdatePlayer(Character ch)
-    { 
+    {
         if (ch != null)
         {
             SetMapPlayer(ch);

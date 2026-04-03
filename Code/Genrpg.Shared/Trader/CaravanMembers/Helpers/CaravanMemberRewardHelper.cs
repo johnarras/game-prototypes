@@ -15,7 +15,7 @@ namespace Genrpg.Shared.Trader.CaravanMembers.Helpers
 
         public long HelperKey => EntityTypes.CaravanMember;
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CoreData core = await context.GetAsync<CoreData>();
             _CaravanMemberService.AddCaravanMemberToHoldings(core, await context.GetAsync<HoldingsData>(), entityId);

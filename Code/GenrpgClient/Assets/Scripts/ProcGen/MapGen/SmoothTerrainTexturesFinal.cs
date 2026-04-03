@@ -36,7 +36,7 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
                 {
                     float totalWeight = 0;
                     float totalVal = 0;
-                    for (int xx = x-radius; xx <= x+radius; xx++)
+                    for (int xx = x - radius; xx <= x + radius; xx++)
                     {
                         if (xx < 0 || xx >= _md.awid)
                         {
@@ -44,7 +44,7 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
                         }
 
                         int dx = Math.Abs(xx - x);
-                        for (int yy = y-radius; yy <= y+radius; yy++)
+                        for (int yy = y - radius; yy <= y + radius; yy++)
                         {
                             if (yy < 0 || yy >= _md.ahgt)
                             {
@@ -63,7 +63,7 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
             }
         }
 
-        for (int x= 0; x < _md.awid; x++)
+        for (int x = 0; x < _md.awid; x++)
         {
             for (int y = 0; y < _md.ahgt; y++)
             {

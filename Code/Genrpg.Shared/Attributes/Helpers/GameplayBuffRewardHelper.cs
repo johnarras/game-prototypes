@@ -18,7 +18,7 @@ namespace Genrpg.Shared.Attributes.Helpers
             return await _atributeService.GetBuffSeconds(context, entityId);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
 
             await _atributeService.AddBuff(context, entityId, quantity);

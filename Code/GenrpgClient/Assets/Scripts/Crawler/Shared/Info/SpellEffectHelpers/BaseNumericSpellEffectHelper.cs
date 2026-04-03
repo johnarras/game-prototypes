@@ -1,11 +1,8 @@
-using Genrpg.Shared.Crawler.Info.EffectHelpers;
 using Genrpg.Shared.Crawler.Roles.Settings;
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Settings;
 using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Interfaces;
 using Genrpg.Shared.Spells.Settings.Elements;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +43,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
                     sb.Append(_infoService.CreateInfoLink(child) + " ");
                 }
             }
-            sb.Append(GetRoleScalingText(spell,effect));
+            sb.Append(GetRoleScalingText(spell, effect));
             return sb.ToString();
         }
     }

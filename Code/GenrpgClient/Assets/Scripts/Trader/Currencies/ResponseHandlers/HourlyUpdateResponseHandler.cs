@@ -1,8 +1,7 @@
-using Assets.Scripts.DynamicUI.Services;
+using Assets.Scripts.Core;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Rewards.Entities;
 using Genrpg.Shared.Rewards.Services;

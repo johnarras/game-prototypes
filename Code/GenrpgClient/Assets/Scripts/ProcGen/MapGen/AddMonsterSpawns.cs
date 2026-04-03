@@ -1,12 +1,12 @@
 
 
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.Pathfinding.Constants;
-using System.Threading;
+using Genrpg.Shared.Spawns.Entities;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Spawns.Entities;
+using System.Threading;
 using UnityEngine;
 
 public class AddMonsterSpawns : BaseZoneGenerator
@@ -73,7 +73,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.mountainDistPercent[cx,cy] < 0.1f)
+                if (_md.mountainDistPercent[cx, cy] < 0.1f)
                 {
                     continue;
                 }
@@ -83,13 +83,13 @@ public class AddMonsterSpawns : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.heights[cx, cy] <= (MapConstants.MinLandHeight*7/10) / MapConstants.MapHeight)
+                if (_md.heights[cx, cy] <= (MapConstants.MinLandHeight * 7 / 10) / MapConstants.MapHeight)
                 {
                     continue;
                 }
 
 
-                if (_md.bridgeDistances[cx,cy] < 20)
+                if (_md.bridgeDistances[cx, cy] < 20)
                 {
                     continue;
                 }
@@ -100,7 +100,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 }
 
 
-                if (_md.roadDistances[cx,cy] < 4)
+                if (_md.roadDistances[cx, cy] < 4)
                 {
                     continue;
                 }
@@ -111,13 +111,13 @@ public class AddMonsterSpawns : BaseZoneGenerator
                     {
                         continue;
                     }
-                    for (int yy = cy-minZoneDist; yy <= cy+minZoneDist; yy+=zoneCheckSkip)
+                    for (int yy = cy - minZoneDist; yy <= cy + minZoneDist; yy += zoneCheckSkip)
                     {
                         if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
-                        if (_md.mapZoneIds[xx,yy] != zone.IdKey)
+                        if (_md.mapZoneIds[xx, yy] != zone.IdKey)
                         {
                             nearAnotherZone = true;
                             break;
@@ -136,7 +136,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 }
 
                 long zoneId = zone.IdKey;
-                if (_md.subZoneIds[cx,cy] > 0)
+                if (_md.subZoneIds[cx, cy] > 0)
                 {
                     zoneId = _md.subZoneIds[cx, cy];
                 }
@@ -158,7 +158,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
         }
     }
 
-    protected bool isValidCell (int value)
+    protected bool isValidCell(int value)
     {
         return value == 0 ||
             (value >= MapConstants.GrassMinCellValue && value < MapConstants.GrassMaxCellValue);

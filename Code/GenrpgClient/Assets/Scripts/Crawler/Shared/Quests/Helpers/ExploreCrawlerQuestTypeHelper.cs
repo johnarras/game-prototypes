@@ -6,7 +6,6 @@ using Genrpg.Shared.Crawler.Quests.Constants;
 using Genrpg.Shared.Crawler.Quests.Settings;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Utils;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -35,6 +35,7 @@ namespace Assets.Scripts.GameSettings.Services
         private ILocalLoadService _localLoadService = null!;
         private ITextSerializer _serializer = null!;
         private IClientGameState _gs = null;
+        private IReflectionService _reflectionService = null;
 
         private Dictionary<Type, IGameSettingsMapper> _loaderObjects = null;
 
@@ -45,7 +46,7 @@ namespace Assets.Scripts.GameSettings.Services
 
         public async Task Initialize(CancellationToken token)
         {
-            List<Type> mapperTypes = ReflectionUtils.GetTypesImplementing(typeof(IGameSettingsMapper));
+            List<Type> mapperTypes = _reflectionService.GetTypesImplementing(typeof(IGameSettingsMapper));
 
             Dictionary<Type, IGameSettingsMapper> newList = new Dictionary<Type, IGameSettingsMapper>();
             foreach (Type lt in mapperTypes)

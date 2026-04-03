@@ -1,8 +1,8 @@
 
-using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.MapObjects.Entities;
-using System.Threading;
 using Genrpg.Shared.Targets.Messages;
+using Genrpg.Shared.Units.Entities;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Targets
@@ -11,7 +11,7 @@ namespace Assets.Scripts.MessageHandlers.Targets
     {
         protected override async Awaitable InnerProcess(OnSetTarget msg, CancellationToken token)
         {
-            if (_objectManager.GetMapObject(msg.CasterId,out MapObject obj))
+            if (_objectManager.GetMapObject(msg.CasterId, out MapObject obj))
             {
                 if (obj is Unit unit)
                 {

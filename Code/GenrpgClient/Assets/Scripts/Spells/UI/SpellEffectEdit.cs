@@ -55,12 +55,12 @@ namespace Assets.Scripts.UI.Spells
         public void CopyFromUIToEffect()
         {
             _effect.SkillTypeId = _uiService.GetSelectedIdFromName(typeof(SkillType), SkillInput);
-                
+
             _effect.Scale = (int)ScaleInput?.GetSelectedValue();
             _effect.Radius = (int)RadiusInput?.GetSelectedValue();
             _effect.Duration = (int)DurationInput?.GetSelectedValue();
             _effect.ExtraTargets = (int)(ExtraTargetsInput?.GetSelectedValue());
-                
+
             _effect.EntityId = _uiService.GetIntInput(EntityInput);
         }
 

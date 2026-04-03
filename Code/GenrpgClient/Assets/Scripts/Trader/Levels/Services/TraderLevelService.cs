@@ -1,9 +1,8 @@
 ﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Doobers.Events;
+using Assets.Scripts.Core;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.Levels.UI;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Entities.Constants;

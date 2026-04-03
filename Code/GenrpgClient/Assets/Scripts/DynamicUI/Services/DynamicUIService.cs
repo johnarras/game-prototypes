@@ -7,7 +7,7 @@ using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
 using Genrpg.Shared.Client.Assets.Constants;
-using Assets.Scripts.Core;
+using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.UI.Constants;
@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.DynamicUI.Services
@@ -69,8 +68,10 @@ namespace Assets.Scripts.DynamicUI.Services
         private ICameraController _cameraController = null;
         private IObjectPool _objectPool = null;
         private IRandom _rand = null;
+        private IEntityService _entityService = null;
+        private IClientGameState _gs = null;
 
-        private Dictionary<string, List<DooberTarget>> _dooberTargets = new Dictionary<string, List<DooberTarget>>();
+        private Dictionary<long, List<DooberTarget>> _dooberTargets = new Dictionary<long, List<DooberTarget>>();
 
         private List<DynamicUIItem> _currentItems = new List<DynamicUIItem>();
         private List<DynamicUIItem> _removeList = new List<DynamicUIItem>();
@@ -96,7 +97,7 @@ namespace Assets.Scripts.DynamicUI.Services
             if (randomPaths)
             {
                 result.PercentDonePowerMult = 0.5f;
-                result.StartOffsetSize = RandUtils.FloatRange(250,500, _rand);
+                result.StartOffsetSize = RandUtils.FloatRange(250, 500, _rand);
             }
             return result;
         }
@@ -104,7 +105,7 @@ namespace Assets.Scripts.DynamicUI.Services
         public void ReturnDooberArgs(DooberArgs dooberArgs)
         {
             dooberArgs.Clear();
-            _dooberArgPool.Enqueue(dooberArgs);  
+            _dooberArgPool.Enqueue(dooberArgs);
         }
 
         public async Task Initialize(CancellationToken token)
@@ -129,14 +130,14 @@ namespace Assets.Scripts.DynamicUI.Services
             await Task.CompletedTask;
         }
 
-        private string GetDooberTargetKey(long entityTypeId, long entityId)
+        private long GetDooberTargetKey(long entityTypeId, long entityId)
         {
-            return entityTypeId + "." + entityId;
+            return entityTypeId * 10000 + entityId;
         }
 
         private void OnSetDooberTarget(SetDooberTarget sdt)
         {
-            string key = GetDooberTargetKey(sdt.EntityTypeId, sdt.EntityId);
+            long key = GetDooberTargetKey(sdt.EntityTypeId, sdt.EntityId);
 
             if (_dooberTargets.ContainsKey(key))
             {
@@ -168,14 +169,13 @@ namespace Assets.Scripts.DynamicUI.Services
             });
         }
 
-        private Vector2 GetDooberTarget(long entityTypeId, long entityId)
+        private List<DooberTarget> GetDooberTargets(long entityTypeId, long entityId)
         {
             if (_dynamicUIScreen == null)
             {
                 _dynamicUIScreen = (DynamicUIScreen)_screenService.GetScreen(ScreenNames.DynamicUI).Screen;
             }
-
-            List<string> keys = new List<string>();
+            List<long> keys = new List<long>();
 
             keys.Add(GetDooberTargetKey(entityTypeId, entityId));
             if (entityId > 0)
@@ -185,7 +185,7 @@ namespace Assets.Scripts.DynamicUI.Services
 
             List<DooberTarget> targets = new List<DooberTarget>();
 
-            foreach (string key in keys)
+            foreach (long key in keys)
             {
                 if (_dooberTargets.ContainsKey(key))
                 {
@@ -198,13 +198,20 @@ namespace Assets.Scripts.DynamicUI.Services
                 }
             }
 
-            if (targets == null || targets.Count < 1)
+            return targets;
+        }
+
+        private Vector2 GetDooberTarget(long entityTypeId, long entityId)
+        {
+            List<DooberTarget> dooberTargets = GetDooberTargets(entityTypeId, entityId);
+
+            if (dooberTargets == null || dooberTargets.Count < 1)
             {
                 _logService.Warning("No doober target for " + entityTypeId + " " + entityId);
                 return Vector2.zero;
             }
 
-            DooberTarget mainDt = targets.FirstOrDefault(x => x.IsMainTarget);
+            DooberTarget mainDt = dooberTargets.FirstOrDefault(x => x.IsMainTarget);
 
             if (mainDt == null)
             {
@@ -389,12 +396,7 @@ namespace Assets.Scripts.DynamicUI.Services
         public void AddEntityQuantityVisual(long entityTypeId, long entityId, long quantityAdded, bool instant)
         {
 
-            string key = GetDooberTargetKey(entityTypeId, entityId);
-
-            if (!_dooberTargets.TryGetValue(key, out List<DooberTarget> targets))
-            {
-                return;
-            }
+            List<DooberTarget> targets = GetDooberTargets(entityTypeId, entityId);
 
             foreach (DooberTarget target in targets)
             {
@@ -414,8 +416,16 @@ namespace Assets.Scripts.DynamicUI.Services
         {
             DooberArgs dooberArgs = CheckoutDooberArgs();
 
-            dooberArgs.EntityTypeId = entityTypeId;   
-            dooberArgs.EntityId = entityId;   
+            var iconArgs = _entityService.TryGetEntityIcon(_gs.ch, entityTypeId, entityId);
+
+
+            if (iconArgs == null || !iconArgs.IsValid())
+            {
+                return false;
+            }
+
+            dooberArgs.EntityTypeId = entityTypeId;
+            dooberArgs.EntityId = entityId;
             dooberArgs.Quantity = quantity;
             dooberArgs.StartsInUI = startsInUI;
             dooberArgs.StartPosition = startPosition;
@@ -431,7 +441,7 @@ namespace Assets.Scripts.DynamicUI.Services
         public DooberArgs CheckoutEntityDooberArgs(long entityTypeId, long entityId, long quantity, bool startsInUI, Vector3 startPosition)
         {
             DooberArgs dooberArgs = CheckoutDooberArgs();
-            dooberArgs.EntityTypeId = entityTypeId; 
+            dooberArgs.EntityTypeId = entityTypeId;
             dooberArgs.EntityId = entityId;
             dooberArgs.Quantity = quantity;
             dooberArgs.StartsInUI |= startsInUI;

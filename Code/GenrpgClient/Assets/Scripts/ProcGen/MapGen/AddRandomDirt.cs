@@ -1,16 +1,12 @@
 
-using System;
-using System.Collections.Generic;
-
-
+using Genrpg.Shared.ProcGen.Constants;
 using Genrpg.Shared.Utils;
-
-using System.Threading;
-using Genrpg.Shared.ProcGen.Entities;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class AddRandomDirt : BaseZoneGenerator
 {
@@ -53,11 +49,11 @@ public class AddRandomDirt : BaseZoneGenerator
             {
 
 
-                MyRandom rand = new MyRandom(zone.Seed % 23463321 + r * 10293 + r * r * 32123 + outertimes*3);
+                MyRandom rand = new MyRandom(zone.Seed % 23463321 + r * 10293 + r * r * 32123 + outertimes * 3);
                 bool usePerlin = rand.NextDouble() < 0.5f;
 
-                float freq = RandUtils.FloatRange(size * 0.03f, size * 0.2f, rand)*1.35f;
-                float amp = RandUtils.FloatRange(0.4f, 1.0f, rand)*1.1f;
+                float freq = RandUtils.FloatRange(size * 0.03f, size * 0.2f, rand) * 1.35f;
+                float amp = RandUtils.FloatRange(0.4f, 1.0f, rand) * 1.1f;
 
 
                 float pers = RandUtils.FloatRange(0.2f, 0.5f, rand);
@@ -93,7 +89,7 @@ public class AddRandomDirt : BaseZoneGenerator
                         {
                             continue;
                         }
-                        float maxPct = midNoise + maxHeights[x-startx, y-starty];
+                        float maxPct = midNoise + maxHeights[x - startx, y - starty];
                         if (maxPct > 1)
                         {
                             maxPct = 1;

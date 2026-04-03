@@ -1,6 +1,5 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Roles.Services;

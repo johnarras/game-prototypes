@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9f73f0049373745acddc429c4d60b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.Cities.UI.TraderCityPanel
-  AnimalsButton: {fileID: 1832865870769354703}
-  VendorButton: {fileID: 1430698494870060475}
+  CaravanMembersButton: {fileID: 1832865870769354703}
+  TradeGoodsButton: {fileID: 1430698494870060475}
   GuildButton: {fileID: 6072956348697995474}
   QuestsButton: {fileID: 1615120418964742432}
   SuppliesButton: {fileID: 662928293701880012}
@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 6068116055585206064, guid: fcd7455cc20481d468636fd2f6d96d3e,
         type: 3}
       propertyPath: m_Name
-      value: AnimalVendorButton
+      value: CaravanMemberButton
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: fcd7455cc20481d468636fd2f6d96d3e,
         type: 3}
@@ -593,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 6068116055585206064, guid: fcd7455cc20481d468636fd2f6d96d3e,
         type: 3}
       propertyPath: m_Name
-      value: TradeGoodsVendorButton
+      value: TradeGoodsButton
       objectReference: {fileID: 0}
     - target: {fileID: 6282348067021977358, guid: fcd7455cc20481d468636fd2f6d96d3e,
         type: 3}

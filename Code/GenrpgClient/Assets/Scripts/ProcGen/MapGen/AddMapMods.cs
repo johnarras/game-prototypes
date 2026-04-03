@@ -1,9 +1,9 @@
 
-using System.Threading;
-using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Entities.Constants;
-using UnityEngine;
+using Genrpg.Shared.Spawns.Entities;
+using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class AddMapMods : BaseZoneGenerator
 {
@@ -11,12 +11,12 @@ public class AddMapMods : BaseZoneGenerator
     const int start = skip * 3 / 2;
     public override async Awaitable Generate(CancellationToken token)
     {
-        
-        for (int x = start; x < _mapProvider.GetMap().GetHwid()-start; x+= skip)
+
+        for (int x = start; x < _mapProvider.GetMap().GetHwid() - start; x += skip)
         {
-            for (int z = start; z < _mapProvider.GetMap().GetHhgt()-start; z += skip)
+            for (int z = start; z < _mapProvider.GetMap().GetHhgt() - start; z += skip)
             {
-                if (_zoneGenService.FindMapLocation(x,z,2) != null)
+                if (_zoneGenService.FindMapLocation(x, z, 2) != null)
                 {
                     continue;
                 }

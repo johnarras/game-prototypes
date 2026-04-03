@@ -3,7 +3,6 @@ using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Utils;
 using System.Threading;
 using UnityEngine;
 

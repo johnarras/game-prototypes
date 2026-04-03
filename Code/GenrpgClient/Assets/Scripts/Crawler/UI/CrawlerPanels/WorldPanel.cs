@@ -9,7 +9,7 @@ namespace Assets.Scripts.UI.Crawler.CrawlerPanels
 
         public ShowWorldPanelImage(string spriteName)
         {
-            SpriteName = spriteName;    
+            SpriteName = spriteName;
         }
     }
 

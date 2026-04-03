@@ -1,6 +1,6 @@
 
-using UnityEngine; // Needed
 using Genrpg.Shared.Audio.Settings;
+using UnityEngine; // Needed
 
 public class PlayAudioData
 {

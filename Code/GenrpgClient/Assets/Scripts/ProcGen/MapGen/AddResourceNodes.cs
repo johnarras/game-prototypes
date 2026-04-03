@@ -1,17 +1,16 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
+using Genrpg.Shared.Entities.Constants;
+using Genrpg.Shared.GroundObjects.Settings;
+using Genrpg.Shared.ProcGen.Constants;
+using Genrpg.Shared.Spawns.Entities;
 using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Entities.Constants;
-using System.Threading;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.GroundObjects.Settings;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class ZoneResourceNodeData
 {
@@ -191,7 +190,7 @@ public class AddResourceNodes : BaseZoneGenerator
                 continue;
             }
 
-            
+
             if (_md.mapZoneIds[cx, cy] != zone.IdKey) // zoneobject
             {
                 continue;
@@ -210,7 +209,7 @@ public class AddResourceNodes : BaseZoneGenerator
                 continue;
             }
 
-            if (FlagUtils.MatchesAnyBits(_md.flags[cx,cy],MapGenFlags.NearResourceNode))
+            if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.NearResourceNode))
             {
                 continue;
             }
@@ -302,7 +301,7 @@ public class AddResourceNodes : BaseZoneGenerator
 
             zdata.CurrNum++;
 
-            for (int xx = px-MapConstants.MinResourceSeparation; xx <= px+MapConstants.MinResourceSeparation; xx++)
+            for (int xx = px - MapConstants.MinResourceSeparation; xx <= px + MapConstants.MinResourceSeparation; xx++)
             {
                 if (xx < 0 || xx >= _mapProvider.GetMap().GetHwid())
                 {
@@ -310,7 +309,7 @@ public class AddResourceNodes : BaseZoneGenerator
                 }
 
                 int ddx = xx - px;
-                for (int yy = py-MapConstants.MinResourceSeparation; yy <= py+MapConstants.MinResourceSeparation; yy++)
+                for (int yy = py - MapConstants.MinResourceSeparation; yy <= py + MapConstants.MinResourceSeparation; yy++)
                 {
                     if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
                     {

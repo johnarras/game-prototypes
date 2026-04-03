@@ -33,7 +33,7 @@ public class CollapsableScrollView : BaseBehaviour
         if (_collapsingRect != null && _collapsingRect.content != null)
         {
             _collapsingLayout = _collapsingRect.content.GetComponent<VerticalLayoutGroup>();
-        }      
+        }
         CalculateContentSize();
         _targetScrollViewSize = _minScrollViewSize;
         _currentScrollViewSize = _targetScrollViewSize - 1;
@@ -42,7 +42,7 @@ public class CollapsableScrollView : BaseBehaviour
 
     public void CalculateContentSize()
     {
-       
+
         if (_collapsingLayout == null)
         {
             return;
@@ -63,7 +63,7 @@ public class CollapsableScrollView : BaseBehaviour
                 _minScrollViewSize = rect.rect.height;
             }
         }
-        
+
 
     }
 
@@ -89,7 +89,7 @@ public class CollapsableScrollView : BaseBehaviour
 
         int transitionFrames = (int)Math.Max(1, _clientAppService.TargetFrameRate * ExpandTime);
 
-        float expansionPerStep = (_maxScrollViewSize-_minScrollViewSize) / (transitionFrames);
+        float expansionPerStep = (_maxScrollViewSize - _minScrollViewSize) / (transitionFrames);
 
 
         float oldSize = _currentScrollViewSize;
@@ -123,7 +123,7 @@ public class CollapsableScrollView : BaseBehaviour
 
         if (_collapsingLayout != null)
         {
-            
+
             _collapsingLayout.enabled = false;
             _collapsingLayout.enabled = true;
         }

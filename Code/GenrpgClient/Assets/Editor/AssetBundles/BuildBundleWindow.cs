@@ -56,7 +56,7 @@ namespace Assets.Editor.Builds
 
             if (_bundleList == null)
             {
-                _bundleList = Resources.Load<BundleList>("Config/BundleList");
+                _bundleList = Resources.Load<BundleList>(ScriptableObjectUtils.ConfigResourcesFolder + "BundleList");
             }
 
             GUILayout.Label("BundleList sets Local vs. Remote");

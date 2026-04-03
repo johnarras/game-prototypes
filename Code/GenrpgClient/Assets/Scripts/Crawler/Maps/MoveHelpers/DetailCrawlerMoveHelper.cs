@@ -1,11 +1,8 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapServer.Entities;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

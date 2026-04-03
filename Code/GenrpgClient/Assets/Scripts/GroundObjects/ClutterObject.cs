@@ -55,11 +55,11 @@ public class ClutterObject : BaseBehaviour
 
         didFinalSetPos = true;
 
-        Vector3 normal = _terrainManager.GetInterpolatedNormal(_mapProvider.GetMap(),entity.transform.position.x,entity.transform.position.z);
+        Vector3 normal = _terrainManager.GetInterpolatedNormal(_mapProvider.GetMap(), entity.transform.position.x, entity.transform.position.z);
 
         Quaternion groundTilt = Quaternion.FromToRotation(Vector3.up, normal);
 
-        int index = (int)(entity.transform.position.x * 131 +entity.transform.position.y * 139 +entity.transform.position.z * 511);
+        int index = (int)(entity.transform.position.x * 131 + entity.transform.position.y * 139 + entity.transform.position.z * 511);
 
         int newAngle = (index * 413) % 360;
 
@@ -67,7 +67,7 @@ public class ClutterObject : BaseBehaviour
         {
             entity.transform.Rotate(normal, newAngle);
         }
-       entity.transform.position -= normal * (2 + (index * 13) % 8) * 0.05f;
+        entity.transform.position -= normal * (2 + (index * 13) % 8) * 0.05f;
     }
 }
 

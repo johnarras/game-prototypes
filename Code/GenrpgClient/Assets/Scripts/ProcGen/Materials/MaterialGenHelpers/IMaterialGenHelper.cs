@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
 using Genrpg.Shared.Interfaces;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers

@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Genrpg.Shared.Core.Entities;
-
-
 using Genrpg.Shared.Inventory.PlayerData;
 
 /// <summary>

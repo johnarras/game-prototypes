@@ -1,11 +1,9 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crafting.Entities;
 using Genrpg.Shared.Crawler.Crafting.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Loot.Constants;
 using Genrpg.Shared.Crawler.Loot.Helpers;
 using Genrpg.Shared.Crawler.Loot.Settings;
@@ -22,6 +20,9 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Training.Settings;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -34,7 +35,6 @@ using Genrpg.Shared.Inventory.Settings.ItemTypes;
 using Genrpg.Shared.Inventory.Settings.Ranks;
 using Genrpg.Shared.Inventory.Settings.Slots;
 using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Spells.Settings.Elements;
 using Genrpg.Shared.Stats.Constants;
 using Genrpg.Shared.Stats.Settings.Scaling;
 using Genrpg.Shared.Stats.Settings.Stats;
@@ -46,7 +46,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Loot.Services
 {
@@ -361,7 +360,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             }
 
             item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
-             item.Level = Math.Max(1, level);
+            item.Level = Math.Max(1, level);
 
             double cost = lootSettings.BaseLootCost;
 

@@ -9,7 +9,7 @@ namespace Assets.Scripts.MessageHandlers.Achievements
     {
         protected override async Awaitable InnerProcess(OnUpdateAchievement msg, CancellationToken token)
         {
-            _gs.ch.Get<AchievementData>().Data[msg.AchievementTypeId] = msg.Quantity; 
+            _gs.ch.Get<AchievementData>().Data[msg.AchievementTypeId] = msg.Quantity;
         }
     }
 }

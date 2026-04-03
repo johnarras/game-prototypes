@@ -13,7 +13,14 @@ namespace Genrpg.Shared.Trader.Caravans.Entities
         public int TotalDistanceToTarget { get; set; }
         public int DistanceGone { get; set; }
         public City TargetCity { get; set; }
+        public City PositionCity { get; set; }
         public float Angle { get; set; }
+
+        public bool IsTravelling()
+        {
+            return GetCurrentCity() == null || TargetCity != PositionCity;
+        }
+
 
         public City GetCurrentCity()
         {
@@ -26,7 +33,18 @@ namespace Genrpg.Shared.Trader.Caravans.Entities
             {
                 return TargetCity;
             }
+
+            if (PositionCity != null)
+            {
+                return PositionCity;
+            }
+
             return null;
+        }
+
+        public City GetTargetCity()
+        {
+            return TargetCity;
         }
 
         public int GetTargetCityId()

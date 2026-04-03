@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Core;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Encounters.Services;
@@ -10,8 +12,8 @@ using Assets.Scripts.Trader.Levels.Services;
 using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
-using Assets.Scripts.FloatingText.ClientEvents;
+using Genrpg.Shared.Attributes.PlayerData;
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Currencies.Settings;
@@ -38,8 +40,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Attributes.Services;
 
 namespace Assets.Scripts.Trader.Travel.Services
 {
@@ -68,6 +68,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IDynamicUIService _dynamicUIService = null;
         private IClientEncounterService _encounterService = null;
         private IGameData _gameData = null;
+        private ICalcAttributeService _calcAttributeService = null;
 
         private CancellationToken _token;
 
@@ -85,7 +86,7 @@ namespace Assets.Scripts.Trader.Travel.Services
             CoreData coreData = _gs.ch.Get<CoreData>();
             CaravanPosition pos = _caravanService.GetPosition(coreData);
 
-            if (pos.GetCurrentCity() != null)
+            if (pos.GetCurrentCity() != null && pos.TargetCity == pos.PositionCity)
             {
                 TraderCityRoadsScreenArgs args = new TraderCityRoadsScreenArgs() { CityId = pos.GetCurrentCity().IdKey };
 
@@ -138,8 +139,11 @@ namespace Assets.Scripts.Trader.Travel.Services
 
                     for (int i = 0; i < td.Currencies.Count(); i++)
                     {
-                        await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, CoreCurrencyTypes.Rations, td.Currencies[i], null,
-                            new ClientRewardParams(false, true));
+                        if (td.Currencies[i] != 0)
+                        {
+                            await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], null, 0,
+                                new ClientRewardParams(false, true));
+                        }
                     }
 
                     await _attributeService.AddDebuffDaysPlayed(_gs.ch, 1);
@@ -155,8 +159,12 @@ namespace Assets.Scripts.Trader.Travel.Services
                         rolledDistances.Add(td.Vars[DayVars.DiceCount + 1 + rindex]);
                     }
 
-                    _dispatcher.Dispatch(new ShowTraderDiceRoll() { RolledDistances = rolledDistances, BonusDistance = td.Vars[DayVars.BonusDistance], 
-                        TotalDistance = td.Vars[DayVars.TotalDistance] });
+                    _dispatcher.Dispatch(new ShowTraderDiceRoll()
+                    {
+                        RolledDistances = rolledDistances,
+                        BonusDistance = td.Vars[DayVars.BonusDistance],
+                        TotalDistance = td.Vars[DayVars.TotalDistance]
+                    });
 
                     List<DooberArgs> rewardDoobers = new List<DooberArgs>();
                     List<DooberArgs> expDoobers = new List<DooberArgs>();
@@ -198,7 +206,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                         expDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, 1));
                     }
 
-                    rewardDoobers = rewardDoobers.OrderBy(x=>Guid.NewGuid()).ToList();    
+                    rewardDoobers = rewardDoobers.OrderBy(x => Guid.NewGuid()).ToList();
 
                     float x = 0;
                     float y = 0;
@@ -231,7 +239,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                     if (td.Vars[DayVars.EndFlags] != coreData.Vars[TraderVars.Flags])
                     {
                         coreData.Vars[TraderVars.Flags] = td.Vars[DayVars.EndFlags];
-                        await _caravanService.CalcCoreTravelStats(_gs.ch);
+                        await _calcAttributeService.CalcBuffs(_gs.ch);
                     }
                     _dispatcher.Dispatch(new UpdateTraderHUD());
                     bool isWater = _travelService.IsWater(x, y);
@@ -309,7 +317,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                 {
                     DooberArgs dooberArgs = doobers.Last();
                     doobers.Remove(dooberArgs);
-                    _dynamicUIService.ShowDoober(dooberArgs);  
+                    _dynamicUIService.ShowDoober(dooberArgs);
                 }
             }
         }

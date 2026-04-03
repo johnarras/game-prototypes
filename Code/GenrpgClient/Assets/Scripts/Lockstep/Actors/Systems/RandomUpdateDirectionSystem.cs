@@ -1,12 +1,7 @@
 ﻿using Assets.Scripts.Lockstep.Actors.Components;
 using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Math;
 using Assets.Scripts.Lockstep.Systems.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 
 namespace Assets.Scripts.Lockstep.Systems

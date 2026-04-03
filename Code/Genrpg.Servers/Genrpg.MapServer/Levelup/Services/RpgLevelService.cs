@@ -68,7 +68,7 @@ namespace Genrpg.MapServer.Levelup.Services
             if (endLevel > startLevel)
             {
                 long oldExp = currencies.Data[CharCurrencyTypes.Exp];
-                await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, currExp - oldExp, null, null);
+                await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, currExp - oldExp, null, 0, null);
                 _statService.CalcStats(ch, true);
             }
         }

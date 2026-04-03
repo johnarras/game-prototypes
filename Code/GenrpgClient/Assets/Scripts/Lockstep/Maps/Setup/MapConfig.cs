@@ -1,7 +1,6 @@
 ﻿namespace Assets.Scripts.Lockstep.Maps.Entities
 {
     using global::Assets.Scripts.Lockstep.Maps.Components;
-    using Math;
     using Unity.Mathematics;
 
     public class MapConfig

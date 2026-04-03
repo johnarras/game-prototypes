@@ -1,8 +1,8 @@
 using Assets.Scripts.ClientEvents.DataUpdates;
+using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input;
 using Assets.Scripts.Input.Interfaces;
-using Assets.Scripts.Core;
 using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Input.PlayerData;
 using Genrpg.Shared.Interfaces;

@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
             long effectLevel = (long)(1 + (args.Level * lootType.ScalingPerLevel));
 
-            List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x=>x.RoleScalingTier <= effectLevel).ToList();
+            List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => x.RoleScalingTier <= effectLevel).ToList();
 
             CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _rand);
 

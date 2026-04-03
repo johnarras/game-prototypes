@@ -1,5 +1,4 @@
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.SpellCrafting.Messages;
 using Genrpg.Shared.Utils;
 using System;
 using UnityEngine;
@@ -236,7 +235,7 @@ public class ProgressBar : BaseBehaviour
 
     public void AddValue(long value, string customText = "")
     {
-        SetValue(_targetValue+value, customText);   
+        SetValue(_targetValue + value, customText);
     }
 
     void ProgressUpdate()
@@ -275,7 +274,7 @@ public class ProgressBar : BaseBehaviour
 
                 if (fillSpeed > maxFillSpeed)
                 {
-                    fillSpeed = maxFillSpeed;   
+                    fillSpeed = maxFillSpeed;
                 }
             }
         }

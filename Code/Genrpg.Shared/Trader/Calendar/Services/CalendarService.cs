@@ -19,17 +19,19 @@ namespace Genrpg.Shared.Trader.Calendar.Services
                 totalDays = 0;
             }
 
-            long dayOfMonth = 1 + totalDays % CalendarConstants.DaysPerMonth;
+            long dayOfMonth = totalDays % CalendarConstants.DaysPerMonth;
 
-            long monthOfYear = 1 + totalDays % CalendarConstants.MonthsPerYear;
+            long monthCount = totalDays / CalendarConstants.DaysPerMonth;    
 
-            long year = CalendarConstants.StartYear + totalDays / CalendarConstants.MonthsPerYear;
+            long monthOfYear = monthCount % CalendarConstants.MonthsPerYear;
+
+            long yearStart = monthCount / CalendarConstants.MonthsPerYear + CalendarConstants.StartYear;
 
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append("The " + (dayOfMonth + 1) + NumberUtils.GetOrdinalSuffix(dayOfMonth + 1) + " of " +
-                "M" + (monthOfYear + 1) + " in " + year);
+                "M" + (monthOfYear + 1) + " in " + yearStart);
             return sb.ToString();
 
         }

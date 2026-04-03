@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Trader.Info.Helpers
 {
-    public class AnimalInfoHelper : BaseInfoHelper<CaravanMemberSettings,CaravanMember>
+    public class AnimalInfoHelper : BaseInfoHelper<CaravanMemberSettings, CaravanMember>
     {
         public override long HelperKey => EntityTypes.CaravanMember;
 

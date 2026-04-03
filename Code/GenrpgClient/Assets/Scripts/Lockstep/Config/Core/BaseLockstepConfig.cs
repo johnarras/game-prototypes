@@ -8,7 +8,7 @@ using Unity.Collections;
 using Unity.Entities;
 
 namespace Assets.Scripts.Lockstep.Config.Core
-{ 
+{
     public abstract class BaseLockstepConfig
     {
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Lockstep.Config.Core
 
         public BaseLockstepConfig(int ticksPerSecond)
         {
-            FixedDeltaTime = FixedPoint64.FromInt(1)/FixedPoint64.FromInt(ticksPerSecond);
+            FixedDeltaTime = FixedPoint64.FromInt(1) / FixedPoint64.FromInt(ticksPerSecond);
             SetupSimulationPipeline();
         }
 

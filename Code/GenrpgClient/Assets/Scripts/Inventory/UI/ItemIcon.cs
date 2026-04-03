@@ -1,8 +1,5 @@
-
-using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Inventory.Constants;
 using Genrpg.Shared.Inventory.PlayerData;
 using Genrpg.Shared.Inventory.Services;

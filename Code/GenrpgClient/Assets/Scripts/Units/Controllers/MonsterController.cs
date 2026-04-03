@@ -1,14 +1,13 @@
-using System;
-using UnityEngine;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Units.Entities;
-using System.Threading;
 using Genrpg.Shared.AI.Settings;
-using System.Linq;
+using Genrpg.Shared.Constants;
 using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.MapServer.Services;
-using Assets.Scripts.Core;
+using Genrpg.Shared.Units.Constants;
+using Genrpg.Shared.Units.Entities;
+using System;
+using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 public class MonsterController : UnitController
 {
@@ -22,7 +21,7 @@ public class MonsterController : UnitController
         _objectManager.RemoveObject(_unit.Id);
     }
 
-    
+
     public Unit GetNearbyTarget(IClientGameState gs)
     {
         return null;
@@ -64,8 +63,8 @@ public class MonsterController : UnitController
                 float height = _terrainManager.SampleHeight(_unit.X, _unit.Z);
                 if (height > 0)
                 {
-                   entity.transform.position = new Vector3(_unit.X, height, _unit.Z);
-                   entity.transform.eulerAngles = new Vector3(0, _unit.Rot, 0);
+                    entity.transform.position = new Vector3(_unit.X, height, _unit.Z);
+                    entity.transform.eulerAngles = new Vector3(0, _unit.Rot, 0);
                     TiltObject();
                     UpdateUnitFrame();
                     _didDeadUpdate = true;
@@ -74,7 +73,7 @@ public class MonsterController : UnitController
 
             return;
         }
-        
+
         if (++updateTimes == 10)
         {
             TiltObject();
@@ -157,13 +156,13 @@ public class MonsterController : UnitController
                 {
                     _unit.Waypoints.Waypoints.RemoveAt(0);
 
-                     nextX = _unit.GetNextXPos();
-                     nextZ = _unit.GetNextZPos();
+                    nextX = _unit.GetNextXPos();
+                    nextZ = _unit.GetNextZPos();
 
-                     dx = nextX - _unit.X;
-                     dz = nextZ - _unit.Z;
-                     dxsize = Math.Abs(dx);
-                     dzsize = Math.Abs(dz);
+                    dx = nextX - _unit.X;
+                    dz = nextZ - _unit.Z;
+                    dxsize = Math.Abs(dx);
+                    dzsize = Math.Abs(dz);
                 }
                 else
                 {
@@ -214,10 +213,10 @@ public class MonsterController : UnitController
         base.Init();
         SetState(IdleState);
 
-        float rotDiff =entity.transform.localEulerAngles.y -entity.transform.eulerAngles.y;
+        float rotDiff = entity.transform.localEulerAngles.y - entity.transform.eulerAngles.y;
         GameObject renderObject = (GameObject)_clientEntityService.FindChild(entity, AnimUtils.RenderObjectName);
         if (renderObject != null)
-        {   
+        {
             renderObject.transform.localEulerAngles = new Vector3(0, rotDiff, 0);
         }
 
@@ -248,7 +247,7 @@ public class MonsterController : UnitController
     protected virtual void TiltObject()
     {
         if (!TerrainTilt || entity == null)
-        { 
+        {
             return;
         }
 
@@ -259,10 +258,10 @@ public class MonsterController : UnitController
             return;
         }
 
-        currTiltHeight = _terrainManager.SampleHeight(entity.transform.position.x,entity.transform.position.z);
+        currTiltHeight = _terrainManager.SampleHeight(entity.transform.position.x, entity.transform.position.z);
 
         // Don't tilt things underground.
-        if (currTiltPos.y < currTiltHeight-2)
+        if (currTiltPos.y < currTiltHeight - 2)
         {
             return;
         }

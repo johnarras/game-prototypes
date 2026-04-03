@@ -1767,3 +1767,53 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: dungeonsunholymaterialgendata
     IsLocal: 0
+  - BundleName: atlascaravanmembericons
+    IsLocal: 0
+  - BundleName: atlascharcurrencytypeicons
+    IsLocal: 0
+  - BundleName: atlasgameplaybufficons
+    IsLocal: 0
+  - BundleName: atlasgameplaydebufficons
+    IsLocal: 0
+  - BundleName: atlasgameplaystaticons
+    IsLocal: 0
+  - BundleName: atlasskintypeicons
+    IsLocal: 0
+  - BundleName: skinsasianelephant
+    IsLocal: 0
+  - BundleName: skinsbactriancamel
+    IsLocal: 0
+  - BundleName: skinsdonkey
+    IsLocal: 0
+  - BundleName: skinsdrafthorse
+    IsLocal: 0
+  - BundleName: skinsdromedarycamel
+    IsLocal: 0
+  - BundleName: skinsheavywarhorse
+    IsLocal: 0
+  - BundleName: skinsmule
+    IsLocal: 0
+  - BundleName: skinsox
+    IsLocal: 0
+  - BundleName: skinspony
+    IsLocal: 0
+  - BundleName: skinsreindeer
+    IsLocal: 0
+  - BundleName: skinsridinghorse
+    IsLocal: 0
+  - BundleName: skinstamedonager
+    IsLocal: 0
+  - BundleName: skinswaterbuffalo
+    IsLocal: 0
+  - BundleName: skinsyak
+    IsLocal: 0
+  - BundleName: skinszebu
+    IsLocal: 0
+  - BundleName: texturelistsbuildingbg
+    IsLocal: 0
+  - BundleName: texturelistsoutdoorsbg
+    IsLocal: 0
+  - BundleName: uitraderestate
+    IsLocal: 0
+  - BundleName: uitradershipments
+    IsLocal: 0

@@ -7,7 +7,7 @@ namespace Assets.Scripts.Crawler.UI.ActionUI
 
         public GGridLayoutGroup Group;
 
-        public void SetData (bool useSmallerButtons)
+        public void SetData(bool useSmallerButtons)
         {
             if (useSmallerButtons)
             {

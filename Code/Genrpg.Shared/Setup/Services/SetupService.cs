@@ -33,11 +33,12 @@ namespace Genrpg.Shared.Setup.Services
 
         public virtual async Task SetupGame(IGameState gs, List<object> existingObjects, CancellationToken token)
         {
+            IReflectionService reflectionService = gs.loc.Get<IReflectionService>();
             List<string> completedAssemblyNames = new List<string>();
-            SetupAssemblyServices(GetType().Assembly, gs.loc, completedAssemblyNames, token);
+            SetupAssemblyServices(GetType().Assembly, gs.loc, reflectionService, completedAssemblyNames, token);
             gs.loc.ResolveSelf();
             gs.loc.Resolve(this);
-            await ReflectionUtils.InitializeServiceList(gs.loc, gs.loc.GetVals<IInjectable>(), token);
+            await reflectionService.InitializeServiceList(gs.loc, gs.loc.GetVals<IInjectable>(), token);
 
             foreach (object obj in existingObjects)
             {
@@ -48,7 +49,7 @@ namespace Genrpg.Shared.Setup.Services
 
         }
 
-        private void SetupAssemblyServices(Assembly assembly, IServiceLocator loc, List<string> completedAssemblyNames, CancellationToken token)
+        private void SetupAssemblyServices(Assembly assembly, IServiceLocator loc,IReflectionService reflectionService, List<string> completedAssemblyNames, CancellationToken token)
         {
             if (completedAssemblyNames.Contains(assembly.GetName().Name))
             {
@@ -57,7 +58,7 @@ namespace Genrpg.Shared.Setup.Services
 
             AssemblyName[] dependencyAssemblyNames = assembly.GetReferencedAssemblies();
 
-            Assembly[] allAssemblies = ReflectionUtils.GetAllAssemblies();
+            Assembly[] allAssemblies = reflectionService.GetAllAssemblies();
 
             List<AssemblyName> validDependencies = new List<AssemblyName>();
             foreach (AssemblyName dependencyAssemblyName in dependencyAssemblyNames)
@@ -78,16 +79,16 @@ namespace Genrpg.Shared.Setup.Services
 
                 if (dependency != null)
                 {
-                    SetupAssemblyServices(dependency, loc, completedAssemblyNames, token);
+                    SetupAssemblyServices(dependency, loc, reflectionService, completedAssemblyNames, token);
                 }
             }
-            InjectAssemblyServices(assembly, loc, completedAssemblyNames, token);
+            InjectAssemblyServices(assembly, loc, reflectionService, completedAssemblyNames, token);
             completedAssemblyNames.Add(assembly.GetName().Name);
         }
 
-        private void InjectAssemblyServices(Assembly assembly, IServiceLocator loc, List<string> completedAssemblyNames, CancellationToken token)
+        private void InjectAssemblyServices(Assembly assembly, IServiceLocator loc, IReflectionService reflectionService, List<string> completedAssemblyNames, CancellationToken token)
         {
-            List<Type> injectableTypes = ReflectionUtils.GetTypesImplementing(assembly, typeof(IInjectable));
+            List<Type> injectableTypes = reflectionService.GetTypesImplementing(assembly, typeof(IInjectable));
 
             foreach (Type type in injectableTypes)
             {

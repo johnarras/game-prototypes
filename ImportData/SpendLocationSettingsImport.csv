@@ -4,9 +4,9 @@ header spendtype,Index,Name,Desc,SpendCoreCurrencyTypeId,SpendQuantity,MinLevel,
 header spendreward,EntityTypeId,EntityId,Quantity,,,,
 spendlocationsettings,default,,,,,,
 ,,,,,,,
-spendlocation,1,Animals,Buy Animals Here!,Animals,,,
-spendtype,1,Buy Animal,Buy an animal!,coins,0,1,1
-spendreward,animaltype,-1,1,,,,
+spendlocation,1,Caravan Members,Caravan Members,Animals,,,
+spendtype,1,Buy Caravan Member,Buy Caravan member,coins,0,1,1
+spendreward,caravanmember,-1,1,,,,
 ,,,,,,,
 spendlocation,2,Supplies,Roscoe's Expedition Emporium!,Supplies,,,
 spendtype,1,Supplies,Stock Up On Supplies,coins,10,1,0
@@ -72,3 +72,9 @@ spendtype,6,Sickly,Eat more to feel better.,rations,100,1,0
 spendreward,gameplaydebuff,sickly,-1,,,,
 ,,,,,,,
 spendlocation,10,Traveling Vendor,You meet another traveling trader.,TravelingVendor,,,
+,,,,,,,
+spendlocation,11,SpecialActions,One-off weird things.,SpecialActions,,,
+spendtype,1,City Update,Move a member in the city,supplies,5,1,0
+spendreward,updatecaravanmembers,0,1,,,,
+spendtype,1,Trail Update,Move a member outside of the city,supplies,100,1,0
+spendreward,updatecaravanmembers,0,1,,,,

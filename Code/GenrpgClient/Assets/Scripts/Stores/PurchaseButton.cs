@@ -22,7 +22,7 @@ namespace Assets.Scripts.Stores
             await Task.CompletedTask;
         }
 
-        private async Task ClickPurchaseButton(CancellationToken token)
+        private async Awaitable ClickPurchaseButton(CancellationToken token)
         {
 
             await _purchasingService.PurchaseBundle(_offer, _bundle, token);

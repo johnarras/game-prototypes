@@ -1,10 +1,10 @@
 
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;
 using Genrpg.Shared.Crawler.Maps.Services;
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
             CrawlerMapRoot mapRoot = _clientEntityService.GetOrAddComponent<CrawlerMapRoot>(go);
             mapRoot.AssetRoot = new GameObject() { name = "AssetRoot" };
             _clientEntityService.AddToParent(mapRoot.AssetRoot, go);
-     
+
             mapRoot.SetupFromMap(map);
             mapRoot.DrawX = party.CurrPos.X * mapRoot.XZBlockSize;
             mapRoot.DrawZ = party.CurrPos.Z * mapRoot.XZBlockSize;

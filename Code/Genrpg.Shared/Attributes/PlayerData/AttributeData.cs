@@ -75,23 +75,19 @@ namespace Genrpg.Shared.Attributes.PlayerData
             }
         }
 
-        public void AddBuff(long entityTypeId, long entityId, long quantity)
+
+        public void ResetBase()
         {
-            if (entityTypeId == EntityTypes.GameplayStatBuff)
+
+            foreach (EAttributeCategories category in Enum.GetValues(typeof(EAttributeCategories)))
             {
-                Stats[entityId].Buff += (int)quantity;
-            }
-            else if (entityTypeId == EntityTypes.CurrencyRegenBuff)
-            {
-                CurrencyRegen[entityId].Buff += (int)quantity;
-            }
-            else if (entityTypeId == EntityTypes.CurrencyStorageBuff)
-            {
-                CurrencyStorage[entityId].Buff += (int)quantity;
-            }
-            else if (entityTypeId == EntityTypes.TravelDayCurrencyBuff)
-            {
-                TravelDayCurrencies[entityId].Buff += (int)quantity;
+
+                AttributeCollection collection = GetAttributeCollection(category);
+
+                for (int i = 0; i < collection.Count(); i++)
+                {
+                    collection[i].Base = 0;
+                }
             }
         }
 
@@ -172,7 +168,7 @@ namespace Genrpg.Shared.Attributes.PlayerData
         {
             if (index == EAttributeValIndex.Base)
             {
-                Base = (int)quantity;
+                Base += (int)quantity;
             }
             else if (index == EAttributeValIndex.Bonus)
             {

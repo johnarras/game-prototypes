@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Travel.ClientEvents;
-using Assets.Scripts.FloatingText.ClientEvents;
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
 using Genrpg.Shared.Trader.Travel.WebApi;
 using Genrpg.Shared.UI.Constants;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
 {
     public class HeadToTargetResponseHandler : BaseClientWebResponseHandler<HeadToTargetResponse>
     {
-        private ICaravanService _caravanService = null;
+        private ICalcAttributeService _calcAttributeService = null;
         protected override async Awaitable InnerProcess(HeadToTargetResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))
@@ -41,11 +41,11 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             if (oldFlags != response.NewTraderFlags)
             {
                 coreData.Vars[TraderVars.Flags] = response.NewTraderFlags;
-                await _caravanService.CalcCoreTravelStats(_gs.ch);
+                await _calcAttributeService.CalcBuffs(_gs.ch);
             }
 
             _dispatcher.Dispatch(new CloseScreen(ScreenNames.TraderCityRoads));
-            _dispatcher.Dispatch(new UpdateTraderHUD() {  FullRefresh = true });
+            _dispatcher.Dispatch(new UpdateTraderHUD() { FullRefresh = true });
             _dispatcher.Dispatch(new UpdateTraderMapAngle());
             await Task.CompletedTask;
         }

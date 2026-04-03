@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using Genrpg.Shared.Utils;
 using Genrpg.Shared.ProcGen.Entities;
-using System.Threading;
+using Genrpg.Shared.Utils;
 using Genrpg.Shared.Utils.Data;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 // Use greedy algo (Kruskal's?) to connect the centers.
@@ -26,9 +25,9 @@ public class ConnectZoneCenters : BaseZoneGenerator
         int edgeSize = MapConstants.TerrainPatchSize;
         int centerId = 0;
         foreach (MyPoint center in _md.zoneCenters)
-        { 
-            if (center.X < edgeSize || center.X > _mapProvider.GetMap().GetHwid() -edgeSize ||
-                center.Y < edgeSize || center.Y > _mapProvider.GetMap().GetHhgt() -edgeSize)
+        {
+            if (center.X < edgeSize || center.X > _mapProvider.GetMap().GetHwid() - edgeSize ||
+                center.Y < edgeSize || center.Y > _mapProvider.GetMap().GetHhgt() - edgeSize)
             {
                 continue;
             }
@@ -67,7 +66,7 @@ public class ConnectZoneCenters : BaseZoneGenerator
         }
 
         _md.zoneConnections = roadsToMake;
-        
+
     }
 }
 

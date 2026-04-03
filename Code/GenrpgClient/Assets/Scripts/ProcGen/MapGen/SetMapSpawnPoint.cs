@@ -1,8 +1,8 @@
 
 
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Locations;
 using Genrpg.Shared.Zones.WorldData;
+using System.Threading;
 using UnityEngine;
 
 public class SetMapSpawnPoint : BaseZoneGenerator
@@ -24,7 +24,7 @@ public class SetMapSpawnPoint : BaseZoneGenerator
                 {
                     continue;
                 }
-                
+
 
                 long currDist = loc.CenterX * loc.CenterX + loc.CenterZ * loc.CenterZ;
                 if (currDist < minDist)

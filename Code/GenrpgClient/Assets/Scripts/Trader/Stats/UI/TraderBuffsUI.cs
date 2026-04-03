@@ -67,7 +67,7 @@ namespace Assets.Scripts.Trader.Stats.UI
                         GameplayBuffIcon newIcon = _clientEntityService.FullInstantiate(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
                         newIcon.SetData(buff, attributeData.Buffs[buff.IdKey]);
-                        _icons.Add(newIcon);    
+                        _icons.Add(newIcon);
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace Assets.Scripts.Trader.Stats.UI
                 _clientEntityService.Destroy(icon);
             }
 
-            _icons = _icons.Except(removeIcons).OrderBy(x=>x.GetBuffStatus().EndTime).ToList(); 
+            _icons = _icons.Except(removeIcons).OrderBy(x => x.GetBuffStatus().EndTime).ToList();
         }
 
 
@@ -89,7 +89,7 @@ namespace Assets.Scripts.Trader.Stats.UI
                 return;
             }
             _currentUnixEpochSeconds = newUnixEpochSeconds;
-            if (_icons.Any(x=>x.IsExpired()))
+            if (_icons.Any(x => x.IsExpired()))
             {
                 ShowBuffs();
             }

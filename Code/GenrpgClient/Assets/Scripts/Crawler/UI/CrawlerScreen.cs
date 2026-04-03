@@ -1,7 +1,6 @@
 
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;

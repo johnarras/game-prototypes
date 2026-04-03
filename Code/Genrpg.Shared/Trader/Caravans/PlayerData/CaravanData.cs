@@ -29,13 +29,13 @@ namespace Genrpg.Shared.Trader.Caravans.PlayerData
     public class CurrentCaravanMember
     {
         [Key(0)] public long CaravanMemberId { get; set; }
-        [Key(1)] public long SkinTypeId { get; set; }
     }
 
     [MessagePackObject]
     public class CaravanTradeGood
     {
         [Key(0)] public long TradeGoodId { get; set; }
+        [Key(1)] public long UniqueId { get; set; }
     }
 
 

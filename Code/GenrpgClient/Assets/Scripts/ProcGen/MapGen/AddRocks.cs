@@ -1,38 +1,35 @@
-using System;
-using System.Collections.Generic;
-
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Entities;
+using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.ProcGen.Entities;
-
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.Rocks;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.Client.Assets.Constants;
 
 internal class FullRockType
 {
-	public RockType rockType;
-	public ZoneRockType zoneTypeRock;
-	public ZoneRockType zoneRock;
-	public int numPlaced;
+    public RockType rockType;
+    public ZoneRockType zoneTypeRock;
+    public ZoneRockType zoneRock;
+    public int numPlaced;
 
-	public float weight;
+    public float weight;
 
 
-	public List<MyPoint> PlacedRocks;
+    public List<MyPoint> PlacedRocks;
 
     public string assetCategory = AssetCategoryNames.Rocks;
 
-	public string assetName = "";
-	public string fullURL = "";
-	public FullRockType()
-	{
-		PlacedRocks = new List<MyPoint>();
-	}
+    public string assetName = "";
+    public string fullURL = "";
+    public FullRockType()
+    {
+        PlacedRocks = new List<MyPoint>();
+    }
 }
 
 public class AddRocks : BaseZoneGenerator
@@ -137,15 +134,15 @@ public class AddRocks : BaseZoneGenerator
             int x = RandUtils.IntRange(startx, endx, rand);
             int y = RandUtils.IntRange(starty, endy, rand);
 
-            
+
 
             if (_zoneGenService.FindMapLocation(x, y, 10) != null)
             {
                 continue;
             }
 
-            
-            if (_md.mapZoneIds[x,y] != zone.IdKey) // zoneobject
+
+            if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
             {
                 continue;
             }
@@ -233,7 +230,7 @@ public class AddRocks : BaseZoneGenerator
                 int rdy = pz - y;
 
                 float rdist = (float)Math.Sqrt(rdx * rdx + rdy * rdy);
-              
+
 
                 int ipx = (int)(px);
                 int ipy = (int)(pz);
@@ -255,10 +252,10 @@ public class AddRocks : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.mapObjects != null && 
+                if (_md.mapObjects != null &&
                     _md.mapObjects[ipx, ipy] == 0)
                 {
-                    int offset =  MapConstants.RockObjectOffset;
+                    int offset = MapConstants.RockObjectOffset;
 
                     _md.mapObjects[ipx, ipy] = (int)(offset + frt.rockType.IdKey);
 
@@ -287,7 +284,7 @@ public class AddRocks : BaseZoneGenerator
                 if (frt.rockType.MaxPerZone > 0 && frt.numPlaced >= frt.rockType.MaxPerZone)
                 {
                     list.Remove(frt);
-                }                
+                }
             }
 
             if (didFinalPlace)

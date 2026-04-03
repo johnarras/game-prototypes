@@ -1,11 +1,10 @@
 
 using Genrpg.Shared.ProcGen.Entities;
-
-using System.Threading;
-using System;
 using Genrpg.Shared.Zones.WorldData;
-using UnityEngine;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class SetupNearbyZones : BaseAddMountains
 {
@@ -13,7 +12,7 @@ public class SetupNearbyZones : BaseAddMountains
     protected IMapGenService _mapGenService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
-        
+
 
         foreach (ConnectedPairData conn in _md.zoneConnections)
         {
@@ -27,7 +26,7 @@ public class SetupNearbyZones : BaseAddMountains
             int ex = (int)conn.Point2.X;
             int ez = (int)conn.Point2.Z;
 
-            if (sx < 0 || sz < 0 || ex < 0 || ez < 0 || 
+            if (sx < 0 || sz < 0 || ex < 0 || ez < 0 ||
                 sx >= _mapProvider.GetMap().GetHwid() || sz >= _mapProvider.GetMap().GetHhgt() ||
                 ex >= _mapProvider.GetMap().GetHwid() || ez >= _mapProvider.GetMap().GetHhgt())
             {
@@ -57,7 +56,7 @@ public class SetupNearbyZones : BaseAddMountains
                     genZone1.AddNearbyZone(zone2, dist);
                     genZone2.AddNearbyZone(zone1, dist);
                 }
-                
+
             }
 
         }

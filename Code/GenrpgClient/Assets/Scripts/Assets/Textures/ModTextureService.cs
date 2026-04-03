@@ -1,10 +1,10 @@
-using System;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils.Data;
+using System;
 using UnityEngine;
 
 
-public interface IModTextureService: IInjectable
+public interface IModTextureService : IInjectable
 {
     void SetupTexture(Texture tex);
     Color ConvertMyColorToColor(MyColorF mc);
@@ -68,7 +68,7 @@ public class ModTextureService : IModTextureService
     }
 
 
-    public float MoveCurrFloatToTarget (float curr, float target, float step)
+    public float MoveCurrFloatToTarget(float curr, float target, float step)
     {
         if (step < 0)
         {

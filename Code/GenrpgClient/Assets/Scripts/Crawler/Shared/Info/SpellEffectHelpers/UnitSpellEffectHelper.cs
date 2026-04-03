@@ -1,8 +1,6 @@
 using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Units.Settings;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
@@ -19,7 +17,7 @@ namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
 
             if (unitType != null)
             {
-                sb.Append($"Summons {_infoService.CreateInfoLink(unitType)} {GetRoleScalingText(spell,effect)} (Permanently if out of combat, and for the duration of combat if in combat. Scales better as you level up.");
+                sb.Append($"Summons {_infoService.CreateInfoLink(unitType)} {GetRoleScalingText(spell, effect)} (Permanently if out of combat, and for the duration of combat if in combat. Scales better as you level up.");
             }
 
 

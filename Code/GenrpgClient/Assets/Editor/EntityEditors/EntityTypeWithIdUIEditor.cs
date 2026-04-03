@@ -1,6 +1,3 @@
-
-using Assets.Scripts.Core;
-using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Entities.Interfaces;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Entities.Settings;
@@ -61,7 +58,7 @@ public class EntityTypeWithIdUIEditor : Editor
             }
         }
         selectedTypeIndex = EditorGUILayout.Popup("Select EntityType: ", selectedTypeIndex, entityTypeNames);
-      
+
         if (selectedTypeIndex >= 0 && selectedTypeIndex < entityTypes.Count)
         {
             entityui.EntityTypeId = (int)(entityTypes[selectedTypeIndex].IdKey);
@@ -75,9 +72,9 @@ public class EntityTypeWithIdUIEditor : Editor
 
 
         entities = EditorGameDataUtils.GetEntityListForEntityTypeId(entityui.EntityTypeId);
-        string[] entityNames = entities.ConvertAll(x => x.Name + " (" + x.IdKey+ ")").ToArray();
+        string[] entityNames = entities.ConvertAll(x => x.Name + " (" + x.IdKey + ")").ToArray();
 
-        EntityType currEntityType = entityTypes.FirstOrDefault(x=>x.IdKey == entityui.EntityTypeId);
+        EntityType currEntityType = entityTypes.FirstOrDefault(x => x.IdKey == entityui.EntityTypeId);
 
         for (int i = 0; i < entities.Count; i++)
         {

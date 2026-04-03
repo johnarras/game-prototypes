@@ -2,14 +2,14 @@
   "Children": [
     {
       "IdKey": 1,
-      "Name": "Animals",
-      "Desc": "Buy Animals Here!",
+      "Name": "Caravan Members",
+      "Desc": "Caravan Members",
       "Icon": "Animals",
       "SpendTypes": [
         {
           "Index": 1,
-          "Name": "Buy Animal",
-          "Desc": "Buy an animal!",
+          "Name": "Buy Caravan Member",
+          "Desc": "Buy Caravan member",
           "SpendCoreCurrencyTypeId": 1,
           "MinLevel": 1,
           "MaxTimes": 1,
@@ -440,6 +440,42 @@
       "Desc": "You meet another traveling trader.",
       "Icon": "TravelingVendor",
       "SpendTypes": []
+    },
+    {
+      "IdKey": 11,
+      "Name": "SpecialActions",
+      "Desc": "One-off weird things.",
+      "Icon": "SpecialActions",
+      "SpendTypes": [
+        {
+          "Index": 1,
+          "Name": "City Move",
+          "Desc": "Move a member in the city",
+          "SpendCoreCurrencyTypeId": 3,
+          "SpendQuantity": 5,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 66,
+              "Quantity": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Name": "Trail Move",
+          "Desc": "Move a member outside of the city",
+          "SpendCoreCurrencyTypeId": 3,
+          "SpendQuantity": 100,
+          "MinLevel": 1,
+          "Rewards": [
+            {
+              "EntityTypeId": 66,
+              "Quantity": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "Parent": {
@@ -447,5 +483,5 @@
     "Name": "SpendLocationSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-24T11:10:48.067Z"
+  "SaveTime": "2026-03-27T19:01:05Z"
 }

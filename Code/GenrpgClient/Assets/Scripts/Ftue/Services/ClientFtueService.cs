@@ -2,7 +2,6 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Genrpg.Shared.Characters.PlayerData;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Ftue.Constants;
 using Genrpg.Shared.Ftue.Services;
 using Genrpg.Shared.Ftue.Settings.Steps;

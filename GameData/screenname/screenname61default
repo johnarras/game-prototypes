@@ -2,7 +2,7 @@
   "Id": "screenname61default",
   "ParentId": "default",
   "IdKey": 61,
-  "Name": "TravelingVendor",
+  "Name": "Manifest",
   "ScreenLayerId": 20,
-  "Subdirectory": "TraderSpend"
+  "Subdirectory": "TraderShipments"
 }

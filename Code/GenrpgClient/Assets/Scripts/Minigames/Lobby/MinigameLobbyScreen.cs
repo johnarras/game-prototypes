@@ -1,8 +1,6 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
+﻿using Assets.Scripts.ClientEvents.UI;
 using Genrpg.Shared.Minigames.Games.Settings;
 using Genrpg.Shared.UI.Constants;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -17,7 +15,7 @@ namespace Assets.Scripts.Minigames.Lobby
         public GameObject IconParent;
 
         public MinigameLobbyIcon IconPrefab;
-      
+
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
 
@@ -35,7 +33,7 @@ namespace Assets.Scripts.Minigames.Lobby
 
             List<MinigameType> minigames = _gameData.Get<MinigameTypeSettings>(_gs.ch).GetData().ToList();
 
-            minigames = minigames.OrderBy(x=>x.MinLevel).ToList();  
+            minigames = minigames.OrderBy(x => x.MinLevel).ToList();
 
 
             foreach (MinigameType mtype in minigames)

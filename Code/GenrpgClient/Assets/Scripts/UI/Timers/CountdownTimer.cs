@@ -1,8 +1,5 @@
-﻿using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+﻿using Genrpg.Shared.Utils;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Assets.Scripts.UI.Timers
 {
@@ -12,7 +9,7 @@ namespace Assets.Scripts.UI.Timers
 
         public override void Init()
         {
-            _timerService.AddCountdownTimer(this);  
+            _timerService.AddCountdownTimer(this);
         }
 
         public GText TimerText;

@@ -1,11 +1,9 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
-using Genrpg.Shared.Chests.Settings;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
 using Genrpg.Shared.Crawler.Crawlers.Services;
 using Genrpg.Shared.Crawler.Loot.Services;
 using Genrpg.Shared.Crawler.MapGen.Helpers;
@@ -35,7 +33,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Purchasing;
 
 namespace Genrpg.Shared.Crawler.Quests.Services
 {
@@ -71,7 +68,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
         Awaitable<bool> QuestIsActive(PartyData party, long questId);
         Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId);
         bool CanGetQuestCredit(PartyData party, long level);
-       
+
     }
 
     public class CrawlerQuestService : ICrawlerQuestService
@@ -539,7 +536,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             }
             else
             {
-                result.CurrentUnits = result.CurrentUnits.OrderBy(x=>Guid.NewGuid()).ThenBy(x=>x.MinRange).ToList(); 
+                result.CurrentUnits = result.CurrentUnits.OrderBy(x => Guid.NewGuid()).ThenBy(x => x.MinRange).ToList();
                 party.FailedKillQuestTimes = 0;
             }
             return result;

@@ -4,5 +4,6 @@
   "IdKey": 9,
   "Name": "Cloth",
   "Icon": "Cloth",
-  "Art": "Cloth"
+  "Art": "Cloth",
+  "StatTypeId": 12
 }

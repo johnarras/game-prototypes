@@ -49,7 +49,7 @@ namespace Genrpg.Editor
 
             string[] envWords = { "Env" };
 
-            List<KeyValue> envNames = ReflectionUtils.GetStringConstants(typeof(EnvNames));
+            List<KeyValue> envNames = ConstantUtils.GetStringConstants(typeof(EnvNames));
 
             envNames = envNames.Where(x => x.Key.ToLower() != EnvNames.Local.ToLower()).ToList();
 

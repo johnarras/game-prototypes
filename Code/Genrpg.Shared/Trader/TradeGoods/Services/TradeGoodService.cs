@@ -1,8 +1,12 @@
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
+using Genrpg.Shared.Rewards.Entities;
+using Genrpg.Shared.Rewards.Services;
 using Genrpg.Shared.Trader.Caravans.Entities;
 using Genrpg.Shared.Trader.Caravans.PlayerData;
 using Genrpg.Shared.Trader.Caravans.Services;
@@ -20,9 +24,8 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 {
     public interface ITradeGoodService : IInjectable
     {
-        Task<RemoveTradeGoodFromCaravanResult> SellTradeGood(IUnitDataLookup lookup, long tradeGoodId);
-        Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId);
-        Task<RemoveTradeGoodFromCaravanResult> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId);
+        Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0);
+        Task<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId);
 
         Task<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long y);
     }
@@ -33,9 +36,11 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
         private IGameData _gameData = null;
         private ICaravanService _caravanService = null;
         private ITraderMapService _mapService = null;
+        private ICalcAttributeService _calcAttributeService = null;
 
+        private IRewardService _rewardService = null;
 
-        public async Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId)
+        public async Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             AddTradeGoodToCaravanResponse result = new AddTradeGoodToCaravanResponse()
@@ -44,26 +49,44 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
                 Travel = _caravanService.GetTravelInfo(coreData),
             };
 
-            CaravanData caravanData = await lookup.GetAsync<CaravanData>();
-            caravanData.TradeGoods.Add(new CaravanTradeGood() { TradeGoodId = tradeGoodId });
 
-            await _caravanService.CalcCoreTravelStats(lookup);
+            CaravanData caravanData = await lookup.GetAsync<CaravanData>();
+
+
+
+            long newUniqueId = forcedUniqueId;
+
+            if (newUniqueId == 0)
+            {
+                newUniqueId = ++coreData.UniqueId;
+            }
+
+            if (coreData.UniqueId <= newUniqueId)
+            {
+                coreData.UniqueId = newUniqueId; 
+            }
+
+            caravanData.TradeGoods.Add(new CaravanTradeGood() { TradeGoodId = tradeGoodId, UniqueId = newUniqueId });
+
+            await _calcAttributeService.CalcBuffs(lookup);
 
             result.TradeGoodId = tradeGoodId;
             result.Travel = _caravanService.GetTravelInfo(coreData);
-
+            result.UniqueId = newUniqueId;
             result.Success = true;
 
             return result;
         }
 
-        public async Task<RemoveTradeGoodFromCaravanResult> SellTradeGood(IUnitDataLookup lookup, long tradeGoodId)
+        public async Task<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
-            RemoveTradeGoodFromCaravanResult result = new RemoveTradeGoodFromCaravanResult()
+            RemoveTradeGoodFromCaravanResponse response = new RemoveTradeGoodFromCaravanResponse()
             {
                 Success = false,
                 Travel = _caravanService.GetTravelInfo(coreData),
+                UniqueId = uniqueId,
+                SellValue = sellValue,
             };
 
 
@@ -71,63 +94,49 @@ namespace Genrpg.Shared.Trader.TradeGoods.Services
 
             if (position.GetCurrentCity() == null)
             {
-                result.ErrorMessage = "You can only sell trade goods in cities.";
-                return result;
+                response.ErrorMessage = "You can only sell trade goods in cities.";
+                return response;
             }
 
             CaravanData caravanData = await lookup.GetAsync<CaravanData>();
-            CaravanTradeGood tradeGood = caravanData.TradeGoods.FirstOrDefault(x => x.TradeGoodId == tradeGoodId);
+            CaravanTradeGood tradeGood = caravanData.TradeGoods.FirstOrDefault(x => x.TradeGoodId == tradeGoodId && x.UniqueId == uniqueId);
 
             if (tradeGood == null)
             {
-                result.ErrorMessage = "You don't have that item.";
-                return result;
+                response.ErrorMessage = "You don't have that item.";
+                return response;
             }
 
             TradeEconomySettings econSettings = _gameData.Get<TradeEconomySettings>(coreData);
 
             TravelSettings travelSettings = _gameData.Get<TravelSettings>(coreData);
 
-            long sellValue = await GetSellValueAtPosition(lookup, tradeGoodId, position.CurrX, position.CurrY);
+            long serverSellValue = await GetSellValueAtPosition(lookup, tradeGoodId, position.CurrX, position.CurrY);
 
-            coreData.Currencies.Add(CoreCurrencyTypes.Coins, sellValue);
-
-            result = await RemoveTradeGoodFromCaravan(lookup, tradeGoodId);
-
-            result.SellValue = sellValue;
-            return result;
-
-        }
-
-
-        public async Task<RemoveTradeGoodFromCaravanResult> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId)
-        {
-
-            CoreData coreData = await lookup.GetAsync<CoreData>();
-            RemoveTradeGoodFromCaravanResult result = new RemoveTradeGoodFromCaravanResult()
+            if (serverSellValue != sellValue)
             {
-                Success = false,
-                Travel = _caravanService.GetTravelInfo(coreData),
-            };
-            CaravanData caravanData = await lookup.GetAsync<CaravanData>();
-            CaravanTradeGood tradeGood = caravanData.TradeGoods.FirstOrDefault(x => x.TradeGoodId == tradeGoodId);
+                response.ErrorMessage = "Mismatch between client and server sell values.";
+                return response;
+            }
+
+            await _rewardService.GiveReward(lookup, EntityTypes.CoreCurrency, CoreCurrencyTypes.Coins, sellValue, null, response.UniqueId, null);
 
             if (tradeGood == null)
             {
-                result.ErrorMessage = "You don't have that item.";
-                return result;
+                response.ErrorMessage = "You don't have that item.";
+                return response;
             }
 
             caravanData.TradeGoods.Remove(tradeGood);
 
-            await _caravanService.CalcCoreTravelStats(lookup);
+            await _calcAttributeService.CalcBuffs(lookup);
 
-            result.TradeGoodId = tradeGoodId;
-            result.Travel = _caravanService.GetTravelInfo(coreData);
+            response.TradeGoodId = tradeGoodId;
+            response.Travel = _caravanService.GetTravelInfo(coreData);
 
-            result.Success = true;
+            response.Success = true;
 
-            return result;
+            return response;
         }
 
         public async Task<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long y)

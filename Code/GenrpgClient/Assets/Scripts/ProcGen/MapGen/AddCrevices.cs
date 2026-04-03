@@ -1,14 +1,13 @@
 
-using System;
-using System.Collections.Generic;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Utils;
-using System.Threading;
 using Genrpg.Shared.ProcGen.Settings.LineGen;
+using Genrpg.Shared.Utils;
+using Genrpg.Shared.Utils.Data;
 using Genrpg.Shared.Zones.Settings;
 using Genrpg.Shared.Zones.WorldData;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Assets.Scripts.Core;
 
 public class CreviceData
 {
@@ -44,12 +43,12 @@ public class AddCrevices : BaseZoneGenerator
             GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.XMax, zone.ZMin, zone.ZMax);
         }
 
-        
+
         SetCreviceDepths(_gs);
         _md.creviceDepths = null;
     }
 
-    private void SetCreviceDepths (IClientGameState gs)
+    private void SetCreviceDepths(IClientGameState gs)
     {
         if (base._md.heights == null || base._md.creviceDepths == null)
         {
@@ -63,7 +62,7 @@ public class AddCrevices : BaseZoneGenerator
                 float lowerValue = base._md.creviceDepths[x, y] * MapConstants.DefaultCreviceDepth / MapConstants.MapHeight;
 
 
-                float roadDist = base._md.roadDistances[x, y];               
+                float roadDist = base._md.roadDistances[x, y];
                 if (roadDist < RoadEFfectDist)
                 {
                     if (roadDist < RoadZeroDist)
@@ -251,7 +250,7 @@ public class AddCrevices : BaseZoneGenerator
         }
 
         float overallDepthMult = (RandUtils.FloatRange(0.5f, 1.2f, rand) +
-                           RandUtils.FloatRange(0.5f,1.2f, rand)) *0.6f;
+                           RandUtils.FloatRange(0.5f, 1.2f, rand)) * 0.6f;
 
         if (zoneType.CreviceDepthScale > 0)
         {

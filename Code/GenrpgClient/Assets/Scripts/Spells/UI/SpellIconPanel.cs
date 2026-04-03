@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Genrpg.Shared.Spells.PlayerData.Spells;
+using System.Collections.Generic;
 using System.Threading;
+using UnityEngine;
 
 public class SpellIconPanel : BaseBehaviour
 {
@@ -40,7 +40,7 @@ public class SpellIconPanel : BaseBehaviour
             Screen = _screen,
             iconPrefabName = _prefabName,
         };
-        _iconService.InitSpellIcon(idata, _iconParent,_assetService, token);
+        _iconService.InitSpellIcon(idata, _iconParent, _assetService, token);
     }
 
 }

@@ -46,7 +46,7 @@ public class CollapsingScrollViewGroup : BaseBehaviour
 
         _mainScrollRect = GetComponent<ScrollRect>();
 
-        
+
 
         if (_mainScrollRect != null)
         {
@@ -93,8 +93,8 @@ public class CollapsingScrollViewGroup : BaseBehaviour
 
             layoutRect.sizeDelta = new Vector2(layoutRect.rect.width, totalChildSize);
 
-           _mainLayoutGroup.enabled = false;
-           _mainLayoutGroup.enabled = true;
+            _mainLayoutGroup.enabled = false;
+            _mainLayoutGroup.enabled = true;
 
         }
     }

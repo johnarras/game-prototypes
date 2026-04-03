@@ -3,11 +3,9 @@
 
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Core;
 using Assets.Scripts.Login.Messages;
 using Assets.Scripts.Setup.Interfaces;
 using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.Quests.Entities;
 using Genrpg.Shared.GameAuth.WebApi.RefreshToken;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.HelperClasses;
@@ -18,11 +16,9 @@ using Genrpg.Shared.Serialization.Services;
 using Genrpg.Shared.Website.Interfaces;
 using Genrpg.Shared.Website.Messages;
 using Genrpg.Shared.Website.Messages.Error;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;

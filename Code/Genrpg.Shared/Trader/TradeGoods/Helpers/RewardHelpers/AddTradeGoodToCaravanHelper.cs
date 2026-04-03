@@ -26,14 +26,10 @@ namespace Genrpg.Shared.Trader.TradeGoods.Helpers.RewardHelpers
             return caravanData.TradeGoods.Count(x => x.TradeGoodId == entityId);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
-            AddTradeGoodToCaravanResponse result = await _tradeGoodService.AddTradeGoodToCaravan(lookup, entityId);
+            AddTradeGoodToCaravanResponse result = await _tradeGoodService.AddTradeGoodToCaravan(lookup, entityId, uniqueId);
 
-            if (result.Success)
-            {
-                //lookup.AddResponse(result);
-            }
             return result.Success;
         }
     }

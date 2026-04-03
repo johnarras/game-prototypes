@@ -1,8 +1,4 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials
@@ -28,7 +24,7 @@ namespace Assets.Scripts.ProcGen.Materials
                 {
                     BumpHeights[x, y] = startAlpha;
                     Colors[x, y] = startColor;
-                    Brightness[x, y] = startBrightness; 
+                    Brightness[x, y] = startBrightness;
                 }
             }
         }

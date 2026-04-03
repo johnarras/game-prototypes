@@ -1,5 +1,4 @@
 using ClientEvents;
-using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Loot.Messages;
 using Genrpg.Shared.Rewards.Services;
 using System.Threading;

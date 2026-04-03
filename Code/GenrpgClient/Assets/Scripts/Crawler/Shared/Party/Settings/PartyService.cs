@@ -1,13 +1,12 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Combat.Services;
 using Genrpg.Shared.Crawler.Constants;
 using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Currencies.Constants;
 using Genrpg.Shared.Crawler.Maps.Services;
 using Genrpg.Shared.Crawler.Options.Constants;
 using Genrpg.Shared.Crawler.Options.Services;
@@ -19,6 +18,8 @@ using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
 using Genrpg.Shared.Crawler.Training.Services;
 using Genrpg.Shared.Crawler.Upgrades.Constants;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.GameSettings;
 using Genrpg.Shared.Interfaces;
@@ -28,7 +29,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Party.Services
 {
@@ -167,7 +167,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         }
 
         protected void ResetToFirstCity(PartyData party)
-        {            
+        {
             party.CurrentMap = new CurrentMapStatus();
             party.AddFlags(PartyFlags.InGuildHall);
             party.CurrPos = new MapPosition();

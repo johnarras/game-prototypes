@@ -10,6 +10,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,10 +25,11 @@ namespace Genrpg.ServerShared.DataStores.Services
         private SetupDictionaryContainer<ERepoTypes, IAzureRepositoryProvider> _providers = new SetupDictionaryContainer<ERepoTypes, IAzureRepositoryProvider>();
 
         public async Task<ICloudMessageImpl> CreateCloudMessageImpl(IServiceLocator loc, IServerConfig config, ILogService logService,
-            ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, CancellationToken token)
+            ITextSerializer serializer, ISecretsProvider secretsProvider, ITaskService taskService, ICloudCommsService cloudCommsService, IReflectionService reflectionService, 
+            CancellationToken token)
         {
             AzureCloudMessageImpl commsImpl = new AzureCloudMessageImpl();
-            await commsImpl.Init(loc, config, logService, serializer, secretsProvider, taskService, cloudCommsService, token);
+            await commsImpl.Init(loc, config, logService, serializer, secretsProvider, taskService, cloudCommsService, reflectionService, token);
             return commsImpl;
         }
 

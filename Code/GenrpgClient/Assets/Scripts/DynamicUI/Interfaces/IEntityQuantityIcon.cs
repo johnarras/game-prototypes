@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Assets.Scripts.DynamicUI.Interfaces
+﻿namespace Assets.Scripts.DynamicUI.Interfaces
 {
     public interface IEntityQuantityIcon
     {

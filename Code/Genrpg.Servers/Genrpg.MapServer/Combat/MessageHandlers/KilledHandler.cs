@@ -31,7 +31,7 @@ namespace Genrpg.MapServer.Combat.MessageHandlers
 
                     if (level != null)
                     {
-                        await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, level.MobExp, null, null);
+                        await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, level.MobExp, null, 0, null);
                         _levelService.UpdateLevel(rand, ch);
                     }
                 }

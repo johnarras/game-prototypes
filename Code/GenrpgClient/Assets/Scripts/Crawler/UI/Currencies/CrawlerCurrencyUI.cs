@@ -1,10 +1,11 @@
 using Assets.Scripts.Crawler.ClientEvents.HUD;
-using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.DataStores.Indexes;
+using Genrpg.Shared.Currencies.Constants;
+using Genrpg.Shared.Currencies.Settings;
 using Genrpg.Shared.Entities.Constants;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.Currencies
@@ -30,6 +31,8 @@ namespace Assets.Scripts.Crawler.UI.Currencies
             _clientEntityService.DestroyAllChildren(IconAnchor);
 
             PartyData party = _crawlerService.GetParty();
+
+            ctypes = ctypes.Where(x=>x.IdKey == CoreCurrencyTypes.Coins || x.StatTypeId > 0).ToList();  
 
             foreach (CoreCurrencyType ctype in ctypes)
             {

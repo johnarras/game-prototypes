@@ -1,7 +1,7 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Crawler.Shared.Combat.Services;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Combat.Constants;
 using Genrpg.Shared.Crawler.Combat.Entities;
 using Genrpg.Shared.Crawler.Combat.Settings;
@@ -226,7 +226,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             long overloadedInventoryCount = Math.Max(0, party.Inventory.Count - _lootGenService.GetPartyInventorySize(party));
 
 
-            
+
 
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)

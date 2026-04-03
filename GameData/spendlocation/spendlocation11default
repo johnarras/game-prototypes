@@ -1,0 +1,38 @@
+{
+  "Id": "spendlocation11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "SpecialActions",
+  "Desc": "One-off weird things.",
+  "Icon": "SpecialActions",
+  "SpendTypes": [
+    {
+      "Index": 1,
+      "Name": "City Move",
+      "Desc": "Move a member in the city",
+      "SpendCoreCurrencyTypeId": 3,
+      "SpendQuantity": 5,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 66,
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "Index": 1,
+      "Name": "Trail Move",
+      "Desc": "Move a member outside of the city",
+      "SpendCoreCurrencyTypeId": 3,
+      "SpendQuantity": 100,
+      "MinLevel": 1,
+      "Rewards": [
+        {
+          "EntityTypeId": 66,
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

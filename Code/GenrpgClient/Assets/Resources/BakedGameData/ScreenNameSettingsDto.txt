@@ -256,9 +256,9 @@
     },
     {
       "IdKey": 44,
-      "Name": "TraderVendor",
+      "Name": "Estate",
       "ScreenLayerId": 20,
-      "Subdirectory": "TraderSpend"
+      "Subdirectory": "TraderEstate"
     },
     {
       "IdKey": 45,
@@ -311,7 +311,7 @@
     {
       "IdKey": 53,
       "Name": "TradeGoods",
-      "ScreenLayerId": 10,
+      "ScreenLayerId": 20,
       "Subdirectory": "TraderSpend"
     },
     {
@@ -358,9 +358,9 @@
     },
     {
       "IdKey": 61,
-      "Name": "TravelingVendor",
+      "Name": "Manifest",
       "ScreenLayerId": 20,
-      "Subdirectory": "TraderSpend"
+      "Subdirectory": "TraderShipments"
     }
   ],
   "Parent": {
@@ -368,5 +368,5 @@
     "Name": "ScreenNameSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-26T19:25:21.849Z"
+  "SaveTime": "2026-04-02T19:54:38.943Z"
 }

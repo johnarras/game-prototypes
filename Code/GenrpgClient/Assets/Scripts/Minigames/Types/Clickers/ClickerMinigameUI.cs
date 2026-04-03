@@ -7,7 +7,7 @@ namespace Assets.Scripts.Minigames.Types.Clickers
     {
         public override void SetData(MinigameType mtype)
         {
-            base.SetData(mtype);    
+            base.SetData(mtype);
         }
     }
 }

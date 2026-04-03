@@ -1,10 +1,10 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.Buffs.Constants;
 using Genrpg.Shared.Crawler.Buffs.Settings;
 using Genrpg.Shared.Crawler.Combat.Constants;
@@ -25,6 +25,7 @@ using Genrpg.Shared.Crawler.Spells.Settings;
 using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
 using Genrpg.Shared.Crawler.Stats.Services;
 using Genrpg.Shared.Crawler.Training.Settings;
+using Genrpg.Shared.Effects.Entities;
 using Genrpg.Shared.Entities.Constants;
 using Genrpg.Shared.Factions.Constants;
 using Genrpg.Shared.GameSettings;
@@ -53,7 +54,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Genrpg.Shared.Effects.Entities;
 
 namespace Genrpg.Shared.Crawler.Spells.Services
 {
@@ -778,7 +778,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (!string.IsNullOrEmpty(action.Caster.PortraitName))
                     {
-                        _dispatcher.Dispatch(new ShowWorldPanelImage(action.Caster.PortraitName));    
+                        _dispatcher.Dispatch(new ShowWorldPanelImage(action.Caster.PortraitName));
                     }
 
                     if (action.FinalTargets.Count == 0 || action.FinalTargets[0].DefendRank < EDefendRanks.Guardian)

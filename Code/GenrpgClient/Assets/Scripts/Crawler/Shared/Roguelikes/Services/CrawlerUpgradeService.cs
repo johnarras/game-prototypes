@@ -1,7 +1,6 @@
 
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Crawler.GameEvents;
 using Genrpg.Shared.Crawler.Monsters.Entities;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
@@ -195,7 +194,7 @@ namespace Genrpg.Shared.Crawler.Crawlers.Services
                 result.Messages = new List<string>(messages);
             }
 
-             party.UpgradePoints += result.TotalUpgradePoints;
+            party.UpgradePoints += result.TotalUpgradePoints;
             _dispatcher.Dispatch(new UpdateCrawlerUI());
             return result;
         }

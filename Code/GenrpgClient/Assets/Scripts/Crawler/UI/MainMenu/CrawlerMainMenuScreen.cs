@@ -1,11 +1,12 @@
+using Assets.Scripts.Assets.TMP;
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.Services;
 using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.States.Services;
 using Genrpg.Shared.LoadSave.Services;
 using Genrpg.Shared.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.MainMenu
 {
@@ -40,6 +41,7 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
             {
                 _clientEntityService.SetActive(CloseButton, false);
             }
+
         }
 
         protected override void ScreenUpdate()

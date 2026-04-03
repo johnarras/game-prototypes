@@ -9,7 +9,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace Assets.Scripts.Lockstep.Actors.Systems
-{ 
+{
     [BurstCompile]
     public partial struct ActorVisualSystem : ISystem, ISeededSystem
     {

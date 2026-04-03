@@ -1,4 +1,3 @@
-using Assets.Scripts.Assets;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Props;

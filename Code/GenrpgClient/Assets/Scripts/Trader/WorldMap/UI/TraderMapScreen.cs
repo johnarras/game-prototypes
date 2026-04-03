@@ -1,6 +1,5 @@
 using Assets.Scripts.Trader.UI.TraderMapUI;
 using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Travel.Services;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

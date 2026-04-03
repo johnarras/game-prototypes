@@ -3,7 +3,6 @@ using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.MoveHelpers;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Dungeons;
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.Crawler.Maps.Constants;
 using Genrpg.Shared.Crawler.Maps.Entities;

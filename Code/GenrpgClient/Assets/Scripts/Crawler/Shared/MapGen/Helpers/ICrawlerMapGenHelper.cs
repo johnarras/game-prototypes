@@ -5,7 +5,6 @@ using Genrpg.Shared.Crawler.Parties.PlayerData;
 using Genrpg.Shared.Crawler.Worlds.Entities;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Utils;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 

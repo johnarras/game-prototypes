@@ -1,5 +1,4 @@
 using Assets.Scripts.Assets;
-using Assets.Scripts.UI.ScreenSystem;
 using Genrpg.Shared.Crawler.Info.Services;
 using Genrpg.Shared.Entities.Services;
 using Genrpg.Shared.Interfaces;

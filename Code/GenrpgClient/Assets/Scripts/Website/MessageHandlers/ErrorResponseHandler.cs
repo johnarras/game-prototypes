@@ -1,8 +1,8 @@
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Screens;
-using Assets.Scripts.FloatingText.ClientEvents;
 using Genrpg.Shared.UI.Constants;
 using Genrpg.Shared.Website.Messages.Error;
 using System.Collections.Generic;

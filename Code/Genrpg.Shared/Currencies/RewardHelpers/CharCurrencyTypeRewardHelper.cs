@@ -25,7 +25,7 @@ namespace Genrpg.Shared.Currencies.RewardHelpers
             return currencyData.Data[entityId];
         }
 
-        public override async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public override async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CharCurrencyData currencyData = await context.GetAsync<CharCurrencyData>();
             currencyData.Data.Add(entityId, quantity);

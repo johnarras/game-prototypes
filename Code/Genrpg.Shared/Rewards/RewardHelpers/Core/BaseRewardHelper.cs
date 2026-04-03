@@ -19,7 +19,7 @@ namespace Genrpg.Shared.Rewards.RewardHelpers.Core
 
         public abstract Task<long> GetQuantity(IUnitDataLookup context, long entityId);
 
-        public abstract Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp);
+        public abstract Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp);
     }
 }
 

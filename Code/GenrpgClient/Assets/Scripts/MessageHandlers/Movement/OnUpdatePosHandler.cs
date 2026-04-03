@@ -1,16 +1,10 @@
 using Assets.Scripts.Pathfinding.Utils;
-using Assets.Scripts.Core;
-
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Entities;
 using Genrpg.Shared.MapObjects.Entities;
 using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Pathfinding.Entities;
 using Genrpg.Shared.Pathfinding.Services;
 using Genrpg.Shared.Units.Constants;
 using Genrpg.Shared.Units.Entities;
 using Genrpg.Shared.Utils;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -58,7 +52,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
 
                 double distOffset = MathUtil.LPNorm(2, currX - pos.GetX(), currZ - pos.GetZ());
 
-                if (distOffset > 2*obj.Speed)
+                if (distOffset > 2 * obj.Speed)
                 {
                     obj.Speed *= 2;
                 }
@@ -71,7 +65,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                     {
                         if (!string.IsNullOrEmpty(obj.TargetId))
                         {
-                            if (_objectManager.GetMapObject(obj.TargetId,out MapObject mapObject))
+                            if (_objectManager.GetMapObject(obj.TargetId, out MapObject mapObject))
                             {
                                 obj.FinalX = mapObject.X;
                                 obj.FinalZ = mapObject.Z;
@@ -91,8 +85,8 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                     }
                 }
             }
-        }     
-        
+        }
+
         private void OnUpdatePath(IRandom rand, Unit unit)
         {
         }

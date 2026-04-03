@@ -20,7 +20,7 @@ namespace Genrpg.Shared.Trader.CaravanMembers.Helpers
             return _caravanMemberService.GetSkinQuantity(await context.GetAsync<HoldingsData>(), entityId);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, RewardParams rp)
+        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CoreData core = await context.GetAsync<CoreData>();
             _caravanMemberService.AddSkinToHoldings(core, await context.GetAsync<HoldingsData>(), entityId);

@@ -2,7 +2,6 @@
 using Assets.Scripts.Assets.ObjectPools;
 using Genrpg.Shared.Client.Assets.Constants;
 using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Rewards.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -41,7 +40,7 @@ namespace Assets.Scripts.Entities.UI
                 }
             }
 
-            ShowEffectList(effects);    
+            ShowEffectList(effects);
         }
 
 
@@ -59,7 +58,7 @@ namespace Assets.Scripts.Entities.UI
 
                 if (currIcon != null)
                 {
-                    currIcon.SetEntityData(eff); 
+                    currIcon.SetEntityData(eff);
                     foundIcons.Add(currIcon);
                     continue;
                 }

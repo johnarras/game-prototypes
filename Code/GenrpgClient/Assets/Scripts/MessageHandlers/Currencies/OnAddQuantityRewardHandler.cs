@@ -16,7 +16,7 @@ namespace Assets.Scripts.MessageHandlers.Currency
                 return;
             }
 
-            await _rewardService.GiveReward(_gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, null, null);
+            await _rewardService.GiveReward(_gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, null, 0, null);
             _dispatcher.Dispatch(msg);
         }
     }

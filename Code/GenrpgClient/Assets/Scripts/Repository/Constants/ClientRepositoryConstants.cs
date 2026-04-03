@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
 namespace Assets.Scripts.Repository.Constants
 {
     public static class ClientRepositoryConstants
@@ -30,7 +23,7 @@ namespace Assets.Scripts.Repository.Constants
 #endif
         }
 
-        public static string GetDataPathPrefix ()
+        public static string GetDataPathPrefix()
         {
             return "/" + GetEditorPathPrefix() + DataFolderPathPrefix;
         }

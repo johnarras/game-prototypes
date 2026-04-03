@@ -2,9 +2,9 @@
   "Id": "entitytype66default",
   "ParentId": "default",
   "IdKey": 66,
-  "Name": "MoveCaravanMember",
+  "Name": "UpdateCaravanMembers",
   "Desc": "",
   "AtlasPrefix": "",
-  "Icon": "MoveCaravanMember",
-  "Art": "MoveCaravanMember"
+  "Icon": "UpdateCaravanMembers",
+  "Art": "UpdateCaravanMembers"
 }

@@ -1,5 +1,4 @@
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core;
 using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Trades.Messages;
 using Genrpg.Shared.UI.Constants;

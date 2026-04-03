@@ -63,7 +63,7 @@ namespace Genrpg.Shared.Entities.Constants
         public const long TraderFlag = 63;
         public const long TraderSkill = 64;
         public const long MinigameType = 65;
-        public const long MoveCaravanMember = 66;
+        public const long UpdateCaravanMembers = 66;
         public const long TraderVars = 68;
         public const long SpendCurrencyLocation = 69;
 

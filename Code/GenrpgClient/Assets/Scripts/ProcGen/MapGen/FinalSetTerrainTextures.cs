@@ -1,11 +1,7 @@
-
-using System;
-
+using Assets.Scripts.MapTerrain;
+using Genrpg.Shared.ProcGen.Constants;
 using System.Threading;
 using UnityEngine; // Needed
-using Assets.Scripts.MapTerrain;
-using UnityEditor;
-using Genrpg.Shared.ProcGen.Constants;
 
 public class SetFinalTerrainTextures : BaseZoneGenerator
 {
@@ -13,7 +9,7 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
     {
         await base.Generate(token);
 
-        _mapProvider.GetMap().OverrideZonePercent = 0;        
+        _mapProvider.GetMap().OverrideZonePercent = 0;
         _zoneGenService.SetAllAlphamaps(_md.alphas, token);
         await WaitForTerrainLayerLoad(token);
     }
@@ -25,7 +21,7 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
             for (int y = 0; y < _md.ahgt; y++)
             {
                 float total = 0;
-                for (int i =0; i < TerrainTexChannels.Max; i++)
+                for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
                     total += _md.alphas[x, y, i];
                 }
@@ -139,8 +135,8 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
         await Awaitable.WaitForSecondsAsync(10.0f, cancellationToken: token);
 
         _md.HaveSetAlphaSplats = true;
-	}
+    }
 }
-	
+
 
 

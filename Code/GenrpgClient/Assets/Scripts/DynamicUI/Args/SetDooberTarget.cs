@@ -13,7 +13,7 @@ namespace Assets.Scripts.Doobers.Events
 
         public bool IsMainDooberTarget { get; set; }
 
-        
+
         public IEntityQuantityIcon EntityQuantityIcon { get; set; }
 
         public SetDooberTarget(long entityTypeId, long entityId, GameObject target, bool isMainDooberTarget, IEntityQuantityIcon targetIcon)

@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.Trader.ClientEvents;
+using Genrpg.Shared.Attributes.Services;
 using Genrpg.Shared.Core.PlayerData;
 using Genrpg.Shared.PlayMultiplier.Services;
 using Genrpg.Shared.PlayMultiplier.WebApi;
-using Genrpg.Shared.Trader.Caravans.Services;
 using Genrpg.Shared.Trader.Constants;
 using System;
 using UnityEngine;
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         private ISharedPlayMultService _playMultService = null;
         private IClientWebService _webService = null;
-        private ICaravanService _caravanService = null;
+        private ICalcAttributeService _calcAttributeService = null;
         private IAwaitableService _awaitableService = null;
 
         public GImage PlayMultBG;
@@ -109,7 +109,7 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             try
             {
-                await _caravanService.CalcCoreTravelStats(_gs.ch);
+                await _calcAttributeService.CalcBuffs(_gs.ch);
 
                 _dispatcher.Dispatch(new UpdateTraderHUD());
             }

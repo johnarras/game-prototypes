@@ -8,6 +8,7 @@ using Genrpg.Shared.Interfaces;
 using Genrpg.Shared.Logging.Interfaces;
 using Genrpg.Shared.Serialization.Interfaces;
 using Genrpg.Shared.Tasks.Services;
+using Genrpg.Shared.Utils;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace Genrpg.ServerShared.DataStores.Services
         public Task<ICloudMessageImpl> CreateCloudMessageImpl(IServiceLocator loc,
             IServerConfig config, ILogService logService, ITextSerializer serializer, ISecretsProvider secretsProvider,
             ITaskService taskService,
-            ICloudCommsService cloudCommsService, CancellationToken token);
+            ICloudCommsService cloudCommsService, IReflectionService reflectionService, CancellationToken token);
 
         public string GetPublicIPAddress(IServerConfig config, ILogService logService, ISecretsProvider secretsProvider, CancellationToken token);
     }
