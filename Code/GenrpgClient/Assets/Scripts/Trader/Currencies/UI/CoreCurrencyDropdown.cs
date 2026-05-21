@@ -1,5 +1,5 @@
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Currencies.Settings;
+using OxDb.SharedGame.Currencies.Settings;
 
 namespace Assets.Scripts.Trader.UI.Currencies
 {

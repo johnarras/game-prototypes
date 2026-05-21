@@ -1,5 +1,5 @@
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 

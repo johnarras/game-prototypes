@@ -5,14 +5,11 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Purchasing.Services;
 using Assets.Scripts.Resets.ClientEvents;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.GameAuth.WebApi.NewVersions;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.GameAuth.WebApi.NewVersions;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -177,7 +174,7 @@ public class InitClient : BaseBehaviour, IInitClient
         {
             await _loginService.StartNoUser(GetGameToken());
         }
-        string txt2 = "ScreenWH: " + _clientAppService.ScreenWidth + "x" + _clientAppService.ScreenHeight + " -- " + Game.Prefix + " -- " + _config.Config.Env + " -- " + _clientAppService.RuntimePlatform;
+        string txt2 = "ScreenWH: " + _clientAppService.ScreenWidth + "x" + _clientAppService.ScreenHeight + " -- " + _config.Config.GameMode.ToString() + " -- " + _config.Config.Env + " -- " + _clientAppService.RuntimePlatform;
         _logService.Info(txt2);
     }
 

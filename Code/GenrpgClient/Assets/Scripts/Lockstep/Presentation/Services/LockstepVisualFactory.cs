@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Interfaces;
+﻿using OxDb.SharedCore.Interfaces;
 using Unity.Mathematics;
 
 namespace Assets.Scripts.Lockstep.Presentation.Services

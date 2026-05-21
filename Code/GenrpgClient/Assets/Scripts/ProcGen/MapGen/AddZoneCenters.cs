@@ -1,8 +1,8 @@
 
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -57,8 +57,8 @@ public class AddZoneCenters : BaseZoneGenerator
         sdata.YMax = _mapProvider.GetMap().GetHhgt() + blockSize * 2;
         sdata.Seed = _mapProvider.GetMap().Seed % 1000000000 + 3824821;
 
-        sdata.NoiseAmp = RandUtils.FloatRange(0.3f, 0.8f, _rand);
-        sdata.NoiseFreq = RandUtils.FloatRange(3.0f, 10.0f, _rand);
+        sdata.NoiseAmp = RandUtils.FloatRange(0.3f, 0.8f, _rand.Rand);
+        sdata.NoiseFreq = RandUtils.FloatRange(3.0f, 10.0f, _rand.Rand);
 
         List<MyPoint2> centers = _sampleService.PlanePoissonSample(sdata);
 

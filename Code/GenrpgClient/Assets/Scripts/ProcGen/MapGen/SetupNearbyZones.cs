@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-using Genrpg.Shared.MapServer.Constants;
+using OxDb.SharedCore.MapServer.Constants;
 
 public class MapConstants : SharedMapConstants
 {

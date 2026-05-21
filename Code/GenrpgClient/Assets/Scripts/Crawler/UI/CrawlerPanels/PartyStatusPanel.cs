@@ -1,8 +1,8 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.UI.Crawler.StatusUI;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using UnityEngine;
 

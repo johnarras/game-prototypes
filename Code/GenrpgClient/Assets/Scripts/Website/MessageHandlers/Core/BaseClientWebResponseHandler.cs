@@ -1,9 +1,9 @@
 
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Website.Interfaces;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Website.Responses.Interfaces;
 using System;
 using System.Threading;
 using UnityEngine;

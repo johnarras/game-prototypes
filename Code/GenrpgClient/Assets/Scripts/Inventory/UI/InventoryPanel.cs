@@ -1,8 +1,8 @@
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Settings.ItemTypes;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

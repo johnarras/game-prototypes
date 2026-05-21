@@ -1,9 +1,10 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
@@ -19,15 +20,15 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
         public override async Awaitable<Texture2D> GenerateTexture(MaterialGenState state)
         {
-            Texture2D tex = new Texture2D(state.Size, state.Size, TextureFormat.RGBAFloat, false);
-            state.Block = new MaterialGenBlock(state.Size, state.ForegroundMain, MaterialGenConstants.DefaultStartBrightness, MaterialGenConstants.DefaultStartBumpHeight);
+            Texture2D tex = CreateTexture(state.Width, state.Height);
+            state.Block = new MaterialGenBlock(state.Width, state.Height, state.ForegroundMain, MaterialGenConstants.DefaultStartBrightness, MaterialGenConstants.DefaultStartBumpHeight);
 
             TweakStateValues(state);
 
             int rowCount = state.BlockRowCount;
 
 
-            float averageRowHeight = state.Size / rowCount;
+            float averageRowHeight = state.Height / rowCount;
 
             if (averageRowHeight < 4)
             {
@@ -40,7 +41,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             List<int> rowYValues = new List<int>();
 
-            int startRowYValue = RandUtils.IntRange(0, state.Size - 1, state.Rand);
+            int startRowYValue = RandUtils.IntRange(0, state.Height - 1, state.Rand);
 
             float currRowYValue = startRowYValue;
 
@@ -53,7 +54,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             {
                 float yValueSkip = averageRowHeight * RandUtils.FloatRange(1, 1 + heightDelta, state.Rand);
 
-                float maxSkip = (state.Size - yValuesUsed) / 2;
+                float maxSkip = (state.Height - yValuesUsed) / 2;
 
                 if (yValueSkip > maxSkip)
                 {
@@ -66,9 +67,9 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
                 int currYValueInt = (int)currRowYValue;
 
-                rowYValues.Add(currYValueInt % state.Size);
+                rowYValues.Add(currYValueInt % state.Height);
 
-                if (currRowYValue - startRowYValue > state.Size - averageRowHeight * 1.5f)
+                if (currRowYValue - startRowYValue > state.Height - averageRowHeight * 1.5f)
                 {
                     break;
                 }
@@ -78,7 +79,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             {
                 rowColumnPoints[rowValue] = new List<int>();
 
-                int startBrickEndX = RandUtils.IntRange(0, state.Size - 1, state.Rand);
+                int startBrickEndX = RandUtils.IntRange(0, state.Width - 1, state.Rand);
 
                 float minBrickWidth = state.Settings.MinBrickAspectRatio * averageRowHeight;
                 float maxBrickWidth = state.Settings.MaxBrickAspectRatio * averageRowHeight;
@@ -107,7 +108,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 {
                     float xValueSkip = RandUtils.FloatRange(minBrickWidth, maxBrickWidth, state.Rand);
 
-                    float maxXSkip = (state.Size - xValuesUsed) / 2;
+                    float maxXSkip = (state.Width - xValuesUsed) / 2;
 
                     if (xValueSkip > maxXSkip)
                     {
@@ -118,11 +119,11 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
                     xValuesUsed += xValueSkip;
 
-                    int brickEndInt = ((int)currBrickEndX) % state.Size;
+                    int brickEndInt = ((int)currBrickEndX) % state.Width;
 
                     brickEndXValues.Add(brickEndInt);
 
-                    if (currBrickEndX - startBrickEndX > state.Size - maxBrickWidth * 1.25f)
+                    if (currBrickEndX - startBrickEndX > state.Width - maxBrickWidth * 1.25f)
                     {
                         break;
                     }
@@ -148,8 +149,8 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
                     int nextXVal = currXValues[(xx + 1) % currXValues.Count];
 
-                    int xmid = MathUtil.LerpInModRange(currXVal, nextXVal, state.Size, 0.5f);
-                    int ymid = MathUtil.LerpInModRange(currYVal, nextYVal, state.Size, 0.5f);
+                    int xmid = MathUtil.LerpInModRange(currXVal, nextXVal, state.Width, 0.5f);
+                    int ymid = MathUtil.LerpInModRange(currYVal, nextYVal, state.Height, 0.5f);
 
                     blockCenters.Add(new PointXZ(xmid, ymid));
 
@@ -343,18 +344,21 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 }
 
             }
-            _materialGenUtilsService.AddCracksToFrontRegions(state);
+            //_materialGenUtilsService.AddCracksToFrontRegions(state);
 
             _materialGenUtilsService.RoundEdgesNearCrevices(state);
 
-            _materialGenUtilsService.AddColorNoise(state);
+            //_materialGenUtilsService.AddColorNoise(state);
 
             _materialGenUtilsService.ApplyRecessedColors(state);
+
+            //_materialGenUtilsService.RandomizeBumpHeights(state);
 
             _materialGenUtilsService.SmoothColors(state);
 
             _materialGenUtilsService.ApplyBlockToTexture(state, state.Block, tex);
 
+            await Task.CompletedTask;
             return tex;
         }
     }

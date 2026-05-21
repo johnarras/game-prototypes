@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype29default",
+  "ParentId": "default",
+  "IdKey": 29,
+  "Name": "Spawn",
+  "Icon": "Spawn",
+  "Art": "Spawn"
+}

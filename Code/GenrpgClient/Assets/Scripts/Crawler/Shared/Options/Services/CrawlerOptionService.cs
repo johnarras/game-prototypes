@@ -1,8 +1,8 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 
-namespace Genrpg.Shared.Crawler.Options.Services
+namespace OxDb.SharedGame.Crawler.Options.Services
 {
     public interface ICrawlerOptionsService : IInjectable
     {

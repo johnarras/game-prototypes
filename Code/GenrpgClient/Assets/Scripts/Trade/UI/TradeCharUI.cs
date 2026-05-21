@@ -1,6 +1,6 @@
 using Assets.Scripts.UI.Trade;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Trades.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Trades.Entities;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

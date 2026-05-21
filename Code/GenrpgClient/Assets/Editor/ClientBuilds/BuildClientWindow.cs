@@ -1,5 +1,5 @@
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Core.Constants;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Environments.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +34,11 @@ namespace Assets.Editor.Builds
 
         private bool _selfContainedClient = true;
         private bool _developmentBuild = false;
+        private bool _exportGameData = false;
+        private bool _encryptExportedData = false;
+
+        private bool _isBuilding = false;
+
         private void OnGUI()
         {
             GUILayout.Label("Build Options:");
@@ -52,29 +57,48 @@ namespace Assets.Editor.Builds
 
             _selfContainedClient = EditorGUILayout.Toggle("Self-Contained:", _selfContainedClient);
 
+            _exportGameData = EditorGUILayout.Toggle("Export Game Data:", _exportGameData);
+
+            _encryptExportedData = EditorGUILayout.Toggle("Encrypt Game Data:", _encryptExportedData);
+
+            GUILayout.Label("-------------------");
+
             _developmentBuild = EditorGUILayout.Toggle("Development Build:", _developmentBuild);
 
             if (GUILayout.Button("Build In Editor"))
             {
-                RunBuilds.PlayerBuilder.BuildWithArgs(
-                    _envNames[_selectedEnv],
-                    _gameModes[_selectedGameMode],
-                    _platformNames[_selectedPlatform],
-                    _selfContainedClient,
-                    false,
-                    _developmentBuild);
+                _ = BuildWithArgs(false);
             }
 
             if (GUILayout.Button("Cloud Build"))
             {
-                RunBuilds.PlayerBuilder.BuildWithArgs(
+                _ = BuildWithArgs(true);
+            }
+        }
+
+        private async Awaitable BuildWithArgs(bool cloudBuild)
+        {
+            if (_isBuilding)
+            {
+                return;
+            }
+            _isBuilding = true;
+            await RunBuilds.PlayerBuilder.BuildWithArgs(
                     _envNames[_selectedEnv],
                     _gameModes[_selectedGameMode],
                     _platformNames[_selectedPlatform],
                     _selfContainedClient,
-                    true,
+                    _exportGameData,
+                    _encryptExportedData,
+                    cloudBuild,
                     _developmentBuild);
-            }
+
+
+            EditorApplication.delayCall += () =>
+            {
+                _isBuilding = false;
+                Repaint();
+            };
         }
     }
 }

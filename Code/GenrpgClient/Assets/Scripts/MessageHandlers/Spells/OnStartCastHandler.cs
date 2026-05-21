@@ -1,5 +1,6 @@
-using Genrpg.Shared.Spells.Messages;
+using OxDb.SharedGame.Spells.Messages;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Spells
@@ -12,6 +13,7 @@ namespace Assets.Scripts.MessageHandlers.Spells
             {
                 gridItem.Controller?.StartCasting(msg);
             }
+            await Task.CompletedTask;
         }
     }
 }

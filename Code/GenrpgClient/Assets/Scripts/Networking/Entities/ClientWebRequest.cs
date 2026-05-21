@@ -1,7 +1,8 @@
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ClientWebRequest
@@ -22,15 +23,15 @@ public class ClientWebRequest
         _handler = handler;
         for (int times = 0; times < MaxTimes; times++)
         {
-            string text = await _clientWebService.SendRawWebRequest<string>(_uri, HttpMethod.Post, postData, security);
-            if (!string.IsNullOrEmpty(text))
+            ResponseEnvelope<string> responseEnvelope = await _clientWebService.SendRawWebRequest<string>(_uri, HttpMethod.Post, postData, security);
+            if (!string.IsNullOrEmpty(responseEnvelope.ResponseData))
             {
-                await handler(text, commands, token);
+                await handler(responseEnvelope.ResponseData, commands, token);
                 break;
             }
             else
             {
-                await Awaitable.WaitForSecondsAsync(0.3f, token);
+                await Task.Delay(300);
             }
         }
     }

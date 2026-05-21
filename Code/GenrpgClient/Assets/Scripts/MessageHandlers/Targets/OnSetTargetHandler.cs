@@ -1,8 +1,9 @@
 
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.Targets.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Targets
@@ -18,6 +19,7 @@ namespace Assets.Scripts.MessageHandlers.Targets
                     unit.TargetId = msg.TargetId;
                 }
             }
+            await Task.CompletedTask;
         }
     }
 }

@@ -1,9 +1,9 @@
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public class CoreCurrencyTypeInfoHelper : BaseInfoHelper<CoreCurrencyTypeSettings, CoreCurrencyType>
     {
@@ -24,7 +24,7 @@ namespace Genrpg.Shared.Crawler.Info.InfoHelpers
 
                 if (statType != null)
                 {
-                    lines.Add("Used to craft" + _infoService.CreateInfoLink(statType) + " items.");
+                    lines.Add("Used to craft " + _infoService.CreateInfoLink(statType) + " items.");
                 }
             }
 

@@ -1,6 +1,6 @@
-using Genrpg.Shared.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities
 {
     public class SelectSpellAction
     {

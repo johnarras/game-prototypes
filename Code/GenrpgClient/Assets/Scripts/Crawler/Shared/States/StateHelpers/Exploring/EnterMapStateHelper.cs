@@ -1,29 +1,28 @@
 using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Settings;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Constants;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Riddles.Settings;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Zones.Constants;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
     public class EnterMapStateHelper : BaseStateHelper
     {
@@ -104,7 +103,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                     foreach (long mapId in mapIds)
                     {
 
-                        world.Seed = _rand.Next();
+                        world.Seed = _rand.Rand.Next();
 
                         int enterX = party.CurrPos.X;
                         int enterZ = party.CurrPos.Z;

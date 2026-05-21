@@ -1,4 +1,4 @@
-using Genrpg.Shared.SpellCrafting.Messages;
+using OxDb.SharedGame.SpellCrafting.Messages;
 
 namespace Assets.Scripts.MessageHandlers.SpellCrafting
 {

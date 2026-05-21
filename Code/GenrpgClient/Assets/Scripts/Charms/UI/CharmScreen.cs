@@ -1,5 +1,5 @@
-using Genrpg.Shared.Charms.PlayerData;
-using Genrpg.Shared.Client.Assets.Constants;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.Charms.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

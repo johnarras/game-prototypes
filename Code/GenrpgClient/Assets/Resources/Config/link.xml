@@ -5,6 +5,4 @@
   <assembly fullname="Microsoft.Bcl.AsyncInterfaces" preserve="all"/>
   <assembly fullname="CommunityToolkit.HighPerformance" preserve="all"/>
   <assembly fullname="System.IO.Pipelines" preserve="all"/>
-  <assembly fullname="System.Text.Json" preserve="all" />
-  <assembly fullname="System.Runtime.CompilerServices.Unsafe" preserve="all" />
 </linker>

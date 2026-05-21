@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Minigames.Services;
-using Genrpg.Shared.Minigames.Games.Settings;
+using OxDb.SharedGame.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.UI
 {

@@ -1,4 +1,6 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
+using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
@@ -6,12 +8,11 @@ using Assets.Scripts.DynamicUI.Interfaces;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using Assets.Scripts.WorldCanvas.Interfaces;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,10 +65,10 @@ namespace Assets.Scripts.DynamicUI.Services
         private ILogService _logService = null;
         private IClientUpdateService _updateService = null;
         private IClientEntityService _clientEntityService = null;
-        private IInputService _inputService = null;
+        private IClientAppService _appService = null;
         private ICameraController _cameraController = null;
         private IObjectPool _objectPool = null;
-        private IRandom _rand = null;
+        private IClientRandom _rand = null;
         private IEntityService _entityService = null;
         private IClientGameState _gs = null;
 
@@ -97,7 +98,7 @@ namespace Assets.Scripts.DynamicUI.Services
             if (randomPaths)
             {
                 result.PercentDonePowerMult = 0.5f;
-                result.StartOffsetSize = RandUtils.FloatRange(250, 500, _rand);
+                result.StartOffsetSize = RandUtils.FloatRange(250, 500, _rand.Rand);
             }
             return result;
         }
@@ -374,11 +375,11 @@ namespace Assets.Scripts.DynamicUI.Services
         protected void OnUpdate()
         {
 
-            if (_inputService == null)
+            if (_appService == null)
             {
                 return;
             }
-            float delta = _inputService.GetDeltaTime();
+            float delta = _appService.GetDeltaTime();
 
             ProcessRemoveItems();
             foreach (DynamicUIItem wci in _currentItems)

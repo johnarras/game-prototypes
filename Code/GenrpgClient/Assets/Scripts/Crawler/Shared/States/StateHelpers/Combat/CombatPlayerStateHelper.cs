@@ -1,15 +1,15 @@
 using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
+using OxDb.SharedGame.Spells.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public class CombatPlayerStateHelper : BaseCombatStateHelper
     {

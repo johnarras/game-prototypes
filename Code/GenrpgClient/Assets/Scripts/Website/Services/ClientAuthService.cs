@@ -1,19 +1,20 @@
+
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Accounts.WebApi.Login;
-using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameAuth.WebApi.Auth;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Versions.Settings;
-using Genrpg.Shared.Website.Interfaces;
-using Genrpg.Shared.Website.Messages;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Website.Responses.Core;
+using OxDb.SharedCore.Website.Responses.Interfaces;
+using OxDb.SharedGame.GameAuth.WebApi.Auth;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Versions.Settings;
+using OxDb.SharedPlatform.Accounts.WebApi.Login;
+using OxDb.SharedPlatform.Accounts.WebApi.Signup;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -164,7 +165,7 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable StartNoUser(CancellationToken token)
     {
-        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SessionToken = "Local" };
+        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SelfContainedToken = "Local", SessionId = "Local" };
 
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
@@ -188,9 +189,12 @@ public class ClientAuthService : IClientAuthService
 
     public async Awaitable OnAccountLogin(AccountLoginResponse response, CancellationToken token)
     {
-        if (!string.IsNullOrEmpty(response.AccountId) && !string.IsNullOrEmpty(response.LoginToken) && !string.IsNullOrEmpty(response.GameUserId))
+        if (!string.IsNullOrEmpty(response.AccountId) &&
+            !string.IsNullOrEmpty(response.LoginToken) &&
+            !string.IsNullOrEmpty(response.ProductUserId) ||
+            response.ProductId != _config.Config.ProductId)
         {
-            await SaveLocalUserData(response.AccountId, response.GameUserId, response.LoginToken);
+            await SaveLocalUserData(response.AccountId, response.ProductUserId, response.LoginToken);
         }
         else
         {
@@ -202,12 +206,15 @@ public class ClientAuthService : IClientAuthService
         GameAuthRequest request = new GameAuthRequest()
         {
             AccountId = response.AccountId,
-            SessionToken = response.SessionToken,
-            GameUserId = response.GameUserId,
+            SessionId = response.SessionId,
+            GameUserId = response.ProductUserId,
             ClientVersion = _clientAppService.Version,
             ClientPlatformName = _clientAppService.GetPlatformName(),
             ClientGameDataSaveTime = _gameData.Get<VersionSettings>(null).SaveTime,
             GameName = _gs.GameMode.ToString(),
+            ShareId = response.ShareId,
+            DataBits = response.DataBits,
+            ProductId = response.ProductId,
         };
 
         _clientWebService.SendWebRequest(request, token);

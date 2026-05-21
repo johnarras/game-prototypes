@@ -1,21 +1,22 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.GameSettings.Entities;
+using Assets.Scripts.Logalytics.Services;
 using Assets.Scripts.Options.Services;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.GameAuth.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Core.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.GameAuth.Interfaces;
+using OxDb.SharedGame.MapServer.Entities;
 using System.Collections.Generic;
 using System.Reflection;
 
 
 
-public interface IClientGameState : IGameState, IInjectable, IExplicitInject
+public interface IClientGameState : IGameState, IInjectable, IExplicitInject, IRandomContainer
 {
     string GameUserId { get; set; }
     IGameSessionState SessionState { get; set; }
@@ -27,8 +28,12 @@ public interface IClientGameState : IGameState, IInjectable, IExplicitInject
 
 public class StubSessionState : IGameSessionState
 {
-    public string SessionToken { get; set; }
+    public string SelfContainedToken { get; set; }
     public string RefreshToken { get; set; }
+    public string SessionId { get; set; }
+    public string ServerName { get; set; }
+    public string ServerVersion { get; set; }
+    public string ServerEnv { get; set; }
 }
 
 public class ClientGameState : GameState, IInjectable, IClientGameState
@@ -46,6 +51,8 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
     public string RealtimeHost { get; set; }
     public string RealtimePort { get; set; }
 
+    public IRandom Rand { get; set; } = new MyRandom();
+
     private ILogService _logService = null;
     private IClientAppService _clientAppService = null;
     protected IAwaitableService _awaitableService = null;
@@ -53,7 +60,7 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
     public ClientGameState(ClientConfig config, IInitClient initClient)
     {
         ClientConfigContainer configContainer = new ClientConfigContainer(config);
-        _logService = new ClientLogService(configContainer.Config);
+        _logService = new ClientLogService();
         _clientAppService = new ClientAppService(_logService);
 
 
@@ -75,7 +82,6 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
         public override Assembly[] GetAllAssemblies()
         {
             return base.GetAllAssemblies();
-
         }
     }
 }

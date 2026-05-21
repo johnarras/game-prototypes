@@ -1,5 +1,5 @@
 using Assets.Scripts.MessageHandlers;
-using Genrpg.Shared.Trades.Messages;
+using OxDb.SharedGame.Trades.Messages;
 
 namespace Assets.Scripts.Trade.MessageHandlers
 {

@@ -1,6 +1,6 @@
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Threading;
 
 public delegate void OnLoadSpellIconHandler(InitSpellIconData data);

@@ -5,6 +5,5 @@
   "Name": "Guard Tower",
   "Icon": "GuardTower",
   "Art": "GuardTower",
-  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

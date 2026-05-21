@@ -1,8 +1,8 @@
 ﻿
 
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Attributes.Services;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.Attributes.Services;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Stats.Services

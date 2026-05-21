@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.UnitEffects.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Spells.Interfaces;
+using OxDb.SharedGame.Spells.Settings.Effects;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 double quantityFraction = 1 + Math.Abs(fullEffect.Effect.MaxQuantity * combatSettings.ExtraCureStatusEffectsRemovedPerTier);
 
                 int finalQuantity = (int)quantityFraction;
-                if (_rand.NextDouble() < (quantityFraction - finalQuantity))
+                if (_rand.Rand.NextDouble() < (quantityFraction - finalQuantity))
                 {
                     finalQuantity++;
                 }

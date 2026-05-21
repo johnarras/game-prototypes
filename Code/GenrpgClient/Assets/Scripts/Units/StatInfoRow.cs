@@ -1,7 +1,7 @@
 using Assets.Scripts.Crawler.UI.WorldUI;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Stats;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using UnityEngine;
 

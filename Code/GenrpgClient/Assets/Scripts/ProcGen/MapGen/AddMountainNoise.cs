@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

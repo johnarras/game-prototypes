@@ -5,16 +5,16 @@ using Assets.Scripts.Lockstep.Game.Services;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Purchasing.Services;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.GameAuth.WebApi.Auth;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.WebApi.UploadMap;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.GameAuth.WebApi.Auth;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.WebApi.UploadMap;
+using OxDb.SharedGame.Spawns.WorldData;
+using OxDb.SharedGame.UI.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,7 +26,6 @@ namespace Assets.Scripts.Website.MessageHandlers
     public class GameAuthResponseHandler : BaseClientWebResponseHandler<GameAuthResponse>
     {
         private IScreenService _screenService = null;
-        private IAssetService _assetService = null;
         private IClientWebService _webNetworkService = null;
         private IClientPurchasingService _purchasingService = null;
         private IClientMinigameService _clientMinigameService = null;
@@ -34,6 +33,7 @@ namespace Assets.Scripts.Website.MessageHandlers
 
         protected override async Awaitable InnerProcess(GameAuthResponse response, CancellationToken token)
         {
+            await Task.CompletedTask;
             _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
         }
 
@@ -50,7 +50,8 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             if (response == null || string.IsNullOrEmpty(response.GameUserId) ||
-                string.IsNullOrEmpty(response.SessionToken))
+                string.IsNullOrEmpty(response.SelfContainedToken) ||
+                string.IsNullOrEmpty(response.SessionId))
             {
                 _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
                 if (keepOpenScreens.Count < 1)
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Website.MessageHandlers
                 unitData.Id = Guid.NewGuid().ToString();
                 if (unitData is CoreDataDto dto)
                 {
-                    _gs.ch.DataOverrides = dto.Parent.DataOverrides;
+                    _gs.ch.AB = dto.Parent.AB;
                 }
                 _gs.ch.Set(unitData);
             }
@@ -153,7 +154,6 @@ namespace Assets.Scripts.Website.MessageHandlers
             comm.SpawnData = await _repoService.Load<MapSpawnData>("UploadedSpawns");
             comm.Map.Id = mapId;
             comm.SpawnData.Id = mapId;
-            comm.WorldDataEnv = _assetService.GetWorldDataEnv();
             _webNetworkService.SendWebRequest(comm, token);
         }
     }

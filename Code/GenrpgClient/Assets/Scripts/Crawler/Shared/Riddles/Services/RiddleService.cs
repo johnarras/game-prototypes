@@ -1,31 +1,31 @@
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Names.Settings;
-using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Riddles.EntranceRiddleHelpers;
-using Genrpg.Shared.Riddles.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Inventory.Settings.ItemTypes;
+using OxDb.SharedGame.Names.Settings;
+using OxDb.SharedGame.Riddles.Constants;
+using OxDb.SharedGame.Riddles.Entities;
+using OxDb.SharedGame.Riddles.EntranceRiddleHelpers;
+using OxDb.SharedGame.Riddles.Settings;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Riddles.Services
+namespace OxDb.SharedGame.Riddles.Services
 {
     public interface IRiddleService : IInitializable
     {

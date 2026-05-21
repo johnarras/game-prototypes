@@ -1,14 +1,9 @@
 ﻿using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.TradeGoods.Services;
-using Genrpg.Shared.Trader.TradeGoods.WebApi;
-using System.Linq;
-using System.Text;
+using OxDb.SharedGame.Trader.TradeGoods.Services;
+using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.TradeGoods.ResponseHandlers
@@ -16,7 +11,6 @@ namespace Assets.Scripts.Trader.TradeGoods.ResponseHandlers
     public class RemoveTradeGoodFromCaravanResultHandler : BaseClientWebResponseHandler<RemoveTradeGoodFromCaravanResponse>
     {
         protected ITradeGoodService _tradeGoodService = null;
-        private IRewardService _rewardService = null;
         protected override async Awaitable InnerProcess(RemoveTradeGoodFromCaravanResponse response, CancellationToken token)
         {
 
@@ -29,6 +23,7 @@ namespace Assets.Scripts.Trader.TradeGoods.ResponseHandlers
                 await _tradeGoodService.RemoveTradeGoodFromCaravan(_gs.ch, response.TradeGoodId, response.SellValue, response.UniqueId);
                 _dispatcher.Dispatch(response);
             }
+            await Task.CompletedTask;
         }
     }
 }

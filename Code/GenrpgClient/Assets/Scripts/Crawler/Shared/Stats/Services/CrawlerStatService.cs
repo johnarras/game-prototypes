@@ -1,37 +1,37 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Monsters.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Stats.Settings;
-using Genrpg.Shared.Crawler.Training.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Stats.Settings;
+using OxDb.SharedGame.Crawler.Training.Settings;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Entities;
+using OxDb.SharedGame.Stats.Settings.Stats;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Stats.Services
+namespace OxDb.SharedGame.Crawler.Stats.Services
 {
     public interface ICrawlerStatService : IInjectable
     {
@@ -277,7 +277,7 @@ namespace Genrpg.Shared.Crawler.Stats.Services
                 for (int t = 0; t < healthCalcTimes; t++)
                 {
 
-                    startHealth += RandUtils.LongRange(minHealth, maxHealth, _rand);
+                    startHealth += RandUtils.LongRange(minHealth, maxHealth, _rand.Rand);
                 }
 
                 startHealth /= healthCalcTimes;

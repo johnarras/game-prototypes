@@ -1,5 +1,5 @@
-using Genrpg.Shared.Chat.Messages;
-using Genrpg.Shared.Chat.Settings;
+using OxDb.SharedGame.Chat.Messages;
+using OxDb.SharedGame.Chat.Settings;
 
 namespace Assets.Scripts.UI.Chat
 {

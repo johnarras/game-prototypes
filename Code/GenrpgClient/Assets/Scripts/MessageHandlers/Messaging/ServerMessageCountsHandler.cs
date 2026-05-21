@@ -1,4 +1,4 @@
-using Genrpg.Shared.MapServer.Messages;
+using OxDb.SharedGame.MapServer.Messages;
 
 namespace Assets.Scripts.MessageHandlers.Messaging
 {

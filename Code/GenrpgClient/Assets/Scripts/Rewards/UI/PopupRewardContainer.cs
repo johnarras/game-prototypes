@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.WorldCanvas.GameEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Rewards.Entities;
 using System.Threading;
 using UnityEngine;
 

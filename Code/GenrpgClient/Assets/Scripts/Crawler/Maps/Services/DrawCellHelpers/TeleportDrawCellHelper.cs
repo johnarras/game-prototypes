@@ -1,12 +1,11 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +31,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                     Seed = _mapService.GetMapCellHash(mapRoot.Map.IdKey, cell.MapX, cell.MapZ, 17),
 
                 };
-                _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, "TeleportIn", OnDownloadObject, token, loadData);
+
+                _mapService.LoadProp(loadData, "TeleportIn", token);
             }
             await Task.CompletedTask;
         }

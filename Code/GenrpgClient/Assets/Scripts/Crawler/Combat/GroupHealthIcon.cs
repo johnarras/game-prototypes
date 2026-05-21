@@ -1,6 +1,6 @@
-﻿using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
+﻿using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Combat

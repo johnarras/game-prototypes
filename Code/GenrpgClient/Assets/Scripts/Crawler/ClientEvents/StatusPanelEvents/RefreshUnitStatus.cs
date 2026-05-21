@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Crawler.Monsters.Entities;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
 
 namespace Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents
 {

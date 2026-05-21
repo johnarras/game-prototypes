@@ -1,8 +1,9 @@
 using Assets.Scripts.Assets.Bundles;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Serialization.Services;
-using Genrpg.Shared.Utils;
 using Newtonsoft.Json;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.Serialization.Services;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.DataStores.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ public class CreateAssetBundles
 {
 
 
-    public static BundleVersions CreateBundles(string platformString, string env, bool rebuildBundles, bool uploadBundles)
+    public static async Awaitable<BundleVersions> CreateBundles(string platformString, string gameName, string env, bool rebuildBundles, bool uploadBundles)
     {
         DateTime startTime = DateTime.UtcNow;
 
@@ -41,7 +42,6 @@ public class CreateAssetBundles
 
         if (!rebuildBundles)
         {
-
             try
             {
                 string bundleVersionText = File.ReadAllText(bundleVersionPath);
@@ -222,7 +222,7 @@ public class CreateAssetBundles
 
         if (uploadBundles)
         {
-            UploadAll(platformString, env);
+            await UploadAll(platformString, gameName, env);
         }
 
 
@@ -257,7 +257,7 @@ public class CreateAssetBundles
         return new List<string>();
     }
 
-    private static void UploadAll(string platformName, string env)
+    private static async Awaitable UploadAll(string platformName, string gameName, string env)
     {
         if (string.IsNullOrEmpty(env) || env == EnvNames.Local)
         {
@@ -265,11 +265,11 @@ public class CreateAssetBundles
         }
 
 
-        InnerUploadFiles(platformName, env);
+        await InnerUploadFiles(platformName, gameName, env);
     }
 
 
-    private static void InnerUploadFiles(string platformName, string env)
+    private static async Awaitable InnerUploadFiles(string platformName, string gameName, string env)
     {
 
 
@@ -293,16 +293,18 @@ public class CreateAssetBundles
             FolderUploadArgs uploadData = new FolderUploadArgs()
             {
                 LocalFolder = Application.dataPath + "/../" + BuildConfiguration.AssetBundleRoot + targets[t].FilePath + "/",
-                RemoteSubfolder = Application.version + "/" + targets[t].FilePath,
+                RemoteSubfolder = BlobUtils.GetBlobSubfolder(env, Application.version, targets[t].FilePath),
                 IsWorldData = false,
                 Env = env,
-                GamePrefix = Game.Prefix,
+                GamePrefix = gameName,
             };
 
-            uploadData.OverwriteIfExistsFiles.Add(AssetConstants.BundleVersionsFile);
-            uploadData.OverwriteIfExistsFiles.Add(AssetConstants.BundleUpdateTimeFile);
+            uploadData.FilePatterns.Add("*_*");
+            uploadData.FilePatterns.Add(AssetConstants.BundleVersionsFile);
+            uploadData.FilePatterns.Add(AssetConstants.BundleUpdateTimeFile);
 
-            FileUploader.UploadFolder(uploadData, AssetConstants.BundleUpdateTimeFile);
+            await FileUploader.UploadFolder(uploadData, AssetConstants.BundleUpdateTimeFile);
+
 
         }
     }

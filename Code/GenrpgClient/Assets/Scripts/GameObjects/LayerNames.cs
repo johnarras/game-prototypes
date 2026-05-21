@@ -1,4 +1,4 @@
-namespace Genrpg.Shared.Constants
+namespace OxDb.SharedGame.Constants
 {
     public class LayerNames
     {

@@ -1,7 +1,8 @@
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Users.WebApi;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Users.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Users.WebApi
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Users.WebApi
     {
         protected override async Awaitable InnerProcess(UpdateClientUserResponse result, CancellationToken token)
         {
+            await Task.CompletedTask;
             CoreData coreData = _gs.ch.Get<CoreData>();
             coreData.Level = result.Level;
         }

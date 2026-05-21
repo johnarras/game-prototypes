@@ -1,15 +1,15 @@
 
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public class CombatFightRunStateHelper : BaseCombatStateHelper
     {

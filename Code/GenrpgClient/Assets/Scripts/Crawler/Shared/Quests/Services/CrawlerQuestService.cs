@@ -3,38 +3,38 @@ using Assets.Scripts.Crawler.Maps;
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Constants;
-using Genrpg.Shared.Crawler.Quests.Entities;
-using Genrpg.Shared.Crawler.Quests.Helpers;
-using Genrpg.Shared.Crawler.Quests.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.MapGen.Helpers;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Quests.Constants;
+using OxDb.SharedGame.Crawler.Quests.Entities;
+using OxDb.SharedGame.Crawler.Quests.Helpers;
+using OxDb.SharedGame.Crawler.Quests.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
 
-namespace Genrpg.Shared.Crawler.Quests.Services
+namespace OxDb.SharedGame.Crawler.Quests.Services
 {
     public class NPCQuestStatus
     {
@@ -228,7 +228,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
 
-            lootGenData.ItemCount += (int)RandUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand);
+            lootGenData.ItemCount += (int)RandUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand.Rand);
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBitIndex(fullQuest.Quest.IdKey);
 
@@ -430,9 +430,9 @@ namespace Genrpg.Shared.Crawler.Quests.Services
 
                 for (int i = 0; i < lootCheckQuantity; i++)
                 {
-                    if (_rand.NextDouble() < lootChance)
+                    if (_rand.Rand.NextDouble() < lootChance)
                     {
-                        long indexChosen = RandUtils.LongRange(0, totalQuantity, _rand);
+                        long indexChosen = RandUtils.LongRange(0, totalQuantity, _rand.Rand);
 
                         for (int q = 0; q < finalItemQuests.Count; q++)
                         {
@@ -519,7 +519,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                 if (utype != null)
                 {
                     result.AllPossibleUnitTypeIds.Add(utype.IdKey);
-                    if (!canGetQuestCredit || _rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
+                    if (!canGetQuestCredit || _rand.Rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
                     {
                         continue;
                     }
@@ -646,7 +646,7 @@ namespace Genrpg.Shared.Crawler.Quests.Services
                     CrawlerMap cityMap = world.GetMap(1);
 
                     int startQuestCount = world.Quests.Count;
-                    await SetupQuestsForMap(party, world, cityMap, _rand, token);
+                    await SetupQuestsForMap(party, world, cityMap, _rand.Rand, token);
                     int endQuestCount = world.Quests.Count;
 
                     if (endQuestCount > startQuestCount)

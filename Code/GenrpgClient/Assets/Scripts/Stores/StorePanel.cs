@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.Stores;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Purchasing.Settings;
+using OxDb.SharedGame.Purchasing.PlayerData;
+using OxDb.SharedGame.Purchasing.Settings;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

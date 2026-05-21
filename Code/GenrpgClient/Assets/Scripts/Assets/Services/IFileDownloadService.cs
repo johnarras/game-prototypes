@@ -1,5 +1,5 @@
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Interfaces;
 using System;
 using System.Threading;
 

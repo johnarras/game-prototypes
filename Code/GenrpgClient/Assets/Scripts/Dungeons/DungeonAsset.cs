@@ -1,4 +1,3 @@
-using Assets.Scripts.Crawler.Constants;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +7,14 @@ namespace Assets.Scripts.Dungeons
     [Serializable]
     public class DungeonAsset : BaseBehaviour
     {
-        private IAudioService _audioService = null;
+
         public Animator Animator;
 
         public List<MeshRenderer> StoneRenderers = new List<MeshRenderer>();
 
         public List<MeshRenderer> WoodRenderers = new List<MeshRenderer>();
 
-        public List<MeshRenderer> FloorRenderers = new List<MeshRenderer>();
+        public DungeonDoor Door { get; set; }
 
         public List<MeshRenderer> GetRenderersForMaterialIndex(int materialIndex)
         {
@@ -27,29 +26,28 @@ namespace Assets.Scripts.Dungeons
             {
                 return WoodRenderers;
             }
-            else if (materialIndex == DungeonMaterialIndexes.Floors)
-            {
-                return FloorRenderers;
-            }
             return StoneRenderers;
         }
 
 
-        public bool SetOpened(bool isOpen)
+        public async Awaitable SetOpened(bool openingNow, bool upperRightOfDoor)
         {
-            if (WoodRenderers.Count > 0)
+
+            if (Door != null)
             {
-                if (isOpen)
+                List<Awaitable> allOpens = new List<Awaitable>();
+                Door.PlayOpenSound(openingNow);
+                foreach (DungeonDoorPanel door in Door.Panels)
                 {
-                    _audioService.PlaySound(CrawlerAudio.DoorOpen, null);
+                    allOpens.Add(door.AnimateOpening(openingNow, upperRightOfDoor));
                 }
-                foreach (MeshRenderer renderer in WoodRenderers)
+
+
+                foreach (Awaitable aw in allOpens)
                 {
-                    _clientEntityService.SetActive(renderer.gameObject, !isOpen);
+                    await aw;
                 }
-                return true;
             }
-            return false;
         }
 
         public void Clear()

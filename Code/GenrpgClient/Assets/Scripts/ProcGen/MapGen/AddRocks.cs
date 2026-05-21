@@ -1,10 +1,10 @@
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Rocks;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Rocks;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,7 +17,7 @@ internal class FullRockType
     public ZoneRockType zoneRock;
     public int numPlaced;
 
-    public float weight;
+    public double Weight;
 
 
     public List<MyPoint> PlacedRocks;
@@ -106,7 +106,7 @@ public class AddRocks : BaseZoneGenerator
             full.zoneRock = zrt;
             full.zoneTypeRock = ztrt;
             full.rockType = rt;
-            full.weight = weight;
+            full.Weight = weight;
             full.assetName = rt.Name;
             full.fullURL = full.assetName;
             full.assetCategory = AssetCategoryNames.Rocks;
@@ -181,7 +181,7 @@ public class AddRocks : BaseZoneGenerator
                         continue;
                     }
 
-                    totalChance += item.weight;
+                    totalChance += item.Weight;
 
                 }
 
@@ -204,7 +204,7 @@ public class AddRocks : BaseZoneGenerator
                         {
                             continue;
                         }
-                        chanceChosen -= item.weight;
+                        chanceChosen -= item.Weight;
                         if (chanceChosen <= 0)
                         {
                             frt = item;

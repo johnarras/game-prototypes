@@ -1,15 +1,15 @@
 
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting
 {
     public class SpecialSpellCastingStateHelper : BaseStateHelper
     {

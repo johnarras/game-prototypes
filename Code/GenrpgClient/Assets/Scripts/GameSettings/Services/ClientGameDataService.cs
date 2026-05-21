@@ -1,14 +1,14 @@
 using Assets.Scripts.Assets;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Repository;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.GameSettings.Mappers;
-using Genrpg.Shared.GameSettings.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.DataStores.Entities;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.GameSettings.Mappers;
+using OxDb.SharedCore.GameSettings.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -104,7 +104,13 @@ namespace Assets.Scripts.GameSettings.Services
                         (downloadedSettings == null || (downloadedSettings.SaveTime < bakedSettings.SaveTime)))
 
                     {
-                        await _repoService.Save(bakedSettings, new RepoSaveArgs() { Verbose = true });
+                        RepoSaveArgs args = new RepoSaveArgs()
+                        {
+                            Verbose = true,
+                            Encrypt = _configContainer.Config.EncryptExportedData
+                        };
+                        bakedSettings.Id = GameDataConstants.DefaultFilename;
+                        await _repoService.Save(bakedSettings, args);
                     }
 
                     // If baked settings are newer than the cached downloaded settings, use the new baked data in place of the cached.

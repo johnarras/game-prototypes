@@ -1,13 +1,12 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.MapServer.Constants;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Pathfinding.Constants;
+using OxDb.SharedGame.ProcGen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +21,9 @@ public interface ITerrainPatchLoader : IInitializable
 public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
 {
 
-    private IPlantAssetLoader _plantAssetLoader;
-    private ITerrainTextureManager _terrainTextureManager;
-    private IPlayerManager _playerManager;
-    private IClientAppService _clientAppService = null;
-    private ITextSerializer _serializer;
+    private IPlantAssetLoader _plantAssetLoader = null;
+    private ITerrainTextureManager _terrainTextureManager = null;
+    private IPlayerManager _playerManager = null;
 
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -68,9 +65,9 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
 
                 string filePath = patch.GetFilePath();
 
-                ClientRepositoryCollection<TerrainPatchData> repo = new ClientRepositoryCollection<TerrainPatchData>(_logService, _clientAppService, _serializer);
 
-                patch.DataBytes = repo.LoadBytes(filePath);
+                patch.DataBytes = _clientRepoService.LoadBytes(filePath);
+
                 await Awaitable.NextFrameAsync(cancellationToken: token);
 
                 if (patch.DataBytes == null || patch.DataBytes.Length < 1)
@@ -468,10 +465,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
         }
 
         string filePath = patch.GetFilePath();
-
-        ClientRepositoryCollection<TerrainPatchData> repo = new ClientRepositoryCollection<TerrainPatchData>(_logService, _clientAppService, _serializer);
-
-        repo.SaveBytes(filePath, bytes);
+        _clientRepoService.SaveBytes(filePath, bytes);
         patch.DataBytes = bytes;
         LoadOneTerrainPatch(patch.X, patch.Y, _playerManager.GetPlayerGameObject() == null, _token);
     }

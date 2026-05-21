@@ -49,3 +49,4 @@ MonoBehaviour:
   TtlSeconds: 2
   Clips:
   - {fileID: 0}
+  AudioClips: []

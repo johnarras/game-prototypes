@@ -12,15 +12,15 @@ namespace Assets.Scripts.ProcGen.Materials
         public float[,] BumpHeights;
         public Color[,] Colors;
 
-        public MaterialGenBlock(int size, Color startColor, float startBrightness, float startAlpha)
+        public MaterialGenBlock(int width, int height, Color startColor, float startBrightness, float startAlpha)
         {
-            Brightness = new float[size, size];
-            BumpHeights = new float[size, size];
-            Colors = new Color[size, size];
+            Brightness = new float[width, height];
+            BumpHeights = new float[width, height];
+            Colors = new Color[width, height];
 
-            for (int x = 0; x < size; x++)
+            for (int x = 0; x < width; x++)
             {
-                for (int y = 0; y < size; y++)
+                for (int y = 0; y < height; y++)
                 {
                     BumpHeights[x, y] = startAlpha;
                     Colors[x, y] = startColor;

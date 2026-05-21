@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype99default",
+  "ParentId": "default",
+  "IdKey": 99,
+  "Name": "SettingsName",
+  "Icon": "SettingsName",
+  "Art": "SettingsName"
+}

@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "PVP"
+  "Name": "Bonus",
+  "Icon": "Bonus",
+  "Art": "Bonus"
 }

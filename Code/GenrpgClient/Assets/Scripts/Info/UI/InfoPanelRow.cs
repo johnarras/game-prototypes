@@ -1,6 +1,6 @@
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Info.Constants;
-using Genrpg.Shared.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Info.Constants;
+using OxDb.SharedGame.Crawler.Info.Services;
 
 namespace Assets.Scripts.Info.UI
 {
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Info.UI
                 return;
             }
 
-            _panel.ShowLines(_infoService.GetInfoLines(_textService.GetLinkUnderMouse(Text)));
+            _panel.ShowLines(_infoService.GetInfoPanelArgs(_textService.GetLinkUnderMouse(Text)), EInfoPanelDisplayReason.Click);
 
         }
     }

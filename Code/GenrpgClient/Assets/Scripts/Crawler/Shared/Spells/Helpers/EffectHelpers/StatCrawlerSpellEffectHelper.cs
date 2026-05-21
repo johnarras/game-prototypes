@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Stats.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Stats.Entities;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

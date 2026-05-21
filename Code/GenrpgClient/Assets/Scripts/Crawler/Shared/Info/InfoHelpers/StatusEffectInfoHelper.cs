@@ -1,9 +1,9 @@
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UnitEffects.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public class StatusEffectInfoHelper : BaseInfoHelper<StatusEffectSettings, StatusEffect>
     {

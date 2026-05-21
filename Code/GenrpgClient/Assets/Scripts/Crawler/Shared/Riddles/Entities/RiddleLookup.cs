@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Riddles.Entities
+namespace OxDb.SharedGame.Riddles.Entities
 {
     public class RiddleLookup
     {

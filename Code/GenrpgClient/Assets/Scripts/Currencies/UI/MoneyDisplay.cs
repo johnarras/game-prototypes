@@ -1,7 +1,7 @@
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Rewards.Messages;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.PlayerData;
+using OxDb.SharedGame.Rewards.Messages;
 using System.Collections.Generic;
 
 public class MoneyDisplay : BaseBehaviour

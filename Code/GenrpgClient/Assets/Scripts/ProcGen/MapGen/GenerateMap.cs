@@ -1,4 +1,4 @@
-using Genrpg.Shared.Spawns.WorldData;
+using OxDb.SharedGame.Spawns.WorldData;
 using System.Threading;
 using UnityEngine;
 

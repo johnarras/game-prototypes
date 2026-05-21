@@ -1,17 +1,17 @@
 
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Spells.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Combat;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Spells.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
 {
     public class OnSelectSpellStateHelper : BaseCombatStateHelper
     {

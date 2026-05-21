@@ -1,0 +1,48 @@
+using MessagePack;
+using OxDb.SharedCore.DataStores.Indexes;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace OxDb.SharedCore.GameSettings.Loaders
+{
+    public abstract class NoChildSettingsLoader<TServer> : IGameSettingsLoader where TServer : NoChildSettings, new()
+    {
+        public virtual Type GetChildType() { return typeof(TServer); }
+        public virtual bool SendToClient() { return true; }
+        [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
+
+        public virtual List<CreateIndexData> GetIndexes() { return new List<CreateIndexData>(); }
+        public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
+
+        public virtual async Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing)
+        {
+
+            List<ITopLevelSettings> list = (await repoSystem.Search<TServer>(x => true)).Cast<ITopLevelSettings>().ToList();
+
+            ITopLevelSettings defaultItem = list.FirstOrDefault(x => x.Id == GameDataConstants.DefaultFilename);
+
+            if (defaultItem == null)
+            {
+
+                if (createDefaultIfMissing)
+                {
+                    list.Add(new TServer() { Id = GameDataConstants.DefaultFilename });
+                }
+                else
+                {
+                    throw new Exception("Missing NoChildSettings: " + typeof(TServer).FullName);
+                }
+            }
+
+            return list;
+        }
+    }
+}
+
+

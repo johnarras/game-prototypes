@@ -1,5 +1,5 @@
-header leveltrackrewardsettings,Id,StartCityId,,,
-leveltrackrewardsettings,default,22,,,
+header leveltrackrewardsettings,Id,StartCityId,StartCaravanMemberId,StartSkinTypeId,
+leveltrackrewardsettings,default,London,Donkey,donkey,
 header leveltrackreward,IdKey,Level,EntityTypeId,EntityId,Quantity
 leveltrackreward,1,1,basecurrencystorage,coins,800
 leveltrackreward,2,1,basecurrencyregen,coins,80

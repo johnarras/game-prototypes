@@ -1,7 +1,7 @@
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.ProcGen.Settings.Locations.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;

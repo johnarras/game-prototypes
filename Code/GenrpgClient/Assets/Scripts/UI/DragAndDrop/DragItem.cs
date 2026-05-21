@@ -1,5 +1,5 @@
 using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

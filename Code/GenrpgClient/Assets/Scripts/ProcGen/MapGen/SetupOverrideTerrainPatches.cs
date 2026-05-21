@@ -1,8 +1,8 @@
 
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.MapServer.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -63,7 +63,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
                     {
                         continue;
                     }
-                    long subZoneId = okZones[_rand.Next() % okZones.Count].IdKey;
+                    long subZoneId = okZones[_rand.Rand.Next() % okZones.Count].IdKey;
 
                     if (rand.NextDouble() < 0.8f) // Most subzones are not added for now
                     {

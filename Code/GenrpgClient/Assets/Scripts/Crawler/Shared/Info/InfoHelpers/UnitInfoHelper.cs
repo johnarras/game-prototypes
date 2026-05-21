@@ -1,20 +1,20 @@
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Spells.Constants;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Spells.Constants;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.UnitEffects.Settings;
+using OxDb.SharedGame.Units.Settings;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public class UnitInfoHelper : BaseInfoHelper<UnitTypeSettings, UnitType>
     {

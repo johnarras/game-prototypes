@@ -1,15 +1,15 @@
 using Assets.Scripts.Core;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Quests.Constants;
+using OxDb.SharedGame.Quests.WorldData;
+using OxDb.SharedGame.Spawns.WorldData;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,7 +109,7 @@ public class QuestGenService : IQuestGenService
                         break;
                     }
 
-                    long currUnitTypeId = unitTypeIds[_rand.Next() % unitTypeIds.Count];
+                    long currUnitTypeId = unitTypeIds[_rand.Rand.Next() % unitTypeIds.Count];
 
                     unitTypeIds.Remove(currUnitTypeId);
 

@@ -1,6 +1,7 @@
 
-using Genrpg.Shared.MapObjects.Messages;
+using OxDb.SharedGame.MapObjects.Messages;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Spawns
@@ -10,6 +11,7 @@ namespace Assets.Scripts.MessageHandlers.Spawns
         protected override async Awaitable InnerProcess(DespawnObject msg, CancellationToken token)
         {
             _objectManager.RemoveObject(msg.ObjId);
+            await Task.CompletedTask;
         }
     }
 }

@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Spells.Settings.Elements;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Spells.Settings.Elements;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public class ElementLootTypeHelper : BaseCrawlerLootTypeHelper
     {
@@ -21,7 +21,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
                 return;
             }
 
-            ElementType etype = etypes[_rand.Next(etypes.Count)];
+            ElementType etype = etypes[_rand.Rand.Next(etypes.Count)];
 
             item.Effects.Add(new Effect()
             {

@@ -1,15 +1,15 @@
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Vendors
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Vendors
 {
     public class VendorHelper : BuildingStateHelper
     {

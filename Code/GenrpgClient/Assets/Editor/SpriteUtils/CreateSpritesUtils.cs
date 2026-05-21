@@ -1,0 +1,15 @@
+﻿using AssetProcessing;
+using UnityEditor;
+
+namespace Assets.Editor.SpriteUtils
+{
+    public static class CreateSpritesUtils
+    {
+
+        [MenuItem("Tools/Crawler/Setup Monster Sprites")]
+        public static void SetupCrawlerMonsterImages()
+        {
+            SpritePrefabBuilder.ProcessSpritesToPrefabs("FullAssets/Crawler/Images/Monsters", "BundledAssets/TextureLists");
+        }
+    }
+}

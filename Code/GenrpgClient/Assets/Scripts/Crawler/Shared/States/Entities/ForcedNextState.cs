@@ -1,7 +1,7 @@
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
 
-namespace Genrpg.Shared.Crawler.States.Entities
+namespace OxDb.SharedGame.Crawler.States.Entities
 {
     public class ForcedNextState
     {

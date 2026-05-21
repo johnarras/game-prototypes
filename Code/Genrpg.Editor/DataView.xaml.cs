@@ -1,30 +1,28 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Entities.Core;
-using Genrpg.DataUtils.Interfaces;
-using Genrpg.DataUtils.Services.Reflection;
 using Genrpg.Editor.UI;
-using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.DataStores;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.ServerShared.PlayerData;
-using Genrpg.ServerShared.PlayerData.Services;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.DataStores.Categories.WorldData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Interfaces;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.Units.Loaders;
-using Genrpg.Shared.Utils.Data;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Interfaces;
+using OxDb.ServerCore.Config;
+using OxDb.ServerCore.DataStores.Services;
+using OxDb.ServerCore.GameSettings.Services;
+using OxDb.ServerGame.PlayerData.Services;
+using OxDb.SharedCore.Core.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Names.Entities;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.DataStores.Categories.WorldData;
+using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedGame.Units.Loaders;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,7 +70,7 @@ namespace Genrpg.Editor
 
         protected IList<String> IgnoredFields;
 
-        protected IEditorReflectionService _reflectionService = null;
+        protected IReflectionService _reflectionService = null;
         protected IServerGameDataService _gameDataService = null;
         protected IFullRepositoryService _repoService = null;
         protected ILogService _logService = null;
@@ -258,7 +256,7 @@ namespace Genrpg.Editor
         private bool addedButtons = false;
         private void AddTopButtons()
         {
-            bool isProd = EnvNames.IsProdEnv(_config.DefaultEnv);
+            bool isProd = EnvNames.IsProdEnv(_config.Env);
 
             if (addedButtons)
             {
@@ -284,7 +282,7 @@ namespace Genrpg.Editor
             DetailsButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "DetailsButton", "Details", w, h, x, y, OnClickDetails); x += w + 5;
 
 
-            if (!EnvNames.IsProdEnv(_config.DefaultEnv))
+            if (!EnvNames.IsProdEnv(_config.Env))
             {
                 AddButton = UIHelper.CreateButton(this, EButtonTypes.TopBar, "AddButton", "Add", w, h, x, y, OnClickAdd); x += w + 5;
 
@@ -475,7 +473,7 @@ namespace Genrpg.Editor
 
             for (int i = 0; i < members.Count; i++)
             {
-                MemberInfo mem = members[i];               
+                MemberInfo mem = members[i];
 
                 if (!AllowEditing(_gs, mem, true))
                 {
@@ -556,7 +554,7 @@ namespace Genrpg.Editor
                 return UIHelper.CreateCheckBox(coll, mem.Name + "Edit", width, height, xpos, ypos);
             }
 
-            List<IIdName> ddList = _reflectionService.GetDropdownList(_gs, mem, Obj);
+            List<IIdName> ddList = _reflectionService.GetDropdownList(mem, Obj);
 
             if (ddList != null && ddList.Count > 0)
             {
@@ -1099,7 +1097,7 @@ namespace Genrpg.Editor
 
                 _numSingleTopButtonsShown++;
 
-                MyColorF col = EntityUtils.GetObjectValue(Obj, mem) as MyColorF;
+                MyColorF col = _reflectionService.GetObjectValue(Obj, mem) as MyColorF;
 
                 if (col != null)
                 {
@@ -1539,7 +1537,7 @@ namespace Genrpg.Editor
                 if (listCount == iidlist.Count && listCount > 0)
                 {
                     iidlist = iidlist.OrderBy(x => x.IdKey).ToList();
-                    _reflectionService.ReplaceIndexedItems(_gs, list, iidlist);
+                    _reflectionService.ReplaceIndexedItems(list, iidlist);
                 }
                 list = _reflectionService.SortOnParameter(elist);
 
@@ -1638,7 +1636,7 @@ namespace Genrpg.Editor
                         }
 
 
-                        UIHelper.AddComboBoxColumn(_multiGrid, objMember.Name, objMember, underlyingType, nameMember, enumIds);
+                        UIHelper.AddComboBoxColumn(_multiGrid, _reflectionService, objMember.Name, objMember, underlyingType, nameMember, enumIds);
 
                     }
 
@@ -1646,7 +1644,7 @@ namespace Genrpg.Editor
                     {
                         MemberInfo mem = members[i];
 
-                        List<IIdName> dropdownList = _reflectionService.GetDropdownList(_gs, mem, null);
+                        List<IIdName> dropdownList = _reflectionService.GetDropdownList(mem, null);
 
                         if (dropdownList == null || dropdownList.Count < 1)
                         {
@@ -1661,7 +1659,7 @@ namespace Genrpg.Editor
                             continue;
                         }
 
-                        UIHelper.AddComboBoxColumn(_multiGrid, mem.Name, mem, underlyingType, nameMember, dropdownList);
+                        UIHelper.AddComboBoxColumn(_multiGrid, _reflectionService, mem.Name, mem, underlyingType, nameMember, dropdownList);
                     }
                 }
 

@@ -1,8 +1,8 @@
-using Genrpg.Shared.ProcGen.Settings.LineGen;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.LineGen;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Threading;

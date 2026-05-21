@@ -1,4 +1,4 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI

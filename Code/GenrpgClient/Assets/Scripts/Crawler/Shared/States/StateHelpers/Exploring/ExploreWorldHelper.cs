@@ -1,46 +1,28 @@
-using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.ProcGen.Materials;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
     public class ExploreWorldHelper : BaseStateHelper
     {
-
         private IScreenService _screenService = null;
         private ICrawlerMoveService _moveService = null;
         private IPartyService _partyService = null;
-        public class NamedMoveKey
-        {
-            public char Key { get; private set; }
-            public string Name { get; private set; }
-
-            public NamedMoveKey(char key, string name)
-            {
-                Key = key;
-                Name = name;
-            }
-        }
-
         private ICrawlerMapService _crawlerMapService = null;
-        private IMaterialGenService _materialGenService = null;
-
-        private IAwaitableService _awaitableService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ExploreWorld;
         public override bool IsTopLevelState() { return true; }
@@ -79,6 +61,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             stateData.AddText("Use WASDQE to move.");
 
+            // WASDQE ARE USED FOR MOVEMENT BUTTONS!
             stateData.Actions.Add(new CrawlerStateAction("Cast", Key.C));
             stateData.Actions.Add(new CrawlerStateAction("Map", Key.M));
             stateData.Actions.Add(new CrawlerStateAction("Quest Log", Key.L));
@@ -88,11 +71,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             stateData.Actions.Add(new CrawlerStateAction("Party Order", Key.P));
             stateData.Actions.Add(new CrawlerStateAction("Buffs", Key.B));
             stateData.Actions.Add(new CrawlerStateAction("Use Item", Key.U));
-
-            //if (_clientAppService.IsEditor)
-            {
-                stateData.Actions.Add(new CrawlerStateAction("Gen Wall", Key.G, ECrawlerStates.None, () => GenerateWall(token)));
-            }
+            stateData.Actions.Add(new CrawlerStateAction("Camp", Key.K));
 
             if (map != null)
             {
@@ -124,7 +103,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
 
             stateData.Actions.Add(new CrawlerStateAction(null, rowFiller: true));
 
-            IReadOnlyList<MovementKeyCode> moveKeys = _moveService.GetMovementKeyCodes();
+            IReadOnlyList<MovementKeyCode> moveKeys = _moveService.GetMovementKeyCodes(false);
 
             stateData.AddText("USE WASD or Arrow Keys to Move");
             foreach (MovementKeyCode nmk in moveKeys)
@@ -171,13 +150,6 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
             await _crawlerMapService.EnterMap(party, mapData, token);
 
             return stateData;
-        }
-
-        private void GenerateWall(CancellationToken token)
-        {
-            _awaitableService.ForgetAwaitable(_materialGenService.GenerateRandomMaterialsInCrawler(token));
-
-
         }
     }
 }

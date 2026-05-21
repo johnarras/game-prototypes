@@ -1,26 +1,26 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Crawler.MapGen.Entities;
-using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Constants;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.Crawler.MapGen.Entities;
+using OxDb.SharedGame.Crawler.MapGen.Helpers;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Units.Settings;
+using OxDb.SharedGame.Zones.Constants;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Maps
                 return null;
             }
 
-            IClientRandom rand = new ClientRandom(world.GetMaxMapId() + 3 + world.Seed / 3);
+            IRandom rand = new MyRandom(world.GetMaxMapId() + 3 + world.Seed / 3);
 
             genData.MapType = mtype;
             if (genData.GenType == null)
@@ -136,7 +136,7 @@ namespace Assets.Scripts.Crawler.Maps
 
             if (genData.ArtSeed == 0)
             {
-                genData.ArtSeed = _rand.Next(1000000000); // Use global rand here to make it random each time we generate
+                genData.ArtSeed = _rand.Rand.Next(1000000000); // Use global rand here to make it random each time we generate
             }
 
             ICrawlerMapGenHelper helper = GetGenHelper(genData.MapTypeId);
@@ -287,11 +287,11 @@ namespace Assets.Scripts.Crawler.Maps
 
                     if (openDirs.Count > 0)
                     {
-                        map.Set(x, z, CellIndex.Dir, openDirs[_rand.Next(openDirs.Count)]);
+                        map.Set(x, z, CellIndex.Dir, openDirs[_rand.Rand.Next(openDirs.Count)]);
                     }
                     else if (doorDirs.Count > 0)
                     {
-                        map.Set(x, z, CellIndex.Dir, doorDirs[_rand.Next(doorDirs.Count)]);
+                        map.Set(x, z, CellIndex.Dir, doorDirs[_rand.Rand.Next(doorDirs.Count)]);
                     }
                 }
             }

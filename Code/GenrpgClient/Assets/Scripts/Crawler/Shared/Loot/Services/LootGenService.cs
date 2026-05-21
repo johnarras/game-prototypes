@@ -1,53 +1,53 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crafting.Entities;
-using Genrpg.Shared.Crawler.Crafting.Settings;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Loot.Constants;
-using Genrpg.Shared.Crawler.Loot.Helpers;
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Quests.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Training.Services;
-using Genrpg.Shared.Crawler.Training.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Inventory.Settings.Ranks;
-using Genrpg.Shared.Inventory.Settings.Slots;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Scaling;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Vendors.Settings;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crafting.Entities;
+using OxDb.SharedGame.Crawler.Crafting.Settings;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Loot.Constants;
+using OxDb.SharedGame.Crawler.Loot.Helpers;
+using OxDb.SharedGame.Crawler.Loot.Settings;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Quests.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Training.Services;
+using OxDb.SharedGame.Crawler.Training.Settings;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Services;
+using OxDb.SharedGame.Inventory.Settings.ItemTypes;
+using OxDb.SharedGame.Inventory.Settings.Ranks;
+using OxDb.SharedGame.Inventory.Settings.Slots;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Scaling;
+using OxDb.SharedGame.Stats.Settings.Stats;
+using OxDb.SharedGame.Vendors.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Loot.Services
+namespace OxDb.SharedGame.Crawler.Loot.Services
 {
 
 
@@ -135,7 +135,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             List<LootRank> okRanks = new List<LootRank>();
 
-            while (expectedOffset < ranks.Count - 2 && _rand.NextDouble() < rankSettings.ExtraQualityChance)
+            while (expectedOffset < ranks.Count - 2 && _rand.Rand.NextDouble() < rankSettings.ExtraQualityChance)
             {
                 expectedOffset++;
             }
@@ -168,7 +168,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             LootRank chosenRank = okRanks[0];
 
             int rankIndex = 0;
-            while (rankIndex < okRanks.Count - 1 && _rand.NextDouble() < rankSettings.ExtraQualityChance)
+            while (rankIndex < okRanks.Count - 1 && _rand.Rand.NextDouble() < rankSettings.ExtraQualityChance)
             {
                 rankIndex++;
             }
@@ -214,7 +214,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 List<ItemType> armorItems = okLootItems.Where(x => EquipSlots.IsArmor(x.EquipSlotId)).ToList();
 
-                bool armorItem = _rand.NextDouble() < rankSettings.ArmorChance;
+                bool armorItem = _rand.Rand.NextDouble() < rankSettings.ArmorChance;
 
                 List<ItemType> finalList = (armorItem ? armorItems : weaponItems);
 
@@ -223,7 +223,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                     return null;
                 }
 
-                itemType = finalList[_rand.Next() % finalList.Count];
+                itemType = finalList[_rand.Rand.Next() % finalList.Count];
             }
 
             bool isArmor = EquipSlots.IsArmor(itemType.EquipSlotId);
@@ -237,7 +237,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 return null;
             }
 
-            scalingTypeId = RandUtils.IntRange(1, LootConstants.MaxArmorScalingType, _rand);
+            scalingTypeId = RandUtils.IntRange(1, LootConstants.MaxArmorScalingType, _rand.Rand);
             scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
 
             if (scalingType == null)
@@ -270,7 +270,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             string baseItemName = itemType.Name;
             if (itemType.Names != null && itemType.Names.Count > 0)
             {
-                baseItemName = RandUtils.GetRandomElement(itemType.Names, _rand)?.Name ?? "Armor";
+                baseItemName = RandUtils.GetRandomElement(itemType.Names, _rand.Rand)?.Name ?? "Armor";
             }
 
             // Weapon damage is calculated dynamically as needed.
@@ -290,14 +290,14 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 x.IdKey <= StatConstants.PrimaryStatEnd && !usedStatTypeIds.Contains(x.IdKey)).ToList();
 
                 int statQuantity = (int)chosenRank.IdKey / 8;
-                if (_rand.NextDouble() < chosenRank.IdKey * 0.2f)
+                if (_rand.Rand.NextDouble() < chosenRank.IdKey * 0.2f)
                 {
                     statQuantity++;
                 }
                 for (int i = 0; i < statQuantity && okStats.Count > 0; i++)
                 {
 
-                    StatType okStat = okStats[_rand.Next() % okStats.Count];
+                    StatType okStat = okStats[_rand.Rand.Next() % okStats.Count];
                     usedStatTypeIds.Add(okStat.IdKey);
                     okStats.Remove(okStat);
                 }
@@ -318,7 +318,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 foreach (long statTypeId in usedStatTypeIds)
                 {
 
-                    double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * RandUtils.DeltaScale(lootSettings.StatBonusVariance, _rand)));
+                    double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * RandUtils.DeltaScale(lootSettings.StatBonusVariance, _rand.Rand)));
 
 
                     Effect itemEffect = new Effect()
@@ -340,14 +340,14 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                         {
                             effect.Quantity +=
                                 (long)extraStatQuantity +
-                                _rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
+                                _rand.Rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
                         }
                     }
                 }
 
-                if (_rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease * itemGenArgs.PowerIncrease)
+                if (_rand.Rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease * itemGenArgs.PowerIncrease)
                 {
-                    CrawlerLootType enchantType = RandUtils.GetRandomEnchant(lootSettings.GetData(), _rand);
+                    CrawlerLootType enchantType = RandUtils.GetRandomEnchant(lootSettings.GetData(), _rand.Rand);
 
                     if (enchantType != null)
                     {
@@ -359,7 +359,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 }
             }
 
-            item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
+            item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand.Rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
             item.Level = Math.Max(1, level);
 
             double cost = lootSettings.BaseLootCost;
@@ -431,20 +431,20 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             {
                 double lootScale = (1 + crawlerUnit.BonusCount * extraScalePerBonus);
                 exp += expPerMonster * lootScale;
-                gold += RandUtils.LongRange(minGold, maxGold, _rand) * lootScale;
+                gold += RandUtils.LongRange(minGold, maxGold, _rand.Rand) * lootScale;
 
-                if (_rand.NextDouble() < itemChance * lootScale)
+                if (_rand.Rand.NextDouble() < itemChance * lootScale)
                 {
                     itemCount++;
                 }
 
-                if (_rand.NextDouble() < craftingSettings.MonsterDropReagentChance)
+                if (_rand.Rand.NextDouble() < craftingSettings.MonsterDropReagentChance)
                 {
                     reagentCount++;
                 }
             }
 
-            if (_rand.NextDouble() < lootSettings.FirstMonsterItemDropChance)
+            if (_rand.Rand.NextDouble() < lootSettings.FirstMonsterItemDropChance)
             {
                 itemCount++;
             }
@@ -489,7 +489,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
                 for (int i = 0; i < reagentCount; i++)
                 {
-                    allLootGenData.Currencies.Add(ctypes[_rand.Next() % ctypes.Count].IdKey, 1);
+                    allLootGenData.Currencies.Add(ctypes[_rand.Rand.Next() % ctypes.Count].IdKey, 1);
                 }
             }
 
@@ -538,7 +538,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
                 ItemGenArgs itemGenArgs = new ItemGenArgs()
                 {
                     Level = genData.Level,
-                    QualityTypeId = (long)(_rand.NextDouble() * (lootQualityBonus * 2 + 0.5f)),
+                    QualityTypeId = (long)(_rand.Rand.NextDouble() * (lootQualityBonus * 2 + 0.5f)),
                     PowerIncrease = extraItems,
                 };
 
@@ -660,14 +660,14 @@ namespace Genrpg.Shared.Crawler.Loot.Services
 
             double itemChance = settings.ItemChanceDefault * itemMult;
 
-            while (_rand.NextDouble() < itemChance && itemCount < settings.MaxLootItems)
+            while (_rand.Rand.NextDouble() < itemChance && itemCount < settings.MaxLootItems)
             {
                 itemCount++;
             }
 
             LootGenData genData = new LootGenData()
             {
-                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * RandUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand),
+                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * RandUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand.Rand),
                 ItemCount = itemCount,
                 NextState = nextState,
                 NextStateData = nextStateData,
@@ -675,7 +675,7 @@ namespace Genrpg.Shared.Crawler.Loot.Services
             };
 
             genData.Currencies[CoreCurrencyTypes.Coins] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
-                RandUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand));
+                RandUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand.Rand));
 
             if (!string.IsNullOrEmpty(topMessage))
             {

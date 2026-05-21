@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spawns.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Spawns.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

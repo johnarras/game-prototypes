@@ -5,6 +5,5 @@
   "Name": "City",
   "Icon": "City",
   "Art": "City",
-  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

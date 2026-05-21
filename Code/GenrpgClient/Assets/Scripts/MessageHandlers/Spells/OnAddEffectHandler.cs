@@ -1,6 +1,7 @@
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Spells.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Spells
@@ -15,6 +16,7 @@ namespace Assets.Scripts.MessageHandlers.Spells
             }
 
             _dispatcher.Dispatch(msg);
+            await Task.CompletedTask;
         }
     }
 }

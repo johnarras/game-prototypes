@@ -1,14 +1,14 @@
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings
 {
     [Serializable]
-    public class WeightedCrawlerBuilding : IFloatWeightedItem
+    public class WeightedCrawlerBuilding : IWeightedItem
     {
         [field: SerializeField]
-        public float Weight { get; set; }
+        public double Weight { get; set; }
         public CrawlerBuilding Building;
         public BuildingMats Mats;
 

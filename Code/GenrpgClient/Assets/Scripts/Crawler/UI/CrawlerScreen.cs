@@ -1,11 +1,11 @@
 
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Exploring;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 

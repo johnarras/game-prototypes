@@ -1,8 +1,8 @@
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.Options.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Crawler.Options.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

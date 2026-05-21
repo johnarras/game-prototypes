@@ -1,14 +1,14 @@
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Houses
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Houses
 {
     public class EnterHouseHelper : BuildingStateHelper
     {
@@ -24,7 +24,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Houses
 
             stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
-            if (_rand.NextDouble() < 0.3f)
+            if (_rand.Rand.NextDouble() < 0.3f)
             {
                 stateData = new CrawlerStateData(ECrawlerStates.StartCombat, true)
                 {

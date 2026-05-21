@@ -1,15 +1,15 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Loot.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
 
     public class LevelMapStateHelper : BaseStateHelper

@@ -8,7 +8,7 @@ namespace Assets.Scripts.Dungeons
     [Serializable]
     public class WeightedMaterialGenType
     {
-        public float Weight;
+        public double Weight;
 
         public EMaterialGenTypes WallGenType;
     }

@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 
 public class GInputField : TMPro.TMP_InputField, IInputField
 {

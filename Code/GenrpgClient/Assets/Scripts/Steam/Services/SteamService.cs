@@ -1,8 +1,8 @@
 ﻿
 #if !DISABLESTEAMWORKS
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using Steamworks;
 using System.Text;
 using System.Threading;

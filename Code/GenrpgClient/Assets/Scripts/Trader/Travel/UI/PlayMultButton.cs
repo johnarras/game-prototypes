@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Attributes.Services;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.PlayMultiplier.Services;
-using Genrpg.Shared.PlayMultiplier.WebApi;
-using Genrpg.Shared.Trader.Constants;
+using OxDb.SharedGame.Attributes.Services;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.PlayMultiplier.Services;
+using OxDb.SharedGame.PlayMultiplier.WebApi;
+using OxDb.SharedGame.Trader.Constants;
 using System;
 using UnityEngine;
 

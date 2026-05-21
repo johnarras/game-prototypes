@@ -1,4 +1,4 @@
-using Genrpg.Shared.Crawler.Options.Settings;
+using OxDb.SharedGame.Crawler.Options.Settings;
 
 namespace Assets.Scripts.Crawler.UI.MainMenu
 {

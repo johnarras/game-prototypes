@@ -1,5 +1,5 @@
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
+using OxDb.SharedGame.Purchasing.WebApi.RefreshStores;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

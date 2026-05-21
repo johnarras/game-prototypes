@@ -7,16 +7,16 @@ using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Minimap.Services;
 using Assets.Scripts.Setup.Interfaces;
 using ClientEvents;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.Utils;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Characters.Utils;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.Spawns.WorldData;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -829,7 +829,7 @@ public class UnityZoneGenService : ZoneGenService
             {
                 _dispatcher.Dispatch(new CloseAllScreens());
                 _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
-                _logService.Message("Map failed to download");
+                _logService.Info("Map failed to download");
                 return;
             }
 

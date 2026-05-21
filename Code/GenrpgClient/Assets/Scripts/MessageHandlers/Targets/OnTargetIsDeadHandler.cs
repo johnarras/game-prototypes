@@ -1,9 +1,10 @@
 
-using Genrpg.Shared.Combat.Messages;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Combat.Messages;
+using OxDb.SharedGame.Targets.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Targets
@@ -24,6 +25,7 @@ namespace Assets.Scripts.MessageHandlers.Targets
                 };
                 controller.OnDeath(died, token);
             }
+            await Task.CompletedTask;
         }
     }
 }

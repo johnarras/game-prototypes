@@ -1,21 +1,23 @@
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +37,14 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
         public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {
-            LoadPropAtCell(mapRoot, cell, "Trap", x, z, null, token);
+
+            CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
+            {
+                MapRoot = mapRoot,
+                Cell = cell,
+            };
+
+            _mapService.LoadProp(loadData, "Trap", token);
 
             await Task.CompletedTask;
         }
@@ -54,16 +63,17 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                 long minDam = map.Level * mapSettings.TrapMinDamPerLevel;
                 long maxDam = map.Level * mapSettings.TrapMaxDamagePerLevel;
 
+                _dispatcher.Dispatch(new PlaySound(CrawlerAudio.TrapClose));
                 foreach (PartyMember pm in party.ActiveParty)
                 {
                     double luckBonus = _crawlerStatService.GetStatBonus(party, pm, StatTypes.Luck) / 100.0f;
 
-                    if (_rand.NextDouble() < mapSettings.TrapHitChance - luckBonus)
+                    if (_rand.Rand.NextDouble() < mapSettings.TrapHitChance - luckBonus)
                     {
                         continue;
                     }
 
-                    long damage = RandUtils.LongRange(minDam, maxDam, _rand);
+                    long damage = RandUtils.LongRange(minDam, maxDam, _rand.Rand);
                     _crawlerStatService.Add(party, pm, StatTypes.Health, UnitStatValOffsets.Curr, -damage, ElementTypes.Melee);
 
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
@@ -72,9 +82,9 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                         continue;
                     }
 
-                    if (_rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
+                    if (_rand.Rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
                     {
-                        long tier = Math.Min(RandUtils.LongRange(1, maxStatusEffectTier, _rand), RandUtils.LongRange(1, maxStatusEffectTier, _rand));
+                        long tier = Math.Min(RandUtils.LongRange(1, maxStatusEffectTier, _rand.Rand), RandUtils.LongRange(1, maxStatusEffectTier, _rand.Rand));
 
 
                         StatusEffect effect = effects.FirstOrDefault(x => x.IdKey == tier);
@@ -93,10 +103,6 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                 _dispatcher.Dispatch(new RefreshPartyStatus());
             }
             _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
-        }
-
-        protected override void AfterDownloadProp(GameObject prop, CrawlerObjectLoadData args)
-        {
         }
     }
 }

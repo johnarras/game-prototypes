@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "Minigame",
+  "Icon": "Minigame",
+  "Art": "Minigame"
+}

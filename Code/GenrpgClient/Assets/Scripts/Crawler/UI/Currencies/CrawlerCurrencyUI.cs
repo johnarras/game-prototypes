@@ -1,9 +1,9 @@
 using Assets.Scripts.Crawler.ClientEvents.HUD;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.UI.Currencies
 
             PartyData party = _crawlerService.GetParty();
 
-            ctypes = ctypes.Where(x=>x.IdKey == CoreCurrencyTypes.Coins || x.StatTypeId > 0).ToList();  
+            ctypes = ctypes.Where(x => x.IdKey == CoreCurrencyTypes.Coins || x.StatTypeId > 0).ToList();
 
             foreach (CoreCurrencyType ctype in ctypes)
             {

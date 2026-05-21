@@ -1,7 +1,7 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Crawler.Combat.Constants;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Constants;
 
-namespace Genrpg.Shared.Crawler.GameEvents
+namespace OxDb.SharedGame.Crawler.GameEvents
 {
 
     public class ShowCombatText : IClientEvent

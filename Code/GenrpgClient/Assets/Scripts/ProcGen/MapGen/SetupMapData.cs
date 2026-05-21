@@ -1,7 +1,7 @@
 
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.Spawns.WorldData;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

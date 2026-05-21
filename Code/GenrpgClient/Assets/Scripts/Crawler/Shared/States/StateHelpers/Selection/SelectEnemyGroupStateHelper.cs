@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Combat;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Combat;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
 {
     public class SelectEnemyGroupStateHelper : BaseCombatStateHelper
     {

@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Quest"
+  "Name": "Quest",
+  "Icon": "Quest",
+  "Art": "Quest"
 }

@@ -1,10 +1,10 @@
 using Assets.Scripts.Core;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Settings.Plants;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Settings.Plants;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -40,7 +40,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             while (plist.Count > maxQuantity)
             {
-                plist.RemoveAt(_rand.Next() % plist.Count);
+                plist.RemoveAt(_rand.Rand.Next() % plist.Count);
             }
 
             for (int p = 0; p < plist.Count; p++)

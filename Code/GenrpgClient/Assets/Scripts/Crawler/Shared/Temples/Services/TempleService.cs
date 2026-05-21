@@ -1,17 +1,17 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Temples.Settings;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Temples.Settings;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Spells.Interfaces;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Temples.Services
+namespace OxDb.SharedGame.Crawler.Temples.Services
 {
 
 

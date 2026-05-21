@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.Interactions.Messages;
+using OxDb.SharedGame.GroundObjects.Settings;
+using OxDb.SharedGame.Interactions.Messages;
 
 public class MapGroundObject : InteractableObject
 {
@@ -13,7 +13,7 @@ public class MapGroundObject : InteractableObject
     public int X;
     public int Z;
 
-    public GroundObjType GroundObj;
+    public GroundObjType GroundObj { get; set; }
 
     protected int _useState = InteractableObject.NotUsed;
     protected override void _RightClick(float distance)

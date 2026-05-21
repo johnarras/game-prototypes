@@ -1,6 +1,6 @@
 
 using Assets.Scripts.Assets.ObjectPools;
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 using System;
 using System.Threading;
 

@@ -1,14 +1,15 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Core;
 using ClientEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Quests.Messages;
-using Genrpg.Shared.Quests.PlayerData;
-using Genrpg.Shared.Quests.Services;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.MapObjects.MapObjectAddons.Constants;
+using OxDb.SharedGame.Quests.Constants;
+using OxDb.SharedGame.Quests.Messages;
+using OxDb.SharedGame.Quests.PlayerData;
+using OxDb.SharedGame.Quests.Services;
+using OxDb.SharedGame.Quests.WorldData;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ internal class QuestTypeWithIndex
 /// </summary>
 public class QuestScreen : ItemIconScreen
 {
+    protected IClientRandom _rand = null;
     public GButton VendorButton;
     public GameObject QuestListParent;
     public QuestInfoUI FullQuestInfo;
@@ -89,7 +91,7 @@ public class QuestScreen : ItemIconScreen
         foreach (QuestType quest in allQuests)
         {
 
-            int questState = _questService.GetQuestState(_rand, _gs.ch, quest);
+            int questState = _questService.GetQuestState(_rand.Rand, _gs.ch, quest);
 
             if (questState == QuestState.Available || questState == QuestState.Complete ||
                 questState == QuestState.Active)

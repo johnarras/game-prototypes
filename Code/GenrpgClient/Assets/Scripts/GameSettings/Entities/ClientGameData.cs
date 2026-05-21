@@ -1,6 +1,5 @@
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.PlayerFiltering.Interfaces;
-
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.PlayerFiltering.Interfaces;
 namespace Assets.Scripts.GameSettings.Entities
 {
     public class ClientGameData : GameData

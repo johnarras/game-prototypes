@@ -1,11 +1,11 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         {
             if (_mapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Spinner, true))
             {
-                int rotateAmount = RandUtils.IntRange(-1, 2, _rand);
+                int rotateAmount = RandUtils.IntRange(-1, 2, _rand.Rand);
                 if (rotateAmount != 0)
                 {
                     await _moveService.Rot(status, rotateAmount, true, token);

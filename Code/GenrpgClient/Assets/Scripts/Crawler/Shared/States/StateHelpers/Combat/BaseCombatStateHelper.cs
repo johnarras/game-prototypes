@@ -1,7 +1,7 @@
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public abstract class BaseCombatStateHelper : BaseStateHelper
     {

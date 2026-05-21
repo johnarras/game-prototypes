@@ -1,7 +1,8 @@
-using Genrpg.Shared.GameSettings.Messages;
-using Genrpg.Shared.GameSettings.WebApi.UpdateGameSettings;
-using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
+using OxDb.SharedCore.GameSettings.WebApi.UpdateGameSettings;
+using OxDb.SharedGame.GameSettings.Messages;
+using OxDb.SharedGame.Purchasing.WebApi.RefreshStores;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.GameSettings
@@ -14,6 +15,7 @@ namespace Assets.Scripts.MessageHandlers.GameSettings
         {
             _webNetworkService.SendWebRequest(new UpdateGameSettingsRequest() { CharId = _gs.ch.Id }, token);
             _webNetworkService.SendWebRequest(new RefreshStoresRequest() { CharId = _gs.ch.Id }, token);
+            await Task.CompletedTask;
         }
     }
 }

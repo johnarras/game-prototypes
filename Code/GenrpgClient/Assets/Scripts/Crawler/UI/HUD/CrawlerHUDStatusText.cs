@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using System;
 
 namespace Assets.Scripts.Crawler.UI.HUD

@@ -1,9 +1,9 @@
 
-using Genrpg.Shared.Combat.Messages;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Combat.Messages;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using UnityEngine;
 

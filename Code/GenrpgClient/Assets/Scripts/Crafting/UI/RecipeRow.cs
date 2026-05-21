@@ -1,7 +1,7 @@
 
-using Genrpg.Shared.Crafting.PlayerData.Recipes;
-using Genrpg.Shared.Crafting.Settings.Recipes;
-using Genrpg.Shared.Stats.Settings.Scaling;
+using OxDb.SharedGame.Crafting.PlayerData.Recipes;
+using OxDb.SharedGame.Crafting.Settings.Recipes;
+using OxDb.SharedGame.Stats.Settings.Scaling;
 using UnityEngine;
 
 public class RecipeRow : BaseBehaviour

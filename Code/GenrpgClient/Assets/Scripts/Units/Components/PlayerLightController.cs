@@ -1,13 +1,14 @@
 
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Controllers
         private ICrawlerService _crawlerService = null;
         private ICrawlerWorldService _crawlerWorldService = null;
         private IClientConfigContainer _configContainer = null;
+        protected IClientRandom _rand = null;
 
         public float Range = 75;
 
@@ -58,7 +60,7 @@ namespace Assets.Scripts.Controllers
         bool haveSetPosition = false;
         private void LightUpdate()
         {
-            if (!_crawlerMapService.IsIndoors())
+            if (!_crawlerMapService.InIndoorMap())
             {
                 return;
             }
@@ -86,7 +88,7 @@ namespace Assets.Scripts.Controllers
 
             if (_currIntensity != _targetIntensity)
             {
-                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, RandUtils.FloatRange(0, IntensityDelta * 2, _rand));
+                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, RandUtils.FloatRange(0, IntensityDelta * 2, _rand.Rand));
             }
 
             if (_currIntensity == _targetIntensity)
@@ -95,8 +97,8 @@ namespace Assets.Scripts.Controllers
 
                 if (_stableTicksLeft <= 0)
                 {
-                    _targetIntensity = RandUtils.FloatRange(MaxIntensity * 3 / 4, MaxIntensity, _rand);
-                    _stableTicksLeft = RandUtils.IntRange(0, _maxStableTicks, _rand);
+                    _targetIntensity = RandUtils.FloatRange(MaxIntensity * 3 / 4, MaxIntensity, _rand.Rand);
+                    _stableTicksLeft = RandUtils.IntRange(0, _maxStableTicks, _rand.Rand);
                 }
             }
 

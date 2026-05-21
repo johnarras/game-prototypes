@@ -1,5 +1,5 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Client.Assets.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -14,7 +14,7 @@ public class FloatingTextQueuedItem
 
 public class FloatingTextScreen : BaseScreen
 {
-    private IInputService _inputService = null;
+    private IClientAppService _appService = null;
 
     public GameObject _textAnchor;
 
@@ -57,7 +57,7 @@ public class FloatingTextScreen : BaseScreen
         }
 
 
-        _timeDelta = _inputService.GetDeltaTime();
+        _timeDelta = _appService.GetDeltaTime();
 
         _removeList.Clear();
 

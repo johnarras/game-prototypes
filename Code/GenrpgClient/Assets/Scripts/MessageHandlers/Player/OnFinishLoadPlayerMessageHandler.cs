@@ -1,8 +1,9 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Players.Messages;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Players.Messages;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Player
@@ -15,6 +16,7 @@ namespace Assets.Scripts.MessageHandlers.Player
             _dispatcher.Dispatch(msg);
             _dispatcher.Dispatch(new CloseAllScreens());
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.HUD));
+            await Task.CompletedTask;
         }
     }
 }

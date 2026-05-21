@@ -1,15 +1,12 @@
 ﻿using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Info.Services;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Calendar.Services;
-using Genrpg.Shared.Trader.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Calendar.Services;
+using OxDb.SharedGame.Trader.Constants;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
 {
     public class GameplayStatusUI : BaseBehaviour
     {
-
-        private ITraderInfoService _infoService = null;
         private ICalendarService _calendarService = null;
 
         public GText DateText;

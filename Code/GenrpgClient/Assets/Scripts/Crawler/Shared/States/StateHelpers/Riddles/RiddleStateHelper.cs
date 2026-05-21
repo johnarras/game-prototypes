@@ -1,17 +1,17 @@
 using Assets.Scripts.Crawler.Maps.ClientEvents;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Riddles.Settings;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.EntranceRiddles
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.EntranceRiddles
 {
     public class RiddleStateHelper : BaseStateHelper
     {

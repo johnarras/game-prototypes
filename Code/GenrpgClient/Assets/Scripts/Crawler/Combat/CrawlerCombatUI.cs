@@ -1,13 +1,13 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Spells.Settings.Elements;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Spells.Settings.Elements;
 using System.Linq;
 using UnityEngine;
 

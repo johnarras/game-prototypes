@@ -4,13 +4,13 @@ using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
 using Assets.Scripts.Crawler.Tilemaps;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.UI.Constants;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {

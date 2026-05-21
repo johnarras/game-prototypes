@@ -1,5 +1,5 @@
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.MapServer.WebApi.UploadMap;
+using OxDb.SharedGame.MapServer.WebApi.UploadMap;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

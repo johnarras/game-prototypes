@@ -1,35 +1,31 @@
-﻿using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Utils;
+﻿using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Scripts.Dungeons
 {
     [Serializable]
-    public class WeightedDungeonAssetBlock : IFloatWeightedItem
+    public class WeightedDungeonAssetBlock : IWeightedItem
     {
         [field: SerializeField]
-        public float Weight { get; set; }
-        public int BlockXZSize = CrawlerMapConstants.DefaultXZBlockSize;
-        public int BlockYSize = CrawlerMapConstants.DefaultYBlockSize;
+        public double Weight { get; set; }
 
         // Must be in same order as DungeonMaterials Material order
         public List<WeightedDungeonAsset> Walls = new List<WeightedDungeonAsset>();
-        public List<WeightedDungeonAsset> Doors = new List<WeightedDungeonAsset>();
         public List<WeightedDungeonAsset> Floors = new List<WeightedDungeonAsset>();
         public List<WeightedDungeonAsset> Ceilings = new List<WeightedDungeonAsset>();
         public List<WeightedDungeonAsset> Pillars = new List<WeightedDungeonAsset>();
         public List<WeightedDungeonAsset> Fences = new List<WeightedDungeonAsset>();
+
+
+        public List<DungeonDoorAssetBlock> Doors = new List<DungeonDoorAssetBlock>();
+
 
         public List<WeightedDungeonAsset> GetAssetList(int assetIndex)
         {
             if (assetIndex == DungeonPrefabIndexes.Walls)
             {
                 return Walls;
-            }
-            else if (assetIndex == DungeonPrefabIndexes.Door)
-            {
-                return Doors;
             }
             else if (assetIndex == DungeonPrefabIndexes.Floors)
             {
@@ -55,7 +51,10 @@ namespace Assets.Scripts.Dungeons
         {
             foreach (WeightedDungeonAsset asset in list)
             {
-                asset.Asset.Clear();
+                if (asset.Asset != null)
+                {
+                    asset.Asset.Clear();
+                }
             }
             list.Clear();
         }

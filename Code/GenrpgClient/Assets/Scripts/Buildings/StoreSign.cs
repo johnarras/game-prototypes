@@ -1,5 +1,5 @@
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.MapObjects.Messages;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.MapObjects.Messages;
 
 namespace Assets.Scripts.Buildings
 {

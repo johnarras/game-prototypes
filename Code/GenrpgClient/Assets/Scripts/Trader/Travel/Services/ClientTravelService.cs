@@ -12,27 +12,28 @@ using Assets.Scripts.Trader.Levels.Services;
 using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Attributes.Services;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Maps.Services;
-using Genrpg.Shared.Trader.Travel.Entities;
-using Genrpg.Shared.Trader.Travel.Services;
-using Genrpg.Shared.Trader.Travel.WebApi;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Attributes.PlayerData;
+using OxDb.SharedGame.Attributes.Services;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Rewards.Constants;
+using OxDb.SharedGame.Rewards.Services;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Constants;
+using OxDb.SharedGame.Trader.Maps.Services;
+using OxDb.SharedGame.Trader.Travel.Entities;
+using OxDb.SharedGame.Trader.Travel.Services;
+using OxDb.SharedGame.Trader.Travel.WebApi;
+using OxDb.SharedGame.UI.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +124,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                 CoreData coreData = _gs.ch.Get<CoreData>();
 
                 CaravanData caravanData = _gs.ch.Get<CaravanData>();
-                AttributeData attributeData = _gs.ch.Get<AttributeData>();
+                AttributesData AttributesData = _gs.ch.Get<AttributesData>();
 
                 CaravanPosition pos = _caravanService.GetPosition(coreData);
 
@@ -141,7 +142,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                     {
                         if (td.Currencies[i] != 0)
                         {
-                            await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], null, 0,
+                            await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], RewardSources.TravelSpend, null, 0,
                                 new ClientRewardParams(false, true));
                         }
                     }
@@ -194,10 +195,8 @@ namespace Assets.Scripts.Trader.Travel.Services
                         {
                             rewardDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(rew.EntityTypeId, rew.EntityId, 1));
                         }
-                        await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, false));
+                        await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelReward, new ClientRewardParams(false, false));
                     }
-
-
 
                     int expGained = td.Vars[DayVars.Exp];
 
@@ -299,7 +298,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                 if (ticksLeft > 0)
                 {
                     if (doobers.Count < ticksLeft &&
-                            _rand.Next() % ticksLeft < doobers.Count)
+                            _rand.Rand.Next() % ticksLeft < doobers.Count)
                     {
                         currentDooberCount = 1;
                     }

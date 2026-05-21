@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 

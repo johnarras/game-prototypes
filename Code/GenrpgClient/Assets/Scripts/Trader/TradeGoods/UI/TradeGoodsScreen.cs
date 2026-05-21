@@ -2,12 +2,11 @@ using Assets.Scripts.Trader.Currencies.UI;
 using Assets.Scripts.Trader.UI.Icons;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.TradeGoods.WebApi;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.PlayerData;
+using OxDb.SharedGame.Trader.Constants;
+using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -71,9 +70,9 @@ namespace Assets.Scripts.Trader.UI.TradeGoods
 
             foreach (CaravanTradeGood item in currGoods)
             {
-                if (!_tradeGoodIcons.Any(x=>x.UniqueId == item.UniqueId))
+                if (!_tradeGoodIcons.Any(x => x.UniqueId == item.UniqueId))
                 {
-                    addGoods.Add(item); 
+                    addGoods.Add(item);
                 }
             }
             foreach (TradeGoodIcon icon in _tradeGoodIcons)

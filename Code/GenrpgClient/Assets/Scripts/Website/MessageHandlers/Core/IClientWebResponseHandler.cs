@@ -1,5 +1,5 @@
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Website.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Website.Responses.Interfaces;
 using System;
 using System.Threading;
 using UnityEngine;

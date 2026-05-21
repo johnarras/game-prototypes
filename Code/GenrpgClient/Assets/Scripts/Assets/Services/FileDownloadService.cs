@@ -1,8 +1,9 @@
 using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
+using Assets.Scripts.Repository;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,7 +48,7 @@ public class FileDownloadService : IFileDownloadService
 
     private ILogService _logService = null;
     private IAssetService _assetService = null;
-    private IBinaryFileRepository _binaryFileRepo = null;
+    private IClientRepositoryService _clientRepoService = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -164,7 +165,7 @@ public class FileDownloadService : IFileDownloadService
 
         if (!fileDownload.DownloadData.ForceDownload)
         {
-            fileDownload.DownloadData.StartBytes = _binaryFileRepo.LoadBytes(fileDownload.FilePath);
+            fileDownload.DownloadData.StartBytes = _clientRepoService.LoadBytes(fileDownload.FilePath);
         }
         if (fileDownload.DownloadData.StartBytes == null || fileDownload.DownloadData.StartBytes.Length < 1)
         {
@@ -230,7 +231,7 @@ public class FileDownloadService : IFileDownloadService
                         byte[] finalBytes = fileDownload.DownloadData.StartBytes;
 
                         await Awaitable.NextFrameAsync(cancellationToken: token);
-                        _binaryFileRepo.SaveBytes(fileDownload.FilePath, finalBytes);
+                        _clientRepoService.SaveBytes(fileDownload.FilePath, finalBytes);
                         await Awaitable.NextFrameAsync(cancellationToken: token);
                         fileDownload.DownloadData.UncompressedBytes = finalBytes;
 

@@ -1,11 +1,11 @@
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 

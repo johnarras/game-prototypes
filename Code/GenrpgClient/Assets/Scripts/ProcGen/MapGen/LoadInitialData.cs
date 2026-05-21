@@ -1,5 +1,5 @@
-using Genrpg.Shared.Players.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Players.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using UnityEngine;
 
@@ -57,7 +57,7 @@ public class LoadInitialData : BaseZoneGenerator
         _networkService.SendMapMessage(new AddPlayer()
         {
             GameUserId = _gs.GameUserId,
-            SessionToken = _gs.SessionState.SessionToken,
+            SessionId = _gs.SessionState.SessionId,
             CharacterId = _gs.ch.Id,
         });
 

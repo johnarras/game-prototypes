@@ -1,6 +1,6 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Minimap.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.Services;
+using OxDb.SharedGame.MapServer.Services;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

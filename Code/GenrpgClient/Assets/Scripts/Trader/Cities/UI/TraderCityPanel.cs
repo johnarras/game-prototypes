@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.UI.Constants;
 
 namespace Assets.Scripts.Trader.Cities.UI
 {

@@ -1,10 +1,12 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Interfaces;
 using Genrpg.Editor.UI;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Utils;
-using System;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Interfaces;
+using OxDb.ServerCore.Config;
+using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Names.Entities;
+using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,11 +21,11 @@ namespace Genrpg.Editor
     public sealed partial class MainMenuWindow : WindowBase, IUICanvas
     {
 
-        public static string CurrentEnv = null;
+        private string _currentEnv = null;
 
-        const int _topPadding = 50;
+        private string _productName = null;
 
-        private string _prefix;
+        private List<IInjectable> _initialServices = null;
 
         private CanvasBase _canvas = new CanvasBase();
         public void Add(object elem, double x, double y) { _canvas.Add(elem, x, y); }
@@ -34,16 +36,17 @@ namespace Genrpg.Editor
         private TextBoxBase _suffixInput = null;
 
         private ComboBoxBase _comboBox = null;
-       
 
-        public MainMenuWindow()
+
+        public MainMenuWindow(List<IInjectable> initialServices)
         {
+            _initialServices = initialServices;
             Content = _canvas;
-            _prefix = Game.Prefix;
+            _productName = ServerConfigUtils.GetHardcodedConfigValue(AppConfigKeys.ProductName);
             int buttonCount = 0;
 
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _prefix, getButtonWidth(), getButtonHeight(),
+            UIHelper.CreateLabel(this, ELabelTypes.Default, _productName + "Label", _productName, getButtonWidth(), getButtonHeight(),
                 getLeftRightPadding(), getTopBottomPadding(), 20);
             buttonCount++;
 
@@ -102,7 +105,7 @@ namespace Genrpg.Editor
                 return;
             }
 
-            
+
             KeyValue selectedItem = _comboBox.SelectedItem as KeyValue;
 
             string envName = selectedItem?.Val ?? null;
@@ -128,9 +131,9 @@ namespace Genrpg.Editor
                 }
             }
 
-            CurrentEnv = fullEnv;
+            _currentEnv = fullEnv;
 
-            MenuWindow menuWindow = new MenuWindow();
+            MenuWindow menuWindow = new MenuWindow(_initialServices, _productName, _currentEnv);
             menuWindow.Activate();
 
             Close();

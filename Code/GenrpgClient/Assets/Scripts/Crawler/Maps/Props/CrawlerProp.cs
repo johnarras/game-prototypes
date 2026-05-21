@@ -1,8 +1,10 @@
-
 using Assets.Scripts.Crawler.Maps.ClientEvents;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
+using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Shared.GameEvents;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
     {
         protected IClientAppService _appService = null;
         protected ICrawlerService _crawlerService = null;
+        protected ICameraController _cameraController = null;
 
         public float RotateAnglePerSecond = 0;
 
@@ -20,13 +23,15 @@ namespace Assets.Scripts.Crawler.Maps.Props
         public GameObject OffObject;
         public GameObject OnObject;
 
-        protected int _x = -1;
-        protected int _z = -1;
-
         protected MapCellDetail _detail = null;
-        protected CrawlerMap _map = null;
+        protected CrawlerMapRoot _mapRoot = null;
         protected PartyData _party = null;
         protected CrawlerMapStatus _status = null;
+
+
+        public AudioSource AmbientSound;
+
+        protected ClientMapCell _cell = null;
 
         public override void Init()
         {
@@ -35,17 +40,21 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
             _dispatcher.AddListener<RedrawMapCell>(OnRedrawMapCell, GetToken());
 
+            _dispatcher.AddListener<MovePartyEvent>(OnMoveParty, GetToken());
+
             _targetFrameRate = _appService.TargetFrameRate;
+
+
+            OnMoveParty(new MovePartyEvent());
         }
 
-        public virtual void SetData(int x, int z, CrawlerMap map)
+        public virtual void SetData(CrawlerObjectLoadData loadData)
         {
-            _x = x;
-            _z = z;
-            _detail = map.Details.FirstOrDefault(d => d.X == x && d.Z == z);
-            _map = map;
+            _cell = loadData.Cell;
+            _mapRoot = loadData.MapRoot;
+            _detail = _mapRoot.Map.Details.FirstOrDefault(d => d.X == _cell.MapX && d.Z == _cell.MapZ);
             _party = _crawlerService.GetParty();
-            _status = _party.GetMapStatus(_map.IdKey, true);
+            _status = _party.GetMapStatus(_mapRoot.Map.IdKey, true);
         }
 
         protected virtual void OnUpdate()
@@ -53,16 +62,16 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
             if (RotateAnglePerSecond > 0)
             {
-                float angleThisFrame = RotateAnglePerSecond * 1.0f / _targetFrameRate;
-
-                transform.Rotate(0, angleThisFrame, 0);
+                float elapsedSeconds = _appService.TotalElapsedTime();
+                float totalAngle = elapsedSeconds * RotateAnglePerSecond;
+                transform.eulerAngles = new Vector3(0, totalAngle, 0);
             }
 
         }
 
         protected void OnRedrawMapCell(RedrawMapCell redrawCell)
         {
-            if (redrawCell.X == _x && redrawCell.Z == _z)
+            if (redrawCell.X == _cell.MapX && redrawCell.Z == _cell.MapZ)
             {
                 OnRedrawMapCellInternal(redrawCell.Data);
             }
@@ -73,6 +82,30 @@ namespace Assets.Scripts.Crawler.Maps.Props
 
         }
 
+        protected virtual void OnMoveParty(MovePartyEvent onMove)
+        {
+
+            if (AmbientSound == null || _mapRoot == null || _mapRoot.AssetBlockList == null)
+            {
+                return;
+            }
+
+            Camera mainCam = _cameraController.GetMainCamera();
+
+            double distance = Vector3.Distance(transform.position, mainCam.transform.position);
+
+            bool nearby = distance < _mapRoot.AssetBlockList.BlockXZSize * 3;
+
+            if (!nearby)
+            {
+                AmbientSound.Stop();
+            }
+            else
+            {
+                AmbientSound.loop = true;
+                AmbientSound.Play();
+            }
+        }
     }
 }
 

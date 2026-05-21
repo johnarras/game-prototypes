@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype24default",
+  "ParentId": "default",
+  "IdKey": 24,
+  "Name": "BuyItem",
+  "Icon": "BuyItem",
+  "Art": "BuyItem"
+}

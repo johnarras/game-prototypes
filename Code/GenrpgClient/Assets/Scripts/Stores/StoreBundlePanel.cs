@@ -1,7 +1,7 @@
 
 using Assets.Scripts.Stores;
-using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Purchasing.PlayerData;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

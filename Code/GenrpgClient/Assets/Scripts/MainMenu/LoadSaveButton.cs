@@ -1,4 +1,5 @@
-using Genrpg.Shared.Interfaces;
+
+using OxDb.SharedGame.Interfaces;
 
 namespace Assets.Scripts.UI.MainMenu
 {

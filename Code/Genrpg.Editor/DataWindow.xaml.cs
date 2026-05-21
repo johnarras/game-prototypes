@@ -1,21 +1,20 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Entities.Core;
-using Genrpg.DataUtils.Interfaces;
-using Genrpg.DataUtils.Services.EditorData;
-using Genrpg.DataUtils.Services.Reflection;
 using Genrpg.Editor.UI;
-using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.GameSettings.Settings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.SettingsNames.Settings;
-using Genrpg.Shared.Tasks.Services;
-using Genrpg.Shared.Versions.Settings;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Interfaces;
+using OxDb.DataUtils.Services.EditorData;
+using OxDb.ServerCore.Config;
+using OxDb.ServerCore.GameSettings.Services;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.GameSettings.Settings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.SettingsNames.Settings;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedGame.Versions.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Genrpg.Editor
         protected IServerGameDataService _gameDataService = null;
         protected ITaskService _taskService = null;
         protected IEditorDataService _dataService = null;
-        IEditorReflectionService _reflectionService = null;
+        IReflectionService _reflectionService = null;
 
 
         private EditorGameState _gs = null;
@@ -158,7 +157,7 @@ namespace Genrpg.Editor
         public async Task SaveData(EditorGameState gs, bool copyData)
         {
 
-            String env = _serverConfig.DefaultEnv;
+            String env = _serverConfig.Env;
 
             if (action == "Data")
             {
@@ -399,7 +398,7 @@ namespace Genrpg.Editor
         private async Task SaveSettingsListInternal(List<BaseGameSettings> settingsList, bool copyData)
         {
 
-            if (EnvNames.IsProdEnv(_serverConfig.DefaultEnv))
+            if (EnvNames.IsProdEnv(_serverConfig.Env))
             {
                 copyData = false;
             }

@@ -1,24 +1,40 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.ClientEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Info.Services;
+using Assets.Scripts.Entities.UI;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Input.PlayerData;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Info.UI
 {
+
+    public enum EInfoPanelDisplayReason
+    {
+        Pointer = 0,
+        Click = 1,
+    }
+
+
     public class InfoPanel : BaseBehaviour
     {
         private IInfoService _infoService = null;
         private IObjectPool _objectPool = null;
+        protected IInputService _inputService = null;
+
+        public GButton BackButton;
 
         public GameObject Parent;
         public GameObject InfoAnchor;
         public bool IsTooltipPanel;
 
-        private Stack<List<string>> _infoStack = new Stack<List<string>>();
-        private List<string> _currentInfo = null;
+
+        public EntityIcon Icon;
+
+        private Stack<ShowInfoPanelArgs> _infoStack = new Stack<ShowInfoPanelArgs>();
+        private ShowInfoPanelArgs _currentArgs = null;
 
 
         private List<InfoPanelRow> _rows = new List<InfoPanelRow>();
@@ -31,12 +47,12 @@ namespace Assets.Scripts.Info.UI
             if (IsTooltipPanel)
             {
                 _clientEntityService.SetActive(Parent, false);
-                _dispatcher.AddListener<ShowInfoPanelEvent>(OnShowTooltip, GetToken());
+                _dispatcher.AddListener<ClientEvents.ShowInfoPanelArgs>(OnShowTooltip, base.GetToken());
                 _dispatcher.AddListener<HideInfoPanelEvent>(OnHideTooltip, GetToken());
+                _uiService.SetButton(BackButton, GetName(), PopInfoStack);
             }
 
         }
-
 
         public void ClearInfo()
         {
@@ -47,28 +63,35 @@ namespace Assets.Scripts.Info.UI
             _rows.Clear();
         }
 
-        public void ShowLines(List<string> lines)
+        public void ShowLines(ShowInfoPanelArgs args, EInfoPanelDisplayReason reason)
         {
-            if (lines.Count < 1)
+            if (args.Lines.Count < 1)
             {
                 return;
             }
 
+            if (_currentArgs != null && _currentArgs.Lines.Count > 0 &&
+                reason == EInfoPanelDisplayReason.Pointer && _inputService.ModifierIsActive(KeyComm.ShiftName))
+            {
+                return;
+            }
+
+
             ClearInfo();
 
             _clientEntityService.SetActive(Parent, true);
-            if (_currentInfo != null && _currentInfo.Count > 0)
+            if (_currentArgs != null && _currentArgs.Lines.Count > 0)
             {
-                _infoStack.Push(_currentInfo);
+                _infoStack.Push(_currentArgs);
             }
-            _currentInfo = lines;
+            _currentArgs = args;
 
-            foreach (string line in lines)
+            foreach (string line in args.Lines)
             {
-
                 _objectPool.CheckoutObject(InfoAnchor, AssetCategoryNames.UI, RowPrefabName, OnLoadRow, line, GetToken(), Subdirectory);
-
             }
+
+            Icon.SetEntityData(args.EntityTypeId, args.EntityId, 0);
         }
 
         private void OnLoadRow(object obj, object data, CancellationToken token)
@@ -96,14 +119,14 @@ namespace Assets.Scripts.Info.UI
 
         public void PopInfoStack()
         {
-            if (_infoStack.TryPop(out List<string> currList))
+            if (_infoStack.TryPop(out ShowInfoPanelArgs currArgs))
             {
-                _currentInfo = null;
-                ShowLines(currList);
+                _currentArgs = null;
+                ShowLines(currArgs, EInfoPanelDisplayReason.Click);
             }
             else
             {
-                ClearInfo();
+                HideTooltipInternal();
             }
 
         }
@@ -113,25 +136,25 @@ namespace Assets.Scripts.Info.UI
 
         }
 
-        public void ShowInfo(long entityTypeId, long entityId)
+        public void ShowEntityInfo(long entityTypeId, long entityId, EInfoPanelDisplayReason reason)
         {
-            List<string> lines = _infoService.GetInfoLines(entityTypeId, entityId);
-            ShowLines(lines);
+            ShowInfoPanelArgs args = _infoService.GetInfoPanelArgs(entityTypeId, entityId);
+            ShowLines(args, reason);
         }
 
         public void ClearStack()
         {
             _infoStack.Clear();
         }
-        private void OnShowTooltip(ShowInfoPanelEvent showEvent)
+        private void OnShowTooltip(ShowInfoPanelArgs args)
         {
-            if (showEvent.EntityTypeId > 0 && showEvent.EntityId > 0)
+            if (args.Lines.Count > 0)
             {
-                ShowInfo(showEvent.EntityTypeId, showEvent.EntityId);
+                ShowLines(args, args.Reason);
             }
-            else if (showEvent.Lines.Count > 0)
+            else if (args.EntityTypeId > 0 && args.EntityId > 0)
             {
-                ShowLines(showEvent.Lines);
+                ShowEntityInfo(args.EntityTypeId, args.EntityId, args.Reason);
             }
             else
             {
@@ -142,7 +165,17 @@ namespace Assets.Scripts.Info.UI
 
         private void OnHideTooltip(HideInfoPanelEvent hideEvent)
         {
-            _clientEntityService.SetActive(Parent, false);
+            HideTooltipInternal();
+        }
+
+        private void HideTooltipInternal()
+        {
+            if (!_inputService.ModifierIsActive(KeyComm.ShiftName))
+            {
+                ClearInfo();
+                ClearStack();
+                _clientEntityService.SetActive(Parent, false);
+            }
         }
     }
 }

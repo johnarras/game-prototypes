@@ -1,16 +1,16 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Crafting.Settings.Crafters;
-using Genrpg.Shared.Factions.Services;
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Trades.Messages;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Units.Settings;
+using OxDb.SharedGame.Crafting.Settings.Crafters;
+using OxDb.SharedGame.Factions.Services;
+using OxDb.SharedGame.Loot.Messages;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.MapObjectAddons.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Trades.Messages;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System.Threading;
 using UnityEngine;
 

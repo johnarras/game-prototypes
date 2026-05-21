@@ -103,7 +103,7 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
     {
         if (!string.IsNullOrEmpty(txt))
         {
-            _logService.Message("Error on close: " + txt);
+            _logService.Info("Error on close: " + txt);
         }
 
         StartClose();

@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public class MapMagicLootTypeHelper : BaseCrawlerLootTypeHelper
     {
@@ -14,7 +14,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {
-            MapMagicType magicType = RandUtils.GetRandomEnchant(_gameData.Get<MapMagicSettings>(_gs.ch).GetData(), _rand);
+            MapMagicType magicType = RandUtils.GetRandomEnchant(_gameData.Get<MapMagicSettings>(_gs.ch).GetData(), _rand.Rand);
 
             if (magicType != null)
             {

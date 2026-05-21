@@ -1,16 +1,13 @@
 ﻿using Assets.Scripts.Assets.TMP;
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Entities.Settings;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
 using System.IO;
-using System.Text;
-using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -40,7 +37,7 @@ namespace Assets.Editor.Utils
             GenerateItemIcons<EntitySettings, EntityType>("/FullAssets/Atlas");
         }
 
-        public static void GenerateItemIcons<TParent,TChild> (string mainFolderPath) where TParent : ParentSettings<TChild>
+        public static void GenerateItemIcons<TParent, TChild>(string mainFolderPath) where TParent : ParentSettings<TChild>
             where TChild : ChildSettings, IIndexedGameItem, new()
         {
 
@@ -66,11 +63,11 @@ namespace Assets.Editor.Utils
 
             string diskFolderPath = _appService.DataPath + fullFolderPath;
 
-            
+
 
             if (!Directory.Exists(diskFolderPath))
             {
-                Directory.CreateDirectory(diskFolderPath);  
+                Directory.CreateDirectory(diskFolderPath);
             }
 
             foreach (TChild child in children)
@@ -160,7 +157,7 @@ namespace Assets.Editor.Utils
 
             Debug.Log("List: " + genList);
 
-           _awaitableService.ForgetAwaitable(GenerateTexturesAsync(gs, genList));
+            _awaitableService.ForgetAwaitable(GenerateTexturesAsync(gs, genList));
         }
 
         private static async Awaitable GenerateTexturesAsync(IClientGameState gs, TextureGenList list)
@@ -174,7 +171,6 @@ namespace Assets.Editor.Utils
 
                 file = GameObject.Instantiate(fileStart);
 
-                int times = 0;
                 foreach (FilenameTextPair pair in list.FilenameTextPairs)
                 {
                     await file.RenderInputTextAsync(pair.PrintedText, pair.FullFilePath, list.BGColor, list.TextureSize);

@@ -1,8 +1,8 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities
 {
     public class SelectAction
     {

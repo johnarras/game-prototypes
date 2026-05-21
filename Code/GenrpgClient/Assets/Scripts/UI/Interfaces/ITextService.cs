@@ -1,6 +1,6 @@
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 
 namespace Assets.Scripts.UI.Interfaces
 {

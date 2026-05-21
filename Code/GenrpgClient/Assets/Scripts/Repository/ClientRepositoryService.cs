@@ -1,11 +1,14 @@
 
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Setup.Constants;
+using Assets.Scripts.Repository.Constants;
+using OxDb.SharedCore.DataStores.Entities;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Setup.Constants;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,9 +19,11 @@ namespace Assets.Scripts.Repository
 
     public interface IClientRepositoryService : IRepositoryService
     {
-        Task<bool> StringSave<T>(string id, string data) where T : class, IStringId;
         Task<T> LoadObjectFromString<T>(string id) where T : class, IStringId;
         Task<object> LoadWithType(Type t, string id);
+        byte[] LoadBytes(string id);
+        void SaveBytes(string id, byte[] val, RepoSaveArgs args = null);
+        string GetPathPrefix();
     }
 
     public class ClientRepositoryService : IClientRepositoryService
@@ -26,6 +31,7 @@ namespace Assets.Scripts.Repository
         private ILogService _logService = null;
         private IClientAppService _clientAppService = null;
         private ITextSerializer _serializer = null;
+        private IClientCryptoService _clientCryptoService = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -74,8 +80,8 @@ namespace Assets.Scripts.Repository
         {
             try
             {
-                IClientRepositoryCollection repo = GetRepositoryFromType(t.GetType());
-                return await repo.Save(t, args);
+                IClientRepositoryCollection collection = GetRepositoryFromType(t.GetType());
+                return await collection.Save(t, args);
             }
             catch (Exception e)
             {
@@ -83,13 +89,6 @@ namespace Assets.Scripts.Repository
             }
             return false;
         }
-
-        public async Task<bool> StringSave<T>(string id, string data) where T : class, IStringId
-        {
-            ClientRepositoryCollection<T> repo = GetRepository<T>();
-            return await repo.StringSave(id, data);
-        }
-
         public async Task<T> LoadObjectFromString<T>(string id) where T : class, IStringId
         {
             ClientRepositoryCollection<T> repo = GetRepository<T>();
@@ -106,7 +105,9 @@ namespace Assets.Scripts.Repository
 
             Type baseRepoType = typeof(ClientRepositoryCollection<>);
             Type genericType = baseRepoType.MakeGenericType(t);
-            object newRepo = Activator.CreateInstance(genericType, new object[] { _logService, _clientAppService, _serializer });
+            // THESE ARGS MUST MATCH THE CONSTRUCTOR ARGS IT HE ClientRepositoryCollection class
+            // Look for REPOCREATEARGSYNC to see where the constructor is.
+            object newRepo = Activator.CreateInstance(genericType, new object[] { this, _logService, _serializer, _clientCryptoService });
 
             _repoCache[t] = newRepo;
 
@@ -122,6 +123,103 @@ namespace Assets.Scripts.Repository
         {
             await Task.CompletedTask;
             return false;
+        }
+
+        public string GetPathPrefix()
+        {
+            string prefix = _clientAppService.PersistentDataPath + ClientRepositoryConstants.GetDataPathPrefix();
+#if DEMO_BUILD
+        if (InitProject.Env != EnvNames.Prod && !string.IsNullOrEmpty(Application.version))
+        {
+            var version = Application.version.Trim();
+            prefix += "V" + version;
+        }
+#endif
+            if (!Directory.Exists(prefix))
+            {
+                Directory.CreateDirectory(prefix);
+            }
+
+            return prefix;
+        }
+
+        protected string GetPath(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return "";
+            }
+
+            if (id.IndexOf(":") > 0)
+            {
+                return id;
+            }
+
+            int questionMark = id.IndexOf("?");
+
+            if (questionMark > 0)
+            {
+                id = id.Substring(0, questionMark);
+            }
+
+            string basePath = GetPathPrefix();
+
+
+            if (!Directory.Exists(basePath))
+            {
+                Directory.CreateDirectory(basePath);
+            }
+
+            if (id.LastIndexOf("/") >= 0)
+            {
+                string beforeSlash = id.Substring(0, id.LastIndexOf("/"));
+                if (!string.IsNullOrEmpty(beforeSlash))
+                {
+                    string fullDir = basePath + "/" + beforeSlash;
+                    if (!Directory.Exists(fullDir))
+                    {
+                        Directory.CreateDirectory(fullDir);
+                    }
+                }
+            }
+            return basePath + "/" + id;
+        }
+
+
+        public byte[] LoadBytes(string id)
+        {
+            string path = GetPath(id);
+
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    return null;
+                }
+                return File.ReadAllBytes(path);
+            }
+            catch (Exception e)
+            {
+                _logService.Info("Failed to read bytes: " + " " + path + " " + e.Message);
+            }
+            return null;
+        }
+
+        public void SaveBytes(string id, byte[] val, RepoSaveArgs args = null)
+        {
+            if (val == null)
+            {
+                return;
+            }
+            string path = GetPath(id);
+            try
+            {
+                File.WriteAllBytes(path, val);
+            }
+            catch (Exception e)
+            {
+                _logService.Info("Failed to save bytes: " + path + " " + e.Message);
+            }
         }
 
     }

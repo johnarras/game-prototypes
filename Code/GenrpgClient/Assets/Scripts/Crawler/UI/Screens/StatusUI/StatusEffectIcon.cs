@@ -1,5 +1,5 @@
 using Assets.Scripts.Entities.UI;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
 
 namespace Assets.Scripts.Crawler.UI.StatusUI
 {

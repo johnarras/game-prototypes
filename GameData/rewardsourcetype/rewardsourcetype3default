@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Purchase"
+  "Name": "Purchase",
+  "Icon": "Purchase",
+  "Art": "Purchase"
 }

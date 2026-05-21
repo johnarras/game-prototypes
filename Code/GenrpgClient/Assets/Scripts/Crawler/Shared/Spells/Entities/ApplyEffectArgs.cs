@@ -1,8 +1,8 @@
-using Genrpg.Shared.Crawler.Buffs.Settings;
-using Genrpg.Shared.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Buffs.Settings;
+using OxDb.SharedGame.Crawler.Spells.Services;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Spells.Entities
+namespace OxDb.SharedGame.Spells.Entities
 {
     public class ApplyEffectArgs
     {

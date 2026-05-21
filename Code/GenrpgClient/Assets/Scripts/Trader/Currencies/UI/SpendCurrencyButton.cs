@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.CurrencySpend.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.WebApi;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Trader.CurrencySpend.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System;
 
 namespace Assets.Scripts.Trader.Currencies.UI
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Trader.Currencies.UI
 
         public GButton Button;
 
-        private Func<SpendCurrencyRequest,bool> _updateAndValidateRequestFunc;
+        private Func<SpendCurrencyRequest, bool> _updateAndValidateRequestFunc;
 
         public override void Init()
         {
@@ -38,8 +38,8 @@ namespace Assets.Scripts.Trader.Currencies.UI
 
         private bool _useCurrentCity = true;
         // This does a generic spend using the loc + Type
-        public void SetSpendType(SpendLocation loc, SpendType spendType, Func<SpendCurrencyRequest,bool> updateAndValidateRequestFunc)
-        {         
+        public void SetSpendType(SpendLocation loc, SpendType spendType, Func<SpendCurrencyRequest, bool> updateAndValidateRequestFunc)
+        {
             _updateAndValidateRequestFunc = updateAndValidateRequestFunc;
             _loc = loc;
             _spendType = spendType;
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Trader.Currencies.UI
                 SpendQuantity = _spendType.SpendQuantity,
                 UseCurrentCity = _useCurrentCity,
             };
-           
+
             if (!_updateAndValidateRequestFunc(request))
             {
                 return;

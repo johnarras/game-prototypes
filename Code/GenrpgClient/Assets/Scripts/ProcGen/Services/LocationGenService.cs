@@ -1,6 +1,6 @@
-using Genrpg.Shared.Core.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Locations;
+using OxDb.SharedCore.Core.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
 using System.Threading;
 using System.Threading.Tasks;
 

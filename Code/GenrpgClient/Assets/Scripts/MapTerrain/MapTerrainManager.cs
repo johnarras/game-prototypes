@@ -1,18 +1,18 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -485,7 +485,7 @@ public class MapTerrainManager : IMapTerrainManager
                 unloadRad = loadRad + 1.0f;
                 checkRad = unloadRad + 2.0f;
 
-                if (_rand.NextDouble() < 0.2f)
+                if (_rand.Rand.NextDouble() < 0.2f)
                 {
                     checkRad = _mapProvider.GetMap().BlockCount + 1;
                 }

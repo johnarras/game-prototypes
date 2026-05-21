@@ -1,7 +1,6 @@
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -9,14 +8,11 @@ using UnityEngine;
 
 public class SaveMap : BaseZoneGenerator
 {
-
-    private IClientAppService _clientAppService = null;
-    private ITextSerializer _serializer;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
 
-        _mapProvider.GetMap().OverrideZonePercent = 0; // RandUtils.IntRange(20, 80, _rand);
+        _mapProvider.GetMap().OverrideZonePercent = 0; // RandUtils.IntRange(20, 80, _rand.Rand);
 
         for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
         {
@@ -167,14 +163,12 @@ public class SaveMap : BaseZoneGenerator
             newBytes[i] = bytes[i];
         }
 
-        ClientRepositoryCollection<TerrainPatchData> repo = new ClientRepositoryCollection<TerrainPatchData>(_logService, _clientAppService, _serializer);
-
         string zoneText = "";
         foreach (long zid in zoneIds)
         {
             zoneText += zid + " ";
         }
-        repo.SaveBytes(patch.GetFilePath(), newBytes);
+        _clientRepoService.SaveBytes(patch.GetFilePath(), newBytes);
 
     }
 }

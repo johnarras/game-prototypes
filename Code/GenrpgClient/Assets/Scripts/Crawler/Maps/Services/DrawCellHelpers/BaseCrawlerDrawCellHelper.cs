@@ -1,13 +1,11 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Props;
 using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -30,22 +28,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
 
         public abstract Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token);
 
-        protected virtual void OnDownloadObject(GameObject go, CrawlerObjectLoadData loadData, CancellationToken token)
-        {
-            if (loadData != null)
-            {
-                go.transform.eulerAngles = new Vector3(0, loadData.Angle, 0);
-                loadData.Cell.Props.Add(go);
-
-                go.name = go.name + "-" + loadData.Cell.MapX + "." + loadData.Cell.MapZ + "--" + go.transform.position / 8;
-                CrawlerProp prop = _clientEntityService.GetComponent<CrawlerProp>(go);
-
-                if (prop != null)
-                {
-                    prop.SetData(loadData.Cell.MapX, loadData.Cell.MapZ, loadData.MapRoot.Map);
-                }
-            }
-        }
     }
 }
 

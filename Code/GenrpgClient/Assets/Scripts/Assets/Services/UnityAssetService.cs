@@ -5,12 +5,10 @@ using System.Linq;
 
 using System.Threading;
 using UnityEngine;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System.Threading.Tasks;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.DataStores.Utils;
-using Genrpg.Shared.DataStores.DataGroups;
+using OxDb.SharedGame.DataStores.Utils;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Assets;
 using System.Collections.Concurrent;
@@ -18,12 +16,19 @@ using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Bundles;
 using Assets.Scripts.Assets.Services;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Core;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Serialization.Interfaces;
+using Assets.Scripts.Repository;
+using OxDb.SharedCore.DataStores.Entities;
+
+
+
+
 
 
 
@@ -65,8 +70,8 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
     protected IClientEntityService _clientEntityService = null;
     private IClientConfigContainer _config = null;
     private IClientAppService _clientAppService = null;
-    private IBinaryFileRepository _binaryFileRepo = null;
     private ITextSerializer _serializer = null;
+    private IClientRepositoryService _clientRepositoryService = null;
 
     private IAwaitableService _awaitableService = null;
     private ILocalLoadService _localLoadService = null;
@@ -590,7 +595,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
     private void SetAssetEnv(EDataCategories category, string env)
     {
-        string containerName = BlobUtils.GetBlobContainerName(category.ToString(), Game.Prefix, env);
+        string containerName = BlobUtils.GetBlobContainerName(category.ToString(), _config.Config.GameMode.ToString(), env);
 
         _urlPrefixes[category] = _contentRootUrl + "/" + containerName + "/";
         _assetEnvs[category] = env;
@@ -879,7 +884,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
     void LoadAssetBundleList(CancellationToken token)
     {
-        _bundleVersions = SetupBundleVersions(_binaryFileRepo.LoadObject<BundleVersions>(AssetConstants.BundleVersionsFile));
+        _bundleVersions = SetupBundleVersions(_clientRepositoryService.Load<BundleVersions>(AssetConstants.BundleVersionsFile).Result);
 
         if (_bundleVersions == null || _bundleVersions.UpdateInfo == null ||
             _bundleVersions.UpdateInfo.ClientVersion != _bundleUpdateInfo.ClientVersion ||
@@ -919,7 +924,11 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
             newVersions.Versions != null && newVersions.Versions.Keys.Count > 0)
         {
             _bundleVersions = SetupBundleVersions(newVersions);
-            _binaryFileRepo.SaveObject(AssetConstants.BundleVersionsFile, _bundleVersions);
+            RepoSaveArgs repoArgs = new RepoSaveArgs()
+            {
+                OverrideId = AssetConstants.BundleVersionsFile
+            };
+            _clientRepositoryService.Save(_bundleVersions, repoArgs);
         }
     }
 

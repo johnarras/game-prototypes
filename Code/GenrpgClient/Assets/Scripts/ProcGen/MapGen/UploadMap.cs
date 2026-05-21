@@ -1,7 +1,6 @@
 using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.WebApi.UploadMap;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.WebApi.UploadMap;
 using System.Threading;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class UploadMap : BaseZoneGenerator
 {
     private IClientWebService _webNetworkService = null;
     private IClientAppService _appService = null;
+    private IClientConfigContainer _configContainer = null;
     public override async Awaitable Generate(CancellationToken token)
     {
 
@@ -19,18 +19,18 @@ public class UploadMap : BaseZoneGenerator
         string subfolder = MapUtils.GetMapFolder(map.Id, map.MapVersion);
         string localPath = _appService.PersistentDataPath + ClientRepositoryConstants.GetDataPathPrefix() + "/" + subfolder;
 
-
-
         FolderUploadArgs uploadData = new FolderUploadArgs()
         {
             LocalFolder = localPath,
             RemoteSubfolder = subfolder,
             IsWorldData = true,
             Env = _assetService.GetWorldDataEnv(),
-            GamePrefix = Game.Prefix,
+            GamePrefix = _configContainer.Config.GameMode.ToString(),
         };
 
-        FileUploader.UploadFolder(uploadData, "MapMap.jpg");
+        uploadData.FilePatterns.Add("*");
+
+        await FileUploader.UploadFolder(uploadData, "MapMap.jpg");
 
         await DelaySendMapSizes(token);
     }
@@ -43,15 +43,14 @@ public class UploadMap : BaseZoneGenerator
         {
             Map = _mapProvider.GetMap(),
             SpawnData = _mapProvider.GetSpawns(),
-            WorldDataEnv = _assetService.GetWorldDataEnv()
         };
 
         string oldMapId = _mapProvider.GetMap().Id;
         _mapProvider.GetMap().Id = "UploadedMap";
-        await _repoService.Save(_mapProvider.GetMap());
+        await _clientRepoService.Save(_mapProvider.GetMap());
         _mapProvider.GetMap().Id = oldMapId;
         _mapProvider.GetSpawns().Id = "UploadedSpawns";
-        await _repoService.Save(_mapProvider.GetSpawns());
+        await _clientRepoService.Save(_mapProvider.GetSpawns());
         _mapProvider.GetSpawns().Id = oldMapId;
         _webNetworkService.SendWebRequest(update, _token);
 

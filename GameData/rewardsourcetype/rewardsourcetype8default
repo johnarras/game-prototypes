@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "DrawCard"
+  "Name": "DrawCard",
+  "Icon": "DrawCard",
+  "Art": "DrawCard"
 }

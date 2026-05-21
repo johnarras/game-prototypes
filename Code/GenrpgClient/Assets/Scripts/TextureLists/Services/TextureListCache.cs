@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.TextureLists.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.TextureLists.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

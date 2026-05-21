@@ -1,14 +1,12 @@
-using Assets.Scripts.Entities.UI;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.TradeGoods.Services;
-using Genrpg.Shared.Trader.TradeGoods.WebApi;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.TradeGoods.Services;
+using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.UI.Icons
@@ -29,7 +27,7 @@ namespace Assets.Scripts.Trader.UI.Icons
         public GButton DropButton;
         public GText DescText;
 
-        
+
 
         private long _sellPrice = 0;
 

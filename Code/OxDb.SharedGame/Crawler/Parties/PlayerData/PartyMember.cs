@@ -1,0 +1,129 @@
+using Newtonsoft.Json;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Items.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Stats.Constants;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace OxDb.SharedGame.Crawler.Parties.PlayerData
+{
+
+    public class StatRegenFraction
+    {
+        public long StatTypeId { get; set; }
+        public float Fraction { get; set; }
+    }
+    public class PartyMember : CrawlerUnit
+    {
+        public int PartySlot { get; set; }
+
+        [JsonIgnore]
+        public List<Item> Equipment { get; set; } = new List<Item>();
+
+        public List<CrawlerSaveItem> SaveEquipment { get; set; } = new List<CrawlerSaveItem>();
+
+        public string PermStats { get; set; }
+
+        public const long PermStatSize = StatConstants.PrimaryStatEnd - StatConstants.PrimaryStatStart + 1;
+
+        private long[] _permStats { get; set; } = new long[PermStatSize];
+
+        public List<StatRegenFraction> RegenFractions { get; set; } = new List<StatRegenFraction>();
+
+        public SmallIdShortCollection Upgrades { get; set; } = new SmallIdShortCollection();
+
+        public void ClearPermStats()
+        {
+            _permStats = new long[PermStatSize];
+        }
+
+        public void ConvertDataAfterLoad()
+        {
+            if (!string.IsNullOrEmpty(PermStats))
+            {
+                string[] words = PermStats.Split(' ');
+
+                for (int i = 0; i < words.Length && i < _permStats.Length; i++)
+                {
+                    if (Int64.TryParse(words[i], out long val))
+                    {
+                        _permStats[i] = val;
+                    }
+                }
+                if (words.Length > _permStats.Length)
+                {
+                    if (Int64.TryParse(words[_permStats.Length], out long health))
+                    {
+                        Stats.Set(StatTypes.Health, UnitStatValOffsets.Curr, health);
+                    }
+                }
+                if (words.Length > _permStats.Length + 1)
+                {
+                    if (Int64.TryParse(words[_permStats.Length + 1], out long health))
+                    {
+                        Stats.Set(StatTypes.Mana, UnitStatValOffsets.Curr, health);
+                    }
+                }
+            }
+        }
+
+        public void ConvertDataBeforeSave()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _permStats.Length; i++)
+            {
+                sb.Append(_permStats[i].ToString());
+                if (i < _permStats.Length - 1)
+                {
+                    sb.Append(" ");
+                }
+            }
+            sb.Append(" " + Stats.Curr(StatTypes.Health));
+            sb.Append(" " + Stats.Curr(StatTypes.Mana));
+            PermStats = sb.ToString();
+        }
+
+
+        public long Exp { get; set; }
+
+        public int UpgradePoints { get; set; }
+
+        public List<PartySummon> Summons { get; set; } = new List<PartySummon>();
+
+        public long BeaconMapId { get; set; }
+        public int BeaconMapX { get; set; }
+        public int BeaconMapZ { get; set; }
+        public int BeaconRot { get; set; }
+        public long LastCombatCrawlerSpellId { get; set; }
+
+        public override bool IsPlayer() { return true; }
+
+        public long GetPermStat(long statTypeId)
+        {
+            return _permStats[statTypeId - StatConstants.PrimaryStatStart];
+        }
+
+        public void SetPermStat(long statTypeId, long val)
+        {
+            _permStats[statTypeId - StatConstants.PrimaryStatStart] = val;
+        }
+
+        public void AddPermStat(long statTypeId, long val)
+        {
+            _permStats[statTypeId - StatConstants.PrimaryStatStart] += val;
+        }
+
+        public override Item GetEquipmentInSlot(long equipSlotId)
+        {
+            return Equipment.FirstOrDefault(x => x.EquipSlotId == equipSlotId);
+        }
+
+        protected override bool AlwaysCreateMissingData() { return true; }
+    }
+}
+
+

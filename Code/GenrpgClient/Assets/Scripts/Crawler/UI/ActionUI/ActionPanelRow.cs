@@ -1,10 +1,10 @@
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

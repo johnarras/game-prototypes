@@ -1,21 +1,24 @@
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.MoveHelpers;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Dungeons;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using Assets.Scripts.Options.Services;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,12 +36,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         void ClearMovement();
         void FinishMove(CrawlerMoveStatus status);
         bool UpdatingMovement();
-        Task EnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token);
+        Task OnEnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token);
         Awaitable Move(CrawlerMoveStatus status, int forward, int right, CancellationToken token);
         Task Rot(CrawlerMoveStatus status, int delta, bool fastRotate, CancellationToken token);
         LastMoveStatus GetLastMoveStatus();
         void SetFullRot(float endRot);
-        IReadOnlyList<MovementKeyCode> GetMovementKeyCodes();
+        IReadOnlyList<MovementKeyCode> GetMovementKeyCodes(bool setupMovementCodesNow);
 
     }
 
@@ -54,6 +57,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         public const string TurnLeft = "TurnLeft";
         public const string TurnRight = "TurnRight";
         public const string Backward = "Backward";
+        public const string StrafeLeft = "StrafeLeft";
+        public const string StrafeRight = "StrafeRight";
     }
 
     public class MovementKeyCode
@@ -87,10 +92,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private IPartyService _partyService = null;
         private ICrawlerMapService _mapService = null;
         private IClientAppService _appService = null;
+        private IClientOptionsService _clientOptionsService = null;
 
         private CancellationToken _token;
 
-        const float _movesPerSecond = 4.5f;
+        const float _movesPerSecond = 4.0f;
         const float _turnsPerSecond = 6.0f;
 
         private PartyData _party = null;
@@ -111,30 +117,65 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             await Task.CompletedTask;
         }
 
-        private void SetupMovementKeyCodes()
+        public void SetupMovementKeyCodes()
         {
-            _movementKeyCodes = new List<MovementKeyCode>
+
+            if (!_clientOptionsService.GetOptions().HasFlag(ClientFlags.ClassicMovement))
             {
-                new MovementKeyCode(Key.W, MovementKeyNames.Forward, 0, 1, 0),
-                new MovementKeyCode(Key.UpArrow, MovementKeyNames.Forward, 0, 1, 0),
+                _movementKeyCodes = new List<MovementKeyCode>
+                {
+                    new MovementKeyCode(Key.W, MovementKeyNames.Forward, 0, 1, 0),
+                    new MovementKeyCode(Key.UpArrow, MovementKeyNames.Forward, 0, 1, 0),
 
-                new MovementKeyCode(Key.S, MovementKeyNames.Backward, 2, 0, 0),
-                new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,2, 0, 0),
+                    new MovementKeyCode(Key.S, MovementKeyNames.Backward, 2, 0, 0),
+                    new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,2, 0, 0),
 
-                new MovementKeyCode(Key.A, MovementKeyNames.TurnLeft, -1, 0, 0),
-                new MovementKeyCode(Key.LeftArrow, MovementKeyNames.TurnLeft, -1, 0, 0),
+                    new MovementKeyCode(Key.A, MovementKeyNames.TurnLeft, -1, 0, 0),
+                    new MovementKeyCode(Key.LeftArrow, MovementKeyNames.TurnLeft, -1, 0, 0),
 
-                new MovementKeyCode(Key.D, MovementKeyNames.TurnRight, 1, 0, 0),
-                new MovementKeyCode(Key.RightArrow, MovementKeyNames.TurnRight, 1, 0, 0),
-            };
+                    new MovementKeyCode(Key.D, MovementKeyNames.TurnRight, 1, 0, 0),
+                    new MovementKeyCode(Key.RightArrow, MovementKeyNames.TurnRight, 1, 0, 0),
+
+
+                    new MovementKeyCode(Key.Q, MovementKeyNames.StrafeLeft, 0, 0, -1),
+                    new MovementKeyCode(Key.E, MovementKeyNames.StrafeRight, 0, 0, 1),
+                };
+            }
+            else // WASDQE classic
+            {
+
+                _movementKeyCodes = new List<MovementKeyCode>
+                {
+                    new MovementKeyCode(Key.W, MovementKeyNames.Forward, 0, 1, 0),
+                    new MovementKeyCode(Key.UpArrow, MovementKeyNames.Forward, 0, 1, 0),
+
+                    new MovementKeyCode(Key.S, MovementKeyNames.Backward, 2, 0, 0),
+                    new MovementKeyCode(Key.DownArrow, MovementKeyNames.Backward,2, 0, 0),
+
+                    new MovementKeyCode(Key.Q, MovementKeyNames.TurnLeft, -1, 0, 0),
+                    new MovementKeyCode(Key.LeftArrow, MovementKeyNames.TurnLeft, -1, 0, 0),
+
+                    new MovementKeyCode(Key.E, MovementKeyNames.TurnRight, 1, 0, 0),
+                    new MovementKeyCode(Key.RightArrow, MovementKeyNames.TurnRight, 1, 0, 0),
+
+
+                    new MovementKeyCode(Key.A, MovementKeyNames.StrafeLeft, 0, 0, -1),
+                    new MovementKeyCode(Key.D, MovementKeyNames.StrafeRight, 0, 0, 1),
+                };
+            }
         }
 
-        public IReadOnlyList<MovementKeyCode> GetMovementKeyCodes()
+        public IReadOnlyList<MovementKeyCode> GetMovementKeyCodes(bool setupNow)
         {
+            if (setupNow || _movementKeyCodes.Count < 1)
+            {
+                SetupMovementKeyCodes();
+            }
+
             return _movementKeyCodes;
         }
 
-        public async Task EnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
+        public async Task OnEnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
         {
             _movementQueue.Clear();
             _party = party;
@@ -311,37 +352,61 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             int cx = sx;
             int cz = sz;
 
+            bool upperRightOfDoor = false;
             bool openEastDoor = dxgrid != 0;
             if (ex < sx)
             {
                 cx = (sx + mapRoot.Map.Width - 1) % mapRoot.Map.Width;
+                upperRightOfDoor = true;
             }
             if (ez < sz)
             {
                 cz = (sz + mapRoot.Map.Height - 1) % mapRoot.Map.Height;
+                upperRightOfDoor = true;
             }
-
-            ClientMapCell mapCell = mapRoot.GetCellAtWorldPos(cx, cz, true);
 
             int assetPosition = (openEastDoor ? DungeonAssetPosition.EastWall : DungeonAssetPosition.NorthWall);
 
-            DungeonAsset posAsset = mapCell.AssetPositions[assetPosition];
 
-            if (posAsset != null)
+            List<ClientMapCell> allCellsAtMapPos = mapRoot.GetCellsAtMapPos(cx, cz);
+
+            List<DungeonAsset> doorsToOpenClose = new List<DungeonAsset>();
+
+            foreach (ClientMapCell cmc in allCellsAtMapPos)
             {
-                if (posAsset.SetOpened(true))
+
+                DungeonAsset posAsset = cmc.AssetPositions[assetPosition];
+
+                if (posAsset != null)
                 {
-                    await Task.Delay(100);
+                    doorsToOpenClose.Add(posAsset);
                 }
             }
 
+            List<Awaitable> openList = new List<Awaitable>();
+
+            foreach (DungeonAsset da in doorsToOpenClose)
+            {
+                openList.Add(da.SetOpened(true, upperRightOfDoor));
+            }
+
+            foreach (Awaitable aw in openList)
+            {
+                await aw;
+            }
+
+            _dispatcher.Dispatch(new PlaySound(CrawlerAudio.Footstep));
             for (int frame = 1; frame < frames; frame++)
             {
-
                 mapRoot.DrawX = startDrawX + frame * dx / frames;
                 mapRoot.DrawZ = startDrawZ + frame * dz / frames;
 
                 _mapService.UpdateCameraPos(token);
+
+                if (frame == frames * 2 / 3)
+                {
+                    _dispatcher.Dispatch(new PlaySound(CrawlerAudio.Footstep));
+                }
 
                 if (frame < frames - 1)
                 {
@@ -349,10 +414,18 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 }
             }
 
-            if (posAsset != null)
+            openList.Clear();
+
+            foreach (DungeonAsset da in doorsToOpenClose)
             {
-                posAsset.SetOpened(false);
+                openList.Add(da.SetOpened(false, upperRightOfDoor));
             }
+
+            foreach (Awaitable aw in openList)
+            {
+                await aw;
+            }
+
 
             ex = MathUtil.ModClamp(ex, mapRoot.Map.Width);
             ez = MathUtil.ModClamp(ez, mapRoot.Map.Height);

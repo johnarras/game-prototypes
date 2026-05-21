@@ -4,7 +4,7 @@ using Assets.Scripts.Lockstep.Config.Core;
 using Assets.Scripts.Lockstep.Maps.Systems;
 using Assets.Scripts.Lockstep.Spawns.Systems;
 using Assets.Scripts.Lockstep.Systems;
-using Genrpg.Shared.Core.Constants;
+using OxDb.SharedCore.Core.Constants;
 
 namespace Assets.Scripts.Lockstep.Config.Games
 {

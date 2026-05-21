@@ -1,7 +1,7 @@
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crafting.PlayerData.Recipes;
-using Genrpg.Shared.Crafting.Settings.Recipes;
-using Genrpg.Shared.Inventory.Constants;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.Crafting.PlayerData.Recipes;
+using OxDb.SharedGame.Crafting.Settings.Recipes;
+using OxDb.SharedGame.Inventory.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

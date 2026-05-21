@@ -1,10 +1,10 @@
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Input.Constants;
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Utils;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Input.Constants;
+using OxDb.SharedGame.Input.PlayerData;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System;
 using System.Threading;
 using GPointerEventData = UnityEngine.EventSystems.PointerEventData;

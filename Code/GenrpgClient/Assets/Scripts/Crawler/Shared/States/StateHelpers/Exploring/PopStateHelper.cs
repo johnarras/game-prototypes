@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
     public class PopStateHelper : BaseStateHelper
     {

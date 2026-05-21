@@ -1,12 +1,12 @@
 
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Messages;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Constants;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Vendors.MapObjectAddons;
-using Genrpg.Shared.Vendors.WorldData;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.Messages;
+using OxDb.SharedGame.Inventory.Services;
+using OxDb.SharedGame.MapObjects.MapObjectAddons.Constants;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Vendors.MapObjectAddons;
+using OxDb.SharedGame.Vendors.WorldData;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

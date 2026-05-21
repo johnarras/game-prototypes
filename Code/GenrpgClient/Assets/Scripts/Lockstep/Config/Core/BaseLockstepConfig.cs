@@ -2,7 +2,7 @@
 using Assets.Scripts.Lockstep.Maps.Entities;
 using Assets.Scripts.Lockstep.Math;
 using Assets.Scripts.Lockstep.Spawns;
-using Genrpg.Shared.Core.Constants;
+using OxDb.SharedCore.Core.Constants;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;

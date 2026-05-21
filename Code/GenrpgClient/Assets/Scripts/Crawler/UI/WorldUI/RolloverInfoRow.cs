@@ -1,7 +1,6 @@
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Info.Services;
-using System.Collections.Generic;
+using OxDb.SharedGame.Crawler.Info.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -41,11 +40,11 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             string linkText = _textService.GetLinkUnderMouse(MainText);
             if (linkText != _currentLink)
             {
-                List<string> lines = _infoService.GetInfoLines(linkText);
+                ShowInfoPanelArgs args = _infoService.GetInfoPanelArgs(linkText);
 
-                if (lines.Count > 0)
+                if (args.Lines.Count > 0)
                 {
-                    _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+                    _dispatcher.Dispatch(args);
                     _currentLink = linkText;
                 }
             }

@@ -1,12 +1,13 @@
 using Assets.Scripts.Pathfinding.Utils;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.Movement.Messages;
+using OxDb.SharedGame.Pathfinding.Services;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.ResultHandlers.TypedHandlers
@@ -73,7 +74,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                         }
 
 
-                        _pathfindingService.UpdatePath(unit, _rand, (int)obj.FinalX, (int)obj.FinalZ, OnUpdatePath);
+                        _pathfindingService.UpdatePath(unit, _rand.Rand, (int)obj.FinalX, (int)obj.FinalZ, OnUpdatePath);
                     }
 
                     if (unit.HasFlag(UnitFlags.ProxyCharacter))
@@ -85,6 +86,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                     }
                 }
             }
+            await Task.CompletedTask;
         }
 
         private void OnUpdatePath(IRandom rand, Unit unit)

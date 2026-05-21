@@ -1,14 +1,15 @@
 
 using Assets.Scripts.Config;
-using Genrpg.Shared.Config.Constants;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.DataStores.Utils;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.DataStores.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class FileUploader
@@ -41,70 +42,83 @@ public class FileUploader
     }
 
 
-    public static void UploadFolder(FolderUploadArgs fdata, string expectedFilename)
+    public static async Awaitable UploadFolder(FolderUploadArgs fdata, string expectedFilename)
     {
 
-        try
+
+        if (fdata.FilePatterns.Count < 1)
         {
+            UnityEngine.Debug.LogError("File upload doesn't specify any file patterns.");
+            return;
+        }
 
-            string uploadBaseContainer = BlobUtils.GetBlobContainerName(EDataCategories.Assets.ToString(), fdata.GamePrefix, fdata.Env);
+        string uploadBaseContainer = BlobUtils.GetBlobContainerName(EDataCategories.Assets.ToString(), fdata.GamePrefix, fdata.Env);
 
-            string uploadFullContainer = uploadBaseContainer + "/" + fdata.RemoteSubfolder;
+        string uploadFullContainer = uploadBaseContainer + "/" + fdata.RemoteSubfolder;
 
-            // Feel free to change this to something else you use in your jenkins or whatever build.
-            Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+        // Feel free to change this to something else you use in your jenkins or whatever build.
+        Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
 
-            string exeName = GetAzCopyExecutable();
+        string exeName = GetAzCopyExecutable();
 
-            string exePath = Application.dataPath.Replace("Assets", "../Uploads/" + exeName);
-            string sourcePath = fdata.LocalFolder;
+        string exePath = Application.dataPath.Replace("Assets", "../Uploads/" + exeName);
+        string sourcePath = fdata.LocalFolder;
 
-            string uploadURL = kvDict[AppConfigKeys.BlobUploadURL].Replace(AppConfigKeys.PlaceholderString, uploadFullContainer);
-
-            int QuestionIndex = uploadURL.IndexOf("?");
-
-            string uploadPrefix = uploadURL.Substring(0, QuestionIndex);
-
-            uploadURL = uploadURL.Replace("&amp;", "&");
-
-            ClientWebService webService = new ClientWebService();
-            string txt = (webService.SendRawWebRequest<string>(uploadPrefix + "/" + expectedFilename, HttpMethod.Get).ToString());
-
-            string command = ((string.IsNullOrEmpty(txt) || txt.Contains("BlobNotFound")) ? "copy" : "sync");
-
-            uploadURL = $"{uploadURL}";
-            sourcePath = $"{sourcePath}";
-            string recursiveVal = "--recursive=true";
+        string uploadURL = kvDict[AppConfigKeys.BlobUploadURL].Replace(AppConfigKeys.PlaceholderString, uploadFullContainer);
 
 
-            ProcessStartInfo psi = new ProcessStartInfo()
+        ClientWebService webService = new ClientWebService();
+
+        ResponseEnvelope<string> responseEnvelope = await webService.SendRawWebRequest<string>(uploadURL + "/" + expectedFilename, HttpMethod.Get);
+
+        string command = "sync";
+
+        if (!string.IsNullOrEmpty(responseEnvelope.ErrorMessage))
+        {
+            command = "copy";
+        }
+
+        uploadURL = $"{uploadURL}";
+        sourcePath = $"{sourcePath}";
+        string recursiveVal = "--recursive=true";
+
+        foreach (string filePattern in fdata.FilePatterns)
+        {
+            string finalSourcePath = sourcePath + filePattern;
+
+            try
             {
-                FileName = exePath,
-                ArgumentList = { command, sourcePath, uploadURL, recursiveVal },
-                WindowStyle = ProcessWindowStyle.Hidden,
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-            };
+                ProcessStartInfo psi = new ProcessStartInfo()
+                {
+                    FileName = exePath,
+                    ArgumentList = { command, finalSourcePath, uploadURL, recursiveVal },
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                };
 
-            using (Process process = Process.Start(psi))
-            {
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
+                using (Process process = Process.Start(psi))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
 
-                process.WaitForExit();
+                    process.WaitForExit();
 
-                if (process.ExitCode == 0)
-                    UnityEngine.Debug.Log("AzCopy Sync Successful: " + output);
-                else
-                    UnityEngine.Debug.LogError("AzCopy Sync Failed: " + error);
+                    if (process.ExitCode == 0)
+                        UnityEngine.Debug.Log("AzCopy Sync Successful: " + output);
+                    else
+                        UnityEngine.Debug.LogError("AzCopy Sync Failed: " + error);
+                }
+
+                await Task.Delay(1000);
             }
 
-        }
-        catch (Exception e)
-        {
-            UnityEngine.Debug.LogException(e);
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogException(e);
+            }
         }
     }
 }

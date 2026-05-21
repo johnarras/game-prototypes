@@ -1,9 +1,9 @@
 using Assets.Scripts.UI.Chat;
-using Genrpg.Shared.Chat.Constants;
-using Genrpg.Shared.Chat.Messages;
-using Genrpg.Shared.Chat.Settings;
-using Genrpg.Shared.WhoList.Entities;
-using Genrpg.Shared.WhoList.Messages;
+using OxDb.SharedGame.Chat.Constants;
+using OxDb.SharedGame.Chat.Messages;
+using OxDb.SharedGame.Chat.Settings;
+using OxDb.SharedGame.WhoList.Entities;
+using OxDb.SharedGame.WhoList.Messages;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;

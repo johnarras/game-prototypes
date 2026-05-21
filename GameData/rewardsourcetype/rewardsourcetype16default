@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "SkillLoot",
+  "Icon": "SkillLoot",
+  "Art": "SkillLoot"
+}

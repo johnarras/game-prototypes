@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Units.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Units.Settings;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
 {
     public class UnitSpellEffectHelper : BaseSpellEffectHelper
     {

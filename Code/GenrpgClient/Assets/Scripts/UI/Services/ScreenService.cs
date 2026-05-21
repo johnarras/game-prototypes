@@ -1,3 +1,4 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core.Interfaces;
@@ -5,13 +6,11 @@ using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.ClientEvents;
 using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.UI.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.UI.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -244,7 +243,7 @@ public class ScreenService : IScreenService
 
         nextItem.Screen = bs;
 
-        _analyticsService.Send(AnalyticsEvents.OpenScreen, nextItem.Screen.GetName());
+        _analyticsService.TrackEvent(AnalyticsEvents.OpenScreen, nextItem.Screen.GetName());
         List<Canvas> canvases = _clientEntityService.GetComponents<Canvas>(nextItem.Screen);
 
         _clientEntityService.SetActive(nextItem.Screen, false);
@@ -366,7 +365,7 @@ public class ScreenService : IScreenService
                 {
                     _clientEntityService.Destroy(baseScreen.gameObject);
                 }
-                _analyticsService.Send(AnalyticsEvents.CloseScreen, baseScreen.GetName());
+                _analyticsService.TrackEvent(AnalyticsEvents.CloseScreen, baseScreen.GetName());
                 layer.CurrentScreen = null;
                 layer.JustClosedScreen = true;
                 ClearAllScreensList();

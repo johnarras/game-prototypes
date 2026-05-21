@@ -1,7 +1,7 @@
-using Genrpg.Shared.RpgLevels.Messages;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.RpgLevels.Messages;
+using OxDb.SharedGame.Spells.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 

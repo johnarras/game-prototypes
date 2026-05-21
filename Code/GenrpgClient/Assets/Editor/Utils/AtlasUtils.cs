@@ -1,6 +1,6 @@
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using TMPro;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Assets.TMP
 {
-    
+
     public class RenderTextMeshProToFile : MonoBehaviour
     {
         public GText TextToRender;
@@ -37,7 +34,7 @@ namespace Assets.Scripts.Assets.TMP
             TextToRender.transform.position = Vector3.zero;
             TextToRender.text = text;
             await Awaitable.NextFrameAsync();
-            TextToRender.ForceMeshUpdate(true,true);
+            TextToRender.ForceMeshUpdate(true, true);
             await Awaitable.NextFrameAsync();
             Mesh mesh = TextToRender.mesh;
 
@@ -51,7 +48,7 @@ namespace Assets.Scripts.Assets.TMP
             GL.PushMatrix();
             GL.LoadOrtho();
 
-            
+
             if (mesh == null)
             {
                 Debug.Log("Mesh is missing vertices.");

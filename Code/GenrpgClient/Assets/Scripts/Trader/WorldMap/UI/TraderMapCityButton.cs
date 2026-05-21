@@ -1,5 +1,5 @@
 using Assets.Scripts.Trader.UI.TradeMapUI;
-using Genrpg.Shared.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.Cities.Settings;
 
 namespace Assets.Scripts.Trader.UI.TraderMapUI
 {

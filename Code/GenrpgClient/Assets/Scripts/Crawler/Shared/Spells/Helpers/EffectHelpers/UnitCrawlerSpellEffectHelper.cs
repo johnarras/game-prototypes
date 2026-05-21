@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             if (party.Combat != null)
             {
-                long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+                long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand.Rand);
 
                 if (caster is PartyMember member)
                 {

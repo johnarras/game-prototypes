@@ -1,4 +1,4 @@
-using Genrpg.Shared.Spells.PlayerData.Spells;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
 
 using System.Threading;
 using System.Threading.Tasks;

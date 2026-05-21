@@ -1,9 +1,10 @@
 ﻿using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Minigames.Games.WebApi;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Minigames.Games.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Minigames.Games.ResponseHandlers
@@ -27,6 +28,7 @@ namespace Assets.Scripts.Minigames.Games.ResponseHandlers
                     }
                 }
             }
+            await Task.CompletedTask;
         }
     }
 }

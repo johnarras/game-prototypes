@@ -1,12 +1,12 @@
 {
   "Id": "travelreward8default",
   "IdKey": 8,
-  "Name": "Rations",
+  "Name": "Cloth",
   "ParentId": "default",
   "EntityTypeId": 1,
   "EntityId": 9,
   "MinQuantity": 1,
   "MaxQuantity": 2,
-  "Weight": 1.0,
+  "Weight": 10.0,
   "GroupId": 1
 }

@@ -1,15 +1,19 @@
 
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Entities.Constants;
+using Assets.Scripts.Assets.Textures;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {
-    public class DangerSenseUI : AnimatedPartyBuffUI
+    public class DangerSenseUI : PartyBuffUI
     {
+
+        public ColorLerp ColorLerp;
+
         protected override void FrameUpdateInternal(PartyData party)
         {
 
@@ -26,11 +30,11 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             float nx = cos * 1;
             float nz = sin * 1;
 
-            int sx = party.CurrPos.Rot;
-            int sz = party.CurrPos.Rot;
+            int sx = party.CurrPos.X;
+            int sz = party.CurrPos.Z;
 
-            int ex = (int)(party.CurrPos.Rot + nx);
-            int ez = (int)(party.CurrPos.Rot + nz);
+            int ex = (int)(party.CurrPos.X + nx);
+            int ez = (int)(party.CurrPos.Z + nz);
 
             int dx = ex - sx;
             int dz = ez - sz;
@@ -47,7 +51,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                 {
                     if (!map.HasFlag(CrawlerMapFlags.IsLooping))
                     {
-                        return;
+                        continue;
                     }
                     cx = (cx + map.Width) % map.Width;
                     cz = (cz + map.Height) % map.Height;
@@ -77,7 +81,10 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                 }
             }
 
-            Sprite.OnlyShowFirstFrame = !haveDanger;
+            if (ColorLerp != null)
+            {
+                ColorLerp.SetLerpingNow(haveDanger);
+            }
         }
     }
 }

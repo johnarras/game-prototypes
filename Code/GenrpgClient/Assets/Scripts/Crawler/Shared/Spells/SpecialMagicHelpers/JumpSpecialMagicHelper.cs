@@ -1,21 +1,21 @@
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Settings.SpecialMagic;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Settings.SpecialMagic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class JumpSpecialMagicHelper : BaseSpecialMagicHelper
     {

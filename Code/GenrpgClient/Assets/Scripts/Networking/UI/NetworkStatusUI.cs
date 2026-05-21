@@ -1,8 +1,8 @@
 using Assets.Scripts.Assets.Entities;
-using Genrpg.Shared.MapServer.Messages;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Networking.Messages;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Messages;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Networking.Messages;
 using System.Text;
 using System.Threading;
 

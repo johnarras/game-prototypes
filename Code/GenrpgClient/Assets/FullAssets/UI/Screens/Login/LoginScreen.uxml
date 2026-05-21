@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/FullAssets/UI/Config/BaseStyles.uss?fileID=7433441132597879392&amp;guid=ab7e6cb085181774d9e6465a8185de64&amp;type=3#BaseStyles"/>
+    <Style src="project://database/Assets/FullAssets/UI/Screens/Login/LoginScreen.uss?fileID=7433441132597879392&amp;guid=904f3ec3e89abcc4c9a66dd5a4ceab65&amp;type=3#LoginScreen"/>
+    <ui:VisualElement name="login-screen-root" class="screen-full">
+        <ui:VisualElement name="login-panel" class="panel-small">
+            <Assets.Scripts.UI.Overrides.XImage/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

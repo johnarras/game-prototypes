@@ -1,10 +1,12 @@
 
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Spells.Messages;
+using OxDb.SharedGame.Units.Entities;
 using UnityEngine;
 
 public class CastBar : BaseBehaviour
 {
+
+    private IClientAppService _clientAppService = null;
 
     public GameObject _contentParent;
 
@@ -67,7 +69,7 @@ public class CastBar : BaseBehaviour
         _spellName = spellName;
         _isCasting = true;
         _clientEntityService.SetActive(_contentParent, true);
-        _progressBar.InitRange(0, castTimeMS, 0);
+        _progressBar.InitRange(0, 0, castTimeMS);
         _progressBar.SetValue(0, spellName);
 
     }
@@ -85,7 +87,7 @@ public class CastBar : BaseBehaviour
             return;
         }
 
-        int deltaTicks = (int)(1000 * Time.deltaTime);
+        int deltaTicks = (int)(1000 * _clientAppService.GetDeltaTime());
         long currVal = _progressBar.GetCurrValue();
         long maxVal = _progressBar.GetMaxValue();
         currVal += deltaTicks;

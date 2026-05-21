@@ -15,8 +15,7 @@ namespace Assets.Scripts.Dungeons
     {
         public const int Stone = 0;
         public const int Wood = 1;
-        public const int Floors = 2;
-        public const int Max = 3;
+        public const int Max = 2;
     }
 }
 

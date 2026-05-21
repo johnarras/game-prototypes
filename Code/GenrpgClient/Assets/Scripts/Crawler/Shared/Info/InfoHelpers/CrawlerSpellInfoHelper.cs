@@ -1,15 +1,15 @@
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Info.InfoHelpers;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Entities.Settings;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Spells.Settings.Targets;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Settings;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Info.InfoHelpers;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.Spells.Settings.Targets;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Info.Helpers
+namespace OxDb.SharedGame.Crawler.Info.Helpers
 {
     public class CrawlerSpellInfoHelper : BaseInfoHelper<CrawlerSpellSettings, CrawlerSpell>
     {

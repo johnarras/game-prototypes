@@ -1,4 +1,4 @@
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System.Threading;
 using UnityEngine;
 

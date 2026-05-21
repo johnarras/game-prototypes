@@ -3,50 +3,49 @@ using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.Buffs.Settings;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Constants;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Crawler.Training.Settings;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Inventory.Settings.Ranks;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Spells.Helpers.SpellEffectHelpers;
-using Genrpg.Shared.Spells.Procs.Entities;
-using Genrpg.Shared.Spells.Procs.Interfaces;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Spells.Settings.Targets;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.Buffs.Settings;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Constants;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Crawler.Training.Settings;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Settings.ItemTypes;
+using OxDb.SharedGame.Inventory.Settings.Ranks;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers;
+using OxDb.SharedGame.Spells.Procs.Entities;
+using OxDb.SharedGame.Spells.Procs.Interfaces;
+using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.Spells.Settings.Targets;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +54,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Genrpg.Shared.Crawler.Spells.Services
+namespace OxDb.SharedGame.Crawler.Spells.Services
 {
     public class ActionListItem
     {
@@ -517,7 +516,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (effect.MinQuantity > 0 && effect.MaxQuantity > 0 && !action.QuantityIsBaseAmount)
                     {
-                        attackQuantity = RandUtils.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand);
+                        attackQuantity = RandUtils.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand.Rand);
                     }
                     else
                     {
@@ -538,7 +537,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             }
 
             long intAttackQuantity = (long)(attackQuantity);
-            if (_rand.NextDouble() < (attackQuantity - (long)attackQuantity))
+            if (_rand.Rand.NextDouble() < (attackQuantity - (long)attackQuantity))
             {
                 attackQuantity++;
             }
@@ -549,7 +548,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             long luckyAttackCount = 0;
             for (int a = 0; a < attackQuantity; a++)
             {
-                if (_rand.NextDouble() * 100 < luckBonus)
+                if (_rand.Rand.NextDouble() * 100 < luckBonus)
                 {
                     luckyAttackCount++;
                 }
@@ -695,7 +694,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                         if (possibleSpells.Count > 0)
                         {
-                            CrawlerSpell newSpell = possibleSpells[_rand.Next(possibleSpells.Count)];
+                            CrawlerSpell newSpell = possibleSpells[_rand.Rand.Next(possibleSpells.Count)];
 
                             UnitAction newUnitAction = _combatService.GetActionFromSpell(party, action.Caster, newSpell);
 
@@ -778,7 +777,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (!string.IsNullOrEmpty(action.Caster.PortraitName))
                     {
-                        _dispatcher.Dispatch(new ShowWorldPanelImage(action.Caster.PortraitName));
+                        //_dispatcher.Dispatch(new ShowWorldPanelImage(action.Caster.PortraitName));
                     }
 
                     if (action.FinalTargets.Count == 0 || action.FinalTargets[0].DefendRank < EDefendRanks.Guardian)
@@ -840,13 +839,13 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 CrawlerUnit currTarget = null;
 
                 if (action.Caster.FactionTypeId != FactionTypes.Player &&
-                    _rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
+                    _rand.Rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
                 {
                     List<PartyMember> targets = party.ActiveParty.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).ToList();
 
                     if (targets.Count > 0)
                     {
-                        currTarget = targets[_rand.Next(targets.Count)];
+                        currTarget = targets[_rand.Rand.Next(targets.Count)];
                         ShowCombatLogText(action.Caster.Name + " Targets " + currTarget.Name);
                     }
                 }
@@ -912,7 +911,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
                         if (action.Caster.CombatActions.Count > 0)
                         {
-                            action.Caster.CombatPriority *= (1 - _rand.NextDouble() * combatSettings.SubsequentAttackPriorityLossPercent);
+                            action.Caster.CombatPriority *= (1 - _rand.Rand.NextDouble() * combatSettings.SubsequentAttackPriorityLossPercent);
 
                             bool didInsert = false;
                             for (int i = party.Combat.AttackSequence.Count - 1; i >= 0; i--)
@@ -1010,7 +1009,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     double parryValue = party.Buffs[PartyBuffs.Parry];
                     if (args.IsEnemyTarget && target.IsPlayer() &&
-                        _rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
+                        _rand.Rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
                     {
                         AddToActionDict(args.ActionList, target, caster, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
                         args.DidParry = true;
@@ -1021,7 +1020,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (!args.DidParry)
                     {
-                        if (_rand.NextDouble() > fullEffect.Chance)
+                        if (_rand.Rand.NextDouble() > fullEffect.Chance)
                         {
                             continue;
                         }
@@ -1052,11 +1051,11 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 if (target.FactionTypeId == FactionTypes.Player)
                 {
                     double autoHealValue = party.Buffs[PartyBuffs.Autoheal];
-                    if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
+                    if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
                     {
                         double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
 
-                        double healing = RandUtils.FloatRange(1, maxVal * maxVal, _rand);
+                        double healing = RandUtils.FloatRange(1, maxVal * maxVal, _rand.Rand);
 
                         long currHealth = target.Stats.Curr(StatTypes.Health);
                         long maxHealth = target.Stats.Max(StatTypes.Health);
@@ -1106,7 +1105,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                         if (args.TotalDamage > 0)
                         {
                             double lifeStealValue = party.Buffs[PartyBuffs.Lifesteal];
-                            if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
+                            if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
                             {
                                 long totalLifesteal = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.Lifesteal));
 
@@ -1118,7 +1117,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                             }
 
                             double dotValue = party.Buffs[PartyBuffs.ApplyDoT];
-                            if (_rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
+                            if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
                             {
                                 long totalDot = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.ApplyDoT));
 
@@ -1303,7 +1302,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
 
             // 1.5 here for rounding and not random scaling value combat to combat
 
-            if (_rand.NextDouble() < (quantity - (int)quantity))
+            if (_rand.Rand.NextDouble() < (quantity - (int)quantity))
             {
                 quantity = Math.Ceiling(quantity);
             }
@@ -1313,7 +1312,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
             long luckySummonCount = 0;
             for (int q = 0; q < quantity; q++)
             {
-                if (_rand.NextDouble() * 100 < luckBonus)
+                if (_rand.Rand.NextDouble() * 100 < luckBonus)
                 {
                     luckySummonCount++;
                 }
@@ -1347,7 +1346,7 @@ namespace Genrpg.Shared.Crawler.Spells.Services
                 {
                     if (newUnitAction.PossibleTargetGroups.Count > 0)
                     {
-                        CombatGroup finalGroup = newUnitAction.PossibleTargetGroups[_rand.Next(newUnitAction.PossibleTargetGroups.Count)];
+                        CombatGroup finalGroup = newUnitAction.PossibleTargetGroups[_rand.Rand.Next(newUnitAction.PossibleTargetGroups.Count)];
                         newUnitAction.FinalTargets = finalGroup.Units.ToList();
                     }
                 }

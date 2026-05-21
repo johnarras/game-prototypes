@@ -2,26 +2,25 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.MapGen.Helpers;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Maps.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Quests.Services;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.LoadSave.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.MapGen.Helpers;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Maps.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Quests.Services;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.LoadSave.Constants;
+using OxDb.SharedGame.Units.Settings;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +43,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
         private IClientAppService _clientAppService = null;
         private IClientGameState _gs = null;
         private IPartyService _partyService = null;
-        private ITextSerializer _serializer = null;
         private ICrawlerQuestService _questService = null;
         private ICrawlerOptionsService _optionsService = null;
 
@@ -138,7 +136,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 {
                     CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-                    int spawnCount = RandUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand);
+                    int spawnCount = RandUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand.Rand);
 
                     int sharedZoneSpawnCount = mapSettings.SharedZoneUnitCount;
 
@@ -160,7 +158,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     {
                         if (rareSpawns.Count > 0)
                         {
-                            ZoneUnitSpawn rare = rareSpawns[_rand.Next() % rareSpawns.Count];
+                            ZoneUnitSpawn rare = rareSpawns[_rand.Rand.Next() % rareSpawns.Count];
                             rareSpawns.Remove(rare);
                             spawns.Remove(rare);
                             map.ZoneUnits.Add(rare);
@@ -169,7 +167,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                     while (map.ZoneUnits.Count < spawnCount && spawns.Count > 0)
                     {
-                        ZoneUnitSpawn spawn = RandUtils.GetRandomElement(spawns, _rand);
+                        ZoneUnitSpawn spawn = RandUtils.GetRandomElement(spawns, _rand.Rand);
 
                         spawns.Remove(spawn);
                         map.ZoneUnits.Add(spawn);
@@ -227,14 +225,12 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         public async Task SaveWorld(CrawlerWorld world)
         {
-
-
-            await _repoService.StringSave<CrawlerWorld>(world.Id, _serializer.SerializeToString(world));
+            await _repoService.Save(world);
         }
 
         private async Task<CrawlerWorld> LoadWorld(long worldId)
         {
-            return await _repoService.LoadObjectFromString<CrawlerWorld>("World" + worldId);
+            return await _repoService.Load<CrawlerWorld>(worldId.ToString());
         }
 
         private async Task<CrawlerWorld> GenerateInternal(long worldId, CancellationToken token)
@@ -243,7 +239,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             PartyData party = _crawlerService.GetParty();
             try
             {
-                CrawlerWorld world = new CrawlerWorld() { Id = "World" + worldId, Name = "World" + worldId, IdKey = worldId, Seed = _rand.Next() };
+                CrawlerWorld world = new CrawlerWorld() { Id = worldId.ToString(), Name = "World" + worldId, IdKey = worldId, Seed = _rand.Rand.Next() };
                 _world = world;
                 ICrawlerMapGenHelper helper = _mapGenService.GetGenHelper(CrawlerMapTypes.Outdoors);
 

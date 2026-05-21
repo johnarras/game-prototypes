@@ -1,7 +1,7 @@
 
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Purchasing.Settings;
+using OxDb.SharedGame.Purchasing.PlayerData;
+using OxDb.SharedGame.Purchasing.Settings;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

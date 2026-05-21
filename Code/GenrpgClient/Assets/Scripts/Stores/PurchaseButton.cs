@@ -1,5 +1,5 @@
 using Assets.Scripts.Purchasing.Services;
-using Genrpg.Shared.Purchasing.PlayerData;
+using OxDb.SharedGame.Purchasing.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

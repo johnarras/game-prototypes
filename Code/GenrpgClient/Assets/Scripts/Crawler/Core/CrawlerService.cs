@@ -9,38 +9,38 @@ using Assets.Scripts.Crawler.ClientEvents.HUD;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Items.Entities;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Settings;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.LoadSave.Constants;
-using Genrpg.Shared.LoadSave.Services;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Items.Entities;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Settings;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.LoadSave.Constants;
+using OxDb.SharedGame.LoadSave.Services;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.Services
+namespace OxDb.SharedGame.Crawler.States.Services
 {
 
 
@@ -428,7 +428,7 @@ namespace Genrpg.Shared.Crawler.States.Services
 
             if (party.WorldId < 1)
             {
-                party.WorldId = _rand.Next() % 5000000;
+                party.WorldId = _rand.Rand.Next() % 5000000;
             }
 
             CrawlerWorld world = await _worldService.GetWorld(_party.WorldId);
@@ -475,7 +475,7 @@ namespace Genrpg.Shared.Crawler.States.Services
                 }
             }
 
-            party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Next() };
+            party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Rand.Next() };
 
             return party;
         }
@@ -619,7 +619,7 @@ namespace Genrpg.Shared.Crawler.States.Services
                 _party = LoadPremadeParty(LoadSaveConstants.MinSlot);
             }
             _party.Options = options;
-            _party.Seed = _rand.Next();
+            _party.Seed = _rand.Rand.Next();
 
             _party.Flags = 0;
             _party.DaysPlayed = 0;

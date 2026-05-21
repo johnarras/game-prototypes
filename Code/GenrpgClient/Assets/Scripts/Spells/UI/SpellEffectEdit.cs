@@ -1,7 +1,7 @@
-using Genrpg.Shared.SpellCrafting.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
-using Genrpg.Shared.Spells.Settings.Skills;
-using Genrpg.Shared.Spells.Settings.Spells;
+using OxDb.SharedGame.SpellCrafting.Constants;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
+using OxDb.SharedGame.Spells.Settings.Skills;
+using OxDb.SharedGame.Spells.Settings.Spells;
 using System;
 
 namespace Assets.Scripts.UI.Spells

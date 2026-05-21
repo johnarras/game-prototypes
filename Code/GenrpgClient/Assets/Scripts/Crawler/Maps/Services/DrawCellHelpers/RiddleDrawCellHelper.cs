@@ -1,14 +1,13 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Services;
-using Genrpg.Shared.Riddles.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Riddles.Services;
+using OxDb.SharedGame.Riddles.Settings;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -40,17 +39,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     };
 
-                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Props, riddleType.Art, OnDownloadObject, token, loadData);
+                    _mapService.LoadProp(loadData, riddleType.Art, token);
                 }
             }
 
             await Task.CompletedTask;
-        }
-
-        protected override void OnDownloadObject(GameObject go, CrawlerObjectLoadData loadData, CancellationToken token)
-        {
-            base.OnDownloadObject(go, loadData, token);
-            _riddleService.SetPropPosition(go, loadData, token);
         }
     }
 }

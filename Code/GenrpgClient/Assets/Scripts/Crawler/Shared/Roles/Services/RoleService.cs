@@ -1,22 +1,22 @@
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Monsters.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Roles.Services
+namespace OxDb.SharedGame.Crawler.Roles.Services
 {
 
     public interface IRoleService : IInjectable

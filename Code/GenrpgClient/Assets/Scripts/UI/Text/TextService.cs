@@ -1,7 +1,7 @@
 
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 using TMPro;
 
 namespace Assets.Scripts.UI.Services

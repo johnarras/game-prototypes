@@ -1,6 +1,6 @@
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Input.PlayerData;
+using OxDb.SharedGame.Units.Constants;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -80,7 +80,7 @@ public class ProxyCharacterController : MonsterController
 
         ShowMoveAnimations(dx, dz);
 
-        float deltaTime = _inputService.GetDeltaTime();
+        float deltaTime = _clientAppService.GetDeltaTime();
 
         float totalDX = Math.Abs(_newPos.FinalX - _lastX);
         float totalDZ = Math.Abs(_newPos.FinalZ - _lastZ);

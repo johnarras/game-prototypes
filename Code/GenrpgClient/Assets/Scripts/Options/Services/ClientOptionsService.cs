@@ -1,8 +1,9 @@
 using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
+using Assets.Scripts.Repository;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace Assets.Scripts.Options.Services
         protected ILogService _logService = null;
         protected IClientAppService _clientAppService = null;
         protected ITextSerializer _textSerializer = null;
+        protected IClientRepositoryService _clientRepoService = null;
 
         protected LocalClientOptions _options = null;
-        protected ClientRepositoryCollection<LocalClientOptions> _repo = null;
         protected string OptionsFileName = "LocalOptions";
 
         public ClientOptionsService(ILogService logService,
@@ -37,7 +38,6 @@ namespace Assets.Scripts.Options.Services
 
         public async Task Initialize(CancellationToken token)
         {
-            _repo = new ClientRepositoryCollection<LocalClientOptions>(_logService, _clientAppService, _textSerializer);
             _options = GetOptions();
             await Task.CompletedTask;
         }
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Options.Services
         {
             if (_options == null)
             {
-                _options = _repo.Load(OptionsFileName).GetAwaiter().GetResult();
+                _options = _clientRepoService.Load<LocalClientOptions>(OptionsFileName).GetAwaiter().GetResult();
                 if (_options == null)
                 {
                     _options = new LocalClientOptions()
@@ -68,7 +68,7 @@ namespace Assets.Scripts.Options.Services
 
         public void SaveOptions()
         {
-            _repo.Save(GetOptions()).Wait();
+            _clientRepoService.Save(GetOptions()).Wait();
         }
 
         public void OnQuit()

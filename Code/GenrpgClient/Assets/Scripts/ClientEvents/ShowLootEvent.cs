@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedCore.Rewards.Entities;
 using System.Collections.Generic;
 
 

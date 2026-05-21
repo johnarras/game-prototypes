@@ -1,7 +1,7 @@
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Characters.WebApi.DeleteChar;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Characters.WebApi.DeleteChar;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

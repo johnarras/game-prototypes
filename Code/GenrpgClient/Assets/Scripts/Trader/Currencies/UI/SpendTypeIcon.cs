@@ -1,5 +1,5 @@
-﻿using Genrpg.Shared.Trader.CurrencySpend.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.WebApi;
+﻿using OxDb.SharedGame.Trader.CurrencySpend.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 
 namespace Assets.Scripts.Trader.Currencies.UI
 {

@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "TravelEncounter",
+  "Icon": "TravelEncounter",
+  "Art": "TravelEncounter"
+}

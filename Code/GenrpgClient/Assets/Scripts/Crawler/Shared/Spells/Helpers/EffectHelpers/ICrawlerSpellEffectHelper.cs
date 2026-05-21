@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Spells.Entities;
 using System.Threading;
 using UnityEngine;
 
-namespace Genrpg.Shared.Spells.Helpers.SpellEffectHelpers
+namespace OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers
 {
     public interface ICrawlerSpellEffectHelper : ISetupDictionaryItem<long>
     {

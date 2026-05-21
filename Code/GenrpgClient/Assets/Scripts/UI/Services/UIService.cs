@@ -1,3 +1,5 @@
+using Assets.Scripts.Audio.ClientEvents;
+using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
@@ -6,15 +8,14 @@ using Assets.Scripts.UI.Animations;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using Assets.Scripts.UI.Pointers;
-using Genrpg.Shared.Analytics.Services;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Ftue.Messages;
-using Genrpg.Shared.Ftue.Services;
-using Genrpg.Shared.Ftue.Settings.Steps;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Ftue.Messages;
+using OxDb.SharedGame.Ftue.Services;
+using OxDb.SharedGame.Ftue.Settings.Steps;
+using OxDb.SharedGame.UI.Interfaces;
 using Scripts.Assets.Audio.Constants;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace Assets.Scripts.UI.Services
         private CancellationToken _token;
         protected IAwaitableService _awaitableService = null;
         private ITextService _textService = null;
+        private IDispatcher _dispatcher = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -232,10 +234,11 @@ namespace Assets.Scripts.UI.Services
                 {
                     button.interactable = false;
                 }
-                if (_ftueService.IsComplete(_rand, _gs.ch))
+                if (_ftueService.IsComplete(_rand.Rand, _gs.ch))
                 {
-                    _analyticsService.Send(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
-                    _audioService.PlaySound(AudioList.ButtonClick);
+                    _analyticsService.TrackEvent(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
+
+                    _dispatcher.Dispatch(new PlaySound(AudioList.ButtonClick, AudioConstants.NoVariance));
                     if (action != null)
                     {
                         action();
@@ -247,11 +250,11 @@ namespace Assets.Scripts.UI.Services
                 }
                 else
                 {
-                    FtueStep step = _ftueService.GetCurrentStep(_rand, _gs.ch);
-                    if (_ftueService.CanClickButton(_rand, _gs.ch, screenName, button.name))
+                    FtueStep step = _ftueService.GetCurrentStep(_rand.Rand, _gs.ch);
+                    if (_ftueService.CanClickButton(_rand.Rand, _gs.ch, screenName, button.name))
                     {
-                        _audioService.PlaySound(AudioList.ButtonClick);
-                        _analyticsService.Send(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
+                        _dispatcher.Dispatch(new PlaySound(AudioList.ButtonClick, AudioConstants.NoVariance));
+                        _analyticsService.TrackEvent(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
                         if (action != null)
                         {
                             action();
@@ -262,13 +265,13 @@ namespace Assets.Scripts.UI.Services
                         }
                         if (step != null)
                         {
-                            _ftueService.CompleteStep(_rand, _gs.ch, step.IdKey);
+                            _ftueService.CompleteStep(_rand.Rand, _gs.ch, step.IdKey);
                             _realtimeNetworkService.SendMapMessage(new CompleteFtueStepMessage() { FtueStepId = step.IdKey });
                         }
                     }
                     else
                     {
-                        _audioService.PlaySound(AudioList.ErrorClick);
+                        _dispatcher.Dispatch(new PlaySound(AudioList.ErrorClick, AudioConstants.NoVariance));
                     }
                 }
             }

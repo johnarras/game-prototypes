@@ -12,12 +12,12 @@ public class CurrentMusic
 
     public float GetRandomIzeSeconds()
     {
-        if (playData == null || playData.musicData == null)
+        if (playData == null || playData.MusicData == null)
         {
             return 0.0f;
         }
 
-        return playData.musicData.RandomizeSeconds;
+        return playData.MusicData.RandomizeSeconds;
     }
 
     public void StopAll()

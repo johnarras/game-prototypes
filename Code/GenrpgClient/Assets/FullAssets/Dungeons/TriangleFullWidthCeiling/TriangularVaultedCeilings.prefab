@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5112809444300060747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3295045984153887062}
+  - component: {fileID: 4091880198250133038}
+  m_Layer: 0
+  m_Name: TriangularVaultedCeilings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3295045984153887062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112809444300060747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4091880198250133038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112809444300060747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae76f34a5d47e304586a518c4e8464d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.VaultedCeilingAssetBlock
+  <Weight>k__BackingField: 1000
+  LowCeiling: {fileID: 4459349906525966421, guid: d1bc720746e33a141bbd080f3b92bf4e, type: 3}
+  HighCeiling: {fileID: 4533820909790767231, guid: 13aca5aedbc16444e87f1b9d6702a580, type: 3}
+  OneCornerUp: {fileID: 4573248315113750148, guid: ea9e5fb28a9365645a796d3fe04a755e, type: 3}
+  OneEdgeUp: {fileID: 5520824956073561432, guid: 26b6fe4b66a6042469f6380fa5823859, type: 3}
+  SaddlePoint: {fileID: 43656656425751588, guid: 1d1b192d68bbbbb41a2d50d6c1f128e6, type: 3}
+  ThreeCornersUp: {fileID: 2793418869788090328, guid: 241b27b587f9c2040a5acf30fffcbc37, type: 3}

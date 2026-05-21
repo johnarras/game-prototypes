@@ -2,7 +2,7 @@
   "Id": "rewardsourcetype15default",
   "ParentId": "default",
   "IdKey": 15,
-  "Name": "HourlyReset",
-  "Icon": "HourlyReset",
-  "Art": "HourlyReset"
+  "Name": "DailyReset",
+  "Icon": "DailyReset",
+  "Art": "DailyReset"
 }

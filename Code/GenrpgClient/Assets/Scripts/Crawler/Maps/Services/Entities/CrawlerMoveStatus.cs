@@ -1,6 +1,6 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 
 namespace Assets.Scripts.Crawler.Maps.Services.Entities
 {

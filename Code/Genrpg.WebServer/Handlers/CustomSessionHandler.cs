@@ -1,8 +1,9 @@
-﻿using Genrpg.Shared.Utils;
+﻿
 using Google.Apis.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
@@ -38,25 +39,25 @@ public class CustomSessionHandler : AuthenticationHandler<CustomSessionOptions>
         // Json of a UserSession
         var bearerToken = authorizationHeader.ToString().Replace("Bearer ", "");
 
-        string[] words = bearerToken.Split("_");
+        string[] dataAndHashWords = bearerToken.Split("_");
 
-        if (words.Length != 2)
+        if (dataAndHashWords.Length != 2)
         {
             return AuthenticateResult.Fail("Token Did not have proper parts");
         }
 
-        string calcedHash = HashUtils.QuickHash(words[0] + "." + Options.TokenSecret);
+        string calcedHash = HashUtils.QuickHash(dataAndHashWords[0] + "." + Options.TokenSecret);
 
-        if (calcedHash != words[1])
+        if (calcedHash != dataAndHashWords[1])
         {
             return AuthenticateResult.Fail("Incoming hash did not match.");
         }
 
-        string[] dataWords = words[0].Split(".");
+        string[] dataWords = dataAndHashWords[0].Split(".");
 
-        if (dataWords.Length != 3)
+        if (dataWords.Length != 4)
         {
-            return AuthenticateResult.Fail("3 pieces of data not sent.");
+            return AuthenticateResult.Fail("4 pieces of data not sent.");
         }
 
         if (!long.TryParse(dataWords[2], out long ticks))
@@ -69,15 +70,21 @@ public class CustomSessionHandler : AuthenticationHandler<CustomSessionOptions>
             return AuthenticateResult.Fail("Token has expired.");
         }
 
-        if (string.IsNullOrEmpty(words[0]))
+        if (string.IsNullOrEmpty(dataWords[0]))
         {
             return AuthenticateResult.Fail("UserId was blank.");
         }
 
+        if (string.IsNullOrEmpty(dataWords[3]))
+        {
+            return AuthenticateResult.Fail("No Existing Data Sent");
+        }
+
         // 4. Create the Identity
         var claims = new[] {
-            new Claim(ClaimTypes.NameIdentifier, words[0]),
-            new Claim("SessionToken", bearerToken)
+            new Claim(ClaimTypes.NameIdentifier, dataWords[0]),
+            new Claim("SessionToken", bearerToken),
+            new Claim("ExistingData", dataWords[3])
         };
 
         var identity = new ClaimsIdentity(claims, Scheme.Name);

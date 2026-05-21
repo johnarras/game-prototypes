@@ -1,6 +1,6 @@
-using Genrpg.Shared.SpellCrafting.Services;
-using Genrpg.Shared.SpellCrafting.Settings;
-using Genrpg.Shared.SpellCrafting.SpellModifierHelpers;
+using OxDb.SharedGame.SpellCrafting.Services;
+using OxDb.SharedGame.SpellCrafting.Settings;
+using OxDb.SharedGame.SpellCrafting.SpellModifierHelpers;
 using System;
 
 namespace Assets.Scripts.UI.Spells

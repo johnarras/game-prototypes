@@ -1,11 +1,11 @@
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Stats.Constants;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             {
                 return;
             }
-            args.NewQuantity += RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+            args.NewQuantity += RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand.Rand);
 
             long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
 

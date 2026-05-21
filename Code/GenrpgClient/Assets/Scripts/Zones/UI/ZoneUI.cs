@@ -1,7 +1,7 @@
 using ClientEvents;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 
 public class ZoneUI : BaseBehaviour

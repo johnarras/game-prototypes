@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Attributes.Settings;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Attributes.PlayerData;
+using OxDb.SharedGame.Attributes.Settings;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Trader.Stats.UI
 
         private void ShowDebuffs()
         {
-            AttributeData attributeData = _gs.ch.Get<AttributeData>();
+            AttributesData AttributesData = _gs.ch.Get<AttributesData>();
 
             IReadOnlyList<GameplayDebuff> debuffs = _gameData.Get<GameplayDebuffSettings>(_gs.ch).GetData();
 
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Trader.Stats.UI
                     {
                         GameplayDebuffIcon newIcon = _clientEntityService.FullInstantiate(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
-                        newIcon.SetData(debuff, attributeData.Debuffs[debuff.IdKey], debuffDaysPlayed);
+                        newIcon.SetData(debuff, AttributesData.Debuffs[debuff.IdKey], debuffDaysPlayed);
                         _icons.Add(newIcon);
                     }
                 }

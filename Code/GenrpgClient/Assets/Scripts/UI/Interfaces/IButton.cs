@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace Genrpg.Shared.UI.Interfaces
+namespace OxDb.SharedGame.UI.Interfaces
 {
     public interface IButton
     {

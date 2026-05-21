@@ -1,12 +1,11 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Entities.Core;
-using Genrpg.DataUtils.Interfaces;
-using Genrpg.DataUtils.Services.EditorData;
-using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.ServerShared.DataStores;
-using Genrpg.Shared.Accounts.PlayerData;
-using Genrpg.Shared.Tasks.Services;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Interfaces;
+using OxDb.DataUtils.Services.EditorData;
+using OxDb.PlatformServer.Accounts.PlayerData;
+using OxDb.ServerCore.DataStores.Services;
+using OxDb.SharedGame.Tasks.Services;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -138,14 +137,14 @@ namespace Genrpg.Editor
             }
 
             ISmallPopup form = _win.ShowBlockingDialog("Loading user data").Result;
-            _taskService.ForgetTask(_dataService.LoadEditorUserData(_gs, acct.Id) , false);
+            _taskService.ForgetTask(_dataService.LoadEditorUserData(_gs, acct.Id), false);
 
             form.StartClose();
             form = _win.ShowBlockingDialog("Deleting user data").Result;
 
             // We don't delete the account here.
             _taskService.ForgetTask(_dataService.DeleteEditorUserData(_gs), false);
-           
+
             form.StartClose();
 
         }

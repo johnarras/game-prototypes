@@ -1,13 +1,14 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.UserEnergy.WebApi;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Rewards.Constants;
+using OxDb.SharedGame.Rewards.Services;
+using OxDb.SharedGame.Trader.Constants;
+using OxDb.SharedGame.UserEnergy.WebApi;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
@@ -15,7 +16,6 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
     public class HourlyUpdateResponseHandler : BaseClientWebResponseHandler<HourlyUpdateResponse>
     {
         private IRewardService _rewardService = null;
-        private IClientRandom _rand = null;
 
         protected override async Awaitable InnerProcess(HourlyUpdateResponse response, CancellationToken token)
         {
@@ -26,10 +26,11 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
 
             foreach (Reward rew in response.Rewards)
             {
-                await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, true));
+                await _rewardService.GiveReward(_gs.ch, rew, RewardSources.HourlyUpdate, new ClientRewardParams(false, true));
             }
 
             _dispatcher.Dispatch(new UpdateTraderHUD());
+            await Task.CompletedTask;
         }
     }
 }

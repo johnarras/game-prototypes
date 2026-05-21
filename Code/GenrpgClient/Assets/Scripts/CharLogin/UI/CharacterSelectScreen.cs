@@ -1,12 +1,12 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;
+using OxDb.SharedGame.ProcGen.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +24,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     public GButton LogoutButton;
     public GButton QuitButton;
     public GButton CrawlerButton;
-    public GText ErrorText;
 
 
     protected IZoneGenService _zoneGenService = null;
@@ -38,6 +37,7 @@ public class CharacterSelectScreen : ErrorMessageScreen
 
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
+        await base.OnStartOpen(data, token);
 #if UNITY_EDITOR
 
         if (GenWorldButton == null)
@@ -74,11 +74,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
         SetupCharacterGrid();
 
         await Task.CompletedTask;
-    }
-
-    public override void ShowError(string errorMessage)
-    {
-        _uiService.SetText(ErrorText, errorMessage);
     }
 
 #if UNITY_EDITOR

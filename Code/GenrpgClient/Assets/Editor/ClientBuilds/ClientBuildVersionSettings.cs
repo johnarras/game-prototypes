@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Constants;
+using OxDb.SharedCore.Environments.Constants;
 using UnityEditor;
 using UnityEngine;
 

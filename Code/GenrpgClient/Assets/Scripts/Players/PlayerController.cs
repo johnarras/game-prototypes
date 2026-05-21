@@ -1,6 +1,6 @@
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Movement.Messages;
+using OxDb.SharedGame.Input.PlayerData;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Movement.Messages;
 using System;
 using System.Threading;
 using UnityEngine;

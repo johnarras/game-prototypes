@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 
 namespace Assets.Scripts.ClientEvents
 {

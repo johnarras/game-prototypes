@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Minimap.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

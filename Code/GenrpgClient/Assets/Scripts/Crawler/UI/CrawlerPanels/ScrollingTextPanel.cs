@@ -1,10 +1,10 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Crawler.ActionUI;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

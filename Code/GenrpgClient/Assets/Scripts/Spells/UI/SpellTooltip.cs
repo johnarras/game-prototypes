@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Spells.PlayerData.Spells;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

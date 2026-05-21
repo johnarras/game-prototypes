@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapObjects.Entities;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.MapObjects.Entities;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -1,15 +1,15 @@
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Loot.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public class CrawlerSpellLootTypeHelper : BaseCrawlerLootTypeHelper
     {
@@ -23,7 +23,7 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
 
             List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => x.RoleScalingTier <= effectLevel).ToList();
 
-            CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _rand);
+            CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _rand.Rand);
 
             if (spell != null && lootType != null)
             {

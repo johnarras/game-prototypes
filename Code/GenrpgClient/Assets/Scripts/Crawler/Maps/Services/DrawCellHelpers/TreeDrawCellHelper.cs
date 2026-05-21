@@ -1,13 +1,12 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.ProcGen.Settings.Trees;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -42,7 +41,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 
                     };
 
-                    _assetService.LoadAssetInto(cell.Content, AssetCategoryNames.Trees, treeType.Art + variation, OnDownloadObject, token, loadData);
+                    _mapService.LoadProp(loadData, treeType.Art + variation, token);
 
                 }
             }

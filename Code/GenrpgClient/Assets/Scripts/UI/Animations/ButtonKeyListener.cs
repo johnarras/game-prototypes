@@ -1,6 +1,7 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.ClientEvents;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.UI.Animations
     {
         private IAwaitableService _awaitableService = null;
 
+        public List<GImage> Images = new List<GImage>();
         public GButton Button;
         public Key Key;
 
@@ -21,6 +23,12 @@ namespace Assets.Scripts.UI.Animations
         {
             base.Init();
 
+            SetKey(Key);
+        }
+
+        public void SetKey(Key key)
+        {
+            Key = key;
             if (Key > 0 && Button != null)
             {
                 _dispatcher.AddListener<ClickKey>(OnClickKey, GetToken());
@@ -48,9 +56,17 @@ namespace Assets.Scripts.UI.Animations
             {
                 _action();
             }
-            Button.image.color = Button.colors.pressedColor;
-            await Awaitable.NextFrameAsync(token);
-            Button.image.color = Button.colors.normalColor;
+
+            foreach (GImage image in Images)
+            {
+                image.color = Button.colors.pressedColor;
+            }
+
+            await Awaitable.WaitForSecondsAsync(0.1f);
+            foreach (GImage image in Images)
+            {
+                image.color = Button.colors.normalColor;
+            }
         }
     }
 }

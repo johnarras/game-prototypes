@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5845218472729828621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7722270339302547358}
+  - component: {fileID: 3678439427716396786}
+  m_Layer: 0
+  m_Name: WideDungeonAssetBlockList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7722270339302547358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845218472729828621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3678439427716396786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845218472729828621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c70f4f13a1c774f9e187510a3a9f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.DungeonAssetBlockList
+  BlockXZSize: 16
+  BlockYSize: 8
+  Blocks:
+  - <Weight>k__BackingField: 1000
+    VaultedCeiling: 0
+    Walls:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2883750128014381245, guid: a9265d4a18873bb40b3548bd6f5bd322, type: 3}
+    Doors:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 3319383854277241407, guid: 92285389f3e40c444b9adb57e2c11d1f, type: 3}
+    Floors:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 1600195048490632563, guid: f3ebbef0aac14d54c903e15ec4a6b810, type: 3}
+    Ceilings:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 8452400089187220458, guid: 074e43d04f2db9c46b32bf132d878123, type: 3}
+    Pillars:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2801542127813480670, guid: dd1e5e77c2b66164198721f7e06e0076, type: 3}
+    Fences:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 6124447883365292776, guid: ffac88f409febab49a7423ba9e59ca04, type: 3}
+  VaultedCeilings: []
+  VaultedCeilingChance: 0

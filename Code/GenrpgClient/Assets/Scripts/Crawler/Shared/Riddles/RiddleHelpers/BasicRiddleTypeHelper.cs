@@ -1,17 +1,17 @@
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Riddles.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Riddles.Constants;
+using OxDb.SharedGame.Riddles.Entities;
+using OxDb.SharedGame.Riddles.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
+namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 {
     public class BasicRiddleTypeHelper : BaseRiddleTypeHelper
     {

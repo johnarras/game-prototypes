@@ -1,7 +1,7 @@
 using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedCore.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Rewards.UI

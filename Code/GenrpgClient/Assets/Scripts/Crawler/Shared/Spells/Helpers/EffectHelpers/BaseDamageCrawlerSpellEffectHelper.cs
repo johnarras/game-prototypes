@@ -1,20 +1,20 @@
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Spells.Settings.Effects;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Spells.Settings.Effects;
+using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
 
             if (!target.IsPlayer() && target.DefendRank == 0 && finalCritChance > 0 &&
-                _rand.NextDouble() * 100 < finalCritChance && weakReductionPercent == 0)
+                _rand.Rand.NextDouble() * 100 < finalCritChance && weakReductionPercent == 0)
             {
                 args.NewQuantity = target.Stats.Curr(StatTypes.Health);
                 _spellService.AddToActionDict(args.ActionList, caster, target, "CRITS!", args.NewQuantity, args.ExtraMessageBits, false, ECombatTextTypes.Damage, spell.Effects[0].ElementType.IdKey);
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(null);
 
                 long defenseStatId = StatTypes.Armor;
-                args.NewQuantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand);
+                args.NewQuantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand.Rand);
                 if (fullEffect.Effect.EntityTypeId == EntityTypes.Damage)
                 {
                     defenseStatId = StatTypes.Resist;
@@ -114,7 +114,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 double hitChance = defenseStatRatio / combatSettings.GuaranteedHitDefenseRatio;
 
                 bool didMiss = false;
-                if (_rand.NextDouble() > hitChance)
+                if (_rand.Rand.NextDouble() > hitChance)
                 {
                     _spellService.AddToActionDict(args.ActionList, caster, target, "Misses", 0, ExtraMessageBits.Misses, false, ECombatTextTypes.None, 0);
                     didMiss = true;
@@ -133,7 +133,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
                     newQuantityFract -= args.NewQuantity;
 
-                    if (_rand.NextDouble() < newQuantityFract)
+                    if (_rand.Rand.NextDouble() < newQuantityFract)
                     {
                         args.NewQuantity++;
                     }
@@ -142,7 +142,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                 }
 
                 double barrierValue = party.Buffs[PartyBuffs.Barrier];
-                if (target.FactionTypeId == FactionTypes.Player && _rand.NextDouble() * 100 < barrierValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Barrier))
+                if (target.FactionTypeId == FactionTypes.Player && _rand.Rand.NextDouble() * 100 < barrierValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Barrier))
                 {
                     long removedQuantity = Math.Min(args.NewQuantity, (long)(args.NewQuantity * barrierValue * args.BuffSettings.GetEffectScale(PartyBuffs.Barrier) / 100.0));
                     args.NewQuantity -= removedQuantity;
@@ -169,10 +169,10 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             double cursedArrowsValue = party.Buffs[PartyBuffs.CursedArrows];
             // Sharpshooter do some extra damage.
             if (args.CurrHitTimes == 0 && args.NewQuantity > 0 && fullEffect.Effect.EntityTypeId == EntityTypes.Shoot && caster.IsPlayer() &&
-                _rand.NextDouble() < cursedArrowsValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.CursedArrows))
+                _rand.Rand.NextDouble() < cursedArrowsValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.CursedArrows))
             {
 
-                long effectTier = (long)(1 + _rand.NextDouble() * (cursedArrowsValue * cursedArrowsValue * args.BuffSettings.GetEffectScale(PartyBuffs.CursedArrows)));
+                long effectTier = (long)(1 + _rand.Rand.NextDouble() * (cursedArrowsValue * cursedArrowsValue * args.BuffSettings.GetEffectScale(PartyBuffs.CursedArrows)));
 
                 StatusEffect statusEffect = _gameData.Get<StatusEffectSettings>(_gs.ch).Get(effectTier);
 

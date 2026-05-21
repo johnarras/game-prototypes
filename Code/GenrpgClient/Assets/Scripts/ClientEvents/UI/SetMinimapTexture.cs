@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.ClientEvents.UI

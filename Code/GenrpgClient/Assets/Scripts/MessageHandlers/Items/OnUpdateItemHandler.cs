@@ -1,7 +1,8 @@
-using Genrpg.Shared.Inventory.Messages;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Services;
+using OxDb.SharedGame.Inventory.Messages;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Services;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Items
@@ -25,6 +26,7 @@ namespace Assets.Scripts.MessageHandlers.Items
             {
                 _sharedItemService.CopyStatsFrom(msg.Item, item);
             }
+            await Task.CompletedTask;
         }
     }
 }

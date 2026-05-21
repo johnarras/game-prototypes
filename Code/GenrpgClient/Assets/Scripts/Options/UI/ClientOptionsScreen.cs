@@ -1,10 +1,11 @@
 using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Crawler.Shared.GameEvents;
 using Assets.Scripts.Options.Services;
 using Assets.Scripts.UI.Abstractions;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Assets.Scripts.Options
 
         public GToggle FullScreenToggle;
         public GToggle PauseAtEndOfCombatToggle;
+        public GToggle ClassicMovementButtons;
 
         public GSlider MusicVolumeSlider;
         public GSlider SoundVolumeSlider;
@@ -54,6 +56,9 @@ namespace Assets.Scripts.Options
             FullScreenToggle?.SetIsOn(_appService.IsFullScreen());
             _uiService.SetToggle(FullScreenToggle, ToggleFullScreen);
 
+            ClassicMovementButtons.SetIsOn(_optionsService.GetOptions().HasFlag(ClientFlags.ClassicMovement));
+            _uiService.SetToggle(ClassicMovementButtons, ToggleClassicMovement);
+
             PartyData party = _crawlerService.GetParty();
             if (party == null)
             {
@@ -67,6 +72,19 @@ namespace Assets.Scripts.Options
             }
 
             await Task.CompletedTask;
+        }
+
+        private void ToggleClassicMovement(bool isOn)
+        {
+            if (isOn)
+            {
+                _optionsService.GetOptions().AddFlags(ClientFlags.ClassicMovement);
+            }
+            else
+            {
+                _optionsService.GetOptions().RemoveFlags(ClientFlags.ClassicMovement);
+            }
+            _dispatcher.Dispatch(new SetupMovementButtons());
         }
 
         protected override void OnStartClose()

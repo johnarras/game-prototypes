@@ -7,14 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Genrpg.Servers\Genrpg.InstanceServer\Genrpg.InstanceServer.csproj" />
-    <ProjectReference Include="..\Genrpg.Servers\Genrpg.MapServer\Genrpg.MapServer.csproj" />
-    <ProjectReference Include="..\Genrpg.Servers\Genrpg.MonsterServer\Genrpg.MonsterServer.csproj" />
-    <ProjectReference Include="..\Genrpg.Servers\Genrpg.PlayerServer\Genrpg.PlayerServer.csproj" />
+    <None Include="..\..\AppConfig\App.config" Link="App.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\AppConfig\App.config" Link="App.config" />
+    <ProjectReference Include="..\Genrpg.Servers\OxDb.InstanceServer\OxDb.InstanceServer.csproj" />
+    <ProjectReference Include="..\Genrpg.Servers\OxDb.MapServer\OxDb.MapServer.csproj" />
+    <ProjectReference Include="..\Genrpg.Servers\OxDb.MonsterServer\OxDb.MonsterServer.csproj" />
+    <ProjectReference Include="..\Genrpg.Servers\OxDb.PlayerServer\OxDb.PlayerServer.csproj" />
+    <ProjectReference Include="..\OxDb.PlatformServer\OxDb.PlatformServer.csproj" />
+    <ProjectReference Include="..\OxDb.RequestServer\OxDb.RequestServer.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(TargetDir)OxDb.SharedGame.dll $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedGame.dll&#xD;&#xA;copy $(TargetDir)OxDb.SharedGame.pdb $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedGame.pdb&#xD;&#xA;copy $(TargetDir)OxDb.SharedPlatform.dll $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedPlatform.dll&#xD;&#xA;copy $(TargetDir)OxDb.SharedPlatform.pdb $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedPlatform.pdb&#xD;&#xA;copy $(TargetDir)OxDb.SharedCore.dll $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedCore.dll&#xD;&#xA;copy $(TargetDir)OxDb.SharedCore.pdb $(SolutionDir)GenrpgClient\Assets\Plugins\Shared\OxDb.SharedCore.pdb" />
+  </Target>
 
 </Project>

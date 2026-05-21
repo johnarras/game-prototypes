@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.UI.WorldUI;
-using Genrpg.Shared.Crawler.Upgrades.Settings;
+using OxDb.SharedGame.Crawler.Upgrades.Settings;
 
 namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
 {

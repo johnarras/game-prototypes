@@ -1,13 +1,13 @@
 using Assets.Scripts.Setup.Interfaces;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Zones.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Maps.Services
+namespace OxDb.SharedGame.Crawler.Maps.Services
 {
     public interface ICrawlerWorldService : IInjectable, IGameTokenService
     {

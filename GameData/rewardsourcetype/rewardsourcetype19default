@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "LevelTrack",
+  "Icon": "LevelTrack",
+  "Art": "LevelTrack"
+}

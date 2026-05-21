@@ -1,5 +1,5 @@
 using Assets.Scripts.Trader.UI.TraderMapUI;
-using Genrpg.Shared.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.Cities.Settings;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

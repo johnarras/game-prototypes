@@ -1,13 +1,7 @@
-﻿using Genrpg.Shared.Client.Assets.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine.Rendering;
-
-namespace Genrpg.Shared.Crawler.Constants
+﻿namespace OxDb.SharedGame.Crawler.Constants
 {
     public class CrawlerClientConstants
-    {       
+    {
         public const string DefaultWorldBG = "DefaultWorldBG";
         public const string BuildingImage = "BuildingBG";
         public const string CityImage = "CityBG";

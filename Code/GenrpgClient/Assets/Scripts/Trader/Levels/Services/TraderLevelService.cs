@@ -1,18 +1,18 @@
 ﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.Levels.UI;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.LevelTracks.Settings;
-using Genrpg.Shared.LevelTracks.WebApi;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.LevelTracks.Settings;
+using OxDb.SharedGame.LevelTracks.WebApi;
+using OxDb.SharedGame.Rewards.Constants;
+using OxDb.SharedGame.Rewards.Services;
+using OxDb.SharedGame.Trader.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -30,7 +30,6 @@ namespace Assets.Scripts.Trader.Levels.Services
         private IDispatcher _dispatcher = null;
         private TraderLevelUI _levelUI = null;
         private IRewardService _rewardService = null;
-        private IClientRandom _random = null;
         private IAwaitableService _awaitableService = null;
         private IDynamicUIService _dynamicUIService = null;
 
@@ -72,7 +71,7 @@ namespace Assets.Scripts.Trader.Levels.Services
                     {
                         foreach (Reward rew in gained.Rewards)
                         {
-                            await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, false));
+                            await _rewardService.GiveReward(_gs.ch, rew, RewardSources.LevelUp, new ClientRewardParams(false, false));
                         }
                         await Awaitable.WaitForSecondsAsync(0.5f);
                     }

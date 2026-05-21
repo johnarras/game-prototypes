@@ -1,9 +1,9 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Entities.UI;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI

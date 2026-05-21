@@ -1,10 +1,9 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.LineGen;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +24,8 @@ namespace Assets.Scripts.ProcGen.Materials
 
         void ApplyRecessedColors(MaterialGenState state);
 
+        void RandomizeBumpHeights(MaterialGenState state);
+
         void SmoothColors(MaterialGenState state);
 
         bool ChangeBrightnessInForegroundRegion(MaterialGenState state, int x, int y);
@@ -41,7 +42,6 @@ namespace Assets.Scripts.ProcGen.Materials
     {
         private ILineGenService _lineGenService = null;
         private INoiseService _noiseService = null;
-        private ILogService _logService = null;
 
         public bool TryVerticalPerturb(MaterialGenState state, List<CornerPoint> corners, CornerPoint thisCorner, double maxPerturb)
         {
@@ -209,26 +209,26 @@ namespace Assets.Scripts.ProcGen.Materials
             {
                 return;
             }
-            float[,] distances = new float[state.Size, state.Size];
+            float[,] distances = new float[state.Width, state.Height];
 
             float pers = state.RoundCornerDistPers;
             float amp = state.RoundCornerDistAmp;
             float freq = state.RoundCornerDistFreq;
             int octaves = 2;
 
-            float[,] noiseOutputs = _noiseService.Generate(pers, freq, amp, octaves, state.Rand.Next(), state.Size, state.Size);
+            float[,] noiseOutputs = _noiseService.Generate(pers, freq, amp, octaves, state.Rand.Next(), state.Width, state.Height);
 
-            for (int x = 0; x < state.Size; x++)
+            for (int x = 0; x < state.Width; x++)
             {
-                for (int y = 0; y < state.Size; y++)
+                for (int y = 0; y < state.Height; y++)
                 {
                     distances[x, y] = (float)(state.MaxDistanceToCrevice);
                 }
             }
 
-            for (int x = 0; x < state.Size; x++)
+            for (int x = 0; x < state.Width; x++)
             {
-                for (int y = 0; y < state.Size; y++)
+                for (int y = 0; y < state.Height; y++)
                 {
 
                     int currDistToCrevice = (int)Math.Ceiling((state.MaxDistanceToCrevice * (1 + noiseOutputs[x, y])));
@@ -243,7 +243,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                     for (int xx = 1; xx < currDistToCrevice; xx++)
                     {
-                        int cx = (x + xx).SafeMod(state.Size);
+                        int cx = (x + xx).SafeMod(state.Width);
 
                         if (state.Block.BumpHeights[cx, y] == MaterialGenConstants.RecessedBumpHeight)
                         {
@@ -258,7 +258,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                     for (int xx = 1; xx < currDistToCrevice; xx++)
                     {
-                        int cx = (x - xx).SafeMod(state.Size);
+                        int cx = (x - xx).SafeMod(state.Width);
 
                         if (state.Block.BumpHeights[cx, y] == MaterialGenConstants.RecessedBumpHeight)
                         {
@@ -273,7 +273,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                     for (int yy = 1; yy < currDistToCrevice; yy++)
                     {
-                        int cy = (y + yy).SafeMod(state.Size);
+                        int cy = (y + yy).SafeMod(state.Height);
 
                         if (state.Block.BumpHeights[x, cy] == MaterialGenConstants.RecessedBumpHeight)
                         {
@@ -288,7 +288,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
                     for (int yy = 1; yy < currDistToCrevice; yy++)
                     {
-                        int cy = (y - yy).SafeMod(state.Size);
+                        int cy = (y - yy).SafeMod(state.Height);
 
                         if (state.Block.BumpHeights[x, cy] == MaterialGenConstants.RecessedBumpHeight)
                         {
@@ -303,9 +303,9 @@ namespace Assets.Scripts.ProcGen.Materials
                 }
             }
 
-            for (int x = 0; x < state.Size; x++)
+            for (int x = 0; x < state.Width; x++)
             {
-                for (int y = 0; y < state.Size; y++)
+                for (int y = 0; y < state.Height; y++)
                 {
                     if (distances[x, y] > 0)
                     {
@@ -346,21 +346,18 @@ namespace Assets.Scripts.ProcGen.Materials
             int origDy = Math.Abs(lowerLeft.OrigY - upperRight.OrigY);
 
 
-            bool didVerticalShift = false;
+
             // Vertical, fix it if the original looped.
             if (lowerLeft.OrigX == upperRight.OrigX && lowerLeft.OrigY > upperRight.OrigY)
             {
-                didVerticalShift = true;
-                ury += state.Size;
+                ury += state.Height;
             }
 
 
-            bool didHorizontalShift = false;
             // Horizontal
             if (lowerLeft.OrigY == upperRight.OrigY && lowerLeft.OrigX > upperRight.OrigX)
             {
-                didHorizontalShift = true;
-                urx += state.Size;
+                urx += state.Width;
             }
 
 
@@ -393,8 +390,8 @@ namespace Assets.Scripts.ProcGen.Materials
 
             foreach (MyPointF pt in retval)
             {
-                int px = ((int)pt.X).SafeMod(state.Size);
-                int py = ((int)pt.Y).SafeMod(state.Size);
+                int px = ((int)pt.X).SafeMod(state.Width);
+                int py = ((int)pt.Y).SafeMod(state.Height);
 
                 state.Block.BumpHeights[px, py] = bumpHeight;
             }
@@ -441,15 +438,15 @@ namespace Assets.Scripts.ProcGen.Materials
                 float freq = RandUtils.FloatRange(state.Settings.MinColorNoiseFreq, state.Settings.MaxColorNoiseFreq, state.Rand);
 
                 int octaves = state.Settings.ColorNoiseOctaves;
-                full.Noise = _noiseService.Generate(pers, freq, amp, octaves, state.Rand.Next(), state.Size, state.Size);
+                full.Noise = _noiseService.Generate(pers, freq, amp, octaves, state.Rand.Next(), state.Width, state.Height);
                 full.NoiseBumpScale = RandUtils.FloatRange(state.Settings.MaxColorNoiseBumpScale / 2, state.Settings.MaxColorNoiseBumpScale, state.Rand);
 
             }
 
 
-            for (int w = 0; w < state.Size; w++)
+            for (int w = 0; w < state.Width; w++)
             {
-                for (int h = 0; h < state.Size; h++)
+                for (int h = 0; h < state.Height; h++)
                 {
                     if (state.Block.BumpHeights[w, h] <= MaterialGenConstants.MaxRecessedBumpHeight == isFront)
                     {
@@ -540,8 +537,8 @@ namespace Assets.Scripts.ProcGen.Materials
                 }
             }
 
-            int shiftDistance = state.Size;
-            int maxDistance = state.Size / 3;
+            int shiftDistance = state.Width;
+            int maxDistance = state.Width / 3;
 
             int cx = currentCorner.X;
             int cy = currentCorner.Y;
@@ -598,8 +595,6 @@ namespace Assets.Scripts.ProcGen.Materials
             int mx = (int)(cx + midCos * dist);
             int my = (int)(cy + midSin * dist);
 
-            int rad = 2;
-
             int intDist = (int)Math.Ceiling(dist * 1.0f);
 
             float tdx = mx - cx;
@@ -651,9 +646,9 @@ namespace Assets.Scripts.ProcGen.Materials
                         continue;
                     }
 
-                    int nx = xMain.SafeMod(state.Size);
+                    int nx = xMain.SafeMod(state.Width);
 
-                    int ny = yMain.SafeMod(state.Size);
+                    int ny = yMain.SafeMod(state.Height);
 
                     state.Block.BumpHeights[nx, ny] = MaterialGenConstants.RecessedBumpHeight;
                 }
@@ -662,9 +657,9 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public void ApplyBlockToTexture(MaterialGenState state, MaterialGenBlock block, Texture2D tex)
         {
-            for (int w = 0; w < state.Size; w++)
+            for (int w = 0; w < state.Width; w++)
             {
-                for (int h = 0; h < state.Size; h++)
+                for (int h = 0; h < state.Height; h++)
                 {
                     Color c = block.Colors[w, h];
                     c *= block.Brightness[w, h];
@@ -677,9 +672,9 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public void ApplyRecessedColors(MaterialGenState state)
         {
-            for (int w = 0; w < state.Size; w++)
+            for (int w = 0; w < state.Width; w++)
             {
-                for (int h = 0; h < state.Size; h++)
+                for (int h = 0; h < state.Height; h++)
                 {
                     if (state.Block.BumpHeights[w, h] > MaterialGenConstants.MaxRecessedBumpHeight)
                     {
@@ -698,19 +693,18 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public void SmoothColors(MaterialGenState state)
         {
-            int ArraySize = state.Size;
-            float[,] tempAlphas = new float[ArraySize, ArraySize];
-            Color[,] tempColors = new Color[ArraySize, ArraySize];
+            int width = state.Width;
+            int height = state.Height;
+            float[,] tempAlphas = new float[width, height];
+            Color[,] tempColors = new Color[width, height];
             float finalDivisor = 4; // 1 + 0.5*4 + 0.25*4 for middle, udlr, 4 corner
-            for (int xMain = 0; xMain < ArraySize; xMain++)
+            for (int xMain = 0; xMain < width; xMain++)
             {
-                for (int yMain = 0; yMain < ArraySize; yMain++)
+                for (int yMain = 0; yMain < height; yMain++)
                 {
                     float alphaSum = 0;
 
                     Color colorSum = Color.black;
-
-                    float height = 0;
 
                     finalDivisor = 0;
 
@@ -718,10 +712,10 @@ namespace Assets.Scripts.ProcGen.Materials
 
                     for (int xx = xMain - radius; xx <= xMain + radius; xx++)
                     {
-                        int cx = (xx + ArraySize) % ArraySize;
+                        int cx = (xx + width) % width;
                         for (int yy = yMain - radius; yy <= yMain + radius; yy++)
                         {
-                            int cy = (yy + ArraySize) % ArraySize;
+                            int cy = (yy + height) % height;
 
                             int dx = Math.Abs(xx - xMain);
                             int dy = Math.Abs(yy - yMain);
@@ -746,7 +740,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public bool ChangeBrightnessInForegroundRegion(MaterialGenState state, int cx, int cy)
         {
-            bool[,] didChangeBrightness = new bool[state.Size, state.Size];
+            bool[,] didChangeBrightness = new bool[state.Width, state.Height];
 
             if (state.Rand.NextDouble() > state.Settings.ModifyBlockChance)
             {
@@ -771,7 +765,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         private void ChangeBrightnessAtPoint(MaterialGenState state, bool[,] didChangeBrightness, float brightnessScale, float bumpDelta, int x, int y, Queue<PointXZ> openList)
         {
-            if (x < 0 || x >= state.Size || y < 0 || y >= state.Size)
+            if (x < 0 || x >= state.Width || y < 0 || y >= state.Height)
             {
                 return;
             }
@@ -799,101 +793,101 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public bool MakeBlockVeryRound(MaterialGenState state, int cx, int cy)
         {
-            bool[,] didChangeStoneShape = new bool[state.Size, state.Size];
+            bool[,] didChangeStoneShape = new bool[state.Width, state.Height];
 
             if (state.Rand.NextDouble() > state.Settings.ModifyBlockChance)
             {
                 return false;
             }
             return false;
-            int minDistSquared = 1000000;
+            //int minDistSquared = 1000000;
 
-            Queue<PointXZ> openPoints = new Queue<PointXZ>();
+            //Queue<PointXZ> openPoints = new Queue<PointXZ>();
 
-            openPoints.Enqueue(new PointXZ(cx, cy));
-            int pointCount = 0;
-            while (openPoints.TryDequeue(out PointXZ pt))
-            {
-                AddPointToCurrentBlock(state, didChangeStoneShape, pt.X, pt.Z, openPoints);
-                pointCount++;
-            }
+            //openPoints.Enqueue(new PointXZ(cx, cy));
+            //int pointCount = 0;
+            //while (openPoints.TryDequeue(out PointXZ pt))
+            //{
+            //    AddPointToCurrentBlock(state, didChangeStoneShape, pt.X, pt.Z, openPoints);
+            //    pointCount++;
+            //}
 
-            if (pointCount < 20)
-            {
-                return false;
-            }
-
-
-            int biggestDx = 0;
-            int biggestDy = 0;
-
-            for (int xMain = 0; xMain < state.Size; xMain++)
-            {
-                int dx = Math.Abs(xMain - cx);
-                if (dx > state.Size / 2)
-                {
-                    dx = state.Size - dx;
-                }
-
-                for (int yMain = 0; yMain < state.Size; yMain++)
-                {
-                    if (!didChangeStoneShape[xMain, yMain])
-                    {
-                        continue;
-                    }
-
-                    if (dx > biggestDx)
-                    {
-                        biggestDx = dx;
-                    }
-
-                    int dy = Math.Abs(yMain - cy);
-                    if (dy > state.Size / 2)
-                    {
-                        dy = state.Size - dy;
-                    }
-
-                    if (dy > biggestDy)
-                    {
-                        biggestDy = dy;
-                    }
-
-                    state.Block.BumpHeights[xMain, yMain] = MaterialGenConstants.RecessedBumpHeight;
-                }
-            }
-
-            float finalDx = (biggestDx).SafeMod(state.Size);
-            float finalDy = (biggestDy).SafeMod(state.Size);
-
-            finalDx *= RandUtils.DeltaScale(0.1f, state.Rand);
-            finalDy *= RandUtils.DeltaScale(0.1f, state.Rand);
+            //if (pointCount < 20)
+            //{
+            //    return false;
+            //}
 
 
+            //int biggestDx = 0;
+            //int biggestDy = 0;
 
-            float angle = RandUtils.DeltaRange(20, state.Rand);
+            //for (int xMain = 0; xMain < state.Size; xMain++)
+            //{
+            //    int dx = Math.Abs(xMain - cx);
+            //    if (dx > state.Size / 2)
+            //    {
+            //        dx = state.Size - dx;
+            //    }
 
-            float newRadius = RandUtils.FloatRange(4, 6, state.Rand);
+            //    for (int yMain = 0; yMain < state.Size; yMain++)
+            //    {
+            //        if (!didChangeStoneShape[xMain, yMain])
+            //        {
+            //            continue;
+            //        }
 
-            List<PointXZ> smallEllipsePoints = _lineGenService.GetRotatedEllipse(cx, cy, finalDx, finalDy, angle);
+            //        if (dx > biggestDx)
+            //        {
+            //            biggestDx = dx;
+            //        }
 
-            List<PointXZ> largeEllipsePoints = _lineGenService.GetRotatedEllipse(cx, cy, finalDx + newRadius, finalDy + newRadius, angle);
+            //        int dy = Math.Abs(yMain - cy);
+            //        if (dy > state.Size / 2)
+            //        {
+            //            dy = state.Size - dy;
+            //        }
 
-            foreach (PointXZ pt in largeEllipsePoints)
-            {
-                state.Block.BumpHeights[pt.X.SafeMod(state.Size), pt.Z.SafeMod(state.Size)] = MaterialGenConstants.RecessedBumpHeight;
-            }
-            foreach (PointXZ pt in smallEllipsePoints)
-            {
+            //        if (dy > biggestDy)
+            //        {
+            //            biggestDy = dy;
+            //        }
 
-                state.Block.BumpHeights[pt.X.SafeMod(state.Size), pt.Z.SafeMod(state.Size)] = MaterialGenConstants.DefaultStartBumpHeight;
-            }
+            //        state.Block.BumpHeights[xMain, yMain] = MaterialGenConstants.RecessedBumpHeight;
+            //    }
+            //}
 
-            return true;
+            //float finalDx = (biggestDx).SafeMod(state.Size);
+            //float finalDy = (biggestDy).SafeMod(state.Size);
+
+            //finalDx *= RandUtils.DeltaScale(0.1f, state.Rand);
+            //finalDy *= RandUtils.DeltaScale(0.1f, state.Rand);
+
+
+
+            //float angle = RandUtils.DeltaRange(20, state.Rand);
+
+            //float newRadius = RandUtils.FloatRange(4, 6, state.Rand);
+
+            //List<PointXZ> smallEllipsePoints = _lineGenService.GetRotatedEllipse(cx, cy, finalDx, finalDy, angle);
+
+            //List<PointXZ> largeEllipsePoints = _lineGenService.GetRotatedEllipse(cx, cy, finalDx + newRadius, finalDy + newRadius, angle);
+
+            //foreach (PointXZ pt in largeEllipsePoints)
+            //{
+            //    state.Block.BumpHeights[pt.X.SafeMod(state.Size), pt.Z.SafeMod(state.Size)] = MaterialGenConstants.RecessedBumpHeight;
+            //}
+            //foreach (PointXZ pt in smallEllipsePoints)
+            //{
+
+            //    state.Block.BumpHeights[pt.X.SafeMod(state.Size), pt.Z.SafeMod(state.Size)] = MaterialGenConstants.DefaultStartBumpHeight;
+            //}
+
+            //return true;
         }
 
         private void AddPointToCurrentBlock(MaterialGenState state, bool[,] isPartOfCurrentBlock, int x, int y, Queue<PointXZ> openList)
         {
-            if (x < 0 || x >= state.Size || y < 0 || y >= state.Size)
+            if (x < 0 || x >= state.Width || y < 0 || y >= state.Height)
             {
                 return;
             }
@@ -920,7 +914,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public bool RemoveBlockFromWall(MaterialGenState state, int cx, int cy)
         {
-            bool[,] didChangeStoneShape = new bool[state.Size, state.Size];
+            bool[,] didChangeStoneShape = new bool[state.Width, state.Height];
 
             if (state.Rand.NextDouble() > state.Settings.ModifyBlockChance)
             {
@@ -936,9 +930,9 @@ namespace Assets.Scripts.ProcGen.Materials
                 AddPointToCurrentBlock(state, didChangeStoneShape, pt.X, pt.Z, openPoints);
                 pointCount++;
             }
-            for (int xMain = 0; xMain < state.Size; xMain++)
+            for (int xMain = 0; xMain < state.Width; xMain++)
             {
-                for (int yMain = 0; yMain < state.Size; yMain++)
+                for (int yMain = 0; yMain < state.Height; yMain++)
                 {
                     if (didChangeStoneShape[xMain, yMain])
                     {
@@ -951,7 +945,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public void AddCracksToFrontRegions(MaterialGenState state)
         {
-            float midCrackCount = state.Settings.CrackDensity * state.Size * state.Size;
+            float midCrackCount = state.Settings.CrackDensity * state.Width * state.Height;
 
 
             int finalCrackCount = (int)(midCrackCount * RandUtils.DeltaScale(state.Settings.CrackDensity, state.Rand));
@@ -965,8 +959,8 @@ namespace Assets.Scripts.ProcGen.Materials
             while (cracksLeft > 0 && --maxAttempts > 0)
             {
 
-                int cx = RandUtils.IntRange(0, state.Size - 1, state.Rand);
-                int cy = RandUtils.IntRange(0, state.Size - 1, state.Rand);
+                int cx = RandUtils.IntRange(0, state.Width - 1, state.Rand);
+                int cy = RandUtils.IntRange(0, state.Height - 1, state.Rand);
 
                 if (state.Block.BumpHeights[cx, cy] < MaterialGenConstants.MaxRecessedBumpHeight)
                 {
@@ -984,7 +978,7 @@ namespace Assets.Scripts.ProcGen.Materials
                     {
                         WidthSizeChangeAmount = 1,
                         InitialNoPosShiftLength = 0,
-                        MaxWidthPosDrift = state.Size / 2,
+                        MaxWidthPosDrift = state.Width / 2,
                         LinePathNoiseScale = RandUtils.FloatRange(0, 0.3f, state.Rand),
                         MaxWidthSize = 2,
                         MinWidthSize = 1,
@@ -996,18 +990,44 @@ namespace Assets.Scripts.ProcGen.Materials
                     };
 
 
-                    int nx = RandUtils.IntRange(0, state.Size - 1, state.Rand);
-                    int ny = RandUtils.IntRange(0, state.Size - 1, state.Rand);
+                    int nx = RandUtils.IntRange(0, state.Width - 1, state.Rand);
+                    int ny = RandUtils.IntRange(0, state.Height - 1, state.Rand);
 
                     List<MyPointF> points = _lineGenService.GetBressenhamLine(new MyPoint(cx, cy), new MyPoint(nx, ny), lgp);
 
                     foreach (MyPointF pt in points)
                     {
-                        int x = ((int)pt.X).SafeMod(state.Size);
-                        int y = ((int)pt.Y).SafeMod(state.Size);
+                        int x = ((int)pt.X).SafeMod(state.Width);
+                        int y = ((int)pt.Y).SafeMod(state.Height);
 
                         state.Block.Colors[x, y] *= crackColorScale;
                     }
+                }
+            }
+        }
+
+        public void RandomizeBumpHeights(MaterialGenState state)
+        {
+            float pers = RandUtils.FloatRange(state.Settings.MinColorNoisePers, state.Settings.MaxColorNoisePers, state.Rand) * RandUtils.FloatRange(0.5f, 2.0f, state.Rand);
+            float amp = RandUtils.FloatRange(state.Settings.MinColorNoiseAmp, state.Settings.MaxColorNoiseAmp, state.Rand) * RandUtils.FloatRange(0.4f, 0.8f, state.Rand);
+
+            float freq = RandUtils.FloatRange(state.Settings.MinColorNoiseFreq, state.Settings.MaxColorNoiseFreq, state.Rand) * RandUtils.FloatRange(0.5f, 1.0f, state.Rand);
+
+            int octaves = state.Settings.ColorNoiseOctaves;
+            octaves = 3;
+            float[,] noise = _noiseService.Generate(pers, freq, amp, octaves, state.Rand.Next(), state.Width, state.Height);
+
+            for (int w = 0; w < state.Width; w++)
+            {
+                for (int h = 0; h < state.Height; h++)
+                {
+
+                    float bumpHeight = Math.Max(2 * MaterialGenConstants.MaxRecessedBumpHeight, state.Block.BumpHeights[w, h]) * (1 + noise[w, h]);
+                    if (bumpHeight <= MaterialGenConstants.MaxRecessedBumpHeight + 0.01f)
+                    {
+                        bumpHeight = MaterialGenConstants.MaxRecessedBumpHeight + 0.01f;
+                    }
+                    state.Block.BumpHeights[w, h] = bumpHeight;
                 }
             }
         }

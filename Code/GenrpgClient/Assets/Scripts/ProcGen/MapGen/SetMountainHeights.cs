@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

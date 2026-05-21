@@ -1,10 +1,10 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public class RiddleLootTypeHelper : BaseCrawlerLootTypeHelper
     {

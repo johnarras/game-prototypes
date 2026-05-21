@@ -1,13 +1,13 @@
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.AddMember
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.AddMember
 {
     public class AddMemberHelper : BaseStateHelper
     {

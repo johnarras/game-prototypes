@@ -1,4 +1,4 @@
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets

@@ -1,14 +1,14 @@
 using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Settings;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Quests.Settings;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Quests.Helpers
+namespace OxDb.SharedGame.Crawler.Quests.Helpers
 {
     public interface ICrawlerQuestTypeHelper : ISetupDictionaryItem<long>
     {

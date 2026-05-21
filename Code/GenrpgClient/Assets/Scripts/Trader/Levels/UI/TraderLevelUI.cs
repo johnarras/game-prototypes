@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Interfaces;
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Constants;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Trader.Constants;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Levels.UI
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Trader.Levels.UI
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-            ExpBar.InitRange(0, coreData.Vars[TraderVars.ExpToLevelUp], coreData.Currencies[CoreCurrencyTypes.Exp]);
+            ExpBar.InitRange(0, coreData.Currencies[CoreCurrencyTypes.Exp], coreData.Vars[TraderVars.ExpToLevelUp]);
 
             _uiService.SetText(LevelText, coreData.Level.ToString());
 

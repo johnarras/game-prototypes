@@ -1,6 +1,6 @@
-using Genrpg.Shared.Crawler.Info.InfoHelpers;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.TradeGoods.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Info.InfoHelpers;
+using OxDb.SharedGame.Trader.TradeGoods.Settings;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Trader.Info.Helpers

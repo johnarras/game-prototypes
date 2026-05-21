@@ -1,4 +1,4 @@
-using Genrpg.Shared.Client.Contants;
+using OxDb.SharedCore.Client.Contants;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;

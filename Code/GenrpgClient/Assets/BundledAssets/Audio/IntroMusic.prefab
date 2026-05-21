@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Is3D: 0
-  TtlSeconds: 2
+  TtlSeconds: 40
   Clips:
   - {fileID: 8300000, guid: 99b0542d81b45e64fb1313a3ed93d302, type: 3}
+  AudioClips:
+  - <Weight>k__BackingField: 100
+    Clip: {fileID: 8300000, guid: 99b0542d81b45e64fb1313a3ed93d302, type: 3}

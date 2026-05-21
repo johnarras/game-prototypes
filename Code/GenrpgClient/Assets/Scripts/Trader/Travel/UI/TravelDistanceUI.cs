@@ -1,15 +1,15 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Travel.Services;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.CaravanMembers.Settings;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Travel.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.CaravanMembers.Settings;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.Travel.Entities;
 using System.Linq;
 using UnityEngine;
 

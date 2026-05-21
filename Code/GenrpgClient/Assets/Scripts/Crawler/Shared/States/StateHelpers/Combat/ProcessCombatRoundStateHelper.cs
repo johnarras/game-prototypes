@@ -1,13 +1,13 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Constants;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public class ProcessCombatRoundStateHelper : BaseCombatStateHelper
     {

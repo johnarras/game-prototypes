@@ -4,11 +4,11 @@ using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.Setup.Interfaces;
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Targets.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Input.PlayerData;
+using OxDb.SharedGame.Targets.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,7 +132,7 @@ public class PlayerManager : IPlayerManager
             int sz = (int)(_unitController.entity.transform.position.z);
             int ex = (int)(finalUnit.X);
             int ez = (int)(finalUnit.Z);
-            //WaypointList list = _pathfindingService.CalcPath(_unit, _rand, sx, sz, ex, ez, true);
+            //WaypointList list = _pathfindingService.CalcPath(_unit, _rand.Rand, sx, sz, ex, ez, true);
 
             //_clientPathfindingUtils.ShowPath(list, _mapToken);
         }
@@ -234,7 +234,7 @@ public class PlayerManager : IPlayerManager
                 return;
             }
 
-            int unitPos = _rand.Next() % finalUnits.Count;
+            int unitPos = _rand.Rand.Next() % finalUnits.Count;
 
             Unit finalUnit = finalUnits[unitPos];
 

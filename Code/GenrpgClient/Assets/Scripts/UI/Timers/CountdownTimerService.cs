@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -31,6 +31,7 @@ namespace Assets.Scripts.UI.Timers
         {
             _lastUnixEpochUpdateSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             _updateService.AddUpdate(this, OnUpdateTimers, UpdateTypes.Regular, token);
+            await Task.CompletedTask;
         }
 
         private void OnUpdateTimers()

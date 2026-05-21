@@ -1,14 +1,12 @@
 using Assets.Scripts.Minimap.Services;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.MapServer.Entities;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedGame.MapServer.Entities;
 using System;
 using System.Threading;
 using UnityEngine;
 
 public class LoadMinimap : BaseZoneGenerator
 {
-
-    private IBinaryFileRepository _binaryFileRepo = null;
     private IMinimapService _minimapService = null;
     public override async Awaitable Generate(CancellationToken token)
     {
@@ -17,7 +15,7 @@ public class LoadMinimap : BaseZoneGenerator
         try
         {
             string filename = MapUtils.GetMapObjectFilename(MapConstants.MapFilename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-            byte[] bytes = _binaryFileRepo.LoadBytes(filename);
+            byte[] bytes = _clientRepoService.LoadBytes(filename);
             if (bytes != null)
             {
                 Texture2D tex = new Texture2D(2, 2);

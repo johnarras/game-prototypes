@@ -1,15 +1,15 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Buffs.Services;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Spells.Entities;
-using Genrpg.Shared.Spells.Helpers.SpellEffectHelpers;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Spells.Entities;
+using OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers;
 using System.Threading;
 using UnityEngine;
 

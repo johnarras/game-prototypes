@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Trader.HUD.ClientEvents;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System.Text;
 using System.Threading;
 using UnityEngine;

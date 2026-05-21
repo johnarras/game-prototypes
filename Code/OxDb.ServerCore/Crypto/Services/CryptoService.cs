@@ -1,0 +1,46 @@
+using System.Security.Cryptography;
+
+namespace OxDb.ServerCore.Crypto.Services
+{
+
+    public class CryptoService : ICryptoService
+    {
+        public string GetPasswordHash(string salt, string passwordOrToken)
+        {
+            if (string.IsNullOrEmpty(passwordOrToken) || string.IsNullOrEmpty(salt))
+            {
+                return "";
+            }
+
+            string txt2 = salt + passwordOrToken;
+
+            return SHA256Hash(txt2);
+        }
+
+        public string GetRandomByteString(int length)
+        {
+            return Convert.ToBase64String(GetRandomBytes(length));
+        }
+
+        public byte[] GetRandomBytes(int length)
+        {
+            return RandomNumberGenerator.GetBytes(length);
+        }
+
+        public string SlowHash(string txt)
+        {
+            return SHA256Hash(txt);
+        }
+
+        private string SHA256Hash(string txt)
+        {
+            // For now to avoid adding keygen lib...stronger hashes don't work always too.
+            SHA256 algo = SHA256.Create();
+            byte[] arr = System.Text.Encoding.UTF8.GetBytes(txt);
+            byte[] arr2 = algo.ComputeHash(arr);
+            return Convert.ToBase64String(arr2);
+        }
+    }
+}
+
+

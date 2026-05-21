@@ -1,9 +1,9 @@
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.ProcGen.Settings.Locations.Constants;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,7 +17,7 @@ public class AddLocationPatches : BaseZoneGenerator
     {
         await base.Generate(token);
         int edgeSize = MapConstants.LocCenterEdgeSize;
-        MyRandom smoothnessRand = new MyRandom(_rand.NextLong());
+        MyRandom smoothnessRand = new MyRandom(_rand.Rand.NextLong());
         for (int pass = 0; pass < 2; pass++)
         {
             for (int gx = 0; gx < _md.locationGrid.GetLength(0); gx++)
@@ -401,7 +401,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 MinDistToOther = 10000000,
             });
 
-            MyRandom connectRand = new MyRandom(_rand.Next());
+            MyRandom connectRand = new MyRandom(_rand.Rand.Next());
 
             List<ConnectedPairData> roadsToMake = _lineGenService.ConnectPoints(connectPoints, connectRand, 0.1f);
 

@@ -1,4 +1,4 @@
-using Genrpg.Shared.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Entities;
 using UnityEngine;
 
 public class ClientMapObjectGridItem : MapObjectGridItem

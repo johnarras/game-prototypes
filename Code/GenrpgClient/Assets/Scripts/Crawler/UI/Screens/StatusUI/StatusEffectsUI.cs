@@ -1,6 +1,6 @@
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.UnitEffects.Settings;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 

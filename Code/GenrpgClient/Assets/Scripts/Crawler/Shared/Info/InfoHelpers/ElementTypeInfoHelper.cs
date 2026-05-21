@@ -1,8 +1,8 @@
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Spells.Settings.Elements;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public class ElementTypeInfoHelper : BaseInfoHelper<ElementTypeSettings, ElementType>
     {

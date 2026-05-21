@@ -1,6 +1,6 @@
-﻿using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Trader.Travel.WebApi;
+﻿using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.Constants;
+using OxDb.SharedGame.Trader.Travel.WebApi;
 using System.Text;
 using UnityEngine;
 

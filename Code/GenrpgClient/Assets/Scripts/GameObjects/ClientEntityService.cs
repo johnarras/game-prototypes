@@ -1,8 +1,8 @@
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;

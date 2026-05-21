@@ -1,6 +1,6 @@
 using Assets.Scripts.UI.ScreenSystem;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

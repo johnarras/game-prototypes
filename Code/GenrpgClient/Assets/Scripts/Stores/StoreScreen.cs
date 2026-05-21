@@ -1,9 +1,9 @@
 using Assets.Scripts.Stores;
 using Assets.Scripts.UI.ScreenSystem;
-using Genrpg.Shared.Purchasing.PlayerData;
-using Genrpg.Shared.Purchasing.Settings;
-using Genrpg.Shared.Purchasing.WebApi.RefreshStores;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Purchasing.PlayerData;
+using OxDb.SharedGame.Purchasing.Settings;
+using OxDb.SharedGame.Purchasing.WebApi.RefreshStores;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

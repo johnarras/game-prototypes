@@ -1,0 +1,9 @@
+.login-box {
+    width: 600px;
+    height: 800px;
+    background-color: var(--modal-bg);
+    padding: 40px;
+    border-radius: 15px;
+    /* Pushes the button-row to the bottom of the 800px height */
+    justify-content: space-between; 
+}

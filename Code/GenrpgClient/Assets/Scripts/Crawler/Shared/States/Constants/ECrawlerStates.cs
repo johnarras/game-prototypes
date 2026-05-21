@@ -1,4 +1,4 @@
-namespace Genrpg.Shared.Crawler.States.Constants
+namespace OxDb.SharedGame.Crawler.States.Constants
 {
     public enum ECrawlerStates
     {

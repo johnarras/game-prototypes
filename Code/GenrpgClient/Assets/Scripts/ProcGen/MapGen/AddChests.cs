@@ -1,7 +1,7 @@
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.GroundObjects.Settings;
+using OxDb.SharedGame.Spawns.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

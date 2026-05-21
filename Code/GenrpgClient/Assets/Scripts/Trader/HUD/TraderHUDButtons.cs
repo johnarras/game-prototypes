@@ -1,13 +1,13 @@
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Doobers.Events;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Camping.WebApi;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Attributes.PlayerData;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Trader.Camping.WebApi;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
             _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.TradeGood, 0, TradeGoodsButton.gameObject, true, null));
             _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.CaravanMember, 0, CaravanButton.gameObject, true, null));
-            
+
 
             _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.CoreCurrency, CoreCurrencyTypes.Stone, EstateButton.gameObject, true, null));
             _dispatcher.Dispatch(new SetDooberTarget(EntityTypes.CoreCurrency, CoreCurrencyTypes.Wood, EstateButton.gameObject, true, null));
@@ -61,7 +61,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-            AttributeData attributeData = _gs.ch.Get<AttributeData>();
+            AttributesData AttributesData = _gs.ch.Get<AttributesData>();
 
             IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 

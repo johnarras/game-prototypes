@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+
+namespace OxDb.SharedCore.Interfaces
+{
+
+    public delegate void VoidDelegate();
+    public delegate void ObjectDelegate(object obj);
+    public delegate void StringDelegate(string s);
+    public delegate void TokenDelegate(CancellationToken token);
+
+    public interface IStringId
+    {
+        string Id { get; set; }
+    }
+
+    public interface IId
+    {
+        long IdKey { get; set; }
+    }
+
+    public interface IDbId
+    {
+        long Id { get; set; }
+    }
+    public interface IName
+    {
+        string Name { get; set; }
+
+        string GetAnalyticsName();
+
+
+    }
+
+
+    public interface IIdName : IId, IName
+    {
+
+    }
+
+    public interface IIndexedGameItem : IIdName
+    {
+        string Desc { get; set; }
+        string AtlasPrefix { get; set; }
+        string Icon { get; set; }
+        string Art { get; set; }
+    }
+
+    public interface IOrderedItem
+    {
+        long GetOrder();
+    }
+
+    public interface IVariationIndexedGameItem : IIndexedGameItem
+    {
+        int VariationCount { get; set; }
+    }
+
+    public interface INameId : IIdName
+    {
+        string NameId { get; set; }
+    }
+
+    public interface IServiceLocator
+    {
+        T Get<T>() where T : IInjectable;
+        void Set<T>(T t) where T : IInjectable;
+        void SetExplicitType(Type interfaceType, object obj);
+        List<Type> GetKeys();
+
+        List<T> GetVals<T>();
+        void Resolve(object obj);
+        void StoreDictionaryItem(object obj);
+        void ResolveSelf();
+    }
+}
+
+

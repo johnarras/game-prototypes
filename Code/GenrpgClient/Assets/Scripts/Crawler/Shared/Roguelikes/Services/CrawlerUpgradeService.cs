@@ -1,20 +1,20 @@
 
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Crawler.Upgrades.Settings;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Settings;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Crawlers.Services
+namespace OxDb.SharedGame.Crawler.Crawlers.Services
 {
     public interface ICrawlerUpgradeService : IInjectable
     {

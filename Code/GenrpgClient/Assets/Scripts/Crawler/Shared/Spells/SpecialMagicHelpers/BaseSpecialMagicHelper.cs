@@ -1,19 +1,19 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Roles.Services;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public abstract class BaseSpecialMagicHelper : ISpecialMagicHelper
     {

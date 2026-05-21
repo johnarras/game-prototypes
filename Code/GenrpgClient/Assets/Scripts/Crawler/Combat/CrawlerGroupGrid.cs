@@ -1,9 +1,9 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.UnitEffects.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

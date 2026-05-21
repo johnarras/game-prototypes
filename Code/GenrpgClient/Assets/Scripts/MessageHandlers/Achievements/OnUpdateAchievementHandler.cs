@@ -1,6 +1,7 @@
-using Genrpg.Shared.Achievements.Messages;
-using Genrpg.Shared.Achievements.PlayerData;
+using OxDb.SharedGame.Achievements.Messages;
+using OxDb.SharedGame.Achievements.PlayerData;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Achievements
@@ -10,6 +11,7 @@ namespace Assets.Scripts.MessageHandlers.Achievements
         protected override async Awaitable InnerProcess(OnUpdateAchievement msg, CancellationToken token)
         {
             _gs.ch.Get<AchievementData>().Data[msg.AchievementTypeId] = msg.Quantity;
+            await Task.CompletedTask;
         }
     }
 }

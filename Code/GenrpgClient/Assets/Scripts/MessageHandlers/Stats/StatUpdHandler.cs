@@ -1,6 +1,7 @@
-using Genrpg.Shared.Stats.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Stats.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Stats
@@ -16,6 +17,7 @@ namespace Assets.Scripts.MessageHandlers.Stats
 
             unit.Stats.UpdateFromSnapshot(msg.Dat);
             _dispatcher.Dispatch(msg);
+            await Task.CompletedTask;
         }
     }
 }

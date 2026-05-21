@@ -1,6 +1,6 @@
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
 
-namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
 {
     public class DamageSpellEffectHelper : BaseNumericSpellEffectHelper
     {

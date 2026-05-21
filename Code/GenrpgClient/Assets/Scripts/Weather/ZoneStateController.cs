@@ -2,20 +2,20 @@ using Assets.Scripts.Core;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Entities;
 using ClientEvents;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Players.Messages;
-using Genrpg.Shared.ProcGen.Settings.Weather;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Players.Messages;
+using OxDb.SharedGame.ProcGen.Settings.Weather;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -50,7 +50,7 @@ public struct UpdateFloat
 public class WeatherEffectContainer
 {
     public string Name;
-    public WeatherType Weather;
+    public WeatherType Weather { get; set; }
 }
 
 public interface IZoneStateController : IInitializable
@@ -322,6 +322,7 @@ public class ZoneStateController : IZoneStateController
             WindScale.Target = _dataWeather.WindScale;
             ParticleScale.Target = _dataWeather.ParticleScale;
 
+            SunlightIntensity.Target = 100;
             SunlightIntensity.Target = _dataWeather.LightScale;
             if (SunlightIntensityMultiplier > 0)
             {
@@ -426,9 +427,9 @@ public class ZoneStateController : IZoneStateController
         }
         if (nextWindBurst < DateTime.UtcNow)
         {
-            _coreData.Wind.windMain = RandUtils.FloatRange(0.66f, 1.33f, _rand) * WindScale.Current;
-            windBurstEnd = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(4.0f, 7.0f, _rand));
-            nextWindBurst = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(12.0f, 22.0f, _rand));
+            _coreData.Wind.windMain = RandUtils.FloatRange(0.66f, 1.33f, _rand.Rand) * WindScale.Current;
+            windBurstEnd = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(4.0f, 7.0f, _rand.Rand));
+            nextWindBurst = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(12.0f, 22.0f, _rand.Rand));
         }
     }
 }

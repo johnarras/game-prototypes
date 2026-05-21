@@ -1,4 +1,4 @@
-using Genrpg.Shared.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Constants;
 
 namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
 {

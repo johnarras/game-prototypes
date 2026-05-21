@@ -1,13 +1,13 @@
 
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Errors
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Errors
 {
     public class ErrorStateHelper : BaseStateHelper
     {

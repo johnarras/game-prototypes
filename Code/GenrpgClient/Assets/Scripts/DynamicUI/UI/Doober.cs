@@ -1,8 +1,9 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Entities.UI;
 using Assets.Scripts.WorldCanvas.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Doobers.UI
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Doobers.UI
     {
 
         private IDynamicUIService _dynamicUIService = null;
+        protected IClientRandom _rand = null;
 
         private Vector3 _startPos;
         private Vector3 _endPos;
@@ -33,6 +35,7 @@ namespace Assets.Scripts.Doobers.UI
 
         public void SetData(string atlasName, string spriteName, DooberArgs dooberArgs)
         {
+            Icon.sprite = BlankSprite;
             _spriteService.SetAtlasSpriteInto(atlasName, spriteName, Icon, GetToken());
             InitDooberArgs(dooberArgs);
         }
@@ -66,7 +69,7 @@ namespace Assets.Scripts.Doobers.UI
             }
             if (_elapsedTime == 0)
             {
-                _offsetAngle = RandUtils.FloatRange(0, 360, _rand);
+                _offsetAngle = RandUtils.FloatRange(0, 360, _rand.Rand);
             }
             _elapsedTime += deltaTime;
 

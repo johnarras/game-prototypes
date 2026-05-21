@@ -1,11 +1,11 @@
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.GroundObjects.Settings;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,7 +160,7 @@ public class AddResourceNodes : BaseZoneGenerator
                 break;
             }
 
-            int placeChosen = _rand.Next() % totalToPlace;
+            int placeChosen = _rand.Rand.Next() % totalToPlace;
 
             ZoneResourceNodeData zdata = null;
 
@@ -269,7 +269,7 @@ public class AddResourceNodes : BaseZoneGenerator
             }
             else
             {
-                int clutterWeight = _rand.Next() % zdata.SpawnWeightSum;
+                int clutterWeight = _rand.Rand.Next() % zdata.SpawnWeightSum;
                 for (int i = 0; i < zdata.Objects.Count; i++)
                 {
                     clutterWeight -= zdata.Objects[i].SpawnWeight;

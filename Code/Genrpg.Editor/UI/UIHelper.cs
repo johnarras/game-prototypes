@@ -1,27 +1,25 @@
+using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using CommunityToolkit.WinUI.UI.Controls;
-using System.Threading.Tasks;
-using Windows.Foundation;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Windows.System;
 using Windows.UI.Core;
-using System;
-using Microsoft.UI.Xaml.Media;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.Interfaces;
-using Microsoft.UI.Xaml.Data;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Interfaces;
 
 namespace Genrpg.Editor.UI
 {
     public static class UIHelper
     {
-        public static ButtonBase CreateButton(IUICanvas canvas, EButtonTypes buttonType, 
-            string name, string text, double width, double height, double xpos, double ypos, Action<object,object> clickAction)
+        public static ButtonBase CreateButton(IUICanvas canvas, EButtonTypes buttonType,
+            string name, string text, double width, double height, double xpos, double ypos, Action<object, object> clickAction)
         {
             ButtonBase button = new ButtonBase()
             {
@@ -97,7 +95,7 @@ namespace Genrpg.Editor.UI
             if (obj is Control cont)
             {
                 cont.Width = width;
-                cont.Height = height;   
+                cont.Height = height;
             }
         }
 
@@ -130,9 +128,9 @@ namespace Genrpg.Editor.UI
 
         public static void SetVisible(object obj, bool visible)
         {
-            if (obj  is UIElement elem)
+            if (obj is UIElement elem)
             {
-                elem.Visibility = (visible?  Visibility.Visible : Visibility.Collapsed);
+                elem.Visibility = (visible ? Visibility.Visible : Visibility.Collapsed);
             }
         }
 
@@ -147,12 +145,12 @@ namespace Genrpg.Editor.UI
                 AllowDrop = true,
             };
 
-            canvas.Add(comboBox, xpos, ypos);   
+            canvas.Add(comboBox, xpos, ypos);
             return comboBox;
         }
 
 
-        public static TextBoxBase CreateTextBoxBase(IUICanvas canvas,  string name, string initialText,
+        public static TextBoxBase CreateTextBoxBase(IUICanvas canvas, string name, string initialText,
             double width, double height, double xpos, double ypos, TextChangedEventHandler eventHandler)
         {
             TextBoxBase textBox = new TextBoxBase()
@@ -173,7 +171,7 @@ namespace Genrpg.Editor.UI
             return textBox;
         }
 
-        public static CheckBoxBase CreateCheckBox(IUICanvas canvas,  string name,
+        public static CheckBoxBase CreateCheckBox(IUICanvas canvas, string name,
             double width, double height, double xpos, double ypos)
         {
             CheckBoxBase checkBox = new CheckBoxBase()
@@ -190,8 +188,8 @@ namespace Genrpg.Editor.UI
 
         public static void SetWindowRect(WindowBase window, double xpos, double ypos, double width, double height)
         {
-            window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32((int)xpos,(int)ypos, (int)(width*ScalingConstants.DisplayScaling),
-                (int)(height*ScalingConstants.DisplayScaling)));    
+            window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32((int)xpos, (int)ypos, (int)(width * ScalingConstants.DisplayScaling),
+                (int)(height * ScalingConstants.DisplayScaling)));
         }
 
         public static bool IsKeyDown(VirtualKey key)
@@ -214,7 +212,7 @@ namespace Genrpg.Editor.UI
         }
 
 
-        public static void AddComboBoxColumn(DataGrid dataGrid, string columnName, MemberInfo mem, Type underlyingType, MemberInfo nameMember, List<IIdName> dropdownList)
+        public static void AddComboBoxColumn(DataGrid dataGrid, IReflectionService reflectionService, string columnName, MemberInfo mem, Type underlyingType, MemberInfo nameMember, List<IIdName> dropdownList)
         {
             long firstKey = dropdownList.FirstOrDefault()?.IdKey ?? 1;
 
@@ -254,8 +252,8 @@ namespace Genrpg.Editor.UI
 
                 newDropdown.Add(newObj);
 
-                EntityUtils.SetObjectValue(newObj, nameMember, nv.Name);
-                EntityUtils.SetObjectValue(newObj, mem, nv.IdKey);
+                reflectionService.SetObjectValue(newObj, nameMember, nv.Name);
+                reflectionService.SetObjectValue(newObj, mem, nv.IdKey);
             }
 
             Binding binding = new Binding()

@@ -1,16 +1,15 @@
-﻿using Assets.Scripts.Core;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
+﻿using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Rewards.Services;
-using Genrpg.Shared.Entities.Interfaces;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.Encounters.Entities;
+using OxDb.SharedCore.Entities.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Rewards.Constants;
+using OxDb.SharedGame.Rewards.Services;
+using OxDb.SharedGame.Trader.Encounters.Entities;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Encounters.Services
@@ -23,15 +22,13 @@ namespace Assets.Scripts.Trader.Encounters.Services
     public class ClientEncounterService : IClientEncounterService
     {
 
-        private IGameData _gameData = null;
         private IClientGameState _gs = null;
         private IRewardService _rewardService = null;
         private IDispatcher _dispatcher = null;
-        private IClientRandom _rand = null;
-        private IDynamicUIService _dynamicUIService = null;
         private IEntityService _entityService = null;
         public async Awaitable ShowEncounterResult(EncounterResult result)
         {
+            await Task.CompletedTask;
             if (result == null)
             {
                 return;
@@ -48,7 +45,7 @@ namespace Assets.Scripts.Trader.Encounters.Services
                 foreach (Reward rew in rlist.Rewards)
                 {
 
-                    await _rewardService.GiveReward(_gs.ch, rew, new ClientRewardParams(false, true));
+                    await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelEncounter, new ClientRewardParams(false, true));
 
                     IEntityHelper helper = _entityService.GetEntityHelper(rew.EntityTypeId);
                     if (helper != null)

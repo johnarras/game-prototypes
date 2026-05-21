@@ -1,4 +1,6 @@
 using Assets.Scripts.Audio.Constants;
+using Assets.Scripts.Core;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,24 @@ public class FullAudioSource
     public AudioSource Source;
 }
 
+[Serializable]
+public class WeightedAudioClip : IWeightedItem
+{
+    [field: SerializeField]
+    public double Weight { get; set; }
+
+    public AudioClip Clip;
+}
+
 public class AudioClipList : BaseBehaviour
 {
 
+    protected IClientRandom _rand = null;
 
     public float Volume = AudioConstants.MaxVolume;
     public bool Is3D = false;
     public float TtlSeconds = AssetConstants.DefaultTtl;
-    public List<AudioClip> Clips;
+    public List<WeightedAudioClip> AudioClips;
     public bool IsActiveMusic { get; set; }
 
 
@@ -36,14 +48,14 @@ public class AudioClipList : BaseBehaviour
             return true;
         }
 
-        if (Clips == null || Clips.Count < 1)
+        if (AudioClips == null || AudioClips.Count < 1)
         {
             return false;
         }
 
-        for (int c = 0; c < Clips.Count; c++)
+        for (int c = 0; c < AudioClips.Count; c++)
         {
-            if (Clips[c] == null)
+            if (AudioClips[c] == null)
             {
                 _isValid = false;
                 return false;
@@ -64,7 +76,7 @@ public class AudioClipList : BaseBehaviour
 
         foreach (FullAudioSource source in sources)
         {
-            float currVolume = channels[source.PlayData.category].Volume;
+            float currVolume = channels[source.PlayData.Category].Volume;
 
             if (currVolume == 0)
             {
@@ -73,7 +85,7 @@ public class AudioClipList : BaseBehaviour
             }
             else
             {
-                source.Source.volume = source.PlayData.volume * Volume * currVolume;
+                source.Source.volume = source.PlayData.Volume * Volume * currVolume;
             }
         }
     }
@@ -87,18 +99,23 @@ public class AudioClipList : BaseBehaviour
         }
 
         AudioClip clip = null;
-        if (index < 0 || index >= Clips.Count)
+        if (index < 0 || index >= AudioClips.Count)
         {
-            clip = Clips[_rand.Next() % Clips.Count];
+            WeightedAudioClip weightedClip = RandUtils.GetRandomElement(AudioClips, _rand.Rand);
+            if (weightedClip != null)
+            {
+                clip = weightedClip.Clip;
+            }
         }
         else
         {
-            clip = Clips[index];
+            WeightedAudioClip weightedClip = AudioClips[index];
+            clip = weightedClip.Clip;
         }
 
-        if (playData.parent == null)
+        if (playData.Parent == null)
         {
-            playData.parent = entity;
+            playData.Parent = entity;
         }
 
         if (clip == null)
@@ -106,11 +123,18 @@ public class AudioClipList : BaseBehaviour
             return null;
         }
 
-        AudioSource source = playData.parent.AddComponent<AudioSource>();
+        AudioSource source = playData.Parent.AddComponent<AudioSource>();
         source.clip = clip;
-        source.loop = playData.looping;
-        source.volume = playData.volume * Volume;
-        if (playData.musicData != null || !Is3D)
+        source.loop = playData.Looping;
+        source.volume = playData.Volume * Volume;
+
+        if (playData.VarianceScale > 0)
+        {
+            source.volume *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _rand.Rand));
+            source.pitch *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _rand.Rand));
+        }
+
+        if (playData.MusicData != null || !Is3D)
         {
             source.spatialBlend = 0;
         }
@@ -127,7 +151,7 @@ public class AudioClipList : BaseBehaviour
         }
         else
         {
-            source.volume = playData.volume;
+            source.volume = playData.Volume;
             source.Play();
         }
         _sources.Add(new FullAudioSource()
@@ -163,25 +187,6 @@ public class AudioClipList : BaseBehaviour
         {
             StopSource(source.Source);
         }
-    }
-
-    public bool IsEqual(AudioClipList other)
-    {
-        if (Clips == null || other == null || other.Clips == null || Clips.Count < 1 || Clips.Count != other.Clips.Count)
-        {
-            return false;
-        }
-
-        for (int c = 0; c < Clips.Count; c++)
-        {
-            if (Clips[c] == null || other.Clips[c] == null || Clips[c].name != other.Clips[c].name)
-            {
-                return false;
-            }
-        }
-
-        return true;
-
     }
 
     public bool CanUnloadAudio()

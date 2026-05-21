@@ -1,6 +1,6 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

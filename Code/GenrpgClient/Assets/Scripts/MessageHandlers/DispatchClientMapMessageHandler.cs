@@ -1,5 +1,6 @@
-using Genrpg.Shared.MapMessages.Interfaces;
+using OxDb.SharedGame.MapMessages.Interfaces;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers
@@ -9,6 +10,7 @@ namespace Assets.Scripts.MessageHandlers
         protected override async Awaitable InnerProcess(T msg, CancellationToken token)
         {
             _dispatcher.Dispatch(msg);
+            await Task.CompletedTask;
         }
     }
 }

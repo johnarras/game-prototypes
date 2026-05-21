@@ -1,11 +1,11 @@
 
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GroundObjects.Settings;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Zones.WorldData;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Constants;
+using OxDb.SharedGame.GroundObjects.Settings;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

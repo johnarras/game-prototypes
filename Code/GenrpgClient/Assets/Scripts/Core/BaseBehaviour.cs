@@ -1,11 +1,10 @@
 using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -19,7 +18,6 @@ public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDe
     protected IDispatcher _dispatcher = null;
     protected IGameData _gameData = null;
     protected IClientGameState _gs = null;
-    protected IClientRandom _rand = null;
     protected IClientEntityService _clientEntityService = null;
     private IInitClient _initClient = null;
 

@@ -1,15 +1,24 @@
-﻿using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+﻿using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
 
 namespace Assets.Scripts.Core
 {
-    public interface IClientRandom : IRandom, IInjectable
+    public interface IClientRandom : IRandomContainer, IInjectable
     {
     }
-    public class ClientRandom : MyRandom, IClientRandom
+    public class ClientRandom : IClientRandom
     {
-        public ClientRandom() : base() { }
 
-        public ClientRandom(long seed) : base(seed) { }
+        public IRandom Rand { get; set; } = new MyRandom();
+
+        public ClientRandom()
+        {
+
+        }
+
+        public ClientRandom(long seed)
+        {
+            Rand = new MyRandom(seed);
+        }
     }
 }

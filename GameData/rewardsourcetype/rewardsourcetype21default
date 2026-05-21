@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "SellTradeGood",
+  "Icon": "SellTradeGood",
+  "Art": "SellTradeGood"
+}

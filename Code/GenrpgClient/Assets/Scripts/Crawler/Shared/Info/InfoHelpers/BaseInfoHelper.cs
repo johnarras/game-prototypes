@@ -1,13 +1,13 @@
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Stats.Services;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public abstract class BaseInfoHelper<TParent, TChild> : IInfoHelper where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIndexedGameItem, new()
     {

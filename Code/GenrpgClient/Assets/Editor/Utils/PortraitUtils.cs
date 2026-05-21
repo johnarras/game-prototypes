@@ -1,5 +1,5 @@
-﻿//using Genrpg.Shared.Portraits.Utils;
-//using Genrpg.Shared.Utils;
+﻿//using OxDb.SharedGame.Portraits.Utils;
+//using OxDb.SharedCore.Utils;
 //using System;
 //using System.Collections.Generic;
 //using System.IO;

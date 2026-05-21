@@ -1,6 +1,6 @@
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 
-namespace Genrpg.Shared.Crawler.GameEvents
+namespace OxDb.SharedGame.Crawler.GameEvents
 {
     public class ClearCrawlerTilemaps : IClientEvent
     {

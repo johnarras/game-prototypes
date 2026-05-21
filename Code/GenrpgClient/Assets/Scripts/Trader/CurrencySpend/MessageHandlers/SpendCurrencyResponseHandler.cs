@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
-using Genrpg.Shared.Trader.CurrencySpend.Entities;
-using Genrpg.Shared.Trader.CurrencySpend.WebApi;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Rewards.Services;
+using OxDb.SharedGame.Trader.CurrencySpend.Entities;
+using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System.Threading;
 using UnityEngine;
 

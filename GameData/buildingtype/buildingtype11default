@@ -5,6 +5,5 @@
   "Name": "Npc",
   "Icon": "Npc",
   "Art": "Npc",
-  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

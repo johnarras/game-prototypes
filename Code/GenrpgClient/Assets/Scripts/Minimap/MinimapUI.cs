@@ -1,9 +1,9 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Services;
 using System.Threading;
 using UnityEngine;
 

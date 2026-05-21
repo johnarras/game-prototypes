@@ -1,5 +1,5 @@
 using Assets.Scripts.Info.UI;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 

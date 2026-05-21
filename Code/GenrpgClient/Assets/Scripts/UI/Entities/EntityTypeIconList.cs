@@ -1,7 +1,7 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Effects.Entities;
+using OxDb.SharedCore.Effects.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

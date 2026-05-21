@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype31default",
+  "ParentId": "default",
+  "IdKey": 31,
+  "Name": "SpendCurrencyRewards",
+  "Icon": "SpendCurrencyRewards",
+  "Art": "SpendCurrencyRewards"
+}

@@ -1,0 +1,92 @@
+using MessagePack;
+using System.Linq;
+
+namespace OxDb.SharedCore.Utils.Data
+{
+
+    /// <summary>
+    /// Use this when we know the index won't grow too much (we will mostly use lower order bits)
+    /// </summary>
+    [MessagePackObject]
+    public class SmallIndexBitList
+    {
+        const int BitsPerItem = 32;
+
+        [Key(0)] public int[] Bits { get; set; } = new int[1];
+
+        public bool HasBitIndex(long index)
+        {
+            int subIndex = (int)(index / BitsPerItem);
+
+            int bitRemainder = (int)(index % BitsPerItem);
+
+            if (Bits.Length <= subIndex)
+            {
+                return false;
+            }
+
+            return (Bits[subIndex] & (1 << bitRemainder)) != 0;
+
+        }
+
+        public long GetBitCount()
+        {
+            return Bits.Sum(x => FlagUtils.GetBitCount(x));
+        }
+
+        public void Clear()
+        {
+            Bits = new int[1];
+        }
+
+        public void SetBitIndex(long index)
+        {
+            int subIndex = (int)(index / BitsPerItem);
+
+            int bitRemainder = (int)(index % BitsPerItem);
+
+            if (Bits.Length <= subIndex)
+            {
+                int[] newItems = new int[subIndex + 1];
+                for (int i = 0; i < Bits.Length; i++)
+                {
+                    newItems[i] = Bits[i];
+                }
+                Bits = newItems;
+            }
+
+            Bits[subIndex] |= (1 << bitRemainder);
+        }
+
+        public void RemoveBitIndex(long index)
+        {
+            int subIndex = (int)(index / BitsPerItem);
+
+            int bitRemainder = (int)(index % BitsPerItem);
+
+            if (Bits.Length <= subIndex)
+            {
+                return;
+            }
+
+            Bits[subIndex] &= ~(1 << bitRemainder);
+        }
+
+        public bool MatchAnyBits(int bits)
+        {
+            if (Bits.Length < 1)
+            {
+                return false;
+            }
+
+            return (Bits[0] & bits) != 0;
+        }
+
+        public bool HasAnyBits()
+        {
+            return Bits.Any(x => x != 0);
+        }
+    }
+}
+
+

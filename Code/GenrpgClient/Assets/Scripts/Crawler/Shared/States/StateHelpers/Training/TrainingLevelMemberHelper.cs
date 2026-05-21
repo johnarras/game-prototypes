@@ -1,18 +1,18 @@
 
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.Crawler.Training.Services;
-using Genrpg.Shared.Crawler.Training.Settings;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.Crawler.Training.Services;
+using OxDb.SharedGame.Crawler.Training.Settings;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -21,7 +21,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Training
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Training
 {
     public class TrainingLevelMemberHelper : BuildingStateHelper
     {

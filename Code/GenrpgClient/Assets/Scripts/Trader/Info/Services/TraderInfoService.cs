@@ -1,8 +1,8 @@
-﻿using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Constants;
+﻿using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Constants;
 using System.Text;
 
 namespace Assets.Scripts.Trader.Info.Services

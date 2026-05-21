@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.UI.ClientEvents

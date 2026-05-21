@@ -1,10 +1,10 @@
 
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Settings.LineGen;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.LineGen;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Constants;
 using System;
 using System.Collections.Generic;
 

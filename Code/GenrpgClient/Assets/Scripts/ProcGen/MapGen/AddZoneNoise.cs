@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,16 +16,16 @@ public class AddZoneNoise : BaseZoneGenerator
     {
         int noiseSize = _mapProvider.GetMap().GetHwid();
         float ampDelta = 0.05f;
-        float zoneAmp = _amplitude * RandUtils.DeltaScale(ampDelta, _rand);
+        float zoneAmp = _amplitude * RandUtils.DeltaScale(ampDelta, _rand.Rand);
         float denomDelta = 0.05f;
-        float zoneDenom = _freqDiv * RandUtils.DeltaScale(denomDelta, _rand);
+        float zoneDenom = _freqDiv * RandUtils.DeltaScale(denomDelta, _rand.Rand);
         float persDelta = 0.05f;
-        float pers = _persistence * RandUtils.DeltaScale(persDelta, _rand);
+        float pers = _persistence * RandUtils.DeltaScale(persDelta, _rand.Rand);
         float freq = noiseSize / zoneDenom;
         float lacDelta = 0.05f;
-        float lac = _lacunarity * RandUtils.DeltaScale(lacDelta, _rand);
+        float lac = _lacunarity * RandUtils.DeltaScale(lacDelta, _rand.Rand);
 
-        int seed = _rand.Next();
+        int seed = _rand.Rand.Next();
         float[,] heights = _noiseService.Generate(pers, noiseSize / zoneDenom, zoneAmp, 2, seed, noiseSize, noiseSize, 0.5f);
 
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)

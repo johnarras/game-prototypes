@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Spells.Messages;
+using OxDb.SharedGame.Spells.Messages;
 
 namespace Assets.Scripts.MessageHandlers.Spells
 {

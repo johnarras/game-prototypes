@@ -1,4 +1,4 @@
-﻿using Genrpg.Shared.Utils;
+﻿using OxDb.SharedCore.Utils;
 using System;
 
 namespace Assets.Scripts.UI.Timers

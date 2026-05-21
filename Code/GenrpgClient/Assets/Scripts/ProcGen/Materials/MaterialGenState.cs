@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Dungeons;
 using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,8 @@ namespace Assets.Scripts.ProcGen.Materials
     }
     public class MaterialGenState
     {
-        public int Size;
+        public int Width;
+        public int Height;
         public IRandom Rand;
 
 
@@ -74,7 +75,14 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public void SetupFromArgs(WallTextureGenArgs args, MaterialGenState prevState)
         {
-            Size = Settings.TextureSize;
+            Width = Settings.TextureSize;
+            Height = Settings.TextureSize;
+
+            if (args.MapRoot != null)
+            {
+                Width *= args.MapRoot.XZBlockSize / args.MapRoot.YBlockSize;
+            }
+
 
             List<WeightedMaterialGenType> weightedTypes = args.MaterialsData.GenTypes;
 
@@ -101,11 +109,6 @@ namespace Assets.Scripts.ProcGen.Materials
                 _genType = EMaterialGenTypes.Blocks;
             }
 
-            if (MaterialIndex == DungeonMaterialIndexes.Floors)
-            {
-                _genType = EMaterialGenTypes.FlatPlane;
-            }
-
             if (MaterialIndex == DungeonMaterialIndexes.Wood)
             {
                 _genType = EMaterialGenTypes.Wood;
@@ -117,11 +120,11 @@ namespace Assets.Scripts.ProcGen.Materials
                 VerticalPerturbChance = RandUtils.FloatRange(Settings.MinVerticalPerturbChance, Settings.MaxVerticalPerturbChance, Rand);
             }
 
-            RoundCornerMinSize = Size * Settings.RoundCornerMinSizePercent * RandUtils.DeltaScale(Settings.RoundCornerSizeDelta, Rand);
-            RoundCornerMaxSize = Size * Settings.RoundCornerMaxSizePercent * RandUtils.DeltaScale(Settings.RoundCornerSizeDelta, Rand);
+            RoundCornerMinSize = Width * Settings.RoundCornerMinSizePercent * RandUtils.DeltaScale(Settings.RoundCornerSizeDelta, Rand);
+            RoundCornerMaxSize = Width * Settings.RoundCornerMaxSizePercent * RandUtils.DeltaScale(Settings.RoundCornerSizeDelta, Rand);
             MaxCornerPerturbScale = Settings.MaxCornerPerturbScale;
 
-            MaxDistanceToCrevice = Size * RandUtils.FloatRange(Settings.MinDistanceToCrevicePercent, Settings.MaxDistanceToCrevicePercent, Rand);
+            MaxDistanceToCrevice = Width * RandUtils.FloatRange(Settings.MinDistanceToCrevicePercent, Settings.MaxDistanceToCrevicePercent, Rand);
 
             CurvedWallChance = RandUtils.FloatRange(Settings.CurvedWallMinChance, Settings.CurvedWallMaxChance, Rand);
 

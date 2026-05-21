@@ -1,15 +1,15 @@
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Stats.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Entities;
-using Genrpg.Shared.Stats.Settings.Stats;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Stats.Settings;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Entities;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 {
     public class RollStatsHelper : BaseStateHelper
     {
@@ -50,7 +50,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
 
             foreach (StatType statType in statTypes)
             {
-                int statValue = RandUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand);
+                int statValue = RandUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand.Rand);
 
                 if (!rollStats)
                 {

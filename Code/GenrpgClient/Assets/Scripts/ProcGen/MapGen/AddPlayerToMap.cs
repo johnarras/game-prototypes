@@ -1,7 +1,7 @@
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Units.Settings;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.Units.Settings;
 using System.Threading;
 using UnityEngine;
 

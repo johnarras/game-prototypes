@@ -1,8 +1,10 @@
+using Assets.Scripts.Audio.ClientEvents;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,6 +39,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                         if (!_mapService.PartyHasVisited(party.CurrPos.MapId, status.EX, status.EZ, false))
                         {
                             _mapService.MarkCellVisitedAndCheckForCompletion(party.CurrPos.MapId, status.EX, status.EZ);
+                            _dispatcher.Dispatch(new PlaySound(CrawlerAudio.TeleportActivate));
                             _mapService.MovePartyTo(party, detail.ToX, detail.ToZ, party.CurrPos.Rot, true, token);
                             return;
                         }

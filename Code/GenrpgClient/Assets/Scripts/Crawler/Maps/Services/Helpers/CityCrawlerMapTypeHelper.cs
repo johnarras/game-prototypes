@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Constants;
 
 namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 {

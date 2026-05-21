@@ -1,5 +1,5 @@
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils.Data;
 using System;
 using UnityEngine;
 
@@ -11,6 +11,8 @@ public interface IModTextureService : IInjectable
     void MoveCurrToTargetColor(MyColorF curr, MyColorF target, float stepSize);
     Color MoveCurrToTargetColor(Color curr, Color target, float stepSize);
     float MoveCurrFloatToTarget(float curr, float target, float step);
+    Color ParseHtmlHexColor(string hexColor);
+    Color GetNeonColor(Color startColor, float brightnessScale);
 }
 
 public class ModTextureService : IModTextureService
@@ -101,9 +103,33 @@ public class ModTextureService : IModTextureService
         return curr;
     }
 
+    public Color ParseHtmlHexColor(string hexColor)
+    {
+        if (ColorUtility.TryParseHtmlString(hexColor, out Color color))
+        {
 
+        }
+        return Color.hotPink;
+    }
 
+    public Color GetNeonColor(Color baseColor, float brightnessScale)
+    {
+        float h;
+        float s;
+        float v;
 
+        baseColor *= 1.0f / brightnessScale;
+
+        // Convert the RGB color to HSV
+        Color.RGBToHSV(baseColor, out h, out s, out v);
+
+        float brightS = brightnessScale;
+        float brightV = 1.0f;
+        Color brightColor = Color.HSVToRGB(h, brightS, brightV);
+        brightColor.a = baseColor.a;
+
+        return brightColor;
+    }
 }
 
 

@@ -1,0 +1,63 @@
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Loaders;
+using OxDb.SharedCore.GameSettings.Mappers;
+using OxDb.SharedCore.Utils;
+using System.Collections.Generic;
+
+namespace OxDb.SharedGame.Names.Settings
+{
+    public class WeightedName : IWeightedItem
+    {
+        public double Weight { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+
+    }
+    public class NameSettings : ParentSettings<NameList>
+    {
+        public override string Id { get; set; }
+
+        public NameList GetNameList(string nm)
+        {
+            if (_data == null)
+            {
+                return null;
+            }
+
+            foreach (NameList nl in _data)
+            {
+                if (nl.ListName == nm)
+                {
+                    return nl;
+                }
+            }
+            return null;
+        }
+
+    }
+
+
+
+    public class NameList : ChildSettings
+    {
+        public override string Id { get; set; }
+        public override string ParentId { get; set; }
+        public override string Name { get; set; }
+        public string ListName { get; set; }
+        public List<WeightedName> Names { get; set; } = new List<WeightedName>();
+
+    }
+
+    public class NameSettingsDto : ParentSettingsDto<NameSettings, NameList>
+    {
+        public override List<NameList> Children { get; set; }
+        public override NameSettings Parent { get; set; }
+        public override string Id { get; set; }
+    }
+    public class NameSettingsLoader : ParentSettingsLoader<NameSettings, NameList> { }
+
+    public class ItemSettingsMapper : ParentSettingsMapper<NameSettings, NameList, NameSettingsDto> { }
+
+}
+
+

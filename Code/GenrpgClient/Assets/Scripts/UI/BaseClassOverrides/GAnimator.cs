@@ -1,4 +1,4 @@
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Abstractions

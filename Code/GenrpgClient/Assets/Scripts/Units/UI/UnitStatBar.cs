@@ -1,7 +1,7 @@
 using ClientEvents;
-using Genrpg.Shared.Stats.Messages;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Stats.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Linq;
 
 public class UnitStatBar : BaseBehaviour
@@ -25,7 +25,7 @@ public class UnitStatBar : BaseBehaviour
         {
             _curr = _unit.Stats.Curr(_statTypeId);
             _max = _unit.Stats.Max(_statTypeId);
-            _progressBar.InitRange(0, _max, _curr);
+            _progressBar.InitRange(0, _curr, _max);
         }
         AddListener<LevelUpEvent>(OnLevelUpdate);
         AddListener<StatUpd>(OnStatUpdate);
@@ -51,7 +51,7 @@ public class UnitStatBar : BaseBehaviour
         if (_max != max)
         {
             _max = max;
-            _progressBar.InitRange(0, _max, curr);
+            _progressBar.InitRange(0, curr, _max);
         }
         else
         {

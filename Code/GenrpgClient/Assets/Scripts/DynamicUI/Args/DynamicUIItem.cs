@@ -1,7 +1,7 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.WorldCanvas.Interfaces;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 using System.Threading;
 using UnityEngine;
 

@@ -1,11 +1,8 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Entities.UI;
-using Assets.Scripts.Trader.Currencies.UI;
-using Genrpg.Shared.Attributes.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.CaravanMembers.Settings;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Attributes.Constants;
+using OxDb.SharedGame.Trader.CaravanMembers.Settings;
 
 namespace Assets.Scripts.Trader.Caravans.UI
 {
@@ -41,7 +38,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
         public void SetData(CaravanMemberInitIconData initData, int siblingIndex)
         {
 
-            _initData = initData;   
+            _initData = initData;
             if (initData.InCaravan)
             {
                 _uiService.SetText(ButtonText, "To Holdings");

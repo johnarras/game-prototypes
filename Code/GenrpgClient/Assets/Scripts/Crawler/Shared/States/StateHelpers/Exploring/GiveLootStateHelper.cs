@@ -1,28 +1,29 @@
+using Assets.Scripts.Audio.ClientEvents;
+using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Inventory.PlayerData;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Loot.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Inventory.PlayerData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
 
     public class GiveLootStateHelper : BaseStateHelper
     {
 
         private ILootGenService _lootService = null;
-        private IAudioService _audioService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.GiveLoot;
 
@@ -109,7 +110,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Exploring
                 }
             }
 
-            _audioService.PlaySound(CrawlerAudio.Treasure, null);
+            _dispatcher.Dispatch(new PlaySound(CrawlerAudio.Treasure, AudioConstants.NoVariance));
 
             if (loot.NextState == ECrawlerStates.None)
             {

@@ -1,16 +1,16 @@
 header buildingsettings,Id,,,,,
 header buildingtype,Idkey,Name,Icon,Art,IsCrawlerBuilding,ShowNameplate
 buildingtype,1,House,House,House,TRUE,FALSE
-buildingtype,2,Guard Tower,GuardTower,GuardTower,TRUE,TRUE
+buildingtype,2,Guard Tower,GuardTower,GuardTower,FALSE,TRUE
 buildingtype,3,Guild,Guild,Guild,TRUE,TRUE
 buildingtype,4,Equipment,Equipment,Equipment,TRUE,TRUE
 buildingtype,5,Temple,Temple,Temple,TRUE,TRUE
 buildingtype,6,Trainer,Trainer,Trainer,TRUE,TRUE
 buildingtype,7,Regen,Regen,Regen,TRUE,TRUE
 buildingtype,8,Tavern,Tavern,Tavern,TRUE,TRUE
-buildingtype,9,Dungeon,Dungeon,Dungeon,TRUE,TRUE
-buildingtype,10,City,City,City,TRUE,TRUE
-buildingtype,11,Npc,Npc,Npc,TRUE,TRUE
+buildingtype,9,Dungeon,Dungeon,Dungeon,FALSE,TRUE
+buildingtype,10,City,City,City,FALSE,TRUE
+buildingtype,11,Npc,Npc,Npc,FALSE,TRUE
 buildingtype,12,Lumbermill,Lumbermill,Lumbermill,FALSE,TRUE
 buildingtype,13,Quarry,Quarry,Quarry,FALSE,TRUE
 buildingtype,14,Mage Tower,MageTower,MageTower,FALSE,TRUE

@@ -1,8 +1,8 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Crawler.Combat.Entities;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Entities;
 using System;
 
-namespace Genrpg.Shared.Crawler.GameEvents
+namespace OxDb.SharedGame.Crawler.GameEvents
 {
     public class SetCombatGroupAction : IClientEvent
     {

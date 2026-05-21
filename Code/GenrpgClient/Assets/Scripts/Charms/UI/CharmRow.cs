@@ -1,6 +1,6 @@
-using Genrpg.Shared.Charms.Constants;
-using Genrpg.Shared.Charms.PlayerData;
-using Genrpg.Shared.Charms.Services;
+using OxDb.SharedGame.Charms.Constants;
+using OxDb.SharedGame.Charms.PlayerData;
+using OxDb.SharedGame.Charms.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

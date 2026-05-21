@@ -1,28 +1,28 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Monsters.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Constants;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Roles.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Constants;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             group.CombatGroupAction = ECombatGroupActions.None;
             if (group.Units.Count > 0 && group.Range > CrawlerCombatConstants.MinRange)
             {
-                bool shouldCharge = _rand.NextDouble() < combatSettings.GroupAdvanceChance;
+                bool shouldCharge = _rand.Rand.NextDouble() < combatSettings.GroupAdvanceChance;
 
                 if (!shouldCharge && group.UnitType != null)
                 {
@@ -220,11 +220,11 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
 
             if (unit.FactionTypeId != FactionTypes.Player)
             {
-                if (hiddenUnits.Count > 0 && _rand.Next() % 100 < unit.Stats.Max(StatTypes.DetectHidden))
+                if (hiddenUnits.Count > 0 && _rand.Rand.Next() % 100 < unit.Stats.Max(StatTypes.DetectHidden))
                 {
                     targets.AddRange(hiddenUnits);
                 }
-                else if (nonGuardianPlayers.Count > 0 && _rand.Next() % 100 < unit.Stats.Max(StatTypes.SmartTarget))
+                else if (nonGuardianPlayers.Count > 0 && _rand.Rand.Next() % 100 < unit.Stats.Max(StatTypes.SmartTarget))
                 {
                     targets.AddRange(nonGuardianPlayers);
                 }
@@ -248,9 +248,9 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             };
 
             // Only enemy monsters summon in combat
-            if (!allyGroups.Contains(party.Combat.PartyGroup) && summonSpells.Count > 0 && _rand.NextDouble() < combatSettings.SummonChance)
+            if (!allyGroups.Contains(party.Combat.PartyGroup) && summonSpells.Count > 0 && _rand.Rand.NextDouble() < combatSettings.SummonChance)
             {
-                CrawlerSpell spell = summonSpells[_rand.Next(summonSpells.Count)];
+                CrawlerSpell spell = summonSpells[_rand.Rand.Next(summonSpells.Count)];
 
                 long cost = _crawlerSpellService.GetPowerCost(party, unit, spell);
 
@@ -264,9 +264,9 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                 }
             }
 
-            if (combatAction.Spell == null && nonSummonSpells.Count > 0 && _rand.NextDouble() < combatSettings.CastSpellChance)
+            if (combatAction.Spell == null && nonSummonSpells.Count > 0 && _rand.Rand.NextDouble() < combatSettings.CastSpellChance)
             {
-                CrawlerSpell spell = nonSummonSpells[_rand.Next(nonSummonSpells.Count)];
+                CrawlerSpell spell = nonSummonSpells[_rand.Rand.Next(nonSummonSpells.Count)];
 
                 long cost = _crawlerSpellService.GetPowerCost(party, unit, spell);
 
@@ -296,7 +296,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
                         {
                             if (enemyGroups.Count > 0)
                             {
-                                CombatGroup egroup = enemyGroups[_rand.Next(enemyGroups.Count)];
+                                CombatGroup egroup = enemyGroups[_rand.Rand.Next(enemyGroups.Count)];
                                 combatAction.FinalTargetGroups = new List<CombatGroup> { egroup };
                                 //combatAction.FinalTargets = new List<CrawlerUnit>(egroup.Units);
                             }
@@ -336,7 +336,7 @@ namespace Assets.Scripts.Crawler.Shared.Combat.Services
             groups = groups.Where(x => x.Units.FastAny(u => !u.StatusEffects.HasBitIndex(StatusEffects.Dead))).ToList();
             if (groups.Count > 0)
             {
-                return groups[_rand.Next() % groups.Count].Units;
+                return groups[_rand.Rand.Next() % groups.Count].Units;
             }
             return null;
         }

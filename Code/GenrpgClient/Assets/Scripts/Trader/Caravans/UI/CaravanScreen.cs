@@ -2,22 +2,22 @@ using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Currencies.UI;
 using Assets.Scripts.Trader.Travel.UI;
-using Genrpg.Shared.Attributes.Services;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.CaravanMembers.Constants;
-using Genrpg.Shared.Trader.CaravanMembers.Settings;
-using Genrpg.Shared.Trader.CaravanMembers.WebApi;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.Constants;
-using Genrpg.Shared.Trader.CurrencySpend.Entities;
-using Genrpg.Shared.Trader.CurrencySpend.Services;
-using Genrpg.Shared.Trader.CurrencySpend.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.WebApi;
-using Genrpg.Shared.Trader.Holdings.PlayerData;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Attributes.Services;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.CaravanMembers.Constants;
+using OxDb.SharedGame.Trader.CaravanMembers.Settings;
+using OxDb.SharedGame.Trader.CaravanMembers.WebApi;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.Constants;
+using OxDb.SharedGame.Trader.CurrencySpend.Entities;
+using OxDb.SharedGame.Trader.CurrencySpend.Services;
+using OxDb.SharedGame.Trader.CurrencySpend.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
+using OxDb.SharedGame.Trader.Holdings.PlayerData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +32,6 @@ namespace Assets.Scripts.Trader.Caravans.UI
         private ICaravanService _caravanService = null;
         private ICurrencySpendService _spendService = null;
         private ICalcAttributeService _attributeService = null;
-        private IClientWebService _webService = null;
 
         public GameObject CaravanAnchor;
         public GameObject HoldingsAnchor;
@@ -193,10 +192,12 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
 
             _clientEntityService.ReorderSiblings(_holdingsIcons);
+            await Task.CompletedTask;
         }
 
         public async Awaitable ClickCancelAsync(CancellationToken token)
         {
+            await Task.CompletedTask;
             StartClose();
         }
 
@@ -204,7 +205,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
         {
             CaravanData caravanData = _gs.ch.Get<CaravanData>();
 
-            CurrentCaravanMember currentMember = caravanData.CurrentMembers.FirstOrDefault(x=>x.CaravanMemberId == caravanMemberId);
+            CurrentCaravanMember currentMember = caravanData.CurrentMembers.FirstOrDefault(x => x.CaravanMemberId == caravanMemberId);
 
             if (currentMember != null)
             {
@@ -290,7 +291,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
             _awaitableService.ForgetAwaitable(UpdateBuffs());
         }
-        
+
         private async Awaitable UpdateAndShowData()
         {
             await UpdateBuffs();

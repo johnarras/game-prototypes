@@ -1,9 +1,9 @@
 
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Threading;

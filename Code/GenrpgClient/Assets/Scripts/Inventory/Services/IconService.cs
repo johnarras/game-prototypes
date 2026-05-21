@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.Settings.Qualities;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Inventory.Settings.Qualities;
 using System.Threading;
 using UnityEngine;
 

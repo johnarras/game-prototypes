@@ -1,6 +1,6 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using UnityEngine;
 

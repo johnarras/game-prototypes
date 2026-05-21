@@ -2,13 +2,13 @@ using Assets.Scripts.Buildings;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                     if (mapRoot.CityAssets != null)
                     {
                         IRandom rand = new MyRandom(loadData.Seed);
-                        WeightedCrawlerBuilding wcb = RandUtils.GetRandomFloatElement(mapRoot.CityAssets.Buildings, rand);
+                        WeightedCrawlerBuilding wcb = RandUtils.GetRandomElement(mapRoot.CityAssets.Buildings, rand);
                         await ShowBuilding(wcb.Building, wcb.Mats, cell.Content, loadData);
                     }
                 }

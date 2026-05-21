@@ -1,6 +1,6 @@
 using Assets.Scripts.GameSettings.Services;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;

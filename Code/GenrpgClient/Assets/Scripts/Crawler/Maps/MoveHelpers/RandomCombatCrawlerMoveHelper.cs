@@ -1,9 +1,9 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             double randomChance = combatSettings.RandomEncounterChance;
 
-            if (_rand.NextDouble() > randomChance)
+            if (_rand.Rand.NextDouble() > randomChance)
             {
                 return;
             }

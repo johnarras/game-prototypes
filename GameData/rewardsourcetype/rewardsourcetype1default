@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Kill"
+  "Name": "Kill",
+  "Icon": "Kill",
+  "Art": "Kill"
 }

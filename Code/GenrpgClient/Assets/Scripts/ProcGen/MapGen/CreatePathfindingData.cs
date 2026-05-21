@@ -1,17 +1,16 @@
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Spawns.WorldData;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.Pathfinding.Constants;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
+using OxDb.SharedGame.Spawns.WorldData;
 using System;
 using System.Threading;
 using UnityEngine;
 
 public class CreatePathfindingData : BaseZoneGenerator
 {
-    private IBinaryFileRepository _binaryFileRepo = null;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -134,11 +133,7 @@ public class CreatePathfindingData : BaseZoneGenerator
             int endLength = output.Length;
 
             string filename = MapUtils.GetMapObjectFilename(PathfindingConstants.Filename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-            _binaryFileRepo.SaveBytes(filename, output);
-
-            string localPath = _binaryFileRepo.GetPath(filename);
-            string remotePath = filename;
-
+            _clientRepoService.SaveBytes(filename, output);
         }
         catch (Exception e)
         {

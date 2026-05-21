@@ -1,14 +1,15 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,7 +67,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
                     () =>
                     {
                         pm.AddPermStat(statType.IdKey, statAdded);
-                        mapStatus.OneTimeEncounters.Add(new Genrpg.Shared.Utils.Data.PointXZ(party.CurrPos.X, party.CurrPos.Z));
+                        mapStatus.OneTimeEncounters.Add(new PointXZ(party.CurrPos.X, party.CurrPos.Z));
                         _crawlerStatService.CalcUnitStats(party, pm, false);
                         _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
                         _dispatcher.Dispatch(new ShowFloatingText("+ " + statAdded + " " + statType.Name + "!"));

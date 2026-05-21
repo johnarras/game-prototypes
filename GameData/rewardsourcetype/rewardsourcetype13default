@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype13default",
   "ParentId": "default",
   "IdKey": 13,
-  "Name": "Levelup"
+  "Name": "PVP",
+  "Icon": "PVP",
+  "Art": "PVP"
 }

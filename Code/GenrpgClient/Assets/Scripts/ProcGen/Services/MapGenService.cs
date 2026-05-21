@@ -1,25 +1,25 @@
 using Assets.Scripts.Core;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapObjects.MapObjectAddons.Entities;
-using Genrpg.Shared.MapServer.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.NPCs.Settings;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Locations.Constants;
-using Genrpg.Shared.RpgLevels.Settings;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Vendors.MapObjectAddons;
-using Genrpg.Shared.Zones.Entities;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.MapServer.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.MapObjects.MapObjectAddons.Entities;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.NPCs.Settings;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.ProcGen.Settings.Locations.Constants;
+using OxDb.SharedGame.RpgLevels.Settings;
+using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Vendors.MapObjectAddons;
+using OxDb.SharedGame.Zones.Entities;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -562,7 +562,7 @@ public class MapGenService : IMapGenService
 
         if (allZones.Count > 0)
         {
-            _mapProvider.GetMap().OverrideZoneId = allZones[_rand.Next() % allZones.Count].IdKey;
+            _mapProvider.GetMap().OverrideZoneId = allZones[_rand.Rand.Next() % allZones.Count].IdKey;
             _mapProvider.GetMap().OverrideZonePercent = 0;
         }
     }
@@ -698,7 +698,7 @@ public class MapGenService : IMapGenService
                         if (_md.mapZoneIds[x, z] < SharedMapConstants.MapZoneStartId)
                         {
                             reallyHaveUnsetCell = true;
-                            _logService.Message("Cell slipped through processing: " + x + " " + z);
+                            _logService.Info("Cell slipped through processing: " + x + " " + z);
                         }
                     }
                 }

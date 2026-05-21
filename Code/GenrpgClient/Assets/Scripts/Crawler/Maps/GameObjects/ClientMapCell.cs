@@ -1,5 +1,5 @@
 using Assets.Scripts.Dungeons;
-using Genrpg.Shared.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 

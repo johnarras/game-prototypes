@@ -1,14 +1,13 @@
-﻿using Assets.Scripts.Core;
-using Assets.Scripts.Lockstep.Config.Core;
+﻿using Assets.Scripts.Lockstep.Config.Core;
 using Assets.Scripts.Lockstep.Config.Games;
 using Assets.Scripts.Lockstep.Factions.Setup;
 using Assets.Scripts.Lockstep.Maps.Entities;
 using Assets.Scripts.Lockstep.Maps.Setup;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Trader.Biomes.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Trader.Biomes.Settings;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -210,7 +209,7 @@ namespace Assets.Scripts.Lockstep.Game.Services
         public async Task<BaseLockstepConfig> SetupExampleLockstep(long seed)
         {
 
-            IRandom rand = new ClientRandom(seed);
+            IRandom rand = new MyRandom(seed);
 
             List<FactionConfig> factions = new List<FactionConfig>();
             factions.Add(new FactionConfig()

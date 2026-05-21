@@ -1,13 +1,13 @@
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Settings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Spells.Settings.Elements;
+using OxDb.SharedCore.Entities.Settings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Spells.Settings.Elements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
 {
     public abstract class BaseNumericSpellEffectHelper : BaseSpellEffectHelper
     {

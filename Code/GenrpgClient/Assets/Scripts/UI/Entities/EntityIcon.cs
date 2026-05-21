@@ -2,10 +2,11 @@ using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Interfaces;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using Assets.Scripts.Info.UI;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -22,6 +23,8 @@ namespace Assets.Scripts.Entities.UI
         public GText NameText;
         public bool IsMainIcon = false;
         public long UpdateTicks = 10;
+
+        public Sprite BlankSprite;
 
         protected long _entityTypeId;
         protected long _entityId;
@@ -67,6 +70,7 @@ namespace Assets.Scripts.Entities.UI
                 _dispatcher.Dispatch(new SetDooberTarget(EntityTypeId, EntityId, GetDooberHitPosition(), IsMainIcon, this));
             }
 
+            Icon.sprite = BlankSprite;
             _spriteService.SetEntityIcon(entityTypeId, entityId, Icon, GetToken());
 
             if (maxQuantity < 1)
@@ -100,7 +104,7 @@ namespace Assets.Scripts.Entities.UI
         {
             if (visible)
             {
-                _dispatcher.Dispatch(new ShowInfoPanelEvent() { EntityTypeId = _entityTypeId, EntityId = _entityId });
+                _dispatcher.Dispatch(new ShowInfoPanelArgs() { EntityTypeId = _entityTypeId, EntityId = _entityId, Reason = EInfoPanelDisplayReason.Pointer });
             }
             else
             {

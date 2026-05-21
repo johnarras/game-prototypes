@@ -1,7 +1,7 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 
-namespace Genrpg.Shared.Crawler.GameEvents
+namespace OxDb.SharedGame.Crawler.GameEvents
 {
     public class ShowPartyMinimap : IClientEvent
     {

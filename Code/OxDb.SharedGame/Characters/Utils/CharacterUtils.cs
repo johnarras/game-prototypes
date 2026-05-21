@@ -1,0 +1,33 @@
+using OxDb.SharedGame.Characters.PlayerData;
+
+namespace OxDb.SharedGame.Characters.Utils
+{
+    public static class CharacterUtils
+    {
+        public static void CopyDataFromTo(ICoreCharacter from, ICoreCharacter to)
+        {
+            to.Id = from.Id;
+            to.Name = from.Name;
+            to.Version = from.Version;
+            to.UserId = from.UserId;
+            to.Created = from.Created;
+            to._etag = from._etag;
+            to.Level = from.Level;
+            to.ZoneId = from.ZoneId;
+            to.EntityId = from.EntityId;
+            to.EntityTypeId = from.EntityTypeId;
+            to.FactionTypeId = from.FactionTypeId;
+            to.Rot = from.Rot;
+            to.Speed = from.Speed;
+            to.X = from.X;
+            to.Y = from.Y;
+            to.Z = from.Z;
+            to.MapId = from.MapId;
+            to.SexTypeId = from.SexTypeId;
+            to.AB = from.AB;
+            to.Client = from.Client;
+        }
+    }
+}
+
+

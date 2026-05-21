@@ -1,4 +1,4 @@
-using Genrpg.Shared.RpgLevels.Messages;
+using OxDb.SharedGame.RpgLevels.Messages;
 
 namespace Assets.Scripts.MessageHandlers.Levels
 {

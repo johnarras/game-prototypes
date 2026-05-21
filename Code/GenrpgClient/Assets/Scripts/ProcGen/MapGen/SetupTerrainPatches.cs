@@ -1,5 +1,5 @@
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.MapServer.Constants;
+using OxDb.SharedCore.MapServer.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -39,7 +39,7 @@ public class SetupTerrainPatches : BaseZoneGenerator
                         int zoneId = _md.mapZoneIds[y, x];
                         if (zoneId < SharedMapConstants.MapZoneStartId)
                         {
-                            _logService.Message("Missing zoneId at " + x + " " + y);
+                            _logService.Info("Missing zoneId at " + x + " " + y);
                         }
                         else if (!patch.FullZoneIdList.Contains(zoneId))
                         {

@@ -1,9 +1,9 @@
 using Assets.Scripts.ProcGen.Loading.Utils;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Settings.MapWater;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Settings.MapWater;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Threading;
 using UnityEngine;

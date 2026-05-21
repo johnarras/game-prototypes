@@ -1,6 +1,6 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Interfaces;
 using Genrpg.Editor.UI;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Interfaces;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +31,7 @@ namespace Genrpg.Editor
 
             int border = 50;
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, "DialogText", text, width - 2*border, height-2*border, border, border,36);
+            UIHelper.CreateLabel(this, ELabelTypes.Default, "DialogText", text, width - 2 * border, height - 2 * border, border, border, 36);
         }
 
         public void StartClose()

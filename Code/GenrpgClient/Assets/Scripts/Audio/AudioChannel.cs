@@ -1,4 +1,4 @@
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -8,15 +8,15 @@ public class AudioChannel
     public float Volume;
     public bool Looping;
     public EAudioCategories Category;
-    public CurrentMusic curr = null;
+    public CurrentMusic curr { get; set; }
     public long ChannelId;
-    public List<CurrentMusic> prevList = new List<CurrentMusic>();
+    public List<CurrentMusic> prevList { get; set; } = new List<CurrentMusic>();
 
     public void ChooseNewRandomSound(IRandom rand)
     {
 
         if (curr == null || curr.clipList == null ||
-             curr.clipList.Clips == null || curr.clipList.Clips.Count < 2)
+             curr.clipList.AudioClips == null || curr.clipList.AudioClips.Count < 2)
         {
             curr.NextRandomizeTime = DateTime.UtcNow.AddMinutes(1);
             return;
@@ -32,9 +32,9 @@ public class AudioChannel
         int skipIndex = -1;
         if (curr.source != null)
         {
-            for (int i = 0; i < curr.clipList.Clips.Count; i++)
+            for (int i = 0; i < curr.clipList.AudioClips.Count; i++)
             {
-                if (curr.clipList.Clips[i] == curr.source.clip)
+                if (curr.clipList.AudioClips[i].Clip == curr.source.clip)
                 {
                     skipIndex = i;
                     break;
@@ -42,7 +42,7 @@ public class AudioChannel
             }
         }
 
-        int newIndex = rand.Next() % curr.clipList.Clips.Count - 1;
+        int newIndex = rand.Next() % curr.clipList.AudioClips.Count - 1;
         if (newIndex >= skipIndex)
         {
             newIndex++;

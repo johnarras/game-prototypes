@@ -1,7 +1,7 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Services;
 using System.Threading;
 using UnityEngine;
 

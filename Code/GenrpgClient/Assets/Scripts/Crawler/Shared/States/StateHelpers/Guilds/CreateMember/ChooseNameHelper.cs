@@ -1,18 +1,18 @@
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Settings.ItemTypes;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Settings.ItemTypes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 {
     public class ChooseNameHelper : BaseStateHelper
     {
@@ -105,7 +105,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okMelee[_rand.Next() % (okMelee.Count + 1) / 2].IdKey,
+                            ItemTypeId = okMelee[_rand.Rand.Next() % (okMelee.Count + 1) / 2].IdKey,
                         };
 
                         if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
@@ -127,7 +127,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okRanged[_rand.Next() % (okRanged.Count + 1) / 2].IdKey,
+                            ItemTypeId = okRanged[_rand.Rand.Next() % (okRanged.Count + 1) / 2].IdKey,
                         };
                         Item newItem = _lootGenService.GenerateItem(igd);
                         if (newItem != null)

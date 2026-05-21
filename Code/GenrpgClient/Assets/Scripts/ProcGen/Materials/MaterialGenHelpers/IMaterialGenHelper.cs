@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers

@@ -1,5 +1,5 @@
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.MapServer.Entities;
 using System.Collections.Generic;
 using UnityEngine; // Needed
 namespace Assets.Scripts.MapTerrain

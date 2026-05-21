@@ -1,16 +1,16 @@
-using Genrpg.Shared.Crawler.Loot.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Loot.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public class StatusEffectLootTypeHelper : BaseCrawlerLootTypeHelper
     {
@@ -29,8 +29,8 @@ namespace Genrpg.Shared.Crawler.Loot.Helpers
                 maxRank = StatusEffects.Dead - 1;
             }
 
-            long rank = Math.Min(RandUtils.LongRange(0, maxRank - 1, _rand),
-                RandUtils.LongRange(0, maxRank - 1, _rand));
+            long rank = Math.Min(RandUtils.LongRange(0, maxRank - 1, _rand.Rand),
+                RandUtils.LongRange(0, maxRank - 1, _rand.Rand));
 
             item.Effects.Add(new Effect()
             {

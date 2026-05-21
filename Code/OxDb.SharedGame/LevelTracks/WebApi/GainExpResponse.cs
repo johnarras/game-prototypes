@@ -1,0 +1,28 @@
+﻿using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedCore.Website.Responses.Interfaces;
+using System.Collections.Generic;
+
+namespace OxDb.SharedGame.LevelTracks.WebApi
+{
+    public class GainExpResponse : IWebResponse
+    {
+        public List<LevelGained> LevelsGained { get; set; } = new List<LevelGained>();
+
+        public long StartLevel { get; set; }
+        public long StartExp { get; set; }
+
+        public long ExpGained { get; set; }
+
+        public long StartExpToLevelUp { get; set; }
+        public long EndLevel { get; set; }
+        public long EndExp { get; set; }
+
+        public long EndExpToLevel { get; set; }
+    }
+
+    public class LevelGained
+    {
+        public long NewLevel { get; set; }
+        public List<Reward> Rewards { get; set; } = new List<Reward>();
+    }
+}

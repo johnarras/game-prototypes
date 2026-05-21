@@ -1,12 +1,12 @@
 
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Ftue.Constants;
-using Genrpg.Shared.Ftue.Services;
-using Genrpg.Shared.Ftue.Settings.Steps;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Ftue.Constants;
+using OxDb.SharedGame.Ftue.Services;
+using OxDb.SharedGame.Ftue.Settings.Steps;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading.Tasks;
 using UnityEngine;
 

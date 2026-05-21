@@ -2,9 +2,9 @@
 using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Travel.WebApi;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Travel.WebApi;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

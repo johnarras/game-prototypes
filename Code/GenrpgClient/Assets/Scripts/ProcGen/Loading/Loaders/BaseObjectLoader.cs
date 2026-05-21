@@ -1,13 +1,13 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Constants;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 

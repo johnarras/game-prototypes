@@ -1,14 +1,14 @@
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Settings.SpecialMagic;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Settings.SpecialMagic;
 
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class IdentifyItemSpecialMagicHelper : BaseSpecialMagicHelper
     {

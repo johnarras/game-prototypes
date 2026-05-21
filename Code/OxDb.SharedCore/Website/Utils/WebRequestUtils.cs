@@ -1,0 +1,39 @@
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+
+namespace OxDb.SharedCore.Website.Utils
+{
+    public class WebRequestUtils
+    {
+        public static async Task<byte[]> DownloadBytes(string fullURL)
+        {
+            WebClient webClient = new WebClient();
+
+            byte[] buffer = new byte[4096];
+
+            WebRequest request = WebRequest.Create(fullURL);
+
+            using (WebResponse response = request.GetResponse())
+            {
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        int count = 0;
+                        do
+                        {
+                            count = await responseStream.ReadAsync(buffer, 0, buffer.Length);
+                            await memoryStream.WriteAsync(buffer, 0, count);
+
+                        } while (count != 0);
+
+                        return memoryStream.ToArray();
+                    }
+                }
+            }
+        }
+    }
+}
+
+

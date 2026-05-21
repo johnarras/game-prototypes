@@ -1,15 +1,15 @@
-using Genrpg.Shared.Crawler.Buffs.Settings;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Buffs.Settings;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public class RoleInfoHelper : BaseInfoHelper<RoleSettings, Role>
     {

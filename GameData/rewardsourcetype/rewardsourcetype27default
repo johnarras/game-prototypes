@@ -1,0 +1,8 @@
+{
+  "Id": "rewardsourcetype27default",
+  "ParentId": "default",
+  "IdKey": 27,
+  "Name": "HourlyUpdate",
+  "Icon": "HourlyUpdate",
+  "Art": "HourlyUpdate"
+}

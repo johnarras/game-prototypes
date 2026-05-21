@@ -1,15 +1,17 @@
 
 
+using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.CombatFX;
+using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Spells.Settings.Elements;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -22,8 +24,8 @@ namespace Assets.Scripts.Crawler.Combat
 
         const string CombatHitPrefabSuffix = "CombatHit";
 
-        private IAudioService _audioService = null;
         private ICrawlerService _crawlerService = null;
+        protected IClientRandom _rand = null;
 
         public GImage MainImage;
         public GameObject MainImageParent;
@@ -150,14 +152,14 @@ namespace Assets.Scripts.Crawler.Combat
                     ElementType elementType = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(_currText.ElementTypeId);
                     if (elementType != null)
                     {
-                        _audioService.PlaySound(elementType.Art + "Hit");
+                        _dispatcher.Dispatch(new PlaySound(elementType.Art + "Hit"));
 
                         if (ColorUtility.TryParseHtmlString(elementType.Color, out Color color))
                         {
                             _targetColor = color;
                         }
                     }
-                    _audioService.PlaySound(CrawlerAudio.MonsterHit);
+                    _dispatcher.Dispatch(new PlaySound(CrawlerAudio.MonsterHit));
                     if (_combatHits.ContainsKey(elementType.Art))
                     {
                         ShowCombatHitArt(_combatHits[elementType.Art]);
@@ -264,9 +266,9 @@ namespace Assets.Scripts.Crawler.Combat
             _hitImageFrame = 0;
             RectTransform rectTransform = HitImage.GetComponent<RectTransform>();
 
-            float dx = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dx = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand.Rand);
 
-            float dy = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand);
+            float dy = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand.Rand);
 
             float angle = 0;
 
@@ -274,22 +276,22 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 if (dy < 0)
                 {
-                    angle = RandUtils.FloatRange(0, 90, _rand);
+                    angle = RandUtils.FloatRange(0, 90, _rand.Rand);
                 }
                 else
                 {
-                    angle = RandUtils.FloatRange(-90, 0, _rand);
+                    angle = RandUtils.FloatRange(-90, 0, _rand.Rand);
                 }
             }
             else
             {
                 if (dy < 0)
                 {
-                    angle = RandUtils.FloatRange(90, 180, _rand);
+                    angle = RandUtils.FloatRange(90, 180, _rand.Rand);
                 }
                 else
                 {
-                    angle = RandUtils.FloatRange(180, 270, _rand);
+                    angle = RandUtils.FloatRange(180, 270, _rand.Rand);
                 }
             }
 
@@ -298,7 +300,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             rectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
-            rectTransform.localScale = Vector3.one * RandUtils.FloatRange(1, 1 + HitImageSizeDelta, _rand);
+            rectTransform.localScale = Vector3.one * RandUtils.FloatRange(1, 1 + HitImageSizeDelta, _rand.Rand);
         }
     }
 }

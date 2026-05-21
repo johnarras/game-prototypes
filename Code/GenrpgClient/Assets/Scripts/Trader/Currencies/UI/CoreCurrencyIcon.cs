@@ -1,9 +1,9 @@
 using Assets.Scripts.Entities.UI;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Currencies.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.UserEnergy.WebApi;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Currencies.Services;
+using OxDb.SharedGame.UserEnergy.WebApi;
 using System;
 using UnityEngine;
 
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Trader.UI.Currencies
 
             long storage = _coreCurrencyService.GetStorage(_gs.ch, entityId).Result;
             base.SetEntityData(entityTypeId, entityId, currQuantity, storage);
-            FillBar.InitRange(0, storage, currQuantity);
+            FillBar.InitRange(0, currQuantity, storage);
         }
 
         protected override void UpdateQuantity()

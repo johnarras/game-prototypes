@@ -1,10 +1,10 @@
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Services;
-using Genrpg.Shared.Riddles.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Riddles.Services;
+using OxDb.SharedGame.Riddles.Settings;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

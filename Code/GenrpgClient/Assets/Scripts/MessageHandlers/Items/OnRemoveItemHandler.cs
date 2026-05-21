@@ -1,4 +1,4 @@
-using Genrpg.Shared.Inventory.Messages;
+using OxDb.SharedGame.Inventory.Messages;
 
 namespace Assets.Scripts.MessageHandlers.Items
 {

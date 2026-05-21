@@ -1,4 +1,4 @@
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Lockouts.Services

@@ -1,11 +1,11 @@
 
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -547,7 +547,7 @@ public class AddTrees : BaseZoneGenerator
                     }
                 }
 
-                double chanceChosen = _rand.NextDouble();
+                double chanceChosen = _rand.Rand.NextDouble();
 
                 for (int i = 0; i < list.Count; i++)
                 {

@@ -1,19 +1,19 @@
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Constants;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Settings.SpecialMagic;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Settings.SpecialMagic;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public class CleanseAreaSpecialMagicHelper : BaseSpecialMagicHelper
     {

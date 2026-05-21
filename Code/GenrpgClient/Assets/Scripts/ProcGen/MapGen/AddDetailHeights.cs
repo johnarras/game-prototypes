@@ -1,9 +1,9 @@
 
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Threading;
 using UnityEngine;

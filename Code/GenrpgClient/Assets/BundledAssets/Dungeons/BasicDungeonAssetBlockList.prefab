@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5845218472729828621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7722270339302547358}
+  - component: {fileID: 3678439427716396786}
+  m_Layer: 0
+  m_Name: BasicDungeonAssetBlockList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7722270339302547358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845218472729828621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3678439427716396786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845218472729828621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c70f4f13a1c774f9e187510a3a9f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.DungeonAssetBlockList
+  BlockXZSize: 8
+  BlockYSize: 8
+  Blocks:
+  - <Weight>k__BackingField: 1
+    Walls:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2883750128014381245, guid: 17d0dfbdb68d21641a7ff72f83f8feca, type: 3}
+    Floors:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 1600195048490632563, guid: 2c55a4b8a7fe2634ebbf5f8e2b822a80, type: 3}
+    Ceilings:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 8452400089187220458, guid: 2c7e2d2f006d72c40b88a2c4dc478db7, type: 3}
+    Pillars:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2801542127813480670, guid: dd1e5e77c2b66164198721f7e06e0076, type: 3}
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2801542127813480670, guid: b82a2ded27c179f4e91840b2d559cf84, type: 3}
+    Fences:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 6124447883365292776, guid: ffac88f409febab49a7423ba9e59ca04, type: 3}
+    Doors:
+    - {fileID: 7871685332048802339, guid: 186cacde4095cba4abc21011f80d4e9a, type: 3}
+    - {fileID: 7871685332048802339, guid: fb8688e29ef2f8649931ab636405a980, type: 3}
+  - <Weight>k__BackingField: 1000
+    Walls:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2883750128014381245, guid: 17d0dfbdb68d21641a7ff72f83f8feca, type: 3}
+    Floors:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 1600195048490632563, guid: 2c55a4b8a7fe2634ebbf5f8e2b822a80, type: 3}
+    Ceilings:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 8452400089187220458, guid: 2c7e2d2f006d72c40b88a2c4dc478db7, type: 3}
+    Pillars:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2801542127813480670, guid: dd1e5e77c2b66164198721f7e06e0076, type: 3}
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 2801542127813480670, guid: b82a2ded27c179f4e91840b2d559cf84, type: 3}
+    Fences:
+    - <Weight>k__BackingField: 1000
+      Asset: {fileID: 6124447883365292776, guid: ffac88f409febab49a7423ba9e59ca04, type: 3}
+    Doors:
+    - {fileID: 7871685332048802339, guid: 186cacde4095cba4abc21011f80d4e9a, type: 3}
+    - {fileID: 7871685332048802339, guid: fb8688e29ef2f8649931ab636405a980, type: 3}
+  VaultedCeilings:
+  - {fileID: 4091880198250133038, guid: 356477037d4087840acc3ae08dfadd1a, type: 3}
+  - {fileID: 4091880198250133038, guid: afbc361658ef7964ca878ee771da45f3, type: 3}
+  VaultedCeilingChance: 1

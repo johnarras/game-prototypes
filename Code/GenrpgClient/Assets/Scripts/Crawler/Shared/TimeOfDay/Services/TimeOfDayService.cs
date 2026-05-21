@@ -1,24 +1,24 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Buffs.Constants;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Settings;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Buffs.Constants;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Settings;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.TimeOfDay.Services
+namespace OxDb.SharedGame.Crawler.TimeOfDay.Services
 {
     public interface ITimeOfDayService : IInjectable
     {

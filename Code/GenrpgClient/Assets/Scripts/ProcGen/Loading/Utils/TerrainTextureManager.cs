@@ -1,14 +1,14 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -124,7 +124,7 @@ public class TerrainTextureManager : ITerrainTextureManager
         TextureType textureType = _gameData.Get<TextureTypeSettings>(_gs.ch).Get(textureId);
         if (textureType == null)
         {
-            _logService.Message("TextureType is null: TextureId: " + textureId + " Index: " + index);
+            _logService.Info("TextureType is null: TextureId: " + textureId + " Index: " + index);
             textureType = _gameData.Get<TextureTypeSettings>(_gs.ch).Get(1);
         }
 

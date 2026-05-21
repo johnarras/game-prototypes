@@ -1,14 +1,14 @@
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Riddles.Entities;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
+namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 {
     public interface IRiddleTypeHelper : ISetupDictionaryItem<long>
     {

@@ -1,12 +1,12 @@
 using Assets.Scripts.Config;
-using Genrpg.Shared.Client.Contants;
-using Genrpg.Shared.Config.Constants;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.ProcGen.Settings.Names;
-using Genrpg.Shared.Utils;
 using Newtonsoft.Json;
+using OxDb.SharedCore.Client.Contants;
+using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.Names.Entities;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,24 +26,25 @@ namespace RunBuilds
     public class PlayerBuilder
     {
 
-        public static void BuildWithArgs(string env, string gameModeStr, string platformName,
-            bool selfContainedClient, bool isCloudBuild, bool developmentBuild)
+        public static async Awaitable BuildWithArgs(string env, string gameModeStr, string platformName,
+            bool selfContainedClient, bool exportGameData, bool encryptExportedData,
+            bool isCloudBuild, bool developmentBuild)
         {
             Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName,
-                selfContainedClient, developmentBuild);
+                selfContainedClient, exportGameData, encryptExportedData, developmentBuild);
 
             if (isCloudBuild)
             {
-                Task.Run(() => CloudBuildWithEnvVars(dict));
+                await CloudBuildWithEnvVars(dict);
                 // Send dict to Unity to set env vars
                 return;
             }
             else // These should just use environment variables set in the above.
             {
                 SetBuildEnvironmentVariables(dict);
-                PreExport();
-                LocalBuildPlayer();
-                PostExport();
+                await PreExport();
+                await LocalBuildPlayer();
+                await PostExport();
                 ClearBuildEnvironmentVariables();
             }
         }
@@ -83,7 +84,9 @@ namespace RunBuilds
                 BasicAuthToken = authString,
             };
 
-            return await webService.SendRawWebRequest<string>(mainURL, method, requestData, security);
+            ResponseEnvelope<string> responseEnvelope = await webService.SendRawWebRequest<string>(mainURL, method, requestData, security);
+
+            return responseEnvelope.ResponseData;
         }
 
         private static async Awaitable CloudBuildWithEnvVars(Dictionary<string, string> envVars)
@@ -106,7 +109,7 @@ namespace RunBuilds
 
 
         public static Dictionary<string, string> SetupEnvironmentVariableDictionary(string env, string gameModeStr, string platformName,
-            bool selfContainedClient, bool developmentBuild)
+            bool selfContainedClient, bool exportGameData, bool encryptExportedData, bool developmentBuild)
         {
 
             Dictionary<string, string> retval = new Dictionary<string, string>();
@@ -120,6 +123,8 @@ namespace RunBuilds
 
             SetDictionaryValue(ClientBuildVars.ENV, env, retval);
             SetDictionaryValue(ClientBuildVars.SELF_CONTAINED_CLIENT, selfContainedClient.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.EXPORT_GAME_DATA, exportGameData.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.ENCRYPT_EXPORTED_DATA, encryptExportedData.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.GAME_MODE, gameModeStr, retval);
             SetDictionaryValue(ClientBuildVars.WEB_SERVER_URL, kvDict[AppConfigKeys.WebServerURL], retval);
             SetDictionaryValue(ClientBuildVars.CONTENT_ROOT, kvDict[AppConfigKeys.ContentRoot], retval);
@@ -133,6 +138,8 @@ namespace RunBuilds
             SetDictionaryValue(ClientBuildVars.OLD_GAME_MODE, config.GameMode.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.OLD_ENV, config.Env, retval);
             SetDictionaryValue(ClientBuildVars.OLD_SELF_CONTAINED_CLIENT, config.SelfContainedClient.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.OLD_EXPORT_GAME_DATA, config.ExportGameData.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA, config.EncryptExportedData.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.IS_DEVELOPMENT_BUILD, developmentBuild.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.NAMED_BUILD_TARGET, buildData.NamedTarget.TargetName, retval);
             SetDictionaryValue(ClientBuildVars.BUILD_TARGET, buildData.Target.ToString(), retval);
@@ -204,7 +211,7 @@ namespace RunBuilds
             dict.Add(key, val);
         }
 
-        public static void PreExport()
+        public static async Awaitable PreExport()
         {
             Debug.Log("PreExport 1");
             string env = GetVar(ClientBuildVars.ENV);
@@ -278,7 +285,7 @@ namespace RunBuilds
 
             string clientPlatform = GetVar(ClientBuildVars.CLIENT_PLATFORM);
 
-            BundleVersions currentBundleVersions = CreateAssetBundles.CreateBundles(clientPlatform, env, true,
+            BundleVersions currentBundleVersions = await CreateAssetBundles.CreateBundles(clientPlatform, gameModeStr, env, true,
                 true);
 
             string bundleOutputPath = GetVar(ClientBuildVars.BUNDLE_OUTPUT_PATH);
@@ -311,12 +318,11 @@ namespace RunBuilds
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Debug.Log("PreExport 99");
         }
 
-        public static void LocalBuildPlayer()
+        public static async Awaitable LocalBuildPlayer()
         {
-
+            await Task.CompletedTask;
             Debug.Log("LocalBuild 1");
             List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
 
@@ -352,7 +358,7 @@ namespace RunBuilds
         }
 
 
-        public static void PostExport()
+        public static async Awaitable PostExport()
         {
 
             for (int i = 0; i < EditorSceneManager.sceneCount; i++)
@@ -370,6 +376,8 @@ namespace RunBuilds
 
             config.Env = GetVar(ClientBuildVars.OLD_ENV);
             config.SelfContainedClient = bool.Parse(GetVar(ClientBuildVars.OLD_SELF_CONTAINED_CLIENT));
+            config.ExportGameData = bool.Parse(GetVar(ClientBuildVars.OLD_EXPORT_GAME_DATA));
+            config.EncryptExportedData = bool.Parse(GetVar(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA));
             config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.OLD_GAME_MODE));
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
@@ -410,12 +418,12 @@ namespace RunBuilds
             File.WriteAllText(versionFilePath, String.Empty);
             File.WriteAllText(versionFilePath, version.ToString());
             string localVersionPath = dataPath + "/../" + versionFilePath;
-            string remoteVersionPath = PatcherUtils.GetPatchClientPrefix(gameModeStr, env, platformString, version) + PatcherUtils.GetPatchVersionFilename();
 
             Debug.Log("Version: " + version);
 
             Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient}");
 
+            await Task.CompletedTask;
         }
 
         private static string GetVar(string key)
@@ -440,9 +448,12 @@ namespace RunBuilds
             string worldsEnv = config.WorldsEnv ?? env;
             string gameModeStr = config.GameMode.ToString();
             bool selfContainedClient = config.SelfContainedClient;
+            bool exportGameData = config.ExportGameData;
+            bool encryptExportedData = config.EncryptExportedData;
             string platformName = ClientPlatformNames.Win;
 
-            Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName, selfContainedClient, false);
+            Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName, selfContainedClient,
+                exportGameData, encryptExportedData, false);
 
             dict[ClientBuildVars.ASSETS_ENV] = assetEnv;
             dict[ClientBuildVars.WORLDS_ENV] = worldsEnv;

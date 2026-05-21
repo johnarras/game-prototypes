@@ -1,15 +1,15 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Input;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Combat.Messages;
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Pathfinding.Services;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Combat.Messages;
+using OxDb.SharedGame.Input.PlayerData;
+using OxDb.SharedGame.Pathfinding.Services;
+using OxDb.SharedGame.Spells.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -20,7 +20,6 @@ public class UnitController : BaseBehaviour
     protected IClientMapObjectManager _objectManager = null;
     protected IMapTerrainManager _terrainManager = null;
     protected IPathfindingService _pathfindingService = null;
-    protected IInputService _inputService = null;
     protected IPlayerManager _playerManager = null;
     protected IClientAppService _clientAppService = null;
     protected IKeyboardService _keyboardService = null;
@@ -153,7 +152,7 @@ public class UnitController : BaseBehaviour
             return;
         }
 
-        float delta = _inputService.GetDeltaTime();
+        float delta = _clientAppService.GetDeltaTime();
         float targetDeltaTime = 1.0f / _clientAppService.TargetFrameRate;
         delta = targetDeltaTime;
 
@@ -232,7 +231,7 @@ public class UnitController : BaseBehaviour
             }
         }
 
-        Vector3 diff = (endPos - startPos) / _inputService.GetDeltaTime();
+        Vector3 diff = (endPos - startPos) / _clientAppService.GetDeltaTime();
         if (cc != null && diff.magnitude > 0)
         {
             cc.SimpleMove(diff);

@@ -1,9 +1,9 @@
 
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.ProcGen.Settings.Rocks;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.ProcGen.Settings.Rocks;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 

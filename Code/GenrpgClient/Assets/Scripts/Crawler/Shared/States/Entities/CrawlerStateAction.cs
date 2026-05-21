@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Constants;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.Entities
+namespace OxDb.SharedGame.Crawler.States.Entities
 {
     public class CrawlerStateAction
     {

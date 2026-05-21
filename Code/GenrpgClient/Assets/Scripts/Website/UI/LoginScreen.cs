@@ -1,9 +1,9 @@
 
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.Accounts.WebApi.Login;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedPlatform.Accounts.WebApi.Login;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +14,6 @@ public class LoginScreen : ErrorMessageScreen
     public GInputField PasswordInput;
     public GButton LoginButton;
     public GButton SignupButton;
-    public GText ErrorText;
 
     protected IClientAuthService _loginService = null;
     protected IRepositoryService _repoService = null;
@@ -22,15 +21,12 @@ public class LoginScreen : ErrorMessageScreen
     protected IClientCryptoService _clientCryptoService = null;
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
+        await base.OnStartOpen(data, token);
         _uiService.SetButton(LoginButton, GetName(), ClickLogin);
         _uiService.SetButton(SignupButton, GetName(), ClickSignup);
 
-        await Task.CompletedTask;
-    }
 
-    public override void ShowError(string errorMessage)
-    {
-        _uiService.SetText(ErrorText, errorMessage);
+        await Task.CompletedTask;
     }
 
     public void ClickSignup()

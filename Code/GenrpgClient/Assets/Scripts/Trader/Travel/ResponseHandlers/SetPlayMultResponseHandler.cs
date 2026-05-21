@@ -1,5 +1,5 @@
 using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.PlayMultiplier.WebApi;
+using OxDb.SharedGame.PlayMultiplier.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

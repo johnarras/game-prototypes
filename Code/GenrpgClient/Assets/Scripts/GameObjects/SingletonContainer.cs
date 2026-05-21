@@ -1,5 +1,5 @@
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

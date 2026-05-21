@@ -1,5 +1,5 @@
 using Assets.Scripts.Awaitables;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using UnityEngine;
 
@@ -85,7 +85,7 @@ public class ProgressBar : BaseBehaviour
     /// <param name="currValue"></param>
     /// <param name="textOpt"></param>
     /// <param name="fillTicks"></param>
-    public void InitRange(long minValue, long maxValue, long currValue)
+    public void InitRange(long minValue, long currValue, long maxValue)
     {
         _minValue = minValue;
         _maxValue = maxValue;

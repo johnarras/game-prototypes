@@ -1,4 +1,4 @@
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Units.Entities;
 
 using UnityEngine;
 

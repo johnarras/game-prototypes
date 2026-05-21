@@ -1,19 +1,17 @@
-﻿using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.CaravanMembers.Services;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Trader.Cities.Settings;
-using Genrpg.Shared.Trader.Cultures.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.Entities;
-using Genrpg.Shared.Trader.CurrencySpend.Services;
-using Genrpg.Shared.Trader.CurrencySpend.Settings;
-using Genrpg.Shared.Trader.CurrencySpend.WebApi;
+﻿using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
+using OxDb.SharedGame.Trader.Cultures.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.Entities;
+using OxDb.SharedGame.Trader.CurrencySpend.Services;
+using OxDb.SharedGame.Trader.CurrencySpend.Settings;
+using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Trader.Currencies.UI
 {
@@ -76,7 +74,7 @@ namespace Assets.Scripts.Trader.Currencies.UI
             }
             else if (pos.TargetCity != null)
             {
-                namedCity = pos.TargetCity; 
+                namedCity = pos.TargetCity;
             }
 
             if (namedCity != null)

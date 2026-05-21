@@ -1,10 +1,10 @@
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.UnitEffects.Settings;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
 {
     public class StatusEffectSpellEffectHelper : BaseSpellEffectHelper
     {

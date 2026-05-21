@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Constants;
 using System;
 
 using System.Threading;

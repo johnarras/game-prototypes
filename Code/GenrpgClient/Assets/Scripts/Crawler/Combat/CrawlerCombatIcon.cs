@@ -2,12 +2,12 @@ using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using Assets.Scripts.UI.CombatTexts;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.UnitEffects.Constants;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.Combat
         public GText Name;
         public GText Quantity;
         public GText Dist;
-        public CombatGroup Group;
+        public CombatGroup Group { get; set; }
         public GButton Button;
         public CombatGroupHealthUI HealthUI;
 
@@ -121,7 +121,7 @@ namespace Assets.Scripts.Crawler.Combat
                 return;
             }
 
-            _dispatcher.Dispatch(new ShowInfoPanelEvent() { EntityTypeId = EntityTypes.Unit, EntityId = Group.UnitType.IdKey });
+            _dispatcher.Dispatch(new ShowInfoPanelArgs() { EntityTypeId = EntityTypes.Unit, EntityId = Group.UnitType.IdKey });
         }
 
         public void OnPointerExit(PointerEventData eventData)

@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Levelup"
+  "Name": "LevelUp",
+  "Icon": "LevelUp",
+  "Art": "LevelUp"
 }

@@ -1,5 +1,5 @@
-using Genrpg.Shared.MapMods.MapObjects;
-using Genrpg.Shared.MapObjects.Messages;
+using OxDb.SharedGame.MapMods.MapObjects;
+using OxDb.SharedGame.MapObjects.Messages;
 
 namespace Assets.Scripts.GroundObjects
 {

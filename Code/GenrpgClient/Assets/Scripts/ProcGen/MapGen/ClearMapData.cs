@@ -1,6 +1,6 @@
 
 using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Entities;
 using System;
 using System.IO;
 using System.Threading;

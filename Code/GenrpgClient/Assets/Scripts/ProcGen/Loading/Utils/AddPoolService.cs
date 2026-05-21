@@ -1,9 +1,9 @@
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.ProcGen.Settings.MapWater;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.ProcGen.Settings.MapWater;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
 using System.Collections.Generic;
 using System.Linq;
 

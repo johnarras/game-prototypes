@@ -1,4 +1,4 @@
-namespace Genrpg.Shared.Crawler.States.Entities
+namespace OxDb.SharedGame.Crawler.States.Entities
 {
     public class CrawlerStateWithAction
     {

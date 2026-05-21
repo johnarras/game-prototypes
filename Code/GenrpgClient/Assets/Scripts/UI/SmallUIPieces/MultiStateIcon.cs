@@ -1,6 +1,6 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Inventory.Constants;
+using OxDb.SharedGame.Inventory.Constants;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.UI.SmallUIPieces

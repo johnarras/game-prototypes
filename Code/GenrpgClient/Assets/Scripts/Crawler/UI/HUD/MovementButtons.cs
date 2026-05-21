@@ -1,6 +1,8 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
+using Assets.Scripts.Crawler.Shared.GameEvents;
+using Assets.Scripts.UI.Animations;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,24 +24,35 @@ namespace Assets.Scripts.Crawler.UI.HUD
         {
             base.Init();
 
-            SetupMovementKey(TurnLeftButton);
-            SetupMovementKey(ForwardButton);
-            SetupMovementKey(TurnRightButton);
-            SetupMovementKey(StrafeLeftButton);
-            SetupMovementKey(BackButton);
-            SetupMovementKey(StrafeRightButton);
+            _dispatcher.AddListener<SetupMovementButtons>(OnSetupMovementButtons, GetToken());
+            SetupMovementKeys(false);
         }
 
-        private void SetupMovementKey(GButton button)
+
+        private void OnSetupMovementButtons(SetupMovementButtons setup)
+        {
+            SetupMovementKeys(true);
+        }
+
+        public void SetupMovementKeys(bool setupCodesNow)
+        {
+
+
+            IReadOnlyList<MovementKeyCode> keys = _moveService.GetMovementKeyCodes(setupCodesNow);
+            SetupMovementKey(TurnLeftButton, MovementKeyNames.TurnLeft, keys);
+            SetupMovementKey(ForwardButton, MovementKeyNames.Forward, keys);
+            SetupMovementKey(TurnRightButton, MovementKeyNames.TurnRight, keys);
+            SetupMovementKey(StrafeLeftButton, MovementKeyNames.StrafeLeft, keys);
+            SetupMovementKey(BackButton, MovementKeyNames.Backward, keys);
+            SetupMovementKey(StrafeRightButton, MovementKeyNames.StrafeRight, keys);
+        }
+
+        private void SetupMovementKey(GButton button, string codeName, IReadOnlyList<MovementKeyCode> keys)
         {
             if (button == null)
             {
                 return;
             }
-
-            IReadOnlyList<MovementKeyCode> keys = _moveService.GetMovementKeyCodes();
-
-            string codeName = button.name.Replace("Button", "");
 
             MovementKeyCode kc = keys.FirstOrDefault(x => x.Name == codeName);
 
@@ -52,6 +65,13 @@ namespace Assets.Scripts.Crawler.UI.HUD
                         _moveService.AddMovementKeyInput(kc.Key, GetToken());
                     }
                 });
+
+                ButtonKeyListener listener = _clientEntityService.GetComponent<ButtonKeyListener>(button);
+
+                if (listener != null)
+                {
+                    listener.SetKey(kc.Key);
+                }
             }
         }
     }

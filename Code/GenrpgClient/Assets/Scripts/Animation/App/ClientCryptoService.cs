@@ -1,5 +1,5 @@
 using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System;
 using System.Security.Cryptography;
 using System.Text;

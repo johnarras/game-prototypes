@@ -1,6 +1,6 @@
 
-using Genrpg.Shared.Rewards.Messages;
-using Genrpg.Shared.Rewards.Services;
+using OxDb.SharedGame.Rewards.Messages;
+using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace Assets.Scripts.MessageHandlers.Currency
                 return;
             }
 
-            await _rewardService.GiveReward(_gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, null, 0, null);
+            await _rewardService.GiveReward(_gs.ch, msg.EntityTypeId, msg.EntityId, msg.Quantity, msg.RewardSourceId, null, 0, null);
             _dispatcher.Dispatch(msg);
         }
     }

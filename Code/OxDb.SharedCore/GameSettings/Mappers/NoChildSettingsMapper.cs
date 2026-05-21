@@ -1,0 +1,29 @@
+using MessagePack;
+using OxDb.SharedCore.DataStores.Constants;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using System;
+
+namespace OxDb.SharedCore.GameSettings.Mappers
+{
+    public abstract class NoChildSettingsMapper<TServer, TDto> : IGameSettingsMapper where TServer : NoChildSettings, new()
+        where TDto : NoChildSettingsDto<TServer>, new()
+    {
+        public virtual Version GetMinClientVersion() { return VersionConstants.MinVersion; }
+        public virtual Version GetMaxClientVersion() { return VersionConstants.MaxVersion; }
+        [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
+        public virtual Type GetClientType() { return typeof(TDto); }
+        public virtual bool SendToClient() { return true; }
+
+        public virtual ITopLevelSettings MapToDto(ITopLevelSettings settings, bool simplify)
+        {
+            TDto dto = new TDto();
+            TServer server = settings as TServer;
+            dto.Parent = server;
+            return dto;
+        }
+
+    }
+}
+
+

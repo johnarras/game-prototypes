@@ -24,7 +24,6 @@
     <None Remove="DataView.xaml" />
     <None Remove="DataWindow.xaml" />
     <None Remove="FindUserView.xaml" />
-    <None Remove="GeminiApiWindow.xaml" />
     <None Remove="ImportWindow.xaml" />
     <None Remove="NewMainPage.xaml" />
     <None Remove="SmallPopup.xaml" />
@@ -103,12 +102,7 @@
     <PRIResource Remove="Properties\PublishProfiles\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Genrpg.DataUtils\Genrpg.DataUtils.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="GeminiApiWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <ProjectReference Include="..\OxDb.DataUtils\OxDb.DataUtils.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="NewMainPage.xaml">

@@ -1,7 +1,7 @@
 using Assets.Scripts.Core;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapMessages.Interfaces;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.MapMessages.Interfaces;
 using System;
 using System.Threading;
 using UnityEngine;

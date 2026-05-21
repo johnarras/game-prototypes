@@ -1,9 +1,9 @@
 using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Core.Interfaces;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System.Threading;
 
-namespace Genrpg.Shared.Crawler.TextureLists.Services
+namespace OxDb.SharedGame.Crawler.TextureLists.Services
 {
 
     public delegate void DownloadTextureListHandler(object textureList, object data);

@@ -1,16 +1,17 @@
+using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Core;
 using ClientEvents;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Settings.Qualities;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.Quests.Constants;
-using Genrpg.Shared.Quests.Entities;
-using Genrpg.Shared.Quests.PlayerData;
-using Genrpg.Shared.Quests.Services;
-using Genrpg.Shared.Quests.WorldData;
-using Genrpg.Shared.Rewards.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Settings.Qualities;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.Quests.Constants;
+using OxDb.SharedGame.Quests.Entities;
+using OxDb.SharedGame.Quests.PlayerData;
+using OxDb.SharedGame.Quests.Services;
+using OxDb.SharedGame.Quests.WorldData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -21,6 +22,7 @@ public class QuestInfoUI : BaseBehaviour
 
     protected ISharedQuestService _questService = null;
     protected IIconService _iconService = null;
+    protected IClientRandom _rand = null;
 
     public const string ScreenTaskPrefab = "QuestScreenTaskRow";
     public const string HUDTaskPrefab = "QuestHUDTaskRow";
@@ -68,7 +70,7 @@ public class QuestInfoUI : BaseBehaviour
         }
         string rowPrefabName = GetTaskRowPrefabName();
 
-        int state = _questService.GetQuestState(_rand, _gs.ch, _qtype);
+        int state = _questService.GetQuestState(_rand.Rand, _gs.ch, _qtype);
 
         string nameText = _qtype.Name;
 
@@ -98,7 +100,7 @@ public class QuestInfoUI : BaseBehaviour
         }
 
 
-        List<Reward> rewards = _questService.GetRewards(_rand, _gs.ch, _qtype, false);
+        List<Reward> rewards = _questService.GetRewards(_rand.Rand, _gs.ch, _qtype, false);
 
         Reward expReward = rewards.FirstOrDefault(x => x.EntityTypeId == EntityTypes.CharCurrency && x.EntityId == CharCurrencyTypes.Exp);
         if (expReward != null)
@@ -188,7 +190,7 @@ public class QuestInfoUI : BaseBehaviour
             return;
         }
 
-        int state = _questService.GetQuestState(_rand, _gs.ch, quest);
+        int state = _questService.GetQuestState(_rand.Rand, _gs.ch, quest);
 
         if (state == QuestState.Complete)
         {

@@ -1,6 +1,7 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.TextureLists.Services;
-using Genrpg.Shared.Crawler.TextureLists.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.TextureLists.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Textures
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Assets.Textures
     {
 
         private ITextureListCache _textureListCache;
+        protected IClientRandom _rand = null;
 
         private CachedSpriteList _cachedSpriteList;
 
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Assets.Textures
 
         public bool ShowSequence = false;
         public int FramesBetweenSequenceStep = 2;
+        public float InitialFrameTimeScale = 1.0f;
 
         const float ChangeToBaseFrameChance = 0.2f;
 
@@ -72,9 +75,6 @@ namespace Assets.Scripts.Assets.Textures
                 }
                 ShowTextureFrame(0);
                 _downloadingSpriteName = null;
-
-
-
             }
         }
 
@@ -114,15 +114,15 @@ namespace Assets.Scripts.Assets.Textures
             {
                 if (!OnlyShowFirstFrame)
                 {
-                    if (_currentImageFrame > 0 && _rand.NextDouble() < ChangeToBaseFrameChance)
+                    if (_currentImageFrame > 0 && _rand.Rand.NextDouble() < ChangeToBaseFrameChance)
                     {
                         ShowTextureFrame(0);
                         return;
                     }
 
-                    if (_currentImageFrame == 0 && _rand.NextDouble() < ChangeToBaseFrameChance)
+                    if (_currentImageFrame == 0 && _rand.Rand.NextDouble() < ChangeToBaseFrameChance)
                     {
-                        ShowTextureFrame(RandUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand));
+                        ShowTextureFrame(RandUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand.Rand));
                         return;
                     }
                 }
@@ -138,8 +138,14 @@ namespace Assets.Scripts.Assets.Textures
                     return;
                 }
 
+
+                int currFrames = FramesBetweenSequenceStep;
+                if (_currentImageFrame == 0 && InitialFrameTimeScale > 1)
+                {
+                    currFrames = (int)(InitialFrameTimeScale * currFrames);
+                }
                 _ticksBetweenFrameUpdate++;
-                if (_ticksBetweenFrameUpdate >= FramesBetweenSequenceStep)
+                if (_ticksBetweenFrameUpdate >= currFrames)
                 {
                     _currentImageFrame++;
                     if (_currentImageFrame >= _cachedSpriteList.SpriteList.Sprites.Count)

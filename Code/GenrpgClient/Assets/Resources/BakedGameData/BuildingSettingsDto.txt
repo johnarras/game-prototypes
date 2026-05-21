@@ -12,7 +12,6 @@
       "Name": "Guard Tower",
       "Icon": "GuardTower",
       "Art": "GuardTower",
-      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
@@ -68,7 +67,6 @@
       "Name": "Dungeon",
       "Icon": "Dungeon",
       "Art": "Dungeon",
-      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
@@ -76,7 +74,6 @@
       "Name": "City",
       "Icon": "City",
       "Art": "City",
-      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
@@ -84,7 +81,6 @@
       "Name": "Npc",
       "Icon": "Npc",
       "Art": "Npc",
-      "IsCrawlerBuilding": true,
       "ShowNameplate": true
     },
     {
@@ -114,5 +110,5 @@
     "Name": "BuildingSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-23T19:57:26.207Z"
+  "SaveTime": "2026-04-10T23:31:04.841Z"
 }

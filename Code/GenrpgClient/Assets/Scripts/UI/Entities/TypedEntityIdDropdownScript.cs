@@ -1,6 +1,6 @@
-using Genrpg.Shared.DataStores.Categories.GameSettings;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 

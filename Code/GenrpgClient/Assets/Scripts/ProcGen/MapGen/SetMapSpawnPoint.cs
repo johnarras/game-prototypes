@@ -1,7 +1,7 @@
 
 
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 

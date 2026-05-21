@@ -1,22 +1,22 @@
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Entities;
-using Genrpg.Shared.Crawler.Quests.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Units.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Quests.Entities;
+using OxDb.SharedGame.Crawler.Quests.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Units.Settings;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.NpcsQuests
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.NpcsQuests
 {
     public class NpcMainStateHelper : BuildingStateHelper
     {

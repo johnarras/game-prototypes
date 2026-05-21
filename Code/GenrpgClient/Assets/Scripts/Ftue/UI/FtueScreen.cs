@@ -1,7 +1,8 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Ftue.Constants;
-using Genrpg.Shared.Ftue.Services;
-using Genrpg.Shared.Ftue.Settings.Steps;
+using OxDb.SharedGame.Ftue.Constants;
+using OxDb.SharedGame.Ftue.Services;
+using OxDb.SharedGame.Ftue.Settings.Steps;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Assets.Scripts.UI.Blockers
     public class FtueScreen : BlockerScreen
     {
         protected IFtueService _ftueService = null;
+        protected IClientRandom _rand = null;
 
         public GameObject CircleMask;
 
@@ -122,7 +124,7 @@ namespace Assets.Scripts.UI.Blockers
 
         private void OnClickBackground()
         {
-            _ftueService.CompleteStep(_rand, _gs.ch, _step.IdKey);
+            _ftueService.CompleteStep(_rand.Rand, _gs.ch, _step.IdKey);
             StartClose();
         }
     }

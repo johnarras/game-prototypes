@@ -1,19 +1,17 @@
-﻿using Assets.Scripts.Assets.Materials;
+﻿using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Dungeons;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.ProcGen.Services;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.ProcGen.Services;
+using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -159,30 +157,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 {
                     continue;
                 }
-
-                if (mapRoot.MaterialBlocks.TryGetValue(zoneTypeId, out MaterialBlock zoneBlock))
-                {
-                    List<MaterialOption> floorMats = zoneBlock.FinalMaterials.GetMaterials(DungeonMaterialIndexes.Floors);
-                    if (floorMats != null && floorMats.Count > 0)
-                    {
-                        long matSeed = world.Seed + zoneTypeId * 37 + mapRoot.Map.IdKey * 59;
-
-                        MaterialOption finalMat = floorMats[(int)matSeed % floorMats.Count];
-
-                        if (finalMat.Mat != null)
-                        {
-                            CrawlerTerrainIndexData floorIndexData = new CrawlerTerrainIndexData()
-                            {
-                                ZoneTypeId = zoneTypeId,
-                            };
-
-                            SetIndexTextures(floorIndexData, MaterialUtils.GetMainTexture(finalMat.Mat), MaterialUtils.GetNormalMap(finalMat.Mat));
-                            finalIndexes.Add(floorIndexData);
-                            continue;
-                        }
-                    }
-                }
-
                 long textureTypeId = ztype.BaseTextureTypeId;
 
                 TextureType ttype = textureSettings.Get(textureTypeId);

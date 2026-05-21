@@ -1,0 +1,13 @@
+namespace OxDb.SharedGame.MapObjects.MapObjectAddons.Constants
+{
+    public class MapObjectAddonTypes
+    {
+        public const long None = 0;
+        public const long Vendor = 1;
+        public const long Quest = 2;
+        public const long MapMod = 3;
+        public const long DynamicSpawn = 4;
+    }
+}
+
+

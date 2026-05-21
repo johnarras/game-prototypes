@@ -1,8 +1,10 @@
 
 using Assets.Scripts.Options.Services;
-using Genrpg.Shared.Client.Contants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Client.Contants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.DataStores.Utils;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,6 +34,8 @@ public interface IClientAppService : IInitializable, IExplicitInject
     bool IsFullScreen();
     void SetFullScreen(bool isFullScreen);
     void ShowCurrentScreenState();
+    float GetDeltaTime();
+    float TotalElapsedTime();
 }
 
 
@@ -41,6 +45,7 @@ public class ClientAppService : IClientAppService
 
     protected ILogService _logService = null;
     protected IClientOptionsService _optionsService = null;
+    private IClientConfigContainer _configContainer = null;
 
     public ClientAppService(ILogService logService)
     {
@@ -74,6 +79,7 @@ public class ClientAppService : IClientAppService
     public bool IsEditor => Application.isEditor;
 
 
+    private DateTime _startTime = DateTime.UtcNow;
 
 
     public async Task Initialize(CancellationToken token)
@@ -111,8 +117,7 @@ public class ClientAppService : IClientAppService
             return _runtimePrefix;
         }
 
-        string prefix = GetPlatformName();
-        _runtimePrefix = Version + "/" + prefix + "/";
+        _runtimePrefix = BlobUtils.GetBlobSubfolder(_configContainer.Config.Env, Version, GetPlatformName());
         return _runtimePrefix;
     }
 
@@ -189,6 +194,16 @@ public class ClientAppService : IClientAppService
             SetupScreen(options.ScreenWidth, options.ScreenHeight, false, Screen.orientation == ScreenOrientation.LandscapeLeft, QualitySettings.vSyncCount);
         }
         _optionsService.SaveOptions();
+    }
+
+    public float GetDeltaTime()
+    {
+        return Time.deltaTime;
+    }
+
+    public float TotalElapsedTime()
+    {
+        return (float)(DateTime.UtcNow - _startTime).TotalSeconds;
     }
 }
 

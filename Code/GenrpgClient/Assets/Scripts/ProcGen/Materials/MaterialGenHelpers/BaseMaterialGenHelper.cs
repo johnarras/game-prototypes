@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.ProcGen.Materials.Constants;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.ProcGen.Services;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.ProcGen.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
@@ -19,5 +19,13 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
         public abstract EMaterialGenTypes HelperKey { get; }
         public abstract Awaitable<Texture2D> GenerateTexture(MaterialGenState state);
+
+
+        protected Texture2D CreateTexture(int width, int height)
+        {
+            Texture2D tex = new Texture2D(width, height, TextureFormat.RGBAFloat, false, true, true);
+            tex.filterMode = FilterMode.Point;
+            return tex;
+        }
     }
 }

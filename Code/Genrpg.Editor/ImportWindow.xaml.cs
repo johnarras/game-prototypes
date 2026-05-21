@@ -1,17 +1,14 @@
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Entities.Core;
-using Genrpg.DataUtils.Importers;
-using Genrpg.DataUtils.Interfaces;
-using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.Utils;
-using Microsoft.VisualBasic;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Importers;
+using OxDb.DataUtils.Interfaces;
+using OxDb.DataUtils.Utils;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -26,8 +23,9 @@ namespace Genrpg.Editor
     {
         const int _topPadding = 50;
 
-        private string _prefix;
+        private string _productName;
         private string _env;
+        private List<IInjectable> _initialServices = null;
 
         private List<IDataImporter> _importers = null;
 
@@ -44,15 +42,16 @@ namespace Genrpg.Editor
             public string Name { get; set; }
         }
 
-        public ImportWindow(string env)
+        public ImportWindow(List<IInjectable> initialServices, string productName, string env)
         {
+            _productName = productName;
             _env = env;
+            _initialServices = initialServices;
             Content = _canvas;
-            _prefix = Game.Prefix;
             int buttonCount = 0;
 
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _prefix, getButtonWidth(), getButtonHeight(),
+            UIHelper.CreateLabel(this, ELabelTypes.Default, _productName + "Label", _productName, getButtonWidth(), getButtonHeight(),
                 getLeftRightPadding(), getTopBottomPadding(), 20);
             buttonCount++;
 
@@ -64,7 +63,7 @@ namespace Genrpg.Editor
             _importers = new List<IDataImporter>();
             foreach (Type importType in importTypes)
             {
-                _importers.Add((IDataImporter)EntityUtils.DefaultConstructor(importType));
+                _importers.Add((IDataImporter)reflectionService.DefaultConstructor(importType));
             }
 
             _importers = _importers.OrderBy(x => x.HelperKey.Name).ToList();
@@ -144,9 +143,9 @@ namespace Genrpg.Editor
 
             DispatcherQueue.TryEnqueue(async () =>
             {
-                ISmallPopup form = await ShowBlockingDialog(StrUtils.SplitOnCapitalLetters("Importing " + importer.GetType().Name.Replace("Importer","")));
+                ISmallPopup form = await ShowBlockingDialog(StrUtils.SplitOnCapitalLetters("Importing " + importer.GetType().Name.Replace("Importer", "")));
                 EditorDataSetup eds = new EditorDataSetup();
-                await eds.SetupGameState(this, _env, true, "Data", async (gs,gds, token) => { await ImportDataAsync(gs, importer); });
+                await eds.SetupEditorServer(this, _initialServices, _env, true, "Data", async (server, gs, gds, token) => { await ImportDataAsync(gs, importer); });
                 form.StartClose();
             });
         }

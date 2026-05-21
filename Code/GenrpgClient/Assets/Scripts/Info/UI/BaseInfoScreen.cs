@@ -1,7 +1,8 @@
 using Assets.Scripts.Assets;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
+using Assets.Scripts.ClientEvents;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Info.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Info.UI
         public InfoPanel InfoPanel;
         public GText ListText;
 
-        protected List<InfoOverviewPage> _overviewPages = new List<InfoOverviewPage>();
+        protected List<ShowInfoPanelArgs> _overviewPages = new List<ShowInfoPanelArgs>();
 
         protected abstract string OverviewPath { get; }
 
@@ -73,7 +74,7 @@ namespace Assets.Scripts.Info.UI
 
                 _uiService.SetText(text, idname.Name);
 
-                _uiService.AddPointerHandlers(text, (GameObject go) => { InfoPanel.ShowInfo(entityTypeId, idname.IdKey); }, (GameObject go) => { });
+                _uiService.AddPointerHandlers(text, (GameObject go) => { InfoPanel.ShowEntityInfo(entityTypeId, idname.IdKey, EInfoPanelDisplayReason.Pointer); }, (GameObject go) => { });
 
             }
         }
@@ -103,17 +104,22 @@ namespace Assets.Scripts.Info.UI
                 _clientEntityService.AddToParent(text, ListAnchor);
                 _uiService.SetText(text, _overviewPages[p].Header);
 
-                List<string> lines = _overviewPages[p].Lines;
+
+                ShowInfoPanelArgs args = new ShowInfoPanelArgs()
+                {
+                    Lines = _overviewPages[p].Lines
+                };
+
                 _uiService.AddPointerHandlers(text, (GameObject go) =>
                 {
-                    InfoPanel.ShowLines(lines);
+                    InfoPanel.ShowLines(args, EInfoPanelDisplayReason.Pointer);
                 },
                 (GameObject go) => { });
             }
 
             if (_overviewPages.Count > 0)
             {
-                InfoPanel.ShowLines(_overviewPages[0].Lines);
+                InfoPanel.ShowLines(_overviewPages[0], EInfoPanelDisplayReason.Click);
             }
         }
     }

@@ -1,11 +1,12 @@
-using Genrpg.InstanceServer;
-using Genrpg.MapServer.MainServer;
-using Genrpg.MonsterServer;
-using Genrpg.PlayerServer;
-using Genrpg.ServerShared.Config;
-using Genrpg.ServerShared.MainServer;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.InstanceServer.Setup;
+using OxDb.MapServer.MainServer;
+using OxDb.MonsterServer.Setup;
+using OxDb.PlayerServer.Setup;
+using OxDb.ServerCore.MainServer;
+using OxDb.ServerCore.Setup;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.Utils;
+using System.Diagnostics;
 
 namespace Genrpg.GameServer
 {
@@ -18,9 +19,10 @@ namespace Genrpg.GameServer
     {
         static async Task Main(string[] args)
         {
+            DotNetServiceConfiguration.SetupServiceInstances(null, GameComponentNames.GameServer);
+
             await new GameServer().RunGame();
         }
-
     }
 
     public class GameServer
@@ -29,22 +31,22 @@ namespace Genrpg.GameServer
         private CancellationTokenSource _serverTokenSource = new CancellationTokenSource();
         public async Task RunGame()
         {
-            IServerConfig serverConfig = null;
-            ILogService serverLogger = null;
             try
             {
-                serverConfig = await new ConfigSetup().SetupServerConfig(_serverTokenSource.Token, "GameServer", "");
-
                 InstanceServerMain instanceServer = new InstanceServerMain();
-                await instanceServer.Init(_serverTokenSource.Token);
+                ServerInitArgs basicArgs = new ServerInitArgs()
+                {
+                    Token = _serverTokenSource.Token,
+                };
+                await instanceServer.Init(basicArgs);
                 _servers.Add(instanceServer);
 
                 PlayerServerMain playerServer = new PlayerServerMain();
-                await playerServer.Init(_serverTokenSource.Token);
+                await playerServer.Init(basicArgs);
                 _servers.Add(playerServer);
 
                 MonsterServerMain monsterServer = new MonsterServerMain();
-                await monsterServer.Init(_serverTokenSource.Token);
+                await monsterServer.Init(basicArgs);
                 _servers.Add(monsterServer);
 
                 int serverCount = 2;
@@ -55,14 +57,20 @@ namespace Genrpg.GameServer
                     {
                         MapServerCount = serverCount,
                         MapServerIndex = i,
-                        MapServerId = HashUtils.NewGuid(),
+                        MapServerName = HashUtils.NewGuid(),
                         StartPort = 4000 + 100 * i,
                         MapIds = new List<string>(),
                     };
 
                     MapServerMain mapServer = new MapServerMain();
 
-                    await mapServer.Init(_serverTokenSource.Token, initServerData);
+                    ServerInitArgs mapArgs = new ServerInitArgs()
+                    {
+                        Token = _serverTokenSource.Token,
+                        Data = initServerData,
+                    };
+
+                    await mapServer.Init(mapArgs);
 
                     _servers.Add(mapServer);
 
@@ -75,7 +83,7 @@ namespace Genrpg.GameServer
             }
             catch (Exception ex)
             {
-                serverLogger?.Exception(ex, "RunGame");
+                Trace.TraceError("GameServerInitException: " + ex.Message + " " + ex.StackTrace);
             }
         }
     }

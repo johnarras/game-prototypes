@@ -1,13 +1,13 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +32,14 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
             StatType statType = okStats[positionHash % okStats.Count];
 
-            LoadPropAtCell(mapRoot, cell, statType.Art, x, z, statType, token);
+            CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
+            {
+                MapRoot = mapRoot,
+                Cell = cell,
+                Data = statType,
+            };
+
+            _mapService.LoadProp(loadData, "StatCauldron", token);
             await Task.CompletedTask;
         }
 
@@ -42,11 +49,5 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             moveStatus.MoveIsComplete = true;
             await Task.CompletedTask;
         }
-
-        protected override void AfterDownloadProp(GameObject prop, CrawlerObjectLoadData args)
-        {
-        }
     }
 }
-
-

@@ -1,6 +1,6 @@
 
 using Assets.Scripts.DynamicUI.Interfaces;
-using Genrpg.Shared.Client.Interfaces;
+using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Doobers.Events

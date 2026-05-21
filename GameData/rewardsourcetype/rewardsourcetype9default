@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "Defend"
+  "Name": "SidePath",
+  "Icon": "SidePath",
+  "Art": "SidePath"
 }

@@ -2,22 +2,22 @@ using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Settings;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Quests.Settings;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Quests.Helpers
+namespace OxDb.SharedGame.Crawler.Quests.Helpers
 {
     public abstract class BaseCrawlerQuestTypeHelper : ICrawlerQuestTypeHelper
     {

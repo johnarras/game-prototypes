@@ -1,7 +1,7 @@
 
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Client.Assets.Constants;
 using UnityEngine;
 
 public class MoneySegment : BaseBehaviour

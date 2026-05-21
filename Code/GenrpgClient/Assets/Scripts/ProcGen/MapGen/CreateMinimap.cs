@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Minimap.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -15,7 +15,6 @@ public class CreateMinimap : BaseZoneGenerator
     private GameObject minimapCamera = null;
 
     private IZoneStateController _zoneStateController = null;
-    private IBinaryFileRepository _binaryFileRepository = null;
     private IMinimapService _minimapService = null;
 
     public override async Awaitable Generate(CancellationToken token)
@@ -418,7 +417,7 @@ public class CreateMinimap : BaseZoneGenerator
         tex.SetPixels(pixels);
 
         string filename = MapUtils.GetMapObjectFilename(MapConstants.MapFilename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-        _binaryFileRepository.SaveBytes(filename, tex.EncodeToJPG(100));
+        _clientRepoService.SaveBytes(filename, tex.EncodeToJPG(100));
 
         _clientEntityService.DestroyAllChildren(waterRoot);
         _minimapService.SetTexture(tex);

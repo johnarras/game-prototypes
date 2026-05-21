@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
 using Assets.Scripts.Minigames.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Minigames.Games.Settings;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.Lobby
 {

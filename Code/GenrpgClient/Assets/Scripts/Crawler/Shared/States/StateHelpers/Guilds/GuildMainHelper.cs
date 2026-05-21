@@ -3,27 +3,26 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Crawler.Buffs.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.UI.Constants;
-using System.Collections.Generic;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds
 {
     public class GuildMainHelper : BuildingStateHelper
     {
@@ -110,10 +109,10 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds
 
                     if (gt != null)
                     {
-                        List<string> lines = _infoService.GetInfoLines(_textService.GetLinkUnderMouse(gt));
-                        if (lines.Count > 0)
+                        ShowInfoPanelArgs args = _infoService.GetInfoPanelArgs(_textService.GetLinkUnderMouse(gt));
+                        if (args.Lines.Count > 0)
                         {
-                            _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+                            _dispatcher.Dispatch(new Assets.Scripts.ClientEvents.ShowInfoPanelArgs() { EntityTypeId = args.EntityTypeId, EntityId = args.EntityId, Lines = args.Lines });
                         }
                     }
                 },

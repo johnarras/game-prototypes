@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "LandTile"
+  "Name": "LandTile",
+  "Icon": "LandTile",
+  "Art": "LandTile"
 }

@@ -1,7 +1,7 @@
 using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 

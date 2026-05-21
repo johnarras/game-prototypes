@@ -1,6 +1,7 @@
-using Genrpg.Shared.SpellCrafting.Messages;
-using Genrpg.Shared.Spells.PlayerData.Spells;
+using OxDb.SharedGame.SpellCrafting.Messages;
+using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.SpellCrafting
@@ -13,6 +14,7 @@ namespace Assets.Scripts.MessageHandlers.SpellCrafting
             _gs.ch.Get<SpellData>().Remove(msg.CraftedSpell.IdKey);
             _gs.ch.Get<SpellData>().Add(msg.CraftedSpell);
             _dispatcher.Dispatch(msg);
+            await Task.CompletedTask;
         }
     }
 }

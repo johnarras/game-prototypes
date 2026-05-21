@@ -1,7 +1,7 @@
 using Assets.Scripts.MapTerrain;
 
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.MapServer.Entities;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

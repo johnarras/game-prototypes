@@ -1,8 +1,8 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.Characters.WebApi.DeleteChar;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.MapServer.Entities;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Characters.WebApi.DeleteChar;
+using OxDb.SharedGame.MapServer.Entities;
 using System.Threading;
 using UnityEngine;
 

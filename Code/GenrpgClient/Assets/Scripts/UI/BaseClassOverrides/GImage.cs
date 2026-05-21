@@ -1,5 +1,5 @@
 
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 using UnityEngine;
 public class GImage : UnityEngine.UI.Image, IImage
 {

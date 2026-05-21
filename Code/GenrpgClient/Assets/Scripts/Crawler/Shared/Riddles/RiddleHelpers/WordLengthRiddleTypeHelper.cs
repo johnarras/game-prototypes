@@ -1,15 +1,15 @@
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Riddles.Constants;
-using Genrpg.Shared.Riddles.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Riddles.Constants;
+using OxDb.SharedGame.Riddles.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Riddles.EntranceRiddleHelpers
+namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 {
     public class WordLengthRiddleTypeHelper : BaseRiddleTypeHelper
     {

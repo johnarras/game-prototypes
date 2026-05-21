@@ -1,10 +1,10 @@
 
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.ProcGen.Settings.Clutter;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Settings.Clutter;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 
@@ -36,7 +36,7 @@ public class ClutterObjectLoader : BaseObjectLoader
         dlo.loadData = loadData;
         dlo.x = x;
         dlo.y = y;
-        dlo.zOffset = RandUtils.FloatRange(0, 1, _rand);
+        dlo.zOffset = RandUtils.FloatRange(0, 1, _rand.Rand);
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
@@ -55,7 +55,7 @@ public class ClutterObjectLoader : BaseObjectLoader
 
             dlo.x = x + ((indexHash / 7) % 3 - 1);
             dlo.y = y + ((indexHash / 131) % 3 - 1);
-            dlo.zOffset = RandUtils.FloatRange(0, 1, _rand);
+            dlo.zOffset = RandUtils.FloatRange(0, 1, _rand.Rand);
             dlo.zone = currZone;
             dlo.zoneType = currZoneType;
             dlo.assetCategory = AssetCategoryNames.Props;

@@ -1,23 +1,23 @@
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Core;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Stats.Services;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers
 {
     public abstract class BaseStateHelper : IStateHelper
     {
@@ -57,12 +57,12 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers
 
         virtual protected void ShowInfo(long entityTypeId, long entityId)
         {
-            _dispatcher.Dispatch(new ShowInfoPanelEvent() { EntityTypeId = entityTypeId, EntityId = entityId });
+            _dispatcher.Dispatch(new ShowInfoPanelArgs() { EntityTypeId = entityTypeId, EntityId = entityId });
         }
 
         virtual protected void ShowInfo(List<string> lines)
         {
-            _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = lines });
+            _dispatcher.Dispatch(new ShowInfoPanelArgs() { Lines = lines });
         }
 
         virtual protected void AddSpaceAction(CrawlerStateData stateData, ECrawlerStates nextState = ECrawlerStates.ExploreWorld, object extraData = null)

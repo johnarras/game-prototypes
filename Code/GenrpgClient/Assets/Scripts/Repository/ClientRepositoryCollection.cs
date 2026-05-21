@@ -1,8 +1,9 @@
-using Assets.Scripts.Repository.Constants;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
+using Assets.Scripts.Repository;
+using OxDb.SharedCore.DataStores.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,18 +20,29 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
 {
 
     private ILogService _logService = null;
-    private IClientAppService _clientAppService = null;
     private ITextSerializer _serializer = null;
-    public ClientRepositoryCollection(ILogService logService,
-        IClientAppService clientAppService,
-        ITextSerializer serializer)
+    private IClientRepositoryService _repoService = null;
+    private IClientCryptoService _clientCryptoService = null;
+
+    /// <summary>
+    /// Construct a ClientRepositoryCollection. This happens in one spot in ClientRepositoryService
+    /// creating a generic type using Activator.CreateInstance, the args here must match the ones in that code.
+    /// Look for REPOCREATEARGSYNC to see where this constructor is called.
+    /// </summary>
+    /// <param name="repoService"></param>
+    /// <param name="logService"></param>
+    /// <param name="serializer"></param>
+    /// <param name="clientCryptoService"></param>
+    public ClientRepositoryCollection(IClientRepositoryService repoService, ILogService logService,
+        ITextSerializer serializer, IClientCryptoService clientCryptoService)
     {
+        _repoService = repoService;
         _logService = logService;
-        _clientAppService = clientAppService;
         _serializer = serializer;
+        _clientCryptoService = clientCryptoService;
     }
 
-    public virtual async Task<bool> SaveAll(List<T> list)
+    public virtual async Task<bool> SaveAll(List<T> list, RepoSaveArgs args = null)
     {
         if (list == null)
         {
@@ -39,7 +51,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
 
         for (int i = 0; i < list.Count; i++)
         {
-            await Save(list[i]);
+            await Save(list[i], args);
         }
         return true;
     }
@@ -74,24 +86,6 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         }
     }
 
-    /// <summary>
-    /// Special method for saving a string directly.
-    /// </summary>
-    /// <param name="id">Id to save (key)</param>
-    /// <param name="data">Data to save (value)</param>
-    /// <returns>Were the parameters ok? Not checking actual save success here.</returns>
-    public async Task<bool> StringSave(string id, string data, RepoSaveArgs args = null)
-    {
-        if (string.IsNullOrEmpty(id))
-        {
-            return false;
-        }
-        SaveString(id, data);
-
-        await Task.CompletedTask;
-        return true;
-    }
-
     public async Task<bool> Save(object t, RepoSaveArgs args = null)
     {
         return await SaveInternal(t, args);
@@ -110,15 +104,18 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
             {
                 id = tid.Id;
             }
-
-            if (string.IsNullOrEmpty(id))
-            {
-                return false;
-            }
             string key = GetKeyFromId(id);
-            string val = ((args?.Verbose ?? false) ? _serializer.PrettyPrint(t) : _serializer.SerializeToString(t));
 
-            SaveString(key, val);
+            if (args != null && !string.IsNullOrEmpty(args.OverrideId))
+            {
+                key = args.OverrideId;
+            }
+
+            bool shouldPrettyPrint = args != null && args.Verbose && !args.Encrypt;
+
+            string val = shouldPrettyPrint ? _serializer.PrettyPrint(t) : _serializer.SerializeToString(t);
+
+            SaveString(key, val, args);
         }
         catch (Exception e)
         {
@@ -163,20 +160,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
 
     protected string GetPathPrefix()
     {
-        string prefix = _clientAppService.PersistentDataPath + ClientRepositoryConstants.GetDataPathPrefix();
-#if DEMO_BUILD
-    if (InitProject.Env != EnvNames.Prod && !string.IsNullOrEmpty(Application.version))
-    {
-        var version = Application.version.Trim();
-        prefix += "V" + version;
-    }
-#endif
-        if (!Directory.Exists(prefix))
-        {
-            Directory.CreateDirectory(prefix);
-        }
-
-        return prefix;
+        return _repoService.GetPathPrefix();
     }
 
 
@@ -236,19 +220,33 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
     public string LoadString(string id)
     {
         string path = GetPath(id);
+        if (!File.Exists(path))
+        {
+            return "";
+        }
+
+        string finalText = null;
+
         try
         {
-            if (!File.Exists(path))
+
+            string startText = File.ReadAllText(path, System.Text.Encoding.UTF8);
+
+            try
             {
-                return "";
+                finalText = _clientCryptoService.DecryptString(StrUtils.ConvertFromBase64(startText));
             }
-            return File.ReadAllText(path, System.Text.Encoding.UTF8);
+            catch
+            {
+                finalText = startText;
+
+            }
         }
         catch (Exception e)
         {
             _logService.Info("Failed to read file: " + path + " " + e.Message);
         }
-        return "";
+        return finalText;
     }
 
     public byte[] LoadBytes(string id)
@@ -271,11 +269,15 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
     }
 
 
-    public void SaveString(string id, string val)
+    protected void SaveString(string id, string val, RepoSaveArgs args)
     {
         string path = GetPath(id);
         try
         {
+            if (args != null && args.Encrypt)
+            {
+                val = StrUtils.ConvertToBase64(_clientCryptoService.EncryptString(val));
+            }
             File.WriteAllText(path, val, System.Text.Encoding.UTF8);
         }
         catch (Exception e)

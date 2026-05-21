@@ -1,11 +1,11 @@
 
 
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.Spawns.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Pathfinding.Constants;
+using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 

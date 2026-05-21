@@ -1,7 +1,7 @@
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 
-namespace Genrpg.Shared.Crawler.Info.InfoHelpers
+namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public interface IInfoHelper : ISetupDictionaryItem<long>
     {

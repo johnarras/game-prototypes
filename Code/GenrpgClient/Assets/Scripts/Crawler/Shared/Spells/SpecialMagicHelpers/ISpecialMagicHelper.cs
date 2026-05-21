@@ -1,10 +1,10 @@
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.StateHelpers.Selection.Entities;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelpers
 {
     public interface ISpecialMagicHelper : ISetupDictionaryItem<long>
     {

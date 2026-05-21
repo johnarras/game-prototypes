@@ -56,6 +56,7 @@ MonoBehaviour:
   NameText: {fileID: 0}
   IsMainIcon: 0
   UpdateTicks: 10
+  BlankSprite: {fileID: 21300000, guid: ca1716ecefe071e4cab20fdc10aa0b7b, type: 3}
 --- !u!222 &5230484309782662094
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -162,8 +163,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
-  m_sharedMaterial: {fileID: 2108538579064909954, guid: 1d635af844f05bc42be8b9d338c0f26b,
-    type: 2}
+  m_sharedMaterial: {fileID: 4485473094826007684, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -1,4 +1,4 @@
-namespace Genrpg.Shared.UI.Interfaces
+namespace OxDb.SharedGame.UI.Interfaces
 {
     public interface IRawImage
     {

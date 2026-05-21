@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Core.Constants;
-using Genrpg.Shared.Config.Constants;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.Environments.Constants;
+
+
 
 
 
@@ -12,7 +15,6 @@ using Genrpg.Shared.Config.Constants;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using Genrpg.Shared.Constants;
 
 
 public interface IClientConfigContainer : IInjectable, IExplicitInject
@@ -42,7 +44,9 @@ public class ClientConfig : ScriptableObject
     public int ProductId = 2;
     public bool SelfContainedClient;
     public bool ExportGameData;
+    public bool EncryptExportedData;
 
+    public string AppInsightsConnectionString;
     public string GooglePlaySecret;
     public string IOSSecret;
     public string PackageName;

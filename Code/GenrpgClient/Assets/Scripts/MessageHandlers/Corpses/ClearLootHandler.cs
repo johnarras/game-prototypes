@@ -1,6 +1,7 @@
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Loot.Messages;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ namespace Assets.Scripts.MessageHandlers.Corpses
             {
                 unit.Loot = null;
             }
+            await Task.CompletedTask;
         }
     }
 }

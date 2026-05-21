@@ -1,4 +1,4 @@
-using Genrpg.Shared.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.PlayerData;
 
 namespace Assets.Scripts.UI.Trade
 {

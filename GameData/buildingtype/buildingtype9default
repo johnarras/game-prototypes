@@ -5,6 +5,5 @@
   "Name": "Dungeon",
   "Icon": "Dungeon",
   "Art": "Dungeon",
-  "IsCrawlerBuilding": true,
   "ShowNameplate": true
 }

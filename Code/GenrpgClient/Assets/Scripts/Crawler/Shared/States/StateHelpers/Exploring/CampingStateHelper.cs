@@ -1,10 +1,10 @@
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Services;
 using System.Threading;
 using System.Threading.Tasks;
 

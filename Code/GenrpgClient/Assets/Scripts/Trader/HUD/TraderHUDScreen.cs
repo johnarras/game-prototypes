@@ -1,5 +1,5 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

@@ -1,28 +1,28 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Setup.Interfaces;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.MapServer.WebApi.LoadIntoMap;
-using Genrpg.Shared.Names.Services;
-using Genrpg.Shared.Names.Settings;
-using Genrpg.Shared.ProcGen.Constants;
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.ProcGen.Settings.Locations;
-using Genrpg.Shared.ProcGen.Settings.Plants;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.RpgLevels.Settings;
-using Genrpg.Shared.Spawns.Settings;
-using Genrpg.Shared.Units.Services;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Zones.Settings;
-using Genrpg.Shared.Zones.WorldData;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;
+using OxDb.SharedGame.Names.Services;
+using OxDb.SharedGame.Names.Settings;
+using OxDb.SharedGame.ProcGen.Constants;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.ProcGen.Settings.Locations;
+using OxDb.SharedGame.ProcGen.Settings.Plants;
+using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
+using OxDb.SharedGame.RpgLevels.Settings;
+using OxDb.SharedGame.Spawns.Settings;
+using OxDb.SharedGame.Units.Services;
+using OxDb.SharedGame.Units.Settings;
+using OxDb.SharedGame.Zones.Settings;
+using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -664,7 +664,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
                 };
 
                 zone.Units.Add(unitStatus);
-                unitStatus.Prefix = _unitGenService.GenerateUnitPrefixName(_rand, utype.IdKey, zone, null);
+                unitStatus.Prefix = _unitGenService.GenerateUnitPrefixName(_rand.Rand, utype.IdKey, zone, null);
 
             }
         }
@@ -688,7 +688,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             return badName + " No Zone Name";
         }
 
-        string zoneName = _nameGenService.PickWord(_rand, zt.ZoneNames);
+        string zoneName = _nameGenService.PickWord(_rand.Rand, zt.ZoneNames);
         string excludeWord = zoneName;
         if (zoneName == null)
         {
@@ -701,21 +701,21 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         }
 
         string excludePrefix = zoneName.Substring(0, 3);
-        string zonePrefix = _nameGenService.PickWord(_rand, zt.ZoneAdjectives, excludeWord, excludePrefix);
+        string zonePrefix = _nameGenService.PickWord(_rand.Rand, zt.ZoneAdjectives, excludeWord, excludePrefix);
 
-        string prefixDouble = _nameGenService.PickNameListName(_rand, "ItemDoublePrefix", excludeWord, excludePrefix);
-        string suffixDouble = _nameGenService.PickNameListName(_rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
+        string prefixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoublePrefix", excludeWord, excludePrefix);
+        string suffixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
 
 
         int times = 0;
         while (prefixDouble != null && suffixDouble != null &&
             prefixDouble.ToLower() == suffixDouble.ToLower() && ++times < 20)
         {
-            suffixDouble = _nameGenService.PickNameListName(_rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
+            suffixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
         }
 
-        string doubleName = _nameGenService.CombinePrefixSuffix(_rand, prefixDouble, suffixDouble, 0);
-        string prefixName = _nameGenService.PickNameListName(_rand, "ZoneNamePrefix", excludeWord, excludePrefix);
+        string doubleName = _nameGenService.CombinePrefixSuffix(_rand.Rand, prefixDouble, suffixDouble, 0);
+        string prefixName = _nameGenService.PickNameListName(_rand.Rand, "ZoneNamePrefix", excludeWord, excludePrefix);
 
         if (forceDoubleWord)
         {

@@ -1,13 +1,15 @@
+using Assets.Scripts.Core;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.Ftue.Constants;
-using Genrpg.Shared.Ftue.Services;
-using Genrpg.Shared.Ftue.Settings.Steps;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedGame.Ftue.Constants;
+using OxDb.SharedGame.Ftue.Services;
+using OxDb.SharedGame.Ftue.Settings.Steps;
 
 public class InfoButton : BaseBehaviour
 {
     private IFtueService _ftueService = null;
     protected IRepositoryService _repoService = null;
+    protected IClientRandom _rand = null;
     public GButton Button;
 
     private string _screenName = null;
@@ -32,7 +34,7 @@ public class InfoButton : BaseBehaviour
             if (step != null)
             {
 
-                _ftueService.StartStep(_rand, _gs.ch, step.IdKey);
+                _ftueService.StartStep(_rand.Rand, _gs.ch, step.IdKey);
 
                 _logService.Info("Show Info for " + _screenName);
             }

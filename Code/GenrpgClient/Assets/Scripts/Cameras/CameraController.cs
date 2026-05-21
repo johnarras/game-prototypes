@@ -1,8 +1,8 @@
 using Assets.Scripts.Cameras;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -35,6 +35,7 @@ public class CameraController : ICameraController
     private IInitClient _initClient = null;
     private IScreenService _screenService = null;
     private IClientGameState _gs = null;
+    private IClientAppService _appService = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -235,7 +236,7 @@ public class CameraController : ICameraController
             }
         }
 
-        moveScale = CameraMoveScale * _inputService.GetDeltaTime();
+        moveScale = CameraMoveScale * _appService.GetDeltaTime();
         currPos = _inputService.MousePosition();
         diffPos = currPos - prevPos;
         scrollWheel = -_inputService.GetAxis("Mouse ScrollWheel");

@@ -1,0 +1,18 @@
+﻿using MessagePack;
+using System;
+
+
+namespace OxDb.SharedCore.DataStores.DataGroups
+{
+    public class DataGroup : Attribute
+    {
+        [IgnoreMember] public EDataCategories Category { get; set; }
+        [IgnoreMember] public ERepoTypes RepoType { get; set; }
+
+        public DataGroup(EDataCategories category, ERepoTypes repoType)
+        {
+            Category = category;
+            RepoType = repoType;
+        }
+    }
+}

@@ -1,15 +1,15 @@
 
 using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.UI.Units;
-using Genrpg.Shared.Crawler.GameEvents;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
-using Genrpg.Shared.Crawler.Training.Services;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.GameEvents;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Exploring;
+using OxDb.SharedGame.Crawler.Training.Services;
+using OxDb.SharedGame.Stats.Constants;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +31,7 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
 
         public ProgressBar HealthBar;
         public ProgressBar ManaBar;
+        public ProgressBar ExpBar;
 
         public GText NameText;
         public GText LevelText;
@@ -130,14 +131,16 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
                 long currHp = _partyMember.Stats.Curr(StatTypes.Health);
                 long maxHp = _partyMember.Stats.Max(StatTypes.Health);
 
-                HealthBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Health), _partyMember.Stats.Curr(StatTypes.Health));
-                ManaBar?.InitRange(0, _partyMember.Stats.Max(StatTypes.Mana), _partyMember.Stats.Curr(StatTypes.Mana));
+                HealthBar?.InitRange(0, _partyMember.Stats.Curr(StatTypes.Health), _partyMember.Stats.Max(StatTypes.Health));
+                ManaBar?.InitRange(0, _partyMember.Stats.Curr(StatTypes.Mana), _partyMember.Stats.Max(StatTypes.Mana));
                 StatusEffectsUI?.SetData(_partyMember);
                 SetPortrait(_partyMember.PortraitName);
 
                 TrainingInfo info = _trainingService.GetTrainingInfo(_party, _partyMember);
 
                 _clientEntityService.SetActive(LevelUpImage, info.ExpLeft < 1);
+
+                ExpBar?.InitRange(0, _partyMember.Exp, info.TotalExp);
 
                 List<Role> userRoles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(_partyMember.Roles);
 

@@ -1,11 +1,11 @@
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Dungeons
 {
     [Serializable]
-    public class WeightedDungeonAsset : IFloatWeightedItem
+    public class WeightedDungeonAsset : IWeightedItem
     {
         public WeightedDungeonAsset()
         {
@@ -13,7 +13,7 @@ namespace Assets.Scripts.Dungeons
         }
 
         [field: SerializeField]
-        public float Weight { get; set; }
+        public double Weight { get; set; }
         public DungeonAsset Asset;
     }
 }

@@ -1,6 +1,6 @@
-using Genrpg.Shared.ProcGen.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.ProcGen.Entities;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;

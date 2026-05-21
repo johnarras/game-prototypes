@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Assets.Textures;
+﻿using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Dungeons;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.Trader.Maps.Settings;
+using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.Trader.Maps.Settings;
 using System.Threading;
 using UnityEngine;
 
@@ -82,7 +82,7 @@ namespace Assets.Scripts.Trader.WorldMap
         {
             if (GroundAsset != null)
             {
-                foreach (Renderer renderer in GroundAsset.FloorRenderers)
+                foreach (Renderer renderer in GroundAsset.StoneRenderers)
                 {
                     renderer.material.mainTexture = tex;
                 }

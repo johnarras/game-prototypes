@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Minigames.Games.Settings;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Minigames.Games.Settings;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

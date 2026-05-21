@@ -1,7 +1,7 @@
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Spells.Settings;
 
-namespace Genrpg.Shared.Crawler.Info.EffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.EffectHelpers
 {
     public interface ISpellEffectHelper : ISetupDictionaryItem<long>
     {

@@ -1,6 +1,6 @@
 using ClientEvents;
-using Genrpg.Shared.Loot.Messages;
-using Genrpg.Shared.Rewards.Services;
+using OxDb.SharedGame.Loot.Messages;
+using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
 using UnityEngine;
 

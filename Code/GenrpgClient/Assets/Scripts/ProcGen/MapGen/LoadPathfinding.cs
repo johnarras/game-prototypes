@@ -1,21 +1,17 @@
-
-
-
-using Genrpg.Shared.DataStores.DataGroups;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.Pathfinding.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.Pathfinding.Constants;
 using System.Threading;
 using UnityEngine;
 
 public class LoadPathfinding : BaseZoneGenerator
 {
-    private IBinaryFileRepository _binaryFileRepo;
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
         string filename = MapUtils.GetMapObjectFilename(PathfindingConstants.Filename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-        byte[] bytes = _binaryFileRepo.LoadBytes(filename);
+        byte[] bytes = _clientRepoService.LoadBytes(filename);
         if (bytes != null)
         {
             OnDownloadPathfinding(bytes, null, token);

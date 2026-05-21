@@ -2,7 +2,7 @@ using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.WorldCanvas.GameEvents;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;

@@ -1,10 +1,10 @@
 ﻿
 using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Attributes.Settings;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Trader.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Attributes.PlayerData;
+using OxDb.SharedGame.Attributes.Settings;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Trader.Stats.UI
 
         private void ShowBuffs()
         {
-            AttributeData attributeData = _gs.ch.Get<AttributeData>();
+            AttributesData AttributesData = _gs.ch.Get<AttributesData>();
 
             IReadOnlyList<GameplayBuff> buffs = _gameData.Get<GameplayBuffSettings>(_gs.ch).GetData();
 
@@ -66,7 +66,7 @@ namespace Assets.Scripts.Trader.Stats.UI
                     {
                         GameplayBuffIcon newIcon = _clientEntityService.FullInstantiate(IconPrefab);
                         _clientEntityService.AddToParent(newIcon, IconAnchor);
-                        newIcon.SetData(buff, attributeData.Buffs[buff.IdKey]);
+                        newIcon.SetData(buff, AttributesData.Buffs[buff.IdKey]);
                         _icons.Add(newIcon);
                     }
                 }

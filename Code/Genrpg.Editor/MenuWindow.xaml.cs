@@ -1,18 +1,16 @@
-using CommunityToolkit.WinUI;
-using Genrpg.DataUtils.Constants;
-using Genrpg.DataUtils.Entities.Copying;
-using Genrpg.DataUtils.Entities.Core;
-using Genrpg.DataUtils.Interfaces;
-using Genrpg.DataUtils.Services.EditorData;
-using Genrpg.DataUtils.Utils;
 using Genrpg.Editor.UI;
-using Genrpg.ServerShared.CloudComms.PubSub.Topics.Admin.Messages;
-using Genrpg.ServerShared.CloudComms.Services;
-using Genrpg.ServerShared.GameSettings.Services;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Serialization.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.DataUtils.Constants;
+using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Interfaces;
+using OxDb.DataUtils.Services.EditorData;
+using OxDb.DataUtils.Services.Setup;
+using OxDb.DataUtils.Utils;
+using OxDb.ServerCore.CloudComms.PubSub.Topics.Admin.Messages;
+using OxDb.ServerCore.CloudComms.Services;
+using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +26,9 @@ namespace Genrpg.Editor
     public class ButtonClickAction
     {
         public string ButtonName { get; set; }
-        public Action<object,object> ClickAction { get; set; }
+        public Action<object, object> ClickAction { get; set; }
 
-        public ButtonClickAction(string buttonName, Action<object,object> clickAction)
+        public ButtonClickAction(string buttonName, Action<object, object> clickAction)
         {
             ButtonName = buttonName;
             ClickAction = clickAction;
@@ -44,22 +42,22 @@ namespace Genrpg.Editor
     {
         const int _topPadding = 50;
 
-        private string _prefix;
+        private string _productName;
         private string _env;
 
+        private List<IInjectable> _initialServices = null;
 
-
-        public MenuWindow()
+        public MenuWindow(List<IInjectable> initialServices, string productName, string env)
         {
             Content = _canvas;
-            _prefix = Game.Prefix;
+            _productName = productName;
+            _env = env;
+            _initialServices = initialServices;
             int buttonCount = 0;
-
-            _env = MainMenuWindow.CurrentEnv;
 
             bool isProd = EnvNames.IsProdEnv(_env);
 
-            UIHelper.CreateLabel(this, ELabelTypes.Default, _prefix + "Label", _env + " Editor", getButtonWidth(), getButtonHeight(),
+            UIHelper.CreateLabel(this, ELabelTypes.Default, _productName + "Label", _env + " Editor", getButtonWidth(), getButtonHeight(),
                 getLeftRightPadding(), getTopBottomPadding(), 20);
             buttonCount++;
 
@@ -78,9 +76,6 @@ namespace Genrpg.Editor
             actionWords.Add(new ButtonClickAction("Users", OnClickDataButton));
             actionWords.Add(new ButtonClickAction("Maps", OnClickMaps));
             actionWords.Add(new ButtonClickAction("CopyToDb", ClickCopyFromGitToDatabase));
-
-
-            actionWords.Add(new ButtonClickAction("GeminiApi", OnClickGeminiApi));
             int column = 0;
 
             if (string.IsNullOrEmpty(_env))
@@ -139,7 +134,7 @@ namespace Genrpg.Editor
 
         private void OnClickMaps(object sender, object e)
         {
-            
+
             Task.Run(() => OnClickButtonAsync(sender, null));
         }
 
@@ -152,7 +147,7 @@ namespace Genrpg.Editor
         {
             Task.Run(() => OnClickButtonAsync(sender, CopyGameDataFromGitToDatabaseAsync));
         }
-        
+
         private void ClickCopyFromDatabaseToClient(object sender, object e)
         {
             Task.Run(() => OnClickButtonAsync(sender, CopyGameDataFromDatabaseToClientAsync));
@@ -165,22 +160,17 @@ namespace Genrpg.Editor
 
         private void ClickSerializeSetup(object sender, object e)
         {
-            Task.Run(() => OnClickButtonAsync(sender, SerializeSetupAsync)); 
+            Task.Run(() => OnClickButtonAsync(sender, SerializeSetupAsync));
         }
 
-        private void OnClickGeminiApi(object sender, object e)
-        {
-            GeminiApiWindow window = new GeminiApiWindow(_env);
-            window.Activate();
-        }
-        private async Task SerializeSetupAsync (EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        private async Task SerializeSetupAsync(EditorServer server, EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
             gameDataService.InitSerialization();
         }
 
         private void ClickImporter(object sender, object e)
         {
-            ImportWindow importer = new ImportWindow(_env);
+            ImportWindow importer = new ImportWindow(_initialServices, _productName, _env);
             importer.Activate();
         }
 
@@ -192,17 +182,17 @@ namespace Genrpg.Editor
                 ButtonBase button = sender as ButtonBase;
                 ISmallPopup form = await ShowBlockingDialog(StrUtils.SplitOnCapitalLetters(button?.Name ?? "Loading Data"));
                 EditorDataSetup eds = new EditorDataSetup();
-                await eds.SetupGameState(this, _env, true, button.Name, afterAction);
+                await eds.SetupEditorServer(this, _initialServices, _env, true, button.Name, afterAction);
                 form.StartClose();
             });
         }
 
-        private async Task CopyGameDataFromDatabaseToGitAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        private async Task CopyGameDataFromDatabaseToGitAsync(EditorServer server, EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
             gameDataService.WriteAllGameDataToGit(gs);
         }
 
-        private async Task CopyGameDataFromGitToDatabaseAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        private async Task CopyGameDataFromGitToDatabaseAsync(EditorServer server, EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
             try
             {
@@ -215,13 +205,13 @@ namespace Genrpg.Editor
             }
         }
 
-        private async Task RefreshServerDataAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        private async Task RefreshServerDataAsync(EditorServer server, EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
             gs.loc.Get<ICloudCommsService>().SendPubSubMessage(new UpdateGameDataAdminMessage());
         }
 
 
-        private async Task CopyGameDataFromDatabaseToClientAsync(EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
+        private async Task CopyGameDataFromDatabaseToClientAsync(EditorServer server, EditorGameState gs, IEditorDataService gameDataService, CancellationToken token)
         {
             try
             {

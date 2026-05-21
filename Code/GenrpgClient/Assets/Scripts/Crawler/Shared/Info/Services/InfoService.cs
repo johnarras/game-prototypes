@@ -1,38 +1,32 @@
+using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
-using Genrpg.Shared.Crawler.Info.Constants;
-using Genrpg.Shared.Crawler.Info.EffectHelpers;
-using Genrpg.Shared.Crawler.Info.InfoHelpers;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Entities.Interfaces;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Interfaces;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Info.Constants;
+using OxDb.SharedGame.Crawler.Info.EffectHelpers;
+using OxDb.SharedGame.Crawler.Info.InfoHelpers;
+using OxDb.SharedGame.Crawler.Spells.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Genrpg.Shared.Crawler.Info.Services
+namespace OxDb.SharedGame.Crawler.Info.Services
 {
-
-    public class InfoOverviewPage
-    {
-        public string Header;
-        public List<string> Lines;
-    }
 
     public interface IInfoService : IInjectable
     {
-        List<string> GetInfoLines(long entityTypeId, long entityId);
+        ShowInfoPanelArgs GetInfoPanelArgs(long entityTypeId, long entityId);
         string CreateInfoLink(IIdName idname, string nameShown = "");
         string CreateOverviewLink(string typeName, bool makePlural);
-        List<string> GetInfoLines(string entityLink);
+        ShowInfoPanelArgs GetInfoPanelArgs(string entityLink);
         string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect);
         void SetupOverviewPages(string overviewText);
-        List<InfoOverviewPage> GetOverviewPages();
-        List<string> GetOverviewLines(string entityTypeName);
+        List<ShowInfoPanelArgs> GetOverviewPages();
         string CreateHeaderLine(string headerText, bool makePlural = true);
 
     }
@@ -48,13 +42,19 @@ namespace Genrpg.Shared.Crawler.Info.Services
 
         private Dictionary<string, List<string>> _overviewLines = new Dictionary<string, List<string>>();
 
-        private List<InfoOverviewPage> _overviewPages = new List<InfoOverviewPage>();
+        private List<ShowInfoPanelArgs> _overviewPages = new List<ShowInfoPanelArgs>();
 
         private string pageBreak = "========";
         private string overviewEntityId = "overview";
         private string listAllText = "listall";
-        public List<string> GetInfoLines(long entityTypeId, long entityId)
+        public ShowInfoPanelArgs GetInfoPanelArgs(long entityTypeId, long entityId)
         {
+            ShowInfoPanelArgs args = new ShowInfoPanelArgs()
+            {
+                EntityTypeId = entityTypeId,
+                EntityId = entityId
+            };
+
             if (_infoHelperDict.TryGetValue(entityTypeId, out IInfoHelper info))
             {
                 List<string> lines = info.GetInfoLines(entityId);
@@ -78,10 +78,11 @@ namespace Genrpg.Shared.Crawler.Info.Services
                     }
                 }
 
-                return lines;
+                args.Lines = lines;
+                return args;
             }
 
-            return new List<string>();
+            return args;
         }
 
         public string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect)
@@ -114,18 +115,20 @@ namespace Genrpg.Shared.Crawler.Info.Services
             return InfoConstants.LinkPrefix + linkId + InfoConstants.LinkMiddle + _textService.HighlightText(StrUtils.SplitOnCapitalLetters(nameShown), TextColors.ColorYellow) + InfoConstants.LinkSuffix;
         }
 
-        public List<string> GetInfoLines(string entityLink)
+        public ShowInfoPanelArgs GetInfoPanelArgs(string entityLink)
         {
+            ShowInfoPanelArgs args = new ShowInfoPanelArgs();
+
             if (string.IsNullOrEmpty(entityLink))
             {
-                return new List<string>();
+                return args;
             }
 
             string[] words = entityLink.Split(' ');
 
             if (words.Length < 1 || string.IsNullOrEmpty(words[0]) || string.IsNullOrEmpty(words[1]))
             {
-                return new List<string>();
+                return args;
             }
 
 
@@ -135,7 +138,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                 {
                     if (helper.GetTypeName() == words[0])
                     {
-                        return GetInfoLines(helper.HelperKey, entityId);
+                        return GetInfoPanelArgs(helper.HelperKey, entityId);
                     }
                 }
             }
@@ -143,20 +146,12 @@ namespace Genrpg.Shared.Crawler.Info.Services
             {
                 if (_overviewLines.TryGetValue(words[0].ToLower(), out List<string> lines))
                 {
-                    return lines;
+                    args.Lines = lines;
+                    return args;
                 }
             }
 
-            return new List<string>();
-        }
-
-        public List<string> GetOverviewLines(string entityTypeName)
-        {
-            if (_overviewLines.ContainsKey(entityTypeName.ToLower()))
-            {
-                return _overviewLines[entityTypeName.ToLower()];
-            }
-            return new List<string>();
+            return args;
         }
 
         public void SetupOverviewPages(string overviewText)
@@ -205,7 +200,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
                     if (currPageLines.Count > 0)
                     {
 
-                        _overviewPages.Add(new InfoOverviewPage()
+                        _overviewPages.Add(new ShowInfoPanelArgs()
                         {
                             Header = overviewHeader,
                             Lines = currPageLines,
@@ -273,7 +268,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
             if (currPageLines.Count > 0)
             {
 
-                _overviewPages.Add(new InfoOverviewPage()
+                _overviewPages.Add(new ShowInfoPanelArgs()
                 {
                     Header = overviewHeader,
                     Lines = currPageLines,
@@ -281,7 +276,7 @@ namespace Genrpg.Shared.Crawler.Info.Services
             }
         }
 
-        public List<InfoOverviewPage> GetOverviewPages()
+        public List<ShowInfoPanelArgs> GetOverviewPages()
         {
             return _overviewPages;
         }
@@ -290,7 +285,12 @@ namespace Genrpg.Shared.Crawler.Info.Services
         {
             if (!_overviewLines.ContainsKey(typeName.ToLower()))
             {
-                return typeName;
+
+                return "<align=\"center\">"
+                    + "<size=+10px>"
+                    + StrUtils.SplitOnCapitalLetters(typeName.Replace("Type", ""))
+                    + "</size>"
+                    + "</align>";
             }
 
             return "<align=\"center\">"

@@ -1,13 +1,11 @@
 ﻿using Assets.Scripts.Entities.UI;
 using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.Attributes.Constants;
-using Genrpg.Shared.Core.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Trader.Caravans.Entities;
-using Genrpg.Shared.Trader.Caravans.Services;
-using Genrpg.Shared.Utils.Data;
-using UnityEngine;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Attributes.Constants;
+using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.Services;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {
@@ -39,7 +37,6 @@ namespace Assets.Scripts.Trader.Travel.UI
         }
 
 
-        string rationsSpriteString = null;
         private void ShowData()
         {
             CoreData coreData = _gs.ch.Get<CoreData>();

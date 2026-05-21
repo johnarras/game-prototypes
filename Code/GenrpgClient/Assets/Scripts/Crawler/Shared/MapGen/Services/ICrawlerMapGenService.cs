@@ -1,4 +1,4 @@
-namespace Genrpg.Shared.Crawler.MapGen.Services
+namespace OxDb.SharedGame.Crawler.MapGen.Services
 {
 }
 

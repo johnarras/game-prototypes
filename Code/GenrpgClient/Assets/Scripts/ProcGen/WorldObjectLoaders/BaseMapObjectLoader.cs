@@ -1,12 +1,12 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.MapServer.Services;
 using System.Threading;
 using UnityEngine;
 

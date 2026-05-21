@@ -1,7 +1,7 @@
 
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.Messages;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Messages;
 using System.Threading;
 using UnityEngine;
 

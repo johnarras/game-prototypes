@@ -1,5 +1,5 @@
-using Genrpg.Shared.Client.Interfaces;
-using Genrpg.Shared.Quests.PlayerData;
+using OxDb.SharedCore.Client.Interfaces;
+using OxDb.SharedGame.Quests.PlayerData;
 
 namespace ClientEvents
 {

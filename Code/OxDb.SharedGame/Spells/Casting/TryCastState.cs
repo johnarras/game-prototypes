@@ -1,0 +1,27 @@
+namespace OxDb.SharedGame.Spells.Casting
+{
+    public enum TryCastState
+    {
+        Ok,
+        IsPassive,
+        CasterIncapacitated,
+        CasterDead,
+        CasterDeleted,
+        CasterEvading,
+        CasterBusy,
+        DoNotKnowSpell,
+        UnknownElement,
+        UnknownSkill,
+        TargetMissing,
+        TargetDead,
+        Evading,
+        TargetDeleted,
+        NotEnoughPower,
+        OnCooldown,
+        WrongTargetType,
+        TargetTooFar,
+        NoSpellData,
+    }
+}
+
+

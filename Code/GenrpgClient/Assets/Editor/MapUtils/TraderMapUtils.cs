@@ -1,7 +1,7 @@
-﻿using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Serialization.Services;
-using Genrpg.Shared.Trader.Maps.Settings;
-using Genrpg.Shared.Utils;
+﻿using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Serialization.Services;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Trader.Maps.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;

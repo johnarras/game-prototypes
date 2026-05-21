@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Minigames.UI;
-using Genrpg.Shared.Minigames.Games.Settings;
+using OxDb.SharedGame.Minigames.Games.Settings;
 
 namespace Assets.Scripts.Minigames.Types.Spinners
 {

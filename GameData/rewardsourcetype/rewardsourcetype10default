@@ -2,5 +2,7 @@
   "Id": "rewardsourcetype10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "Adventure"
+  "Name": "Defend",
+  "Icon": "Defend",
+  "Art": "Defend"
 }

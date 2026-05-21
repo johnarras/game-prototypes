@@ -1,7 +1,7 @@
 
 using Assets.Scripts.ClientEvents.UI;
-using Genrpg.Shared.Characters.WebApi.CreateChar;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Characters.WebApi.CreateChar;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +31,7 @@ public class CharacterCreateScreen : BaseScreen
         string charName = NameInput.Text;
         if (string.IsNullOrEmpty(charName))
         {
-            _logService.Message("You need to choose a name!");
+            _logService.Info("You need to choose a name!");
             return;
         }
 

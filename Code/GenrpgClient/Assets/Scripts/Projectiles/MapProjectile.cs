@@ -1,11 +1,11 @@
-using Genrpg.Shared.Constants;
+using OxDb.SharedGame.Constants;
 using System.Threading;
 using UnityEngine;
 
 public class MapProjectile : BaseBehaviour
 {
     protected IClientMapObjectManager _objectManager;
-    private IInputService _inputService = null;
+    protected IClientAppService _appService = null;
 
     protected FullFX _full;
 
@@ -57,7 +57,7 @@ public class MapProjectile : BaseBehaviour
 
         if (_full.fx.Speed > 0)
         {
-            float deltaTime = _inputService.GetDeltaTime();
+            float deltaTime = _appService.GetDeltaTime();
             float distThisTick = deltaTime * _full.fx.Speed;
 
             Vector3 diff = _full.toObj.transform.position - entity.transform.position;
@@ -76,7 +76,7 @@ public class MapProjectile : BaseBehaviour
         }
         else
         {
-            _elapsedTime += _inputService.GetDeltaTime();
+            _elapsedTime += _appService.GetDeltaTime();
 
             if (_elapsedTime >= _full.fx.Dur)
             {

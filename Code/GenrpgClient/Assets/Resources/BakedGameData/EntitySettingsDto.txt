@@ -386,6 +386,12 @@
       "Art": "TravelDayCurrencyBuff"
     },
     {
+      "IdKey": 99,
+      "Name": "SettingsName",
+      "Icon": "SettingsName",
+      "Art": "SettingsName"
+    },
+    {
       "IdKey": 100,
       "Name": "CrawlerSpell"
     },

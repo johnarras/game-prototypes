@@ -1,9 +1,9 @@
-using Genrpg.Shared.AI.Settings;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.AI.Settings;
+using OxDb.SharedGame.Constants;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Linq;
 using System.Threading;

@@ -1,11 +1,11 @@
 
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Setup.Interfaces;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Pathfinding.Entities;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Pathfinding.Entities;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;

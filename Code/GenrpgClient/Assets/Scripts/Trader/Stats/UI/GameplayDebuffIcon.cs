@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Assets.Sprites.Services;
-using Genrpg.Shared.Attributes.PlayerData;
-using Genrpg.Shared.Attributes.Settings;
-using Genrpg.Shared.Entities.Constants;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Attributes.PlayerData;
+using OxDb.SharedGame.Attributes.Settings;
 using System;
 
 namespace Assets.Scripts.Trader.Stats.UI

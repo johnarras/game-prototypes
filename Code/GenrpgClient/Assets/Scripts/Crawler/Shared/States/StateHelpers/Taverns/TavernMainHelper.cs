@@ -1,19 +1,19 @@
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.StateHelpers.Buildings;
-using Genrpg.Shared.Crawler.Tavern.Services;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Buildings;
+using OxDb.SharedGame.Crawler.Tavern.Services;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Taverns
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Taverns
 {
     public class TavernMainHelper : BuildingStateHelper
     {

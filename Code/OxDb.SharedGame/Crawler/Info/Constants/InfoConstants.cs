@@ -1,0 +1,11 @@
+namespace OxDb.SharedGame.Crawler.Info.Constants
+{
+    public class InfoConstants
+    {
+        public const string LinkPrefix = "<link=\"";
+        public const string LinkMiddle = "\">";
+        public const string LinkSuffix = "</link>";
+    }
+}
+
+

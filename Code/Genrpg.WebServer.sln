@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33122.133
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11527.330
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D907A3E-7736-469E-9E5D-8E7FFD89F6D7}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,13 +10,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Genrpg.Shared\Genrpg.Shared.csproj = Genrpg.Shared\Genrpg.Shared.csproj
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genrpg.Shared", "Genrpg.Shared\Genrpg.Shared.csproj", "{388B728A-5BCB-41F8-8DCB-FADED2BCAD2E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genrpg.WebServer", "Genrpg.WebServer\Genrpg.WebServer.csproj", "{109FBDBB-CA27-4060-BCCA-1D6CD1E8235F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genrpg.ServerShared", "Genrpg.ServerShared\Genrpg.ServerShared.csproj", "{BE2A4DA3-FA49-497B-AC78-25E7EDBACF2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.PlatformServer", "OxDb.PlatformServer\OxDb.PlatformServer.csproj", "{350243EF-19CB-A9C7-77DB-5FCB34254A9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genrpg.RequestServer", "Genrpg.RequestServer\Genrpg.RequestServer.csproj", "{F66E3712-50D3-4999-83EF-C366BE773517}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.ServerGame", "OxDb.ServerGame\OxDb.ServerGame.csproj", "{29E21B40-52B2-D6CA-C4FB-6D4F7839C8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.ServerCore", "OxDb.ServerCore\OxDb.ServerCore.csproj", "{A8774C11-82BE-8EF4-388F-3C34690318FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.RequestServer", "OxDb.RequestServer\OxDb.RequestServer.csproj", "{6CCD83E8-E347-AFC2-5B92-B5FB655E7D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.SharedGame", "OxDb.SharedGame\OxDb.SharedGame.csproj", "{47D57EBB-84C3-8CE6-08CE-86E0E02E4177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.SharedPlatform", "OxDb.SharedPlatform\OxDb.SharedPlatform.csproj", "{149F9E7F-A5C1-85CB-BC6F-7D28F50CBFBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxDb.SharedCore", "OxDb.SharedCore\OxDb.SharedCore.csproj", "{B033241B-0408-76D3-A157-46EC55D50D55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,22 +32,38 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{388B728A-5BCB-41F8-8DCB-FADED2BCAD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{388B728A-5BCB-41F8-8DCB-FADED2BCAD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{388B728A-5BCB-41F8-8DCB-FADED2BCAD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{388B728A-5BCB-41F8-8DCB-FADED2BCAD2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{109FBDBB-CA27-4060-BCCA-1D6CD1E8235F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{109FBDBB-CA27-4060-BCCA-1D6CD1E8235F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{109FBDBB-CA27-4060-BCCA-1D6CD1E8235F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{109FBDBB-CA27-4060-BCCA-1D6CD1E8235F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE2A4DA3-FA49-497B-AC78-25E7EDBACF2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE2A4DA3-FA49-497B-AC78-25E7EDBACF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE2A4DA3-FA49-497B-AC78-25E7EDBACF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE2A4DA3-FA49-497B-AC78-25E7EDBACF2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F66E3712-50D3-4999-83EF-C366BE773517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F66E3712-50D3-4999-83EF-C366BE773517}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F66E3712-50D3-4999-83EF-C366BE773517}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F66E3712-50D3-4999-83EF-C366BE773517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{350243EF-19CB-A9C7-77DB-5FCB34254A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{350243EF-19CB-A9C7-77DB-5FCB34254A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{350243EF-19CB-A9C7-77DB-5FCB34254A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{350243EF-19CB-A9C7-77DB-5FCB34254A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E21B40-52B2-D6CA-C4FB-6D4F7839C8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E21B40-52B2-D6CA-C4FB-6D4F7839C8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E21B40-52B2-D6CA-C4FB-6D4F7839C8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E21B40-52B2-D6CA-C4FB-6D4F7839C8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8774C11-82BE-8EF4-388F-3C34690318FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8774C11-82BE-8EF4-388F-3C34690318FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8774C11-82BE-8EF4-388F-3C34690318FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8774C11-82BE-8EF4-388F-3C34690318FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CCD83E8-E347-AFC2-5B92-B5FB655E7D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CCD83E8-E347-AFC2-5B92-B5FB655E7D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CCD83E8-E347-AFC2-5B92-B5FB655E7D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CCD83E8-E347-AFC2-5B92-B5FB655E7D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D57EBB-84C3-8CE6-08CE-86E0E02E4177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D57EBB-84C3-8CE6-08CE-86E0E02E4177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D57EBB-84C3-8CE6-08CE-86E0E02E4177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D57EBB-84C3-8CE6-08CE-86E0E02E4177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149F9E7F-A5C1-85CB-BC6F-7D28F50CBFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149F9E7F-A5C1-85CB-BC6F-7D28F50CBFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149F9E7F-A5C1-85CB-BC6F-7D28F50CBFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149F9E7F-A5C1-85CB-BC6F-7D28F50CBFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B033241B-0408-76D3-A157-46EC55D50D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B033241B-0408-76D3-A157-46EC55D50D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B033241B-0408-76D3-A157-46EC55D50D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B033241B-0408-76D3-A157-46EC55D50D55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

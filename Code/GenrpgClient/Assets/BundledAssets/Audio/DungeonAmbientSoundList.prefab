@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4637699899970905647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8853533369701859015}
+  - component: {fileID: 3999742601926436981}
+  m_Layer: 0
+  m_Name: DungeonAmbientSoundList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8853533369701859015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637699899970905647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3999742601926436981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637699899970905647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec5698b7ec5b274a8cbf9f7ff6d835d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.Audio.AmbientSoundList
+  Sounds:
+  - SoundName: 
+    MinSecondsBetweenProc: 0
+    ProcsPerSecond: 0
+  - SoundName: CreatureAmbient
+    MinSecondsBetweenProc: 6
+    ProcsPerSecond: 0.1
+  - SoundName: DripAmbient
+    MinSecondsBetweenProc: 0.1
+    ProcsPerSecond: 0.8
+  - SoundName: PeopleAmbient
+    MinSecondsBetweenProc: 5
+    ProcsPerSecond: 0.05
+  - SoundName: RocksAmbient
+    MinSecondsBetweenProc: 3
+    ProcsPerSecond: 0.05
+  - SoundName: RumbleAmbient
+    MinSecondsBetweenProc: 15
+    ProcsPerSecond: 0.02
+  - SoundName: WhooshAmbient
+    MinSecondsBetweenProc: 8
+    ProcsPerSecond: 0.15
+  - SoundName: DoorAmbient
+    MinSecondsBetweenProc: 15
+    ProcsPerSecond: 0.1
+  - SoundName: MonsterHit
+    MinSecondsBetweenProc: 5
+    ProcsPerSecond: 0.03
+  - SoundName: ChainsAmbient
+    MinSecondsBetweenProc: 2
+    ProcsPerSecond: 0.05
+  - SoundName: Torchlight
+    MinSecondsBetweenProc: 0
+    ProcsPerSecond: 1
+  - SoundName: 
+    MinSecondsBetweenProc: 0
+    ProcsPerSecond: 0

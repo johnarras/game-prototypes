@@ -1,12 +1,12 @@
-using Genrpg.Shared.Crawler.Info.EffectHelpers;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.GameSettings;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedGame.Crawler.Info.EffectHelpers;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
 
-namespace Genrpg.Shared.Crawler.Info.SpellEffectHelpers
+namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
 {
     public abstract class BaseSpellEffectHelper : ISpellEffectHelper
     {

@@ -2,8 +2,8 @@
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Setup.Interfaces;
 using Assets.Scripts.Updates;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

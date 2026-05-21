@@ -1,5 +1,5 @@
 using Assets.Scripts.UI.Entities;
-using Genrpg.Shared.UI.Settings;
+using OxDb.SharedGame.UI.Settings;
 using System.Collections.Generic;
 using UnityEngine;
 

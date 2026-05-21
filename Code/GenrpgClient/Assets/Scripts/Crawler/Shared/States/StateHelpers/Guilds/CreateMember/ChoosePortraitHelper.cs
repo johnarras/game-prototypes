@@ -1,10 +1,10 @@
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Portraits.Settings;
-using Genrpg.Shared.Portraits.Utils;
-using Genrpg.Shared.Units.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Portraits.Settings;
+using OxDb.SharedGame.Portraits.Utils;
+using OxDb.SharedGame.Units.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.CreateMember
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 {
     public class ChoosePortraitHelper : BaseStateHelper
     {

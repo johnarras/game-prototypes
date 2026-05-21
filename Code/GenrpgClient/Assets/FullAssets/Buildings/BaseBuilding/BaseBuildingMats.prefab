@@ -47,33 +47,15 @@ MonoBehaviour:
   WallMats: []
   DoorMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: 0d5bae09b69c59741bca09b976b785af, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: d5844431fd7044a4bb6ac94e993057a4, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: 4b81363287d54e046a1a452adaa5b55b, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: 474aafdf3e4bae240ac7239f30d2f03d, type: 2}
+    Mat: {fileID: 2100000, guid: 6838e2484800ec948820589a165e1f86, type: 2}
     ColorTargets: []
   WindowMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: 91ef2bde63af3264791bbc2408811567, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: 45ccc78c68cecfc43ae15d7115d3337b, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: 330e21185ef777147b12e5bbf0e569cc, type: 2}
-    ColorTargets: []
-  - Weight: 100
-    Mat: {fileID: 2100000, guid: 77b5073e288176b4183053aad81e051d, type: 2}
+    Mat: {fileID: 2100000, guid: 7b2521267e58e21438a03bec60dfab8b, type: 2}
     ColorTargets: []
   ShinglesMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: 67e30fc825b81f94bb385e8e8071b384, type: 2}
+    Mat: {fileID: 2100000, guid: cae660aed25deae4ab4e4632b9e1ca2a, type: 2}
     ColorTargets:
     - {r: 0.61006284, g: 0.39612186, b: 0, a: 0}
     - {r: 0.29559743, g: 0.29559743, b: 0.29559743, a: 0}

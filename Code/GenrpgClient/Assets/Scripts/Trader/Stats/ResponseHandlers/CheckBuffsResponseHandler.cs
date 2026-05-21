@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Login.Messages.Core;
-using Genrpg.Shared.Attributes.Services;
-using Genrpg.Shared.Attributes.WebApi;
+using OxDb.SharedGame.Attributes.Services;
+using OxDb.SharedGame.Attributes.WebApi;
 using System.Threading;
 using UnityEngine;
 

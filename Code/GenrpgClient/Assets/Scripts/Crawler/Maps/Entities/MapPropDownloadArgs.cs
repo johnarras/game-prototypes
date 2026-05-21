@@ -1,5 +1,5 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
-using Genrpg.Shared.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Entities;
 
 namespace Assets.Scripts.Crawler.Maps.Entities
 {

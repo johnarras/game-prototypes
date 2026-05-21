@@ -1,8 +1,8 @@
 using Assets.Scripts.DynamicUI.Services;
-using Genrpg.Shared.DataStores.Categories.PlayerData.Units;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Rewards.Entities;
-using Genrpg.Shared.Rewards.Services;
+using OxDb.SharedCore.Rewards.Entities;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Rewards.Services;
 using System.Threading.Tasks;
 
 namespace Assets.Scripts.Rewards.Services
@@ -12,9 +12,9 @@ namespace Assets.Scripts.Rewards.Services
         private IDispatcher _dispatcher;
         private IDynamicUIService _dynamicUIService = null;
 
-        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, Item extraData, long uniqueId, RewardParams rp)
+        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
         {
-            if (await base.GiveReward(obj, entityTypeId, entityId, quantity, extraData, uniqueId, rp))
+            if (await base.GiveReward(obj, entityTypeId, entityId, quantity, rewardSourceId, extraData, uniqueId, rp))
             {
                 ClientRewardParams crp = rp as ClientRewardParams;
                 bool showDoober = crp?.ShowDoobers ?? true;

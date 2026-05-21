@@ -1,5 +1,5 @@
 
-namespace Genrpg.Shared.Crawler.Maps.Constants
+namespace OxDb.SharedGame.Crawler.Maps.Constants
 {
     public class CrawlerMapConstants
     {

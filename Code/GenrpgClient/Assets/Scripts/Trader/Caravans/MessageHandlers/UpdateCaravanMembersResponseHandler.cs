@@ -1,11 +1,9 @@
 ﻿using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.Trader.ClientEvents;
-using Genrpg.Shared.Trader.CaravanMembers.WebApi;
-using Genrpg.Shared.Trader.Caravans.PlayerData;
-using Genrpg.Shared.Trader.Caravans.Services;
-using System.Linq;
+using OxDb.SharedGame.Trader.CaravanMembers.WebApi;
+using OxDb.SharedGame.Trader.Caravans.Services;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Caravans.MessageHandlers
@@ -23,6 +21,7 @@ namespace Assets.Scripts.Trader.Caravans.MessageHandlers
             {
                 _dispatcher.Dispatch(response);
             }
+            await Task.CompletedTask;
         }
     }
 }

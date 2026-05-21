@@ -2,8 +2,8 @@ using Assets.Scripts.Buildings;
 using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Dungeons;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -49,6 +49,57 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         public int YBlockSize { get; set; } = CrawlerMapConstants.DefaultYBlockSize;
 
+
+        private bool[,] _wallsInNECorner = null;
+
+        public bool HasWallInNECorner(int x, int z)
+        {
+
+            if (_wallsInNECorner == null)
+            {
+                SetUpCornerWallData(Map);
+            }
+
+            while (x < 0)
+            {
+                x += Map.Width;
+            }
+            x = x % Map.Width;
+
+            while (z < 0)
+            {
+                z += Map.Height;
+            }
+            z = z % Map.Height;
+
+            return _wallsInNECorner[x, z];
+        }
+
+        private void SetUpCornerWallData(CrawlerMap map)
+        {
+            _wallsInNECorner = new bool[map.Width, map.Height];
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int z = 0; z < map.Height; z++)
+                {
+                    byte northWall = map.NorthWall(x, z);
+
+                    if (map.NorthWall(x, z) != WallTypes.None)
+                    {
+                        _wallsInNECorner[x, z] = true;
+                        _wallsInNECorner[(x + map.Width - 1) % map.Width, z] = true;
+                    }
+
+                    if (map.EastWall(x, z) != WallTypes.None)
+                    {
+                        _wallsInNECorner[x, z] = true;
+                        _wallsInNECorner[x, (z + map.Height - 1) % map.Height] = true;
+                    }
+                }
+            }
+        }
+
         public GameObject AssetRoot { get; set; }
 
         public Terrain GroundTerrain { get; set; }
@@ -58,11 +109,17 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         private Dictionary<string, List<ClientMapCell>> _mapCellCache { get; set; } = new Dictionary<string, List<ClientMapCell>>();
 
+        private Dictionary<string, List<ClientMapCell>> _mapCellList { get; set; } = new Dictionary<string, List<ClientMapCell>>();
+
         private List<ClientMapCell> _allCells { get; set; } = new List<ClientMapCell>();
 
         public DungeonAssetBlockList AssetBlockList { get; set; }
 
         public WeightedDungeonAssetBlock AssetBlock { get; set; }
+
+        public VaultedCeilingAssetBlock VaultedCeilingAssets { get; set; }
+
+        public DungeonAsset PillarAsset { get; set; }
 
         public Dictionary<long, MaterialBlock> MaterialBlocks { get; set; } = new Dictionary<long, MaterialBlock>();
 
@@ -118,7 +175,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             return _allZoneTypes;
         }
 
-        public List<long> GetAllDungeonZoneTypes()
+        public List<long> GetAllTerrainZoneTypes()
         {
             SetupExtendedTerrain();
             return _dungeonZoneTypes;
@@ -167,14 +224,19 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
                     }
                 }
 
-                if (!_allZoneTypes.Contains(Map.ZoneTypeId))
+                if (Map.ZoneTypeId > 0)
                 {
-                    _allZoneTypes.Add(Map.ZoneTypeId);
-                }
 
-                if (Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
-                {
-                    _dungeonZoneTypes = new List<long>() { Map.ZoneTypeId };
+                    if (!_allZoneTypes.Contains(Map.ZoneTypeId))
+                    {
+                        _allZoneTypes.Add(Map.ZoneTypeId);
+                    }
+
+                    if (Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
+                    {
+                        _dungeonZoneTypes = new List<long>() { Map.ZoneTypeId };
+
+                    }
                 }
             }
         }
@@ -183,6 +245,19 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         {
             return GetMaterialBlockAt(x, z)?.FinalMaterials ?? null;
         }
+        public List<ClientMapCell> GetCellsAtMapPos(int mapX, int mapZ)
+        {
+
+            string mapKey = mapX + "." + mapZ;
+
+            if (_mapCellList.TryGetValue(mapKey, out List<ClientMapCell> mapCells))
+            {
+                return mapCells;
+            }
+            return new List<ClientMapCell>();
+        }
+
+
 
         public ClientMapCell GetCellAtWorldPos(int worldX, int worldZ, bool createIfNotExist)
         {
@@ -219,6 +294,11 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             _clientEntityService.AddToParent(go, gameObject);
             cell = go.AddComponent<ClientMapCell>();
             cell.Content = go;
+            if (!_mapCellList.ContainsKey(mapKey))
+            {
+                _mapCellList[mapKey] = new List<ClientMapCell>();
+            }
+            _mapCellList[mapKey].Add(cell);
             InitCellPos(cell, mapX, mapZ, worldX, worldZ);
 
             return cell;
@@ -324,6 +404,8 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             BuildingWallOptions.Clear();
 
             _clientEntityService.Destroy(TerrainObject);
+
+            PillarAsset = null;
 
             base.OnDestroy();
         }

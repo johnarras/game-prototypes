@@ -1,58 +1,62 @@
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Items.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Info.Services;
-using Genrpg.Shared.Crawler.Items.Entities;
-using Genrpg.Shared.Crawler.Maps.Constants;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Monsters.Settings;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Quests.Services;
-using Genrpg.Shared.Crawler.Roles.Services;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Stats.Services;
-using Genrpg.Shared.Crawler.TimeOfDay.Constants;
-using Genrpg.Shared.Crawler.TimeOfDay.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Interfaces;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.UnitEffects.Settings;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Units.Settings;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Utils.Data;
-using Genrpg.Shared.Zones.Settings;
+using Assets.Scripts.Dungeons.Audio;
+using Assets.Scripts.Dungeons.Audio.Constants;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Items.Entities;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Monsters.Settings;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Quests.Services;
+using OxDb.SharedGame.Crawler.Roles.Services;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Stats.Services;
+using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
+using OxDb.SharedGame.Crawler.TimeOfDay.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Spells.Constants;
+using OxDb.SharedGame.Spells.Interfaces;
+using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.UnitEffects.Settings;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Units.Settings;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Combat.Services
+namespace OxDb.SharedGame.Crawler.Combat.Services
 {
     public interface ICrawlerCombatService : IInitializable
     {
@@ -127,8 +131,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         member.StatusEffects.RemoveBitIndex(effect.IdKey);
                     }
                 }
-
             }
+
+            _crawlerMapService.PlayMapSounds();
             _dispatcher.Dispatch(new UpdateCombatGroups());
         }
 
@@ -219,7 +224,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     startSettings.BaseGroupCountIncreaseChance + startSettings.GroupCountIncreaseChancePerLevel * difficulty,
                     startSettings.MaxGroupCountIncreaseChance);
 
-                while (_rand.NextDouble() < groupCountIncreaseChance && groupCount < startSettings.MaxGroupCount)
+                while (_rand.Rand.NextDouble() < groupCountIncreaseChance && groupCount < startSettings.MaxGroupCount)
                 {
                     // Make this mult < 1 so it's less liekly to keep adding groups as you add more.
                     groupCountIncreaseChance *= startSettings.GroupCountIncreaseMultPerGroupAdded;
@@ -246,11 +251,11 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     ZoneUnitSpawn chosenSpawn = null;
 
-                    if (_rand.NextDouble() > startSettings.SelectRandomUnitForCombatGroupChance)
+                    if (_rand.Rand.NextDouble() > startSettings.SelectRandomUnitForCombatGroupChance)
                     {
                         double chanceSum = spawns.Sum(x => x.Weight);
 
-                        double chanceChosen = _rand.NextDouble() * chanceSum;
+                        double chanceChosen = _rand.Rand.NextDouble() * chanceSum;
 
                         foreach (ZoneUnitSpawn sp in spawns)
                         {
@@ -264,7 +269,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     }
                     else
                     {
-                        chosenSpawn = spawns[_rand.Next() % spawns.Count];
+                        chosenSpawn = spawns[_rand.Rand.Next() % spawns.Count];
                     }
 
                     UnitType newUnitType = allUnitTypes.FirstOrDefault(x => x.IdKey == chosenSpawn.UnitTypeId);
@@ -293,11 +298,11 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                     if (currRange < CrawlerCombatConstants.MaxRange - CrawlerCombatConstants.RangeDelta * 2)
                     {
-                        if (_rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                        if (_rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                         {
                             currRange += CrawlerCombatConstants.RangeDelta;
 
-                            if (u > 0 && _rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                            if (u > 0 && _rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                             {
                                 currRange += CrawlerCombatConstants.RangeDelta;
                             }
@@ -307,7 +312,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                     // Second chance to push back if this failed.
                     if (u > 0 && currRange == CrawlerCombatConstants.MinRange)
                     {
-                        if (_rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                        if (_rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                         {
                             currRange += CrawlerCombatConstants.RangeDelta;
                         }
@@ -318,7 +323,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = RandUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand);
+                    long quantity = RandUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand.Rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -350,7 +355,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     UnitTypeId = wqi.GuardUnitTypeId,
                     Range = CrawlerCombatConstants.MaxRange,
-                    Quantity = RandUtils.IntRange(5, 10, _rand),
+                    Quantity = RandUtils.IntRange(5, 10, _rand.Rand),
                     Level = combatState.Level,
                     FactionTypeId = FactionTypes.Faction1,
                 });
@@ -370,14 +375,17 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             {
                 foreach (InitialCombatGroup initialGroup in initialState.CombatGroups)
                 {
-                    initialGroup.Quantity += RandUtils.LongRange(0, initialGroup.Quantity, _rand);
+                    initialGroup.Quantity += RandUtils.LongRange(0, initialGroup.Quantity, _rand.Rand);
                 }
             }
 
             // Now save party so players have to come back and fight the monsters even if they quit.
             await _crawlerService.SaveGame();
             party.Combat = combatState;
+            _dispatcher.Dispatch(new SetAmbientSoundCategory(AmbientSoundCategoryNames.Combat));
             party.InitialCombat = null;
+
+            _dispatcher.Dispatch(new PlaySound(CrawlerAudio.CombatAmbient, 0, null, 1, true));
 
             foreach (InitialCombatGroup allyGroup in partySummons)
             {
@@ -425,7 +433,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             long suffixKeywordId = 0;
             UnitKeyword suffixKeyword = null;
 
-            if (_rand.NextDouble() < monsterSettings.UnitKeywordChance && unitType.Keywords.Count > 0)
+            if (_rand.Rand.NextDouble() < monsterSettings.UnitKeywordChance && unitType.Keywords.Count > 0)
             {
                 List<long> possibleKeywordIds = unitType.Keywords.Select(x => x.UnitKeywordId).ToList();
 
@@ -433,7 +441,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 if (possibleKeywords.Count > 0)
                 {
-                    UnitKeyword chosenKeyword = RandUtils.GetRandomElement(possibleKeywords, _rand);
+                    UnitKeyword chosenKeyword = RandUtils.GetRandomElement(possibleKeywords, _rand.Rand);
 
                     suffixKeywordId = chosenKeyword.IdKey;
                     suffixKeyword = chosenKeyword;
@@ -449,9 +457,9 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 List<CurrentUnitKeyword> okMapKeywords = map.UnitKeywords.Where(k => k.UnitKeywordId != suffixKeywordId).ToList();
 
-                if (okMapKeywords.Count > 0 && _rand.NextDouble() < monsterSettings.MapUnitKeywordChance)
+                if (okMapKeywords.Count > 0 && _rand.Rand.NextDouble() < monsterSettings.MapUnitKeywordChance)
                 {
-                    CurrentUnitKeyword mapKeyword = okMapKeywords[_rand.Next(okMapKeywords.Count)];
+                    CurrentUnitKeyword mapKeyword = okMapKeywords[_rand.Rand.Next(okMapKeywords.Count)];
 
                     UnitKeyword unitKeyword = allUnitKeywords.FirstOrDefault(x => x.IdKey == mapKeyword.UnitKeywordId);
                     if (unitKeyword != null)
@@ -600,7 +608,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
 
                 if (okNameKeywords.Count > 0)
                 {
-                    UnitKeyword chosenWord = okNameKeywords[_rand.Next(okNameKeywords.Count)];
+                    UnitKeyword chosenWord = okNameKeywords[_rand.Rand.Next(okNameKeywords.Count)];
                     namePrefix = chosenWord.Name + " ";
                 }
             }
@@ -1139,7 +1147,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 return false;
             }
 
-            return _rand.Next(100) < _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId).Amount;
+            return _rand.Rand.Next(100) < _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId).Amount;
         }
 
         public void InitPartyCombatActions(PartyData party)

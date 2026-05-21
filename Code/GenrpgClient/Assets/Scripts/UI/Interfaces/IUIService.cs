@@ -1,11 +1,10 @@
 using Assets.Scripts.Setup.Interfaces;
 using Assets.Scripts.UI.Abstractions;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.UI.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.UI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 

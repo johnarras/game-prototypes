@@ -1,9 +1,9 @@
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.Worlds.Entities;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
 
-namespace Genrpg.Shared.Crawler.Quests.Entities
+namespace OxDb.SharedGame.Crawler.Quests.Entities
 {
     public class FullQuest
     {

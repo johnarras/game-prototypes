@@ -1,11 +1,11 @@
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.UI.Constants;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.Upgrades.Settings;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Upgrades.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.Upgrades
 {
     public class UpgradePartyStateHelper : BaseStateHelper
     {
@@ -114,7 +114,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Guilds.Upgrades
 
             allLines.Add("Max Tier: " + upgrade.MaxTier + "\n\n");
 
-            _dispatcher.Dispatch(new ShowInfoPanelEvent() { Lines = allLines });
+            _dispatcher.Dispatch(new ShowInfoPanelArgs() { Lines = allLines });
         }
     }
 }

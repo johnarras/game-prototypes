@@ -1,0 +1,146 @@
+:root {
+    --color-bg-panel: rgb(44, 62, 80);
+    --color-primary: rgb(52, 152, 219);
+    --color-primary-hover: rgb(41, 128, 185);
+    --color-text: rgb(236, 240, 241);
+    --color-input-bg: rgb(26, 37, 47);
+    --font-size-md: 18px;
+    --padding-sm: 8px;
+    --border-radius-md: 6px;
+    --transition-speed: 0.1s;
+    --img-main-bg: url("project://database/Assets/FullAssets/Atlas/UI/BGScreen.png?fileID=21300000&guid=77536e3fd0000a34c958a18310ec9590&type=3#BGScreen");
+    --img-dark-bg: url("project://database/Assets/FullAssets/Atlas/UI/BGScreenDark.png?fileID=21300000&guid=c83df7b0c087835488d10906c42b3832&type=3#BGScreenDark");
+    --img-light-bg: url("project://database/Assets/FullAssets/Atlas/UI/BGLight.PNG?fileID=21300000&guid=093d9ace500258646b43b9b717f1498a&type=3#BGLight");
+    --img-button-bg: url("project://database/Assets/FullAssets/Atlas/UI/BGButton.PNG?fileID=21300000&guid=6221aed347a74ee4c8bcdfe6ab63f28c&type=3#BGButton");
+    --img-spend-button-bg: url("project://database/Assets/FullAssets/Atlas/UI/BGSpendButton.PNG?fileID=21300000&guid=2f1965780577ff9429edf6895d4aca8f&type=3#BGSpendButton");
+}
+
+.screen-full {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    picking-mode: ignore;
+}
+
+.panel-full {
+    width: 100%;
+    height: 100%;
+    background-image: var(--img-main-bg);
+    -unity-background-scale-mode: scale-and-crop;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel-small {
+    width: 800px;
+    height: 600px;
+    background-image: var(--img-main-bg);
+    -unity-background-scale-mode: scale-and-crop;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.g-text {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    -unity-font-style: normal;
+}
+
+.g-input-field {
+    background-color: var(--color-input-bg);
+    border-radius: var(--border-radius-md);
+    padding: var(--padding-sm);
+    color: var(--color-text);
+}
+
+.g-button-base {
+    background-image: var(--img-button-bg);
+    border-radius: var(--border-radius-md);
+    color: white;
+    padding: 10px 20px;
+}
+
+.g-button-base:hover {
+    background-color: var(--color-primary-hover);
+    scale: 1.05;
+}
+
+.g-image-base {
+    background-image: var(--img-button-bg);
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.g-toggle-base .unity-toggle__checkmark {
+    background-color: var(--color-input-bg);
+    border-color: var(--color-primary);
+}
+
+.g-slider-base .unity-base-slider__tracker {
+    background-color: var(--color-input-bg);
+}
+
+.g-scroll-view-base {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-md);
+}
+
+.g-label-base {
+    color: var(--color-text);
+    font-size: 16px;
+    margin-bottom: 4px;
+    -unity-font-style: bold;
+    flex-shrink: 0;
+}
+
+.g-text-field-base {
+    margin-bottom: 15px;
+    transition-duration: 0.1s;
+}
+
+.g-text-field-base .unity-base-field__input .unity-text-input {
+    background-color: var(--color-input-bg);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: 8px 12px;
+    color: white;
+}
+
+.g-text-field-base:focus .unity-base-field__input {
+    border-color: var(--color-primary);
+    background-color: rgb(26, 37, 47);
+}
+
+.g-dropdown-field-base {
+    margin-bottom: 15px;
+}
+
+.g-dropdown-field-base .unity-base-field__input {
+    background-color: var(--color-input-bg);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: 8px 12px;
+}
+
+.g-dropdown-field-base .unity-enum-field__arrow {
+    -unity-background-image-tint-color: var(--color-text);
+}
+
+.g-dropdown-field-base:hover .unity-base-field__input {
+    border-color: var(--color-primary);
+}
+
+.unity-base-dropdown__container {
+    background-color: var(--color-bg-panel);
+    border-width: 1px;
+    border-color: var(--color-primary);
+}
+
+.button-row {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}

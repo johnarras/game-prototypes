@@ -1,7 +1,8 @@
-using Genrpg.Shared.Combat.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedGame.Combat.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Spawns
@@ -22,6 +23,7 @@ namespace Assets.Scripts.MessageHandlers.Spawns
             {
                 controller.OnDeath(msg, token);
             }
+            await Task.CompletedTask;
         }
     }
 }

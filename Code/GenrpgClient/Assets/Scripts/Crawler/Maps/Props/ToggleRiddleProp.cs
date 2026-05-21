@@ -1,22 +1,25 @@
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Riddles.Settings;
+using Assets.Scripts.Crawler.Maps.Loading;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Riddles.Services;
+using OxDb.SharedGame.Riddles.Settings;
 
 namespace Assets.Scripts.Crawler.Maps.Props
 {
     public class ToggleRiddleProp : CrawlerProp
     {
 
-        public RiddleType _riddleType = null;
+        protected IRiddleService _riddleService = null;
+        private RiddleType _riddleType = null;
 
         protected int _index = 0;
-        public override void SetData(int x, int z, CrawlerMap map)
+        public override void SetData(CrawlerObjectLoadData loadData)
         {
-            base.SetData(x, z, map);
+            base.SetData(loadData);
 
-            _riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(map.RiddleHints?.RiddleTypeId ?? 0);
+            _riddleService.SetPropPosition(gameObject, loadData, GetToken());
+            _riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(_mapRoot.Map.RiddleHints?.RiddleTypeId ?? 0);
 
-            _index = map.GetEntityId(x, z, EntityTypes.Riddle);
+            _index = _mapRoot.Map.GetEntityId(_cell.MapX, _cell.MapZ, EntityTypes.Riddle);
 
             UpdateToggle();
         }
@@ -29,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.Props
         protected void UpdateToggle()
         {
             if (_riddleType == null || !_riddleType.IsToggle ||
-                _party == null || _map == null)
+                _party == null || _mapRoot == null)
             {
                 return;
             }

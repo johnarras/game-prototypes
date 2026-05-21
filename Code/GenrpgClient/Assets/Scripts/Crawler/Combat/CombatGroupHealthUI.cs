@@ -1,5 +1,5 @@
-﻿using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.UnitEffects.Constants;
+﻿using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.UnitEffects.Constants;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Crawler.Combat

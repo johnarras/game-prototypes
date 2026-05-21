@@ -1,4 +1,4 @@
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
 
 
 public class LocalUserData : IStringId

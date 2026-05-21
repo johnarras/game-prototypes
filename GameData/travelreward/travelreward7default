@@ -1,12 +1,12 @@
 {
   "Id": "travelreward7default",
   "IdKey": 7,
-  "Name": "Rations",
+  "Name": "Metal",
   "ParentId": "default",
   "EntityTypeId": 1,
   "EntityId": 8,
   "MinQuantity": 1,
   "MaxQuantity": 2,
-  "Weight": 1.0,
+  "Weight": 10.0,
   "GroupId": 1
 }

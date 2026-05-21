@@ -1,11 +1,11 @@
 
 using ClientEvents;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Currencies.PlayerData;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Rewards.Messages;
-using Genrpg.Shared.RpgLevels.Settings;
-using Genrpg.Shared.Units.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Currencies.PlayerData;
+using OxDb.SharedGame.Rewards.Messages;
+using OxDb.SharedGame.RpgLevels.Settings;
+using OxDb.SharedGame.Units.Entities;
 
 public class ExpBar : BaseBehaviour
 {
@@ -39,7 +39,7 @@ public class ExpBar : BaseBehaviour
         {
             _curr = currExp;
             _max = nextLevelData.CurrExp;
-            _progressBar.InitRange(0, _max, _curr);
+            _progressBar.InitRange(0, _curr, _max);
         }
     }
 

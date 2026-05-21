@@ -1,21 +1,22 @@
 
+using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Party.Services;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
-using Genrpg.Shared.Vendors.Settings;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Services;
+using OxDb.SharedGame.Units.Entities;
+using OxDb.SharedGame.Vendors.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ public class CrawlerVendorScreen : ItemIconScreen
     private IIconService _iconService = null;
     private ICrawlerUpgradeService _upgradeService = null;
     private IPartyService _partyService = null;
+    protected IClientRandom _rand = null;
 
     public const string VendorIconName = "VendorItemIcon";
 
@@ -86,7 +88,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _party.LastVendorRefresh = DateTime.UtcNow;
 
 
-            int quantity = RandUtils.IntRange(4, 10, _rand);
+            int quantity = RandUtils.IntRange(4, 10, _rand.Rand);
 
             long level = await _crawlerWorldService.GetMapLevelAtParty(_party);
 
@@ -99,7 +101,7 @@ public class CrawlerVendorScreen : ItemIconScreen
                 long qualityTypeId = (long)quality;
 
                 double remainder = quality - qualityTypeId;
-                if (_rand.NextDouble() < remainder)
+                if (_rand.Rand.NextDouble() < remainder)
                 {
                     qualityTypeId++;
                 }

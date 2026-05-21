@@ -1,9 +1,44 @@
 fileFormatVersion: 2
 guid: a50c989724211c14d8e440bb01a2ddbc
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BuildingMat
+    second: {fileID: 2100000, guid: 4f7ad2847f20a8c4f935e215cf31d604, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DoorMat
+    second: {fileID: 2100000, guid: 6838e2484800ec948820589a165e1f86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof1Mat
+    second: {fileID: 2100000, guid: cae660aed25deae4ab4e4632b9e1ca2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofPeakMat
+    second: {fileID: 2100000, guid: 4986215753c751a4591be52571a21fac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roottop
+    second: {fileID: 2100000, guid: 4986215753c751a4591be52571a21fac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window1Mat
+    second: {fileID: 2100000, guid: 7b2521267e58e21438a03bec60dfab8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window2Mat
+    second: {fileID: 2100000, guid: 7b2521267e58e21438a03bec60dfab8b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,6 +91,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

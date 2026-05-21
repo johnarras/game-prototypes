@@ -1,16 +1,13 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Entities.Utils;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.GameSettings.Interfaces;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
-using Genrpg.Shared.ProcGen.Settings.Textures;
-using Genrpg.Shared.ProcGen.Settings.Trees;
-using Genrpg.Shared.Spells.Constants;
-using Genrpg.Shared.Spells.Settings.Elements;
-using Genrpg.Shared.UI.Settings;
-using Genrpg.Shared.Units.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.ProcGen.Settings.Trees;
+using OxDb.SharedGame.UI.Settings;
+using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,9 +43,6 @@ public class TestAssetDownloads : IInjectable
 
         TestAssetCategory<TreeTypeSettings, TreeType>(AssetCategoryNames.Bushes, token,
             x => x.HasFlag(TreeFlags.IsBush));
-
-        TestMagic(token);
-
 
         _logService.Info("Download Tests Complete");
 
@@ -133,29 +127,6 @@ public class TestAssetDownloads : IInjectable
         }
     }
 
-    private void TestMagic(CancellationToken token)
-    {
-        IReadOnlyList<ElementType> elements = _gameData.Get<ElementTypeSettings>(null).GetData();
-
-
-        List<string> fxNames = EntityUtils.GetStaticStrings(typeof(FXNames));
-
-        foreach (ElementType element in elements)
-        {
-            if (string.IsNullOrEmpty(element.Art))
-            {
-                continue;
-            }
-
-            foreach (string fxName in fxNames)
-            {
-                string fullName = element.Art + fxName;
-                _assetService.LoadAsset<object>(AssetCategoryNames.Magic, fullName, OnDownloadAsset, fullName, token);
-            }
-        }
-
-
-    }
 }
 
 

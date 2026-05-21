@@ -1,11 +1,14 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Services;
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Options.Services;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +18,7 @@ using UnityEngine;
 
 public interface IAudioService : IInitializable, IAssetSubsystem
 {
-    void PlaySound(string name, object parent = null, float volume = 1.0f);
     void PlayMusic(IMusicRegion region);
-    void StopAllAudio();
-
     void SetVolume(EAudioCategories category, float volume);
     float GetVolume(EAudioCategories category);
 }
@@ -31,6 +31,8 @@ public class UnityAudioService : IAudioService
     private IClientEntityService _clientEntityService = null;
     private ISingletonContainer _singletons = null;
     private IClientRandom _rand = null;
+    private IDispatcher _dispatcher = null;
+    private ILogService _logService = null;
 
     private Dictionary<EAudioCategories, AudioChannel> _channels = new Dictionary<EAudioCategories, AudioChannel>();
 
@@ -51,6 +53,8 @@ public class UnityAudioService : IAudioService
             };
         }
 
+        _dispatcher.AddListener<PlaySound>(OnPlaySound, _token);
+        _dispatcher.AddListener<StopSound>(OnStopSound, _token);
         _updateService.AddUpdate(this, AudioUpdate, UpdateTypes.Regular, _token);
         await Task.CompletedTask;
     }
@@ -67,6 +71,14 @@ public class UnityAudioService : IAudioService
         foreach (AudioClipList cont in _audioCache.Values)
         {
             cont.StopAll();
+        }
+    }
+
+    public void OnStopSound(StopSound stop)
+    {
+        if (_audioCache.ContainsKey(stop.SoundName))
+        {
+            _audioCache[stop.SoundName].StopAll();
         }
     }
 
@@ -91,7 +103,7 @@ public class UnityAudioService : IAudioService
         }
     }
 
-    public void PlaySound(string soundName, object parent = null, float volume = AudioConstants.MaxVolume)
+    public void OnPlaySound(PlaySound playSound)
     {
         if (_channels[EAudioCategories.Sound].Volume <= AudioConstants.MinVolume)
         {
@@ -100,11 +112,12 @@ public class UnityAudioService : IAudioService
 
         PlayAudioData playData = new PlayAudioData()
         {
-            audioName = soundName,
-            volume = volume * _channels[EAudioCategories.Sound].Volume,
-            parent = parent as GameObject,
-            category = EAudioCategories.Sound,
-            looping = false,
+            AudioName = playSound.SoundName,
+            Volume = playSound.Volume * _channels[EAudioCategories.Sound].Volume,
+            Parent = playSound.Parent,
+            Category = EAudioCategories.Sound,
+            Looping = playSound.Looping,
+            VarianceScale = playSound.VarianceScale,
         };
         PlayAudio(playData);
     }
@@ -116,23 +129,28 @@ public class UnityAudioService : IAudioService
             return;
         }
 
-        if (_channels[playData.category].Volume <= AudioConstants.MinVolume)
+        if (_channels[playData.Category].Volume <= AudioConstants.MinVolume)
         {
             return;
         }
 
-        if (_audioCache.ContainsKey(playData.audioName))
+        if (_audioCache.ContainsKey(playData.AudioName))
         {
-            AudioClipList cont = _audioCache[playData.audioName];
+            AudioClipList cont = _audioCache[playData.AudioName];
             PlayLoadedAudio(cont, playData);
             return;
         }
 
-        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.audioName, OnDownloadAudio, _audioParent, _token, playData);
+        _assetService.LoadAsset(AssetCategoryNames.Audio, playData.AudioName, OnDownloadAudio, _audioParent, _token, playData);
     }
 
     private void OnDownloadAudio(GameObject go, PlayAudioData playData, CancellationToken token)
     {
+        if (go == null)
+        {
+            _logService.Info("Missing Audio: " + playData.AudioName);
+            return;
+        }
         AudioClipList cont = go.GetComponent<AudioClipList>();
         if (cont == null || !cont.IsValid())
         {
@@ -140,22 +158,22 @@ public class UnityAudioService : IAudioService
             return;
         }
 
-        if (playData == null || string.IsNullOrEmpty(playData.audioName))
+        if (playData == null || string.IsNullOrEmpty(playData.AudioName))
         {
             _clientEntityService.Destroy(go);
             return;
         }
 
-        if (_audioCache.ContainsKey(playData.audioName))
+        if (_audioCache.ContainsKey(playData.AudioName))
         {
             _clientEntityService.Destroy(go);
-            cont = _audioCache[playData.audioName];
+            cont = _audioCache[playData.AudioName];
 
         }
         else
         {
-            _audioCache[playData.audioName] = cont;
-            cont.Name = playData.audioName;
+            _audioCache[playData.AudioName] = cont;
+            cont.Name = playData.AudioName;
         }
         PlayLoadedAudio(cont, playData);
     }
@@ -170,9 +188,9 @@ public class UnityAudioService : IAudioService
 
         AudioSource source = clipList.Play(playData);
 
-        if (playData.musicData != null)
+        if (playData.MusicData != null)
         {
-            AudioChannel categoryCont = GetMusicChannel(playData.category);
+            AudioChannel categoryCont = GetMusicChannel(playData.Category);
             CurrentMusic musicCont = new CurrentMusic()
             {
                 playData = playData,
@@ -289,19 +307,19 @@ public class UnityAudioService : IAudioService
     {
         if (musicCont == null || musicCont.clipList == null || musicCont.source == null ||
             musicCont.playData == null ||
-            string.IsNullOrEmpty(musicCont.playData.audioName))
+            string.IsNullOrEmpty(musicCont.playData.AudioName))
         {
             return;
         }
 
-        AudioChannel catCont = GetMusicChannel(musicCont.playData.category);
+        AudioChannel catCont = GetMusicChannel(musicCont.playData.Category);
 
         if (catCont == null)
         {
             return;
         }
 
-        if (catCont.curr != null && catCont.curr.clipList.IsEqual(musicCont.clipList))
+        if (catCont.curr != null && catCont.curr.clipList.name == musicCont.clipList.name)
         {
             musicCont.clipList.StopSource(musicCont.source);
             return;
@@ -340,7 +358,7 @@ public class UnityAudioService : IAudioService
         if (catCont.curr != null && catCont.curr.GetRandomIzeSeconds() > 0)
         {
             float randTime = catCont.curr.GetRandomIzeSeconds();
-            float newRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, _rand);
+            float newRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, _rand.Rand);
             catCont.curr.NextRandomizeTime = DateTime.UtcNow.AddSeconds(newRandTime);
         }
     }
@@ -389,7 +407,7 @@ public class UnityAudioService : IAudioService
                 channel.curr.GetRandomIzeSeconds() > 0 &&
                 DateTime.UtcNow > channel.curr.NextRandomizeTime)
             {
-                channel.ChooseNewRandomSound(_rand);
+                channel.ChooseNewRandomSound(_rand.Rand);
             }
         }
 

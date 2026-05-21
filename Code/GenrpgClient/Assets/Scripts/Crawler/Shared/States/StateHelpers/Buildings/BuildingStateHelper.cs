@@ -1,7 +1,7 @@
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Buildings
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Buildings
 {
     public abstract class BuildingStateHelper : BaseStateHelper
     {

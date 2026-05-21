@@ -2,10 +2,10 @@ using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.ClientEvents;
-using Genrpg.Shared.Constants;
-using Genrpg.Shared.Input.PlayerData;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedGame.Constants;
+using OxDb.SharedGame.Input.PlayerData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -34,7 +34,6 @@ internal class CustomInputAction
 public interface IInputService : IInitializable, IClientResetCleanup
 {
     bool MouseClickNow(int index);
-    float GetDeltaTime();
     bool MouseIsDown(int mouseIndex);
     Vector3 MousePosition();
     bool ModifierIsActive(string keyCommand);
@@ -135,10 +134,6 @@ public class InputService : IInputService
     {
         _isDisabled = isDisabled;
     }
-
-
-    public float GetDeltaTime() { return Time.deltaTime; }
-
 
     public bool MouseClickNow(int index)
     {

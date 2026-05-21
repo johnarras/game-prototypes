@@ -1,10 +1,10 @@
+using Assets.Scripts.Accounts.Constants;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.Accounts.Constants;
-using Genrpg.Shared.Accounts.WebApi.Signup;
-using Genrpg.Shared.DataStores.Entities;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedPlatform.Accounts.WebApi.Signup;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,20 +20,15 @@ public class SignupScreen : ErrorMessageScreen
     public GInputField PasswordInput2;
     public GButton LoginButton;
     public GButton SignupButton;
-    public GText ErrorText;
 
     protected IClientAuthService _authService = null;
     protected IRepositoryService _repoService = null;
     protected IClientAppService _clientAppService = null;
     protected IClientCryptoService _clientCryptoService = null;
 
-    public override void ShowError(string errorMessage)
-    {
-        _uiService.SetText(ErrorText, errorMessage);
-    }
-
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
+        await base.OnStartOpen(data, token);
         _uiService.SetButton(LoginButton, GetName(), ClickLogin);
         _uiService.SetButton(SignupButton, GetName(), ClickSignup);
         await Task.CompletedTask;
@@ -76,13 +71,13 @@ public class SignupScreen : ErrorMessageScreen
             name.Length < AccountConstants.MinNameLength ||
             name.Length > AccountConstants.MaxNameLength)
         {
-            _logService.Message($"Your Name must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} characters.");
+            _logService.Info($"Your Name must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} characters.");
             return;
         }
 
         if (String.IsNullOrEmpty(email) || email.IndexOf("@") < 0)
         {
-            _logService.Message("Email must not be blank");
+            _logService.Info("Email must not be blank");
             return;
         }
 
@@ -90,7 +85,7 @@ public class SignupScreen : ErrorMessageScreen
             shareId.Length < AccountConstants.MinShareIdLength ||
             shareId.Length > AccountConstants.MaxShareIdLength)
         {
-            _logService.Message($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
+            _logService.Info($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
             return;
         }
 
@@ -106,20 +101,20 @@ public class SignupScreen : ErrorMessageScreen
 
         if (!allAlphanumeric)
         {
-            _logService.Message($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
+            _logService.Info($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
 
             return;
         }
 
         if (password1 != password2)
         {
-            _logService.Message("Passwords don't match");
+            _logService.Info("Passwords don't match");
             return;
         }
 
         if (string.IsNullOrEmpty(password1) || password1.Length < AccountConstants.MinPasswordLength)
         {
-            _logService.Message($"Password must be at least {AccountConstants.MinPasswordLength} characters");
+            _logService.Info($"Password must be at least {AccountConstants.MinPasswordLength} characters");
             return;
         }
 

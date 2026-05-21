@@ -1,15 +1,15 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.DynamicUI.Services;
-using Genrpg.Shared.Crawler.Crafting.Settings;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Currencies.Settings;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.Stats.Settings.Stats;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Crafting.Settings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.Stats.Settings.Stats;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,7 +26,6 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
         private IClientGameState _gs = null;
         private IGameData _gameData = null;
         private IClientRandom _rand = null;
-        private IDispatcher _dispatcher = null;
         private IDynamicUIService _dynamicUIService = null;
 
         public bool ScrapItem(PartyData party, Item item, Vector3 startPos)
@@ -55,7 +54,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
                         }
                         for (int i = 0; i < eff.Quantity; i++)
                         {
-                            if (_rand.NextDouble() < craftingSettings.ScrapReagentChance)
+                            if (_rand.Rand.NextDouble() < craftingSettings.ScrapReagentChance)
                             {
                                 currencyCounts[ctype.IdKey]++;
                             }
@@ -66,7 +65,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
 
             if (currencyCounts.Keys.Count > 0 && currencyCounts.Values.Sum() < 1)
             {
-                long randId = currencyCounts.Keys.ToList()[_rand.Next(currencyCounts.Keys.Count)];
+                long randId = currencyCounts.Keys.ToList()[_rand.Rand.Next(currencyCounts.Keys.Count)];
                 currencyCounts[randId]++;
             }
 

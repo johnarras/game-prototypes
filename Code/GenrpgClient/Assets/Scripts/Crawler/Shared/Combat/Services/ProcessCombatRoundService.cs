@@ -2,26 +2,26 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Crawler.Shared.Combat.Services;
-using Genrpg.Shared.Crawler.Combat.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Combat.Settings;
-using Genrpg.Shared.Crawler.Loot.Services;
-using Genrpg.Shared.Crawler.Monsters.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Roles.Settings;
-using Genrpg.Shared.Crawler.Spells.Entities;
-using Genrpg.Shared.Crawler.Spells.Services;
-using Genrpg.Shared.Crawler.Spells.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.Factions.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Stats.Constants;
-using Genrpg.Shared.UnitEffects.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Combat.Constants;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Combat.Settings;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Monsters.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Entities;
+using OxDb.SharedGame.Crawler.Spells.Services;
+using OxDb.SharedGame.Crawler.Spells.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Factions.Constants;
+using OxDb.SharedGame.Stats.Constants;
+using OxDb.SharedGame.UnitEffects.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Genrpg.Shared.Crawler.Combat.Services
+namespace OxDb.SharedGame.Crawler.Combat.Services
 {
     public interface IProcessCombatRoundCombatService : IInjectable
     {
@@ -204,7 +204,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
                 {
                     double averageLuck = 1.0 * totalLuck / party.Combat.PartyGroup.Units.Count;
 
-                    if (_rand.NextDouble() * party.Combat.Level < averageLuck)
+                    if (_rand.Rand.NextDouble() * party.Combat.Level < averageLuck)
                     {
                         _combatService.EndCombat(party);
                         _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token);
@@ -231,7 +231,7 @@ namespace Genrpg.Shared.Crawler.Combat.Services
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)
             {
-                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * RandUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand);
+                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * RandUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand.Rand);
 
                 if (unit.FactionTypeId == FactionTypes.Player && overloadedInventoryCount > 0)
                 {

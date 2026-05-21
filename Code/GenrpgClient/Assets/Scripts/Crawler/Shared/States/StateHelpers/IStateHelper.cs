@@ -1,10 +1,10 @@
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Interfaces;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers
+namespace OxDb.SharedGame.Crawler.States.StateHelpers
 {
     public interface IStateHelper : ISetupDictionaryItem<ECrawlerStates>
     {

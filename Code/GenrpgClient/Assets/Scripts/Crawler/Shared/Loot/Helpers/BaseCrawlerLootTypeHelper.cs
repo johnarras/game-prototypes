@@ -1,10 +1,10 @@
 using Assets.Scripts.Core;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Inventory.Entities;
-using Genrpg.Shared.Inventory.PlayerData;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Inventory.Entities;
+using OxDb.SharedGame.Inventory.PlayerData;
 
-namespace Genrpg.Shared.Crawler.Loot.Helpers
+namespace OxDb.SharedGame.Crawler.Loot.Helpers
 {
     public abstract class BaseCrawlerLootTypeHelper : ICrawlerLootTypeHelper
     {

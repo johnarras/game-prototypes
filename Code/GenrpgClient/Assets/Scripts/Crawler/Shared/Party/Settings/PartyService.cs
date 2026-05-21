@@ -1,36 +1,38 @@
+using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Crawler.Combat.Services;
-using Genrpg.Shared.Crawler.Constants;
-using Genrpg.Shared.Crawler.Crawlers.Services;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.Options.Constants;
-using Genrpg.Shared.Crawler.Options.Services;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.Settings;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.States.StateHelpers.Exploring;
-using Genrpg.Shared.Crawler.Training.Services;
-using Genrpg.Shared.Crawler.Upgrades.Constants;
-using Genrpg.Shared.Currencies.Constants;
-using Genrpg.Shared.Effects.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.GameSettings;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Inventory.PlayerData;
+using OxDb.SharedCore.Effects.Entities;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Combat.Services;
+using OxDb.SharedGame.Crawler.Constants;
+using OxDb.SharedGame.Crawler.Crawlers.Services;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.Options.Constants;
+using OxDb.SharedGame.Crawler.Options.Services;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.Settings;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.States.StateHelpers.Exploring;
+using OxDb.SharedGame.Crawler.Training.Services;
+using OxDb.SharedGame.Crawler.Upgrades.Constants;
+using OxDb.SharedGame.Currencies.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.Party.Services
+namespace OxDb.SharedGame.Crawler.Party.Services
 {
 
     public interface IPartyService : IInjectable
@@ -153,7 +155,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
         {
             if (party.WorldId == 0)
             {
-                party.WorldId = _rand.Next() % 100000000;
+                party.WorldId = _rand.Rand.Next() % 100000000;
             }
             party.Maps = new List<CrawlerMapStatus>();
             party.CompletedMaps.Clear();
@@ -205,6 +207,7 @@ namespace Genrpg.Shared.Crawler.Party.Services
             party.HourOfDay = 0;
             party.Combat = null;
             party.InitialCombat = null;
+            _dispatcher.Dispatch(new StopSound(CrawlerAudio.CombatAmbient));
 
             party.AddFlags(PartyFlags.HasRecall);
         }

@@ -16,11 +16,13 @@ MonoBehaviour:
   Env: local
   BaseWebEndpoint: https://XXXXX-genrpg.azurewebsites.net
   ContentEndpoint: http://oxdbassets.azureedge.net
-  AssetsEnv: dev
-  WorldsEnv: dev
+  AssetsEnv: local
+  WorldsEnv: local
   ProductId: 2
   SelfContainedClient: 1
-  ExportGameData: 0
+  ExportGameData: 1
+  EncryptExportedData: 1
+  AppInsightsConnectionString: 
   GooglePlaySecret: temp
   IOSSecret: temp
   PackageName: 

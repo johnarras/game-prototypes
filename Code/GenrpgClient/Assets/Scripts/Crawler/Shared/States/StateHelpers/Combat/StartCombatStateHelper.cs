@@ -1,16 +1,17 @@
+using Assets.Scripts.Audio.ClientEvents;
+using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Crawler.Constants;
-using Genrpg.Shared.Crawler.Combat.Entities;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.Combat.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public class StartCombatStateHelper : BaseCombatStateHelper
     {
-        private IAudioService _audioService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.StartCombat;
 
         public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
@@ -37,7 +38,7 @@ namespace Genrpg.Shared.Crawler.States.StateHelpers.Combat
 
             if (await _combatService.StartCombat(_crawlerService.GetParty()))
             {
-                _audioService.PlaySound(CrawlerAudio.StartCombat);
+                _dispatcher.Dispatch(new PlaySound(CrawlerAudio.StartCombat, AudioConstants.NoVariance));
                 stateData = new CrawlerStateData(ECrawlerStates.CombatFightRun, true);
             }
             else

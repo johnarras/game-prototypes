@@ -1,12 +1,12 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Entities;
 using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Entities.Assets;
-using Genrpg.Shared.Entities.Services;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.Logging.Interfaces;
+using OxDb.SharedCore.Entities.Assets;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -36,6 +36,8 @@ namespace Assets.Scripts.Assets.Sprites.Services
         protected GameObject _assetParent = null;
 
         protected Dictionary<string, SpriteAtlasContainer> _atlasCache = new Dictionary<string, SpriteAtlasContainer>();
+
+        private List<string> _missingAssets = new List<string>();
 
         public async Task Initialize(CancellationToken token)
         {
@@ -146,7 +148,11 @@ namespace Assets.Scripts.Assets.Sprites.Services
             }
             if (cont.Atlas == null)
             {
-                _logService.Warning($"Missing Atlas in container {cont.name}");
+                if (!_missingAssets.Contains(cont.name))
+                {
+                    _logService.Warning($"Missing Atlas in container {cont.name}");
+                    _missingAssets.Add(cont.name);
+                }
                 if (handler != null)
                 {
                     handler(null, image, token);
@@ -158,7 +164,11 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
             if (spr == null)
             {
-                _logService.Warning($"Missing sprite {spriteName} in Atlas {cont.name}");
+                if (!_missingAssets.Contains(cont.name + "." + spriteName))
+                {
+                    _logService.Warning($"Missing sprite {spriteName} in Atlas {cont.name}");
+                    _missingAssets.Add(cont.name + "." + spriteName);
+                }
                 if (handler != null)
                 {
                     handler(null, image, token);
@@ -190,7 +200,11 @@ namespace Assets.Scripts.Assets.Sprites.Services
             }
             else
             {
-                _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
+                if (!_missingAssets.Contains(entityTypeId + "." + entityId))
+                {
+                    _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
+                    _missingAssets.Add(entityTypeId + "." + entityId);
+                }
             }
         }
 

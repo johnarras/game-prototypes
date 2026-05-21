@@ -3,20 +3,20 @@ using Assets.Scripts.Awaitables;
 using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Setup.Interfaces;
-using Genrpg.Shared.Characters.PlayerData;
-using Genrpg.Shared.HelperClasses;
-using Genrpg.Shared.Interfaces;
-using Genrpg.Shared.MapObjects.Entities;
-using Genrpg.Shared.MapObjects.Factories;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.MapServer.Entities;
-using Genrpg.Shared.MapServer.Services;
-using Genrpg.Shared.Movement.Messages;
-using Genrpg.Shared.Spawns.Interfaces;
-using Genrpg.Shared.Spells.Messages;
-using Genrpg.Shared.Units.Constants;
-using Genrpg.Shared.Units.Entities;
-using Genrpg.Shared.Utils.Data;
+using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapObjects.Entities;
+using OxDb.SharedGame.MapObjects.Factories;
+using OxDb.SharedGame.MapObjects.Messages;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.MapServer.Services;
+using OxDb.SharedGame.Movement.Messages;
+using OxDb.SharedGame.Spawns.Interfaces;
+using OxDb.SharedGame.Spells.Messages;
+using OxDb.SharedGame.Units.Constants;
+using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -325,7 +325,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
             return null;
         }
 
-        MapObject obj = fact.Create(_rand, spawn);
+        MapObject obj = fact.Create(_rand.Rand, spawn);
 
         return obj;
     }

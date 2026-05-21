@@ -1,9 +1,9 @@
 using Assets.Scripts.FloatingText.ClientEvents;
-using Genrpg.Shared.Inventory.Constants;
-using Genrpg.Shared.Inventory.PlayerData;
-using Genrpg.Shared.Inventory.Services;
-using Genrpg.Shared.Trades.Entities;
-using Genrpg.Shared.Trades.Messages;
+using OxDb.SharedGame.Inventory.Constants;
+using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Services;
+using OxDb.SharedGame.Trades.Entities;
+using OxDb.SharedGame.Trades.Messages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

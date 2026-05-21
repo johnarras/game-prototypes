@@ -1,11 +1,11 @@
 
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.MainMenu;
-using Genrpg.Shared.Crawler.Parties.PlayerData;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.LoadSave.Constants;
-using Genrpg.Shared.LoadSave.Services;
-using Genrpg.Shared.UI.Constants;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.LoadSave.Constants;
+using OxDb.SharedGame.LoadSave.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

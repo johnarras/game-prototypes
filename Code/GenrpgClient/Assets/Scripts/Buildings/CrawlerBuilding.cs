@@ -1,13 +1,13 @@
 using Assets.Scripts.Crawler.Maps.GameObjects;
-using Genrpg.Shared.Buildings.Constants;
-using Genrpg.Shared.Buildings.Settings;
-using Genrpg.Shared.Crawler.Maps.Entities;
-using Genrpg.Shared.Crawler.Maps.Services;
-using Genrpg.Shared.Crawler.States.Services;
-using Genrpg.Shared.Crawler.Worlds.Entities;
-using Genrpg.Shared.Entities.Constants;
-using Genrpg.Shared.MapObjects.Messages;
-using Genrpg.Shared.Utils;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Buildings.Constants;
+using OxDb.SharedGame.Buildings.Settings;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Maps.Services;
+using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.MapObjects.Messages;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -72,23 +72,41 @@ namespace Assets.Scripts.Buildings
             base.Init(btype, new OnSpawn(), overrideName);
             MyRandom rand = new MyRandom(seed);
 
-            SetMaterialToSlot(btype, Walls, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand);
-            SetMaterialToSlot(btype, RoofPeaks, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand);
-            SetMaterialToSlot(btype, Doors, mats.GetMatsFromSlot(EBuildingMatSlots.Doors), rand);
-            SetMaterialToSlot(btype, Windows, mats.GetMatsFromSlot(EBuildingMatSlots.Windows), rand);
-            SetMaterialToSlot(btype, Shingles, mats.GetMatsFromSlot(EBuildingMatSlots.Shingles), rand);
+            Color redRemap = Color.red;
+            Color greenRemap = Color.green;
+            Color blueRemap = Color.blue;
 
             if (_buildingColors.ContainsKey(btype.IdKey))
             {
-                StoreSign sign = _clientEntityService.GetComponent<StoreSign>(gameObject);
-                if (sign != null)
+                redRemap = _buildingColors[btype.IdKey];
+            }
+            else
+            {
+                if (rand.NextDouble() < 0.5f)
                 {
-                    sign.BGImage.SetColor(_buildingColors[btype.IdKey]);
+
+                    redRemap = Color.white * RandUtils.FloatRange(0, 1, rand);
                 }
+                else
+                {
+                    redRemap = Color.brown * RandUtils.FloatRange(0.5f, 1.5f, rand);
+                }
+            }
+            SetMaterialToSlot(btype, Walls, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand, redRemap, greenRemap, blueRemap);
+            SetMaterialToSlot(btype, RoofPeaks, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand, redRemap, greenRemap, blueRemap);
+            SetMaterialToSlot(btype, Doors, mats.GetMatsFromSlot(EBuildingMatSlots.Doors), rand, redRemap, greenRemap, blueRemap);
+            SetMaterialToSlot(btype, Windows, mats.GetMatsFromSlot(EBuildingMatSlots.Windows), rand, redRemap, greenRemap, blueRemap);
+            SetMaterialToSlot(btype, Shingles, mats.GetMatsFromSlot(EBuildingMatSlots.Shingles), rand, redRemap, greenRemap, blueRemap);
+
+            StoreSign sign = _clientEntityService.GetComponent<StoreSign>(gameObject);
+            if (sign != null)
+            {
+                sign.BGImage.SetColor(redRemap);
             }
         }
 
-        public void SetMaterialToSlot(BuildingType btype, List<MeshRenderer> meshes, List<WeightedBuildingMaterial> mats, IRandom rand)
+        public void SetMaterialToSlot(BuildingType btype, List<MeshRenderer> meshes, List<WeightedBuildingMaterial> mats, IRandom rand,
+            Color redColor, Color greenColor, Color blueColor)
         {
             if (mats.Count < 1)
             {
@@ -98,36 +116,53 @@ namespace Assets.Scripts.Buildings
             double weightSum = mats.Sum(x => x.Weight);
             double weightChosen = rand.NextDouble() * weightSum;
 
+            WeightedBuildingMaterial chosenMat = null;
             foreach (WeightedBuildingMaterial mat in mats)
             {
                 weightChosen -= mat.Weight;
 
                 if (weightChosen <= 0)
                 {
-                    foreach (MeshRenderer renderer in meshes)
-                    {
-                        renderer.material = mat.Mat;
-                    }
-
-                    if (mat.ColorTargets.Count > 0)
-                    {
-                        Color colorTarget = mat.ColorTargets[rand.Next() % mat.ColorTargets.Count];
-
-                        float targetPercent = (float)rand.NextDouble();
-                        Color newColor = new Color((float)(colorTarget.r + (1 - colorTarget.r) * targetPercent),
-                            (float)(colorTarget.g + (1 - colorTarget.g) * targetPercent),
-                            (float)(colorTarget.b + (1 - colorTarget.b) * targetPercent), 1);
-
-                        foreach (MeshRenderer renderer in meshes)
-                        {
-                            renderer.material.SetColor("_MainColor", newColor);
-                        }
-                    }
-                    break;
+                    chosenMat = mat;
                 }
             }
-        }
 
+            if (chosenMat == null)
+            {
+                chosenMat = mats[0];
+            }
+
+            MaterialPropertyBlock mainBlock = new MaterialPropertyBlock();
+            mainBlock.SetColor("_RedRemap", redColor);
+            mainBlock.SetColor("_GreenRemap", greenColor);
+            mainBlock.SetColor("_BlueRemap", blueColor);
+            mainBlock.SetColor("_MainColor", Color.white);
+
+            Color mainColor = Color.white;
+            if (chosenMat.ColorTargets.Count > 0)
+            {
+                Color colorTarget = chosenMat.ColorTargets[rand.Next() % chosenMat.ColorTargets.Count];
+
+                float targetPercent = (float)rand.NextDouble();
+                Color newColor = new Color((float)(colorTarget.r + (1 - colorTarget.r) * targetPercent),
+                    (float)(colorTarget.g + (1 - colorTarget.g) * targetPercent),
+                    (float)(colorTarget.b + (1 - colorTarget.b) * targetPercent), 1);
+
+                mainColor = newColor;
+                mainBlock.SetColor("_MainColor", mainColor);
+            }
+
+            //Material newMat = new Material(chosenMat.Mat);
+            //newMat.SetColor("_RedRemap", redColor);
+            //newMat.SetColor("_GreenRemap", greenColor);
+            //newMat.SetColor("_BlueRemap", blueColor);
+            //newMat.SetColor("_MainColor", Color.white);
+            foreach (MeshRenderer renderer in meshes)
+            {
+                renderer.sharedMaterial = chosenMat.Mat;
+                renderer.SetPropertyBlock(mainBlock);
+            }
+        }
     }
 }
 

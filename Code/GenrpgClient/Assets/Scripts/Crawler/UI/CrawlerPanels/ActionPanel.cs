@@ -1,12 +1,12 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.Crawler.UI.ActionUI;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Core;
 using Assets.Scripts.UI.Crawler.ActionUI;
-using Genrpg.Shared.Client.Assets.Constants;
-using Genrpg.Shared.Crawler.States.Constants;
-using Genrpg.Shared.Crawler.States.Entities;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.States.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading;

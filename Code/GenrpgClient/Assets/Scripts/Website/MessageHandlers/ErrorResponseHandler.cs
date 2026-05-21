@@ -3,8 +3,8 @@ using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Screens;
-using Genrpg.Shared.UI.Constants;
-using Genrpg.Shared.Website.Messages.Error;
+using OxDb.SharedCore.Website.Responses.Errors;
+using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,9 +15,8 @@ namespace Assets.Scripts.Website.MessageHandlers
     public class ErrorResponseHandler : BaseClientWebResponseHandler<ErrorResponse>
     {
         private IScreenService _screenService = null;
-        protected override async Awaitable InnerProcess(ErrorResponse result, CancellationToken token)
+        protected override async Awaitable InnerProcess(ErrorResponse response, CancellationToken token)
         {
-
 
             List<ActiveScreen> screens = _screenService.GetAllScreens();
 
@@ -27,7 +26,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             {
                 if (screen.Screen is ErrorMessageScreen errorScreen)
                 {
-                    errorScreen.ShowError(result.Error);
+                    errorScreen.ShowError(response.Error);
                     foundErrorScreen = true;
                 }
             }
@@ -38,11 +37,11 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             _dispatcher.Dispatch(new CloseAllScreens());
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login, response));
 
-            _dispatcher.Dispatch(new ShowFloatingText(result.Error, EFloatingTextArt.Error));
+            _dispatcher.Dispatch(new ShowFloatingText(response.Error, EFloatingTextArt.Error));
 
-            _logService.Error(result.Error);
+            _logService.Error(response.Error);
 
             await Task.CompletedTask;
         }
