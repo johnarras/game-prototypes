@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "Dungeon",
   "Art": "Dungeon",
-  "BaseTextureTypeId": 109,
+  "BaseTextureTypeId": 19,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -364,6 +364,14 @@
     {
       "UnitKeywordId": 22,
       "Weight": 10.0
+    }
+  ],
+  "PropChance": 0.3,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 15
     }
   ],
   "PlantChoices": "",

@@ -2,7 +2,8 @@
   "Id": "texturetype16default",
   "ParentId": "default",
   "IdKey": 16,
-  "Name": "SandRoad",
-  "Art": "SandRoad",
+  "Name": "Road",
+  "Icon": "Road",
+  "Art": "Road",
   "Size": 8.0
 }

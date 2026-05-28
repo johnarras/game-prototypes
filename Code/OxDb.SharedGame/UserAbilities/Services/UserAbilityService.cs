@@ -10,9 +10,9 @@ namespace OxDb.SharedGame.UserAbilities.Services
     {
         private IGameData _gameData = null;
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public long GetAbilityTotal(IFilteredObject filtered, long userAbilityId, long upgradeRank)

@@ -2,7 +2,8 @@
   "Id": "texturetype20default",
   "ParentId": "default",
   "IdKey": 20,
-  "Name": "SavannahDirt",
-  "Art": "SavannahDirt",
+  "Name": "Cave",
+  "Icon": "Cave",
+  "Art": "Cave",
   "Size": 8.0
 }

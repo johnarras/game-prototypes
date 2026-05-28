@@ -1,0 +1,9 @@
+{
+  "Id": "proptype4default",
+  "ParentId": "default",
+  "IdKey": 4,
+  "Name": "SwampProp",
+  "Icon": "SwampProp",
+  "Art": "SwampProp",
+  "NumChoices": 1
+}

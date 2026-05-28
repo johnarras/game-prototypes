@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Names\Entities\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

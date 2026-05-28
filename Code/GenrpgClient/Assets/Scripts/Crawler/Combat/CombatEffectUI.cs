@@ -159,14 +159,17 @@ namespace Assets.Scripts.Crawler.Combat
                             _targetColor = color;
                         }
                     }
+
+                    string artName = "CombatHit" + _rand.Rand.Next(1, 3);
+
                     _dispatcher.Dispatch(new PlaySound(CrawlerAudio.MonsterHit));
-                    if (_combatHits.ContainsKey(elementType.Art))
+                    if (_combatHits.ContainsKey(artName))
                     {
-                        ShowCombatHitArt(_combatHits[elementType.Art]);
+                        ShowCombatHitArt(_combatHits[artName]);
                     }
                     else
                     {
-                        _assetService.LoadAssetInto(gameObject, AssetCategoryNames.Combat, elementType.Art + CombatHitPrefabSuffix, OnLoadCombatHit, GetToken(), elementType);
+                        _assetService.LoadAssetInto(gameObject, AssetCategoryNames.Combat, artName, OnLoadCombatHit, GetToken(), artName);
                     }
                 }
             }
@@ -221,7 +224,7 @@ namespace Assets.Scripts.Crawler.Combat
             }
         }
 
-        private void OnLoadCombatHit(GameObject go, ElementType etype, CancellationToken token)
+        private void OnLoadCombatHit(GameObject go, string artName, CancellationToken token)
         {
             CombatHit hit = go.GetComponent<CombatHit>();
 
@@ -231,19 +234,13 @@ namespace Assets.Scripts.Crawler.Combat
                 return;
             }
 
-            if (etype == null)
+            if (_combatHits.ContainsKey(artName))
             {
                 _clientEntityService.Destroy(go);
                 return;
             }
 
-            if (_combatHits.ContainsKey(etype.Art))
-            {
-                _clientEntityService.Destroy(go);
-                return;
-            }
-
-            _combatHits[etype.Art] = hit;
+            _combatHits[artName] = hit;
 
             _clientEntityService.SetActive(hit.gameObject, false);
 

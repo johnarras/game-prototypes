@@ -1,4 +1,6 @@
 using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -15,7 +17,6 @@ using OxDb.SharedGame.Crawler.Upgrades.Constants;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using OxDb.SharedGame.ProcGen.Entities;
 using OxDb.SharedGame.ProcGen.Services;
-using OxDb.SharedGame.ProcGen.Settings.Trees;
 using OxDb.SharedGame.Riddles.Services;
 using OxDb.SharedGame.Riddles.Settings;
 using OxDb.SharedGame.Zones.Constants;
@@ -26,6 +27,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
@@ -35,6 +37,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
         private ISamplingService _samplingService = null;
         private ILootGenService _lootGenService = null;
         private IRiddleService _riddleService = null;
+        private IEntityService _entityService = null;
 
         public override long HelperKey => CrawlerMapTypes.Outdoors;
 
@@ -740,46 +743,9 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 
                     }
                 }
-            }
-
-            // Now random trees. (1000 + building Id vs building id)
-
-            IReadOnlyList<TreeType> treeTypes = _gameData.Get<TreeTypeSettings>(null).GetData();
-
-            for (int x = 0; x < outdoorMap.Width; x++)
-            {
-                for (int z = 0; z < outdoorMap.Height; z++)
+                if (cmap.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
                 {
-                    if (outdoorMap.GetEntityId(x, z, EntityTypes.Building) > 0)
-                    {
-                        continue;
-                    }
-                    ZoneType ztype = allZoneTypes.FirstOrDefault(t => t.IdKey == outdoorMap.Get(x, z, CellIndex.Terrain));
-                    if (ztype != null && ztype.TreeTypes != null && ztype.TreeTypes.Count > 0)
-                    {
-                        double chance = ztype.TreeDensity * CrawlerMapConstants.TreeChanceScale;
-
-                        if (rand.NextDouble() < chance)
-                        {
-                            long treeTypeId = 0;
-                            for (int tries = 0; tries < 20; tries++)
-                            {
-                                ZoneTreeType zttype = ztype.TreeTypes[rand.Next() % ztype.TreeTypes.Count];
-                                TreeType ttype = treeTypes.FirstOrDefault(x => x.IdKey == zttype.TreeTypeId);
-                                if (!ttype.HasFlag(TreeFlags.IsBush))
-                                {
-                                    treeTypeId = ztype.IdKey;
-                                    break;
-                                }
-                            }
-
-                            if (treeTypeId > 0)
-                            {
-                                outdoorMap.SetEntity(x, z, EntityTypes.Tree, treeTypeId);
-                                outdoorMap.Set(x, z, CellIndex.Dir, _crawlerMapService.GetMapCellHash(outdoorMap.IdKey, x, z, 77) % 4);
-                            }
-                        }
-                    }
+                    await AddProps(cmap, rand);
                 }
             }
 
@@ -817,6 +783,91 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
             AddEdgeRivers(outdoorMap, rand);
 
             return newMap;
+        }
+
+
+        private async Awaitable AddProps(CrawlerMap map, IRandom rand)
+        {
+
+            ZoneTypeSettings zoneSettings = _gameData.Get<ZoneTypeSettings>(_gs.ch);
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int z = 0; z < map.Height; z++)
+                {
+
+                    if (map.Get(x,z,CellIndex.EntityType) > 0 || map.Get(x,z,CellIndex.EntityId) > 0)
+                    {
+                        continue;
+                    }
+
+                    if (map.Details.Any(xx=>xx.X == x && xx.Z == z))
+                    {
+                        continue;
+                    }
+
+                    long centerTerrain = map.Get(x, z, CellIndex.Terrain);
+
+                    if (map.CrawlerMapTypeId == CrawlerMapTypes.City && centerTerrain == ZoneTypes.Road)
+                    {
+                        continue;
+                    }
+
+                    ZoneType ztype = zoneSettings.Get(centerTerrain);
+                        
+                    if (ztype != null && ztype.Props != null && ztype.Props.Count > 0)
+                    { 
+
+                        if (ztype.MinSameAdjacentZone > 0)
+                        {
+                            int sameNearby = 0;
+
+                            if (x < map.Width - 1 && map.Get(x+1,z,CellIndex.Terrain) == centerTerrain)
+                            {
+                                sameNearby++;
+                            }
+                            if (x > 0 && map.Get(x-1,z, CellIndex.Terrain) == centerTerrain)
+                            {
+                                sameNearby++;
+                            }
+                            if (z > 0 && map.Get(x,z-1, CellIndex.Terrain) == centerTerrain)
+                            {
+                                sameNearby++;
+                            }
+                            if (z < map.Height - 1 && map.Get(x,z+1, CellIndex.Terrain) == centerTerrain)
+                            {
+                                sameNearby++;
+                            }
+
+                            if (sameNearby < ztype.MinSameAdjacentZone)
+                            {
+                                continue;
+                            }
+
+                        }
+                        if (rand.NextDouble() < ztype.PropChance)
+                        {
+
+                            WeightedObject obj = RandUtils.GetRandomElement(ztype.Props, rand);
+
+                            if (obj == null)
+                            {
+                                continue;
+                            }
+
+                            IIdName entity = _entityService.Find(_gs.ch, obj.EntityTypeId, obj.EntityId);
+
+                            if (entity != null && entity is IIndexedGameItem indexed && !string.IsNullOrEmpty(indexed.Art))
+                            {
+
+                                map.SetEntity(x, z, obj.EntityTypeId, obj.EntityId);
+                                map.Set(x, z, CellIndex.Dir, _crawlerMapService.GetMapCellHash(map.IdKey, x, z, 77) % 4);
+                            }
+                        }
+                    }
+                }
+            }
+            await Task.CompletedTask;
         }
 
 

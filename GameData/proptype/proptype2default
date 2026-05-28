@@ -1,0 +1,9 @@
+{
+  "Id": "proptype2default",
+  "ParentId": "default",
+  "IdKey": 2,
+  "Name": "ForestProp",
+  "Icon": "ForestProp",
+  "Art": "ForestProp",
+  "NumChoices": 1
+}

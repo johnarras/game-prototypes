@@ -34,7 +34,7 @@ public class InfoButton : BaseBehaviour
             if (step != null)
             {
 
-                _ftueService.StartStep(_rand.Rand, _gs.ch, step.IdKey);
+                _ftueService.ForceStartStep(_gs.ch, step.IdKey).Wait();
 
                 _logService.Info("Show Info for " + _screenName);
             }

@@ -2,7 +2,8 @@
   "Id": "texturetype18default",
   "ParentId": "default",
   "IdKey": 18,
-  "Name": "SwampRoad",
-  "Art": "SwampRoad",
+  "Name": "City",
+  "Icon": "City",
+  "Art": "City",
   "Size": 8.0
 }

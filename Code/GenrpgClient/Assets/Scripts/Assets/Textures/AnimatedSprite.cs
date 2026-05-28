@@ -27,7 +27,6 @@ namespace Assets.Scripts.Assets.Textures
 
         private string _currentSpriteName = null;
         private string _newSpriteName = null;
-        private string _downloadingSpriteName = null;
 
         private int _currentImageFrame = 0;
         private int _ticksBetweenFrameUpdate = 0;
@@ -74,7 +73,6 @@ namespace Assets.Scripts.Assets.Textures
                     _cachedSpriteList.AddRef(this);
                 }
                 ShowTextureFrame(0);
-                _downloadingSpriteName = null;
             }
         }
 
@@ -94,7 +92,6 @@ namespace Assets.Scripts.Assets.Textures
                 {
                     return;
                 }
-                _downloadingSpriteName = spriteName;
                 _textureListCache.LoadTextureList(spriteName, OnLoadTextureList, spriteName, GetToken());
                 return;
             }

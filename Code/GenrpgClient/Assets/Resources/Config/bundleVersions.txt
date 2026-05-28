@@ -2,7 +2,7 @@
   "ClientPlatform": "win",
   "UpdateInfo": {
     "ClientVersion": "0.0.6",
-    "UpdateTime": "2026-05-18T21:41:05.2638621Z"
+    "UpdateTime": "2026-05-24T20:59:37.2236948Z"
   },
   "Versions": {
     "atlascaravanmembericons": {
@@ -22,7 +22,7 @@
     },
     "atlascorecurrencytypeicons": {
       "Name": "atlascorecurrencytypeicons",
-      "Hash": "f83e8dc9a54e9cc905bfa91d76e4f639",
+      "Hash": "27a78a2ea374acd3e5cd7b4ffb32f2df",
       "ChildDependencies": []
     },
     "atlascrawlercombat": {
@@ -37,7 +37,7 @@
     },
     "atlascrawlerminimap": {
       "Name": "atlascrawlerminimap",
-      "Hash": "ad3ce8677b139accdccc6df74c61d544",
+      "Hash": "e2c57e20b39832d0c7d780de46372c2f",
       "ChildDependencies": []
     },
     "atlascrawlerui": {
@@ -107,32 +107,32 @@
     },
     "audioacidhit": {
       "Name": "audioacidhit",
-      "Hash": "6b5a021b8a36fc94b5898f8ac2bcf86c",
+      "Hash": "355e6e8a20dede693101818dc52ce746",
       "ChildDependencies": []
     },
     "audioarcanehit": {
       "Name": "audioarcanehit",
-      "Hash": "27eb3c55d57433e5e66f0463ee791ff5",
+      "Hash": "c352a6d0b75425253cfee262c72db898",
       "ChildDependencies": []
     },
     "audiobaseaudio": {
       "Name": "audiobaseaudio",
-      "Hash": "246f9f01cc0f3110d6a5cee74bff6816",
+      "Hash": "9e9fb571395632432b87abd7eb1bdb35",
       "ChildDependencies": []
     },
     "audiobuttonclick": {
       "Name": "audiobuttonclick",
-      "Hash": "0715be0556eec1cb0c530b9b752c9288",
+      "Hash": "0aa691e7e30a5d4c75640a09198ff9a2",
       "ChildDependencies": []
     },
     "audiocauldronbubble": {
       "Name": "audiocauldronbubble",
-      "Hash": "3e13b64606b764e266d1ba59189f9f26",
+      "Hash": "4e0d5f3382507db868bd8cc426678752",
       "ChildDependencies": []
     },
     "audiochainsambient": {
       "Name": "audiochainsambient",
-      "Hash": "79f020a063960f00c9f4627e580cce0e",
+      "Hash": "ada611218855c2c86d86c9c052821851",
       "ChildDependencies": []
     },
     "audiocityambientsoundlist": {
@@ -142,12 +142,12 @@
     },
     "audioclimbstairs": {
       "Name": "audioclimbstairs",
-      "Hash": "fed07077c4549028a7e840b0ef5fc823",
+      "Hash": "da85225ba37bd4eb19383f963969a0bb",
       "ChildDependencies": []
     },
     "audiocombatambient": {
       "Name": "audiocombatambient",
-      "Hash": "81457c950f1a06acae53cbc65bb70a22",
+      "Hash": "437600a3778c17a1deb9f2d4fcd49971",
       "ChildDependencies": []
     },
     "audiocombatambientsoundlist": {
@@ -157,27 +157,27 @@
     },
     "audiocreatureambient": {
       "Name": "audiocreatureambient",
-      "Hash": "745f343dfe51a0337a952aed2a7580f3",
+      "Hash": "f0dc7e5b8c81a32446f811d1a086b21a",
       "ChildDependencies": []
     },
     "audiodoorambient": {
       "Name": "audiodoorambient",
-      "Hash": "d8b6a9071142717f626572cf191969c5",
+      "Hash": "1b5a7f74af7789de918de089bb43f2ea",
       "ChildDependencies": []
     },
     "audiodoorslide": {
       "Name": "audiodoorslide",
-      "Hash": "af7bdd523224ba484abb86e25374c112",
+      "Hash": "185e0cef4922e940eebc16a0ce42af08",
       "ChildDependencies": []
     },
     "audiodoorswing": {
       "Name": "audiodoorswing",
-      "Hash": "94af683e8263e31f39eb19d3cb6a113d",
+      "Hash": "40820c417a6de4bbb6f7b48d79e083b8",
       "ChildDependencies": []
     },
     "audiodripambient": {
       "Name": "audiodripambient",
-      "Hash": "aaccf1a5ec59efb9b47acd9dc8ae688b",
+      "Hash": "53d4d4c438590df67225786f8a4cb54d",
       "ChildDependencies": []
     },
     "audiodungeonambientsoundlist": {
@@ -187,62 +187,62 @@
     },
     "audioearthhit": {
       "Name": "audioearthhit",
-      "Hash": "0728231a396d8cf256f15fa723a08a41",
+      "Hash": "6558f033045139e6a15533cdf7559100",
       "ChildDependencies": []
     },
     "audioelectrichit": {
       "Name": "audioelectrichit",
-      "Hash": "f286f5460bbb65efe700d65ecb98ec45",
+      "Hash": "5bfdb24ad830f953d979f00cb9ec561d",
       "ChildDependencies": []
     },
     "audiofieldmusic": {
       "Name": "audiofieldmusic",
-      "Hash": "fea55ee1dc621ded79352aa9ebc1d439",
+      "Hash": "82cd596328e170c17ef4ac055bfbdd7f",
       "ChildDependencies": []
     },
     "audiofirehit": {
       "Name": "audiofirehit",
-      "Hash": "48fde3a9b18b864fb8e70a15b86e7b08",
+      "Hash": "986b8be89ed5675ee14affad9643277c",
       "ChildDependencies": []
     },
     "audiofootstep": {
       "Name": "audiofootstep",
-      "Hash": "55d1e70de32b8651c928be51ceaea426",
+      "Hash": "7f3c51d0b7e2c04b03aab2979286227c",
       "ChildDependencies": []
     },
     "audioforestmusic": {
       "Name": "audioforestmusic",
-      "Hash": "780cc3eb697e7ee4329ff5cfbfda1d58",
+      "Hash": "9cf681a789557e91e7db558233d7b5ca",
       "ChildDependencies": []
     },
     "audiogatelift": {
       "Name": "audiogatelift",
-      "Hash": "51d01411aadb02708e5b81eefab48707",
+      "Hash": "d22fe41ce90c7ba51a88201e386d6ef5",
       "ChildDependencies": []
     },
     "audiogateswing": {
       "Name": "audiogateswing",
-      "Hash": "f03e60d35005035ec98958f5ddecfea1",
+      "Hash": "94fdea3707e314d95a116fbb0952fd9a",
       "ChildDependencies": []
     },
     "audiohillsmusic": {
       "Name": "audiohillsmusic",
-      "Hash": "7ea1880a9d2198b2c013a516cbc4ff5d",
+      "Hash": "139570d806a1b1fcc1b8820de4b0c816",
       "ChildDependencies": []
     },
     "audioicehit": {
       "Name": "audioicehit",
-      "Hash": "a7f85aab7d434f1a933bb171a95bd5f7",
+      "Hash": "c05b4e9d51671be487817969815c29c4",
       "ChildDependencies": []
     },
     "audiointromusic": {
       "Name": "audiointromusic",
-      "Hash": "d74707a47fdff0d3dd47dbcc3ba2cf33",
+      "Hash": "994fd8e450b080fd8ef028b2e77e1fd2",
       "ChildDependencies": []
     },
     "audiolighthit": {
       "Name": "audiolighthit",
-      "Hash": "2db977ed9e7b691453b77c669f8e0daa",
+      "Hash": "50584dcb06cb28ce4d47229fe992bd57",
       "ChildDependencies": []
     },
     "audioloadingambientsoundlist": {
@@ -252,17 +252,17 @@
     },
     "audiomeleehit": {
       "Name": "audiomeleehit",
-      "Hash": "6752899c532024c770a2c3684d427dd8",
+      "Hash": "4522c7c649b929727c0bb2418ca064ac",
       "ChildDependencies": []
     },
     "audiomonsterhit": {
       "Name": "audiomonsterhit",
-      "Hash": "c54c58089029ec5bb2ccc160cfcf9f72",
+      "Hash": "18680ec77c3da3836106b11819d405bc",
       "ChildDependencies": []
     },
     "audionaturehit": {
       "Name": "audionaturehit",
-      "Hash": "74324079c7b50c0cf0ef772429b86ec9",
+      "Hash": "a2f132bace3a05ddf4aa38f40292cc16",
       "ChildDependencies": []
     },
     "audiooutdoorsambientsoundlist": {
@@ -272,82 +272,82 @@
     },
     "audiopeopleambient": {
       "Name": "audiopeopleambient",
-      "Hash": "feb12aa7f3592917cbfe8ec08800643a",
+      "Hash": "34095d30d784dcc2bfaffc064558fbab",
       "ChildDependencies": []
     },
     "audiophysicalhit": {
       "Name": "audiophysicalhit",
-      "Hash": "a5003ab4a5ec5834e712625e57cc5a5c",
+      "Hash": "a956eaa0a257c8333e78b50b0db06574",
       "ChildDependencies": []
     },
     "audiorangedhit": {
       "Name": "audiorangedhit",
-      "Hash": "ee8af3ef026d10dfbb4dfdd8d7e5bd5f",
+      "Hash": "8d12eb9cbbc1495f0bc5cf05626ae641",
       "ChildDependencies": []
     },
     "audiorocksambient": {
       "Name": "audiorocksambient",
-      "Hash": "82e5e5fab9dc8ebedcd0e968c182257a",
+      "Hash": "c1e86f1447a187edc29349f48ea5090d",
       "ChildDependencies": []
     },
     "audiorumbleambient": {
       "Name": "audiorumbleambient",
-      "Hash": "2dfcb878f3da89521fd895a209588b30",
+      "Hash": "20fec2a660b176d448aab8062d55430b",
       "ChildDependencies": []
     },
     "audioshadowhit": {
       "Name": "audioshadowhit",
-      "Hash": "caa226a345aaf4965ff2866d213cb658",
+      "Hash": "14dddc002080ceed660abb884c97bf62",
       "ChildDependencies": []
     },
     "audiostartcombat": {
       "Name": "audiostartcombat",
-      "Hash": "c2d807925b6d44f043a8eff7d0257aa8",
+      "Hash": "1c27dd3cbaf017f2f177cddaaede03ff",
       "ChildDependencies": []
     },
     "audioswampmusic": {
       "Name": "audioswampmusic",
-      "Hash": "855234dc290c82fecf3e19b373ee91a0",
+      "Hash": "5f798888492434587bbd456cc29e8f81",
       "ChildDependencies": []
     },
     "audioteleportactivate": {
       "Name": "audioteleportactivate",
-      "Hash": "fdc5939cbe55a64f8f0089874ca6bc70",
+      "Hash": "0db192f7f44c8f92b8205cfd258e091b",
       "ChildDependencies": []
     },
     "audioteleporthum": {
       "Name": "audioteleporthum",
-      "Hash": "bcab6bcf147ec213d960842c877d0c7a",
+      "Hash": "04fb870d9129efa92ea2d5492ca94ff2",
       "ChildDependencies": []
     },
     "audiotorchlight": {
       "Name": "audiotorchlight",
-      "Hash": "12277e75c5bf042fa26f1eb1f8194b16",
+      "Hash": "475dae9a553b7eafaaf618ce935381c4",
       "ChildDependencies": []
     },
     "audiotrapclose": {
       "Name": "audiotrapclose",
-      "Hash": "d832fc5dd8157cd869d53773099e851b",
+      "Hash": "8e6c28ba1d2a67f84721e87482bac229",
       "ChildDependencies": []
     },
     "audiotreasure": {
       "Name": "audiotreasure",
-      "Hash": "8ca696c0e076e62d8b228a4d5d350ad4",
+      "Hash": "ea59a6833e5350d9de857d88e0839e1f",
       "ChildDependencies": []
     },
     "audiowaterambient": {
       "Name": "audiowaterambient",
-      "Hash": "b89fba170e21863b71a35dcc647166c2",
+      "Hash": "7376b7d06197c1c5c14543e6ff7526b5",
       "ChildDependencies": []
     },
     "audioweaponhit": {
       "Name": "audioweaponhit",
-      "Hash": "27cdde270224e3d49b20453ca86e55f6",
+      "Hash": "179d487c059626738e95a480f054216b",
       "ChildDependencies": []
     },
     "audiowhooshambient": {
       "Name": "audiowhooshambient",
-      "Hash": "7e3527d106dc80be76dcc8a27ed56aa7",
+      "Hash": "51fcd2bc297974d2b56966f76274ac99",
       "ChildDependencies": []
     },
     "biomescitymarker": {
@@ -357,7 +357,7 @@
     },
     "biomestraderterrain": {
       "Name": "biomestraderterrain",
-      "Hash": "941ed502cc462930133a202dc4822681",
+      "Hash": "bcff6e577b32b475efdd8cf91b1bee2d",
       "ChildDependencies": [
         "biomescitymarker"
       ]
@@ -369,7 +369,7 @@
     },
     "buildingsdefault": {
       "Name": "buildingsdefault",
-      "Hash": "f0404c689adadaffa25509ebfdbc370a",
+      "Hash": "2d0a3be98eb2ae42f187b4b851695a53",
       "ChildDependencies": []
     },
     "bushesazalea": {
@@ -474,17 +474,17 @@
     },
     "combatacidcombathit": {
       "Name": "combatacidcombathit",
-      "Hash": "cfe8b7d6e85c8d7256e6debb1f39beac",
+      "Hash": "60deed87ba169a491c4991eb671050f8",
       "ChildDependencies": []
     },
     "combatarcanecombathit": {
       "Name": "combatarcanecombathit",
-      "Hash": "3c50600fa991ccf16077ab42629db120",
+      "Hash": "1c87b87611b2130eec0fb022127d756e",
       "ChildDependencies": []
     },
     "combatbasecombathit": {
       "Name": "combatbasecombathit",
-      "Hash": "f624a4766b6303cfdfd8a97dd8871339",
+      "Hash": "9d09e984f867c02af215478c5c7c87c2",
       "ChildDependencies": []
     },
     "combatcombatbolt": {
@@ -492,54 +492,59 @@
       "Hash": "6e8a75e462315dc7a554cfae1bbfe7ad",
       "ChildDependencies": []
     },
+    "combatcombathit": {
+      "Name": "combatcombathit",
+      "Hash": "a6368e1760453d89a9e8f9c0e49f0cc6",
+      "ChildDependencies": []
+    },
     "combatearthcombathit": {
       "Name": "combatearthcombathit",
-      "Hash": "81ed48bb807f6280f0888fcad40ca953",
+      "Hash": "138e2c14b79d515c656d09aeefcb05a0",
       "ChildDependencies": []
     },
     "combatelectriccombathit": {
       "Name": "combatelectriccombathit",
-      "Hash": "b5e5d376d3ccf2945532801befbea623",
+      "Hash": "10f531573e3c5498d18c674a7c5c69f3",
       "ChildDependencies": []
     },
     "combatfirecombathit": {
       "Name": "combatfirecombathit",
-      "Hash": "0446d94600f185b19112ae8e0a56196b",
+      "Hash": "89d6367e3af3dfedc1fc0ade2c53fad4",
       "ChildDependencies": []
     },
     "combaticecombathit": {
       "Name": "combaticecombathit",
-      "Hash": "22e1b090344b2f1426f4cb57a9525c84",
+      "Hash": "3d45d2e36a3bb934d3cfb8b15bb967da",
       "ChildDependencies": []
     },
     "combatlightcombathit": {
       "Name": "combatlightcombathit",
-      "Hash": "1841a2dd2e9c7924fdb6da0bc4420d45",
+      "Hash": "961bc56eaf0878ebfa6df0c09e103e12",
       "ChildDependencies": []
     },
     "combatmeleecombathit": {
       "Name": "combatmeleecombathit",
-      "Hash": "88ee3af9bf961bf260400fa2cf88ce01",
+      "Hash": "7a75c84e553340f3b6bc206cc8610f00",
       "ChildDependencies": []
     },
     "combatnaturecombathit": {
       "Name": "combatnaturecombathit",
-      "Hash": "360c5f614bc8fd738100be432884bb22",
+      "Hash": "9212ad4dc1a6517cd46b0489718f816b",
       "ChildDependencies": []
     },
     "combatphysicalcombathit": {
       "Name": "combatphysicalcombathit",
-      "Hash": "8d20f8fc05f336fc77ed4da71a8ff0ba",
+      "Hash": "73e1575c56b1138490bae3a5a86c7f95",
       "ChildDependencies": []
     },
     "combatrangedcombathit": {
       "Name": "combatrangedcombathit",
-      "Hash": "73df112e7181d0c33e6d73b3b820a8b6",
+      "Hash": "8a53c63e4b1720cc6de093846cd8468a",
       "ChildDependencies": []
     },
     "combatshadowcombathit": {
       "Name": "combatshadowcombathit",
-      "Hash": "639d683cf35a4284615b99500951568d",
+      "Hash": "d43e96a8fdccc0436968100342a41004",
       "ChildDependencies": []
     },
     "culturesarab": {
@@ -609,7 +614,7 @@
     },
     "dungeonsarcanematerialgendata": {
       "Name": "dungeonsarcanematerialgendata",
-      "Hash": "cf088b3cc69120d44df80a1b6c6b6997",
+      "Hash": "d4df03502c505fde95a9b58fc0f8b7a0",
       "ChildDependencies": []
     },
     "dungeonsbasefence": {
@@ -619,7 +624,7 @@
     },
     "dungeonsbasematerialgendata": {
       "Name": "dungeonsbasematerialgendata",
-      "Hash": "77119cc0278146a9ac55dc3e2d8e233a",
+      "Hash": "86ca54a2c8665b84cc08598a95854afb",
       "ChildDependencies": []
     },
     "dungeonsbasewall": {
@@ -629,42 +634,42 @@
     },
     "dungeonsbasicdungeonassetblocklist": {
       "Name": "dungeonsbasicdungeonassetblocklist",
-      "Hash": "05293a9bd1f1807534f8ce020446845b",
+      "Hash": "da6b971b5b82c59f20adbb98194a8da5",
       "ChildDependencies": []
     },
     "dungeonsbuildingmaterialgendata": {
       "Name": "dungeonsbuildingmaterialgendata",
-      "Hash": "ac60abd7b1e66526d52900cc8fd5874e",
+      "Hash": "e8ce742b18e3d52d132152c1f091caaa",
       "ChildDependencies": []
     },
     "dungeonscavematerialgendata": {
       "Name": "dungeonscavematerialgendata",
-      "Hash": "a8de504f4e911c18d16d23dae5440c93",
+      "Hash": "477857fd54dfb3a3fa5f5f25d7c187d0",
       "ChildDependencies": []
     },
     "dungeonscitymaterialgendata": {
       "Name": "dungeonscitymaterialgendata",
-      "Hash": "34f8210364f0de4eff458f7e950e8d0f",
+      "Hash": "41045856a2d56455439958e85061ef52",
       "ChildDependencies": []
     },
     "dungeonsdungeonmaterialgendata": {
       "Name": "dungeonsdungeonmaterialgendata",
-      "Hash": "50167024787fc808cfa8be0a62d60e64",
+      "Hash": "b32cf04bdca3ec968ef142ff8bfd29fd",
       "ChildDependencies": []
     },
     "dungeonslavamaterialgendata": {
       "Name": "dungeonslavamaterialgendata",
-      "Hash": "c786f8575a8b4056d84f73e76fa6245b",
+      "Hash": "2eb4c91077300ccdc9ba3d7208e17a2a",
       "ChildDependencies": []
     },
     "dungeonsnaturalmaterialgendata": {
       "Name": "dungeonsnaturalmaterialgendata",
-      "Hash": "cc13e75c17a7d37b1c48f7ed1568d482",
+      "Hash": "678ff4c8d9065356d0043f9abe6fd53f",
       "ChildDependencies": []
     },
     "dungeonsoutdoorsmaterialgendata": {
       "Name": "dungeonsoutdoorsmaterialgendata",
-      "Hash": "a7e913ec45ab9b2fbd479d39a49caced",
+      "Hash": "48198667be996adbf09f034533f97761",
       "ChildDependencies": []
     },
     "dungeonsterrainfloor": {
@@ -674,17 +679,17 @@
     },
     "dungeonstowermaterialgendata": {
       "Name": "dungeonstowermaterialgendata",
-      "Hash": "9b85d52c17fa6f3f2c8803e4a200dfaf",
+      "Hash": "05cbdc8decdbcbc214203ac3ea53908c",
       "ChildDependencies": []
     },
     "dungeonsunholymaterialgendata": {
       "Name": "dungeonsunholymaterialgendata",
-      "Hash": "d25bf556cbc0f2a15e7aa61649958bfd",
+      "Hash": "dae2a0cc7e8cdc3efa2da7b322b1cded",
       "ChildDependencies": []
     },
     "dungeonswidedungeonassetblocklist": {
       "Name": "dungeonswidedungeonassetblocklist",
-      "Hash": "f381d3658deb67c600e6b86d8724c25d",
+      "Hash": "576810c74a8b9052d0c98a37ace5d08b",
       "ChildDependencies": []
     },
     "grassdetailgrass": {
@@ -2369,77 +2374,77 @@
     },
     "skinsasianelephant": {
       "Name": "skinsasianelephant",
-      "Hash": "5214ef002937f27a839127c297d0361f",
+      "Hash": "9e604e7d7acda4d674fbc34c5f1ff37b",
       "ChildDependencies": []
     },
     "skinsbactriancamel": {
       "Name": "skinsbactriancamel",
-      "Hash": "9c95470923c22727f268a38f44d9db08",
+      "Hash": "82475579619b9013ced569cb7e53989b",
       "ChildDependencies": []
     },
     "skinsdonkey": {
       "Name": "skinsdonkey",
-      "Hash": "969af94802addd67faddd2ab5edfeea1",
+      "Hash": "c12b3c0ca19c65513e2a9f48297adcbc",
       "ChildDependencies": []
     },
     "skinsdrafthorse": {
       "Name": "skinsdrafthorse",
-      "Hash": "92a3aa21fe7e787bfdb5cbd3a9ef8ff1",
+      "Hash": "195d2e977c263b512b95241eb579202f",
       "ChildDependencies": []
     },
     "skinsdromedarycamel": {
       "Name": "skinsdromedarycamel",
-      "Hash": "878a8591b170a88692bea652694f3b6b",
+      "Hash": "949a172ff97b0269c5d55d719c0efb73",
       "ChildDependencies": []
     },
     "skinsheavywarhorse": {
       "Name": "skinsheavywarhorse",
-      "Hash": "813058179ad76a270f037e650747782c",
+      "Hash": "7bba1465cf696dbf744a891f32f885dd",
       "ChildDependencies": []
     },
     "skinsmule": {
       "Name": "skinsmule",
-      "Hash": "40eb0bec027a3bdf7cbc1d401c1f2246",
+      "Hash": "49508dc8419f2ae7dfe5ef3b4a50913b",
       "ChildDependencies": []
     },
     "skinsox": {
       "Name": "skinsox",
-      "Hash": "b30334cd34cce86e54c912a00d593141",
+      "Hash": "0051a048cb56a9f406e9e689fb047b52",
       "ChildDependencies": []
     },
     "skinspony": {
       "Name": "skinspony",
-      "Hash": "67321980f1db0bf122a894aa36e7c375",
+      "Hash": "86975c3407d37bb8b35af832df52a973",
       "ChildDependencies": []
     },
     "skinsreindeer": {
       "Name": "skinsreindeer",
-      "Hash": "389fe26c0de50fc36165a98757f6f7bd",
+      "Hash": "f8199be25c90ef483cc216c2de4cf8f3",
       "ChildDependencies": []
     },
     "skinsridinghorse": {
       "Name": "skinsridinghorse",
-      "Hash": "47be73d32d29808630924e96e6f0150c",
+      "Hash": "b73e72a0c9e964160017eb3ed2710940",
       "ChildDependencies": []
     },
     "skinstamedonager": {
       "Name": "skinstamedonager",
-      "Hash": "c0abc8812d83fc6995c93a95ecaad150",
+      "Hash": "12d856ccc87ea3abadf46eddd0581439",
       "ChildDependencies": []
     },
     "skinswaterbuffalo": {
       "Name": "skinswaterbuffalo",
-      "Hash": "e942b990d9dac05b698217119e56d59a",
+      "Hash": "8fa63febdda7a6619b3a6d610e5cef58",
       "ChildDependencies": []
     },
     "skinsyak": {
       "Name": "skinsyak",
-      "Hash": "e2d7ec8b72d333f3ac3e04fd6d0e7d0d",
+      "Hash": "8f27f29742b7d6890d9ee7eb5632dafc",
       "ChildDependencies": []
     },
     "skinszebu": {
       "Name": "skinszebu",
-      "Hash": "4d468ad30978872756163d9e2b5ddc4f",
+      "Hash": "a89e5ea9ea360ea56cf0df12e3283861",
       "ChildDependencies": []
     },
     "storesdefaultstoreartpanel": {
@@ -2459,597 +2464,137 @@
     },
     "terraintexarcane": {
       "Name": "terraintexarcane",
-      "Hash": "a2ce3322fd6f131537d8a6cb2deb7847",
+      "Hash": "223818f0e7cace82974c52dc3e926814",
+      "ChildDependencies": []
+    },
+    "terraintexbadlands": {
+      "Name": "terraintexbadlands",
+      "Hash": "321c2d5046d5dd08b80c382f30192624",
       "ChildDependencies": []
     },
     "terraintexcave": {
       "Name": "terraintexcave",
-      "Hash": "84b0373a129b7c9103a2651d30ff22e9",
+      "Hash": "62bbb942b44a40752604bde29ff7eead",
       "ChildDependencies": []
     },
     "terraintexcity": {
       "Name": "terraintexcity",
-      "Hash": "d8db219a09a091452716ce7703540c91",
+      "Hash": "d828627b895ad4525f006ae5f6e21ac2",
       "ChildDependencies": []
     },
-    "terraintexcobblea": {
-      "Name": "terraintexcobblea",
-      "Hash": "37b937e88fd6d584b1cf46e57ee0c2bf",
+    "terraintexdarkforest": {
+      "Name": "terraintexdarkforest",
+      "Hash": "7b5736af8ffb9e5ddec3d87a749b58dd",
       "ChildDependencies": []
     },
-    "terraintexcracked": {
-      "Name": "terraintexcracked",
-      "Hash": "b27cc5fc3401aaa257792d01889fe372",
-      "ChildDependencies": []
-    },
-    "terraintexcrackedb": {
-      "Name": "terraintexcrackedb",
-      "Hash": "9252542231fd12956ad03af7c87c574b",
-      "ChildDependencies": []
-    },
-    "terraintexcrackedc": {
-      "Name": "terraintexcrackedc",
-      "Hash": "9133aa71d8adbec7b077d40b05a5dbc0",
-      "ChildDependencies": []
-    },
-    "terraintexcrackedgray": {
-      "Name": "terraintexcrackedgray",
-      "Hash": "c628274d19ba4d006da3767c8534c2e3",
-      "ChildDependencies": []
-    },
-    "terraintexcrackedgraysmall": {
-      "Name": "terraintexcrackedgraysmall",
-      "Hash": "7f081305bbad5ef6c7b4cb70a54392c5",
-      "ChildDependencies": []
-    },
-    "terraintexdarkrock": {
-      "Name": "terraintexdarkrock",
-      "Hash": "4ecbaa6a4e0f984aad480e8994982b92",
+    "terraintexdesert": {
+      "Name": "terraintexdesert",
+      "Hash": "36b9ca19e90697ba8e3fdf7445d5f5bd",
       "ChildDependencies": []
     },
     "terraintexdirt": {
       "Name": "terraintexdirt",
-      "Hash": "a7498e0651ddd9531cdf042728dd8b52",
-      "ChildDependencies": []
-    },
-    "terraintexdirta": {
-      "Name": "terraintexdirta",
-      "Hash": "5724956f0bc8dedfd1a6853bc47c899f",
-      "ChildDependencies": []
-    },
-    "terraintexdirtc": {
-      "Name": "terraintexdirtc",
-      "Hash": "40a7b6bab0f50d30a7671f156b044153",
-      "ChildDependencies": []
-    },
-    "terraintexdirtd": {
-      "Name": "terraintexdirtd",
-      "Hash": "052c6024c0136ce91f715b916fbf4afe",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdark": {
-      "Name": "terraintexdirtdark",
-      "Hash": "d5ea726790e3a873ddbe554958e1cf3d",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarkc": {
-      "Name": "terraintexdirtdarkc",
-      "Hash": "d766e4e6111a964f83570acab2fd9688",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarkd": {
-      "Name": "terraintexdirtdarkd",
-      "Hash": "55aeb8f5622e4125114fa165d630cfd0",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarke": {
-      "Name": "terraintexdirtdarke",
-      "Hash": "5fa0595830799c3ea7bf91f33878467c",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarkf": {
-      "Name": "terraintexdirtdarkf",
-      "Hash": "190c6f61d2093bf1245ade53f27e1c44",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarkh": {
-      "Name": "terraintexdirtdarkh",
-      "Hash": "ed64b93a9fc891ed70a0cf0badb37fc9",
-      "ChildDependencies": []
-    },
-    "terraintexdirtdarki": {
-      "Name": "terraintexdirtdarki",
-      "Hash": "4f00954268b5d44ffa362b34a359c0aa",
-      "ChildDependencies": []
-    },
-    "terraintexdirte": {
-      "Name": "terraintexdirte",
-      "Hash": "6294bde65ac8bb921a2fc622fe3b7aec",
-      "ChildDependencies": []
-    },
-    "terraintexdirtf": {
-      "Name": "terraintexdirtf",
-      "Hash": "f153b4f8ece06d8cd2204b417dea0aad",
-      "ChildDependencies": []
-    },
-    "terraintexdirtg": {
-      "Name": "terraintexdirtg",
-      "Hash": "cf0cf8a639a765e20927bf1c2633c953",
-      "ChildDependencies": []
-    },
-    "terraintexdirtgrass": {
-      "Name": "terraintexdirtgrass",
-      "Hash": "dfc880d1801cd64c41207e8e00ce70e5",
-      "ChildDependencies": []
-    },
-    "terraintexdirtgrassb": {
-      "Name": "terraintexdirtgrassb",
-      "Hash": "71dcd0f2736d89c8d3f3ce9581096ef9",
-      "ChildDependencies": []
-    },
-    "terraintexdirtgray": {
-      "Name": "terraintexdirtgray",
-      "Hash": "4942fa9ba63711a7a9446e1123765390",
-      "ChildDependencies": []
-    },
-    "terraintexdirtgraya": {
-      "Name": "terraintexdirtgraya",
-      "Hash": "b0337ab5f66f5c6efce0a21dea836caf",
-      "ChildDependencies": []
-    },
-    "terraintexdirth": {
-      "Name": "terraintexdirth",
-      "Hash": "5ba0b21f17f21a6680ac6e66caddc02d",
-      "ChildDependencies": []
-    },
-    "terraintexdirti": {
-      "Name": "terraintexdirti",
-      "Hash": "68e132ce07d1ac1e9e5b948ffd9160d1",
-      "ChildDependencies": []
-    },
-    "terraintexdirtj": {
-      "Name": "terraintexdirtj",
-      "Hash": "f8362f1b12375dadce9b044cfff2139c",
-      "ChildDependencies": []
-    },
-    "terraintexdirtl": {
-      "Name": "terraintexdirtl",
-      "Hash": "9e79f0f2c2813f132c418d55e9e86911",
-      "ChildDependencies": []
-    },
-    "terraintexdirtm": {
-      "Name": "terraintexdirtm",
-      "Hash": "691356e59ceaf12e8d09babe9780afc3",
-      "ChildDependencies": []
-    },
-    "terraintexdirtred": {
-      "Name": "terraintexdirtred",
-      "Hash": "e6f371da55ed8988c198522a96bdac27",
-      "ChildDependencies": []
-    },
-    "terraintexdirtrock": {
-      "Name": "terraintexdirtrock",
-      "Hash": "4658e7a8f1747f13b4bbf2cbda99ab6f",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsand": {
-      "Name": "terraintexdirtsand",
-      "Hash": "a5c49ac784f41721c1ee9866580df795",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandb": {
-      "Name": "terraintexdirtsandb",
-      "Hash": "a72159a3962cbf271fff92e31cff3b92",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandc": {
-      "Name": "terraintexdirtsandc",
-      "Hash": "83101490333ae7c13d2407c26ecf9025",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandd": {
-      "Name": "terraintexdirtsandd",
-      "Hash": "e1e19e0ff36d1e04cefa73d05739790d",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsande": {
-      "Name": "terraintexdirtsande",
-      "Hash": "7e7361a6da2f67ff30118e78082a64da",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandf": {
-      "Name": "terraintexdirtsandf",
-      "Hash": "7c09bd52b46b734d52549bb0d2023743",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandg": {
-      "Name": "terraintexdirtsandg",
-      "Hash": "db2d545b3d0dc5733f997cf5cc02de7e",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandh": {
-      "Name": "terraintexdirtsandh",
-      "Hash": "5dd7a527ba1abe65165a570e058f1ae1",
-      "ChildDependencies": []
-    },
-    "terraintexdirtsandi": {
-      "Name": "terraintexdirtsandi",
-      "Hash": "5723e73d2fcea1e7634b7b7f5d3a440d",
+      "Hash": "5232b2e369adee83c171655a00b64876",
       "ChildDependencies": []
     },
     "terraintexdungeon": {
       "Name": "terraintexdungeon",
-      "Hash": "1c2c143117f99b1521eb852c2c7f3414",
+      "Hash": "509e20818aa077e57308ee9bf3e5f1f2",
+      "ChildDependencies": []
+    },
+    "terraintexfield": {
+      "Name": "terraintexfield",
+      "Hash": "8627a4c17c155b87e918134dcface3f1",
       "ChildDependencies": []
     },
     "terraintexforest": {
       "Name": "terraintexforest",
-      "Hash": "2d14739dd1308f3b9d8cee8dd3b81b48",
+      "Hash": "57fee564c0459b9034edaf4bebde43f4",
       "ChildDependencies": []
     },
     "terraintexgrass": {
       "Name": "terraintexgrass",
-      "Hash": "4ea6e4ad1864ae4762b2314dcb03e733",
-      "ChildDependencies": []
-    },
-    "terraintexgrassb": {
-      "Name": "terraintexgrassb",
-      "Hash": "442c3b67b47b2624c083eb8f502d4091",
-      "ChildDependencies": []
-    },
-    "terraintexgrassbrown": {
-      "Name": "terraintexgrassbrown",
-      "Hash": "ee6f12448458a1983bc88ea2e2f6d0e9",
-      "ChildDependencies": []
-    },
-    "terraintexgrassbrownb": {
-      "Name": "terraintexgrassbrownb",
-      "Hash": "b3d82a74536eeabdb07b34692755d628",
-      "ChildDependencies": []
-    },
-    "terraintexgrassc": {
-      "Name": "terraintexgrassc",
-      "Hash": "d17ab89a393d59f7dafc201f0a2f6619",
-      "ChildDependencies": []
-    },
-    "terraintexgrassd": {
-      "Name": "terraintexgrassd",
-      "Hash": "19cb6666afbcb21340abfc5cd4babfd4",
-      "ChildDependencies": []
-    },
-    "terraintexgrasse": {
-      "Name": "terraintexgrasse",
-      "Hash": "776eb699defa9162cdeecc5fd6424de6",
-      "ChildDependencies": []
-    },
-    "terraintexgrassf": {
-      "Name": "terraintexgrassf",
-      "Hash": "c015386d29b38200ae192f4dc36f90e3",
-      "ChildDependencies": []
-    },
-    "terraintexgrassg": {
-      "Name": "terraintexgrassg",
-      "Hash": "e8e5dacd890f01d4dcc3e8b4b5736a6f",
-      "ChildDependencies": []
-    },
-    "terraintexgrassh": {
-      "Name": "terraintexgrassh",
-      "Hash": "6551b503ebe1f28cc2548d9aa9dbda35",
-      "ChildDependencies": []
-    },
-    "terraintexgrassi": {
-      "Name": "terraintexgrassi",
-      "Hash": "a956cc2b6cf3b9577dcc996a67f44fec",
-      "ChildDependencies": []
-    },
-    "terraintexgrassk": {
-      "Name": "terraintexgrassk",
-      "Hash": "153692f10680626cf864ffc25c62c085",
-      "ChildDependencies": []
-    },
-    "terraintexgrassleaf": {
-      "Name": "terraintexgrassleaf",
-      "Hash": "4372da7ff3971f5ea9dfd357b3558bf8",
-      "ChildDependencies": []
-    },
-    "terraintexgrassleafb": {
-      "Name": "terraintexgrassleafb",
-      "Hash": "99de9ae56f9482407edc5e96408fd8cb",
-      "ChildDependencies": []
-    },
-    "terraintexgrassleafc": {
-      "Name": "terraintexgrassleafc",
-      "Hash": "fd694b602f5b01a4f4db36ae661d859e",
-      "ChildDependencies": []
-    },
-    "terraintexgrassrock": {
-      "Name": "terraintexgrassrock",
-      "Hash": "043c54f577a4fec462812e25c925a4cb",
+      "Hash": "423b0e3480907931558be44380baa334",
       "ChildDependencies": []
     },
     "terraintexhills": {
       "Name": "terraintexhills",
-      "Hash": "d2bb3ea511f4b32291734d5e8f31c3f0",
+      "Hash": "84adf2119d149b20b01f6bbc68d5144f",
       "ChildDependencies": []
     },
     "terraintexlava": {
       "Name": "terraintexlava",
-      "Hash": "b2fdddcdedd7d09f8726fbc0c2a40556",
+      "Hash": "c40848dc9edab616f9e2b88edb167c20",
       "ChildDependencies": []
     },
-    "terraintexleaves": {
-      "Name": "terraintexleaves",
-      "Hash": "438d423c5c94e72501e9054a13f3a9f3",
-      "ChildDependencies": []
-    },
-    "terraintexleavesb": {
-      "Name": "terraintexleavesb",
-      "Hash": "8f9865a80a3ccd84be76cabffa6573fe",
-      "ChildDependencies": []
-    },
-    "terraintexleavesc": {
-      "Name": "terraintexleavesc",
-      "Hash": "0d9b071c039162aaf9030bc4e41c2872",
-      "ChildDependencies": []
-    },
-    "terraintexleavesd": {
-      "Name": "terraintexleavesd",
-      "Hash": "65e51e9be09ed3afa87a47a4ee2652a4",
+    "terraintexmountains": {
+      "Name": "terraintexmountains",
+      "Hash": "c3f825a058ebabdc028fc8cd75c0fbaf",
       "ChildDependencies": []
     },
     "terraintexnatural": {
       "Name": "terraintexnatural",
-      "Hash": "ce1b75f1bef5c919d4f66108aa236af7",
+      "Hash": "2988d20319076b69eebf266e5f7f5074",
       "ChildDependencies": []
     },
     "terraintexoutdoors": {
       "Name": "terraintexoutdoors",
-      "Hash": "49b838ece191de760904c2310375c7b5",
-      "ChildDependencies": []
-    },
-    "terraintexpath": {
-      "Name": "terraintexpath",
-      "Hash": "c049f21bb5f89283d1d1b167eb5a2dad",
-      "ChildDependencies": []
-    },
-    "terraintexpebblesgray": {
-      "Name": "terraintexpebblesgray",
-      "Hash": "5d9674ddf4811c6cb523019f9d973d0c",
-      "ChildDependencies": []
-    },
-    "terraintexpebblesgrayb": {
-      "Name": "terraintexpebblesgrayb",
-      "Hash": "7d6f635cfa8e2d787cd30d76c8cd8dc1",
+      "Hash": "dbb0fcdf100010aa4b40dddc801bc44d",
       "ChildDependencies": []
     },
     "terraintexpointofinterest": {
       "Name": "terraintexpointofinterest",
-      "Hash": "288b00300f10838242e579a116225f64",
+      "Hash": "9778c34864d0174cdb494eb92623cfaa",
       "ChildDependencies": []
     },
     "terraintexroad": {
       "Name": "terraintexroad",
-      "Hash": "4c3f9146b32240e81a3a35b8d3ccb32b",
-      "ChildDependencies": []
-    },
-    "terraintexroadc": {
-      "Name": "terraintexroadc",
-      "Hash": "20d826928343a20f2f18d5d2a6705bcc",
-      "ChildDependencies": []
-    },
-    "terraintexroadf": {
-      "Name": "terraintexroadf",
-      "Hash": "6d7df1c098a60daaea519bf50c55ed9a",
-      "ChildDependencies": []
-    },
-    "terraintexroadg": {
-      "Name": "terraintexroadg",
-      "Hash": "84d82b1ff68a6f104e02efde78538989",
-      "ChildDependencies": []
-    },
-    "terraintexroadred": {
-      "Name": "terraintexroadred",
-      "Hash": "5b4490700e8777f9c2d08cd1ff86f5d6",
+      "Hash": "597e54deff6dcaa8cf89ea74e0695318",
       "ChildDependencies": []
     },
     "terraintexrock": {
       "Name": "terraintexrock",
-      "Hash": "6119e80ed5018a476cb209a1f187a441",
-      "ChildDependencies": []
-    },
-    "terraintexrockb": {
-      "Name": "terraintexrockb",
-      "Hash": "a71918c17e168c86772e0f3d4a38c94f",
-      "ChildDependencies": []
-    },
-    "terraintexrockc": {
-      "Name": "terraintexrockc",
-      "Hash": "c742c41819512f8af03bc8a32aa611a9",
-      "ChildDependencies": []
-    },
-    "terraintexrockd": {
-      "Name": "terraintexrockd",
-      "Hash": "4fd24da674bbe6aac910c603a427ca5a",
-      "ChildDependencies": []
-    },
-    "terraintexrockdarkb": {
-      "Name": "terraintexrockdarkb",
-      "Hash": "0b4294e761ec1544f882775118685921",
-      "ChildDependencies": []
-    },
-    "terraintexrockdarkc": {
-      "Name": "terraintexrockdarkc",
-      "Hash": "97ba74e4a7daaa9f0beacf098a0aae2e",
-      "ChildDependencies": []
-    },
-    "terraintexrockdarkd": {
-      "Name": "terraintexrockdarkd",
-      "Hash": "d3eda790357920ebe7d6b2eec7fcb2bc",
-      "ChildDependencies": []
-    },
-    "terraintexrockdarkf": {
-      "Name": "terraintexrockdarkf",
-      "Hash": "b641b729f1f9bc5b51578141f74451b9",
-      "ChildDependencies": []
-    },
-    "terraintexrocke": {
-      "Name": "terraintexrocke",
-      "Hash": "dcb158b99803bb9997c41b890a43fe30",
-      "ChildDependencies": []
-    },
-    "terraintexrockf": {
-      "Name": "terraintexrockf",
-      "Hash": "a979dd0e6b5b498422232e384ea92d92",
-      "ChildDependencies": []
-    },
-    "terraintexrockgrass": {
-      "Name": "terraintexrockgrass",
-      "Hash": "b13a826f0a1bd7006019305416b3344b",
-      "ChildDependencies": []
-    },
-    "terraintexrockgraya": {
-      "Name": "terraintexrockgraya",
-      "Hash": "91d2453009d1fd429e4f1391a368c886",
-      "ChildDependencies": []
-    },
-    "terraintexrockgrayb": {
-      "Name": "terraintexrockgrayb",
-      "Hash": "66a3498779529838ce236c9b66678a0b",
-      "ChildDependencies": []
-    },
-    "terraintexrockgrayred": {
-      "Name": "terraintexrockgrayred",
-      "Hash": "a5db238bbc420f6fabd1419bb062d3d3",
-      "ChildDependencies": []
-    },
-    "terraintexrockred": {
-      "Name": "terraintexrockred",
-      "Hash": "d8d008ccc4149648cb7b29f4499eca4e",
-      "ChildDependencies": []
-    },
-    "terraintexrockripple": {
-      "Name": "terraintexrockripple",
-      "Hash": "2c3907ed793c77ad5f258e6f2279b324",
-      "ChildDependencies": []
-    },
-    "terraintexrocksmall": {
-      "Name": "terraintexrocksmall",
-      "Hash": "124ade04a42941368cc30d91920b07c3",
-      "ChildDependencies": []
-    },
-    "terraintexrockstart": {
-      "Name": "terraintexrockstart",
-      "Hash": "42da9ac67b3d92f302b9d78b1c3acc82",
-      "ChildDependencies": []
-    },
-    "terraintexrocktan": {
-      "Name": "terraintexrocktan",
-      "Hash": "792e4346016e3390230fbda4864acde5",
-      "ChildDependencies": []
-    },
-    "terraintexsand": {
-      "Name": "terraintexsand",
-      "Hash": "f0a4a66f65780bc10e02e3b95d5c709a",
-      "ChildDependencies": []
-    },
-    "terraintexsandgray": {
-      "Name": "terraintexsandgray",
-      "Hash": "097c6a4d067d5f8679c202934c75a1d5",
-      "ChildDependencies": []
-    },
-    "terraintexsandgrayb": {
-      "Name": "terraintexsandgrayb",
-      "Hash": "5a5c05756eb7d4b36be6aea2e6c9eb2e",
-      "ChildDependencies": []
-    },
-    "terraintexsandroad": {
-      "Name": "terraintexsandroad",
-      "Hash": "31c94d53d53b411f793ae331663470a4",
-      "ChildDependencies": []
-    },
-    "terraintexsandrock": {
-      "Name": "terraintexsandrock",
-      "Hash": "c61ec2179532784baf7bd9a9493bd18a",
-      "ChildDependencies": []
-    },
-    "terraintexsandwavy": {
-      "Name": "terraintexsandwavy",
-      "Hash": "348c117a45b5474dda406c57bd55dea0",
+      "Hash": "c04ca985f04ab1e1f2828f98cb038f9e",
       "ChildDependencies": []
     },
     "terraintexsavannah": {
       "Name": "terraintexsavannah",
-      "Hash": "7611a52e133de1c2347f3718ced73bde",
-      "ChildDependencies": []
-    },
-    "terraintexsavannahdirt": {
-      "Name": "terraintexsavannahdirt",
-      "Hash": "f6e5107bc338cb61996c6cfb7839e341",
-      "ChildDependencies": []
-    },
-    "terraintexsavannahroad": {
-      "Name": "terraintexsavannahroad",
-      "Hash": "621fcb0a0db7d010736a4159582b6064",
-      "ChildDependencies": []
-    },
-    "terraintexsavannahrock": {
-      "Name": "terraintexsavannahrock",
-      "Hash": "a64b79f051673936d65462bac4baeb33",
+      "Hash": "985deab9fb5f913afdc12c68a473363d",
       "ChildDependencies": []
     },
     "terraintexsnow": {
       "Name": "terraintexsnow",
-      "Hash": "25c77ac88838ccfcef92d040948ec5a3",
+      "Hash": "0572aebdde5a98322d240a207ea32b35",
       "ChildDependencies": []
     },
     "terraintexstars": {
       "Name": "terraintexstars",
-      "Hash": "3fcdc7a56f8a4d8cba5cdbe671260d6c",
+      "Hash": "062b079465e732ccf72673e875197e57",
       "ChildDependencies": []
     },
     "terraintexswamp": {
       "Name": "terraintexswamp",
-      "Hash": "28cd666a3cbb376db012edcec949cc1b",
-      "ChildDependencies": []
-    },
-    "terraintexswamproad": {
-      "Name": "terraintexswamproad",
-      "Hash": "1c12a6b1cfc8ac91f0cb6a216b1f9988",
+      "Hash": "341be5edf1339c432aef22fd15004d18",
       "ChildDependencies": []
     },
     "terraintextower": {
       "Name": "terraintextower",
-      "Hash": "9d036397a0a884b733aea0073ff43e26",
+      "Hash": "0c7a3766607569fcb4c60038743f94b3",
       "ChildDependencies": []
     },
     "terraintexunholy": {
       "Name": "terraintexunholy",
-      "Hash": "88a1828355ac742d2e1adcfa0532a210",
+      "Hash": "a277d9e9b5489c7f4e3acf2405ed75bb",
       "ChildDependencies": []
     },
     "terraintexwasteland": {
       "Name": "terraintexwasteland",
-      "Hash": "f3613b398dc718107b2f39c1feb330d7",
-      "ChildDependencies": []
-    },
-    "terraintexwastelandcracked": {
-      "Name": "terraintexwastelandcracked",
-      "Hash": "c5d011708a32067b4f893a11ba7ec251",
-      "ChildDependencies": []
-    },
-    "terraintexwastelandroad": {
-      "Name": "terraintexwastelandroad",
-      "Hash": "e2f45e33d6313383a9ac94803e99ed30",
-      "ChildDependencies": []
-    },
-    "terraintexwastelandrock": {
-      "Name": "terraintexwastelandrock",
-      "Hash": "70d060464b093dcfb0f8b75a0b416ed4",
+      "Hash": "fd433668d6de8ab31401008d8fe36679",
       "ChildDependencies": []
     },
     "terraintexwater": {
       "Name": "terraintexwater",
-      "Hash": "6ebe6a80ea9587727b0a39e54e21051b",
+      "Hash": "2f159b756f0ec03c2d61f06ce74ca048",
       "ChildDependencies": []
     },
     "texturelistsairelemental": {
@@ -3059,7 +2604,7 @@
     },
     "texturelistsapplydot": {
       "Name": "texturelistsapplydot",
-      "Hash": "5a67d6e3a7f52d9965c49c420b1aeb6d",
+      "Hash": "c09e3644fab92be8576d30d2dfe406a1",
       "ChildDependencies": []
     },
     "texturelistsassassin": {
@@ -3069,7 +2614,7 @@
     },
     "texturelistsautoheal": {
       "Name": "texturelistsautoheal",
-      "Hash": "754f493bfbdc7bbdbc1fcc901a008698",
+      "Hash": "2cf3181cde1b158d735bfe67e3e3e751",
       "ChildDependencies": []
     },
     "texturelistsbarbarian": {
@@ -3079,7 +2624,7 @@
     },
     "texturelistsbarrier": {
       "Name": "texturelistsbarrier",
-      "Hash": "516c7a97bd673621f63e8384d54c8038",
+      "Hash": "c70d01d5ec882d91fed7e61f85b4d9e4",
       "ChildDependencies": []
     },
     "texturelistsbasemonster": {
@@ -3189,7 +2734,7 @@
     },
     "texturelistscursedarrows": {
       "Name": "texturelistscursedarrows",
-      "Hash": "68729d421e3b78c0f20e3aa98840b2d6",
+      "Hash": "139d032a24e1da8068b5a816345b3b13",
       "ChildDependencies": []
     },
     "texturelistscyclops": {
@@ -3199,7 +2744,7 @@
     },
     "texturelistsdangersense": {
       "Name": "texturelistsdangersense",
-      "Hash": "b4acc8ad830d11826bdf68ca92686c8a",
+      "Hash": "aff895085c77c782ada62e0bf543df7d",
       "ChildDependencies": []
     },
     "texturelistsdefaultworldbg": {
@@ -3389,7 +2934,7 @@
     },
     "texturelistslifesteal": {
       "Name": "texturelistslifesteal",
-      "Hash": "b26c95fa523d323af868573f1829bc84",
+      "Hash": "7dece1dee2929d0b22651e3cca84e908",
       "ChildDependencies": []
     },
     "texturelistslion": {
@@ -3409,7 +2954,7 @@
     },
     "texturelistsmagiccarpet": {
       "Name": "texturelistsmagiccarpet",
-      "Hash": "ef9283245443387d1d6695f8b8aacb64",
+      "Hash": "b6a7e2482aef97be4cf68f388edaaa0f",
       "ChildDependencies": []
     },
     "texturelistsmagician": {
@@ -3469,7 +3014,7 @@
     },
     "texturelistsparry": {
       "Name": "texturelistsparry",
-      "Hash": "11c9f8631f13920322e2c5ebf7a9cc22",
+      "Hash": "a0d8e9dffa0e4f0c0ac71d8b89616841",
       "ChildDependencies": []
     },
     "texturelistsrat": {
@@ -3484,7 +3029,7 @@
     },
     "texturelistsretaliation": {
       "Name": "texturelistsretaliation",
-      "Hash": "63c56d568b7f6776867ca1d33b0be25f",
+      "Hash": "48ce27b29eafe65c51da979c49dee749",
       "ChildDependencies": []
     },
     "texturelistsrogue": {
@@ -3579,7 +3124,7 @@
     },
     "textureliststorchlight": {
       "Name": "textureliststorchlight",
-      "Hash": "db0b7a4385233b34e9d8060849f66861",
+      "Hash": "61979506e17ae00dc90e317d041a7ea4",
       "ChildDependencies": []
     },
     "textureliststraderworldmap": {
@@ -4041,7 +3586,7 @@
     },
     "uicrawlerbuffs": {
       "Name": "uicrawlerbuffs",
-      "Hash": "560229ff6f318e6873e8b8783a7e5e79",
+      "Hash": "d7a1285ad15c1e686a7127b3e69a85f6",
       "ChildDependencies": []
     },
     "uicrawlercombat": {
@@ -4051,7 +3596,7 @@
     },
     "uicrawlerhud": {
       "Name": "uicrawlerhud",
-      "Hash": "32f21c44eee9f39df9190f557db3eee0",
+      "Hash": "2a62e340a1941cfa8af88e94fb47ea74",
       "ChildDependencies": [
         "uicrawleraction",
         "uicrawlerparty",
@@ -4061,7 +3606,7 @@
     },
     "uicrawlerinfo": {
       "Name": "uicrawlerinfo",
-      "Hash": "5ac073ed211228de4343ef633d1f03f7",
+      "Hash": "d8dda27e04a7467b4d1d219439126d21",
       "ChildDependencies": []
     },
     "uicrawleritems": {
@@ -4147,7 +3692,7 @@
     },
     "uiminigamehud": {
       "Name": "uiminigamehud",
-      "Hash": "f9cbb1241d4f22c20c32680ef011196f",
+      "Hash": "df41f02b1331529ca6e451134eb73d91",
       "ChildDependencies": []
     },
     "uiminigamelobby": {
@@ -4202,7 +3747,7 @@
     },
     "uitradercity": {
       "Name": "uitradercity",
-      "Hash": "4cdbab1cc4d22dc5a6839010ff6a36f3",
+      "Hash": "d9f5d550a2db9da6ca88917e2f894e35",
       "ChildDependencies": []
     },
     "uitraderestate": {
@@ -4212,12 +3757,12 @@
     },
     "uitraderhud": {
       "Name": "uitraderhud",
-      "Hash": "a68c2b83439239f0ff3eb97fc3cd647e",
+      "Hash": "90e77117f87b8826186429a49ba6f7a6",
       "ChildDependencies": []
     },
     "uitraderinfo": {
       "Name": "uitraderinfo",
-      "Hash": "0333760f2b7a6c374245f667d9250479",
+      "Hash": "27bd5c0caacca1d0c26bfe7d9ab2dbb5",
       "ChildDependencies": [
         "uicrawlerinfo"
       ]
@@ -4229,7 +3774,7 @@
     },
     "uitradershipments": {
       "Name": "uitradershipments",
-      "Hash": "a0dbd65e0233e4a88a8464f454cfc4a0",
+      "Hash": "2333f2f26745516505f9742eb7f30738",
       "ChildDependencies": []
     },
     "uitraderspend": {

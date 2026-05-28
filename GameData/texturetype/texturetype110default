@@ -1,9 +1,0 @@
-{
-  "Id": "texturetype110default",
-  "ParentId": "default",
-  "IdKey": 110,
-  "Name": "Cave",
-  "Icon": "Cave",
-  "Art": "Cave",
-  "Size": 1.0
-}

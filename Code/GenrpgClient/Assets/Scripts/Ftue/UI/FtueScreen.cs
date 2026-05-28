@@ -124,7 +124,7 @@ namespace Assets.Scripts.UI.Blockers
 
         private void OnClickBackground()
         {
-            _ftueService.CompleteStep(_rand.Rand, _gs.ch, _step.IdKey);
+            _ftueService.CompleteStep(_gs.ch, _step.IdKey, _rand.Rand);
             StartClose();
         }
     }

@@ -3,11 +3,11 @@ using OpenTelemetry.Logs;
 
 namespace OxDb.ServerCore.Logalytics.Entities
 {
-    public class LogalyticsEnricher : BaseProcessor<LogRecord>
+    public class LogRecordEnricher : BaseProcessor<LogRecord>
     {
 
         List<KeyValuePair<string, object?>> _customAttributes = new List<KeyValuePair<string, object?>>();
-        public LogalyticsEnricher(Dictionary<string, object> dict)
+        public LogRecordEnricher(Dictionary<string, object> dict)
         {
             foreach (string key in dict.Keys)
             {

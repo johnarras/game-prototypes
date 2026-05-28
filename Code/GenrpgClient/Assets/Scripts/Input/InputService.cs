@@ -92,22 +92,13 @@ public class InputService : IInputService
         {
             return false;
         }
-        try
-        {
+        bool wasPressed = Keyboard.current[k]?.wasPressedThisFrame ?? false;
 
-            bool wasPressed = Keyboard.current[k]?.wasPressedThisFrame ?? false;
-
-            if (wasPressed && dispatchClickKeys)
-            {
-                _dispatcher.Dispatch(new ClickKey() { Key = k });
-            }
-            return wasPressed;
-        }
-        catch (Exception ee)
+        if (wasPressed && dispatchClickKeys)
         {
-            Debug.Log("EXC: " + ee.Message + " " + k);
+            _dispatcher.Dispatch(new ClickKey() { Key = k });
         }
-        return false;
+        return wasPressed;
     }
 
     /// <summary>

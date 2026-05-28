@@ -2,7 +2,8 @@
   "Id": "texturetype21default",
   "ParentId": "default",
   "IdKey": 21,
-  "Name": "SavannahRock",
-  "Art": "SavannahRock",
+  "Name": "Tower",
+  "Icon": "Tower",
+  "Art": "Tower",
   "Size": 8.0
 }

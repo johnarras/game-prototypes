@@ -116,8 +116,6 @@ namespace OxDb.RequestServer.Trader.Travel.Services
                 response.EnterCityId = position.GetTargetCityId();
             }
 
-
-            _logService.Info("Did Travel: " + coreData.Id);
             return response;
         }
 

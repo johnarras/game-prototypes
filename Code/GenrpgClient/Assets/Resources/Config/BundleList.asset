@@ -1705,3 +1705,15 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uizones
     IsLocal: 0
+  - BundleName: combatcombathit
+    IsLocal: 0
+  - BundleName: terraintexbadlands
+    IsLocal: 0
+  - BundleName: terraintexdarkforest
+    IsLocal: 0
+  - BundleName: terraintexdesert
+    IsLocal: 0
+  - BundleName: terraintexfield
+    IsLocal: 0
+  - BundleName: terraintexmountains
+    IsLocal: 0

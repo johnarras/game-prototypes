@@ -13,9 +13,9 @@ namespace OxDb.SharedGame.ProcGen.Services
 
     public class NoiseService : INoiseService
     {
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public float[,] Generate(double pers, double freq, double amp,

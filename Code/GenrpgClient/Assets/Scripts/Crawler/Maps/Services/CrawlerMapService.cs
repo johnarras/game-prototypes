@@ -27,6 +27,7 @@ using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Buildings.Settings;
@@ -85,6 +86,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         EntranceMapData GetEntranceMap(PartyData party, CrawlerWorld world, long mapId);
         void PlayMapSounds();
         void LoadProp(CrawlerObjectLoadData loadData, string prefabName, CancellationToken token);
+        
     }
 
     public class CrawlerMapService : ICrawlerMapService
@@ -108,6 +110,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         private ICrawlerMapGenService _mapGenService = null;
         private ICrawlerTerrainService _terrainService = null;
         private IMaterialGenService _materialGenService = null;
+        private ILogService _logService = null;
 
         public const string MaterialGenDataFilenameSuffix = "MaterialGenData";
 
@@ -1170,12 +1173,21 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public void LoadProp(CrawlerObjectLoadData loadData, string prefabName, CancellationToken token)
         {
-            _assetService.LoadAssetInto<CrawlerObjectLoadData>(loadData.Cell.gameObject, AssetCategoryNames.Props, prefabName, OnDownloadProp, token, loadData);
+            loadData.PrefabName = prefabName;   
+            _assetService.LoadAssetInto<CrawlerObjectLoadData>(loadData.Cell.gameObject, 
+                loadData.AssetCategoryNameOverride ?? AssetCategoryNames.Props, prefabName, OnDownloadProp, token, loadData);
         }
 
         private void OnDownloadProp(GameObject go, CrawlerObjectLoadData loadData, CancellationToken token)
         {
+            if (go == null)
+            {
+                _logService.Error("Missing world object prefab " + loadData.PrefabName);
+                return;
+            }
+
             go.transform.eulerAngles = new Vector3(0, loadData.Angle, 0);
+
             loadData.Cell.Props.Add(go);
 
             go.name = go.name + "-" + loadData.Cell.MapX + "." + loadData.Cell.MapZ + "--" + go.transform.position / 8;

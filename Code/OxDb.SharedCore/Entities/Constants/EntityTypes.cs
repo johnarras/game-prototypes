@@ -13,6 +13,7 @@ namespace OxDb.SharedCore.Entities.Constants
         public const long Recipe = 8;
         public const long Quest = 9;
         public const long Set = 10;
+        public const long Prop = 11;
         public const long QuestItem = 12;
         public const long GroundObject = 13;
         public const long Zone = 14;

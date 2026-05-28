@@ -3,6 +3,8 @@
 
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
+using Assets.Scripts.Logalytics.ClientEvents;
+using Assets.Scripts.Logalytics.Services;
 using Assets.Scripts.Login.Messages;
 using Assets.Scripts.Setup.Interfaces;
 using OxDb.SharedCore.Core.Constants;
@@ -13,6 +15,7 @@ using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Serialization.Services;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Website.Constants;
 using OxDb.SharedCore.Website.Interfaces;
 using OxDb.SharedCore.Website.Requests.Core;
 using OxDb.SharedCore.Website.Requests.Interfaces;
@@ -107,17 +110,6 @@ public class ClientWebService : IClientWebService
     private IDispatcher _dispatcher = null;
     private IClientAppService _appService = null;
 
-    public ClientWebService()
-    {
-    }
-
-    // Web endpoints.
-    public const string GameClientEndpoint = "/game-client";
-    public const string AccountAuthEndpoint = "/account-auth";
-    public const string GameAuthEndpoint = "/game-auth";
-    public const string NoUserEndpoint = "/nouser";
-    public const string RefreshTokenEndpoint = "/refresh-token";
-
     CancellationTokenSource _webTokenSource = null;
     private CancellationToken _token;
     public void SetGameToken(CancellationToken token)
@@ -141,10 +133,9 @@ public class ClientWebService : IClientWebService
 
 
         // Batch requests to fewer endpoints like in a realtime game.
-        _queues[typeof(IAccountAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + AccountAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, null);
-        _queues[typeof(IGameAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + GameAuthEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, _queues[typeof(IAccountAuthRequest)]);
-        _queues[typeof(IClientUserRequest)] = new WebRequestQueue(_gs, token, webServerURL + GameClientEndpoint, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, _queues[typeof(IGameAuthRequest)]);
-        _queues[typeof(INoUserRequest)] = new WebRequestQueue(_gs, token, webServerURL + NoUserEndpoint, 0, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, null);
+        _queues[typeof(IAccountAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + CoreEndpoints.AccountAuth, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, null);
+        _queues[typeof(IGameAuthRequest)] = new WebRequestQueue(_gs, token, webServerURL + CoreEndpoints.GameAuth, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, _queues[typeof(IAccountAuthRequest)]);
+        _queues[typeof(IClientUserRequest)] = new WebRequestQueue(_gs, token, webServerURL + CoreEndpoints.GameClient, UserRequestDelaySeconds, _showRequestLogs, _logService, this, _serializer, _gameData, _appService, _queues[typeof(IGameAuthRequest)]);
         foreach (var queue in _queues.Values)
         {
             _loc.Resolve(queue);
@@ -472,7 +463,7 @@ public class ClientWebService : IClientWebService
                 }
                 else
                 {
-                    Debug.Log("Failed to refresh session token.");
+                    _logService.Error("Failed to refresh session token");
                     return responseEnvelope;
                 }
             }
@@ -482,7 +473,7 @@ public class ClientWebService : IClientWebService
 
                 if (Application.isPlaying)
                 {
-                    Debug.LogError($"Error: {request.error} - {request.downloadHandler.text}");
+                    _logService.Error($"Error: {request.error} - {request.downloadHandler.text}");
                 }
                 return responseEnvelope;
             }
@@ -505,7 +496,7 @@ public class ClientWebService : IClientWebService
             Json = _serializer.SerializeToString(set),
         };
 
-        ResponseEnvelope<WebServerResponseSet> responseEnvelope = await SendRawWebRequest<WebServerResponseSet>(_configContainer.Config.GetWebEndpoint() + RefreshTokenEndpoint, HttpMethod.Post, requestEnvelope);
+        ResponseEnvelope<WebServerResponseSet> responseEnvelope = await SendRawWebRequest<WebServerResponseSet>(_configContainer.Config.GetWebEndpoint() + CoreEndpoints.RefreshToken, HttpMethod.Post, requestEnvelope);
 
         if (responseEnvelope.ResponseData != null)
         {
@@ -516,6 +507,8 @@ public class ClientWebService : IClientWebService
                && !string.IsNullOrEmpty(response.SessionId))
             {
                 _gs.SessionState = response;
+
+                _dispatcher.Dispatch(new UpdateDefaultLogalyticsPayload());
                 return true;
             }
         }
@@ -533,7 +526,7 @@ public class ClientWebService : IClientWebService
             GameUserId = _gs.GameUserId,
             ClientVersion = _appService.Version,
             ClientPlatform = _appService.GetPlatformName(),
-            SessionId = _gs.SessionState?.SessionId ?? "",
+            ClientSessionId = _gs.ClientSessionId,
             RequestId = GetUserRequestId(),
             ClientEnv = _configContainer.Config.Env,
 

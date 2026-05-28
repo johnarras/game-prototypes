@@ -32,4 +32,8 @@
     <ProjectReference Include="..\OxDb.SharedGame\OxDb.SharedGame.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logalytics\Services\" />
+  </ItemGroup>
+
 </Project>

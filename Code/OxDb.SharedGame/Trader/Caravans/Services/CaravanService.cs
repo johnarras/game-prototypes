@@ -51,11 +51,11 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
         protected ICalcAttributeService _calcAttributeService = null;
 
 
-        public virtual async Task Initialize(CancellationToken token)
+        public virtual async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
 
 
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public CaravanTravelInfo GetTravelInfo(CoreData coreData)

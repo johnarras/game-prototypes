@@ -45,7 +45,7 @@ namespace Assets.Scripts.Trader.Encounters.Services
                 foreach (Reward rew in rlist.Rewards)
                 {
 
-                    await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelEncounter, new ClientRewardParams(false, true));
+                    await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelEncounter, new ClientRewardParams(false, true, true));
 
                     IEntityHelper helper = _entityService.GetEntityHelper(rew.EntityTypeId);
                     if (helper != null)

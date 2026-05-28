@@ -1,3 +1,4 @@
+using Assets.Scripts.Logalytics.Utils;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using System;
@@ -82,6 +83,9 @@ namespace Assets.Editor.Builds
             {
                 return;
             }
+
+            string logalyticsConnectionString = LogalyticsUtils.GetLogConnectionString(ScriptableObjectUtils.LoadDefault<ClientConfig>());
+
             _isBuilding = true;
             await RunBuilds.PlayerBuilder.BuildWithArgs(
                     _envNames[_selectedEnv],
@@ -91,7 +95,8 @@ namespace Assets.Editor.Builds
                     _exportGameData,
                     _encryptExportedData,
                     cloudBuild,
-                    _developmentBuild);
+                    _developmentBuild,
+                    logalyticsConnectionString);
 
 
             EditorApplication.delayCall += () =>

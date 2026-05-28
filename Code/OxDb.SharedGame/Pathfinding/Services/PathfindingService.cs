@@ -20,7 +20,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
 
     public interface IPathfindingService : IInitializable
     {
-        Task LoadPathfinding(string urlPrefix);
+        System.Threading.Tasks.Task LoadPathfinding(string urlPrefix);
         bool[,] ConvertBytesToGrid(byte[] bytes);
         byte[] ConvertGridToBytes(bool[,] grid);
         /// <summary>
@@ -48,9 +48,9 @@ namespace OxDb.SharedGame.Pathfinding.Services
             return _pathSearchCount;
         }
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public void SetPathfinding(bool[,] grid)
@@ -63,7 +63,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             return _grid;
         }
 
-        public async Task LoadPathfinding(string urlPrefix)
+        public async System.Threading.Tasks.Task LoadPathfinding(string urlPrefix)
         {
             if (_grid != null || _mapProvider.GetMap() == null)
             {

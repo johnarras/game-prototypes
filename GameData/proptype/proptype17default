@@ -1,0 +1,9 @@
+{
+  "Id": "proptype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "TowerProp",
+  "Icon": "TowerProp",
+  "Art": "TowerProp",
+  "NumChoices": 1
+}

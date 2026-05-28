@@ -810,6 +810,14 @@
     }
   ],
   "UnitKeyWords": [],
+  "PropChance": 0.4,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 2
+    }
+  ],
   "PlantChoices": "2 5 8 10 20 21 23 24 27 29 30 7 15 25 3 16 18 26 9",
   "FenceChance": 0.1,
   "WeatherTypeId": 2,

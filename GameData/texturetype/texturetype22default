@@ -2,7 +2,8 @@
   "Id": "texturetype22default",
   "ParentId": "default",
   "IdKey": 22,
-  "Name": "SavannahRoad",
-  "Art": "SavannahRoad",
+  "Name": "Lava",
+  "Icon": "Lava",
+  "Art": "Lava",
   "Size": 8.0
 }

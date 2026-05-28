@@ -22,7 +22,6 @@ public interface IInitClient : IInjectable
 
 public class InitClient : BaseBehaviour, IInitClient
 {
-
     [SerializeField]
     private ClientConfig _clientConfig = null;
 
@@ -127,7 +126,7 @@ public class InitClient : BaseBehaviour, IInitClient
         _gs.GameMode = GameMode;
         ClientSetupService clientInitializer = new ClientSetupService();
         _gs.loc.Resolve(this);
-        await clientInitializer.SetupGame(_gs, new List<object> { this }, GetToken());
+        await clientInitializer.SetupGame(_gs, this, new List<object> { this }, GetToken());
         _clientAppService.ShowCurrentScreenState();
         return _gs;
     }

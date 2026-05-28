@@ -12,6 +12,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             base.Init();
 
             Sprite.SetImage(ImageName);
+            Sprite.FramesBetweenSequenceStep = (int)UpdateTicks;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace OxDb.SharedGame.Attributes.Services
 {
     public interface ICalcAttributeService : IInitializable
     {
-        Task CalcBuffs(IUnitDataLookup lookup);
+        System.Threading.Tasks.Task CalcBuffs(IUnitDataLookup lookup);
         Task<List<Reward>> CalcBaseAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
         Task<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
     }
@@ -43,7 +43,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
         private List<GameplayStatToTraderVarMapper> _statMappers = new List<GameplayStatToTraderVarMapper>();
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
             // Explicit list rather than reflection since this gets done at runtime.
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.MaxSize, TraderVars.MaxSize));
@@ -51,7 +51,7 @@ namespace OxDb.SharedGame.Attributes.Services
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.Luck, TraderVars.Luck));
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.Searching, TraderVars.Searching));
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.BonusSpeed, TraderVars.BonusSpeedPerDie));
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public virtual async Task<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp)
@@ -61,7 +61,7 @@ namespace OxDb.SharedGame.Attributes.Services
             return baseRewards;
         }
 
-        public virtual async Task CalcBuffs(IUnitDataLookup lookup)
+        public virtual async System.Threading.Tasks.Task CalcBuffs(IUnitDataLookup lookup)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -143,7 +143,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
 
-        protected async Task UpdateBuffsFromBitList<TParent, TChild, TEffect>(IUnitDataLookup lookup, CoreData coreData, long memberBits)
+        protected async System.Threading.Tasks.Task UpdateBuffsFromBitList<TParent, TChild, TEffect>(IUnitDataLookup lookup, CoreData coreData, long memberBits)
             where TParent : ParentSettings<TChild>
             where TChild : ChildSettings, IId, IEffectList<TEffect>, new()
             where TEffect : class, IEffect

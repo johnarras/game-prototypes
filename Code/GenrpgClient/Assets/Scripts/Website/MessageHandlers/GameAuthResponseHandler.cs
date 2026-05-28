@@ -2,11 +2,15 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Lockstep.Config.Core;
 using Assets.Scripts.Lockstep.Game.Services;
+using Assets.Scripts.Logalytics.ClientEvents;
+using Assets.Scripts.Logalytics.Services;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Purchasing.Services;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
+using OxDb.SharedCore.Logalytics.Constants;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
@@ -14,12 +18,15 @@ using OxDb.SharedGame.GameAuth.WebApi.Auth;
 using OxDb.SharedGame.MapServer.Entities;
 using OxDb.SharedGame.MapServer.WebApi.UploadMap;
 using OxDb.SharedGame.Spawns.WorldData;
+using OxDb.SharedGame.Trader.Flags.Constants;
 using OxDb.SharedGame.UI.Constants;
+using OxDb.SharedGame.Users.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
@@ -30,6 +37,8 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IClientPurchasingService _purchasingService = null;
         private IClientMinigameService _clientMinigameService = null;
         private ILockstepGameService _lockstepService = null;
+        private IUserSnapshotService _snapshotService = null;
+        private IAnalyticsService _analyticsService = null;
 
         protected override async Awaitable InnerProcess(GameAuthResponse response, CancellationToken token)
         {
@@ -68,6 +77,13 @@ namespace Assets.Scripts.Website.MessageHandlers
             _gs.mapStubs = response.MapStubs;
             _gs.ch = new Character(new CoreCharacter()) { Id = _gs.GameUserId, UserId = _gs.GameUserId, Name = "StubCharacter" };
 
+            _dispatcher.Dispatch(new UpdateDefaultLogalyticsPayload());
+
+            if (response.DidCreateAccount)
+            {
+                _analyticsService.TrackEvent(AnalyticsEventNames.CreateUser);
+            }
+
             foreach (IUnitData unitData in response.UserData)
             {
                 unitData.Id = Guid.NewGuid().ToString();
@@ -83,6 +99,8 @@ namespace Assets.Scripts.Website.MessageHandlers
                 _gs.ch.Set(response.OfferData);
             }
 
+
+            _logService.Info("Login " + await _snapshotService.GetSnapshotString(_gs.ch));
             List<ITopLevelSettings> loadedSettings = _gameData.AllSettings();
             if (_gameData is ClientGameData clientGameData)
             {
@@ -96,6 +114,8 @@ namespace Assets.Scripts.Website.MessageHandlers
             keepOpenScreens = new List<long>();
             if (GameModeUtils.IsPureClientMode(_gs.GameMode))
             {
+                CoreData coreData = await _gs.ch.GetAsync<CoreData>();
+                coreData.AddFlag(TraderFlags.CompletedFtue);
                 if (_gs.GameMode == EGameModes.Crawler)
                 {
                     keepOpenScreens.Add(ScreenNames.CrawlerMainMenu);

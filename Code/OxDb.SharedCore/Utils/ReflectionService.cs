@@ -74,10 +74,21 @@ namespace OxDb.SharedCore.Utils
         protected ITextSerializer _serializer = null;
         protected IGameData _gameData = null;
 
+
+        private ILogService _logService = null;
+
+        private List<Assembly> _searchAssemblies = new List<Assembly>();
+
         private static Assembly _systemAssembly = typeof(System.String).Assembly;
         public bool MemberIsMultiType(MemberInfo mem)
         {
             return IsMultiType(GetMemberType(mem));
+        }
+
+        public static int InstanceCount = 0;
+        public ReflectionService()
+        {
+            ++InstanceCount;
         }
 
         public bool IsMultiType(Type type)
@@ -1888,11 +1899,6 @@ namespace OxDb.SharedCore.Utils
             return list2;
         }
 
-
-
-        private ILogService _logService = null;
-
-        private List<Assembly> _searchAssemblies = new List<Assembly>();
 
         public virtual Assembly[] GetAllAssemblies()
         {

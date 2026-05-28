@@ -2,7 +2,8 @@
   "Id": "texturetype19default",
   "ParentId": "default",
   "IdKey": 19,
-  "Name": "Savannah",
-  "Art": "Savannah",
+  "Name": "Dungeon",
+  "Icon": "Dungeon",
+  "Art": "Dungeon",
   "Size": 8.0
 }

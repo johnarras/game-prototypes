@@ -18,6 +18,7 @@ namespace OxDb.SharedGame.GameAuth.WebApi.Auth
         public string ServerName { get; set; }
         public string ServerVersion { get; set; }
         public string ServerEnv { get; set; }
+        public bool DidCreateAccount { get; set; }
         public List<CharacterStub> CharacterStubs { get; set; } = new List<CharacterStub>();
         public List<MapStub> MapStubs { get; set; } = new List<MapStub>();
         public PlayerStoreOfferData OfferData { get; set; }

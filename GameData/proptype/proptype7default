@@ -1,0 +1,9 @@
+{
+  "Id": "proptype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "DarkForestProp",
+  "Icon": "DarkForestProp",
+  "Art": "DarkForestProp",
+  "NumChoices": 1
+}

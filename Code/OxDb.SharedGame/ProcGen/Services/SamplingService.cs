@@ -20,9 +20,9 @@ namespace OxDb.SharedGame.ProcGen.Services
     {
         private INoiseService _noiseService = null;
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         public List<MyPoint2> PlanePoissonSample(SamplingData sd)

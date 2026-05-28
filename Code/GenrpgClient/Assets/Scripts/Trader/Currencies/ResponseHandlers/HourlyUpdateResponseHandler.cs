@@ -26,7 +26,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
 
             foreach (Reward rew in response.Rewards)
             {
-                await _rewardService.GiveReward(_gs.ch, rew, RewardSources.HourlyUpdate, new ClientRewardParams(false, true));
+                await _rewardService.GiveReward(_gs.ch, rew, RewardSources.HourlyUpdate, new ClientRewardParams(false, true, false));
             }
 
             _dispatcher.Dispatch(new UpdateTraderHUD());

@@ -1,3 +1,4 @@
+using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                         Cell = cell,
                         MapRoot = mapRoot,
                         Seed = _mapService.GetMapCellHash(mapRoot.Map.IdKey, cell.MapX, cell.MapZ, treeTypeId * 17),
-
+                        AssetCategoryNameOverride = AssetCategoryNames.Trees,
                     };
 
                     _mapService.LoadProp(loadData, treeType.Art + variation, token);

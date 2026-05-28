@@ -124,7 +124,7 @@ namespace OxDb.ServerCore.MainServer
 
             GS gs = (GS)Activator.CreateInstance(typeof(GS), new object[] { config, logService })!;
             TSetupService setupService = (TSetupService)Activator.CreateInstance(typeof(TSetupService))!;
-            await setupService.SetupGame(gs, new List<object> { currentObject }, token);
+            await setupService.SetupGame(gs, this, new List<object> { currentObject }, token);
 
             return gs;
         }

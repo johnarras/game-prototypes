@@ -1,6 +1,7 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Interfaces;
+using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,9 +50,16 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
         }
     }
 
+    
+
+    private string _analyticsName = null;
     public override string GetName()
     {
-        return name;
+        if (string.IsNullOrEmpty(_analyticsName))
+        {
+            _analyticsName = StrUtils.ToSnakeCase(name);
+        }
+        return _analyticsName;
     }
 
     protected List<GraphicRaycaster> GetAllRaycasters()

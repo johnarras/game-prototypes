@@ -1,0 +1,9 @@
+{
+  "Id": "proptype21default",
+  "ParentId": "default",
+  "IdKey": 21,
+  "Name": "NaturalProp",
+  "Icon": "NaturalProp",
+  "Art": "NaturalProp",
+  "NumChoices": 1
+}

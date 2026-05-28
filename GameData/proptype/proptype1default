@@ -1,0 +1,8 @@
+{
+  "Id": "proptype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "FieldProp",
+  "Icon": "FieldProp",
+  "Art": "FieldProp"
+}

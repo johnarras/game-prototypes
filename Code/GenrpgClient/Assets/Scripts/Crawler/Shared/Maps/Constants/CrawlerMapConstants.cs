@@ -8,7 +8,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Constants
 
         public const int DirToAngleMult = 90;
 
-        public const double TreeChanceScale = 0.25f;
+        public const double TreeChanceScale = 1.5f;
 
         public const int DefaultXZBlockSize = 8;
 

@@ -1,0 +1,9 @@
+{
+  "Id": "proptype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "HillsProp",
+  "Icon": "HillsProp",
+  "Art": "HillsProp",
+  "NumChoices": 1
+}

@@ -6,7 +6,7 @@ namespace OxDb.SharedGame.Users.Loaders
 {
     public interface ISharedUserDataLoader : ISetupDictionaryItem<Type>, IInitializable
     {
-        Task CreateDefaultData(string userId);
+        System.Threading.Tasks.Task CreateDefaultData(string userId);
     }
 }
 

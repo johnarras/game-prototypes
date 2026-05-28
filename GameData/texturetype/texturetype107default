@@ -1,9 +1,0 @@
-{
-  "Id": "texturetype107default",
-  "ParentId": "default",
-  "IdKey": 107,
-  "Name": "PointOfInterest",
-  "Icon": "PointOfInterest",
-  "Art": "PointOfInterest",
-  "Size": 1.0
-}

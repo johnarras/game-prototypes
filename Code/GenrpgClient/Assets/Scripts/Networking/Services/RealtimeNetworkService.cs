@@ -13,7 +13,7 @@ using OxDb.SharedGame.Networking.Constants;
 using OxDb.SharedGame.Networking.Entities.TCP;
 using OxDb.SharedGame.Networking.Interfaces;
 using OxDb.SharedGame.Networking.Messages;
-using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedCore.Tasks.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

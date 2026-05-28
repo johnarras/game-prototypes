@@ -3,6 +3,7 @@
   "ParentId": "default",
   "IdKey": 13,
   "Name": "Water",
+  "Icon": "Water",
   "Art": "Water",
   "Size": 8.0
 }

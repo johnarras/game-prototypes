@@ -21,7 +21,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.3,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 1,
+      "BaseTextureTypeId": 5,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -688,6 +688,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.25,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 1
+        }
+      ],
       "PlantChoices": "2 5 8 10 20 21 23 24 27 29 30 7 15 25 3 16 18 26 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 1,
@@ -1509,6 +1517,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.4,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 2
+        }
+      ],
       "PlantChoices": "2 5 8 10 20 21 23 24 27 29 30 7 15 25 3 16 18 26 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 2,
@@ -1537,7 +1553,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 14,
+      "BaseTextureTypeId": 7,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -2243,6 +2259,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 3
+        }
+      ],
       "PlantChoices": "33 10 15 16 26 28 30 31 32 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 3,
@@ -2270,9 +2294,9 @@
       "RoadDipScale": -0.3,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 7,
+      "BaseTextureTypeId": 8,
       "DirtTextureTypeId": 2,
-      "RoadTextureTypeId": 18,
+      "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
       "ZoneNames": [
         {
@@ -2986,6 +3010,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.5,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 4
+        }
+      ],
       "PlantChoices": "34 35 2 4 8 10",
       "FenceChance": 0.1,
       "WeatherTypeId": 4,
@@ -3017,7 +3049,7 @@
       "ZoneListGenScale": 0.8,
       "BaseTextureTypeId": 9,
       "DirtTextureTypeId": 2,
-      "RoadTextureTypeId": 17,
+      "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
       "ZoneNames": [
         {
@@ -3650,6 +3682,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 5
+        }
+      ],
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 5,
@@ -3682,9 +3722,9 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 0.8,
-      "BaseTextureTypeId": 5,
+      "BaseTextureTypeId": 10,
       "DirtTextureTypeId": 2,
-      "RoadTextureTypeId": 16,
+      "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
       "ZoneNames": [
         {
@@ -4351,6 +4391,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.4,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 6
+        }
+      ],
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 6,
@@ -4382,7 +4430,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.3,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 73,
+      "BaseTextureTypeId": 11,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -5036,6 +5084,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.6,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 7
+        }
+      ],
       "PlantChoices": "2 5 8 10 20 21 23 24 27 29 30 7 15 25 3 16 18 26 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 7,
@@ -5065,7 +5121,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.3,
       "ZoneListGenScale": 0.8,
-      "BaseTextureTypeId": 19,
+      "BaseTextureTypeId": 12,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -5676,6 +5732,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.1,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 8
+        }
+      ],
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 8,
@@ -6302,6 +6366,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 9
+        }
+      ],
       "PlantChoices": "0",
       "FenceChance": 0.1,
       "WeatherTypeId": 8,
@@ -6330,7 +6402,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 76,
+      "BaseTextureTypeId": 14,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -7036,6 +7108,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 10
+        }
+      ],
       "PlantChoices": "33 10 15 16 26 28 30 31 32 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 3,
@@ -7064,7 +7144,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 1.0,
-      "BaseTextureTypeId": 105,
+      "BaseTextureTypeId": 15,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -7686,6 +7766,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 11
+        }
+      ],
       "PlantChoices": "33 10 15 16 26 28 30 31 32 9",
       "FenceChance": 0.1,
       "WeatherTypeId": 3,
@@ -7700,7 +7788,7 @@
       "Desc": "",
       "Icon": "Road",
       "Art": "Road",
-      "BaseTextureTypeId": 4,
+      "BaseTextureTypeId": 16,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -7976,6 +8064,15 @@
         }
       ],
       "UnitKeyWords": [],
+      "MinSameAdjacentZone": 3,
+      "PropChance": 1.0,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 12
+        }
+      ],
       "PlantChoices": "",
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
@@ -7988,7 +8085,7 @@
       "Desc": "",
       "Icon": "PointOfInterest",
       "Art": "PointOfInterest",
-      "BaseTextureTypeId": 107,
+      "BaseTextureTypeId": 17,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -8003,6 +8100,14 @@
       "Overrides": [],
       "ZoneUnitSpawns": [],
       "UnitKeyWords": [],
+      "PropChance": 0.2,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 13
+        }
+      ],
       "PlantChoices": "",
       "MusicTypeId": 1,
       "AmbientMusicTypeId": 1,
@@ -8014,7 +8119,7 @@
       "Desc": "",
       "Icon": "City",
       "Art": "City",
-      "BaseTextureTypeId": 108,
+      "BaseTextureTypeId": 18,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -8151,6 +8256,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.25,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 14
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 10,
       "MusicTypeId": 1,
@@ -8163,7 +8276,7 @@
       "Desc": "",
       "Icon": "Dungeon",
       "Art": "Dungeon",
-      "BaseTextureTypeId": 109,
+      "BaseTextureTypeId": 19,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -8523,6 +8636,14 @@
           "Weight": 10.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 15
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
       "MusicTypeId": 1,
@@ -8536,7 +8657,7 @@
       "Desc": "",
       "Icon": "Cave",
       "Art": "Cave",
-      "BaseTextureTypeId": 110,
+      "BaseTextureTypeId": 20,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -8932,6 +9053,14 @@
           "Weight": 10.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 16
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
       "MusicTypeId": 1,
@@ -8945,7 +9074,7 @@
       "Desc": "",
       "Icon": "Tower",
       "Art": "Tower",
-      "BaseTextureTypeId": 111,
+      "BaseTextureTypeId": 21,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -9275,6 +9404,14 @@
           "Weight": 10.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 17
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
       "MusicTypeId": 1,
@@ -9303,7 +9440,7 @@
       "RoadDipScale": 1.0,
       "RoadDirtScale": 1.0,
       "ZoneListGenScale": 0.8,
-      "BaseTextureTypeId": 106,
+      "BaseTextureTypeId": 22,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -9969,6 +10106,14 @@
           "Weight": 100.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 18
+        }
+      ],
       "PlantChoices": "34 35 36 37 38",
       "FenceChance": 0.1,
       "WeatherTypeId": 9,
@@ -9986,7 +10131,7 @@
       "Desc": "",
       "Icon": "Arcane",
       "Art": "Arcane",
-      "BaseTextureTypeId": 112,
+      "BaseTextureTypeId": 23,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -10182,6 +10327,14 @@
           "Weight": 100.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 19
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "MusicTypeId": 1,
@@ -10195,7 +10348,7 @@
       "Desc": "",
       "Icon": "Unholy",
       "Art": "Unholy",
-      "BaseTextureTypeId": 113,
+      "BaseTextureTypeId": 24,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -10407,6 +10560,14 @@
           "Weight": 100.0
         }
       ],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 20
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 11,
       "MusicTypeId": 1,
@@ -10421,7 +10582,7 @@
       "AtlasPrefix": "",
       "Icon": "Natural",
       "Art": "Natural",
-      "BaseTextureTypeId": 114,
+      "BaseTextureTypeId": 25,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -10792,6 +10953,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 21
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "MusicTypeId": 1,
@@ -10805,7 +10974,7 @@
       "Desc": "",
       "Icon": "Outdoors",
       "Art": "Outdoors",
-      "BaseTextureTypeId": 115,
+      "BaseTextureTypeId": 26,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -10911,6 +11080,14 @@
       "Overrides": [],
       "ZoneUnitSpawns": [],
       "UnitKeyWords": [],
+      "PropChance": 0.3,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 22
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "MusicTypeId": 1,
@@ -10924,7 +11101,7 @@
       "AtlasPrefix": "",
       "Icon": "Stars",
       "Art": "Stars",
-      "BaseTextureTypeId": 116,
+      "BaseTextureTypeId": 27,
       "DirtTextureTypeId": 2,
       "RoadTextureTypeId": 4,
       "SteepTextureTypeId": 3,
@@ -11075,6 +11252,14 @@
         }
       ],
       "UnitKeyWords": [],
+      "PropChance": 0.1,
+      "Props": [
+        {
+          "Weight": 100.0,
+          "EntityTypeId": 11,
+          "EntityId": 23
+        }
+      ],
       "PlantChoices": "",
       "WeatherTypeId": 9,
       "MusicTypeId": 1,
@@ -11087,5 +11272,5 @@
     "Id": "default",
     "Name": "ZoneTypeSettings"
   },
-  "SaveTime": "2026-03-23T20:27:09.495Z"
+  "SaveTime": "2026-05-26T22:15:57.368Z"
 }

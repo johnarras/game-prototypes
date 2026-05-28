@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "Cave",
   "Art": "Cave",
-  "BaseTextureTypeId": 110,
+  "BaseTextureTypeId": 20,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -400,6 +400,14 @@
     {
       "UnitKeywordId": 22,
       "Weight": 10.0
+    }
+  ],
+  "PropChance": 0.3,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 16
     }
   ],
   "PlantChoices": "",

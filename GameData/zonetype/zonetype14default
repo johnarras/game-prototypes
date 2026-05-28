@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "City",
   "Art": "City",
-  "BaseTextureTypeId": 108,
+  "BaseTextureTypeId": 18,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -143,6 +143,14 @@
     }
   ],
   "UnitKeyWords": [],
+  "PropChance": 0.25,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 14
+    }
+  ],
   "PlantChoices": "",
   "WeatherTypeId": 10,
   "MusicTypeId": 1,

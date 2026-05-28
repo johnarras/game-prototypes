@@ -21,7 +21,7 @@
   "RoadDipScale": 1.0,
   "RoadDirtScale": 1.0,
   "ZoneListGenScale": 0.8,
-  "BaseTextureTypeId": 106,
+  "BaseTextureTypeId": 22,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -685,6 +685,14 @@
     {
       "UnitKeywordId": 21,
       "Weight": 100.0
+    }
+  ],
+  "PropChance": 0.3,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 18
     }
   ],
   "PlantChoices": "34 35 36 37 38",

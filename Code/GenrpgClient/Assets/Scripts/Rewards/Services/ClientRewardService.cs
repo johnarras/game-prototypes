@@ -1,9 +1,12 @@
 using Assets.Scripts.DynamicUI.Services;
+using OxDb.SharedCore.Logalytics.Constants;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Rewards.Services;
 using System.Threading.Tasks;
+using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Rewards.Services
 {
@@ -11,6 +14,7 @@ namespace Assets.Scripts.Rewards.Services
     {
         private IDispatcher _dispatcher;
         private IDynamicUIService _dynamicUIService = null;
+        private IAnalyticsService _analyticsService = null;
 
         public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
         {
@@ -31,6 +35,12 @@ namespace Assets.Scripts.Rewards.Services
                 {
                     _dynamicUIService.AddEntityQuantityVisual(entityTypeId, entityId, quantity, instant);
                 }
+
+                if (quantity != 0 && (crp == null || !crp.SuppressAnalytics))
+                {
+                    _analyticsService.TrackEconomyEvent(quantity > 0 ? AnalyticsEventNames.RewardInflow : AnalyticsEventNames.RewardOutflow,
+                        entityTypeId, entityId, quantity, rewardSourceId);
+                }
             }
 
             return false;
@@ -41,12 +51,14 @@ namespace Assets.Scripts.Rewards.Services
     {
         public bool ShowDoobers { get; set; } = true;
         public bool ShowVisualUpdate { get; set; } = true;
+        public bool SuppressAnalytics { get; set; } = false;
 
         public bool InstantShow { get; set; }
-        public ClientRewardParams(bool showDoobers, bool showVisualUpdate)
+        public ClientRewardParams(bool showDoobers, bool showVisualUpdate, bool suppressAnalytics)
         {
             ShowDoobers = showDoobers;
             ShowVisualUpdate = showVisualUpdate;
+            SuppressAnalytics = suppressAnalytics;
         }
     }
 }

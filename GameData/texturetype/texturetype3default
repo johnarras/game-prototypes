@@ -2,7 +2,8 @@
   "Id": "texturetype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Rock",
-  "Art": "Rock",
+  "Name": "Road",
+  "Icon": "Road",
+  "Art": "Road",
   "Size": 8.0
 }

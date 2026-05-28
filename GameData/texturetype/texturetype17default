@@ -2,7 +2,8 @@
   "Id": "texturetype17default",
   "ParentId": "default",
   "IdKey": 17,
-  "Name": "WastelandRoad",
-  "Art": "WastelandRoad",
+  "Name": "PointOfInterest",
+  "Icon": "PointOfInterest",
+  "Art": "PointOfInterest",
   "Size": 8.0
 }

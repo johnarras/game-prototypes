@@ -17,16 +17,16 @@ namespace OxDb.SharedGame.Attributes.Services
 {
     public interface IAttributeService : IInitializable
     {
-        Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup);
+        System.Threading.Tasks.Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup);
 
-        Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds);
+        System.Threading.Tasks.Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds);
         Task<long> GetBuffSeconds(IUnitDataLookup lookup, long gameplayBuffId);
 
-        Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled);
+        System.Threading.Tasks.Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled);
         Task<long> GetDebuffDays(IUnitDataLookup lookup, long gameplayDebuffId);
 
-        Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc);
-        Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded);
+        System.Threading.Tasks.Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc);
+        System.Threading.Tasks.Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded);
 
         Task<long> GetQuantity(IUnitDataLookup lookup, long entityTypeId, long entityId);
         Task<long> GetQuantity(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId);
@@ -54,7 +54,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
         Dictionary<long, EntityToAttributeMapping> _mappingDict = new Dictionary<long, EntityToAttributeMapping>();
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
             _mappingDict.Clear();
 
@@ -126,7 +126,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
         }
 
-        public async Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds)
+        public async System.Threading.Tasks.Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -154,7 +154,7 @@ namespace OxDb.SharedGame.Attributes.Services
             await UpdateBuffsAndDebuffs(lookup);
         }
 
-        public async Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled)
+        public async System.Threading.Tasks.Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -184,7 +184,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
 
-        public virtual async Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
+        public virtual async System.Threading.Tasks.Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             AttributesData attributeData = await lookup.GetAsync<AttributesData>();
@@ -256,7 +256,7 @@ namespace OxDb.SharedGame.Attributes.Services
             await _calcAttributeService.CalcBuffs(lookup);
         }
 
-        public async Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc)
+        public async System.Threading.Tasks.Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             if (forceRecalc || (coreData.Vars[TraderVars.BuffBits] != 0 && coreData.NextBuffEndsTime <= DateTime.UtcNow))
@@ -265,7 +265,7 @@ namespace OxDb.SharedGame.Attributes.Services
             }
         }
 
-        public virtual async Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long debuffDaysAdded)
+        public virtual async System.Threading.Tasks.Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long debuffDaysAdded)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();

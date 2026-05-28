@@ -28,24 +28,31 @@ namespace RunBuilds
 
         public static async Awaitable BuildWithArgs(string env, string gameModeStr, string platformName,
             bool selfContainedClient, bool exportGameData, bool encryptExportedData,
-            bool isCloudBuild, bool developmentBuild)
+            bool isCloudBuild, bool developmentBuild, string logalyticsConnectionString)
         {
-            Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName,
-                selfContainedClient, exportGameData, encryptExportedData, developmentBuild);
+            try
+            {
+                Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName,
+                    selfContainedClient, exportGameData, encryptExportedData, developmentBuild, logalyticsConnectionString);
 
-            if (isCloudBuild)
-            {
-                await CloudBuildWithEnvVars(dict);
-                // Send dict to Unity to set env vars
-                return;
+                if (isCloudBuild)
+                {
+                    await CloudBuildWithEnvVars(dict);
+                    // Send dict to Unity to set env vars
+                    return;
+                }
+                else // These should just use environment variables set in the above.
+                {
+                    SetBuildEnvironmentVariables(dict);
+                    await PreExport();
+                    await LocalBuildPlayer();
+                    await PostExport();
+                    ClearBuildEnvironmentVariables();
+                }
             }
-            else // These should just use environment variables set in the above.
+            catch (Exception e)
             {
-                SetBuildEnvironmentVariables(dict);
-                await PreExport();
-                await LocalBuildPlayer();
-                await PostExport();
-                ClearBuildEnvironmentVariables();
+                Debug.LogException(e);
             }
         }
 
@@ -109,7 +116,7 @@ namespace RunBuilds
 
 
         public static Dictionary<string, string> SetupEnvironmentVariableDictionary(string env, string gameModeStr, string platformName,
-            bool selfContainedClient, bool exportGameData, bool encryptExportedData, bool developmentBuild)
+            bool selfContainedClient, bool exportGameData, bool encryptExportedData, bool developmentBuild, string logalyticsConnectionString)
         {
 
             Dictionary<string, string> retval = new Dictionary<string, string>();
@@ -125,6 +132,7 @@ namespace RunBuilds
             SetDictionaryValue(ClientBuildVars.SELF_CONTAINED_CLIENT, selfContainedClient.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.EXPORT_GAME_DATA, exportGameData.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.ENCRYPT_EXPORTED_DATA, encryptExportedData.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, logalyticsConnectionString, retval);
             SetDictionaryValue(ClientBuildVars.GAME_MODE, gameModeStr, retval);
             SetDictionaryValue(ClientBuildVars.WEB_SERVER_URL, kvDict[AppConfigKeys.WebServerURL], retval);
             SetDictionaryValue(ClientBuildVars.CONTENT_ROOT, kvDict[AppConfigKeys.ContentRoot], retval);
@@ -139,6 +147,10 @@ namespace RunBuilds
             SetDictionaryValue(ClientBuildVars.OLD_ENV, config.Env, retval);
             SetDictionaryValue(ClientBuildVars.OLD_SELF_CONTAINED_CLIENT, config.SelfContainedClient.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.OLD_EXPORT_GAME_DATA, config.ExportGameData.ToString(), retval);
+            if (!String.IsNullOrEmpty(config.LogalyticsConnectionString) && string.IsNullOrEmpty(logalyticsConnectionString))
+            {
+                SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, config.LogalyticsConnectionString, retval);
+            }
             SetDictionaryValue(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA, config.EncryptExportedData.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.IS_DEVELOPMENT_BUILD, developmentBuild.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.NAMED_BUILD_TARGET, buildData.NamedTarget.TargetName, retval);
@@ -256,6 +268,7 @@ namespace RunBuilds
             config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.GAME_MODE));
             config.BaseWebEndpoint = GetVar(ClientBuildVars.WEB_SERVER_URL);
             config.ContentEndpoint = GetVar(ClientBuildVars.CONTENT_ROOT);
+            config.LogalyticsConnectionString = GetVar(ClientBuildVars.LOGALYTICS_CONNECTION_STRING);
 
             string packageName = GetVar(ClientBuildVars.PACKAGE_NAME);
 
@@ -379,6 +392,7 @@ namespace RunBuilds
             config.ExportGameData = bool.Parse(GetVar(ClientBuildVars.OLD_EXPORT_GAME_DATA));
             config.EncryptExportedData = bool.Parse(GetVar(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA));
             config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.OLD_GAME_MODE));
+            config.LogalyticsConnectionString = "";
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
 
@@ -450,10 +464,11 @@ namespace RunBuilds
             bool selfContainedClient = config.SelfContainedClient;
             bool exportGameData = config.ExportGameData;
             bool encryptExportedData = config.EncryptExportedData;
+            string logalyticsConnectionString = config.LogalyticsConnectionString;  
             string platformName = ClientPlatformNames.Win;
 
             Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName, selfContainedClient,
-                exportGameData, encryptExportedData, false);
+                exportGameData, encryptExportedData, false, logalyticsConnectionString);
 
             dict[ClientBuildVars.ASSETS_ENV] = assetEnv;
             dict[ClientBuildVars.WORLDS_ENV] = worldsEnv;

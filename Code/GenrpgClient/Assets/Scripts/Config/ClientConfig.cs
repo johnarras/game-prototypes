@@ -46,7 +46,7 @@ public class ClientConfig : ScriptableObject
     public bool ExportGameData;
     public bool EncryptExportedData;
 
-    public string AppInsightsConnectionString;
+    public string LogalyticsConnectionString;
     public string GooglePlaySecret;
     public string IOSSecret;
     public string PackageName;

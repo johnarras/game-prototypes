@@ -20,9 +20,9 @@ MonoBehaviour:
   WorldsEnv: local
   ProductId: 2
   SelfContainedClient: 1
-  ExportGameData: 1
-  EncryptExportedData: 1
-  AppInsightsConnectionString: 
+  ExportGameData: 0
+  EncryptExportedData: 0
+  LogalyticsConnectionString: 
   GooglePlaySecret: temp
   IOSSecret: temp
   PackageName: 

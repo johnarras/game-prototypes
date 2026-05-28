@@ -13,7 +13,7 @@ namespace OxDb.SharedGame.Users.Loaders
 
         [IgnoreMember] public Type HelperKey => typeof(TServer);
 
-        public async Task CreateDefaultData(string userId)
+        public async System.Threading.Tasks.Task CreateDefaultData(string userId)
         {
             TServer obj = await _repoService.Load<TServer>(userId);
 
@@ -24,9 +24,9 @@ namespace OxDb.SharedGame.Users.Loaders
             }
         }
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
     }
 }

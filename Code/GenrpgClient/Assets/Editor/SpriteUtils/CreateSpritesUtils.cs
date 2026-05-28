@@ -11,5 +11,12 @@ namespace Assets.Editor.SpriteUtils
         {
             SpritePrefabBuilder.ProcessSpritesToPrefabs("FullAssets/Crawler/Images/Monsters", "BundledAssets/TextureLists");
         }
+
+        [MenuItem("Tools/Crawler/Copy Minimap Terrain To 3D")]
+        public static void Setup3DTerrainFromMinimapTerrain()
+        {
+            TextureToTerrainUtils.CopyTexturesToTerrainTextures("FullAssets/Crawler/Atlas/CrawlerMinimapAtlas", "FullAssets/TerrainTex/Textures");
+        }
+
     }
 }

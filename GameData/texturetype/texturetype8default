@@ -2,7 +2,8 @@
   "Id": "texturetype8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Cracked",
-  "Art": "Cracked",
+  "Name": "Swamp",
+  "Icon": "Swamp",
+  "Art": "Swamp",
   "Size": 8.0
 }

@@ -2,7 +2,8 @@
   "Id": "texturetype14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Hills",
-  "Art": "Hills",
+  "Name": "Mountains",
+  "Icon": "Mountains",
+  "Art": "Mountains",
   "Size": 8.0
 }

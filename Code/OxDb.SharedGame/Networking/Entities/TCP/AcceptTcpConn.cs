@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
-using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedCore.Tasks.Services;
 using System.Net.Sockets;
 using System.Threading;
 

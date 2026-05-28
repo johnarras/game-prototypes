@@ -82,6 +82,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
                 // Must explicitly load for GameAccount so a stub doc isn't created. 
                 GameAccount gameAccount = await _repoService.Load<GameAccount>(request.GameUserId);
 
+                bool didCreateAccount = false;
                 if (gameAccount == null)
                 {
                     if (request.DataBits != 0)
@@ -95,6 +96,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
                         AccountId = request.AccountId,
                         CreationDate = DateTime.UtcNow,
                     };
+                    didCreateAccount = true;
                 }
                 dataBits = gameAccount.DataBits;
 
@@ -159,6 +161,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
                     ServerEnv = _serverConfig.Env,
                     ServerName = _serverConfig.GameComponent,
                     ServerVersion = _serverConfig.ServerVersion,
+                    DidCreateAccount = didCreateAccount,
                 };
 
                 await SetSessionData(context, response, gameAccount);

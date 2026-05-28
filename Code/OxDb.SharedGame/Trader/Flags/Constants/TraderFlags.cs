@@ -2,6 +2,7 @@
 {
     public class TraderFlags
     {
+        public const long CompletedFtue = 0;
         public const long FastMove = 1;
         public const long Searching = 2;
         public const long OnRoad = 3;

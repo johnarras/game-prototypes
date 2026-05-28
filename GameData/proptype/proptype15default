@@ -1,0 +1,9 @@
+{
+  "Id": "proptype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "DungeonProp",
+  "Icon": "DungeonProp",
+  "Art": "DungeonProp",
+  "NumChoices": 1
+}

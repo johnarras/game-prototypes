@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "Unholy",
   "Art": "Unholy",
-  "BaseTextureTypeId": 113,
+  "BaseTextureTypeId": 24,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -216,6 +216,14 @@
     {
       "UnitKeywordId": 10,
       "Weight": 100.0
+    }
+  ],
+  "PropChance": 0.3,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 20
     }
   ],
   "PlantChoices": "",

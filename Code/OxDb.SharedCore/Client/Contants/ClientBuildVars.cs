@@ -30,6 +30,7 @@
         public const string APPLICATION_SUFFIX = "APPLICATION_SUFFIX";
         public const string BUNDLE_OUTPUT_PATH = "BUNDLE_OUTPUT_PATH";
         public const string UNITY_BUILD_COMMENT = "UNITY_BUILD_COMMENT";
+        public const string LOGALYTICS_CONNECTION_STRING = "LOGALYTICS_CONNECTION_STRING";
 
 
     }

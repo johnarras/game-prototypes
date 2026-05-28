@@ -1,13 +1,13 @@
 using CommunityToolkit.HighPerformance.Buffers;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedGame.Errors.Messages;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using OxDb.SharedGame.Networking.Constants;
 using OxDb.SharedGame.Networking.Interfaces;
 using OxDb.SharedGame.Networking.Messages;
 using OxDb.SharedGame.Pings.Messages;
-using OxDb.SharedGame.Tasks.Services;
 using System;
 using System.Buffers;
 using System.Collections.Concurrent;
@@ -94,14 +94,14 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             _taskService.ForgetTask(PollOtherEnd(_token), true);
         }
 
-        protected virtual async Task PollOtherEnd(CancellationToken token)
+        protected virtual async System.Threading.Tasks.Task PollOtherEnd(CancellationToken token)
         {
             Ping ping = new Ping();
             try
             {
                 while (true)
                 {
-                    await Task.Delay(ConnectionConstants.TimeoutCheckMS, token).ConfigureAwait(false);
+                    await System.Threading.Tasks.Task.Delay(ConnectionConstants.TimeoutCheckMS, token).ConfigureAwait(false);
                     if ((DateTime.UtcNow - _lastMessage).TotalSeconds < ConnectionConstants.TimeoutCheckMS / 1000.0)
                     {
                         continue;
@@ -155,7 +155,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             _outputQueue.Enqueue(message);
         }
 
-        protected async Task WriteLoop(CancellationToken token)
+        protected async System.Threading.Tasks.Task WriteLoop(CancellationToken token)
         {
             List<IMapApiMessage> messages = new List<IMapApiMessage>();
             List<IMapApiMessage> prevMessages = new List<IMapApiMessage>();
@@ -189,7 +189,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
 
                     if (messages.Count < 1)
                     {
-                        await Task.Delay(1, token).ConfigureAwait(false);
+                        await System.Threading.Tasks.Task.Delay(1, token).ConfigureAwait(false);
                         continue;
                     }
                     _serializer.BinarySerialize(messages, _writer);
@@ -220,7 +220,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             }
         }
 
-        protected async Task ReadLoop(CancellationToken token)
+        protected async System.Threading.Tasks.Task ReadLoop(CancellationToken token)
         {
 
             byte[] header = new byte[ConnectionConstants.HeaderSize];

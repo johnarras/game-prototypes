@@ -2,9 +2,12 @@
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.Levels.UI;
+using NUnit.Framework;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Constants;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Currencies.Constants;
@@ -13,15 +16,17 @@ using OxDb.SharedGame.LevelTracks.WebApi;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Rewards.Services;
 using OxDb.SharedGame.Trader.Constants;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Trader.Levels.Services
 {
     public interface ITraderLevelService : IInitializable
     {
-        Awaitable ShowLevelGain(GainExpResponse response, bool showDoobersHere);
+        Awaitable ShowLevelGain(GainExpResponse response, bool showDoobersHere, long rewardSourceId);
     }
     public class TraderLevelService : ITraderLevelService
     {
@@ -32,6 +37,7 @@ namespace Assets.Scripts.Trader.Levels.Services
         private IRewardService _rewardService = null;
         private IAwaitableService _awaitableService = null;
         private IDynamicUIService _dynamicUIService = null;
+        private IAnalyticsService _analyticsService = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -44,7 +50,7 @@ namespace Assets.Scripts.Trader.Levels.Services
             _levelUI = levelUI;
         }
 
-        public async Awaitable ShowLevelGain(GainExpResponse response, bool showDoobersHere)
+        public async Awaitable ShowLevelGain(GainExpResponse response, bool showDoobersHere, long rewardSourceId)
         {
             if (response == null || _levelUI == null)
             {
@@ -55,6 +61,10 @@ namespace Assets.Scripts.Trader.Levels.Services
 
             LevelTrackDifficultySettings difficultySettings = _gameData.Get<LevelTrackDifficultySettings>(_gs.ch);
 
+            if (rewardSourceId != RewardSources.TravelReward)
+            {
+                _analyticsService.TrackEconomyEvent(AnalyticsEventNames.RewardInflow, EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, response.ExpGained, rewardSourceId);
+            }
             if (showDoobersHere)
             {
                 _dynamicUIService.ShowDefaultEntityDoober(EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, response.ExpGained);
@@ -65,13 +75,16 @@ namespace Assets.Scripts.Trader.Levels.Services
                 await Awaitable.WaitForSecondsAsync(0.5f);
                 foreach (LevelGained gained in response.LevelsGained)
                 {
-                    await _levelUI.AnimateToEndOfBar();
+                    _analyticsService.TrackEvent(AnalyticsEventNames.GainLevel, null, new Dictionary<string, double>()
+                    {
+                        [AnalyticsKeys.Level] = gained.NewLevel
+                    });
 
                     if (gained.Rewards.Count > 0)
                     {
                         foreach (Reward rew in gained.Rewards)
                         {
-                            await _rewardService.GiveReward(_gs.ch, rew, RewardSources.LevelUp, new ClientRewardParams(false, false));
+                            await _rewardService.GiveReward(_gs.ch, rew, RewardSources.LevelUp, new ClientRewardParams(false, false, true));
                         }
                         await Awaitable.WaitForSecondsAsync(0.5f);
                     }

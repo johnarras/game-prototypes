@@ -23,7 +23,7 @@ namespace OxDb.SharedGame.Trader.CaravanMembers.Helpers
 
         public async Task<long> GetQuantity(IUnitDataLookup lookup, long entityId)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
             return 0;
         }
 

@@ -1,4 +1,5 @@
 using OxDb.SharedCore.Core.Entities;
+using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.Services;
 using OxDb.SharedCore.Interfaces;
@@ -31,11 +32,16 @@ namespace OxDb.SharedCore.Setup.Services
             return false;
         }
 
-        public virtual async Task SetupGame(IGameState gs, List<object> existingObjects, CancellationToken token)
+        public virtual async Task SetupGame(IGameState gs, object initObject, List<object> existingObjects, CancellationToken token)
         {
             IReflectionService reflectionService = gs.loc.Get<IReflectionService>();
             List<string> completedAssemblyNames = new List<string>();
-            SetupAssemblyServices(GetType().Assembly, gs.loc, reflectionService, completedAssemblyNames, token);
+
+            List<Assembly> searchAssemblies = reflectionService.GetSearchAssemblies(initObject.GetType().Assembly);
+
+            Console.WriteLine("Curr Assembly Count: " + searchAssemblies.Count);
+            
+            SetupAssemblyServices(initObject.GetType().Assembly, gs.loc, reflectionService, completedAssemblyNames, token);
             gs.loc.ResolveSelf();
             gs.loc.Resolve(this);
             await reflectionService.InitializeServiceList(gs.loc, gs.loc.GetVals<IInjectable>(), token);

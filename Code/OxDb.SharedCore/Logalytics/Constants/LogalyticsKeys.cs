@@ -2,16 +2,16 @@
 {
     public class LogalyticsKeys
     {
-        public const string GameComponent = "GameComponent";
-        public const string ServerEnv = "ServerEnv";
-        public const string ServerVersion = "ServerVersion";
-        public const string ServerProductName = "ServerProductName";
-        public const string ClientPlatform = "ClientPlatform";
-        public const string ClientVersion = "ClientVersion";
-        public const string RequestId = "RequestId";
-        public const string SessionId = "SessionId";
-        public const string GameUserId = "GameUserId";
-        public const string ClientEnv = "ClientEnv";
+        public const string GameComponent = "gameComponent";
+        public const string ServerEnv = "serverEnv";
+        public const string ServerVersion = "serverVersion";
+        public const string ProductName = "productName";
+        public const string ClientPlatform = "clientPlatform";
+        public const string ClientVersion = "clientVersion";
+        public const string RequestId = "requestId";
+        public const string ClientSessionId = "clientSessionId";
+        public const string GameUserId = "gameUserId";
+        public const string ClientEnv = "clientEnv";
 
     }
 }

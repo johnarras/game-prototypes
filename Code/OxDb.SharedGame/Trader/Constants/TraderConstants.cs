@@ -2,8 +2,8 @@
 {
     public class TraderConstants
     {
-        public const string SingulerDistanceName = "Stadion";
-        public const string PluralDistanceName = "Stadia";
-        public const string DistanceAbbreviation = "st.";
+        public const string SingulerDistanceName = "League";
+        public const string PluralDistanceName = "Leagues";
+        public const string DistanceAbbreviation = "lg";
     }
 }

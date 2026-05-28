@@ -13,10 +13,10 @@ namespace OxDb.SharedGame.Trader.Shipments.Services
     public interface IShipmentService : IInitializable
     {
 
-        Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
+        System.Threading.Tasks.Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
 
 
-        Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
+        System.Threading.Tasks.Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
 
     }
 
@@ -26,11 +26,11 @@ namespace OxDb.SharedGame.Trader.Shipments.Services
 
         protected ICaravanService _caravanService = null;
 
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
-        public async Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
+        public async System.Threading.Tasks.Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             ShipmentData shipmentData = await lookup.GetAsync<ShipmentData>();
@@ -56,7 +56,7 @@ namespace OxDb.SharedGame.Trader.Shipments.Services
 
         }
 
-        public async Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
+        public async System.Threading.Tasks.Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             ShipmentData shipmentData = await lookup.GetAsync<ShipmentData>();

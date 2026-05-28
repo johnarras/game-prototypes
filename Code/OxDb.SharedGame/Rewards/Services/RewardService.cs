@@ -39,9 +39,9 @@ namespace OxDb.SharedGame.Rewards.Services
             return new RewardList() { RewardSourceId = rewardSourceId, Rewards = rewards, EntityId = entityId };
         }
         private SetupDictionaryContainer<long, IRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IRewardHelper>();
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         private IRewardHelper GetRewardHelper(long rewardTypeId)

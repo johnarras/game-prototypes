@@ -14,9 +14,9 @@ namespace OxDb.SharedGame.Units.Mappers
 
         public virtual Version GetMinClientVersion() { return VersionConstants.MinVersion; }
         public virtual Version GetMaxClientVersion() { return VersionConstants.MaxVersion; }
-        public async Task Initialize(CancellationToken token)
+        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
         public virtual IUnitData MapToAPI(IUnitData serverObject)
         {

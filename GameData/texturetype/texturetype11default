@@ -2,7 +2,8 @@
   "Id": "texturetype11default",
   "ParentId": "default",
   "IdKey": 11,
-  "Name": "Wasteland",
-  "Art": "Wasteland",
+  "Name": "DarkForest",
+  "Icon": "DarkForest",
+  "Art": "DarkForest",
   "Size": 8.0
 }

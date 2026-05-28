@@ -23,6 +23,7 @@ using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Currencies.Settings;
+using OxDb.SharedGame.LevelTracks.WebApi;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Rewards.Services;
 using OxDb.SharedGame.Trader.Caravans.Entities;
@@ -34,6 +35,7 @@ using OxDb.SharedGame.Trader.Travel.Entities;
 using OxDb.SharedGame.Trader.Travel.Services;
 using OxDb.SharedGame.Trader.Travel.WebApi;
 using OxDb.SharedGame.UI.Constants;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace Assets.Scripts.Trader.Travel.Services
 {
@@ -68,8 +71,8 @@ namespace Assets.Scripts.Trader.Travel.Services
         private ITraderLevelService _traderLevelService = null;
         private IDynamicUIService _dynamicUIService = null;
         private IClientEncounterService _encounterService = null;
-        private IGameData _gameData = null;
         private ICalcAttributeService _calcAttributeService = null;
+        private IAnalyticsService _analyticsService = null;
 
         private CancellationToken _token;
 
@@ -117,6 +120,54 @@ namespace Assets.Scripts.Trader.Travel.Services
             _awaitableService.ForgetAwaitable(ShowTravelNow(response, _token));
         }
 
+        private void TrackTravelRewards(TravelResponse response)
+        {
+            AccumulatedRewards accumulatedRewards = new AccumulatedRewards();
+
+            for (int day = 0; day < response.Days.Count; day++)
+            {
+                TravelDay td = response.Days[day];
+
+                int rollCount = td.Vars[DayVars.DiceCount];
+                for (int i = 0; i < td.Currencies.Count(); i++)
+                {
+                    if (td.Currencies[i] != 0)
+                    {
+                        accumulatedRewards.AddReward(EntityTypes.CoreCurrency, i, td.Currencies[i], RewardSources.TravelSpend);
+                    }
+                }
+
+                int idx = DayVars.DiceCount + rollCount + 1;
+
+                int rewardCount = td.Vars[idx];
+
+                idx++;
+                for (int r = 0; r < rewardCount; r++)
+                {
+                    accumulatedRewards.AddReward(td.Vars[idx++], td.Vars[idx++], td.Vars[idx++], RewardSources.TravelReward);
+                }
+
+                if (td.EncounterResult != null)
+                {
+                    accumulatedRewards.AddLists(td.EncounterResult.RewardLists);
+                }
+
+                if (td.ExpResponse != null)
+                {
+                    accumulatedRewards.AddReward(EntityTypes.CoreCurrency, CoreCurrencyTypes.Exp, td.ExpResponse.ExpGained, RewardSources.TravelReward);
+                    foreach (LevelGained levelGained in td.ExpResponse.LevelsGained)
+                    {
+                        if (levelGained.Rewards != null)
+                        {
+                            accumulatedRewards.AddRewards(levelGained.Rewards, RewardSources.LevelUp);
+                        }
+                    }
+                }
+            }
+
+            _analyticsService.TrackAccumulatedRewards(accumulatedRewards);
+        }
+
         private async Awaitable ShowTravelNow(TravelResponse response, CancellationToken token)
         {
             try
@@ -134,6 +185,9 @@ namespace Assets.Scripts.Trader.Travel.Services
                 }
 
                 long startDist = pos.DistanceGone;
+
+                TrackTravelRewards(response);
+
                 for (int day = 0; day < response.Days.Count; day++)
                 {
                     TravelDay td = response.Days[day];
@@ -143,7 +197,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                         if (td.Currencies[i] != 0)
                         {
                             await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], RewardSources.TravelSpend, null, 0,
-                                new ClientRewardParams(false, true));
+                                new ClientRewardParams(false, true, true));
                         }
                     }
 
@@ -195,7 +249,8 @@ namespace Assets.Scripts.Trader.Travel.Services
                         {
                             rewardDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(rew.EntityTypeId, rew.EntityId, 1));
                         }
-                        await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelReward, new ClientRewardParams(false, false));
+                        await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelReward, new ClientRewardParams(false, false, true));
+
                     }
 
                     int expGained = td.Vars[DayVars.Exp];
@@ -246,7 +301,8 @@ namespace Assets.Scripts.Trader.Travel.Services
                     startDist = td.Vars[DayVars.EndDistance];
 
                     await _encounterService.ShowEncounterResult(td.EncounterResult);
-                    await _traderLevelService.ShowLevelGain(td.ExpResponse, false);
+
+                    await _traderLevelService.ShowLevelGain(td.ExpResponse, false, RewardSources.TravelReward);
 
                     coreData.Vars[TraderVars.PlayCount] = td.Vars[DayVars.Day];
                     if (day < response.Days.Count - 1)
@@ -266,19 +322,6 @@ namespace Assets.Scripts.Trader.Travel.Services
                 {
                     _dispatcher.Dispatch(new ShowFloatingText(msg));
                 }
-
-                StringBuilder sb = new StringBuilder();
-
-                IReadOnlyList<CoreCurrencyType> currencies = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
-
-
-                //sb.Append("Currencies: ");
-                //foreach (CoreCurrencyType ctype in currencies)
-                //{
-                //    sb.Append(ctype.Name + ": " + coreData.Currencies[ctype.IdKey] + " ");
-                //}
-                //_logService.Info(sb.ToString());
-
             }
             catch (Exception e)
             {

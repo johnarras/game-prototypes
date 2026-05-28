@@ -63,6 +63,10 @@ namespace OxDb.SharedGame.Zones.Settings
         public List<ZoneUnitSpawn> ZoneUnitSpawns { get; set; } = new List<ZoneUnitSpawn>();
         public List<ZoneUnitKeyword> UnitKeyWords { get; set; } = new List<ZoneUnitKeyword>();
 
+        public int MinSameAdjacentZone { get; set; }
+        public double PropChance { get; set; }
+        public List<WeightedObject> Props { get; set; } = new List<WeightedObject>();
+
         public string PlantChoices { get; set; }
 
         public float FenceChance { get; set; }

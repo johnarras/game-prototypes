@@ -19,6 +19,8 @@ using System.Reflection;
 public interface IClientGameState : IGameState, IInjectable, IExplicitInject, IRandomContainer
 {
     string GameUserId { get; set; }
+    string ClientSessionId { get; set; }
+    int SessionSequenceId { get; set; }
     IGameSessionState SessionState { get; set; }
     Character ch { get; set; }
     List<CharacterStub> characterStubs { get; set; }
@@ -40,6 +42,8 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
 {
     public IMapGenData md { get; set; } = null;
     public string GameUserId { get; set; }
+    public string ClientSessionId { get; set; } = HashUtils.NewGuid();
+    public int SessionSequenceId { get; set; }
     public IGameSessionState SessionState { get; set; } = new StubSessionState();
     public Character ch { get; set; }
     public List<CharacterStub> characterStubs { get; set; } = new List<CharacterStub>();
@@ -59,30 +63,19 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
     private ITextSerializer _serializer = null;
     public ClientGameState(ClientConfig config, IInitClient initClient)
     {
+        _logService = new ClientLogService(config);
         ClientConfigContainer configContainer = new ClientConfigContainer(config);
-        _logService = new ClientLogService();
         _clientAppService = new ClientAppService(_logService);
 
-
-        IReflectionService reflectionService = new ClientReflectionService();
-
-
+        IReflectionService reflectionService = new ReflectionService();
         reflectionService.AddSearchAssembly(Assembly.GetExecutingAssembly());
+
         _loc = new ServiceLocator(_logService, reflectionService, new ClientGameData());
         loc.Set(initClient);
         loc.Set(_clientAppService);
         loc.Set<IClientGameState>(this);
         loc.Set<IClientConfigContainer>(configContainer);
         loc.Set<IClientOptionsService>(new ClientOptionsService(_logService, _clientAppService, _serializer));
-    }
-
-    public class ClientReflectionService : ReflectionService
-    {
-        // Override this in the future when partial domain reloads become a thing
-        public override Assembly[] GetAllAssemblies()
-        {
-            return base.GetAllAssemblies();
-        }
     }
 }
 

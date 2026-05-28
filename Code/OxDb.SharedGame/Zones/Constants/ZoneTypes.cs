@@ -24,6 +24,7 @@ namespace OxDb.SharedGame.Zones.Constants
         public const long Unholy = 20;
         public const long Natural = 21;
         public const long Outdoors = 22;
+        public const long Stars = 23;
     }
 }
 

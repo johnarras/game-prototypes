@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "Road",
   "Art": "Road",
-  "BaseTextureTypeId": 4,
+  "BaseTextureTypeId": 16,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -282,6 +282,15 @@
     }
   ],
   "UnitKeyWords": [],
+  "MinSameAdjacentZone": 3,
+  "PropChance": 1.0,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 12
+    }
+  ],
   "PlantChoices": "",
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,

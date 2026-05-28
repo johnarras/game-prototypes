@@ -8,6 +8,7 @@ using Assets.Scripts.UI.Entities;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.UI.Constants;
 using OxDb.SharedGame.UI.Settings;
@@ -243,7 +244,7 @@ public class ScreenService : IScreenService
 
         nextItem.Screen = bs;
 
-        _analyticsService.TrackEvent(AnalyticsEvents.OpenScreen, nextItem.Screen.GetName());
+        _analyticsService.TrackUIEvent(AnalyticsEventNames.OpenScreen, bs.GetName());
         List<Canvas> canvases = _clientEntityService.GetComponents<Canvas>(nextItem.Screen);
 
         _clientEntityService.SetActive(nextItem.Screen, false);
@@ -365,7 +366,7 @@ public class ScreenService : IScreenService
                 {
                     _clientEntityService.Destroy(baseScreen.gameObject);
                 }
-                _analyticsService.TrackEvent(AnalyticsEvents.CloseScreen, baseScreen.GetName());
+                _analyticsService.TrackUIEvent(AnalyticsEventNames.CloseScreen, baseScreen.GetName());
                 layer.CurrentScreen = null;
                 layer.JustClosedScreen = true;
                 ClearAllScreensList();

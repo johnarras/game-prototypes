@@ -24,28 +24,28 @@
     },
     {
       "IdKey": 4,
-      "TextureTypeId": 43,
+      "TextureTypeId": 15,
       "R": 48,
       "G": 80,
       "B": 16
     },
     {
       "IdKey": 5,
-      "TextureTypeId": 42,
+      "TextureTypeId": 17,
       "R": 80,
       "G": 80,
       "B": 16
     },
     {
       "IdKey": 6,
-      "TextureTypeId": 65,
+      "TextureTypeId": 8,
       "R": 80,
       "G": 80,
       "B": 48
     },
     {
       "IdKey": 7,
-      "TextureTypeId": 72,
+      "TextureTypeId": 6,
       "R": 80,
       "G": 112,
       "B": 16
@@ -73,14 +73,14 @@
     },
     {
       "IdKey": 11,
-      "TextureTypeId": 58,
+      "TextureTypeId": 11,
       "R": 112,
       "G": 112,
       "B": 80
     },
     {
       "IdKey": 12,
-      "TextureTypeId": 64,
+      "TextureTypeId": 5,
       "R": 144,
       "G": 112,
       "B": 80
@@ -101,7 +101,7 @@
     },
     {
       "IdKey": 15,
-      "TextureTypeId": 102,
+      "TextureTypeId": 8,
       "R": 176,
       "G": 144,
       "B": 112
@@ -122,49 +122,49 @@
     },
     {
       "IdKey": 18,
-      "TextureTypeId": 39,
+      "TextureTypeId": 22,
       "R": 208,
       "G": 176,
       "B": 144
     },
     {
       "IdKey": 19,
-      "TextureTypeId": 104,
+      "TextureTypeId": 12,
       "R": 240,
       "G": 176,
       "B": 144
     },
     {
       "IdKey": 20,
-      "TextureTypeId": 103,
+      "TextureTypeId": 10,
       "R": 240,
       "G": 208,
       "B": 144
     },
     {
       "IdKey": 21,
-      "TextureTypeId": 86,
+      "TextureTypeId": 11,
       "R": 240,
       "G": 208,
       "B": 176
     },
     {
       "IdKey": 22,
-      "TextureTypeId": 88,
+      "TextureTypeId": 7,
       "R": 240,
       "G": 240,
       "B": 176
     },
     {
       "IdKey": 23,
-      "TextureTypeId": 13,
+      "TextureTypeId": 14,
       "R": 240,
       "G": 240,
       "B": 208
     },
     {
       "IdKey": 24,
-      "TextureTypeId": 105,
+      "TextureTypeId": 15,
       "R": 240,
       "G": 240,
       "B": 240
@@ -175,5 +175,5 @@
     "Name": "IndexedColorSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-10T21:16:45.514Z"
+  "SaveTime": "2026-05-22T23:25:42.951Z"
 }

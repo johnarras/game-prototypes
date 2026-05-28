@@ -7,7 +7,7 @@
   "AtlasPrefix": "",
   "Icon": "Natural",
   "Art": "Natural",
-  "BaseTextureTypeId": 114,
+  "BaseTextureTypeId": 25,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -378,6 +378,14 @@
     }
   ],
   "UnitKeyWords": [],
+  "PropChance": 0.3,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 21
+    }
+  ],
   "PlantChoices": "",
   "WeatherTypeId": 9,
   "MusicTypeId": 1,

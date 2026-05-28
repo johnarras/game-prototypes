@@ -6,6 +6,8 @@ using OxDb.SharedGame.DataStores.Categories.PlayerData.NoChild;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Users;
 using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
+using System.ComponentModel.Design;
+using System.Reflection;
 
 namespace OxDb.SharedGame.Ftue.PlayerData
 {
@@ -35,6 +37,8 @@ namespace OxDb.SharedGame.Ftue.PlayerData
         [Key(1)] public SmallIndexBitList CompletedFtues { get; set; } = new SmallIndexBitList();
 
         [Key(2)] public long CurrentFtueStepId { get; set; }
+
+        [Key(3)] public long PrevFtueStepId { get; set; }
 
         public bool HaveCompletedFtue(long ftueId)
         {

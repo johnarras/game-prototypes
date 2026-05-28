@@ -21,7 +21,7 @@ namespace OxDb.SharedGame.Units.Loaders
         public bool IsUserData() { return typeof(IUserData).IsAssignableFrom(typeof(TServer)); }
         public virtual bool IsClientOnlyData() { return false; }
         public virtual List<CreateIndexData> GetIndexes() { return new List<CreateIndexData>(); }
-        public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
+        public virtual async System.Threading.Tasks.Task Initialize(CancellationToken token) { await System.Threading.Tasks.Task.CompletedTask; }
         public Type GetServerType() { return typeof(TServer); }
         public IUnitData Create(Unit unit)
         {

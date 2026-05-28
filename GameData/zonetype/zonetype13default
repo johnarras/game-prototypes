@@ -6,7 +6,7 @@
   "Desc": "",
   "Icon": "PointOfInterest",
   "Art": "PointOfInterest",
-  "BaseTextureTypeId": 107,
+  "BaseTextureTypeId": 17,
   "DirtTextureTypeId": 2,
   "RoadTextureTypeId": 4,
   "SteepTextureTypeId": 3,
@@ -21,6 +21,14 @@
   "Overrides": [],
   "ZoneUnitSpawns": [],
   "UnitKeyWords": [],
+  "PropChance": 0.2,
+  "Props": [
+    {
+      "Weight": 100.0,
+      "EntityTypeId": 11,
+      "EntityId": 13
+    }
+  ],
   "PlantChoices": "",
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,

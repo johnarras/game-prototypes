@@ -167,17 +167,29 @@ namespace OxDb.SharedCore.Core.Entities
                 throw new Exception("ServiceLocator: Attempted to Set non-interface type. " + interfaceType.Name);
             }
 
+            
             if (_typeDict.ContainsKey(interfaceType))
             {
-                _typeDict.Remove(interfaceType);
+                object currObj = _typeDict[interfaceType];  
+
+                if (currObj.GetType() == obj.GetType())
+                {
+                    return;
+                }
             }
-            _typeDict[interfaceType] = inj;
 
             if (_nameDict.ContainsKey(interfaceType.Name))
             {
-                _nameDict.Remove(interfaceType.Name);
+                object currObj = _nameDict[interfaceType.Name];
+
+                if (currObj.GetType() == obj.GetType())
+                {
+                    return;
+                }
             }
 
+
+            _typeDict[interfaceType] = inj;
             _nameDict[interfaceType.Name] = inj;
         }
 

@@ -41,6 +41,12 @@
       "Name": "Set"
     },
     {
+      "IdKey": 11,
+      "Name": "Prop",
+      "Icon": "Prop",
+      "Art": "Prop"
+    },
+    {
       "IdKey": 12,
       "Name": "QuestItem"
     },

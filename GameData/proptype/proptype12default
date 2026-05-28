@@ -1,0 +1,9 @@
+{
+  "Id": "proptype12default",
+  "ParentId": "default",
+  "IdKey": 12,
+  "Name": "RoadProp",
+  "Icon": "RoadProp",
+  "Art": "RoadProp",
+  "NumChoices": 1
+}

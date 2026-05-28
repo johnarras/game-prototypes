@@ -1,0 +1,170 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "FieldProp",
+      "Icon": "FieldProp",
+      "Art": "FieldProp"
+    },
+    {
+      "IdKey": 2,
+      "Name": "ForestProp",
+      "Icon": "ForestProp",
+      "Art": "ForestProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 3,
+      "Name": "HillsProp",
+      "Icon": "HillsProp",
+      "Art": "HillsProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 4,
+      "Name": "SwampProp",
+      "Icon": "SwampProp",
+      "Art": "SwampProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 5,
+      "Name": "BadlandsProp",
+      "Icon": "BadlandsProp",
+      "Art": "BadlandsProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 6,
+      "Name": "DesertProp",
+      "Icon": "DesertProp",
+      "Art": "DesertProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 7,
+      "Name": "DarkForestProp",
+      "Icon": "DarkForestProp",
+      "Art": "DarkForestProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 8,
+      "Name": "SavannahProp",
+      "Icon": "SavannahProp",
+      "Art": "SavannahProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 9,
+      "Name": "WaterProp",
+      "Icon": "WaterProp",
+      "Art": "WaterProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 10,
+      "Name": "MountainsProp",
+      "Icon": "MountainsProp",
+      "Art": "MountainsProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 11,
+      "Name": "SnowProp",
+      "Icon": "SnowProp",
+      "Art": "SnowProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 12,
+      "Name": "RoadProp",
+      "Icon": "RoadProp",
+      "Art": "RoadProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 13,
+      "Name": "PointOfInterestProp",
+      "Icon": "PointOfInterestProp",
+      "Art": "PointOfInterestProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 14,
+      "Name": "CityProp",
+      "Icon": "CityProp",
+      "Art": "CityProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 15,
+      "Name": "DungeonProp",
+      "Icon": "DungeonProp",
+      "Art": "DungeonProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 16,
+      "Name": "CaveProp",
+      "Icon": "CaveProp",
+      "Art": "CaveProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 17,
+      "Name": "TowerProp",
+      "Icon": "TowerProp",
+      "Art": "TowerProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 18,
+      "Name": "LavaProp",
+      "Icon": "LavaProp",
+      "Art": "LavaProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 19,
+      "Name": "ArcaneProp",
+      "Icon": "ArcaneProp",
+      "Art": "ArcaneProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 20,
+      "Name": "UnholyProp",
+      "Icon": "UnholyProp",
+      "Art": "UnholyProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 21,
+      "Name": "NaturalProp",
+      "Icon": "NaturalProp",
+      "Art": "NaturalProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 22,
+      "Name": "OutdoorsProp",
+      "Icon": "OutdoorsProp",
+      "Art": "OutdoorsProp",
+      "NumChoices": 1
+    },
+    {
+      "IdKey": 23,
+      "Name": "StarsProp",
+      "Icon": "StarsProp",
+      "Art": "StarsProp",
+      "NumChoices": 1
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "PropTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-05-26T22:10:33.704Z"
+}

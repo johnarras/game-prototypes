@@ -28,7 +28,6 @@ namespace OxDb.SharedGame.Crawler.Parties.PlayerData
     public class PartyData : NoChildIndexedUserData, IUserData, INamedUpdateData
     {
         public override string Id { get; set; }
-        [MessagePack.IgnoreMember] public string MainMessage => "Yes, it's pretty print JSON. You're welcome.";
         public string Name { get; set; }
         protected string _analyticsName = null;
         public string GetAnalyticsName()

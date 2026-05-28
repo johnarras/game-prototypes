@@ -85,7 +85,7 @@ namespace Assets.Scripts.Repository
             }
             catch (Exception e)
             {
-                Debug.Log("EXC: " + e.Message + " " + e.StackTrace);
+                _logService.Exception(e, "ClientRepositoryService.Save");
             }
             return false;
         }

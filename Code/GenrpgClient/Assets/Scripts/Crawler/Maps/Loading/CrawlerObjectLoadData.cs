@@ -11,6 +11,8 @@ namespace Assets.Scripts.Crawler.Maps.Loading
         public CrawlerMapRoot MapRoot { get; set; }
         public long Seed { get; set; }
         public BuildingMats Mats { get; set; }
+        public string PrefabName { get; set; }
+        public string AssetCategoryNameOverride { get; set; }
     }
 
 }

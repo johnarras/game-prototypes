@@ -11,7 +11,9 @@ using Assets.Scripts.UI.Pointers;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Ftue.Messages;
 using OxDb.SharedGame.Ftue.Services;
 using OxDb.SharedGame.Ftue.Settings.Steps;
@@ -154,7 +156,7 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> extraData = null)
+        public void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             if (button is GButton gbutton)
             {
@@ -162,7 +164,7 @@ namespace Assets.Scripts.UI.Services
                 gbutton.onClick.AddListener(
                    () =>
                    {
-                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, action, null, extraData));
+                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, action, null, properties, measurements));
 
                    });
                 _clientEntityService.RegisterDestroyCallback(gbutton, () => { gbutton.onClick.RemoveAllListeners(); });
@@ -170,7 +172,7 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> extraData = null)
+        public void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             if (button is GButton gbutton)
             {
@@ -178,7 +180,7 @@ namespace Assets.Scripts.UI.Services
                 gbutton.onClick.AddListener(
                    () =>
                    {
-                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, null, awaitableAction, extraData));
+                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, null, awaitableAction, properties, measurements));
 
                    });
                 _clientEntityService.RegisterDestroyCallback(gbutton, () => { gbutton.onClick.RemoveAllListeners(); });
@@ -221,7 +223,7 @@ namespace Assets.Scripts.UI.Services
         }
 
         private int _blockButtonCount = 0;
-        private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> extraData = null)
+        private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             if (_blockButtonCount > 0)
             {
@@ -234,9 +236,9 @@ namespace Assets.Scripts.UI.Services
                 {
                     button.interactable = false;
                 }
-                if (_ftueService.IsComplete(_rand.Rand, _gs.ch))
+                if (await _ftueService.IsComplete(_gs.ch))
                 {
-                    _analyticsService.TrackEvent(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
+                    _analyticsService.TrackUIEvent(AnalyticsEventNames.ClickButton, screenName, StrUtils.ToSnakeCase(button.name), properties, measurements); 
 
                     _dispatcher.Dispatch(new PlaySound(AudioList.ButtonClick, AudioConstants.NoVariance));
                     if (action != null)
@@ -250,11 +252,11 @@ namespace Assets.Scripts.UI.Services
                 }
                 else
                 {
-                    FtueStep step = _ftueService.GetCurrentStep(_rand.Rand, _gs.ch);
-                    if (_ftueService.CanClickButton(_rand.Rand, _gs.ch, screenName, button.name))
+                    FtueStep step = await _ftueService.GetCurrentStep(_gs.ch);
+                    if (await _ftueService.CanClickButton(_gs.ch, screenName, button.name))
                     {
                         _dispatcher.Dispatch(new PlaySound(AudioList.ButtonClick, AudioConstants.NoVariance));
-                        _analyticsService.TrackEvent(AnalyticsEvents.ClickButton, button.name, screenName, extraData);
+                        _analyticsService.TrackUIEvent(AnalyticsEventNames.ClickButton, screenName, StrUtils.ToSnakeCase(button.name), properties, measurements);
                         if (action != null)
                         {
                             action();
@@ -265,7 +267,7 @@ namespace Assets.Scripts.UI.Services
                         }
                         if (step != null)
                         {
-                            _ftueService.CompleteStep(_rand.Rand, _gs.ch, step.IdKey);
+                            await _ftueService.CompleteStep(_gs.ch, step.IdKey, _rand.Rand);
                             _realtimeNetworkService.SendMapMessage(new CompleteFtueStepMessage() { FtueStepId = step.IdKey });
                         }
                     }

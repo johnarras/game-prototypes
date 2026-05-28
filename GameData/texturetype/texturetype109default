@@ -1,9 +1,0 @@
-{
-  "Id": "texturetype109default",
-  "ParentId": "default",
-  "IdKey": 109,
-  "Name": "Dungeon",
-  "Icon": "Dungeon",
-  "Art": "Dungeon",
-  "Size": 1.0
-}

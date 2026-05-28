@@ -1,5 +1,8 @@
 using MessagePack;
 using OxDb.SharedCore.Effects.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace OxDb.SharedCore.Rewards.Entities
 {
@@ -43,6 +46,7 @@ namespace OxDb.SharedCore.Rewards.Entities
             Quantity = other.Quantity;
             ExtraData = null!;
         }
+
     }
 }
 

@@ -1,7 +1,18 @@
 ﻿using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Logalytics.Utils;
+using OxDb.SharedCore.Core.Constants;
+using OxDb.SharedCore.Entities.Services;
+using OxDb.SharedCore.Entities.Settings;
+using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Setup.Constants;
+using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Rewards.Settings;
+using OxDb.SharedGame.UI.Settings;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,8 +21,11 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.Scenes.Editor;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Networking;
+using static UnityEngine.Rendering.STP;
 
 namespace Assets.Scripts.Logalytics.Services
 {
@@ -20,34 +34,41 @@ namespace Assets.Scripts.Logalytics.Services
     [Serializable]
     public struct TelemetryEnvelope
     {
-        [JsonPropertyName("name")] public string Name { get; set; }
-        [JsonPropertyName("time")] public string Time { get; set; }
-        [JsonPropertyName("iKey")] public string IKey { get; set; }
-        [JsonPropertyName("data")] public TelemetryData Data { get; set; }
+        public string name { get; set; }
+        public string time { get; set; }
+        public string iKey { get; set; }
+        public int ver { get; set; }
+        public TelemetryData data { get; set; }
     }
 
     [Serializable]
     public struct TelemetryData
     {
-        [JsonPropertyName("baseType")] public string BaseType { get; set; }
-        [JsonPropertyName("baseData")] public EventData BaseData { get; set; }
+        public string baseType { get; set; }
+        public EventData baseData { get; set; }
     }
 
     [Serializable]
     public struct EventData
     {
-        [JsonPropertyName("ver")] public int Ver { get; set; }
-        [JsonPropertyName("name")] public string Name { get; set; }
-        [JsonPropertyName("properties")] public Dictionary<string, string> Properties { get; set; }
+        public int ver { get; set; }
+        public string name { get; set; }
+        public Dictionary<string, string> properties { get; set; }
+        public Dictionary<string, double> measurements { get; set; }
     }
 
     #endregion
 
-    public class ClientAnalyticsService : IAnalyticsService, IClientQuitCleanup
+    public class ClientAnalyticsService : IAnalyticsService, IClientQuitCleanup, IClientResetCleanup
     {
         protected IClientConfigContainer _configContainer = null;
         private ITextSerializer _textSerializer = null;
         private IClientUpdateService _updateService = null;
+        private IClientGameState _gs = null;
+        private ILogService _logService = null;
+        private IGameData _gameData = null;
+        private IEntityService _entityService = null;
+        private IClientLogalyticsService _logalyticsService = null;
 
         protected string IngestionEndpoint { get; set; }
         protected string InstrumentationKey { get; set; }
@@ -63,11 +84,48 @@ namespace Assets.Scripts.Logalytics.Services
 
         public async Task Initialize(CancellationToken token)
         {
+            if (GameModeUtils.IsPureClientMode(_gs.GameMode))
+            {
+                return;
+            }
+
+            string connectionString = LogalyticsUtils.GetAnalyticsConnectionString(_configContainer.Config);
+
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                _didInitialize = false;
+                UnityEngine.Debug.LogError("Missing App Insights Connection String inside Logging Initialization");
+                return;
+            }
+
+            string[] parts = connectionString.Split(';');
+            foreach (string part in parts)
+            {
+                if (part.StartsWith("InstrumentationKey=", StringComparison.OrdinalIgnoreCase))
+                {
+                    InstrumentationKey = part.Substring("InstrumentationKey=".Length);
+                }
+                else if (part.StartsWith("IngestionEndpoint=", StringComparison.OrdinalIgnoreCase))
+                {
+                    string endpoint = part.Substring("IngestionEndpoint=".Length).TrimEnd('/');
+                    //IngestionEndpoint = $"{endpoint}";
+                    IngestionEndpoint = $"{endpoint}/v2.1/track";
+                }
+            }
+
+            if (string.IsNullOrEmpty(InstrumentationKey) || string.IsNullOrEmpty(IngestionEndpoint))
+            {
+                Debug.LogError("Failed to parse infrastructure parameters for logging runtime configuration.");
+                return;
+            }
+
+            _didInitialize = true;
+
             _updateService.AddUpdate(this, UpdateService, UpdateTypes.Late, token);
             await Task.CompletedTask;
         }
 
-        public void TrackEvent(string eventName, Dictionary<string, string> properties = null)
+        public void TrackEvent(string eventName, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null)
         {
             // Fixed inverse logic initialization check
             if (!_didInitialize)
@@ -75,19 +133,41 @@ namespace Assets.Scripts.Logalytics.Services
                 return;
             }
 
+            if (properties == null)
+            {
+                properties = new Dictionary<string, string>();
+
+            }
+
+            Dictionary<string, string> defaultDimensions = _logalyticsService.GetDefaultLogalyticsDimensions();
+
+            foreach (string key in defaultDimensions.Keys)
+            {
+                properties[key] = defaultDimensions[key];
+            }
+
+            if (measurements == null)
+            {
+                measurements = new Dictionary<string, double>();
+            }
+
+            measurements[AnalyticsKeys.SessionSequenceId] = ++_gs.SessionSequenceId;
+
             TelemetryEnvelope envelope = new TelemetryEnvelope
             {
-                Name = $"Microsoft.ApplicationInsights.{InstrumentationKey}.Event",
-                Time = DateTime.UtcNow.ToString("o"),
-                IKey = InstrumentationKey,
-                Data = new TelemetryData
+                name = "Event",
+                time = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ"),
+                ver = 1,
+                iKey = InstrumentationKey,
+                data = new TelemetryData
                 {
-                    BaseType = "EventData",
-                    BaseData = new EventData
+                    baseType = "EventData",
+                    baseData = new EventData
                     {
-                        Ver = 2,
-                        Name = eventName,
-                        Properties = properties ?? new Dictionary<string, string>()
+                        ver = 2,
+                        name = eventName,
+                        properties = properties ?? new Dictionary<string, string>(),
+                        measurements = measurements ?? new Dictionary<string, double>(),
                     }
                 }
             };
@@ -99,6 +179,64 @@ namespace Assets.Scripts.Logalytics.Services
             {
                 ProcessQueue();
             }
+        }
+
+        protected void AddNonNullValue(Dictionary<string, string> dict, string key, string val)
+        {
+            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(val))
+            {
+                dict[key] = val;
+            }
+        }
+
+        public void TrackUIEvent(string eventName, string screenName, string buttonName = null, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null)
+        {
+
+            if (properties == null)
+            {
+                properties = new Dictionary<string, string>();  
+            }
+
+            AddNonNullValue(properties, AnalyticsKeys.ScreenName, StrUtils.ToSnakeCase(screenName));
+            AddNonNullValue(properties, AnalyticsKeys.ButtonName, StrUtils.ToSnakeCase(buttonName));
+
+            TrackEvent(eventName, properties, measurements);
+        }
+
+        public void TrackEconomyEvent(string eventName, long entityTypeId, long entityId, long quantity, long rewardSourceId, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
+        {
+            if (quantity == 0)
+            {
+                return;
+            }
+
+            EntityType entityType = _gameData.Get<EntitySettings>(_gs.ch).Get(entityTypeId);
+
+            IIdName entity = _entityService.Find(_gs.ch, entityTypeId, entityId);
+
+            RewardSourceType rewardSource = _gameData.Get<RewardSourceSettings>(_gs.ch).Get(rewardSourceId);
+
+            string entityTypeName = entityType?.GetAnalyticsName() ?? "unknown_entitytype_" + entityTypeId;
+            string entityName = entity?.GetAnalyticsName() ?? "unknown_entity_" + entityId;
+
+            string rewardSourceName = rewardSource?.GetAnalyticsName() ?? "unknown_reward_source_" + rewardSourceId;
+
+            if (properties == null)
+            {
+                properties = new Dictionary<string, string>();
+            }
+
+            AddNonNullValue(properties, AnalyticsKeys.EntityTypeName, entityTypeName);
+            AddNonNullValue(properties, AnalyticsKeys.EntityName, entityName);
+            AddNonNullValue(properties, AnalyticsKeys.RewardSourceName, rewardSourceName);
+
+            if (measurements == null)
+            {
+                measurements = new Dictionary<string, double>();    
+            }
+
+            measurements[AnalyticsKeys.Quantity] = quantity;
+            TrackEvent(eventName, properties, measurements);
         }
 
         /// <summary>
@@ -151,7 +289,7 @@ namespace Assets.Scripts.Logalytics.Services
             UnityWebRequest request = new UnityWebRequest(IngestionEndpoint, "POST");
             request.uploadHandler = new UploadHandlerRaw(rawBytes);
             request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
 
             UnityWebRequestAsyncOperation operation = request.SendWebRequest();
 
@@ -161,7 +299,7 @@ namespace Assets.Scripts.Logalytics.Services
                 {
                     if (request.result != UnityWebRequest.Result.Success)
                     {
-                        UnityEngine.Debug.LogWarning($"[Telemetry Pipeline] Batch drop failure. Azure Endpoint responded with error: {request.error}");
+                        _logService.Warning($"[Telemetry Pipeline] Batch drop failure. Azure Endpoint responded with error: {request.error}");
                     }
                 }
                 finally
@@ -222,13 +360,42 @@ namespace Assets.Scripts.Logalytics.Services
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogWarning($"[Telemetry] Error recovering offline telemetry cache: {ex.Message}");
+                _logService.Exception(ex,"[Telemetry] Error recovering offline telemetry cache.");
             }
 
             await Task.CompletedTask;
         }
 
+
+        public void TrackAccumulatedRewards(AccumulatedRewards rewards, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
+        {
+            foreach (long rewardSourceId in rewards.Inflows.Keys)
+            {
+                foreach (Reward rew in rewards.Inflows[rewardSourceId])
+                {
+                    TrackEconomyEvent(AnalyticsEventNames.RewardInflow, rew.EntityTypeId, rew.EntityId, rew.Quantity, rewardSourceId, properties, measurements);
+                }
+            }
+            foreach (long rewardSourceId in rewards.Outflows.Keys)
+            {
+                foreach (Reward rew in rewards.Outflows[rewardSourceId])
+                {
+                    TrackEconomyEvent(AnalyticsEventNames.RewardOutflow, rew.EntityTypeId, rew.EntityId, rew.Quantity, rewardSourceId, properties, measurements);
+                }
+            }
+        }
+
+        public async Task OnReset(CancellationToken token)
+        {
+            SaveUnsentEvents();
+            await Task.CompletedTask;
+        }
+
         public void OnQuit()
+        {
+            SaveUnsentEvents();
+        }
+        private void SaveUnsentEvents()
         {
             // If there is nothing to flush, clear out any old temp log data and exit
             if (TelemetryQueue.IsEmpty)
@@ -258,19 +425,9 @@ namespace Assets.Scripts.Logalytics.Services
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogError($"[Telemetry] Failed to write fallback cache file on quit: {ex.Message}");
+                _logService.Exception(ex, "[Telemetry] Failed to write fallback cache file on quit.");
             }
-        }
 
-        public void TrackEvent(string eventType, string eventId, string eventSubtype = null, Dictionary<string, string> extraData = null)
-        {
-            // Map your secondary custom overload layout directly into standard properties payload dictionary
-            Dictionary<string, string> properties = extraData ?? new Dictionary<string, string>();
-
-            if (!properties.ContainsKey("Id")) properties.Add("Id", eventId);
-            if (!string.IsNullOrEmpty(eventSubtype) && !properties.ContainsKey("Subtype")) properties.Add("Subtype", eventSubtype);
-
-            TrackEvent(eventType, properties);
         }
     }
 }

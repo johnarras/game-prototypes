@@ -2,7 +2,8 @@
   "Id": "texturetype10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "SandRock",
-  "Art": "SandRock",
+  "Name": "Desert",
+  "Icon": "Desert",
+  "Art": "Desert",
   "Size": 8.0
 }

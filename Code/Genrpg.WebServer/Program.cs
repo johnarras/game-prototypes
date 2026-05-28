@@ -1,3 +1,4 @@
+using MessagePack;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using OxDb.RequestServer.Core;
+using OxDb.ServerCore.Logalytics.Utils;
 using OxDb.ServerCore.Setup;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Environments.Constants;
@@ -12,7 +14,9 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Services;
+using OxDb.SharedCore.Website.Constants;
 using OxDb.SharedCore.Website.Requests.Core;
+using OxDb.SharedCore.Website.Requests.Interfaces;
 using OxDb.SharedCore.Website.Responses.Core;
 using OxDb.SharedCore.Website.Responses.Errors;
 using System;
@@ -39,11 +43,19 @@ namespace Genrpg.WebServer
 
                 builder.Services.AddHttpClient(DefaultClientName).SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
-                builder.Services.AddAuthentication("DefaultBearer")
-                .AddScheme<CustomSessionOptions, CustomSessionHandler>("DefaultBearer", options =>
+                builder.Services.AddAuthentication(options =>
+                {
+                    // Change defaults to use your custom handler string identifier
+                    options.DefaultAuthenticateScheme = "CustomSession";
+                    options.DefaultChallengeScheme = "CustomSession";
+                    options.DefaultScheme = "CustomSession";
+                })
+                .AddScheme<CustomSessionOptions, CustomSessionHandler>("CustomSession", options =>
                 {
                     options.TokenSecret = System.Configuration.ConfigurationManager.AppSettings[AppConfigKeys.TokenSecret];
                 });
+
+
                 builder.Services.AddAuthorization();
                 builder.Services.AddControllers();
 
@@ -80,30 +92,29 @@ namespace Genrpg.WebServer
                     return CreateContentFromString(webServer.GetIndexString());
                 }).AllowAnonymous();
 
-                app.MapPost("/account-auth", async (WebRequestServer webServer, [FromBody] JsonElement json) =>
+                app.MapPost(CoreEndpoints.AccountAuth, async (WebRequestServer webServer, [FromBody] JsonElement json) =>
                 {
-
-                    return await HandleRequest(webServer, json, "AccountAuth", async (wrs) => { return await webServer.HandleAccountAuth(wrs); });
+                    return await HandleRequest(webServer, json, CoreEndpoints.AccountAuth, async (wrs) => { return await webServer.HandleAccountAuth(wrs); });
 
                 }).AllowAnonymous();
 
-                app.MapPost("/game-auth", async (WebRequestServer webServer, [FromBody] JsonElement json) =>
+                app.MapPost(CoreEndpoints.GameAuth, async (WebRequestServer webServer, [FromBody] JsonElement json) =>
                 {
-                    return await HandleRequest(webServer, json, "GameAuth", async (wrs) => { return await webServer.HandleGameAuth(wrs); });
+                    return await HandleRequest(webServer, json, CoreEndpoints.GameAuth, async (wrs) => { return await webServer.HandleGameAuth(wrs); });
                 }).AllowAnonymous();
 
-                app.MapPost("/refresh-token", async (WebRequestServer webServer, [FromBody] JsonElement json) =>
+                app.MapPost(CoreEndpoints.RefreshToken, async (WebRequestServer webServer, [FromBody] JsonElement json) =>
                 {
-                    return await HandleRequest(webServer, json, "RefreshToken", async (wrs) => { return await webServer.HandleRefreshToken(wrs); });
+                    return await HandleRequest(webServer, json, CoreEndpoints.RefreshToken, async (wrs) => { return await webServer.HandleRefreshToken(wrs); });
                 }).AllowAnonymous();
 
-                app.MapPost("/game-client", async (IServiceProvider sp, WebRequestServer webServer, ClaimsPrincipal user, [FromBody] JsonElement json) =>
+                app.MapPost(CoreEndpoints.GameClient, async (IServiceProvider sp, WebRequestServer webServer, ClaimsPrincipal user, [FromBody] JsonElement json) =>
                 {
 
                     string userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                     string existingData = user.FindFirst("ExistingData")?.Value;
 
-                    return await HandleRequest(webServer, json, "GameClient", async (wrs) => { return await webServer.HandleUserClient(wrs, userId, existingData); });
+                    return await HandleRequest(webServer, json, CoreEndpoints.GameClient, async (wrs) => { return await webServer.HandleUserClient(wrs, userId, existingData); });
                 }).RequireAuthorization();
 
                 app.Run();
@@ -121,6 +132,8 @@ namespace Genrpg.WebServer
          string activityName,
           Func<WebServerRequestSet, Task<string>> func)
         {
+            
+
             using Activity? activity = DotNetServiceConfiguration.Source.StartActivity(activityName);
             {
                 WebServerRequestSet requestSet = ExtractRequestSetFromJson(json);
@@ -131,12 +144,12 @@ namespace Genrpg.WebServer
                 }
                 ILogService logService = webServer.GetLogService();
 
-                activity?.SetTag(LogalyticsKeys.GameUserId, requestSet.GameUserId);
-                activity?.SetTag(LogalyticsKeys.ClientVersion, requestSet.ClientVersion);
-                activity?.SetTag(LogalyticsKeys.ClientPlatform, requestSet.ClientPlatform);
-                activity?.SetTag(LogalyticsKeys.RequestId, requestSet.RequestId);
-                activity?.SetTag(LogalyticsKeys.SessionId, requestSet.SessionId);
-                activity?.SetTag(LogalyticsKeys.ClientEnv, requestSet.ClientEnv);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.GameUserId, requestSet.GameUserId);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.ClientVersion, requestSet.ClientVersion);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.ClientPlatform, requestSet.ClientPlatform);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.RequestId, requestSet.RequestId);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.ClientSessionId, requestSet.ClientSessionId);
+                ActivityUtils.SafeAddTag(activity, LogalyticsKeys.ClientEnv, requestSet.ClientEnv);
 
                 try
                 {
@@ -145,10 +158,11 @@ namespace Genrpg.WebServer
                 }
                 catch (Exception ex)
                 {
-                    // Rely on structured logging instead of raw string concatenation.
-                    // This ensures the stack trace and message are accurately parsed by Azure Monitor.
-                    logService.Exception(ex, "An unhandled exception occurred during request execution.");
+                    
+                    logService.Exception(ex, "ProcessRequests: " + requestSet.ShowRequestNames());
 
+                    
+            
                     return ShowError(ex.Message + " -- " + ex.StackTrace);
                 }
             }

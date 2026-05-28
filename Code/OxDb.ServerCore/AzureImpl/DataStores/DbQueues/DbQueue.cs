@@ -1,6 +1,6 @@
 using OxDb.ServerCore.AzureImpl.DataStores.DbQueues.Actions;
 using OxDb.SharedCore.Logalytics.Interfaces;
-using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedCore.Tasks.Services;
 using System.Collections.Concurrent;
 
 namespace OxDb.ServerCore.AzureImpl.DataStores.DbQueues

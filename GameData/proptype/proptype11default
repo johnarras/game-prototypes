@@ -1,0 +1,9 @@
+{
+  "Id": "proptype11default",
+  "ParentId": "default",
+  "IdKey": 11,
+  "Name": "SnowProp",
+  "Icon": "SnowProp",
+  "Art": "SnowProp",
+  "NumChoices": 1
+}

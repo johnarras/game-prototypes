@@ -147,18 +147,15 @@ public class ClientAppService : IClientAppService
 
     public async Awaitable TakeMemorySnapshot()
     {
-        Debug.Log("Snapshot1");
 
         MemoryProfiler.TakeSnapshot(Path.Combine(PersistentDataPath, "Snapshots/MemSnapshot.snap"), OnTakeSnapshot);
 
-        Debug.Log("Snapshot2");
 
         await Task.CompletedTask;
     }
 
     private void OnTakeSnapshot(string txt, bool val)
     {
-        Debug.Log("Snapshot: " + txt);
     }
 
     public bool IsFullScreen()

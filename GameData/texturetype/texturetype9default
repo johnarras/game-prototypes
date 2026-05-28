@@ -2,7 +2,8 @@
   "Id": "texturetype9default",
   "ParentId": "default",
   "IdKey": 9,
-  "Name": "WastelandRock",
-  "Art": "WastelandRock",
+  "Name": "Badlands",
+  "Icon": "Badlands",
+  "Art": "Badlands",
   "Size": 8.0
 }

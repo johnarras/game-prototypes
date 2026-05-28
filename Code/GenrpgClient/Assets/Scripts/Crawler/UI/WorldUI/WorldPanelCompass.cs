@@ -21,6 +21,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
                 {
                     mapRot -= 90;
                 }
+                mapRot -= 90;
                 rectTransform.localEulerAngles = new Vector3(0, 0, mapRot);
             }
         }

@@ -22,7 +22,7 @@ namespace OxDb.SharedGame.Units.Loaders
             return new List<CreateIndexData> { cid };
         }
 
-        public override async Task Initialize(CancellationToken token)
+        public override async System.Threading.Tasks.Task Initialize(CancellationToken token)
         {
             await base.Initialize(token);
         }

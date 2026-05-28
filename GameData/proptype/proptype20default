@@ -1,0 +1,9 @@
+{
+  "Id": "proptype20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "UnholyProp",
+  "Icon": "UnholyProp",
+  "Art": "UnholyProp",
+  "NumChoices": 1
+}

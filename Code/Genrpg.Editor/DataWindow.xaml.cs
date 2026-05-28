@@ -13,7 +13,7 @@ using OxDb.SharedCore.GameSettings.Settings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.SettingsNames.Settings;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedGame.Versions.Settings;
 using System;
 using System.Collections.Generic;

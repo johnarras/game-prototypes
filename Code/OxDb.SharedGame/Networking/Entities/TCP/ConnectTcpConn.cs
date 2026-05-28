@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
-using OxDb.SharedGame.Tasks.Services;
+using OxDb.SharedCore.Tasks.Services;
 using System;
 using System.Net.Sockets;
 using System.Threading;
@@ -27,20 +27,20 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             _taskService.ForgetTask(ConnectToServer(token), false);
         }
 
-        protected async Task ConnectToServer(CancellationToken token)
+        protected async System.Threading.Tasks.Task ConnectToServer(CancellationToken token)
         {
             TcpClient client = new TcpClient();
             for (int times = 0; times < MaxConnectTries; times++)
             {
                 try
                 {
-                    using (Task connectTask = client.ConnectAsync(_host, _port))
+                    using (System.Threading.Tasks.Task connectTask = client.ConnectAsync(_host, _port))
                     {
                         connectTask.Wait(2000);
 
                         if (connectTask.IsCompleted && !connectTask.IsCanceled)
                         {
-                            InitTcpClient(client);
+                            base.InitTcpClient(client);
                             break;
                         }
                     }
@@ -50,7 +50,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
                     Shutdown(e, "TcpClient could not connect " + _host + ": " + _port);
                 }
             }
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
     }
 }

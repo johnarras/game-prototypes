@@ -623,6 +623,10 @@
     {
       "IdKey": 156,
       "Name": "SpecialSpendActionSettings"
+    },
+    {
+      "IdKey": 157,
+      "Name": "PropTypeSettings"
     }
   ],
   "Parent": {
