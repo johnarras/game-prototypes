@@ -38,7 +38,6 @@ namespace OxDb.SharedGame.Purchasing.Settings
         public override string Name { get; set; }
         public string Desc { get; set; }
         public double DollarPrice { get; set; }
-        public long GemPrice { get; set; }
         public string GoogleProductId { get; set; }
         public string AppleProductId { get; set; }
     }

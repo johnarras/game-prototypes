@@ -26,6 +26,8 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Blobs
         private BlobServiceClient _serviceClient = null;
         private BlobContainerClient _container = null;
 
+        private string _containerSubpath = "";
+
         CancellationToken _token;
 
         public async Task Init(InitRepoArgs args,
@@ -40,7 +42,9 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Blobs
             _args = args;
 
             _serviceClient = serviceClient;
-            string containerName = BlobUtils.GetBlobContainerName(args.Category.ToString(), args.ProductName, args.Env);
+
+            string containerName = BlobUtils.GetToplevelContainerName();
+            _containerSubpath = BlobUtils.GetBlobContainerName(args.ProductName, args.Env, args.Category.ToString()).Replace(containerName, "") + "/";
             _container = _serviceClient.GetBlobContainerClient(containerName);
 
             try
@@ -56,7 +60,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Blobs
         #region Core
         private BlobClient GetBlockBlobReference(Type t, string id)
         {
-            return _container.GetBlobClient(StrUtils.NormalizeTypeName(t) + "/" + id);
+            return _container.GetBlobClient(_containerSubpath + StrUtils.NormalizeTypeName(t) + "/" + id);
         }
 
         // Breakd LSP

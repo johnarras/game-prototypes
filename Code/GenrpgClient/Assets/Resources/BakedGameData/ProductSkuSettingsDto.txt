@@ -2,283 +2,323 @@
   "Children": [
     {
       "IdKey": 1,
-      "Name": "$0.99 Product",
+      "Name": "Trader's Bundle I",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 0.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle001",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle001"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_001",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_001"
     },
     {
       "IdKey": 2,
-      "Name": "$1.99 Product",
+      "Name": "Trader's Bundle II",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 1.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle002",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle002"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_002",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_002"
     },
     {
       "IdKey": 3,
-      "Name": "$2.99 Product",
+      "Name": "Trader's Bundle III",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 2.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle003",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle003"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_003",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_003"
     },
     {
       "IdKey": 4,
-      "Name": "$3.99 Product",
+      "Name": "Trader's Bundle IV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 3.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle004",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle004"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_004",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_004"
     },
     {
       "IdKey": 5,
-      "Name": "$4.99 Product",
+      "Name": "Trader's Bundle V",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 4.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle005",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle005"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_005",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_005"
     },
     {
       "IdKey": 6,
-      "Name": "$5.99 Product",
+      "Name": "Trader's Bundle VI",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 5.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle006",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle006"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_006",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_006"
     },
     {
       "IdKey": 7,
-      "Name": "$6.99 Product",
+      "Name": "Trader's Bundle VII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 6.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle007",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle007"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_007",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_007"
     },
     {
       "IdKey": 8,
-      "Name": "$7.99 Product",
+      "Name": "Trader's Bundle VIII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 7.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle008",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle008"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_008",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_008"
     },
     {
       "IdKey": 9,
-      "Name": "$8.99 Product",
+      "Name": "Trader's Bundle IX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 8.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle009",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle009"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_009",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_009"
     },
     {
       "IdKey": 10,
-      "Name": "$9.99 Product",
+      "Name": "Trader's Bundle X",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 9.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle010",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle010"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_010",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_010"
     },
     {
       "IdKey": 11,
-      "Name": "$10.99 Product",
+      "Name": "Trader's Bundle XI",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 10.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle011",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle011"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_011",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_011"
     },
     {
       "IdKey": 12,
-      "Name": "$11.99 Product",
+      "Name": "Trader's Bundle XII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 11.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle012",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle012"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_012",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_012"
     },
     {
       "IdKey": 13,
-      "Name": "$12.99 Product",
+      "Name": "Trader's Bundle XIII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 12.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle013",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle013"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_013",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_013"
     },
     {
       "IdKey": 14,
-      "Name": "$13.99 Product",
+      "Name": "Trader's Bundle XIV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 13.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle014",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle014"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_014",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_014"
     },
     {
       "IdKey": 15,
-      "Name": "$14.99 Product",
+      "Name": "Trader's Bundle XV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 14.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle015",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle015"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_015",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_015"
     },
     {
       "IdKey": 16,
-      "Name": "$15.99 Product",
+      "Name": "Trader's Bundle XVI",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 15.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle016",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle016"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_016",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_016"
     },
     {
       "IdKey": 17,
-      "Name": "$16.99 Product",
+      "Name": "Trader's Bundle XVII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 16.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle017",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle017"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_017",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_017"
     },
     {
       "IdKey": 18,
-      "Name": "$17.99 Product",
+      "Name": "Trader's Bundle XVIII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 17.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle018",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle018"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_018",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_018"
     },
     {
       "IdKey": 19,
-      "Name": "$18.99 Product",
+      "Name": "Trader's Bundle XIX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 18.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle019",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle019"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_019",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_019"
     },
     {
       "IdKey": 20,
-      "Name": "$19.99 Product",
+      "Name": "Trader's Bundle XX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 19.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle020",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle020"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_020",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_020"
     },
     {
       "IdKey": 21,
-      "Name": "$20.99 Product",
+      "Name": "Trader's Bundle XXI",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 20.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle021",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle021"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_021",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_021"
     },
     {
       "IdKey": 22,
-      "Name": "$21.99 Product",
+      "Name": "Trader's Bundle XXII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 21.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle022",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle022"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_022",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_022"
     },
     {
       "IdKey": 23,
-      "Name": "$22.99 Product",
+      "Name": "Trader's Bundle XXIII",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 22.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle023",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle023"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_023",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_023"
     },
     {
       "IdKey": 24,
-      "Name": "$23.99 Product",
+      "Name": "Trader's Bundle XXIV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 23.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle024",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle024"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_024",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_024"
     },
     {
       "IdKey": 25,
-      "Name": "$24.99 Product",
+      "Name": "Trader's Bundle XXV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 24.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle025",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle025"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_025",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_025"
     },
     {
       "IdKey": 30,
-      "Name": "$29.99 Product",
+      "Name": "Trader's Bundle XXX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 29.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle030",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle030"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_030",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_030"
     },
     {
       "IdKey": 35,
-      "Name": "$34.99 Product",
+      "Name": "Trader's Bundle XXXV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 34.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle035",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle035"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_035",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_035"
     },
     {
       "IdKey": 40,
-      "Name": "$39.99 Product",
+      "Name": "Trader's Bundle XL",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 39.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle040",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle040"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_040",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_040"
     },
     {
       "IdKey": 45,
-      "Name": "$44.99 Product",
+      "Name": "Trader's Bundle XLV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 44.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle045",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle045"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_045",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_045"
     },
     {
       "IdKey": 50,
-      "Name": "$49.99 Product",
+      "Name": "Trader's Bundle L",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 49.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle050",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle050"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_050",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_050"
     },
     {
       "IdKey": 55,
-      "Name": "$54.99 Product",
+      "Name": "Trader's Bundle LV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 54.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle055",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle055"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_055",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_055"
     },
     {
       "IdKey": 60,
-      "Name": "$59.99 Product",
+      "Name": "Trader's Bundle LX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 59.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle060",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle060"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_060",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_060"
     },
     {
       "IdKey": 65,
-      "Name": "$64.99 Product",
+      "Name": "Trader's Bundle LXV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 64.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle065",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle065"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_065",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_065"
     },
     {
       "IdKey": 70,
-      "Name": "$69.99 Product",
+      "Name": "Trader's Bundle LXX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 69.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle070",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle070"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_070",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_070"
     },
     {
       "IdKey": 75,
-      "Name": "$74.99 Product",
+      "Name": "Trader's Bundle LXXV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 74.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle075",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle075"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_075",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_075"
     },
     {
       "IdKey": 80,
-      "Name": "$79.99 Product",
+      "Name": "Trader's Bundle LXXX",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 79.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle080",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle080"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_080",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_080"
     },
     {
       "IdKey": 85,
-      "Name": "$84.99 Product",
+      "Name": "Trader's Bundle LXXXV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 84.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle085",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle085"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_085",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_085"
     },
     {
       "IdKey": 90,
-      "Name": "$89.99 Product",
+      "Name": "Trader's Bundle XC",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 89.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle090",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle090"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_090",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_090"
     },
     {
       "IdKey": 95,
-      "Name": "$94.99 Product",
+      "Name": "Trader's Bundle XCV",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 94.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle095",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle095"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_095",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_095"
     },
     {
       "IdKey": 100,
-      "Name": "$99.99 Product",
+      "Name": "Trader's Bundle C",
+      "Desc": "Resources to enhance your gameplay.",
       "DollarPrice": 99.99,
-      "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle100",
-      "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle100"
+      "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_100",
+      "AppleProductId": "com.oxdeadbeefgames.trader.bundle_100"
     }
   ],
   "Parent": {
@@ -286,5 +326,5 @@
     "Name": "ProductSkuSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2026-06-04T18:12:47.869Z"
 }

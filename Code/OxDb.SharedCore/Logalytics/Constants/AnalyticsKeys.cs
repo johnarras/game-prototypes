@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OxDb.SharedCore.Logalytics.Constants
+﻿namespace OxDb.SharedCore.Logalytics.Constants
 {
     public class AnalyticsKeys
     {
@@ -19,6 +15,7 @@ namespace OxDb.SharedCore.Logalytics.Constants
 
         public const string FtueStepName = "stepName";
         public const string FtueStepId = "stepId";
+        public const string FtueStepButton = "stepButton";
 
     }
 }

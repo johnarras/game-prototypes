@@ -2,46 +2,24 @@
   "Id": "itemtype28default",
   "ParentId": "default",
   "IdKey": 28,
-  "Name": "Staff",
-  "Desc": "",
-  "Icon": "Staff",
-  "Art": "Staff",
-  "MinVal": 3,
-  "MaxVal": 14,
-  "EquipSlotId": 15,
+  "Name": "Thrown",
+  "Icon": "Thrown",
+  "Art": "Thrown",
+  "MinDam": 1,
+  "MaxDam": 7,
+  "EquipSlotId": 17,
   "IconCount": 3,
-  "Flags": 10,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Staff",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 100
     },
     {
-      "Weight": 1000.0,
-      "Name": "Rod",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Greatstaff",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Stick",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Scythe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Quarterstaff",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Quantity": 50
     }
-  ]
+  ],
+  "NameString": "Wand;Zapper;Eldrich Branch"
 }

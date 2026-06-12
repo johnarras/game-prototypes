@@ -1,3 +1,5 @@
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Helpers;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -39,6 +41,11 @@ namespace OxDb.SharedGame.ProcGen.Settings.Fences
     public class FenceTypeSettingsLoader : ParentSettingsLoader<FenceTypeSettings, FenceType> { }
 
     public class FenceSettingsMapper : ParentSettingsMapper<FenceTypeSettings, FenceType, FenceTypeSettingsDto> { }
+
+    public class FenceEntityHelper : BaseEntityHelper<FenceTypeSettings, FenceType>
+    {
+        public override long HelperKey => EntityTypes.Fence;
+    }
 
 }
 

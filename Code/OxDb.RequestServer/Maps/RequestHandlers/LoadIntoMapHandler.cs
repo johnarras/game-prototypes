@@ -116,7 +116,7 @@ namespace OxDb.RequestServer.Maps.RequestHandlers
                 PublicCharacter publicChar = new PublicCharacter()
                 {
                     Id = coreCh.Id,
-                    Name = coreCh.Name,
+                    DisplayName = coreCh.Name,
                     FactionTypeId = coreCh.FactionTypeId,
                     SexTypeId = coreCh.SexTypeId,
                     UnitTypeId = coreCh.EntityId

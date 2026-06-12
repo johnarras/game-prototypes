@@ -2,7 +2,6 @@ using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedGame.UserAbilities.Settings;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.UserAbilities.Services
 {

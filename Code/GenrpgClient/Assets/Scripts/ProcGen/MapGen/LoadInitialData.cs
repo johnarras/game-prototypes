@@ -57,7 +57,7 @@ public class LoadInitialData : BaseZoneGenerator
         _networkService.SendMapMessage(new AddPlayer()
         {
             GameUserId = _gs.GameUserId,
-            SessionId = _gs.SessionState.SessionId,
+            FullToken = _gs.SessionState.FullToken,
             CharacterId = _gs.ch.Id,
         });
 

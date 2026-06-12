@@ -47,11 +47,10 @@ namespace Assets.Scripts.Info.UI
             if (IsTooltipPanel)
             {
                 _clientEntityService.SetActive(Parent, false);
-                _dispatcher.AddListener<ClientEvents.ShowInfoPanelArgs>(OnShowTooltip, base.GetToken());
+                _dispatcher.AddListener<ShowInfoPanelArgs>(OnShowTooltip, base.GetToken());
                 _dispatcher.AddListener<HideInfoPanelEvent>(OnHideTooltip, GetToken());
-                _uiService.SetButton(BackButton, GetName(), PopInfoStack);
             }
-
+            _uiService.SetButton(BackButton, GetName(), PopInfoStack);
         }
 
         public void ClearInfo()
@@ -61,6 +60,9 @@ namespace Assets.Scripts.Info.UI
                 _objectPool.ReturnObject(row);
             }
             _rows.Clear();
+
+            Icon.SetEntityData(0, 0, 0);
+
         }
 
         public void ShowLines(ShowInfoPanelArgs args, EInfoPanelDisplayReason reason)
@@ -145,6 +147,7 @@ namespace Assets.Scripts.Info.UI
         public void ClearStack()
         {
             _infoStack.Clear();
+            ClearInfo();
         }
         private void OnShowTooltip(ShowInfoPanelArgs args)
         {

@@ -1,7 +1,0 @@
-{
-  "Id": "equipslot30default",
-  "ParentId": "default",
-  "IdKey": 30,
-  "Name": "Max",
-  "BonusStatScale": 1.0
-}

@@ -39,6 +39,8 @@ namespace OxDb.SharedGame.MapObjects.Entities
         public float Speed { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public string Client { get; set; } = VersionConstants.MinVersion.ToString();
+        public Version ClientVersion { get; set; }
+        public string ClientPlatform { get; set; }
 
         public long ZoneId { get; set; }
         public string LocationId { get; set; }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OxDb.SharedCore.Rewards.Entities
 {
 
-    
+
 
     public class AccumulatedRewards
     {
@@ -45,7 +44,7 @@ namespace OxDb.SharedCore.Rewards.Entities
                 return;
             }
 
-            Dictionary<long, List<Reward>> dict = (quantity > 0 ? Inflows: Outflows);   
+            Dictionary<long, List<Reward>> dict = (quantity > 0 ? Inflows : Outflows);
 
             if (!dict.TryGetValue(rewardSourceId, out List<Reward> rewards))
             {
@@ -53,7 +52,7 @@ namespace OxDb.SharedCore.Rewards.Entities
                 dict[rewardSourceId] = rewards;
             }
 
-            Reward rew = rewards.FirstOrDefault(x=>x.EntityTypeId == entityTypeId && x.EntityId == entityId);
+            Reward rew = rewards.FirstOrDefault(x => x.EntityTypeId == entityTypeId && x.EntityId == entityId);
 
             if (rew == null)
             {

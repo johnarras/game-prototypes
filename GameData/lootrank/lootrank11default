@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 11,
   "Name": "Mithril",
-  "Armor": 35,
-  "Damage": 30,
-  "CostPct": 2000
+  "DefenseScale": 6.0,
+  "DamageScale": 7.0,
+  "CostScale": 20.0
 }

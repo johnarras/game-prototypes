@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 3,
   "Name": "SpellDam",
-  "Desc": "Increases spell damage tiers per level.",
-  "ScalingStatTypeId": 12,
-  "ScalingEquipSlotId": 15
+  "Desc": "Increases attack spell damage per level.",
+  "ScalingStatTypeId": 12
 }

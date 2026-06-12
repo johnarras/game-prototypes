@@ -1,10 +1,9 @@
-
-using OxDb.PlatformServer.AccountAuthRequests.RequestHandlers;
+using OxDb.PlatformServer.Accounts.RequestHandlers;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Logalytics.Interfaces;
-using OxDb.SharedCore.Website.Interfaces;
 using OxDb.SharedCore.Website.Requests.Core;
 using OxDb.SharedCore.Website.Responses.Core;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 
 namespace OxDb.PlatformServer.Accounts.Services
 {

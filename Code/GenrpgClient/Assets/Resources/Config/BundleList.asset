@@ -207,6 +207,8 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: combatcombatbolt
     IsLocal: 0
+  - BundleName: combatcombathit
+    IsLocal: 0
   - BundleName: combatearthcombathit
     IsLocal: 0
   - BundleName: combatelectriccombathit
@@ -901,7 +903,13 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: prefabstestsphere
     IsLocal: 0
+  - BundleName: propsarcaneprop
+    IsLocal: 0
+  - BundleName: propsbadlandsprop
+    IsLocal: 0
   - BundleName: propsbarrel
+    IsLocal: 0
+  - BundleName: propsbasecrawlerprop
     IsLocal: 0
   - BundleName: propsbridge
     IsLocal: 0
@@ -911,15 +919,33 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: propsbucket
     IsLocal: 0
+  - BundleName: propscaveprop
+    IsLocal: 0
   - BundleName: propschest
+    IsLocal: 0
+  - BundleName: propscityprop
     IsLocal: 0
   - BundleName: propscrate
     IsLocal: 0
+  - BundleName: propsdarkforestprop
+    IsLocal: 0
+  - BundleName: propsdesertprop
+    IsLocal: 0
+  - BundleName: propsdungeonprop
+    IsLocal: 0
   - BundleName: propsfence
+    IsLocal: 0
+  - BundleName: propsfieldprop
+    IsLocal: 0
+  - BundleName: propsforestprop
     IsLocal: 0
   - BundleName: propsfountain
     IsLocal: 0
   - BundleName: propsherbnode
+    IsLocal: 0
+  - BundleName: propshillsprop
+    IsLocal: 0
+  - BundleName: propslavaprop
     IsLocal: 0
   - BundleName: propslevelmap
     IsLocal: 0
@@ -927,13 +953,29 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: propsmetalnode
     IsLocal: 0
+  - BundleName: propsmountainsprop
+    IsLocal: 0
+  - BundleName: propsnaturalprop
+    IsLocal: 0
+  - BundleName: propsoutdoorsprop
+    IsLocal: 0
   - BundleName: propspedestal
     IsLocal: 0
+  - BundleName: propspointofinterestprop
+    IsLocal: 0
   - BundleName: propspottery
+    IsLocal: 0
+  - BundleName: propsroadprop
+    IsLocal: 0
+  - BundleName: propssavannahprop
+    IsLocal: 0
+  - BundleName: propssnowprop
     IsLocal: 0
   - BundleName: propsstairsdown
     IsLocal: 0
   - BundleName: propsstairsup
+    IsLocal: 0
+  - BundleName: propsstarsprop
     IsLocal: 0
   - BundleName: propsstatcauldron
     IsLocal: 0
@@ -941,11 +983,19 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: propsstonenode
     IsLocal: 0
+  - BundleName: propsswampprop
+    IsLocal: 0
   - BundleName: propsteleportin
+    IsLocal: 0
+  - BundleName: propstowerprop
     IsLocal: 0
   - BundleName: propstrap
     IsLocal: 0
+  - BundleName: propsunholyprop
+    IsLocal: 0
   - BundleName: propswallbutton
+    IsLocal: 0
+  - BundleName: propswaterprop
     IsLocal: 0
   - BundleName: propswoodnode
     IsLocal: 0
@@ -995,219 +1045,43 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: terraintexarcane
     IsLocal: 0
+  - BundleName: terraintexbadlands
+    IsLocal: 0
   - BundleName: terraintexcave
     IsLocal: 0
   - BundleName: terraintexcity
     IsLocal: 0
-  - BundleName: terraintexcobblea
+  - BundleName: terraintexdarkforest
     IsLocal: 0
-  - BundleName: terraintexcracked
-    IsLocal: 0
-  - BundleName: terraintexcrackedb
-    IsLocal: 0
-  - BundleName: terraintexcrackedc
-    IsLocal: 0
-  - BundleName: terraintexcrackedgray
-    IsLocal: 0
-  - BundleName: terraintexcrackedgraysmall
-    IsLocal: 0
-  - BundleName: terraintexdarkrock
+  - BundleName: terraintexdesert
     IsLocal: 0
   - BundleName: terraintexdirt
     IsLocal: 0
-  - BundleName: terraintexdirta
-    IsLocal: 0
-  - BundleName: terraintexdirtc
-    IsLocal: 0
-  - BundleName: terraintexdirtd
-    IsLocal: 0
-  - BundleName: terraintexdirtdark
-    IsLocal: 0
-  - BundleName: terraintexdirtdarkc
-    IsLocal: 0
-  - BundleName: terraintexdirtdarkd
-    IsLocal: 0
-  - BundleName: terraintexdirtdarke
-    IsLocal: 0
-  - BundleName: terraintexdirtdarkf
-    IsLocal: 0
-  - BundleName: terraintexdirtdarkh
-    IsLocal: 0
-  - BundleName: terraintexdirtdarki
-    IsLocal: 0
-  - BundleName: terraintexdirte
-    IsLocal: 0
-  - BundleName: terraintexdirtf
-    IsLocal: 0
-  - BundleName: terraintexdirtg
-    IsLocal: 0
-  - BundleName: terraintexdirtgrass
-    IsLocal: 0
-  - BundleName: terraintexdirtgrassb
-    IsLocal: 0
-  - BundleName: terraintexdirtgray
-    IsLocal: 0
-  - BundleName: terraintexdirtgraya
-    IsLocal: 0
-  - BundleName: terraintexdirth
-    IsLocal: 0
-  - BundleName: terraintexdirti
-    IsLocal: 0
-  - BundleName: terraintexdirtj
-    IsLocal: 0
-  - BundleName: terraintexdirtl
-    IsLocal: 0
-  - BundleName: terraintexdirtm
-    IsLocal: 0
-  - BundleName: terraintexdirtred
-    IsLocal: 0
-  - BundleName: terraintexdirtrock
-    IsLocal: 0
-  - BundleName: terraintexdirtsand
-    IsLocal: 0
-  - BundleName: terraintexdirtsandb
-    IsLocal: 0
-  - BundleName: terraintexdirtsandc
-    IsLocal: 0
-  - BundleName: terraintexdirtsandd
-    IsLocal: 0
-  - BundleName: terraintexdirtsande
-    IsLocal: 0
-  - BundleName: terraintexdirtsandf
-    IsLocal: 0
-  - BundleName: terraintexdirtsandg
-    IsLocal: 0
-  - BundleName: terraintexdirtsandh
-    IsLocal: 0
-  - BundleName: terraintexdirtsandi
-    IsLocal: 0
   - BundleName: terraintexdungeon
+    IsLocal: 0
+  - BundleName: terraintexfield
     IsLocal: 0
   - BundleName: terraintexforest
     IsLocal: 0
   - BundleName: terraintexgrass
     IsLocal: 0
-  - BundleName: terraintexgrassb
-    IsLocal: 0
-  - BundleName: terraintexgrassbrown
-    IsLocal: 0
-  - BundleName: terraintexgrassbrownb
-    IsLocal: 0
-  - BundleName: terraintexgrassc
-    IsLocal: 0
-  - BundleName: terraintexgrassd
-    IsLocal: 0
-  - BundleName: terraintexgrasse
-    IsLocal: 0
-  - BundleName: terraintexgrassf
-    IsLocal: 0
-  - BundleName: terraintexgrassg
-    IsLocal: 0
-  - BundleName: terraintexgrassh
-    IsLocal: 0
-  - BundleName: terraintexgrassi
-    IsLocal: 0
-  - BundleName: terraintexgrassk
-    IsLocal: 0
-  - BundleName: terraintexgrassleaf
-    IsLocal: 0
-  - BundleName: terraintexgrassleafb
-    IsLocal: 0
-  - BundleName: terraintexgrassleafc
-    IsLocal: 0
-  - BundleName: terraintexgrassrock
-    IsLocal: 0
   - BundleName: terraintexhills
     IsLocal: 0
   - BundleName: terraintexlava
     IsLocal: 0
-  - BundleName: terraintexleaves
-    IsLocal: 0
-  - BundleName: terraintexleavesb
-    IsLocal: 0
-  - BundleName: terraintexleavesc
-    IsLocal: 0
-  - BundleName: terraintexleavesd
+  - BundleName: terraintexmountains
     IsLocal: 0
   - BundleName: terraintexnatural
     IsLocal: 0
   - BundleName: terraintexoutdoors
     IsLocal: 0
-  - BundleName: terraintexpath
-    IsLocal: 0
-  - BundleName: terraintexpebblesgray
-    IsLocal: 0
-  - BundleName: terraintexpebblesgrayb
-    IsLocal: 0
   - BundleName: terraintexpointofinterest
     IsLocal: 0
   - BundleName: terraintexroad
     IsLocal: 0
-  - BundleName: terraintexroadc
-    IsLocal: 0
-  - BundleName: terraintexroadf
-    IsLocal: 0
-  - BundleName: terraintexroadg
-    IsLocal: 0
-  - BundleName: terraintexroadred
-    IsLocal: 0
   - BundleName: terraintexrock
     IsLocal: 0
-  - BundleName: terraintexrockb
-    IsLocal: 0
-  - BundleName: terraintexrockc
-    IsLocal: 0
-  - BundleName: terraintexrockd
-    IsLocal: 0
-  - BundleName: terraintexrockdarkb
-    IsLocal: 0
-  - BundleName: terraintexrockdarkc
-    IsLocal: 0
-  - BundleName: terraintexrockdarkd
-    IsLocal: 0
-  - BundleName: terraintexrockdarkf
-    IsLocal: 0
-  - BundleName: terraintexrocke
-    IsLocal: 0
-  - BundleName: terraintexrockf
-    IsLocal: 0
-  - BundleName: terraintexrockgrass
-    IsLocal: 0
-  - BundleName: terraintexrockgraya
-    IsLocal: 0
-  - BundleName: terraintexrockgrayb
-    IsLocal: 0
-  - BundleName: terraintexrockgrayred
-    IsLocal: 0
-  - BundleName: terraintexrockred
-    IsLocal: 0
-  - BundleName: terraintexrockripple
-    IsLocal: 0
-  - BundleName: terraintexrocksmall
-    IsLocal: 0
-  - BundleName: terraintexrockstart
-    IsLocal: 0
-  - BundleName: terraintexrocktan
-    IsLocal: 0
-  - BundleName: terraintexsand
-    IsLocal: 0
-  - BundleName: terraintexsandgray
-    IsLocal: 0
-  - BundleName: terraintexsandgrayb
-    IsLocal: 0
-  - BundleName: terraintexsandroad
-    IsLocal: 0
-  - BundleName: terraintexsandrock
-    IsLocal: 0
-  - BundleName: terraintexsandwavy
-    IsLocal: 0
   - BundleName: terraintexsavannah
-    IsLocal: 0
-  - BundleName: terraintexsavannahdirt
-    IsLocal: 0
-  - BundleName: terraintexsavannahroad
-    IsLocal: 0
-  - BundleName: terraintexsavannahrock
     IsLocal: 0
   - BundleName: terraintexsnow
     IsLocal: 0
@@ -1215,19 +1089,11 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: terraintexswamp
     IsLocal: 0
-  - BundleName: terraintexswamproad
-    IsLocal: 0
   - BundleName: terraintextower
     IsLocal: 0
   - BundleName: terraintexunholy
     IsLocal: 0
   - BundleName: terraintexwasteland
-    IsLocal: 0
-  - BundleName: terraintexwastelandcracked
-    IsLocal: 0
-  - BundleName: terraintexwastelandroad
-    IsLocal: 0
-  - BundleName: terraintexwastelandrock
     IsLocal: 0
   - BundleName: terraintexwater
     IsLocal: 0
@@ -1704,16 +1570,4 @@ MonoBehaviour:
   - BundleName: uiunits
     IsLocal: 0
   - BundleName: uizones
-    IsLocal: 0
-  - BundleName: combatcombathit
-    IsLocal: 0
-  - BundleName: terraintexbadlands
-    IsLocal: 0
-  - BundleName: terraintexdarkforest
-    IsLocal: 0
-  - BundleName: terraintexdesert
-    IsLocal: 0
-  - BundleName: terraintexfield
-    IsLocal: 0
-  - BundleName: terraintexmountains
     IsLocal: 0

@@ -1,5 +1,4 @@
 ﻿using Azure.Monitor.OpenTelemetry.AspNetCore;
-using Azure.Monitor.OpenTelemetry.Exporter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -52,8 +51,6 @@ namespace OxDb.ServerCore.Setup
                 "cosmos.azure.com",
             };
 
-
-
             List<string> warningOnlyAssemblies = new List<string>()
             {
                 "Microsoft",
@@ -69,7 +66,7 @@ namespace OxDb.ServerCore.Setup
                 "/livez",
                 "/readyz",
             };
-            
+
             string connectionString = ServerConfigUtils.GetHardcodedConfigValue(AppConfigKeys.AppInsightsConnectionString);
 
             // 2. Configure the Resource (Static Server Attributes)

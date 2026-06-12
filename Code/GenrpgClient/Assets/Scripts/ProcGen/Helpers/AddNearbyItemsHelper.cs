@@ -1,3 +1,4 @@
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
@@ -169,19 +170,14 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
                 }
 
 
-                if (_mapGenData.roadDistances[ipplantx, ipplanty] < 3)
+                if (_mapGenData.RoadDistances[ipplantx, ipplanty] < 3)
                 {
                     continue;
                 }
 
                 ZoneTreeType item = itemList[rand.Next() % itemList.Count];
 
-                if (_mapGenData.mapObjects != null && _mapGenData.mapObjects[ipplantx, ipplanty] == 0)
-                {
-                    _mapGenData.mapObjects[ipplantx, ipplanty] = (int)(MapConstants.TreeObjectOffset + item.TreeTypeId);
-                    numPlaced++;
-                }
-
+                _mapGenData.SetEntityData(ipplantx, ipplanty, EntityTypes.Tree, item.TreeTypeId);
             }
         }
     }

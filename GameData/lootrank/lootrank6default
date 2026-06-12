@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 6,
   "Name": "Iron",
-  "Armor": 13,
-  "Damage": 10,
-  "CostPct": 600
+  "DefenseScale": 2.25,
+  "DamageScale": 3.0,
+  "CostScale": 6.0
 }

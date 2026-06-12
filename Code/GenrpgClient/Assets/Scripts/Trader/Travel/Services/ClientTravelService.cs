@@ -13,7 +13,6 @@ using Assets.Scripts.Trader.Travel.ClientEvents;
 using Assets.Scripts.Trader.UI.Cities;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
-using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
@@ -22,7 +21,6 @@ using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Currencies.Constants;
-using OxDb.SharedGame.Currencies.Settings;
 using OxDb.SharedGame.LevelTracks.WebApi;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Rewards.Services;
@@ -35,15 +33,12 @@ using OxDb.SharedGame.Trader.Travel.Entities;
 using OxDb.SharedGame.Trader.Travel.Services;
 using OxDb.SharedGame.Trader.Travel.WebApi;
 using OxDb.SharedGame.UI.Constants;
-using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace Assets.Scripts.Trader.Travel.Services
 {

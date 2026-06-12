@@ -40,6 +40,10 @@ namespace OxDb.ServerCore.AzureImpl.Logalytics
             _logger.LogDebug(txt);
         }
 
+        public void Verbose(string txt)
+        {
+            _logger.LogDebug(txt);
+        }
         public void Error(string txt)
         {
             _logger.LogError(txt);

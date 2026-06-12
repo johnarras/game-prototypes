@@ -2,39 +2,24 @@
   "Id": "itemtype13default",
   "ParentId": "default",
   "IdKey": 13,
-  "Name": "Ring",
-  "Desc": "",
-  "Icon": "Ring",
-  "Art": "Ring",
-  "EquipSlotId": 11,
+  "Name": "Sword",
+  "Icon": "Sword",
+  "Art": "Sword",
+  "MinDam": 1,
+  "MaxDam": 9,
+  "EquipSlotId": 15,
   "IconCount": 3,
-  "Flags": 8,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Ring",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Quantity": 100
     },
     {
-      "Weight": 1000.0,
-      "Name": "Band",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Circle",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Hoop",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Loop",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Quantity": 40
     }
-  ]
+  ],
+  "NameString": "Sword;Blade;Longsword;Warblade;Slicer;Reaver;Sabre"
 }

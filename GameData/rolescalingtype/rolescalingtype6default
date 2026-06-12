@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 6,
   "Name": "Utility",
-  "Desc": "Increases how quickly the player can get utility spells.",
-  "ScalingStatTypeId": 16,
-  "ScalingEquipSlotId": 15
+  "Desc": "Inceases chance to do odd things like pick locks.",
+  "ScalingStatTypeId": 16
 }

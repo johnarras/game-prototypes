@@ -1,8 +1,5 @@
 ﻿using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OxDb.ServerCore.AzureImpl.Logalytics
 {

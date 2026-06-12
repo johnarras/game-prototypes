@@ -8,12 +8,14 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 {
     public class TraderHUDScreen : BaseScreen
     {
+
+        string TraderTerrainParentName = "TraderTerrainParent";
         private ISingletonContainer _singletonContainer = null;
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
 
 
-            _assetService.LoadAssetInto(_singletonContainer.GetSingleton("TraderTerrainParent"),
+            _assetService.LoadAssetInto(_singletonContainer.GetSingleton(TraderTerrainParentName),
                 AssetCategoryNames.Biomes, "TraderTerrain", OnLoadTerrain, token, data);
 
             await Task.CompletedTask;
@@ -21,6 +23,18 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
         private void OnLoadTerrain(GameObject go, object data, CancellationToken token)
         {
+        }
+
+        protected override void OnStartClose()
+        {
+
+            GameObject traderTerrainParent = _singletonContainer.GetSingleton(TraderTerrainParentName);
+
+            _clientEntityService.DestroyAllChildren(traderTerrainParent);
+
+            base.OnStartClose();
+
+
         }
     }
 }

@@ -290,7 +290,7 @@ public class AddOutcroppings : BaseZoneGenerator
 
                         if (grids[x, y, 1] != 0)
                         {
-                            float roadDist = _md.roadDistances[wx, wy];
+                            float roadDist = _md.RoadDistances[wx, wy];
 
 
                             float roadScalePercent = MathUtil.GetSmoothScalePercent(10, 60, roadDist);
@@ -302,13 +302,13 @@ public class AddOutcroppings : BaseZoneGenerator
 
                             grids[x, y, 1] *= roadScalePercent;
 
-                            float mountainHeight = _md.mountainDistPercent[wx, wy];
+                            float mountainHeight = _md.MountainDistPercent[wx, wy];
 
                             grids[x, y, 1] *= mountainHeight;
 
                             if (grids[x, y, 1] == 1)
                             {
-                                float hgt = _md.heights[wx, wy];
+                                float hgt = _md.Heights[wx, wy];
                                 if (hgt < lowestMapHeight)
                                 {
                                     lowestMapHeight = hgt;
@@ -361,15 +361,15 @@ public class AddOutcroppings : BaseZoneGenerator
 
                             // Calculate the height difference.
                             // grid val * ((maxHeight-worldHeight)+(outcropping overallheight*(1+noise)))
-                            float gridval = grids[x, y, 1] * ((highestMapHeight - _md.heights[wx, wy]) + fullHeight * (1 + heightScales[x, y]));
+                            float gridval = grids[x, y, 1] * ((highestMapHeight - _md.Heights[wx, wy]) + fullHeight * (1 + heightScales[x, y]));
 
-                            _md.heights[wx, wy] += gridval * finalHeightScale;
+                            _md.Heights[wx, wy] += gridval * finalHeightScale;
                         }
                         else
                         {
-                            float gridval = grids[x, y, 1] * ((_md.heights[wx, wy] - lowestMapHeight) - fullHeight * (1 + heightScales[x, y]));
+                            float gridval = grids[x, y, 1] * ((_md.Heights[wx, wy] - lowestMapHeight) - fullHeight * (1 + heightScales[x, y]));
 
-                            _md.heights[wx, wy] += gridval * -finalHeightScale;
+                            _md.Heights[wx, wy] += gridval * -finalHeightScale;
                         }
                         numAdjusted++;
                     }

@@ -10,31 +10,31 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
         await base.Generate(token);
 
         _mapProvider.GetMap().OverrideZonePercent = 0;
-        _zoneGenService.SetAllAlphamaps(_md.alphas, token);
+        _zoneGenService.SetAllAlphamaps(_md.Alphas, token);
         await WaitForTerrainLayerLoad(token);
     }
 
     private async Awaitable WaitForTerrainLayerLoad(CancellationToken token)
     {
-        for (int x = 0; x < _md.awid; x++)
+        for (int x = 0; x < _md.Awid; x++)
         {
-            for (int y = 0; y < _md.ahgt; y++)
+            for (int y = 0; y < _md.Ahgt; y++)
             {
                 float total = 0;
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    total += _md.alphas[x, y, i];
+                    total += _md.Alphas[x, y, i];
                 }
                 if (total < 0.1f)
                 {
                     _md.ClearAlphasAt(x, y);
-                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
                 else
                 {
                     for (int i = 0; i < TerrainTexChannels.Max; i++)
                     {
-                        _md.alphas[x, y, i] /= total;
+                        _md.Alphas[x, y, i] /= total;
                     }
                 }
             }

@@ -1,6 +1,7 @@
 
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Minimap.Services;
 using ClientEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.MapServer.Services;
@@ -19,6 +20,7 @@ public class MinimapUI : BaseBehaviour
     private IPlayerManager _playerManager;
     private IMapProvider _mapProvider;
     protected IMapGenData _md;
+    private IMinimapService _minimapService = null;
 
     public void Init(CancellationToken token)
     {
@@ -38,6 +40,11 @@ public class MinimapUI : BaseBehaviour
 
     private void ShowMapImage()
     {
+        if (_mapTexture == null)
+        {
+            _mapTexture = _minimapService.GetTexture();
+        }
+
         if (_mapTexture != null && MapImage != null)
         {
             _uiService.SetImageTexture(MapImage, _mapTexture);

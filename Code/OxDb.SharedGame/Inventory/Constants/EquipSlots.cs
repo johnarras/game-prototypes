@@ -21,23 +21,6 @@ namespace OxDb.SharedGame.Inventory.Constants
         public const long OffHand = 16;
         public const long Ranged = 17;
 
-
-        /// <summary>
-        /// Used to cap crazy equipment slots
-        /// </summary>
-        public const long Max = 30;
-
-
-
-        public static bool IsWeapon(long equipSlotId)
-        {
-            return equipSlotId == MainHand || equipSlotId == Ranged;
-        }
-
-        public static bool IsArmor(long equipSlotId)
-        {
-            return equipSlotId > 0 && !IsWeapon(equipSlotId);
-        }
     }
 }
 

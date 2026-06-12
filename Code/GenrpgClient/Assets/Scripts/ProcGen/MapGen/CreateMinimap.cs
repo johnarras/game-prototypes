@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Minimap.Services;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.MapServer.Entities;
 using System;
@@ -125,57 +125,58 @@ public class CreateMinimap : BaseZoneGenerator
         TerrainPatchData patch = _terrainManager.GetTerrainPatch(0, 0);
         await Awaitable.NextFrameAsync(cancellationToken: token);
 
+        IMMOMapObjectLoader waterLoader = _terrainManager.GetLoader(EntityTypes.Water);
 
-        BaseObjectLoader waterLoader = _terrainManager.GetLoader(MapConstants.WaterObjectOffset);
+        List<ExtendedWorldObjectData> waterObjects = new List<ExtendedWorldObjectData>();
 
-        int waterObjectCount = 0;
-        for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
+        for (int x = 0; x < _md.ExtendedObjects.GetLength(0); x++)
         {
-            if (_md.mapObjects == null)
+            for (int y = 0; y < _md.ExtendedObjects.GetLength(1); y++)
             {
-                break;
-            }
-
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
-            {
-                uint objectId = (uint)_md.mapObjects[x, y];
-
-                uint upperNumber = objectId >> 16;
-                uint lowerNumber = objectId % (1 << 16);
-                if (lowerNumber < MapConstants.WaterObjectOffset ||
-                    lowerNumber >= MapConstants.WaterObjectOffset +
-                    MapConstants.MapObjectOffsetMult)
+                if (_md.ExtendedObjects[x, y] != null && _md.ExtendedObjects[x, y].EntityTypeId == EntityTypes.Water)
                 {
-                    continue;
+                    waterObjects.Add(_md.ExtendedObjects[x, y]);
                 }
-
-                int nx = x + 0 * (x / (MapConstants.TerrainPatchSize - 1));
-                int ny = y + 0 * (y / (MapConstants.TerrainPatchSize - 1));
-
-                PatchLoadData loadData = new PatchLoadData()
-                {
-                    gx = 0,
-                    gy = 0,
-                    StartX = 0,
-                    StartY = 0,
-                    protoParent = waterRoot,
-                    patch = patch,
-                };
-
-                waterObjectCount++;
-                waterLoader.LoadObject(loadData, objectId, ny, nx, null, null, token);
-
             }
         }
 
-        GameObject fullMapWater = (GameObject)(await _assetService.LoadAssetAsync(AssetCategoryNames.Prefabs, MapConstants.FullMinimapWaterName, null, token));
+        waterObjects.Add(new ExtendedWorldObjectData()
+        {
+            EntityTypeId = EntityTypes.Water,
+            EntityId = 0,
+            X = _mapProvider.GetMap().GetHwid() / 2,
+            Z = _mapProvider.GetMap().GetHhgt() / 2,
+            XSize = 100000,
+            ZSize = 100000,
+            Height = -5,
+        });
 
-        _clientEntityService.AddToParent(fullMapWater, waterRoot);
+        patch.ExtendedObjects = waterObjects;
 
-        fullMapWater.transform.position = new Vector3(_mapProvider.GetMap().GetHwid() / 2, MapConstants.OceanHeight, _mapProvider.GetMap().GetHhgt() / 2);
-        fullMapWater.transform.localScale = new Vector3(1000000, 1, 1000000);
+        int waterObjectCount = 0;
+        foreach (ExtendedWorldObjectData extWater in waterObjects)
+        {
+            int x = (int)extWater.X;
+            int y = (int)extWater.Z;
 
-        await Awaitable.WaitForSecondsAsync(0.05f * waterObjectCount, cancellationToken: token);
+            int nx = x + 0 * (x / (MapConstants.TerrainPatchSize - 1));
+            int ny = y + 0 * (y / (MapConstants.TerrainPatchSize - 1));
+
+            PatchLoadData loadData = new PatchLoadData()
+            {
+                gx = 0,
+                gy = 0,
+                StartX = 0,
+                StartY = 0,
+                protoParent = waterRoot,
+                patch = patch,
+            };
+
+            waterObjectCount++;
+            waterLoader.LoadObject(loadData, 0, ny, nx, null, null, token);
+        }
+
+        await Awaitable.WaitForSecondsAsync(0.1f * waterObjectCount, cancellationToken: token);
 
         Texture2D tex = new Texture2D(TexSize, TexSize, TextureFormat.RGB24, true, true);
 
@@ -213,7 +214,6 @@ public class CreateMinimap : BaseZoneGenerator
         tint[0] = 0.75f;
         tint[1] = 0.5f;
         tint[2] = 0.25f;
-
 
         float contrast = 1.15f;
         float bright = -0.05f;
@@ -417,7 +417,7 @@ public class CreateMinimap : BaseZoneGenerator
         tex.SetPixels(pixels);
 
         string filename = MapUtils.GetMapObjectFilename(MapConstants.MapFilename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-        _clientRepoService.SaveBytes(filename, tex.EncodeToJPG(100));
+        await _clientRepoService.SaveBytes(filename, tex.EncodeToJPG(100));
 
         _clientEntityService.DestroyAllChildren(waterRoot);
         _minimapService.SetTexture(tex);

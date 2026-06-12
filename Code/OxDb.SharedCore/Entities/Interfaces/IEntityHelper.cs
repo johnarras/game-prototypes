@@ -23,6 +23,8 @@ namespace OxDb.SharedCore.Entities.Interfaces
 
         Type GetParentType();
         Type GetChildType();
+
+        string GetIconSuffix();
     }
 }
 

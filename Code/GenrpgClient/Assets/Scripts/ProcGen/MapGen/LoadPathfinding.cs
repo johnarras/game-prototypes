@@ -11,7 +11,7 @@ public class LoadPathfinding : BaseZoneGenerator
     {
         await base.Generate(token);
         string filename = MapUtils.GetMapObjectFilename(PathfindingConstants.Filename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-        byte[] bytes = _clientRepoService.LoadBytes(filename);
+        byte[] bytes = await _clientRepoService.LoadBytes(filename);
         if (bytes != null)
         {
             OnDownloadPathfinding(bytes, null, token);

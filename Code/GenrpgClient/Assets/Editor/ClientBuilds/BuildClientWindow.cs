@@ -1,6 +1,8 @@
 using Assets.Scripts.Logalytics.Utils;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
+using OxDb.SharedCore.Utils;
+using RunBuilds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace Assets.Editor.Builds
         {
             BuildClientWindow window = GetWindow<BuildClientWindow>("Build Clients");
             int xsize = 250;
-            int ysize = xsize;
+            int ysize = 400;
 
             window.minSize = new Vector2(xsize, ysize);
             window.maxSize = new Vector2(xsize, ysize);
@@ -33,10 +35,8 @@ namespace Assets.Editor.Builds
 
         private List<PlatformBuildData> _platformData = null;
 
-        private bool _selfContainedClient = true;
-        private bool _developmentBuild = false;
-        private bool _exportGameData = false;
-        private bool _encryptExportedData = false;
+        private ClientPlayerFlags _flags = ClientPlayerFlags.None;
+
 
         private bool _isBuilding = false;
 
@@ -56,48 +56,62 @@ namespace Assets.Editor.Builds
 
             _selectedPlatform = EditorGUILayout.Popup("Select Platform: ", _selectedPlatform, _platformNames);
 
-            _selfContainedClient = EditorGUILayout.Toggle("Self-Contained:", _selfContainedClient);
+            EditorGUILayout.Space();
 
-            _exportGameData = EditorGUILayout.Toggle("Export Game Data:", _exportGameData);
-
-            _encryptExportedData = EditorGUILayout.Toggle("Encrypt Game Data:", _encryptExportedData);
-
-            GUILayout.Label("-------------------");
-
-            _developmentBuild = EditorGUILayout.Toggle("Development Build:", _developmentBuild);
-
-            if (GUILayout.Button("Build In Editor"))
+            foreach (ClientPlayerFlags flag in Enum.GetValues(typeof(ClientPlayerFlags)))
             {
-                _ = BuildWithArgs(false);
+                if (flag != ClientPlayerFlags.None)
+                {
+                    DrawBitToggle(flag);
+                }
+            }
+            GUILayout.Label("=================");
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Build Player"))
+            {
+                _ = BuildWithArgs();
             }
 
-            if (GUILayout.Button("Cloud Build"))
-            {
-                _ = BuildWithArgs(true);
-            }
+            EditorGUILayout.Space();
+            GUILayout.Label("=================");
         }
 
-        private async Awaitable BuildWithArgs(bool cloudBuild)
+        private void DrawBitToggle(ClientPlayerFlags flag)
+        {
+            bool newValue = EditorGUILayout.Toggle(StrUtils.SplitOnCapitalLetters(flag.ToString()), _flags.HasFlag(flag));
+
+            if (newValue)
+            {
+                _flags |= flag;
+            }
+            else
+            {
+                _flags &= ~flag;
+            }
+
+        }
+
+        private async Awaitable BuildWithArgs()
         {
             if (_isBuilding)
             {
                 return;
             }
+            _isBuilding = true;
 
+            Debug.Log("Start Build With Args");
             string logalyticsConnectionString = LogalyticsUtils.GetLogConnectionString(ScriptableObjectUtils.LoadDefault<ClientConfig>());
 
-            _isBuilding = true;
-            await RunBuilds.PlayerBuilder.BuildWithArgs(
-                    _envNames[_selectedEnv],
-                    _gameModes[_selectedGameMode],
-                    _platformNames[_selectedPlatform],
-                    _selfContainedClient,
-                    _exportGameData,
-                    _encryptExportedData,
-                    cloudBuild,
-                    _developmentBuild,
-                    logalyticsConnectionString);
+            BuildPlayerArgs args = new BuildPlayerArgs()
+            {
+                Env = _envNames[_selectedEnv],
+                GameModeStr = _gameModes[_selectedGameMode],
+                PlatformName = _platformNames[_selectedPlatform],
+                Flags = _flags,
+                LogalyticsConnectionString = logalyticsConnectionString,
+            };
 
+            await PlayerBuilder.BuildWithArgs(args);
 
             EditorApplication.delayCall += () =>
             {

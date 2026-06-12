@@ -2,71 +2,19 @@
   "Id": "itemtype27default",
   "ParentId": "default",
   "IdKey": 27,
-  "Name": "2HMace",
-  "Desc": "",
-  "Icon": "MaceTwo",
-  "Art": "MaceTwo",
-  "MinVal": 4,
-  "MaxVal": 14,
-  "EquipSlotId": 15,
+  "Name": "Bow",
+  "Icon": "Bow",
+  "Art": "Bow",
+  "MinDam": 3,
+  "MaxDam": 14,
+  "EquipSlotId": 17,
   "IconCount": 3,
-  "Flags": 10,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Hammer",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Mace",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Maul",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Fist",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Smasher",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Pummeler",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Breaker",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Crusher",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Bludgeon",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Shillelagh",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Rod",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 100
     }
-  ]
+  ],
+  "NameString": "Bow;Longbow;Crossbow;Longbow;Recurve Bow;Hunting Bow;Shooter"
 }

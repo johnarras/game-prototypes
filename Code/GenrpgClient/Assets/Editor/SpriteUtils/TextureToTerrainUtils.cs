@@ -11,7 +11,7 @@ namespace Assets.Editor.SpriteUtils
 
         public static void CopyTexturesToTerrainTextures(string startFolder, string endFolder)
         {
-            startFolder = SanitizePath(startFolder);    
+            startFolder = SanitizePath(startFolder);
             endFolder = SanitizePath(endFolder);
             if (!Directory.Exists(startFolder))
             {

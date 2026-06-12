@@ -90,8 +90,7 @@ namespace Assets.Scripts.GameSettings.Services
                     bakedSettings = (ITopLevelSettings)_serializer.DeserializeWithType(textAsset.text, loader.GetClientType());
                 }
 
-                if (!useBakedSettings && (!_configContainer.Config.SelfContainedClient ||
-                    _configContainer.Config.ExportGameData))
+                if (!useBakedSettings && (!_configContainer.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient | ClientPlayerFlags.ExportGameData)))
                 {
                     List<ITopLevelSettings> settingsChoices = new List<ITopLevelSettings>();
 
@@ -99,15 +98,15 @@ namespace Assets.Scripts.GameSettings.Services
 
                     ITopLevelSettings downloadedSettings = obj as ITopLevelSettings;
 
-                    if (_configContainer.Config.SelfContainedClient &&
-                        _configContainer.Config.ExportGameData && bakedSettings != null &&
+                    if (_configContainer.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient) &&
+                        _configContainer.Config.Flags.HasFlag(ClientPlayerFlags.ExportGameData) && bakedSettings != null &&
                         (downloadedSettings == null || (downloadedSettings.SaveTime < bakedSettings.SaveTime)))
 
                     {
                         RepoSaveArgs args = new RepoSaveArgs()
                         {
                             Verbose = true,
-                            Encrypt = _configContainer.Config.EncryptExportedData
+                            Encrypt = _configContainer.Config.Flags.HasFlag(ClientPlayerFlags.EncryptGameData)
                         };
                         bakedSettings.Id = GameDataConstants.DefaultFilename;
                         await _repoService.Save(bakedSettings, args);

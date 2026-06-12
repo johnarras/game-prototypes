@@ -1,3 +1,4 @@
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
@@ -50,14 +51,14 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
             int cz = genData.z;
 
 
-            if (_md.mapObjects[nx, nz] != 0)
+            if (_md.CellHasObject(nx, nz))
             {
                 bool foundOkPosition = false;
                 for (int xx = nx - 1; xx <= nx + 1; xx++)
                 {
                     for (int zz = nz - 1; zz <= nz + 1; zz++)
                     {
-                        if (_md.mapObjects[xx, zz] == 0)
+                        if (!_md.CellHasObject(xx, zz))
                         {
                             nz = zz;
                             nx = xx;
@@ -84,7 +85,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             int extraEdge = 4;
 
-            float centerHeight = _md.heights[cx, cz] * MapConstants.MapHeight;
+            float centerHeight = _md.Heights[cx, cz] * MapConstants.MapHeight;
 
             float minHeightTotal = centerHeight + 3;
 
@@ -123,7 +124,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                 continue;
                             }
 
-                            if (FlagUtils.MatchesAnyBits(_md.flags[xx, yy], MapGenFlags.NearWater))
+                            if (FlagUtils.MatchesAnyBits(_md.Flags[xx, yy], MapGenFlags.NearWater))
                             {
                                 nearWater = true;
                                 break;
@@ -133,7 +134,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                             float ddy = dy * dy;
 
 
-                            float currHeight = _md.heights[xx, yy] * MapConstants.MapHeight;
+                            float currHeight = _md.Heights[xx, yy] * MapConstants.MapHeight;
                             if (currHeight < minHeightAnywhere)
                             {
                                 minHeightAnywhere = currHeight;
@@ -199,21 +200,21 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                             continue;
                         }
 
-                        _md.flags[xx, yy] |= MapGenFlags.NearWater;
-                        if (_md.heights[xx, yy] < waterHeight)
+                        _md.Flags[xx, yy] |= MapGenFlags.NearWater;
+                        if (_md.Heights[xx, yy] < waterHeight)
                         {
-                            _md.flags[xx, yy] |= MapGenFlags.BelowWater;
+                            _md.Flags[xx, yy] |= MapGenFlags.BelowWater;
                         }
 
 
                         int tx = xx + 0 * (xx / (MapConstants.TerrainPatchSize - 1));
                         int ty = yy + 0 * (yy / (MapConstants.TerrainPatchSize - 1));
-                        int lowerObject = _md.mapObjects[tx, ty] & (1 << 16);
 
-                        if (lowerObject < MapConstants.BridgeObjectOffset ||
-                            lowerObject > MapConstants.BridgeObjectOffset + MapConstants.MapObjectOffsetMult)
+                        long entityTypeId = _md.EntityTypeIds[tx, ty];
+
+                        if (entityTypeId != EntityTypes.Bridge)
                         {
-                            if (_md.heights[xx, yy] < waterHeight)
+                            if (_md.Heights[xx, yy] < waterHeight)
                             {
                                 //_md.mapObjects[tx,ty] = 0;
                             }
@@ -228,8 +229,8 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                 {
                                     int ux = tx + 0 * (xx / (MapConstants.TerrainPatchSize - 1));
                                     int uy = ty + 0 * (yy / (MapConstants.TerrainPatchSize - 1));
-                                    if (_md.mapObjects[ux, uy] == 0 && waterPlants.Count > 0 &&
-                                        _md.heights[xx, yy] < maxPlantHeight && rand.NextDouble() < plantChance)
+                                    if (!_md.CellHasObject(ux, uy) && waterPlants.Count > 0 &&
+                                        _md.Heights[xx, yy] < maxPlantHeight && rand.NextDouble() < plantChance)
                                     {
                                         bool nearRealWater = false;
                                         for (int x1 = xx - nearWaterRad; x1 <= xx + nearWaterRad; x1++)
@@ -251,7 +252,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                                     continue;
                                                 }
 
-                                                if (_md.heights[x1, y1] < waterHeight)
+                                                if (_md.Heights[x1, y1] < waterHeight)
                                                 {
                                                     nearRealWater = true;
                                                     break;
@@ -261,7 +262,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                         if (nearRealWater)
                                         {
                                             TreeType plantChosen = waterPlants[rand.Next() % waterPlants.Count];
-                                            _md.mapObjects[ux, uy] = (int)(MapConstants.TreeObjectOffset + plantChosen.IdKey);
+                                            _md.SetEntityData(ux, uy, EntityTypes.Tree, plantChosen.IdKey);
                                         }
                                     }
                                 }
@@ -269,9 +270,19 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                         }
                     }
                 }
-                _md.mapObjects[nx, nz] = MapConstants.WaterObjectOffset + (int)maxHeightDiff;
-                int szOffset = (int)(xSizeMaxHeight * 256) + ySizeMaxHeight;
-                _md.mapObjects[nx, nz] += (szOffset << 16);
+                _md.SetEntityData(nx, nz, EntityTypes.Water, 0);
+
+                _md.ExtendedObjects[nx, nz] = new ExtendedWorldObjectData()
+                {
+                    X = nx,
+                    Z = nz,
+                    XSize = (int)(xSizeMaxHeight),
+                    ZSize = (int)(ySizeMaxHeight),
+                    Height = (ushort)maxHeightDiff,
+                    EntityTypeId = EntityTypes.Water,
+                    EntityId = 0,
+                };
+
                 return true;
             }
             return false;

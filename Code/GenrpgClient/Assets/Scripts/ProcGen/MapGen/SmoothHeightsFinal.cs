@@ -25,7 +25,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
         {
             for (int y = 0; y < hhgt; y++)
             {
-                heights2[x, y] = _md.heights[x, y];
+                heights2[x, y] = _md.Heights[x, y];
             }
         }
 
@@ -55,8 +55,8 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                             continue;
                         }
                         numRoadCellsChecked++;
-                        totalRoadPercent += _md.alphas[xx, yy, TerrainTexChannels.Road];
-                        if (_md.mapZoneIds[xx, yy] != _md.mapZoneIds[x, y])
+                        totalRoadPercent += _md.Alphas[xx, yy, TerrainTexChannels.Road];
+                        if (_md.MapZoneIds[xx, yy] != _md.MapZoneIds[x, y])
                         {
                             float dx = xx - x;
                             float dy = yy - y;
@@ -72,9 +72,9 @@ public class SmoothHeightsFinal : BaseZoneGenerator
 
                 float bridgeDist = 100;
 
-                if (_md.bridgeDistances != null)
+                if (_md.BridgeDistances != null)
                 {
-                    bridgeDist = _md.bridgeDistances[x, y];
+                    bridgeDist = _md.BridgeDistances[x, y];
                 }
 
                 float bridgeScale = 1.0f;
@@ -139,7 +139,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
 
 
 
-                        totalVal += _md.heights[xx, yy] * currweight;
+                        totalVal += _md.Heights[xx, yy] * currweight;
                         totalWeight += currweight;
 
                     }
@@ -154,7 +154,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
             }
 
         }
-        _md.heights = heights2;
+        _md.Heights = heights2;
     }
 }
 

@@ -17,7 +17,6 @@ namespace Assets.Scripts.Website.MessageHandlers
         private IScreenService _screenService = null;
         protected override async Awaitable InnerProcess(ErrorResponse response, CancellationToken token)
         {
-
             List<ActiveScreen> screens = _screenService.GetAllScreens();
 
             bool foundErrorScreen = false;
@@ -36,7 +35,7 @@ namespace Assets.Scripts.Website.MessageHandlers
                 return;
             }
 
-            _dispatcher.Dispatch(new CloseAllScreens());
+            _dispatcher.Dispatch(new CloseAllScreens() { CloseKeepOpenScreens = true });
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login, response));
 
             _dispatcher.Dispatch(new ShowFloatingText(response.Error, EFloatingTextArt.Error));

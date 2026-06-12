@@ -11,7 +11,7 @@ namespace OxDb.SharedGame.Characters.Utils
             to.Version = from.Version;
             to.UserId = from.UserId;
             to.Created = from.Created;
-            to._etag = from._etag;
+
             to.Level = from.Level;
             to.ZoneId = from.ZoneId;
             to.EntityId = from.EntityId;

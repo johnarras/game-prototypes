@@ -24,7 +24,7 @@ public class ConnectZoneCenters : BaseZoneGenerator
 
         int edgeSize = MapConstants.TerrainPatchSize;
         int centerId = 0;
-        foreach (MyPoint center in _md.zoneCenters)
+        foreach (MyPoint center in _md.ZoneCenters)
         {
             if (center.X < edgeSize || center.X > _mapProvider.GetMap().GetHwid() - edgeSize ||
                 center.Y < edgeSize || center.Y > _mapProvider.GetMap().GetHhgt() - edgeSize)
@@ -65,7 +65,7 @@ public class ConnectZoneCenters : BaseZoneGenerator
 
         }
 
-        _md.zoneConnections = roadsToMake;
+        _md.ZoneConnections = roadsToMake;
 
     }
 }

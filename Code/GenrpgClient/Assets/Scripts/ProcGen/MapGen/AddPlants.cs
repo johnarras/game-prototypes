@@ -1,5 +1,6 @@
 
 using Assets.Scripts.ProcGen.Loading.Utils;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Constants;
 using OxDb.SharedGame.ProcGen.Entities;
@@ -39,7 +40,6 @@ public class AddPlants : BaseZoneGenerator
         {
             GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
         }
-
         AddPlantsToMapData(_gs);
     }
 
@@ -149,20 +149,22 @@ public class AddPlants : BaseZoneGenerator
                     float currDensityMult = RandUtils.FloatRange(0, 2, rand);
                     numChecked++;
 
-                    if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
+                    if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
                     {
                         badZoneId++;
                         continue;
                     }
-                    if (_md.mapObjects[x, y] != 0)
+
+                    if (_md.CellHasObject(x, y))
                     {
                         continue;
                     }
-                    if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
+
+                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
                     {
                         continue;
                     }
-                    if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
+                    if (_md.Alphas[x, y, TerrainTexChannels.Road] > 0)
                     {
                         bool isNearRoad = false;
                         int roadRad = 0;
@@ -178,7 +180,7 @@ public class AddPlants : BaseZoneGenerator
                                 {
                                     continue;
                                 }
-                                if (_md.alphas[xx, yy, TerrainTexChannels.Road] > 0)
+                                if (_md.Alphas[xx, yy, TerrainTexChannels.Road] > 0)
                                 {
                                     isNearRoad = true;
                                     break;
@@ -240,7 +242,7 @@ public class AddPlants : BaseZoneGenerator
 
                     if (_zoneGenService.FindMapLocation(x, y, 1) != null)
                     {
-                        if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsLocationPatch))
+                        if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.IsLocationPatch))
                         {
                             nearLocation++;
                             continue;
@@ -276,7 +278,7 @@ public class AddPlants : BaseZoneGenerator
                         {
                             val = (short)(val * MapConstants.PrefabPlantDensityScale);
                         }
-                        _md.grassAmounts[nx, ny, index] = (byte)val;
+                        _md.GrassAmounts[nx, ny, index] = (byte)val;
                     }
                 }
 
@@ -287,7 +289,7 @@ public class AddPlants : BaseZoneGenerator
     public void AddPlantsToMapData(IClientGameState gs)
     {
 
-        if (base._md.grassAmounts == null || base._md.mapObjects == null)
+        if (_md.GrassAmounts == null)
         {
             return;
         }
@@ -295,13 +297,13 @@ public class AddPlants : BaseZoneGenerator
         {
             for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
             {
-                if (base._md.mapObjects[x, y] == 0)
+                if (!_md.CellHasObject(x, y))
                 {
                     int val = 0;
                     int[] vals = new int[MapConstants.MaxGrass];
                     for (int i = 0; i < MapConstants.MaxGrass; i++)
                     {
-                        int currVal = Math.Min(MapConstants.MaxGrassValue, (int)base._md.grassAmounts[x, y, i]);
+                        int currVal = Math.Min(MapConstants.MaxGrassValue, (int)_md.GrassAmounts[x, y, i]);
                         vals[i] = currVal;
                         for (int j = 0; j < i; j++)
                         {
@@ -311,13 +313,12 @@ public class AddPlants : BaseZoneGenerator
                     }
                     if (val != 0)
                     {
-                        base._md.mapObjects[x, y] = (ushort)(MapConstants.GrassMinCellValue + val);
+                        _md.SetEntityData(x, y, EntityTypes.Plant, val);
                     }
                 }
             }
         }
     }
-
 }
 
 

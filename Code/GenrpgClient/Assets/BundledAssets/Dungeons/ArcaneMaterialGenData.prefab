@@ -13,6 +13,14 @@ PrefabInstance:
       value: ArcaneMaterialGenData
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: MainMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ce978bd419c10aa4181254994598e5bd, type: 2}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: BackgroundColors.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -103,6 +111,34 @@ PrefabInstance:
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ForegroundColors.Array.data[3].r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.b
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.r
+      value: 0.04608475
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.b
+      value: 0.8791855
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.g
+      value: 0.33490568
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].<Weight>k__BackingField
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: m_LocalPosition.x

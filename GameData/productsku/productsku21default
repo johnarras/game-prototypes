@@ -2,8 +2,9 @@
   "Id": "productsku21default",
   "ParentId": "default",
   "IdKey": 21,
-  "Name": "$20.99 Product",
+  "Name": "Trader's Bundle XXI",
+  "Desc": "Resources to enhance your gameplay.",
   "DollarPrice": 20.99,
-  "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle021",
-  "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle021"
+  "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_021",
+  "AppleProductId": "com.oxdeadbeefgames.trader.bundle_021"
 }

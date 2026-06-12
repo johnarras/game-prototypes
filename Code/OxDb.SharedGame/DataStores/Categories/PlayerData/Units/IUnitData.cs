@@ -2,6 +2,7 @@ using MessagePack;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Serialization.Attributes;
 using OxDb.SharedCore.Website.Responses.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.DataStores.Categories.PlayerData.Units
@@ -81,6 +82,8 @@ namespace OxDb.SharedGame.DataStores.Categories.PlayerData.Units
 
     public interface IUnitDataLookup
     {
+        string ClientPlatform { get; }
+        Version ClientVersion { get; }
         Task<T> GetAsync<T>() where T : class, IUnitData, new();
         void AddResponse(IWebResponse response);
     }

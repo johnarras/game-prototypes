@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 2,
   "Name": "Copper",
-  "Armor": 2,
-  "Damage": 1,
-  "CostPct": 200
+  "DefenseScale": 1.25,
+  "DamageScale": 1.25,
+  "CostScale": 2.0
 }

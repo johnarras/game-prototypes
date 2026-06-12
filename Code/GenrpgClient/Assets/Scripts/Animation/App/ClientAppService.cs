@@ -45,7 +45,6 @@ public class ClientAppService : IClientAppService
 
     protected ILogService _logService = null;
     protected IClientOptionsService _optionsService = null;
-    private IClientConfigContainer _configContainer = null;
 
     public ClientAppService(ILogService logService)
     {
@@ -117,7 +116,7 @@ public class ClientAppService : IClientAppService
             return _runtimePrefix;
         }
 
-        _runtimePrefix = BlobUtils.GetBlobSubfolder(_configContainer.Config.Env, Version, GetPlatformName());
+        _runtimePrefix = BlobUtils.GetBlobSubfolder(Version, GetPlatformName());
         return _runtimePrefix;
     }
 

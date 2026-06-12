@@ -1,6 +1,8 @@
+using OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL;
 using OxDb.ServerCore.DataStores.Services;
 using OxDb.SharedCore.DataStores.Indexes;
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -50,17 +52,14 @@ namespace OxDb.ServerCore.GameSettings.Services
         {
             List<IGameSettingsLoader> allLoaders = GetAllLoaders();
 
-            List<Task> indexTasks = new List<Task>();
-
             foreach (IGameSettingsLoader loader in allLoaders)
             {
                 List<CreateIndexData> indexedFields = loader.GetIndexes();
 
                 foreach (CreateIndexData indexedField in indexedFields)
                 {
-                    indexTasks.Add(_repoService.CreateIndexes(indexedField));
+                    await _repoService.CreateIndexes(indexedField);
                 }
-                await Task.WhenAll(indexTasks);
             }
 
             await Task.CompletedTask;
@@ -78,7 +77,69 @@ namespace OxDb.ServerCore.GameSettings.Services
             return _mapperObjects.GetDict();
         }
 
+        // Use this for polymorphic repo.
         public virtual async Task<IGameData> LoadGameData()
+        {
+            GameData gameData = new GameData();
+
+            gameData.SetupDataDict(true);
+
+            PolymorphicMongoRepository polyRepo = _repoService.FindRepo(typeof(SettingsNameSettings)) as PolymorphicMongoRepository;
+
+            if (polyRepo == null)
+            {
+                return await LoadGameDataNonPolymorphic();
+            }
+
+            List<IGameSettings> rawSettings = await polyRepo.LoadAll<IGameSettings>();
+
+
+            Dictionary<Type, List<IGameSettings>> typeListDict = new Dictionary<Type, List<IGameSettings>>();
+
+            foreach (IGameSettings settings in rawSettings)
+            {
+                if (!typeListDict.ContainsKey(settings.GetType()))
+                {
+                    typeListDict[settings.GetType()] = new List<IGameSettings>();
+                }
+
+                typeListDict[settings.GetType()].Add(settings);
+            }
+
+            List<ITopLevelSettings> allTopLevelSettings = rawSettings.OfType<ITopLevelSettings>().ToList();
+
+            foreach (IGameSettingsLoader loader in GetAllLoaders())
+            {
+                if (typeListDict.TryGetValue(loader.HelperKey, out List<IGameSettings>? rawParentList))
+                {
+                    List<ITopLevelSettings> topSettingsList = rawParentList.OfType<ITopLevelSettings>().ToList();
+
+                    foreach (ITopLevelSettings topSettings in topSettingsList)
+                    {
+                        topSettings.Id = topSettings.Id.Replace(topSettings.GetType().Name.ToLower(), "");
+                    }
+
+                    if (loader.GetChildType() != loader.HelperKey)
+                    {
+                        if (typeListDict.TryGetValue(loader.GetChildType(), out List<IGameSettings> rawChildList))
+                        {
+                            List<IChildSettings> realChildList = rawChildList.OfType<IChildSettings>().ToList();
+
+                            loader.SetParentChildData(topSettingsList, realChildList);
+                        }
+                    }
+                }
+            }
+
+            gameData.AddData(allTopLevelSettings);
+
+
+            _gameData.CopyFrom(gameData);
+
+            return gameData;
+        }
+
+        public virtual async Task<IGameData> LoadGameDataNonPolymorphic()
         {
             GameData gameData = new GameData();
 

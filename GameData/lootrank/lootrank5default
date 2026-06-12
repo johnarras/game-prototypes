@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 5,
   "Name": "Jade",
-  "Armor": 10,
-  "Damage": 7,
-  "CostPct": 500
+  "DefenseScale": 2.0,
+  "DamageScale": 2.5,
+  "CostScale": 5.0
 }

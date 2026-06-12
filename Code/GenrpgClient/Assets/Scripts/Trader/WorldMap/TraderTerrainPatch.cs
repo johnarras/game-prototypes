@@ -41,7 +41,6 @@ namespace Assets.Scripts.Trader.WorldMap
 
             return Mathf.Sqrt(dx * dx + dy * dy);
         }
-
         public void ShowTerrain(TraderTerrain terrain, TerrainPatchArgs args)
         {
             _terrain = terrain;
@@ -74,17 +73,25 @@ namespace Assets.Scripts.Trader.WorldMap
                     }
                 }
             }
-
-
         }
+
+        private MaterialPropertyBlock _block = null;
 
         private void SetMainTexture(Texture2D tex)
         {
             if (GroundAsset != null)
             {
+                if (_block == null)
+                {
+                    _block = new MaterialPropertyBlock();
+                }
                 foreach (Renderer renderer in GroundAsset.StoneRenderers)
                 {
                     renderer.material.mainTexture = tex;
+
+                    //renderer.GetPropertyBlock(_block);
+                    //_block.SetTexture(MaterialUtils.MainTexturePropertyName, tex);
+                    //renderer.SetPropertyBlock(_block);
                 }
             }
         }

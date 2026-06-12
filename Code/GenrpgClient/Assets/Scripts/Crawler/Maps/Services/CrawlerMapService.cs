@@ -86,7 +86,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         EntranceMapData GetEntranceMap(PartyData party, CrawlerWorld world, long mapId);
         void PlayMapSounds();
         void LoadProp(CrawlerObjectLoadData loadData, string prefabName, CancellationToken token);
-        
+
     }
 
     public class CrawlerMapService : ICrawlerMapService
@@ -350,6 +350,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 Material mat = new Material(materialsData.MainMaterial);
 
                 mat.mainTexture = tex;
+
+                Texture2D normalTex = _materialGenService.CreateGrayscaleNormalMapFromDiffuseTexture(tex, false, 1);
+
+                _materialGenService.SetNormalMap(mat, normalTex);
+
                 MaterialOption weighted = new MaterialOption()
                 {
                     Mat = mat,
@@ -358,6 +363,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 mapRoot.BuildingWallOptions.Add(weighted);
 
                 mapRoot.GeneratedTextures.Add(tex);
+
+                mapRoot.GeneratedTextures.Add(normalTex);
 
             }
 
@@ -371,7 +378,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     {
                         Mat = opt.Mat,
                         Weight = 1000,
-                        ColorTargets = new List<Color>(materialsData.ForegroundColors),
+                        ColorTargets = new List<Color>(materialsData.ColorSets.Select(x => x.Foreground)),
                     });
                 }
 
@@ -487,11 +494,19 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             GeneratedWallLooseTextureSet textureSet = await _materialGenService.GenerateTextures(genArgs);
 
-            foreach (Texture2D tex in textureSet.Textures)
+            foreach (Texture2D tex in textureSet.DiffuseTextures)
             {
                 if (tex != null)
                 {
                     _crawlerMapRoot.GeneratedTextures.Add(tex);
+                }
+            }
+
+            foreach (Texture2D normal in textureSet.NormalTextures)
+            {
+                if (normal != null)
+                {
+                    _crawlerMapRoot.GeneratedTextures.Add(normal);
                 }
             }
 
@@ -508,9 +523,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                         Mat = mat,
                     };
 
-                    weighted.Mat.mainTexture = textureSet.Textures[materialIndex];
+                    weighted.Mat.mainTexture = textureSet.DiffuseTextures[materialIndex];
+
+                    _materialGenService.SetNormalMap(weighted.Mat, textureSet.NormalTextures[materialIndex]);
 
                     block.FinalMaterials.GetMaterials(materialIndex).Add(weighted);
+
+
 
                 }
             }
@@ -1173,8 +1192,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public void LoadProp(CrawlerObjectLoadData loadData, string prefabName, CancellationToken token)
         {
-            loadData.PrefabName = prefabName;   
-            _assetService.LoadAssetInto<CrawlerObjectLoadData>(loadData.Cell.gameObject, 
+            loadData.PrefabName = prefabName;
+            _assetService.LoadAssetInto<CrawlerObjectLoadData>(loadData.Cell.gameObject,
                 loadData.AssetCategoryNameOverride ?? AssetCategoryNames.Props, prefabName, OnDownloadProp, token, loadData);
         }
 

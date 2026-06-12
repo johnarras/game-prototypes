@@ -136,7 +136,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.CosmosNoSQL
                 {
                     obj.Id += suffix;
                 }
-                ArrayPoolBufferWriter<byte> bufferWriter = _serializer.GetBuffer();
+                ArrayPoolBufferWriter<byte> bufferWriter = _serializer.RentBuffer();
 
                 using (Utf8JsonWriter jsonWriter = new Utf8JsonWriter(bufferWriter))
                 {
@@ -225,7 +225,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.CosmosNoSQL
                     // Ensure ID is correct for the type
                     item.Id = GetDocId(item.Id, item.GetType());
 
-                    ArrayPoolBufferWriter<byte> bufferWriter = _serializer.GetBuffer();
+                    ArrayPoolBufferWriter<byte> bufferWriter = _serializer.RentBuffer();
                     bufferWriters.Add(bufferWriter);
 
                     using (Utf8JsonWriter jsonWriter = new Utf8JsonWriter(bufferWriter))

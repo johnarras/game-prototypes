@@ -2,76 +2,21 @@
   "Id": "itemtype26default",
   "ParentId": "default",
   "IdKey": 26,
-  "Name": "2HAxe",
-  "Desc": "",
-  "Icon": "AxeTwo",
-  "Art": "AxeTwo",
-  "MinVal": 3,
-  "MaxVal": 15,
-  "EquipSlotId": 15,
+  "Name": "Quiver",
+  "Icon": "Quiver",
+  "Art": "Quiver",
+  "Armor": 2,
+  "Resist": 2,
+  "MinDam": 1,
+  "MaxDam": 4,
+  "EquipSlotId": 16,
   "IconCount": 3,
-  "Flags": 10,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Axe",
-      "Desc": ""
-    },
-    {
-      "Weight": 5000.0,
-      "Name": "Greataxe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Ripper",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Reaver",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Crescent",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Cleaver",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Edge",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Reaper",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Butcher",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Battle Axe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Decapitator",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Executor",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 100
     }
-  ]
+  ],
+  "NameString": "Quiver;Holder;Pouch;"
 }

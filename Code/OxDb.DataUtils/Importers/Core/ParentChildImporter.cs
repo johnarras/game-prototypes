@@ -5,7 +5,7 @@ using OxDb.SharedCore.Utils;
 
 namespace OxDb.DataUtils.Importers.Core
 {
-    public abstract class ParentChildImporter<TParent, TChild> : BaseDataImporter<TParent> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
+    public abstract class ParentChildImporter<TParent, TChild> : BaseParentDataImporter<TParent> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
     {
         protected abstract void ImportChildSubObject(EditorGameState gs, TChild current, int row, string firstColumn, string[] headers, string[] rowWords);
 

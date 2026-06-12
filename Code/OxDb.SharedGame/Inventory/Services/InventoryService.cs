@@ -92,11 +92,6 @@ namespace OxDb.SharedGame.Inventory.Services
         public virtual bool EquipItem(MapObject obj, string itemId, long equipSlotId, bool calcStatsNow = true)
         {
 
-            if (equipSlotId < 1 || equipSlotId >= EquipSlots.Max)
-            {
-                return false;
-            }
-
             EquipSlot eqslot = _gameData.Get<EquipSlotSettings>(obj).Get(equipSlotId);
             if (eqslot == null || !eqslot.Active)
             {

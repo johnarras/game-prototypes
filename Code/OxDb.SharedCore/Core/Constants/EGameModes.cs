@@ -16,6 +16,17 @@ namespace OxDb.SharedCore.Core.Constants
         {
             return mode == EGameModes.Crawler || mode == EGameModes.LockstepTemplate;
         }
+
+
+        public static bool IsMultiCharacterMode(string modeName)
+        {
+            return modeName == EGameModes.MMO.ToString();
+        }
+
+        public static bool IsMultiCharacterMode(EGameModes mode)
+        {
+            return mode == EGameModes.MMO;
+        }
     }
 }
 

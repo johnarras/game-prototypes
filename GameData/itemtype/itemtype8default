@@ -3,49 +3,11 @@
   "ParentId": "default",
   "IdKey": 8,
   "Name": "Boots",
-  "Desc": "",
   "Icon": "Boots",
   "Art": "Boots",
-  "MinVal": 3,
-  "MaxVal": 3,
+  "Armor": 3,
   "EquipSlotId": 8,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Boots",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Shoes",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Slippers",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Sabatons",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Sandals",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Greaves",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Footwraps",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Boots;Shoes;Slippers;Sabatons;Sandals;Greaves;Footwraps"
 }

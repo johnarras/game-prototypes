@@ -30,21 +30,20 @@ namespace OxDb.ServerGame.Maps
             CreateIndexData data = new CreateIndexData(typeof(QuestType));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestType.OwnerId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestType.MapId) });
-            List<Task> tasks = new List<Task>();
-            tasks.Add(_repoService.CreateIndexes(data));
+
+            await _repoService.CreateIndexes(data);
 
             data = new CreateIndexData(typeof(QuestItem));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestItem.OwnerId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(QuestItem.MapId) });
-            tasks.Add(_repoService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
 
 
             data = new CreateIndexData(typeof(Zone));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Zone.OwnerId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Zone.MapId) });
-            tasks.Add(_repoService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
 
-            await Task.WhenAll(tasks);
             await Task.CompletedTask;
         }
 

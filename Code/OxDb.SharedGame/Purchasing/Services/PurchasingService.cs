@@ -17,7 +17,7 @@ namespace OxDb.SharedGame.Purchasing.Services
 
     public class PurchasingService : IPurchasingService
     {
-        private IGameData _gameData = null;
+        private IGameData _gameData = null!;
 
         public PlayerStoreOffer CreatePlayerStoreOffer(IFilteredObject user, StoreOffer storeOffer)
         {

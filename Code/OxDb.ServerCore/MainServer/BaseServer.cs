@@ -9,7 +9,6 @@ using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Setup.Services;
-using OxDb.SharedCore.Utils;
 
 namespace OxDb.ServerCore.MainServer
 {
@@ -27,6 +26,15 @@ namespace OxDb.ServerCore.MainServer
         public string EnvOverride = null;
         public List<IInjectable> InitialServices = new List<IInjectable>();
 
+        public ServerInitArgs(List<IInjectable> initialServices, CancellationToken token, object data = null, object parent = null, string envOverride = null)
+        {
+            InitialServices = initialServices;
+            Token = token;
+            Data = data;
+            Parent = parent;
+            EnvOverride = envOverride;
+        }
+
     }
 
     public abstract class BaseServer<TGameState, TSetupService, IQMessageHandler> : IBaseServer
@@ -43,8 +51,8 @@ namespace OxDb.ServerCore.MainServer
         protected IHostApplicationBuilder _builder = null!;
 
 
-        protected string _instanceId = HashUtils.NewGuid();
-        protected virtual bool UseInstanceId { get; }
+        protected string _instanceId = Random.Shared.Next().ToString();
+        protected abstract bool UseInstanceId { get; }
         protected abstract string GetBaseServerName();
 
         protected string GetFullServerName(object data)

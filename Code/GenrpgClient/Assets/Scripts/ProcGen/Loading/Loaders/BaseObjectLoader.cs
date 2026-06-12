@@ -11,7 +11,16 @@ using OxDb.SharedGame.Zones.WorldData;
 using System.Threading;
 using UnityEngine;
 
-public abstract class BaseObjectLoader : IInjectable
+
+public interface IMMOMapObjectLoader : ISetupDictionaryItem<long>
+{
+    bool LoadObject(PatchLoadData loadData, int entityId, int x, int y,
+        Zone currZone, ZoneType currZoneType, CancellationToken token);
+
+    void FinalPlaceObject(GameObject go, DownloadObjectData dlo, CancellationToken token);
+}
+
+public abstract class BaseObjectLoader : IMMOMapObjectLoader
 {
     protected IAssetService _assetService = null;
     protected IMapTerrainManager _terrainManager;
@@ -22,7 +31,9 @@ public abstract class BaseObjectLoader : IInjectable
     protected IMapGenData _md;
     protected IClientEntityService _clientEntityService = null;
 
-    public abstract bool LoadObject(PatchLoadData loadData, uint objectId, int x, int y,
+    public abstract long HelperKey { get; }
+
+    public abstract bool LoadObject(PatchLoadData loadData, int entityId, int x, int y,
         Zone currZone, ZoneType currZoneType, CancellationToken token);
 
     protected void OnDownloadObject(GameObject go, DownloadObjectData data, CancellationToken token)

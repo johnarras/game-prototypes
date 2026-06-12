@@ -1,3 +1,5 @@
+using Assets.Scripts.Awaitables;
+using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Setup.Interfaces;
@@ -19,6 +21,7 @@ using OxDb.SharedGame.ProcGen.Settings.Textures;
 using OxDb.SharedGame.ProcGen.Settings.Trees;
 using OxDb.SharedGame.RpgLevels.Settings;
 using OxDb.SharedGame.Spawns.Settings;
+using OxDb.SharedGame.UI.Constants;
 using OxDb.SharedGame.Units.Services;
 using OxDb.SharedGame.Units.Settings;
 using OxDb.SharedGame.Zones.Settings;
@@ -56,6 +59,9 @@ public interface IZoneGenService : IInitializable
     Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token);
 
     string LoadedMapId { get; set; }
+
+
+    void ExitMMOMap();
 }
 
 public class ZoneGenService : IZoneGenService, IGameTokenService
@@ -70,6 +76,11 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
     protected IClientGameState _gs;
     protected IClientRandom _rand;
     protected IMapGenData _md;
+    private IRealtimeNetworkService _realtimeNetworkService = null;
+    private IMapTerrainManager _mapManager = null;
+    private IClientMapObjectManager _objectManager = null;
+    protected IPlayerManager _playerManager = null;
+    protected IAwaitableService _awaitableService = null;
 
     public string LoadedMapId { get; set; }
     public async Task Initialize(CancellationToken token)
@@ -145,7 +156,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
     public Location FindMapLocation(int cx, int cz, float borderSize)
     {
-        if (_md.locationGrid == null)
+        if (_md.LocationGrid == null)
         {
             return null;
         }
@@ -170,7 +181,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
                     continue;
                 }
 
-                List<Location> list = _md.locationGrid[x, z];
+                List<Location> list = _md.LocationGrid[x, z];
                 if (list == null)
                 {
                     continue;
@@ -788,6 +799,30 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         name += zoneName;
 
         return name;
+    }
+
+
+    public void ExitMap()
+    {
+        _logService.Info("Exiting Map");
+        ExitMMOMap();
+        _dispatcher.Dispatch(new CloseAllScreens());
+        _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
+        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
+    }
+
+    public void ExitMMOMap()
+    {
+        CancelMapToken();
+        _playerManager.SetUnit(null);
+        _realtimeNetworkService.CloseClient();
+        _mapManager.Clear();
+        _objectManager.Reset();
+        LoadedMapId = null;
+        _mapProvider.SetMap(null);
+        _mapProvider.SetSpawns(null);
+        _gs.ch = null;
+
     }
 }
 

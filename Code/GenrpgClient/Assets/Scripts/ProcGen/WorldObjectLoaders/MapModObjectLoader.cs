@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MapModObjectLoader : BaseMapObjectLoader
+public class MapModObjectLoader : BaseCrawlerMapObjectLoader
 {
     public override long HelperKey => EntityTypes.MapMod;
     protected override string GetLayerName() { return LayerNames.ObjectLayer; }

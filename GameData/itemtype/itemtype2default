@@ -3,54 +3,11 @@
   "ParentId": "default",
   "IdKey": 2,
   "Name": "Shoulder",
-  "Desc": "",
   "Icon": "Shoulders",
   "Art": "Shoulders",
-  "MinVal": 2,
-  "MaxVal": 2,
+  "Armor": 2,
   "EquipSlotId": 3,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Shoulderguards",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Pauldrons",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Shoulders",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Spaulders",
-      "Desc": ""
-    },
-    {
-      "Weight": 299.0,
-      "Name": "Mantle",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Amice",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Pads",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Epaulets",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Shoulderguards;Pauldrons;Shoulders;Spaulders;Mantle;Amice;Pads;Epaulets"
 }

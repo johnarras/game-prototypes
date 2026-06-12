@@ -23,19 +23,76 @@ using UnityEngine;
 
 namespace RunBuilds
 {
+
+    public class GameModeBuildData
+    {
+        public EGameModes GameMode;
+        public string ProductName;
+    }
+
+    public class CloudBuildArgs
+    {
+        public bool clean { get; set; }
+        public int delay { get; set; }
+        public string commit { get; set; }
+        public string scmBranch { get; set; }
+        public Dictionary<string, string> env { get; set; } = new Dictionary<string, string>();
+        public string scriptDefineSymbols { get; set; }
+        public string comment { get; set; }
+    }
+
+
+    public class BuildPlayerArgs
+    {
+        public string Env;
+        public string GameModeStr;
+        public string PlatformName;
+        public string LogalyticsConnectionString;
+        public ClientPlayerFlags Flags;
+    }
+
+
     public class PlayerBuilder
     {
 
-        public static async Awaitable BuildWithArgs(string env, string gameModeStr, string platformName,
-            bool selfContainedClient, bool exportGameData, bool encryptExportedData,
-            bool isCloudBuild, bool developmentBuild, string logalyticsConnectionString)
+
+        private static List<GameModeBuildData> GetGameModeData()
         {
+            List<GameModeBuildData> gameModeData = new List<GameModeBuildData>();
+
+            gameModeData.Add(new GameModeBuildData()
+            {
+                GameMode = EGameModes.Crawler,
+                ProductName = "The Mighty Wizard's Tale",
+            });
+
+
+            gameModeData.Add(new GameModeBuildData()
+            {
+                GameMode = EGameModes.Trader,
+                ProductName = "Manugou Ventures",
+            });
+
+
+
+            gameModeData.Add(new GameModeBuildData()
+            {
+                GameMode = EGameModes.MMO,
+                ProductName = "Genrpg",
+            });
+
+            return gameModeData;
+        }
+
+        public static async Awaitable BuildWithArgs(BuildPlayerArgs args)
+        {
+
+
             try
             {
-                Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName,
-                    selfContainedClient, exportGameData, encryptExportedData, developmentBuild, logalyticsConnectionString);
+                Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(args);
 
-                if (isCloudBuild)
+                if (args.Flags.HasFlag(ClientPlayerFlags.IsCouldBuild))
                 {
                     await CloudBuildWithEnvVars(dict);
                     // Send dict to Unity to set env vars
@@ -43,6 +100,7 @@ namespace RunBuilds
                 }
                 else // These should just use environment variables set in the above.
                 {
+                    ClearBuildEnvironmentVariables();
                     SetBuildEnvironmentVariables(dict);
                     await PreExport();
                     await LocalBuildPlayer();
@@ -54,17 +112,6 @@ namespace RunBuilds
             {
                 Debug.LogException(e);
             }
-        }
-
-        public class CloudBuildArgs
-        {
-            public bool clean { get; set; }
-            public int delay { get; set; }
-            public string commit { get; set; }
-            public string scmBranch { get; set; }
-            public Dictionary<string, string> env { get; set; } = new Dictionary<string, string>();
-            public string scriptDefineSymbols { get; set; }
-            public string comment { get; set; }
         }
 
         private static async Awaitable<string> SendDevOpsRequest(string requestSuffix, HttpMethod method, string target, object requestData)
@@ -115,53 +162,60 @@ namespace RunBuilds
 
 
 
-        public static Dictionary<string, string> SetupEnvironmentVariableDictionary(string env, string gameModeStr, string platformName,
-            bool selfContainedClient, bool exportGameData, bool encryptExportedData, bool developmentBuild, string logalyticsConnectionString)
+        public static Dictionary<string, string> SetupEnvironmentVariableDictionary(BuildPlayerArgs args)
         {
 
             Dictionary<string, string> retval = new Dictionary<string, string>();
 
             List<PlatformBuildData> buildDataList = BuildConfiguration.GetbuildConfigs();
 
-            PlatformBuildData buildData = buildDataList.FirstOrDefault(x => x.ClientPlatform == platformName);
+            PlatformBuildData buildData = buildDataList.FirstOrDefault(x => x.ClientPlatform == args.PlatformName);
 
             // Feel free to change this to something else you use in your jenkins or whatever build.
             Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
 
-            SetDictionaryValue(ClientBuildVars.ENV, env, retval);
-            SetDictionaryValue(ClientBuildVars.SELF_CONTAINED_CLIENT, selfContainedClient.ToString(), retval);
-            SetDictionaryValue(ClientBuildVars.EXPORT_GAME_DATA, exportGameData.ToString(), retval);
-            SetDictionaryValue(ClientBuildVars.ENCRYPT_EXPORTED_DATA, encryptExportedData.ToString(), retval);
-            SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, logalyticsConnectionString, retval);
-            SetDictionaryValue(ClientBuildVars.GAME_MODE, gameModeStr, retval);
+            SetDictionaryValue(ClientBuildVars.ENV, args.Env, retval);
+            SetDictionaryValue(ClientBuildVars.BUILD_FLAGS, ((int)args.Flags).ToString(), retval);
+
+            SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, args.LogalyticsConnectionString, retval);
+            SetDictionaryValue(ClientBuildVars.GAME_MODE, args.GameModeStr, retval);
             SetDictionaryValue(ClientBuildVars.WEB_SERVER_URL, kvDict[AppConfigKeys.WebServerURL], retval);
             SetDictionaryValue(ClientBuildVars.CONTENT_ROOT, kvDict[AppConfigKeys.ContentRoot], retval);
             SetDictionaryValue(ClientBuildVars.IOS_SECRET, kvDict[AppConfigKeys.IOSSecret], retval);
             SetDictionaryValue(ClientBuildVars.GOOGLE_SECRET, kvDict[AppConfigKeys.GooglePlaySecret], retval);
             SetDictionaryValue(ClientBuildVars.PACKAGE_NAME, kvDict[AppConfigKeys.PackageName], retval);
-            SetDictionaryValue(ClientBuildVars.WORLDS_ENV, GetEnvName(kvDict[EDataCategories.Worlds.ToString() + AppConfigKeys.EnvSuffix], env), retval);
-            SetDictionaryValue(ClientBuildVars.ASSETS_ENV, GetEnvName(kvDict[EDataCategories.Assets.ToString() + AppConfigKeys.EnvSuffix], env), retval);
+            SetDictionaryValue(ClientBuildVars.WORLDS_ENV, GetEnvName(kvDict[EDataCategories.Worlds.ToString() + AppConfigKeys.EnvSuffix], args.Env), retval);
+            SetDictionaryValue(ClientBuildVars.ASSETS_ENV, GetEnvName(kvDict[EDataCategories.Assets.ToString() + AppConfigKeys.EnvSuffix], args.Env), retval);
+
+            SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_NAME, kvDict[AppConfigKeys.AndroidKeystoreName], retval);
+            SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_PASS, kvDict[AppConfigKeys.AndroidKeystorePass], retval);
+            SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_NAME, kvDict[AppConfigKeys.AndroidKeyAliasName], retval);
+            SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_PASS, kvDict[AppConfigKeys.AndroidKeyAliasPass], retval);
 
             ClientConfig config = ScriptableObjectUtils.LoadDefault<ClientConfig>();
+
             SetDictionaryValue(ClientBuildVars.OLD_GAME_MODE, config.GameMode.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.OLD_ENV, config.Env, retval);
-            SetDictionaryValue(ClientBuildVars.OLD_SELF_CONTAINED_CLIENT, config.SelfContainedClient.ToString(), retval);
-            SetDictionaryValue(ClientBuildVars.OLD_EXPORT_GAME_DATA, config.ExportGameData.ToString(), retval);
-            if (!String.IsNullOrEmpty(config.LogalyticsConnectionString) && string.IsNullOrEmpty(logalyticsConnectionString))
+            SetDictionaryValue(ClientBuildVars.OLD_BUILD_FLAGS, ((int)(config.Flags)).ToString(), retval);
+
+
+            if (!String.IsNullOrEmpty(config.LogalyticsConnectionString) && string.IsNullOrEmpty(args.LogalyticsConnectionString))
             {
                 SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, config.LogalyticsConnectionString, retval);
             }
-            SetDictionaryValue(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA, config.EncryptExportedData.ToString(), retval);
-            SetDictionaryValue(ClientBuildVars.IS_DEVELOPMENT_BUILD, developmentBuild.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.NAMED_BUILD_TARGET, buildData.NamedTarget.TargetName, retval);
             SetDictionaryValue(ClientBuildVars.BUILD_TARGET, buildData.Target.ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.BUILD_TARGET_GROUP, buildData.NamedTarget.ToBuildTargetGroup().ToString(), retval);
             SetDictionaryValue(ClientBuildVars.CLIENT_PLATFORM, buildData.ClientPlatform, retval);
-            SetDictionaryValue(ClientBuildVars.APPLICATION_SUFFIX, buildData.ApplicationSuffix, retval);
+
+            string applicationSuffix = args.Flags.HasFlag(ClientPlayerFlags.BuildAppBundle) ? buildData.BundleApplicationSuffix : buildData.ApplicationSuffix;
+
+            SetDictionaryValue(ClientBuildVars.APPLICATION_SUFFIX, applicationSuffix, retval);
             SetDictionaryValue(ClientBuildVars.BUNDLE_OUTPUT_PATH, buildData.GetBundleOutputPath(), retval);
 
             BuildOptions options = BuildOptions.CompressWithLz4HC;
 
-            if (developmentBuild)
+            if (args.Flags.HasFlag(ClientPlayerFlags.DevelopmentBuild))
             {
                 options |= BuildOptions.Development;
             }
@@ -169,9 +223,9 @@ namespace RunBuilds
             SetDictionaryValue(ClientBuildVars.UNITY_BUILD_OPTIONS, options.ToString(), retval);
 
 
-            string lowerEnv = env;
+            string lowerEnv = args.Env;
 
-            string lowerGameModeStr = gameModeStr.ToLower();
+            string lowerGameModeStr = args.GameModeStr.ToLower();
             string dataPath = Application.dataPath;
             string streamingAssetsPath = Application.streamingAssetsPath;
 
@@ -232,7 +286,6 @@ namespace RunBuilds
             {
                 string comment = GetVar(ClientBuildVars.UNITY_BUILD_COMMENT);
 
-                Debug.Log("Comment: " + comment);
                 if (!String.IsNullOrEmpty(comment))
                 {
                     try
@@ -260,11 +313,13 @@ namespace RunBuilds
 
             string gameModeStr = GetVar(ClientBuildVars.GAME_MODE);
             string lowerGameModeStr = gameModeStr.ToLower();
-            bool selfContainedClient = bool.Parse(GetVar(ClientBuildVars.SELF_CONTAINED_CLIENT));
+
             ClientConfig config = ScriptableObjectUtils.LoadDefault<ClientConfig>();
 
             config.Env = GetVar(ClientBuildVars.ENV);
-            config.SelfContainedClient = bool.Parse(GetVar(ClientBuildVars.SELF_CONTAINED_CLIENT));
+
+            config.Flags = (ClientPlayerFlags)Enum.Parse(typeof(ClientPlayerFlags), GetVar(ClientBuildVars.BUILD_FLAGS));
+
             config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.GAME_MODE));
             config.BaseWebEndpoint = GetVar(ClientBuildVars.WEB_SERVER_URL);
             config.ContentEndpoint = GetVar(ClientBuildVars.CONTENT_ROOT);
@@ -287,6 +342,20 @@ namespace RunBuilds
                 Directory.Delete(streamingAssetsPath, true);
             }
 
+            if (namedTarget == NamedBuildTarget.Android)
+            {
+                PlayerSettings.Android.useCustomKeystore = true;
+                PlayerSettings.Android.keystoreName = GetVar(ClientBuildVars.ANDROID_KEYSTORE_NAME);
+                PlayerSettings.Android.keystorePass = GetVar(ClientBuildVars.ANDROID_KEYSTORE_PASS);
+                PlayerSettings.Android.keyaliasName = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_NAME);
+                PlayerSettings.Android.keyaliasPass = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_PASS);
+                EditorUserBuildSettings.buildAppBundle = config.Flags.HasFlag(ClientPlayerFlags.BuildAppBundle);
+            }
+
+
+
+            GameModeBuildData gameModeData = GetGameModeData().FirstOrDefault(x => x.GameMode == config.GameMode);
+            PlayerSettings.productName = gameModeData.ProductName;
 
             PlayerSettings.SetApplicationIdentifier(namedTarget, packageName);
 
@@ -314,7 +383,7 @@ namespace RunBuilds
                 {
                     File.Copy(origFilename, "Assets/Resources/Config/" + newFilename, true);
                 }
-                else if (selfContainedClient || bversion.IsLocal)
+                else if (config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient) || bversion.IsLocal)
                 {
                     if (!Directory.Exists(streamingAssetsPath))
                     {
@@ -336,7 +405,6 @@ namespace RunBuilds
         public static async Awaitable LocalBuildPlayer()
         {
             await Task.CompletedTask;
-            Debug.Log("LocalBuild 1");
             List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
 
             for (int s = 0; s < EditorBuildSettings.scenes.Length; s++)
@@ -355,19 +423,43 @@ namespace RunBuilds
             {
                 Debug.Log("LocalBuild Scene: " + sceneName);
             }
-            if (Enum.TryParse<BuildTarget>(GetVar(ClientBuildVars.BUILD_TARGET), out BuildTarget targ))
-            {
 
-                BuildOptions buildOptions = (BuildOptions)Enum.Parse(typeof(BuildOptions), GetVar(ClientBuildVars.UNITY_BUILD_OPTIONS));
-                BuildReport report = BuildPipeline.BuildPlayer(sceneArray, GetVar(ClientBuildVars.UNITY_OUTPUT_BUILD_PATH), targ, buildOptions);
-                Debug.Log("ErrorSummary: " + report.SummarizeErrors());
-            }
-            else
+            if (!Enum.TryParse<BuildTarget>(GetVar(ClientBuildVars.BUILD_TARGET), out BuildTarget buildTarget))
             {
-                Debug.LogError("Failed to find BuildTarget: " + GetVar(ClientBuildVars.BUILD_TARGET));
+                Debug.Log("Invalid BuildTarget: " + GetVar(ClientBuildVars.BUILD_TARGET));
+                return;
             }
 
-            Debug.Log("LocalBuild 3");
+            if (!Enum.TryParse<BuildTargetGroup>(GetVar(ClientBuildVars.NAMED_BUILD_TARGET), out BuildTargetGroup targetGroup))
+            {
+                Debug.Log("Invalid BuildTargetGroup: " + GetVar(ClientBuildVars.NAMED_BUILD_TARGET));
+                return;
+            }
+
+            BuildOptions buildOptions = (BuildOptions)Enum.Parse(typeof(BuildOptions), GetVar(ClientBuildVars.UNITY_BUILD_OPTIONS));
+
+            string outputPath = GetVar(ClientBuildVars.UNITY_OUTPUT_BUILD_PATH);
+
+            if (string.IsNullOrEmpty(outputPath))
+            {
+                Debug.Log("Missing executable output path.");
+                return;
+            }
+
+            BuildPlayerOptions opts = new BuildPlayerOptions();
+
+            opts.scenes = sceneArray;
+            opts.locationPathName = outputPath;
+            opts.target = BuildTarget.StandaloneWindows64;
+            opts.targetGroup = targetGroup;
+            opts.options = buildOptions;
+
+            BuildReport report = BuildPipeline.BuildPlayer(opts);
+            Debug.Log("ErrorSummary: " + report.SummarizeErrors());
+
+
+
+            Debug.Log("LocalBuild Complete");
         }
 
 
@@ -383,14 +475,11 @@ namespace RunBuilds
             string gameModeStr = GetVar(ClientBuildVars.GAME_MODE);
             string lowerGameModeStr = gameModeStr.ToLower();
             string clientPlatform = GetVar(ClientBuildVars.CLIENT_PLATFORM);
-            bool selfContainedClient = bool.Parse(GetVar(ClientBuildVars.SELF_CONTAINED_CLIENT));
 
             ClientConfig config = ScriptableObjectUtils.LoadDefault<ClientConfig>();
 
             config.Env = GetVar(ClientBuildVars.OLD_ENV);
-            config.SelfContainedClient = bool.Parse(GetVar(ClientBuildVars.OLD_SELF_CONTAINED_CLIENT));
-            config.ExportGameData = bool.Parse(GetVar(ClientBuildVars.OLD_EXPORT_GAME_DATA));
-            config.EncryptExportedData = bool.Parse(GetVar(ClientBuildVars.OLD_ENCRYPT_EXPORTED_DATA));
+
             config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.OLD_GAME_MODE));
             config.LogalyticsConnectionString = "";
             EditorUtility.SetDirty(config);
@@ -435,7 +524,7 @@ namespace RunBuilds
 
             Debug.Log("Version: " + version);
 
-            Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {selfContainedClient}");
+            Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient)}");
 
             await Task.CompletedTask;
         }
@@ -461,14 +550,21 @@ namespace RunBuilds
             string assetEnv = config.AssetsEnv ?? env;
             string worldsEnv = config.WorldsEnv ?? env;
             string gameModeStr = config.GameMode.ToString();
-            bool selfContainedClient = config.SelfContainedClient;
-            bool exportGameData = config.ExportGameData;
-            bool encryptExportedData = config.EncryptExportedData;
-            string logalyticsConnectionString = config.LogalyticsConnectionString;  
+            string logalyticsConnectionString = config.LogalyticsConnectionString;
             string platformName = ClientPlatformNames.Win;
 
-            Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(env, gameModeStr, platformName, selfContainedClient,
-                exportGameData, encryptExportedData, false, logalyticsConnectionString);
+            BuildPlayerArgs args = new BuildPlayerArgs()
+            {
+                GameModeStr = gameModeStr,
+                PlatformName = platformName,
+                LogalyticsConnectionString = logalyticsConnectionString,
+                Env = env,
+                Flags = config.Flags,
+            };
+
+            args.Flags &= ~ClientPlayerFlags.DevelopmentBuild;
+
+            Dictionary<string, string> dict = SetupEnvironmentVariableDictionary(args);
 
             dict[ClientBuildVars.ASSETS_ENV] = assetEnv;
             dict[ClientBuildVars.WORLDS_ENV] = worldsEnv;

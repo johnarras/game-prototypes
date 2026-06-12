@@ -99,8 +99,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 
                     if (okMelee.Count > 0)
                     {
-                        okMelee = okMelee.OrderBy(x => (x.MinVal + x.MaxVal)).ToList();
-
+                        okMelee = okMelee.OrderBy(x => (x.MinDam + x.MaxDam)).ToList();
 
                         ItemGenArgs igd = new ItemGenArgs()
                         {
@@ -122,7 +121,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
                     }
                     if (okRanged.Count > 0)
                     {
-                        okRanged = okRanged.OrderBy(x => (x.MinVal + x.MaxVal)).ToList();
+                        okRanged = okRanged.OrderBy(x => (x.MinDam + x.MaxDam)).ToList();
 
                         ItemGenArgs igd = new ItemGenArgs()
                         {

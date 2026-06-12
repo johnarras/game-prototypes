@@ -2,69 +2,12 @@
   "Id": "itemtype11default",
   "ParentId": "default",
   "IdKey": 11,
-  "Name": "Offhand",
-  "Desc": "",
-  "Icon": "Offhand",
-  "Art": "Offhand",
-  "EquipSlotId": 16,
+  "Name": "Ring",
+  "Icon": "Ring",
+  "Art": "Ring",
+  "Resist": 2,
+  "EquipSlotId": 11,
   "IconCount": 3,
-  "Flags": 8,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Stone",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Tome",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Focus",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Crystal",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Libram",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Lexicon",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Book",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Fetish",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Orb",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Cane",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Rod",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Ring;Band;Circle;Hoop;Loop"
 }

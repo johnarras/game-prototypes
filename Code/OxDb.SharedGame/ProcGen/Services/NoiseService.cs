@@ -1,7 +1,6 @@
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.ProcGen.Services
 {

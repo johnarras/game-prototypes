@@ -25,6 +25,7 @@ namespace OxDb.ServerCore.DataStores.Services
         Task<bool> TransactionSave<T>(List<T> list) where T : class, IStringId;
         void QueueTransactionSave<T>(List<T> list, string queueId) where T : class, IStringId;
 
+        IRepository FindRepo(Type t);
 
     }
 

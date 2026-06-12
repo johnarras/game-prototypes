@@ -4,6 +4,7 @@ using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -30,7 +31,6 @@ public class PatchLoadData
     public int StartY = 0;
     public int gx = 0;
     public int gy = 0;
-
 
     public IMapTerrainManager terrManager;
 
@@ -107,7 +107,8 @@ public class MapTerrainManager : IMapTerrainManager
 
     // Used to move world objects out of the way when we enter a dungeon.
 
-    private Dictionary<long, BaseObjectLoader> _fixedLoaders = new Dictionary<long, BaseObjectLoader>();
+
+    private SetupDictionaryContainer<long, IMMOMapObjectLoader> _mapObjectLoaders = new SetupDictionaryContainer<long, IMMOMapObjectLoader>();
 
     private Dictionary<string, TerrainTextureData> _terrainTextureCache = new Dictionary<string, TerrainTextureData>();
 
@@ -143,7 +144,6 @@ public class MapTerrainManager : IMapTerrainManager
         _updateService.AddTokenUpdate(this, TerrainUpdate, UpdateTypes.Regular, token);
         _prototypeParent = _singletonContainer.GetAssetParent<ObjectPrototype>();
         _textureListParent = _singletonContainer.GetAssetParent<TextureList>();
-        SetupLoaders();
 
         await Task.CompletedTask;
     }
@@ -328,26 +328,13 @@ public class MapTerrainManager : IMapTerrainManager
         }
     }
 
-    public BaseObjectLoader GetLoader(long mapObjectOffset)
+    public IMMOMapObjectLoader GetLoader(long entityTypeId)
     {
-        return _fixedLoaders[mapObjectOffset / MapConstants.MapObjectOffsetMult];
-    }
-
-
-    private void SetupLoaders()
-    {
-        _fixedLoaders = new Dictionary<long, BaseObjectLoader>();
-        _fixedLoaders[MapConstants.TreeObjectOffset / MapConstants.MapObjectOffsetMult] = new TreeObjectLoader();
-        _fixedLoaders[MapConstants.RockObjectOffset / MapConstants.MapObjectOffsetMult] = new RockObjectLoader();
-        _fixedLoaders[MapConstants.FenceObjectOffset / MapConstants.MapObjectOffsetMult] = new FenceObjectLoader();
-        _fixedLoaders[MapConstants.BridgeObjectOffset / MapConstants.MapObjectOffsetMult] = new BridgeObjectLoader();
-        _fixedLoaders[MapConstants.ClutterObjectOffset / MapConstants.MapObjectOffsetMult] = new ClutterObjectLoader();
-        _fixedLoaders[MapConstants.WaterObjectOffset / MapConstants.MapObjectOffsetMult] = new WaterObjectLoader();
-
-        foreach (BaseObjectLoader loader in _fixedLoaders.Values)
+        if (_mapObjectLoaders.TryGetValue(entityTypeId, out IMMOMapObjectLoader loader))
         {
-            _gs.loc.Resolve(loader);
+            return loader;
         }
+        return null;
     }
 
     void TerrainUpdate(CancellationToken token)
@@ -648,7 +635,8 @@ public class MapTerrainManager : IMapTerrainManager
                 patch.subZoneIds = null;
                 patch.mainZoneIds = null;
                 patch.baseAlphas = null;
-                patch.mapObjects = null;
+                patch.entityIds = null;
+                patch.entityTypeIds = null;
                 patch.FullZoneIdList = null;
                 patch.MainZoneIdList = null;
                 patch.parentObject = null;
@@ -827,8 +815,6 @@ public class MapTerrainManager : IMapTerrainManager
             loadData.protoParent = _prototypeParent;
         }
 
-
-
         loadData.objectProtos = new List<ObjectPrototype>();
         loadData.treeInstances = new List<TreeInstance>();
 
@@ -845,9 +831,14 @@ public class MapTerrainManager : IMapTerrainManager
 
         List<ZoneType> zoneTypeCache = new List<ZoneType>();
 
-        if (loadData.patch.mapObjects == null)
+        if (loadData.patch.entityTypeIds == null)
         {
-            loadData.patch.mapObjects = new uint[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+            loadData.patch.entityTypeIds = new byte[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+        }
+
+        if (loadData.patch.entityIds == null)
+        {
+            loadData.patch.entityIds = new byte[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
         }
 
         int addTimes = 0;
@@ -860,12 +851,14 @@ public class MapTerrainManager : IMapTerrainManager
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
             {
-                if (loadData.patch.mapObjects[x, y] == 0)
+
+                if (loadData.patch.entityTypeIds[x, y] == 0)
                 {
                     continue;
                 }
 
-                uint worldObjectValue = (uint)loadData.patch.mapObjects[x, y];
+                int entityTypeId = loadData.patch.entityTypeIds[x, y];
+                int entityId = loadData.patch.entityIds[x, y];
 
                 if (loadData.patch.heights == null || loadData.patch.heights[y, x] < MapConstants.StartHeightPercent * 0.75f)
                 {
@@ -909,13 +902,15 @@ public class MapTerrainManager : IMapTerrainManager
                     continue;
                 }
 
-                int loaderIndex = (int)(worldObjectValue % (1 << 16)) / MapConstants.MapObjectOffsetMult;
+                IMMOMapObjectLoader loader = GetLoader(entityTypeId);
 
-                if (!_fixedLoaders.ContainsKey(loaderIndex))
+
+                if (loader == null)
                 {
                     continue;
                 }
-                _fixedLoaders[loaderIndex].LoadObject(loadData, worldObjectValue, x, y, currZone, currZoneType, token);
+
+                loader.LoadObject(loadData, entityId, x, y, currZone, currZoneType, token);
 
                 addTimes++;
                 if (addTimes >= LoadObjectCountBeforePause)

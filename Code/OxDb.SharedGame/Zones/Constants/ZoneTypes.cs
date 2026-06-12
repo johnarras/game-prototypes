@@ -17,14 +17,8 @@ namespace OxDb.SharedGame.Zones.Constants
         public const long PointOfInterest = 13;
         public const long City = 14;
         public const long Dungeon = 15;
-        public const long Cave = 16;
-        public const long Tower = 17;
-        public const long Lava = 18;
-        public const long Arcane = 19;
-        public const long Unholy = 20;
-        public const long Natural = 21;
-        public const long Outdoors = 22;
-        public const long Stars = 23;
+        public const long Outdoors = 16;
+        public const long Stars = 17;
     }
 }
 

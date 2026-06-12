@@ -458,7 +458,7 @@ namespace OxDb.DataUtils.Services.EditorData
                     InsertOneModel<BsonDocument> insertOp = new InsertOneModel<BsonDocument>(doc);
                     bulkOps.Add(insertOp);
 
-                    if (bulkOps.Count > 100)
+                    if (bulkOps.Count >= 100)
                     {
                         bulkOps = new List<WriteModel<BsonDocument>>();
                         bulkOpsList.Add(bulkOps);
@@ -481,7 +481,7 @@ namespace OxDb.DataUtils.Services.EditorData
                         BulkWriteOptions options = new BulkWriteOptions { IsOrdered = false };
                         await collection.BulkWriteAsync(bulkOpSet, options);
 
-                        await Task.Delay(500);
+                        await Task.Delay(1000);
                     }
                 }
             }

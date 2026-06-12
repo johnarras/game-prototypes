@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace OxDb.SharedCore.Utils
 {
 
-    public interface IReflectionService : IInjectable
+    public interface IReflectionService : IInjectable, IExplicitInject
     {
         bool MemberIsMultiType(MemberInfo mem);
         bool IsMultiType(Type type);
@@ -65,6 +65,8 @@ namespace OxDb.SharedCore.Utils
         float GetObjectFloat(object obj, string name);
         double GetObjectDouble(object obj, string name);
         object DefaultConstructor(Type type);
+
+        bool IsEnumerableType(Type t);
     }
 
     public class ReflectionService : IReflectionService
@@ -72,10 +74,9 @@ namespace OxDb.SharedCore.Utils
 
         protected IEntityService _entityService = null;
         protected ITextSerializer _serializer = null;
-        protected IGameData _gameData = null;
 
 
-        private ILogService _logService = null;
+        private ILogService _logService { get; set; }
 
         private List<Assembly> _searchAssemblies = new List<Assembly>();
 
@@ -86,8 +87,9 @@ namespace OxDb.SharedCore.Utils
         }
 
         public static int InstanceCount = 0;
-        public ReflectionService()
+        public ReflectionService(ILogService logService)
         {
+            _logService = logService;
             ++InstanceCount;
         }
 
@@ -1943,19 +1945,15 @@ namespace OxDb.SharedCore.Utils
         {
 
             List<Assembly> addAssemblies = new List<Assembly>();
-            addAssemblies.Add(Assembly.GetExecutingAssembly());
             addAssemblies.Add(typeAssembly);
 
 
-            Assembly[] allAssemblies = null;
+            List<Assembly> allAssemblies = new List<Assembly>();
+            allAssemblies.Add(typeAssembly);
             foreach (Assembly currAssembly in addAssemblies)
             {
                 if (!_searchAssemblies.Contains(currAssembly))
                 {
-                    if (allAssemblies == null)
-                    {
-                        allAssemblies = GetAllAssemblies();
-                    }
                     _searchAssemblies.Add(currAssembly);
 
                     AssemblyName[] dependencies = currAssembly.GetReferencedAssemblies();
@@ -1994,13 +1992,12 @@ namespace OxDb.SharedCore.Utils
                         else
                         {
                             asm = Assembly.Load(aname);
+                            allAssemblies.Add(asm);
                             GetSearchAssemblies(asm);
                         }
                     }
                 }
             }
-
-
             return _searchAssemblies;
         }
 
@@ -2015,7 +2012,6 @@ namespace OxDb.SharedCore.Utils
             {
                 return retval;
             }
-
 
             List<Assembly> assemblies = GetSearchAssemblies(interfaceType.Assembly);
 
@@ -2216,6 +2212,15 @@ namespace OxDb.SharedCore.Utils
             return val;
         }
 
+        public bool IsEnumerableType(Type type)
+        {
+            if (type != typeof(string) && typeof(IEnumerable).IsAssignableFrom(type))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
 

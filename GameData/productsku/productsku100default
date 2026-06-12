@@ -2,8 +2,9 @@
   "Id": "productsku100default",
   "ParentId": "default",
   "IdKey": 100,
-  "Name": "$99.99 Product",
+  "Name": "Trader's Bundle C",
+  "Desc": "Resources to enhance your gameplay.",
   "DollarPrice": 99.99,
-  "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle100",
-  "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle100"
+  "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_100",
+  "AppleProductId": "com.oxdeadbeefgames.trader.bundle_100"
 }

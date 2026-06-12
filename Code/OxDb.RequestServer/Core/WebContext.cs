@@ -20,11 +20,17 @@ namespace OxDb.RequestServer.Core
     public class WebContext : ServerGameState, IDisposable, IUnitDataLookup, IWebContext, IRandomContainer
     {
 
+        public Version ClientVersion => _clientVersion;
+        private Version _clientVersion;
+
+        public string ClientPlatform => _clientPlatform;
+        private string _clientPlatform;
+
         public string GameUserId => _gameUserId;
         private string _gameUserId { get; set; }
 
-        private long _existingData { get; set; }
         public long ExistingData => _existingData;
+        private long _existingData { get; set; }
 
         public IRandom Rand { get; set; } = new MyRandom();
 
@@ -114,7 +120,7 @@ namespace OxDb.RequestServer.Core
             _gameUserId = gameUserId;
         }
 
-        public void SetExistingData(string existingDataString)
+        public void SetCurrentData(string existingDataString, string clientVersion, string clientPlatform)
         {
             if (Int64.TryParse(existingDataString, out long value))
             {
@@ -124,6 +130,9 @@ namespace OxDb.RequestServer.Core
             {
                 throw new Exception("Invalid Existing Data");
             }
+
+            _clientPlatform = ClientPlatform;
+            _clientVersion = new Version(clientVersion);
         }
 
         public void Set(IUnitData doc)
@@ -140,7 +149,7 @@ namespace OxDb.RequestServer.Core
             }
 
 
-            ArrayPoolBufferWriter<byte> buffer = _binarySerializer.GetBuffer();
+            ArrayPoolBufferWriter<byte> buffer = _binarySerializer.RentBuffer();
             _binarySerializer.BinarySerialize(doc, buffer);
             _unitData[doc.GetType()] = new UnitDataSnapShotMustDispose(buffer, doc);
         }
@@ -212,7 +221,7 @@ namespace OxDb.RequestServer.Core
             List<IUniquePersonalUserData> partitionedData = new List<IUniquePersonalUserData>();
             List<IUnitData> otherData = new List<IUnitData>();
 
-            ArrayPoolBufferWriter<byte> tempBufferMustDispose = _binarySerializer.GetBuffer();
+            ArrayPoolBufferWriter<byte> tempBufferMustDispose = _binarySerializer.RentBuffer();
             foreach (UnitDataSnapShotMustDispose snapshot in _unitData.Values)
             {
                 _binarySerializer.BinarySerialize(snapshot.UnitData, tempBufferMustDispose);

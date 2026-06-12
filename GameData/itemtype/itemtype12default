@@ -2,54 +2,12 @@
   "Id": "itemtype12default",
   "ParentId": "default",
   "IdKey": 12,
-  "Name": "Necklace",
-  "Desc": "",
-  "Icon": "Necklace",
-  "Art": "Necklace",
-  "EquipSlotId": 2,
+  "Name": "Trinket",
+  "Icon": "Jewelry",
+  "Art": "Jewelry",
+  "Resist": 2,
+  "EquipSlotId": 13,
   "IconCount": 3,
-  "Flags": 8,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Necklace",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Choker",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Chain",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Amulet",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Pendant",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Talisman",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Collar",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Medallion",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Trinket;Gem;Book;Talisman;Insignia;Medal;Mark;Badge;Brooch;Charm;Shard;Crystal;Rune;Scarab;Memento;Bauble;Gizmo"
 }

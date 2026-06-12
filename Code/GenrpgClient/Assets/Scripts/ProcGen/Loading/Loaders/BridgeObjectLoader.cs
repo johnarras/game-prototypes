@@ -1,27 +1,30 @@
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Bridges;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
 public class BridgeObjectLoader : BaseObjectLoader
 {
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override long HelperKey => EntityTypes.Bridge;
+
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
 
-        uint upperNumber = objectId >> 16;
-        objectId = (objectId % (1 << 16)) % MapConstants.MapObjectOffsetMult;
-
-
-        float btypeId = objectId;
-        int angle = (int)(MapConstants.BridgeAngleDiv * (upperNumber & ((1 << MapConstants.BridgeHeightBitShift) - 1)));
-        float bridgeHeight = (upperNumber >> MapConstants.BridgeHeightBitShift) + MapConstants.MinLandHeight;
-
-        BridgeType bridgeType = _gameData.Get<BridgeTypeSettings>(_gs.ch).Get((int)objectId);
+        BridgeType bridgeType = _gameData.Get<BridgeTypeSettings>(_gs.ch).Get(entityId);
         if (bridgeType == null)
+        {
+            return false;
+        }
+
+        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+
+        if (extData == null)
         {
             return false;
         }
@@ -34,12 +37,12 @@ public class BridgeObjectLoader : BaseObjectLoader
         dlo.loadData = loadData;
         dlo.x = x;
         dlo.y = y;
-        dlo.finalZ = bridgeHeight;
+        dlo.finalZ = extData.Height;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
 
-        dlo.rotation = new MyPointF(0, angle, 0);
+        dlo.rotation = new MyPointF(0, extData.Angle, 0);
         dlo.AfterLoad = AfterLoadObject;
 
         _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);

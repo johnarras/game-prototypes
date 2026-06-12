@@ -165,9 +165,13 @@ namespace OxDb.MapServer.Maps
             _host = "127.0.0.1";
             _mapSize = _mapProvider.GetMap().BlockCount;
 
-            if (_config.Env != EnvNames.Local)
+            if (_config.Env != EnvNames.Local && _config.Env != EnvNames.Dev)
             {
                 _host = _config.GetConfigVal(AppConfigKeys.PublicIP);
+            }
+            else
+            {
+                _host = "127.0.0.1";
             }
             // Step 4: Setup listener
             _listener = GetListener(_host, initData.Port, initData.SerializerType);
@@ -322,9 +326,9 @@ namespace OxDb.MapServer.Maps
                 connState.conn.SendError("User does not exist");
                 return;
             }
-            if (gameAcct.SessionId != add.SessionId)
+            if (gameAcct.FullToken != add.FullToken)
             {
-                connState.conn.SendError("Invalid session token");
+                connState.conn.SendError("Invalid session token GT " + gameAcct.FullToken + " GI: " + add.FullToken);
                 return;
             }
             bool didLoad = false;

@@ -8,6 +8,7 @@ namespace OxDb.InstanceServer.Setup
     public class InstanceServerMain : BaseServer<ServerGameState, InstanceSetupService, IInstanceMessageHandler>
     {
 
+        protected override bool UseInstanceId => false;
         protected override string GetBaseServerName()
         {
             return ServerNames.InstanceManager;

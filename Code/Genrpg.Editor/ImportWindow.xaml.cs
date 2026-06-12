@@ -5,6 +5,7 @@ using OxDb.DataUtils.Importers;
 using OxDb.DataUtils.Interfaces;
 using OxDb.DataUtils.Utils;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,9 @@ namespace Genrpg.Editor
 
             string[] envWords = { "Import" };
 
-            ReflectionService reflectionService = new ReflectionService();
+            ILogService logService = initialServices.OfType<ILogService>().FirstOrDefault();
+
+            ReflectionService reflectionService = new ReflectionService(logService);
             List<Type> importTypes = reflectionService.GetTypesImplementing(typeof(IDataImporter));
 
             _importers = new List<IDataImporter>();

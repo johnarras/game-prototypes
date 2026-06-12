@@ -1,3 +1,4 @@
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Constants;
@@ -69,7 +70,7 @@ public class AddClutter : BaseZoneGenerator
             int x = RandUtils.IntRange(startx, endx, rand);
             int y = RandUtils.IntRange(starty, endy, rand);
 
-            if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
+            if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
             {
                 continue;
             }
@@ -84,16 +85,16 @@ public class AddClutter : BaseZoneGenerator
                 continue;
             }
 
-            if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
+            if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
             {
                 continue;
             }
 
-            if (_md.roadDistances[x, y] < 10)
+            if (_md.RoadDistances[x, y] < 10)
             {
                 continue;
             }
-            if (_md.alphas[x, y, TerrainTexChannels.Road] > 0)
+            if (_md.Alphas[x, y, TerrainTexChannels.Road] > 0)
             {
                 continue;
             }
@@ -147,7 +148,7 @@ public class AddClutter : BaseZoneGenerator
                         continue;
                     }
 
-                    if (_md.mapObjects[xx, yy] != 0)
+                    if (_md.CellHasObject(xx, yy))
                     {
                         continue;
                     }
@@ -211,10 +212,7 @@ public class AddClutter : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.mapObjects[px, py] == 0)
-                {
-                    _md.mapObjects[px, py] = (int)(MapConstants.ClutterObjectOffset + ctypeChosen.IdKey);
-                }
+                _md.SetEntityData(px, py, EntityTypes.Prop, ctypeChosen.IdKey);
             }
             int numToPlace = 4 + (currQuantityToPlace + 1) / 2;
             if (numToPlace < 3)

@@ -2,8 +2,9 @@
   "Id": "productsku80default",
   "ParentId": "default",
   "IdKey": 80,
-  "Name": "$79.99 Product",
+  "Name": "Trader's Bundle LXXX",
+  "Desc": "Resources to enhance your gameplay.",
   "DollarPrice": 79.99,
-  "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle080",
-  "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle080"
+  "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_080",
+  "AppleProductId": "com.oxdeadbeefgames.trader.bundle_080"
 }

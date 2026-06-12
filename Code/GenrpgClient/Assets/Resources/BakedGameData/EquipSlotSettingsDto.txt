@@ -113,7 +113,8 @@
       "Name": "MainHand",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BonusStatScale": 1.5
+      "BonusStatScale": 1.5,
+      "IsWeaponSlot": true
     },
     {
       "IdKey": 16,
@@ -122,29 +123,16 @@
       "Active": true,
       "IsCrawlerSlot": true,
       "BaseBonusStatTypeId": 31,
-      "BonusStatScale": 1.0
+      "BonusStatScale": 1.0,
+      "IsWeaponSlot": true
     },
     {
       "IdKey": 17,
       "Name": "Ranged",
       "Active": true,
       "IsCrawlerSlot": true,
-      "BonusStatScale": 1.0
-    },
-    {
-      "IdKey": 18,
-      "Name": "PoisonVial",
-      "BonusStatScale": 1.0
-    },
-    {
-      "IdKey": 19,
-      "Name": "Quiver",
-      "BonusStatScale": 1.0
-    },
-    {
-      "IdKey": 30,
-      "Name": "Max",
-      "BonusStatScale": 1.0
+      "BonusStatScale": 1.0,
+      "IsWeaponSlot": true
     }
   ],
   "Parent": {
@@ -152,5 +140,5 @@
     "Name": "EquipSlotSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-10-31T12:58:35.906Z"
+  "SaveTime": "2026-06-02T01:04:59.309Z"
 }

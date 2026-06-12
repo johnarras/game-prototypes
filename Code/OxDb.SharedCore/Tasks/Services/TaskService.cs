@@ -18,7 +18,7 @@ namespace OxDb.SharedCore.Tasks.Services
             }
             else
             {
-               Task.Factory.StartNew(() => t, TaskCreationOptions.LongRunning).ConfigureAwait(false);
+                Task.Factory.StartNew(() => t, TaskCreationOptions.LongRunning).ConfigureAwait(false);
             }
         }
     }

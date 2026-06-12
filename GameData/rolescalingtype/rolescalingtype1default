@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 1,
   "Name": "Melee",
-  "Desc": "Increases melee attacks per level.",
-  "ScalingStatTypeId": 11,
-  "ScalingEquipSlotId": 15
+  "Desc": "Increases Melee attacks per level.",
+  "ScalingStatTypeId": 11
 }

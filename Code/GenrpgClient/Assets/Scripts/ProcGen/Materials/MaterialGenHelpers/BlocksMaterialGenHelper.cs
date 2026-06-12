@@ -348,11 +348,11 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             _materialGenUtilsService.RoundEdgesNearCrevices(state);
 
-            //_materialGenUtilsService.AddColorNoise(state);
+            _materialGenUtilsService.AddColorNoise(state);
 
             _materialGenUtilsService.ApplyRecessedColors(state);
 
-            //_materialGenUtilsService.RandomizeBumpHeights(state);
+            _materialGenUtilsService.RandomizeBumpHeights(state);
 
             _materialGenUtilsService.SmoothColors(state);
 

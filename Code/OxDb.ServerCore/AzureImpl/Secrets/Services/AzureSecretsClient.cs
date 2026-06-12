@@ -21,7 +21,6 @@ namespace OxDb.ServerCore.AzureImpl.Secrets.Services
         {
             if (_secretsClient != null)
             {
-
                 try
                 {
                     KeyVaultSecret secret = await _secretsClient.GetSecretAsync(key);
@@ -36,6 +35,7 @@ namespace OxDb.ServerCore.AzureImpl.Secrets.Services
                 }
                 catch (Exception ex)
                 {
+                    _secretsClient = null;
                     Console.WriteLine("Missing Secret: " + ex.Message);
                 }
             }
@@ -69,15 +69,20 @@ namespace OxDb.ServerCore.AzureImpl.Secrets.Services
             {
                 DefaultAzureCredential cred = new DefaultAzureCredential();
                 _secretsClient = new SecretClient(new Uri(fullSecretsVaultURI), cred);
-                if (!await _secretsClient.GetPropertiesOfSecretsAsync().AnyAsync())
+                KeyVaultSecret secret = await _secretsClient.GetSecretAsync(AppConfigKeys.TestSecret);
+
+                if (secret == null)
                 {
                     _secretsClient = null;
                 }
+                return;
             }
             catch (Exception ex)
             {
                 Trace.TraceError("Could not create secrets client for " + args.ServerName + " in env " + args.Env);
+                _secretsClient = null;
             }
+            _secretsClient = null;
         }
     }
 }

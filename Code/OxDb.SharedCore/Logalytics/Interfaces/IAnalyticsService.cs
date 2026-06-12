@@ -6,7 +6,7 @@ namespace OxDb.SharedCore.Logalytics.Interfaces
 {
     public interface IAnalyticsService : IInitializable
     {
-        void TrackEvent(string eventName, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null);
+        void TrackEvent(string eventName, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void TrackUIEvent(string eventName, string screenName, string buttonName = null, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void TrackEconomyEvent(string eventName, long entityTypeId, long entityId, long quantity, long rewardSourceId, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
 

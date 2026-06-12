@@ -1,3 +1,5 @@
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Helpers;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -56,6 +58,11 @@ namespace OxDb.SharedGame.ProcGen.Settings.Rocks
     public class RockTypeSettingsLoader : ParentSettingsLoader<RockTypeSettings, RockType> { }
 
     public class RockSettingsMapper : ParentSettingsMapper<RockTypeSettings, RockType, RockTypeSettingsDto> { }
+
+    public class RockEntityHelper : BaseEntityHelper<RockTypeSettings, RockType>
+    {
+        public override long HelperKey => EntityTypes.Rock;
+    }
 
 
 }

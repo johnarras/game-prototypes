@@ -238,7 +238,7 @@ namespace Assets.Scripts.UI.Services
                 }
                 if (await _ftueService.IsComplete(_gs.ch))
                 {
-                    _analyticsService.TrackUIEvent(AnalyticsEventNames.ClickButton, screenName, StrUtils.ToSnakeCase(button.name), properties, measurements); 
+                    _analyticsService.TrackUIEvent(AnalyticsEventNames.ClickButton, screenName, StrUtils.ToSnakeCase(button.name), properties, measurements);
 
                     _dispatcher.Dispatch(new PlaySound(AudioList.ButtonClick, AudioConstants.NoVariance));
                     if (action != null)

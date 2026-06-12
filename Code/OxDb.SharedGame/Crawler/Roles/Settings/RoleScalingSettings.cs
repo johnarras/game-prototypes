@@ -12,7 +12,6 @@ namespace OxDb.SharedGame.Crawler.Roles.Settings
     public class RoleScalingTypeSettings : ParentConstantListSettings<RoleScalingType, RoleScalingTypes>
     {
         public override string Id { get; set; }
-        public long PointsPerLevel { get; set; }
 
     }
 
@@ -28,7 +27,6 @@ namespace OxDb.SharedGame.Crawler.Roles.Settings
         public string Icon { get; set; }
         public string Art { get; set; }
         public long ScalingStatTypeId { get; set; }
-        public long ScalingEquipSlotId { get; set; }
 
 
     }

@@ -2,51 +2,20 @@
   "Id": "itemtype24default",
   "ParentId": "default",
   "IdKey": 24,
-  "Name": "Dagger",
-  "Desc": "",
-  "Icon": "Dagger",
-  "Art": "Dagger",
-  "MinVal": 1,
-  "MaxVal": 6,
-  "EquipSlotId": 15,
+  "Name": "Orb",
+  "Icon": "Orb",
+  "Art": "Orb",
+  "Resist": 4,
+  "MinDam": 1,
+  "MaxDam": 4,
+  "EquipSlotId": 16,
   "IconCount": 3,
-  "Flags": 8,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Dagger",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Knife",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Carver",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Blade",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Shiv",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Fang",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Tooth",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Quantity": 100
     }
-  ]
+  ],
+  "NameString": "Stone;Focus;Crystal;Fetish;Orb;Cane;Rod"
 }

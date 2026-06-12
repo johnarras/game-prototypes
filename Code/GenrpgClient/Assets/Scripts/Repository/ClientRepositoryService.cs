@@ -21,8 +21,8 @@ namespace Assets.Scripts.Repository
     {
         Task<T> LoadObjectFromString<T>(string id) where T : class, IStringId;
         Task<object> LoadWithType(Type t, string id);
-        byte[] LoadBytes(string id);
-        void SaveBytes(string id, byte[] val, RepoSaveArgs args = null);
+        Awaitable<byte[]> LoadBytes(string id);
+        Awaitable SaveBytes(string id, byte[] val, RepoSaveArgs args = null);
         string GetPathPrefix();
     }
 
@@ -89,6 +89,7 @@ namespace Assets.Scripts.Repository
             }
             return false;
         }
+
         public async Task<T> LoadObjectFromString<T>(string id) where T : class, IStringId
         {
             ClientRepositoryCollection<T> repo = GetRepository<T>();
@@ -185,27 +186,34 @@ namespace Assets.Scripts.Repository
             return basePath + "/" + id;
         }
 
-
-        public byte[] LoadBytes(string id)
+        public async Awaitable<byte[]> LoadBytes(string id)
         {
-            string path = GetPath(id);
+            string filePath = GetPath(id);
 
             try
             {
-                if (!File.Exists(path))
+                if (!File.Exists(filePath))
                 {
                     return null;
                 }
-                return File.ReadAllBytes(path);
+
+                using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true))
+                {
+                    long length = stream.Length;
+
+                    byte[] target = new byte[length];
+                    await stream.ReadAsync(target, 0, (int)length);
+                    return target;
+                }
             }
             catch (Exception e)
             {
-                _logService.Info("Failed to read bytes: " + " " + path + " " + e.Message);
+                _logService.Info("Failed to read bytes: " + " " + filePath + " " + e.Message);
             }
             return null;
         }
 
-        public void SaveBytes(string id, byte[] val, RepoSaveArgs args = null)
+        public async Awaitable SaveBytes(string id, byte[] val, RepoSaveArgs args = null)
         {
             if (val == null)
             {
@@ -214,7 +222,7 @@ namespace Assets.Scripts.Repository
             string path = GetPath(id);
             try
             {
-                File.WriteAllBytes(path, val);
+                await File.WriteAllBytesAsync(path, val);
             }
             catch (Exception e)
             {

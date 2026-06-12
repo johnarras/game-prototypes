@@ -75,6 +75,18 @@
       "Name": "MapMod"
     },
     {
+      "IdKey": 19,
+      "Name": "LootRank",
+      "Icon": "LootRank",
+      "Art": "LootRank"
+    },
+    {
+      "IdKey": 20,
+      "Name": "Plant",
+      "Icon": "Plant",
+      "Art": "Plant"
+    },
+    {
       "IdKey": 21,
       "Name": "Chest",
       "Desc": ""
@@ -390,6 +402,18 @@
       "Desc": "",
       "Icon": "TravelDayCurrencyBuff",
       "Art": "TravelDayCurrencyBuff"
+    },
+    {
+      "IdKey": 97,
+      "Name": "Rock",
+      "Icon": "Rock",
+      "Art": "Rock"
+    },
+    {
+      "IdKey": 98,
+      "Name": "Water",
+      "Icon": "Water",
+      "Art": "Water"
     },
     {
       "IdKey": 99,

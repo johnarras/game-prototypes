@@ -1,3 +1,4 @@
+using Genrpg.WebServer.Sessions;
 using OxDb.PlatformServer.Accounts.Services;
 using OxDb.PlatformServer.Entities;
 using OxDb.RequestServer.ClientUserRequests.Services;
@@ -48,12 +49,15 @@ namespace OxDb.RequestServer.Core
         {
             _serverSource = new CancellationTokenSource();
 
-            ServerInitArgs args = new ServerInitArgs()
+            ServerInitArgs args = new ServerInitArgs(initialServices, _serverSource.Token, null);
+            try
             {
-                Token = _serverSource.Token,
-                InitialServices = initialServices,
-            };
-            Init(args).Wait();
+                Init(args).Wait();
+            }
+            catch (Exception e)
+            {
+                _logService.Exception(e, "TopLevelInit");
+            }
         }
 
         public string GetIndexString()
@@ -69,11 +73,11 @@ namespace OxDb.RequestServer.Core
         protected override bool UseInstanceId => true;
         protected override string GetBaseServerName() { return ServerNames.Website; }
 
-        public async Task<string> HandleUserClient(WebServerRequestSet postData, string tokenUserId, string existingDataString)
+        public async Task<string> HandleUserClient(WebServerRequestSet postData, UserWebRequestClaimData claimData)
         {
             WebContext context = SetupContext();
-            context.SetExistingData(existingDataString);
-            await _gameClientWebService.HandleUserClientRequest(context, postData, tokenUserId, _token);
+            context.SetCurrentData(claimData.ExistingData, postData.ClientVersion, postData.ClientPlatform);
+            await _gameClientWebService.HandleUserClientRequest(context, postData, claimData.UserId, claimData.GameSessionId, _token);
             return PackageResponses(context);
         }
         public async Task<string> HandleRefreshToken(WebServerRequestSet postData)

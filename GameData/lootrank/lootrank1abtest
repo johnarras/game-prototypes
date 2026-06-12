@@ -1,7 +1,0 @@
-{
-  "Id": "lootrank1abtest",
-  "ParentId": "abtest",
-  "IdKey": 1,
-  "Armor": 1,
-  "CostPct": 100
-}

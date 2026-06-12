@@ -1,3 +1,5 @@
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Helpers;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -40,6 +42,11 @@ namespace OxDb.SharedGame.ProcGen.Settings.Bridges
 
     public class BridgeSettingsMapper : ParentSettingsMapper<BridgeTypeSettings, BridgeType, BridgeTypeSettingsDto> { }
 
+
+    public class BridgeEntityHelper : BaseEntityHelper<BridgeTypeSettings, BridgeType>
+    {
+        public override long HelperKey => EntityTypes.Bridge;
+    }
 
 }
 

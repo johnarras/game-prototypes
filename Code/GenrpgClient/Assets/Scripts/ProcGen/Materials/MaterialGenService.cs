@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
+﻿using Assets.Scripts.Assets.Materials;
+using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Dungeons;
 using Assets.Scripts.ProcGen.Materials.Constants;
 using Assets.Scripts.ProcGen.Materials.MaterialGenHelpers;
@@ -19,7 +20,8 @@ namespace Assets.Scripts.ProcGen.Materials
     /// </summary>
     public class GeneratedWallLooseTextureSet
     {
-        public Texture2D[] Textures { get; set; } = new Texture2D[DungeonMaterialIndexes.Max];
+        public Texture2D[] DiffuseTextures { get; set; } = new Texture2D[DungeonMaterialIndexes.Max];
+        public Texture2D[] NormalTextures { get; set; } = new Texture2D[DungeonMaterialIndexes.Max];
     }
 
     public class WallTextureGenArgs
@@ -39,6 +41,10 @@ namespace Assets.Scripts.ProcGen.Materials
         Task<GeneratedWallLooseTextureSet> GenerateTextures(WallTextureGenArgs args);
 
         Awaitable<Texture2D[]> GenerateMultipleLooseTexturesForOneMaterialIndex(WallTextureGenArgs args, int materialIndex, int repeatTimes);
+
+        Texture2D CreateGrayscaleNormalMapFromDiffuseTexture(Texture2D diffuse, bool invertGrayscale, float strength = 1.0f);
+
+        void SetNormalMap(Material mat, Texture2D normalMap);
     }
     public class MaterialGenService : IMaterialGenService
     {
@@ -46,6 +52,21 @@ namespace Assets.Scripts.ProcGen.Materials
         private ILogService _logService = null;
 
         private SetupDictionaryContainer<EMaterialGenTypes, IMaterialGenHelper> _materialGenHelpers = new SetupDictionaryContainer<EMaterialGenTypes, IMaterialGenHelper>();
+
+        public void SetNormalMap(Material mat, Texture2D normalMap)
+        {
+
+            MaterialGenSettingsData settings = ScriptableObjectUtils.LoadDefault<MaterialGenSettingsData>();
+
+
+            mat.SetFloat(MaterialUtils.BumpScalePropertyName, settings.BumpScale);
+            mat.SetFloat(MaterialUtils.SmoothnessPropertyName, settings.SmoothnessScale);
+            mat.SetColor(MaterialUtils.SpecularColorPropertyName, settings.SpecularColor);
+            mat.SetTexture(MaterialUtils.NormalMapPropertyName, normalMap);
+
+
+            mat.EnableKeyword(MaterialUtils.EnableNormalMapKeyword);
+        }
 
         public async Task<GeneratedWallLooseTextureSet> GenerateTextures(WallTextureGenArgs args)
         {
@@ -70,9 +91,14 @@ namespace Assets.Scripts.ProcGen.Materials
 
                 state.SetupFromArgs(args, prevState);
 
-                set.Textures[materialIndex] = await GenerateTexture(state);
+                Texture2D diffuseMap = await GenerateTexture(state);
 
-                prevState = state;
+                set.DiffuseTextures[materialIndex] = diffuseMap;
+
+                float frontGrayscale = state.ForegroundMain.grayscale;
+                float backGrayscale = state.BackgroundMain.grayscale;
+
+                set.NormalTextures[materialIndex] = CreateGrayscaleNormalMapFromDiffuseTexture(diffuseMap, frontGrayscale < backGrayscale);
             }
             return set;
         }
@@ -138,5 +164,65 @@ namespace Assets.Scripts.ProcGen.Materials
             }
             return null;
         }
+
+        public Texture2D CreateGrayscaleNormalMapFromDiffuseTexture(Texture2D source, bool invertGrayscale, float strength = 1.0f)
+        {
+            // Ensure the strength is clamped to a reasonable positive value
+            strength = Mathf.Max(0.0f, strength);
+
+            int width = source.width;
+            int height = source.height;
+
+            // Allocate the new texture
+            Texture2D normalMap = new Texture2D(width, height, TextureFormat.RGBA32, true);
+            Color[] sourcePixels = source.GetPixels();
+            Color[] normalPixels = new Color[sourcePixels.Length];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // Sample neighboring pixels for Sobel-like filtering (wrapping edges)
+                    float xLeft = sourcePixels[SampleIndex(x - 1, y, width, height)].grayscale;
+                    float xRight = sourcePixels[SampleIndex(x + 1, y, width, height)].grayscale;
+                    float yUp = sourcePixels[SampleIndex(x, y + 1, width, height)].grayscale;
+                    float yDown = sourcePixels[SampleIndex(x, y - 1, width, height)].grayscale;
+
+                    // Calculate horizontal and vertical gradients
+                    float xGrad = (xLeft - xRight) * strength;
+                    float yGrad = (yDown - yUp) * strength;
+
+                    // Construct the surface normal vector
+                    Vector3 normal = new Vector3(xGrad, yGrad, 1.0f).normalized;
+
+                    // Map the Vector3 components from [-1, 1] to the RGB color space [0, 1]
+                    Color pixelColor = new Color(
+                        (normal.x * 0.5f) + 0.5f,
+                        (normal.y * 0.5f) + 0.5f,
+                        (normal.z * 0.5f) + 0.5f,
+                        1.0f
+                    );
+
+                    normalPixels[y * width + x] = pixelColor;
+                }
+            }
+
+            // Apply the pixel data to the new texture
+            normalMap.SetPixels(normalPixels);
+            normalMap.Apply();
+
+            return normalMap;
+        }
+
+        /// <summary>
+        /// Helper to sample pixel arrays with edge wrapping (tiling)
+        /// </summary>
+        private int SampleIndex(int x, int y, int width, int height)
+        {
+            x = (x + width) % width;
+            y = (y + height) % height;
+            return y * width + x;
+        }
     }
 }
+

@@ -120,12 +120,7 @@ namespace OxDb.SharedGame.Riddles.Services
 
                 _lookup.ItemNames.Add(itype.Name);
 
-                if (itype.Names == null)
-                {
-                    continue;
-                }
-
-                foreach (WeightedName word in itype.Names)
+                foreach (WeightedName word in itype.GetNames())
                 {
                     string lowerword = word.Name.ToLower().Trim();
 

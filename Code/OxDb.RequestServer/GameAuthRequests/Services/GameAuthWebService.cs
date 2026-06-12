@@ -105,7 +105,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
                     AccountId = request.AccountId,
                     ProductUserId = request.GameUserId,
                     ProductId = request.ProductId,
-                    SessionId = request.SessionId,
+                    AccountSessionId = request.AccountSessionId,
                     DataBits = dataBits,
                 };
 
@@ -137,7 +137,12 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
 
                 gameAccount.ClientVersion = request.ClientVersion;
                 gameAccount.ClientPlatformName = request.ClientPlatformName;
-                gameAccount.ShareId = request.ShareId;
+
+
+                if (string.IsNullOrEmpty(gameAccount.DisplayName) || !string.IsNullOrEmpty(request.DisplayName))
+                {
+                    gameAccount.DisplayName = request.DisplayName;
+                }
 
                 CoreData coreData = await context.GetAsync<CoreData>();
                 coreData.AB.CheckTime = request.ClientGameDataSaveTime;
@@ -167,7 +172,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
                 await SetSessionData(context, response, gameAccount);
 
                 // Don't do this for anything other than the MMO game.
-                if (request.GameName == EGameModes.MMO.ToString())
+                if (GameModeUtils.IsMultiCharacterMode(request.ProductName))
                 {
                     response.CharacterStubs = await _playerDataService.LoadCharacterStubs(context.GameUserId);
                     response.MapStubs = _gameClientRequestService.GetMapStubs().Stubs;
@@ -199,22 +204,28 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
             // Used to avoid looking up stuff in a cache.
 
             string userName = acct.GameUserId;
-            string sessionId = HashUtils.NewGuid().Replace("-", "");
+            string gameSessionId = HashUtils.GetIdFromVal(BitConverter.ToInt64(_cryptoService.GetRandomBytes(8), 0));
+
+
             long endTicks = DateTime.UtcNow.AddMinutes(GameAuthConstants.SessionTokenTtlMinutes).Ticks;
 
             long existingDocuments = acct.DataBits;
 
-            string tokenData = userName + "." + sessionId + "." + endTicks + "." + existingDocuments;
+            string tokenData = userName + "." + gameSessionId + "." + endTicks + "." + existingDocuments;
 
             string secret = _tokenSecret.GetString();
 
             string hash = HashUtils.QuickHash(tokenData + "." + secret);
 
             acct.RefreshToken = HashUtils.NewGuid().ToString();
-            sessionState.SelfContainedToken = tokenData + "_" + hash;
-            sessionState.SessionId = sessionId;
+            sessionState.FullToken = tokenData + "_" + hash;
+            sessionState.GameSessionId = gameSessionId;
             sessionState.RefreshToken = acct.RefreshToken;
-            acct.SessionToken = sessionState.SelfContainedToken;
+            acct.FullToken = sessionState.FullToken;
+
+            CoreData coreData = await context.GetAsync<CoreData>();
+
+            coreData.GameSessionId = gameSessionId;
 
             await Task.CompletedTask;
 
@@ -224,7 +235,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
             // Just always make new files and save them.
 
             PublicUser publicUser = new PublicUser() { Id = gameAccount.GameUserId };
-            publicUser.Name = gameAccount.ShareId;
+            publicUser.DisplayName = gameAccount.DisplayName;
             await _repoService.Save(publicUser);
         }
 
@@ -259,6 +270,7 @@ namespace OxDb.RequestServer.GameAuthRequests.Services
             response.ServerEnv = _serverConfig.Env;
 
             context.SetGameUserId(request.GameUserId);
+
             context.AddResponse(response);
 
             await _repoService.Save(gameAcct);

@@ -60,8 +60,8 @@ public class AddDetailHeights : BaseZoneGenerator
         int wid = endx - startx;
         int hgt = endy - starty;
 
-        int awid = _md.awid;
-        int ahgt = _md.ahgt;
+        int awid = _md.Awid;
+        int ahgt = _md.Ahgt;
 
 
         MyRandom rand = new MyRandom(zone.Seed + _mapProvider.GetMap().Seed / 7);
@@ -157,7 +157,7 @@ public class AddDetailHeights : BaseZoneGenerator
 
         float[,] roadEffectPercent = _noiseService.Generate(effPers, effFreq, effAmp, 2, rand.Next(), perlinSize, perlinSize);
 
-        float[,,] alphamaps = _md.alphas;
+        float[,,] alphamaps = _md.Alphas;
 
         float roadAffectedPercent = zoneType.RoadDetailScale * 0.15f;
 
@@ -218,7 +218,7 @@ public class AddDetailHeights : BaseZoneGenerator
                 }
                 else
                 {
-                    float roadDist = _md.roadDistances[wx, wy];
+                    float roadDist = _md.RoadDistances[wx, wy];
 
 
 
@@ -263,7 +263,7 @@ public class AddDetailHeights : BaseZoneGenerator
                         for (int yy = wy - rad2; yy <= wy + rad2; yy++)
                         {
                             totalNum++;
-                            if (_md.mapZoneIds[xx, yy] != zone.IdKey)
+                            if (_md.MapZoneIds[xx, yy] != zone.IdKey)
                             {
                                 numOtherNearby++;
                                 double newDist = Math.Sqrt((xx - wx) * (xx - wx) + (yy - wy) * (yy - wy));
@@ -303,7 +303,7 @@ public class AddDetailHeights : BaseZoneGenerator
 
                 float finalHeightDiff = heightDiff * roadHeightMult * edgeSmoothMult * worldEdgePercent;
 
-                _md.heights[wx, wy] += finalHeightDiff;
+                _md.Heights[wx, wy] += finalHeightDiff;
             }
         }
 

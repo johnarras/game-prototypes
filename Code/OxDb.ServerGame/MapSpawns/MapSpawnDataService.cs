@@ -26,10 +26,10 @@ namespace OxDb.ServerGame.MapSpawns
             CreateIndexData data = new CreateIndexData(typeof(UnitStatus));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(UnitStatus.MapId) });
             List<Task> tasks = new List<Task>();
-            tasks.Add(_repoService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
             data = new CreateIndexData(typeof(MapSpawn));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(MapSpawn.MapId) });
-            tasks.Add(_repoService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
             await Task.WhenAll(tasks);
         }
         public async Task SaveMapSpawnData(IFullRepositoryService repoService, MapSpawnData data, string mapId, int mapVersion)

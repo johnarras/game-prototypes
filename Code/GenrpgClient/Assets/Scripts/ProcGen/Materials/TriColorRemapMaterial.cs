@@ -1,4 +1,5 @@
 ﻿
+using Assets.Scripts.Assets.Materials;
 using UnityEngine;
 
 namespace Assets.Scripts.ProcGen.Materials
@@ -23,11 +24,11 @@ namespace Assets.Scripts.ProcGen.Materials
             if (EmissionScale > 1)
             {
                 Color emissionColor = _modTextureService.GetNeonColor(redColor, EmissionScale);
-                colorBlock.SetColor("_Emission", emissionColor);
+                colorBlock.SetColor(MaterialUtils.EmissionColorPropertyName, emissionColor);
             }
             else
             {
-                colorBlock.SetColor("_Emission", Color.black);
+                colorBlock.SetColor(MaterialUtils.EmissionColorPropertyName, Color.black);
             }
             Renderer.SetPropertyBlock(colorBlock);
         }

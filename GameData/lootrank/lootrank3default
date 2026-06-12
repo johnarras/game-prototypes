@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 3,
   "Name": "Brass",
-  "Armor": 4,
-  "Damage": 2,
-  "CostPct": 300
+  "DefenseScale": 1.5,
+  "DamageScale": 1.5,
+  "CostScale": 3.0
 }

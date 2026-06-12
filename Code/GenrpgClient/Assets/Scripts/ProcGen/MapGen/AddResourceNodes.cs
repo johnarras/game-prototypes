@@ -191,30 +191,30 @@ public class AddResourceNodes : BaseZoneGenerator
             }
 
 
-            if (_md.mapZoneIds[cx, cy] != zone.IdKey) // zoneobject
+            if (_md.MapZoneIds[cx, cy] != zone.IdKey) // zoneobject
             {
                 continue;
             }
 
-            if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.BelowWater))
+            if (FlagUtils.MatchesAnyBits(_md.Flags[cx, cy], MapGenFlags.BelowWater))
             {
                 continue;
             }
-            if (_md.roadDistances[x, y] < zdata.Data.MinDistToFeatures)
+            if (_md.RoadDistances[x, y] < zdata.Data.MinDistToFeatures)
             {
                 continue;
             }
-            if (_md.alphas[cx, cy, TerrainTexChannels.Road] > 0)
-            {
-                continue;
-            }
-
-            if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.NearResourceNode))
+            if (_md.Alphas[cx, cy, TerrainTexChannels.Road] > 0)
             {
                 continue;
             }
 
-            if (zdata.Data.NearMountains != (_md.mountainHeights[cx, cy] <= 0))
+            if (FlagUtils.MatchesAnyBits(_md.Flags[cx, cy], MapGenFlags.NearResourceNode))
+            {
+                continue;
+            }
+
+            if (zdata.Data.NearMountains != (_md.MaintainHeights[cx, cy] <= 0))
             {
                 continue;
             }
@@ -238,7 +238,7 @@ public class AddResourceNodes : BaseZoneGenerator
                         continue;
                     }
 
-                    if (_md.mapObjects[xx, yy] != 0)
+                    if (_md.CellHasObject(xx, yy))
                     {
                         continue;
                     }
@@ -293,8 +293,8 @@ public class AddResourceNodes : BaseZoneGenerator
                 EntityId = goType.IdKey,
                 SpawnX = py,
                 SpawnZ = px,
-                ZoneId = _md.mapZoneIds[cx, cy],
-                ZoneOverridePercent = (int)(_md.overrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
+                ZoneId = _md.MapZoneIds[cx, cy],
+                ZoneOverridePercent = (int)(_md.OverrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
             };
 
             _mapProvider.GetSpawns().AddSpawn(initData);
@@ -322,7 +322,7 @@ public class AddResourceNodes : BaseZoneGenerator
                         continue;
                     }
 
-                    _md.flags[xx, yy] |= MapGenFlags.NearResourceNode;
+                    _md.Flags[xx, yy] |= MapGenFlags.NearResourceNode;
                 }
             }
 

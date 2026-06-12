@@ -4,9 +4,11 @@ using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedGame.Crafting.Settings.Recipes;
+using OxDb.SharedGame.Crawler.Roles.Settings;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Inventory.Settings.ItemTypes;
 using OxDb.SharedGame.Inventory.Settings.Qualities;
+using OxDb.SharedGame.Inventory.Settings.Ranks;
 using OxDb.SharedGame.RpgLevels.Settings;
 using OxDb.SharedGame.Stats.Settings.Scaling;
 using System;
@@ -25,6 +27,25 @@ namespace OxDb.SharedGame.Inventory.Services
         public double ExtraScaling { get; set; } = 1.0;
     }
 
+    public class WeaponRoleDamage
+    {
+        public long ItemTypeId { get; set; }
+
+        public long RoleScalingTypeId { get; set; }
+
+        public double RawMinDam { get; set; }
+
+        public double RawMaxDam { get; set; }
+
+        public int MinDam => (int)RawMinDam;
+        public int MaxDam => (int)RawMaxDam;
+
+        public long LootRankId { get; set; }
+
+        public string DamageName { get; set; } = "";
+
+    }
+
     public interface ISharedItemService : IInjectable
     {
         string GetName(IFilteredObject obj, Item item);
@@ -33,7 +54,10 @@ namespace OxDb.SharedGame.Inventory.Services
         string GetMapArt(IFilteredObject obj, Item item);
         long CalcBuyCost(IFilteredObject obj, BuyCostArgs args);
         void CopyStatsFrom(Item fromItem, Item toItem);
+
+        WeaponRoleDamage GetRoleDamage(IFilteredObject obj, long itemTypeId, long roleScalingTypeId, long lootRankId = 0);
     }
+
     public class SharedItemService : ISharedItemService
     {
         protected IGameData _gameData = null;
@@ -197,6 +221,57 @@ namespace OxDb.SharedGame.Inventory.Services
         {
             toItem.SetArt(fromItem.GetArt());
             toItem.Effects = fromItem.Effects;
+
+        }
+
+        public WeaponRoleDamage GetRoleDamage(IFilteredObject obj, long itemTypeId, long roleScalingTypeId, long lootRankId = 0)
+        {
+            WeaponRoleDamage roleDamage = new WeaponRoleDamage()
+            {
+                ItemTypeId = itemTypeId,
+                RoleScalingTypeId = roleScalingTypeId,
+                LootRankId = lootRankId,
+            };
+
+            ItemType itype = _gameData.Get<ItemTypeSettings>(obj).Get(itemTypeId);
+
+            if (itype == null)
+            {
+                return roleDamage;
+            }
+
+            Effect damEffect = itype.Effects.FirstOrDefault(x => x.EntityTypeId == EntityTypes.RoleScaling && x.EntityId ==
+             roleScalingTypeId);
+
+            if (damEffect == null)
+            {
+                return roleDamage;
+            }
+
+            RoleScalingType scalingType = _gameData.Get<RoleScalingTypeSettings>(obj).Get(roleScalingTypeId);
+
+            if (scalingType == null)
+            {
+                return roleDamage;
+            }
+
+            roleDamage.DamageName = scalingType.Name;
+
+            double minDam = itype.MinDam * damEffect.Quantity / 100.0f;
+            double maxDam = itype.MaxDam * damEffect.Quantity / 100.0f;
+
+            LootRank rank = _gameData.Get<LootRankSettings>(obj).Get(lootRankId);
+
+            if (rank != null)
+            {
+                minDam *= rank.DamageScale;
+                maxDam *= rank.DamageScale;
+            }
+
+            roleDamage.RawMinDam = minDam;
+            roleDamage.RawMaxDam = maxDam;
+
+            return roleDamage;
 
         }
     }

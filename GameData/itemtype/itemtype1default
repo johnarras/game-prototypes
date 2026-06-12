@@ -3,89 +3,11 @@
   "ParentId": "default",
   "IdKey": 1,
   "Name": "Helm",
-  "Desc": "",
   "Icon": "Helmet",
   "Art": "Helmet",
-  "MinVal": 3,
-  "MaxVal": 3,
+  "Armor": 3,
   "EquipSlotId": 1,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Helm",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Helmet",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Cap",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Crown",
-      "Desc": ""
-    },
-    {
-      "Weight": 199.0,
-      "Name": "Hat",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Circlet",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Hood",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Mask",
-      "Desc": ""
-    },
-    {
-      "Weight": 100.0,
-      "Name": "Turban",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Halo",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Cover",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Veil",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Cowl",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Coif",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Headdress",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Helm;Helmet;Cap;Crown;Hat;Circlet;Hood;Mask;Turban;Halo;Cover;Veil;Cowl;Coif;Headdress"
 }

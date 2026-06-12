@@ -34,14 +34,14 @@ public class AddMountainTextures : BaseZoneGenerator
             return;
         }
 
-        if (startx < 0 || starty < 0 || endx > _md.awid || endy > _md.ahgt || startx >= endx || starty >= endy)
+        if (startx < 0 || starty < 0 || endx > _md.Awid || endy > _md.Ahgt || startx >= endx || starty >= endy)
         {
             return;
         }
         int wid = endx - startx + 1;
         int hgt = endy - starty + 1;
         int maxSize = Math.Max(wid, hgt);
-        float[,,] alphas = _md.alphas;
+        float[,,] alphas = _md.Alphas;
         int size = Math.Max(Math.Max(wid, hgt), MapConstants.DefaultHeightmapSize);
 
         float perlinScale = 1.0f;
@@ -215,20 +215,20 @@ public class AddMountainTextures : BaseZoneGenerator
             for (int y = starty; y < endy; y++)
             {
                 float wallDist = 0.0f;
-                if (_md.mountainHeights == null ||
-                    _md.mountainDistPercent[x, y] >= 1.0f ||
-                    _md.mapZoneIds[x, y] != zone.IdKey)
+                if (_md.MaintainHeights == null ||
+                    _md.MountainDistPercent[x, y] >= 1.0f ||
+                    _md.MapZoneIds[x, y] != zone.IdKey)
                 {
                     continue;
                 }
 
-                wallDist = _md.mountainDistPercent[x, y];
+                wallDist = _md.MountainDistPercent[x, y];
 
                 float minSteepnessForCap = MathUtil.Clamp(MinSteepness - MaxSteepnessPerturbDelta,
                     startMinSteepnessForCap + capSteepnessDeltas[x - startx, y - starty],
                     MaxSteepness + MaxSteepnessPerturbDelta);
 
-                if (_md.heights[x, y] < wh)
+                if (_md.Heights[x, y] < wh)
                 {
                     continue;
                 }
@@ -253,7 +253,7 @@ public class AddMountainTextures : BaseZoneGenerator
                 {
                     continue;
                 }
-                float roadPct = 1 - MathUtil.GetSmoothScalePercent(rad / 3, rad, _md.roadDistances[x, y]);
+                float roadPct = 1 - MathUtil.GetSmoothScalePercent(rad / 3, rad, _md.RoadDistances[x, y]);
 
 
                 if (_zoneGenService.FindMapLocation(x, y, 2) != null)
@@ -360,7 +360,7 @@ public class AddMountainTextures : BaseZoneGenerator
                     }
                 }
 
-                float wallpercent = _md.mountainDistPercent[x, y];
+                float wallpercent = _md.MountainDistPercent[x, y];
 
                 // Near edge blend things.
                 float origPercent = 0.0f;
@@ -380,7 +380,7 @@ public class AddMountainTextures : BaseZoneGenerator
                 // Rescale existing splats.
                 for (int c = 0; c < TerrainTexChannels.Max; c++)
                 {
-                    _md.alphas[x, y, c] *= origPercent;
+                    _md.Alphas[x, y, c] *= origPercent;
                 }
 
                 // Now rescale new alphas.
@@ -389,9 +389,9 @@ public class AddMountainTextures : BaseZoneGenerator
                 currOppPercent *= (1 - origPercent);
 
 
-                _md.alphas[x, y, mainTex] += currMainPercent;
-                _md.alphas[x, y, cleftTex] += currCleftPercent;
-                _md.alphas[x, y, oppTex] += currOppPercent;
+                _md.Alphas[x, y, mainTex] += currMainPercent;
+                _md.Alphas[x, y, cleftTex] += currCleftPercent;
+                _md.Alphas[x, y, oppTex] += currOppPercent;
             }
         }
     }

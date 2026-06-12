@@ -5,7 +5,7 @@ using OxDb.PlayerServer.Setup;
 using OxDb.ServerCore.MainServer;
 using OxDb.ServerCore.Setup;
 using OxDb.SharedCore.Environments.Constants;
-using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Interfaces;
 using System.Diagnostics;
 
 namespace Genrpg.GameServer
@@ -19,9 +19,9 @@ namespace Genrpg.GameServer
     {
         static async Task Main(string[] args)
         {
-            DotNetServiceConfiguration.SetupServiceInstances(null, GameComponentNames.GameServer);
+            List<IInjectable> initialServices = DotNetServiceConfiguration.SetupServiceInstances(null, GameComponentNames.GameServer);
 
-            await new GameServer().RunGame();
+            await new GameServer().RunGame(initialServices);
         }
     }
 
@@ -29,15 +29,12 @@ namespace Genrpg.GameServer
     {
         private List<IBaseServer> _servers = new List<IBaseServer>();
         private CancellationTokenSource _serverTokenSource = new CancellationTokenSource();
-        public async Task RunGame()
+        public async Task RunGame(List<IInjectable> initialServices)
         {
             try
             {
                 InstanceServerMain instanceServer = new InstanceServerMain();
-                ServerInitArgs basicArgs = new ServerInitArgs()
-                {
-                    Token = _serverTokenSource.Token,
-                };
+                ServerInitArgs basicArgs = new ServerInitArgs(initialServices, _serverTokenSource.Token, null);
                 await instanceServer.Init(basicArgs);
                 _servers.Add(instanceServer);
 
@@ -57,18 +54,14 @@ namespace Genrpg.GameServer
                     {
                         MapServerCount = serverCount,
                         MapServerIndex = i,
-                        MapServerName = HashUtils.NewGuid(),
+                        MapServerName = Random.Shared.Next().ToString(),
                         StartPort = 4000 + 100 * i,
                         MapIds = new List<string>(),
                     };
 
                     MapServerMain mapServer = new MapServerMain();
 
-                    ServerInitArgs mapArgs = new ServerInitArgs()
-                    {
-                        Token = _serverTokenSource.Token,
-                        Data = initServerData,
-                    };
+                    ServerInitArgs mapArgs = new ServerInitArgs(initialServices, _serverTokenSource.Token, initServerData);
 
                     await mapServer.Init(mapArgs);
 

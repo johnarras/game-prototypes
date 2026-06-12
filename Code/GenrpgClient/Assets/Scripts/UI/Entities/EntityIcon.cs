@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets.Sprites.Services;
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Interfaces;
@@ -19,10 +20,12 @@ namespace Assets.Scripts.Entities.UI
         protected IEntityService _entityService = null;
 
         public GImage Icon;
+        public AnimatedSprite AnimSprite;
         public GText QuantityText;
         public GText NameText;
         public bool IsMainIcon = false;
         public long UpdateTicks = 10;
+        public bool AllowAnimatedSprite = false;
 
         public Sprite BlankSprite;
 
@@ -71,6 +74,10 @@ namespace Assets.Scripts.Entities.UI
             }
 
             Icon.sprite = BlankSprite;
+            if (AllowAnimatedSprite)
+            {
+                AnimSprite.SetImage(entityTypeId, entityId);
+            }
             _spriteService.SetEntityIcon(entityTypeId, entityId, Icon, GetToken());
 
             if (maxQuantity < 1)

@@ -16,7 +16,7 @@ namespace OxDb.MapServer.Players.MessageHandlers
             await Task.CompletedTask;
             _playerDataService.SavePlayerData(ch);
 
-            if (!message.IsCancelled())
+            if (!message.IsCancelled() && ch.IsConnected())
             {
                 _messageService.SendMessage(ch, message, PlayerConstants.SaveDelay);
             }

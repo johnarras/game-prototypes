@@ -28,7 +28,7 @@ namespace OxDb.SharedGame.Crawler.Info.Services
         void SetupOverviewPages(string overviewText);
         List<ShowInfoPanelArgs> GetOverviewPages();
         string CreateHeaderLine(string headerText, bool makePlural = true);
-
+        IInfoHelper GetInfoHelper(long entityTypeId);
     }
 
     public class InfoService : IInfoService
@@ -85,6 +85,15 @@ namespace OxDb.SharedGame.Crawler.Info.Services
             return args;
         }
 
+
+        public IInfoHelper GetInfoHelper(long entityTypeId)
+        {
+            if (_infoHelperDict.TryGetValue(entityTypeId, out IInfoHelper helper))
+            {
+                return helper;
+            }
+            return null;
+        }
         public string GetEffectText(CrawlerSpell spell, CrawlerSpellEffect effect)
         {
             if (_spellEffectDict.TryGetValue(effect.EntityTypeId, out ISpellEffectHelper helper))
@@ -130,7 +139,6 @@ namespace OxDb.SharedGame.Crawler.Info.Services
             {
                 return args;
             }
-
 
             if (Int64.TryParse(words[1], out long entityId))
             {
@@ -250,7 +258,13 @@ namespace OxDb.SharedGame.Crawler.Info.Services
                                 children = infoHelper.GetInfoChildren();
                             }
 
+
                             children = children.OrderBy(x => x.Name).ToList();
+
+                            if (infoHelper != null && !infoHelper.OrderByName)
+                            {
+                                children = children.OrderBy(x => x.IdKey).ToList();
+                            }
 
                             if (children.Count > 0)
                             {

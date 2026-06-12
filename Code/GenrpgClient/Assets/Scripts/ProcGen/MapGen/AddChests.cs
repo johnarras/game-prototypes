@@ -39,7 +39,7 @@ public class AddChests : BaseZoneGenerator
         {
             for (int y = MapConstants.TerrainPatchSize; y < _mapProvider.GetMap().GetHhgt() - MapConstants.TerrainPatchSize; y += skipSize)
             {
-                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
                 {
                     continue;
                 }
@@ -82,7 +82,8 @@ public class AddChests : BaseZoneGenerator
                     {
                         for (int yy = cy - nearbyRadius; yy <= cy + nearbyRadius; yy++)
                         {
-                            if (_md.mapObjects[xx, yy] != 0)
+
+                            if (_md.CellHasObject(xx, yy))
                             {
                                 haveNearbyItem = true;
                                 break;
@@ -109,7 +110,7 @@ public class AddChests : BaseZoneGenerator
                     }
 
 
-                    if (_md.roadDistances[cx, cy] < 30)
+                    if (_md.RoadDistances[cx, cy] < 30)
                     {
                         continue;
                     }
@@ -126,8 +127,8 @@ public class AddChests : BaseZoneGenerator
                         EntityId = chosenObj.IdKey,
                         SpawnX = cy,
                         SpawnZ = cx,
-                        ZoneId = _md.mapZoneIds[cx, cy],
-                        ZoneOverridePercent = (int)(_md.overrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
+                        ZoneId = _md.MapZoneIds[cx, cy],
+                        ZoneOverridePercent = (int)(_md.OverrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
                     };
 
 

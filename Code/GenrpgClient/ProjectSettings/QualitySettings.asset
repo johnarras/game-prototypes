@@ -39,17 +39,16 @@ QualitySettings:
     enableLODCrossFade: 1
     streamingMipmapsActive: 1
     streamingMipmapsAddAllCameras: 0
-    streamingMipmapsMemoryBudget: 128
-    streamingMipmapsRenderersPerFrame: 128
-    streamingMipmapsMaxLevelReduction: 2
-    streamingMipmapsMaxFileIORequests: 128
-    particleRaycastBudget: 16
+    streamingMipmapsMemoryBudget: 256
+    streamingMipmapsRenderersPerFrame: 256
+    streamingMipmapsMaxLevelReduction: 4
+    streamingMipmapsMaxFileIORequests: 256
+    particleRaycastBudget: 32
     asyncUploadTimeSlice: 3
-    asyncUploadBufferSize: 50
+    asyncUploadBufferSize: 100
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 7efee4ce0f53bd74abff977306eab840,
-      type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: 7efee4ce0f53bd74abff977306eab840, type: 2}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1

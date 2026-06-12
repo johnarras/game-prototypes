@@ -17,20 +17,22 @@ namespace OxDb.SharedGame.Inventory.Settings.ItemTypes
 {
     public class ItemType : ChildSettings, IIndexedGameItem
     {
-
-        public const int MinRangedItemLevel = 5;
-        public const int LevelGap = 2 * MinRangedItemLevel;
         public override string Id { get; set; }
         public override string ParentId { get; set; }
         public long IdKey { get; set; }
         public override string Name { get; set; }
         public string Desc { get; set; }
+
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
 
-        public int MinVal { get; set; }
-        public int MaxVal { get; set; }
+        public long Armor { get; set; }
+
+        public long Resist { get; set; }
+
+        public int MinDam { get; set; }
+        public int MaxDam { get; set; }
         // Probably want to use bitfields but bleh. IDK.
         public long EquipSlotId { get; set; }
 
@@ -44,14 +46,39 @@ namespace OxDb.SharedGame.Inventory.Settings.ItemTypes
 
         public List<Effect> Effects { get; set; } = new List<Effect>();
 
-        public List<WeightedName> Names { get; set; }
 
-        public ItemType()
+        private List<WeightedName> _names = new List<WeightedName>();
+        public string NameString { get; set; }
+
+
+        public List<WeightedName> GetNames()
         {
-            Effects = new List<Effect>();
-            Names = new List<WeightedName>();
-        }
+            if (_names == null || _names.Count < 1)
+            {
+                _names = new List<WeightedName>();
+                if (!string.IsNullOrEmpty(NameString))
+                {
+                    string[] words = NameString.Split(';');
+                    if (words.Length > 0)
+                    {
+                        foreach (string word in words)
+                        {
+                            if (!string.IsNullOrEmpty(word))
+                            {
+                                _names.Add(new WeightedName() { Weight = 1000, Name = word });
+                            }
+                        }
+                    }
+                }
+            }
 
+            if (_names == null || _names.Count < 1)
+            {
+                _names = new List<WeightedName>();
+                _names.Add(new WeightedName() { Weight = 1000, Name = Name });
+            }
+            return _names;
+        }
 
         public string GetIcon(int level)
         {

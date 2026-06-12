@@ -7,6 +7,7 @@ using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.Characters.Utils;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
@@ -26,7 +27,6 @@ namespace OxDb.ServerGame.PlayerData.Services
     }
     public class PlayerDataService : IPlayerDataService
     {
-        protected IServiceLocator _loc;
         protected IFullRepositoryService _repoService = null;
         protected ITaskService _taskService = null;
 
@@ -38,24 +38,19 @@ namespace OxDb.ServerGame.PlayerData.Services
         {
             List<IUnitDataLoader> allLoaders = GetLoaders().Values.ToList();
 
-            List<Task> indexTasks = new List<Task>();
-
             foreach (IUnitDataLoader loader in allLoaders)
             {
                 List<CreateIndexData> indexedFields = loader.GetIndexes();
 
                 foreach (CreateIndexData indexedField in indexedFields)
                 {
-                    indexTasks.Add(_repoService.CreateIndexes(indexedField));
+                    await _repoService.CreateIndexes(indexedField);
                 }
-                await Task.WhenAll(indexTasks);
             }
 
             CreateIndexData data = new CreateIndexData(typeof(CoreCharacter));
             data.Configs.Add(new IndexConfig() { Ascending = true, MemberName = nameof(CoreCharacter.UserId), Unique = false });
-            indexTasks.Add(_repoService.CreateIndexes(data));
-
-            await Task.WhenAll(indexTasks);
+            await _repoService.CreateIndexes(data);
         }
 
         public Dictionary<Type, IUnitDataLoader> GetLoaders()
@@ -74,7 +69,8 @@ namespace OxDb.ServerGame.PlayerData.Services
 
         public void SavePlayerData(Character ch)
         {
-            _repoService.QueueSave(ch);
+            CharacterUtils.CopyDataFromTo(ch, ch.Core);
+            _repoService.QueueSave(ch.Core);
 
             List<IUnitData> allData = ch.GetAllData();
 
@@ -89,13 +85,6 @@ namespace OxDb.ServerGame.PlayerData.Services
                 {
                     nonSearchables.Add(unitData);
                 }
-            }
-
-
-
-            if (nonSearchables.Count > 0)
-            {
-
             }
         }
 

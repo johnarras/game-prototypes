@@ -1,0 +1,26 @@
+{
+  "Id": "itemtype20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "2HMace",
+  "Icon": "MaceTwo",
+  "Art": "MaceTwo",
+  "MinDam": 7,
+  "MaxDam": 13,
+  "EquipSlotId": 15,
+  "IconCount": 3,
+  "Flags": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Quantity": 100
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Quantity": 50
+    }
+  ],
+  "NameString": "Hammer;Mace;Maul;Fist;Smasher;Pummeler;Breaker;Crusher;Bludgeon;Shillelagh;Rod"
+}

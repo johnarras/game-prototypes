@@ -249,26 +249,6 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         return finalText;
     }
 
-    public byte[] LoadBytes(string id)
-    {
-        string path = GetPath(id);
-
-        try
-        {
-            if (!File.Exists(path))
-            {
-                return null;
-            }
-            return File.ReadAllBytes(path);
-        }
-        catch (Exception e)
-        {
-            _logService.Info("Failed to read bytes: " + " " + path + " " + e.Message);
-        }
-        return null;
-    }
-
-
     protected void SaveString(string id, string val, RepoSaveArgs args)
     {
         string path = GetPath(id);
@@ -285,24 +265,6 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
             _logService.Info("Failed to save text file: " + path + " " + e.Message);
         }
     }
-
-    public void SaveBytes(string id, byte[] val)
-    {
-        if (val == null)
-        {
-            return;
-        }
-        string path = GetPath(id);
-        try
-        {
-            File.WriteAllBytes(path, val);
-        }
-        catch (Exception e)
-        {
-            _logService.Info("Failed to save bytes: " + path + " " + e.Message);
-        }
-    }
-
 
     public void DeleteString(string id)
     {

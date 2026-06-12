@@ -11,6 +11,7 @@ public class MainMenuScreen : BaseScreen
 
     protected IClientAuthService _loginService = null;
     private IClientAppService _clientAppService = null;
+    private IZoneGenService _zoneGenService = null;
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
         _uiService.SetButton(LogoutAccountButton, GetName(), ClickLogout);
@@ -34,7 +35,7 @@ public class MainMenuScreen : BaseScreen
 
     private void ExitMap()
     {
-        _loginService.ExitMap();
+        _zoneGenService.ExitMMOMap();
     }
 
 

@@ -4,7 +4,7 @@ using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
-using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Serialization.Services;
 using OxDb.SharedCore.Setup.Constants;
 using System;
 using System.Collections.Concurrent;
@@ -57,9 +57,6 @@ namespace Assets.Scripts.Logalytics.Services
 
     public class ClientLogService : IClientQuitCleanup, ILogService
     {
-        protected IClientConfigContainer _configContainer = null;
-        private ITextSerializer _textSerializer = null;
-        private IClientGameState _gs = null;
         private IClientLogalyticsService _logalyticsService = null;
         private IClientWebService _webService = null;
 
@@ -71,10 +68,19 @@ namespace Assets.Scripts.Logalytics.Services
         protected bool _didInitialize = false;
 
 
+        private bool _verboseLogging = false;
+
+        private ClientConfig _config = null;
+
+        NewtonsoftTextSerializer serializer = new NewtonsoftTextSerializer();
+
+
         // Do NOT use any external DI stuff in here because this is basically the first thing set up when the client runs.
         public ClientLogService(ClientConfig config)
         {
 
+            _config = config;
+            _verboseLogging = config.Flags.HasFlag(ClientPlayerFlags.VerboseLogging);
             if (GameModeUtils.IsPureClientMode(config.GameMode))
             {
                 _didInitialize = false;
@@ -116,7 +122,7 @@ namespace Assets.Scripts.Logalytics.Services
 
         public async Task Initialize(CancellationToken token)
         {
-            if (GameModeUtils.IsPureClientMode(_gs.GameMode))
+            if (GameModeUtils.IsPureClientMode(_config.GameMode))
             {
                 return;
             }
@@ -132,7 +138,7 @@ namespace Assets.Scripts.Logalytics.Services
             }
 
             int minSeverityLevel = LogSeverityLevels.Information;
-            if (EnvNames.IsProdEnv(_configContainer.Config.Env))
+            if (EnvNames.IsProdEnv(_config.Env))
             {
                 minSeverityLevel = LogSeverityLevels.Warning;
             }
@@ -147,14 +153,21 @@ namespace Assets.Scripts.Logalytics.Services
                 ? string.Empty
                 : message.Replace("\r\r\n", "\n").Replace("\u00A0", " ");
 
-            Dictionary<string, string> properties = _logalyticsService.GetDefaultLogalyticsDimensions();
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+
+            if (_logalyticsService != null)
+            {
+                _logalyticsService.GetDefaultLogalyticsDimensions();
+            }
             if (properties == null)
             {
                 properties = new Dictionary<string, string>();
             }
 
-            properties[LogalyticsKeys.RequestId] = _webService.GetUserRequestId();
-
+            if (_webService != null)
+            {
+                properties[LogalyticsKeys.RequestId] = _webService.GetUserRequestId();
+            }
             // Strip null tracking properties before serialization to prevent engine 400 validation drops
             if (properties.Any(x => x.Value == null))
             {
@@ -214,7 +227,7 @@ namespace Assets.Scripts.Logalytics.Services
 
             List<TraceEnvelope> envList = new List<TraceEnvelope>() { nextEnvelope };
 
-            string jsonPayload = _textSerializer.SerializeToString(envList);
+            string jsonPayload = serializer.SerializeToString(envList);
             byte[] rawBytes = Encoding.UTF8.GetBytes(jsonPayload);
 
             UnityWebRequest request = new UnityWebRequest(IngestionEndpoint, "POST");
@@ -266,6 +279,15 @@ namespace Assets.Scripts.Logalytics.Services
         {
             EnqueueTrace(txt, LogSeverityLevels.Information);
             UnityEngine.Debug.Log(txt);
+        }
+
+        public void Verbose(string txt)
+        {
+            if (_verboseLogging)
+            {
+                EnqueueTrace(txt, LogSeverityLevels.Information);
+                UnityEngine.Debug.Log(txt);
+            }
         }
 
         public void Warning(string txt)

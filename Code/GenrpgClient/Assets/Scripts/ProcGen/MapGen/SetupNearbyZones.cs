@@ -14,7 +14,7 @@ public class SetupNearbyZones : BaseAddMountains
     {
 
 
-        foreach (ConnectedPairData conn in _md.zoneConnections)
+        foreach (ConnectedPairData conn in _md.ZoneConnections)
         {
             if (conn.Point1 == null || conn.Point2 == null)
             {
@@ -33,8 +33,8 @@ public class SetupNearbyZones : BaseAddMountains
                 continue;
             }
 
-            short zoneId1 = _md.mapZoneIds[sx, sz];
-            short zoneId2 = _md.mapZoneIds[ex, ez];
+            short zoneId1 = _md.MapZoneIds[sx, sz];
+            short zoneId2 = _md.MapZoneIds[ex, ez];
 
             if (zoneId1 != zoneId2)
             {

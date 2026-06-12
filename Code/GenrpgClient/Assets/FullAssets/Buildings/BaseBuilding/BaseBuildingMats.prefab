@@ -44,18 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a528409437124e74ea7e3d7ae4597cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallMats: []
+  WallMats:
+  - Weight: 1000
+    Mat: {fileID: 2100000, guid: 50dfe7130ee413b46b0ead534ac4409b, type: 2}
+    ColorTargets:
+    - {r: 0.629717, g: 0.47285798, b: 0.28218448, a: 0}
+    - {r: 0.41745284, g: 0.41745284, b: 0.41745284, a: 0}
+  - Weight: 1000
+    Mat: {fileID: 2100000, guid: 50dfe7130ee413b46b0ead534ac4409b, type: 2}
+    ColorTargets:
+    - {r: 0.629717, g: 0.47285798, b: 0.28218448, a: 0}
+    - {r: 0.41745284, g: 0.41745284, b: 0.41745284, a: 0}
   DoorMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: 6838e2484800ec948820589a165e1f86, type: 2}
+    Mat: {fileID: 2100000, guid: 6dac49f47a7b66d4299b24b670de98e6, type: 2}
     ColorTargets: []
   WindowMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: 7b2521267e58e21438a03bec60dfab8b, type: 2}
+    Mat: {fileID: 2100000, guid: 2113fe0605bb1a14ea129bbad808ad72, type: 2}
     ColorTargets: []
   ShinglesMats:
   - Weight: 100
-    Mat: {fileID: 2100000, guid: cae660aed25deae4ab4e4632b9e1ca2a, type: 2}
+    Mat: {fileID: 2100000, guid: a75c1d7e9073211469143f15e32a2789, type: 2}
     ColorTargets:
     - {r: 0.61006284, g: 0.39612186, b: 0, a: 0}
     - {r: 0.29559743, g: 0.29559743, b: 0.29559743, a: 0}

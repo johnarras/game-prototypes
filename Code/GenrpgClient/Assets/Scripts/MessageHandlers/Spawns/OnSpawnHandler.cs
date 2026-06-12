@@ -43,7 +43,7 @@ public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>
         {
             _objectManager.AddObject(newObj, null);
 
-            IMapObjectLoader loader = _objectManager.GetMapObjectLoader(spawnMessage.EntityTypeId);
+            ICrawlerMapObjectLoader loader = _objectManager.GetMapObjectLoader(spawnMessage.EntityTypeId);
 
             if (loader != null)
             {

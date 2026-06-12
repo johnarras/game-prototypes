@@ -2,7 +2,6 @@
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Rewards.Services;
 using Assets.Scripts.Trader.Levels.UI;
-using NUnit.Framework;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -20,7 +19,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Trader.Levels.Services
 {

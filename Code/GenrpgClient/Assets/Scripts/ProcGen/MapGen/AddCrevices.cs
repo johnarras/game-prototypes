@@ -44,12 +44,12 @@ public class AddCrevices : BaseZoneGenerator
 
 
         SetCreviceDepths(_gs);
-        _md.creviceDepths = null;
+        _md.CreviceDepths = null;
     }
 
     private void SetCreviceDepths(IClientGameState gs)
     {
-        if (base._md.heights == null || base._md.creviceDepths == null)
+        if (base._md.Heights == null || base._md.CreviceDepths == null)
         {
             return;
         }
@@ -58,10 +58,10 @@ public class AddCrevices : BaseZoneGenerator
         {
             for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
             {
-                float lowerValue = base._md.creviceDepths[x, y] * MapConstants.DefaultCreviceDepth / MapConstants.MapHeight;
+                float lowerValue = base._md.CreviceDepths[x, y] * MapConstants.DefaultCreviceDepth / MapConstants.MapHeight;
 
 
-                float roadDist = base._md.roadDistances[x, y];
+                float roadDist = base._md.RoadDistances[x, y];
                 if (roadDist < RoadEFfectDist)
                 {
                     if (roadDist < RoadZeroDist)
@@ -76,7 +76,7 @@ public class AddCrevices : BaseZoneGenerator
                 }
 
 
-                base._md.heights[x, y] += lowerValue;
+                base._md.Heights[x, y] += lowerValue;
             }
         }
     }
@@ -126,9 +126,9 @@ public class AddCrevices : BaseZoneGenerator
             yEnd = endy,
             zone = zone,
         };
-        if (_md.creviceDepths == null)
+        if (_md.CreviceDepths == null)
         {
-            _md.creviceDepths = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.CreviceDepths = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
         }
 
         MyRandom rand = new MyRandom(zone.Seed + 2333);
@@ -239,13 +239,13 @@ public class AddCrevices : BaseZoneGenerator
         MyRandom crossRand = new MyRandom(zone.Seed % 1000000000 + 662423 + randSeed);
         MyRandom rand = new MyRandom(zone.Seed % 2010102933 + 783124 + randSeed);
 
-        if (cdata == null || _md.creviceDepths == null)
+        if (cdata == null || _md.CreviceDepths == null)
         {
             return;
         }
-        if (_md.creviceBridges == null)
+        if (_md.CreviceBridges == null)
         {
-            _md.creviceBridges = new List<MyPointF>();
+            _md.CreviceBridges = new List<MyPointF>();
         }
 
         float overallDepthMult = (RandUtils.FloatRange(0.5f, 1.2f, rand) +
@@ -299,7 +299,7 @@ public class AddCrevices : BaseZoneGenerator
             }
 
             // Min depth to set crevice.
-            _md.creviceDepths[cx, cy] = Math.Min(_md.creviceDepths[cx, cy], -1 * currDepthMult * overallDepthMult);
+            _md.CreviceDepths[cx, cy] = Math.Min(_md.CreviceDepths[cx, cy], -1 * currDepthMult * overallDepthMult);
 
 
 
@@ -381,7 +381,7 @@ public class AddCrevices : BaseZoneGenerator
                 }
 
                 // Min depth to create crevice.
-                _md.creviceDepths[cx, cy] = Math.Min(_md.creviceDepths[cx, cy], -1 * currDepthMult * sideDepthMult);
+                _md.CreviceDepths[cx, cy] = Math.Min(_md.CreviceDepths[cx, cy], -1 * currDepthMult * sideDepthMult);
                 if (pt2.Z == 1)
                 {
                     sideCenterPoints.Add(pt2);
@@ -402,13 +402,13 @@ public class AddCrevices : BaseZoneGenerator
         for (int c = 0; c < centerPoints.Count; c++)
         {
             MyPointF cp = centerPoints[c];
-            int ax = (int)(cp.X * _mapProvider.GetMap().GetHwid() / _md.awid);
-            int ay = (int)(cp.Y * _mapProvider.GetMap().GetHhgt() / _md.ahgt);
-            if (ax >= 0 && ax < _md.awid && ay >= 0 && ay < _md.ahgt)
+            int ax = (int)(cp.X * _mapProvider.GetMap().GetHwid() / _md.Awid);
+            int ay = (int)(cp.Y * _mapProvider.GetMap().GetHhgt() / _md.Ahgt);
+            if (ax >= 0 && ax < _md.Awid && ay >= 0 && ay < _md.Ahgt)
             {
-                if (_md.roadDistances[ax, ay] <= 2 && rand.NextDouble() < 0.03f)
+                if (_md.RoadDistances[ax, ay] <= 2 && rand.NextDouble() < 0.03f)
                 {
-                    _md.creviceBridges.Add(cp);
+                    _md.CreviceBridges.Add(cp);
                 }
             }
         }
@@ -467,7 +467,7 @@ public class AddCrevices : BaseZoneGenerator
 
     public void SmoothNearCrevice(ZoneType zoneType, CreviceData cdata, List<MyPointF> pts, float[,] smoothChanges)
     {
-        if (_md.creviceDepths == null || pts == null || cdata == null || zoneType == null)
+        if (_md.CreviceDepths == null || pts == null || cdata == null || zoneType == null)
         {
             return;
         }
@@ -492,7 +492,7 @@ public class AddCrevices : BaseZoneGenerator
                 continue;
             }
 
-            float centerDepth = _md.creviceDepths[cx, cy];
+            float centerDepth = _md.CreviceDepths[cx, cy];
             float smoothRadius = startSmoothRadius;
 
             if (zoneType.CreviceWidthScale > 0)
@@ -540,11 +540,11 @@ public class AddCrevices : BaseZoneGenerator
 
                     float valueToSet = centerDepth * distMult;
 
-                    float currVal = _md.creviceDepths[xx, yy];
+                    float currVal = _md.CreviceDepths[xx, yy];
 
                     if (valueToSet < currVal)
                     {
-                        _md.creviceDepths[xx, yy] = valueToSet;
+                        _md.CreviceDepths[xx, yy] = valueToSet;
                     }
 
                 }

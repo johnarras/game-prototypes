@@ -31,12 +31,12 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
 
                 for (int y = 1; y < _mapProvider.GetMap().GetHhgt() - 1; y++)
                 {
-                    if (_md.mapZoneIds[x, y] <= MapConstants.MountainZoneId)
+                    if (_md.MapZoneIds[x, y] <= MapConstants.MountainZoneId)
                     {
                         List<int> choices = new List<int>();
                         foreach (MyPoint2 d in deltas)
                         {
-                            short nearZoneId = _md.mapZoneIds[x + (int)(d.X), y + (int)(d.Y)];
+                            short nearZoneId = _md.MapZoneIds[x + (int)(d.X), y + (int)(d.Y)];
                             if (nearZoneId > MapConstants.MountainZoneId)
                             {
                                 choices.Add(nearZoneId);
@@ -54,7 +54,7 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
 
             foreach (MyPointF val in addedVals)
             {
-                _md.mapZoneIds[(int)(val.X), (int)(val.Y)] = (short)(val.Z);
+                _md.MapZoneIds[(int)(val.X), (int)(val.Y)] = (short)(val.Z);
             }
         }
         while (somethingchanged);

@@ -1,3 +1,5 @@
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Helpers;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -65,6 +67,10 @@ namespace OxDb.SharedGame.ProcGen.Settings.Plants
 
     public class PlantSettingsMapper : ParentSettingsMapper<PlantTypeSettings, PlantType, PlantTypeSettingsDto> { }
 
+    public class PlantEntityHelper : BaseEntityHelper<PlantTypeSettings, PlantType>
+    {
+        public override long HelperKey => EntityTypes.Plant;
+    }
 
 }
 

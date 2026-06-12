@@ -65,7 +65,7 @@ namespace OxDb.SharedGame.Users.Services
                 {
                     if (numShown > 0)
                     {
-                        sb.Append(",");    
+                        sb.Append(",");
                     }
                     sb.Append(" ");
                     numShown++;
@@ -85,7 +85,7 @@ namespace OxDb.SharedGame.Users.Services
             AddBonusesToList(sb, "StatBonus", attributesData.Stats, allStats);
 
             return sb.ToString();
-          
+
         }
 
 
@@ -101,7 +101,7 @@ namespace OxDb.SharedGame.Users.Services
                     if (numShown > 0)
                     {
                         sb.Append(",");
-                    }                  
+                    }
                     sb.Append(" ");
                     numShown++;
                     sb.Append(idn.Name + " {" + collection[idn.IdKey].Bonus + "}");
@@ -110,6 +110,6 @@ namespace OxDb.SharedGame.Users.Services
 
             sb.Append("]");
         }
-       
+
     }
 }

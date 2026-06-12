@@ -84,13 +84,7 @@ namespace OxDb.MapServer.Maps.Services
                 SerializerType = EMapApiSerializers.MessagePack,
             };
 
-            ServerInitArgs args = new ServerInitArgs()
-            {
-                Token = serverToken,
-                Data = initData,
-                Parent = mapInstance,
-                InitialServices = new List<IInjectable>() { _logService },
-            };
+            ServerInitArgs args = new ServerInitArgs(new List<IInjectable>() { _logService }, serverToken, initData, mapInstance);
 
             await mapInstance.Init(args);
 

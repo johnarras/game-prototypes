@@ -2,9 +2,11 @@ using OxDb.DataUtils.Entities.Core;
 using OxDb.ServerCore.DataStores.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
+using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
+using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
@@ -22,7 +24,10 @@ namespace OxDb.DataUtils.Services.Importing
         long GetOrAddMissingEntity<TParent, TChild>(EditorGameState gs, string name) where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIndexedGameItem, new();
 
         Task CleanOldObjects<T>(List<T> newObjects) where T : ChildSettings, IIndexedGameItem;
-        string WriteCSVRow(object obj);
+        void WriteCSVRow(StringBuilder sb, object obj, string forcedHeaderName = null);
+        void WriteCSVHeader(StringBuilder sb, Type type);
+
+        string WriteCSVSettings(ITopLevelSettings settings);
     }
 
     public class ImportService : IImportService
@@ -267,24 +272,6 @@ namespace OxDb.DataUtils.Services.Importing
             }
         }
 
-        public string WriteCSVRow(object obj)
-        {
-            if (obj == null)
-            {
-                return "";
-            }
-            StringBuilder sb = new StringBuilder();
-            PropertyInfo[] props = obj.GetType().GetProperties();
-            for (int i = 0; i < props.Length; i++)
-            {
-                PropertyInfo prop = props[i];
-                object val = _reflectionService.GetObjectValue(obj, prop);
-                sb.Append(StrUtils.WriteCSVString(val) + ",");
-            }
-            sb.Append('\n');
-            return sb.ToString();
-        }
-
         public long GetOrAddMissingEntity<TParent, TChild>(EditorGameState gs, string name) where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIndexedGameItem, new()
         {
             TParent parent = gs.data.Get<TParent>(null);
@@ -325,6 +312,128 @@ namespace OxDb.DataUtils.Services.Importing
 
             return newId;
 
+        }
+
+        public void WriteCSVHeader(StringBuilder sb, Type type)
+        {
+            List<Type> genericListsToAdd = new List<Type>();
+            sb.Append("header " + type.Name.ToLower() + ",");
+            PropertyInfo[] props = type.GetProperties();
+            bool didWriteProperty = false;
+            for (int i = 0; i < props.Length; i++)
+            {
+                PropertyInfo prop = props[i];
+
+                if (_reflectionService.IsEnumerableType(prop.PropertyType))
+                {
+
+                    if (_reflectionService.IsGenericList(prop.PropertyType))
+                    {
+                        if (!genericListsToAdd.Contains(prop.PropertyType))
+                        {
+                            genericListsToAdd.Add(prop.PropertyType);
+                        }
+                    }
+                }
+                else
+                {
+                    if (didWriteProperty)
+                    {
+                        sb.Append(",");
+                    }
+                    sb.Append(StrUtils.WriteCSVString(prop.Name));
+                    didWriteProperty = true;
+                }
+            }
+            sb.Append('\n');
+
+            foreach (Type enType in genericListsToAdd)
+            {
+                Type underlyingType = _reflectionService.GetUnderlyingType(enType);
+
+                WriteCSVHeader(sb, underlyingType);
+            }
+        }
+
+
+        public void WriteCSVRow(StringBuilder sb, object obj, string forcedHeaderName = null)
+        {
+
+            if (obj == null)
+            {
+                return;
+            }
+
+            List<PropertyInfo> listProperties = new List<PropertyInfo>();
+
+
+            sb.Append(obj.GetType().Name.ToLower() + ",");
+            bool didWriteProperty = false;
+            PropertyInfo[] props = obj.GetType().GetProperties();
+            for (int i = 0; i < props.Length; i++)
+            {
+                PropertyInfo prop = props[i];
+                object val = _reflectionService.GetObjectValue(obj, prop);
+
+                if (_reflectionService.IsEnumerableType(prop.PropertyType))
+                {
+                    if (val is IEnumerable enumerable)
+                    {
+                        listProperties.Add(prop);
+                    }
+                }
+                else
+                {
+                    if (didWriteProperty)
+                    {
+                        sb.Append(",");
+                    }
+                    sb.Append(StrUtils.WriteCSVString(val));
+                    didWriteProperty = true;
+                }
+            }
+            sb.Append('\n');
+
+            foreach (PropertyInfo prop in listProperties)
+            {
+                continue;
+                object val = _reflectionService.GetObjectValue(obj, prop);
+
+                if (_reflectionService.IsEnumerableType(prop.PropertyType))
+                {
+                    if (val is IEnumerable enumerable)
+                    {
+                        Type underlyingType = _reflectionService.GetUnderlyingType(prop.PropertyType);
+
+
+                        string headerName = underlyingType.Name.ToLower();
+                        foreach (object item in enumerable)
+                        {
+                            WriteCSVRow(sb, item, headerName);
+                        }
+                    }
+                }
+            }
+        }
+
+        public string WriteCSVSettings(ITopLevelSettings settings)
+        {
+            StringBuilder sb = new StringBuilder();
+            WriteCSVHeader(sb, settings.GetType());
+            WriteCSVRow(sb, settings);
+
+            List<IGameSettings> children = settings.GetChildren();
+
+            if (children.Count > 0)
+            {
+                WriteCSVHeader(sb, children[0].GetType());
+
+                foreach (IGameSettings child in children)
+                {
+                    WriteCSVRow(sb, child);
+                }
+            }
+            return sb.ToString();
         }
     }
 }

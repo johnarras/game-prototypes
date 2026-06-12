@@ -2,6 +2,7 @@
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.MapTerrain;
 using OxDb.SharedCore.DataStores.DataGroups;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.MapServer.Constants;
 using OxDb.SharedCore.Utils.Data;
@@ -62,11 +63,9 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
 
             if (patch.DataBytes == null)
             {
-
                 string filePath = patch.GetFilePath();
 
-
-                patch.DataBytes = _clientRepoService.LoadBytes(filePath);
+                patch.DataBytes = await _clientRepoService.LoadBytes(filePath);
 
                 await Awaitable.NextFrameAsync(cancellationToken: token);
 
@@ -131,7 +130,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                 patch.heights = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
             }
 
-            // 1 Heights 2
+            // 1 Heights (2 bytes)
             try
             {
                 for (xx = 0; xx < MapConstants.TerrainPatchSize; xx++)
@@ -161,58 +160,99 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                     patch.grassAmounts = new ushort[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, MapConstants.MaxGrass];
                 }
 
-                if (patch.mapObjects == null)
+                if (patch.entityIds == null)
                 {
-                    patch.mapObjects = new uint[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+
                 }
 
-                // 2 Objects 4 bytes
-                uint worldObjectValue = 0;
+                if (patch.entityTypeIds == null)
+                {
+                    patch.entityTypeIds = new byte[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+                }
+
+                if (patch.entityIds == null)
+                {
+                    patch.entityIds = new byte[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize];
+                }
+
+                // 2 Objects (2 bytes)
                 for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
                 {
                     for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
                     {
-                        worldObjectValue = patch.DataBytes[index++];
-                        worldObjectValue += (uint)(patch.DataBytes[index++] << 8);
-                        worldObjectValue += (uint)(patch.DataBytes[index++] << 16);
-                        worldObjectValue += (uint)(patch.DataBytes[index++] << 24);
-
-                        patch.mapObjects[x, y] = worldObjectValue;
+                        patch.entityTypeIds[x, y] = patch.DataBytes[index++];
+                        patch.entityIds[x, y] = patch.DataBytes[index++];
+                    }
+                }
 
 
-                        if (patch.mapObjects[x, y] > MapConstants.GrassMinCellValue &&
-                            patch.mapObjects[x, y] < MapConstants.GrassMaxCellValue)
+                for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
+                {
+                    for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
+                    {
+                        if (patch.entityTypeIds[x, y] == EntityTypes.Plant)
                         {
-                            worldObjectValue -= MapConstants.GrassMinCellValue;
-
                             int div = (MapConstants.MaxGrassValue + 1);
+
+                            int entityId = patch.entityIds[x, y];
 
                             for (int i = 0; i < MapConstants.MaxGrass; i++)
                             {
-                                patch.grassAmounts[y, x, i] = (ushort)(worldObjectValue % div);
-                                worldObjectValue = (ushort)(worldObjectValue / div);
+                                patch.grassAmounts[y, x, i] = (ushort)(entityId % div);
+                                entityId /= div;
                             }
-                            patch.mapObjects[x, y] = 0;
                         }
                     }
                 }
 
+                // Push grass to edges
+
                 for (int t = 0; t < MapConstants.TerrainPatchSize; t++)
                 {
-                    uint lowerPos = patch.mapObjects[(t * 13 + gx * 17 + gy * 29) % MapConstants.TerrainPatchSize,
+                    int horizOffset = (t * 13 + gx * 17 + gy * 29) % MapConstants.TerrainPatchSize;
+
+                    uint horizOffsetEntityType = patch.entityTypeIds[horizOffset,
                         MapConstants.TerrainPatchSize - 1];
-                    if (lowerPos >= MapConstants.GrassMinCellValue && lowerPos <= MapConstants.GrassMaxCellValue)
+
+                    if (horizOffsetEntityType == EntityTypes.Plant)
                     {
-                        patch.mapObjects[t, MapConstants.TerrainPatchSize - 1] = lowerPos;
+                        patch.entityTypeIds[t, MapConstants.TerrainPatchSize - 1] = (byte)EntityTypes.Plant;
+                        patch.entityIds[t, MapConstants.TerrainPatchSize - 1] = patch.entityIds[horizOffset, MapConstants.TerrainPatchSize - 1];
                     }
 
-                    uint leftPos = patch.mapObjects[MapConstants.TerrainPatchSize - 1,
-                        (t * 23 + gx * 53 + gy * 71) % MapConstants.TerrainPatchSize];
-                    if (lowerPos >= MapConstants.GrassMinCellValue && lowerPos <= MapConstants.GrassMaxCellValue)
+                    int vertOffset = (t * 23 + gx * 53 + gy * 71) % MapConstants.TerrainPatchSize;
+
+                    uint vertOffsetEntityType = patch.entityTypeIds[
+                        MapConstants.TerrainPatchSize - 1, vertOffset];
+
+                    if (vertOffsetEntityType == EntityTypes.Plant)
                     {
-                        patch.mapObjects[MapConstants.TerrainPatchSize - 1, t] = lowerPos;
+                        patch.entityTypeIds[MapConstants.TerrainPatchSize - 1, t] = (byte)EntityTypes.Plant;
+                        patch.entityIds[MapConstants.TerrainPatchSize - 1, t] = patch.entityIds[MapConstants.TerrainPatchSize - 1, horizOffset];
                     }
                 }
+
+                for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
+                {
+                    for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
+                    {
+                        if (patch.entityTypeIds[x, y] == EntityTypes.Plant)
+                        {
+                            int div = (MapConstants.MaxGrassValue + 1);
+
+                            int entityId = patch.entityIds[x, y];
+
+                            for (int i = 0; i < MapConstants.MaxGrass; i++)
+                            {
+                                patch.grassAmounts[y, x, i] = (ushort)(entityId % div);
+                                entityId /= div;
+                            }
+
+                            patch.entityTypeIds[x, y] = 0;
+                        }
+                    }
+                }
+
             }
             catch (Exception e)
             {
@@ -229,7 +269,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                 patch.baseAlphas = new float[MapConstants.TerrainPatchSize, MapConstants.TerrainPatchSize, TerrainTexChannels.Max];
             }
 
-            // 3 Alphas 3 bytes 
+            // 3 Alphas (3 bytes) 
             float alphaTotal = 0;
             float alphaDiv = MapConstants.AlphaSaveMult * 1.0f;
             for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
@@ -264,7 +304,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                 }
             }
 
-            // 4 ZoneId 1 byte (*divsq)
+            // 4 ZoneId (1 byte)
             List<long> subZoneIds = new List<long>();
             List<long> mainZoneIds = new List<long>();
             if (_mapProvider.GetMap().OverrideZoneId > 0)
@@ -279,7 +319,6 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
             {
                 for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
                 {
-                    //_md.mapZoneIds[x + startX, y + startY] = bytes[index];
                     byte newMainZoneId = patch.DataBytes[index++];
                     patch.mainZoneIds[x, y] = newMainZoneId;
                     if (newMainZoneId >= SharedMapConstants.MapZoneStartId)
@@ -313,7 +352,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
                 await Awaitable.NextFrameAsync(cancellationToken: token);
             }
 
-            // 5 subzoneId 1 byte
+            // 5 subzoneId (1 byte)
             for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
             {
                 for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
@@ -327,7 +366,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
             }
 
 
-            // 6 OverrideZonePercent 1 byte
+            // 6 OverrideZonePercent (1 byte)
             for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
             {
                 for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
@@ -465,7 +504,7 @@ public class TerrainPatchLoader : BaseZoneGenerator, ITerrainPatchLoader
         }
 
         string filePath = patch.GetFilePath();
-        _clientRepoService.SaveBytes(filePath, bytes);
+        _awaitableService.ForgetAwaitable(_clientRepoService.SaveBytes(filePath, bytes));
         patch.DataBytes = bytes;
         LoadOneTerrainPatch(patch.X, patch.Y, _playerManager.GetPlayerGameObject() == null, _token);
     }

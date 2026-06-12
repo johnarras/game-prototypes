@@ -29,6 +29,7 @@ namespace OxDb.SharedGame.Inventory.Settings.ItemTypes
 
     public class ItemHelper : BaseEntityHelper<ItemTypeSettings, ItemType>
     {
+        public override string GetIconSuffix() { return "_001"; }
         public override long HelperKey => EntityTypes.Item;
     }
 }

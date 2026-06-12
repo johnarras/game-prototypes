@@ -1,9 +1,0 @@
-{
-  "Id": "lootrank13abtest",
-  "ParentId": "abtest",
-  "IdKey": 13,
-  "Name": "Rubyx",
-  "Armor": 45,
-  "Damage": 40,
-  "CostPct": 3000
-}

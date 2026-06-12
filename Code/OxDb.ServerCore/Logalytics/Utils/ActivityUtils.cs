@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace OxDb.ServerCore.Logalytics.Utils
 {

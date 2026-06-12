@@ -196,13 +196,14 @@ namespace Assets.Scripts.Assets.Sprites.Services
 
             if (icon != null && icon.IsValid())
             {
-                SetAtlasSpriteInto(icon.AtlasName, icon.IconName, parentImage, token);
+                string finalIconName = forcedIconName ?? icon.IconName;
+                SetAtlasSpriteInto(icon.AtlasName, finalIconName, parentImage, token);
             }
             else
             {
                 if (!_missingAssets.Contains(entityTypeId + "." + entityId))
                 {
-                    _logService.Info("Missing icon for " + entityTypeId + " " + entityId);
+                    //_logService.Info("Missing icon for " + entityTypeId + " " + entityId);
                     _missingAssets.Add(entityTypeId + "." + entityId);
                 }
             }

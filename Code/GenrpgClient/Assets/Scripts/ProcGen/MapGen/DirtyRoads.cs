@@ -82,12 +82,12 @@ public class DirtyRoads : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.alphas[x, z, TerrainTexChannels.Road] < minRoadPercent)
+                if (_md.Alphas[x, z, TerrainTexChannels.Road] < minRoadPercent)
                 {
                     continue;
                 }
 
-                if (_md.mapZoneIds[x, z] != zone.IdKey)
+                if (_md.MapZoneIds[x, z] != zone.IdKey)
                 {
                     continue;
                 }
@@ -114,9 +114,9 @@ public class DirtyRoads : BaseZoneGenerator
                 }
 
                 _md.ClearAlphasAt(x, z);
-                _md.alphas[x, z, TerrainTexChannels.Road] = 1 - totalPct;
-                _md.alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
-                _md.alphas[x, z, TerrainTexChannels.Base] = basePct;
+                _md.Alphas[x, z, TerrainTexChannels.Road] = 1 - totalPct;
+                _md.Alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
+                _md.Alphas[x, z, TerrainTexChannels.Base] = basePct;
 
             }
         }

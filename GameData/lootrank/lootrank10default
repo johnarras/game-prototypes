@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 10,
   "Name": "Platinum",
-  "Armor": 30,
-  "Damage": 26,
-  "CostPct": 1500
+  "DefenseScale": 5.0,
+  "DamageScale": 6.0,
+  "CostScale": 15.0
 }

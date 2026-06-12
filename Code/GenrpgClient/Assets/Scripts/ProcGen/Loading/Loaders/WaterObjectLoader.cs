@@ -1,23 +1,38 @@
 
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Constants;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
 public class WaterObjectLoader : BaseObjectLoader
 {
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override long HelperKey => EntityTypes.Water;
+
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
-        uint upperNumber = objectId >> 16;
-        objectId = (objectId % (1 << 16)) % MapConstants.MapObjectOffsetMult;
 
-        float heightOffset = 1.0f * objectId + MapConstants.MinLandHeight;
-        uint xSize = upperNumber / 256;
-        uint zSize = upperNumber % 256;
+        if (loadData.patch == null)
+        {
+            return false;
+        }
+
+        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+
+        if (extData == null)
+        {
+            return false;
+        }
+
+        float heightOffset = extData.Height + MapConstants.MinLandHeight;
+
+        int xSize = extData.XSize;
+        int zSize = extData.ZSize;
 
         string artName = MapConstants.WaterName;
         if (currZone == null)

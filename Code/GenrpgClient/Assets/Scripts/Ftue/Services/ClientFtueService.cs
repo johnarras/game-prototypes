@@ -3,8 +3,6 @@ using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
-using OxDb.SharedCore.Utils;
-using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.Ftue.Constants;
 using OxDb.SharedGame.Ftue.Services;

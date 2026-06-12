@@ -2,18 +2,18 @@ using Assets.Scripts.Accounts.Constants;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Screens;
 using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.Names.Services;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.UI.Constants;
-using OxDb.SharedPlatform.Accounts.WebApi.Signup;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class SignupScreen : ErrorMessageScreen
 {
-
-    public GInputField NameInput;
-    public GInputField ShareIdInput;
+    public GInputField VisibleNameInput;
     public GInputField ReferrerIdInput;
     public GInputField EmailInput;
     public GInputField PasswordInput1;
@@ -25,6 +25,7 @@ public class SignupScreen : ErrorMessageScreen
     protected IRepositoryService _repoService = null;
     protected IClientAppService _clientAppService = null;
     protected IClientCryptoService _clientCryptoService = null;
+    protected INameValidationService _nameValidationService = null;
 
     protected override async Task OnStartOpen(object data, CancellationToken token)
     {
@@ -40,36 +41,34 @@ public class SignupScreen : ErrorMessageScreen
         _dispatcher.Dispatch(new CloseScreen(ScreenNames.Signup));
     }
 
-    public void ClickSignup()
+    public async Awaitable ClickSignup(CancellationToken token)
     {
         ShowError("");
         string email = EmailInput.Text;
-        string name = NameInput.Text;
         string password1 = PasswordInput1.Text;
         string password2 = PasswordInput2.Text;
-        string shareId = ShareIdInput.Text;
+        string visibleName = VisibleNameInput.Text;
         string referrerId = ReferrerIdInput.Text;
 #if UNITY_EDITOR
-        if (string.IsNullOrEmpty(name) && InitClient.EditorInstance.AccountSuffixId > 0)
+        if (string.IsNullOrEmpty(visibleName) && InitClient.EditorInstance.AccountSuffixId > 0)
         {
             long id = InitClient.EditorInstance.AccountSuffixId;
-            name = "john" + id;
-            email = name + "@gmail.com";
-            shareId = name;
+            visibleName = "john" + id;
+            email = visibleName + "@gmail.com";
             referrerId = null;
             password1 = "password";
             password2 = "password";
             InitClient.EditorInstance.AccountSuffixId++;
         }
 #endif
-        if (name != null)
+        if (visibleName != null)
         {
-            name = name.Trim();
+            visibleName = visibleName.Trim();
         }
 
-        if (string.IsNullOrEmpty(name) ||
-            name.Length < AccountConstants.MinNameLength ||
-            name.Length > AccountConstants.MaxNameLength)
+        if (string.IsNullOrEmpty(visibleName) ||
+            visibleName.Length < AccountConstants.MinNameLength ||
+            visibleName.Length > AccountConstants.MaxNameLength)
         {
             _logService.Info($"Your Name must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} characters.");
             return;
@@ -81,18 +80,18 @@ public class SignupScreen : ErrorMessageScreen
             return;
         }
 
-        if (string.IsNullOrEmpty(shareId) ||
-            shareId.Length < AccountConstants.MinShareIdLength ||
-            shareId.Length > AccountConstants.MaxShareIdLength)
+        ValidateNameResult result = await _nameValidationService.ValidateName(visibleName);
+
+        if (!result.Ok)
         {
-            _logService.Info($"Your ShareId must be between {AccountConstants.MinShareIdLength} and {AccountConstants.MaxShareIdLength} alphanumeric characters.");
+            _logService.Info(result.ErrorMessage);
             return;
         }
 
         bool allAlphanumeric = true;
-        for (int s = 0; s < shareId.Length; s++)
+        for (int s = 0; s < visibleName.Length; s++)
         {
-            if (!StrUtils.IsAlNum(shareId[s]))
+            if (!StrUtils.IsAlNum(visibleName[s]))
             {
                 allAlphanumeric = false;
                 break;
@@ -118,17 +117,15 @@ public class SignupScreen : ErrorMessageScreen
             return;
         }
 
-        AccountSignupRequest signupCommand = new AccountSignupRequest()
+        AccountAuthRequest signupCommand = new AccountAuthRequest()
         {
-            Email = email,
-            Password = password2,
-            ShareId = shareId,
+            UserIdentity = email,
+            UserSecret = password2,
             ReferrerId = referrerId,
-            Name = name,
             DeviceId = _clientCryptoService.GetDeviceId(),
         };
 
-        _authService.SendSignupRequest(signupCommand, GetToken());
+        _authService.SendAccountAuthRequest(signupCommand, GetToken());
 
     }
 }

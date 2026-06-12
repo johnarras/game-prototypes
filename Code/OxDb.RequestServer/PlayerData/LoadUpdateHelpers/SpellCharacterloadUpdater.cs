@@ -25,6 +25,7 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
             SpellData spellData = ch.Get<SpellData>();
             for (int i = 1; i <= 3; i++)
             {
+
                 Spell mySpell = spellData.Get(i);
                 if (mySpell == null)
                 {
@@ -32,6 +33,7 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
                     newSpell.Id = HashUtils.NewGuid();
                     newSpell.OwnerId = ch.Id;
                     spellData.Add(newSpell);
+                    await _repoService.Save(newSpell);
                 }
 
                 ActionInputData adata = ch.Get<ActionInputData>();
@@ -56,7 +58,6 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
             {
                 _spellCraftingService.CreateNewSpellData(ch, spell);
             }
-
 
             await Task.CompletedTask;
         }

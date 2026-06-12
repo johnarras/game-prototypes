@@ -6,9 +6,12 @@ namespace OxDb.SharedCore.Config.Constants
         public const string SecretInfix = "Secret";
         public const string MessagingEnv = "MessagingEnv";
 
+        public const string TestSecret = "TestSecret";
+
         public const string ContentRoot = "ContentRoot";
         public const string PublicIP = "PublicIP";
         public const string BlobUploadURL = "BlobUploadURL";
+        public const string BlobUploadSAS = "BlobUploadSAS";
         public const string PlaceholderString = "XXXXX";
 
         public const string KeyVaultURI = "KeyVaultURI";
@@ -60,6 +63,11 @@ namespace OxDb.SharedCore.Config.Constants
         public const string UnityProjectId = "UnityProjectId";
 
         public const string UnityTargetId = "UnityTargetId";
+
+        public const string AndroidKeystoreName = "AndroidKeystoreName";
+        public const string AndroidKeystorePass = "AndroidKeystorePass";
+        public const string AndroidKeyAliasName = "AndroidKeyAliasName";
+        public const string AndroidKeyAliasPass = "AndroidKeyAliasPass";
     }
 }
 

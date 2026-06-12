@@ -135,7 +135,7 @@ public class MapGenService : IMapGenService
         {
             for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
             {
-                Zone currZone = _mapProvider.GetMap().Zones.FirstOrDefault(xx => xx.IdKey == _md.mapZoneIds[x, y]);
+                Zone currZone = _mapProvider.GetMap().Zones.FirstOrDefault(xx => xx.IdKey == _md.MapZoneIds[x, y]);
                 if (currZone != null)
                 {
                     currZone.XMin = Math.Min(x, currZone.XMin);
@@ -406,7 +406,7 @@ public class MapGenService : IMapGenService
                     new VendorAddon() { ItemCount = rand.Next() % 4 + 4, NPCTypeId = npc.IdKey }
                 };
 
-                int overridePercent = (int)(_md.overrideZoneScales[place.EntranceX, place.EntranceZ]);
+                int overridePercent = (int)(_md.OverrideZoneScales[place.EntranceX, place.EntranceZ]);
 
                 int unitSpawnX = place.EntranceZ - dz / 2;
                 int unitSpawnZ = place.EntranceX - dx / 2;
@@ -454,7 +454,7 @@ public class MapGenService : IMapGenService
 
     public void CreateZones(IClientGameState gs)
     {
-        if (_mapProvider.GetMap() == null || _md.mapZoneIds == null)
+        if (_mapProvider.GetMap() == null || _md.MapZoneIds == null)
         {
             return;
         }
@@ -511,19 +511,19 @@ public class MapGenService : IMapGenService
             _mapProvider.GetMap().Zones.Add(baseZone);
         }
 
-        List<MyPoint> newCenters = new List<MyPoint>(_md.zoneCenters);
+        List<MyPoint> newCenters = new List<MyPoint>(_md.ZoneCenters);
 
         int zonedelta = (int)(_mapProvider.GetMap().ZoneSize * MapConstants.TerrainPatchSize / 12);
 
         int minRad = 50 + rand.Next() % 26;
         int maxRad = minRad * 3 / 2;
 
-        _md.zoneCenters = new List<MyPoint>();
+        _md.ZoneCenters = new List<MyPoint>();
         while (newCenters.Count > 0)
         {
             int pos = rand.Next() % newCenters.Count;
             MyPoint center = newCenters[pos];
-            _md.zoneCenters.Add(center);
+            _md.ZoneCenters.Add(center);
             newCenters.Remove(center);
 
             ZoneType zoneTypeChosen = ChooseNextZoneType(rand, zoneGenList, center.X, center.Y);
@@ -547,16 +547,16 @@ public class MapGenService : IMapGenService
 
             _mapProvider.GetMap().Zones.Add(zone);
             _mapProvider.GetMap().ClearIndex();
-            _md.mapZoneIds[finalCenter.CenterX, finalCenter.CenterZ] = (short)zone.IdKey;
+            _md.MapZoneIds[finalCenter.CenterX, finalCenter.CenterZ] = (short)zone.IdKey;
             _logService.Info("ZoneCenterZoneId at (" + finalCenter.CenterX + "," + finalCenter.CenterZ + ") is " +
-                _md.mapZoneIds[finalCenter.CenterX, finalCenter.CenterZ]);
+                _md.MapZoneIds[finalCenter.CenterX, finalCenter.CenterZ]);
             _md.AddMapLocation(_mapProvider, finalCenter);
         }
 
 
         ConnectZones(rand);
         SetMinMaxSizes(gs);
-        SetZoneLevels(_md.zoneCenters);
+        SetZoneLevels(_md.ZoneCenters);
 
         List<Zone> allZones = _mapProvider.GetMap().Zones.Where(x => x.IdKey >= SharedMapConstants.MinBaseZoneId).ToList();
 
@@ -574,7 +574,7 @@ public class MapGenService : IMapGenService
         {
             bool haveUnsetCell = false;
 
-            short[,] zoneIds = _md.mapZoneIds;
+            short[,] zoneIds = _md.MapZoneIds;
             List<short> adjacentZones = new List<short>();
             int[] sizes = new int[2];
             int[] shift = new int[2];
@@ -695,7 +695,7 @@ public class MapGenService : IMapGenService
                 {
                     for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
                     {
-                        if (_md.mapZoneIds[x, z] < SharedMapConstants.MapZoneStartId)
+                        if (_md.MapZoneIds[x, z] < SharedMapConstants.MapZoneStartId)
                         {
                             reallyHaveUnsetCell = true;
                             _logService.Info("Cell slipped through processing: " + x + " " + z);

@@ -24,7 +24,7 @@ namespace OxDb.SharedCore.Serialization.Interfaces
         T Deserialize<T>(ReadOnlyMemory<byte> byteSpan, int length = 0) where T : class;
         T MakeCopy<T>(T t) where T : class;
         void BinarySerialize(object obj, ArrayPoolBufferWriter<byte> writerYouMustDispose);
-        ArrayPoolBufferWriter<byte> GetBuffer();
+        ArrayPoolBufferWriter<byte> RentBuffer();
         void ReturnBuffer(ArrayPoolBufferWriter<byte> buffer);
     }
 

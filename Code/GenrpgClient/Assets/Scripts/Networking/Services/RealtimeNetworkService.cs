@@ -8,12 +8,12 @@ using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using OxDb.SharedGame.Networking.Constants;
 using OxDb.SharedGame.Networking.Entities.TCP;
 using OxDb.SharedGame.Networking.Interfaces;
 using OxDb.SharedGame.Networking.Messages;
-using OxDb.SharedCore.Tasks.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -145,6 +145,7 @@ public class RealtimeNetworkService : IRealtimeNetworkService
                 _logService, serializer, _taskService, _token, null);
 
         }
+
 
         foreach (IPlayerCommand message in messages)
         {

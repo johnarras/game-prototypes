@@ -7,6 +7,8 @@ namespace Assets.Scripts.ClientEvents.UI
     {
         public List<long> KeepOpenScreens { get; set; } = new List<long>();
 
+        public bool CloseKeepOpenScreens { get; set; }
+
         public CloseAllScreens()
         {
 

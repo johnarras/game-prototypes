@@ -6,8 +6,6 @@ using OxDb.SharedGame.DataStores.Categories.PlayerData.NoChild;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Users;
 using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
-using System.ComponentModel.Design;
-using System.Reflection;
 
 namespace OxDb.SharedGame.Ftue.PlayerData
 {

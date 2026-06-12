@@ -3,12 +3,13 @@ using Assets.Scripts.Assets.Sprites.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Crawler.Roles.Settings;
 using OxDb.SharedGame.Effects.Services;
-using OxDb.SharedGame.Inventory.Constants;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Inventory.Services;
 using OxDb.SharedGame.Inventory.Settings.ItemTypes;
 using OxDb.SharedGame.Inventory.Settings.Ranks;
+using OxDb.SharedGame.Inventory.Settings.Slots;
 using OxDb.SharedGame.Stats.Settings.Stats;
 using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
@@ -87,6 +88,9 @@ public class ItemTooltip : BaseTooltip
         _clientEntityService.DestroyAllChildren(RowParent);
         _rows = new List<ItemTooltipRow>();
 
+        EquipSlotSettings slotSettings = _gameData.Get<EquipSlotSettings>(_gs.ch);
+
+        RoleScalingTypeSettings scalingSettings = _gameData.Get<RoleScalingTypeSettings>(_gs.ch);
 
         List<Effect> otherEffects = new List<Effect>();
         if (_data.CompareToItem != null && _data.CompareToItem.Effects != null)
@@ -100,19 +104,43 @@ public class ItemTooltip : BaseTooltip
         }
         if (_data.MainItemType != null)
         {
-            if (_data.MainItemType.EquipSlotId == EquipSlots.MainHand ||
-                _data.MainItemType.EquipSlotId == EquipSlots.Ranged)
+            if (slotSettings.IsWeaponSlot(_data.MainItemType.EquipSlotId))
             {
                 LootRank lootRank = _gameData.Get<LootRankSettings>(null).Get(_data.MainItem.LootRankId);
 
-                ItemTooltipRowData rowData = new ItemTooltipRowData()
+                if (_data.MainItemType.Effects != null)
                 {
-                    text = "Dam: " + _data.MainItemType.MinVal + "-" + _data.MainItemType.MaxVal + (lootRank != null && lootRank.Damage > 0 ? " (+" + lootRank.Damage + ")" : ""),
-                    isCurrent = true,
-                    change = 0,
-                    starsToShow = 0
-                };
-                ShowTooltipRow(rowData);
+
+                    List<WeaponRoleDamage> roleDamages = new List<WeaponRoleDamage>();
+                    foreach (Effect eff in _data.MainItemType.Effects)
+                    {
+                        if (eff.EntityTypeId != EntityTypes.RoleScaling)
+                        {
+                            continue;
+                        }
+
+                        roleDamages.Add(_sharedItemService.GetRoleDamage(_gs.ch, _data.MainItemType.IdKey,
+                            eff.EntityId, lootRank?.IdKey ?? 0));
+                    }
+
+                    foreach (WeaponRoleDamage roleDamage in roleDamages)
+                    {
+                        if (roleDamage.MaxDam > 0)
+                        {
+
+                            ItemTooltipRowData rowData = new ItemTooltipRowData()
+                            {
+                                text = roleDamage.DamageName + " Dam: " + roleDamage.MinDam + "-" + roleDamage.MaxDam,
+                                isCurrent = true,
+                                change = 0,
+                                starsToShow = 0
+                            };
+
+                            ShowTooltipRow(rowData);
+                        }
+                    }
+                }
+
             }
         }
 

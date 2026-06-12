@@ -1,0 +1,45 @@
+,,,,,,
+,,,,,com.oxdeadbeefgames.trader.bundle_,
+,,,,,,
+,,Trader's Bundle,Resources to enhance your gameplay.,,android,ios
+header productsku,Idkey,Name,Desc,DollarPrice,GoogleProductId,AppleProductId
+productsku,1,Trader's Bundle I,Resources to enhance your gameplay.,0.99,com.oxdeadbeefgames.trader.bundle_001,com.oxdeadbeefgames.trader.bundle_001
+productsku,2,Trader's Bundle II,Resources to enhance your gameplay.,1.99,com.oxdeadbeefgames.trader.bundle_002,com.oxdeadbeefgames.trader.bundle_002
+productsku,3,Trader's Bundle III,Resources to enhance your gameplay.,2.99,com.oxdeadbeefgames.trader.bundle_003,com.oxdeadbeefgames.trader.bundle_003
+productsku,4,Trader's Bundle IV,Resources to enhance your gameplay.,3.99,com.oxdeadbeefgames.trader.bundle_004,com.oxdeadbeefgames.trader.bundle_004
+productsku,5,Trader's Bundle V,Resources to enhance your gameplay.,4.99,com.oxdeadbeefgames.trader.bundle_005,com.oxdeadbeefgames.trader.bundle_005
+productsku,6,Trader's Bundle VI,Resources to enhance your gameplay.,5.99,com.oxdeadbeefgames.trader.bundle_006,com.oxdeadbeefgames.trader.bundle_006
+productsku,7,Trader's Bundle VII,Resources to enhance your gameplay.,6.99,com.oxdeadbeefgames.trader.bundle_007,com.oxdeadbeefgames.trader.bundle_007
+productsku,8,Trader's Bundle VIII,Resources to enhance your gameplay.,7.99,com.oxdeadbeefgames.trader.bundle_008,com.oxdeadbeefgames.trader.bundle_008
+productsku,9,Trader's Bundle IX,Resources to enhance your gameplay.,8.99,com.oxdeadbeefgames.trader.bundle_009,com.oxdeadbeefgames.trader.bundle_009
+productsku,10,Trader's Bundle X,Resources to enhance your gameplay.,9.99,com.oxdeadbeefgames.trader.bundle_010,com.oxdeadbeefgames.trader.bundle_010
+productsku,11,Trader's Bundle XI,Resources to enhance your gameplay.,10.99,com.oxdeadbeefgames.trader.bundle_011,com.oxdeadbeefgames.trader.bundle_011
+productsku,12,Trader's Bundle XII,Resources to enhance your gameplay.,11.99,com.oxdeadbeefgames.trader.bundle_012,com.oxdeadbeefgames.trader.bundle_012
+productsku,13,Trader's Bundle XIII,Resources to enhance your gameplay.,12.99,com.oxdeadbeefgames.trader.bundle_013,com.oxdeadbeefgames.trader.bundle_013
+productsku,14,Trader's Bundle XIV,Resources to enhance your gameplay.,13.99,com.oxdeadbeefgames.trader.bundle_014,com.oxdeadbeefgames.trader.bundle_014
+productsku,15,Trader's Bundle XV,Resources to enhance your gameplay.,14.99,com.oxdeadbeefgames.trader.bundle_015,com.oxdeadbeefgames.trader.bundle_015
+productsku,16,Trader's Bundle XVI,Resources to enhance your gameplay.,15.99,com.oxdeadbeefgames.trader.bundle_016,com.oxdeadbeefgames.trader.bundle_016
+productsku,17,Trader's Bundle XVII,Resources to enhance your gameplay.,16.99,com.oxdeadbeefgames.trader.bundle_017,com.oxdeadbeefgames.trader.bundle_017
+productsku,18,Trader's Bundle XVIII,Resources to enhance your gameplay.,17.99,com.oxdeadbeefgames.trader.bundle_018,com.oxdeadbeefgames.trader.bundle_018
+productsku,19,Trader's Bundle XIX,Resources to enhance your gameplay.,18.99,com.oxdeadbeefgames.trader.bundle_019,com.oxdeadbeefgames.trader.bundle_019
+productsku,20,Trader's Bundle XX,Resources to enhance your gameplay.,19.99,com.oxdeadbeefgames.trader.bundle_020,com.oxdeadbeefgames.trader.bundle_020
+productsku,21,Trader's Bundle XXI,Resources to enhance your gameplay.,20.99,com.oxdeadbeefgames.trader.bundle_021,com.oxdeadbeefgames.trader.bundle_021
+productsku,22,Trader's Bundle XXII,Resources to enhance your gameplay.,21.99,com.oxdeadbeefgames.trader.bundle_022,com.oxdeadbeefgames.trader.bundle_022
+productsku,23,Trader's Bundle XXIII,Resources to enhance your gameplay.,22.99,com.oxdeadbeefgames.trader.bundle_023,com.oxdeadbeefgames.trader.bundle_023
+productsku,24,Trader's Bundle XXIV,Resources to enhance your gameplay.,23.99,com.oxdeadbeefgames.trader.bundle_024,com.oxdeadbeefgames.trader.bundle_024
+productsku,25,Trader's Bundle XXV,Resources to enhance your gameplay.,24.99,com.oxdeadbeefgames.trader.bundle_025,com.oxdeadbeefgames.trader.bundle_025
+productsku,30,Trader's Bundle XXX,Resources to enhance your gameplay.,29.99,com.oxdeadbeefgames.trader.bundle_030,com.oxdeadbeefgames.trader.bundle_030
+productsku,35,Trader's Bundle XXXV,Resources to enhance your gameplay.,34.99,com.oxdeadbeefgames.trader.bundle_035,com.oxdeadbeefgames.trader.bundle_035
+productsku,40,Trader's Bundle XL,Resources to enhance your gameplay.,39.99,com.oxdeadbeefgames.trader.bundle_040,com.oxdeadbeefgames.trader.bundle_040
+productsku,45,Trader's Bundle XLV,Resources to enhance your gameplay.,44.99,com.oxdeadbeefgames.trader.bundle_045,com.oxdeadbeefgames.trader.bundle_045
+productsku,50,Trader's Bundle L,Resources to enhance your gameplay.,49.99,com.oxdeadbeefgames.trader.bundle_050,com.oxdeadbeefgames.trader.bundle_050
+productsku,55,Trader's Bundle LV,Resources to enhance your gameplay.,54.99,com.oxdeadbeefgames.trader.bundle_055,com.oxdeadbeefgames.trader.bundle_055
+productsku,60,Trader's Bundle LX,Resources to enhance your gameplay.,59.99,com.oxdeadbeefgames.trader.bundle_060,com.oxdeadbeefgames.trader.bundle_060
+productsku,65,Trader's Bundle LXV,Resources to enhance your gameplay.,64.99,com.oxdeadbeefgames.trader.bundle_065,com.oxdeadbeefgames.trader.bundle_065
+productsku,70,Trader's Bundle LXX,Resources to enhance your gameplay.,69.99,com.oxdeadbeefgames.trader.bundle_070,com.oxdeadbeefgames.trader.bundle_070
+productsku,75,Trader's Bundle LXXV,Resources to enhance your gameplay.,74.99,com.oxdeadbeefgames.trader.bundle_075,com.oxdeadbeefgames.trader.bundle_075
+productsku,80,Trader's Bundle LXXX,Resources to enhance your gameplay.,79.99,com.oxdeadbeefgames.trader.bundle_080,com.oxdeadbeefgames.trader.bundle_080
+productsku,85,Trader's Bundle LXXXV,Resources to enhance your gameplay.,84.99,com.oxdeadbeefgames.trader.bundle_085,com.oxdeadbeefgames.trader.bundle_085
+productsku,90,Trader's Bundle XC,Resources to enhance your gameplay.,89.99,com.oxdeadbeefgames.trader.bundle_090,com.oxdeadbeefgames.trader.bundle_090
+productsku,95,Trader's Bundle XCV,Resources to enhance your gameplay.,94.99,com.oxdeadbeefgames.trader.bundle_095,com.oxdeadbeefgames.trader.bundle_095
+productsku,100,Trader's Bundle C,Resources to enhance your gameplay.,99.99,com.oxdeadbeefgames.trader.bundle_100,com.oxdeadbeefgames.trader.bundle_100

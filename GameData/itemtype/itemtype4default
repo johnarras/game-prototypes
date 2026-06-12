@@ -3,49 +3,11 @@
   "ParentId": "default",
   "IdKey": 4,
   "Name": "Bracers",
-  "Desc": "",
   "Icon": "Bracers",
   "Art": "Bracers",
-  "MinVal": 1,
-  "MaxVal": 1,
+  "Armor": 1,
   "EquipSlotId": 9,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Bracer",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Bracers",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Wristguards",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Bindings",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Wraps",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Wrists",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Vambraces",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Bracer;Bracers;Wristguards;Bindings;Wraps;Wrists;Vambraces"
 }

@@ -1,4 +1,5 @@
 
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Fences;
@@ -97,23 +98,23 @@ public class AddFences : BaseZoneGenerator
                     Location currLoc = _zoneGenService.FindMapLocation(x, y, 3);
 
                     if (currLoc == null ||
-                        FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsLocationPatch))
+                        FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.IsLocationPatch))
                     {
                         continue;
                     }
                 }
 
-                if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
+                if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
                 {
                     continue;
                 }
-                float startRoadDist = _md.roadDistances[x, y];
+                float startRoadDist = _md.RoadDistances[x, y];
                 if (startRoadDist < 1.5f || startRoadDist > 2.5f)
                 {
                     continue;
                 }
 
-                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
                 {
                     continue;
                 }
@@ -167,7 +168,7 @@ public class AddFences : BaseZoneGenerator
                         {
                             continue;
                         }
-                        float newDist = _md.roadDistances[xx, yy];
+                        float newDist = _md.RoadDistances[xx, yy];
                         if (newDist < startRoadDist - 0.5f || newDist > startRoadDist + 0.5f)
                         {
                             continue;
@@ -184,7 +185,7 @@ public class AddFences : BaseZoneGenerator
                         {
                             for (int vy = sy; vy <= sy; vy++)
                             {
-                                if (_md.roadDistances[vx, vy] < 0.5f)
+                                if (_md.RoadDistances[vx, vy] < 0.5f)
                                 {
                                     tooCloseToRoad = true;
                                     break;
@@ -203,14 +204,14 @@ public class AddFences : BaseZoneGenerator
                         int inx = (int)(enx);
                         int iny = (int)(eny);
 
-                        float ird = _md.roadDistances[inx, iny];
+                        float ird = _md.RoadDistances[inx, iny];
 
                         if (ird < startRoadDist - 0.75f || ird > startRoadDist + 0.75f)
                         {
                             continue;
                         }
 
-                        if (_md.bridgeDistances[xx, yy] < 15)
+                        if (_md.BridgeDistances[xx, yy] < 15)
                         {
                             continue;
                         }
@@ -265,15 +266,22 @@ public class AddFences : BaseZoneGenerator
                     continue;
                 }
 
-                if (x >= 0 && y >= 0 && x < _mapProvider.GetMap().GetHwid() && y < _mapProvider.GetMap().GetHhgt() &&
-                    _md.mapObjects[x, y] == 0)
-                {
-                    _md.mapObjects[x, y] = MapConstants.FenceObjectOffset + (int)(fenceType.IdKey);
-                    ushort nextVal = (byte)((angle + 360) / 4);
-                    int hangle2 = (byte)((hangle + 360) / 4);
+                int intAngle = MathUtil.ModClamp((int)angle, MapConstants.FullCircleAngle);
+                int intHangle = MathUtil.ModClamp((int)hangle, MapConstants.FullCircleAngle);
 
-                    nextVal += (ushort)(hangle2 << 8);
-                    _md.mapObjects[x, y] |= nextVal << 16;
+                if (_md.SetEntityData(x, y, EntityTypes.Fence, fenceType.IdKey))
+                {
+                    _md.ExtendedObjects[x, y] = new ExtendedWorldObjectData()
+                    {
+                        X = x,
+                        Z = y,
+                        EntityTypeId = EntityTypes.Fence,
+                        EntityId = fenceType.IdKey,
+                        Angle = (ushort)intAngle,
+                        HAngle = (ushort)intHangle,
+
+                    };
+
                     currFences.Add(new MyPointF((float)x, y, 0));
                 }
 
@@ -294,11 +302,11 @@ public class AddFences : BaseZoneGenerator
         float endz = (float)(newz + Math.Sin((angle - 90) * Math.PI / 180) * fenceLength);
 
 
-        int eax = (int)((endx / _mapProvider.GetMap().GetHwid()) * _md.awid);
-        int eay = (int)((endz / _mapProvider.GetMap().GetHhgt()) * _md.ahgt);
+        int eax = (int)((endx / _mapProvider.GetMap().GetHwid()) * _md.Awid);
+        int eay = (int)((endz / _mapProvider.GetMap().GetHhgt()) * _md.Ahgt);
 
 
-        if (_md.roadDistances[(int)endx, (int)endz] <= 1)
+        if (_md.RoadDistances[(int)endx, (int)endz] <= 1)
         {
             return 0.0f;
         }

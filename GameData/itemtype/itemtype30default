@@ -2,66 +2,24 @@
   "Id": "itemtype30default",
   "ParentId": "default",
   "IdKey": 30,
-  "Name": "Ranged",
-  "Desc": "",
-  "Icon": "Bow",
-  "Art": "Bow",
-  "MinVal": 3,
-  "MaxVal": 12,
+  "Name": "Gun",
+  "Icon": "Gun",
+  "Art": "Gun",
+  "MinDam": 1,
+  "MaxDam": 5,
   "EquipSlotId": 17,
   "IconCount": 3,
-  "Flags": 8,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 10000.0,
-      "Name": "Bow",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 100
     },
     {
-      "Weight": 10000.0,
-      "Name": "Longbow",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Rifle",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Gun",
-      "Desc": ""
-    },
-    {
-      "Weight": 10000.0,
-      "Name": "Crossbow",
-      "Desc": ""
-    },
-    {
-      "Weight": 5000.0,
-      "Name": "Longbow",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Recurve Bow",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Musket",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Longrifle",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Hunting Bow",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 7,
+      "Quantity": 50
     }
-  ]
+  ],
+  "NameString": "Rifle;Gun;Musket;Longrifle;Shotgun"
 }

@@ -32,6 +32,23 @@ public class ClientConfigContainer : IClientConfigContainer
     }
 }
 
+
+
+[Flags]
+public enum ClientPlayerFlags
+{
+    None = 0,
+    SelfContainedClient = 1 << 0,
+    ExportGameData = 1 << 1,
+    EncryptGameData = 1 << 2,
+    VerboseLogging = 1 << 3,
+    DevelopmentBuild = 1 << 4,
+    BuildAppBundle = 1 << 5,
+    IsCouldBuild = 1 << 6,
+}
+
+
+
 [Serializable]
 public class ClientConfig : ScriptableObject
 {
@@ -42,9 +59,9 @@ public class ClientConfig : ScriptableObject
     public string AssetsEnv;
     public string WorldsEnv;
     public int ProductId = 2;
-    public bool SelfContainedClient;
-    public bool ExportGameData;
-    public bool EncryptExportedData;
+
+    [field: SerializeField]
+    public ClientPlayerFlags Flags = ClientPlayerFlags.None;
 
     public string LogalyticsConnectionString;
     public string GooglePlaySecret;

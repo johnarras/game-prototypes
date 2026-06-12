@@ -2,8 +2,9 @@
   "Id": "productsku7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "$6.99 Product",
+  "Name": "Trader's Bundle VII",
+  "Desc": "Resources to enhance your gameplay.",
   "DollarPrice": 6.99,
-  "GoogleProductId": "com.oxdeadbeefgames.genrpg.bundle007",
-  "AppleProductId": "com.oxdeadbeefgames.genrpg.bundle007"
+  "GoogleProductId": "com.oxdeadbeefgames.trader.bundle_007",
+  "AppleProductId": "com.oxdeadbeefgames.trader.bundle_007"
 }

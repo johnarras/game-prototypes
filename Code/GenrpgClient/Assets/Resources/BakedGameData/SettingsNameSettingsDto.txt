@@ -627,6 +627,10 @@
     {
       "IdKey": 157,
       "Name": "PropTypeSettings"
+    },
+    {
+      "IdKey": 158,
+      "Name": "DungeonThemeSettings"
     }
   ],
   "Parent": {

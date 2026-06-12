@@ -3,44 +3,11 @@
   "ParentId": "default",
   "IdKey": 7,
   "Name": "Pants",
-  "Desc": "",
   "Icon": "Pants",
   "Art": "Pants",
-  "MinVal": 4,
-  "MaxVal": 4,
+  "Armor": 4,
   "EquipSlotId": 7,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Pants",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Leggings",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Legguards",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Leggings",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Legplates",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Trousers",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Pants;Leggings;Legguards;Leggings;Legplates;Trousers"
 }

@@ -11,8 +11,8 @@ public class SmoothRoadEdges : BaseZoneGenerator
 
         await base.Generate(token);
 
-        int awid = _md.awid;
-        int ahgt = _md.ahgt;
+        int awid = _md.Awid;
+        int ahgt = _md.Ahgt;
         int hwid = _mapProvider.GetMap().GetHwid();
         int hhgt = _mapProvider.GetMap().GetHhgt();
 
@@ -26,7 +26,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
         {
             for (int y = 0; y < hhgt; y++)
             {
-                heights2[x, y] = _md.heights[x, y];
+                heights2[x, y] = _md.Heights[x, y];
             }
         }
         for (int x = 0; x < hwid; x++)
@@ -37,13 +37,13 @@ public class SmoothRoadEdges : BaseZoneGenerator
                 int ay = (int)(1.0f * y / hhgt * ahgt);
 
 
-                float currSplat = _md.alphas[ax, ay, TerrainTexChannels.Road];
+                float currSplat = _md.Alphas[ax, ay, TerrainTexChannels.Road];
                 if (currSplat > 0.0f)
                 {
                     //continue;
                 }
 
-                if (_md.roadDistances[ax, ay] >= radius)
+                if (_md.RoadDistances[ax, ay] >= radius)
                 {
                     continue;
                 }
@@ -81,7 +81,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
                 }
 
 
-                float bridgeDist = _md.bridgeDistances[y, x];
+                float bridgeDist = _md.BridgeDistances[y, x];
 
                 float bridgeScale = 1.0f;
 
@@ -99,7 +99,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
                     continue;
                 }
 
-                float currHeight = _md.heights[x, y];
+                float currHeight = _md.Heights[x, y];
 
                 if (aveHeight < currHeight)
                 {
@@ -111,7 +111,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
             }
         }
 
-        _md.heights = heights2;
+        _md.Heights = heights2;
     }
 }
 

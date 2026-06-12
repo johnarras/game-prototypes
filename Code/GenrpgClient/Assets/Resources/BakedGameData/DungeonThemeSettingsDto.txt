@@ -1,0 +1,9 @@
+{
+  "Children": [],
+  "Parent": {
+    "Id": "default",
+    "Name": "DungeonThemeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-06-07T18:19:12.0412524Z"
+}

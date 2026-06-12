@@ -118,6 +118,12 @@ namespace OxDb.SharedCore.Entities.Services
                 return null;
             }
 
+
+            if (!string.IsNullOrEmpty(helper.GetIconSuffix()))
+            {
+                iconName = iconName + helper.GetIconSuffix();
+            }
+
             return new EntityAtlasIcon()
             {
                 AtlasName = atlasName,

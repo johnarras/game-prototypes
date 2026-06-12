@@ -67,12 +67,12 @@ namespace OxDb.SharedCore.Core.Entities
         {
             if (!typeof(T).IsInterface)
             {
-                return default(T);
+                return default(T)!;
             }
 
             if (!_typeDict.ContainsKey(typeof(T)))
             {
-                return default(T);
+                return default(T)!;
             }
 
             return (T)_typeDict[typeof(T)];
@@ -167,10 +167,10 @@ namespace OxDb.SharedCore.Core.Entities
                 throw new Exception("ServiceLocator: Attempted to Set non-interface type. " + interfaceType.Name);
             }
 
-            
+
             if (_typeDict.ContainsKey(interfaceType))
             {
-                object currObj = _typeDict[interfaceType];  
+                object currObj = _typeDict[interfaceType];
 
                 if (currObj.GetType() == obj.GetType())
                 {
@@ -304,23 +304,39 @@ namespace OxDb.SharedCore.Core.Entities
 
         public void ResolveSelf()
         {
+
+            object val2 = null;
             _fieldCache.Clear();
             foreach (object val in _typeDict.Values)
             {
+                val2 = val;
+
                 Resolve(val);
             }
 
-            foreach (object val in _storedDictionaryItems)
+
+            List<object> allStoredDictionaryItems = new List<object>();
+
+            while (_storedDictionaryItems.Count > 0)
             {
-                Resolve(val);
+                List<object> currStoredDictionaryItems = _storedDictionaryItems.ToList();
+                allStoredDictionaryItems.AddRange(currStoredDictionaryItems);
+                _storedDictionaryItems = new List<object>();
+
+                foreach (object val in currStoredDictionaryItems)
+                {
+                    val2 = val;
+                    Resolve(val);
+                }
             }
+
+            _storedDictionaryItems = allStoredDictionaryItems;
         }
 
         public void StoreDictionaryItem(object obj)
         {
             _storedDictionaryItems.Add(obj);
         }
-
     }
 }
 

@@ -11,7 +11,7 @@ namespace OxDb.SharedCore.Serialization.Services
     {
         public string SerializeToString(object obj)
         {
-            ArrayPoolBufferWriter<byte> writer = GetBuffer();
+            ArrayPoolBufferWriter<byte> writer = RentBuffer();
 
             BinarySerialize(obj, writer);
 
@@ -34,7 +34,7 @@ namespace OxDb.SharedCore.Serialization.Services
 
         public T MakeCopy<T>(T t) where T : class
         {
-            ArrayPoolBufferWriter<byte> writer = GetBuffer();
+            ArrayPoolBufferWriter<byte> writer = RentBuffer();
             BinarySerialize(t, writer);
             T obj = Deserialize<T>(writer.WrittenMemory);
             ReturnBuffer(writer);
@@ -49,7 +49,7 @@ namespace OxDb.SharedCore.Serialization.Services
 
         private ConcurrentQueue<ArrayPoolBufferWriter<byte>> _bufferPool = new ConcurrentQueue<ArrayPoolBufferWriter<byte>>();
 
-        public ArrayPoolBufferWriter<byte> GetBuffer()
+        public ArrayPoolBufferWriter<byte> RentBuffer()
         {
             if (_bufferPool.TryDequeue(out ArrayPoolBufferWriter<byte> buffer))
             {
@@ -60,6 +60,10 @@ namespace OxDb.SharedCore.Serialization.Services
 
         public void ReturnBuffer(ArrayPoolBufferWriter<byte> buffer)
         {
+            if (buffer == null)
+            {
+                return;
+            }
             buffer.Clear();
             // Do not dispose. Maybe dispose if the buffer is too big?
             if (buffer.Capacity > 1024)

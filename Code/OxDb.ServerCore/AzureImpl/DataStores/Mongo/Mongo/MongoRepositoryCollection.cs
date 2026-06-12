@@ -108,7 +108,6 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
         }
 
 
-        private ReplaceOptions _saveOptions = new ReplaceOptions() { IsUpsert = true, BypassDocumentValidation = true, };
         protected async Task<bool> InnerSave(object obj, RepoSaveArgs args = null)
         {
             T t = (T)obj;
@@ -125,14 +124,8 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
                     throw new Exception("Missing Id on save");
                 }
 
-                ReplaceOneResult replaceResult = await ReplaceDocument(t, _saveOptions, args);
+                return await ReplaceDocument(t, args);
 
-                if (replaceResult.ModifiedCount < 1 && string.IsNullOrEmpty(replaceResult.UpsertedId?.AsString ?? null))
-                {
-                    string errorString = "Failed to upsert Document " + typeof(T).Name + " Id: " + t.Id;
-                    _logService.Error(errorString);
-                    return false;
-                }
             }
             catch (Exception ex)
             {
@@ -142,7 +135,8 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
             return true;
         }
 
-        virtual protected async Task<ReplaceOneResult> ReplaceDocument(T t, ReplaceOptions options, RepoSaveArgs args = null)
+        private ReplaceOptions _upsertSaveOptions = new ReplaceOptions() { IsUpsert = true, BypassDocumentValidation = true, };
+        virtual protected async Task<bool> ReplaceDocument(T t, RepoSaveArgs args = null)
         {
             IClientSessionHandle session = null;
 
@@ -151,14 +145,24 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
                 session = args.Args as IClientSessionHandle;
             }
 
+            ReplaceOneResult result;
             if (session != null)
             {
-                return await _collection.ReplaceOneAsync(session, w => w.Id == t.Id, t, options);
+                result = await _collection.ReplaceOneAsync(session, w => w.Id == t.Id, t, _upsertSaveOptions);
             }
             else
             {
-                return await _collection.ReplaceOneAsync(w => w.Id == t.Id, t, options);
+                result = await _collection.ReplaceOneAsync(w => w.Id == t.Id, t, _upsertSaveOptions);
             }
+
+            if (result.ModifiedCount < 1 && string.IsNullOrEmpty(result.UpsertedId?.AsString ?? null))
+            {
+                string errorString = "Failed to upsert Document " + typeof(T).Name + " Id: " + t.Id;
+                _logService.Error(errorString);
+                return false;
+            }
+
+            return result.ModifiedCount == 1;
         }
 
         public async Task<List<T>> Search(object funcObj, int quantity = 1000, int skip = 0)

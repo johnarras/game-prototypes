@@ -9,7 +9,7 @@ namespace OxDb.SharedGame.Factions.PlayerData
     /// </summary>
 
     [MessagePackObject]
-    public class ReputationData : NoChildPlayerData
+    public class ReputationData : NoChildIndexedUserData
     {
         [Key(0)] public override string Id { get; set; }
 

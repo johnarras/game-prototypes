@@ -7,7 +7,7 @@ namespace OxDb.PlayerServer.Setup
 {
     public class PlayerServerMain : BaseServer<ServerGameState, PlayerSetupService, IPlayerMessageHandler>
     {
-        protected override bool UseInstanceId => true;
+        protected override bool UseInstanceId => false;
         protected override string GetBaseServerName() { return ServerNames.Player; }
     }
 }

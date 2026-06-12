@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 12,
   "Name": "Adamantite",
-  "Armor": 40,
-  "Damage": 35,
-  "CostPct": 2500
+  "DefenseScale": 7.0,
+  "DamageScale": 8.0,
+  "CostScale": 25.0
 }

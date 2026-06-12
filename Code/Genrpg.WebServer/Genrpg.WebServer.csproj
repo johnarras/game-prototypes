@@ -37,7 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OxDb.RequestServer\OxDb.RequestServer.csproj" />
+    <ProjectReference Include="..\OxDb.RequestServer\OxDb.RequestServer.csproj">
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 
 

@@ -46,7 +46,7 @@ public class InventoryPanel : BaseBehaviour
                 continue;
             }
 
-            if (itype.EquipSlotId > 0 || FlagUtils.MatchesAnyBits(itype.Flags, ItemFlags.NoStack))
+            if (itype.EquipSlotId > 0)
             {
                 if (FlagUtils.MatchesAnyBits(categories, InventoryGroup.Equipment))
                 {

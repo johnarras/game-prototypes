@@ -50,7 +50,7 @@ public abstract class BaseScreen : AnimatorBehaviour, IScreen
         }
     }
 
-    
+
 
     private string _analyticsName = null;
     public override string GetName()

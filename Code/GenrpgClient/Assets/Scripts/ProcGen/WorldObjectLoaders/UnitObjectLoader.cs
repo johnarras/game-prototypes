@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class UnitObjectLoader : BaseMapObjectLoader
+public class UnitObjectLoader : BaseCrawlerMapObjectLoader
 {
     public override long HelperKey => EntityTypes.Unit;
     protected override string GetLayerName() { return LayerNames.UnitLayer; }

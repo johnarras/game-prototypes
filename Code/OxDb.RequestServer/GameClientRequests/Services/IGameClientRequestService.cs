@@ -7,7 +7,7 @@ namespace OxDb.RequestServer.ClientUserRequests.Services
 {
     public interface IGameClientRequestService : IInitializable
     {
-        Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, string tokenUserId, CancellationToken token);
+        Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, string tokenUserId, string gameSessionId, CancellationToken token);
         Task ResetRequestHandlers();
         MapStubList GetMapStubs();
     }

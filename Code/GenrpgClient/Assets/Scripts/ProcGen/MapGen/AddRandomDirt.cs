@@ -21,7 +21,7 @@ public class AddRandomDirt : BaseZoneGenerator
 
     public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
     {
-        if (_md.alphas == null || zone == null || zoneType == null ||
+        if (_md.Alphas == null || zone == null || zoneType == null ||
             endx <= startx || endy <= starty)
         {
             return;
@@ -85,7 +85,7 @@ public class AddRandomDirt : BaseZoneGenerator
                 {
                     for (int y = starty; y < endy; y++)
                     {
-                        if (_md.mapZoneIds[x, y] != zone.IdKey)
+                        if (_md.MapZoneIds[x, y] != zone.IdKey)
                         {
                             continue;
                         }
@@ -95,7 +95,7 @@ public class AddRandomDirt : BaseZoneGenerator
                             maxPct = 1;
                         }
 
-                        float basePct = _md.alphas[x, y, TerrainTexChannels.Base];
+                        float basePct = _md.Alphas[x, y, TerrainTexChannels.Base];
                         float newPct = Math.Max(changes[x - startx, y - starty], 0);
                         if (newPct > maxPct)
                         {
@@ -106,13 +106,13 @@ public class AddRandomDirt : BaseZoneGenerator
                         {
                             newPct = basePct;
                         }
-                        _md.alphas[x, y, TerrainTexChannels.Base] -= newPct;
-                        _md.alphas[x, y, newIndex] += newPct;
-                        if (_md.alphas[x, y, newIndex] > 1)
+                        _md.Alphas[x, y, TerrainTexChannels.Base] -= newPct;
+                        _md.Alphas[x, y, newIndex] += newPct;
+                        if (_md.Alphas[x, y, newIndex] > 1)
                         {
-                            float diff = _md.alphas[x, y, newIndex] - 1;
-                            _md.alphas[x, y, TerrainTexChannels.Base] = diff;
-                            _md.alphas[x, y, newIndex] = 1;
+                            float diff = _md.Alphas[x, y, newIndex] - 1;
+                            _md.Alphas[x, y, TerrainTexChannels.Base] = diff;
+                            _md.Alphas[x, y, newIndex] = 1;
                         }
                     }
                 }

@@ -188,8 +188,9 @@ namespace Genrpg.Editor.UI
 
         public static void SetWindowRect(WindowBase window, double xpos, double ypos, double width, double height)
         {
-            window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32((int)xpos, (int)ypos, (int)(width * ScalingConstants.DisplayScaling),
-                (int)(height * ScalingConstants.DisplayScaling)));
+            window.AppWindow.MoveAndResize(new Windows.Graphics.RectInt32((int)xpos, (int)ypos,
+                (int)(width * GetDisplayScaling(window)),
+                (int)(height * GetDisplayScaling(window))));
         }
 
         public static bool IsKeyDown(VirtualKey key)
@@ -274,6 +275,18 @@ namespace Genrpg.Editor.UI
             dataGrid.Columns.Remove(col);
             dataGrid.Columns.Add(col2);
 
+        }
+
+        public static double GetDisplayScaling(Window window)
+        {
+            // If the window hasn't fully loaded its visual tree yet, default safely to 1.0
+            if (window.Content?.XamlRoot == null)
+            {
+                return 1.0;
+            }
+
+            // RasterizationScale gives you 1.0 for 100%, 1.5 for 150%, etc.
+            return window.Content.XamlRoot.RasterizationScale;
         }
     }
 }

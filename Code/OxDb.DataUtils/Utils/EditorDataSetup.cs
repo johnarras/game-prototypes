@@ -3,15 +3,12 @@ using OxDb.DataUtils.Interfaces;
 using OxDb.DataUtils.Services.EditorData;
 using OxDb.DataUtils.Services.Setup;
 using OxDb.ServerCore.MainServer;
-using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.SettingsNames.Settings;
-using OxDb.SharedGame.ProcGen.Settings.Props;
-using OxDb.SharedGame.Zones.Settings;
 
 namespace OxDb.DataUtils.Utils
 {
@@ -24,12 +21,8 @@ namespace OxDb.DataUtils.Utils
             try
             {
                 EditorServer server = new EditorServer();
-                ServerInitArgs args = new ServerInitArgs()
-                {
-                    Token = EditorGameState.CTS.Token,
-                    EnvOverride = env,
-                    InitialServices = initialServices,
-                };
+                ServerInitArgs args = new ServerInitArgs(initialServices, EditorGameState.CTS.Token, null, null, env);
+
                 await server.Init(args);
 
                 EditorGameState gs = (EditorGameState)server.GetServerGameState();
@@ -49,7 +42,6 @@ namespace OxDb.DataUtils.Utils
                     }
                 }
 
-
                 ITextSerializer serializer = gs.loc.Get<ITextSerializer>();
 
                 gs.EditorGameData = new EditorGameData()
@@ -64,6 +56,12 @@ namespace OxDb.DataUtils.Utils
                 groups = groups.OrderBy(x => x.Key.Name).ToList();
 
                 SettingsNameSettings settingSettings = (SettingsNameSettings)allGameData.FirstOrDefault(x => x.Id == GameDataConstants.DefaultFilename && x.GetType().Name == nameof(SettingsNameSettings));
+
+                if (settingSettings == null)
+                {
+                    settingSettings = new SettingsNameSettings() { Id = GameDataConstants.DefaultFilename };
+                }
+
 
                 List<SettingsName> allSettingNames = settingSettings.GetData().ToList();
 

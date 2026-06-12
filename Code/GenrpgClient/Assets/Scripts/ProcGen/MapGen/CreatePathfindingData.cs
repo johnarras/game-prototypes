@@ -53,25 +53,21 @@ public class CreatePathfindingData : BaseZoneGenerator
                         blockedCells[px, pz] = true;
                     }
 
-                    long worldObject = _md.mapObjects[x, z];
-
-                    if (worldObject > 0 &&
-                        (worldObject < MapConstants.GrassMinCellValue ||
-                        worldObject > MapConstants.GrassMaxCellValue))
+                    if (_md.CellHasObject(x, z))
                     {
-                        if (worldObject >= MapConstants.TreeObjectOffset && worldObject <
-                            MapConstants.TreeObjectOffset + MapConstants.MapObjectOffsetMult)
+                        if (_md.EntityTypeIds[x, z] == EntityTypes.Tree)
                         {
-                            long treeTypeId = worldObject - MapConstants.TreeObjectOffset;
-                            TreeType ttype = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(treeTypeId);
+                            TreeType ttype = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(_md.EntityIds[x, z]);
+
                             if (ttype != null && !ttype.HasFlag(TreeFlags.IsBush))
                             {
                                 blockedCells[pz, px] = true;
                             }
-                        }
-                        else
-                        {
-                            blockedCells[pz, px] = true;
+
+                            else
+                            {
+                                blockedCells[pz, px] = false;
+                            }
                         }
                     }
                 }
@@ -133,7 +129,7 @@ public class CreatePathfindingData : BaseZoneGenerator
             int endLength = output.Length;
 
             string filename = MapUtils.GetMapObjectFilename(PathfindingConstants.Filename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-            _clientRepoService.SaveBytes(filename, output);
+            await _clientRepoService.SaveBytes(filename, output);
         }
         catch (Exception e)
         {

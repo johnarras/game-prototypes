@@ -66,7 +66,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
                         continue;
                     }
 
-                    if (FlagUtils.MatchesAnyBits(base._md.flags[xx, yy], MapGenFlags.IsEdgeWall))
+                    if (FlagUtils.MatchesAnyBits(base._md.Flags[xx, yy], MapGenFlags.IsEdgeWall))
                     {
                         failed = true;
                     }
@@ -78,12 +78,12 @@ public class AddSecondaryLocations : BaseZoneGenerator
                 continue;
             }
 
-            if (base._md.roadDistances[cx, cy] < minDistToFeature)
+            if (base._md.RoadDistances[cx, cy] < minDistToFeature)
             {
                 continue;
             }
 
-            if (base._md.mapZoneIds[cx, cy] < MapConstants.MapZoneStartId)
+            if (base._md.MapZoneIds[cx, cy] < MapConstants.MapZoneStartId)
             {
                 continue;
             }

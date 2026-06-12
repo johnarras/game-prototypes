@@ -43,7 +43,7 @@ public interface IMapTerrainManager : IInitializable
     Texture2D GetBasicTerrainTexture(int index);
     void SetTerrainLayerData(TerrainLayer tl);
     void SetAllTerrainNeighbors();
-    BaseObjectLoader GetLoader(long mapObjectOffset);
+    IMMOMapObjectLoader GetLoader(long entityTypeId);
     Awaitable SetupOneTerrainPatch(TerrainPatchData patch, CancellationToken token);
 }
 

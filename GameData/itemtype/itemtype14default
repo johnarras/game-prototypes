@@ -2,99 +2,34 @@
   "Id": "itemtype14default",
   "ParentId": "default",
   "IdKey": 14,
-  "Name": "Trinket",
-  "Desc": "",
-  "Icon": "Jewelry",
-  "Art": "Jewelry",
-  "EquipSlotId": 13,
+  "Name": "Axe",
+  "Icon": "Axe",
+  "Art": "Axe",
+  "MinDam": 2,
+  "MaxDam": 8,
+  "EquipSlotId": 15,
   "IconCount": 3,
-  "Flags": 8,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 1000.0,
-      "Name": "Trinket",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Quantity": 100
     },
     {
-      "Weight": 1000.0,
-      "Name": "Gem",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Quantity": 20
     },
     {
-      "Weight": 1000.0,
-      "Name": "Book",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Quantity": 20
     },
     {
-      "Weight": 1000.0,
-      "Name": "Talisman",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Insignia",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Medal",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Mark",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Badge",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Brooch",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Charm",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Shard",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Crystal",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Rune",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Scarab",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Memento",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Bauble",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Gizmo",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 20
     }
-  ]
+  ],
+  "NameString": "Axe;Chopper;Destroyer;Hacker;Scythe"
 }

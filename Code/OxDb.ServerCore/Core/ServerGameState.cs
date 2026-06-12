@@ -16,7 +16,7 @@ namespace OxDb.ServerCore.Core
         public ServerGameState(IServerConfig configIn, ILogService logService)
         {
             IServerConfig config = configIn;
-            IReflectionService reflectionService = new ReflectionService();
+            IReflectionService reflectionService = new ReflectionService(logService);
             _loc = new ServiceLocator(logService, reflectionService, new GameData());
             _loc.Set(config);
         }

@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using OpenTelemetry;
+﻿using OpenTelemetry;
+using System.Diagnostics;
 
 public class AzureMetricExtractorSanitizer : BaseProcessor<Activity>
 {

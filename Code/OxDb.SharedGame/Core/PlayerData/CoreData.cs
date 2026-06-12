@@ -40,6 +40,8 @@ namespace OxDb.SharedGame.Core.PlayerData
 
         [Key(1)] public DateTime Created { get; set; } = DateTime.UtcNow;
         [Key(2)] public string Client { get; set; } = VersionConstants.MinVersion.ToString();
+
+        [Key(11)] public string GameSessionId { get; set; }
         [Key(3)] public ABList AB { get; set; } = new ABList();
         [Key(4)] public DateTime NextHourlyUpdate { get; set; }
 

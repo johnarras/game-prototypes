@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
@@ -13,9 +14,10 @@ using UnityEngine;
 
 public class TreeObjectLoader : BaseObjectLoader
 {
+    public override long HelperKey => EntityTypes.Tree;
     const int ScaleStepCount = 20;
 
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
         FullTreePrototype fullProto = null;
@@ -30,7 +32,7 @@ public class TreeObjectLoader : BaseObjectLoader
 
         string assetCategory = AssetCategoryNames.Trees;
 
-        treeType = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(objectId);
+        treeType = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(entityId);
 
         if (treeType == null)
         {

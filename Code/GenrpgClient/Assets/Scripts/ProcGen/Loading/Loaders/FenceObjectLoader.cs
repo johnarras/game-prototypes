@@ -1,33 +1,36 @@
 
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Fences;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
 public class FenceObjectLoader : BaseObjectLoader
 {
 
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override long HelperKey => EntityTypes.Fence;
+
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
 
-        int angleData = (int)(objectId >> 16);
-        objectId = (objectId % (1 << 16)) % MapConstants.MapObjectOffsetMult;
-
-
-        int angle = 0;
-        int hangle = 0;
-        angle = (4 * (angleData & (255)) - 360);
-        hangle = ((4 * (angleData >> 8)) - 360);
-
-        FenceType fenceType = _gameData.Get<FenceTypeSettings>(_gs.ch).Get((int)objectId);
+        FenceType fenceType = _gameData.Get<FenceTypeSettings>(_gs.ch).Get((int)entityId);
         if (fenceType == null)
         {
             return false;
         }
+
+        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+
+        if (extData == null)
+        {
+            return false;
+        }
+
 
         string artName = fenceType.Art;
 
@@ -41,7 +44,7 @@ public class FenceObjectLoader : BaseObjectLoader
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
         dlo.allowRandomPlacement = false;
-        dlo.rotation = new MyPointF(0, angle, hangle);
+        dlo.rotation = new MyPointF(0, extData.Angle, extData.HAngle);
         dlo.AfterLoad = AfterLoadObject;
 
         _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);

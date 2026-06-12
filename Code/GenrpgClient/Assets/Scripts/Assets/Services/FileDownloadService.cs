@@ -165,8 +165,9 @@ public class FileDownloadService : IFileDownloadService
 
         if (!fileDownload.DownloadData.ForceDownload)
         {
-            fileDownload.DownloadData.StartBytes = _clientRepoService.LoadBytes(fileDownload.FilePath);
+            fileDownload.DownloadData.StartBytes = await _clientRepoService.LoadBytes(fileDownload.FilePath);
         }
+
         if (fileDownload.DownloadData.StartBytes == null || fileDownload.DownloadData.StartBytes.Length < 1)
         {
             for (int i = 0; i < _retryTimes; i++)
@@ -231,7 +232,7 @@ public class FileDownloadService : IFileDownloadService
                         byte[] finalBytes = fileDownload.DownloadData.StartBytes;
 
                         await Awaitable.NextFrameAsync(cancellationToken: token);
-                        _clientRepoService.SaveBytes(fileDownload.FilePath, finalBytes);
+                        await _clientRepoService.SaveBytes(fileDownload.FilePath, finalBytes);
                         await Awaitable.NextFrameAsync(cancellationToken: token);
                         fileDownload.DownloadData.UncompressedBytes = finalBytes;
 

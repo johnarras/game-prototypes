@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 13,
   "Name": "Ruby",
-  "Armor": 45,
-  "Damage": 40,
-  "CostPct": 3000
+  "DefenseScale": 8.0,
+  "DamageScale": 9.0,
+  "CostScale": 30.0
 }

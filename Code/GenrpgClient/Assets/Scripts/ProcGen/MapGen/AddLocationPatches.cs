@@ -20,16 +20,16 @@ public class AddLocationPatches : BaseZoneGenerator
         MyRandom smoothnessRand = new MyRandom(_rand.Rand.NextLong());
         for (int pass = 0; pass < 2; pass++)
         {
-            for (int gx = 0; gx < _md.locationGrid.GetLength(0); gx++)
+            for (int gx = 0; gx < _md.LocationGrid.GetLength(0); gx++)
             {
-                for (int gy = 0; gy < _md.locationGrid.GetLength(1); gy++)
+                for (int gy = 0; gy < _md.LocationGrid.GetLength(1); gy++)
                 {
-                    if (_md.locationGrid[gx, gy] == null)
+                    if (_md.LocationGrid[gx, gy] == null)
                     {
                         continue;
                     }
 
-                    foreach (Location loc in _md.locationGrid[gx, gy])
+                    foreach (Location loc in _md.LocationGrid[gx, gy])
                     {
                         if ((pass == 0) != (loc.LocationTypeId == LocationTypes.ZoneCenter))
                         {
@@ -46,7 +46,7 @@ public class AddLocationPatches : BaseZoneGenerator
                         if (loc.CenterX >= 0 && loc.CenterX < _mapProvider.GetMap().GetHwid() &&
                             loc.CenterZ >= 0 && loc.CenterZ < _mapProvider.GetMap().GetHhgt())
                         {
-                            short zoneId = _md.mapZoneIds[loc.CenterX, loc.CenterZ];
+                            short zoneId = _md.MapZoneIds[loc.CenterX, loc.CenterZ];
                             if (zoneId == MapConstants.OceanZoneId)
                             {
                                 continue;
@@ -101,8 +101,8 @@ public class AddLocationPatches : BaseZoneGenerator
 
         MyRandom rand = new MyRandom(zone.Seed + loc.Seed);
 
-        int awid = _md.awid;
-        int ahgt = _md.ahgt;
+        int awid = _md.Awid;
+        int ahgt = _md.Ahgt;
 
 
         int centerX = loc.CenterX;
@@ -160,7 +160,7 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 if (normDist <= 1)
                 {
-                    float hgt = Mathf.Max(MapConstants.StartHeightPercent, _md.heights[x, z]);
+                    float hgt = Mathf.Max(MapConstants.StartHeightPercent, _md.Heights[x, z]);
                     totalHeight += hgt;
                     if (hgt > maxHeight)
                     {
@@ -229,7 +229,7 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 float currFlattenFraction = flattenFraction;
 
-                float roadDistance = _md.roadDistances[x, z];
+                float roadDistance = _md.RoadDistances[x, z];
 
                 float roadDistCheck = 15;
                 float roadFixFlattenPct = 1.0f;
@@ -244,22 +244,22 @@ public class AddLocationPatches : BaseZoneGenerator
 
                 float finalOffsetPercent = currFlattenFraction * changePct;
 
-                _md.heights[x, z] += (aveHeight - _md.heights[x, z]) * finalOffsetPercent;
+                _md.Heights[x, z] += (aveHeight - _md.Heights[x, z]) * finalOffsetPercent;
 
                 if (false && changePct == 1 && loc.LocationTypeId == LocationTypes.Patch)
                 {
                     _md.ClearAlphasAt(x, z);
                     float dirtPct = RandUtils.FloatRange(0.9f, 1.0f, rand);
-                    _md.alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
-                    _md.alphas[x, z, TerrainTexChannels.Base] = 1 - dirtPct;
+                    _md.Alphas[x, z, TerrainTexChannels.Dirt] = dirtPct;
+                    _md.Alphas[x, z, TerrainTexChannels.Base] = 1 - dirtPct;
                 }
 
                 if (outsideCenterDist <= minNormDist)
                 {
-                    _md.flags[x, z] |= MapGenFlags.IsLocation;
+                    _md.Flags[x, z] |= MapGenFlags.IsLocation;
                     if (loc.LocationTypeId == LocationTypes.Patch)
                     {
-                        _md.flags[x, z] |= MapGenFlags.IsLocationPatch;
+                        _md.Flags[x, z] |= MapGenFlags.IsLocationPatch;
                     }
                 }
             }

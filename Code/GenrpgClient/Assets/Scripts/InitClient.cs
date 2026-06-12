@@ -91,7 +91,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
     private void ShowSplashScreenInternal(string message = null, bool showResetButton = false)
     {
-        _dispatcher.Dispatch(new CloseAllScreens());
+        _dispatcher?.Dispatch(new CloseAllScreens());
         _splashOverlay.gameObject.SetActive(true);
         _splashOverlay.Show(FullResetGameInternal, message, showResetButton);
     }
@@ -150,12 +150,14 @@ public class InitClient : BaseBehaviour, IInitClient
         _dispatcher.AddListener<FullResetGame>(OnFullResetGame, GetGameToken());
         _dispatcher.AddListener<ShowSplashScreen>(OnShowSplashScreen, GetGameToken());
 
+        _logService.Info("Init Before Asset Bundle Setup ");
         while (!_assetService.IsInitialized() ||
             !_screenService.IsInitialized())
         {
             await Awaitable.WaitForSecondsAsync(0.1f, GetGameToken());
         }
 
+        _logService.Info("Init After Asset Bundle Setup ");
         _cursorService.SetCursor(CursorNames.Default);
 
         await _screenService.OpenAsync(ScreenNames.Loading, null, GetGameToken());
@@ -167,7 +169,7 @@ public class InitClient : BaseBehaviour, IInitClient
 
         if (!GameModeUtils.IsPureClientMode(_gs.GameMode))
         {
-            _loginService.StartAuth(GetGameToken());
+            await _loginService.StartAuth(GetGameToken());
         }
         else
         {

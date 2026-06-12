@@ -10,7 +10,6 @@
     <PackageReference Include="Google.Apis" Version="1.73.0" />
     <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.73.0.4094" />
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.68.0.1869" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="10.0.6" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="10.0.6" />
   </ItemGroup>
 

@@ -17,7 +17,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             await Task.CompletedTask;
 
             Color oldForegroundMain = state.ForegroundMain;
-            Color oldBackgroundMain = state.BackgroundMain;
+            Color oldBackgroundMain = state.ForegroundMain;
 
             state.ForegroundMain = new Color(0.5f, 0.25f, 0, 1) * RandUtils.DeltaScale(0.2f, state.Rand);
             state.ForegroundNoise = new List<ScaledColor>();
@@ -150,7 +150,6 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             List<CornerPoint> points = new List<CornerPoint>();
 
-
             LineGenParameters lineGenParams = new LineGenParameters()
             {
                 WidthSize = state.Rand.Next(2, 5),
@@ -166,8 +165,6 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 WidthSizeChangeChance = 0.03f
             };
 
-
-
             state.CurvedWallChance = 0;
 
             foreach (int rowValue in rowYValues)
@@ -176,7 +173,6 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 CornerPoint cp2 = new CornerPoint(state.Width - 1, rowValue);
 
                 _materialGenUtilsService.ConnectLowerLeftToUpperRightPoint(state, cp1, cp2, 0, 2, 2);
-
             }
 
             _materialGenUtilsService.AddColorNoise(state);
@@ -188,7 +184,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             _materialGenUtilsService.ApplyBlockToTexture(state, state.Block, tex);
 
             state.ForegroundMain = oldForegroundMain;
-            state.BackgroundMain = oldBackgroundMain;
+            state.ForegroundMain = oldBackgroundMain;
 
             return tex;
         }

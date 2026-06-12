@@ -94,7 +94,7 @@ namespace OxDb.SharedCore.Serialization.Services
 
         private ConcurrentQueue<ArrayPoolBufferWriter<byte>> _bufferPool = new ConcurrentQueue<ArrayPoolBufferWriter<byte>>();
 
-        public ArrayPoolBufferWriter<byte> GetBuffer()
+        public ArrayPoolBufferWriter<byte> RentBuffer()
         {
             if (_bufferPool.TryDequeue(out ArrayPoolBufferWriter<byte> buffer))
             {

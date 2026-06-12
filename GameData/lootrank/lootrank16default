@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 16,
   "Name": "Diamond",
-  "Armor": 75,
-  "Damage": 55,
-  "CostPct": 7500
+  "DefenseScale": 11.0,
+  "DamageScale": 12.0,
+  "CostScale": 75.0
 }

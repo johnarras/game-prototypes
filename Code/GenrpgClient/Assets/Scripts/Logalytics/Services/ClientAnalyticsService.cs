@@ -12,20 +12,15 @@ using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Setup.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Rewards.Settings;
-using OxDb.SharedGame.UI.Settings;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.Scenes.Editor;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Networking;
-using static UnityEngine.Rendering.STP;
 
 namespace Assets.Scripts.Logalytics.Services
 {
@@ -125,7 +120,7 @@ namespace Assets.Scripts.Logalytics.Services
             await Task.CompletedTask;
         }
 
-        public void TrackEvent(string eventName, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null)
+        public void TrackEvent(string eventName, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             // Fixed inverse logic initialization check
             if (!_didInitialize)
@@ -189,12 +184,12 @@ namespace Assets.Scripts.Logalytics.Services
             }
         }
 
-        public void TrackUIEvent(string eventName, string screenName, string buttonName = null, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null)
+        public void TrackUIEvent(string eventName, string screenName, string buttonName = null, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
 
             if (properties == null)
             {
-                properties = new Dictionary<string, string>();  
+                properties = new Dictionary<string, string>();
             }
 
             AddNonNullValue(properties, AnalyticsKeys.ScreenName, StrUtils.ToSnakeCase(screenName));
@@ -232,7 +227,7 @@ namespace Assets.Scripts.Logalytics.Services
 
             if (measurements == null)
             {
-                measurements = new Dictionary<string, double>();    
+                measurements = new Dictionary<string, double>();
             }
 
             measurements[AnalyticsKeys.Quantity] = quantity;
@@ -360,7 +355,7 @@ namespace Assets.Scripts.Logalytics.Services
             }
             catch (Exception ex)
             {
-                _logService.Exception(ex,"[Telemetry] Error recovering offline telemetry cache.");
+                _logService.Exception(ex, "[Telemetry] Error recovering offline telemetry cache.");
             }
 
             await Task.CompletedTask;

@@ -10,7 +10,7 @@ namespace OxDb.SharedGame.Currencies.PlayerData
     /// </summary>
 
     [MessagePackObject]
-    public class CharCurrencyData : NoChildPlayerData
+    public class CharCurrencyData : NoChildIndexedUserData
     {
         [Key(0)] public override string Id { get; set; }
 

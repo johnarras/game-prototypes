@@ -12,11 +12,26 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
         {
         }
 
-        protected override async Task<ReplaceOneResult> ReplaceDocument(T t, ReplaceOptions options, RepoSaveArgs args = null)
+
+
+        private ReplaceOptions _casReplaceOptions = new ReplaceOptions() { IsUpsert = false, BypassDocumentValidation = true, };
+        protected override async Task<bool> ReplaceDocument(T t, RepoSaveArgs args = null)
         {
+
+            if (string.IsNullOrEmpty(t._etag))
+            {
+                t._etag = Guid.NewGuid().ToString();
+                InsertOneOptions insertOptions = new InsertOneOptions()
+                {
+                    BypassDocumentValidation = true,
+                };
+                await _collection.InsertOneAsync(t, insertOptions);
+                return true;
+            }
+
+
             string oldUpdateTag = t._etag;
             t._etag = Guid.NewGuid().ToString();
-
 
             IClientSessionHandle session = null;
 
@@ -25,14 +40,26 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
                 session = args.Args as IClientSessionHandle;
             }
 
+            ReplaceOneResult result;
             if (session != null)
             {
-                return await _collection.ReplaceOneAsync(session, x => x.Id == t.Id && x._etag == oldUpdateTag, t, options);
+                result = await _collection.ReplaceOneAsync(session, x => x.Id == t.Id && x._etag == oldUpdateTag, t, _casReplaceOptions);
             }
             else
             {
-                return await _collection.ReplaceOneAsync(x => x.Id == t.Id && x._etag == oldUpdateTag, t, options);
+                result = await _collection.ReplaceOneAsync(x => x.Id == t.Id && x._etag == oldUpdateTag, t, _casReplaceOptions);
             }
+
+            // If it didn't find a match, it means the version (_etag) changed out from under you
+            if (result.MatchedCount == 0)
+            {
+                // Revert the tag changes so the local object isn't corrupted with a fake tag
+                t._etag = oldUpdateTag;
+
+                throw new Exception("Optimistic concurrency violation: The document has been modified by another process.");
+            }
+
+            return result.MatchedCount == 1;
         }
 
         protected override int GetMaxUpdateAttempts()

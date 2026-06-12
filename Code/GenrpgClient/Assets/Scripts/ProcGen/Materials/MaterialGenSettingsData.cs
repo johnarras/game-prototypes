@@ -7,6 +7,10 @@ namespace Assets.Scripts.ProcGen.Materials
     public class MaterialGenSettingsData : ScriptableObject
     {
 
+        public Color SpecularColor = Color.black;
+        public float SmoothnessScale = 0.5f;
+        public float BumpScale = 10.0f;
+
         public int TextureSize = 1024;
 
         public int MinBrickRows = 7;

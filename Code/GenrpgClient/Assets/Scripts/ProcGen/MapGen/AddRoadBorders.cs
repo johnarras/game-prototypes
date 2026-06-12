@@ -84,12 +84,12 @@ public class AddRoadBorders : BaseZoneGenerator
             for (int y = starty; y < endy; y++)
             {
 
-                if (_md.mapZoneIds[x, y] != zone.IdKey)
+                if (_md.MapZoneIds[x, y] != zone.IdKey)
                 {
                     continue;
                 }
 
-                float roadVal = _md.alphas[x, y, TerrainTexChannels.Road];
+                float roadVal = _md.Alphas[x, y, TerrainTexChannels.Road];
                 if (roadVal > 0)
                 {
                     continue;
@@ -97,7 +97,7 @@ public class AddRoadBorders : BaseZoneGenerator
 
                 roadRadius = (float)MathUtil.Clamp(minDirtRadius, Math.Abs(radNoise[x - startx, y - starty]), 6);
 
-                float roadDist = _md.roadDistances[x, y];
+                float roadDist = _md.RoadDistances[x, y];
 
                 if (roadDist >= Math.Max(minDirtRadius, roadRadius) || roadDist <= 0f)
                 {
@@ -110,7 +110,7 @@ public class AddRoadBorders : BaseZoneGenerator
                 {
                     roadDistScale = 1.0f;
                 }
-                float distToRoad = _md.roadDistances[x, y];
+                float distToRoad = _md.RoadDistances[x, y];
 
                 float posDirtPercent = 0.6f + Math.Abs(dirtAmount[x - startx, y - starty]);
 
@@ -138,9 +138,9 @@ public class AddRoadBorders : BaseZoneGenerator
 
                 for (int c = 0; c < TerrainTexChannels.Max; c++)
                 {
-                    _md.alphas[x, y, c] *= (1 - currDirtPercent);
+                    _md.Alphas[x, y, c] *= (1 - currDirtPercent);
                 }
-                _md.alphas[x, y, TerrainTexChannels.Dirt] += currDirtPercent;
+                _md.Alphas[x, y, TerrainTexChannels.Dirt] += currDirtPercent;
 
             }
         }

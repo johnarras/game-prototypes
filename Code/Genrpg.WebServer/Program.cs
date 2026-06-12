@@ -1,3 +1,5 @@
+using Genrpg.WebServer.Handlers;
+using Genrpg.WebServer.Sessions;
 using MessagePack;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -110,11 +112,14 @@ namespace Genrpg.WebServer
 
                 app.MapPost(CoreEndpoints.GameClient, async (IServiceProvider sp, WebRequestServer webServer, ClaimsPrincipal user, [FromBody] JsonElement json) =>
                 {
+                    UserWebRequestClaimData claimData = new UserWebRequestClaimData()
+                    {
+                        UserId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                        ExistingData = user.FindFirst(CustomClaimTypes.ExistingData)?.Value,
+                        GameSessionId = user.FindFirst(CustomClaimTypes.GameSessionId)?.Value,
+                    };
 
-                    string userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    string existingData = user.FindFirst("ExistingData")?.Value;
-
-                    return await HandleRequest(webServer, json, CoreEndpoints.GameClient, async (wrs) => { return await webServer.HandleUserClient(wrs, userId, existingData); });
+                    return await HandleRequest(webServer, json, CoreEndpoints.GameClient, async (wrs) => { return await webServer.HandleUserClient(wrs, claimData); });
                 }).RequireAuthorization();
 
                 app.Run();

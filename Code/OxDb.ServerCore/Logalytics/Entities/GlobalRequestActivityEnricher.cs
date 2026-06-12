@@ -1,7 +1,6 @@
 ﻿using OpenTelemetry;
 using OxDb.ServerCore.Logalytics.Utils;
 using System.Diagnostics;
-using System.Text;
 
 namespace OxDb.ServerCore.Logalytics.Entities
 {

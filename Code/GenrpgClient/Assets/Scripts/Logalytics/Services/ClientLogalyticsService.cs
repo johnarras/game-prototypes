@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Logalytics.ClientEvents;
-using OxDb.SharedCore.Core.Entities;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Constants;

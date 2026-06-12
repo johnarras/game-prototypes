@@ -31,10 +31,10 @@ public class SetupMapData : BaseZoneGenerator
 
         int mapSize = _mapProvider.GetMap().GetHwid();
 
-        _md.dwid = mapSize;
-        _md.dhgt = mapSize;
-        _md.ahgt = mapSize;
-        _md.awid = mapSize;
+        _md.DWid = mapSize;
+        _md.DHgt = mapSize;
+        _md.Ahgt = mapSize;
+        _md.Awid = mapSize;
 
         if (string.IsNullOrEmpty(_zoneGenService.LoadedMapId))
         {
@@ -49,61 +49,63 @@ public class SetupMapData : BaseZoneGenerator
 
         if (string.IsNullOrEmpty(_zoneGenService.LoadedMapId))
         {
-            _md.grassAmounts = new byte[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt(), MapConstants.MaxGrass];
+            _md.GrassAmounts = new byte[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt(), MapConstants.MaxGrass];
 
-            _md.mapZoneIds = new short[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.MapZoneIds = new short[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
-            _md.subZonePercents = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.subZoneIds = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.overrideZoneScales = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.SubZonePercents = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.SubZoneIds = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.OverrideZoneScales = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
             _terrainManager.SetAllTerrainNeighbors();
 
-            _md.alphas = new float[_md.awid, _md.ahgt, TerrainTexChannels.Max];
-            _md.heights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.Alphas = new float[_md.Awid, _md.Ahgt, TerrainTexChannels.Max];
+            _md.Heights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
 
-            _md.zoneCenters = new List<MyPoint>();
-            _md.mountainHeights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.nearestMountainTopHeight = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.mountainDistPercent = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.edgeMountainDistPercent = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.mountainCenterDist = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.flags = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
-            _md.roadDistances = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.ZoneCenters = new List<MyPoint>();
+            _md.MaintainHeights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.NearestMountainTopHeight = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.MountainDistPercent = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.EdgeMountainDistPercent = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.MountainCenterDist = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.Flags = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.RoadDistances = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
-            _md.mapObjects = new int[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.EntityTypeIds = new byte[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.EntityIds = new byte[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+            _md.ExtendedObjects = new ExtendedWorldObjectData[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
             for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
             {
                 for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
                 {
-                    _md.mapZoneIds[x, y] = 0;
-                    _md.roadDistances[x, y] = MapConstants.InitialRoadDistance;
-                    _md.mountainDistPercent[x, y] = 1.0f;
-                    _md.edgeMountainDistPercent[x, y] = 1.0f;
-                    _md.mountainCenterDist[x, y] = MapConstants.InitialMountainDistance;
-                    _md.flags[x, y] = 0;
+                    _md.MapZoneIds[x, y] = 0;
+                    _md.RoadDistances[x, y] = MapConstants.InitialRoadDistance;
+                    _md.MountainDistPercent[x, y] = 1.0f;
+                    _md.EdgeMountainDistPercent[x, y] = 1.0f;
+                    _md.MountainCenterDist[x, y] = MapConstants.InitialMountainDistance;
+                    _md.Flags[x, y] = 0;
                 }
 
             }
 
-            for (int x = 0; x < _md.awid; x++)
+            for (int x = 0; x < _md.Awid; x++)
             {
-                for (int y = 0; y < _md.ahgt; y++)
+                for (int y = 0; y < _md.Ahgt; y++)
                 {
-                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
             }
         }
         else
         {
-            _md.flags = null;
-            _md.alphas = null;
-            _md.heights = null;
-            _md.roadDistances = null;
-            _md.roads = null;
-            _md.bridgeDistances = null;
+            _md.Flags = null;
+            _md.Alphas = null;
+            _md.Heights = null;
+            _md.RoadDistances = null;
+            _md.Roads = null;
+            _md.BridgeDistances = null;
         }
     }
 }

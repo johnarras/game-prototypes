@@ -14,13 +14,13 @@ public class SetfinalTerrainHeights : BaseZoneGenerator
             {
                 if (x == 0 || x == _mapProvider.GetMap().GetHwid() - 1 || y == 0 || y == _mapProvider.GetMap().GetHhgt() - 1)
                 {
-                    _md.heights[x, y] = 0;
+                    _md.Heights[x, y] = 0;
                 }
-                _md.heights[x, y] = MathUtil.Clamp(0, _md.heights[x, y], 1);
+                _md.Heights[x, y] = MathUtil.Clamp(0, _md.Heights[x, y], 1);
             }
         }
 
-        _zoneGenService.SetAllHeightmaps(_md.heights, token);
+        _zoneGenService.SetAllHeightmaps(_md.Heights, token);
 
 
         _md.HaveSetHeights = true;

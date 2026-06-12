@@ -2,56 +2,24 @@
   "Id": "itemtype31default",
   "ParentId": "default",
   "IdKey": 31,
-  "Name": "Thrown",
-  "Desc": "",
-  "Icon": "Thrown",
-  "Art": "Thrown",
-  "MinVal": 2,
-  "MaxVal": 10,
+  "Name": "Sling",
+  "Icon": "Sling",
+  "Art": "Sling",
+  "MinDam": 1,
+  "MaxDam": 4,
   "EquipSlotId": 17,
   "IconCount": 3,
-  "Flags": 8,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 1000.0,
-      "Name": "Throwing Star",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Quantity": 100
     },
     {
-      "Weight": 1000.0,
-      "Name": "Throwing Knife",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Knife",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Star",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Axe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Throwing Axe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Blades",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "War Edge",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Quantity": 50
     }
-  ]
+  ],
+  "NameString": "Sling"
 }

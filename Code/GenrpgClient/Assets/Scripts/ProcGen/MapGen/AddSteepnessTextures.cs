@@ -26,7 +26,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
         {
             return;
         }
-        float[,,] alphas = _md.alphas;
+        float[,,] alphas = _md.Alphas;
 
         startx = MathUtil.Clamp(0, startx, _mapProvider.GetMap().GetHwid() - 1);
         endx = MathUtil.Clamp(0, endx, _mapProvider.GetMap().GetHwid() - 1);
@@ -83,7 +83,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
             for (int y = starty; y <= endy; y++)
             {
                 numCheck++;
-                if (_md.mapZoneIds[x, y] != zone.IdKey)
+                if (_md.MapZoneIds[x, y] != zone.IdKey)
                 {
                     numBadZone++;
                     continue;
@@ -135,7 +135,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
                         int innerMinNumAboveMid = numAngles / 2 + extraRaisedPointsAmount;
                         int innerNumAboveMid = 0;
                         float innerExtraHeight = 0.1f / MapConstants.MapHeight;
-                        float innerrad = 1.3f / _md.awid;
+                        float innerrad = 1.3f / _md.Awid;
 
                         for (int i = 0; i < numAngles; i++)
                         {

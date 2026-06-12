@@ -18,5 +18,6 @@
         public const int PurchaseHistory = 8;
         public const int CurrentPurchases = 9;
         public const int StoreOffers = 10;
+        public const int Resets = 11;
     }
 }

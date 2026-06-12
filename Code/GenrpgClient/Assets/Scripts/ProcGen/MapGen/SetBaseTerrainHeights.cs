@@ -72,7 +72,7 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
 
                 float heightPct = maxHeight * (1 - pct) + minHeight * pct;
 
-                _md.heights[x, y] = heightPct;
+                _md.Heights[x, y] = heightPct;
 
                 float perturbScale = 1.0f;
                 if (pct > perturbDampStartPercent)
@@ -96,10 +96,10 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
                     heightAdjust /= 2;
                 }
 
-                _md.heights[x, y] += heightAdjust;
-                if (_md.heights[x, y] < 0)
+                _md.Heights[x, y] += heightAdjust;
+                if (_md.Heights[x, y] < 0)
                 {
-                    _md.heights[x, y] = 0;
+                    _md.Heights[x, y] = 0;
                 }
             }
         }
@@ -117,7 +117,7 @@ public class SetBaseTerrainHeights : BaseZoneGenerator
                     edgePercent = 0;
                 }
 
-                _md.heights[x, y] *= edgePercent;
+                _md.Heights[x, y] *= edgePercent;
                 /*
                 if (_md.heights[x, y] < MapConstants.StartHeightPercent)
                 {

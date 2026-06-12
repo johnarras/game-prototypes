@@ -16,7 +16,7 @@ using OxDb.SharedGame.Units.Settings;
 
 namespace OxDb.DataUtils.Importers.Crawler
 {
-    public abstract class BaseCrawlerDataImporter<TParent> : BaseDataImporter<TParent> where TParent : class, ITopLevelSettings, new()
+    public abstract class BaseCrawlerDataImporter<TParent> : BaseParentDataImporter<TParent> where TParent : class, ITopLevelSettings, new()
     {
         protected override async Task<bool> UpdateAfterImport(EditorGameState gs)
         {

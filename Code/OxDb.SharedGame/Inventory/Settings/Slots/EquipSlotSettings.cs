@@ -4,6 +4,7 @@ using OxDb.SharedCore.GameSettings.Mappers;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Inventory.Constants;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OxDb.SharedGame.Inventory.Settings.Slots
 {
@@ -37,15 +38,42 @@ namespace OxDb.SharedGame.Inventory.Settings.Slots
 
         public double BonusStatScale { get; set; }
 
-        public EquipSlot()
-        {
-        }
-
+        public bool IsWeaponSlot { get; set; }
 
     }
     public class EquipSlotSettings : ParentConstantListSettings<EquipSlot, EquipSlots>
     {
         public override string Id { get; set; }
+
+
+        private List<long> _weaponSlots = null;
+
+
+
+        public override void SetData(List<EquipSlot> data)
+        {
+            base.SetData(data);
+            CalcWeaponSlots();
+        }
+
+        private void CalcWeaponSlots()
+        {
+            _weaponSlots = GetData().Where(x => x.IsWeaponSlot).Select(x => x.IdKey).ToList();
+        }
+        public List<long> GetWeaponSlots()
+        {
+            if (_weaponSlots == null || _weaponSlots.Count == 0)
+            {
+                CalcWeaponSlots();
+            }
+            return _weaponSlots;
+        }
+
+        public bool IsWeaponSlot(long equipSlotId)
+        {
+            return Get(equipSlotId)?.IsWeaponSlot ?? false;
+        }
+
     }
 
     public class EquipSlotSettingsDto : ParentSettingsDto<EquipSlotSettings, EquipSlot>

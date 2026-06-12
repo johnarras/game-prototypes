@@ -4,7 +4,7 @@ using OxDb.SharedCore.Utils;
 
 namespace OxDb.DataUtils.Importers.Core
 {
-    public abstract class NoChildImporter<TParent> : BaseDataImporter<TParent> where TParent : class, ITopLevelSettings, new()
+    public abstract class NoChildImporter<TParent> : BaseParentDataImporter<TParent> where TParent : class, ITopLevelSettings, new()
     {
         /// <summary>
         /// A little strange, but nochild objects MIGHT have very small child lists of objects that aren't really full child objects.

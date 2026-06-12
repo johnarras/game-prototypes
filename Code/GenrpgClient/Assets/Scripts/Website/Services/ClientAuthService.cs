@@ -13,9 +13,8 @@ using OxDb.SharedGame.GameAuth.WebApi.Auth;
 using OxDb.SharedGame.MapServer.Services;
 using OxDb.SharedGame.UI.Constants;
 using OxDb.SharedGame.Versions.Settings;
-using OxDb.SharedPlatform.Accounts.WebApi.Login;
-using OxDb.SharedPlatform.Accounts.WebApi.Signup;
-using System;
+using OxDb.SharedPlatform.Accounts.Constants;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,14 +23,12 @@ using UnityEngine;
 
 public interface IClientAuthService : IInitializable, IClientResetCleanup
 {
-    void StartAuth(CancellationToken token);
+    Awaitable StartAuth(CancellationToken token);
     void Logout();
-    void ExitMap();
-    Awaitable SendAccountLogin(AccountLoginRequest request, CancellationToken token);
-    Awaitable SendSignupRequest(AccountSignupRequest request, CancellationToken token);
+    void SendAccountAuthRequest(AccountAuthRequest request, CancellationToken token);
     Awaitable SaveLocalUserData(string accountId, string gameUserId, string loginToken);
     Awaitable StartNoUser(CancellationToken token);
-    Awaitable OnAccountLogin(AccountLoginResponse response, CancellationToken token);
+    Awaitable OnAccountLogin(AccountAuthResponse response, CancellationToken token);
 }
 
 public class ClientAuthService : IClientAuthService
@@ -39,9 +36,6 @@ public class ClientAuthService : IClientAuthService
     private const string LocalUserFilename = "LocalUser";
 
     private IClientWebService _clientWebService = null;
-    private IRealtimeNetworkService _realtimeNetworkService = null;
-    private IMapTerrainManager _mapManager = null;
-    private IClientMapObjectManager _objectManager = null;
     private IZoneGenService _zoneGenService = null;
     private IRepositoryService _repoService = null;
     private ILogService _logService = null;
@@ -61,41 +55,29 @@ public class ClientAuthService : IClientAuthService
         await Task.CompletedTask;
     }
 
-    public void StartAuth(CancellationToken token)
+    public async Awaitable StartAuth(CancellationToken token)
     {
-        LocalUserData localData = _repoService.Load<LocalUserData>(LocalUserFilename).Result;
-
-        string accountId = "";
-        string userId = "";
-        string email = "";
-        string password = "";
+        LocalUserData localData = await _repoService.Load<LocalUserData>(LocalUserFilename);
 
         if (localData != null)
         {
-            try
-            {
-                accountId = localData.AccountId;
-                userId = localData.UserId;
-                password = _clientCryptoService.DecryptString(localData.LoginToken);
-            }
-            catch (Exception ex)
-            {
-                _logService.Exception(ex, "StartLogin");
-            }
-        }
-        if ((!string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(accountId)) && !string.IsNullOrEmpty(password))
-        {
-            AccountLoginRequest LoginRequest = new AccountLoginRequest()
-            {
-                AccountId = accountId,
-                Email = email,
-                Password = password,
-                DeviceId = _clientCryptoService.GetDeviceId(),
-            };
+            string accountId = localData.AccountId;
+            string userIdentity = localData.UserId;
+            string userSecret = _clientCryptoService.DecryptString(localData.LoginToken);
 
-            _awaitableService.ForgetAwaitable(SendAccountLogin(LoginRequest, token));
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading, true));
-            return;
+            if (!string.IsNullOrEmpty(accountId) && !string.IsNullOrEmpty(userIdentity) && !string.IsNullOrEmpty(userSecret))
+            {
+                AccountAuthRequest deviceAuthRequest = new AccountAuthRequest()
+                {
+                    AuthType = EAuthTypes.Device,
+                    AccountId = accountId,
+                    UserIdentity = _clientCryptoService.GetDeviceId(),
+                    UserSecret = userSecret,
+                };
+                SendAccountAuthRequest(deviceAuthRequest, token);
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading, true));
+                return;
+            }
         }
 
         // Otherwise we either had no local login or we had no valid online login, and in this case
@@ -108,35 +90,12 @@ public class ClientAuthService : IClientAuthService
     public void Logout()
     {
         _logService.Info("Logging out");
-        ExitMMOMap();
+        _zoneGenService.ExitMMOMap();
         _gs.GameUserId = null;
         _gs.SessionState = new StubSessionState();
         _dispatcher.Dispatch(new CloseAllScreens());
         _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
         _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login));
-    }
-
-    public void ExitMap()
-    {
-        _logService.Info("Exiting Map");
-        ExitMMOMap();
-        _dispatcher.Dispatch(new CloseAllScreens());
-        _dispatcher.Dispatch(new CloseScreen(ScreenNames.HUD));
-        _dispatcher.Dispatch(new OpenScreen(ScreenNames.CharacterSelect));
-    }
-
-    private void ExitMMOMap()
-    {
-        _zoneGenService.CancelMapToken();
-        _playerManager.SetUnit(null);
-        _realtimeNetworkService.CloseClient();
-        _mapManager.Clear();
-        _objectManager.Reset();
-        _zoneGenService.LoadedMapId = null;
-        _mapProvider.SetMap(null);
-        _mapProvider.SetSpawns(null);
-        _gs.ch = null;
-
     }
     public async Awaitable SaveLocalUserData(string accountId, string gameUserId, string loginToken)
     {
@@ -151,21 +110,18 @@ public class ClientAuthService : IClientAuthService
         await _repoService.Save(localUserData);
     }
 
-    public async Awaitable SendAccountLogin(AccountLoginRequest request, CancellationToken token)
+    public void SendAccountAuthRequest(AccountAuthRequest request, CancellationToken token)
     {
+        request.DeviceId = _clientCryptoService.GetDeviceId();
         request.ProductId = _config.Config.ProductId;
+        request.ClientVersion = _clientAppService.Version;
 
-        AccountLoginResponse result = await _clientWebService.SendWebRequestAsync<AccountLoginResponse>(request, token);
-
-        if (result == null)
-        {
-            _logService.Info("Got null result on send of " + request.GetType().Name);
-        }
+        _clientWebService.SendWebRequest(request, token);
     }
 
     public async Awaitable StartNoUser(CancellationToken token)
     {
-        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", SelfContainedToken = "Local", SessionId = "Local" };
+        GameAuthResponse result = new GameAuthResponse() { GameUserId = "Local", FullToken = "Local", GameSessionId = "Local" };
 
         WebServerResponseSet resultSet = new WebServerResponseSet() { Responses = new List<IWebResponse>() { result } };
 
@@ -174,25 +130,18 @@ public class ClientAuthService : IClientAuthService
         await Task.CompletedTask;
     }
 
-    public async Awaitable SendSignupRequest(AccountSignupRequest request, CancellationToken token)
-    {
-        request.ProductId = _config.Config.ProductId;
-        _clientWebService.SendWebRequest(request, token);
-        await Task.CompletedTask;
-    }
-
     public async Task OnReset(CancellationToken token)
     {
-        ExitMMOMap();
+        _zoneGenService.ExitMMOMap();
         await Task.CompletedTask;
     }
 
-    public async Awaitable OnAccountLogin(AccountLoginResponse response, CancellationToken token)
+    public async Awaitable OnAccountLogin(AccountAuthResponse response, CancellationToken token)
     {
         if (!string.IsNullOrEmpty(response.AccountId) &&
             !string.IsNullOrEmpty(response.LoginToken) &&
-            !string.IsNullOrEmpty(response.ProductUserId) ||
-            response.ProductId != _config.Config.ProductId)
+            (!string.IsNullOrEmpty(response.ProductUserId) ||
+            response.ProductId == _config.Config.ProductId))
         {
             await SaveLocalUserData(response.AccountId, response.ProductUserId, response.LoginToken);
         }
@@ -206,13 +155,13 @@ public class ClientAuthService : IClientAuthService
         GameAuthRequest request = new GameAuthRequest()
         {
             AccountId = response.AccountId,
-            SessionId = response.SessionId,
+            AccountSessionId = response.AccountSessionId,
             GameUserId = response.ProductUserId,
             ClientVersion = _clientAppService.Version,
             ClientPlatformName = _clientAppService.GetPlatformName(),
             ClientGameDataSaveTime = _gameData.Get<VersionSettings>(null).SaveTime,
-            GameName = _gs.GameMode.ToString(),
-            ShareId = response.ShareId,
+            ProductName = _gs.GameMode.ToString(),
+            DisplayName = response.DisplayName,
             DataBits = response.DataBits,
             ProductId = response.ProductId,
         };

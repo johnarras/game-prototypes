@@ -11,7 +11,6 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 {
     public abstract class BaseInfoHelper<TParent, TChild> : IInfoHelper where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIndexedGameItem, new()
     {
-
         protected IGameData _gameData;
         protected IClientGameState _gs;
         protected ICrawlerStatService _statService = null;
@@ -19,8 +18,8 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
         protected IInfoService _infoService = null;
 
 
+        virtual public bool OrderByName => true;
         public abstract long HelperKey { get; }
-
 
         public virtual bool OverviewTypeNameIsPlural() { return true; }
 

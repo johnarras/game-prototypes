@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 15,
   "Name": "Sapphire",
-  "Armor": 60,
-  "Damage": 50,
-  "CostPct": 5000
+  "DefenseScale": 10.0,
+  "DamageScale": 11.0,
+  "CostScale": 50.0
 }

@@ -2,7 +2,7 @@ using OxDb.SharedCore.MapServer.Constants;
 
 public class MapConstants : SharedMapConstants
 {
-    public const int TerrainBytesPerUnit = 12;
+    public const int TerrainBytesPerUnit = 10;
 
 
     public const string MapFilename = "MapMap.jpg";
@@ -51,32 +51,17 @@ public class MapConstants : SharedMapConstants
     public const float RoadDipHeight = 0.00175f;
     public const float MaxRoadDipPercent = 0.80f;
 
-    public const int BridgeMaxAngle = 180;
-    public const int BridgeAngleDiv = 3;
-    public const int BridgeAngleMod = BridgeMaxAngle / BridgeAngleDiv;
 
-    // Shift for encoding bridge height into map data. 
+    // Shift for encoding bridge and fence and some other object height height into map data. 
     // Set this up so that 1 << BridgeHEightBitShift is > BridgeAngleMod...  
     // so the lowest BitShift bits are for the angle and the rest are for the
     // height.
-    public const int BridgeHeightBitShift = 6;
+
+    public const int FullCircleAngle = 360;
+    public const int ObjectHeightMult = 10;
 
 
     public const float MapHeightPerGrid = 0.01f;
-
-    public const int MapObjectOffsetMult = 2000;
-    public const int TreeObjectOffset = 0;
-    public const int RockObjectOffset = TreeObjectOffset + MapObjectOffsetMult;
-    public const int FenceObjectOffset = RockObjectOffset + MapObjectOffsetMult;
-    public const int BridgeObjectOffset = FenceObjectOffset + MapObjectOffsetMult;
-    public const int UnitObjectOffset = BridgeObjectOffset + MapObjectOffsetMult;
-    public const int DungeonObjectOffset = UnitObjectOffset + MapObjectOffsetMult;
-    public const int ClutterObjectOffset = DungeonObjectOffset + MapObjectOffsetMult;
-    public const int GroundObjectOffset = ClutterObjectOffset + MapObjectOffsetMult;
-    public const int NPCObjectOffset = GroundObjectOffset + MapObjectOffsetMult;
-    public const int WaterObjectOffset = NPCObjectOffset + MapObjectOffsetMult;
-    public const int GrassMinCellValue = 60000;
-    public const int GrassMaxCellValue = GrassMinCellValue + 5000;
 
     public const float TerrainLayerTileSize = 4.0f;
     public const float TerrainLayerOffset = 0.0f;
@@ -88,7 +73,7 @@ public class MapConstants : SharedMapConstants
     public const int DefaultNoiseSize = 513;
 
     public const int GrassResolutionDiv = 1;
-    public const int MaxGrassValue = 7;
+    public const int MaxGrassValue = 5; // 0-5 cubed so 6 cubed 0 to 215
 
     public const int MaxGrass = 4;
     public const int OverrideMaxGrass = 2;

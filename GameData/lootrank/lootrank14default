@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 14,
   "Name": "Emerald",
-  "Armor": 50,
-  "Damage": 45,
-  "CostPct": 4000
+  "DefenseScale": 9.0,
+  "DamageScale": 10.0,
+  "CostScale": 40.0
 }

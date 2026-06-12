@@ -1,5 +1,7 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.TextureLists.Services;
+using OxDb.SharedCore.Entities.Assets;
+using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.TextureLists.Services;
 using UnityEngine;
@@ -11,6 +13,7 @@ namespace Assets.Scripts.Assets.Textures
 
         private ITextureListCache _textureListCache;
         protected IClientRandom _rand = null;
+        protected IEntityService _entityService = null;
 
         private CachedSpriteList _cachedSpriteList;
 
@@ -40,6 +43,20 @@ namespace Assets.Scripts.Assets.Textures
         {
             base.OnDestroy();
             ClearCurrentSprite();
+        }
+
+        public void SetImage(long entityTypeId, long entityId)
+        {
+            EntityAtlasIcon args = _entityService.TryGetEntityIcon(_gs.ch, entityTypeId, entityId);
+
+            if (args != null && !string.IsNullOrEmpty(args.IconName))
+            {
+                SetImage(args.IconName);
+            }
+            else
+            {
+                SetImage(null);
+            }
         }
 
         public void SetImage(string spriteName)

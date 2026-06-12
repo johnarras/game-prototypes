@@ -1,6 +1,7 @@
 using OxDb.PlatformServer.Accounts.PlayerData;
 using OxDb.ServerCore.Platform.WebApi;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 
 namespace OxDb.PlatformServer.Accounts.Services
 {
@@ -11,6 +12,8 @@ namespace OxDb.PlatformServer.Accounts.Services
         Task<string> GetNewUserId();
 
         Task<ProductToPlatformAuthResponse> HandleGameAuthRequest(ProductToPlatformAuthRequest request);
+
+        Task<Account> CreateNewAccount(IAccountAuthRequest request);
     }
 }
 

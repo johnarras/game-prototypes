@@ -101,9 +101,9 @@ public class AddWater : BaseZoneGenerator
                     }
                     int dy = z - cz;
 
-                    if (_md.alphas[x, z, TerrainTexChannels.Road] > 0 ||
-                        _md.mountainHeights[x, z] != 0 ||
-                        FlagUtils.MatchesAnyBits(_md.flags[x, z], MapGenFlags.IsLocation |
+                    if (_md.Alphas[x, z, TerrainTexChannels.Road] > 0 ||
+                        _md.MaintainHeights[x, z] != 0 ||
+                        FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.IsLocation |
                         MapGenFlags.NearWater))
                     {
                         float dist = (float)Math.Sqrt(dx * dx + dy * dy);
@@ -167,10 +167,10 @@ public class AddWater : BaseZoneGenerator
                             continue;
                         }
 
-                        if (_md.heights[x, y] < worldBaseHeight &&
-                            FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.BelowWater))
+                        if (_md.Heights[x, y] < worldBaseHeight &&
+                            FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
                         {
-                            _md.heights[x, y] = worldBaseHeight;
+                            _md.Heights[x, y] = worldBaseHeight;
                         }
                     }
                 }
@@ -318,7 +318,7 @@ public class AddWater : BaseZoneGenerator
                 heightDiff /= MapConstants.MapHeight;
 
 
-                _md.heights[xx, yy] += heightDiff * raiseLowerMult;
+                _md.Heights[xx, yy] += heightDiff * raiseLowerMult;
             }
         }
     }

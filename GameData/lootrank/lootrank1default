@@ -2,6 +2,7 @@
   "Id": "lootrank1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Armor": 1,
-  "CostPct": 100
+  "DefenseScale": 1.0,
+  "DamageScale": 1.0,
+  "CostScale": 1.0
 }

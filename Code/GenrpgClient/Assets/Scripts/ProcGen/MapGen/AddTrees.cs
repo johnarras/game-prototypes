@@ -1,4 +1,5 @@
 
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Constants;
 using OxDb.SharedGame.ProcGen.Entities;
@@ -130,7 +131,7 @@ public class AddTrees : BaseZoneGenerator
         {
             for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
             {
-                _md.heights[x, y] += extraTreeHeights[x, y];
+                _md.Heights[x, y] += extraTreeHeights[x, y];
             }
         }
 
@@ -145,7 +146,7 @@ public class AddTrees : BaseZoneGenerator
             }
         }
 
-        _zoneGenService.SetAllHeightmaps(_md.heights, token);
+        _zoneGenService.SetAllHeightmaps(_md.Heights, token);
     }
 
     private ZoneTreeData CreateZoneTreeData(Zone zone)
@@ -370,7 +371,7 @@ public class AddTrees : BaseZoneGenerator
 
                 if (!isWaterItem)
                 {
-                    if (_md.bridgeDistances[x, y] < 12)
+                    if (_md.BridgeDistances[x, y] < 12)
                     {
                         continue;
                     }
@@ -382,19 +383,19 @@ public class AddTrees : BaseZoneGenerator
                         currRoadDist = 4;
                     }
 
-                    if (_md.roadDistances[x, y] <= currRoadDist)
+                    if (_md.RoadDistances[x, y] <= currRoadDist)
                     {
                         continue;
                     }
                 }
 
 
-                int zoneId = _md.mapZoneIds[x, y]; // zoneobject
+                int zoneId = _md.MapZoneIds[x, y]; // zoneobject
                 bool haveSecondaryZone = false;
-                if (_md.subZoneIds[x, y] > 0)
+                if (_md.SubZoneIds[x, y] > 0)
                 {
                     haveSecondaryZone = true;
-                    zoneId = _md.subZoneIds[x, y];
+                    zoneId = _md.SubZoneIds[x, y];
                 }
 
 
@@ -417,9 +418,9 @@ public class AddTrees : BaseZoneGenerator
                     nx = MathUtil.Clamp(0, nx, _mapProvider.GetMap().GetHwid() - 1);
                     ny = MathUtil.Clamp(0, ny, _mapProvider.GetMap().GetHhgt() - 1);
 
-                    if (_md.mapZoneIds[x, y] != zoneId) // zoneobject
+                    if (_md.MapZoneIds[x, y] != zoneId) // zoneobject
                     {
-                        zonesNearby.Add(_md.mapZoneIds[x, y]); // zoneobject
+                        zonesNearby.Add(_md.MapZoneIds[x, y]); // zoneobject
                     }
                 }
 
@@ -450,7 +451,7 @@ public class AddTrees : BaseZoneGenerator
                                 continue;
                             }
 
-                            if (FlagUtils.MatchesAnyBits(_md.flags[lx, ly], MapGenFlags.IsLocationPatch))
+                            if (FlagUtils.MatchesAnyBits(_md.Flags[lx, ly], MapGenFlags.IsLocationPatch))
                             {
                                 foundLocationPatch = true;
                                 break;
@@ -467,19 +468,19 @@ public class AddTrees : BaseZoneGenerator
                         continue;
                     }
                 }
-                if (FlagUtils.MatchesAnyBits(_md.flags[x + ddx, y + ddy], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x + ddx, y + ddy], MapGenFlags.BelowWater))
                 {
                     continue;
                 }
 
-                if (FlagUtils.MatchesAnyBits(_md.flags[x + ddx, y + ddy], MapGenFlags.NearWater) != isWaterItem)
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x + ddx, y + ddy], MapGenFlags.NearWater) != isWaterItem)
                 {
                     continue;
                 }
 
                 bool extraMountainChance = false;
 
-                if (listIndex == TreeIndex && _md.mountainHeights[x, y] != 0)
+                if (listIndex == TreeIndex && _md.MaintainHeights[x, y] != 0)
                 {
                     extraMountainChance = true;
                 }
@@ -752,15 +753,14 @@ public class AddTrees : BaseZoneGenerator
 
         if (x >= 0 && y >= 0 && x < _mapProvider.GetMap().GetHwid() && y < _mapProvider.GetMap().GetHhgt())
         {
-            if (_md.heights[x, y] < MapConstants.OceanHeight / MapConstants.MapHeight)
+            if (_md.Heights[x, y] < MapConstants.OceanHeight / MapConstants.MapHeight)
             {
                 return;
             }
 
-            if (_md.mapObjects[x, y] == 0)
+            if (!_md.CellHasObject(x, y))
             {
-                int newVal = (int)(MapConstants.TreeObjectOffset + treeType.IdKey);
-                _md.mapObjects[x, y] = newVal;
+                _md.SetEntityData(x, y, EntityTypes.Tree, treeType.IdKey);
                 tcat.Count++;
 
                 float dirtRadius = 1;
@@ -825,12 +825,12 @@ public class AddTrees : BaseZoneGenerator
                                 dirtIntensity = 1;
                             }
 
-                            float oldBase = _md.alphas[x2, y2, TerrainTexChannels.Base];
-                            float oldDirt = _md.alphas[x2, y2, TerrainTexChannels.Dirt];
+                            float oldBase = _md.Alphas[x2, y2, TerrainTexChannels.Base];
+                            float oldDirt = _md.Alphas[x2, y2, TerrainTexChannels.Dirt];
                             float newBase = oldBase * (1 - dirtIntensity);
                             float baseDiff = newBase - oldBase;
-                            _md.alphas[x2, y2, TerrainTexChannels.Base] = newBase;
-                            _md.alphas[x2, y2, TerrainTexChannels.Dirt] += (oldBase - newBase);
+                            _md.Alphas[x2, y2, TerrainTexChannels.Base] = newBase;
+                            _md.Alphas[x2, y2, TerrainTexChannels.Dirt] += (oldBase - newBase);
 
                             //_md.ClearAlphasAt(x2, y2); _md.alphas[x2, y2, TerrainTexChannels.Dirt] = 1;
                         }

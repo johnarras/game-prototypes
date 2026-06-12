@@ -31,7 +31,9 @@ namespace Assets.Scripts.MapTerrain
 
         public float[,,] baseAlphas { get; set; }
 
-        public uint[,] mapObjects { get; set; }
+        public byte[,] entityTypeIds { get; set; }
+
+        public byte[,] entityIds { get; set; }
 
         public ushort[,,] grassAmounts { get; set; }
 
@@ -44,6 +46,8 @@ namespace Assets.Scripts.MapTerrain
         public bool HaveSetAlphamaps = false;
 
         public List<long> TerrainTextureIndexes { get; set; } = new List<long>();
+
+        public List<ExtendedWorldObjectData> ExtendedObjects { get; set; } = new List<ExtendedWorldObjectData>();
 
         public string GetFilePath()
         {

@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "LootRank",
+  "Icon": "LootRank",
+  "Art": "LootRank"
+}

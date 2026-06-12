@@ -5,6 +5,7 @@ using OxDb.ServerCore.Config;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Names.Entities;
 using OxDb.SharedCore.Utils;
 using System.Collections.Generic;

@@ -1,3 +1,5 @@
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Entities.Helpers;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Loaders;
 using OxDb.SharedCore.GameSettings.Mappers;
@@ -22,10 +24,11 @@ namespace OxDb.SharedGame.Inventory.Settings.Ranks
         public string Icon { get; set; }
         public string Art { get; set; }
 
-        public long Armor { get; set; }
-        public long Damage { get; set; }
+        public double DefenseScale { get; set; }
 
-        public long CostPct { get; set; } = 100;
+        public double DamageScale { get; set; }
+
+        public double CostScale { get; set; }
 
     }
 
@@ -46,6 +49,11 @@ namespace OxDb.SharedGame.Inventory.Settings.Ranks
     public class LootRankSettingsLoader : ParentSettingsLoader<LootRankSettings, LootRank> { }
 
     public class ItemSettingsMapper : ParentSettingsMapper<LootRankSettings, LootRank, LootRankSettingsDto> { }
+
+    public class LootRankEntityHelper : BaseEntityHelper<LootRankSettings, LootRank>
+    {
+        public override long HelperKey => EntityTypes.LootRank;
+    }
 
 }
 

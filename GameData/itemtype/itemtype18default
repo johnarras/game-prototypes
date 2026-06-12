@@ -1,0 +1,26 @@
+{
+  "Id": "itemtype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "2HSword",
+  "Icon": "SwordTwo",
+  "Art": "SwordTwo",
+  "MinDam": 3,
+  "MaxDam": 17,
+  "EquipSlotId": 15,
+  "IconCount": 3,
+  "Flags": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Quantity": 100
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Quantity": 40
+    }
+  ],
+  "NameString": "Sword;Blade;Longsword;Bastard Sword;Two-Handed Sword;Claymore;Greatblade"
+}

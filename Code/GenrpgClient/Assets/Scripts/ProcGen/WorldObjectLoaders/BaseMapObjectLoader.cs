@@ -15,7 +15,7 @@ using UnityEngine;
 /// 
 /// *** NOTE IF YOU MAKE A NEW ONE OF THESE YOU MUST REGISTER IT IN Map
 /// </summary>
-public abstract class BaseMapObjectLoader : IMapObjectLoader
+public abstract class BaseCrawlerMapObjectLoader : ICrawlerMapObjectLoader
 {
     public abstract long HelperKey { get; }
 

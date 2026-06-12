@@ -5,7 +5,7 @@ using OxDb.SharedGame.MapObjects.Messages;
 using System.Threading;
 using UnityEngine;
 
-public interface IMapObjectLoader : ISetupDictionaryItem<long>
+public interface ICrawlerMapObjectLoader : ISetupDictionaryItem<long>
 {
     Awaitable Load(OnSpawn message, MapObject loadedObject, CancellationToken token);
 }

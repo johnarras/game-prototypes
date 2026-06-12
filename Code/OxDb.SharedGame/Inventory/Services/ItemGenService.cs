@@ -198,15 +198,7 @@ namespace OxDb.SharedGame.Inventory.Services
 
             ItemType itemType = _gameData.Get<ItemTypeSettings>(null).Get(itemTypeId);
 
-            if (itemType != null && itemType.Names != null)
-            {
-                itemNameList = itemType.Names;
-            }
-
-            if (itemNameList == null || itemNameList.Count < 1)
-            {
-                return result;
-            }
+            itemNameList = itemType.GetNames();
 
             string singularItemName = _nameGenService.PickWord(rand, itemNameList);
             string pluralItemName = StrUtils.MakePlural(singularItemName);

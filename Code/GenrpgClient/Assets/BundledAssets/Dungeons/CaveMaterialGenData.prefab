@@ -13,6 +13,14 @@ PrefabInstance:
       value: CaveMaterialGenData
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: MainMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ce978bd419c10aa4181254994598e5bd, type: 2}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ForegroundColors.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -75,6 +83,62 @@ PrefabInstance:
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ForegroundColors.Array.data[5].r
       value: 0.509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.g
+      value: 0.24977362
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.r
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.b
+      value: 0.24256852
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.g
+      value: 0.53555405
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.r
+      value: 0.745283
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.b
+      value: 0.31772873
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.g
+      value: 0.5990467
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.r
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.b
+      value: 0.14382343
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.g
+      value: 0.23643868
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.r
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].<Weight>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].<Weight>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: m_LocalPosition.x

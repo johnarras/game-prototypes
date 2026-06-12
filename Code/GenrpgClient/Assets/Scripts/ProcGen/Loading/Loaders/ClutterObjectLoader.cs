@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Clutter;
@@ -10,12 +11,12 @@ using UnityEngine;
 
 public class ClutterObjectLoader : BaseObjectLoader
 {
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override long HelperKey => EntityTypes.Prop;
+
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
-        uint clutterId = objectId - MapConstants.ClutterObjectOffset;
-
-        ClutterType ctype = _gameData.Get<ClutterTypeSettings>(_gs.ch).Get(clutterId);
+        ClutterType ctype = _gameData.Get<ClutterTypeSettings>(_gs.ch).Get(entityId);
         if (ctype == null)
         {
             return false;

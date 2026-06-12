@@ -30,7 +30,7 @@ public interface IClientMapObjectManager : IInitializable, IMapTokenService
     bool GetMapObject(string id, out MapObject item, bool downloadIfNotExist = true);
     bool GetGridItem(string id, out ClientMapObjectGridItem gridItem);
     bool GetController(string unitId, out UnitController controller);
-    IMapObjectLoader GetMapObjectLoader(long entityTypeId);
+    ICrawlerMapObjectLoader GetMapObjectLoader(long entityTypeId);
     MapObject SpawnObject(IMapSpawn spawn);
     void Reset();
     List<T> GetTypedObjectsNear<T>(float x, float z, float radius) where T : MapObject;
@@ -63,7 +63,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
     protected List<string> _recentlyLoadedSpawns = new List<string>();
     List<UnitController> _removeUnitList = new List<UnitController>();
     List<ClientMapObjectGridItem> _removeGridItems = new List<ClientMapObjectGridItem>();
-    private SetupDictionaryContainer<long, IMapObjectLoader> _mapObjectLoaders = new SetupDictionaryContainer<long, IMapObjectLoader>();
+    private SetupDictionaryContainer<long, ICrawlerMapObjectLoader> _mapObjectLoaders = new SetupDictionaryContainer<long, ICrawlerMapObjectLoader>();
 
     protected IClientGameState _gs;
 
@@ -116,9 +116,9 @@ public class ClientMapObjectManager : IClientMapObjectManager
     }
 
 
-    public IMapObjectLoader GetMapObjectLoader(long entityTypeId)
+    public ICrawlerMapObjectLoader GetMapObjectLoader(long entityTypeId)
     {
-        if (_mapObjectLoaders.TryGetValue(entityTypeId, out IMapObjectLoader loader))
+        if (_mapObjectLoaders.TryGetValue(entityTypeId, out ICrawlerMapObjectLoader loader))
         {
             return loader;
         }

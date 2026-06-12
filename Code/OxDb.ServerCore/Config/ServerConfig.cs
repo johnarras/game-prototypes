@@ -5,6 +5,7 @@ using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Interfaces;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace OxDb.ServerCore.Config
 {
@@ -144,18 +145,28 @@ namespace OxDb.ServerCore.Config
 
         private async Task<string> GetValueOrDefault(string key, string defaultValue, ISecretsClient secretClient)
         {
-            string configValue = await GetValue(key, secretClient);
 
-            if (configValue == AppConfigKeys.Default)
+            try
             {
-                return defaultValue;
-            }
 
-            if (string.IsNullOrEmpty(configValue))
-            {
-                return defaultValue;
+                string configValue = await GetValue(key, secretClient);
+
+                if (configValue == AppConfigKeys.Default)
+                {
+                    return defaultValue;
+                }
+
+                if (string.IsNullOrEmpty(configValue))
+                {
+                    return defaultValue;
+                }
+                return configValue;
             }
-            return configValue;
+            catch (Exception e)
+            {
+                Trace.TraceError(e.Message);
+            }
+            return defaultValue;
         }
     }
 }

@@ -30,9 +30,9 @@ public interface IClientGameState : IGameState, IInjectable, IExplicitInject, IR
 
 public class StubSessionState : IGameSessionState
 {
-    public string SelfContainedToken { get; set; }
+    public string FullToken { get; set; }
     public string RefreshToken { get; set; }
-    public string SessionId { get; set; }
+    public string GameSessionId { get; set; }
     public string ServerName { get; set; }
     public string ServerVersion { get; set; }
     public string ServerEnv { get; set; }
@@ -67,8 +67,12 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
         ClientConfigContainer configContainer = new ClientConfigContainer(config);
         _clientAppService = new ClientAppService(_logService);
 
-        IReflectionService reflectionService = new ReflectionService();
-        reflectionService.AddSearchAssembly(Assembly.GetExecutingAssembly());
+        _logService.Verbose("Reflection 0");
+        IReflectionService reflectionService = new ReflectionService(_logService);
+        _logService.Verbose("Reflection1: " + Assembly.GetExecutingAssembly().GetName());
+        reflectionService.AddSearchAssembly(GetType().Assembly);
+
+        _logService.Verbose("Reflection2: All: " + reflectionService.GetAllAssemblies().Length + " Search: " + reflectionService.GetSearchAssemblies(GetType().Assembly).Count);
 
         _loc = new ServiceLocator(_logService, reflectionService, new ClientGameData());
         loc.Set(initClient);

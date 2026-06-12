@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype20default",
+  "ParentId": "default",
+  "IdKey": 20,
+  "Name": "Plant",
+  "Icon": "Plant",
+  "Art": "Plant"
+}

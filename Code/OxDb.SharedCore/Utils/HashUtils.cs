@@ -81,9 +81,9 @@ namespace OxDb.SharedCore.Utils
 
             long idval = val;
 
-            while (idval > 0)
+            while (idval != 0)
             {
-                sb.Append(idChars[(int)(idval % idChars.Length)]);
+                sb.Append(idChars[(int)((idval % idChars.Length) + idChars.Length) % idChars.Length]);
                 idval /= idChars.Length;
             }
             return sb.ToString();

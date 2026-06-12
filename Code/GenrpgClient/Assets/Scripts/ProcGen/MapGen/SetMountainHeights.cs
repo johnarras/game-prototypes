@@ -58,14 +58,14 @@ public class SetMountainHeights : BaseAddMountains
 
 
                 float noiseScale = 1.0f;
-                float whh = _md.mountainHeights[x, y];
+                float whh = _md.MaintainHeights[x, y];
 
                 float roadCheckDistance = MapConstants.MaxRoadCheckDistance;
                 float minNoiseDistance = 12.0f;
-                float roadDist = _md.roadDistances[x, y];
+                float roadDist = _md.RoadDistances[x, y];
 
 
-                if (_md.roadDistances[x, y] < roadCheckDistance)
+                if (_md.RoadDistances[x, y] < roadCheckDistance)
                 {
                     float rpct = roadDist / roadCheckDistance;
                     rpct = (float)(Math.Pow(rpct, 1.6f));
@@ -78,7 +78,7 @@ public class SetMountainHeights : BaseAddMountains
                     noiseMinDist = MathUtil.Clamp(minNoiseDistance, noiseMinDist, roadCheckDistance);
 
                     noiseMinDist = 20.0f;
-                    if (_md.roadDistances[x, y] < noiseMinDist)
+                    if (_md.RoadDistances[x, y] < noiseMinDist)
                     {
                         float currPower = 1.8f;
                         currPower *= MathUtil.Clamp(1.0f, (1.0f + powernoise[x, y]), 2.0f);
@@ -94,18 +94,18 @@ public class SetMountainHeights : BaseAddMountains
                     }
                 }
 
-                if (_md.mountainHeights[x, y] == 0 || _md.mountainDistPercent[x, y] >= 1.0f)
+                if (_md.MaintainHeights[x, y] == 0 || _md.MountainDistPercent[x, y] >= 1.0f)
                 {
-                    if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.OverrideWallNoiseScale))
                     {
-                        _md.heights[x, y] += _md.mountainNoise[x, y] * noiseScale / MapConstants.MapHeight;
+                        _md.Heights[x, y] += _md.MountainNoise[x, y] * noiseScale / MapConstants.MapHeight;
                     }
                     continue;
                 }
 
 
 
-                float distPct = _md.mountainDistPercent[x, y];
+                float distPct = _md.MountainDistPercent[x, y];
                 if (distPct >= minDistPctCutoff && distPct <= 1)
                 {
                     float noiseMult = 1 - (distPct - minDistPctCutoff) / (1.0f - minDistPctCutoff);
@@ -117,12 +117,12 @@ public class SetMountainHeights : BaseAddMountains
                 whh *= edgePercent;
                 if (whh != 0)
                 {
-                    _md.heights[x, y] += (mountainDefaultHeight / MapConstants.MapHeight) * whh;
+                    _md.Heights[x, y] += (mountainDefaultHeight / MapConstants.MapHeight) * whh;
                     _md.ClearAlphasAt(x, y);
-                    _md.alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
                 }
-                float currentNoise = Math.Abs(_md.mountainNoise[x, y]);
-                float maxNoise = Math.Abs(_md.mountainHeights[x, y]) * mountainDefaultHeight * 0.2f;
+                float currentNoise = Math.Abs(_md.MountainNoise[x, y]);
+                float maxNoise = Math.Abs(_md.MaintainHeights[x, y]) * mountainDefaultHeight * 0.2f;
 
                 if (maxNoise < 0.0001f || currentNoise < 0.0001f)
                 {
@@ -134,12 +134,12 @@ public class SetMountainHeights : BaseAddMountains
                     noiseScale *= (maxNoise) / currentNoise;
                 }
 
-                if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.OverrideWallNoiseScale))
                 {
                     noiseScale = 1.0f;
                 }
 
-                _md.heights[x, y] += _md.mountainNoise[x, y] * noiseScale * edgePercent / MapConstants.MapHeight;
+                _md.Heights[x, y] += _md.MountainNoise[x, y] * noiseScale * edgePercent / MapConstants.MapHeight;
             }
         }
         await Task.CompletedTask;

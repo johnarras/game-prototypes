@@ -1,11 +1,7 @@
-using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Constants;
-using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedCore.Utils.Data;
-using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.Ftue.PlayerData;
@@ -28,7 +24,6 @@ namespace OxDb.SharedGame.Ftue.Services
     }
     public class FtueService : IFtueService
     {
-
         private IGameData _gameData = null;
 
         public async Task<FtueStep> GetCurrentStep(IUnitDataLookup lookup)
@@ -47,23 +42,29 @@ namespace OxDb.SharedGame.Ftue.Services
 
         public async Task<bool> CanClickButton(IUnitDataLookup lookup, string screenName, string buttonName)
         {
-            CoreData coreData = await lookup.GetAsync<CoreData>();
 
-            if (coreData.HasFlag(TraderFlags.CompletedFtue))
+            if (await IsComplete(lookup))
             {
                 return true;
             }
 
             FtueStep step = await GetCurrentStep(lookup);
 
-            if (step != null && string.Compare(screenName, step.ActionScreenName, true) == 0
-                && string.Compare(buttonName, step.ActionButtonName, true) == 0)
+            if (step != null && !string.IsNullOrEmpty(step.ActionScreenName) && !string.IsNullOrEmpty(step.ActionButtonName))
             {
-                return true;
+                if (string.Compare(screenName, step.ActionScreenName, true) == 0
+                    && string.Compare(buttonName, step.ActionButtonName, true) == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
 
-            return false;
+            return true;
         }
 
         public async Task<FtueStep> CompleteStep(IUnitDataLookup lookup, long ftueStepId, IRandom rand)
@@ -147,15 +148,21 @@ namespace OxDb.SharedGame.Ftue.Services
 
         public async Task<bool> IsComplete(IUnitDataLookup lookup)
         {
-            
-
-
+            if (lookup == null)
+            {
+                return true;
+            }
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
 
+            if (coreData == null)
+            {
+                return true;
+            }
+
             return coreData.HasFlag(TraderFlags.CompletedFtue);
         }
-        
+
         protected virtual void ShowAnalytics(string analyticsEventName, FtueStep step)
         {
 
@@ -181,7 +188,7 @@ namespace OxDb.SharedGame.Ftue.Services
             FtueStep currentFtueStep = _gameData.Get<FtueStepSettings>(coreData).Get(ftueData.CurrentFtueStepId);
 
             FtueStep nextFtueStep = _gameData.Get<FtueStepSettings>(coreData).Get(ftueStepId);
-                
+
             if (nextFtueStep == null)
             {
                 return null;

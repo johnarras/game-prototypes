@@ -36,7 +36,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
             {
                 for (int z = 0; z < hgt; z++)
                 {
-                    _md.subZonePercents[x, z] += heights[x, z];
+                    _md.SubZonePercents[x, z] += heights[x, z];
                 }
             }
         }
@@ -45,7 +45,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         {
             for (int z = 0; z < hgt; z++)
             {
-                _md.subZonePercents[x, z] = MathUtil.Clamp(0, 2 * (_md.subZonePercents[x, z] - 0.5f), 1);
+                _md.SubZonePercents[x, z] = MathUtil.Clamp(0, 2 * (_md.SubZonePercents[x, z] - 0.5f), 1);
             }
         }
 
@@ -55,7 +55,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         {
             for (int z = 0; z < hgt; z++)
             {
-                if (_md.subZonePercents[x, z] > 0 && _md.subZoneIds[x, z] == 0)
+                if (_md.SubZonePercents[x, z] > 0 && _md.SubZoneIds[x, z] == 0)
                 {
                     Zone currZone = GetZoneAt(_mapProvider.GetMap(), x, z);
                     List<Zone> okZones = procGenZones.Where(x => x.ZoneTypeId != currZone.ZoneTypeId).ToList();
@@ -79,12 +79,12 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
     public Zone GetZoneAt(Map map, int x, int y)
     {
         if (_mapProvider.GetMap() == null || _md == null ||
-            _md.mapZoneIds == null || x < 0 || y < 0 || x >= _md.mapZoneIds.GetLength(0) || y >= _md.mapZoneIds.GetLength(1))
+            _md.MapZoneIds == null || x < 0 || y < 0 || x >= _md.MapZoneIds.GetLength(0) || y >= _md.MapZoneIds.GetLength(1))
         {
             return null;
         }
 
-        return map.Get<Zone>(_md.mapZoneIds[x, y]);
+        return map.Get<Zone>(_md.MapZoneIds[x, y]);
     }
 
     protected void FloodFillRegion(int zoneId, int x, int z, int depth)
@@ -93,10 +93,10 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         {
             return;
         }
-        if (_md.subZonePercents[x, z] > 0 && _md.subZoneIds[x, z] == 0)
+        if (_md.SubZonePercents[x, z] > 0 && _md.SubZoneIds[x, z] == 0)
         {
-            _md.subZoneIds[x, z] = zoneId;
-            _md.subZonePercents[x, z] = 0;
+            _md.SubZoneIds[x, z] = zoneId;
+            _md.SubZonePercents[x, z] = 0;
         }
         else
         {

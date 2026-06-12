@@ -193,14 +193,17 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
             {
                 List<EquipSlot> okEquipSlots = _gameData.Get<EquipSlotSettings>(null).GetData().Where(x => x.IsCrawlerSlot || allItemSlotsOk).ToList();
 
+                List<EquipSlot> weaponSlots = _gameData.Get<EquipSlotSettings>(null).GetData().Where(x => x.IsWeaponSlot).ToList();
+
+                List<long> weaponSlotIds = weaponSlots.Select(x => x.IdKey).ToList();
+
                 List<long> okEquipSlotIds = okEquipSlots.Select(x => x.IdKey).ToList();
 
                 IReadOnlyList<ItemType> allLootItems = _gameData.Get<ItemTypeSettings>(null).GetData();
 
                 List<ItemType> okLootItems = allLootItems.Where(x => okEquipSlotIds.Contains(x.EquipSlotId)).ToList();
 
-                List<ItemType> weaponItems = okLootItems.Where(x => EquipSlots.IsWeapon(x.EquipSlotId)).ToList();
-
+                List<ItemType> weaponItems = okLootItems.Where(x => weaponSlotIds.Contains(x.EquipSlotId)).ToList();
 
                 List<ItemType> rangedWeapons = weaponItems.Where(x => x.EquipSlotId == EquipSlots.Ranged).ToList();
 
@@ -212,7 +215,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                     }
                 }
 
-                List<ItemType> armorItems = okLootItems.Where(x => EquipSlots.IsArmor(x.EquipSlotId)).ToList();
+                List<ItemType> armorItems = okLootItems.Where(x => x.EquipSlotId > 0 && !weaponSlotIds.Contains(x.IdKey)).ToList();
 
                 bool armorItem = _rand.Rand.NextDouble() < rankSettings.ArmorChance;
 
@@ -226,11 +229,12 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 itemType = finalList[_rand.Rand.Next() % finalList.Count];
             }
 
-            bool isArmor = EquipSlots.IsArmor(itemType.EquipSlotId);
+            EquipSlot finalSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
+
+            bool isArmor = finalSlot != null && !finalSlot.IsWeaponSlot;
 
             ScalingType scalingType = null;
             long scalingTypeId = 0;
-
 
             if (itemType == null)
             {
@@ -253,25 +257,29 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
             EquipSlot equipSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
 
-            if (isArmor)
+            if (itemType.Armor > 0)
             {
-                if (equipSlot.BaseBonusStatTypeId != StatTypes.Armor)
-                {
-                }
-                long bonusStat = itemType.MinVal;
-                if (scalingType != null)
-                {
-                    bonusStat = Math.Max(1, (bonusStat * scalingType.ArmorPct) / 100);
-                }
-                item.Effects.Add(new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = equipSlot.BaseBonusStatTypeId, Quantity = bonusStat });
 
+                long baseArmor = (long)(itemType.Armor * scalingType.ArmorPct * chosenRank.DefenseScale / 100.0f);
+
+                if (baseArmor > 0)
+                {
+                    item.Effects.Add(new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = StatTypes.Armor, Quantity = baseArmor });
+                }
             }
 
-            string baseItemName = itemType.Name;
-            if (itemType.Names != null && itemType.Names.Count > 0)
+            if (itemType.Resist > 0)
             {
-                baseItemName = RandUtils.GetRandomElement(itemType.Names, _rand.Rand)?.Name ?? "Armor";
+                long baseResist = (long)(itemType.Resist * scalingType.ArmorPct * chosenRank.DefenseScale / 100.0f);
+
+                if (baseResist > 0)
+                {
+                    item.Effects.Add(new Effect() { EntityTypeId = EntityTypes.Stat, EntityId = StatTypes.Resist, Quantity = baseResist });
+                }
             }
+
+
+            string baseItemName = RandUtils.GetRandomElement(itemType.GetNames(), _rand.Rand)?.Name ?? "Armor";
 
             // Weapon damage is calculated dynamically as needed.
 
@@ -364,7 +372,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
             double cost = lootSettings.BaseLootCost;
 
-            cost = cost * (1 + (itemType.MinVal + itemType.MaxVal) / 2.0f);
+            cost = cost * (1 + (itemType.MinDam + itemType.MaxDam) / 2.0f);
 
             if (itemType.EquipSlotId == EquipSlots.MainHand)
             {
@@ -389,7 +397,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 cost = cost * scalingType.CostPct / 100.0f;
             }
 
-            cost = cost * chosenRank.CostPct / 100.0f;
+            cost = cost * chosenRank.CostScale;
 
             item.BuyCost = (long)cost;
             item.SellValue = (long)(cost * _gameData.Get<VendorSettings>(_gs.ch).SellToVendorPriceMult);

@@ -3,7 +3,6 @@ using Assets.Scripts.GameSettings.Entities;
 using Assets.Scripts.Lockstep.Config.Core;
 using Assets.Scripts.Lockstep.Game.Services;
 using Assets.Scripts.Logalytics.ClientEvents;
-using Assets.Scripts.Logalytics.Services;
 using Assets.Scripts.Login.Messages.Core;
 using Assets.Scripts.Minigames.Services;
 using Assets.Scripts.Purchasing.Services;
@@ -26,7 +25,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
@@ -39,14 +37,9 @@ namespace Assets.Scripts.Website.MessageHandlers
         private ILockstepGameService _lockstepService = null;
         private IUserSnapshotService _snapshotService = null;
         private IAnalyticsService _analyticsService = null;
+        private IClientAppService _appService = null;
 
         protected override async Awaitable InnerProcess(GameAuthResponse response, CancellationToken token)
-        {
-            await Task.CompletedTask;
-            _awaitableService.ForgetAwaitable(InnerProcessAsync(response, token));
-        }
-
-        private async Awaitable InnerProcessAsync(GameAuthResponse response, CancellationToken token)
         {
             List<long> keepOpenScreens = new List<long>();
             if (_screenService.GetScreen(ScreenNames.Signup) != null)
@@ -59,8 +52,8 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             if (response == null || string.IsNullOrEmpty(response.GameUserId) ||
-                string.IsNullOrEmpty(response.SelfContainedToken) ||
-                string.IsNullOrEmpty(response.SessionId))
+                string.IsNullOrEmpty(response.FullToken) ||
+                string.IsNullOrEmpty(response.GameSessionId))
             {
                 _dispatcher.Dispatch(new CloseAllScreens(keepOpenScreens));
                 if (keepOpenScreens.Count < 1)
@@ -76,6 +69,8 @@ namespace Assets.Scripts.Website.MessageHandlers
             _gs.characterStubs = response.CharacterStubs;
             _gs.mapStubs = response.MapStubs;
             _gs.ch = new Character(new CoreCharacter()) { Id = _gs.GameUserId, UserId = _gs.GameUserId, Name = "StubCharacter" };
+            _gs.ch.ClientVersion = new Version(_appService.Version);
+            _gs.ch.ClientPlatform = _appService.RuntimePlatform;
 
             _dispatcher.Dispatch(new UpdateDefaultLogalyticsPayload());
 

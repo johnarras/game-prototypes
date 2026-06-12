@@ -459,7 +459,7 @@ public class ScreenService : IScreenService
     {
         foreach (ClientScreenLayer layer in _layers)
         {
-            if (layer.CurrentScreen == null || layer.Layer.SkipInAllScreensList)
+            if (layer.CurrentScreen == null || (!closeAll.CloseKeepOpenScreens && layer.Layer.SkipInAllScreensList))
             {
                 continue;
             }

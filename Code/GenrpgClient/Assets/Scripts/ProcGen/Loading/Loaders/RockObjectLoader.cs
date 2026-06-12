@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Settings.Rocks;
 using OxDb.SharedGame.Zones.Settings;
@@ -9,19 +10,12 @@ using UnityEngine;
 
 public class RockObjectLoader : BaseObjectLoader
 {
-    public override bool LoadObject(PatchLoadData loadData, uint objectId,
+    public override long HelperKey => EntityTypes.Rock;
+
+    public override bool LoadObject(PatchLoadData loadData, int entityId,
         int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
-        if (objectId < MapConstants.RockObjectOffset + MapConstants.MapObjectOffsetMult)
-        {
-            objectId %= MapConstants.RockObjectOffset;
-        }
-
-        objectId %= MapConstants.MapObjectOffsetMult;
-
-
-
-        RockType rockType = _gameData.Get<RockTypeSettings>(_gs.ch).Get(objectId);
+        RockType rockType = _gameData.Get<RockTypeSettings>(_gs.ch).Get(entityId);
         if (rockType == null || rockType.Art == null)
         {
             return false;

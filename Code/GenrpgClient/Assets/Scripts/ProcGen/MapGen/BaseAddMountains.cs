@@ -131,20 +131,20 @@ public class BaseAddMountains : BaseZoneGenerator
             {
                 continue;
             }
-            if (_md.mapZoneIds[cx, cy] < 1)
+            if (_md.MapZoneIds[cx, cy] < 1)
             {
-                _md.mapZoneIds[cx, cy] = MapConstants.MountainZoneId;
+                _md.MapZoneIds[cx, cy] = MapConstants.MountainZoneId;
             }
             float heightToSet = (1.1f * (1.0f + mainHeight)) * wallHeightScale * heightMult * MapConstants.MountainHeightMult;
-            if (_md.mountainHeights[cx, cy] < heightToSet)
+            if (_md.MaintainHeights[cx, cy] < heightToSet)
             {
-                _md.mountainHeights[cx, cy] = heightToSet;
+                _md.MaintainHeights[cx, cy] = heightToSet;
             }
 
-            _md.mountainDistPercent[cx, cy] = 0f;
+            _md.MountainDistPercent[cx, cy] = 0f;
             if (!secondaryMountain)
             {
-                _md.edgeMountainDistPercent[cx, cy] = 0f;
+                _md.EdgeMountainDistPercent[cx, cy] = 0f;
             }
 
             float topWidth = 2;
@@ -176,38 +176,38 @@ public class BaseAddMountains : BaseZoneGenerator
                         continue;
                     }
 
-                    if (_md.mapZoneIds[x, y] == 0)
+                    if (_md.MapZoneIds[x, y] == 0)
                     {
-                        _md.mapZoneIds[x, y] = MapConstants.MountainZoneId;
+                        _md.MapZoneIds[x, y] = MapConstants.MountainZoneId;
                     }
-                    if (_md.mountainDistPercent[x, y] > distPct)
+                    if (_md.MountainDistPercent[x, y] > distPct)
                     {
-                        _md.mountainDistPercent[x, y] = (float)distPct;
+                        _md.MountainDistPercent[x, y] = (float)distPct;
                     }
-                    if (_md.mountainCenterDist[x, y] > currDist)
+                    if (_md.MountainCenterDist[x, y] > currDist)
                     {
-                        _md.mountainCenterDist[x, y] = (float)(currDist);
-                        _md.nearestMountainTopHeight[x, y] = heightToSet;
+                        _md.MountainCenterDist[x, y] = (float)(currDist);
+                        _md.NearestMountainTopHeight[x, y] = heightToSet;
                     }
                     if (!secondaryMountain)
                     {
-                        if (_md.edgeMountainDistPercent[x, y] > distPct)
+                        if (_md.EdgeMountainDistPercent[x, y] > distPct)
                         {
-                            _md.edgeMountainDistPercent[x, y] = (float)distPct;
+                            _md.EdgeMountainDistPercent[x, y] = (float)distPct;
                         }
                     }
-                    _md.flags[x, y] |= MapGenFlags.IsEdgeWall;
-                    float currPower = MathUtil.Clamp(0.5f, 1.7f, 1.0f + _md.mountainDecayPower[x, y]);
-                    float newPct = _md.mountainHeights[cx, cy] * (float)(1.0f - Math.Pow(distPct, currPower));
+                    _md.Flags[x, y] |= MapGenFlags.IsEdgeWall;
+                    float currPower = MathUtil.Clamp(0.5f, 1.7f, 1.0f + _md.MountainDecayPower[x, y]);
+                    float newPct = _md.MaintainHeights[cx, cy] * (float)(1.0f - Math.Pow(distPct, currPower));
 
-                    if (newPct != 0 && _md.mountainHeights[x, y] == 0 && secondaryMountain)
+                    if (newPct != 0 && _md.MaintainHeights[x, y] == 0 && secondaryMountain)
                     {
-                        _md.flags[x, y] |= MapGenFlags.IsSecondaryWall;
+                        _md.Flags[x, y] |= MapGenFlags.IsSecondaryWall;
                     }
 
-                    if (newPct > _md.mountainHeights[x, y])
+                    if (newPct > _md.MaintainHeights[x, y])
                     {
-                        _md.mountainHeights[x, y] = newPct;
+                        _md.MaintainHeights[x, y] = newPct;
                     }
 
                 }

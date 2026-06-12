@@ -1,13 +1,19 @@
 using Assets.Scripts.MapTerrain;
+using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Constants;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using UnityEngine;
 
 public class SaveMap : BaseZoneGenerator
 {
+
+    private ITextSerializer _textSerializer = null;
+
     public override async Awaitable Generate(CancellationToken token)
     {
         await base.Generate(token);
@@ -18,14 +24,17 @@ public class SaveMap : BaseZoneGenerator
         {
             for (int gy = 0; gy < _mapProvider.GetMap().BlockCount; gy++)
             {
-                SaveOneTerrainPatch(gx, gy);
+                await SaveOneTerrainPatch(gx, gy);
             }
         }
     }
 
 
-    public void SaveOneTerrainPatch(int gx, int gy)
+    public async Awaitable SaveOneTerrainPatch(int gx, int gy)
     {
+
+        List<ExtendedWorldObjectData> extendedObjects = new List<ExtendedWorldObjectData>();
+
 
         TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gy);
 
@@ -45,63 +54,70 @@ public class SaveMap : BaseZoneGenerator
 
         int maxFileSize = MapConstants.TerrainPatchSize * MapConstants.TerrainPatchSize * MapConstants.TerrainBytesPerUnit;
 
-        byte[] bytes = new byte[maxFileSize];
+        byte[] origBytes = new byte[maxFileSize];
         int startX = gy * (MapConstants.TerrainPatchSize - 1);
         int startY = gx * (MapConstants.TerrainPatchSize - 1);
 
 
         ushort shortHeight = 0;
-        int worldObjectValue = 0;
         int index = 0;
 
         // 1. Heights 2
-        // 2. Objects 4
+        // 2. Objects 2
         // 3. Alphas 3
         // 4. Zone 1 
         // 5. SubZone 1
         // 6. OverrideZoneScale 1
+        // Then extended objects?
 
-        // 2 + 4 + 3 + 1 + 1 + 1 = 12;
+        // 2 + 2 + 3 + 1 + 1 + 1 = 10;
+        // Then extended bytes after for special objects.
 
         // 1 Heights: 2 bytes
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
-                shortHeight = (ushort)(MapConstants.HeightSaveMult * _md.heights[x + startX, y + startY]);
+                shortHeight = (ushort)(MapConstants.HeightSaveMult * _md.Heights[x + startX, y + startY]);
 
-                bytes[index++] = (byte)(shortHeight);
-                bytes[index++] = (byte)(shortHeight >> 8);
+                origBytes[index++] = (byte)(shortHeight);
+                origBytes[index++] = (byte)(shortHeight >> 8);
             }
         }
 
         int objStartX = gx * (MapConstants.TerrainPatchSize - 1);
         int objStartY = gy * (MapConstants.TerrainPatchSize - 1);
 
-        // 2 Objects: 4 bytes
+        // 2 Objects: 2 bytes
         for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
             {
-                int xx = x + objStartX;
-                int yy = y + objStartY;
-                //worldObjectValue = _md.mapObjects[x + objStartX, y + objStartY];
-                worldObjectValue = _md.mapObjects[y + objStartY, x + objStartX];
+                int fx = x + objStartX;
+                int fy = y + objStartY;
+
+                long entityTypeId = _md.EntityTypeIds[fy, fx];
+                long entityId = _md.EntityIds[fy, fx];
+
 
                 if (x == MapConstants.TerrainPatchSize - 1 || y == MapConstants.TerrainPatchSize - 1)
                 {
-                    if (worldObjectValue < MapConstants.GrassMinCellValue ||
-                        worldObjectValue > MapConstants.GrassMaxCellValue)
+                    if (entityTypeId == EntityTypes.Plant)
                     {
-                        worldObjectValue = 0;
+                        entityTypeId = 0;
+                        entityId = 0;
                     }
                 }
 
-                bytes[index++] = (byte)(worldObjectValue);
-                bytes[index++] = (byte)(worldObjectValue >> 8);
-                bytes[index++] = (byte)(worldObjectValue >> 16);
-                bytes[index++] = (byte)(worldObjectValue >> 24);
+                ExtendedWorldObjectData extObj = _md.ExtendedObjects[fy, fx];
 
+                if (extObj != null)
+                {
+                    extendedObjects.Add(extObj);
+                }
+
+                origBytes[index++] = (byte)entityTypeId;
+                origBytes[index++] = (byte)entityId;
             }
         }
         // 3 Alphas: 3 bytes (*divsq)
@@ -112,7 +128,7 @@ public class SaveMap : BaseZoneGenerator
 
                 for (int i = 0; i < TerrainTexChannels.Max - 1; i++)
                 {
-                    bytes[index++] = (byte)(_md.alphas[x + startX, y + startY, i] * MapConstants.AlphaSaveMult);
+                    origBytes[index++] = (byte)(_md.Alphas[x + startX, y + startY, i] * MapConstants.AlphaSaveMult);
                 }
             }
         }
@@ -124,12 +140,12 @@ public class SaveMap : BaseZoneGenerator
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
-                byte zid = (byte)_md.mapZoneIds[x + startX, y + startY];
+                byte zid = (byte)_md.MapZoneIds[x + startX, y + startY];
                 if (zid <= MapConstants.MountainZoneId)
                 {
                     _logService.Error("Found bad zoneId at " + (x + startX) + " " + (y + startY));
                 }
-                bytes[index++] = zid;
+                origBytes[index++] = zid;
                 if (!zoneIds.Contains(zid))
                 {
                     zoneIds.Add(zid);
@@ -141,34 +157,28 @@ public class SaveMap : BaseZoneGenerator
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
-                bytes[index++] = (byte)(_md.subZoneIds[x + startX, y + startY]);
+                origBytes[index++] = (byte)(_md.SubZoneIds[x + startX, y + startY]);
             }
         }
-
 
         // 6 OverrideZoneScale 1 byte 0 to MapConstants.OverrideZoneScaleMax
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
             for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
             {
-                float val = MathUtil.Clamp(0, Math.Abs(_md.overrideZoneScales[x + startX, y + startY]), 1);
+                float val = MathUtil.Clamp(0, Math.Abs(_md.OverrideZoneScales[x + startX, y + startY]), 1);
 
-                bytes[index++] = (byte)(val * MapConstants.OverrideZoneScaleMax);
+                origBytes[index++] = (byte)(val * MapConstants.OverrideZoneScaleMax);
             }
         }
 
-        byte[] newBytes = new byte[index];
-        for (int i = 0; i < index; i++)
-        {
-            newBytes[i] = bytes[i];
-        }
+        string extendedOutput = _textSerializer.SerializeToString(extendedObjects);
 
-        string zoneText = "";
-        foreach (long zid in zoneIds)
-        {
-            zoneText += zid + " ";
-        }
-        _clientRepoService.SaveBytes(patch.GetFilePath(), newBytes);
+        byte[] extBytes = Encoding.UTF8.GetBytes(extendedOutput);
+
+        byte[] finalBytes = ByteUtils.ConcatenateArrays(origBytes, extBytes);
+
+        await _clientRepoService.SaveBytes(patch.GetFilePath(), finalBytes);
 
     }
 }

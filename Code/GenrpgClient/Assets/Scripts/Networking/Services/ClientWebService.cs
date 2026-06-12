@@ -4,7 +4,6 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.Logalytics.ClientEvents;
-using Assets.Scripts.Logalytics.Services;
 using Assets.Scripts.Login.Messages;
 using Assets.Scripts.Setup.Interfaces;
 using OxDb.SharedCore.Core.Constants;
@@ -20,9 +19,9 @@ using OxDb.SharedCore.Website.Interfaces;
 using OxDb.SharedCore.Website.Requests.Core;
 using OxDb.SharedCore.Website.Requests.Interfaces;
 using OxDb.SharedCore.Website.Responses.Core;
-using OxDb.SharedCore.Website.Responses.Errors;
 using OxDb.SharedCore.Website.Responses.Interfaces;
 using OxDb.SharedGame.GameAuth.WebApi.RefreshToken;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +46,7 @@ public enum EWebRequestState
 public class SecurityData
 {
     public string BasicAuthToken { get; set; }
-    public string SelfContainedToken { get; set; }
+    public string FullToken { get; set; }
 }
 
 public class FullWebRequest
@@ -56,7 +55,6 @@ public class FullWebRequest
     public CancellationToken Token;
     public Type ResponseType { get; set; }
     public object ResponseObject { get; set; }
-    public ErrorResponse ErrorResponse { get; set; }
     public EWebRequestState State { get; set; } = EWebRequestState.Pending;
 }
 
@@ -339,7 +337,7 @@ public class ClientWebService : IClientWebService
             {
                 security = new SecurityData()
                 {
-                    SelfContainedToken = _gs.SessionState.SelfContainedToken,
+                    FullToken = _gs.SessionState.FullToken,
                 };
             }
 
@@ -423,9 +421,9 @@ public class ClientWebService : IClientWebService
                 {
                     request.SetRequestHeader("Authorization", "Basic " + security.BasicAuthToken);
                 }
-                if (!string.IsNullOrEmpty(security.SelfContainedToken))
+                if (!string.IsNullOrEmpty(security.FullToken))
                 {
-                    request.SetRequestHeader("Authorization", "Bearer " + security.SelfContainedToken);
+                    request.SetRequestHeader("Authorization", "Bearer " + security.FullToken);
                 }
             }
 
@@ -452,18 +450,18 @@ public class ClientWebService : IClientWebService
                 }
             }
             else if (security != null &&
-                !string.IsNullOrEmpty(security.SelfContainedToken) &&
+                !string.IsNullOrEmpty(security.FullToken) &&
                 request.error.Contains("401 Unauthorized"))
             {
 
                 if (await RefreshSessionTokenAsync(_token))
                 {
-                    security.SelfContainedToken = _gs.SessionState.SelfContainedToken;
+                    security.FullToken = _gs.SessionState.FullToken;
                     return await SendRawWebRequest<TResponseType>(url, method, requestData, security);
                 }
                 else
                 {
-                    _logService.Error("Failed to refresh session token");
+                    _logService?.Error("Failed to refresh session token");
                     return responseEnvelope;
                 }
             }
@@ -473,7 +471,7 @@ public class ClientWebService : IClientWebService
 
                 if (Application.isPlaying)
                 {
-                    _logService.Error($"Error: {request.error} - {request.downloadHandler.text}");
+                    _logService?.Error($"Error: {request.error} - {request.downloadHandler.text}");
                 }
                 return responseEnvelope;
             }
@@ -502,9 +500,9 @@ public class ClientWebService : IClientWebService
         {
             RefreshGameTokenResponse response = (RefreshGameTokenResponse)responseEnvelope.ResponseData.Responses.FirstOrDefault(x => x.GetType() == typeof(RefreshGameTokenResponse));
 
-            if (response != null && !string.IsNullOrEmpty(response.SelfContainedToken)
+            if (response != null && !string.IsNullOrEmpty(response.FullToken)
                 && !string.IsNullOrEmpty(response.RefreshToken)
-               && !string.IsNullOrEmpty(response.SessionId))
+               && !string.IsNullOrEmpty(response.GameSessionId))
             {
                 _gs.SessionState = response;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OxDb.SharedCore.Logalytics.Constants
+﻿namespace OxDb.SharedCore.Logalytics.Constants
 {
     public class AnalyticsEventNames
     {

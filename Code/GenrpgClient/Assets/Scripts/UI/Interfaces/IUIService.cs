@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI.Interfaces
         void SetColor(IText text, object color);
         void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void ClearButton(IButton button);
-        void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string,double> measurements = null);
+        void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void SetAlpha(IText text, float alpha);
         void SetAutoSizing(IText text, bool autoSizing);
         void ResizeGridLayout(IGridLayoutGroup group, float xscale, float yscale);

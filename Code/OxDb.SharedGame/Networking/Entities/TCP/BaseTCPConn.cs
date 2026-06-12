@@ -94,14 +94,14 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             _taskService.ForgetTask(PollOtherEnd(_token), true);
         }
 
-        protected virtual async System.Threading.Tasks.Task PollOtherEnd(CancellationToken token)
+        protected virtual async Task PollOtherEnd(CancellationToken token)
         {
             Ping ping = new Ping();
             try
             {
                 while (true)
                 {
-                    await System.Threading.Tasks.Task.Delay(ConnectionConstants.TimeoutCheckMS, token).ConfigureAwait(false);
+                    await Task.Delay(ConnectionConstants.TimeoutCheckMS, token).ConfigureAwait(false);
                     if ((DateTime.UtcNow - _lastMessage).TotalSeconds < ConnectionConstants.TimeoutCheckMS / 1000.0)
                     {
                         continue;
@@ -155,16 +155,17 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             _outputQueue.Enqueue(message);
         }
 
-        protected async System.Threading.Tasks.Task WriteLoop(CancellationToken token)
+        protected async Task WriteLoop(CancellationToken token)
         {
             List<IMapApiMessage> messages = new List<IMapApiMessage>();
             List<IMapApiMessage> prevMessages = new List<IMapApiMessage>();
             List<IMapApiMessage> tempMessages = null;
 
-            _writer = _serializer.GetBuffer();
-            while (true)
+            _writer = _serializer.RentBuffer();
+
+            try
             {
-                try
+                while (true)
                 {
                     if (_removeMe)
                     {
@@ -208,15 +209,15 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
 
                     _lastMessage = DateTime.UtcNow;
                 }
-                catch (Exception e)
-                {
-                    Shutdown(e, "WriteLoop");
-                }
-                finally
-                {
-                    _serializer.ReturnBuffer(_writer);
-                    _writer = null;
-                }
+            }
+            catch (Exception e)
+            {
+                Shutdown(e, "WriteLoop");
+            }
+            finally
+            {
+                _serializer.ReturnBuffer(_writer);
+                _writer = null;
             }
         }
 

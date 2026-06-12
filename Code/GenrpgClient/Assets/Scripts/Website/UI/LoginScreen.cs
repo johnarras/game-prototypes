@@ -3,7 +3,7 @@ using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.Screens;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.UI.Constants;
-using OxDb.SharedPlatform.Accounts.WebApi.Login;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +15,7 @@ public class LoginScreen : ErrorMessageScreen
     public GButton LoginButton;
     public GButton SignupButton;
 
-    protected IClientAuthService _loginService = null;
+    protected IClientAuthService _accountAuthService = null;
     protected IRepositoryService _repoService = null;
     protected IClientAppService _clientAppService = null;
     protected IClientCryptoService _clientCryptoService = null;
@@ -49,14 +49,13 @@ public class LoginScreen : ErrorMessageScreen
             return;
         }
 
-        AccountLoginRequest loginRequest = new AccountLoginRequest()
+        AccountAuthRequest authRequest = new AccountAuthRequest()
         {
-            Email = EmailInput.Text,
-            Password = PasswordInput.Text,
-            DeviceId = _clientCryptoService.GetDeviceId(),
+            UserIdentity = EmailInput.Text,
+            UserSecret = PasswordInput.Text,
         };
 
-        _loginService.SendAccountLogin(loginRequest, GetToken());
+        _accountAuthService.SendAccountAuthRequest(authRequest, GetToken());
     }
 }
 

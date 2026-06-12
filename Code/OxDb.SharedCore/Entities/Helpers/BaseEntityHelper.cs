@@ -13,6 +13,9 @@ namespace OxDb.SharedCore.Entities.Helpers
 {
     public abstract class BaseEntityHelper<TParent, TChild> : IEntityHelper where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
     {
+
+        public virtual string GetIconSuffix() { return ""; }
+
         protected IGameData _gameData;
         public IIdName Find(IFilteredObject obj, long id)
         {

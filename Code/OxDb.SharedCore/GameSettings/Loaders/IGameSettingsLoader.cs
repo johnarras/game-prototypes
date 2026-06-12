@@ -1,5 +1,6 @@
 using OxDb.SharedCore.DataStores.Indexes;
 using OxDb.SharedCore.DataStores.Interfaces;
+using OxDb.SharedCore.GameSettings.BaseDataStores;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using System;
@@ -16,6 +17,7 @@ namespace OxDb.SharedCore.GameSettings.Loaders
         Type GetChildType();
         Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing);
         List<CreateIndexData> GetIndexes();
+        void SetParentChildData(List<ITopLevelSettings> parents, List<IChildSettings> children);
     }
 }
 

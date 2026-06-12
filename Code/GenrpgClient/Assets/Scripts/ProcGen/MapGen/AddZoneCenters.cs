@@ -17,7 +17,7 @@ public class AddZoneCenters : BaseZoneGenerator
     {
         await base.Generate(token);
         SamplingData sdata = new SamplingData();
-        _md.zoneCenters = new List<MyPoint>();
+        _md.ZoneCenters = new List<MyPoint>();
         float edgeSize = MapConstants.TerrainPatchSize * 3 / 4;
 
         float blockSize = MapConstants.TerrainPatchSize;
@@ -80,7 +80,7 @@ public class AddZoneCenters : BaseZoneGenerator
             for (int c = 0; c < centers.Count; c++)
             {
                 MyPoint2 center = centers[c];
-                _md.zoneCenters.Add(new MyPoint((int)center.X, (int)center.Y));
+                _md.ZoneCenters.Add(new MyPoint((int)center.X, (int)center.Y));
             }
         }
     }

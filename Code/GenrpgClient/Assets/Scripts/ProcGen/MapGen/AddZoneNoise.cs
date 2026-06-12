@@ -35,7 +35,7 @@ public class AddZoneNoise : BaseZoneGenerator
                 // Do 1-heights here since most heights are near 0, and few are near 1, we want
                 // few near 0 and many near 1 so when the pct is low, very few pieces of
                 // terrain will be affected.
-                _md.overrideZoneScales[x, y] = 1 - MathUtil.Clamp(0, Math.Abs(heights[x, y]), 1);
+                _md.OverrideZoneScales[x, y] = 1 - MathUtil.Clamp(0, Math.Abs(heights[x, y]), 1);
             }
         }
 

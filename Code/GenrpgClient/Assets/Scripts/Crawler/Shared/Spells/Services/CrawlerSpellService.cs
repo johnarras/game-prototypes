@@ -33,8 +33,10 @@ using OxDb.SharedGame.Crawler.Stats.Services;
 using OxDb.SharedGame.Crawler.Training.Settings;
 using OxDb.SharedGame.Factions.Constants;
 using OxDb.SharedGame.Inventory.PlayerData;
+using OxDb.SharedGame.Inventory.Services;
 using OxDb.SharedGame.Inventory.Settings.ItemTypes;
 using OxDb.SharedGame.Inventory.Settings.Ranks;
+using OxDb.SharedGame.Inventory.Settings.Slots;
 using OxDb.SharedGame.Spells.Constants;
 using OxDb.SharedGame.Spells.Entities;
 using OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers;
@@ -115,6 +117,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
         private IRoleService _roleService = null;
         private IInfoService _infoService = null;
         private ICrawlerOptionsService _optionsService = null;
+        private ISharedItemService _sharedItemService = null;
 
         private SetupDictionaryContainer<long, ISpecialMagicHelper> _specialMagicEffectHelpers = new SetupDictionaryContainer<long, ISpecialMagicHelper>();
         private SetupDictionaryContainer<long, ICrawlerSpellEffectHelper> _effectHelpers = new SetupDictionaryContainer<long, ICrawlerSpellEffectHelper>();
@@ -390,7 +393,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
                 actionTypesWithProcsSet.Add(fullEffect.Effect.EntityTypeId);
 
-                List<IProc> procList = GetProcsFromSlot(caster, scalingType.ScalingEquipSlotId);
+                List<IProc> procList = GetProcsFromSlot(caster, scalingType);
 
                 foreach (IProc proc in procList)
                 {
@@ -425,7 +428,8 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 oneEffect.MinQuantity = CrawlerCombatConstants.BaseMinDamage;
                 oneEffect.MaxQuantity = CrawlerCombatConstants.BaseMaxDamage;
 
-                long equipSlotToCheck = scalingType.ScalingEquipSlotId;
+
+                List<long> equipSlotsToCheck = _gameData.Get<EquipSlotSettings>(_gs.ch).GetWeaponSlots();
 
                 bool finalQuantityIsNegativeAttackCount = false;
 
@@ -471,19 +475,25 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     oneEffect.MaxQuantity = 0;
                 }
 
-                Item weapon = caster.GetEquipmentInSlot(equipSlotToCheck);
-                if (weapon != null)
+
+                if (caster.IsPlayer())
                 {
-                    ItemType itype = _gameData.Get<ItemTypeSettings>(null).Get(weapon.ItemTypeId);
-                    LootRank lootRank = _gameData.Get<LootRankSettings>(null).Get(weapon.LootRankId);
-
-                    double minVal = itype.MinVal;
-                    double maxVal = itype.MaxVal;
-
-                    if (lootRank != null)
+                    double minVal = 0;
+                    double maxVal = 0;
+                    List<WeaponRoleDamage> roleDamages = new List<WeaponRoleDamage>();
+                    foreach (long equipSlot in equipSlotsToCheck)
                     {
-                        minVal += lootRank.Damage;
-                        maxVal += lootRank.Damage;
+                        Item weapon = caster.GetEquipmentInSlot(equipSlot);
+                        if (weapon != null)
+                        {
+                            ItemType itype = _gameData.Get<ItemTypeSettings>(null).Get(weapon.ItemTypeId);
+                            LootRank lootRank = _gameData.Get<LootRankSettings>(null).Get(weapon.LootRankId);
+
+                            WeaponRoleDamage roleDamage = _sharedItemService.GetRoleDamage(_gs.ch, weapon.ItemTypeId, spell.RoleScalingTypeId, weapon.LootRankId);
+
+                            minVal += roleDamage.RawMinDam;
+                            maxVal += roleDamage.RawMaxDam;
+                        }
                     }
 
                     minVal *= action.WeaponDamageScale;
@@ -493,7 +503,8 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     oneEffect.MaxQuantity += (long)(maxVal);
 
                 }
-                else if (effect.EntityTypeId == EntityTypes.Attack && monster != null)
+
+                if (effect.EntityTypeId == EntityTypes.Attack && monster != null)
                 {
                     oneEffect.MinQuantity = monster.MinDam;
                     oneEffect.MaxQuantity = monster.MaxDam;
@@ -572,9 +583,12 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
             return fullSpell;
         }
 
-        private List<IProc> GetProcsFromSlot(CrawlerUnit member, long equipSlotId)
+        private List<IProc> GetProcsFromSlot(CrawlerUnit member, RoleScalingType scalingType)
         {
-            Item item = member.GetEquipmentInSlot(equipSlotId);
+
+
+
+            Item item = null; //d member.GetEquipmentInSlot(equipSlotId);
 
             if (item == null || item.Procs == null || item.Procs.Count < 1)
             {

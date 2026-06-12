@@ -180,7 +180,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
         _awaitableService.ForgetAwaitable(UpdateAssetSubsystems(_token));
 
-        if (_config.Config.SelfContainedClient)
+        if (_config.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient))
         {
             LoadLocalBundleInit();
         }
@@ -443,7 +443,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         {
             assetPathSuffix += "/" + subdirectory;
         }
-        if (_config.Config.SelfContainedClient)
+        if (_config.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient))
         {
             string categoryPath = GetAssetPath(assetPathSuffix);
             string fullAssetName = categoryPath + assetName;
@@ -595,7 +595,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 
     private void SetAssetEnv(EDataCategories category, string env)
     {
-        string containerName = BlobUtils.GetBlobContainerName(category.ToString(), _config.Config.GameMode.ToString(), env);
+        string containerName = BlobUtils.GetBlobContainerName(_config.Config.GameMode.ToString(), env, category.ToString());
 
         _urlPrefixes[category] = _contentRootUrl + "/" + containerName + "/";
         _assetEnvs[category] = env;
@@ -918,7 +918,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         {
             newVersions = _serializer.Deserialize<BundleVersions>(str);
         }
-        _isInitialized = true;
 
         if (newVersions != null && newVersions.UpdateInfo != null &&
             newVersions.Versions != null && newVersions.Versions.Keys.Count > 0)
@@ -930,6 +929,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
             };
             _clientRepositoryService.Save(_bundleVersions, repoArgs);
         }
+        _isInitialized = true;
     }
 
     protected string GetFullBundleURL(string bundleName)
@@ -972,7 +972,7 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         for (int i = 0; i < _retryTimes; i++)
         {
 
-            if (!_config.Config.SelfContainedClient && !bad.isLocal)
+            if (!_config.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient) && !bad.isLocal)
             {
                 string bundleHash = GetBundleHash(bad.bundleName);
                 if (string.IsNullOrEmpty(bundleHash))

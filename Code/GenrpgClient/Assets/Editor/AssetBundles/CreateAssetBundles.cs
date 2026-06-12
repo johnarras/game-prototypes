@@ -293,7 +293,7 @@ public class CreateAssetBundles
             FolderUploadArgs uploadData = new FolderUploadArgs()
             {
                 LocalFolder = Application.dataPath + "/../" + BuildConfiguration.AssetBundleRoot + targets[t].FilePath + "/",
-                RemoteSubfolder = BlobUtils.GetBlobSubfolder(env, Application.version, targets[t].FilePath),
+                RemoteSubfolder = BlobUtils.GetBlobSubfolder(Application.version, targets[t].FilePath),
                 IsWorldData = false,
                 Env = env,
                 GamePrefix = gameName,

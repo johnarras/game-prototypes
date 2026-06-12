@@ -7,6 +7,8 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
     {
         List<string> GetInfoLines(long entityId);
         string GetTypeName();
+
+        bool OrderByName { get; }
         List<IIdName> GetInfoChildren();
         bool OverviewTypeNameIsPlural();
     }

@@ -1,5 +1,4 @@
 using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.DataUpdates;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.Core;
@@ -40,9 +39,8 @@ public class UnityZoneGenService : ZoneGenService
     private CancellationToken _mapToken;
     private CancellationToken _gameToken;
     private IAssetService _assetService = null;
-    private IPlayerManager _playerManager = null;
-    private IAwaitableService _awaitableService = null;
     private IMinimapService _minimapService = null;
+    private IClientAppService _appService = null;
 
     public override void SetGameToken(CancellationToken token)
     {
@@ -258,11 +256,11 @@ public class UnityZoneGenService : ZoneGenService
             };
             _dispatcher.Dispatch(showPercent);
             DateTime startTime = DateTime.UtcNow;
-            _logService.Info("StageStart: " + currStep + " " + gen.GetType().Name + " Time: " + DateTime.UtcNow);
+            _logService.Debug("StageStart: " + currStep + " " + gen.GetType().Name + " Time: " + DateTime.UtcNow);
             try
             {
                 await gen.Generate(token);
-                _logService.Info("StageEnd: " + currStep + " " + gen.GetType().Name + " Time: " + DateTime.UtcNow);
+                _logService.Debug("StageEnd: " + currStep + " " + gen.GetType().Name + " Time: " + DateTime.UtcNow);
             }
             catch (Exception e)
             {
@@ -274,6 +272,7 @@ public class UnityZoneGenService : ZoneGenService
             output.Append("Stage: " + currStep + ": " + gen.GetType().Name + " -- " + (endTime - startTime).TotalSeconds + "\n");
 
             gen = null;
+
 
             await Awaitable.NextFrameAsync(cancellationToken: token);
 
@@ -295,7 +294,6 @@ public class UnityZoneGenService : ZoneGenService
         await Awaitable.NextFrameAsync(cancellationToken: token);
 
         await Awaitable.NextFrameAsync(cancellationToken: token);
-
 
         _dispatcher.Dispatch(new MapIsLoadedEvent());
         _dispatcher.Dispatch(new OnNewGameData());
@@ -333,20 +331,20 @@ public class UnityZoneGenService : ZoneGenService
                 float alphaTotal = 0.0f;
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
-                    alphaTotal += _md.alphas[x, y, i];
+                    _md.Alphas[x, y, i] = MathUtil.Clamp(0, _md.Alphas[x, y, i], 1);
+                    alphaTotal += _md.Alphas[x, y, i];
                 }
                 if (alphaTotal <= 0)
                 {
-                    _md.alphas[x, y, TerrainTexChannels.Base] = 0.75f;
-                    _md.alphas[x, y, TerrainTexChannels.Dirt] = 0.25f;
+                    _md.Alphas[x, y, TerrainTexChannels.Base] = 0.75f;
+                    _md.Alphas[x, y, TerrainTexChannels.Dirt] = 0.25f;
                 }
                 else
                 {
                     for (int i = 0; i < TerrainTexChannels.Max; i++)
                     {
-                        _md.alphas[x, y, i] /= alphaTotal;
-                        _md.alphas[x, y, i] = MathUtil.Clamp(0, _md.alphas[x, y, i], 1);
+                        _md.Alphas[x, y, i] /= alphaTotal;
+                        _md.Alphas[x, y, i] = MathUtil.Clamp(0, _md.Alphas[x, y, i], 1);
                     }
                 }
             }
@@ -382,11 +380,11 @@ public class UnityZoneGenService : ZoneGenService
                 {
                     for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
                     {
-                        patch.mainZoneIds[x, y] = (byte)_md.mapZoneIds[startx + x, starty + y];
-                        patch.subZoneIds[x, y] = (byte)_md.subZoneIds[startx + x, starty + y];
+                        patch.mainZoneIds[x, y] = (byte)_md.MapZoneIds[startx + x, starty + y];
+                        patch.subZoneIds[x, y] = (byte)_md.SubZoneIds[startx + x, starty + y];
                         for (int index = 0; index < TerrainTexChannels.Max; index++)
                         {
-                            patch.baseAlphas[x, y, index] = _md.alphas[x + startx, y + starty, index];
+                            patch.baseAlphas[x, y, index] = _md.Alphas[x + startx, y + starty, index];
                         }
                     }
                 }
@@ -750,6 +748,8 @@ public class UnityZoneGenService : ZoneGenService
         try
         {
             _gs.ch = new Character(data.Char);
+            _gs.ch.ClientVersion = new Version(_appService.Version);
+            _gs.ch.ClientPlatform = _appService.RuntimePlatform;
             CharacterUtils.CopyDataFromTo(data.Char, _gs.ch);
             _assetService.SetWorldAssetEnv(data.WorldDataEnv);
             _networkService.SetRealtimeEndpoint(data.Host, data.Port, data.Serializer);

@@ -2,120 +2,121 @@
   "Children": [
     {
       "IdKey": 1,
-      "Armor": 1,
-      "CostPct": 100
+      "DefenseScale": 1.0,
+      "DamageScale": 1.0,
+      "CostScale": 1.0
     },
     {
       "IdKey": 2,
       "Name": "Copper",
-      "Armor": 2,
-      "Damage": 1,
-      "CostPct": 200
+      "DefenseScale": 1.25,
+      "DamageScale": 1.25,
+      "CostScale": 2.0
     },
     {
       "IdKey": 3,
       "Name": "Brass",
-      "Armor": 4,
-      "Damage": 2,
-      "CostPct": 300
+      "DefenseScale": 1.5,
+      "DamageScale": 1.5,
+      "CostScale": 3.0
     },
     {
       "IdKey": 4,
       "Name": "Bronze",
-      "Armor": 7,
-      "Damage": 4,
-      "CostPct": 400
+      "DefenseScale": 1.75,
+      "DamageScale": 2.0,
+      "CostScale": 4.0
     },
     {
       "IdKey": 5,
       "Name": "Jade",
-      "Armor": 10,
-      "Damage": 7,
-      "CostPct": 500
+      "DefenseScale": 2.0,
+      "DamageScale": 2.5,
+      "CostScale": 5.0
     },
     {
       "IdKey": 6,
       "Name": "Iron",
-      "Armor": 13,
-      "Damage": 10,
-      "CostPct": 600
+      "DefenseScale": 2.25,
+      "DamageScale": 3.0,
+      "CostScale": 6.0
     },
     {
       "IdKey": 7,
       "Name": "Steel",
-      "Armor": 17,
-      "Damage": 14,
-      "CostPct": 750
+      "DefenseScale": 3.0,
+      "DamageScale": 3.5,
+      "CostScale": 7.5
     },
     {
       "IdKey": 8,
       "Name": "Silver",
-      "Armor": 21,
-      "Damage": 18,
-      "CostPct": 1000
+      "DefenseScale": 3.5,
+      "DamageScale": 4.0,
+      "CostScale": 10.0
     },
     {
       "IdKey": 9,
       "Name": "Gold",
-      "Armor": 25,
-      "Damage": 22,
-      "CostPct": 1250
+      "DefenseScale": 4.0,
+      "DamageScale": 5.0,
+      "CostScale": 12.5
     },
     {
       "IdKey": 10,
       "Name": "Platinum",
-      "Armor": 30,
-      "Damage": 26,
-      "CostPct": 1500
+      "DefenseScale": 5.0,
+      "DamageScale": 6.0,
+      "CostScale": 15.0
     },
     {
       "IdKey": 11,
       "Name": "Mithril",
-      "Armor": 35,
-      "Damage": 30,
-      "CostPct": 2000
+      "DefenseScale": 6.0,
+      "DamageScale": 7.0,
+      "CostScale": 20.0
     },
     {
       "IdKey": 12,
       "Name": "Adamantite",
-      "Armor": 40,
-      "Damage": 35,
-      "CostPct": 2500
+      "DefenseScale": 7.0,
+      "DamageScale": 8.0,
+      "CostScale": 25.0
     },
     {
       "IdKey": 13,
       "Name": "Ruby",
-      "Armor": 45,
-      "Damage": 40,
-      "CostPct": 3000
+      "DefenseScale": 8.0,
+      "DamageScale": 9.0,
+      "CostScale": 30.0
     },
     {
       "IdKey": 14,
       "Name": "Emerald",
-      "Armor": 50,
-      "Damage": 45,
-      "CostPct": 4000
+      "DefenseScale": 9.0,
+      "DamageScale": 10.0,
+      "CostScale": 40.0
     },
     {
       "IdKey": 15,
       "Name": "Sapphire",
-      "Armor": 60,
-      "Damage": 50,
-      "CostPct": 5000
+      "DefenseScale": 10.0,
+      "DamageScale": 11.0,
+      "CostScale": 50.0
     },
     {
       "IdKey": 16,
       "Name": "Diamond",
-      "Armor": 75,
-      "Damage": 55,
-      "CostPct": 7500
+      "DefenseScale": 11.0,
+      "DamageScale": 12.0,
+      "CostScale": 75.0
     },
     {
       "IdKey": 17,
       "Name": "Obsidian",
-      "Armor": 100,
-      "Damage": 60,
-      "CostPct": 10000
+      "DefenseScale": 12.0,
+      "DamageScale": 13.0,
+      "CostScale": 100.0
     }
   ],
   "Parent": {
@@ -126,5 +127,5 @@
     "Name": "LootRankSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-06T22:43:03.07Z"
+  "SaveTime": "2026-06-02T02:31:22.244Z"
 }

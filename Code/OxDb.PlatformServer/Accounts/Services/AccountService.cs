@@ -5,39 +5,42 @@ using OxDb.ServerCore.DataStores.Services;
 using OxDb.ServerCore.Platform.Constants;
 using OxDb.ServerCore.Platform.WebApi;
 using OxDb.SharedCore.DataStores.Indexes;
+using OxDb.SharedCore.Names.Services;
 using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 
 namespace OxDb.PlatformServer.Accounts.Services
 {
     public class AccountService : IAccountService
     {
 
-        private IFullRepositoryService _serverRepositoryService = null;
+        private IFullRepositoryService _repoService = null;
         private ITaskService _taskService = null;
         private ICryptoService _cryptoService = null;
+        private INameValidationService _nameValidationService = null;
 
         public async Task Initialize(CancellationToken token)
         {
             List<Task> tasks = new List<Task>();
             CreateIndexData data = new CreateIndexData(typeof(Account));
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerShareId), Unique = true });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerDisplayName), Unique = true });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerEmail), Unique = true });
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerName) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.DisplayName) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.ReferrerAccountId) });
-            tasks.Add(_serverRepositoryService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
 
             data = new CreateIndexData(typeof(AccountConnection));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.AccountId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.Index) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(AccountConnection.ProductId) });
-            tasks.Add(_serverRepositoryService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
 
             data = new CreateIndexData(typeof(ConnectionCount));
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.AccountId) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.Index) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(ConnectionCount.ProductId) });
-            tasks.Add(_serverRepositoryService.CreateIndexes(data));
+            await _repoService.CreateIndexes(data);
 
             await Task.WhenAll(tasks);
 
@@ -67,7 +70,7 @@ namespace OxDb.PlatformServer.Accounts.Services
 
             if (!String.IsNullOrEmpty(referrerId))
             {
-                Account referrerAccount = (await _serverRepositoryService.Search<Account>(x => x.LowerShareId == referrerId.ToLower())).FirstOrDefault();
+                Account referrerAccount = (await _repoService.Search<Account>(x => x.LowerDisplayName == referrerId.ToLower())).FirstOrDefault();
                 if (referrerAccount != null)
                 {
                     referrerAccountId = referrerAccount.Id;
@@ -90,7 +93,7 @@ namespace OxDb.PlatformServer.Accounts.Services
             {
                 for (int index = AccountConstants.MinConnectionIndex; index <= AccountConstants.MaxConnectionIndex; index++)
                 {
-                    List<AccountConnection> myConnections = await _serverRepositoryService.Search<AccountConnection>(x =>
+                    List<AccountConnection> myConnections = await _repoService.Search<AccountConnection>(x =>
                     x.AccountId == account.Id &&
                     x.ProductId == accountProductId &&
                     x.Index == index);
@@ -100,7 +103,7 @@ namespace OxDb.PlatformServer.Accounts.Services
                         continue;
                     }
 
-                    List<AccountConnection> referrerConnections = await _serverRepositoryService.Search<AccountConnection>(x =>
+                    List<AccountConnection> referrerConnections = await _repoService.Search<AccountConnection>(x =>
                            x.AccountId == referrerAccountId &&
                            x.ProductId == productId &&
                            x.Index == index);
@@ -129,7 +132,7 @@ namespace OxDb.PlatformServer.Accounts.Services
             int checkTimes = 0;
             while (++checkTimes < 20)
             {
-                List<AccountConnection> childConnections = await _serverRepositoryService.Search<AccountConnection>(x =>
+                List<AccountConnection> childConnections = await _repoService.Search<AccountConnection>(x =>
                            x.ReferrerId == topAccount.Id &&
                            x.ProductId == productId &&
                            x.Index == index);
@@ -151,8 +154,8 @@ namespace OxDb.PlatformServer.Accounts.Services
         {
             // Add my counts.
 
-            ConnectionCount myCount = (await _serverRepositoryService.Search<ConnectionCount>(c => c.AccountId == accountId &&
-            c.ProductId == productId && c.Index == index)).FirstOrDefault();
+            ConnectionCount myCount = (await _repoService.Search<ConnectionCount>(c => c.AccountId == accountId &&
+            c.ProductId == productId && c.Index == index)).FirstOrDefault()!;
 
             if (myCount == null)
             {
@@ -166,7 +169,7 @@ namespace OxDb.PlatformServer.Accounts.Services
                     Index = index,
                 };
 
-                await _serverRepositoryService.Save(myCount);
+                await _repoService.Save(myCount);
             }
             // Save my connection.
             AccountConnection myConn = new AccountConnection()
@@ -179,7 +182,7 @@ namespace OxDb.PlatformServer.Accounts.Services
                 Index = index
             };
 
-            await _serverRepositoryService.Save(myConn);
+            await _repoService.Save(myConn);
 
             if (string.IsNullOrEmpty(referrerAccountId))
             {
@@ -189,7 +192,7 @@ namespace OxDb.PlatformServer.Accounts.Services
             List<Task> connectionTasks = new List<Task>();
 
             // Update based on parent connections.
-            List<AccountConnection> referrerConnections = await _serverRepositoryService.Search<AccountConnection>(x =>
+            List<AccountConnection> referrerConnections = await _repoService.Search<AccountConnection>(x =>
                    x.AccountId == referrerAccountId &&
                    x.ProductId == productId &&
                    x.Index == index);
@@ -205,7 +208,7 @@ namespace OxDb.PlatformServer.Accounts.Services
                     Index = index,
                     Depth = connection.Depth + 1,
                 };
-                connectionTasks.Add(_serverRepositoryService.Save(newConn));
+                connectionTasks.Add(_repoService.Save(newConn));
             }
 
             await Task.WhenAll(connectionTasks);
@@ -216,7 +219,7 @@ namespace OxDb.PlatformServer.Accounts.Services
 
             referrerAccountIds.Add(referrerAccountId);
 
-            List<ConnectionCount> connectionCounts = await _serverRepositoryService.Search<ConnectionCount>(x =>
+            List<ConnectionCount> connectionCounts = await _repoService.Search<ConnectionCount>(x =>
             referrerAccountIds.Contains(x.AccountId) &&
             x.ProductId == productId &&
             x.Index == index);
@@ -229,44 +232,18 @@ namespace OxDb.PlatformServer.Accounts.Services
 
             if (mainCount != null)
             {
-                incTasks.Add(_serverRepositoryService.AtomicIncrement<ConnectionCount>(mainCount.Id, nameof(ConnectionCount.DirectCount), 1));
+                incTasks.Add(_repoService.AtomicIncrement<ConnectionCount>(mainCount.Id, nameof(ConnectionCount.DirectCount), 1));
             }
 
             foreach (ConnectionCount connectionCount in connectionCounts)
             {
-                incTasks.Add(_serverRepositoryService.AtomicIncrement<ConnectionCount>(connectionCount.Id, nameof(ConnectionCount.ViralCount), 1));
+                incTasks.Add(_repoService.AtomicIncrement<ConnectionCount>(connectionCount.Id, nameof(ConnectionCount.ViralCount), 1));
             }
 
             await Task.WhenAll(incTasks);
 
         }
 
-        // This needs to be improved obviously.
-        private readonly string[] _nameBlacklist = {
-            "fuck", "shit", "nazi", "cunt",
-            "piss", "slut", "nigg", "damn",
-            "hell", "asshole", "fuk", "shyt",
-            "coc", "dik", "vag",
-
-        };
-        private bool IsInappropriate(string base58Id)
-        {
-            string lowerId = base58Id.ToLower();
-
-            // Check for direct matches or leetspeak subs
-            // You can expand this to check for '5' as 's', etc.
-            string normalized = lowerId
-                .Replace('5', 's')
-                .Replace('1', 'i')
-                .Replace('4', 'a')
-                .Replace('8', 'b')
-                .Replace('0', 'o')
-                .Replace('3', 'e')
-                .Replace('6', 'g')
-                ;
-
-            return _nameBlacklist.Any(word => normalized.Contains(word));
-        }
 
         public async Task<string> GetNewUserId()
         {
@@ -277,14 +254,15 @@ namespace OxDb.PlatformServer.Accounts.Services
             {
                 encoded = HashUtils.GetIdFromVal(BitConverter.ToInt64(_cryptoService.GetRandomBytes(8), 0));
 
-                if (!IsInappropriate(encoded))
+
+                if (!await _nameValidationService.ContainsSwearWord(encoded))
                 {
-                    ClaimedAccountId claimedId = await _serverRepositoryService.Load<ClaimedAccountId>(encoded);
+                    ClaimedAccountId claimedId = await _repoService.Load<ClaimedAccountId>(encoded);
 
                     if (claimedId == null)
                     {
                         claimedId = new ClaimedAccountId() { Id = encoded };
-                        await _serverRepositoryService.Save(claimedId);
+                        await _repoService.Save(claimedId);
                         return encoded;
                     }
                 }
@@ -300,7 +278,7 @@ namespace OxDb.PlatformServer.Accounts.Services
         {
             ProductToPlatformAuthResponse response = new ProductToPlatformAuthResponse();
 
-            Account account = await _serverRepositoryService.Load<Account>(request.AccountId);
+            Account account = await _repoService.Load<Account>(request.AccountId);
 
             if (account == null)
             {
@@ -328,9 +306,9 @@ namespace OxDb.PlatformServer.Accounts.Services
                 return response;
             }
 
-            AccountSessionData sessionData = await _serverRepositoryService.Load<AccountSessionData>(account.Id);
+            AccountSessionData sessionData = await _repoService.Load<AccountSessionData>(account.Id);
 
-            if (sessionData == null || sessionData.SessionId != request.SessionId)
+            if (sessionData == null || sessionData.AccountSessionId != request.AccountSessionId)
             {
                 response.State = EPlatformAuthStates.IncorrectSessionId;
                 return response;
@@ -340,7 +318,7 @@ namespace OxDb.PlatformServer.Accounts.Services
             if ((record.DataBits & ~request.DataBits) == 0)
             {
                 record.DataBits = request.DataBits;
-                await _serverRepositoryService.Save(account);
+                await _repoService.Save(account);
             }
             else
             {
@@ -350,6 +328,33 @@ namespace OxDb.PlatformServer.Accounts.Services
 
             response.State = EPlatformAuthStates.Success;
             return response;
+        }
+
+
+
+        public async Task<Account> CreateNewAccount(IAccountAuthRequest request)
+        {
+
+            Account referrerAcount = null;
+            if (!string.IsNullOrEmpty(request.ReferrerId))
+            {
+                referrerAcount = await _repoService.Load<Account>(request.ReferrerId);
+            }
+
+            string newId = await GetNewUserId();
+            Account acc = new Account()
+            {
+                Id = newId,
+                CreatedOn = DateTime.UtcNow,
+                OriginalProductId = request.ProductId,
+                InstallSource = request.InstallSource,
+                Flags = 0,
+                ReferrerAccountId = referrerAcount?.Id ?? "",
+            };
+
+            acc.DisplayName = newId + (Random.Shared.Next() % 10000);
+
+            return acc;
         }
     }
 }

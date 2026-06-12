@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 17,
   "Name": "Obsidian",
-  "Armor": 100,
-  "Damage": 60,
-  "CostPct": 10000
+  "DefenseScale": 12.0,
+  "DamageScale": 13.0,
+  "CostScale": 100.0
 }

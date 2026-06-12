@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -44,6 +45,13 @@ namespace OxDb.SharedCore.Utils
                 }
 
                 string val = newLine.Substring(valueIndex + valueStr.Length).Trim();
+
+
+                if (val.IndexOf("&amp;") >= 0)
+                {
+                    Console.WriteLine("Got val");
+                }
+                val = val.Replace("&amp;", "&");
 
                 if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(val))
                 {

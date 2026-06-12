@@ -601,7 +601,7 @@ namespace OxDb.MapServer.Maps
                     int maxTimes = 1;// + _rand.Next() % 3;
                     for (int times = 0; times < maxTimes; times++)
                     {
-                        MapSpawn copySpawn = _binarySerializer.MakeCopy(spawn);
+                        MapSpawn copySpawn = _textSerializer.MakeCopy(spawn);
                         if (times > 0)
                         {
                             int delta = 25;

@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using OxDb.ServerCore.AzureImpl.DataStores.Entities;
 using OxDb.ServerCore.AzureImpl.DataStores.Mongo.Interfaces;
+using OxDb.SharedCore.DataStores.Constants;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.DataStores.Entities;
 using OxDb.SharedCore.DataStores.Indexes;
@@ -78,7 +79,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL
                 }
 
                 CreateIndexData indexData = new CreateIndexData(typeof(BsonDocument));
-                indexData.Configs.Add(new IndexConfig() { MemberName = "_t", Ascending = true, CompoundContinue = false });
+                indexData.Configs.Add(new IndexConfig() { MemberName = DatabaseConstants.TypeDiscriminatorMemberName, Ascending = true, CompoundContinue = false });
                 await CreateIndex(indexData);
             }
         }
@@ -195,6 +196,45 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL
             return true;
         }
 
+        public async Task<List<T>> LoadAll<T>() where T : IStringId
+        {
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(CollectionName);
+
+            IAsyncCursor<BsonDocument> cursor = await collection.FindAsync<BsonDocument>(x => true);
+
+            List<BsonDocument> docs = await cursor.ToListAsync<BsonDocument>();
+
+            List<T> results = new List<T>();
+
+            foreach (BsonDocument doc in docs)
+            {
+                if (doc.Contains(DatabaseConstants.TypeDiscriminatorMemberName))
+                {
+                    BsonValue discriminator = doc[DatabaseConstants.TypeDiscriminatorMemberName];
+
+                    try
+                    {
+                        // Look up the actual type via the driver's mapped cache
+                        Type targetType = BsonSerializer.LookupActualType(typeof(T), discriminator);
+
+                        if (targetType != null)
+                        {
+                            T typedObject = (T)BsonSerializer.Deserialize(doc, targetType);
+                            if (typedObject != null)
+                            {
+                                results.Add(typedObject);
+                            }
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        _logService.Exception(ee, "Polymorphic.LoadAll");
+                    }
+                }
+            }
+            return results;
+        }
+
         public async Task<List<T>> Search<T>(object funcObj, int quantity, int skip) where T : class, ISearchableItem
         {
             try
@@ -208,7 +248,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL
 
                 IMongoCollection<T> collection = _database.GetCollection<T>(CollectionName);
 
-                FilterDefinition<T> typeFilter = Builders<T>.Filter.Eq("_t", typeName);
+                FilterDefinition<T> typeFilter = Builders<T>.Filter.Eq(DatabaseConstants.TypeDiscriminatorMemberName, typeName);
 
                 FilterDefinition<T> fullFilter = Builders<T>.Filter.And(typeFilter, tFilter);
 
@@ -304,7 +344,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL
                 };
 
                 MemberInfo mem = thisType.GetMembers(BindingFlags.Public).FirstOrDefault(x => x.Name == config.MemberName);
-                if (mem == null && config.MemberName != "_t")
+                if (mem == null && config.MemberName != DatabaseConstants.TypeDiscriminatorMemberName)
                 {
                     continue;
                 }

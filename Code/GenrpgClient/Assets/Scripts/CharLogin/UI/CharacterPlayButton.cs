@@ -35,7 +35,7 @@ public class CharacterPlayButton : BaseBehaviour
            {
                if (acct != null)
                {
-                   _logService.Info("Acct: " + acct.Id + " -- " + acct.Name);
+                   _logService.Info("Acct: " + acct.Id + " -- " + acct.DisplayName);
                }
                else
                {
@@ -49,7 +49,7 @@ public class CharacterPlayButton : BaseBehaviour
               {
                   if (user != null)
                   {
-                      _logService.Info("PUser: " + user.Id + " -- " + user.Name);
+                      _logService.Info("PUser: " + user.Id + " -- " + user.DisplayName);
                   }
                   else
                   {
@@ -64,7 +64,7 @@ public class CharacterPlayButton : BaseBehaviour
               {
                   if (pchar != null)
                   {
-                      _logService.Info("PChar: " + pchar.Id + " -- " + pchar.Name);
+                      _logService.Info("PChar: " + pchar.Id + " -- " + pchar.DisplayName);
                   }
                   else
                   {

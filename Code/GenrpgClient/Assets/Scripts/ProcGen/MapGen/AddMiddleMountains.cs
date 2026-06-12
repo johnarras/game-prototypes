@@ -29,7 +29,7 @@ public class AddMiddleMountains : BaseAddMountains
 
     protected void AddMiddleZoneMountains(Zone zone)
     {
-        if (_gs == null || zone == null || _md == null || _md.mountainHeights == null)
+        if (_gs == null || zone == null || _md == null || _md.MaintainHeights == null)
         {
             return;
         }
@@ -82,7 +82,7 @@ public class AddMiddleMountains : BaseAddMountains
                 continue;
             }
 
-            if (_md.mapZoneIds[sx, sy] != zone.IdKey || _md.mapZoneIds[ex, ey] != zone.IdKey)
+            if (_md.MapZoneIds[sx, sy] != zone.IdKey || _md.MapZoneIds[ex, ey] != zone.IdKey)
             {
                 continue;
             }

@@ -114,10 +114,10 @@ public class AddRoadService : IAddRoadService
             }
         }
 
-        int awid = _md.awid;
-        int ahgt = _md.ahgt;
+        int awid = _md.Awid;
+        int ahgt = _md.Ahgt;
 
-        float[,,] alphamaps = _md.alphas;
+        float[,,] alphamaps = _md.Alphas;
 
         int ex = cx;
         int ey = cy;
@@ -217,7 +217,7 @@ public class AddRoadService : IAddRoadService
                 continue;
             }
 
-            _md.flags[px, py] |= extraMapFlags;
+            _md.Flags[px, py] |= extraMapFlags;
 
             float roadPercent = (float)(rand.NextDouble() * 0.2 + 0.8f) * roadTextureScale;
 
@@ -243,7 +243,8 @@ public class AddRoadService : IAddRoadService
                 FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
             {
                 _md.ClearAlphasAt(px, py);
-                alphamaps[px, py, TerrainTexChannels.Max] = basePercent;
+
+                alphamaps[px, py, TerrainTexChannels.Base] = basePercent;
                 alphamaps[px, py, TerrainTexChannels.Road] = roadPercent;
                 alphamaps[px, py, TerrainTexChannels.Dirt] = dirtPercent;
             }
@@ -254,26 +255,26 @@ public class AddRoadService : IAddRoadService
             }
 
 
-            if (_md.mountainHeights != null)
+            if (_md.MaintainHeights != null)
             {
-                _md.mountainHeights[px, py] = 0;
-                _md.roadDistances[px, py] = 0;
+                _md.MaintainHeights[px, py] = 0;
+                _md.RoadDistances[px, py] = 0;
             }
             // Scan out up down and left right to make things near road get flattened.
             for (int x = Math.Max(0, px - MapConstants.MaxRoadCheckDistance); x <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, px + MapConstants.MaxRoadCheckDistance); x++)
             {
                 float distFromRoad = Math.Abs(px - x);
-                if (_md.roadDistances[x, py] > distFromRoad)
+                if (_md.RoadDistances[x, py] > distFromRoad)
                 {
-                    _md.roadDistances[x, py] = distFromRoad;
+                    _md.RoadDistances[x, py] = distFromRoad;
                 }
             }
             for (int y = Math.Max(0, py - MapConstants.MaxRoadCheckDistance); y <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, py + MapConstants.MaxRoadCheckDistance); y++)
             {
                 float distFromRoad = Math.Abs(py - y);
-                if (_md.roadDistances[px, y] > distFromRoad)
+                if (_md.RoadDistances[px, y] > distFromRoad)
                 {
-                    _md.roadDistances[px, y] = distFromRoad;
+                    _md.RoadDistances[px, y] = distFromRoad;
                 }
             }
         }
@@ -295,12 +296,12 @@ public class AddRoadService : IAddRoadService
         SmoothRoadNearCenterline(line, centers);
 
 
-        if (_md.roads == null)
+        if (_md.Roads == null)
         {
-            _md.roads = new List<List<MyPointF>>();
+            _md.Roads = new List<List<MyPointF>>();
         }
 
-        _md.roads.Add(centers);
+        _md.Roads.Add(centers);
         if (ex != cx || ey != cy)
         {
             int ex1 = ex;
@@ -324,7 +325,7 @@ public class AddRoadService : IAddRoadService
 
     public void AddRoadAroundPoint(MyPointF pt, float radius, MyRandom rand)
     {
-        if (_md.alphas == null || pt == null || radius <= 0 || rand == null)
+        if (_md.Alphas == null || pt == null || radius <= 0 || rand == null)
         {
             return;
         }
@@ -336,14 +337,14 @@ public class AddRoadService : IAddRoadService
 
         for (int x = px - sz; x <= px + sz; x++)
         {
-            if (x < 0 || x >= _md.awid)
+            if (x < 0 || x >= _md.Awid)
             {
                 continue;
             }
 
             for (int y = py - sz; y <= py + sz; y++)
             {
-                if (y < 0 || y >= _md.ahgt)
+                if (y < 0 || y >= _md.Ahgt)
                 {
                     continue;
                 }
@@ -356,8 +357,8 @@ public class AddRoadService : IAddRoadService
 
                 float roadPct = RandUtils.FloatRange(0.8f, 1.0f, rand);
                 _md.ClearAlphasAt(x, y);
-                _md.alphas[x, y, TerrainTexChannels.Base] = 1 - roadPct;
-                _md.alphas[x, y, TerrainTexChannels.Road] = roadPct;
+                _md.Alphas[x, y, TerrainTexChannels.Base] = 1 - roadPct;
+                _md.Alphas[x, y, TerrainTexChannels.Road] = roadPct;
             }
         }
     }
@@ -471,26 +472,26 @@ public class AddRoadService : IAddRoadService
             {
                 for (int x = startx; x < endx; x++)
                 {
-                    totalHeight += _md.heights[x, starty];
+                    totalHeight += _md.Heights[x, starty];
                     totalCells++;
                 }
                 aveHeight = totalHeight / totalCells;
                 for (int x = startx; x < endx; x++)
                 {
-                    _md.heights[x, starty] = aveHeight;
+                    _md.Heights[x, starty] = aveHeight;
                 }
             }
             else if (starty != endy)
             {
                 for (int y = starty; y <= endy; y++)
                 {
-                    totalHeight += _md.heights[startx, y];
+                    totalHeight += _md.Heights[startx, y];
                     totalCells++;
                 }
                 aveHeight = totalHeight / totalCells;
                 for (int y = starty; y <= endy; y++)
                 {
-                    _md.heights[startx, y] = aveHeight;
+                    _md.Heights[startx, y] = aveHeight;
                 }
             }
         }

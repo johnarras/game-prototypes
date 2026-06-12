@@ -27,7 +27,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.XR;
 
 namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
 {
@@ -796,12 +795,12 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                 for (int z = 0; z < map.Height; z++)
                 {
 
-                    if (map.Get(x,z,CellIndex.EntityType) > 0 || map.Get(x,z,CellIndex.EntityId) > 0)
+                    if (map.Get(x, z, CellIndex.EntityType) > 0 || map.Get(x, z, CellIndex.EntityId) > 0)
                     {
                         continue;
                     }
 
-                    if (map.Details.Any(xx=>xx.X == x && xx.Z == z))
+                    if (map.Details.Any(xx => xx.X == x && xx.Z == z))
                     {
                         continue;
                     }
@@ -814,27 +813,27 @@ namespace Assets.Scripts.Crawler.Maps.Services.GenerateMaps
                     }
 
                     ZoneType ztype = zoneSettings.Get(centerTerrain);
-                        
+
                     if (ztype != null && ztype.Props != null && ztype.Props.Count > 0)
-                    { 
+                    {
 
                         if (ztype.MinSameAdjacentZone > 0)
                         {
                             int sameNearby = 0;
 
-                            if (x < map.Width - 1 && map.Get(x+1,z,CellIndex.Terrain) == centerTerrain)
+                            if (x < map.Width - 1 && map.Get(x + 1, z, CellIndex.Terrain) == centerTerrain)
                             {
                                 sameNearby++;
                             }
-                            if (x > 0 && map.Get(x-1,z, CellIndex.Terrain) == centerTerrain)
+                            if (x > 0 && map.Get(x - 1, z, CellIndex.Terrain) == centerTerrain)
                             {
                                 sameNearby++;
                             }
-                            if (z > 0 && map.Get(x,z-1, CellIndex.Terrain) == centerTerrain)
+                            if (z > 0 && map.Get(x, z - 1, CellIndex.Terrain) == centerTerrain)
                             {
                                 sameNearby++;
                             }
-                            if (z < map.Height - 1 && map.Get(x,z+1, CellIndex.Terrain) == centerTerrain)
+                            if (z < map.Height - 1 && map.Get(x, z + 1, CellIndex.Terrain) == centerTerrain)
                             {
                                 sameNearby++;
                             }

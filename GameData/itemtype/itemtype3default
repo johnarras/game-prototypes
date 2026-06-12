@@ -3,74 +3,11 @@
   "ParentId": "default",
   "IdKey": 3,
   "Name": "Chest",
-  "Desc": "",
   "Icon": "Chest",
   "Art": "Chest",
-  "MinVal": 5,
-  "MaxVal": 5,
+  "Armor": 5,
   "EquipSlotId": 4,
   "IconCount": 3,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Robe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Vestments",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Chainmail",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Plate",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Breastplate",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Tunic",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Hauberk",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Jerkin",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Chest",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Chestguard",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Vest",
-      "Desc": ""
-    },
-    {
-      "Weight": 200.0,
-      "Name": "Chestpiece",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Robe;Vestments;Chainmail;Plate;Breastplate;Tunic;Hauberk;Jerkin;Chest;Chestguard;Vest;Chestpiece"
 }

@@ -48,30 +48,73 @@ namespace Genrpg.Editor
 
 
 
-        int width = 2400;
-        int height = 1350;
+        int _width = 1920;
+        int _height = 1080;
 
-        public int Width => width;
-        public int Height => height;
+        public int Width => _width;
+        public int Height => _height;
 
         public DataWindow(EditorGameState gsIn, Object objIn, WindowBase parentFormIn, String actionIn)
         {
-            Content = _canvas;
             _parentForm = parentFormIn;
             _gs = gsIn;
             _gs.loc.Resolve(this);
             action = actionIn;
             ViewStack = new List<UserControlBase>();
             obj = objIn;
+
             if (obj == null)
             {
                 return;
             }
 
-            UIHelper.SetWindowRect(this, 50, 50, width, height);
+            // 1. Lock your 10-year-old internal field dimensions onto the canvas layout root
+            _canvas.Width = this._width;   // 1920
+            _canvas.Height = this._height; // 1080
+
+            // 2. Wrap the canvas inside your automatic Viewbox shield
+            Microsoft.UI.Xaml.Controls.Viewbox layoutBridge = new Microsoft.UI.Xaml.Controls.Viewbox()
+            {
+                Stretch = Microsoft.UI.Xaml.Media.Stretch.Uniform,
+                HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
+                VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Stretch
+            };
+
+            layoutBridge.Child = _canvas;
+
+            // 3. Hand the Viewbox root directly to the Window Content panel
+            Content = layoutBridge;
+
+            // 4. Resize the native desktop frame using your dynamic hardware scaling lookup
+            UIHelper.SetWindowRect(this, 50, 50, _width, _height);
+
+            // 5. Run your procedural layout rendering loops safely
+            AddView(action);
+        }
+
+        private void DataWindow_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args)
+        {
+            // Unhook instantly so this logic only executes once on startup
+            this.Activated -= DataWindow_Activated;
+
+            // Use your updated internal fields
+            _canvas.Width = this._width;   // 1920
+            _canvas.Height = this._height; // 1080
+
+            Microsoft.UI.Xaml.Controls.Viewbox layoutBridge = new Microsoft.UI.Xaml.Controls.Viewbox()
+            {
+                Stretch = Microsoft.UI.Xaml.Media.Stretch.Uniform,
+                HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
+                VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Stretch
+            };
+
+            layoutBridge.Child = _canvas;
+            Content = layoutBridge;
+
+            // Scale the window using the dynamic hardware lookup
+            UIHelper.SetWindowRect(this, 50, 50, _width, _height);
 
             AddView(action);
-
         }
         public void AddView(String action)
         {

@@ -9,8 +9,8 @@ namespace OxDb.SharedGame.GameAuth.WebApi.RefreshToken
         public string ErrorMessage { get; set; }
         public string GameUserId { get; set; }
         public string RefreshToken { get; set; }
-        public string SelfContainedToken { get; set; }
-        public string SessionId { get; set; }
+        public string FullToken { get; set; }
+        public string GameSessionId { get; set; }
         public string ServerName { get; set; }
         public string ServerVersion { get; set; }
         public string ServerEnv { get; set; }

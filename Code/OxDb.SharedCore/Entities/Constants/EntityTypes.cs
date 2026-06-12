@@ -21,7 +21,11 @@ namespace OxDb.SharedCore.Entities.Constants
         public const long ProxyCharacter = 16;
         public const long Building = 17;
         public const long MapMod = 18;
+        public const long LootRank = 19;
+        public const long Plant = 20;
         public const long Chest = 21;
+        public const long Fence = 22;
+        public const long Bridge = 23;
         public const long Vulnerability = 24;
         public const long Resist = 25;
         public const long Crafter = 26;
@@ -90,6 +94,8 @@ namespace OxDb.SharedCore.Entities.Constants
 
 
 
+        public const long Rock = 97;
+        public const long Water = 98;
         public const long SettingsName = 99;
 
         // Crawler-specific entitytypes

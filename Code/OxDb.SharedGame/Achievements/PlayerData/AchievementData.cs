@@ -9,7 +9,7 @@ namespace OxDb.SharedGame.Achievements.PlayerData
     /// </summary>
 
     [MessagePackObject]
-    public class AchievementData : NoChildPlayerData
+    public class AchievementData : NoChildIndexedUserData
     {
         [Key(0)] public override string Id { get; set; }
 

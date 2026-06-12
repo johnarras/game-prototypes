@@ -2,51 +2,20 @@
   "Id": "itemtype25default",
   "ParentId": "default",
   "IdKey": 25,
-  "Name": "2HSword",
-  "Desc": "",
-  "Icon": "SwordTwo",
-  "Art": "SwordTwo",
-  "MinVal": 2,
-  "MaxVal": 16,
-  "EquipSlotId": 15,
+  "Name": "Tome",
+  "Icon": "Tome",
+  "Art": "Tome",
+  "Resist": 4,
+  "MinDam": 1,
+  "MaxDam": 3,
+  "EquipSlotId": 16,
   "IconCount": 3,
-  "Flags": 10,
-  "Effects": [],
-  "Names": [
+  "Effects": [
     {
-      "Weight": 1000.0,
-      "Name": "Sword",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Blade",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Longsword",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Bastard Sword",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Two-Handed Sword",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Claymore",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Greatblade",
-      "Desc": ""
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Quantity": 100
     }
-  ]
+  ],
+  "NameString": "Tome;Libram;Lexicon;Book;Grimoire"
 }

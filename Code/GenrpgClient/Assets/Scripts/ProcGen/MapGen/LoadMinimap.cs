@@ -15,7 +15,8 @@ public class LoadMinimap : BaseZoneGenerator
         try
         {
             string filename = MapUtils.GetMapObjectFilename(MapConstants.MapFilename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
-            byte[] bytes = _clientRepoService.LoadBytes(filename);
+            byte[] bytes = await _clientRepoService.LoadBytes(filename);
+
             if (bytes != null)
             {
                 Texture2D tex = new Texture2D(2, 2);

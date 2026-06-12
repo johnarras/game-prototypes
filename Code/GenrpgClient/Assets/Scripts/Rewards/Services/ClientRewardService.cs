@@ -6,7 +6,6 @@ using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Rewards.Services;
 using System.Threading.Tasks;
-using UnityEngine.Analytics;
 
 namespace Assets.Scripts.Rewards.Services
 {

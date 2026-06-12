@@ -3,7 +3,6 @@
   "ParentId": "default",
   "IdKey": 4,
   "Name": "Healing",
-  "Desc": "Increases healing, cures, and holy magic per level.",
-  "ScalingStatTypeId": 13,
-  "ScalingEquipSlotId": 15
+  "Desc": "Increases healing per level.",
+  "ScalingStatTypeId": 13
 }

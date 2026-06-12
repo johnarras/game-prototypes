@@ -29,6 +29,8 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
         protected ICrawlerMapService _mapService = null;
         protected IInfoService _infoService = null;
 
+        public virtual bool OrderByName => true;
+
         public virtual long HelperKey => EntityTypes.Map;
 
         public List<IIdName> GetInfoChildren()
@@ -69,8 +71,8 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 
             EntranceMapData entranceData = _mapService.GetEntranceMap(party, world, map.IdKey);
 
-            lines.Add("Map");
-            lines.Add(map.Name);
+
+            lines.Add(_infoService.CreateHeaderLine("Map " + map.Name, false));
 
             CrawlerMapType mapType = _gameData.Get<CrawlerMapSettings>(_gs.ch).Get(map.CrawlerMapTypeId);
 

@@ -8,10 +8,11 @@ using UnityEditor.Build;
 public class PlatformBuildData
 {
     public BuildTarget Target;
-    public NamedBuildTarget NamedTarget;
+    public NamedBuildTarget NamedTarget; // Used to configure services
     public string FilePath;
     public string ClientPlatform;
     public string ApplicationSuffix;
+    public string BundleApplicationSuffix;
 
     public string GetBundleOutputPath()
     {
@@ -43,6 +44,7 @@ public class BuildConfiguration
             FilePath = ClientPlatformNames.Win,
             ClientPlatform = ClientPlatformNames.Win,
             ApplicationSuffix = ".exe",
+            BundleApplicationSuffix = ".exe",
         });
 
         list.Add(new PlatformBuildData()
@@ -52,6 +54,7 @@ public class BuildConfiguration
             FilePath = ClientPlatformNames.Android,
             ClientPlatform = ClientPlatformNames.Android,
             ApplicationSuffix = ".apk",
+            BundleApplicationSuffix = ".aab",
         });
 
         list.Add(new PlatformBuildData()
@@ -61,6 +64,7 @@ public class BuildConfiguration
             FilePath = ClientPlatformNames.iOS,
             ClientPlatform = ClientPlatformNames.iOS,
             ApplicationSuffix = ".app",
+            BundleApplicationSuffix = ".app",
         });
 
         list.Add(new PlatformBuildData()
@@ -70,6 +74,7 @@ public class BuildConfiguration
             FilePath = ClientPlatformNames.Linux,
             ClientPlatform = ClientPlatformNames.Linux,
             ApplicationSuffix = ".app",
+            BundleApplicationSuffix = ".app",
         });
 
         return list;

@@ -1,5 +1,4 @@
 using OxDb.SharedCore.Core.Entities;
-using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.Services;
 using OxDb.SharedCore.Interfaces;
@@ -39,8 +38,6 @@ namespace OxDb.SharedCore.Setup.Services
 
             List<Assembly> searchAssemblies = reflectionService.GetSearchAssemblies(initObject.GetType().Assembly);
 
-            Console.WriteLine("Curr Assembly Count: " + searchAssemblies.Count);
-            
             SetupAssemblyServices(initObject.GetType().Assembly, gs.loc, reflectionService, completedAssemblyNames, token);
             gs.loc.ResolveSelf();
             gs.loc.Resolve(this);

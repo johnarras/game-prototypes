@@ -31,6 +31,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
         public GButton StatusEffectsButton;
         public GButton ElementsButton;
         public GButton MapsButton;
+        public GButton ItemsButton;
+        public GButton LootRanksButton;
 
         protected override string OverviewPath => "Text/CrawlerOverview";
 
@@ -48,6 +50,8 @@ namespace Assets.Scripts.Crawler.UI.Screens.Info
             _uiService.SetButton(StatusEffectsButton, GetName(), () => { ShowInfoList(EntityTypes.StatusEffect); });
             _uiService.SetButton(ElementsButton, GetName(), () => { ShowInfoList(EntityTypes.Element); });
             _uiService.SetButton(MapsButton, GetName(), () => { ShowMapList(); });
+            _uiService.SetButton(ItemsButton, GetName(), () => { ShowInfoList(EntityTypes.Item); });
+            _uiService.SetButton(LootRanksButton, GetName(), () => { ShowInfoList(EntityTypes.LootRank); });
             ShowOverview();
 
             await Task.CompletedTask;

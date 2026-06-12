@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GroundObjectLoader : BaseMapObjectLoader
+public class GroundObjectLoader : BaseCrawlerMapObjectLoader
 {
     public override long HelperKey => EntityTypes.GroundObject;
     protected override string GetLayerName() { return LayerNames.ObjectLayer; }

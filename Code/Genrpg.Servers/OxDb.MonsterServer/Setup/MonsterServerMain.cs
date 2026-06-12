@@ -7,7 +7,7 @@ namespace OxDb.MonsterServer.Setup
 {
     public class MonsterServerMain : BaseServer<ServerGameState, MonsterSetupService, IMonsterMessageHandler>
     {
-        protected override bool UseInstanceId => true;
+        protected override bool UseInstanceId => false;
         protected override string GetBaseServerName() { return ServerNames.Monster; }
     }
 }

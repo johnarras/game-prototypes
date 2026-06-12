@@ -75,9 +75,9 @@ public class AddRoadDips : BaseZoneGenerator
                 float hx = 1.0f * x / _mapProvider.GetMap().GetHwid();
                 float hy = 1.0f * y / _mapProvider.GetMap().GetHhgt();
 
-                float wallDistScale = MathUtil.Clamp(0, _md.mountainDistPercent[x, y], 1);
+                float wallDistScale = MathUtil.Clamp(0, _md.MountainDistPercent[x, y], 1);
 
-                if (_md.mapZoneIds[x, y] != zone.IdKey)
+                if (_md.MapZoneIds[x, y] != zone.IdKey)
                 {
                     continue;
                 }
@@ -97,7 +97,7 @@ public class AddRoadDips : BaseZoneGenerator
                         {
                             continue;
                         }
-                        if (_md.mapZoneIds[xx, yy] != zone.IdKey)
+                        if (_md.MapZoneIds[xx, yy] != zone.IdKey)
                         {
                             double dist = Math.Sqrt((x - xx) * (x - xx) + (y - yy) * (y - yy));
                             if (dist < closestOtherZoneDist)
@@ -108,7 +108,7 @@ public class AddRoadDips : BaseZoneGenerator
                     }
                 }
 
-                float distToRoad = _md.roadDistances[x, y];
+                float distToRoad = _md.RoadDistances[x, y];
 
                 if (distToRoad > maxDist)
                 {
@@ -134,7 +134,7 @@ public class AddRoadDips : BaseZoneGenerator
 
                 float val = MapConstants.RoadDipHeight * pct * dipScale * wallDistScale;
 
-                _md.heights[x, y] -= Math.Abs(val);
+                _md.Heights[x, y] -= Math.Abs(val);
 
             }
         }

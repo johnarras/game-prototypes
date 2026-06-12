@@ -5,25 +5,31 @@ namespace OxDb.SharedGame.DataStores.Utils
 {
     public class BlobUtils
     {
-        public static string GetBlobContainerName(string dataCategory, string gamePrefix, string env)
-        {
-            if (dataCategory.ToLower() == EDataCategories.Accounts.ToString().ToLower())
-            {
-                return "accounts";
-            }
 
-            string prodDevEnv = EnvNames.GetProdDevEnv(env);
-            return (gamePrefix + "-" + prodDevEnv).ToLower();
+        const string topLevelContainerName = "assets/";
+
+        public static string GetToplevelContainerName()
+        {
+            return topLevelContainerName;
         }
 
-        public static string GetBlobSubfolder(string env, string clientVersion, string platformName)
+        public static string GetBlobContainerName(string gamePrefix, string env, string dataCategory)
         {
             if (env.ToLower() == EnvNames.Local.ToLower())
             {
                 env = EnvNames.Dev.ToLower();
             }
+            if (dataCategory.ToLower() == EDataCategories.Accounts.ToString().ToLower())
+            {
+                return topLevelContainerName + "platform/" + env + "/accounts";
+            }
+            return topLevelContainerName + gamePrefix.ToLower() + "/" + env.ToLower();
+        }
 
-            return (env + "/" + clientVersion + "/" + platformName).ToLower() + "/";
+        public static string GetBlobSubfolder(string clientVersion, string platformName)
+        {
+
+            return (clientVersion + "/" + platformName).ToLower() + "/";
         }
     }
 }

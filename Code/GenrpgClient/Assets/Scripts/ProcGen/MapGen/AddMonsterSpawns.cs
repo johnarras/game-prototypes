@@ -58,22 +58,22 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 {
                     continue;
                 }
-                if (FlagUtils.MatchesAnyBits(_md.flags[cx, cy], MapGenFlags.BelowWater))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[cx, cy], MapGenFlags.BelowWater))
                 {
                     continue;
                 }
 
-                if (!isValidCell(_md.mapObjects[cx, cy]))
+                if (_md.CellHasObject(cx, cy))
                 {
                     continue;
                 }
 
-                if (_md.mountainHeights[cx, cy] >= 1.0f)
+                if (_md.MaintainHeights[cx, cy] >= 1.0f)
                 {
                     continue;
                 }
 
-                if (_md.mountainDistPercent[cx, cy] < 0.1f)
+                if (_md.MountainDistPercent[cx, cy] < 0.1f)
                 {
                     continue;
                 }
@@ -83,13 +83,13 @@ public class AddMonsterSpawns : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.heights[cx, cy] <= (MapConstants.MinLandHeight * 7 / 10) / MapConstants.MapHeight)
+                if (_md.Heights[cx, cy] <= (MapConstants.MinLandHeight * 7 / 10) / MapConstants.MapHeight)
                 {
                     continue;
                 }
 
 
-                if (_md.bridgeDistances[cx, cy] < 20)
+                if (_md.BridgeDistances[cx, cy] < 20)
                 {
                     continue;
                 }
@@ -100,7 +100,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 }
 
 
-                if (_md.roadDistances[cx, cy] < 4)
+                if (_md.RoadDistances[cx, cy] < 4)
                 {
                     continue;
                 }
@@ -117,7 +117,7 @@ public class AddMonsterSpawns : BaseZoneGenerator
                         {
                             continue;
                         }
-                        if (_md.mapZoneIds[xx, yy] != zone.IdKey)
+                        if (_md.MapZoneIds[xx, yy] != zone.IdKey)
                         {
                             nearAnotherZone = true;
                             break;
@@ -136,9 +136,9 @@ public class AddMonsterSpawns : BaseZoneGenerator
                 }
 
                 long zoneId = zone.IdKey;
-                if (_md.subZoneIds[cx, cy] > 0)
+                if (_md.SubZoneIds[cx, cy] > 0)
                 {
-                    zoneId = _md.subZoneIds[cx, cy];
+                    zoneId = _md.SubZoneIds[cx, cy];
                 }
 
                 InitSpawnData initData = new InitSpawnData()
@@ -147,8 +147,8 @@ public class AddMonsterSpawns : BaseZoneGenerator
                     EntityId = zone.IdKey,
                     SpawnX = cy,
                     SpawnZ = cx,
-                    ZoneId = _md.mapZoneIds[cx, cy],
-                    ZoneOverridePercent = (int)(_md.overrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
+                    ZoneId = _md.MapZoneIds[cx, cy],
+                    ZoneOverridePercent = (int)(_md.OverrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
                 };
 
 
@@ -157,13 +157,6 @@ public class AddMonsterSpawns : BaseZoneGenerator
             }
         }
     }
-
-    protected bool isValidCell(int value)
-    {
-        return value == 0 ||
-            (value >= MapConstants.GrassMinCellValue && value < MapConstants.GrassMaxCellValue);
-    }
-
 }
 
 

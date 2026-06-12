@@ -3,40 +3,11 @@
   "ParentId": "default",
   "IdKey": 9,
   "Name": "Cloak",
-  "Desc": "",
   "Icon": "Cloak",
   "Art": "Cloak",
-  "MinVal": 2,
-  "MaxVal": 2,
+  "Armor": 2,
   "EquipSlotId": 5,
   "IconCount": 3,
-  "Flags": 8,
   "Effects": [],
-  "Names": [
-    {
-      "Weight": 1000.0,
-      "Name": "Cloak",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Cape",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Drape",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Hide",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Veil",
-      "Desc": ""
-    }
-  ]
+  "NameString": "Cloak;Cape;Drape;Hide;Veil"
 }

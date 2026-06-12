@@ -29,10 +29,9 @@ namespace OxDb.SharedGame.Core.PlayerData
         [Key(6)] public string ClientPlatformName { get; set; }
         [Key(7)] public string RefreshToken { get; set; }
         [Key(8)] public string GameUserId { get; set; }
-        [Key(9)] public string SessionToken { get; set; }
-        [Key(10)] public string ShareId { get; set; }
+        [Key(9)] public string FullToken { get; set; }
+        [Key(10)] public string DisplayName { get; set; }
         [Key(11)] public long DataBits { get; set; }
-        [Key(12)] public string SessionId { get; set; }
 
         [Key(13)] public DataAccumulationSet Accumulations { get; set; } = new DataAccumulationSet();
     }

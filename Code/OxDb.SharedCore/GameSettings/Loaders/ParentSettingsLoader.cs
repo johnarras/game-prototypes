@@ -72,6 +72,19 @@ namespace OxDb.SharedCore.GameSettings.Loaders
 
             return parents.Cast<ITopLevelSettings>().ToList();
         }
+
+        public void SetParentChildData(List<ITopLevelSettings> parents, List<IChildSettings> children)
+        {
+            List<TParent> realParents = parents.OfType<TParent>().ToList();
+
+            List<TChild> realChildren = children.OfType<TChild>().ToList();
+
+
+            foreach (TParent parent in realParents)
+            {
+                parent.SetData(realChildren.Where(x => x.ParentId == parent.Id).ToList());
+            }
+        }
     }
 }
 

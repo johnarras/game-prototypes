@@ -9,6 +9,7 @@ using OxDb.SharedCore.Website.Requests.Core;
 using OxDb.SharedCore.Website.Requests.Interfaces;
 using OxDb.SharedCore.Website.Responses.Errors;
 using OxDb.SharedCore.Website.Responses.Interfaces;
+using OxDb.SharedGame.Core.PlayerData;
 using System.Text;
 
 namespace OxDb.RequestServer.ClientUserRequests.Services
@@ -29,14 +30,13 @@ namespace OxDb.RequestServer.ClientUserRequests.Services
 
         private SetupDictionaryContainer<Type, IGameClientRequestHandler> _clientCommandHandlers = new SetupDictionaryContainer<Type, IGameClientRequestHandler>();
 
-        public async Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, string tokenUserId, CancellationToken token)
+        public async Task HandleUserClientRequest(WebContext context, WebServerRequestSet requestSet, string tokenUserId, string gameSessionId, CancellationToken token)
         {
 
             try
             {
-                if (!await LoadLoggedInPlayer(context, tokenUserId, requestSet.GameUserId))
+                if (!await LoadLoggedInPlayer(context, tokenUserId, gameSessionId, requestSet.GameUserId))
                 {
-                    context.ShowError("Failed to load logged in user.");
                     return;
                 }
 
@@ -86,14 +86,24 @@ namespace OxDb.RequestServer.ClientUserRequests.Services
             return;
         }
 
-        private async Task<bool> LoadLoggedInPlayer(WebContext context, string tokenUserId, string requestListUserId)
+        private async Task<bool> LoadLoggedInPlayer(WebContext context, string tokenUserId, string gameSessionId, string requestListUserId)
         {
             if (tokenUserId != requestListUserId)
             {
+                context.ShowError("Auth User Id does not match Request User Id");
                 return false;
             }
 
             context.SetGameUserId(tokenUserId);
+
+            CoreData coreData = await context.GetAsync<CoreData>();
+
+            if (coreData.GameSessionId != gameSessionId)
+            {
+                context.ShowError("You are logged in on another device.");
+                return false;
+            }
+
 
             await _loadPlayerDataService.UpdatePlayerAfterLoginOrLoad(context, false);
 

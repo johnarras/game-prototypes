@@ -32,7 +32,6 @@ public class TerrainPatchArgs
 public class TraderTerrain : BaseBehaviour
 {
 
-
     private ICaravanService _caravanService = null;
     private ICameraController _cameraController = null;
     private ITravelService _travelService = null;

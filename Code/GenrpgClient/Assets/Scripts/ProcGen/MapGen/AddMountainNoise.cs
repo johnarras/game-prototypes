@@ -12,7 +12,7 @@ public class AddMountainNoise : BaseAddMountains
     {
         int radius = 4;
 
-        _md.mountainNoise = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
+        _md.MountainNoise = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
             if (zone.XMin >= zone.XMax || zone.ZMin >= zone.ZMax)
@@ -112,7 +112,7 @@ public class AddMountainNoise : BaseAddMountains
                     {
                         float zoneScale = 1.0f;
 
-                        if (_md.mapZoneIds[x, y] == zone.IdKey)
+                        if (_md.MapZoneIds[x, y] == zone.IdKey)
                         {
                             float minDist = radius;
                             for (int xx = x - radius; xx <= x + radius; xx++)
@@ -121,7 +121,7 @@ public class AddMountainNoise : BaseAddMountains
                                 for (int yy = y - radius; yy <= y + radius; yy++)
                                 {
                                     float ddy = y - yy;
-                                    if (_md.mapZoneIds[x, y] != zone.IdKey)
+                                    if (_md.MapZoneIds[x, y] != zone.IdKey)
                                     {
                                         float dist = (float)(Math.Sqrt(ddx * ddx + ddy * ddy));
                                         if (dist < minDist)
@@ -143,7 +143,7 @@ public class AddMountainNoise : BaseAddMountains
                                 for (int yy = y - radius; yy <= y + radius; yy++)
                                 {
                                     float ddy = y - yy;
-                                    if (_md.mapZoneIds[x, y] == zone.IdKey)
+                                    if (_md.MapZoneIds[x, y] == zone.IdKey)
                                     {
                                         float dist = (float)(Math.Sqrt(ddx * ddx + ddy * ddy));
                                         if (dist < minDist)
@@ -159,15 +159,15 @@ public class AddMountainNoise : BaseAddMountains
                         }
                         float secondaryMidScale = (float)MathUtil.Clamp(0, (midVals[x - minx, y - miny] - midMinVal) / (midMaxVal - midMinVal), 1.0f);
 
-                        if (_md.mountainDistPercent[x, y] >= 1.0f)
+                        if (_md.MountainDistPercent[x, y] >= 1.0f)
                         {
 
 
                             if (secondaryMidScale > 0)
                             {
-                                _md.flags[x, y] |= MapGenFlags.OverrideWallNoiseScale;
+                                _md.Flags[x, y] |= MapGenFlags.OverrideWallNoiseScale;
                                 midTimes++;
-                                _md.mountainNoise[x, y] += secondaryMidScale * zoneScale;
+                                _md.MountainNoise[x, y] += secondaryMidScale * zoneScale;
                             }
                             continue;
                         }
@@ -181,17 +181,17 @@ public class AddMountainNoise : BaseAddMountains
 
                         float wallEdgeScale = 1.0f;
 
-                        float wallDistancePct = _md.mountainDistPercent[x, y];
-                        float wallDist = _md.mountainCenterDist[x, y];
-                        if (_md.mountainDistPercent[x, y] > wallEdgeSize)
+                        float wallDistancePct = _md.MountainDistPercent[x, y];
+                        float wallDist = _md.MountainCenterDist[x, y];
+                        if (_md.MountainDistPercent[x, y] > wallEdgeSize)
                         {
-                            wallEdgeScale = 1 - (_md.mountainDistPercent[x, y] - wallEdgeSize) / (1.0f - wallEdgeSize);
+                            wallEdgeScale = 1 - (_md.MountainDistPercent[x, y] - wallEdgeSize) / (1.0f - wallEdgeSize);
                         }
 
 
                         if (secondaryMidScale > wallEdgeScale)
                         {
-                            _md.flags[x, y] |= MapGenFlags.OverrideWallNoiseScale;
+                            _md.Flags[x, y] |= MapGenFlags.OverrideWallNoiseScale;
                             midTimes++;
                             wallEdgeScale = secondaryMidScale * 1.5f;
                         }
@@ -214,11 +214,11 @@ public class AddMountainNoise : BaseAddMountains
                                 hgt *= currDist / currTerraceSize * 0.8f;
                             }
                         }
-                        if (FlagUtils.MatchesAnyBits(_md.flags[x, y], MapGenFlags.IsSecondaryWall) && !showTerraces)
+                        if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.IsSecondaryWall) && !showTerraces)
                         {
                             hgt *= secondaryWallScale;
                         }
-                        _md.mountainNoise[x, y] += hgt * wallEdgeScale * zoneScale;
+                        _md.MountainNoise[x, y] += hgt * wallEdgeScale * zoneScale;
                         continue;
                     }
                 }

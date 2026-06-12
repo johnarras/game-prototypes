@@ -356,6 +356,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 4485473094826007684, guid: 1d635af844f05bc42be8b9d338c0f26b, type: 2}
+    - target: {fileID: 1369185266387250821, guid: 8497a0ca83a76cd48b85d2d2518d219f, type: 3}
+      propertyPath: IsMainIcon
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369185266387250821, guid: 8497a0ca83a76cd48b85d2d2518d219f, type: 3}
+      propertyPath: AllowAnimatedSprite
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6149943718258180995, guid: 8497a0ca83a76cd48b85d2d2518d219f, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -439,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 6977498789102492169, guid: 8497a0ca83a76cd48b85d2d2518d219f, type: 3}
       propertyPath: m_Name
       value: EntityIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514865459149560685, guid: 8497a0ca83a76cd48b85d2d2518d219f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

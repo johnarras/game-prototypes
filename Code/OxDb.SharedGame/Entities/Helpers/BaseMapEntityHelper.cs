@@ -12,8 +12,8 @@ namespace OxDb.SharedGame.Entities.Helpers
 {
     public abstract class BaseMapEntityHelper<TObj> : IEntityHelper where TObj : IIdName
     {
-
-        protected IMapProvider _mapProvider;
+        public virtual string GetIconSuffix() { return ""; }
+        protected IMapProvider _mapProvider = null;
 
         public abstract long HelperKey { get; }
 

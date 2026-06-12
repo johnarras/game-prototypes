@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets.Constants;
+using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Entities;
@@ -142,12 +143,12 @@ public class AddRocks : BaseZoneGenerator
             }
 
 
-            if (_md.mapZoneIds[x, y] != zone.IdKey) // zoneobject
+            if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
             {
                 continue;
             }
 
-            if (_md.roadDistances[x, y] < 10)
+            if (_md.RoadDistances[x, y] < 10)
             {
                 continue;
             }
@@ -241,7 +242,7 @@ public class AddRocks : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.roadDistances[ipx, ipy] < 3)
+                if (_md.RoadDistances[ipx, ipy] < 3)
                 {
                     continue;
                 }
@@ -252,12 +253,9 @@ public class AddRocks : BaseZoneGenerator
                     continue;
                 }
 
-                if (_md.mapObjects != null &&
-                    _md.mapObjects[ipx, ipy] == 0)
+                if (!_md.CellHasObject(ipx, ipy))
                 {
-                    int offset = MapConstants.RockObjectOffset;
-
-                    _md.mapObjects[ipx, ipy] = (int)(offset + frt.rockType.IdKey);
+                    _md.SetEntityData(ipx, ipy, EntityTypes.Rock, frt.rockType.IdKey);
 
                     didFinalPlace = true;
 

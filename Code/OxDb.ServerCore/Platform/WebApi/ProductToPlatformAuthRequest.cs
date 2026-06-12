@@ -8,6 +8,6 @@ namespace OxDb.ServerCore.Platform.WebApi
         public string AccountId { get; set; }
         public string ProductUserId { get; set; }
         public long DataBits { get; set; }
-        public string SessionId { get; set; }
+        public string AccountSessionId { get; set; }
     }
 }

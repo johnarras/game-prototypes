@@ -62,6 +62,11 @@ namespace OxDb.SharedGame.Characters.PlayerData
             _conn = conn;
         }
 
+        public bool IsConnected()
+        {
+            return _conn != null && !_conn.RemoveMe();
+        }
+
         public override bool IsPlayer() { return true; }
 
 

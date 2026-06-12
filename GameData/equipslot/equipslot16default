@@ -7,5 +7,6 @@
   "Active": true,
   "IsCrawlerSlot": true,
   "BaseBonusStatTypeId": 31,
-  "BonusStatScale": 1.0
+  "BonusStatScale": 1.0,
+  "IsWeaponSlot": true
 }

@@ -42,6 +42,10 @@ namespace OxDb.SharedCore.GameSettings.Loaders
 
             return list;
         }
+
+        public virtual void SetParentChildData(List<ITopLevelSettings> parents, List<IChildSettings> children)
+        {
+        }
     }
 }
 

@@ -2,6 +2,7 @@ using Assets.Scripts.Assets;
 using Assets.Scripts.ClientEvents;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedGame.Crawler.Info.InfoHelpers;
 using OxDb.SharedGame.Crawler.Info.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace Assets.Scripts.Info.UI
         {
             ClearList();
             InfoPanel.ClearInfo();
+            InfoPanel.ClearStack();
         }
 
         protected void ClearList()
@@ -60,11 +62,16 @@ namespace Assets.Scripts.Info.UI
         protected virtual void ShowChildList<T>(List<T> list, long entityTypeId) where T : IIdName
         {
 
-            InfoPanel.ClearStack();
-
             ClearAllChildren();
 
+            IInfoHelper infoHelper = _infoService.GetInfoHelper(entityTypeId);
+
             list = list.OrderBy(x => x.Name).ToList();
+
+            if (infoHelper != null && !infoHelper.OrderByName)
+            {
+                list = list.OrderBy(x => x.IdKey).ToList();
+            }
 
             foreach (IIdName idname in list)
             {
@@ -94,16 +101,13 @@ namespace Assets.Scripts.Info.UI
                 _overviewPages = _infoService.GetOverviewPages();
             }
 
-            InfoPanel.ClearStack();
-
             ClearAllChildren();
 
             for (int p = 0; p < _overviewPages.Count; p++)
             {
                 GText text = _clientEntityService.FullInstantiate<GText>(ListText);
                 _clientEntityService.AddToParent(text, ListAnchor);
-                _uiService.SetText(text, _overviewPages[p].Header);
-
+                _uiService.SetText(text, _infoService.CreateHeaderLine(_overviewPages[p].Header, false));
 
                 ShowInfoPanelArgs args = new ShowInfoPanelArgs()
                 {

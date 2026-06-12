@@ -1,5 +1,7 @@
 <linker>
-  <assembly fullname="Genrpg.Shared" preserve="all"/>
+  <assembly fullname="OxDb.SharedCore" preserve="all"/>
+  <assembly fullname="OxDb.SharedGame" preserve="all"/>
+  <assembly fullname="OxDb.SharedPlatform" preserve="all"/>
   <assembly fullname="Assembly-CSharp" preserve="all"/>
   <assembly fullname="System.Text.Encodings.Web" preserve="all"/>
   <assembly fullname="Microsoft.Bcl.AsyncInterfaces" preserve="all"/>

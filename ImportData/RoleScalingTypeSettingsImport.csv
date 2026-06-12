@@ -1,0 +1,9 @@
+header rolescalingtypesettings,,,,
+header rolescalingtype,Idkey,Name,ScalingStatTypeId,Desc
+rolescalingtype,1,Melee,strength,Increases Melee attacks per level.
+rolescalingtype,2,Ranged,agility,Increases Ranged Attacks per level.
+rolescalingtype,3,SpellDam,intellect,Increases attack spell damage per level.
+rolescalingtype,4,Healing,devotion,Increases healing per level.
+rolescalingtype,5,Summon,willpower,Increases the quantity and power of summoned creatures.
+rolescalingtype,6,Utility,luck,Inceases chance to do odd things like pick locks.
+rolescalingtype,7,Defense,stamina,Gives a chance to lessen or ignore damage.
